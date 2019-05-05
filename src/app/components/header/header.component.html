@@ -2,8 +2,7 @@
   <a class="navbar-brand" href="/">
     <img src="assets/images/openebs-logo.svg" alt="logo" style="height:26px">
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" (click)="openNav()">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -25,5 +24,18 @@
         </a>
       </li>
     </ul>
+  </div>
+
+  <div id="mySidenav" class="sidenav">
+
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+    <div id="menu">
+      <a class="nav-link" href="https://docs.openebs.io" target="_blank" rel="noopener">Documentation</a>
+      <a class="nav-link" href="https://github.com/openebs/openebs" target="_blank" rel="noopener">GitHub</a>
+      <a class="nav-link" href="https://blog.openebs.io" target="_blank" rel="noopener">Blog</a>
+      <a class="nav-link" href="https://docs.openebs.io/docs/next/quickstart.html" target="_blank" rel="noopener">
+        <button class="btn btn-primary text-uppercase" style="width:130px">Get Started</button>
+      </a>
+    </div>
   </div>
 </nav>

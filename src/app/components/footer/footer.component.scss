@@ -18,3 +18,33 @@ a {
   color: #fefefe;
   text-decoration: none;
 }
+
+/*  Mobile */
+@media screen and (max-width:575.9998px) {}
+
+
+/*  Tablet */
+@media screen and (min-width:576px) {
+  ul li {
+    line-height: 2;
+    font-size: 12px;
+    color: #fefefe;
+  }
+}
+
+@media screen and (min-width:768px) {}
+
+@media screen and (min-width:992px) {
+  .social-icon {
+    padding-left: 215px;
+  }
+
+  ul li {
+    line-height: 2;
+    font-size: 14px;
+    color: #fefefe;
+  }
+}
+
+/*  Desktop */
+@media screen and (min-width:1200px) {}
