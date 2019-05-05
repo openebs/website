@@ -1,0 +1,214 @@
+<div class="bg-primary section-block">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <div style="padding-bottom:50px">
+          <h3 class="text-center text-white">Leading Open Source </h3>
+          <h2 class="text-center text-white" style="font-size:40px">Container Attached Storage (CAS)</h2>
+        </div>
+        <div>
+          <ul class="text-white">
+            <li>100% Open Source</li>
+            <li>Stateful Applications/Workloads on Kubernetes simplified</li>
+            <li>Container Native Architecture</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="bg-dark">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div style="height:75px" class="d-flex">
+          <p class="text-white my-auto" style="font-family:monospace">$ <span>{{ typewriter_display }}</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section-block" style="background-color: #EFEFF2;">
+  <div class="container px-lg-5">
+    <div class="row px-lg-5">
+      <div class="col-md-12 px-lg-5">
+        <h2 class="pb-5 font-weight-bold" style="font-size:40px">What is OpenEBS?</h2>
+        <div class="row">
+          <div class="col-md-6 pr-lg-5 pb-4">
+            <img src="assets/images/attributes/icon1.png" alt="attr1" class="img-fuild "
+              style="height:35px; width:auto">
+            <p>OpenEBS is the most active Container Attached Storage project with the biggest user base and community
+            </p>
+          </div>
+          <div class="col-md-6 pr-lg-5 pb-4">
+            <img src="assets/images/attributes/icon2.png" alt="attr2" class="img-fuild" style="height:35px; width:auto">
+            <p>OpenEBS enables your DevOps teams to have their own storage policies for every workload</p>
+          </div>
+          <div class="col-md-6 pr-lg-5 pb-4">
+            <img src="assets/images/attributes/icon3.png" alt="attr3" class="img-fuild" style="height:35px; width:auto">
+            <p>OpenEBS is not a Scale-out Storage System that requires a storage admin. If you know how to use K8s, you
+              know how OpenEBS works</p>
+          </div>
+          <div class="col-md-6 pr-lg-5 pb-4">
+            <img src="assets/images/attributes/icon4.png" alt="attr4" class="img-fuild" style="height:35px; width:auto">
+            <p>OpenEBS is truly Kubernetes native and 100% in userspace</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section-block">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="font-weight-bold pb-4 text-center" style="font-size:40px">Stateful Applications/Workloads</h2>
+      </div>
+      <div class="col-md-12 pt-2 pt-md-4">
+        <div class="row workload" style="padding-left:100px; padding-right:100px">
+          <div class="col-md-2">
+            <img src="assets/images/workloads/prometheus.png" alt="prometheus" class="img-fluid">
+          </div>
+          <div class="col-md-2">
+            <img src="assets/images/workloads/cassandra.png" alt="cassandra" class="img-fluid">
+          </div>
+          <div class="col-md-2">
+            <img src="assets/images/workloads/postgresql.png" alt="postgresql" class="img-fluid">
+          </div>
+          <div class="col-md-2">
+            <img src="assets/images/workloads/percona.png" alt="percona" class="img-fluid">
+          </div>
+          <div class="col-md-2">
+            <img src="assets/images/workloads/redis.png" alt="redis" class="img-fluid">
+          </div>
+          <div class="col-md-2">
+            <img src="assets/images/workloads/minio.png" alt="minio" class="img-fluid">
+          </div>
+          <div class="col-md-2">
+            <img src="assets/images/workloads/mysql.png" alt="mysql" class="img-fluid">
+          </div>
+          <div class="col-md-2">
+            <img src="assets/images/workloads/nuodb.png" alt="nuodb" class="img-fluid">
+          </div>
+          <div class="col-md-2">
+            <img src="assets/images/workloads/elasticsearch.png" alt="elasticsearch" class="img-fluid">
+          </div>
+          <div class="col-md-2">
+            <img src="assets/images/workloads/mongodb.png" alt="mongodb" class="img-fluid">
+          </div>
+          <div class="col-md-2">
+            <img src="assets/images/workloads/nfs.png" alt="nfs" class="img-fluid">
+          </div>
+          <div class="col-md-2">
+            <img src="assets/images/workloads/gitlab.png" alt="gitlab" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="section-block">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2 class="font-weight-bold text-center" style="font-size:35px;">The features and benefits that you need</h2>
+      </div>
+    </div>
+  </div>
+  <div class="container pt-0 pt-md-4">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let feature of openebs_features" style="padding-right:45px;padding-top: 35px">
+        <img src={{feature.image_url}} alt={{feature.image_url}} class="img-fuild p-1" style="height:auto; width:50px">
+        <h5 class="font-weight-bold" style="font-size:18px;">{{ feature.title}}</h5>
+        <p class="pt-3">{{ feature.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid py-5">
+  <div class="row">
+    <div class="col-md-12 text-center pb-4">
+      <h2 class="text-center font-weight-semibold text-dark openebs-h2">OpenEBS runs on any Kubernetes platform
+        such as</h2>
+    </div>
+    <div class="col-md-12">
+      <div class="container-fluid text-center my-3">
+        <div class="row mx-auto my-auto">
+          <div id="recipeCarousel" class="carousel slide w-100" data-ride="carousel">
+            <div class="container">
+              <div class="row platform" style="padding-left:150px; padding-right:150px">
+                <div class="col-md-12">
+                  <div class="carousel-inner w-100" role="listbox">
+                    <div class="carousel-item active">
+                      <img class="d-block col-2 img-fluid" src="assets/images/platforms/aks.png">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block col-2 img-fluid" src="assets/images/platforms/aws.png">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block col-2 img-fluid" src="assets/images/platforms/bare-metal.png">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block col-2 img-fluid" src="assets/images/platforms/digital-ocean.png">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block col-2 img-fluid" src="assets/images/platforms/gcp.png">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block col-2 img-fluid" src="assets/images/platforms/ibm-cloud.png">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block col-2 img-fluid" src="assets/images/platforms/mini-kube.png">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block col-2 img-fluid" src="assets/images/platforms/net-app-logo.png">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block col-2 img-fluid" src="assets/images/platforms/open-shift.png">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block col-2 img-fluid" src="assets/images/platforms/packet.png">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block col-2 img-fluid" src="assets/images/platforms/upstream-k8s.png">
+                    </div>
+                    <div class="carousel-item">
+                      <img class="d-block col-2 img-fluid" src="assets/images/platforms/vagrant.png">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
+              <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+              <i class="fa fa-angle-left text-dark" style="font-size:30px"></i>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
+              <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+              <i class="fa fa-angle-right text-dark" style="font-size:30px"></i>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <p class="text-uppercase font-weight-bold text-primary text-center pt-3">*We support more kubernetes platforms as
+        well as your own (DIY)</p>
+    </div>
+  </div>
+</div>
+<div style="background-color: #EFEFF2;" class="section-block">
+  <div class="container py-3">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <div>
+          <a href="https://cncf.io" target="_blank" rel="noopener">
+            <img src="assets/images/cncf.png" class="img-fluid">
+          </a>
+          <p class="pt-3 m-0">We are a Cloud Native Computing Foundation sandbox project.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

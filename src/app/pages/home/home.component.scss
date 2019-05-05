@@ -1,0 +1,71 @@
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.section-block {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+}
+
+.carousel-inner .carousel-item-right.active,
+.carousel-inner .carousel-item-next {
+  transform: translateX(16.67%);
+}
+
+.carousel-inner .carousel-item-left.active,
+.carousel-inner .carousel-item-prev {
+  transform: translateX(-16.67%);
+}
+
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left {
+  transform: translateX(0);
+
+}
+
+.carousel-item {
+  height: 100px;
+}
+
+.workload div {
+  height: 100px;
+}
+
+.workload img {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  height: 90px;
+}
+
+.workload img:hover {
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.platform img {
+  display: flex;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.platform img:hover {
+  -webkit-filter: grayscale(0%);
+  filter: grayscale(0%);
+  transform: scale(1.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  width: 25%;
+}
