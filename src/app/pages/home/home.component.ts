@@ -9,7 +9,7 @@ export class HomeComponent implements OnInit {
 
   typewriter_text = 'helm install stable/openebs --name openebs --namespace openebs';
   typewriter_display = '';
-
+  ImageURL = "assets/images/hero-bg.png";
   constructor() { }
 
   ngOnInit() {
@@ -97,6 +97,82 @@ export class HomeComponent implements OnInit {
       'title': 'Run anywhere',
       'description': 'Make multi-cloud real, improve resilience across availability zones'
     }];
+
+  workloads = [
+    {
+      url: 'https://docs.openebs.io/docs/next/prometheus.html',
+      src: 'assets/images/workloads/prometheus.png',
+      alt: 'prometheus',
+      title: 'Prometheus'
+    },
+    {
+      url: 'https://docs.openebs.io/docs/next/cassandra.html',
+      src: 'assets/images/workloads/cassandra.png',
+      alt: 'cassandra',
+      title: 'Cassandra'
+    },
+    {
+      url: 'https://docs.openebs.io/docs/next/postgres.html',
+      src: 'assets/images/workloads/postgresql.png',
+      alt: 'postgresql',
+      title: 'Postgresql'
+    },
+    {
+      url: 'https://docs.openebs.io/docs/next/percona.html',
+      src: 'assets/images/workloads/percona.png',
+      alt: 'percona',
+      title: 'Percona'
+    },
+    {
+      url: 'https://docs.openebs.io/docs/next/redis.html',
+      src: 'assets/images/workloads/redis.png',
+      alt: 'redis',
+      title: 'Redis'
+    },
+    {
+      url: 'https://docs.openebs.io/docs/next/minio.html',
+      src: 'assets/images/workloads/minio.png',
+      alt: 'minio',
+      title: 'Minio'
+    },
+    {
+      url: 'https://docs.openebs.io/docs/next/mysql.html',
+      src: 'assets/images/workloads/mysql.png',
+      alt: 'mysql',
+      title: 'MySQL'
+    },
+    {
+      url: 'https://docs.openebs.io/docs/next/nuodb.html',
+      src: 'assets/images/workloads/nuodb.png',
+      alt: 'nuodb',
+      title: 'NuoDB'
+    },
+    {
+      url: 'https://docs.openebs.io/docs/next/elasticsearch.html',
+      src: 'assets/images/workloads/elasticsearch.png',
+      alt: 'elasticsearch',
+      title: 'Elasticsearch'
+    },
+    {
+      url: 'https://docs.openebs.io/docs/next/mongo.html',
+      src: 'assets/images/workloads/mongodb.png',
+      alt: 'mongodb',
+      title: 'MongoDB'
+    },
+    {
+      url: 'https://docs.openebs.io/docs/next/rwm.html',
+      src: 'assets/images/workloads/nfs.png',
+      alt: 'nfs',
+      title: 'NFS'
+    },
+    {
+      url: 'https://docs.openebs.io/docs/next/gitlab.html',
+      src: 'assets/images/workloads/gitlab.png',
+      alt: 'gitlab',
+      title: 'GitLab'
+    }
+
+  ];
 
   typingCallback(that) {
     const total_length = that.typewriter_text.length;

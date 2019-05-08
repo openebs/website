@@ -13,9 +13,9 @@ export class FooterComponent implements OnInit {
   }
   social_icons = [
     {
-      src: 'assets/images/socials/fb.svg',
-      alt: 'facebook',
-      url: 'https://www.facebook.com/openebs'
+      src: 'assets/images/socials/gh.svg',
+      alt: 'github',
+      url: 'https://github.com/openebs'
     },
     {
       src: 'assets/images/socials/tw.svg',
@@ -23,14 +23,9 @@ export class FooterComponent implements OnInit {
       url: 'https://twitter.com/openebs'
     },
     {
-      src: 'assets/images/socials/ln.svg',
-      alt: 'linkedin',
-      url: 'https://www.linkedin.com/company/openebs/'
-    },
-    {
-      src: 'assets/images/socials/gh.svg',
-      alt: 'github',
-      url: 'https://github.com/openebs'
+      src: 'assets/images/socials/sl.svg',
+      alt: 'slack',
+      url: 'https://slack.openebs.io'
     },
     {
       src: 'assets/images/socials/yt.svg',

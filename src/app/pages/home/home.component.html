@@ -1,16 +1,23 @@
-<div class="bg-primary section-block">
-  <div class="container py-5">
-    <div class="row">
-      <div class="col-md-12 text-center">
+<div class="bg-primary section-block" [style.background-image]="'url(' + ImageURL +')'" style="background-repeat:no-repeat;
+background-size:cover; background-clip:padding-box">
+  <div class="container py-5 px-5">
+    <div class="row px-5">
+      <div class="col-md-12 text-left px-5 py-3">
         <div style="padding-bottom:50px">
-          <h3 class="text-center text-white">Leading Open Source </h3>
-          <h2 class="text-center text-white heading">Container Attached Storage (CAS)</h2>
+          <h3 class="text-left text-white">Leading Open Source </h3>
+          <h2 class="text-left text-white heading font-weight-bold">Container Attached Storage (CAS)</h2>
         </div>
         <div>
           <ul class="text-white">
-            <li>100% Open Source</li>
-            <li>Stateful Applications/Workloads on Kubernetes simplified</li>
-            <li>Container Native Architecture</li>
+            <li><img src="assets/images/thumb.png" class="py-2" style="width:26px; margin-right:15px">100% Open Source
+            </li>
+            <li><img src="assets/images/container.png" class="py-2" style="width:26px;margin-right:15px">Container
+              Native
+              Architecture</li>
+            <li><img src="assets/images/k8s.png" class="py-2" style="width:26px;margin-right:15px">Stateful
+              Applications/Workloads
+              on Kubernetes
+              simplified</li>
           </ul>
         </div>
       </div>
@@ -37,21 +44,21 @@
         <div class="row">
           <div class="col-sm-6 pr-lg-5 pb-4">
             <img src="assets/images/attributes/icon1.png" alt="attr1" class="img-fuild "
-              style="height:35px; width:auto">
+              style="height:55px; width:auto">
             <p>OpenEBS is the most active Container Attached Storage project with the biggest user base and community
             </p>
           </div>
           <div class="col-sm-6 pr-lg-5 pb-4">
-            <img src="assets/images/attributes/icon2.png" alt="attr2" class="img-fuild" style="height:35px; width:auto">
+            <img src="assets/images/attributes/icon2.png" alt="attr2" class="img-fuild" style="height:55px; width:auto">
             <p>OpenEBS enables your DevOps teams to have their own storage policies for every workload</p>
           </div>
           <div class="col-sm-6 pr-lg-5 pb-4">
-            <img src="assets/images/attributes/icon3.png" alt="attr3" class="img-fuild" style="height:35px; width:auto">
+            <img src="assets/images/attributes/icon3.png" alt="attr3" class="img-fuild" style="height:55px; width:auto">
             <p>OpenEBS is not a Scale-out Storage System that requires a storage admin. If you know how to use K8s, you
               know how OpenEBS works</p>
           </div>
           <div class="col-sm-6 pr-lg-5 pb-4">
-            <img src="assets/images/attributes/icon4.png" alt="attr4" class="img-fuild" style="height:35px; width:auto">
+            <img src="assets/images/attributes/icon4.png" alt="attr4" class="img-fuild" style="height:55px; width:auto">
             <p>OpenEBS is truly Kubernetes native and 100% in userspace</p>
           </div>
         </div>
@@ -66,42 +73,11 @@
         <h2 class="font-weight-bold pb-4 text-center openebs-h2">Stateful Applications/Workloads</h2>
       </div>
       <div class="col-md-12 pt-2 pt-md-4">
-        <div class="row workload">
-          <div class="col-4 col-sm-3 col-md-2">
-            <img src="assets/images/workloads/prometheus.png" alt="prometheus" class="img-fluid">
-          </div>
-          <div class="col-4 col-sm-3 col-md-2">
-            <img src="assets/images/workloads/cassandra.png" alt="cassandra" class="img-fluid">
-          </div>
-          <div class="col-4 col-sm-3 col-md-2">
-            <img src="assets/images/workloads/postgresql.png" alt="postgresql" class="img-fluid">
-          </div>
-          <div class="col-4 col-sm-3 col-md-2">
-            <img src="assets/images/workloads/percona.png" alt="percona" class="img-fluid">
-          </div>
-          <div class="col-4 col-sm-3 col-md-2">
-            <img src="assets/images/workloads/redis.png" alt="redis" class="img-fluid">
-          </div>
-          <div class="col-4 col-sm-3 col-md-2">
-            <img src="assets/images/workloads/minio.png" alt="minio" class="img-fluid">
-          </div>
-          <div class="col-4 col-sm-3 col-md-2">
-            <img src="assets/images/workloads/mysql.png" alt="mysql" class="img-fluid">
-          </div>
-          <div class="col-4 col-sm-3 col-md-2">
-            <img src="assets/images/workloads/nuodb.png" alt="nuodb" class="img-fluid">
-          </div>
-          <div class="col-4 col-sm-3 col-md-2">
-            <img src="assets/images/workloads/elasticsearch.png" alt="elasticsearch" class="img-fluid">
-          </div>
-          <div class="col-4 col-sm-3 col-md-2">
-            <img src="assets/images/workloads/mongodb.png" alt="mongodb" class="img-fluid">
-          </div>
-          <div class="col-4 col-sm-3 col-md-2">
-            <img src="assets/images/workloads/nfs.png" alt="nfs" class="img-fluid">
-          </div>
-          <div class="col-4 col-sm-3 col-md-2">
-            <img src="assets/images/workloads/gitlab.png" alt="gitlab" class="img-fluid">
+        <div class="row workload" *ngIf="workloads">
+          <div class="col-4 col-sm-3 col-md-2" *ngFor="let workload of workloads">
+            <a href={{workload.url}} target="_blank" rel="noopener">
+              <img src={{workload.src}} alt={{workload.alt}} title={{workload.title}} class="img-fluid">
+            </a>
           </div>
         </div>
       </div>
@@ -119,7 +95,7 @@
   <div class="container pt-0 pt-md-4">
     <div class="row">
       <div class="col-sm-6 col-md-4 feature" *ngFor="let feature of openebs_features">
-        <img src={{feature.image_url}} alt={{feature.image_url}} class="img-fuild p-1" style="height:auto; width:50px">
+        <img src={{feature.image_url}} alt={{feature.image_url}} class="img-fuild p-1" style="height:auto; width:65px">
         <h5 class="font-weight-bold" style="font-size:18px;">{{ feature.title}}</h5>
         <p class="pt-3">{{ feature.description }}</p>
       </div>
@@ -129,7 +105,7 @@
 <div class="container-fluid py-5 px-3">
   <div class="row">
     <div class="col-md-12 text-center pb-4">
-      <h2 class="text-center font-weight-semibold text-dark openebs-h2">OpenEBS runs on any Kubernetes platform
+      <h2 class="text-center font-weight-bold text-dark openebs-h2">OpenEBS runs on any Kubernetes platform
         such as</h2>
     </div>
     <div class="col-md-12 mobile tablet">
@@ -237,12 +213,12 @@
       </div>
     </div>
     <div class="col-md-12">
-      <p class="text-uppercase font-weight-bold text-primary text-center pt-3">*We support more kubernetes platforms as
-        well as your own (DIY)</p>
+      <p class="text-uppercase font-weight-bold text-primary text-center pt-3">*We support more kubernetes
+        platforms as well as your own (DIY)</p>
     </div>
   </div>
 </div>
-<!-- <div style="background-color: #EFEFF2;" class="section-block">
+<div style="background-color: #EFEFF2;" class="section-block">
   <div class="container py-3">
     <div class="row">
       <div class="col-md-12 text-center">
@@ -255,4 +231,4 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
