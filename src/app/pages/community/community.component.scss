@@ -12,16 +12,12 @@ a {
   }
 }
 
-@media screen and (min-width:768px) {
-  .slack-card {
-    padding-top: 185px;
-    margin-bottom: -50px;
+@media screen and (max-width:330px) {
+  .slack-card div {
+    width: 290px;
   }
 }
 
-@media screen and (min-width:992px) {
-  .slack-card {
-    padding-top: 120px;
-    margin-bottom: -60px;
-  }
-}
+@media screen and (min-width:768px) {}
+
+@media screen and (min-width:992px) {}

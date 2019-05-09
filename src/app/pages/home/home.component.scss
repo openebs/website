@@ -86,6 +86,11 @@ ul {
   padding-top: 35px;
 }
 
+.slack-card div {
+  width: 340px;
+}
+
+
 /* Mobile */
 @media screen and (max-width:575.9998px) {
   .desktop {
@@ -131,7 +136,17 @@ ul {
 
 @media screen and (max-width:480px) {}
 
-@media screen and (max-width:400px) {}
+@media screen and (max-width:400px) {
+  .slack-card div {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width:330px) {
+  .slack-card div {
+    width: 290px;
+  }
+}
 
 /* Tablet */
 @media screen and (min-width:576px) {
