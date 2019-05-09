@@ -1,0 +1,27 @@
+a {
+  color: #0063FF;
+}
+
+.slack-card div {
+  width: 340px;
+}
+
+@media screen and (max-width:400px) {
+  .slack-card div {
+    width: 300px;
+  }
+}
+
+@media screen and (min-width:768px) {
+  .slack-card {
+    padding-top: 185px;
+    margin-bottom: -50px;
+  }
+}
+
+@media screen and (min-width:992px) {
+  .slack-card {
+    padding-top: 120px;
+    margin-bottom: -60px;
+  }
+}

@@ -1,8 +1,8 @@
 <div class="bg-primary section-block" [style.background-image]="'url(' + ImageURL +')'" style="background-repeat:no-repeat;
 background-size:cover; background-clip:padding-box">
-  <div class="container py-5 px-5">
-    <div class="row px-5">
-      <div class="col-md-12 text-left px-5 py-3">
+  <div class="container py-5 px-lg-5">
+    <div class="row px-lg-5">
+      <div class="col-md-12 text-left px-lg-5 py-3">
         <div style="padding-bottom:50px">
           <h3 class="text-left text-white">Leading Open Source </h3>
           <h2 class="text-left text-white heading font-weight-bold">Container Attached Storage (CAS)</h2>
@@ -14,10 +14,11 @@ background-size:cover; background-clip:padding-box">
             <li><img src="assets/images/container.png" class="py-2" style="width:26px;margin-right:15px">Container
               Native
               Architecture</li>
-            <li><img src="assets/images/k8s.png" class="py-2" style="width:26px;margin-right:15px">Stateful
-              Applications/Workloads
-              on Kubernetes
-              simplified</li>
+            <li class="d-flex justify-content-start align-items-center"><img src="assets/images/k8s.png" class="py-2"
+                style="width: 26px;height: 44px;margin-right:15px">
+              <div><span>Stateful
+                  Applications/Workloads on Kubernetes simplified</span></div>
+            </li>
           </ul>
         </div>
       </div>
@@ -70,7 +71,7 @@ background-size:cover; background-clip:padding-box">
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h2 class="font-weight-bold pb-4 text-center openebs-h2">Stateful Applications/Workloads</h2>
+        <h2 class="font-weight-bold pb-4 text-center openebs-h2">Stateful Applications / Workloads</h2>
       </div>
       <div class="col-md-12 pt-2 pt-md-4">
         <div class="row workload" *ngIf="workloads">
@@ -199,12 +200,10 @@ background-size:cover; background-clip:padding-box">
               </div>
             </div>
             <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
-              <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
               <i class="fa fa-angle-left text-dark" style="font-size:30px"></i>
               <span class="sr-only">Previous</span>
             </a>
             <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
-              <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
               <i class="fa fa-angle-right text-dark" style="font-size:30px"></i>
               <span class="sr-only">Next</span>
             </a>
