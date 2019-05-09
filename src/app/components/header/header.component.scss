@@ -45,6 +45,10 @@ button:focus {
   outline: none;
 }
 
+ul li {
+  font-size: 14px;
+}
+
 @media screen and (max-height: 450px) {
   .sidenav {
     padding-top: 15px;
