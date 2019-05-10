@@ -6,6 +6,11 @@ a {
   width: 340px;
 }
 
+.slack a {
+  color: #fefefe;
+  text-decoration: underline;
+}
+
 @media screen and (max-width:400px) {
   .slack-card div {
     width: 300px;
