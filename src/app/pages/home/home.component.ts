@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 declare var $: any;
 @Component({
   selector: 'app-home',
@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
     this.typingCallback(this);
 
   }
+  
 
 
   openebs_features = [
@@ -184,5 +185,6 @@ export class HomeComponent implements OnInit {
     }
     setTimeout(that.typingCallback, 150, that);
   }
+
 
 }
