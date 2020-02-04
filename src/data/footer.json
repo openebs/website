@@ -1,0 +1,103 @@
+{
+  "footer": {
+    "about": {
+      "imgUrl": "#",
+      "description": "OpenEBS is developed under Apache License 2.0 license at the project level. Some components of the projects are derived from the other Open Source projects and are distributed under their respective licenses."
+    },
+    "links": [
+      {
+        "title": "Get Started",
+        "link": {
+          "url": "/get-started",
+          "external": false
+        }
+      },
+      {
+        "title": "FAQ",
+        "link": {
+          "url": "/faq",
+          "external": false
+        }
+      },
+      {
+        "title": "About",
+        "link": {
+          "url": "/about",
+          "external": false
+        }
+      },
+      {
+        "title": "Docs",
+        "link": {
+          "url": "https://docs.openebs.io",
+          "external": true
+        }
+      },
+      {
+        "title": "Blog",
+        "link": {
+          "url": "/blog",
+          "external": false
+        }
+      },
+      {
+        "title": "Community",
+        "link": {
+          "url": "/community",
+          "external": false
+        }
+      },
+      {
+        "title": "GitHub",
+        "link": {
+          "url": "https://github.com/openebs/openebs",
+          "external": true
+        }
+      }
+    ],
+    "social": [
+      {
+        "title": "facebook",
+        "link": {
+          "url": "https://www.facebook.com/openebs",
+          "external": true
+        }
+      },
+      {
+        "title": "twitter",
+        "link": {
+          "url": "https://twitter.com/openebs",
+          "external": true
+        }
+      },
+      {
+        "title": "github",
+        "link": {
+          "url": "https://github.com/openebs/openebs",
+          "external": true
+        }
+      },
+      {
+        "title": "linkedin",
+        "link": {
+          "url": "https://www.linkedin.com/company/openebs/",
+          "external": true
+        }
+      },
+      {
+        "title": "youtube",
+        "link": {
+          "url": "https://www.youtube.com/channel/UC3ywadaAUQ1FI4YsHZ8wa0g",
+          "external": true
+        }
+      },
+      {
+        "title": "slack",
+        "link": {
+          "url": "/community",
+          "external": false
+        }
+      }
+    ]
+  }
+}

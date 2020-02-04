@@ -1,0 +1,8 @@
+@font-face {
+  font-family: BWHaasGrotesk-95Black-Web;
+  font-weight: 800;
+  font-style: normal;
+  src: url('BWHaasGrotesk-95Black-Web.woff2') format('woff2'),
+    url('BWHaasGrotesk-95Black-Web.woff') format('woff');
+  font-display: swap;
+}

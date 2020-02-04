@@ -1,0 +1,25 @@
+{
+  "nav": [
+    {
+      "title": "Docs",
+      "link": {
+        "url": "https://docs.openebs.io",
+        "external": true
+      }
+    },
+    {
+      "title": "Blog",
+      "link": {
+        "url": "/blog",
+        "external": false
+      }
+    },
+    {
+      "title": "Community",
+      "link": {
+        "url": "/community",
+        "external": false
+      }
+    }
+  ]
+}

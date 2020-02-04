@@ -1,0 +1,163 @@
+.post-content {
+  word-break: break-word;
+}
+.post-content pre {
+  overflow: auto;
+  border-radius: 4px;
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+  background: #002b36;
+  color: #839496;
+}
+
+/* blog headings */
+
+.post-content h1 {
+  font-size: 32px;
+}
+.post-content h2 {
+  font-size: 32px;
+}
+.post-content h3 {
+  font-size: 24px;
+}
+.post-content h4 {
+  font-size: 20px;
+}
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+  font-weight: 400;
+}
+
+/* blog paragraph */
+.post-content p {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+  letter-spacing: 1.5;
+}
+
+/* blog lists */
+.post-content ul,
+.post-content ol {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.post-content li {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.8;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+/* blog link */
+.post-content a {
+  color: #f26d00;
+}
+
+.post-content strong {
+  font-weight: 400;
+}
+
+.post-content .kg-card.kg-image-card.kg-card-hascaption {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.post-content .kg-card.kg-image-card.kg-card-hascaption figcaption {
+  font-weight: 600;
+  font-style: italic;
+}
+
+.post-content blockquote {
+  margin: 0;
+}
+
+.post-content blockquote p {
+  padding: 15px;
+  background: #ffb78a;
+  border-radius: 5px;
+}
+
+.post-content blockquote p::before {
+  content: '\201C';
+}
+@media screen and (max-width: 40em) {
+  .slick-next {
+    right: -10px;
+  }
+  .slick-prev {
+    left: -10px;
+  }
+  .post-content h1 {
+    font-size: 32px;
+  }
+  .post-content h2 {
+    font-size: 32px;
+  }
+  .post-content h3 {
+    font-size: 24px;
+  }
+  .post-content h4 {
+    font-size: 20px;
+  }
+  .post-content p,
+  .post-content li {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 40em) {
+  .post-content h1 {
+    font-size: 32px;
+  }
+  .post-content h2 {
+    font-size: 32px;
+  }
+  .post-content h3 {
+    font-size: 24px;
+  }
+  .post-content h4 {
+    font-size: 20px;
+  }
+  .post-content p,
+  .post-content li {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 56em) {
+  .post-content h1 {
+    font-size: 48px;
+  }
+  .post-content h2 {
+    font-size: 32px;
+  }
+  .post-content p,
+  .post-content li {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 64em) {
+  .post-content h2 {
+    font-size: 32px;
+  }
+  .post-content h3 {
+    font-size: 24px;
+  }
+  .post-content h4 {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 78em) {
+  .post-content h1 {
+    font-size: 40px;
+  }
+}

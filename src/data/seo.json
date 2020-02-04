@@ -1,0 +1,34 @@
+{
+  "pages": {
+    "home": {
+      "title": "OpenEBS - We make Kubernetes storage simple.",
+      "description": "OpenEBS makes it easy to attach storage to any Kubernetes application by abstracting all of the complex commands involved in creating robust multi-zone storage in a simple one-line command.",
+      "image": "dev.svg"
+    },
+    "about": {
+      "title": "About OpenEBS & container attached storage (CAS) ",
+      "description": "OpenEBS is the only 100% open source Kubernetes storage solution that attaches storage to the Kubernetes container, completely run in user space.",
+      "image": "card-openebs.png"
+    },
+    "getstarted": {
+      "title": "Get started with OpenEBS",
+      "description": "Get up and running with OpenEBS in under 2 minutes with our handy guide to attaching storage to any Kubernetes application.",
+      "image": "card-openebs.png"
+    },
+    "faq": {
+      "title": "Frequently asked questions - OpenEBS (Kubernetes Container Attached Storage)",
+      "description": "Have a question about OpenEBS? Need an answer? Check out our FAQs and you should be good to go.",
+      "image": "card-openebs.png"
+    },
+    "community": {
+      "title": "Open Source Community for OpenEBS - (Kubernetes Container Attached Storage)",
+      "description": "The only 2,000-strong member community devoted to building better Kubernetes storage. We’d love to have you, too! Join us on Slack or contribute directly on GitHub!",
+      "image": "card-openebs.png"
+    },
+    "privacypolicy": {
+      "title": "Privacy Policy - OpenEBS (Kubernetes Container Attached Storage)",
+      "description": "Let’s be honest: we’re not doing anything fishy with your data. But read this policy in case you want to know exactly what we are doing with it.",
+      "image": "card-openebs.png"
+    }
+  }
+}
