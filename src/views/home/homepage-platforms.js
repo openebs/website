@@ -16,7 +16,8 @@ const Platforms = () => {
     <>
       <div
         sx={{
-          py: ['4', '4', '5'],
+          pb: ['4', '4', '5'],
+          pt: ['2', '2', '3'],
           backgroundColor: 'white',
           textAlign: 'center',
         }}

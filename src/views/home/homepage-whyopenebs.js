@@ -31,7 +31,7 @@ const features = [
 const WhyOpenEBS = () => {
   return (
     <>
-      <div sx={{ py: ['4', '4', '5'] }}>
+      <div sx={{ pt: ['4', '4', '5'], pb: ['2', '2', '3'] }}>
         <Container sx={{ maxWidth: 1024 }}>
           <Styled.h2 sx={{ textAlign: 'center', pb: '4' }}>
             Why OpenEBS?
