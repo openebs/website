@@ -133,7 +133,7 @@ const WhatIsOpenEBS = () => {
                     Kubernetes native; runs in userspace
                   </Styled.li>
                   <Styled.li sx={{ ml: 3 }}>
-                    Open Source; no vendor lockin
+                    Open Source; no vendor lock-in
                   </Styled.li>
                   <Styled.li sx={{ ml: 3 }}>
                     The only multi cloud storage solution
