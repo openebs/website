@@ -7,8 +7,9 @@ class Asciinema extends React.Component {
     poster: 'npt:0:3',
     autoPlay: true,
     loop: true,
-    speed: 1,
+    speed: 0.75,
     preload: true,
+    startAt: '00:00:02',
   }
 
   bindRef = (ref) => {

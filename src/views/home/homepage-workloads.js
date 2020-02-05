@@ -6,25 +6,16 @@ import ImageQuery from 'utils/image-query'
 import Image from 'components/image'
 import Asciinema from 'components/asciinema'
 
-const asciinemaCasts = [
-  {
-    name: 'Bundle',
-    src: '/251679.cast',
-  },
-  {
-    name: 'Create React App',
-    src: '/create-react-app.cast',
-  },
-]
+// Make sure workloads image name and workloads cast name is same and in lowercase format
 
 const Workloads = ({ props }) => {
   const workloads = ImageQuery().allImages.edges.filter(
     (edge) => edge.node.relativeDirectory === 'workloads'
   )
-  const [cast, setCast] = useState(asciinemaCasts[0])
+  const [cast, setCast] = useState(workloads[0])
   const [active, setActive] = useState(null)
-  const handleCast = (cast) => {
-    setCast(cast)
+  const handleCast = (edge) => {
+    setCast(edge)
   }
 
   return (
@@ -67,24 +58,32 @@ const Workloads = ({ props }) => {
               >
                 {workloads.map((edge) => {
                   return (
-                    <div key={edge.node.id}>
-                      <Image
-                        src={edge.node.relativePath}
-                        style={{
-                          maxWidth: '80px',
-                          display: 'flex',
+                    <div key={edge.node.id} onClick={() => handleCast(edge)}>
+                      <div
+                        key={`cast-${edge.node.name}`}
+                        sx={{
                           filter: 'grayscale(100%)',
                           cursor: 'pointer',
-                          margin: 'auto',
+                          ':focus': {
+                            filter: 'grayscale(0%)',
+                          },
+                          ':hover': {
+                            filter: 'grayscale(0%)',
+                          },
                         }}
-                      />
+                      >
+                        <Image
+                          src={edge.node.relativePath}
+                          style={{
+                            maxWidth: '80px',
+                            display: 'flex',
+                            margin: 'auto',
+                          }}
+                        />
+                      </div>
                     </div>
                   )
                 })}
-
-                <div>
-                  <Styled.p>& more...</Styled.p>
-                </div>
               </div>
             </div>
           </div>
@@ -97,32 +96,13 @@ const Workloads = ({ props }) => {
           >
             <div>
               <div>
-                <Styled.h4 sx={{ pb: '3', color: 'white' }}>
-                  {cast.name}
+                <Styled.h4
+                  sx={{ pb: '3', color: 'white', textTransform: 'capitalize' }}
+                >
+                  {cast.node.name}
                 </Styled.h4>
-                <Asciinema src={cast.src} />
+                <Asciinema src={`${cast.node.name}.cast`} />
               </div>
-
-              {asciinemaCasts.map((cast) => {
-                return (
-                  <Button
-                    sx={{
-                      borderRadius: '5px',
-                      px: '4',
-                      my: '2',
-                      mr: '3',
-                      backgroundColor: 'darkOrange',
-                      '&:focus': {
-                        backgroundColor: 'extraDarkOrange',
-                      },
-                    }}
-                    key={`cast-${cast.name}`}
-                    onClick={() => handleCast(cast)}
-                  >
-                    {cast.name}
-                  </Button>
-                )
-              })}
             </div>
           </div>
         </div>

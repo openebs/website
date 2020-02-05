@@ -1,0 +1,10 @@
+{
+  "development": {
+    "apiUrl": "your-api-url",
+    "contentApiKey": "your-content-api-key"
+  },
+  "production": {
+    "apiUrl": "your-api-url",
+    "contentApiKey": "your-content-api-key"
+  }
+}
