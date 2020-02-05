@@ -9,6 +9,7 @@ import Image from 'components/image'
 import { ChevronRight, ChevronLeft } from 'react-feather'
 import Img from 'gatsby-image'
 import { motion } from 'framer-motion'
+import { getTruncatedExcerpt } from 'utils/getTruncatedExcerpt'
 
 const RecentUpdates = () => {
   const recentUpdates = RecentUpdatesQuery().recentUpdates.edges
@@ -110,8 +111,7 @@ const RecentUpdates = () => {
                               sx={{ fontWeight: '300', fontSize: [2, 2] }}
                             >
                               {custom_excerpt &&
-                                custom_excerpt.substring(0, 160)}
-                              ...
+                                `${getTruncatedExcerpt(custom_excerpt)}...`}
                             </Styled.p>
                           </div>
                         </Link>

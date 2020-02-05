@@ -3,7 +3,7 @@
     "home": {
       "title": "OpenEBS - We make Kubernetes storage simple.",
       "description": "OpenEBS makes it easy to attach storage to any Kubernetes application by abstracting all of the complex commands involved in creating robust multi-zone storage in a simple one-line command.",
-      "image": "dev.svg"
+      "image": "dev.png"
     },
     "about": {
       "title": "About OpenEBS & container attached storage (CAS) ",
