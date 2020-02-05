@@ -196,7 +196,7 @@ module.exports = {
         name: config.siteTitleMeta,
         short_name: config.shortTitle,
         start_url: `/`,
-        font: config.siteIcon,
+        icon: config.siteIcon,
       },
     },
     `gatsby-plugin-catch-links`,
