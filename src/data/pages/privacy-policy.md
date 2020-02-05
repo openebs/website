@@ -2,7 +2,7 @@
 title: 'privacy-policy'
 ---
 
-## **OpenEBS Privacy Policy**
+## OpenEBS Privacy Policy
 
 Last updated: December 3, 2019
 

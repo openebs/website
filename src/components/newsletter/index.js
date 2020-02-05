@@ -101,11 +101,11 @@ const Newsletter = () => {
           name="email"
           value={email}
           mb={3}
-          sx={{ maxWidth: 415 }}
+          sx={{ maxWidth: 415, borderRadius: '4px', borderColor: 'grey' }}
           placeholder="Subscribe to Newsletter"
           onChange={handleChange}
         />
-        <Button>Submit</Button>
+        <Button sx={{ borderRadius: '4px' }}>Submit</Button>
       </Box>
       <ReactModal
         isOpen={showModal}

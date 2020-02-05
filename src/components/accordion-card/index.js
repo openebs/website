@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Box } from '@theme-ui/components'
 import { ChevronRight } from 'react-feather'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-const DropdownCard = ({ data }) => {
+const AccordionCard = ({ data }) => {
   const toggleDisplay = () => {
     setToggle(!toggle)
   }
@@ -33,7 +33,7 @@ const DropdownCard = ({ data }) => {
               transform: `${
                 toggle === true ? 'rotate(90deg)' : 'rotate(0deg)'
               }`,
-              transition: 'all 0.5s ease-in-out',
+              transition: 'all 0.25s ease-in-out',
             }}
           />
         </div>
@@ -45,7 +45,7 @@ const DropdownCard = ({ data }) => {
         sx={{
           display: `${toggle === true ? 'block' : 'none'}`,
           opacity: `${toggle === true ? 1 : 0}`,
-          transition: 'opacity 0.5s ease-in-out',
+          transition: 'opacity 0.25s ease-in-out',
           overflow: 'auto',
         }}
       >
@@ -55,4 +55,4 @@ const DropdownCard = ({ data }) => {
   )
 }
 
-export default DropdownCard
+export default AccordionCard

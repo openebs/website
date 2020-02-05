@@ -57,7 +57,12 @@ const FooterComponent = (data) => {
               gridTemplateColumns: [`minmax(180px, auto)`, `1fr 1fr 1fr`],
             }}
           >
-            <div sx={{ px: '3' }}>
+            <div
+              sx={{
+                px: ['3', '0'],
+                textAlign: ['center', 'left'],
+              }}
+            >
               <Link to="/">
                 <Image src="openebs.svg" style={{ maxWidth: '200px' }} />
               </Link>

@@ -2,7 +2,7 @@
 import { jsx, Styled } from 'theme-ui'
 import React from 'react'
 import { Container } from '@theme-ui/components'
-import DropdownCard from 'components/dropdown-card'
+import AccordionCard from 'components/accordion-card'
 import { Link, StaticQuery, graphql } from 'gatsby'
 const FaqComponent = ({ data }) => {
   return (
@@ -10,7 +10,7 @@ const FaqComponent = ({ data }) => {
       <Container sx={{ py: ['4', '4', '5'] }}>
         <Styled.h3>Frequently Asked Questions (FAQs)</Styled.h3>
         {data.map((edge) => {
-          return <DropdownCard data={edge.node} />
+          return <AccordionCard data={edge.node} />
         })}
       </Container>
     </>

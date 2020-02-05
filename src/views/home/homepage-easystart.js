@@ -40,7 +40,7 @@ const EasyStart = () => {
             {codeString}
           </SyntaxHighlighter>
           <div
-            sx={{ maxWidth: '150px', width: '100%', my: 'auto', mx: 'auto' }}
+            sx={{ maxWidth: '130px', width: '100%', my: 'auto', mx: 'auto' }}
           >
             <CopyToClipboard text={codeString} onCopy={handleCopy}>
               <Button

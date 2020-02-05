@@ -39,7 +39,7 @@ export default {
   sizes: {
     container: [`76em`],
   },
-
+  radii: 2,
   buttons: {
     primary: {
       borderRadius: '40px',

@@ -6,6 +6,14 @@ import ImageQuery from 'utils/image-query'
 import Image from 'components/image'
 import Asciinema from 'components/asciinema'
 
+const workloadsDisplayNameMapping = {
+  minio: 'MinIO',
+  mongodb: 'MongoDB',
+  mysql: 'MySQL',
+  percona: 'Percona',
+  prometheus: 'Prometheus',
+  redis: 'Redis',
+}
 // Make sure workloads image name and workloads cast name is same and in lowercase format
 
 const Workloads = ({ props }) => {
@@ -99,7 +107,7 @@ const Workloads = ({ props }) => {
                 <Styled.h4
                   sx={{ pb: '3', color: 'white', textTransform: 'capitalize' }}
                 >
-                  {cast.node.name}
+                  {workloadsDisplayNameMapping[cast.node.name]}
                 </Styled.h4>
                 <Asciinema src={`${cast.node.name}.cast`} />
               </div>
