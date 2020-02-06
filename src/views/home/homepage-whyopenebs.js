@@ -9,14 +9,12 @@ const features = [
   {
     title: `Multi Cloud Storage`,
     image: `multi-cloud-storage.svg`,
-    description: `Automatically provisioning and replicating storage across
-      pods is challenging. OpenEBS makes complex cross-cloud stateful
-      application storage easy.`,
+    description: `Automated provisioning and storage replication across pods is challenging. OpenEBS makes complex cross-cloud stateful application storage easy.`,
   },
   {
     title: `Built in Kubernetes`,
     image: `k8s.png`,
-    description: `Unlike CSI plugins or Linux-kernel dependent software, OpenEBS
+    description: `Unlike CSI plugins or Linux kernel dependent software, OpenEBS
       runs entirely in userspace, making deployment and maintenance a
       snap.`,
   },

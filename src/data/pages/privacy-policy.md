@@ -6,7 +6,7 @@ title: 'privacy-policy'
 
 Last updated: December 3, 2019
 
-OpenEBS knows that you care about how your personal information is used and shared, and we take your privacy seriously. Please read the following to learn more about our privacy policy. By visiting [openebs.io](https://openebs.io) (the "Site"), you acknowledge that you accept the practices and policies outlined in this Privacy Policy. For the purposes of the EU General Data Protection Regulation 2016 (the "GDPR"), the data controller is OpenEBS, Inc. whose registered office is at 4300 Stevens Creek Boulevard, Suite 270, San Jose, CA 95129.
+OpenEBS knows that you care about how your personal information is used and shared, and we take your privacy seriously. Please read the following to learn more about our privacy policy. By visiting [openebs.io](https://openebs.io) (the "Site"), you acknowledge that you accept the practices and policies outlined in this Privacy Policy. For the purposes of the EU General Data Protection Regulation 2016 (the "GDPR"), the data controller is MayaData, Inc. whose registered office is at 4300 Stevens Creek Boulevard, Suite 270, San Jose, CA 95129.
 
 ### What information do we collect?
 
@@ -36,7 +36,7 @@ We do not respond to web browser "do not track" signals. As such, your navigatio
 
 ### How do we manage email communications?
 
-If you decide to opt-in to our mailing list, you will receive emails that may include company news, updates, surveys, and related product or service information. If at any time you would like to unsubscribe from receiving future emails, we include an unsubscribe link at the bottom of each email and on our website. You can also contact us on the details above. However, there are certain emails that OpenEBS may continue to send per your request or that are necessary for you to receive the full benefit of company services. For example, OpenEBS uses email to deliver information that registered users request as well as provide details about customer account(s), delivery information, and operational information regarding existing products, services, and systems.
+If you decide to opt-in to our mailing list, you will receive emails that may include company news, updates, surveys, and related product or service information. If at any time you would like to unsubscribe from receiving future emails, we include an unsubscribe link at the bottom of each email. You can also contact us on the details above. However, there are certain emails that OpenEBS may continue to send per your request or that are necessary for you to receive the full benefit of company services. For example, OpenEBS uses email to deliver information that registered users request as well as provide details about customer account(s), delivery information, and operational information regarding existing products, services, and systems.
 
 ### Do we disclose any information to outside parties?
 

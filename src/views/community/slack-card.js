@@ -91,7 +91,8 @@ const SlackCard = () => (
                         >
                           OpenEBS on GitHub
                         </Styled.a>{' '}
-                        is one of the best places to reach out to.
+                        is a great place to join if you want to contribute to
+                        our codebase.
                       </p>
                     </Box>
                   </div>
