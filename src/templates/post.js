@@ -11,6 +11,15 @@ import Comments from 'components/comments'
 import Tags from 'components/tags'
 import Author from 'components/author-short-bio'
 import { siteUrl } from 'config/siteConfig'
+import {
+  Facebook,
+  Twitter,
+  GitHub,
+  Linkedin,
+  Slack,
+  Youtube,
+} from 'react-feather'
+
 const Post = ({ data, location }) => {
   const post = data.ghostPost
   return (
@@ -103,44 +112,22 @@ const Post = ({ data, location }) => {
                     <a
                       href={`https://twitter.com/intent/tweet?original_referer=${siteUrl}/blog/${post.slug}&text=${post.title}&url=${siteUrl}/blog/${post.slug}`}
                       target="_blank"
+                      sx={{ mr: '3' }}
                     >
-                      <img
-                        src="/images/icons/twitter.svg"
-                        sx={{
-                          height: '20px',
-                          width: '20px',
-                          my: 'auto',
-                          mr: '3',
-                        }}
-                      />
+                      <Twitter size={20} color={'#0063FF'} />
                     </a>
                     <a
                       href={`http://www.facebook.com/sharer.php?u=${siteUrl}/blog/${post.slug}`}
                       target="_blank"
+                      sx={{ mr: '3' }}
                     >
-                      <img
-                        src="/images/icons/facebook.svg"
-                        sx={{
-                          height: '20px',
-                          width: '20px',
-                          my: 'auto',
-                          mr: '3',
-                        }}
-                      />
+                      <Facebook size={20} color={'#0063FF'} />
                     </a>
                     <a
                       href={`https://www.linkedin.com/shareArticle?mini=true&url=${siteUrl}/blog/${post.slug}&title=${post.title}`}
                       target="_blank"
                     >
-                      <img
-                        src="/images/icons/linkedin.svg"
-                        sx={{
-                          height: '24px',
-                          width: '24px',
-                          mb: 'auto',
-                          mt: '-2px',
-                        }}
-                      />
+                      <Linkedin size={20} color={'#0063FF'} />
                     </a>
                   </div>
                 </div>

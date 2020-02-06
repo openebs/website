@@ -13,6 +13,14 @@ import { Container } from '@theme-ui/components'
 import Header from 'components/header'
 import 'normalize.css/normalize.css'
 import TagsList from 'components/tags-list'
+import {
+  Facebook,
+  Twitter,
+  GitHub,
+  Linkedin,
+  Slack,
+  Youtube,
+} from 'react-feather'
 // Styles
 /**
  * Main layout component
@@ -33,6 +41,13 @@ const DefaultLayout = ({ data, children, bodyClass, isHome, location }) => {
     ? `https://www.facebook.com/${site.facebook.replace(/^\//, ``)}`
     : null
 
+  {
+    /*
+  // TODO : create a new file which contains all the links regarding social medias
+  // links
+  */
+  }
+  const linkedInUrl = `https://www.linkedin.com/company/openebs/`
   return (
     <>
       <Styled.root>
@@ -56,13 +71,10 @@ const DefaultLayout = ({ data, children, bodyClass, isHome, location }) => {
               >
                 <Container>
                   <header>
-                    <div sx={{ display: 'flex' }}>
-                      <div className="site-mast-left">
-                        <nav className="site-nav">
-                          <div
-                            className="site-nav-left"
-                            sx={{ display: 'flex', my: 'auto' }}
-                          >
+                    <div sx={{ display: ['block', 'flex'] }}>
+                      <div>
+                        <nav>
+                          <div sx={{ display: 'flex', my: 'auto' }}>
                             <div sx={{ mr: '3' }}>
                               <Link
                                 to="/blog"
@@ -89,7 +101,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome, location }) => {
                           </div>
                         </nav>
                       </div>
-                      <div sx={{ ml: 'auto' }}>
+                      <div sx={{ ml: 'auto', pt: ['3', '0'] }}>
                         {site.twitter && (
                           <a
                             href={twitterUrl}
@@ -97,11 +109,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome, location }) => {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <img
-                              sx={{ height: '16px', width: '16px' }}
-                              src="/images/icons/twitter.svg"
-                              alt="Twitter"
-                            />
+                            <Twitter size={20} color={'#0063FF'} />
                           </a>
                         )}
                         {site.facebook && (
@@ -111,11 +119,22 @@ const DefaultLayout = ({ data, children, bodyClass, isHome, location }) => {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <img
-                              sx={{ height: '16px', width: '16px' }}
-                              src="/images/icons/facebook.svg"
-                              alt="Facebook"
-                            />
+                            <Facebook size={20} color={'#0063FF'} />
+                          </a>
+                        )}
+                        {/*
+                        // Display it only when social media links are available
+                        // from ghost TODO : create a new file which contains //
+                        // all the links regarding social media links
+                        */}
+                        {site.facebook && site.twitter && (
+                          <a
+                            href={linkedInUrl}
+                            sx={{ mx: '2', textDecoration: 'none' }}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <Linkedin size={20} color={'#0063FF'} />
                           </a>
                         )}
                       </div>

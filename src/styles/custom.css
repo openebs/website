@@ -89,12 +89,22 @@
 .post-content blockquote p::before {
   content: '\201C';
 }
+
+.slick-disabled {
+  stroke: #999aa7;
+}
+
+.slick-next,
+.slick-prev {
+  height: 22px;
+  width: 22px;
+}
 @media screen and (max-width: 40em) {
   .slick-next {
-    right: -10px;
+    right: -20px;
   }
   .slick-prev {
-    left: -10px;
+    left: -20px;
   }
   .post-content h1 {
     font-size: 32px;
@@ -111,6 +121,11 @@
   .post-content p,
   .post-content li {
     font-size: 16px;
+  }
+  .slick-next,
+  .slick-prev {
+    height: 22px;
+    width: 22px;
   }
 }
 
@@ -131,6 +146,11 @@
   .post-content li {
     font-size: 16px;
   }
+  .slick-next,
+  .slick-prev {
+    height: 22px;
+    width: 22px;
+  }
 }
 
 @media screen and (min-width: 56em) {
@@ -143,6 +163,11 @@
   .post-content p,
   .post-content li {
     font-size: 18px;
+  }
+  .slick-next,
+  .slick-prev {
+    height: 36px;
+    width: 36px;
   }
 }
 @media screen and (min-width: 64em) {

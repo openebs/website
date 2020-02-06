@@ -34,8 +34,10 @@ const Author = ({ data, location, pageContext }) => {
             <div
               sx={{
                 display: 'grid',
-                gridGap: 4,
-                gridTemplateColumns: ['128px 1fr'],
+                gridGap: [0, 4],
+                gridTemplateColumns: ['auto', '128px 1fr', '128px 1fr'],
+                maxWidth: ['100%'],
+                p: ['3', '0'],
               }}
             >
               <div>

@@ -13,7 +13,30 @@ const Tags = ({ data }) => {
     slug,
   }))
   const uniquePrimaryTags = uniqueArray(nameAndSlugPrimaryTags)
-
+  uniquePrimaryTags.forEach((tag) => {
+    switch (tag.slug) {
+      case 'chaos-engineering':
+        tag.displayName = 'Chaos Engineering'
+        break
+      case 'devops':
+        tag.displayName = 'DevOps'
+        break
+      case 'kubernetes':
+        tag.displayName = 'Kubernetes'
+        break
+      case 'openebs':
+        tag.displayName = 'OpenEBS'
+        break
+      case 'solutions':
+        tag.displayName = 'Solutions'
+        break
+      case 'tutorials':
+        tag.displayName = 'Tutorials'
+        break
+      default:
+        tag.displayName = null // To prevent displaying extra
+    }
+  })
   return (
     <>
       <div
@@ -22,8 +45,9 @@ const Tags = ({ data }) => {
           justifyContent: 'center',
           alignItems: 'center',
           m: 'auto',
-          px: 4,
+          px: [0, 2, 4],
           maxWidth: '800px',
+          textAlign: 'center',
         }}
       >
         <ul
@@ -35,30 +59,34 @@ const Tags = ({ data }) => {
             p: '0',
           }}
         >
-          {uniquePrimaryTags.map((tag) => {
-            return (
-              <li sx={{ listStyleType: 'none' }}>
-                <Link
-                  to={`/blog/tag/${tag.slug}`}
-                  sx={{
-                    fontSize: [2, 2, '18px'],
-                    textDecoration: 'none',
-                    ml: 3,
-                    fontWeight: '300',
-                  }}
-                  activeStyle={{
-                    color: '#F26D00',
-                    paddingBottom: '3px',
-                    marginBottom: '-3px',
-                    borderBottom: '1px solid #f26d00',
-                  }}
-                  key={`edge-${tag.slug}`}
-                >
-                  {tag.name}
-                </Link>
-              </li>
-            )
-          })}
+          {uniquePrimaryTags &&
+            uniquePrimaryTags.map((tag) => {
+              return (
+                tag.displayName && (
+                  <li sx={{ listStyleType: 'none' }}>
+                    <Link
+                      to={`/blog/tag/${tag.slug}`}
+                      sx={{
+                        fontSize: [2, 2, '18px'],
+                        textDecoration: 'none',
+                        ml: 3,
+                        fontWeight: '300',
+                        color: `blue`,
+                      }}
+                      activeStyle={{
+                        color: '#F26D00',
+                        paddingBottom: '3px',
+                        marginBottom: '-3px',
+                        borderBottom: '1px solid #f26d00',
+                      }}
+                      key={`edge-${tag.slug}`}
+                    >
+                      {tag.displayName}
+                    </Link>
+                  </li>
+                )
+              )
+            })}
         </ul>
       </div>
     </>

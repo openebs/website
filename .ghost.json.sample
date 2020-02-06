@@ -8,3 +8,25 @@
     "contentApiKey": "your-content-api-key"
   }
 }
+
+{
+  "development": {
+    "apiUrl": "https://admin.mayadata.io",
+    "contentApiKey": "cab488a8999bda945c1ee57162"
+  },
+  "production": {
+    "apiUrl": "https://admin.mayadata.io",
+    "contentApiKey": "cab488a8999bda945c1ee57162"
+  }
+}
+
+{
+  "development": {
+    "apiUrl": "http://localhost:2368",
+    "contentApiKey": "5d60e6db4352330bda434bf0cc"
+  },
+  "production": {
+    "apiUrl": "http://localhost:2368",
+    "contentApiKey": "5d60e6db4352330bda434bf0cc"
+  }
+}
