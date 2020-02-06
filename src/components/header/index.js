@@ -25,7 +25,7 @@ const HeaderComponent = ({ data, props }) => {
 
   const handleMenuOption = () => {
     setMenuOpen(!menuOpen)
-    if (menuOpen) {
+    if (!menuOpen) {
       nav.current.style.transform = 'translate(0%)'
     } else {
       nav.current.style.transform = 'translate(-100%)'
@@ -72,8 +72,7 @@ const HeaderComponent = ({ data, props }) => {
                 ref={nav}
                 sx={{
                   padding: ['40px 10px 40px 30px', '0px'],
-                  width: '100%',
-                  backgroundColor: ['primary', 'transparent'],
+                  backgroundColor: ['gray', 'transparent'],
                 }}
               >
                 {edges.map((edge) => {
@@ -87,6 +86,7 @@ const HeaderComponent = ({ data, props }) => {
                               variant: `styles.navlink`,
                               mx: 3,
                               my: 2,
+                              pb: [4, 0],
                               display: ['block', 'inline-flex'],
                             }}
                             key={`header-${el.title}`}
@@ -104,6 +104,7 @@ const HeaderComponent = ({ data, props }) => {
                             variant: `styles.navlink`,
                             mx: 3,
                             my: 2,
+                            pb: [4, 0],
                             display: ['block', 'inline-flex'],
                           }}
                           activeStyle={{

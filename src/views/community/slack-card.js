@@ -45,7 +45,7 @@ const SlackCard = () => (
                       margin: 'auto',
                       '@media screen and (max-width: 78em)': {
                         maxWidth: '324px',
-                        padding: 3,
+                        padding: 0,
                         margin: 'auto',
                       },
                     }}
