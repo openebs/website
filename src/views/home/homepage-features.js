@@ -19,8 +19,8 @@ const features = [
     imageSrc: `features/controls.svg`,
   },
   {
-    title: `No Vendor Lockin`,
-    description: `100% open source so you'll never find your critical data locked
+    title: `No Vendor Lock-in`,
+    description: `100% Open Source so you'll never find your critical data locked
     into expensive contracts.`,
     imageSrc: `features/vendor-lockin.svg`,
   },
@@ -38,7 +38,7 @@ const features = [
   },
   {
     title: `Run anywhere`,
-    description: `Your K8s app can run on any cloud & improve resiliance across
+    description: `Your K8s app can run on any cloud & improve resilience across
     many availability zones.`,
     imageSrc: `features/run-anywhere.svg`,
   },

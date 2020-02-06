@@ -16,7 +16,7 @@ We collect personal information from you when you visit our site, request a demo
 
 Personal information we collect
 
-Our web servers collect technical information relating to visitors to our site, including the Internet protocol (IP) address used to connect your computer to the Internet, browser type and version, time zone setting, browser plug-in types and versions, operating system, and platform. We also collect information about your visit, including pages you viewed or searched for, page response times, download errors, length of visits to certain pages, page interaction information (such as scrolling, clicks, and mouse-overs), methods used to browse away from the page, and any phone number used to call our customer service number. This information may be aggregated to measure the number of visits, average time spent on a Site, pages viewed, etc. We use this information to measure the use of our site and to improve the content we offer. We may share anonymized experiential information or other data with third parties on an aggregated basis without the use of any information that personally identifies you. We will combine this information with the information you give to us and the information we collect about you. We will use this information and the combined personal information for purposes set out in this Privacy Policy (depending on the types of information we receive).
+Our web servers collect technical information relating to visitors to our site, including the Internet protocol (IP) address used to connect your computer to the Internet, browser type and version, time zone setting, browser plug-in types and versions, operating system, and platform. We also collect information about your visit, including pages you viewed or searched for, page response times, download errors, length of visits to certain pages, page interaction information (such as scrolling, clicks, and mouse-overs), methods used to browse away from the page, and any phone number used to call our customer service number. This information may be aggregated to measure the number of visits, average time spent on a site, pages viewed, etc. We use this information to measure the use of our site and to improve the content we offer. We may share anonymized experiential information or other data with third parties on an aggregated basis without the use of any information that personally identifies you. We will combine this information with the information you give to us and the information we collect about you. We will use this information and the combined personal information for purposes set out in this Privacy Policy (depending on the types of information we receive).
 
 ### Do we use cookies?
 
@@ -32,7 +32,6 @@ We do not respond to web browser "do not track" signals. As such, your navigatio
 - To detect and prevent fraud or other financial crime;
 - To monitor and protect the security of our information, systems, and network;
 - For internal business intelligence purposes, product development and enhancement; and
-  and
 - To ensure that content from our site is presented most effectively for you and your computer.
 
 ### How do we manage email communications?
@@ -49,7 +48,7 @@ Our site is not directed to children under the age of 13, if you are not 13 year
 
 ### Transfer of personal information outside of the European economic area ("EEA") and international users
 
-We are headquartered in the united states. We may access your personal information or transferred to us in the United States or to our affiliates, partners, or service providers who are located worldwide. If you are visiting our site from outside the United States, be aware that your information may be transferred to, stored, and processed in the United States where our servers are located, and our central database is operated. By using our site, you consent to any transfer of this information.
+We are headquartered in the United States. We may access your personal information or transferred to us in the United States or to our affiliates, partners, or service providers who are located worldwide. If you are visiting our site from outside the United States, be aware that your information may be transferred to, stored, and processed in the United States where our servers are located, and our central database is operated. By using our site, you consent to any transfer of this information.
 
 You have the right to do any of the following with your personal information:
 
