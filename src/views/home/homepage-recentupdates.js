@@ -19,8 +19,8 @@ const RecentUpdates = () => {
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
-    nextArrow: <ChevronRight color="#F26D00" size={48} />,
-    prevArrow: <ChevronLeft color="#F26D00" size={48} />,
+    nextArrow: <ChevronRight color="#F26D00" size={48} /> || false,
+    prevArrow: <ChevronLeft color="#F26D00" size={48} /> || false,
     responsive: [
       {
         breakpoint: 1024,
@@ -74,15 +74,26 @@ const RecentUpdates = () => {
                         <Link
                           to={`/blog/${slug}`}
                           sx={{
-                            display: 'block',
                             p: '4',
                             background: 'white',
-                            m: '3',
+                            my: '3',
+                            mx: 'auto',
                             cursor: 'pointer',
                             borderRadius: '5px',
                             textDecoration: 'none',
-                            height: '424px',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'stretch',
+                            flexDirection: 'column',
                             maxHeight: '424px',
+                            height: '424px',
+                            maxWidth: [
+                              '220px',
+                              '260px',
+                              '270px',
+                              '252px',
+                              '270px',
+                            ],
                           }}
                           title="Read More"
                         >
@@ -129,22 +140,24 @@ const RecentUpdates = () => {
                       p: '4',
                       background: 'white',
                       m: '3',
-                      height: '424px',
-                      maxHeight: '424px',
                       borderRadius: '5px',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'stretch',
+                      flexDirection: 'column',
+                      maxHeight: '424px',
+                      height: '424px',
+                      maxWidth: ['220px', '260px', '270px', '252px', '270px'],
                     }}
                   >
                     <div
                       sx={{
-                        height: '200px',
+                        height: '100%',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        margin: 'auto',
-                        width: '50%',
                       }}
-                    ></div>
-                    <div sx={{ height: '75px' }}>
+                    >
                       <Link
                         to="/blog"
                         sx={{

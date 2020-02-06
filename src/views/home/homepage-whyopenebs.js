@@ -91,7 +91,8 @@ const WhyOpenEBS = () => {
                   <Styled.p
                     sx={{
                       m: '0',
-                      pt: '4',
+                      pt: ['2', '4'],
+                      pb: ['4', '2'],
                       fontWeight: 300,
                       textAlign: ['center', 'left'],
                     }}

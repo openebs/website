@@ -62,7 +62,13 @@ const Features = () => {
             {features &&
               features.map((feature) => {
                 return (
-                  <div sx={{ maxWidth: ['360px', '100%'], mx: 'auto' }}>
+                  <div
+                    sx={{
+                      maxWidth: ['256px', '100%'],
+                      mx: 'auto',
+                      textAlign: ['center', 'left'],
+                    }}
+                  >
                     <Image
                       src={feature.imageSrc}
                       style={{ maxWidth: ['80px', '90px'] }}

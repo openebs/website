@@ -30,17 +30,17 @@ const FooterComponent = (data) => {
   const socials = (title) => {
     switch (title) {
       case 'facebook':
-        return <Facebook />
+        return <Facebook size={20} color={'#0063FF'} />
       case 'twitter':
-        return <Twitter />
+        return <Twitter size={20} color={'#0063FF'} />
       case 'github':
-        return <GitHub />
+        return <GitHub size={20} color={'#0063FF'} />
       case 'linkedin':
-        return <Linkedin />
+        return <Linkedin size={20} color={'#0063FF'} />
       case 'slack':
-        return <Slack />
+        return <Slack size={20} color={'#0063FF'} />
       case 'youtube':
-        return <Youtube />
+        return <Youtube size={20} color={'#0063FF'} />
       default:
         return null
     }

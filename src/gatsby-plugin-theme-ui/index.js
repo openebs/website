@@ -138,6 +138,12 @@ export default {
       textDecoration: `none`,
       textTransform: `uppercase`,
       fontSize: ['0'],
+      ':focus': {
+        color: `blue`,
+      },
+      ':visited': {
+        color: `blue`,
+      },
     },
     li: {
       mb: 2,
