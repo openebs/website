@@ -4,7 +4,7 @@ title: 'community'
 
 ### Contributing
 
-We welcome community contributions! You can start with [CONTRIBUTING.md](https://github.com/openebs/openebs/blob/master/CONTRIBUTING.md) or check the CONTRIBUTING.md file in the respective OpenEBS repository for instructions on how to submit changes. If you are planning on making more elaborate changes, please discuss them on the community slack or join our [contributor meetings](https://github.com/openebs/openebs/tree/master/community#weekly-meeting).
+We welcome community contributions! You can start with [CONTRIBUTING.md](https://github.com/openebs/openebs/blob/master/CONTRIBUTING.md) or check the CONTRIBUTING.md file in the respective OpenEBS repository for instructions on how to submit changes. If you are planning on making more elaborate changes, please discuss them on the our slack community or join our [contributor meetings](https://github.com/openebs/openebs/tree/master/community#weekly-meeting).
 
 ### Code of Conduct
 
@@ -16,7 +16,7 @@ To make OpenEBS a welcoming and harassment-free experience for everyone, we abid
 
 ### Commercial Support
 
-This is a list of third-party companies and individuals who provide products or services related to OpenEBS. OpenEBS is an independent open source project which does not endorse any company. The list is provided in alphabetical order.
+This is a list of third-party companies and individuals who provide products or services related to OpenEBS. OpenEBS is an independent Open Source project which does not endorse any company. The list is provided in alphabetical order.
 
 - [Clouds Sky GmbH](https://cloudssky.com/en/)
 - [CodeWave](https://codewave.eu/)

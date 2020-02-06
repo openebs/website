@@ -105,7 +105,7 @@ const Newsletter = () => {
           placeholder="Subscribe to Newsletter"
           onChange={handleChange}
         />
-        <Button sx={{ borderRadius: '4px' }}>Submit</Button>
+        <Button sx={{ borderRadius: '4px' }}>Subscribe</Button>
       </Box>
       <ReactModal
         isOpen={showModal}
