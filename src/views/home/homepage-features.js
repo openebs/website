@@ -27,7 +27,7 @@ const features = [
   {
     title: `Save money on storage`,
     description: `Thin provisioning and ephemeral storage let you allocate storage
-    on demand and save on pricey cloud storage.`,
+    on demand and spend less on cloud storage.`,
     imageSrc: `features/investments.svg`,
   },
   {

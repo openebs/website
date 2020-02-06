@@ -22,7 +22,7 @@ const EasyStart = () => {
     >
       <Container>
         <Styled.h3 sx={{ pb: '3' }}>
-          Just one line of code and you’re up and running:
+          With just one line of code, you’re up and running:
         </Styled.h3>
 
         <Styled.div

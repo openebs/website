@@ -49,7 +49,7 @@ const Workloads = ({ props }) => {
                 textAlign: ['center', 'center', 'left'],
               }}
             >
-              OpenEBS can orchestrate storage for any Kubernetes app. Here’s how
+              OpenEBS orchestrates storage for any Kubernetes stack. Here’s how
               to get OpenEBS working on some top applications:
             </Styled.p>
 
