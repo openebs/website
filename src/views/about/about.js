@@ -11,6 +11,7 @@ const About = () => {
     return edge.node.frontmatter.title === 'about'
   })
 
+  // Render about page from about.md file using MDXRenderer
   return (
     <>
       <Container sx={{ p: 4 }}>
