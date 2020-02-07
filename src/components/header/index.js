@@ -104,13 +104,14 @@ const HeaderComponent = ({ data, props }) => {
                             variant: `styles.navlink`,
                             mx: 3,
                             my: 2,
-                            pb: [4, 0],
+                            mb: [4, 0],
+                            width: 'fit-content',
                             display: ['block', 'inline-flex'],
                           }}
                           activeStyle={{
                             color: '#f26D00',
                             paddingBottom: '2px',
-                            marginBottom: '-2px',
+
                             borderBottom: '2px solid #f26d00',
                           }}
                           key={`header-${el.title}`}

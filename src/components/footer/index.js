@@ -53,7 +53,7 @@ const FooterComponent = (data) => {
           <div
             sx={{
               display: `grid`,
-              gridGap: 4,
+              gridGap: [2, 2, 4],
               gridTemplateColumns: [`minmax(180px, auto)`, `1fr 1fr 1fr`],
             }}
           >
@@ -237,7 +237,7 @@ const FooterComponent = (data) => {
                   if (social.link.external) {
                     return (
                       <li
-                        sx={{ px: ['1', '2', '2'] }}
+                        sx={{ px: ['3', '2', '2'] }}
                         key={`footer-${social.title}`}
                       >
                         <a
@@ -252,7 +252,7 @@ const FooterComponent = (data) => {
                   } else {
                     return (
                       <li
-                        sx={{ px: ['1', '2', '2'] }}
+                        sx={{ px: ['3', '2', '2'] }}
                         key={`footer-${social.title}`}
                       >
                         <Link to={social.link.url}>

@@ -47,43 +47,48 @@ const Newsletter = () => {
   }
 
   const sendData = () => {
-    async function postData(url = '', data = {}) {
-      const response = await fetch(url, {
-        method: 'POST',
-        mode: 'cors',
-        cache: 'no-cache',
-        credentials: 'same-origin',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        redirect: 'follow',
-        referrerPolicy: 'no-referrer',
-        body: JSON.stringify(data),
-      })
-      return await response.json()
-    }
+    // TODO: Set up modular popup
+    if (email === '' || email === 'undefined') {
+      console.log(`please enter valid email`)
+    } else {
+      async function postData(url = '', data = {}) {
+        const response = await fetch(url, {
+          method: 'POST',
+          mode: 'cors',
+          cache: 'no-cache',
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          redirect: 'follow',
+          referrerPolicy: 'no-referrer',
+          body: JSON.stringify(data),
+        })
+        return await response.json()
+      }
 
-    postData(GATSBY_NEWSLETTER_BACKEND_URL, {
-      email: email,
-      tag: tag,
-    })
-      .then((data) => {
-        setIsSuccess(true)
-        handleOpenModal()
+      postData(GATSBY_NEWSLETTER_BACKEND_URL, {
+        email: email,
+        tag: tag,
       })
-      .catch((err) => {
-        console.error(err)
-        setIsSuccess(false)
-        handleOpenModal()
-        setTimeout(() => {
-          handleCloseModal()
-        }, 1000)
-      })
+        .then((data) => {
+          setIsSuccess(true)
+          handleOpenModal()
+        })
+        .catch((err) => {
+          console.error(err)
+          setIsSuccess(false)
+          handleOpenModal()
+          setTimeout(() => {
+            handleCloseModal()
+          }, 1000)
+        })
+    }
   }
   const handleOnSubmit = (e) => {
     e.preventDefault()
-    setEmail('')
     sendData()
+    setEmail('')
   }
   const handleOpenModal = () => {
     setModal(true)

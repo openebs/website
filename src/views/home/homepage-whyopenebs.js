@@ -7,11 +7,13 @@ import Image from 'components/image'
 import Img from 'gatsby-image'
 const features = [
   {
+    id: 1,
     title: `Multi Cloud Storage`,
     image: `multi-cloud-storage.svg`,
     description: `Automated provisioning and storage replication across pods is challenging. OpenEBS makes complex cross-cloud stateful application storage easy.`,
   },
   {
+    id: 2,
     title: `Built in Kubernetes`,
     image: `k8s.png`,
     description: `Unlike CSI plugins or Linux kernel dependent software, OpenEBS
@@ -19,6 +21,7 @@ const features = [
       snap.`,
   },
   {
+    id: 3,
     title: `Open Source Leader`,
     image: `open-source-leader.svg`,
     description: `The largest, most active Kubernetes storage project with the
@@ -55,6 +58,7 @@ const WhyOpenEBS = () => {
                     border: '1px solid',
                     borderColor: 'transparent',
                   }}
+                  key={`feature-${feature.id}`}
                 >
                   <div
                     sx={{

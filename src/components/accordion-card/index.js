@@ -16,7 +16,7 @@ const AccordionCard = ({ data }) => {
         px={[3, 3, 4]}
         color="white"
         bg="primary"
-        sx={{ display: 'flex' }}
+        sx={{ display: 'flex', cursor: 'pointer' }}
         onClick={toggleDisplay}
       >
         <div sx={{ display: 'flex' }}>{data.frontmatter.query}</div>

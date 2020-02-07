@@ -2,6 +2,7 @@
 import { jsx } from 'theme-ui'
 import React from 'react'
 import { Link } from 'gatsby'
+import { fixTag } from 'utils/fix-tag'
 
 const Tags = ({ tags }) => {
   return (
@@ -16,6 +17,7 @@ const Tags = ({ tags }) => {
       >
         {tags &&
           tags.map((tag, i) => {
+            tag = fixTag(tag)
             return (
               <Link
                 key={tag.id}

@@ -41,15 +41,16 @@ const WhatIsOpenEBS = () => {
                     maxWidth: '240px',
                   }}
                 >
-                  {Array.from({ length: 2 }).map(() => {
+                  {Array.from({ length: 2 }).map((el, index) => {
                     return (
                       <svg
                         id="downArrow"
-                        enable-background="new 0 0 64 64"
+                        enableBackground="new 0 0 64 64"
                         height="32"
                         viewBox="0 0 64 64"
                         width="32"
                         xmlns="http://www.w3.org/2000/svg"
+                        key={`downArrow-${index}`}
                       >
                         <path
                           d="m32 8c-1.104 0-2 .896-2 2v39.892l-14.552-15.272c-.762-.798-2.027-.829-2.828-.068-.799.763-.83 2.028-.068 2.828l16.625 17.445c.758.758 1.76 1.175 2.823 1.175 1.062 0 2.063-.417 2.858-1.21l16.59-17.41c.762-.8.731-2.065-.068-2.828-.8-.762-2.063-.731-2.828.068l-14.552 15.341v-39.961c0-1.104-.896-2-2-2z"
@@ -68,7 +69,10 @@ const WhatIsOpenEBS = () => {
                     p: 3,
                   }}
                 >
-                  <Image src="openebs-white.svg" style={{ maxWidth: '50%' }} />
+                  <Image
+                    src="openebs-white.svg"
+                    style={{ maxWidth: '50%', height: '48px' }}
+                  />
                 </div>
                 <div
                   sx={{
@@ -80,15 +84,16 @@ const WhatIsOpenEBS = () => {
                     maxWidth: '240px',
                   }}
                 >
-                  {Array.from({ length: 2 }).map(() => {
+                  {Array.from({ length: 2 }).map((el, index) => {
                     return (
                       <svg
                         id="upArrow"
-                        enable-background="new 0 0 64 64"
+                        enableBackground="new 0 0 64 64"
                         height="32"
                         viewBox="0 0 64 64"
                         width="32"
                         xmlns="http://www.w3.org/2000/svg"
+                        key={`upArrow-${index}`}
                       >
                         <path
                           d="m32 56c1.104 0 2-.896 2-2v-39.899l14.552 15.278c.393.413.92.621 1.448.621.495 0 .992-.183 1.379-.552.8-.762.831-2.028.069-2.828l-16.619-17.448c-.756-.755-1.76-1.172-2.829-1.172s-2.073.417-2.862 1.207l-16.586 17.414c-.762.8-.731 2.066.069 2.828s2.067.731 2.828-.069l14.551-15.342v39.962c0 1.104.896 2 2 2z"

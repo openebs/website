@@ -44,6 +44,7 @@ const Platforms = () => {
                   style={{ filter: 'grayscale(100%)' }}
                   whileHover={{ scale: 1.15, filter: 'grayscale(0%)' }}
                   whileTap={{ scale: 0.8 }}
+                  key={`images-${edge.node.name}`}
                 >
                   <Img
                     fluid={edge.node.childImageSharp.fluid}

@@ -13,6 +13,7 @@ const RecentUpdatesQuery = () => {
             title
             feature_image
             custom_excerpt
+            id
           }
         }
       }

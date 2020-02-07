@@ -8,6 +8,7 @@ import Pagination from 'components/pagination'
 import Layout from 'components/layout'
 import { MetaData } from 'components/common/meta'
 import { Grid, Container } from '@theme-ui/components'
+import { fixTag } from 'utils/fix-tag'
 /**
  * Tag page (/tag/:slug)
  *
@@ -15,8 +16,10 @@ import { Grid, Container } from '@theme-ui/components'
  *
  */
 const Tag = ({ data, location, pageContext }) => {
-  const tag = data.ghostTag
+  // TODO:  need to update in ghost in next iteration
+  let tag = fixTag(data.ghostTag)
   const posts = data.allGhostPost.edges
+
   return (
     <>
       <MetaData data={data} location={location} type="series" />

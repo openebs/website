@@ -7,36 +7,42 @@ import Image from 'components/image'
 import Img from 'gatsby-image'
 const features = [
   {
+    id: 1,
     title: `Container Storage`,
     description: `Storage that follows your workloads, adding agility and
   flexibility to your k8s apps.`,
     imageSrc: `features/container.svg`,
   },
   {
+    id: 2,
     title: `Granular Control`,
     description: `Every workloads has its own dynamic container based storage with
     any controls you need.`,
     imageSrc: `features/controls.svg`,
   },
   {
+    id: 3,
     title: `No Vendor Lock-in`,
     description: `100% Open Source so you'll never find your critical data locked
     into expensive contracts.`,
     imageSrc: `features/vendor-lockin.svg`,
   },
   {
+    id: 4,
     title: `Save money on storage`,
     description: `Thin provisioning and ephemeral storage let you allocate storage
     on demand and spend less on cloud storage.`,
     imageSrc: `features/investments.svg`,
   },
   {
+    id: 5,
     title: `Backups and more`,
     description: `Move your workloads & storage from dev to production, all
     powered by OpenEBS.`,
     imageSrc: `features/backups.svg`,
   },
   {
+    id: 6,
     title: `Run anywhere`,
     description: `Your K8s app can run on any cloud & improve resilience across
     many availability zones.`,
@@ -68,6 +74,7 @@ const Features = () => {
                       mx: 'auto',
                       textAlign: ['center', 'left'],
                     }}
+                    key={`feature-${feature.id}`}
                   >
                     <Image
                       src={feature.imageSrc}

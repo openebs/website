@@ -68,9 +68,10 @@ const RecentUpdates = () => {
                       title,
                       feature_image,
                       custom_excerpt,
+                      id,
                     } = edge.node
                     return (
-                      <div>
+                      <div key={`article-${id}`}>
                         <Link
                           to={`/blog/${slug}`}
                           sx={{
