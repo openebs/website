@@ -6,6 +6,7 @@ import ImageQuery from 'utils/image-query'
 import Image from 'components/image'
 import Asciinema from 'components/asciinema'
 
+// Make sure workloads image name and workloads cast name is same and in lowercase format
 const workloadsDisplayNameMapping = {
   minio: 'MinIO',
   mongodb: 'MongoDB',
@@ -14,7 +15,6 @@ const workloadsDisplayNameMapping = {
   prometheus: 'Prometheus',
   redis: 'Redis',
 }
-// Make sure workloads image name and workloads cast name is same and in lowercase format
 
 const Workloads = ({ props }) => {
   const workloads = ImageQuery().allImages.edges.filter(
@@ -22,8 +22,10 @@ const Workloads = ({ props }) => {
   )
   const [cast, setCast] = useState(workloads[0])
   const [active, setActive] = useState(null)
-  const handleCast = (edge) => {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const handleCast = (edge, index) => {
     setCast(edge)
+    setActiveIndex(index)
   }
 
   return (
@@ -64,18 +66,27 @@ const Workloads = ({ props }) => {
                   margin: 'auto',
                 }}
               >
-                {workloads.map((edge) => {
+                {workloads.map((edge, index) => {
                   return (
-                    <div key={edge.node.id} onClick={() => handleCast(edge)}>
+                    <div
+                      key={edge.node.id}
+                      onClick={() => handleCast(edge, index)}
+                    >
                       <div
                         key={`cast-${edge.node.name}`}
                         sx={{
-                          filter: 'grayscale(100%)',
+                          filter:
+                            activeIndex === index
+                              ? 'grayscale(0%)'
+                              : 'grayscale(100%)',
                           cursor: 'pointer',
                           ':focus': {
                             filter: 'grayscale(0%)',
                           },
                           ':hover': {
+                            filter: 'grayscale(10%)',
+                          },
+                          ':active': {
                             filter: 'grayscale(0%)',
                           },
                         }}
