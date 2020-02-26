@@ -3,3 +3,6 @@
 
 https://openebs.netlify.com/*      https://openebs.io/:splat    301!
 http://openebs.netlify.com/*       https://openebs.io/:splat    301!
+
+/join-our-community              /community
+/join-our-slack-community        /community
