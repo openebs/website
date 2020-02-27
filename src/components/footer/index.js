@@ -244,6 +244,7 @@ const FooterComponent = (data) => {
                           href={social.link.url}
                           target="_blank"
                           rel="noreferrer noopener"
+                          title={social.title}
                         >
                           {socials(social.title)}
                         </a>
@@ -255,7 +256,7 @@ const FooterComponent = (data) => {
                         sx={{ px: ['3', '2', '2'] }}
                         key={`footer-${social.title}`}
                       >
-                        <Link to={social.link.url}>
+                        <Link to={social.link.url} title={social.title}>
                           {socials(social.title)}
                         </Link>
                       </li>

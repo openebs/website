@@ -113,6 +113,7 @@ const RecentUpdates = () => {
                               sx={{
                                 maxWidth: ['220px', '280px', '260px', '290px'],
                               }}
+                              alt={title}
                             />
                           </div>
                           <div>

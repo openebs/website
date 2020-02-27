@@ -55,6 +55,7 @@ const HeaderComponent = ({ data, props }) => {
           >
             <Link
               to="/"
+              title="openebs"
               sx={{
                 variant: `styles.navlink`,
                 py: 2,

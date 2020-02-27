@@ -44,7 +44,7 @@ const WhatIsOpenEBS = () => {
                   {Array.from({ length: 2 }).map((el, index) => {
                     return (
                       <svg
-                        id="downArrow"
+                        id={`downArrow${index + 1}`}
                         enableBackground="new 0 0 64 64"
                         height="32"
                         viewBox="0 0 64 64"
@@ -87,7 +87,7 @@ const WhatIsOpenEBS = () => {
                   {Array.from({ length: 2 }).map((el, index) => {
                     return (
                       <svg
-                        id="upArrow"
+                        id={`upArrow${index + 1}`}
                         enableBackground="new 0 0 64 64"
                         height="32"
                         viewBox="0 0 64 64"
@@ -133,7 +133,9 @@ const WhatIsOpenEBS = () => {
                   What is OpenEBS?
                 </Styled.h2>
                 <Styled.ul>
-                  OpenEBS is the leading storage solution for Kubernetes
+                  <span>
+                    OpenEBS is the leading storage solution for Kubernetes
+                  </span>
                   <Styled.li sx={{ ml: 3, mt: 3 }}>
                     Kubernetes native; runs in userspace
                   </Styled.li>
