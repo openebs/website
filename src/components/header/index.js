@@ -6,6 +6,7 @@ import Logo from 'assets/images/openebs.svg'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import MenuButton from './menu-button'
 import { Sidenav } from '@theme-ui/sidenav'
+import Banner from 'components/banner'
 
 const HeaderComponent = ({ data, props }) => {
   const { edges } = data
@@ -45,6 +46,7 @@ const HeaderComponent = ({ data, props }) => {
           transition: 'all 0.1s ease-in-out',
         }}
       >
+        <Banner />
         <Container>
           <header
             sx={{
