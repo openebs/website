@@ -7,7 +7,7 @@ import FileQuery from 'utils/file-query'
 import { Container, Button } from '@theme-ui/components'
 const Hero = () => {
   const whitepaper = FileQuery().allPdf.edges.find(
-    (edge) => edge.node.name === 'openebs_1.3_whitepaper'
+    (edge) => edge.node.name === 'openebs_1_4_whitepaper'
   )
   return (
     <>
