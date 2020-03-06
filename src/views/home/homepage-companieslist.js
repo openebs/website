@@ -24,8 +24,8 @@ const CompaniesList = () => {
       dir: 'companies',
     },
     {
-      name: 'Clew Medical',
-      src: 'companies/clew.svg',
+      name: 'CNCF',
+      src: 'companies/cncf.svg',
       dir: 'companies',
     },
     {
