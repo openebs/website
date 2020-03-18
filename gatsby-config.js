@@ -61,13 +61,6 @@ module.exports = {
         name: `markdown`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        path: `${__dirname}/src/assets/fonts`,
-        name: `fonts`,
-      },
-    },
     `gatsby-transformer-remark`,
     {
       resolve: `gatsby-plugin-react-svg`,
