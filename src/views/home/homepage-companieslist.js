@@ -62,13 +62,7 @@ const CompaniesList = () => {
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.8 }}
               >
-                <Styled.h3
-                  sx={{
-                    fontFamily: "'BWHaasGrotesk-95Black-Web'",
-                  }}
-                >
-                  Bloomberg
-                </Styled.h3>
+                <Styled.h3 style={{ fontWeight: '800' }}>Bloomberg</Styled.h3>
               </motion.div>
             </div>
             {companies.map((company) => {

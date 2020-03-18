@@ -13,7 +13,6 @@
 require('slick-carousel/slick/slick.css')
 require('slick-carousel/slick/slick-theme.css')
 require('typeface-lato')
-require('./src/assets/fonts/fonts.css')
 require('./src/styles/custom.css')
 
 var trustAllScripts = function() {
