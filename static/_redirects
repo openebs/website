@@ -4,5 +4,5 @@
 https://openebs.netlify.com/*      https://openebs.io/:splat    301!
 http://openebs.netlify.com/*       https://openebs.io/:splat    301!
 
-/join-our-community              /community
-/join-our-slack-community        /community
+/join-our-community              /community           301!
+/join-our-slack-community        /community           301!
