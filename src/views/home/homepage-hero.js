@@ -56,10 +56,8 @@ const Hero = () => {
                     py: '4',
                   }}
                 >
-                  <a
-                    href="https://github.com/openebs/openebs"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    to="/community"
                     sx={{
                       mr: '3',
                       display: ['block', 'inline-block', 'inline-block'],
@@ -70,9 +68,9 @@ const Hero = () => {
                       size="lg"
                       sx={{ px: '40px', py: '15px' }}
                     >
-                      Get it on GitHub
+                      Join Our Community
                     </Button>
-                  </a>
+                  </Link>
                   <span sx={{ display: ['none', 'none', 'inline-block'] }}>
                     or{' '}
                   </span>
