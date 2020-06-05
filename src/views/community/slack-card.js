@@ -74,7 +74,11 @@ const SlackCard = () => (
                         style={{ maxWidth: '25%' }}
                       />
                       <Styled.h4 sx={{ pt: '5', fontWeight: '600' }}>
-                        Join OpenEBS Community on Slack
+                        Join OpenEBS Community on <Styled.a
+                          href="https://kubernetes.slack.com/messages/openebs/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >Kubernetes Slack </Styled.a>{' '}
                       </Styled.h4>
                       <hr
                         sx={{ width: '40%', borderTop: '2px solid #0063FF' }}
@@ -109,7 +113,7 @@ const SlackCard = () => (
                     }}
                   >
                     <iframe
-                      src="https://heroku-slackinn.herokuapp.com/"
+                      src="https://slack.k8s.io/"
                       sx={{
                         display: 'flex',
                         justifyContent: 'center',
