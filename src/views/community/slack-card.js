@@ -43,16 +43,18 @@ const SlackCard = () => (
                       alignItems: 'end',
                       flexDirection: 'column',
                       margin: 'auto',
+                      height: '100%',
                       '@media screen and (max-width: 78em)': {
                         maxWidth: '324px',
+                        maxWidth: '21.5em',
                         padding: 0,
                         margin: 'auto',
+                        width: `100%`,
                       },
                     }}
                   >
                     <Box
                       p={4}
-                      mx={2}
                       sx={{
                         marginTop: '20px',
                         display: 'flex',
@@ -63,9 +65,18 @@ const SlackCard = () => (
                         boxShadow: '0 0 0 2px white',
                         backgroundColor: '#fefefe',
                         borderRadius: '4px',
+                        height: '100%',
+                        margin: '21px 8px',
                         '@media screen and (max-width: 78em)': {
                           padding: 3,
+                          margin: '0',
+                          width: '100%',
+                        },
+                        '@media screen and (max-width: 25em)': {
+                          padding: 3,
                           margin: 'auto',
+                          width: '100%',
+                          maxWidth: '100%',
                         },
                       }}
                     >
@@ -74,7 +85,17 @@ const SlackCard = () => (
                         style={{ maxWidth: '25%' }}
                       />
                       <Styled.h4 sx={{ pt: '5', fontWeight: '600' }}>
-                        Join OpenEBS Community on Slack
+                        Join OpenEBS Community on{' '}
+                        <Styled.a
+                          href="https://kubernetes.slack.com/messages/openebs/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{
+                            textDecoration: 'none',
+                          }}
+                        >
+                          Kubernetes Slack{' '}
+                        </Styled.a>{' '}
                       </Styled.h4>
                       <hr
                         sx={{ width: '40%', borderTop: '2px solid #0063FF' }}
@@ -109,24 +130,34 @@ const SlackCard = () => (
                     }}
                   >
                     <iframe
-                      src="https://heroku-slackinn.herokuapp.com/"
+                      src="https://slack.k8s.io/"
                       sx={{
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
                         boxShadow: '0 0 0 2px white',
                         marginTop: '20px',
-                        height: '400px',
+                        height: '480px',
                         padding: '29px 50px',
                         margin: '21px 32px',
                         backgroundColor: '#fefefe',
                         borderRadius: '4px',
+                        maxWidth: '315px',
+                        width: '100%',
                         '@media screen and (max-width: 78em)': {
                           padding: 3,
                           margin: 'auto',
+                          width: '100%',
+                          maxWidth: '315px',
+                        },
+                        '@media screen and (max-width: 25em)': {
+                          padding: 3,
+                          margin: 'auto',
+                          width: '100%',
+                          maxWidth: '90%',
                         },
                       }}
-                      height="400"
+                      height="480"
                       frameBorder="0"
                       scrolling="no"
                     ></iframe>
