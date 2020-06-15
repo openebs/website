@@ -70,7 +70,7 @@ const Features = () => {
                 return (
                   <div
                     sx={{
-                      maxWidth: ['256px', '100%'],
+                      maxWidth: ['324', '100%'],
                       mx: 'auto',
                       textAlign: ['center', 'left'],
                     }}
