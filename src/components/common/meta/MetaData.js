@@ -36,6 +36,9 @@ const MetaData = ({ data, settings, title, description, image, location }) => {
     case '/community':
       page = pagesSeo.pages.community
       break
+    case '/support':
+      page = pagesSeo.pages.support
+      break
     case '/privacy-policy':
       page = pagesSeo.pages.privacypolicy
       break
@@ -125,6 +128,11 @@ const MetaDataQuery = (props) => (
                 title
               }
               community {
+                description
+                image
+                title
+              }
+              support {
                 description
                 image
                 title

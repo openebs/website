@@ -13,6 +13,13 @@
         }
       },
       {
+        "title": "GitHub",
+        "link": {
+          "url": "https://github.com/openebs/openebs",
+          "external": true
+        }
+      },
+      {
         "title": "FAQ",
         "link": {
           "url": "/faq",
@@ -48,10 +55,10 @@
         }
       },
       {
-        "title": "GitHub",
+        "title": "Support",
         "link": {
-          "url": "https://github.com/openebs/openebs",
-          "external": true
+          "url": "/support",
+          "external": false
         }
       }
     ],
