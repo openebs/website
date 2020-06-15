@@ -5,7 +5,7 @@ import { Link } from 'gatsby'
 import Layout from 'components/layout'
 import { Support, SlackCard } from 'views/support'
 import { MetaData } from 'components/common/meta'
-const CommunityPage = ({ location }) => {
+const SupportPage = ({ location }) => {
   return (
     <Layout location={location}>
       <MetaData location={location} />
