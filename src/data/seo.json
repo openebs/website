@@ -25,6 +25,11 @@
       "description": "The only 2,000-strong member community devoted to building better Kubernetes storage. We’d love to have you, too! Join us on Slack or contribute directly on GitHub!",
       "image": "card-openebs.png"
     },
+    "support": {
+      "title": "Commerical support for OpenEBS - (Kubernetes Container Attached Storage)",
+      "description": "List of companies providing commercial products and support around OpenEBS",
+      "image": "card-openebs.png"
+    },
     "privacypolicy": {
       "title": "Privacy Policy - OpenEBS (Kubernetes Container Attached Storage)",
       "description": "Let’s be honest: we’re not doing anything fishy with your data. But read this policy in case you want to know exactly what we are doing with it.",

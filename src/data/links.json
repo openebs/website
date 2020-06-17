@@ -20,6 +20,13 @@
         "url": "/community",
         "external": false
       }
+    },
+    {
+      "title": "Support",
+      "link": {
+        "url": "/support",
+        "external": false
+      }
     }
   ]
 }

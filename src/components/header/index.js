@@ -73,6 +73,8 @@ const HeaderComponent = ({ data, props }) => {
                 ref={nav}
                 sx={{
                   padding: ['40px 10px 40px 30px', '0px'],
+                  maxWidth: ['256px', '100%'],
+                  width: ['100%'],
                   backgroundColor: ['gray', 'transparent'],
                 }}
               >

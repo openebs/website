@@ -92,7 +92,7 @@ const FooterComponent = (data) => {
                     pl: '0',
                   }}
                 >
-                  {links.slice(0, 3).map((link) => {
+                  {links.slice(0, 4).map((link) => {
                     if (link.link !== null) {
                       if (link.link.external) {
                         return (
@@ -176,7 +176,7 @@ const FooterComponent = (data) => {
                 <ul
                   sx={{ listStyleType: 'none', textDecoration: 'none', p: '0' }}
                 >
-                  {links.slice(3).map((link) => {
+                  {links.slice(4).map((link) => {
                     if (link.link !== null) {
                       if (link.link.external) {
                         return (
