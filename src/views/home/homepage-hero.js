@@ -33,13 +33,13 @@ const Hero = () => {
                 }}
               >
                 <Styled.h1 sx={{ m: 0 }}>
-                  We make Kubernetes storage simple
+                  Kubernetes storage simplified
                 </Styled.h1>
                 <Styled.p sx={{ mb: '0' }}>
-                  We're an Open Source abstraction layer between your
-                  applications and any local, network or cloud storage. Reduce
-                  maintenance, lower storage costs, and simplify administration
-                  with OpenEBS.
+                  OpenEBS builds on Kubernetes to enable Stateful applications 
+                   to easily access Dynamic Local PVs or Replicated PVs.
+                  By using the Container Attached Storage pattern users report 
+                  lower costs, easier management, and more control for their teams.
                 </Styled.p>
                 <Styled.p sx={{ fontWeight: '300' }}>
                   OpenEBS is a 100% Open Source CNCF project made with
@@ -47,7 +47,8 @@ const Hero = () => {
                     src="heart.svg"
                     style={{ px: '2', height: '22px', mb: -1 }}
                   />{' '}
-                  by MayaData & the community.
+                  by MayaData & the community. Prominent users include Arista, 
+                  Optoro, Orange, Comcast and the CNCF itself.
                 </Styled.p>
                 <div
                   sx={{
@@ -57,7 +58,7 @@ const Hero = () => {
                   }}
                 >
                   <Link
-                    to="/community"
+                    to="/get-started"
                     sx={{
                       mr: '3',
                       display: ['block', 'inline-block', 'inline-block'],
@@ -68,17 +69,17 @@ const Hero = () => {
                       size="lg"
                       sx={{ px: '40px', py: '15px' }}
                     >
-                      Join Our Community
+                      Get Started
                     </Button>
                   </Link>
                   <span sx={{ display: ['none', 'none', 'inline-block'] }}>
                     or{' '}
                   </span>
                   <a
-                    href={whitepaper.node.publicURL}
+                    href="https://github.com/openebs/openebs/blob/master/ADOPTERS.md"
                     target="_blank"
                     rel="nofollow noreferrer"
-                    id="whitepaper_gtm"
+                    id="adopter_gtm"
                     sx={{
                       ml: ['0', '4', '4', '3'],
                       mt: ['3', '3', '0px'],
@@ -88,7 +89,7 @@ const Hero = () => {
                       display: ['block', 'inline-block', 'inline-block'],
                     }}
                   >
-                    Read the Whitepaper
+                    Read the Adopter stories.
                   </a>
                 </div>
               </div>
