@@ -1,0 +1,3 @@
+url: "https://openebs.org"
+plugins:
+  - jekyll-redirect-from
