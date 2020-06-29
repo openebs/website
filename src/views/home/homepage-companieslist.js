@@ -12,26 +12,31 @@ const CompaniesList = () => {
       name: 'Optoro',
       src: 'companies/optoro.svg',
       dir: 'companies',
+      url: 'https://github.com/openebs/openebs/blob/master/adopters/optoro/README.md',
     },
     {
       name: 'Orange',
       src: 'companies/orange.svg',
       dir: 'companies',
+      url: 'https://github.com/openebs/openebs/blob/master/adopters/orange/README.md',
     },
     {
       name: 'Arista',
       src: 'companies/arista.svg',
       dir: 'companies',
+      url: 'https://github.com/openebs/openebs/blob/master/adopters/arista/README.md',
     },
     {
       name: 'CNCF',
       src: 'companies/cncf.svg',
       dir: 'companies',
+      url: 'https://github.com/openebs/openebs/blob/master/adopters/cncf/README.md',
     },
     {
       name: 'Comcast',
       src: 'companies/comcast.svg',
       dir: 'companies',
+      url: 'https://github.com/openebs/openebs/blob/master/adopters/comcast/README.md',
     },
   ]
 
@@ -81,6 +86,7 @@ const CompaniesList = () => {
                     whileHover={{ scale: 1.15 }}
                     whileTap={{ scale: 0.8 }}
                   >
+                    <a href={company.url} target="_blank" rel="noopener noreferrer">
                     <Image
                       src={company.src}
                       style={{
@@ -90,6 +96,7 @@ const CompaniesList = () => {
                         height: '100%',
                       }}
                     />
+                    </a>
                   </motion.div>
                 </div>
               )
