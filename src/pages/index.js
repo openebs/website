@@ -13,6 +13,7 @@ import {
   Features,
   WhyOpenEBS,
   Hero,
+  FoundingCompaniesList,
   CompaniesList,
   Workloads,
   EasyStart,
@@ -24,6 +25,7 @@ const IndexPage = ({ location }) => {
     <Layout location={location}>
       <MetaData location={location} />
       <Hero />
+      <FoundingCompaniesList />
       <CompaniesList />
       <EasyStart />
       <WhatIsOpenEBS />
