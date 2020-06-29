@@ -11,6 +11,7 @@ const FoundingCompaniesList = () => {
     {
       name: 'MayaData',
       src: 'mayadata-logo.svg',
+      url: 'https://mayadata.io',
     },
   ]
 
@@ -44,6 +45,7 @@ const FoundingCompaniesList = () => {
                     whileHover={{ scale: 1.15 }}
                     whileTap={{ scale: 0.8 }}
                   >
+                    <a href={company.url} target="_blank" rel="noopener noreferrer">
                     <Image
                       src={company.src}
                       style={{
@@ -53,6 +55,7 @@ const FoundingCompaniesList = () => {
                         height: '100%',
                       }}
                     />
+                    </a>
                   </motion.div>
                 </div>
               )
