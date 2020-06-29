@@ -48,7 +48,7 @@ const FoundingCompaniesList = () => {
                       src={company.src}
                       style={{
                         maxWidth: '100%',
-                        width: ['80px', '85px', '90px'],
+                        width: ['180px', '190px', '200px'],
                         filter: 'grayscale(90%)',
                         height: '100%',
                       }}
