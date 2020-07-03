@@ -31,8 +31,8 @@ const Faq = () => {
     },
     {
       src: `get-started/monitoring.png`,
-      url: `https://mayadata.io`,
-      text: `Get Commercial Support and add DR & other features with Kubera`,
+      url: `/support`,
+      text: `Get Commercial Support and add DR & other features with products like Kubera`,
     },
   ]
 
