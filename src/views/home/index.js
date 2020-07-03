@@ -1,5 +1,5 @@
 export { default as Cncf } from './homepage-cncf'
-export { default as GetStarted } from './homepage-getstarted'
+export { default as GetSupport } from './homepage-getsupport'
 export { default as Features } from './homepage-features'
 export { default as RecentUpdates } from './homepage-recentupdates'
 export { default as WhatIsOpenEBS } from './homepage-whatisopenebs'
