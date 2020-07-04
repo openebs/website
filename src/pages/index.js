@@ -9,7 +9,7 @@ import {
   Cncf,
   WhatIsOpenEBS,
   RecentUpdates,
-  GetStarted,
+  GetSupport,
   Features,
   WhyOpenEBS,
   Hero,
@@ -32,8 +32,8 @@ const IndexPage = ({ location }) => {
       <WhyOpenEBS />
       <Platforms />
       <Workloads />
+      <GetSupport location={location} />
       <RecentUpdates />
-      <GetStarted location={location} />
       <Features />
       <Cncf />
     </Layout>

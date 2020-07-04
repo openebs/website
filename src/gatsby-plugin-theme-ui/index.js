@@ -145,6 +145,10 @@ export default {
       },
     },
     li: {
+      color: 'text',
+      fontFamily: 'body',
+      fontWeight: 'body',
+      lineHeight: 'body',
       mb: 2,
     },
     pre: {
