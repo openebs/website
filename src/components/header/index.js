@@ -54,19 +54,21 @@ const HeaderComponent = ({ data, props }) => {
               variant: `styles.header`,
             }}
           >
-            <Link
-              to="/"
-              title="openebs"
-              sx={{
-                variant: `styles.navlink`,
-                py: 2,
-              }}
-              activeStyle={{ color: '#F26D00' }}
-            >
-              <Logo style={{ height: `40px` }} />
-            </Link>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', lineHeight: '0.9', paddingLeft: '16px' }}>
-              <GitHubButton className="github-button" href="https://github.com/openebs/openebs" data-icon="octicon-star" data-show-count="true" aria-label="Star openebs/openebs on GitHub">Star</GitHubButton>
+            <div sx={{ display: ['block', 'flex'], justifyContent: 'center', alignItems: 'center', lineHeight: '0.9' }}>
+              <Link
+                to="/"
+                title="openebs"
+                sx={{
+                  variant: `styles.navlink`,
+                  py: 2,
+                }}
+                activeStyle={{ color: '#F26D00' }}
+              >
+                <Logo style={{ height: `40px` }} />
+              </Link>
+              <div sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', paddingLeft: ['4px', '16px'], paddingTop: ['8px', '0px'], paddingBottom: ['8px', '0px'] }}>
+                <GitHubButton className="github-button" href="https://github.com/openebs/openebs" data-icon="octicon-star" data-show-count="true" aria-label="Star openebs/openebs on GitHub">Star</GitHubButton>
+              </div>
             </div>
             <div sx={{ mx: `auto` }} />
             <MenuButton onClick={handleMenuOption} />
