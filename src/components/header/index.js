@@ -6,6 +6,7 @@ import Logo from 'assets/images/openebs.svg'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import MenuButton from './menu-button'
 import { Sidenav } from '@theme-ui/sidenav'
+import GitHubButton from 'react-github-btn'
 
 const HeaderComponent = ({ data, props }) => {
   const { edges } = data
@@ -51,19 +52,26 @@ const HeaderComponent = ({ data, props }) => {
               display: `flex`,
               alignItems: `center`,
               variant: `styles.header`,
+              paddingTop: ['8px'],
+              paddingBottom: ['8px']
             }}
           >
-            <Link
-              to="/"
-              title="openebs"
-              sx={{
-                variant: `styles.navlink`,
-                py: 2,
-              }}
-              activeStyle={{ color: '#F26D00' }}
-            >
-              <Logo style={{ height: `40px` }} />
-            </Link>
+            <div sx={{ display: ['block', 'flex'], justifyContent: 'center', alignItems: 'center', lineHeight: '0.9' }}>
+              <Link
+                to="/"
+                title="openebs"
+                sx={{
+                  variant: `styles.navlink`,
+                  py: 2,
+                }}
+                activeStyle={{ color: '#F26D00' }}
+              >
+                <Logo style={{ height: `40px` }} />
+              </Link>
+              <div sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', paddingLeft: ['4px', '16px'], paddingTop: ['8px', '0px'], paddingBottom: ['8px', '0px'] }}>
+                <GitHubButton className="github-button" href="https://github.com/openebs/openebs" data-icon="octicon-star" data-show-count="true" aria-label="Star openebs/openebs on GitHub">Star</GitHubButton>
+              </div>
+            </div>
             <div sx={{ mx: `auto` }} />
             <MenuButton onClick={handleMenuOption} />
 
