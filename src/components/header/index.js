@@ -52,6 +52,8 @@ const HeaderComponent = ({ data, props }) => {
               display: `flex`,
               alignItems: `center`,
               variant: `styles.header`,
+              paddingTop: ['8px'],
+              paddingBottom: ['8px']
             }}
           >
             <div sx={{ display: ['block', 'flex'], justifyContent: 'center', alignItems: 'center', lineHeight: '0.9' }}>
