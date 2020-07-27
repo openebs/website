@@ -6,6 +6,7 @@ import Logo from 'assets/images/openebs.svg'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import MenuButton from './menu-button'
 import { Sidenav } from '@theme-ui/sidenav'
+import GitHubButton from 'react-github-btn'
 
 const HeaderComponent = ({ data, props }) => {
   const { edges } = data
@@ -64,6 +65,9 @@ const HeaderComponent = ({ data, props }) => {
             >
               <Logo style={{ height: `40px` }} />
             </Link>
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', lineHeight: '0.9', paddingLeft: '16px' }}>
+              <GitHubButton className="github-button" href="https://github.com/openebs/openebs" data-icon="octicon-star" data-show-count="true" aria-label="Star openebs/openebs on GitHub">Star</GitHubButton>
+            </div>
             <div sx={{ mx: `auto` }} />
             <MenuButton onClick={handleMenuOption} />
 
