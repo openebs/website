@@ -21,6 +21,8 @@ import {
   Slack,
   Youtube,
 } from 'react-feather'
+
+import { Banner } from "../banner";
 // Styles
 /**
  * Main layout component
@@ -60,6 +62,7 @@ const DefaultLayout = ({ data, children, bodyClass, isHome, location }) => {
         <div className="viewport">
           <div className="viewport-top">
             {/* The main header section on top of the screen */}
+            <Banner />
             <Header />
             {!location && (
               <div

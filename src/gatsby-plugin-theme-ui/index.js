@@ -17,6 +17,7 @@ export default {
     extraDarkOrange: '#A95000',
     lightOrange: `#FFB78A`,
     light: `#EFEFF2`,
+    white: `#FFFFFF`
   },
   fonts: {
     body: '"Lato","Open Sans", sans-serif',
