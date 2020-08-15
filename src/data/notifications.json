@@ -1,7 +1,7 @@
 {
   "notification": [
     {
-      "title": "Talk with the OpenEBS team at KubeCon Virtual. Join the #6-kubecon-mayadata channel on CNCF Slack",
+      "title": "Meet OpenEBS Maintainers at KubeCon, CloudNativeCon EU 2020. Virtually on CNCF Slack Channel #6-kubecon-mayadata",
       "url": "https://cloud-native.slack.com",
       "ctaActionText": "Join Now",
       "isLatest": true
