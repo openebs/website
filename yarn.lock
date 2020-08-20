@@ -6258,10 +6258,10 @@ flatted@^2.0.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.1.tgz#69e57caa8f0eacbc281d2e2cb458d46fdb449e08"
   integrity sha512-a1hQMktqW9Nmqr5aktAux3JMNqaucxGcjtjWnZLHX7yyPCmlSV3M54nGYbqT8K+0GhF3NBgmJCc3ma+WOgX8Jg==
 
-flex-banner@^2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/flex-banner/-/flex-banner-2.1.3.tgz#79d136cc042ef9c4843ba952273568ea915b32d1"
-  integrity sha512-O5x3Odg1BlVgak40BaN2GLxpb5v0twA+Og7DYqbJ/F0ZzCNh8UQU/PtYjeXNhVPRYPWFn+dToP9sdhWGRFLPeA==
+flex-banner@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/flex-banner/-/flex-banner-2.2.2.tgz#96ef22c8edb54e8ad903d9141337803c576487a3"
+  integrity sha512-oVPGF6rTgvcEZ4xY99u4xbegHStkfqX8dDzTAI1rflf1hdWEpOv25xHVxRraP/R8g+2nlJA1PZcA2ljTKnrOxw==
   dependencies:
     react-cookie "^4.0.3"
     react-device-detect "^1.11.14"
