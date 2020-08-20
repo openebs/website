@@ -11,6 +11,11 @@ const notificationQuery = () => {
             url
             isLatest
             ctaActionText
+            hideDate {
+              year
+              month
+              day
+            }
           }
         }
       }

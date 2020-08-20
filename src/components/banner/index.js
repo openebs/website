@@ -18,6 +18,7 @@ export const Banner = () => {
       wrapperStyle={{ backgroundColor: designToken.default.colors.primary }}
       mainStyleLink={{ color: designToken.default.colors.white }}
       crossIconSize={0}
+      hidePermanentlyOnDate={new Date(latestNotification.hideDate.year, latestNotification.hideDate.month, latestNotification.hideDate.day)}
     />
   )
 }

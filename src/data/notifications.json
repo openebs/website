@@ -4,7 +4,12 @@
       "title": "Meet OpenEBS Maintainers at KubeCon, CloudNativeCon EU 2020. Virtually on CNCF Slack Channel #6-kubecon-mayadata",
       "url": "https://cloud-native.slack.com",
       "ctaActionText": "Join Now",
-      "isLatest": true
+      "isLatest": true,
+      "hideDate": {
+        "year": 2020,
+        "month": 7,
+        "day": 21
+      }
     }
   ]
 }
