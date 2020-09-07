@@ -5,14 +5,16 @@ import { Link, StaticQuery, graphql } from 'gatsby'
 
 const Tags = ({ data }) => {
   const tags = data.allGhostPost.nodes
-  const primaryTags = tags.map((tag) => tag.primary_tag)
+  const primaryTags = tags.map((tag) => {
+    return tag.primary_tag.id && tag.primary_tag.slug && tag.primary_tag.name
+  })
   const uniqueArray = (a) =>
     [...new Set(a.map((o) => JSON.stringify(o)))].map((s) => JSON.parse(s))
   const nameAndSlugPrimaryTags = primaryTags.map(({ name, slug }) => ({
     name,
     slug,
-  }))
-  const uniquePrimaryTags = uniqueArray(nameAndSlugPrimaryTags)
+  }));
+  const uniquePrimaryTags = uniqueArray(nameAndSlugPrimaryTags);
   uniquePrimaryTags.forEach((tag) => {
     switch (tag.slug) {
       case 'chaos-engineering':
@@ -63,7 +65,7 @@ const Tags = ({ data }) => {
             uniquePrimaryTags.map((tag) => {
               return (
                 tag.displayName && (
-                  <li sx={{ listStyleType: 'none' }}>
+                  <li key={tag.displayName} sx={{ listStyleType: 'none' }}>
                     <Link
                       to={`/blog/tag/${tag.slug}`}
                       sx={{
