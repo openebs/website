@@ -6,7 +6,7 @@ The OpenEBS Community invites all its members to attend the weekly community mee
 
 **Day** - Weekly On Thursday
 
-**Time** - 6:30 PM CEST/ 12:30 PM EDT/ 10:00 PM IST/ 9:30 AM PDT
+**Time** - 9:30 AM PDT/ 12:30 PM EDT/ 6:30 PM CEST/ 10:00 PM IST
 
 Add the event in your calendar - [Google](https://calendar.google.com/event?action=TEMPLATE&tmeid=cTMwdnJobDdiZGZjNmdvb280NThsa3ZwbmNfMjAyMDA5MTBUMTYzMDAwWiBvcGVuZWJzQG0&tmsrc=openebs%40gmail.com&scp=ALL)    [iCal](/meeting-86534111953.ics)   [Outlook](/meeting-86534111953.ics)
 
