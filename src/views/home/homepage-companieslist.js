@@ -87,15 +87,18 @@ const CompaniesList = () => {
                     whileTap={{ scale: 0.8 }}
                   >
                     <a href={company.url} target="_blank" rel="noopener noreferrer">
-                    <Image
-                      src={company.src}
-                      style={{
-                        maxWidth: '100%',
-                        width: ['80px', '85px', '90px'],
-                        filter: 'grayscale(90%)',
-                        height: '100%',
-                      }}
-                    />
+                      <Image
+                        src={company.src}
+                        style={{
+                          maxWidth: '100%',
+                          width: ['80px', '85px', '90px'],
+                          filter: 'grayscale(90%)',
+                          height: '100%',
+                          ":hover": {
+                            filter: `grayscale(0%)`
+                          }
+                        }}
+                      />
                     </a>
                   </motion.div>
                 </div>
