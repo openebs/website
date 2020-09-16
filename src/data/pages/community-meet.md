@@ -4,11 +4,11 @@ title: 'community-meet'
 
 The OpenEBS Community invites all its members to attend the weekly community meetings to discuss anything & everything about Kubernetes & OpenEBS. This would be helpful to decide the future roadmap & the current areas to focus on the most popular container attached storage project. 
 
-**Day** - Weekly On Thursday
+**Day** - Bi-Weekly On Thursday
 
 **Time** - 9:30 AM PDT/ 12:30 PM EDT/ 6:30 PM CEST/ 10:00 PM IST
 
-Add the event in your calendar - [Google](https://calendar.google.com/event?action=TEMPLATE&tmeid=cTMwdnJobDdiZGZjNmdvb280NThsa3ZwbmNfMjAyMDA5MTBUMTYzMDAwWiBvcGVuZWJzQG0&tmsrc=openebs%40gmail.com&scp=ALL) &nbsp;&nbsp;   [iCal](/meeting-86534111953.ics) &nbsp;&nbsp;   [Outlook](/meeting-86534111953.ics)
+Add the event in your calendar - [Google](https://calendar.google.com/event?action=TEMPLATE&tmeid=ZHNxaGo5ZDA0NHVnOXUyZ2I2aG5xbjJmMGtfMjAyMDA5MTdUMTYzMDAwWiBvcGVuZWJzQG0&tmsrc=openebs%40gmail.com&scp=ALL) &nbsp;&nbsp;   [iCal](/meeting-86534111953.ics) &nbsp;&nbsp;   [Outlook](/meeting-86534111953.ics)
 
 
 - The working document/meeting notes for the contributors meet is [here](https://docs.google.com/document/d/1i1OAMWAG40ymmV7c3QiqCl6rBrhm6nEdsgJcsxkVxLw/edit)
