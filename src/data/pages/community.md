@@ -8,7 +8,7 @@ We welcome community contributions! You can start with [CONTRIBUTING.md](https:/
 
 ### Community Meeting
 
-The OpenEBS Community invites all its members to attend the weekly community meetings to discuss anything & everything about Kubernetes & OpenEBS. This would be helpful to decide the future roadmap & the current areas to focus on the most popular container attached storage project.
+The OpenEBS Community invites all its members to attend the community meetings to discuss anything & everything about Kubernetes & OpenEBS. This would be helpful to decide the future roadmap & the current areas to focus on the most popular container attached storage project.
 
 **Day** - Bi-Weekly On Thursday
 
@@ -16,7 +16,7 @@ The OpenEBS Community invites all its members to attend the weekly community mee
 
 Add the event in your calendar - [Google](https://calendar.google.com/event?action=TEMPLATE&tmeid=ZHNxaGo5ZDA0NHVnOXUyZ2I2aG5xbjJmMGtfMjAyMDA5MTdUMTYzMDAwWiBvcGVuZWJzQG0&tmsrc=openebs%40gmail.com&scp=ALL) &nbsp;&nbsp;   [iCal](/meeting-86534111953.ics) &nbsp;&nbsp;   [Outlook](/meeting-86534111953.ics)
 
-The working document/meeting notes for the contributors meet is [here](https://hackmd.io/mfG78r7MS86oMx8oyaV8Iw?view)
+The working document/meeting notes for the contributors meet is [here](https://hackmd.io/mfG78r7MS86oMx8oyaV8Iw?view).
 
 ### Code of Conduct
 
