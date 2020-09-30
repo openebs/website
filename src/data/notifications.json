@@ -1,10 +1,21 @@
 {
   "notification": [
     {
+      "title": "MayaData is celebrating Hacktoberfest 2020 with OpenEBS and LitmusChaos",
+      "url": "https://mayadata.io/hacktoberfest-2020",
+      "ctaActionText": "Learn More",
+      "isLatest": true,
+      "hideDate": {
+        "year": 2020,
+        "month": 9,
+        "day": 1
+      }
+    },
+    {
       "title": "Meet OpenEBS Maintainers at KubeCon, CloudNativeCon EU 2020. Virtually on CNCF Slack Channel #6-kubecon-mayadata",
       "url": "https://cloud-native.slack.com",
       "ctaActionText": "Join Now",
-      "isLatest": true,
+      "isLatest": false,
       "hideDate": {
         "year": 2020,
         "month": 7,
