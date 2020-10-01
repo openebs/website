@@ -1,10 +1,21 @@
 {
   "notification": [
     {
+      "title": "OpenEBS is participating in Hacktoberfest 2020, with swag sponsored by MayaData.",
+      "url": "https://openebs.io/blog/hacktoberfest-2020-contribute-to-openebs/",
+      "ctaActionText": "Learn More",
+      "isLatest": true,
+      "hideDate": {
+        "year": 2020,
+        "month": 10,
+        "day": 1
+      }
+    },
+    {
       "title": "Meet OpenEBS Maintainers at KubeCon, CloudNativeCon EU 2020. Virtually on CNCF Slack Channel #6-kubecon-mayadata",
       "url": "https://cloud-native.slack.com",
       "ctaActionText": "Join Now",
-      "isLatest": true,
+      "isLatest": false,
       "hideDate": {
         "year": 2020,
         "month": 7,
