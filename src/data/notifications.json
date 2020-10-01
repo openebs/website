@@ -1,13 +1,13 @@
 {
   "notification": [
     {
-      "title": "MayaData is celebrating Hacktoberfest 2020 with OpenEBS and LitmusChaos",
-      "url": "https://mayadata.io/hacktoberfest-2020",
+      "title": "OpenEBS is participating in Hacktoberfest 2020, with swag sponsored by MayaData.",
+      "url": "https://openebs.io/blog/hacktoberfest-2020-contribute-to-openebs/",
       "ctaActionText": "Learn More",
       "isLatest": true,
       "hideDate": {
         "year": 2020,
-        "month": 9,
+        "month": 10,
         "day": 1
       }
     },
