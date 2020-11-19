@@ -15,7 +15,7 @@
       "title": "OpenEBS is participating in Hacktoberfest 2020, with swag sponsored by MayaData.",
       "url": "https://openebs.io/blog/hacktoberfest-2020-contribute-to-openebs/",
       "ctaActionText": "Learn More",
-      "isLatest": true,
+      "isLatest": false,
       "hideDate": {
         "year": 2020,
         "month": 10,
