@@ -127,7 +127,8 @@ const generateRSSFeed = function generateRSSFeed(siteConfig) {
             }
         }
   `,
-    output: `/rss`,
+  output: `/rss.xml`,
+  title: `OpenEBS website RSS feed`
   }
 }
 
