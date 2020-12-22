@@ -96,6 +96,7 @@
     "normalize.css": "^8.0.1",
     "react": "16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
+    "react-cookie": "^4.0.3",
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "16.12.0",
     "react-feather": "^2.0.3",

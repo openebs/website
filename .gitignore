@@ -79,3 +79,4 @@ yarn-error.log
 .env
 
 **/.DS_Store
+.env.development

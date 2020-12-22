@@ -1,8 +1,10 @@
 /** @jsx jsx */
 import { jsx, Styled } from 'theme-ui'
 import { Box, Input, Button, Alert } from '@theme-ui/components'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ReactModal from 'react-modal'
+import { useCookies } from 'react-cookie';
+
 const Success = () => {
   return (
     <div
@@ -40,6 +42,9 @@ const Newsletter = () => {
   const [email, setEmail] = useState('')
   const [showModal, setModal] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
+  const [cookies, setCookie] = useCookies(['hubspotutk']);
+  const cookiePrompt = `In order to submit this form, you need to accept cookies. Please click "OK" to reload page, and then accept cookies when prompted.`
+
   const GATSBY_NEWSLETTER_BACKEND_URL =
     process.env.GATSBY_NEWSLETTER_BACKEND_URL
   const handleChange = (e) => {
@@ -67,10 +72,42 @@ const Newsletter = () => {
         return await response.json()
       }
 
-      postData(GATSBY_NEWSLETTER_BACKEND_URL, {
-        email: email,
-        tag: tag,
-      })
+      const data = {
+        submittedAt: new Date().getTime(),
+        fields: [
+          {
+            name: "email",
+            value: email,
+          },
+        ],
+        context: {
+          pageUri: window.location.href,
+          hutk: cookies.hubspotutk || ''
+        },
+        legalConsentOptions: {
+          consent: {
+            consentToProcess: true,
+            text:
+              "I agree to allow MayaData to store and process my personal data.",
+            communications: [
+              {
+                value: true,
+                subscriptionTypeId: 999,
+                text:
+                  "I agree to receive marketing communications from MayaData."
+              }
+            ]
+          }
+        }
+      }
+
+      if ((!cookies.hubspotutk) || (cookies.__hs_opt_out && (cookies.__hs_opt_out === 'yes'))) {
+        alert(cookiePrompt);
+        window["_hsq"].push(['revokeCookieConsent']);
+        location.reload();
+      }
+
+      postData(GATSBY_NEWSLETTER_BACKEND_URL,data)
         .then((data) => {
           setIsSuccess(true)
           handleOpenModal()
