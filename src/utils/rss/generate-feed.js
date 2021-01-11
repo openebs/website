@@ -2,8 +2,9 @@ const cheerio = require(`cheerio`)
 const tagsHelper = require(`@tryghost/helpers`).tags
 const _ = require(`lodash`)
 
-const generateItem = function generateItem(post) {
-  const itemUrl = post.canonical_url || post.url
+
+const generateItem = function generateItem(post,siteConfig) {
+  const itemUrl = `${siteConfig.siteUrl}/blog/${post.slug}/`
   const html = post.html
   const htmlContent = cheerio.load(html, {
     decodeEntities: false,
@@ -56,7 +57,7 @@ const generateRSSFeed = function generateRSSFeed(siteConfig) {
   return {
     serialize: ({ query: { allGhostPost } }) =>
       allGhostPost.edges.map((edge) =>
-        Object.assign({}, generateItem(edge.node))
+        Object.assign({}, generateItem(edge.node,siteConfig))
       ),
     setup: ({ query: { allGhostSettings } }) => {
       const siteTitle = allGhostSettings.edges[0].node.title || `No Title`
