@@ -1,9 +1,12 @@
 const cheerio = require(`cheerio`)
 const tagsHelper = require(`@tryghost/helpers`).tags
 const _ = require(`lodash`)
+const config = require(`../../config/siteConfig`)
+
 
 const generateItem = function generateItem(post) {
   const itemUrl = post.canonical_url || post.url
+  const itemFinalUrl= itemUrl.replace("https://admin.mayadata.io/", `${config.siteUrl}/blog/`);
   const html = post.html
   const htmlContent = cheerio.load(html, {
     decodeEntities: false,
@@ -13,7 +16,7 @@ const generateItem = function generateItem(post) {
     title: post.title,
     description: post.excerpt,
     guid: post.id,
-    url: itemUrl,
+    url: itemFinalUrl,
     date: post.published_at,
     categories: _.map(
       tagsHelper(post, { visibility: `public`, fn: (tag) => tag }),
@@ -55,8 +58,11 @@ const generateItem = function generateItem(post) {
 const generateRSSFeed = function generateRSSFeed(siteConfig) {
   return {
     serialize: ({ query: { allGhostPost } }) =>
-      allGhostPost.edges.map((edge) =>
+      allGhostPost.edges.map((edge) =>{
+        console.log(edge);
         Object.assign({}, generateItem(edge.node))
+
+      }
       ),
     setup: ({ query: { allGhostSettings } }) => {
       const siteTitle = allGhostSettings.edges[0].node.title || `No Title`
