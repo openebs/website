@@ -77,6 +77,7 @@ const Post = ({ data, location }) => {
                             height: '48px',
                             width: '48px',
                             borderRadius: '50%',
+                            objectfit: 'cover',
                           }}
                         />
                       </div>
