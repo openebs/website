@@ -14,7 +14,7 @@ The OpenEBS Community invites all its members to attend the community meetings t
 
 **Time** - 9:30 AM PDT/ 12:30 PM EDT/ 6:30 PM CEST/ 10:00 PM IST
 
-Add the event in your calendar - [Google](https://calendar.google.com/event?action=TEMPLATE&tmeid=ZHNxaGo5ZDA0NHVnOXUyZ2I2aG5xbjJmMGtfMjAyMDA5MTdUMTYzMDAwWiBvcGVuZWJzQG0&tmsrc=openebs%40gmail.com&scp=ALL) &nbsp;&nbsp;   [iCal](/meeting-86534111953.ics) &nbsp;&nbsp;   [Outlook](/meeting-86534111953.ics)
+Add the event in your calendar - [Google](https://calendar.google.com/event?action=TEMPLATE&tmeid=ZHNxaGo5ZDA0NHVnOXUyZ2I2aG5xbjJmMGtfMjAyMDA5MTdUMTYzMDAwWiBvcGVuZWJzQG0&tmsrc=openebs%40gmail.com&scp=ALL) &nbsp;&nbsp;   [iCal](/calendar.ics) &nbsp;&nbsp;   [Outlook](/calendar.ics)
 
 The working document/meeting notes for the contributors meet is [here](https://hackmd.io/mfG78r7MS86oMx8oyaV8Iw?view).
 
