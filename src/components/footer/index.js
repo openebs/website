@@ -5,7 +5,7 @@ import Image from 'components/image'
 import Logo from 'assets/images/openebs.svg'
 import { Link, StaticQuery, graphql } from 'gatsby'
 import { Input, Button, Container, Box, Flex } from '@theme-ui/components'
-import Newsletter from 'components/newsletter'
+// import Newsletter from 'components/newsletter'
 import {
   Facebook,
   Twitter,
@@ -273,7 +273,7 @@ const FooterComponent = (data) => {
                   height: '33%',
                 }}
               >
-                <Newsletter />
+                {/* <Newsletter /> */}
               </div>
             </div>
           </div>

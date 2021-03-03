@@ -42,6 +42,9 @@ const MetaData = ({ data, settings, title, description, image, location }) => {
     case '/privacy-policy':
       page = pagesSeo.pages.privacypolicy
       break
+    case '/subscribe':
+      page = pagesSeo.pages.subscribe
+      break
     default:
       page = false
   }
@@ -153,6 +156,11 @@ const MetaDataQuery = (props) => (
                 title
               }
               privacypolicy {
+                description
+                image
+                title
+              }
+              subscribe {
                 description
                 image
                 title

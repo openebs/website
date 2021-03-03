@@ -34,6 +34,11 @@
       "title": "Privacy Policy - OpenEBS (Kubernetes Container Attached Storage)",
       "description": "Let’s be honest: we’re not doing anything fishy with your data. But read this policy in case you want to know exactly what we are doing with it.",
       "image": "card-openebs.png"
+    },
+    "subscribe": {
+      "title": "OpenEBS Newsletter Subscription",
+      "description": "Get all the OpenEBS updates & information straight to your inbox :incoming_envelope:",
+      "image": "card-openebs.png"
     }
   }
 }

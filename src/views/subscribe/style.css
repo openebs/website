@@ -1,0 +1,82 @@
+@import url("../../../node_modules/bootstrap/dist/css/bootstrap.min.css");
+
+.heading-class {
+    width: 81%;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.subscribe-class span {
+    font-family: helvetica;
+}
+
+.points-class {
+    font-size: 18px;
+    margin-left: 7px;
+}
+
+.sub-span-heading {
+    font-size: 18px;
+}
+
+.note-class {
+    margin-top: 75px;
+}
+
+.form-title-class {
+    font-weight: bold;
+    color: #000;
+    font-size: 22px;
+}
+
+.form-group label {
+    font-size: 18px;
+    font-family: Helvetica, Trebuchet MS, sans-serif;
+    font-weight: bold;
+}
+
+.btn-wrap {
+    text-align: center;
+    padding-top: 25px;
+}
+
+.btn-wrap .btn {
+    cursor: pointer;
+    text-decoration: none !important;
+    white-space: normal !important;
+    outline: 0;
+    background-color: #f26d00;
+    color: #fff;
+    border: 1px solid #f26d00;
+    padding: 7px 20px;
+    display: inline-block;
+    text-align: center;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+        box-shadow 0.15s ease-in-out;
+    font-family: Helvetica, Trebuchet MS, sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.btn-wrap .btn:hover,
+.btn-wrap .btn:active {
+    background-color: #fff !important;
+    color: #f26d00 !important;
+    border: 1px solid #f26d00 !important;
+}
+
+.btn-wrap .btn:focus {
+    box-shadow: none !important;
+}
+
+.subscribe-class .form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: rgb(233 112 13 / 30%);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgb(233 112 13 / 50%);
+}
