@@ -158,14 +158,6 @@ const Subscribe = () => {
               </span>
             </p>
 
-            <p className="note-class">
-              <strong>
-                <span className="sub-span-heading">Note -</span></strong>
-              <span className="sub-span-heading">
-                <em>This does NOT subscribe you to information about MayaData or about non OpenEBS MayaData software</em>
-              </span>
-            </p>
-
           </div>
           <div className="col-md-6 col-sm-12">
             <label className="form-title-class">Fill the form</label>
