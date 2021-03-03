@@ -80,3 +80,21 @@
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgb(233 112 13 / 50%);
 }
+
+.modal-class {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.css-1dywv7z-Subscribe {
+  min-height: calc(100vh - 485px);
+}
+
+@media (max-width: 767px) {
+    .modal-class {
+        width: auto !important;
+        left: 0;
+        transform: translate(0, -50%) !important;
+        margin: 20px !important;
+    }
+}

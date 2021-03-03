@@ -194,6 +194,7 @@ const Subscribe = () => {
         </div>
         <div>
           <ReactModal
+            className="modal-class"
             isOpen={showModal}
             contentLabel="modal"
             onRequestClose={handleCloseModal}
