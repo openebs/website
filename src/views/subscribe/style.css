@@ -4,8 +4,16 @@
     font-size: 40px;
     line-height: 1.2;
     margin-bottom: 50px;
-}
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
 
+}
+span.svg-wrapper {
+    position: absolute !important;
+    bottom: -6px;
+    margin-left: 6px;
+}
 .subscribe-class span {
     font-family: helvetica;
 }
@@ -129,6 +137,7 @@
     font-family: Lato, "Open Sans", sans-serif;
     font-size: 31px;
     font-weight: 300;
+    position: relative;
 }
 .form-title-class {
     font-family: Lato, "Open Sans", sans-serif;
@@ -146,14 +155,9 @@
     margin-top: 20px;
 }
 
-.heading-class > span {
-    display: flex;
-    align-items: flex-end;
-}
-
 .heading-class > span svg {
     margin-top: 0;
-    width: 66px;
+    width: 30px;
     height: 30px;
 }
 

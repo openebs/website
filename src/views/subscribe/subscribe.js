@@ -161,10 +161,8 @@ const Subscribe = () => {
         <div className="subscribe-class">
           <div className="sub-left">
             <div className="heading-class">
-              <span>
-                <span>Get all the OpenEBS updates & information straight to your inbox </span>
-                <Mail></Mail>
-              </span>
+                <span>Get all the OpenEBS updates & information straight to your inbox <span className="svg-wrapper"><Mail></Mail></span></span>
+                
             </div>
             <p>
               <span>
