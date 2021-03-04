@@ -1,11 +1,9 @@
-@import url("../../../node_modules/bootstrap/dist/css/bootstrap.min.css");
-
 .heading-class {
     width: 81%;
     font-weight: 700;
     font-size: 40px;
     line-height: 1.2;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .subscribe-class span {
@@ -25,12 +23,6 @@
     margin-top: 75px;
 }
 
-.form-title-class {
-    font-weight: bold;
-    color: #000;
-    font-size: 22px;
-}
-
 .form-group label {
     font-size: 18px;
     font-family: Helvetica, Trebuchet MS, sans-serif;
@@ -44,8 +36,8 @@
 
 .btn-wrap .btn {
     cursor: pointer;
-    text-decoration: none !important;
-    white-space: normal !important;
+    text-decoration: none;
+    white-space: normal;
     outline: 0;
     background-color: #f26d00;
     color: #fff;
@@ -64,13 +56,13 @@
 
 .btn-wrap .btn:hover,
 .btn-wrap .btn:active {
-    background-color: #fff !important;
-    color: #f26d00 !important;
-    border: 1px solid #f26d00 !important;
+    background-color: #fff;
+    color: #f26d00;
+    border: 1px solid #f26d00;
 }
 
 .btn-wrap .btn:focus {
-    box-shadow: none !important;
+    box-shadow: none;
 }
 
 .subscribe-class .form-control:focus {
@@ -85,16 +77,144 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 400px;
+    margin: auto;
 }
 .css-1dywv7z-Subscribe {
-  min-height: calc(100vh - 485px);
+    min-height: calc(100vh - 485px);
+}
+.subscribe-class {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.sub-left {
+    width: 50%;
+}
+.sub-right {
+    width: 50%;
+}
+.sub-right .form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 25px;
+}
+.sub-right .form-group input.form-control {
+    background: #fff;
+    width: 100%;
+    outline: 0;
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.25rem + 2px);
+    padding: 0.25rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 2px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    font-family: "Open Sans", sans-serif;
+}
+.sub-right .form-group input.form-control:focus {
+    border-color: rgb(233 112 13 / 30%);
+}
+.text-danger {
+    color: red;
+}
+.heading-class span {
+    font-family: Lato, "Open Sans", sans-serif;
+    font-size: 31px;
+    font-weight: 300;
+}
+.form-title-class {
+    font-family: Lato, "Open Sans", sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    text-transform: capitalize;
+}
+.sub-left p span {
+    font-family: Lato, "Open Sans", sans-serif;
+    font-size: 18px;
+    display: flex;
 }
 
+.sub-right form {
+    margin-top: 20px;
+}
+
+.heading-class > span {
+    display: flex;
+    align-items: flex-end;
+}
+
+.heading-class > span svg {
+    margin-top: 0;
+    width: 66px;
+    height: 30px;
+}
+
+.form-group label {
+    font-size: 18px;
+    font-family: Lato, "Open Sans", sans-serif;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+.closeicon {
+    position: absolute;
+    right: 0;
+    top: 3px;
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.closeicon:focus {
+    outline:0
+}
+
+@media (max-width: 1024px) {
+    .sub-right .form-group input.form-control {
+        width: 92%;
+    }
+}
 @media (max-width: 767px) {
     .modal-class {
-        width: auto !important;
+        width: auto;
         left: 0;
-        transform: translate(0, -50%) !important;
-        margin: 20px !important;
+        transform: translate(0, -50%);
+        margin: 20px;
+    }
+    .subscribe-class {
+        flex-direction: column;
+    }
+    .sub-left {
+        width: 100%;
+    }
+    .heading-class {
+        width: 100%;
+        font-size: 36px;
+    }
+    .sub-right {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .heading-class {
+        width: 100%;
+        font-size: 24px;
+    }
+    .subscribe-class span {
+        font-family: helvetica;
+        display: block;
+    }
+    .subscribe-class span {
+        font-family: helvetica;
+        display: initial;
     }
 }
