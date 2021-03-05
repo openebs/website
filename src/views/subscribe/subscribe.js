@@ -90,12 +90,43 @@ const Subscribe = () => {
     if (values.email === '' || values.email === 'undefined') {
       console.log(`please enter valid email`)
     } else {
-      postData(GATSBY_NEWSLETTER_BACKEND_URL, {
-        firstname: values.firstName,
-        lastname: values.lastName,
-        email: values.email,
-        tag: tag,
-      })
+      const data = {
+        submittedAt: new Date().getTime(),
+        fields: [
+          {
+            name: "firstname",
+            value: values.firstName,
+          },
+          {
+            name: "lastname",
+            value: values.lastName,
+          },
+          {
+            name: "email",
+            value: values.email,
+          },
+        ],
+        context: {
+          pageUri: window.location.href,
+          hutk:''
+        },
+        legalConsentOptions: {
+          consent: {
+            consentToProcess: true,
+            text:
+              "I agree to allow MayaData to store and process my personal data.",
+            communications: [
+              {
+                value: true,
+                subscriptionTypeId: 999,
+                text:
+                  "I agree to receive marketing communications from MayaData."
+              }
+            ]
+          }
+        }
+      }
+      postData(GATSBY_NEWSLETTER_BACKEND_URL, data)
         .then((data) => {
           setIsSuccess(true)
           handleOpenModal()
@@ -122,7 +153,7 @@ const Subscribe = () => {
       },
       redirect: 'follow',
       referrerPolicy: 'no-referrer',
-      body: JSON.stringify(data),
+      body: data,
     })
     return await response.json()
   }
