@@ -7,7 +7,6 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-
 }
 span.svg-wrapper {
     position: absolute !important;
@@ -88,7 +87,7 @@ span.svg-wrapper {
     width: 400px;
     margin: auto;
 }
-.css-1dywv7z-Subscribe {
+.subscribe-containter {
     min-height: calc(100vh - 485px);
 }
 .subscribe-class {
@@ -178,7 +177,7 @@ span.svg-wrapper {
 }
 
 .closeicon:focus {
-    outline:0
+    outline: 0;
 }
 
 @media (max-width: 1024px) {
@@ -205,6 +204,7 @@ span.svg-wrapper {
     }
     .sub-right {
         width: 100%;
+        padding-top: 70px;
     }
 }
 

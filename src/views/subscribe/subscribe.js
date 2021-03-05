@@ -61,7 +61,7 @@ const Subscribe = () => {
         }}
       >
         <Styled.h4 sx={{ color: 'white', textAlign: 'center', margin: '20px' }}>
-          <button onClick={handleCloseModal} className="closeicon"><XCircle></XCircle></button>
+          <button onClick={handleCloseModal} className="closeicon"><XCircle /></button>
           You have successfully subscribed to OpenEBS Newsletter.
         </Styled.h4>
       </div>
@@ -78,7 +78,7 @@ const Subscribe = () => {
         }}
       >
         <Styled.h4 sx={{ color: 'white', textAlign: 'center', margin: '20px' }}>
-          <button onClick={handleCloseModal} className="closeicon"> <XCircle></XCircle></button>
+          <button onClick={handleCloseModal} className="closeicon"> <XCircle /></button>
           Error in submitting the form, please try again!!!
         </Styled.h4>
       </div>
@@ -157,16 +157,16 @@ const Subscribe = () => {
 
   return (
     <>
-      <Container sx={{ p: 4 }}>
+      <Container sx={{ p: 4 }} className="subscribe-containter" >
         <div className="subscribe-class">
           <div className="sub-left">
             <div className="heading-class">
-                <span>Get all the OpenEBS updates & information straight to your inbox <span className="svg-wrapper"><Mail></Mail></span></span>
-                
+              <span>Get all the OpenEBS updates & information straight to your inbox <span className="svg-wrapper"><Mail /></span></span>
+
             </div>
             <p>
               <span>
-                <ThumbsUp></ThumbsUp>
+                <ThumbsUp />
                 <span className="points-class">
                   Monthly OpenEBS Newsletter
                 </span>
@@ -174,7 +174,7 @@ const Subscribe = () => {
             </p>
             <p>
               <span>
-                <ThumbsUp></ThumbsUp>
+                <ThumbsUp />
                 <span className="points-class">
                   Updates about latest releases
                 </span>
@@ -182,7 +182,7 @@ const Subscribe = () => {
             </p>
             <p>
               <span>
-                <ThumbsUp></ThumbsUp>
+                <ThumbsUp />
                 <span className="points-class">
                   Other OpenEBS Events
                 </span>
