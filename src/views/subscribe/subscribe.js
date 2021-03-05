@@ -91,7 +91,6 @@ const Subscribe = () => {
       console.log(`please enter valid email`)
     } else {
       const data = {
-        submittedAt: new Date().getTime(),
         fields: [
           {
             name: "firstname",
@@ -108,7 +107,6 @@ const Subscribe = () => {
         ],
         context: {
           pageUri: window.location.href,
-          hutk:''
         },
         legalConsentOptions: {
           consent: {
