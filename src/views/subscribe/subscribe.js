@@ -151,7 +151,7 @@ const Subscribe = () => {
       },
       redirect: 'follow',
       referrerPolicy: 'no-referrer',
-      body: data,
+      body: JSON.stringify(data),
     })
     return await response.json()
   }
