@@ -273,7 +273,7 @@ const FooterComponent = (data) => {
                   height: '33%',
                 }}
               >
-                <Newsletter />
+                {/* <Newsletter /> */}
               </div>
             </div>
           </div>
