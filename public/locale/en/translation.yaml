@@ -1,0 +1,212 @@
+mainText: OpenEBS Website
+
+generic:
+  githubStar: Star
+  openEBS: OpenEBS
+  github: GitHub
+  slack: Slack
+
+header:
+  menuAlt: Mobile menu
+  closeMenuAlt: Close menu
+  submitAlt: Submit
+
+footer:
+  newsLetterTitle: Stay in the know with our newsletter
+  emailLabel: Email address
+  getStarted: Getting started
+  contactUs: Contact us
+  topContributors: Top contributors
+  contribute: Contribute
+  copyrights: Copyright © 2021 The OpenEBS Authors | All rights reserved
+  privacyPolicy: Privacy policy
+
+privacyPolicy:
+  pageTitle: OpenEBS Privacy Policy
+  intro: OpenEBS knows that you care about how your personal information is used and shared, and we take your privacy seriously. Please read the following to learn more about our privacy policy. By visiting <2>openebs.io</2> (the "Site"), you acknowledge that you accept the practices and policies outlined in this Privacy Policy. For the purposes of the EU General Data Protection Regulation 2016 (the "GDPR"), the data controller is MayaData, Inc. whose registered office is at 4300 Stevens Creek Boulevard, Suite 270, San Jose, CA 95129.
+  informationCollection:
+    title: What information do we collect
+    infoProvidedByUserTitle: Personal information you provide to us
+    infoProvidedByUserDescription: We collect personal information from you when you visit our site, request a demo, subscribe to our newsletter or blog, respond to a survey, fill out a form, register for an event or webinar, or otherwise communicate with us or meet with us in person. The information you give us may include your name, employer, position, address, email address, phone number, or areas of interest.
+    infoCollectedByUsTitle: Personal information we collect
+    infoCollectedByUsDescription: Our web servers collect technical information relating to visitors to our site, including the Internet protocol (IP) address used to connect your computer to the Internet, browser type and version, time zone setting, browser plug-in types and versions, operating system, and platform. We also collect information about your visit, including pages you viewed or searched for, page response times, download errors, length of visits to certain pages, page interaction information (such as scrolling, clicks, and mouse-overs), methods used to browse away from the page, and any phone number used to call our customer service number. This information may be aggregated to measure the number of visits, average time spent on a site, pages viewed, etc. We use this information to measure the use of our site and to improve the content we offer. We may share anonymized experiential information or other data with third parties on an aggregated basis without the use of any information that personally identifies you. We will combine this information with the information you give to us and the information we collect about you. We will use this information and the combined personal information for purposes set out in this Privacy Policy (depending on the types of information we receive).
+  cookies:
+    title: Do we use cookies?
+    description: Yes. Like most websites, we use cookies to understand and save your preferences for future visits, compile aggregate data about site traffic and site interaction so that we can offer better site experiences and tools in the future. For detailed information on the cookies we use and the purposes for which we use them, see our cookie policy.
+  doNotTrackSignals:
+    title: “Do not track” signals
+    decription: We do not respond to web browser "do not track" signals. As such, your navigation of our site may be tracked as part of the gathering of quantitative user information described above. If you arrive at our site by way of a link from a third-party site that does respond to "do not track" requests, the recognition of any "do not track" request you have initiated will end as soon as you reach our site.
+    pointers:
+      point1: To respond to your questions and provide related customer services;
+      point2: To provide you with information about other goods and services we offer that are similar to those that you have already purchased, provided you have not opted-out of receiving that information;
+      point3: To notify you about changes to our site or other services;
+      point4: To detect and prevent fraud or other financial crime;
+      point5: To monitor and protect the security of our information, systems, and network;
+      point6: For internal business intelligence purposes, product development and enhancement;
+      point7: To ensure that content from our site is presented most effectively for you and your computer.
+  emailCommunication:
+    title: How do we manage email communications
+    description: If you decide to opt-in to our mailing list, you will receive emails that may include company news, updates, surveys, and related product or service information. If at any time you would like to unsubscribe from receiving future emails, we include an unsubscribe link at the bottom of each email. You can also contact us on the details above. However, there are certain emails that OpenEBS may continue to send per your request or that are necessary for you to receive the full benefit of company services. For example, OpenEBS uses email to deliver information that registered users request as well as provide details about customer account(s), delivery information, and operational information regarding existing products, services, and systems.
+  childrenAndPolicy:
+    title: Children and Privacy
+    description: Our site is not directed to children under the age of 13, if you are not 13 years or older, do not use our site. We do not knowingly collect personal information from children under the age of 13. If we learn that personal information of persons less than 13 years-of-age has been collected through our site, we will take the appropriate steps to delete this information.
+  infoToOutsideParties:
+    title: Do we disclose any information to outside parties?
+    description: We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information without your consent. This does not include trusted third parties who assist us in operating our website, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others' rights, property, or safety. However, non-personally identifiable visitor information may be provided to other parties for marketing, advertising, or other uses. If we change our privacy policy, we will post changes on this page.
+  transferOfInfo:
+    title: Transfer of personal information outside of the European economic area ("EEA") and international users
+    description: We are headquartered in the United States. We may access your personal information or transferred to us in the United States or to our affiliates, partners, or service providers who are located worldwide. If you are visiting our site from outside the United States, be aware that your information may be transferred to, stored, and processed in the United States where our servers are located, and our central database is operated. By using our site, you consent to any transfer of this information.
+    rightWithPersonalInfo:
+      title: You have the right to do any of the following with your personal information
+      point1: Request access to your personal information
+      point2: Request correction of your personal information
+      point3: Request erasure of your personal information
+      point4: Object to processing of your personal information
+      point5: Request restriction of processing your personal information
+      point6: Request transfer of your personal information
+      point7: Withdraw your consent for use of personal data
+      conclusion: In addition, where you believe that OpenEBS has not complied with its obligations under this privacy policy or European law, you have the right, in certain circumstances, to make a complaint to an EU data protection authority, such as the UK information commissioner's office. You can seek to exercise any of these rights by contacting us using the details above
+  changesToPrivacyPolicy:
+    title: Changes to this privacy policy
+    description: Any changes we make to our privacy policy in the future will be posted on this page and, where appropriate, notified to you by email.
+  privacyPolicy: Privacy policy
+
+
+newsletter:
+  title: You will have less questions with our newsletter
+  email: Email address
+
+joinCommunity:
+  title: Join our friendly community
+  slackAlt: Join on Slack
+  slackTitle: 'Get invitation to join #OpenEBS on Kubernetes Slack'
+  emailLabel: Email address
+  submitAlt: Submit
+  gitHubAlt: Join on GitHub
+  gitHubTitle: Join OpenEBS on GitHub
+  gitHubDescription: Is a great place to join if you want to contribute to our codebase.
+  gitHubJoinButton: Join
+
+sponsors:
+   mayadata: Originally created and sponsored by
+   cncf: OpenEBS is a proud member of
+
+### Pages ###
+
+# Faq page
+faq:
+  mainText: Frequently asked questions
+  subText: Popular topics
+  noData: No data available
+  usage: Usage
+  architecture: Architecture
+  gettingStarted: Getting started
+  performance: Performance
+
+faqDetails:
+    question1: What is most distinctive about OpenEBS architecture?
+    answer1: The OpenEBS architecture is an example of Container Attached Storage. These approaches containerize the storage controller, called IO controllers, and underlying storage targets, called “replicas” as well, allowing an orchestrator such as Kubernetes to automate the management of the storage. The benefits include the automation of the management, the delegation of responsibility to developer teams, and the granularity of the storage policies which in turn can improve performance.
+    question2: What are the minimum requirements? What are the supported container orchestrators?
+    question3: Why would you use OpenEBS on EBS?
+    question4: Why did you choose iSCSI? Doesn’t it introduce latency and decrease performance?
+    answer4: With OpenEBS, we strive to make it simple to use - using Kubernetes as much as possible to manage OpenEBS itself. iSCSI allows us to be more resilient in cases in which the workload and the controller are not on the same host. In other words, the OpenEBS user or architect will not suffer an outage in the case that the storage IO controller is not scheduled local to the workload in need of storage. OpenEBS does a variety of things to improve performance elsewhere in the stack - and much more is to come via the cStor storage engine - to be able to have this level of flexibility.
+    question5: How does OpenEBS provide higher availability for stateful workloads?
+    question6: What changes are needed to Kubernetes or to other subsystems to leverage OpenEBS?
+    question7: How do you get started? What is a typical trial deployment?
+    question8: What is the most common use case? What are the most common workloads?
+    answer8: Any stateful workload running on Kubernetes likely has been run on OpenEBS at least once. Typical workloads include Prometheus and FluentD and other stateful workloads used to manage Kubernetes itself. Jenkins, all flavor of database including even in some cases NoSQL databases, and object storage are all widely deployed.
+    question9: Where is my data stored? How can I see that?
+    question10: How about performance? How does OpenEBS perform?
+    question11: How is the data protected? Please explain what happens when a host fails, or a client workload fails or a data center fails?
+    answer11: Kubernetes, of course, gives many ways to enable resilience. We leverage these wherever possible. For example, let’s say the IO container that has our iSCSI target fails. Well, it is spun back up by Kubernetes. The same applies to the underlying replica containers, where the data is stored. They are spun back up by Kubernetes. Now - the point of replicas is to make sure that when one or more of these replicas is being respun and then repopulated in the background by OpenEBS, the client applications still run. OpenEBS takes a simple approach to ensuring that multiple replicas can be accessed by an IO controller using a configurable quorum or the minimum number of replica requirements. Besides, our new cStor checks for silent data corruption and in some cases, can fix it in the background. Silent data corruption, unfortunately, can occur from poorly engineered hardware and from other underlying conditions, including those that your cloud provider is unlikely to report or identify.
+
+commercialSupport:
+  title: Meet our commercial support
+  description: Third-party companies and individuals who provide products or services related to OpenEBS. OpenEBS is an independent open source project which does not endorse any company. The list is provided in alphabetical order.
+  mule: Support mule
+  visitWebsite: Visit site
+  newsletter: Stay in the know with our newsletter
+
+
+home:
+  landingScreenTitle: Solution to manage your Kubernetes Stateful Workloads
+  openebs:
+    label: OpenEBS
+    description: OpenEBS is the leading open-source project for container-attached and container-native storage on Kubernetes. It is storage that follows your workloads, adding agility and flexibility to your k8s apps.
+    runOpenEBS: Run OpenEBS
+    watchDemo: Watch Demo
+  concepts:
+    label: Concepts
+    description: OpenEBS is an open source example of a category of storage solutions sometimes called Container Attached Storage. OpenEBS is itself deployed as a set of containers on Kubernetes worker nodes.
+    checkConcepts: Check concepts
+  community:
+    label: Community
+    description: OpenEBS is built by a community of experts. With our comunity you can quickly and easily build, train, and deploy your data science workloads on any Kubernetes deployment.
+    joinOnSlack: Join on Slack
+    joinOnGitHub: Join on GitHub
+  landingScreenImageAlt: Solution to manage your Kubernetes Stateful Workloads
+  usedInProductionBy:
+    bloomberg: Bloomberg
+    arista: ARISTA
+    orange: orange
+    optoro: optoro
+    comcast: COMCAST
+  whatsInItForYou:
+    title: What’s in for you
+    saveMoney: Save money by allocating storage on demand
+    flexibility: Enjoy flexibility of k8s apps with Container Storage
+    resilience: Run your K8s app on any cloud and improve resilience
+    restoreData: Efficiently backup and restore data to minimize loss
+    openSource: Avoid vendor lock-in due to 100% Open Source product
+    granularControl: Manage workloads separately with Granular Control
+  installation:
+    title: Installation is as easy as 1,2,3
+    description: Start installation using the following command
+    or: Or
+    readTheGuide: 
+      button: Read the Guide
+      descriptionPart1: OpenEBS orchestrates storage for any Kubernetes stack.
+      descriptionPart2: Choose the best storage provider for your scenarios, and OpenEBS ensures that they all run well on Kubernetes with the same consistent experience
+    redis: Redis
+    minio: MinIo
+    percona: Percona
+    mysql: MySQL
+    mongodb: MongoDB
+    prometheus: Prometheus
+    desktopImgAlt: Desktop image
+  adaptorsTestimonials:
+    title: Our adopters say about us
+    nextArrowAlt: Next testimonial
+    previousArrowAlt: Previous testimonial
+  newsLetterTitle: Stay in the know with our newsletter
+  youAreReadyToStart:
+    title: You are ready to start
+    flyingMuleAlt: Flying mule
+    copyCodeDescription: Copy and execute the following command on your Kubernetes cluster to install OpenEBS
+    readTheGuide:
+      title: Read the guide
+      description: And you will see how to manage your workloads with OpenEBS easily
+
+community:
+  title: We are the community
+  description: OpenEBS is built by a community of experts. With our community you can quickly and easily build, train, and deploy your data science workloads on any Kubernetes deployment.
+  mule: Support mule
+  visitWebsite: Visit site
+  newsletter: Stay in the know with our newsletter
+  contributeBtnLabel: Contribute
+  checkItOutBtnLabel: Check it out
+
+  sponsor:
+    mainSponsor: Started and majority of its development sponsored by
+    dependentProjects: Dependent projects whose work is heavily used in OpenEBS projects
+
+contributing:
+  title: Contributing
+  openEBSHackerTitle: Become an OpenEBS hacker
+  openEBSHackerDescription: If you are unsure or afraid of anything, just ask or submit the issue or pull request anyways. You won't be yelled at for giving your best effort. 
+  openEBSHackerButtonLabel: Contribute
+  governance: Project Governance
+  governanceTitle: Project Governance
+  governanceDescription: We abide by the Code of Conduct for all the projects. It is meant to be followed by all the developers of the project and the OpenEBS community.
+  governanceButtonLabel: Check it out
+
