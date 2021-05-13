@@ -2,3 +2,9 @@
   command = "npm run build"
   publish = "build/"
   
+#https://stackoverflow.com/questions/58065603/netlify-renders-404-on-page-refresh-using-react-and-react-router 
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  
