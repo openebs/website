@@ -20,6 +20,7 @@ import { adaptorTestimonials } from './adaptorTestimonials';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { EXTERNAL_LINKS } from '../../constants';
+import Asciinema from '../../components/Asciinema';
 
 const Home: React.FC = () => {
     const classes = useStyles();
@@ -178,24 +179,53 @@ const Home: React.FC = () => {
         }
     };
 
-    const defaultInstallationButtonStatus = {
-        Redis : false,
-        Minio : false,
-        Percona : false,
-        MongoDB : false,
-        Prometheus : false,
-        MySQL : false,
+    const defaultInstallationButtonStatus: any = {
+        Redis : {
+            status: false,
+            src: 'casts/redis.cast'
+        },
+        Minio : {
+            status: false,
+            src: 'casts/minio.cast'
+        },
+        Percona : {
+            status: false,
+            src: 'casts/percona.cast'
+        },
+        MongoDB : {
+            status: false,
+            src: 'casts/mongodb.cast'
+        },
+        Prometheus : {
+            status: false,
+            src: 'casts/prometheus.cast'
+        },
+        MySQL : {
+            status: false,
+            src: 'casts/mysql.cast'
+        },
     };
+
+    
     const [installationButtonStatus, setInstallationButtonStatus] = useState({
         ...defaultInstallationButtonStatus,
-        MySQL : true, // setting MySQL selected by default
-    }); 
-    const displayProviderInstallation = (provider: string) => {
+        MySQL : {
+            ...defaultInstallationButtonStatus.MySQL,
+            status: true
+        }, // setting MySQL selected by default
+    });
 
+    const [asciinemaFileSrc, setAsciinemaFileSrc]= useState('casts/mysql.cast');  // setting MySQL selected by default
+
+    const displayProviderInstallation = (provider: string) => {
         setInstallationButtonStatus({
             ...defaultInstallationButtonStatus,
-            [provider] : true
-          });
+            [provider]: {
+                ...defaultInstallationButtonStatus[provider],
+                status: true
+            }
+        });
+        setAsciinemaFileSrc(defaultInstallationButtonStatus[provider].src);
     };
 
     const SampleNextArrow = (props:any) => {
@@ -518,7 +548,7 @@ const Home: React.FC = () => {
                                             {t('home.installation.mysql')}
                                         </Typography>
                                         <Typography className={classes.installationProviderCommand}>
-                                            admin@openebs:~$ # We will install OpenEBS f
+                                           <Asciinema  src={asciinemaFileSrc} />
                                         </Typography>
                                     </div>
                                     
@@ -527,20 +557,20 @@ const Home: React.FC = () => {
                                 <div className={classes.installationButtonDiv}>
                                     <Paper className={[classes.paper, classes.installationButtonsWrapper].join(' ')}>
                                         <Button variant="contained" 
-                                            className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Redis ? classes.installationButtonActive : ''].join(' ')}
-                                            startIcon={<img src={installationButtonStatus.Redis ? storageProviders.Redis.white_logo : storageProviders.Redis.logo} alt={t('home.installation.redis')}></img>}
+                                            className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Redis.status ? classes.installationButtonActive : ''].join(' ')}
+                                            startIcon={<img src={installationButtonStatus.Redis.status ? storageProviders.Redis.white_logo : storageProviders.Redis.logo} alt={t('home.installation.redis')}></img>}
                                             onClick={() => displayProviderInstallation('Redis')}>
                                             {t('home.installation.redis')}
                                         </Button>
                                         <Button variant="contained" 
-                                            className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Minio ? classes.installationButtonActive : ''].join(' ')}
-                                            startIcon={<img src={installationButtonStatus.Minio ? storageProviders.Minio.white_logo :storageProviders.Minio.logo} alt={t('home.installation.minio')}></img>}
+                                            className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Minio.status ? classes.installationButtonActive : ''].join(' ')}
+                                            startIcon={<img src={installationButtonStatus.Minio.status ? storageProviders.Minio.white_logo :storageProviders.Minio.logo} alt={t('home.installation.minio')}></img>}
                                             onClick={() => displayProviderInstallation('Minio')}>
                                             {t('home.installation.minio')}
                                         </Button>
                                         <Button variant="contained" 
-                                            className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Percona ? classes.installationButtonActive : ''].join(' ')}
-                                            startIcon={<img src={installationButtonStatus.Percona ? storageProviders.Percona.white_logo : storageProviders.Percona.logo} alt={t('home.installation.percona')}></img>}
+                                            className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Percona.status ? classes.installationButtonActive : ''].join(' ')}
+                                            startIcon={<img src={installationButtonStatus.Percona.status ? storageProviders.Percona.white_logo : storageProviders.Percona.logo} alt={t('home.installation.percona')}></img>}
                                             onClick={() => displayProviderInstallation('Percona')}>
                                             {t('home.installation.percona')}
                                         </Button>
@@ -548,20 +578,20 @@ const Home: React.FC = () => {
 
                                     <Paper className={[classes.paper, classes.installationButtonsWrapper].join(' ')}>
                                         <Button variant="contained" 
-                                            className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.MongoDB ? classes.installationButtonActive : ''].join(' ')}
-                                            startIcon={<img src={installationButtonStatus.MongoDB ? storageProviders.MongoDB.white_logo : storageProviders.MongoDB.logo} alt={t('home.installation.mongodb')}></img>}
+                                            className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.MongoDB.status ? classes.installationButtonActive : ''].join(' ')}
+                                            startIcon={<img src={installationButtonStatus.MongoDB.status ? storageProviders.MongoDB.white_logo : storageProviders.MongoDB.logo} alt={t('home.installation.mongodb')}></img>}
                                             onClick={() => displayProviderInstallation('MongoDB')}>
                                             {t('home.installation.mongodb')}
                                         </Button>
                                         <Button variant="contained" 
-                                            className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.Prometheus ? classes.installationButtonActive : ''].join(' ')}
-                                            startIcon={<img src={installationButtonStatus.Prometheus ? storageProviders.Prometheus.white_logo : storageProviders.Prometheus.logo} alt={t('home.installation.prometheus')}></img>}
+                                            className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.Prometheus.status ? classes.installationButtonActive : ''].join(' ')}
+                                            startIcon={<img src={installationButtonStatus.Prometheus.status ? storageProviders.Prometheus.white_logo : storageProviders.Prometheus.logo} alt={t('home.installation.prometheus')}></img>}
                                             onClick={() => displayProviderInstallation('Prometheus')}>
                                             {t('home.installation.prometheus')}
                                         </Button>
                                         <Button variant="contained" 
-                                            className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.MySQL ? classes.installationButtonActive : ''].join(' ')}
-                                            startIcon={<img src={installationButtonStatus.MySQL ? storageProviders.MySQL.white_logo : storageProviders.MySQL.logo} alt={t('home.installation.mysql')}></img>}
+                                            className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.MySQL.status ? classes.installationButtonActive : ''].join(' ')}
+                                            startIcon={<img src={installationButtonStatus.MySQL.status ? storageProviders.MySQL.white_logo : storageProviders.MySQL.logo} alt={t('home.installation.mysql')}></img>}
                                             onClick={() => displayProviderInstallation('MySQL')}>
                                             {t('home.installation.mysql')}
                                         </Button>
@@ -575,20 +605,20 @@ const Home: React.FC = () => {
                             <div className={classes.installationCodeWrapper}>
                                 <Paper className={[classes.paper, classes.installationButtonsWrapper].join(' ')}>
                                     <Button variant="contained" 
-                                        className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Redis ? classes.installationButtonActive : ''].join(' ')}
-                                        startIcon={<img src={installationButtonStatus.Redis ? storageProviders.Redis.white_logo : storageProviders.Redis.logo} alt={t('home.installation.redis')}></img>}
+                                        className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Redis.status ? classes.installationButtonActive : ''].join(' ')}
+                                        startIcon={<img src={installationButtonStatus.Redis.status ? storageProviders.Redis.white_logo : storageProviders.Redis.logo} alt={t('home.installation.redis')}></img>}
                                         onClick={() => displayProviderInstallation('Redis')}>
                                         {t('home.installation.redis')}
                                     </Button>
                                     <Button variant="contained" 
-                                        className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Minio ? classes.installationButtonActive : ''].join(' ')}
-                                        startIcon={<img src={installationButtonStatus.Minio ? storageProviders.Minio.white_logo :storageProviders.Minio.logo} alt={t('home.installation.minio')}></img>}
+                                        className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Minio.status ? classes.installationButtonActive : ''].join(' ')}
+                                        startIcon={<img src={installationButtonStatus.Minio.status ? storageProviders.Minio.white_logo :storageProviders.Minio.logo} alt={t('home.installation.minio')}></img>}
                                         onClick={() => displayProviderInstallation('Minio')}>
                                         {t('home.installation.minio')}
                                     </Button>
                                     <Button variant="contained" 
-                                        className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Percona ? classes.installationButtonActive : ''].join(' ')}
-                                        startIcon={<img src={installationButtonStatus.Percona ? storageProviders.Percona.white_logo : storageProviders.Percona.logo} alt={t('home.installation.percona')}></img>}
+                                        className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Percona.status ? classes.installationButtonActive : ''].join(' ')}
+                                        startIcon={<img src={installationButtonStatus.Percona.status ? storageProviders.Percona.white_logo : storageProviders.Percona.logo} alt={t('home.installation.percona')}></img>}
                                         onClick={() => displayProviderInstallation('Percona')}>
                                         {t('home.installation.percona')}
                                     </Button>
@@ -602,7 +632,7 @@ const Home: React.FC = () => {
                                             {t('home.installation.mysql')}
                                         </Typography>
                                         <Typography className={classes.installationProviderCommand}>
-                                            admin@openebs:~$ # We will install OpenEBS f
+                                            <Asciinema  src={asciinemaFileSrc} />
                                         </Typography>
                                     </div>
                                 </Paper>
@@ -610,20 +640,20 @@ const Home: React.FC = () => {
                             
                                 <Paper className={[classes.paper, classes.installationButtonsWrapper].join(' ')}>
                                     <Button variant="contained" 
-                                        className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.MongoDB ? classes.installationButtonActive : ''].join(' ')}
-                                        startIcon={<img src={installationButtonStatus.MongoDB ? storageProviders.MongoDB.white_logo : storageProviders.MongoDB.logo} alt={t('home.installation.mongodb')}></img>}
+                                        className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.MongoDB.status ? classes.installationButtonActive : ''].join(' ')}
+                                        startIcon={<img src={installationButtonStatus.MongoDB.status ? storageProviders.MongoDB.white_logo : storageProviders.MongoDB.logo} alt={t('home.installation.mongodb')}></img>}
                                         onClick={() => displayProviderInstallation('MongoDB')}>
                                         {t('home.installation.mongodb')}
                                     </Button>
                                     <Button variant="contained" 
-                                        className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.Prometheus ? classes.installationButtonActive : ''].join(' ')}
-                                        startIcon={<img src={installationButtonStatus.Prometheus ? storageProviders.Prometheus.white_logo : storageProviders.Prometheus.logo} alt={t('home.installation.prometheus')}></img>}
+                                        className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.Prometheus.status ? classes.installationButtonActive : ''].join(' ')}
+                                        startIcon={<img src={installationButtonStatus.Prometheus.status ? storageProviders.Prometheus.white_logo : storageProviders.Prometheus.logo} alt={t('home.installation.prometheus')}></img>}
                                         onClick={() => displayProviderInstallation('Prometheus')}>
                                         {t('home.installation.prometheus')}
                                     </Button>
                                     <Button variant="contained" 
-                                        className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.MySQL ? classes.installationButtonActive : ''].join(' ')}
-                                        startIcon={<img src={installationButtonStatus.MySQL ? storageProviders.MySQL.white_logo : storageProviders.MySQL.logo} alt={t('home.installation.mysql')}></img>}
+                                        className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.MySQL.status ? classes.installationButtonActive : ''].join(' ')}
+                                        startIcon={<img src={installationButtonStatus.MySQL.status ? storageProviders.MySQL.white_logo : storageProviders.MySQL.logo} alt={t('home.installation.mysql')}></img>}
                                         onClick={() => displayProviderInstallation('MySQL')}>
                                         {t('home.installation.mysql')}
                                     </Button>
