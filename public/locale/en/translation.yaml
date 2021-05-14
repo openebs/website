@@ -75,6 +75,7 @@ privacyPolicy:
 newsletter:
   title: You will have less questions with our newsletter
   email: Email address
+  subscribe: Subscribe
 
 joinCommunity:
   title: Join our friendly community
@@ -209,4 +210,5 @@ contributing:
   governanceTitle: Project Governance
   governanceDescription: We abide by the Code of Conduct for all the projects. It is meant to be followed by all the developers of the project and the OpenEBS community.
   governanceButtonLabel: Check it out
+
 

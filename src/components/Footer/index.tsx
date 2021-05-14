@@ -1,18 +1,19 @@
 import {
     Toolbar,
-    IconButton,
+    // IconButton,
     Paper,
     Typography,
-    TextField,
-    Link
+    // TextField,
+    Link,
+    Button
   } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useStyles from './style';
 import {socialLinks, getStarted} from './footerLinks'
 import { useTranslation } from "react-i18next";
 import Grid from '@material-ui/core/Grid';
-import { validateEmail } from "../../utils/emailValidation";
-import { EXTERNAL_LINK_LABELS, VIEW_PORT} from "../../constants"
+// import { validateEmail } from "../../utils/emailValidation";
+import { EXTERNAL_LINKS, EXTERNAL_LINK_LABELS, VIEW_PORT} from "../../constants"
 import { useViewport } from "../../hooks/viewportWidth";
 
 const Footer: React.FC = () => {
@@ -20,22 +21,22 @@ const Footer: React.FC = () => {
     const { t } = useTranslation();
     const { width } = useViewport();
     const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
-    const [emailValue, setEmailValue] = useState<string>('');
-    const [disableContinueButton, setDisableContinueButton] = useState<boolean>(true);
+    // const [emailValue, setEmailValue] = useState<string>('');
+    // const [disableContinueButton, setDisableContinueButton] = useState<boolean>(true);
 
     const openEBSLogo = (
         <img src="../Images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')}></img>
     );
 
-    useEffect(() => {
-        // Enable continue button when email is valid
-        validateEmail(emailValue) ? setDisableContinueButton(false) : setDisableContinueButton(true);
-    },[emailValue]);
+    // useEffect(() => {
+    //     // Enable continue button when email is valid
+    //     validateEmail(emailValue) ? setDisableContinueButton(false) : setDisableContinueButton(true);
+    // },[emailValue]);
 
-    const handleNewsLetterEmailSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        // Need to write logic to save email
-      };
+    // const handleNewsLetterEmailSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    //     event.preventDefault();
+    //     // Need to write logic to save email
+    //   };
 
     // This block of code is used to display social links
     const displaySocialLinks = () => {
@@ -59,7 +60,16 @@ const Footer: React.FC = () => {
                 <Typography variant='h6' className={classes.columnTitle}>
                     {t('footer.newsLetterTitle')}
                 </Typography>
-                <form noValidate autoComplete="on" onSubmit={handleNewsLetterEmailSubmit}>
+                  <Button
+                  variant="contained"
+                  color="secondary"
+                  className={classes.solidButton}
+                  onClick={() => { window.open(EXTERNAL_LINKS.SUBSCRIBE_NEWSLETTER, '_blank') }}
+                  >
+                  {t("newsletter.subscribe")}
+                  </Button>
+                {/* Comment code will be used later */}
+                {/* <form noValidate autoComplete="on" onSubmit={handleNewsLetterEmailSubmit}>
                     <div className={classes.newsletterFormWrapper}>
                         <TextField
                         label={t('footer.emailLabel')}
@@ -79,7 +89,7 @@ const Footer: React.FC = () => {
                             <img src="../Images/svg/arrow_orange.svg" alt={t('header.submitAlt')}/>
                         </IconButton>
                     </div>
-                </form>
+                </form> */}
             </div> 
         );
     };

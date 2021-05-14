@@ -42,6 +42,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   newsletterFormWrapper: {
     display: "flex",
   },
+  solidButton: {
+    marginRight: theme.spacing(2.5),
+    marginTop: theme.spacing(2),
+  },
 }));
 
 export default useStyles;

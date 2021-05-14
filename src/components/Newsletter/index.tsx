@@ -1,6 +1,12 @@
-import { Grid, IconButton, TextField } from "@material-ui/core";
+import {
+  Button,
+  Grid,
+  // IconButton,
+  // TextField
+} from "@material-ui/core";
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { EXTERNAL_LINKS } from "../../constants";
 import useStyles from "./styles";
 
 interface NewsletterTitleProps {
@@ -13,11 +19,11 @@ const Newsletter: React.FC<NewsletterTitleProps> = ({ newsletterTitle }) => {
   const { t } = useTranslation();
   const classes = useStyles();
 
-  const handleNewsLetterEmailSubmit = (
-    event: React.FormEvent<HTMLFormElement>
-  ) => {
-    event.preventDefault();
-  };
+  // const handleNewsLetterEmailSubmit = (
+  //   event: React.FormEvent<HTMLFormElement>
+  // ) => {
+  //   event.preventDefault();
+  // };
 
   return (
     <>
@@ -27,7 +33,17 @@ const Newsletter: React.FC<NewsletterTitleProps> = ({ newsletterTitle }) => {
           <div className={classes.newsWrapper}>
             <Grid item lg={12}>
               <h1>{newsletterTitle}</h1>
-              <form
+
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  className={classes.solidButton}
+                  onClick={() => { window.open(EXTERNAL_LINKS.SUBSCRIBE_NEWSLETTER, '_blank') }}
+                >
+                  {t("newsletter.subscribe")}
+                </Button>
+              {/* Below commented code will be used later  */}
+              {/* <form
                 className={classes.textField}
                 autoComplete="on"
                 onSubmit={handleNewsLetterEmailSubmit}
@@ -51,7 +67,7 @@ const Newsletter: React.FC<NewsletterTitleProps> = ({ newsletterTitle }) => {
                     className: classes.newsletterLabel,
                   }}
                 />
-              </form>
+              </form> */}
             </Grid>
           </div>
         </div>
