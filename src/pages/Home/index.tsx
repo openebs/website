@@ -216,7 +216,7 @@ const Home: React.FC = () => {
     });
 
     const [asciinemaFileSrc, setAsciinemaFileSrc]= useState('casts/mysql.cast');  // setting MySQL selected by default
-
+    const [asciinemaTitle, setAsciinemaTitle]= useState('MySQL');  // setting MySQL selected by default
     const displayProviderInstallation = (provider: string) => {
         setInstallationButtonStatus({
             ...defaultInstallationButtonStatus,
@@ -226,6 +226,7 @@ const Home: React.FC = () => {
             }
         });
         setAsciinemaFileSrc(defaultInstallationButtonStatus[provider].src);
+        setAsciinemaTitle(provider);
     };
 
     const SampleNextArrow = (props:any) => {
@@ -545,7 +546,7 @@ const Home: React.FC = () => {
                                     <img src="../Images/png/homepage_desktop.png" alt={t('home.installation.desktopImgAlt')} className={classes.desktopImage}></img>
                                     <div className={classes.installationProviderCommandWrapper}>
                                         <Typography className={classes.installationProvider}>
-                                            {t('home.installation.mysql')}
+                                            {asciinemaTitle}
                                         </Typography>
                                         <Typography className={classes.installationProviderCommand}>
                                            <Asciinema  src={asciinemaFileSrc} />
@@ -629,7 +630,7 @@ const Home: React.FC = () => {
                                     <img src="../Images/png/homepage_desktop.png" alt={t('home.installation.desktopImgAlt')} className={classes.desktopImage}></img>
                                     <div className={classes.installationProviderCommandWrapper}>
                                         <Typography className={classes.installationProvider}>
-                                            {t('home.installation.mysql')}
+                                            {asciinemaTitle}
                                         </Typography>
                                         <Typography className={classes.installationProviderCommand}>
                                             <Asciinema  src={asciinemaFileSrc} />
