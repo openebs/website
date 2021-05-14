@@ -171,7 +171,11 @@ const useStyles = makeStyles((theme) => ({
     },
     contributorsMobile: {
         marginTop: theme.spacing(2),
-    }
+    },
+    solidButton: {
+        marginRight: theme.spacing(2.5),
+        marginTop: theme.spacing(2),
+      },
 }))
 export default useStyles;
   
