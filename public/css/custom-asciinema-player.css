@@ -18,6 +18,10 @@
   border-color: #FEFBFB;
 }
 
+.asciinema-theme-asciinema .fg-bg {
+  color: #fff;
+}
+
 .asciinema-theme-asciinema .bg-fg {    /* inverse for terminal background color */
   background-color: #073D47;
 }
