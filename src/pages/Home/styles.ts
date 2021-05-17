@@ -262,8 +262,14 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     desktopImage: {
+        minWidth: '650px',
+        [theme.breakpoints.down('md')]: {
+            width: '100%',
+            minWidth: '580px',
+        },
         [theme.breakpoints.down('xs')]: {
-            width: '100%'
+            width: '100%',
+            minWidth: '400px',
         },
     },
     installationButton: {
@@ -288,10 +294,11 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.background.paper
     },
     installationButtonsWrapper: {
-        margin: theme.spacing(5, 0),
+        margin: theme.spacing(8, 0),
         [theme.breakpoints.down('sm')]: {
             display: 'flex',
-            flexDirection: 'column'
+            flexDirection: 'column',
+            margin: theme.spacing(2, 0),
         },
     },
     installationLeftButton: {
@@ -317,14 +324,14 @@ const useStyles = makeStyles((theme) => ({
     installationProviderCommandWrapper: {
         position: 'absolute',
         top: '0',
-        padding: theme.spacing(6,10.3),
+        padding: theme.spacing(6,10),
         width: '100%',
         color: theme.palette.success.dark,
         [theme.breakpoints.down('sm')]: {
-            padding: theme.spacing(6,16),
+            padding: theme.spacing(6,12),
         },
         [theme.breakpoints.down('xs')]: {
-            padding: theme.spacing(3,6),
+            padding: theme.spacing(3,2),
         },
     },
     installationProvider: {
