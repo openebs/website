@@ -51,29 +51,38 @@ const Newsletter = () => {
     if (email === '' || email === 'undefined') {
       console.log(`please enter valid email`)
     } else {
-      async function postData(url = '', data = {}) {
-        const response = await fetch(url, {
-          method: 'POST',
-          mode: 'cors',
-          cache: 'no-cache',
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json',
+      const data = {
+        fields: [
+          {
+            name: "email",
+            value: email,
           },
-          redirect: 'follow',
-          referrerPolicy: 'no-referrer',
-          body: JSON.stringify(data),
-        })
-        return await response.json()
+        ],
+        context: {
+          pageUri: window.location.href,
+        },
+        legalConsentOptions: {
+          consent: {
+            consentToProcess: true,
+            text:
+              "I agree to allow MayaData to store and process my personal data.",
+            communications: [
+              {
+                value: true,
+                subscriptionTypeId: 999,
+                text:
+                  "I agree to receive marketing communications from MayaData."
+              }
+            ]
+          }
+        }
       }
-
-      postData(GATSBY_NEWSLETTER_BACKEND_URL, {
-        email: email,
-        tag: tag,
-      })
+      postData(GATSBY_NEWSLETTER_BACKEND_URL, data)
         .then((data) => {
           setIsSuccess(true)
           handleOpenModal()
+          setEmail('')
+
         })
         .catch((err) => {
           console.error(err)
@@ -84,11 +93,11 @@ const Newsletter = () => {
           }, 1000)
         })
     }
+   
   }
   const handleOnSubmit = (e) => {
     e.preventDefault()
     sendData()
-    setEmail('')
   }
   const handleOpenModal = () => {
     setModal(true)
