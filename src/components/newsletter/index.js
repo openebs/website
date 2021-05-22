@@ -54,6 +54,14 @@ const Newsletter = () => {
       const data = {
         fields: [
           {
+            name: "firstname",
+            value: "",
+          },
+          {
+            name: "lastname",
+            value: "",
+          },
+          {
             name: "email",
             value: email,
           },
