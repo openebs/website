@@ -98,7 +98,7 @@ const Header: React.FC = () => {
                         <div className={classes.mobileNavWrapper}>
                             {navbarItems.map(({ label, href }) => {
                                 return (
-                                (label === EXTERNAL_LINK_LABELS.DOCS || label === EXTERNAL_LINK_LABELS.BLOG) ? 
+                                (label === EXTERNAL_LINK_LABELS.DOCS) ? 
                                 <Link
                                     {...{
                                         key: label,
@@ -162,7 +162,7 @@ const Header: React.FC = () => {
                 <div className={classes.rightContent}>
                 {navbarItems.map(({ label, href }) => {
                     return (    
-                        (label === EXTERNAL_LINK_LABELS.DOCS || label === EXTERNAL_LINK_LABELS.BLOG) ? 
+                        (label === EXTERNAL_LINK_LABELS.DOCS) ? 
                         <Button
                             {...{
                                 key: label,

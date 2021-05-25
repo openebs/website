@@ -105,7 +105,7 @@ const Footer: React.FC = () => {
                     {getStarted.map(({ label, href }) => {
                         return (   
                             <Link href={href} className={classes.columnListItem} key={label} 
-                            target={((label === EXTERNAL_LINK_LABELS.DOCS ) || (label === EXTERNAL_LINK_LABELS.GITHUB) || (label === EXTERNAL_LINK_LABELS.BLOG)) ? '_blank' : '_parent'}>
+                            target={((label === EXTERNAL_LINK_LABELS.DOCS ) || (label === EXTERNAL_LINK_LABELS.GITHUB)) ? '_blank' : '_parent'}>
                                 {label}
                             </Link>
                         );

@@ -21,6 +21,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { EXTERNAL_LINKS } from '../../constants';
 import Asciinema from '../../components/Asciinema';
+import MiniBlog from '../../components/MiniBlog';
 
 const Home: React.FC = () => {
     const classes = useStyles();
@@ -673,7 +674,6 @@ const Home: React.FC = () => {
                 <JoinCommunity/>
             </section>
 
-
             {/* Section: Our adopters say about us */}
             <section>
                 {isMobileView && 
@@ -740,6 +740,13 @@ const Home: React.FC = () => {
             <section>
                 <Newsletter newsletterTitle={t("home.newsLetterTitle")} />
             </section>
+
+
+            {/* Section: Blogs  */}
+            <section>
+                <MiniBlog />
+            </section>
+
 
             <div className={classes.footerBackground}>
             {/* Section: You are ready to start */}

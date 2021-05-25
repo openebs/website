@@ -16,8 +16,8 @@ const navbarItems = [
     },
     {
       label: "Blog",
-      // href: "/blog",
-      href: EXTERNAL_LINKS.OPENEBS_BLOGS,
+      href: "/blog",
+      // href: EXTERNAL_LINKS.OPENEBS_BLOGS,
     },
 ];
 export default navbarItems;

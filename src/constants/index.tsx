@@ -29,3 +29,11 @@ export enum EXTERNAL_LINK_LABELS {
   BLOG = 'Blog',
   GITHUB = 'GitHub'
 };
+
+export enum BLOG_KEYWORDS { 
+  CHOAS_ENGINEERING = 'chaosengineering',
+  OPENEBS = 'openebs',
+  DEVOPS = 'devops',
+  TUTORIALS = 'tutorials',
+  SOLUTIONS = 'solutions',
+};
