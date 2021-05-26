@@ -10,11 +10,12 @@ const Success = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        fontSizes: '60',
       }}
     >
-      <Styled.h4 sx={{ color: 'white' }}>
-        You have successfully subscribed to OpenEBS Newsletter.
-      </Styled.h4>
+      <Styled.h1 sx={{ fontWeight: '700' }}>
+        You have successfully subscribed to the Container Attached Storage newsletter.
+      </Styled.h1>
     </div>
   )
 }
@@ -26,11 +27,12 @@ const Failed = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        fontSizes: '60',
       }}
     >
-      <Styled.h4 sx={{ color: 'white' }}>
+      <Styled.h1 sx={{ color: 'red' ,fontWeight: '700' }}>
         Error in submitting the form, please try again!!!
-      </Styled.h4>
+      </Styled.h1>
     </div>
   )
 }
@@ -161,22 +163,23 @@ const Newsletter = () => {
           },
           content: {
             position: 'absolute',
-            border: `1px solid ${isSuccess ? '#28a745' : '#dc3545'}`,
-            background: `${isSuccess ? '#28a745' : '#dc3545'}`,
+            inset:'5% 40px 40px',
             overflow: 'auto',
             WebkitOverflowScrolling: 'touch',
             borderRadius: '4px',
             outline: 'none',
-            height: '60px',
-            width: '400px',
+            height: '50%',
+            width: '80%',
+            top: '25%',
             padding: '20px',
             margin: 'auto',
-            color: 'white',
-            textAlign: 'center',
+            display:'flex',
+            textAlign: 'center'
           },
         }}
       >
-        {isSuccess ? <Success /> : <Failed />}
+        {/* {isSuccess ? <Success /> : <Failed />} */}
+        <Success />
       </ReactModal>
     </div>
   )
