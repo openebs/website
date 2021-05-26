@@ -25,7 +25,6 @@ import Sponsor from "../../components/Sponsor";
 import index from "../../blogs/index.md";
 import CustomTag from "../../components/CustomTag";
 import Pagination from "@material-ui/lab/Pagination";
-import listReactFiles from 'list-react-files';
 
 interface StyledTabProps {
   label: string;
@@ -49,6 +48,8 @@ const Blog: React.FC = () => {
   const [jsonMdData, setJsonMdData] = useState<any>();
   const [value, setValue] = React.useState("all");
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
+  const itemsPerPage = 6;
+  const [page, setPage] = React.useState<number>(1);
 
   const StyledTab = withStyles((theme: Theme) =>
     createStyles({
@@ -72,8 +73,6 @@ const Blog: React.FC = () => {
   )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
   useEffect(() => {
-    // require('list-react-files')(__dirname).then((file: any) => console.log(file, '--------------'));
-    listReactFiles(__dirname).then((files: any) => console.log(files));
     async function fetchBlogs() {
       const indexBlog: any = index;
       await fetch(indexBlog)
@@ -90,7 +89,6 @@ const Blog: React.FC = () => {
     fetchBlogs();
   }, []);
 
-  console.log(jsonMdData);
 
   const handleChange = (_event: React.ChangeEvent<{}>, newValue: string) => {
     setValue(newValue);
@@ -126,9 +124,7 @@ const Blog: React.FC = () => {
     <>
       <div className={classes.root}>
         <Container maxWidth="lg">
-          <h1 className={classes.mainText}>
-            Community contributed guides and blogs
-          </h1>
+          <h1 className={classes.mainText}>{t("blog.title")}</h1>
           <Paper className={classes.tabs}>
             <Tabs
               value={value}
@@ -170,7 +166,7 @@ const Blog: React.FC = () => {
         </Container>
       </div>
       <div className={classes.cardWrapper}>
-        <h1>All articles</h1>
+        <h1>{t("blog.articles")}</h1>
         <Grid
           container
           direction="row"
@@ -178,40 +174,54 @@ const Blog: React.FC = () => {
           alignItems="center"
         >
           {filteredData
-            ? filteredData.map((elm: any) => {
-                return (
-                  <Grid
-                    item
-                    xs={12}
-                    md={6}
-                    key={elm.id}
-                    className={classes.cardSize}
-                  >
-                    <Card className={classes.cardRoot}>
-                      <CardMedia
-                        className={classes.media}
-                        image={`/blog/images/${elm.image}`}
-                      />
-                      <CardContent>
-                        <CustomTag blogLabel={elm.tag} />
-                        <Typography
-                          className={classes.title}
-                          color="textSecondary"
-                          gutterBottom
-                        >
-                          <ReactMarkdown children={elm.title} />
-                        </Typography>
-                        <Typography>
-                          <ReactMarkdown children={elm.description + "..."} />
-                        </Typography>
-                      </CardContent>
-                      <CardActions className={classes.actionWrapper}>
-                        <span className={classes.author}>
-                          <Avatar
-                            alt="author1"
-                            src={`/blog/authors/${elm.avatar}`}
-                            className={classes.small}
-                          />
+            ? filteredData
+                .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+                .map((elm: any) => {
+                  return (
+                    <Grid
+                      item
+                      xs={12}
+                      md={6}
+                      key={elm.id}
+                      className={classes.cardSize}
+                    >
+                      <Card className={classes.cardRoot}>
+                        <CardMedia
+                          className={classes.media}
+                          image={`/blog/images/${elm.image}`}
+                        />
+                        <CardContent>
+                          <CustomTag blogLabel={elm.tag} />
+                          <Typography
+                            className={classes.title}
+                            color="textSecondary"
+                            gutterBottom
+                          >
+                            <ReactMarkdown children={elm.title} />
+                          </Typography>
+                          <Typography>
+                            <ReactMarkdown children={elm.description + "..."} />
+                          </Typography>
+                        </CardContent>
+                        <CardActions className={classes.actionWrapper}>
+                          <span className={classes.author}>
+                            <Avatar
+                              alt="author1"
+                              src={`/blog/authors/${elm.avatar}`}
+                              className={classes.small}
+                            />
+                            <Button
+                              size="large"
+                              disableRipple
+                              variant="text"
+                              className={classes.cardActionButton}
+                              onClick={() =>
+                                window.location.assign(`/blog/${elm.author}`)
+                              }
+                            >
+                              <Typography>{elm.author}</Typography>
+                            </Button>
+                          </span>
                           <Button
                             size="large"
                             disableRipple
@@ -219,37 +229,35 @@ const Blog: React.FC = () => {
                             className={classes.cardActionButton}
                             onClick={() =>
                               window.location.assign(
-                                `/blog/${elm.author}`
+                                `/blog/${elm.author}/${elm.blog}`
                               )
                             }
                           >
-                            <Typography>{elm.author}</Typography>
+                            {t("blog.read")}
+                            <img
+                              src="../Images/svg/arrow_orange.svg"
+                              alt={t("header.submitAlt")}
+                              className={classes.arrow}
+                            />
                           </Button>
-                        </span>
-                        <Button
-                          size="large"
-                          disableRipple
-                          variant="text"
-                          className={classes.cardActionButton}
-                          onClick={() =>
-                            window.location.assign(`/blog/${elm.blog}`)
-                          }
-                        >
-                          Read
-                          <img
-                            src="../Images/svg/arrow_orange.svg"
-                            alt={t("header.submitAlt")}
-                            className={classes.arrow}
-                          />
-                        </Button>
-                      </CardActions>
-                    </Card>
-                  </Grid>
-                );
-              })
+                        </CardActions>
+                      </Card>
+                    </Grid>
+                  );
+                })
             : " "}
         </Grid>
-        <Pagination count={10} shape="rounded" />
+        <Pagination
+          count={
+            totalBlogCount
+              ? Math.ceil(totalBlogCount / 6 )
+              : Math.ceil(totalBlogCount / 6 + 1)
+          }
+          page={page} 
+          onChange={(_event,val)=> setPage(val)}
+          shape="rounded"
+          className={classes.pagination}
+        />
       </div>
       {/* Sponsor section  */}
       <Sponsor />

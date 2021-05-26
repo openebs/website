@@ -115,8 +115,6 @@ const MiniBlog: React.FC = () => {
     fetchBlogs();
   }, []);
 
-  console.log(jsonMdData);
-
   const handleChange = (_event: React.ChangeEvent<{}>, newValue: string) => {
     setValue(newValue);
   };

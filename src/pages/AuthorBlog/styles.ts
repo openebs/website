@@ -113,6 +113,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  pagination: {
+    display: 'flex',
+    justifyContent: 'center',
+    paddingTop: theme.spacing(2),
+  },
 }));
 
 export default useStyles;

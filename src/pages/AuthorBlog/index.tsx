@@ -18,6 +18,7 @@ import Sponsor from "../../components/Sponsor";
 import index from "../../blogs/index.md";
 import CustomTag from "../../components/CustomTag";
 import useQuery from "../../hooks/useQuery";
+import { Pagination } from "@material-ui/lab";
 
 interface TabProps {
   id: string;
@@ -35,8 +36,9 @@ const AutohorBlog: React.FC = () => {
   const classes = useStyles();
   const queryAuthorName = useQuery().substring(useQuery().lastIndexOf("/") + 1);
   const [jsonMdData, setJsonMdData] = useState<any>();
+  const itemsPerPage = 6;
+  const [page, setPage] = React.useState<number>(1);
 
-  console.log(queryAuthorName);
   useEffect(() => {
     async function fetchBlogs() {
       const indexBlog: any = index;
@@ -78,65 +80,80 @@ const AutohorBlog: React.FC = () => {
           alignItems="center"
         >
           {filteredData
-            ? filteredData.map((elm: any) => {
-                return (
-                  <Grid
-                    item
-                    xs={12}
-                    md={6}
-                    key={elm.id}
-                    className={classes.cardSize}
-                  >
-                    <Card className={classes.cardRoot}>
-                      <CardMedia
-                        className={classes.media}
-                        image={`/blog/images/${elm.image}`}
-                      />
-                      <CardContent>
-                        <CustomTag blogLabel={elm.tag} />
-                        <Typography
-                          className={classes.title}
-                          color="textSecondary"
-                          gutterBottom
-                        >
-                          <ReactMarkdown children={elm.title} />
-                        </Typography>
-                        <Typography>
-                          <ReactMarkdown children={elm.description + "..."} />
-                        </Typography>
-                      </CardContent>
-                      <CardActions className={classes.actionWrapper}>
-                        <span className={classes.author}>
-                          <Avatar
-                            alt={elm.author}
-                            src={`/blog/authors/${elm.avatar}`}
-                            className={classes.small}
-                          />
-                          <Typography>{elm.author}</Typography>
-                        </span>
-                        <Button
-                          size="large"
-                          disableRipple
-                          variant="text"
-                          className={classes.cardActionButton}
-                          onClick={() =>
-                            window.location.assign(`/blog/${elm.blog}`)
-                          }
-                        >
-                          {t("blog.read")}
-                          <img
-                            src="../Images/svg/arrow_orange.svg"
-                            alt={t("header.submitAlt")}
-                            className={classes.arrow}
-                          />
-                        </Button>
-                      </CardActions>
-                    </Card>
-                  </Grid>
-                );
-              })
+            ? filteredData
+                .slice((page - 1) * itemsPerPage, page * itemsPerPage)
+                .map((elm: any) => {
+                  return (
+                    <Grid
+                      item
+                      xs={12}
+                      md={6}
+                      key={elm.id}
+                      className={classes.cardSize}
+                    >
+                      <Card className={classes.cardRoot}>
+                        <CardMedia
+                          className={classes.media}
+                          image={`/blog/images/${elm.image}`}
+                        />
+                        <CardContent>
+                          <CustomTag blogLabel={elm.tag} />
+                          <Typography
+                            className={classes.title}
+                            color="textSecondary"
+                            gutterBottom
+                          >
+                            <ReactMarkdown children={elm.title} />
+                          </Typography>
+                          <Typography>
+                            <ReactMarkdown children={elm.description + "..."} />
+                          </Typography>
+                        </CardContent>
+                        <CardActions className={classes.actionWrapper}>
+                          <span className={classes.author}>
+                            <Avatar
+                              alt={elm.author}
+                              src={`/blog/authors/${elm.avatar}`}
+                              className={classes.small}
+                            />
+                            <Typography>{elm.author}</Typography>
+                          </span>
+                          <Button
+                            size="large"
+                            disableRipple
+                            variant="text"
+                            className={classes.cardActionButton}
+                            onClick={() =>
+                              window.location.assign(
+                                `/blog/${queryAuthorName}/${elm.blog}`
+                              )
+                            }
+                          >
+                            {t("blog.read")}
+                            <img
+                              src="../Images/svg/arrow_orange.svg"
+                              alt={t("header.submitAlt")}
+                              className={classes.arrow}
+                            />
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Grid>
+                  );
+                })
             : " "}
         </Grid>
+          <Pagination
+            count={
+              filteredData.length > 6
+                ? Math.ceil(filteredData.length / 6)
+                : Math.ceil(filteredData.length / 6 + 1)
+            }
+            page={page}
+            onChange={(_event, val) => setPage(val)}
+            shape="rounded"
+            className={classes.pagination}
+          />
       </div>
       {/* Sponsor section  */}
       <Sponsor />
