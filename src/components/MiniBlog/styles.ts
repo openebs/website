@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: "auto",
     margin: `${theme.spacing(1)}px auto`,
     padding: theme.spacing(0.3),
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     flexGrow: 1,
     fontWeight: 700,
     boxShadow: "2px 0px 33px 5px rgba(70, 68, 151, 0)",
@@ -41,13 +41,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   cardRoot: {
-    maxWidth: '481px',
+    maxWidth: "481px",
   },
   rootBlogSection: {
-  flexGrow: 1,
+    flexGrow: 1,
   },
   cardSize: {
-   paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(4),
   },
   media: {
     height: 0,
@@ -77,19 +77,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: theme.spacing(2),
   },
   linkBtn: {
-    textDecoration: 'none !important',
+    textDecoration: "none !important",
   },
   arrow: {
     marginLeft: theme.spacing(1),
   },
   tag: {
-     fontSize: 16,
-     width: 'fit-content',
-     padding: theme.spacing(.1, 4),
-     borderRadius: '8px',
-     lineHeight: '8px',
-     background: theme.palette.warning.light,
-     color: theme.palette.text.hint,
+    fontSize: 16,
+    width: "fit-content",
+    padding: theme.spacing(0.1, 4),
+    borderRadius: "8px",
+    lineHeight: "8px",
+    background: theme.palette.warning.light,
+    color: theme.palette.text.hint,
   },
   small: {
     width: theme.spacing(3),
@@ -97,8 +97,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: theme.spacing(1),
   },
   actionWrapper: {
-   justifyContent: 'space-between',
-  },
+    justifyContent: "space-between",
+  }
 }));
 
 export default useStyles;

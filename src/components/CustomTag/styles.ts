@@ -10,6 +10,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 
   chaosengineering: {
+    fontSize: 16,
+    width: "fit-content",
+    padding: theme.spacing(0.1, 4),
+    borderRadius: "8px",
+    lineHeight: "8px",
     background: theme.palette.rawUmber.light,
     color: theme.palette.success.contrastText,
   },

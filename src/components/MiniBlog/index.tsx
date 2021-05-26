@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useStyles from "./styles";
-// import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import {
   Button,
   Card,
@@ -20,6 +20,7 @@ import ReactMarkdown from "react-markdown";
 import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
 import index from "../../blogs/index.md";
 import CustomTag from "../CustomTag";
+import Slider from "react-slick";
 
 interface StyledTabProps {
   label: string;
@@ -38,11 +39,43 @@ interface TabProps {
 }
 
 const MiniBlog: React.FC = () => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   const classes = useStyles();
   const [jsonMdData, setJsonMdData] = useState<any>();
   const [value, setValue] = React.useState("all");
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
+
+  const SampleNextArrow = (props: any) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block" }}
+        onClick={onClick}
+      >
+        <img
+          src="../Images/svg/right_arrow.svg"
+          alt={t("home.adaptorsTestimonials.nextArrowAlt")}
+        />
+      </div>
+    );
+  };
+
+  const SamplePrevArrow = (props: any) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{ ...style, display: "block" }}
+        onClick={onClick}
+      >
+        <img
+          src="../Images/svg/left_arrow.svg"
+          alt={t("home.adaptorsTestimonials.previousArrowAlt")}
+        />
+      </div>
+    );
+  };
 
   const StyledTab = withStyles((theme: Theme) =>
     createStyles({
@@ -118,9 +151,7 @@ const MiniBlog: React.FC = () => {
     <>
       <div className={classes.root}>
         <Container maxWidth="lg">
-          <h1 className={classes.mainText}>
-            Community contributed guides and blogs
-          </h1>
+          <h1 className={classes.mainText}>{t("blog.title")}</h1>
           <Paper className={classes.tabs}>
             <Tabs
               value={value}
@@ -161,59 +192,69 @@ const MiniBlog: React.FC = () => {
           </Paper>
         </Container>
       </div>
-      <div className={classes.cardWrapper}>
-        <Grid
-          container
-          direction="row"
-          justify="flex-start"
-          alignItems="center"
-        >
-          {filteredData
-            ? filteredData.map((elm: any) => {
-                return (
-                  <Grid
-                    item
-                    xs={12}
-                    md={6}
-                    key={elm.id}
-                    className={classes.cardSize}
-                  >
-                    <Card className={classes.cardRoot}>
-                      <CardMedia
-                        className={classes.media}
-                        image={`/blog/images/${elm.image}`}
-                      />
-                      <CardContent>
-                        <CustomTag blogLabel={elm.tag} />
-                        <Typography
-                          className={classes.title}
-                          color="textSecondary"
-                          gutterBottom
-                        >
-                          <ReactMarkdown children={elm.title} />
-                        </Typography>
-                        <Typography>
-                          <ReactMarkdown children={elm.description + "..."} />
-                          <Button
-                          size="small"
-                          disableRipple
-                          variant="text"
-                          className={classes.cardActionButton}
-                          onClick={() =>
-                            window.location.assign(`/blog/${elm.blog}`)
-                          }
-                        >
-                          Read more
-                        </Button>
-                        </Typography>
-                      </CardContent>
-                    </Card>
-                  </Grid>
-                );
-              })
-            : " "}
+      <Grid container justify="center">
+        <Grid item xs={10}>
+          <Slider
+            dots={false}
+            autoplay={true}
+            autoplaySpeed={4000}
+            speed={500}
+            slidesToShow={2}
+            slidesToScroll={1}
+            cssEase="linear"
+            arrows={true}
+            rtl={false}
+            prevArrow={<SamplePrevArrow />}
+            nextArrow={<SampleNextArrow />}
+            responsive={[
+              {
+                breakpoint: mobileBreakpoint,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1
+                }
+              }
+            ]}
+          >
+            {filteredData.map((elm: any) => {
+              return (
+                <Card key={elm.id} className={classes.cardRoot}>
+                  <CardMedia
+                    className={classes.media}
+                    image={`/blog/images/${elm.image}`}
+                  />
+                  <CardContent>
+                    <CustomTag blogLabel={elm.tag} />
+                    <Typography
+                      className={classes.title}
+                      color="textSecondary"
+                      gutterBottom
+                    >
+                      <ReactMarkdown children={elm.title} />
+                    </Typography>
+                    <Typography>
+                      <ReactMarkdown children={elm.description + "..."} />
+                      <Button
+                        size="small"
+                        disableRipple
+                        variant="text"
+                        className={classes.cardActionButton}
+                        onClick={() =>
+                          window.location.assign(
+                            `/blog/${elm.author}/${elm.blog}`
+                          )
+                        }
+                      >
+                        {t("blog.readMore")}
+                      </Button>
+                    </Typography>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </Slider>
         </Grid>
-      </div>
+      </Grid>
     </>
   );
 };

@@ -61,10 +61,10 @@ const AutohorBlog: React.FC = () => {
   return (
     <>
       <div className={classes.root}>
-        <Container maxWidth="lg" className={classes.author}>
+        <Container maxWidth="md" className={classes.author}>
           <Avatar
-            alt="Remy Sharp"
-            src="/static/images/avatar/1.jpg"
+            alt={queryAuthorName}
+            src={`/blog/authors/${queryAuthorName}.png`}
             className={classes.large}
           />
           <h1 className={classes.mainText}>{queryAuthorName}</h1>
@@ -108,8 +108,8 @@ const AutohorBlog: React.FC = () => {
                       <CardActions className={classes.actionWrapper}>
                         <span className={classes.author}>
                           <Avatar
-                            alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"
+                            alt={elm.author}
+                            src={`/blog/authors/${elm.avatar}`}
                             className={classes.small}
                           />
                           <Typography>{elm.author}</Typography>
@@ -123,7 +123,7 @@ const AutohorBlog: React.FC = () => {
                             window.location.assign(`/blog/${elm.blog}`)
                           }
                         >
-                          Read
+                          {t("blog.read")}
                           <img
                             src="../Images/svg/arrow_orange.svg"
                             alt={t("header.submitAlt")}

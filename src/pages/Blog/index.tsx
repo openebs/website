@@ -25,6 +25,7 @@ import Sponsor from "../../components/Sponsor";
 import index from "../../blogs/index.md";
 import CustomTag from "../../components/CustomTag";
 import Pagination from "@material-ui/lab/Pagination";
+import listReactFiles from 'list-react-files';
 
 interface StyledTabProps {
   label: string;
@@ -35,7 +36,6 @@ interface TabProps {
   id: string;
   title: string;
   blog: string;
-  blog_id: string;
   description: string;
   image: string;
   tag: string;
@@ -72,6 +72,8 @@ const Blog: React.FC = () => {
   )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
   useEffect(() => {
+    // require('list-react-files')(__dirname).then((file: any) => console.log(file, '--------------'));
+    listReactFiles(__dirname).then((files: any) => console.log(files));
     async function fetchBlogs() {
       const indexBlog: any = index;
       await fetch(indexBlog)
@@ -206,8 +208,8 @@ const Blog: React.FC = () => {
                       <CardActions className={classes.actionWrapper}>
                         <span className={classes.author}>
                           <Avatar
-                            alt="Remy Sharp"
-                            src="/static/images/avatar/1.jpg"
+                            alt="author1"
+                            src={`/blog/authors/${elm.avatar}`}
                             className={classes.small}
                           />
                           <Button
