@@ -30,7 +30,7 @@ const Failed = () => {
         fontSizes: '60',
       }}
     >
-      <Styled.h1 sx={{ color: 'red' ,fontWeight: '700' }}>
+      <Styled.h1 sx={{ color: 'red', fontWeight: '700' }}>
         Error in submitting the form, please try again!!!
       </Styled.h1>
     </div>
@@ -75,13 +75,13 @@ const Newsletter = () => {
           consent: {
             consentToProcess: true,
             text:
-              "I agree to allow MayaData to store and process my personal data.",
+              "I allow MayaData (as creator and community partner for OpenEBS) to store my data solely to send OpenEBS community newsletter.",
             communications: [
               {
                 value: true,
                 subscriptionTypeId: 999,
                 text:
-                  "I agree to receive marketing communications from MayaData."
+                  "I agree to receive the OpenEBS newsletter focused on Container Attached Storage Ecosystem."
               }
             ]
           }
@@ -103,7 +103,7 @@ const Newsletter = () => {
           }, 1000)
         })
     }
-   
+
   }
 
   async function postData(url = '', data = {}) {
@@ -121,7 +121,7 @@ const Newsletter = () => {
     })
     return await response.json()
   }
-  
+
   const handleOnSubmit = (e) => {
     e.preventDefault()
     sendData()
@@ -163,7 +163,7 @@ const Newsletter = () => {
           },
           content: {
             position: 'absolute',
-            inset:'5% 40px 40px',
+            inset: '5% 40px 40px',
             overflow: 'auto',
             WebkitOverflowScrolling: 'touch',
             borderRadius: '4px',
@@ -173,7 +173,7 @@ const Newsletter = () => {
             top: '25%',
             padding: '20px',
             margin: 'auto',
-            display:'flex',
+            display: 'flex',
             textAlign: 'center'
           },
         }}
