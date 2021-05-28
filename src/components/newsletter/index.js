@@ -10,11 +10,12 @@ const Success = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        fontSizes: '60',
       }}
     >
-      <Styled.h4 sx={{ color: 'white' }}>
-        You have successfully subscribed to OpenEBS Newsletter.
-      </Styled.h4>
+      <Styled.h1 sx={{ fontWeight: '700' }}>
+        You have successfully subscribed to the Container Attached Storage newsletter.
+      </Styled.h1>
     </div>
   )
 }
@@ -26,11 +27,12 @@ const Failed = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        fontSizes: '60',
       }}
     >
-      <Styled.h4 sx={{ color: 'white' }}>
+      <Styled.h1 sx={{ color: 'red', fontWeight: '700' }}>
         Error in submitting the form, please try again!!!
-      </Styled.h4>
+      </Styled.h1>
     </div>
   )
 }
@@ -51,29 +53,46 @@ const Newsletter = () => {
     if (email === '' || email === 'undefined') {
       console.log(`please enter valid email`)
     } else {
-      async function postData(url = '', data = {}) {
-        const response = await fetch(url, {
-          method: 'POST',
-          mode: 'cors',
-          cache: 'no-cache',
-          credentials: 'same-origin',
-          headers: {
-            'Content-Type': 'application/json',
+      const data = {
+        fields: [
+          {
+            name: "firstname",
+            value: "",
           },
-          redirect: 'follow',
-          referrerPolicy: 'no-referrer',
-          body: JSON.stringify(data),
-        })
-        return await response.json()
+          {
+            name: "lastname",
+            value: "",
+          },
+          {
+            name: "email",
+            value: email,
+          },
+        ],
+        context: {
+          pageUri: window.location.href,
+        },
+        legalConsentOptions: {
+          consent: {
+            consentToProcess: true,
+            text:
+              "I allow MayaData (as creator and community partner for OpenEBS) to store my data solely to send OpenEBS community newsletter.",
+            communications: [
+              {
+                value: true,
+                subscriptionTypeId: 999,
+                text:
+                  "I agree to receive the OpenEBS newsletter focused on Container Attached Storage Ecosystem."
+              }
+            ]
+          }
+        }
       }
-
-      postData(GATSBY_NEWSLETTER_BACKEND_URL, {
-        email: email,
-        tag: tag,
-      })
+      postData(GATSBY_NEWSLETTER_BACKEND_URL, data)
         .then((data) => {
           setIsSuccess(true)
           handleOpenModal()
+          setEmail('')
+
         })
         .catch((err) => {
           console.error(err)
@@ -84,11 +103,28 @@ const Newsletter = () => {
           }, 1000)
         })
     }
+
   }
+
+  async function postData(url = '', data = {}) {
+    const response = await fetch(url, {
+      method: 'POST',
+      mode: 'cors',
+      cache: 'no-cache',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      redirect: 'follow',
+      referrerPolicy: 'no-referrer',
+      body: JSON.stringify(data),
+    })
+    return await response.json()
+  }
+
   const handleOnSubmit = (e) => {
     e.preventDefault()
     sendData()
-    setEmail('')
   }
   const handleOpenModal = () => {
     setModal(true)
@@ -127,22 +163,23 @@ const Newsletter = () => {
           },
           content: {
             position: 'absolute',
-            border: `1px solid ${isSuccess ? '#28a745' : '#dc3545'}`,
-            background: `${isSuccess ? '#28a745' : '#dc3545'}`,
+            inset: '5% 40px 40px',
             overflow: 'auto',
             WebkitOverflowScrolling: 'touch',
             borderRadius: '4px',
             outline: 'none',
-            height: '60px',
-            width: '400px',
+            height: '50%',
+            width: '80%',
+            top: '25%',
             padding: '20px',
             margin: 'auto',
-            color: 'white',
-            textAlign: 'center',
+            display: 'flex',
+            textAlign: 'center'
           },
         }}
       >
-        {isSuccess ? <Success /> : <Failed />}
+        {/* {isSuccess ? <Success /> : <Failed />} */}
+        <Success />
       </ReactModal>
     </div>
   )
