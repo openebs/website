@@ -43,7 +43,7 @@ const getPosts =  () => {
                 }
 
                 const convertTitleToSlug = (Text)=>{
-                    return Text
+                    return Text | ''
                         .toLowerCase()
                         .replace(/[^\w ]+/g,'')
                         .replace(/ +/g,'-')
@@ -61,7 +61,7 @@ const getPosts =  () => {
                     date: metadata?.date || 'No date available',
                     tags: metadata?.tags || 'No tags available',
                     content: content || 'No content available',
-                    slug: convertTitleToSlug(metadata?.title)
+                    slug: convertTitleToSlug(metadata?.title) || ''
                 };
                 
                 postList.push(post);

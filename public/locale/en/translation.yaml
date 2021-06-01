@@ -212,3 +212,12 @@ contributing:
   governanceButtonLabel: Check it out
 
 
+### Blog
+
+blog:
+  minToRead: mins to read
+  share: Share
+  greetings: Great news! You’re 1 article smarter!
+  previousArticle: Previous article
+  nextArticle: Next article
+  recommendationsTitle: Based on your reading story
