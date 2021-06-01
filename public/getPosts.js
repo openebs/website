@@ -42,7 +42,7 @@ const getPosts = () => {
                 }
                 
                 const convertTitleToSlug = (Text)=>{
-                    return Text
+                    return Text | ''
                         .toLowerCase()
                         .replace(/[^\w ]+/g,'')
                         .replace(/ +/g,'-')

@@ -26,10 +26,10 @@ const BlogPage: React.FC = () => {
   
   useEffect(() => {
     const getBlogsData= async ()=>{
-      const {default: posts_json} = await import(`../../posts.json`)
-      const currentBlog = posts_json?.filter((blog: { slug: string; }) => blog.slug === queryBlogName)[0];
-      setPreviousBlog(posts_json?.filter((blog: { id: number; }) => blog.id === currentBlog.id-1)[0]);
-      setNextBlog(posts_json?.filter((blog: { id: number; }) => blog.id === currentBlog.id+1)[0]);
+      const {default: posts_json} = await import(`../../posts.json`); 
+      const currentBlog = posts_json?.filter((blog: { slug: string; }) => blog?.slug === queryBlogName)[0];
+      setPreviousBlog(posts_json?.filter((blog: { id: number; }) => blog?.id === currentBlog?.id-1)[0]);
+      setNextBlog(posts_json?.filter((blog: { id: number; }) => blog?.id === currentBlog?.id+1)[0]);
     }
     getBlogsData();
   },[queryBlogName]);
@@ -103,17 +103,17 @@ const BlogPage: React.FC = () => {
                   
                     <div className={classes.author}>
                       <div className={classes.authorImg}>
-                        <img src="../Images/blog/authors/OPENEBS.png" alt=""></img>
+                        <img src={`../Images/blog/authors/${metadata.author}.png`} alt={metadata.author}></img>
                       </div>
                       <div className={classes.date}>
                         <ReactMarkdown children={metadata.author} className={classes.authorName} />
-                        <div className={classes.dateAndTimeWrapper}><ReactMarkdown children={metadata.date} />  / {readingTime(content)} mins to read</div>
+                        <div className={classes.dateAndTimeWrapper}><ReactMarkdown children={metadata.date} />  / {readingTime(content)} {t('blog.minToRead')}</div>
                       </div>
                     </div>
                   
                   
                     <div className={classes.shareWrapper}>
-                      <Typography className={classes.share}>Share</Typography>
+                      <Typography className={classes.share}>{t('blog.share')}</Typography>
                       <div className={classes.socialIconsWrapper}>
                           {socialLinks.map(({ label, imgURL }) => {
                               return (   
@@ -133,7 +133,7 @@ const BlogPage: React.FC = () => {
             </div>
 
             <div className={classes.blogBody}>
-              <img src={`/Images${queryBlogName}.png`} alt="" className={classes.blogImg}></img>
+              <img src={`/Images/blog/${queryBlogName}.png`} alt={metadata.title} className={classes.blogImg}></img>
               <ReactMarkdown children={content} />
             </div>
             
@@ -144,10 +144,10 @@ const BlogPage: React.FC = () => {
         <hr className={classes.divider}/>
         <div className={classes.footerDivWrapper}>
             <div>
-              <Typography className={classes.footerText}>Great news! You’re 1 article smarter! </Typography>
+              <Typography className={classes.footerText}>{t('blog.greetings')} </Typography>
             </div>
             <div className={classes.shareWrapper}>
-              <Typography className={classes.share}>Share</Typography>
+              <Typography className={classes.share}>{t('blog.share')}</Typography>
               <div className={classes.socialIconsWrapper}>
                   {socialLinks.map(({ label, imgURL }) => {
                       return (   
@@ -171,7 +171,7 @@ const BlogPage: React.FC = () => {
                   endIcon={<img src="../Images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
                   onClick={() => window.location.assign(`/blog/${previousBlog.slug}`) }
               >
-                Previous article
+                {t('blog.previousArticle')}
               </Button>
               : 
               <Button
@@ -179,7 +179,7 @@ const BlogPage: React.FC = () => {
                   startIcon={<img src="../Images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
                   onClick={() => window.location.assign(`/blog/${previousBlog.slug}`) }
               >
-                Previous article
+                {t('blog.previousArticle')}
               </Button>
               }
                 
@@ -193,7 +193,7 @@ const BlogPage: React.FC = () => {
                     endIcon={<img src="../Images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} />}
                     onClick={() => window.location.assign(`/blog/${nextBlog.slug}`) }
                   >
-                    Next article
+                    {t('blog.nextArticle')}
                   </Button>
                   <Typography className={classes.blogLink} onClick={() => window.location.assign(`/blog/${nextBlog.slug}`) }>{nextBlog.title}</Typography>
               </div>
@@ -202,7 +202,7 @@ const BlogPage: React.FC = () => {
         </div>
 
         <div>
-            <Typography className={classes.blogRecommendationTitle}>Based on your reading story</Typography>
+            <Typography className={classes.blogRecommendationTitle}>{t('blog.recommendationsTitle')}</Typography>
         </div>
       </Grid>
 
