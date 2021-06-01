@@ -29,3 +29,5 @@ export enum EXTERNAL_LINK_LABELS {
   BLOG = 'Blog',
   GITHUB = 'GitHub'
 };
+
+export const WORDS_PER_MINUTE = 250; // Based on wikipedia https://en.wikipedia.org/wiki/Speed_reading (Mental readers)
