@@ -13,6 +13,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   tabLayout: {
     orientation: "vertical",
   },
+  authorWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  large: {
+    width: theme.spacing(9),
+    height: theme.spacing(9),
+    marginRight: theme.spacing(4),
+},
   tabs: {
     maxWidth: "auto",
     margin: `${theme.spacing(1)}px auto`,
@@ -29,6 +39,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: theme.spacing(8, 0),
     justifyContent: "center",
     alignItems: "center",
+  },
+  authorText: {
+    display: "flex",
+    flexWrap: "wrap",
+    textAlign: "center",
+    margin: theme.spacing(3, 0),
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  authorDesc: {
+    paddingBottom: theme.spacing(3),
+  },
+  authorURL: {
+    color: theme.palette.info.light,
   },
   footer: {
     gridArea: "footer",

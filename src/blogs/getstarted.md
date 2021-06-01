@@ -1,20 +1,19 @@
-
-Monitoring DreamHack - the World's Largest Digital Festival
-2015-06-24
-article
-Christian Svensson (DreamHack Network Team)
 ---
 
-*Editor's note: This article is a guest post written by a Prometheus user.*
-[![Access switches](https://c1.staticflickr.com/9/8487/8206439882_4739d39a9c_c.jpg)](https://www.flickr.com/photos/dreamhack/8206439882)
+title: Monitoring DreamHack - the World's Largest Digital Festival
+author: captian
+author_info: Software Engineer at MayaData, working on Cloud Native Tech
+tags: openebs
+image: img3.png
+avatar: captain.png
+date: 24-03-2021
+content: Christian Svensson (DreamHack Network Team)
 
-**If you are operating the network for 10,000's of demanding gamers, you need to
-really know what is going on inside your network. Oh, and everything needs to be
-built from scratch in just five days.**
+---
 
 If you have never heard about [DreamHack](http://www.dreamhack.se/) before, here
 is the pitch: Bring 20,000 people together and have the majority of them bring
-their own computer.  Mix in professional gaming (eSports), programming contests,
+their own computer. Mix in professional gaming (eSports), programming contests,
 and live music concerts. The result is the world's largest festival dedicated
 solely to everything digital.
 
@@ -26,14 +25,15 @@ electricity distribution, setting up stores for food and drinks, and even
 building the actual tables.
 
 The team that builds and operates everything related to the network is
-officially called the Network team, but we usually refer to ourselves as *tech*
-or *dhtech*. This post is going to focus on the work of dhtech and how we used
+officially called the Network team, but we usually refer to ourselves as _tech_
+or _dhtech_. This post is going to focus on the work of dhtech and how we used
 Prometheus during DreamHack Summer 2015 to try to kick our monitoring up another
 notch.
 
 <!-- more -->
 
 ## The equipment
+
 Turns out that to build a highly performant network for 10,000+
 computers, you need at least the same number of network ports. In our case these
 come in the form of ~400 Cisco 2950 switches. We call these the access switches.
@@ -53,6 +53,7 @@ other infrastructure. When completed, our core looks something like the image
 below.
 
 [![Network planning map](/assets/dh_network_planning_map.png)](/assets/dh_network_planning_map.png)
+
 <center>*The planning map for the distribution and core layers. The core is
 clearly visible in "Hall D"*</center>
 
@@ -60,6 +61,7 @@ All in all this is becoming a lengthy list of stuff to monitor, so let's get to
 the reason you're here: How do we make sure we know what's going on?
 
 ## Introducing: dhmon
+
 dhmon is the collective name of the systems that not only
 monitor the network, but also allow other teams to collect metrics on whatever
 they want.
@@ -85,6 +87,7 @@ InfluxDB-based metrics store that we had written with Prometheus. Spoiler: We're
 not going back.
 
 ## The architecture
+
 The monitoring solution consists of three layers:
 collection, storage, presentation. Our most critical collectors are
 snmpcollector (SNMP) and ipplan-pinger (ICMP), closely followed by dhcpinfo
@@ -93,6 +96,7 @@ systems into [node_exporter](https://github.com/prometheus/node_exporter)'s
 textfile collector.
 
 [![dhmon Architecture](/assets/dh_dhmon_architecture.png)](/assets/dh_dhmon_architecture.png)
+
 <center>*The current architecture plan of dhmon as of Summer 2015*</center>
 
 We use Prometheus as a central timeseries storage and querying engine, but we
@@ -116,10 +120,12 @@ use Prometheus for this data as well - we will definitely try to replace our
 memcached with Prometheus at the next DreamHack.
 
 [![dhmon Visualization](/assets/dh_dhmon_visualization.png)](/assets/dh_dhmon_visualization.png)
+
 <center>*The overview of our access layer visualized by dhmon*</center>
 
 ## Prometheus setup
-The block that so far has been referred to as *Prometheus*
+
+The block that so far has been referred to as _Prometheus_
 really consists of three products:
 [Prometheus](https://github.com/prometheus/prometheus),
 [PromDash](https://github.com/prometheus/promdash), and
@@ -132,6 +138,7 @@ served by an Apache web server that just acts as a reverse proxy.
     ProxyPass /dash http://localhost:3000/dash
 
 ## Exploring the network
+
 Prometheus has a powerful querying engine that allows
 you to do pretty cool things with the streaming information collected from all
 over your network. However, sometimes the queries need to process too much data
@@ -149,6 +156,7 @@ After this, running `topk(5, precomputed_link_utilization_percent)` was
 blazingly fast.
 
 ## Being reactive: alerting
+
 So at this stage we had something we could query for
 the state of the network. Since we are humans, we don't want to spend our time
 running queries all the time to see if things are still running as they should,
@@ -193,10 +201,12 @@ We found the syntax to define alerts easy to read and understand even if you had
 no previous experience with Prometheus or time series databases.
 
 [![Prometheus alerts for DreamHack](/assets/dh_prometheus_alerts.png)](/assets/dh_prometheus_alerts.png)
+
 <center>*Oops! Turns out we have some bad uplinks, better run out and fix
 it!*</center>
 
 ## Being proactive: dashboards
+
 While alerting is an essential part of
 monitoring, sometimes you just want to have a good overview of the health of
 your network. To achieve this we used [PromDash](/docs/visualization/promdash/).
@@ -205,9 +215,11 @@ get the answer and saved it as a dashboard widget. The most interesting ones
 were then added to an overview dashboard that we proudly displayed.
 
 [![dhmon Dashboard](/assets/dh_dhmon_dashboard.png)](/assets/dh_dhmon_dashboard.png)
+
 <center>*The DreamHack Overview dashboard powered by PromDash*</center>
 
 ## The future
+
 While changing an integral part of any system is a complex job and
 we're happy that we managed to integrate Prometheus in just one event, there are
 without a doubt a lot of areas to improve. Some areas are pretty basic: using
@@ -231,6 +243,7 @@ and in the long run when Prometheus gets support for federation, utilize the
 off-site Prometheus to replicate the metrics from the event Prometheus.
 
 ## Closing words
+
 We're really excited about Prometheus and how easy it makes
 setting up scalable monitoring and alerting from scratch.
 
@@ -245,11 +258,15 @@ part of this, just head over to `#dreamhack` on
 [QuakeNet](https://www.quakenet.org/) and have a chat with us. Who knows, maybe
 you will help us build the next DreamHack?
 4
+
 ---
+
 5
 ​
 6
+
 # Getting started
+
 7
 ​
 8
@@ -265,7 +282,9 @@ series data.
 13
 ​
 14
+
 ## Downloading and running Prometheus
+
 15
 ​
 16
@@ -275,6 +294,7 @@ your platform, then extract and run it:
 18
 ​
 19
+
 ```bash
 20
 tar xvfz prometheus-*.tar.gz
@@ -282,6 +302,7 @@ tar xvfz prometheus-*.tar.gz
 cd prometheus-*
 22
 ```
+
 23
 ​
 24
@@ -289,7 +310,9 @@ Before starting Prometheus, let's configure it.
 25
 ​
 26
+
 ## Configuring Prometheus to monitor itself
+
 27
 ​
 28
@@ -309,26 +332,27 @@ Prometheus configuration as a file named `prometheus.yml`:
 35
 ​
 36
+
 ```yaml
 global:
-  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+  scrape_interval: 15s # By default, scrape targets every 15 seconds.
 
   # Attach these labels to any time series or alerts when communicating with
   # external systems (federation, remote storage, Alertmanager).
   external_labels:
-    monitor: 'codelab-monitor'
+    monitor: "codelab-monitor"
 
 # A scrape configuration containing exactly one endpoint to scrape:
 # Here it's Prometheus itself.
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
-  - job_name: 'prometheus'
+  - job_name: "prometheus"
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
 
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: ["localhost:9090"]
 ```
 
 For a complete specification of configuration options, see the
@@ -438,19 +462,19 @@ section in your `prometheus.yml` and restart your Prometheus instance:
 
 ```yaml
 scrape_configs:
-  - job_name:       'node'
+  - job_name: "node"
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
 
     static_configs:
-      - targets: ['localhost:8080', 'localhost:8081']
+      - targets: ["localhost:8080", "localhost:8081"]
         labels:
-          group: 'production'
+          group: "production"
 
-      - targets: ['localhost:8082']
+      - targets: ["localhost:8082"]
         labels:
-          group: 'canary'
+          group: "canary"
 ```
 
 Go to the expression browser and verify that Prometheus now has information
@@ -489,38 +513,38 @@ look like this:
 
 ```yaml
 global:
-  scrape_interval:     15s # By default, scrape targets every 15 seconds.
+  scrape_interval: 15s # By default, scrape targets every 15 seconds.
   evaluation_interval: 15s # Evaluate rules every 15 seconds.
 
   # Attach these extra labels to all timeseries collected by this Prometheus instance.
   external_labels:
-    monitor: 'codelab-monitor'
+    monitor: "codelab-monitor"
 
 rule_files:
-  - 'prometheus.rules.yml'
+  - "prometheus.rules.yml"
 
 scrape_configs:
-  - job_name: 'prometheus'
+  - job_name: "prometheus"
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
 
     static_configs:
-      - targets: ['localhost:9090']
+      - targets: ["localhost:9090"]
 
-  - job_name:       'node'
+  - job_name: "node"
 
     # Override the global default and scrape targets from this job every 5 seconds.
     scrape_interval: 5s
 
     static_configs:
-      - targets: ['localhost:8080', 'localhost:8081']
+      - targets: ["localhost:8080", "localhost:8081"]
         labels:
-          group: 'production'
+          group: "production"
 
-      - targets: ['localhost:8082']
+      - targets: ["localhost:8082"]
         labels:
-          group: 'canary'
+          group: "canary"
 ```
 
 Restart Prometheus with the new configuration and verify that a new time series

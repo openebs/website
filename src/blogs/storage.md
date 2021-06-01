@@ -1,8 +1,15 @@
-# Storage
-Last updated: December 5, 2020
 ---
 
-[![Access switches](https://admin.mayadata.io/content/images/2021/04/image4.png)](https://admin.mayadata.io/content/images/2021/04/image4.png)
+title: Monitoring DreamHack - the World's Largest Digital Festival
+author: Samsung
+author_info: Software Engineer at MayaData, working on Cloud Native Tech
+tags: tutorials
+image: img2.png
+avatar: captain.png
+date: 22-03-2021
+content: Christian Samsung (DreamHack Network Team)
+
+---
 
 
 OpenEBS knows that you care about how your personal information is used and shared, and we take your privacy seriously. Please read the following to learn more about our privacy policy. By visiting [openebs.io](https://openebs.io) (the "Site"), you acknowledge that you accept the practices and policies outlined in this Privacy Policy. For the purposes of the EU General Data Protection Regulation 2016 (the "GDPR"), the data controller is MayaData, Inc. whose registered office is at 4300 Stevens Creek Boulevard, Suite 270, San Jose, CA 95129.

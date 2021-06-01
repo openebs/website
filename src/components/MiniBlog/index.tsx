@@ -18,7 +18,7 @@ import {
 } from "@material-ui/core";
 import ReactMarkdown from "react-markdown";
 import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
-import index from "../../blogs/index.md";
+import blogs from "../../posts.json";
 import CustomTag from "../CustomTag";
 import Slider from "react-slick";
 
@@ -33,7 +33,7 @@ interface TabProps {
   blog: string;
   description: string;
   image: string;
-  tag: string;
+  tags: string;
   author: string;
   length: number;
 }
@@ -99,18 +99,8 @@ const MiniBlog: React.FC = () => {
   )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
   useEffect(() => {
-    async function fetchBlogs() {
-      const indexBlog: any = index;
-      await fetch(indexBlog)
-        .then((response) => {
-          if (response.ok) return response.text();
-          else return Promise.reject("could't fetch text correctly");
-        })
-        .then((text) => {
-          const tb = require("mdtable2json").getTables(text);
-          setJsonMdData(tb[0].json);
-        })
-        .catch((err) => console.error(err));
+    function fetchBlogs() {
+      setJsonMdData(blogs);
     }
     fetchBlogs();
   }, []);
@@ -123,31 +113,31 @@ const MiniBlog: React.FC = () => {
     (tabs: TabProps) => tabs
   ).length;
   var chaosBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tag === BLOG_KEYWORDS.CHOAS_ENGINEERING
+    (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.CHOAS_ENGINEERING
   ).length;
   var openebsBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tag === BLOG_KEYWORDS.OPENEBS
+    (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.OPENEBS
   ).length;
   var devopsBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tag === BLOG_KEYWORDS.DEVOPS
+    (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.DEVOPS
   ).length;
   var tutorialBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tag === BLOG_KEYWORDS.TUTORIALS
+    (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.TUTORIALS
   ).length;
   var solutionBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tag === BLOG_KEYWORDS.SOLUTIONS
+    (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.SOLUTIONS
   ).length;
 
   var filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
     if (value !== "all") {
-      return tabs.tag === value;
+      return tabs.tags === value;
     }
     return tabs;
   });
 
   return (
     <>
-      <div className={classes.root}>
+      <span className={classes.root}>
         <Container maxWidth="lg">
           <h1 className={classes.mainText}>{t("blog.title")}</h1>
           <Paper className={classes.tabs}>
@@ -155,7 +145,7 @@ const MiniBlog: React.FC = () => {
               value={value}
               onChange={handleChange}
               textColor="secondary"
-              variant="standard"
+              variant="scrollable"
               className={classes.tabLayout}
               TabIndicatorProps={{
                 style: {
@@ -163,33 +153,32 @@ const MiniBlog: React.FC = () => {
                 },
               }}
               orientation={mobileBreakpoint ? "horizontal" : "vertical"}
-              centered
             >
-              <StyledTab label={"All(" + totalBlogCount + ")"} value="all" />
+             <StyledTab label={"All(" + totalBlogCount + ")"} value={t('blog.all')} />
               <StyledTab
                 label={"Chaos Engineering(" + chaosBlogCount + ")"}
-                value="chaosengineering"
+                value={t('blog.chaosengineering')}
               />
               <StyledTab
                 label={"DevOps(" + devopsBlogCount + ")"}
-                value="devops"
+                value={t('blog.devops')}
               />
               <StyledTab
                 label={"OpenEBS(" + openebsBlogCount + ")"}
-                value="openebs"
+                value={t('blog.openebs')}
               />
               <StyledTab
                 label={"Solutions(" + solutionBlogCount + ")"}
-                value="solutions"
+                value={t('blog.solutions')}
               />
               <StyledTab
                 label={"Tutorials(" + tutorialBlogCount + ")"}
-                value="tutorials"
+                value={t('blog.tutorials')}
               />
             </Tabs>
           </Paper>
         </Container>
-      </div>
+      </span>
       <Grid container justify="center">
         <Grid item xs={10}>
           <Slider
@@ -222,16 +211,17 @@ const MiniBlog: React.FC = () => {
                     image={`/blog/images/${elm.image}`}
                   />
                   <CardContent>
-                    <CustomTag blogLabel={elm.tag} />
+                    <CustomTag blogLabel={elm.tags} />
                     <Typography
+                      component={'span'} 
                       className={classes.title}
                       color="textSecondary"
                       gutterBottom
                     >
                       <ReactMarkdown children={elm.title} />
                     </Typography>
-                    <Typography>
-                      <ReactMarkdown children={elm.description + "..."} />
+                    <span>
+                      <ReactMarkdown children={elm.content.substring(0, 200) + "..."} />
                       <Button
                         size="small"
                         disableRipple
@@ -245,7 +235,7 @@ const MiniBlog: React.FC = () => {
                       >
                         {t("blog.readMore")}
                       </Button>
-                    </Typography>
+                    </span>
                   </CardContent>
                 </Card>
               );

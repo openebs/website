@@ -214,12 +214,17 @@ contributing:
 
 # Blog 
 
-
 blog:
   title: Community contributed guides and blogs
-  readMore: 'Read more'
-  read: 'Read'
-  articles: 'All articles'
-  
+  readMore: Read more
+  read: Read
+  articles: All articles
+  all: all
+  chaosengineering: chaosengineering
+  devops: devops
+  openebs: openebs
+  solutions: solutions
+  tutorials: tutorials
+
 
 
