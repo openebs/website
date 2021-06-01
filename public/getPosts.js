@@ -54,7 +54,6 @@ const getPosts = () => {
                 const metadata = parseMetaData({ lines, metaDataIndices });
                 const content = parseContent({ lines, metaDataIndices });
                 post = {
-                    id: index + 1,
                     title: metadata.title || 'No title',
                     author: metadata.author || 'No author',
                     author_info: metadata.author_info || 'No author information',
