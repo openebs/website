@@ -7,7 +7,6 @@ tags: tutorials
 image: img2.png
 avatar: captain.png
 date: 22-03-2021
-content: Christian Samsung (DreamHack Network Team)
 
 ---
 

@@ -45,12 +45,12 @@ interface TabProps {
 const Blog: React.FC = () => {
   const { t } = useTranslation();
   const classes = useStyles();
-  const [jsonMdData, setJsonMdData] = useState<any>();
+  const [jsonMdData, setJsonMdData] = useState<any>("");
   const [value, setValue] = React.useState("all");
   const params = new URLSearchParams(window.location.search);
-  const queryAuthorName = params.get('author');
-  const queryTitleName = params.get('title');
-  const queryTagName = params.get('tags');
+  const queryAuthorName = params.get("author");
+  const queryTitleName = params.get("title");
+  const queryTagName = params.get("tags");
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
   const itemsPerPage = 6;
   const [page, setPage] = React.useState<number>(1);
@@ -83,36 +83,35 @@ const Blog: React.FC = () => {
     fetchBlogs();
   }, []);
 
-  var filteredAuthorData = (jsonMdData || []).filter(
+  const filteredAuthorData = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs.author === queryAuthorName
   );
-
 
   const handleChange = (_event: React.ChangeEvent<{}>, newValue: string) => {
     setValue(newValue);
   };
 
   // functions to get the blog count for each individual tags
-  var totalBlogCount = (jsonMdData || []).filter(
+  const totalBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs
   ).length;
-  var chaosBlogCount = (jsonMdData || []).filter(
+  const chaosBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.CHOAS_ENGINEERING
   ).length;
-  var openebsBlogCount = (jsonMdData || []).filter(
+  const openebsBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.OPENEBS
   ).length;
-  var devopsBlogCount = (jsonMdData || []).filter(
+  const devopsBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.DEVOPS
   ).length;
-  var tutorialBlogCount = (jsonMdData || []).filter(
+  const tutorialBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.TUTORIALS
   ).length;
-  var solutionBlogCount = (jsonMdData || []).filter(
+  const solutionBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.SOLUTIONS
   ).length;
 
-  var filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
+  const filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
     if (value !== "all") {
       return tabs.tags === value;
     }
@@ -244,9 +243,7 @@ const Blog: React.FC = () => {
                                 variant="text"
                                 className={classes.cardActionButton}
                                 onClick={() =>
-                                  window.location.assign(
-                                    `/blog/${elm.blog}`
-                                  )
+                                  window.location.assign(`/blog/${elm.blog}`)
                                 }
                               >
                                 {t("blog.read")}
@@ -280,10 +277,12 @@ const Blog: React.FC = () => {
         <>
           <div className={classes.root}>
             <Container maxWidth="md">
-            <p className={classes.authorURL}>{`/blog/${queryTagName}/${queryTitleName}/${queryAuthorName}`}</p>
+              <p
+                className={classes.authorURL}
+              >{`/blog/${queryTagName}/${queryTitleName}/${queryAuthorName}`}</p>
               <div className={classes.authorWrapper}>
                 <Avatar
-                  alt={queryAuthorName? queryAuthorName : ''}
+                  alt={queryAuthorName ? queryAuthorName : ""}
                   src={`/blog/authors/${
                     filteredAuthorData[0] ? filteredAuthorData[0].avatar : ""
                   }`}
@@ -291,7 +290,9 @@ const Blog: React.FC = () => {
                 />
                 <h1 className={classes.authorText}>{queryAuthorName}</h1>
               </div>
-              <p className={classes.authorDesc}>{filteredAuthorData[0] ? filteredAuthorData[0].author_info : ""}</p>
+              <p className={classes.authorDesc}>
+                {filteredAuthorData[0] ? filteredAuthorData[0].author_info : ""}
+              </p>
             </Container>
           </div>
           <div className={classes.cardWrapper}>

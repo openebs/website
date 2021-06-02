@@ -98,37 +98,38 @@ const MiniBlog: React.FC = () => {
     })
   )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
+  const fetchBlogs = () => {
+    setJsonMdData(blogs);
+  };
+
   useEffect(() => {
-    function fetchBlogs() {
-      setJsonMdData(blogs);
-    }
     fetchBlogs();
-  }, []);
+  });
 
   const handleChange = (_event: React.ChangeEvent<{}>, newValue: string) => {
     setValue(newValue);
   };
 
-  var totalBlogCount = (jsonMdData || []).filter(
+  const totalBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs
   ).length;
-  var chaosBlogCount = (jsonMdData || []).filter(
+  const chaosBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.CHOAS_ENGINEERING
   ).length;
-  var openebsBlogCount = (jsonMdData || []).filter(
+  const openebsBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.OPENEBS
   ).length;
-  var devopsBlogCount = (jsonMdData || []).filter(
+  const devopsBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.DEVOPS
   ).length;
-  var tutorialBlogCount = (jsonMdData || []).filter(
+  const tutorialBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.TUTORIALS
   ).length;
-  var solutionBlogCount = (jsonMdData || []).filter(
+  const solutionBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.SOLUTIONS
   ).length;
 
-  var filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
+  const filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
     if (value !== "all") {
       return tabs.tags === value;
     }
@@ -154,26 +155,29 @@ const MiniBlog: React.FC = () => {
               }}
               orientation={mobileBreakpoint ? "horizontal" : "vertical"}
             >
-             <StyledTab label={"All(" + totalBlogCount + ")"} value={t('blog.all')} />
+              <StyledTab
+                label={"All(" + totalBlogCount + ")"}
+                value={t("blog.all")}
+              />
               <StyledTab
                 label={"Chaos Engineering(" + chaosBlogCount + ")"}
-                value={t('blog.chaosengineering')}
+                value={t("blog.chaosengineering")}
               />
               <StyledTab
                 label={"DevOps(" + devopsBlogCount + ")"}
-                value={t('blog.devops')}
+                value={t("blog.devops")}
               />
               <StyledTab
                 label={"OpenEBS(" + openebsBlogCount + ")"}
-                value={t('blog.openebs')}
+                value={t("blog.openebs")}
               />
               <StyledTab
                 label={"Solutions(" + solutionBlogCount + ")"}
-                value={t('blog.solutions')}
+                value={t("blog.solutions")}
               />
               <StyledTab
                 label={"Tutorials(" + tutorialBlogCount + ")"}
-                value={t('blog.tutorials')}
+                value={t("blog.tutorials")}
               />
             </Tabs>
           </Paper>
@@ -198,9 +202,9 @@ const MiniBlog: React.FC = () => {
                 breakpoint: mobileBreakpoint,
                 settings: {
                   slidesToShow: 1,
-                  slidesToScroll: 1
-                }
-              }
+                  slidesToScroll: 1,
+                },
+              },
             ]}
           >
             {filteredData.map((elm: any) => {
@@ -213,7 +217,7 @@ const MiniBlog: React.FC = () => {
                   <CardContent>
                     <CustomTag blogLabel={elm.tags} />
                     <Typography
-                      component={'span'} 
+                      component={"span"}
                       className={classes.title}
                       color="textSecondary"
                       gutterBottom
@@ -221,7 +225,9 @@ const MiniBlog: React.FC = () => {
                       <ReactMarkdown children={elm.title} />
                     </Typography>
                     <span>
-                      <ReactMarkdown children={elm.content.substring(0, 200) + "..."} />
+                      <ReactMarkdown
+                        children={elm.content.substring(0, 200) + "..."}
+                      />
                       <Button
                         size="small"
                         disableRipple

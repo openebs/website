@@ -7,7 +7,6 @@ tags: devops
 image: img1.png
 avatar: captain.png
 date: 21-03-2021
-content: Rahul Svensson (DreamHack Network Team)
 
 ---
 

@@ -7,7 +7,6 @@ tags: openebs
 image: img3.png
 avatar: captain.png
 date: 24-03-2021
-content: Christian Svensson (DreamHack Network Team)
 
 ---
 
