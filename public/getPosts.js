@@ -43,7 +43,7 @@ const getPosts =  () => {
                 }
 
                 const convertTitleToSlug = (Text)=>{
-                    return Text | ''
+                    return Text
                         .toLowerCase()
                         .replace(/[^\w ]+/g,'')
                         .replace(/ +/g,'-')
@@ -60,14 +60,13 @@ const getPosts =  () => {
                     author: metadata?.author || 'No author',
                     date: metadata?.date || 'No date available',
                     tags: metadata?.tags || 'No tags available',
-                    content: content || 'No content available',
-                    slug: convertTitleToSlug(metadata?.title) || ''
+                    content: content || 'No content available'
                 };
-                
+
                 postList.push(post);
                 if (postList.length === files.length) {
                     let sortedJSON = sortAccrodingtoDate(postList);
-                    let sortedJSONWithID = sortedJSON.map(item => ({...item, id: sortedJSON.indexOf(item)+1}))
+                    let sortedJSONWithID = sortedJSON.map(item => ({...item, id: sortedJSON.indexOf(item)+1, slug: convertTitleToSlug(item.title)}))
                     let data = JSON.stringify(sortedJSONWithID);
                     fs.writeFileSync('src/posts.json', data);
                 }

@@ -31,3 +31,11 @@ export enum EXTERNAL_LINK_LABELS {
 };
 
 export const WORDS_PER_MINUTE = 250; // Based on wikipedia https://en.wikipedia.org/wiki/Speed_reading (Mental readers)
+
+export enum BLOG_KEYWORDS { 
+  CHOAS_ENGINEERING = 'chaosengineering',
+  OPENEBS = 'openebs',
+  DEVOPS = 'devops',
+  TUTORIALS = 'tutorials',
+  SOLUTIONS = 'solutions',
+};

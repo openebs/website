@@ -1,11 +1,9 @@
 ---
 title: Get started
 author: Admin
+tags: openebs
 date: 10-08-2021
 --- 
-
-*Editor's note: This article is a guest post written by a Prometheus user.*
-[![Access switches](https://c1.staticflickr.com/9/8487/8206439882_4739d39a9c_c.jpg)](https://www.flickr.com/photos/dreamhack/8206439882)
 
 **If you are operating the network for 10,000's of demanding gamers, you need to
 really know what is going on inside your network. Oh, and everything needs to be

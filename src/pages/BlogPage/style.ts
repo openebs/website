@@ -220,11 +220,33 @@ const useStyles = makeStyles((theme: Theme) => ({
   blogRecommendationTitle: {
     fontSize: '32px',
     fontWeight: 700,
-    marginTop: theme.spacing(6)
+    margin: theme.spacing(6,0),
+    textAlign: 'center'
+  },
+  blogSlider: {
+    display: 'block',
+    margin: theme.spacing(0, 22),
+    [theme.breakpoints.down('md')]: {
+      margin: theme.spacing(0, 20),
+    },
+    [theme.breakpoints.down('sm')]: {
+      margin: theme.spacing(0, 8),
+    },
+    [theme.breakpoints.down('xs')]: {
+      margin: theme.spacing(0, 4),
+    },
   },
   footer: {
-    
-  }
+    paddingTop: theme.spacing(8),
+    background:  'url(/Images/png/blog_footer_background.png)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    [theme.breakpoints.down('xs')]: {
+      background:  'url(/Images/png/blog_footer_background_mobile.png)',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+    },
+  },
 }));
 
 export default useStyles;
