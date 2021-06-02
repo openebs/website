@@ -22,6 +22,14 @@ const useStyles = makeStyles((theme: Theme) => ({
       backgroundRepeat: 'no-repeat',
     },
   },
+  breadCrumbs: {
+    '& .MuiBreadcrumbs-ol':{
+      justifyContent: 'center',
+      color: theme.palette.info.light,
+      fontsize: '14px',
+      fontWeight: 400
+    }
+  },
   blogTitle: {
     fontSize: '42px',
     fontWeight: 700,
@@ -111,7 +119,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       background: 'none !important'
     },
     '& .at-icon-wrapper svg':{
-      fill: '#61A7BC !important',
+      fill: `${theme.palette.info.light} !important`,
       width: '25px !important',
       height: '25px !important',
       marginTop: theme.spacing(0.75),

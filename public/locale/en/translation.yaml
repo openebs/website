@@ -231,3 +231,7 @@ blog:
   previousArticle: Previous article
   nextArticle: Next article
   recommendationsTitle: Based on your reading story
+<<<<<<< HEAD
+=======
+  blog: Blog
+>>>>>>> Added breadcrumbs and code optimization

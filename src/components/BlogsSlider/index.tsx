@@ -112,7 +112,6 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({recommendedBlogs}) => {
                 </span>
               </CardContent>
             </Card>
-                
             );
         })} 
       </Slider>
