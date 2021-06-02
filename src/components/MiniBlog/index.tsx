@@ -18,7 +18,6 @@ import {
 } from "@material-ui/core";
 import ReactMarkdown from "react-markdown";
 import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
-import blogs from "../../posts.json";
 import CustomTag from "../CustomTag";
 import Slider from "react-slick";
 
@@ -98,9 +97,10 @@ const MiniBlog: React.FC = () => {
     })
   )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
-  const fetchBlogs = () => {
+  const fetchBlogs = async() => {
+    const {default: blogs} = await import(`../../posts.json`);
     setJsonMdData(blogs);
-  };
+  }
 
   useEffect(() => {
     fetchBlogs();
@@ -212,7 +212,7 @@ const MiniBlog: React.FC = () => {
                 <Card key={elm.id} className={classes.cardRoot}>
                   <CardMedia
                     className={classes.media}
-                    image={`/blog/images/${elm.image}`}
+                    image={`/blog/images/${elm.slug}.png`}
                   />
                   <CardContent>
                     <CustomTag blogLabel={elm.tags} />

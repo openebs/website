@@ -24,7 +24,6 @@ import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
 import Sponsor from "../../components/Sponsor";
 import CustomTag from "../../components/CustomTag";
 import Pagination from "@material-ui/lab/Pagination";
-import blogs from "../../posts.json";
 
 interface StyledTabProps {
   label: string;
@@ -76,12 +75,14 @@ const Blog: React.FC = () => {
     })
   )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
+  const fetchBlogs = async() => {
+    const {default: blogs} = await import(`../../posts.json`);
+    setJsonMdData(blogs);
+  }
+
   useEffect(() => {
-    function fetchBlogs() {
-      setJsonMdData(blogs);
-    }
     fetchBlogs();
-  }, []);
+  });
 
   const filteredAuthorData = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs.author === queryAuthorName
@@ -190,7 +191,7 @@ const Blog: React.FC = () => {
                           <Card className={classes.cardRoot}>
                             <CardMedia
                               className={classes.media}
-                              image={`/blog/images/${elm.image}`}
+                              image={`/blog/images/${elm.slug}.png`}
                             />
                             <CardContent>
                               <CustomTag blogLabel={elm.tags} />
@@ -215,7 +216,7 @@ const Blog: React.FC = () => {
                               <span className={classes.author}>
                                 <Avatar
                                   alt="author1"
-                                  src={`/blog/authors/${elm.avatar}`}
+                                  src={`/blog/authors/${elm.author}.png`}
                                   className={classes.small}
                                 />
                                 <Button
@@ -284,8 +285,8 @@ const Blog: React.FC = () => {
                 <Avatar
                   alt={queryAuthorName ? queryAuthorName : ""}
                   src={`/blog/authors/${
-                    filteredAuthorData[0] ? filteredAuthorData[0].avatar : ""
-                  }`}
+                    filteredAuthorData[0] ? filteredAuthorData[0].author : ""
+                  }.png`}
                   className={classes.large}
                 />
                 <h1 className={classes.authorText}>{queryAuthorName}</h1>
@@ -317,7 +318,7 @@ const Blog: React.FC = () => {
                           <Card className={classes.cardRoot}>
                             <CardMedia
                               className={classes.media}
-                              image={`/blog/images/${elm.image}`}
+                              image={`/blog/images/${elm.slug}.png`}
                             />
                             <CardContent>
                               <CustomTag blogLabel={elm.tags} />
@@ -339,7 +340,7 @@ const Blog: React.FC = () => {
                               <span className={classes.author}>
                                 <Avatar
                                   alt={elm.author}
-                                  src={`/blog/authors/${elm.avatar}`}
+                                  src={`/blog/authors/${elm.author}.png`}
                                   className={classes.small}
                                 />
                                 <Typography

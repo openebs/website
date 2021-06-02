@@ -3,9 +3,9 @@ const fs = require('fs');
 
 const dirPath = path.join(__dirname, '../src/blogs');
 let postList;
-const getPosts =  () => {
+const getPosts = () => {
     postList = [];
-     fs.readdir(dirPath, (err, files) => {
+    fs.readdir(dirPath, (err, files) => {
         if (err) {
             console.error('Failed to load files from the directory' + err);
         }
@@ -19,7 +19,7 @@ const getPosts =  () => {
                     }
                     return acc;
                 }
-                const parseMetaData = ({lines, metaDataIndices}) => {
+                const parseMetaData = ({ lines, metaDataIndices }) => {
                     if (metaDataIndices.length) {
                         let metadata = lines.slice(metaDataIndices[0] + 1, metaDataIndices[1]);
                         metadata.forEach((line) => {
@@ -29,21 +29,30 @@ const getPosts =  () => {
                     }
                 }
 
-                const parseContent = ({lines, metaDataIndices}) => {
+                const parseContent = ({ lines, metaDataIndices }) => {
                     if (metaDataIndices.length) {
                         lines = lines.slice(metaDataIndices[1] + 1, lines.length);
                     }
                     return lines.join('\n');
                 }
                 const sortAccrodingtoDate = (jsonObj) => {
-                    const dmyOrdD = (a,b) => { return myDate(b.date) - myDate(a.date);}
-                    const myDate= (s) => {var a=s.split(/-|\//); return new Date(a[2],a[1]-1,a[0]);}
+                    const dmyOrdD = (a, b) => { return myDate(b.date) - myDate(a.date); }
+                    const myDate = (s) => { var a = s.split(/-|\//); return new Date(a[2], a[1] - 1, a[0]); }
                     return jsonObj.sort(dmyOrdD);
                 }
+                
+                const convertTitleToSlug = (Text)=>{
+                    return Text
+                        .toLowerCase()
+                        .replace(/[^\w ]+/g,'')
+                        .replace(/ +/g,'-')
+                        ;
+                }
+
                 const lines = contents.split('\n');
                 const metaDataIndices = lines.reduce(getMetaDataIndices, []);
-                const metadata = parseMetaData({lines, metaDataIndices});
-                const content = parseContent({lines, metaDataIndices});
+                const metadata = parseMetaData({ lines, metaDataIndices });
+                const content = parseContent({ lines, metaDataIndices });
                 post = {
                     id: index + 1,
                     title: metadata.title || 'No title',
@@ -51,15 +60,13 @@ const getPosts =  () => {
                     author_info: metadata.author_info || 'No author information',
                     date: metadata.date || 'No date available',
                     tags: metadata.tags || 'No tags available',
-                    image: metadata.image || 'No image available',
-                    avatar: metadata.avatar || 'No avatar available',
                     content: content || 'No content available',
                 };
-                
+
                 postList.push(post);
                 if (postList.length === files.length) {
                     let sortedJSON = sortAccrodingtoDate(postList);
-                    let sortedJSONWithID = sortedJSON.map(item => ({...item, id: sortedJSON.indexOf(item)+1}))
+                    let sortedJSONWithID = sortedJSON.map(item => ({ ...item, id: sortedJSON.indexOf(item) + 1, slug: convertTitleToSlug(item.title) }))
                     let data = JSON.stringify(sortedJSONWithID);
                     fs.writeFileSync('src/posts.json', data);
                 }

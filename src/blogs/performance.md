@@ -4,8 +4,6 @@ title: Monitoring DreamHack - the World's Largest Digital Festival
 author: rahul
 author_info: Software Engineer at MayaData, working on Cloud Native Tech
 tags: devops
-image: img1.png
-avatar: captain.png
 date: 21-03-2021
 
 ---

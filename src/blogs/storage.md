@@ -1,11 +1,9 @@
 ---
 
 title: Monitoring DreamHack - the World's Largest Digital Festival
-author: Samsung
+author: samsung
 author_info: Software Engineer at MayaData, working on Cloud Native Tech
 tags: tutorials
-image: img2.png
-avatar: captain.png
 date: 22-03-2021
 
 ---

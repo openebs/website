@@ -1,11 +1,9 @@
 ---
 
 title: Monitoring DreamHack - the World's Largest Digital Festival
-author: captian
+author: apple
 author_info: Software Engineer at MayaData, working on Cloud Native Tech
 tags: openebs
-image: img3.png
-avatar: captain.png
 date: 24-03-2021
 
 ---
