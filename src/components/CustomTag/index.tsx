@@ -1,8 +1,7 @@
 import { Typography } from "@material-ui/core";
 import React, { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import { BLOG_KEYWORDS } from "../../constants";
-import useStyles from "./style";
+import useStyles from "./styles";
 
 interface blogTitleProps {
   blogLabel: string;
@@ -10,43 +9,70 @@ interface blogTitleProps {
 
 const CustomTag: React.FC<blogTitleProps> = ({ blogLabel }) => {
   const classes = useStyles();
+
+  const chaosEngineering = () => {
+    return (
+      <Typography variant="h6" className={classes.chaosengineering}>
+        <ReactMarkdown children={blogLabel} />
+      </Typography>
+    );
+  };
+
+  const devOps = () => {
+    return (
+      <Typography variant="h6" className={classes.devops}>
+        <ReactMarkdown children={blogLabel} />
+      </Typography>
+    );
+  };
+
+  const tutorials = () => {
+    return (
+      <Typography variant="h6" className={classes.tutorials}>
+        <ReactMarkdown children={blogLabel} />
+      </Typography>
+    );
+  };
+
+  const openEBS = () => {
+    return (
+      <Typography variant="h6" className={classes.openebs}>
+        <ReactMarkdown children={blogLabel} />
+      </Typography>
+    );
+  };
+
+  const solutions = () => {
+    return (
+      <Typography variant="h6" className={classes.solutions}>
+        <ReactMarkdown children={blogLabel} />
+      </Typography>
+    );
+  };
+
+  const secondary = () => {
+    return (
+      <Typography variant="h6" className={classes.secondary}>
+        <ReactMarkdown children={blogLabel} />
+      </Typography>
+    );
+  };
+
+  // Switch statements to handle props based on the respective tags
   const handleTags = () => {
-    if (blogLabel === BLOG_KEYWORDS.CHOAS_ENGINEERING) {
-      return (
-        <Typography variant="h6" className={classes.chaosengineering}>
-          <ReactMarkdown children={blogLabel} />
-        </Typography>
-      );
-    } else if (blogLabel === BLOG_KEYWORDS.DEVOPS) {
-      return (
-        <Typography variant="h6" className={classes.devops}>
-          <ReactMarkdown children={blogLabel} />
-        </Typography>
-      );
-    } else if (blogLabel === BLOG_KEYWORDS.TUTORIALS) {
-      return (
-        <Typography variant="h6" className={classes.tutorials}>
-          <ReactMarkdown children={blogLabel} />
-        </Typography>
-      );
-    } else if (blogLabel === BLOG_KEYWORDS.OPENEBS) {
-      return (
-        <Typography variant="h6" className={classes.openebs}>
-          <ReactMarkdown children={blogLabel} />
-        </Typography>
-      );
-    } else if (blogLabel ===  BLOG_KEYWORDS.SOLUTIONS) {
-      return (
-        <Typography variant="h6" className={classes.solutions}>
-          <ReactMarkdown children={blogLabel} />
-        </Typography>
-      );
-    } else {
-      return (
-        <Typography variant="h6" className={classes.secondary}>
-          <ReactMarkdown children={blogLabel} />
-        </Typography>
-      );
+    switch (blogLabel) {
+      case "chaosengineering":
+        return chaosEngineering();
+      case "devops":
+        return devOps();
+      case "tutorials":
+        return tutorials();
+      case "openenbs":
+        return openEBS();
+      case "solutions":
+        return solutions();
+      default:
+        return secondary();
     }
   };
 
@@ -54,7 +80,8 @@ const CustomTag: React.FC<blogTitleProps> = ({ blogLabel }) => {
     handleTags();
   });
 
-  return handleTags();
+  // returns the respective tag props
+  return <>{handleTags()}</>;
 };
 
 export default CustomTag;

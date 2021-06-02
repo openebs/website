@@ -20,8 +20,7 @@ export const getStarted = [
     },
     {
         label: "Blog",
-        // href: "/blog",
-        href: EXTERNAL_LINKS.OPENEBS_BLOGS,
+        href: "/blog",
     },
     {
         label: "Commercial support",
