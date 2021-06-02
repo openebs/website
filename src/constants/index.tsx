@@ -31,7 +31,7 @@ export enum EXTERNAL_LINK_LABELS {
 };
 
 export enum BLOG_KEYWORDS { 
-  CHOAS_ENGINEERING = 'chaosengineering',
+  CHAOS_ENGINEERING = 'chaosengineering',
   OPENEBS = 'openebs',
   DEVOPS = 'devops',
   TUTORIALS = 'tutorials',

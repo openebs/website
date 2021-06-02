@@ -114,7 +114,7 @@ const MiniBlog: React.FC = () => {
     (tabs: TabProps) => tabs
   ).length;
   const chaosBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.CHOAS_ENGINEERING
+    (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.CHAOS_ENGINEERING
   ).length;
   const openebsBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.OPENEBS
