@@ -29,60 +29,59 @@ const BlogPage: React.FC = () => {
   let currentLocation = window.location.href;
   
   useEffect(() => {
+    const getBlogsData= async ()=>{
+      const {default: posts_json} = await import(`../../posts.json`); 
+      const currentBlog = posts_json?.filter((blog: { slug: string; }) => blog?.slug === queryBlogName)[0];
+      setPreviousBlog(posts_json?.filter((blog: { id: number; }) => blog?.id === currentBlog?.id-1)[0]);
+      setNextBlog(posts_json?.filter((blog: { id: number; }) => blog?.id === currentBlog?.id+1)[0]);
+      setCurrentBlogDetails(currentBlog);
+    }
+  
+    const fetchBlogContent=async()=>{
+      const {default: URL} = await import(`../../blogs/${queryBlogName}.md`)
+      axios.get(URL)
+      .then(function (response: any) {
+        const { metadata, content } = parseMD(response.data)
+        setMetadata(metadata);
+        setContent(content);
+      })
+    }
+  
+    const filterRecommendedBlogs=async()=>{
+      // 6 blogs per carousel
+      // Get author and tag name from current blog
+      // Filter with author and tags
+      // Check if equal to 6
+      // If not, filter by tags and filtered blogs to recommneded blogs array
+      // Check if equal to 6
+      // if not, then add random blogs till total recommneded blogs array lenght is 6
+  
+      let minimumRecommededBlogs = 6;
+      const {default: blogs} = await import(`../../posts.json`);
+      const currentBlog = blogs?.filter(blog => blog.slug === queryBlogName)[0];
+      let recommendedBlogs = blogs?.filter(blog => (blog.author === currentBlog.author) && (blog?.tags.split(",")).some((tag) => currentBlog.tags.includes(tag)));
+      
+      if(recommendedBlogs?.length<minimumRecommededBlogs){
+        let filteredBlogs = blogs?.filter(blog => (blog.author === currentBlog.author) || (blog?.tags.split(",")).some((tag) => currentBlog.tags.includes(tag)));
+        recommendedBlogs = recommendedBlogs?.concat(filteredBlogs);
+        if(recommendedBlogs?.length<minimumRecommededBlogs){
+          const getRandomBlogs = (arr: { title: string; author: string; date: string; tags: string; content: string; id: number; slug: string; }[],count: number) => {
+            let _arr = [...arr];
+            return[...Array(count)].map( ()=> _arr.splice(Math.floor(Math.random() * _arr.length), 1)[0] ); 
+          }
+        recommendedBlogs = recommendedBlogs.concat(getRandomBlogs(blogs, minimumRecommededBlogs-recommendedBlogs.length));
+        recommendedBlogs = recommendedBlogs.filter((item,index)=>{
+          return (recommendedBlogs.indexOf(item) === index);
+        })
+        setRecommendedBlogs(recommendedBlogs);
+        }
+      }
+      setRecommendedBlogs(recommendedBlogs);
+    }
     getBlogsData();
     fetchBlogContent();
     filterRecommendedBlogs();
-  },[]);
-
-  const getBlogsData= async ()=>{
-    const {default: posts_json} = await import(`../../posts.json`); 
-    const currentBlog = posts_json?.filter((blog: { slug: string; }) => blog?.slug === queryBlogName)[0];
-    setPreviousBlog(posts_json?.filter((blog: { id: number; }) => blog?.id === currentBlog?.id-1)[0]);
-    setNextBlog(posts_json?.filter((blog: { id: number; }) => blog?.id === currentBlog?.id+1)[0]);
-    setCurrentBlogDetails(currentBlog);
-  }
-
-  const fetchBlogContent=async()=>{
-    const {default: URL} = await import(`../../blogs/${queryBlogName}.md`)
-    axios.get(URL)
-    .then(function (response: any) {
-      const { metadata, content } = parseMD(response.data)
-      setMetadata(metadata);
-      setContent(content);
-    })
-  }
-
-  const filterRecommendedBlogs=async()=>{
-    // 6 blogs per carousel
-    // Get author and tag name from current blog
-    // Filter with author and tags
-    // Check if equal to 6
-    // If not, filter by tags and filtered blogs to recommneded blogs array
-    // Check if equal to 6
-    // if not, then add random blogs till total recommneded blogs array lenght is 6
-
-    let minimumRecommededBlogs = 6;
-    const {default: blogs} = await import(`../../posts.json`);
-    const currentBlog = blogs?.filter(blog => blog.slug === queryBlogName)[0];
-    let recommendedBlogs = blogs?.filter(blog => (blog.author === currentBlog.author) && (blog?.tags.split(",")).some((tag) => currentBlog.tags.includes(tag)));
-    
-    if(recommendedBlogs?.length<minimumRecommededBlogs){
-      let filteredBlogs = blogs?.filter(blog => (blog.author === currentBlog.author) || (blog?.tags.split(",")).some((tag) => currentBlog.tags.includes(tag)));
-      recommendedBlogs = recommendedBlogs?.concat(filteredBlogs);
-      if(recommendedBlogs?.length<minimumRecommededBlogs){
-        const getRandomBlogs = (arr,count) => {
-          let _arr = [...arr];
-          return[...Array(count)].map( ()=> _arr.splice(Math.floor(Math.random() * _arr.length), 1)[0] ); 
-        }
-      recommendedBlogs = recommendedBlogs.concat(getRandomBlogs(blogs, minimumRecommededBlogs-recommendedBlogs.length));
-      recommendedBlogs = recommendedBlogs.filter((item,index)=>{
-        return (recommendedBlogs.indexOf(item) === index);
-      })
-      setRecommendedBlogs(recommendedBlogs);
-      }
-    }
-    setRecommendedBlogs(recommendedBlogs);
-  }
+  },[axios, parseMD, queryBlogName]);
 
   const socialLinks = [
     {
