@@ -30,6 +30,8 @@ export enum EXTERNAL_LINK_LABELS {
   GITHUB = 'GitHub'
 };
 
+export const WORDS_PER_MINUTE = 250; // Based on wikipedia https://en.wikipedia.org/wiki/Speed_reading (Mental readers)
+
 export enum BLOG_KEYWORDS { 
   CHAOS_ENGINEERING = 'chaosengineering',
   OPENEBS = 'openebs',
@@ -37,4 +39,3 @@ export enum BLOG_KEYWORDS {
   TUTORIALS = 'tutorials',
   SOLUTIONS = 'solutions',
 };
-export const WORDS_PER_MINUTE = 250; // Based on wikipedia https://en.wikipedia.org/wiki/Speed_reading (Mental readers)

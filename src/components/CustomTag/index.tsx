@@ -1,7 +1,6 @@
 import { Typography } from "@material-ui/core";
 import React, { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-// import { BLOG_KEYWORDS } from "../../constants";
 import useStyles from "./styles";
 
 interface blogTitleProps {
