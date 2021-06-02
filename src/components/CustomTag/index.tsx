@@ -81,6 +81,7 @@ const CustomTag: React.FC<blogTitleProps> = ({ blogLabel }) => {
     handleTags();
   });
 
+  // returns the respective tag props
   return <>{handleTags()}</>;
 };
 
