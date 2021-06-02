@@ -73,7 +73,6 @@ const Faq: React.FC<FaqDataProps> = () => {
   };
   const nodeRef = React.useRef(null);
   const filteredData = FaqDetails().filter((e: any) => e.topic_id === value);
-
   return (
     <>
       {/* Heading section for desktop and mobile views */}
