@@ -23,9 +23,8 @@ import Footer from "../../components/Footer";
 import ReactMarkdown from "react-markdown";
 import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
 import Sponsor from "../../components/Sponsor";
-import CustomTag from "../../components/CustomTag";
 import Pagination from "@material-ui/lab/Pagination";
-import { readingTime } from "../../utils/readingTime";
+import DisplayTagandReadTime from "../../components/DisplayTagandReadTime";
 
 interface StyledTabProps {
   label: string;
@@ -198,17 +197,10 @@ const Blog: React.FC = () => {
                               image={`/blog/images/${elm.slug}.png`}
                             />
                             <CardContent>
-                              <div className={classes.wrapperBlock}>
-                                <CustomTag blogLabel={elm.tags} />
-                                <p className={classes.readTime}>
-                                  <img
-                                    src="../Images/svg/time-five.svg"
-                                    alt={t("blog.readTime")}
-                                    className={classes.rightSpacing}
-                                  />
-                                  {`${readingTime(elm.content)} min read`}
-                                </p>
-                              </div>
+                              <DisplayTagandReadTime
+                                tags={elm.tags}
+                                readTime={elm.content}
+                              />
                               <Typography
                                 component={"span"}
                                 variant={"body2"}
@@ -335,17 +327,10 @@ const Blog: React.FC = () => {
                               image={`/blog/images/${elm.slug}.png`}
                             />
                             <CardContent>
-                              <div className={classes.wrapperBlock}>
-                                <CustomTag blogLabel={elm.tags} />
-                                <p className={classes.readTime}>
-                                  <img
-                                    src="../Images/svg/time-five.svg"
-                                    alt={t("blog.readTime")}
-                                    className={classes.rightSpacing}
-                                  />
-                                  {`${readingTime(elm.content)} min read`}
-                                </p>
-                              </div>
+                              <DisplayTagandReadTime
+                                tags={elm.tags}
+                                readTime={elm.content}
+                              />
                               <span
                                 className={classes.title}
                                 color="textSecondary"

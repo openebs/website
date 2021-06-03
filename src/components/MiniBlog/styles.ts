@@ -26,11 +26,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
-  wrapperBlock: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
   footer: {
     gridArea: "footer",
     width: "100%",
@@ -83,21 +78,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   linkBtn: {
     textDecoration: "none !important",
-  },
-  readTime: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    color: theme.palette.primary.light,
-    [theme.breakpoints.down("xl")]: {
-      paddingRight: theme.spacing(4),
-    },
-    [theme.breakpoints.down("sm")]: {
-      paddingRight: theme.spacing(0),
-    },
-  },
-  rightSpacing: {
-    marginRight: theme.spacing(1),
   },
   tag: {
     fontSize: 16,

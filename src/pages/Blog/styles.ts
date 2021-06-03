@@ -18,11 +18,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  wrapperBlock: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
   large: {
     width: theme.spacing(9),
     height: theme.spacing(9),
@@ -140,21 +135,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'center',
     paddingTop: theme.spacing(2),
-  },
-  rightSpacing: {
-    marginRight: theme.spacing(1),
-  },
-  readTime: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    color: theme.palette.primary.light,
-    [theme.breakpoints.down("xl")]: {
-      paddingRight: theme.spacing(4),
-    },
-    [theme.breakpoints.down("sm")]: {
-      paddingRight: theme.spacing(0),
-    },
   },
 }));
 

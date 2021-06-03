@@ -18,9 +18,8 @@ import {
 } from "@material-ui/core";
 import ReactMarkdown from "react-markdown";
 import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
-import CustomTag from "../CustomTag";
 import Slider from "react-slick";
-import { readingTime } from "../../utils/readingTime";
+import DisplayTagandReadTime from "../DisplayTagandReadTime";
 
 interface StyledTabProps {
   label: string;
@@ -215,17 +214,10 @@ const MiniBlog: React.FC = () => {
                     image={`/blog/images/${elm.slug}.png`}
                   />
                   <CardContent>
-                    <div className={classes.wrapperBlock}>
-                      <CustomTag blogLabel={elm.tags} />
-                      <p className={classes.readTime}>
-                        <img
-                          src="../Images/svg/time-five.svg"
-                          alt={t("blog.readTime")}
-                          className={classes.rightSpacing}
-                        />
-                       {`${readingTime(elm.content)} min read`}
-                      </p>
-                    </div>
+                    <DisplayTagandReadTime
+                      tags={elm.tags}
+                      readTime={elm.content}
+                    />
                     <Typography
                       component={"span"}
                       className={classes.title}
