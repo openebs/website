@@ -16,14 +16,15 @@ import {
   Tabs,
   Theme,
   Typography,
+  useMediaQuery,
   withStyles,
 } from "@material-ui/core";
 import Footer from "../../components/Footer";
 import ReactMarkdown from "react-markdown";
 import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
 import Sponsor from "../../components/Sponsor";
-import CustomTag from "../../components/CustomTag";
 import Pagination from "@material-ui/lab/Pagination";
+import DisplayTagandReadTime from "../../components/DisplayTagandReadTime";
 
 interface StyledTabProps {
   label: string;
@@ -50,7 +51,9 @@ const Blog: React.FC = () => {
   const queryAuthorName = params.get("author");
   const queryTitleName = params.get("title");
   const queryTagName = params.get("tags");
-  const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
+  const mediumViewport = useMediaQuery(
+    `(min-width:${VIEW_PORT.MOBILE_BREAKPOINT}px)`
+  );
   const itemsPerPage = 6;
   const [page, setPage] = React.useState<number>(1);
 
@@ -75,10 +78,10 @@ const Blog: React.FC = () => {
     })
   )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
-  const fetchBlogs = async() => {
-    const {default: blogs} = await import(`../../posts.json`);
+  const fetchBlogs = async () => {
+    const { default: blogs } = await import(`../../posts.json`);
     setJsonMdData(blogs);
-  }
+  };
 
   useEffect(() => {
     fetchBlogs();
@@ -138,7 +141,7 @@ const Blog: React.FC = () => {
                       display: "none",
                     },
                   }}
-                  orientation={mobileBreakpoint ? "horizontal" : "vertical"}
+                  orientation={mediumViewport ? "horizontal" : "vertical"}
                 >
                   <StyledTab
                     label={"All(" + totalBlogCount + ")"}
@@ -194,7 +197,10 @@ const Blog: React.FC = () => {
                               image={`/blog/images/${elm.slug}.png`}
                             />
                             <CardContent>
-                              <CustomTag blogLabel={elm.tags} />
+                              <DisplayTagandReadTime
+                                tags={elm.tags}
+                                readTime={elm.content}
+                              />
                               <Typography
                                 component={"span"}
                                 variant={"body2"}
@@ -321,7 +327,10 @@ const Blog: React.FC = () => {
                               image={`/blog/images/${elm.slug}.png`}
                             />
                             <CardContent>
-                              <CustomTag blogLabel={elm.tags} />
+                              <DisplayTagandReadTime
+                                tags={elm.tags}
+                                readTime={elm.content}
+                              />
                               <span
                                 className={classes.title}
                                 color="textSecondary"

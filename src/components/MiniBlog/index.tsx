@@ -18,8 +18,8 @@ import {
 } from "@material-ui/core";
 import ReactMarkdown from "react-markdown";
 import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
-import CustomTag from "../CustomTag";
 import Slider from "react-slick";
+import DisplayTagandReadTime from "../DisplayTagandReadTime";
 
 interface StyledTabProps {
   label: string;
@@ -43,7 +43,6 @@ const MiniBlog: React.FC = () => {
   const [jsonMdData, setJsonMdData] = useState<any>();
   const [value, setValue] = React.useState("all");
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
-
   const SampleNextArrow = (props: any) => {
     const { className, style, onClick } = props;
     return (
@@ -97,10 +96,10 @@ const MiniBlog: React.FC = () => {
     })
   )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
-  const fetchBlogs = async() => {
-    const {default: blogs} = await import(`../../posts.json`);
+  const fetchBlogs = async () => {
+    const { default: blogs } = await import(`../../posts.json`);
     setJsonMdData(blogs);
-  }
+  };
 
   useEffect(() => {
     fetchBlogs();
@@ -215,7 +214,10 @@ const MiniBlog: React.FC = () => {
                     image={`/blog/images/${elm.slug}.png`}
                   />
                   <CardContent>
-                    <CustomTag blogLabel={elm.tags} />
+                    <DisplayTagandReadTime
+                      tags={elm.tags}
+                      readTime={elm.content}
+                    />
                     <Typography
                       component={"span"}
                       className={classes.title}
