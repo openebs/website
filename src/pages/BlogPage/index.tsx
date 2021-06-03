@@ -7,22 +7,20 @@ import Footer from "../../components/Footer";
 import ReactMarkdown from "react-markdown";
 import { readingTime } from "../../utils/readingTime";
 import { useViewport } from "../../hooks/viewportWidth";
-import { VIEW_PORT } from "../../constants";
+import { SOCIAL_PLATFORMS, VIEW_PORT } from "../../constants";
 import BlogsSlider from "../../components/BlogsSlider";
 import Newsletter from "../../components/Newsletter";
 
 const BlogPage: React.FC = () => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const [metadata, setMetadata] = useState<any>();
-  const [content, setContent] = useState<string>("");
-  const [previousBlog, setPreviousBlog] = useState<any>();
-  const [nextBlog, setNextBlog] = useState<any>();
-  const [currentBlogDetails, setCurrentBlogDetails] = useState<any>();
+
+  const [previousBlog, setPreviousBlog] = useState<any>({});
+  const [nextBlog, setNextBlog] = useState<any>({});
+  const [currentBlogDetails, setCurrentBlogDetails] = useState<any>({});
   const [recommendedBlogs, setRecommendedBlogs] = useState<any[]>([]);
+
   const queryBlogName = useQuery();
-  const axios = require('axios');
-  const parseMD = require('parse-md').default
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
   
@@ -35,16 +33,6 @@ const BlogPage: React.FC = () => {
       setPreviousBlog(posts_json?.filter((blog: { id: number; }) => blog?.id === currentBlog?.id-1)[0]);
       setNextBlog(posts_json?.filter((blog: { id: number; }) => blog?.id === currentBlog?.id+1)[0]);
       setCurrentBlogDetails(currentBlog);
-    }
-  
-    const fetchBlogContent=async()=>{
-      const {default: URL} = await import(`../../blogs/${queryBlogName}.md`)
-      axios.get(URL)
-      .then(function (response: any) {
-        const { metadata, content } = parseMD(response.data)
-        setMetadata(metadata);
-        setContent(content);
-      })
     }
   
     const filterRecommendedBlogs=async()=>{
@@ -65,7 +53,7 @@ const BlogPage: React.FC = () => {
         let filteredBlogs = blogs?.filter(blog => (blog.author === currentBlog.author) || (blog?.tags.split(",")).some((tag) => currentBlog.tags.includes(tag)));
         recommendedBlogs = recommendedBlogs?.concat(filteredBlogs);
         if(recommendedBlogs?.length<minimumRecommededBlogs){
-          const getRandomBlogs = (arr: { title: string; author: string; date: string; tags: string; content: string; id: number; slug: string; }[],count: number) => {
+          const getRandomBlogs = (arr: { title: string; author: string; author_info: string; date: string; tags: string; content: string; id: number; slug: string; }[],count: number) => {
             let _arr = [...arr];
             return[...Array(count)].map( ()=> _arr.splice(Math.floor(Math.random() * _arr.length), 1)[0] ); 
           }
@@ -79,42 +67,41 @@ const BlogPage: React.FC = () => {
       setRecommendedBlogs(recommendedBlogs);
     }
     getBlogsData();
-    fetchBlogContent();
     filterRecommendedBlogs();
-  },[axios, parseMD, queryBlogName]);
+  },[queryBlogName]);
 
   const socialLinks = [
     {
-        label: "Facebook",
+        label: SOCIAL_PLATFORMS.FACEBOOK,
         imgURL: "../Images/logos/facebook_blue.svg",
     },
     {
-        label: "Slack",
+        label: SOCIAL_PLATFORMS.SLACK,
         imgURL: "../Images/logos/slack_blue.svg",
     },
     {
-        label: "LinkedIn",
+        label: SOCIAL_PLATFORMS.LINKEDIN,
         imgURL: "../Images/logos/linkedin_blue.svg",
     },
     {
-        label: "Twitter",
+        label: SOCIAL_PLATFORMS.TWITTER,
         imgURL: "../Images/logos/twitter_blue.svg",
     },
   ];
 
   const handleSocialSharing = (label:string) => {
     switch(label) {
-      case "Facebook":
+      case SOCIAL_PLATFORMS.FACEBOOK:
         window.open(
           `http://www.facebook.com/sharer.php?u=${currentLocation}`, "_blank");
         break;
-      case "LinkedIn":
+      case SOCIAL_PLATFORMS.LINKEDIN:
         window.open(
-          `https://www.linkedin.com/shareArticle?mini=true&amp;url=${currentLocation}&amp;title=${metadata.title}`, "_blank");
+          `https://www.linkedin.com/shareArticle?mini=true&amp;url=${currentLocation}&amp;title=${currentBlogDetails.title}`, "_blank");
         break;
-      case "Twitter":
+      case SOCIAL_PLATFORMS.TWITTER:
         window.open(
-          `https://twitter.com/intent/tweet?original_referer=${currentLocation}&amp;text=${metadata.title};url=${currentLocation}`, "_blank");
+          `https://twitter.com/intent/tweet?original_referer=${currentLocation}&amp;text=${currentBlogDetails.title};url=${currentLocation}`, "_blank");
         break;
     }
   };
@@ -127,7 +114,7 @@ const BlogPage: React.FC = () => {
         justify="center"
         alignItems="center"
       >
-        {content ? (
+        {currentBlogDetails?.content ? (
           <Grid item xs={12}>
             <div className={classes.blogHeader}>
               {(width > mobileBreakpoint) &&
@@ -135,22 +122,24 @@ const BlogPage: React.FC = () => {
                   <Link color="inherit" href="/blog">
                     {t('blog.blog')}
                   </Link>
-                  <Link color="inherit" href={`/blog/${currentBlogDetails.slug}`}>
-                      {metadata.title}
+                  <Link color="inherit" href={`/blog/${currentBlogDetails?.slug}`}>
+                      {currentBlogDetails?.title}
                   </Link>
                 </Breadcrumbs>
               }
-            <ReactMarkdown children={metadata.title} className={classes.blogTitle} />
+            <ReactMarkdown children={currentBlogDetails?.title} className={classes.blogTitle} />
               <div>
               <div className={classes.container}>
                   
                     <div className={classes.author}>
-                      <div className={classes.authorImg}>
-                        <img src={`../Images/blog/authors/${metadata.author}.png`} alt={metadata.author}></img>
+                      <div className={classes.authorImgWrapper}>
+                        <img src={`../Images/blog/authors/${currentBlogDetails?.author.toLowerCase()
+                                    .replace(/[^\w ]+/g,'')
+                                    .replace(/ +/g,'-')}.png`} className={classes.authorImg} alt={currentBlogDetails?.author}></img>
                       </div>
                       <div className={classes.date}>
-                        <ReactMarkdown children={metadata.author} className={classes.authorName} />
-                        <div className={classes.dateAndTimeWrapper}><ReactMarkdown children={metadata.date} />  / {readingTime(content)} {t('blog.minToRead')}</div>
+                        <ReactMarkdown children={currentBlogDetails?.author} className={classes.authorName} />
+                        <div className={classes.dateAndTimeWrapper}><ReactMarkdown children={currentBlogDetails?.date} />  / {readingTime(currentBlogDetails?.content)} {t('blog.minToRead')}</div>
                       </div>
                     </div>
                   
@@ -160,7 +149,7 @@ const BlogPage: React.FC = () => {
                       <div className={classes.socialIconsWrapper}>
                           {socialLinks.map(({ label, imgURL }) => {
                               return (   
-                                (label === "Slack") ? 
+                                (label === SOCIAL_PLATFORMS.SLACK) ? 
                                   <div className={["addthis_inline_share_toolbox", classes.socialIconButton].join(' ')} key={label}></div>
                                   :
                                   <Link className={classes.socialIconButton} key={label} onClick={(() => handleSocialSharing(label))}>
@@ -176,8 +165,8 @@ const BlogPage: React.FC = () => {
             </div>
 
             <div className={classes.blogBody}>
-              <img src={`/Images/blog/${queryBlogName}.png`} alt={metadata.title} className={classes.blogImg}></img>
-              <ReactMarkdown children={content} />
+              <img src={`/Images/blog/${queryBlogName}.png`} alt={currentBlogDetails?.title} className={classes.blogImg}></img>
+              <ReactMarkdown children={currentBlogDetails?.content} />
             </div>
             
           </Grid>
@@ -194,7 +183,7 @@ const BlogPage: React.FC = () => {
               <div className={classes.socialIconsWrapper}>
                   {socialLinks.map(({ label, imgURL }) => {
                       return (   
-                        (label === "Slack") ? 
+                        (label === SOCIAL_PLATFORMS.SLACK) ? 
                           <div className={["addthis_inline_share_toolbox", classes.socialIconButton].join(' ')} key={label}></div>
                           :
                           <Link className={classes.socialIconButton} key={label} onClick={(() => handleSocialSharing(label))}>

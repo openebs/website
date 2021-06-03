@@ -54,8 +54,15 @@ const useStyles = makeStyles((theme: Theme) => ({
       textAlign: 'center'
     },
   },
+  authorImgWrapper: {
+    marginRight: theme.spacing(1),
+    width: '48px',
+    height: '48px',
+  },
   authorImg: {
-    marginRight: theme.spacing(1)
+    width: '100%',
+    height: '100%',
+    borderRadius: '50%'
   },
   authorName: {
     fontSize: '16px',
@@ -140,6 +147,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& h2': {
       fontSize: '32px', 
       lineHeight: '50px'
+    },
+    '& code':{
+      overflow: 'auto',
+      borderRadius: '4px',
+      display: 'block',
+      overflowX: 'auto',
+      padding: '1em',
+      background: theme.palette.grayishGreen.dark,
+      color: theme.palette.grayishGreen.light
     },
     [theme.breakpoints.down('md')]: {
       padding: theme.spacing(8, 20),

@@ -39,3 +39,10 @@ export enum BLOG_KEYWORDS {
   TUTORIALS = 'tutorials',
   SOLUTIONS = 'solutions',
 };
+
+export enum SOCIAL_PLATFORMS { 
+  SLACK = "Slack",
+  LINKEDIN = "LinkedIn",
+  TWITTER = "Twitter",
+  FACEBOOK = "Facebook"
+};

@@ -27,7 +27,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({recommendedBlogs}) => {
     return (
       <div
         className={className}
-        style={{ ...style, display: "block" }}
+        style={{ ...style, display:"block" }}
         onClick={onClick}
       >
         <img
@@ -43,7 +43,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({recommendedBlogs}) => {
     return (
       <div
         className={className}
-        style={{ ...style, display: "block" }}
+        style={{ ...style, display:"block"}}
         onClick={onClick}
       >
         <img

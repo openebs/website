@@ -194,7 +194,7 @@ const Blog: React.FC = () => {
                           <Card className={classes.cardRoot}>
                             <CardMedia
                               className={classes.media}
-                              image={`/blog/images/${elm.slug}.png`}
+                              image={`/Images/blog/${elm.slug}.png`}
                             />
                             <CardContent>
                               <DisplayTagandReadTime
@@ -222,7 +222,9 @@ const Blog: React.FC = () => {
                               <span className={classes.author}>
                                 <Avatar
                                   alt="author1"
-                                  src={`/blog/authors/${elm.author}.png`}
+                                  src={`../Images/blog/authors/${elm.author.toLowerCase()
+                                    .replace(/[^\w ]+/g,'')
+                                    .replace(/ +/g,'-')}.png`}
                                   className={classes.small}
                                 />
                                 <Button
@@ -250,7 +252,7 @@ const Blog: React.FC = () => {
                                 variant="text"
                                 className={classes.cardActionButton}
                                 onClick={() =>
-                                  window.location.assign(`/blog/${elm.blog}`)
+                                  window.location.assign(`/blog/${elm.slug}`)
                                 }
                               >
                                 {t("blog.read")}
@@ -349,7 +351,9 @@ const Blog: React.FC = () => {
                               <span className={classes.author}>
                                 <Avatar
                                   alt={elm.author}
-                                  src={`/blog/authors/${elm.author}.png`}
+                                  src={`../Images/blog/authors/${elm.author.toLowerCase()
+                                    .replace(/[^\w ]+/g,'')
+                                    .replace(/ +/g,'-')}.png`}
                                   className={classes.small}
                                 />
                                 <Typography
