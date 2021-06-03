@@ -26,6 +26,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
+  wrapperBlock: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   footer: {
     gridArea: "footer",
     width: "100%",
@@ -79,8 +84,15 @@ const useStyles = makeStyles((theme: Theme) => ({
   linkBtn: {
     textDecoration: "none !important",
   },
-  arrow: {
-    marginLeft: theme.spacing(1),
+  readTime: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    color: theme.palette.primary.light,
+    paddingRight: theme.spacing(4),
+  },
+  rightSpacing: {
+    marginRight: theme.spacing(1),
   },
   tag: {
     fontSize: 16,

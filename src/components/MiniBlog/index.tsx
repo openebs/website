@@ -43,7 +43,7 @@ const MiniBlog: React.FC = () => {
   const [jsonMdData, setJsonMdData] = useState<any>();
   const [value, setValue] = React.useState("all");
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
-
+  const readingTime = require("reading-time");
   const SampleNextArrow = (props: any) => {
     const { className, style, onClick } = props;
     return (
@@ -97,10 +97,10 @@ const MiniBlog: React.FC = () => {
     })
   )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
-  const fetchBlogs = async() => {
-    const {default: blogs} = await import(`../../posts.json`);
+  const fetchBlogs = async () => {
+    const { default: blogs } = await import(`../../posts.json`);
     setJsonMdData(blogs);
-  }
+  };
 
   useEffect(() => {
     fetchBlogs();
@@ -208,6 +208,7 @@ const MiniBlog: React.FC = () => {
             ]}
           >
             {filteredData.map((elm: any) => {
+               const estimateTime = readingTime(elm.content);
               return (
                 <Card key={elm.id} className={classes.cardRoot}>
                   <CardMedia
@@ -215,7 +216,17 @@ const MiniBlog: React.FC = () => {
                     image={`/blog/images/${elm.slug}.png`}
                   />
                   <CardContent>
-                    <CustomTag blogLabel={elm.tags} />
+                    <div className={classes.wrapperBlock}>
+                      <CustomTag blogLabel={elm.tags} />
+                      <p className={classes.readTime}>
+                        <img
+                          src="../Images/svg/time-five.svg"
+                          alt={t("header.submitAlt")}
+                          className={classes.rightSpacing}
+                        />
+                        {estimateTime.text}
+                      </p>
+                    </div>
                     <Typography
                       component={"span"}
                       className={classes.title}

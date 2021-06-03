@@ -16,6 +16,7 @@ import {
   Tabs,
   Theme,
   Typography,
+  useMediaQuery,
   withStyles,
 } from "@material-ui/core";
 import Footer from "../../components/Footer";
@@ -50,7 +51,9 @@ const Blog: React.FC = () => {
   const queryAuthorName = params.get("author");
   const queryTitleName = params.get("title");
   const queryTagName = params.get("tags");
-  const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
+  const mediumViewport = useMediaQuery(
+    `(min-width:${VIEW_PORT.MOBILE_BREAKPOINT}px)`
+  );
   const itemsPerPage = 6;
   const [page, setPage] = React.useState<number>(1);
 
@@ -75,10 +78,12 @@ const Blog: React.FC = () => {
     })
   )((props: StyledTabProps) => <Tab disableRipple {...props} />);
 
-  const fetchBlogs = async() => {
-    const {default: blogs} = await import(`../../posts.json`);
+  const fetchBlogs = async () => {
+    const { default: blogs } = await import(`../../posts.json`);
     setJsonMdData(blogs);
-  }
+  };
+
+  const readingTime = require("reading-time");
 
   useEffect(() => {
     fetchBlogs();
@@ -138,7 +143,7 @@ const Blog: React.FC = () => {
                       display: "none",
                     },
                   }}
-                  orientation={mobileBreakpoint ? "horizontal" : "vertical"}
+                  orientation={mediumViewport ? "horizontal" : "vertical"}
                 >
                   <StyledTab
                     label={"All(" + totalBlogCount + ")"}
@@ -180,6 +185,7 @@ const Blog: React.FC = () => {
                 ? filteredData
                     .slice((page - 1) * itemsPerPage, page * itemsPerPage)
                     .map((elm: any) => {
+                      const estimateTime = readingTime(elm.content);
                       return (
                         <Grid
                           item
@@ -194,7 +200,17 @@ const Blog: React.FC = () => {
                               image={`/blog/images/${elm.slug}.png`}
                             />
                             <CardContent>
-                              <CustomTag blogLabel={elm.tags} />
+                              <div className={classes.wrapperBlock}>
+                                <CustomTag blogLabel={elm.tags} />
+                                <p className={classes.readTime}>
+                                  <img
+                                    src="../Images/svg/time-five.svg"
+                                    alt={t("header.submitAlt")}
+                                    className={classes.rightSpacing}
+                                  />
+                                  {estimateTime.text}
+                                </p>
+                              </div>
                               <Typography
                                 component={"span"}
                                 variant={"body2"}
@@ -281,7 +297,7 @@ const Blog: React.FC = () => {
               <p
                 className={classes.authorURL}
               >{`/blog/${queryTagName}/${queryTitleName}/${queryAuthorName}`}</p>
-              <div className={classes.authorWrapper}>
+              <div className={classes.wrapper}>
                 <Avatar
                   alt={queryAuthorName ? queryAuthorName : ""}
                   src={`/blog/authors/${
@@ -307,6 +323,7 @@ const Blog: React.FC = () => {
                 ? filteredAuthorData
                     .slice((page - 1) * itemsPerPage, page * itemsPerPage)
                     .map((elm: any) => {
+                      const estimateTime = readingTime(elm.content);
                       return (
                         <Grid
                           item
@@ -321,7 +338,17 @@ const Blog: React.FC = () => {
                               image={`/blog/images/${elm.slug}.png`}
                             />
                             <CardContent>
-                              <CustomTag blogLabel={elm.tags} />
+                              <div className={classes.wrapperBlock}>
+                                <CustomTag blogLabel={elm.tags} />
+                                <p className={classes.readTime}>
+                                  <img
+                                    src="../Images/svg/time-five.svg"
+                                    alt={t("header.submitAlt")}
+                                    className={classes.rightSpacing}
+                                  />
+                                  {estimateTime.text}
+                                </p>
+                              </div>
                               <span
                                 className={classes.title}
                                 color="textSecondary"
@@ -336,7 +363,7 @@ const Blog: React.FC = () => {
                                 />
                               </span>
                             </CardContent>
-                            <CardActions className={classes.actionWrapper}>
+                            <CardActions className={classes.authorWrapper}>
                               <span className={classes.author}>
                                 <Avatar
                                   alt={elm.author}
