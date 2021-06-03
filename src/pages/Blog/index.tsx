@@ -297,7 +297,7 @@ const Blog: React.FC = () => {
               <p
                 className={classes.authorURL}
               >{`/blog/${queryTagName}/${queryTitleName}/${queryAuthorName}`}</p>
-              <div className={classes.wrapper}>
+              <div className={classes.authorWrapper}>
                 <Avatar
                   alt={queryAuthorName ? queryAuthorName : ""}
                   src={`/blog/authors/${
@@ -363,7 +363,7 @@ const Blog: React.FC = () => {
                                 />
                               </span>
                             </CardContent>
-                            <CardActions className={classes.authorWrapper}>
+                            <CardActions className={classes.actionWrapper}>
                               <span className={classes.author}>
                                 <Avatar
                                   alt={elm.author}
