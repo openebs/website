@@ -79,9 +79,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   linkBtn: {
     textDecoration: "none !important",
   },
-  arrow: {
-    marginLeft: theme.spacing(1),
-  },
   tag: {
     fontSize: 16,
     width: "fit-content",
