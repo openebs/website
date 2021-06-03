@@ -53,20 +53,24 @@ const getPosts = () => {
                 const metaDataIndices = lines.reduce(getMetaDataIndices, []);
                 const metadata = parseMetaData({ lines, metaDataIndices });
                 const content = parseContent({ lines, metaDataIndices });
-                post = {
-                    id: index + 1,
-                    title: metadata.title || 'No title',
-                    author: metadata.author || 'No author',
-                    author_info: metadata.author_info || 'No author information',
-                    date: metadata.date || 'No date available',
-                    tags: metadata.tags || 'No tags available',
-                    content: content || 'No content available',
-                };
+                
+                if (metadata){
+                    post = {
+                        id: index + 1,
+                        title: metadata.title || 'No title',
+                        author: metadata.author || 'No author',
+                        author_info: metadata.author_info || 'No author information',
+                        date: metadata.date || 'No date available',
+                        tags: metadata.tags || 'No tags available',
+                        content: content || 'No content available',
+                    };
+                }
+                
 
                 postList.push(post);
                 if (postList.length === files.length) {
                     let sortedJSON = sortAccrodingtoDate(postList);
-                    let sortedJSONWithID = sortedJSON.map(item => ({ ...item, id: sortedJSON.indexOf(item) + 1, slug: convertTitleToSlug(item.title) }))
+                    let sortedJSONWithID = sortedJSON.map(item => ({...item, id: sortedJSON.indexOf(item) + 1, slug: convertTitleToSlug(item.title)}))
                     let data = JSON.stringify(sortedJSONWithID);
                     fs.writeFileSync('src/posts.json', data);
                 }

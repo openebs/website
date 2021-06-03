@@ -12,7 +12,7 @@ import Faq from './pages/Faq';
 import Support from './pages/Support';
 import Community from './pages/Community';
 import Blog from './pages/Blog';
-
+import BlogPage from './pages/BlogPage';
 
 const Routes: React.FC = () => {
   return (
@@ -30,6 +30,7 @@ const Routes: React.FC = () => {
             <Route exact path='/community' component={Community} />
             <Route exact path='/commercial-support' component={Support} />
             <Route exact path='/blog' component={Blog} />
+            <Route exact path='/blog/:blogName' component={BlogPage} />
           </Switch>
         </Scaffold>
       </div>

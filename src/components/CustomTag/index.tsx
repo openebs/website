@@ -1,7 +1,7 @@
 import { Typography } from "@material-ui/core";
 import React, { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-// import { BLOG_KEYWORDS } from "../../constants";
+import { BLOG_KEYWORDS } from "../../constants";
 import useStyles from "./styles";
 
 interface blogTitleProps {
@@ -62,15 +62,15 @@ const CustomTag: React.FC<blogTitleProps> = ({ blogLabel }) => {
   // Switch statements to handle props based on the respective tags
   const handleTags = () => {
     switch (blogLabel) {
-      case "chaosengineering":
+      case BLOG_KEYWORDS.CHAOS_ENGINEERING:
         return chaosEngineering();
-      case "devops":
+      case BLOG_KEYWORDS.DEVOPS:
         return devOps();
-      case "tutorials":
+      case BLOG_KEYWORDS.TUTORIALS:
         return tutorials();
-      case "openenbs":
+      case BLOG_KEYWORDS.OPENEBS:
         return openEBS();
-      case "solutions":
+      case BLOG_KEYWORDS.SOLUTIONS:
         return solutions();
       default:
         return secondary();

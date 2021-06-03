@@ -58,6 +58,7 @@ const theme = createTheme({
     grayishGreen: {
       main: "#5A6F74",
       light: "#D3D7D8",
+      dark: "#273239",
     },
   },
   overrides: {
