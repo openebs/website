@@ -2,7 +2,14 @@ import React, {Suspense} from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import TagManager from 'react-gtm-module'
 import './i18n';
+
+const tagManagerArgs = {
+  gtmId: 'GTM-KD8TCG4'
+}
+
+TagManager.initialize(tagManagerArgs)
 
 ReactDOM.render(
   <React.StrictMode>
