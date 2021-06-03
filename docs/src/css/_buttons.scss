@@ -1,0 +1,127 @@
+.doc-button {
+  display: inline-block;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: $input-btn-padding-y $input-btn-padding-x;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: 0.15s ease-in-out;
+  &.doc-button-curved {
+    border-radius: 2rem;
+  }
+}
+
+.doc-button:hover,
+.doc-button:focus {
+  text-decoration: none;
+}
+
+.doc-button:focus,
+.doc-button.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba($primary-button-color, 0.25);
+}
+
+.doc-button.disabled,
+.doc-button:disabled {
+  opacity: 0.65;
+}
+
+.doc-button:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+
+a.doc-button.disabled,
+fieldset:disabled a.doc-button {
+  pointer-events: none;
+}
+
+.doc-button-primary {
+  color: $white;
+  background-color: $primary-button-color;
+  border-color: $primary-button-color;
+
+  &:hover {
+    color: $white;
+    background-color: $primary-button-hover-color;
+    border-color: $primary-button-hover-color;
+  }
+
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 0.2rem rgba($primary-button-hover-color, 0.5);
+  }
+
+  &.disabled,
+  &:disabled {
+    color: $white;
+    background-color: $primary-button-disabled-color;
+    border-color: $primary-button-disabled-color;
+  }
+
+  &:not(:disabled):not(.disabled):active:focus,
+  &:not(:disabled):not(.disabled).active:focus {
+    box-shadow: 0 0 0 0.2rem rgba($primary-button-color, 0.5);
+  }
+}
+
+.doc-button-outlined {
+  background-color: $white;
+  border-color: $primary-button-color;
+  color: $primary-button-color;
+  border-width: 2px;
+  &:hover {
+    background-color: $white;
+    color: $primary-button-hover-color;
+    border-color: $primary-button-hover-color;
+  }
+
+  &:focus,
+  &.focus {
+    box-shadow: 0 0 0 0.2rem rgba($primary-button-hover-color, 0.5);
+  }
+
+  &.disabled,
+  &:disabled {
+    background-color: $white;
+    color: $primary-button-disabled-color;
+    border-color: $primary-button-disabled-color;
+  }
+
+  &:not(:disabled):not(.disabled):active:focus,
+  &:not(:disabled):not(.disabled).active:focus {
+    box-shadow: 0 0 0 0.2rem rgba($primary-button-color, 0.5);
+  }
+}
+
+.doc-button-secondary{
+  color: #2A140B;
+  background-color: $white;
+  border-color: #2A140B;
+}
+
+.doc-button-secondary-light{
+  border-width: 1px;
+}
+
+.doc-button-align-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+//button sizes
+
+.doc-button-lg {
+  padding: $input-btn-padding-y-lg $input-btn-padding-x-lg;
+}
+.doc-button-sm {
+  padding: $input-btn-padding-y-sm $input-btn-padding-x-sm;
+}

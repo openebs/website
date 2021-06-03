@@ -1,0 +1,54 @@
+h1 {
+  font-size: 42px;
+  text-align: left;
+  position: relative;
+  padding-bottom: 1rem;
+  color: $heading-color;
+  font-weight: 700;
+  // &::after {
+  //   content: "";
+  //   display: block;
+  //   width: 80%;
+  //   height: 0.1rem;
+  //   bottom: 0;
+  //   background: rgb(31, 165, 136);
+  // }
+}
+
+h2 {
+  color: $heading-color;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+h4 {
+  color: $heading-color;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+p,
+span,
+li {
+  color: $paragraph-color;
+  font-size: 16px;
+}
+
+thead {
+  th,
+  td {
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+}
+
+tbody {
+  td {
+    font-size: 14px;
+    color: $paragraph-color;
+  }
+}
+
+header .docTitle_src-theme-DocItem- {
+  font-size: 42px;
+}

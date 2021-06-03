@@ -1,0 +1,18 @@
+.dropDownWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.select {
+  border-radius: 4px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  background-color: #62a7bd;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+.dropdown{
+  width: 130px;
+}
