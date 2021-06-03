@@ -203,7 +203,7 @@ const Blog: React.FC = () => {
                                 <p className={classes.readTime}>
                                   <img
                                     src="../Images/svg/time-five.svg"
-                                    alt={t("header.submitAlt")}
+                                    alt={t("blog.readTime")}
                                     className={classes.rightSpacing}
                                   />
                                   {`${readingTime(elm.content)} min read`}
@@ -340,7 +340,7 @@ const Blog: React.FC = () => {
                                 <p className={classes.readTime}>
                                   <img
                                     src="../Images/svg/time-five.svg"
-                                    alt={t("header.submitAlt")}
+                                    alt={t("blog.readTime")}
                                     className={classes.rightSpacing}
                                   />
                                   {`${readingTime(elm.content)} min read`}
