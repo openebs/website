@@ -25,6 +25,7 @@ import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
 import Sponsor from "../../components/Sponsor";
 import CustomTag from "../../components/CustomTag";
 import Pagination from "@material-ui/lab/Pagination";
+import { readingTime } from "../../utils/readingTime";
 
 interface StyledTabProps {
   label: string;
@@ -82,8 +83,6 @@ const Blog: React.FC = () => {
     const { default: blogs } = await import(`../../posts.json`);
     setJsonMdData(blogs);
   };
-
-  const readingTime = require("reading-time");
 
   useEffect(() => {
     fetchBlogs();
@@ -185,7 +184,6 @@ const Blog: React.FC = () => {
                 ? filteredData
                     .slice((page - 1) * itemsPerPage, page * itemsPerPage)
                     .map((elm: any) => {
-                      const estimateTime = readingTime(elm.content);
                       return (
                         <Grid
                           item
@@ -208,7 +206,7 @@ const Blog: React.FC = () => {
                                     alt={t("header.submitAlt")}
                                     className={classes.rightSpacing}
                                   />
-                                  {estimateTime.text}
+                                  {`${readingTime(elm.content)} min read`}
                                 </p>
                               </div>
                               <Typography
@@ -323,7 +321,6 @@ const Blog: React.FC = () => {
                 ? filteredAuthorData
                     .slice((page - 1) * itemsPerPage, page * itemsPerPage)
                     .map((elm: any) => {
-                      const estimateTime = readingTime(elm.content);
                       return (
                         <Grid
                           item
@@ -346,7 +343,7 @@ const Blog: React.FC = () => {
                                     alt={t("header.submitAlt")}
                                     className={classes.rightSpacing}
                                   />
-                                  {estimateTime.text}
+                                  {`${readingTime(elm.content)} min read`}
                                 </p>
                               </div>
                               <span

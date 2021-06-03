@@ -20,6 +20,7 @@ import ReactMarkdown from "react-markdown";
 import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
 import CustomTag from "../CustomTag";
 import Slider from "react-slick";
+import { readingTime } from "../../utils/readingTime";
 
 interface StyledTabProps {
   label: string;
@@ -43,7 +44,6 @@ const MiniBlog: React.FC = () => {
   const [jsonMdData, setJsonMdData] = useState<any>();
   const [value, setValue] = React.useState("all");
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
-  const readingTime = require("reading-time");
   const SampleNextArrow = (props: any) => {
     const { className, style, onClick } = props;
     return (
@@ -208,7 +208,6 @@ const MiniBlog: React.FC = () => {
             ]}
           >
             {filteredData.map((elm: any) => {
-               const estimateTime = readingTime(elm.content);
               return (
                 <Card key={elm.id} className={classes.cardRoot}>
                   <CardMedia
@@ -224,7 +223,7 @@ const MiniBlog: React.FC = () => {
                           alt={t("header.submitAlt")}
                           className={classes.rightSpacing}
                         />
-                        {estimateTime.text}
+                       {`${readingTime(elm.content)} min read`}
                       </p>
                     </div>
                     <Typography
