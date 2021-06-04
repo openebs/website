@@ -109,24 +109,22 @@ const MiniBlog: React.FC = () => {
     setValue(newValue);
   };
 
-  const totalBlogCount = (jsonMdData || []).filter(
+ const totalBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs
   ).length;
   const chaosBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.CHAOS_ENGINEERING
-  ).length;
+    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.CHAOS_ENGINEERING) > -1).length;
   const openebsBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.OPENEBS
-  ).length;
+    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.OPENEBS) > -1).length;
+
   const devopsBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.DEVOPS
-  ).length;
+    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.DEVOPS) > -1).length;
+
   const tutorialBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.TUTORIALS
-  ).length;
+    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.TUTORIALS) > -1).length;
+
   const solutionBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags === BLOG_KEYWORDS.SOLUTIONS
-  ).length;
+    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.SOLUTIONS) > -1).length;
 
   const filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
     if (value !== "all") {

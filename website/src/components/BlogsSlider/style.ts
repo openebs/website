@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingTop: "56.25%",
     borderRadius: '24px 24px 24px 0px',
   },
+  tagsWrapper: {
+    display: 'flex',
+    gap: '12px'
+  },
   title: {
     fontSize: 22,
     fontWeight: 700,

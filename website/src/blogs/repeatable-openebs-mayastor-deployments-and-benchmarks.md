@@ -2,7 +2,7 @@
 title: Repeatable OpenEBS Mayastor deployments and benchmarks
 author: OPENEBS
 author_info: 
-tags: mayastor
+tags: tutorials openebs
 date: 22-03-2021
 --- 
 

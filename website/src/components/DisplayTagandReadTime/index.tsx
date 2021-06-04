@@ -5,7 +5,7 @@ import useStyles from "./styles";
 import { readingTime } from "../../utils/readingTime";
 
 interface displayTagandReadTimeProps {
-  tags: string;
+  tags: Array<string>;
   readTime: string;
 }
 
@@ -16,11 +16,14 @@ const DisplayTagandReadTime: React.FC<displayTagandReadTimeProps> = ({
 }) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const getTags = tags.map((tag) =>
+    <CustomTag blogLabel={tag} key={tag} />
+  );
   const displayTagandTimeRequiredToRead = () => {
     return (
       <>
         <div className={classes.wrapperBlock}>
-          <CustomTag blogLabel={tags} />
+            {getTags}
           <p className={classes.readTime}>
             <img
               src="../Images/svg/time-five.svg"
