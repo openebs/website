@@ -1,6 +1,6 @@
 [build]
   base = "website/"
-  publish = "website/build/"
+  publish = "build/"
   command = "npm run build"
   
 #https://stackoverflow.com/questions/58065603/netlify-renders-404-on-page-refresh-using-react-and-react-router 
