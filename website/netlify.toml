@@ -7,7 +7,7 @@
 
 [[redirects]]
   from = "/docs/*"
-  to = "https://<docs-url>/:splat"
+  to = "https://relaxed-hodgkin-06d937.netlify.app/:splat"
   status = 200
   force = true
 
