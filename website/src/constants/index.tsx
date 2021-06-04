@@ -19,6 +19,10 @@ export enum EXTERNAL_LINKS {
   SUBSCRIBE_NEWSLETTER='https://lists.cncf.io/g/cncf-openebs-announcements',
 };
 
+export const API = {
+  GITHUB_CONTRIBUTORS: 'https://api.github.com/repos/openebs/openebs-docs/contributors?q=contributions&order=desc'
+}
+
 export enum VIEW_PORT {
   MOBILE_BREAKPOINT = 760,
   TABLET_BREAKPOINT = 768,
