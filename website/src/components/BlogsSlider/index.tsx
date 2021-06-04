@@ -103,7 +103,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({recommendedBlogs}) => {
                     className={classes.cardActionButton}
                     onClick={() =>
                       window.location.assign(
-                        `/blog/${elm.author}/${elm.blog}`
+                        `/blog/${elm.slug}`
                       )
                     }
                   >
