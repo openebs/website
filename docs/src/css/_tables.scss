@@ -1,0 +1,48 @@
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  background-color: $table-bg;
+  border-collapse: collapse;
+  tr {
+    border: none;
+  }
+  th,
+  td {
+    padding: $table-cell-padding;
+    vertical-align: top;
+    border: none;
+    border-right: $table-border-width solid $table-border-color;
+    vertical-align: middle;
+    &:last-child {
+      border: none;
+    }
+  }
+
+  thead {
+    th,
+    td {
+      text-align: left;
+      vertical-align: middle;
+      color: $table-dark-color;
+      background-color: $table-dark-bg;
+      border-color: $table-dark-border-color;
+      border-bottom: none;
+      border-bottom-width: (2 * $table-border-width);
+    }
+  }
+
+  tbody tr:nth-of-type(odd) {
+    background-color: $table-accent-bg;
+  }
+  tbody tr:nth-child(2n) {
+    background-color: $white !important;
+  }
+  tbody + tbody {
+    border-top: (2 * $table-border-width) solid $table-border-color;
+  }
+
+  table {
+    background-color: $body-bg;
+  }
+}

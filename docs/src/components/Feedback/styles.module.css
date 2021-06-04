@@ -1,0 +1,23 @@
+.wrapper {
+  padding: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 100%;
+  text-align: center;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 150px;
+  width: 100%;
+}
+
+@media (min-width: 980px) {
+  .wrapper {
+    max-width: 75%;
+  }
+}

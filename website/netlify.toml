@@ -1,10 +1,21 @@
 [build]
-  command = "npm run build"
+  base = "website/"
   publish = "build/"
+  command = "npm run build"
   
 #https://stackoverflow.com/questions/58065603/netlify-renders-404-on-page-refresh-using-react-and-react-router 
+
+[[redirects]]
+  from = "/docs/*"
+  to = "https://relaxed-hodgkin-06d937.netlify.app/:splat"
+  status = 200
+  force = true
+
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+
   
