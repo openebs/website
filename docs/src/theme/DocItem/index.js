@@ -77,20 +77,18 @@ function DocItem(props) {
                     <header>
                       <h1 className={styles.docTitle}>{title}</h1>
                     </header>
-                    {width > 767 ? (
+                    {(width > 767) && (
                       <div className="action-buttons">
                         <EditThisPage editUrl={editUrl} />
                         <VersionDropdown />
                       </div>
-                    ) : (
-                      ""
                     )}
                   </div>
                 </>
               )}
-              <div className={`searhBar ${width < 767 ? "wt_versionDropdown" : ""}`}>
+              <div className={`searhBar ${width < 767 && "wt_versionDropdown"}`}>
                 <Search />
-                {width < 767 ? <VersionDropdown /> : ""}
+                {(width < 767) && <VersionDropdown />}
               </div>
               <div className="markdown">
                 <DocContent />
