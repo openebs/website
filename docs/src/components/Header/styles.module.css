@@ -42,7 +42,7 @@
   grid-auto-rows: auto;
   margin: auto;
   width: 100%;
-  padding: 16px 80px;
+  padding: 16px 20px;
 }
 
 .logoWrapper {
@@ -136,4 +136,16 @@
   position: absolute;
   top: 30px;
   right: 40px;
+}
+
+@media (min-width: 767px) {
+  .header {
+    padding: 16px 40px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .header {
+    padding: 16px 80px;
+  }
 }
