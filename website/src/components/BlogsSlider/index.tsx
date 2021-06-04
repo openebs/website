@@ -110,7 +110,7 @@ const getTags = (tags: Array<string>) => {
                     className={classes.cardActionButton}
                     onClick={() =>
                       window.location.assign(
-                        `/blog/${elm.author}/${elm.blog}`
+                        `/blog/${elm.slug}`
                       )
                     }
                   >
