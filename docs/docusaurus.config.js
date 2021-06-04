@@ -10,7 +10,7 @@ module.exports = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "docs/img/favicon.ico",
-  organizationName: "mayadata-io", // Usually your GitHub org/user name.
+  organizationName: "openebs", // Usually your GitHub org/user name.
   projectName: "website", // Usually your repo name.
   themeConfig: {
     colorMode: {
