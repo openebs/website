@@ -54,6 +54,11 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({recommendedBlogs}) => {
     );
   };
 
+const getTags = (tags: Array<string>) => {
+    const tagItems = tags.map((tag) => <CustomTag blogLabel={tag} key = {tag}/>);
+    return tagItems;
+}
+
   return (
     <>
     <div className={classes.sliderWrapper}>
@@ -85,7 +90,9 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({recommendedBlogs}) => {
                 image={`/Images/blog/${elm.slug}.png`}
               />
               <CardContent>
-                <CustomTag blogLabel={elm.tags} />
+                <div className = {classes.tagsWrapper}>
+                {getTags(elm.tags)}
+                </div>
                 <Typography
                   component={'span'} 
                   className={classes.title}

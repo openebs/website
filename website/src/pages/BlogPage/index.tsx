@@ -47,13 +47,13 @@ const BlogPage: React.FC = () => {
       let minimumRecommededBlogs = 6;
       const {default: blogs} = await import(`../../posts.json`);
       const currentBlog = blogs?.filter(blog => blog.slug === queryBlogName)[0];
-      let recommendedBlogs = blogs?.filter(blog => (blog.author === currentBlog.author) && (blog?.tags.split(",")).some((tag) => currentBlog.tags.includes(tag)));
+      let recommendedBlogs = blogs?.filter(blog => (blog.author === currentBlog.author) && (blog?.tags).some((tag) => currentBlog.tags.includes(tag)));
       
       if(recommendedBlogs?.length<minimumRecommededBlogs){
-        let filteredBlogs = blogs?.filter(blog => (blog.author === currentBlog.author) || (blog?.tags.split(",")).some((tag) => currentBlog.tags.includes(tag)));
+        let filteredBlogs = blogs?.filter(blog => (blog.author === currentBlog.author) || (blog?.tags).some((tag) => currentBlog.tags.includes(tag)));
         recommendedBlogs = recommendedBlogs?.concat(filteredBlogs);
         if(recommendedBlogs?.length<minimumRecommededBlogs){
-          const getRandomBlogs = (arr: { title: string; author: string; author_info: string; date: string; tags: string; content: string; id: number; slug: string; }[],count: number) => {
+          const getRandomBlogs = (arr: { title: string; author: string; author_info: string; date: string; tags: Array<string>; content: string; id: number; slug: string; }[],count: number) => {
             let _arr = [...arr];
             return[...Array(count)].map( ()=> _arr.splice(Math.floor(Math.random() * _arr.length), 1)[0] ); 
           }
