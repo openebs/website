@@ -8,7 +8,7 @@ export enum EXTERNAL_LINKS {
   CODEWAVE_SUPPORT= 'https://codewave.eu/',
   GRIDWORKZ_SUPPORT= 'https://www.gridworkz.com/',
   MAYADATA_SUPPORT= 'https://mayadata.io/',
-  OPENEBS_DOCS = 'https://docs.openebs.io/',
+  OPENEBS_DOCS = '/docs',
   OPENEBS_BLOGS = 'https://openebs.io/blog',
   OPENEBS_GET_STARTED = 'https://docs.openebs.io/docs/next/quickstart.html',
   OPENEBS_YOUTUBE_INTRO = 'https://www.youtube.com/watch?v=94SFY3xdjXs&t=1s',
