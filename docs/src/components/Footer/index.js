@@ -211,7 +211,6 @@ const FooterMobile = () => {
               <LinksGettingStarted />
             </div>
             <div className="col col-6">
-              <LinksContactUs />
               <Contributors />
             </div>
           </div>
@@ -240,7 +239,6 @@ const FooterWeb = () => {
               <SocialMedia />
             </div>
             <LinksGettingStarted />
-            <LinksContactUs />
             <Contributors />
             <FooterBottom />
           </div>

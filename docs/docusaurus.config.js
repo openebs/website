@@ -2,7 +2,7 @@
 module.exports = {
   title: "OpenEBS Docs",
   tagline: "OpenEBS Docs: Information regarding the latest releases",
-  url: "https://openebs.io",
+  url: "https://gallant-pasteur-5e438c.netlify.app/",
   baseUrl: "/docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -42,34 +42,34 @@ module.exports = {
         },
         {
           label: "Community",
-          link: "https://openebs.io/community",
+          link: "https://gallant-pasteur-5e438c.netlify.app/community",
         },
         {
           label: "FAQ",
-          link: "https://openebs.io/faq",
+          link: "https://gallant-pasteur-5e438c.netlify.app/faq",
         },
         {
           label: "Blog",
-          link: "https://openebs.io/blog",
+          link: "https://gallant-pasteur-5e438c.netlify.app/blog",
         },
         {
           label: "Commercial support",
-          link: "https://openebs.io/commercial-support",
+          link: "https://gallant-pasteur-5e438c.netlify.app/commercial-support",
         },
       ],
       contactUs: [
         {
           label: "Email us",
-          link: "https://openebs.io/email-us",
+          link: "https://gallant-pasteur-5e438c.netlify.app/email-us",
         },
         {
           label: "Feature request",
-          link: "https://openebs.io/feature-request",
+          link: "https://gallant-pasteur-5e438c.netlify.app/feature-request",
         },
       ],
       privacyPolicy: {
         label: "Privacy policy",
-        link: "https://openebs.io/privacy-policy",
+        link: "https://gallant-pasteur-5e438c.netlify.app/privacy-policy",
       },
     },
     navLinks: [
@@ -79,15 +79,15 @@ module.exports = {
       },
       {
         label: "Community",
-        link: "https://openebs.io/community",
+        link: "https://gallant-pasteur-5e438c.netlify.app/community",
       },
       {
         label: "Commercial support",
-        link: "https://openebs.io/support",
+        link: "https://gallant-pasteur-5e438c.netlify.app/support",
       },
       {
         label: "Blog",
-        link: 'https://openebs.io/blog',
+        link: 'https://gallant-pasteur-5e438c.netlify.app/blog',
       },
     ],
     socials: [
@@ -100,7 +100,7 @@ module.exports = {
       {
         label: 'Slack',
         src: '/docs/img/slack.svg',
-        link: 'https://openebs.io/community',
+        link: 'https://gallant-pasteur-5e438c.netlify.app/community',
         isExternal: false
       }
     ] 
