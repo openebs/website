@@ -141,23 +141,25 @@ const Footer: React.FC = () => {
         const [isLoaded, setIsLoaded] = useState<boolean>(false);
         const [items, setItems] = useState([]);
         //getting the top contributors from github by sending the api order as desc
+
         useEffect(() => {
-          fetch(githubApiContributors)
-            .then((res) => res?.json())
-            .then(
-              (result) => {
-                setIsLoaded(true);
-                setItems(result);
-              },
-              (error) => {
-                setIsLoaded(true);
-                console.error(error);
-              }
-            );
+           fetch(githubApiContributors)
+           .then((res) => res?.json())
+           .then(
+             (result) => {
+               setIsLoaded(true);
+               setItems(result);
+             },
+             (error) => {
+               setIsLoaded(true);
+               console.error(error);
+             }
+           );
           return () => {
             setItems([]);
           };
-        }, []);
+        }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
         return (
           <div>
             {isLoaded && items.length && (
