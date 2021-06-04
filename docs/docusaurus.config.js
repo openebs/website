@@ -16,7 +16,7 @@ module.exports = {
     },
     navbar: {
       logo: {
-        alt: "OpenEBS Docs Logo",
+        alt: "OpenEBS docs logo",
         src: "../static/img/logo.svg",
       },
       items: [],
@@ -63,7 +63,7 @@ module.exports = {
           link: "https://openebs.io/email-us",
         },
         {
-          label: "Feature Request",
+          label: "Feature request",
           link: "https://openebs.io/feature-request",
         },
       ],
