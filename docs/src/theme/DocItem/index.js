@@ -19,8 +19,10 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Search from "@theme/SearchBar";
 import EditThisPage from "@theme/GitEditThisPage";
 import { VersionDropdown } from "@site/src/components/VersionDropdown";
+import { useViewport } from "@site/src/hooks/useViewport";
 
 function DocItem(props) {
+  const { width } = useViewport() || 0;
   const { siteConfig } = useDocusaurusContext();
   const { content: DocContent } = props;
   const { metadata, frontMatter } = DocContent;
@@ -75,15 +77,20 @@ function DocItem(props) {
                     <header>
                       <h1 className={styles.docTitle}>{title}</h1>
                     </header>
-                    <div className="action-buttons">
-                      <EditThisPage editUrl={editUrl} />
-                      <VersionDropdown />
-                    </div>
+                    {width > 767 ? (
+                      <div className="action-buttons">
+                        <EditThisPage editUrl={editUrl} />
+                        <VersionDropdown />
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </div>
                 </>
               )}
-              <div className="searhBar">
+              <div className={`searhBar ${width < 767 ? "wt_versionDropdown" : ""}`}>
                 <Search />
+                {width < 767 ? <VersionDropdown /> : ""}
               </div>
               <div className="markdown">
                 <DocContent />

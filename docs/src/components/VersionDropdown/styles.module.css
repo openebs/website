@@ -13,6 +13,7 @@
   color: #ffffff;
 }
 
-.dropdown{
+.dropdown {
   width: 130px;
+  padding-left: 0;
 }

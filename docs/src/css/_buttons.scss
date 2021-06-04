@@ -102,17 +102,17 @@ fieldset:disabled a.doc-button {
   }
 }
 
-.doc-button-secondary{
-  color: #2A140B;
+.doc-button-secondary {
+  color: #2a140b;
   background-color: $white;
-  border-color: #2A140B;
+  border-color: #2a140b;
 }
 
-.doc-button-secondary-light{
+.doc-button-secondary-light {
   border-width: 1px;
 }
 
-.doc-button-align-center{
+.doc-button-align-center {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -124,4 +124,16 @@ fieldset:disabled a.doc-button {
 }
 .doc-button-sm {
   padding: $input-btn-padding-y-sm $input-btn-padding-x-sm;
+}
+
+@media (max-width: 767px) {
+  .doc-button {
+    font-size: 14px;
+  }
+  .doc-button-lg {
+    padding: $input-btn-padding-y-lg 1rem;
+  }
+  .doc-button-sm {
+    padding: $input-btn-padding-y-sm 0.5rem;
+  }
 }

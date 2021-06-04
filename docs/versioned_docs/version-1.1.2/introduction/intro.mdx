@@ -48,48 +48,13 @@ OpenEBS can provision Persistent Volumes with features like synchronous replicat
 
 See the following table for recommendation on which engine is right for you depending on the type of your application requirements and storage available on your Kubernetes nodes.
 
-<table>
-  <thead>
-    <tr>
-      <th>Application requirements</th>
-      <th>Storage</th>
-      <th>OpenEBS Volumes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        Protect against node failures, Synchronous replication, Snapshots,
-        Clones, Thin provisioning
-      </td>
-      <td>Use Disks/SSDs/Cloud Volumes</td>
-      <td>OpenEBS cStor</td>
-    </tr>
-    <tr>
-      <td>
-        Protect against node failures, Synchronous replication, Thin
-        provisioning
-      </td>
-      <td>Use hostpath or external mounted storage</td>
-      <td>OpenEBS Jiva</td>
-    </tr>
-    <tr>
-      <td>Low latency, Local PV</td>
-      <td>Use hostpath or external mounted storage</td>
-      <td>Dynamic Local PV - Hostpath</td>
-    </tr>
-    <tr>
-      <td>Low latency, Local PV</td>
-      <td>Use Disks/SSDs/Cloud Volumes</td>
-      <td>Dynamic Local PV - Device</td>
-    </tr>
-    <tr>
-      <td>Low latency, Local PV, Snapshots, Clones</td>
-      <td>Use Disks/SSDs/Cloud Volumes</td>
-      <td>OpenEBS Dynamic Local PV - ZFS</td>
-    </tr>
-  </tbody>
-</table>
+| Application requirements                                                                     | Storage                                  | OpenEBS Volumes                |
+| -------------------------------------------------------------------------------------------- | ---------------------------------------- | ------------------------------ |
+| Protect against node failures, Synchronous replication, Snapshots, Clones, Thin provisioning | Use Disks/SSDs/Cloud Volumes             | OpenEBS cStor                  |
+| Protect against node failures, Synchronous replication, Thin provisioning                    | Use hostpath or external mounted storage | OpenEBS Jiva                   |
+| Low latency, Local PV                                                                        | Use hostpath or external mounted storage | Dynamic Local PV - Hostpath    |
+| Low latency, Local PV                                                                        | Use Disks/SSDs/Cloud Volumes             | Dynamic Local PV - Device      |
+| Low latency, Local PV, Snapshots, Clones                                                     | Use Disks/SSDs/Cloud Volumes             | OpenEBS Dynamic Local PV - ZFS |
 
 OpenEBS is also developing Mayastor and Dynamic Local PV - Rawfile storage engines available for alpha testing.
 
