@@ -6,7 +6,7 @@ module.exports = {
   baseUrl: "/docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "../static/img/fav.svg",
+  favicon: "docs/img/favicon.ico",
   organizationName: "mayadata-io", // Usually your GitHub org/user name.
   projectName: "website", // Usually your repo name.
   themeConfig: {
