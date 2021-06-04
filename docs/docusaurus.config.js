@@ -1,8 +1,11 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
+
+const WEBSITE_URL = `https://gallant-pasteur-5e438c.netlify.app`;
+
 module.exports = {
   title: "OpenEBS Docs",
   tagline: "OpenEBS Docs: Information regarding the latest releases",
-  url: "https://gallant-pasteur-5e438c.netlify.app/",
+  url: `${WEBSITE_URL}/`,
   baseUrl: "/docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -42,34 +45,34 @@ module.exports = {
         },
         {
           label: "Community",
-          link: "https://gallant-pasteur-5e438c.netlify.app/community",
+          link: `${WEBSITE_URL}/community`,
         },
         {
           label: "FAQ",
-          link: "https://gallant-pasteur-5e438c.netlify.app/faq",
+          link: `${WEBSITE_URL}/faq`,
         },
         {
           label: "Blog",
-          link: "https://gallant-pasteur-5e438c.netlify.app/blog",
+          link: `${WEBSITE_URL}/blog`,
         },
         {
           label: "Commercial support",
-          link: "https://gallant-pasteur-5e438c.netlify.app/commercial-support",
+          link: `${WEBSITE_URL}/commercial-support`,
         },
       ],
       contactUs: [
         {
           label: "Email us",
-          link: "https://gallant-pasteur-5e438c.netlify.app/email-us",
+          link: `${WEBSITE_URL}/email-us`,
         },
         {
           label: "Feature request",
-          link: "https://gallant-pasteur-5e438c.netlify.app/feature-request",
+          link: `${WEBSITE_URL}/feature-request`,
         },
       ],
       privacyPolicy: {
         label: "Privacy policy",
-        link: "https://gallant-pasteur-5e438c.netlify.app/privacy-policy",
+        link: `${WEBSITE_URL}/privacy-policy`,
       },
     },
     navLinks: [
@@ -79,15 +82,15 @@ module.exports = {
       },
       {
         label: "Community",
-        link: "https://gallant-pasteur-5e438c.netlify.app/community",
+        link: `${WEBSITE_URL}/community`,
       },
       {
         label: "Commercial support",
-        link: "https://gallant-pasteur-5e438c.netlify.app/support",
+        link: `${WEBSITE_URL}/support`,
       },
       {
         label: "Blog",
-        link: 'https://gallant-pasteur-5e438c.netlify.app/blog',
+        link: `${WEBSITE_URL}/blog`,
       },
     ],
     socials: [
@@ -100,7 +103,7 @@ module.exports = {
       {
         label: 'Slack',
         src: '/docs/img/slack.svg',
-        link: 'https://gallant-pasteur-5e438c.netlify.app/community',
+        link: `${WEBSITE_URL}/community`,
         isExternal: false
       }
     ] 
