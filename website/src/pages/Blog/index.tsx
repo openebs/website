@@ -198,7 +198,7 @@ const Blog: React.FC = () => {
                               className={classes.media}
                               image={`/Images/blog/${elm.slug}.png`}
                             />
-                            <CardContent>
+                            <CardContent className={classes.cardContent}>
                               <DisplayTagandReadTime
                                 tags={elm.tags}
                                 readTime={elm.content}
@@ -207,8 +207,13 @@ const Blog: React.FC = () => {
                                 component={"span"}
                                 variant={"body2"}
                                 className={classes.title}
-                                color="textSecondary"
+                                color="textPrimary"
                                 gutterBottom
+                                onClick={() =>
+                                  window.location.assign(
+                                    `/blog/${elm.slug}`
+                                  )
+                                }
                               >
                                 <ReactMarkdown children={elm.title} />
                               </Typography>
@@ -337,7 +342,7 @@ const Blog: React.FC = () => {
                               />
                               <span
                                 className={classes.title}
-                                color="textSecondary"
+                                color="textPrimary"
                               >
                                 <ReactMarkdown children={elm.title} />
                               </span>
@@ -398,7 +403,6 @@ const Blog: React.FC = () => {
               }
               page={page}
               onChange={(_event, val) => setPage(val)}
-              shape="rounded"
               className={classes.pagination}
             />
           </div>
