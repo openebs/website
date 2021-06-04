@@ -90,7 +90,7 @@ const Blog: React.FC = () => {
   const filteredAuthorData = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs.author === queryAuthorName
   );
-
+console.log('filteredAuthorData',filteredAuthorData);
   const handleChange = (_event: React.ChangeEvent<{}>, newValue: string) => {
     setValue(newValue);
   };
@@ -292,9 +292,9 @@ const Blog: React.FC = () => {
               <div className={classes.authorWrapper}>
                 <Avatar
                   alt={queryAuthorName ? queryAuthorName : ""}
-                  src={`/blog/authors/${
-                    filteredAuthorData[0] ? filteredAuthorData[0].author : ""
-                  }.png`}
+                  src={`../Images/blog/authors/${queryAuthorName.toLowerCase()
+                    .replace(/[^\w ]+/g,'')
+                    .replace(/ +/g,'-')}.png`}
                   className={classes.large}
                 />
                 <h1 className={classes.authorText}>{queryAuthorName}</h1>
@@ -326,7 +326,7 @@ const Blog: React.FC = () => {
                           <Card className={classes.cardRoot}>
                             <CardMedia
                               className={classes.media}
-                              image={`/blog/images/${elm.slug}.png`}
+                              image={`/Images/blog/${elm.slug}.png`}
                             />
                             <CardContent>
                               <DisplayTagandReadTime
@@ -370,7 +370,7 @@ const Blog: React.FC = () => {
                                 className={classes.cardActionButton}
                                 onClick={() =>
                                   window.location.assign(
-                                    `/blog/${queryAuthorName}/${elm.blog}`
+                                    `/blog/${elm.slug}`
                                   )
                                 }
                               >
