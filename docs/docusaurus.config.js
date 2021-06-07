@@ -12,6 +12,10 @@ module.exports = {
   favicon: "docs/img/favicon.ico",
   organizationName: "openebs", // Usually your GitHub org/user name.
   projectName: "website", // Usually your repo name.
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en'],
+  },
   themeConfig: {
     gtag: {
       trackingID: 'UA-92076314-12',

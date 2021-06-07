@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Link from "@docusaurus/Link";
 import { useViewport } from "@site/src/hooks/useViewport";
+import Translate from '@docusaurus/Translate';
 
 const FooterLogo = () => {
   const { siteConfig } = useDocusaurusContext();
@@ -19,7 +20,7 @@ const EmailSubscription = () => {
   return (
     <>
       <span className="footer__title">
-        Stay in the know with our newsletter
+        <Translate>Stay in the know with our newsletter</Translate>
       </span>
       {
         subscribeNewsletter && (
@@ -29,7 +30,7 @@ const EmailSubscription = () => {
             href={subscribeNewsletter}
             target="_blank"
             >
-              Subscribe
+              <Translate>Subscribe</Translate>
             </a>
         </div>
         )
@@ -43,7 +44,7 @@ const LinksGettingStarted = () => {
   const gettingStarted = siteConfig?.customFields?.footbarLinks?.gettingStarted;
   return (
     <div className="col">
-      <span className="footer__title">Getting started</span>
+      <span className="footer__title"><Translate>Getting started</Translate></span>
       <ul className="footer__items">
         {gettingStarted?.map((link) => {
           return (
@@ -68,7 +69,7 @@ const LinksContactUs = () => {
 
   return (
     <div className="col footer__col">
-      <span className="footer__title">Contact us</span>
+      <span className="footer__title"><Translate>Contact us</Translate></span>
       <ul className="footer__items">
         {contactUs?.map((link) => {
           return (
@@ -114,7 +115,7 @@ const Contributors = () => {
     <div className="col">
       {isLoaded && items.length && (
         <>
-          <span className="footer__title">Top contributors</span>
+          <span className="footer__title"><Translate>Top contributors</Translate></span>
           <ul className="footer__items">
             {items?.slice(0, 3).map((item) => {
               return (

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from './styles.module.css';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Translate from '@docusaurus/Translate';
 
 export const Feedback = () => {
 
@@ -29,10 +30,10 @@ export const Feedback = () => {
 
     return(
         <div className={styles.wrapper}>
-            <h4>Was this page helpful? We appreciate your feedback</h4>
+            <h4><Translate> Was this page helpful? We appreciate your feedback</Translate></h4>
             <div className={styles.buttonGroup}>
-                <button type="button" className="doc-button doc-button-primary doc-button-curved" onClick={() => handleResponse("Yes", 1)} disabled={isThanksTextVisible}>Yes</button>
-                <button type="button" className="doc-button doc-button-outlined doc-button-curved" onClick={() => handleResponse("No", 0)} disabled={isThanksTextVisible}>No</button>
+                <button type="button" className="doc-button doc-button-primary doc-button-curved" onClick={() => handleResponse("Yes", 1)} disabled={isThanksTextVisible}><Translate>Yes</Translate></button>
+                <button type="button" className="doc-button doc-button-outlined doc-button-curved" onClick={() => handleResponse("No", 0)} disabled={isThanksTextVisible}><Translate>No</Translate></button>
             </div>
             {
                 isThanksTextVisible && (
