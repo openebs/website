@@ -104,7 +104,7 @@ const Header: React.FC = () => {
                                         key: label,
                                         to: href,
                                         href: href,
-                                        target: "_blank",
+                                        target: "_self",
                                         className: classes.navbarItem,
                                         onClick: () => handleDrawerClose()
                                     }}
@@ -167,7 +167,7 @@ const Header: React.FC = () => {
                             {...{
                                 key: label,
                                 href: href,
-                                target: "_blank",
+                                target: "_self",
                                 className: classes.navbarItem
                             }}
                         >

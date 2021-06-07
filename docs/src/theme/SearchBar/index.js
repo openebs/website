@@ -10,13 +10,16 @@ import classnames from "classnames";
 import { useHistory } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { usePluginData } from '@docusaurus/useGlobalData';
+import { useViewport } from "@site/src/hooks/useViewport";
 
 const Search = props => {
+  const { width } = useViewport() || 0;
   const initialized = useRef(false);
   const searchBarRef = useRef(null);
   const history = useHistory();
   const { siteConfig = {} } = useDocusaurusContext();
-  const { baseUrl } = siteConfig;
+  const { baseUrl, customFields } = siteConfig;
+  const breakpoints = customFields?.breakpoints;
   const initAlgolia = (searchDocs, searchIndex, DocSearch) => {
       new DocSearch({
         searchDocs,
@@ -91,7 +94,7 @@ const Search = props => {
       <input
         id="search_input_react"
         type="search"
-        placeholder="Search Documentation"
+        placeholder={`${width < breakpoints?.sm ? "Search" : "Search Documentation"}`}
         aria-label="Search"
         className={`${classnames(
           "navbar__search-input", "docSearchInput",

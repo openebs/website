@@ -36,7 +36,8 @@ export const VersionDropdown = () => {
   const activeVersion = useActiveVersion();
   const options = useVersions();
   const [currentOption, setCurrentOption] = useState(activeVersion);
-  const handleChange = (option) => {
+  const handleChange = (e,option) => {
+    e.preventDefault();
     setCurrentOption(option);
     const selectedVersionPath = getSelectedVersionPath(
       options,
@@ -49,12 +50,12 @@ export const VersionDropdown = () => {
   return (
     <div className={styles.dropDownWrapper}>
       <div className={`dropdown dropdown--hoverable doc-button doc-button-outlined doc-button-secondary doc-button-secondary-light ${styles.dropdown}`}>
-        <span className="navbar__item navbar__link">{currentOption.name}</span>
+        <span className="navbar__link" >{currentOption.name}</span>
         <ul className="dropdown__menu">
           {options?.map((option) => {
             return (
               <li key={option?.name}>
-                <a className={`dropdown__link ${currentOption?.name === option?.name ? "dropdown__link--active" : ""}`} href="javascript:;" onClick={() => handleChange(option)}>
+                <a className={`dropdown__link ${currentOption?.name === option?.name ? "dropdown__link--active" : ""}`} href="#" onClick={(e) => handleChange(e,option)}>
                   {option.label}
                 </a>
               </li>

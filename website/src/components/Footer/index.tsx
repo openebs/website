@@ -7,13 +7,13 @@ import {
     Link,
     Button
   } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import useStyles from './style';
 import {socialLinks, getStarted} from './footerLinks'
 import { useTranslation } from "react-i18next";
 import Grid from '@material-ui/core/Grid';
 // import { validateEmail } from "../../utils/emailValidation";
-import { EXTERNAL_LINKS, EXTERNAL_LINK_LABELS, VIEW_PORT} from "../../constants"
+import { EXTERNAL_LINKS, EXTERNAL_LINK_LABELS, VIEW_PORT, API } from "../../constants"
 import { useViewport } from "../../hooks/viewportWidth";
 
 const Footer: React.FC = () => {
@@ -136,26 +136,54 @@ const Footer: React.FC = () => {
     //     );
     // };
 
-    /* To be uncommented later once we get top contributors from GitHub */
-    // This block of code is used to display top contributors
-    // const displayTopContributors = () => {
-    //     return (
-    //         <div>
-    //             <Typography variant='h6' className={classes.columnTitle}>
-    //                 {t('footer.topContributors')}
-    //             </Typography>
-    //             <Typography className={classes.columnListWrapper}>
-    //             {topContributors.map(({ label, href }) => {
-    //                 return (   
-    //                     <Link href={href} className={classes.columnListItem} key={label}>
-    //                         {label}
-    //                     </Link>
-    //                 );
-    //             })}
-    //             </Typography>
-    //         </div> 
-    //     );
-    // };
+    const DisplayTopContributors: React.FC = () => {
+        const githubApiContributors = API.GITHUB_CONTRIBUTORS;
+        const [isLoaded, setIsLoaded] = useState<boolean>(false);
+        const [items, setItems] = useState([]);
+        //getting the top contributors from github by sending the api order as desc
+
+        useEffect(() => {
+           fetch(githubApiContributors)
+           .then((res) => res?.json())
+           .then(
+             (result) => {
+               setIsLoaded(true);
+               setItems(result);
+             },
+             (error) => {
+               setIsLoaded(true);
+               console.error(error);
+             }
+           );
+          return () => {
+            setItems([]);
+          };
+        }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+        return (
+          <div>
+            {isLoaded && items.length && (
+              <>
+                 <Typography variant='h6' className={classes.columnTitle}>
+                    {t('footer.topContributors')}
+                 </Typography>
+                <Typography className={classes.columnListWrapper}>
+                  {items?.slice(0, 3).map((item: any) => {
+                    return (
+                        <Link
+                          href={item.html_url}
+                          className={classes.columnListItem} key={item?.login}
+                        >
+                          {item.login}
+                        </Link>
+                    );
+                  })}
+                </Typography>
+              </>
+            )}
+          </div>
+        );
+      };
 
     const displayMobileFooter = () => {
         return (
@@ -183,14 +211,14 @@ const Footer: React.FC = () => {
                         </Paper>
                     </Grid>
                     {/* To be uncommented later */}
-                    {/* <Grid item xs={6}>
+                    <Grid item xs={6}>
                         <Paper className={classes.paper}>
-                            {displayContactUs()}
+                            {/* {displayContactUs()} */}
                             <div className={classes.contributorsMobile}>
-                                {displayTopContributors()}
+                                <DisplayTopContributors />
                             </div>
                         </Paper>
-                    </Grid> */}
+                    </Grid>
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
                             {displayNewsLetter()}
@@ -233,12 +261,11 @@ const Footer: React.FC = () => {
                             {displayContactUs()}
                         </Paper>
                     </Grid> */}
-                    {/* To be uncommented later once we get top contributors from GitHub */}
-                    {/* <Grid item sm>
+                    <Grid item sm>
                         <Paper className={classes.paper}>
-                            {displayTopContributors()}
+                            <DisplayTopContributors />
                         </Paper>
-                    </Grid> */}
+                    </Grid>
                 </Grid>
             </Toolbar>
         )

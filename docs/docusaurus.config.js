@@ -1,13 +1,16 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
+
+const WEBSITE_URL = `https://gallant-pasteur-5e438c.netlify.app`;
+
 module.exports = {
   title: "OpenEBS Docs",
   tagline: "OpenEBS Docs: Information regarding the latest releases",
-  url: "https://openebs.io",
+  url: `${WEBSITE_URL}/`,
   baseUrl: "/docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "../static/img/fav.svg",
-  organizationName: "mayadata-io", // Usually your GitHub org/user name.
+  favicon: "docs/img/favicon.ico",
+  organizationName: "openebs", // Usually your GitHub org/user name.
   projectName: "website", // Usually your repo name.
   themeConfig: {
     colorMode: {
@@ -42,34 +45,34 @@ module.exports = {
         },
         {
           label: "Community",
-          link: "https://openebs.io/community",
+          link: `${WEBSITE_URL}/community`,
         },
         {
           label: "FAQ",
-          link: "https://openebs.io/faq",
+          link: `${WEBSITE_URL}/faq`,
         },
         {
           label: "Blog",
-          link: "https://openebs.io/blog",
+          link: `${WEBSITE_URL}/blog`,
         },
         {
           label: "Commercial support",
-          link: "https://openebs.io/commercial-support",
+          link: `${WEBSITE_URL}/commercial-support`,
         },
       ],
       contactUs: [
         {
           label: "Email us",
-          link: "https://openebs.io/email-us",
+          link: `${WEBSITE_URL}/email-us`,
         },
         {
           label: "Feature request",
-          link: "https://openebs.io/feature-request",
+          link: `${WEBSITE_URL}/feature-request`,
         },
       ],
       privacyPolicy: {
         label: "Privacy policy",
-        link: "https://openebs.io/privacy-policy",
+        link: `${WEBSITE_URL}/privacy-policy`,
       },
     },
     navLinks: [
@@ -79,15 +82,15 @@ module.exports = {
       },
       {
         label: "Community",
-        link: "https://openebs.io/community",
+        link: `${WEBSITE_URL}/community`,
       },
       {
         label: "Commercial support",
-        link: "https://openebs.io/support",
+        link: `${WEBSITE_URL}/support`,
       },
       {
         label: "Blog",
-        link: 'https://openebs.io/blog',
+        link: `${WEBSITE_URL}/blog`,
       },
     ],
     socials: [
@@ -100,10 +103,28 @@ module.exports = {
       {
         label: 'Slack',
         src: '/docs/img/slack.svg',
-        link: 'https://openebs.io/community',
+        link: `${WEBSITE_URL}/community`,
         isExternal: false
       }
-    ] 
+    ],
+    socialLinks: {
+      facebook: 'https://www.facebook.com/openebs',
+      github: 'https://github.com/openebs/openebs',
+      slack: `${WEBSITE_URL}/community`,
+      linkedin: 'https://www.linkedin.com/company/openebs',
+      youtube: 'https://www.youtube.com/channel/UC3ywadaAUQ1FI4YsHZ8wa0g',
+      twitter: 'https://twitter.com/openebs'
+    },
+    externalLinks: {
+      subscribeNewsletter: 'https://lists.cncf.io/g/cncf-openebs-announcements'
+    },
+    breakpoints: {
+      xs: 0,
+      sm: 767,
+      md: 996,
+      lg: 0,
+      xl: 0
+    }
   },
   presets: [
     [

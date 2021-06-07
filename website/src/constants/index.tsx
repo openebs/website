@@ -8,7 +8,7 @@ export enum EXTERNAL_LINKS {
   CODEWAVE_SUPPORT= 'https://codewave.eu/',
   GRIDWORKZ_SUPPORT= 'https://www.gridworkz.com/',
   MAYADATA_SUPPORT= 'https://mayadata.io/',
-  OPENEBS_DOCS = 'https://docs.openebs.io/',
+  OPENEBS_DOCS = '/docs',
   OPENEBS_BLOGS = 'https://openebs.io/blog',
   OPENEBS_GET_STARTED = 'https://docs.openebs.io/docs/next/quickstart.html',
   OPENEBS_YOUTUBE_INTRO = 'https://www.youtube.com/watch?v=94SFY3xdjXs&t=1s',
@@ -18,6 +18,10 @@ export enum EXTERNAL_LINKS {
   GOVERNANCE_LINK='https://github.com/openebs/openebs/blob/master/GOVERNANCE.md',
   SUBSCRIBE_NEWSLETTER='https://lists.cncf.io/g/cncf-openebs-announcements',
 };
+
+export const API = {
+  GITHUB_CONTRIBUTORS: 'https://api.github.com/repos/openebs/openebs-docs/contributors?q=contributions&order=desc'
+}
 
 export enum VIEW_PORT {
   MOBILE_BREAKPOINT = 760,
