@@ -213,7 +213,7 @@ const FooterBottom = () => {
   );
 };
 
-const FooterMobile = () => {
+const FooterMobileView = () => {
   return (
     <footer className="footer">
       <div className="container container--fluid">
@@ -244,7 +244,7 @@ const FooterMobile = () => {
   );
 };
 
-const FooterWeb = () => {
+const FooterDesktopView = () => {
   return (
     <footer className="footer">
       <div className="container container--fluid">
@@ -270,5 +270,5 @@ export const Footer = () => {
   const breakpoints = siteConfig?.customFields?.breakpoints;
   const { width } = useViewport() || 0;
   
-  return width < breakpoints?.md  ? <FooterMobile /> : <FooterWeb />;
+  return width < breakpoints?.md  ? <FooterMobileView /> : <FooterDesktopView />;
 };
