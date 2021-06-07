@@ -51,13 +51,18 @@ const BlogPage: React.FC = () => {
       
       if(recommendedBlogs?.length<minimumRecommededBlogs){
         let filteredBlogs = blogs?.filter(blog => (blog.author === currentBlog.author) || (blog?.tags).some((tag) => currentBlog.tags.includes(tag)));
-        recommendedBlogs = recommendedBlogs?.concat(filteredBlogs);
+        recommendedBlogs = recommendedBlogs?.concat(filteredBlogs).filter(blog => blog.slug !== currentBlog.slug);
+        // Removes duplicates
+        recommendedBlogs = recommendedBlogs.filter((item,index)=>{
+          return (recommendedBlogs.indexOf(item) === index);
+        })
         if(recommendedBlogs?.length<minimumRecommededBlogs){
           const getRandomBlogs = (arr: { title: string; author: string; author_info: string; date: string; tags: Array<string>; content: string; id: number; slug: string; }[],count: number) => {
             let _arr = [...arr];
             return[...Array(count)].map( ()=> _arr.splice(Math.floor(Math.random() * _arr.length), 1)[0] ); 
           }
-        recommendedBlogs = recommendedBlogs.concat(getRandomBlogs(blogs, minimumRecommededBlogs-recommendedBlogs.length));
+        recommendedBlogs = recommendedBlogs.concat(getRandomBlogs(blogs, minimumRecommededBlogs-recommendedBlogs.length)).filter(blog => blog.slug !== currentBlog.slug);
+        // Removes duplicates
         recommendedBlogs = recommendedBlogs.filter((item,index)=>{
           return (recommendedBlogs.indexOf(item) === index);
         })
