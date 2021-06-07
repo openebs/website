@@ -41,7 +41,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   cardRoot: {
-    maxWidth: "481px",
+    maxWidth: "480px",
+    boxShadow: 'none',
+    background: 'transparent'
   },
   rootBlogSection: {
     flexGrow: 1,
@@ -52,6 +54,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
+    borderRadius: '24px 24px 24px 0px'
   },
   bullet: {
     display: "inline-block",
