@@ -26,6 +26,8 @@ import Sponsor from "../../components/Sponsor";
 import Pagination from "@material-ui/lab/Pagination";
 import DisplayAuthorandReadTime from "../../components/DisplayAuthorandReadTime";
 import CustomTag from "../../components/CustomTag";
+import { getAvatar } from "../../utils/getAvatar";
+import { getContent } from "../../utils/getContent";
 
 interface StyledTabProps {
   label: string;
@@ -230,12 +232,7 @@ const Blog: React.FC = () => {
                               </Typography>
                               <Typography component={"span"} variant={"body2"}>
                                 <ReactMarkdown
-                                  children={
-                                    elm.content
-                                      .substring(0, 200)
-                                      .replace(/[\n]/g, ". ")
-                                      .replace(/[^a-zA-Z ]/g, "") + "..."
-                                  }
+                                  children={getContent(elm.content)}
                                 />
                               </Typography>
                             </CardContent>
@@ -283,16 +280,11 @@ const Blog: React.FC = () => {
         <>
           <div className={classes.root}>
             <Container maxWidth="md">
-              <p
-                className={classes.authorURL}
-              >{`/blog/${queryAuthorName}`}</p>
+              <p className={classes.authorURL}>{`/blog/${queryAuthorName}`}</p>
               <div className={classes.authorWrapper}>
                 <Avatar
                   alt={queryAuthorName ? queryAuthorName : ""}
-                  src={`../Images/blog/authors/${queryAuthorName
-                    .toLowerCase()
-                    .replace(/[^\w ]+/g, "")
-                    .replace(/ +/g, "-")}.png`}
+                  src={getAvatar(queryAuthorName)}
                   className={classes.large}
                 />
                 <h1 className={classes.authorText}>{queryAuthorName}</h1>
@@ -339,11 +331,7 @@ const Blog: React.FC = () => {
                               </span>
                               <span>
                                 <ReactMarkdown
-                                  children={
-                                    elm.content
-                                      .substring(0, 200)
-                                      .replace(/[^a-zA-Z ]/g, "") + "..."
-                                  }
+                                  children={getContent(elm.content)}
                                 />
                               </span>
                             </CardContent>

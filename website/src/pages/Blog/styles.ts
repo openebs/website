@@ -162,7 +162,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingTop: theme.spacing(2),
     "& .Mui-selected": {
       color: theme.palette.text.hint,
-      backgroundColor: "transparent !important",
     },
     "& .MuiPaginationItem-root": {
       fontWeight: "bold",
@@ -180,6 +179,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   tabWapper: {
     display: "flex",
     overflow: "scroll",
+    paddingBottom: '2px',
     width: "70%",
     [theme.breakpoints.down("sm")]: {
       display: "inlineBlock",

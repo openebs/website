@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import useStyles from "./styles";
 import { readingTime } from "../../utils/readingTime";
 import { Avatar, Button, Typography } from "@material-ui/core";
+import { getAvatar } from "../../utils/getAvatar";
 
 interface displayAuthorandReadTimeProps {
   author: string;
@@ -22,11 +23,8 @@ const DisplayAuthorandReadTime: React.FC<displayAuthorandReadTimeProps> = ({
         <div className={classes.wrapperBlock}>
           <span className={classes.author}>
             <Avatar
-              alt="author1"
-              src={`../Images/blog/authors/${author
-                .toLowerCase()
-                .replace(/[^\w ]+/g, "")
-                .replace(/ +/g, "-")}.png`}
+              alt={author}
+              src={getAvatar(author)}
               className={classes.small}
             />
             <Button
@@ -37,7 +35,7 @@ const DisplayAuthorandReadTime: React.FC<displayAuthorandReadTimeProps> = ({
               onClick={() => window.location.assign(`/blog/?author=${author}`)}
             >
               <Typography component={"span"} variant={"body2"}>
-                {author? author: ''}
+                {author ? author : ""}
               </Typography>
             </Button>
           </span>
@@ -47,7 +45,7 @@ const DisplayAuthorandReadTime: React.FC<displayAuthorandReadTimeProps> = ({
               alt={t("header.submitAlt")}
               className={classes.rightSpacing}
             />
-            {`${readingTime(readTime)} min read`}
+            {`${readingTime(readTime)} ${t('blog.minToRead')}`}
           </p>
         </div>
       </>

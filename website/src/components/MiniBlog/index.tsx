@@ -22,6 +22,7 @@ import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
 import Slider from "react-slick";
 import DisplayAuthorandReadTime from "../DisplayAuthorandReadTime";
 import CustomTag from "../CustomTag";
+import { getContent } from "../../utils/getContent";
 
 interface StyledTabProps {
   label: string;
@@ -249,12 +250,7 @@ const MiniBlog: React.FC = () => {
                     </Typography>
                     <span>
                       <ReactMarkdown
-                        children={
-                          elm.content
-                            .substring(0, 200)
-                            .replace(/[\n]/g, ". ")
-                            .replace(/[^a-zA-Z ]/g, "") + "..."
-                        }
+                       children={getContent(elm.content)}
                       />
                     </span>
                   </CardContent>

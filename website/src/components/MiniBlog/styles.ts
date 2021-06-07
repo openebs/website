@@ -105,6 +105,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   tabWapper: {
     display: "flex",
     overflow: "scroll",
+    paddingBottom: '2px',
     width: "70%",
     [theme.breakpoints.down("sm")]: {
       display: "inlineBlock",
