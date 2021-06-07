@@ -115,7 +115,7 @@ function DocPageContent({ currentDocRoute, versionMetadata, children }) {
             <div className="col-fullWidth">
               <div
                 className={clsx(
-                  "container padding-vert--lg",
+                  "container container--fluid padding-vert--lg margin-left--md",
                   styles.docItemWrapper,
                   {
                     [styles.docItemWrapperEnhanced]: hiddenSidebarContainer,

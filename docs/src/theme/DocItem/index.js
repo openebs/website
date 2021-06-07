@@ -101,7 +101,7 @@ function DocItem(props) {
           </div>
         </div>
         {!hideTableOfContents && DocContent.toc && (
-          <div className="rightAligned-col-250 col col--3">
+          <div className="rightAligned-col-250 col col--3 padding-left--lg">
             <TOC toc={DocContent.toc} />
           </div>
         )}
