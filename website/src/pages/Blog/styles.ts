@@ -36,9 +36,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexWrap: "wrap",
     textAlign: "center",
-    margin: theme.spacing(8, 0),
+    margin: theme.spacing(8, 50),
     justifyContent: "center",
     alignItems: "center",
+    [theme.breakpoints.down("md")]: {
+      margin: theme.spacing(8, 30),
+    },
+    [theme.breakpoints.down("sm")]: {
+      margin: theme.spacing(8, 10),
+    },
+    [theme.breakpoints.down("sm")]: {
+      margin: theme.spacing(4, 0),
+      fontSize: '24px'
+    },
   },
   authorText: {
     display: "flex",
