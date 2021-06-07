@@ -13,6 +13,10 @@ module.exports = {
   organizationName: "openebs", // Usually your GitHub org/user name.
   projectName: "website", // Usually your repo name.
   themeConfig: {
+    gtag: {
+      trackingID: 'UA-92076314-12',
+      anonymizeIP: true,
+    },
     colorMode: {
       defaultMode: "light",
       disableSwitch: true,
@@ -26,7 +30,7 @@ module.exports = {
     },
     footer: {
       copyright: `Copyright © ${new Date().getFullYear()} The OpenEBS Authors | All rights reserved`,
-    },
+    }
   },
   customFields: {
     openebsLogo: "/docs/img/openebs-logo.svg",
@@ -116,7 +120,9 @@ module.exports = {
       twitter: 'https://twitter.com/openebs'
     },
     externalLinks: {
-      subscribeNewsletter: 'https://lists.cncf.io/g/cncf-openebs-announcements'
+      subscribeNewsletter: 'https://lists.cncf.io/g/cncf-openebs-announcements',
+      openAnIssue: 'https://github.com/openebs/openebs/issues/new',
+      kubernetesSlackOpenEBS: 'https://kubernetes.slack.com/messages/openebs/'
     },
     breakpoints: {
       xs: 0,
@@ -146,5 +152,5 @@ module.exports = {
   plugins: [
     "docusaurus-plugin-sass",
     require.resolve("docusaurus-lunr-search"),
-  ],
+  ]
 };
