@@ -22,7 +22,6 @@ export const Feedback = () => {
     function sendFeedback(action,value) {
         if(typeof window !== undefined) {
             if(!window?.gtag) { 
-                console.log('!gtag');
                 return null;
             }
             window?.gtag('event', action, {
