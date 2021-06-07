@@ -122,7 +122,7 @@ module.exports = {
       xs: 0,
       sm: 767,
       md: 996,
-      lg: 0,
+      lg: 1100,
       xl: 0
     }
   },
