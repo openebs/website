@@ -8,7 +8,8 @@ export const getSelectedVersionPath = (
   options,
   activeVersion,
   currentDocsPath,
-  nextOptionName
+  nextOptionName,
+  followPath,
 ) => {
   let activeVersionPath = activeVersion.path.endsWith("/")
     ? activeVersion.path.substring(0, activeVersion.path.length - 1)
@@ -23,7 +24,7 @@ export const getSelectedVersionPath = (
   selectedVersionDocsPath = selectedVersionDocsPath.endsWith("/")
     ? selectedVersionDocsPath.substring(0, selectedVersionDocsPath.length - 1)
     : selectedVersionDocsPath;
-  return `${selectedVersionDocsPath}${slugWithoutVersion}`;
+  return `${selectedVersionDocsPath}${followPath ? slugWithoutVersion : ''}`;
 };
 
 export const getSlugWithoutVersion = (slug, currentOptionPath) => {
@@ -36,6 +37,7 @@ export const VersionDropdown = () => {
   const activeVersion = useActiveVersion();
   const options = useVersions();
   const [currentOption, setCurrentOption] = useState(activeVersion);
+  const followPath = false;
   const handleChange = (e,option) => {
     e.preventDefault();
     setCurrentOption(option);
@@ -43,7 +45,8 @@ export const VersionDropdown = () => {
       options,
       activeVersion,
       location.pathname,
-      option.name
+      option.name,
+      followPath,
     );
     history.push(selectedVersionPath);
   };

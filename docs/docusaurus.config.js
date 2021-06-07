@@ -40,7 +40,7 @@ module.exports = {
         },
         {
           label: "GitHub",
-          link: "https://github.com/openebs/openebs-docs",
+          link: "https://github.com/openebs/openebs",
           isExternal: true,
         },
         {
