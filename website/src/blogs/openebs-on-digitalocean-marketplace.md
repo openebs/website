@@ -2,7 +2,7 @@
 title: OpenEBS on DigitalOcean Marketplace
 author: Abhishek
 author_info: Abhishek is a Customer Success Engineer at Mayadata. He is currently working with Kubernetes and Docker.
-tags: openebs
+tags: openebs chaosengineering tutorials
 date: 3-12-2020
 --- 
 

@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import {
   Button,
   Card,
+  CardActions,
   CardContent,
   CardMedia,
   Container,
@@ -19,7 +20,8 @@ import {
 import ReactMarkdown from "react-markdown";
 import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
 import Slider from "react-slick";
-import DisplayTagandReadTime from "../DisplayTagandReadTime";
+import DisplayAuthorandReadTime from "../DisplayAuthorandReadTime";
+import CustomTag from "../CustomTag";
 
 interface StyledTabProps {
   label: string;
@@ -32,7 +34,7 @@ interface TabProps {
   blog: string;
   description: string;
   image: string;
-  tags: string;
+  tags: Array<string>;
   author: string;
   length: number;
 }
@@ -75,6 +77,21 @@ const MiniBlog: React.FC = () => {
     );
   };
 
+  const handleTagSelect = (tags: string) => {
+    setValue(tags);
+  };
+
+  const getTags = (tags: Array<string>) => {
+    return tags.map((tag: string) => (
+      <button
+        onClick={() => handleTagSelect(tag)}
+        className={classes.rightSpacing}
+      >
+        <CustomTag blogLabel={tag} key={tag} />
+      </button>
+    ));
+  };
+
   const StyledTab = withStyles((theme: Theme) =>
     createStyles({
       root: {
@@ -109,26 +126,32 @@ const MiniBlog: React.FC = () => {
     setValue(newValue);
   };
 
- const totalBlogCount = (jsonMdData || []).filter(
+  const totalBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs
   ).length;
   const chaosBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.CHAOS_ENGINEERING) > -1).length;
+    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.CHAOS_ENGINEERING) > -1
+  ).length;
   const openebsBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.OPENEBS) > -1).length;
+    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.OPENEBS) > -1
+  ).length;
 
   const devopsBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.DEVOPS) > -1).length;
+    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.DEVOPS) > -1
+  ).length;
 
   const tutorialBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.TUTORIALS) > -1).length;
+    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.TUTORIALS) > -1
+  ).length;
 
   const solutionBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.SOLUTIONS) > -1).length;
+    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.SOLUTIONS) > -1
+  ).length;
 
   const filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
     if (value !== "all") {
-      return tabs.tags === value;
+      const tagData = tabs.tags.find((el: string) => el === value);
+      return tagData === value;
     }
     return tabs;
   });
@@ -212,8 +235,8 @@ const MiniBlog: React.FC = () => {
                     image={`/Images/blog/${elm.slug}.png`}
                   />
                   <CardContent>
-                    <DisplayTagandReadTime
-                      tags={elm.tags}
+                    <DisplayAuthorandReadTime
+                      author={elm.author}
                       readTime={elm.content}
                     />
                     <Typography
@@ -226,23 +249,31 @@ const MiniBlog: React.FC = () => {
                     </Typography>
                     <span>
                       <ReactMarkdown
-                        children={elm.content.substring(0, 200).replace(/[\n]/g, ". ").replace(/[^a-zA-Z ]/g, "") + "..."}
-                      />
-                      <Button
-                        size="small"
-                        disableRipple
-                        variant="text"
-                        className={classes.cardActionButton}
-                        onClick={() =>
-                          window.location.assign(
-                            `/blog/${elm.slug}`
-                          )
+                        children={
+                          elm.content
+                            .substring(0, 200)
+                            .replace(/[\n]/g, ". ")
+                            .replace(/[^a-zA-Z ]/g, "") + "..."
                         }
-                      >
-                        {t("blog.readMore")}
-                      </Button>
+                      />
                     </span>
                   </CardContent>
+                  <CardActions className={classes.actionWrapper}>
+                    <span className={classes.tabWapper}>
+                      {getTags(elm.tags)}
+                    </span>
+                    <Button
+                      size="small"
+                      disableRipple
+                      variant="text"
+                      className={classes.cardActionButton}
+                      onClick={() =>
+                        window.location.assign(`/blog/${elm.slug}`)
+                      }
+                    >
+                      {t("blog.readMore")}
+                    </Button>
+                  </CardActions>
                 </Card>
               );
             })}

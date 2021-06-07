@@ -14,15 +14,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     orientation: "vertical",
   },
   authorWrapper: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   large: {
     width: theme.spacing(9),
     height: theme.spacing(9),
     marginRight: theme.spacing(4),
-},
+  },
   tabs: {
     maxWidth: "auto",
     margin: `${theme.spacing(1)}px auto`,
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down("sm")]: {
       margin: theme.spacing(4, 0),
-      fontSize: '24px'
+      fontSize: "24px",
     },
   },
   authorText: {
@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   cardWrapper: {
     [theme.breakpoints.down("lg")]: {
-      padding: theme.spacing(4, 24),
+      padding: theme.spacing(4, 16),
     },
     [theme.breakpoints.down("md")]: {
       padding: theme.spacing(4, 10),
@@ -82,30 +82,30 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   cardRoot: {
-    maxWidth: '480px',
-    boxShadow: 'none',
-    background: 'transparent',
-    margin: 'auto',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
+    maxWidth: "480px",
+    boxShadow: "none",
+    background: "transparent",
+    margin: "auto",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
     [theme.breakpoints.down("md")]: {
-      maxWidth: '380px',
+      maxWidth: "380px",
     },
     [theme.breakpoints.down("sm")]: {
-      maxWidth: '480px',
+      maxWidth: "480px",
     },
   },
   rootBlogSection: {
-  flexGrow: 1,
+    flexGrow: 1,
   },
   cardSize: {
-   paddingTop: theme.spacing(4),
+    paddingTop: theme.spacing(4),
   },
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
-    borderRadius: '24px 24px 24px 0px'
+    borderRadius: "24px 24px 24px 0px",
   },
   bullet: {
     display: "inline-block",
@@ -115,7 +115,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     fontSize: 22,
     fontWeight: 700,
-    cursor: 'pointer'
+    cursor: "pointer",
   },
   pos: {
     marginBottom: 12,
@@ -131,47 +131,61 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 700,
   },
   linkBtn: {
-    textDecoration: 'none !important',
+    textDecoration: "none !important",
   },
   arrow: {
     marginLeft: theme.spacing(1),
   },
   tag: {
-     fontSize: 16,
-     width: 'fit-content',
-     padding: theme.spacing(.1, 4),
-     borderRadius: '8px',
-     lineHeight: '8px',
-     background: theme.palette.warning.light,
-     color: theme.palette.text.hint,
+    fontSize: 16,
+    width: "fit-content",
+    padding: theme.spacing(0.1, 4),
+    borderRadius: "8px",
+    lineHeight: "8px",
+    background: theme.palette.warning.light,
+    color: theme.palette.text.hint,
   },
   small: {
-    width: '32px',
-    height: '32px'
+    width: "32px",
+    height: "32px",
   },
   actionWrapper: {
-   justifyContent: 'space-between',
-   marginTop: 'auto'
-  },
-  author: {
-  display: 'flex',
-  alignItems: 'center',
+    justifyContent: "space-between",
+    marginTop: "auto",
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+    },
   },
   pagination: {
-    display: 'flex',
-    justifyContent: 'center',
+    display: "flex",
+    justifyContent: "center",
     paddingTop: theme.spacing(2),
-    '& .Mui-selected':{
+    "& .Mui-selected": {
       color: theme.palette.text.hint,
-      backgroundColor: 'transparent !important'
+      backgroundColor: "transparent !important",
     },
-    '& .MuiPaginationItem-root':{
-      fontWeight: 'bold'
-    }
+    "& .MuiPaginationItem-root": {
+      fontWeight: "bold",
+    },
   },
   cardContent: {
-    padding: theme.spacing(4, 0)
-  }
+    padding: theme.spacing(4, 0),
+  },
+  rightSpacing: {
+    border: "none",
+    background: "none",
+    marginRight: theme.spacing(1),
+    cursor: "pointer",
+  },
+  tabWapper: {
+    display: "flex",
+    overflow: "scroll",
+    width: "70%",
+    [theme.breakpoints.down("sm")]: {
+      display: "inlineBlock",
+      width: "100%",
+    },
+  },
 }));
 
 export default useStyles;
