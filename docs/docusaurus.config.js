@@ -106,7 +106,25 @@ module.exports = {
         link: `${WEBSITE_URL}/community`,
         isExternal: false
       }
-    ] 
+    ],
+    socialLinks: {
+      facebook: 'https://www.facebook.com/openebs',
+      github: 'https://github.com/openebs/openebs',
+      slack: `${WEBSITE_URL}/community`,
+      linkedin: 'https://www.linkedin.com/company/openebs',
+      youtube: 'https://www.youtube.com/channel/UC3ywadaAUQ1FI4YsHZ8wa0g',
+      twitter: 'https://twitter.com/openebs'
+    },
+    externalLinks: {
+      subscribeNewsletter: 'https://lists.cncf.io/g/cncf-openebs-announcements'
+    },
+    breakpoints: {
+      xs: 0,
+      sm: 767,
+      md: 996,
+      lg: 0,
+      xl: 0
+    }
   },
   presets: [
     [

@@ -18,7 +18,8 @@ const Search = props => {
   const searchBarRef = useRef(null);
   const history = useHistory();
   const { siteConfig = {} } = useDocusaurusContext();
-  const { baseUrl } = siteConfig;
+  const { baseUrl, customFields } = siteConfig;
+  const breakpoints = customFields?.breakpoints;
   const initAlgolia = (searchDocs, searchIndex, DocSearch) => {
       new DocSearch({
         searchDocs,
@@ -93,7 +94,7 @@ const Search = props => {
       <input
         id="search_input_react"
         type="search"
-        placeholder={`${width < 767 ? "Search" : "Search Documentation"}`}
+        placeholder={`${width < breakpoints?.sm ? "Search" : "Search Documentation"}`}
         aria-label="Search"
         className={`${classnames(
           "navbar__search-input", "docSearchInput",

@@ -24,6 +24,7 @@ import { useViewport } from "@site/src/hooks/useViewport";
 function DocItem(props) {
   const { width } = useViewport() || 0;
   const { siteConfig } = useDocusaurusContext();
+  const breakpoints = siteConfig?.customFields?.breakpoints;
   const { content: DocContent } = props;
   const { metadata, frontMatter } = DocContent;
   const {
@@ -86,9 +87,9 @@ function DocItem(props) {
                   </div>
                 </>
               )}
-              <div className={`searhBar ${width < 767 && "wt_versionDropdown"}`}>
+              <div className={`searhBar ${width < breakpoints?.sm && "wt_versionDropdown"}`}>
                 <Search />
-                {(width < 767) && <VersionDropdown />}
+                {(width < breakpoints?.sm) && <VersionDropdown />}
               </div>
               <div className="markdown">
                 <DocContent />

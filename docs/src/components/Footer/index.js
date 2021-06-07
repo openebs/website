@@ -6,28 +6,35 @@ import { useViewport } from "@site/src/hooks/useViewport";
 const FooterLogo = () => {
   const { siteConfig } = useDocusaurusContext();
   const openebsLogo = siteConfig?.customFields?.openebsLogo;
-
   return (
     <div className="footer_logo">
       <img src={openebsLogo} alt="OpenEBS" />
     </div>
   );
 };
+
 const EmailSubscription = () => {
+  const { siteConfig } = useDocusaurusContext();
+  const subscribeNewsletter = siteConfig?.customFields?.externalLinks?.subscribeNewsletter;
   return (
     <>
       <span className="footer__title">
         Stay in the know with our newsletter
       </span>
-      <div className="margin-vert--md">
-        <a
-          className="doc-button doc-button-primary doc-button-curved  doc-button-lg"
-          href="https://lists.cncf.io/g/cncf-openebs-announcements"
-          target="_blank"
-        >
-          Subscribe
-        </a>
-      </div>
+      {
+        subscribeNewsletter && (
+          <div className="margin-vert--md">
+            <a
+            className="doc-button doc-button-primary doc-button-curved  doc-button-lg"
+            href={subscribeNewsletter}
+            target="_blank"
+            >
+              Subscribe
+            </a>
+        </div>
+        )
+      }
+
     </>
   );
 };
@@ -130,36 +137,38 @@ const Contributors = () => {
 };
 
 const SocialMedia = () => {
+  const { siteConfig } = useDocusaurusContext();
+  const socialLinks = siteConfig?.customFields?.socialLinks;
   const items = [
     {
       name: "facebook",
       icon: require("@site/static/img/social_media/facebook.svg").default,
-      link: "https://www.facebook.com/openebs",
+      link: socialLinks.facebook,
     },
     {
       name: "github",
       icon: require("@site/static/img/social_media/github.svg").default,
-      link: "https://github.com/openebs/openebs-docs",
+      link: socialLinks.github,
     },
     {
       name: "slack",
       icon: require("@site/static/img/social_media/slack.svg").default,
-      link: "https://openebs.io/community",
+      link: socialLinks.github,
     },
     {
       name: "linkedin",
       icon: require("@site/static/img/social_media/linkedin.svg").default,
-      link: "https://www.linkedin.com/company/openebs",
+      link: socialLinks.linkedin,
     },
     {
       name: "youtube",
       icon: require("@site/static/img/social_media/youtube.svg").default,
-      link: "https://www.youtube.com/channel/UC3ywadaAUQ1FI4YsHZ8wa0g",
+      link: socialLinks.youtube,
     },
     {
       name: "twitter",
       icon: require("@site/static/img/social_media/twitter.svg").default,
-      link: "https://twitter.com/openebs",
+      link: socialLinks.twitter,
     },
   ];
   return (
@@ -182,16 +191,24 @@ const FooterBottom = () => {
 
   return (
     <div className="footer__bottom row margin-top--md col col--12">
-      <div className="margin-right--lg">
-        <span>{copyRight && copyRight}</span>
-      </div>
-      <Link
-        to={privacyPolicy?.link}
-        className="footer__link-item"
-        target="_blank"
-      >
-        {privacyPolicy?.label}
-      </Link>
+      {
+        copyRight && (
+          <div className="margin-right--lg">
+            <span>{copyRight}</span>
+          </div>
+        )
+      }
+      {
+        privacyPolicy && (
+          <Link
+          to={privacyPolicy?.link}
+          className="footer__link-item"
+          target="_blank"
+          >
+            {privacyPolicy?.label}
+          </Link>
+        )
+      }
     </div>
   );
 };
@@ -249,7 +266,9 @@ const FooterWeb = () => {
 };
 
 export const Footer = () => {
+  const { siteConfig } = useDocusaurusContext();
+  const breakpoints = siteConfig?.customFields?.breakpoints;
   const { width } = useViewport() || 0;
   
-  return width < 996 ? <FooterMobile /> : <FooterWeb />;
+  return width < breakpoints?.md  ? <FooterMobile /> : <FooterWeb />;
 };
