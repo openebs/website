@@ -102,7 +102,7 @@ const getTags = (tags: Array<string>) => {
                   <ReactMarkdown children={elm.title} />
                 </Typography>
                 <span>
-                  <ReactMarkdown children={elm.content.substring(0, 200) + "..."} />
+                  <ReactMarkdown children={elm.content.substring(0, 200).replace(/[\n]/g, ". ").replace(/[^a-zA-Z ]/g, "") + "..."} />
                   <Button
                     size="small"
                     disableRipple
@@ -110,7 +110,7 @@ const getTags = (tags: Array<string>) => {
                     className={classes.cardActionButton}
                     onClick={() =>
                       window.location.assign(
-                        `/blog/${elm.author}/${elm.blog}`
+                        `/blog/${elm.slug}`
                       )
                     }
                   >

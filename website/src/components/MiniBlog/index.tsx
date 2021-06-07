@@ -209,7 +209,7 @@ const MiniBlog: React.FC = () => {
                 <Card key={elm.id} className={classes.cardRoot}>
                   <CardMedia
                     className={classes.media}
-                    image={`/blog/images/${elm.slug}.png`}
+                    image={`/Images/blog/${elm.slug}.png`}
                   />
                   <CardContent>
                     <DisplayTagandReadTime
@@ -226,7 +226,7 @@ const MiniBlog: React.FC = () => {
                     </Typography>
                     <span>
                       <ReactMarkdown
-                        children={elm.content.substring(0, 200) + "..."}
+                        children={elm.content.substring(0, 200).replace(/[\n]/g, ". ").replace(/[^a-zA-Z ]/g, "") + "..."}
                       />
                       <Button
                         size="small"
@@ -235,7 +235,7 @@ const MiniBlog: React.FC = () => {
                         className={classes.cardActionButton}
                         onClick={() =>
                           window.location.assign(
-                            `/blog/${elm.author}/${elm.blog}`
+                            `/blog/${elm.slug}`
                           )
                         }
                       >

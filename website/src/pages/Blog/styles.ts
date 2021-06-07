@@ -36,9 +36,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexWrap: "wrap",
     textAlign: "center",
-    margin: theme.spacing(8, 0),
+    margin: theme.spacing(8, 50),
     justifyContent: "center",
     alignItems: "center",
+    [theme.breakpoints.down("md")]: {
+      margin: theme.spacing(8, 30),
+    },
+    [theme.breakpoints.down("sm")]: {
+      margin: theme.spacing(8, 10),
+    },
+    [theme.breakpoints.down("sm")]: {
+      margin: theme.spacing(4, 0),
+      fontSize: '24px'
+    },
   },
   authorText: {
     display: "flex",
@@ -62,14 +72,29 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   cardWrapper: {
     [theme.breakpoints.down("lg")]: {
-      padding: theme.spacing(4, 18),
+      padding: theme.spacing(4, 24),
+    },
+    [theme.breakpoints.down("md")]: {
+      padding: theme.spacing(4, 10),
     },
     [theme.breakpoints.down("sm")]: {
       padding: theme.spacing(2, 4),
     },
   },
   cardRoot: {
-    maxWidth: '481px',
+    maxWidth: '480px',
+    boxShadow: 'none',
+    background: 'transparent',
+    margin: 'auto',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    [theme.breakpoints.down("md")]: {
+      maxWidth: '380px',
+    },
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: '480px',
+    },
   },
   rootBlogSection: {
   flexGrow: 1,
@@ -80,6 +105,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
+    borderRadius: '24px 24px 24px 0px'
   },
   bullet: {
     display: "inline-block",
@@ -89,6 +115,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     fontSize: 22,
     fontWeight: 700,
+    cursor: 'pointer'
   },
   pos: {
     marginBottom: 12,
@@ -102,7 +129,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     textTransform: "none",
     color: theme.palette.warning.main,
     fontWeight: 700,
-    marginRight: theme.spacing(2),
   },
   linkBtn: {
     textDecoration: 'none !important',
@@ -120,12 +146,12 @@ const useStyles = makeStyles((theme: Theme) => ({
      color: theme.palette.text.hint,
   },
   small: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
-    marginRight: theme.spacing(1),
+    width: '32px',
+    height: '32px'
   },
   actionWrapper: {
    justifyContent: 'space-between',
+   marginTop: 'auto'
   },
   author: {
   display: 'flex',
@@ -135,7 +161,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'center',
     paddingTop: theme.spacing(2),
+    '& .Mui-selected':{
+      color: theme.palette.text.hint,
+      backgroundColor: 'transparent !important'
+    },
+    '& .MuiPaginationItem-root':{
+      fontWeight: 'bold'
+    }
   },
+  cardContent: {
+    padding: theme.spacing(4, 0)
+  }
 }));
 
 export default useStyles;

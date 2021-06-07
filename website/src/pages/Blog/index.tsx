@@ -179,7 +179,6 @@ const Blog: React.FC = () => {
               container
               direction="row"
               justify="flex-start"
-              alignItems="center"
             >
               {filteredData
                 ? filteredData
@@ -198,7 +197,7 @@ const Blog: React.FC = () => {
                               className={classes.media}
                               image={`/Images/blog/${elm.slug}.png`}
                             />
-                            <CardContent>
+                            <CardContent className={classes.cardContent}>
                               <DisplayTagandReadTime
                                 tags={elm.tags}
                                 readTime={elm.content}
@@ -207,15 +206,20 @@ const Blog: React.FC = () => {
                                 component={"span"}
                                 variant={"body2"}
                                 className={classes.title}
-                                color="textSecondary"
+                                color="textPrimary"
                                 gutterBottom
+                                onClick={() =>
+                                  window.location.assign(
+                                    `/blog/${elm.slug}`
+                                  )
+                                }
                               >
                                 <ReactMarkdown children={elm.title} />
                               </Typography>
                               <Typography component={"span"} variant={"body2"}>
                                 <ReactMarkdown
                                   children={
-                                    elm.content.substring(0, 200) + "..."
+                                    elm.content.substring(0, 200).replace(/[\n]/g, ". ").replace(/[^a-zA-Z ]/g, "") + "..."
                                   }
                                 />
                               </Typography>
@@ -294,9 +298,9 @@ const Blog: React.FC = () => {
               <div className={classes.authorWrapper}>
                 <Avatar
                   alt={queryAuthorName ? queryAuthorName : ""}
-                  src={`/blog/authors/${
-                    filteredAuthorData[0] ? filteredAuthorData[0].author : ""
-                  }.png`}
+                  src={`../Images/blog/authors/${queryAuthorName.toLowerCase()
+                    .replace(/[^\w ]+/g,'')
+                    .replace(/ +/g,'-')}.png`}
                   className={classes.large}
                 />
                 <h1 className={classes.authorText}>{queryAuthorName}</h1>
@@ -328,7 +332,7 @@ const Blog: React.FC = () => {
                           <Card className={classes.cardRoot}>
                             <CardMedia
                               className={classes.media}
-                              image={`/blog/images/${elm.slug}.png`}
+                              image={`/Images/blog/${elm.slug}.png`}
                             />
                             <CardContent>
                               <DisplayTagandReadTime
@@ -337,14 +341,14 @@ const Blog: React.FC = () => {
                               />
                               <span
                                 className={classes.title}
-                                color="textSecondary"
+                                color="textPrimary"
                               >
                                 <ReactMarkdown children={elm.title} />
                               </span>
                               <span>
                                 <ReactMarkdown
                                   children={
-                                    elm.content.substring(0, 200) + "..."
+                                    elm.content.substring(0, 200).replace(/[^a-zA-Z ]/g, "") + "..."
                                   }
                                 />
                               </span>
@@ -372,7 +376,7 @@ const Blog: React.FC = () => {
                                 className={classes.cardActionButton}
                                 onClick={() =>
                                   window.location.assign(
-                                    `/blog/${queryAuthorName}/${elm.blog}`
+                                    `/blog/${elm.slug}`
                                   )
                                 }
                               >
@@ -398,7 +402,6 @@ const Blog: React.FC = () => {
               }
               page={page}
               onChange={(_event, val) => setPage(val)}
-              shape="rounded"
               className={classes.pagination}
             />
           </div>
