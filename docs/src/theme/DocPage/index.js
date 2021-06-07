@@ -7,7 +7,6 @@ import DocSidebar from "@theme/DocSidebar";
 import MDXComponents from "@theme/MDXComponents";
 import NotFound from "@theme/NotFound";
 import IconArrow from "@theme/IconArrow";
-import Search from "@theme/SearchBar";
 import { matchPath } from "@docusaurus/router";
 import { translate } from "@docusaurus/Translate";
 import clsx from "clsx";
