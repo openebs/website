@@ -204,6 +204,10 @@
   margin-top: 140px;
 }
 
+.menu__list .menu__list{
+  --ifm-menu-link-padding-horizontal: 21px;
+}
+
 //search
 .navbar__search {
   width: 100%;
