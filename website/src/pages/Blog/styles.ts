@@ -76,6 +76,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: 'none',
     background: 'transparent',
     margin: 'auto',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
     [theme.breakpoints.down("md")]: {
       maxWidth: '380px',
     },
@@ -116,7 +119,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     textTransform: "none",
     color: theme.palette.warning.main,
     fontWeight: 700,
-    // marginRight: theme.spacing(2),
   },
   linkBtn: {
     textDecoration: 'none !important',
@@ -139,6 +141,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   actionWrapper: {
    justifyContent: 'space-between',
+   marginTop: 'auto'
   },
   author: {
   display: 'flex',
@@ -150,7 +153,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingTop: theme.spacing(2),
     '& .Mui-selected':{
       color: theme.palette.text.hint,
-      backgroundColor: 'transparent'
+      backgroundColor: 'transparent !important'
     },
     '& .MuiPaginationItem-root':{
       fontWeight: 'bold'

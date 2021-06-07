@@ -226,7 +226,7 @@ const MiniBlog: React.FC = () => {
                     </Typography>
                     <span>
                       <ReactMarkdown
-                        children={elm.content.substring(0, 200) + "..."}
+                        children={elm.content.substring(0, 200).replace(/[\n]/g, ". ").replace(/[^a-zA-Z ]/g, "") + "..."}
                       />
                       <Button
                         size="small"

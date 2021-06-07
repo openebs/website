@@ -179,7 +179,6 @@ const Blog: React.FC = () => {
               container
               direction="row"
               justify="flex-start"
-              alignItems="center"
             >
               {filteredData
                 ? filteredData
@@ -220,7 +219,7 @@ const Blog: React.FC = () => {
                               <Typography component={"span"} variant={"body2"}>
                                 <ReactMarkdown
                                   children={
-                                    elm.content.substring(0, 200) + "..."
+                                    elm.content.substring(0, 200).replace(/[\n]/g, ". ").replace(/[^a-zA-Z ]/g, "") + "..."
                                   }
                                 />
                               </Typography>
@@ -349,7 +348,7 @@ const Blog: React.FC = () => {
                               <span>
                                 <ReactMarkdown
                                   children={
-                                    elm.content.substring(0, 200) + "..."
+                                    elm.content.substring(0, 200).replace(/[^a-zA-Z ]/g, "") + "..."
                                   }
                                 />
                               </span>
