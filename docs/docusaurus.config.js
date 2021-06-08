@@ -44,7 +44,7 @@ module.exports = {
         },
         {
           label: "GitHub",
-          link: "https://github.com/openebs/openebs-docs",
+          link: "https://github.com/openebs/openebs",
           isExternal: true,
         },
         {
@@ -128,7 +128,7 @@ module.exports = {
       xs: 0,
       sm: 767,
       md: 996,
-      lg: 0,
+      lg: 1100,
       xl: 0
     }
   },
@@ -140,7 +140,7 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           routeBasePath: "/",
           editUrl:
-            "https://github.com/IsAmrish/POC-docs/edit/main/project-docs/",
+            "https://github.com/openebs/website/edit/revamp-3.0/docs/",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.scss"),
