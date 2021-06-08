@@ -23,6 +23,7 @@ import Slider from "react-slick";
 import DisplayAuthorandReadTime from "../DisplayAuthorandReadTime";
 import CustomTag from "../CustomTag";
 import { getContent } from "../../utils/getContent";
+import getCount from "../../utils/getBlogCount";
 
 interface StyledTabProps {
   label: string;
@@ -85,6 +86,7 @@ const MiniBlog: React.FC = () => {
   const getTags = (tags: Array<string>) => {
     return tags.map((tag: string) => (
       <button
+        key={tag}
         onClick={() => handleTagSelect(tag)}
         className={classes.rightSpacing}
       >
@@ -130,24 +132,11 @@ const MiniBlog: React.FC = () => {
   const totalBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs
   ).length;
-  const chaosBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.CHAOS_ENGINEERING) > -1
-  ).length;
-  const openebsBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.OPENEBS) > -1
-  ).length;
-
-  const devopsBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.DEVOPS) > -1
-  ).length;
-
-  const tutorialBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.TUTORIALS) > -1
-  ).length;
-
-  const solutionBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.SOLUTIONS) > -1
-  ).length;
+  const chaosBlogCount = getCount((jsonMdData || []), BLOG_KEYWORDS.CHAOS_ENGINEERING);
+  const openebsBlogCount = getCount((jsonMdData || []), BLOG_KEYWORDS.OPENEBS);
+  const devopsBlogCount = getCount((jsonMdData || []), BLOG_KEYWORDS.DEVOPS);
+  const tutorialBlogCount = getCount((jsonMdData || []), BLOG_KEYWORDS.TUTORIALS);
+  const solutionBlogCount = getCount((jsonMdData || []), BLOG_KEYWORDS.SOLUTIONS);
 
   const filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
     if (value !== "all") {
@@ -255,7 +244,7 @@ const MiniBlog: React.FC = () => {
                     </span>
                   </CardContent>
                   <CardActions className={classes.actionWrapper}>
-                    <span className={classes.tabWapper}>
+                    <span className={classes.tabWrapper}>
                       {getTags(elm.tags)}
                     </span>
                     <Button

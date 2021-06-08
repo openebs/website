@@ -28,6 +28,7 @@ import DisplayAuthorandReadTime from "../../components/DisplayAuthorandReadTime"
 import CustomTag from "../../components/CustomTag";
 import { getAvatar } from "../../utils/getAvatar";
 import { getContent } from "../../utils/getContent";
+import getCount from "../../utils/getBlogCount";
 
 interface StyledTabProps {
   label: string;
@@ -101,25 +102,14 @@ const Blog: React.FC = () => {
     (tabs: TabProps) => tabs
   ).length;
 
-  const chaosBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.CHAOS_ENGINEERING) > -1
-  ).length;
-
-  const openebsBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.OPENEBS) > -1
-  ).length;
-
-  const devopsBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.DEVOPS) > -1
-  ).length;
-
-  const tutorialBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.TUTORIALS) > -1
-  ).length;
-
-  const solutionBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.SOLUTIONS) > -1
-  ).length;
+  const chaosBlogCount = getCount(
+    jsonMdData || [],
+    BLOG_KEYWORDS.CHAOS_ENGINEERING
+  );
+  const openebsBlogCount = getCount(jsonMdData || [], BLOG_KEYWORDS.OPENEBS);
+  const devopsBlogCount = getCount(jsonMdData || [], BLOG_KEYWORDS.DEVOPS);
+  const tutorialBlogCount = getCount(jsonMdData || [], BLOG_KEYWORDS.TUTORIALS);
+  const solutionBlogCount = getCount(jsonMdData || [], BLOG_KEYWORDS.SOLUTIONS);
 
   const handleTagSelect = (tags: any) => {
     setValue(tags);
@@ -128,6 +118,7 @@ const Blog: React.FC = () => {
   const getTags = (tags: any) => {
     return tags.map((tag: any) => (
       <button
+        key={tag}
         onClick={() => handleTagSelect(tag)}
         className={classes.rightSpacing}
       >
@@ -237,7 +228,7 @@ const Blog: React.FC = () => {
                               </Typography>
                             </CardContent>
                             <CardActions className={classes.actionWrapper}>
-                              <span className={classes.tabWapper}>
+                              <span className={classes.tabWrapper}>
                                 {getTags(elm.tags)}
                               </span>
                               <Button
@@ -336,7 +327,7 @@ const Blog: React.FC = () => {
                               </span>
                             </CardContent>
                             <CardActions className={classes.actionWrapper}>
-                              <span className={classes.tabWapper}>
+                              <span className={classes.tabWrapper}>
                                 {getTags(elm.tags)}
                               </span>
                               <Button

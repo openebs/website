@@ -176,13 +176,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: theme.spacing(1),
     cursor: "pointer",
   },
-  tabWapper: {
+  tabWrapper: {
     display: "flex",
     overflow: "scroll",
     paddingBottom: '2px',
     width: "70%",
     [theme.breakpoints.down("sm")]: {
-      display: "inlineBlock",
       width: "100%",
     },
   },
