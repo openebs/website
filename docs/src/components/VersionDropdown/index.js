@@ -8,8 +8,7 @@ export const getSelectedVersionPath = (
   options,
   activeVersion,
   currentDocsPath,
-  nextOptionName,
-  followPath,
+  nextOptionName
 ) => {
   let activeVersionPath = activeVersion.path.endsWith("/")
     ? activeVersion.path.substring(0, activeVersion.path.length - 1)
@@ -24,7 +23,18 @@ export const getSelectedVersionPath = (
   selectedVersionDocsPath = selectedVersionDocsPath.endsWith("/")
     ? selectedVersionDocsPath.substring(0, selectedVersionDocsPath.length - 1)
     : selectedVersionDocsPath;
-  return `${selectedVersionDocsPath}${followPath ? slugWithoutVersion : ''}`;
+
+  /*
+   * Across versions, docs might be added/deleted/moved(we cant always keep the same structure). Yet if the dropdown is always there,
+   * it should lead somewhere. So if the path does not exist on the selected version it will redirect to the selected version's default path
+   */
+
+  const ifDocPresentInVersion = options
+    .find((option) => option?.name === nextOptionName)
+    .docs?.filter((current) => slugWithoutVersion.endsWith(current?.id));
+  return `${selectedVersionDocsPath}${
+    ifDocPresentInVersion.length ? slugWithoutVersion : "/"
+  }`;
 };
 
 export const getSlugWithoutVersion = (slug, currentOptionPath) => {
@@ -37,28 +47,37 @@ export const VersionDropdown = () => {
   const activeVersion = useActiveVersion();
   const options = useVersions();
   const [currentOption, setCurrentOption] = useState(activeVersion);
-  const followPath = false;
-  const handleChange = (e,option) => {
+  const handleChange = (e, option) => {
     e.preventDefault();
     setCurrentOption(option);
     const selectedVersionPath = getSelectedVersionPath(
       options,
       activeVersion,
       location.pathname,
-      option.name,
-      followPath,
+      option.name
     );
     history.push(selectedVersionPath);
   };
+
   return (
     <div className={styles.dropDownWrapper}>
-      <div className={`dropdown dropdown--hoverable doc-button doc-button-outlined doc-button-secondary doc-button-secondary-light ${styles.dropdown}`}>
-        <span className="navbar__link" >{currentOption.name}</span>
+      <div
+        className={`dropdown dropdown--hoverable doc-button doc-button-outlined doc-button-secondary doc-button-secondary-light ${styles.dropdown}`}
+      >
+        <span className="navbar__link">{currentOption.name}</span>
         <ul className="dropdown__menu">
           {options?.map((option) => {
             return (
               <li key={option?.name}>
-                <a className={`dropdown__link ${currentOption?.name === option?.name ? "dropdown__link--active" : ""}`} href="#" onClick={(e) => handleChange(e,option)}>
+                <a
+                  className={`dropdown__link ${
+                    currentOption?.name === option?.name
+                      ? "dropdown__link--active"
+                      : ""
+                  }`}
+                  href="#"
+                  onClick={(e) => handleChange(e, option)}
+                >
                   {option.label}
                 </a>
               </li>
