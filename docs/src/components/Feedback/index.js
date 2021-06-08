@@ -9,14 +9,9 @@ export const Feedback = () => {
     const kubernetesSlackOpenEBS = siteConfig?.customFields?.externalLinks?.kubernetesSlackOpenEBS;
     const [isThanksTextVisible, setThanksTextVisibility] = useState(false); 
     
-    const handlePositiveResponse = () => {
+    const handleResponse = (action, value) => {
         setThanksTextVisibility(true);
-        sendFeedback("Yes", 1);
-    }
-
-    const handleNegativeResponse = () => {
-        setThanksTextVisibility(true);
-        sendFeedback("No", 0);
+        sendFeedback(action,value);
     }
 
     function sendFeedback(action,value) {
@@ -36,8 +31,8 @@ export const Feedback = () => {
         <div className={styles.wrapper}>
             <h4>Was this page helpful? We appreciate your feedback</h4>
             <div className={styles.buttonGroup}>
-                <button type="button" className="doc-button doc-button-primary doc-button-curved" onClick={() => handlePositiveResponse()} disabled={isThanksTextVisible}>Yes</button>
-                <button type="button" className="doc-button doc-button-outlined doc-button-curved" onClick={() => handleNegativeResponse()} disabled={isThanksTextVisible}>No</button>
+                <button type="button" className="doc-button doc-button-primary doc-button-curved" onClick={() => handleResponse("Yes", 1)} disabled={isThanksTextVisible}>Yes</button>
+                <button type="button" className="doc-button doc-button-outlined doc-button-curved" onClick={() => handleResponse("No", 0)} disabled={isThanksTextVisible}>No</button>
             </div>
             {
                 isThanksTextVisible && (
