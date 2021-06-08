@@ -27,7 +27,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import DisplayAuthorandReadTime from "../../components/DisplayAuthorandReadTime";
 import CustomTag from "../../components/CustomTag";
 import { getAvatar } from "../../utils/getAvatar";
-import { getContent } from "../../utils/getContent";
+import { getContentPreview } from "../../utils/getContent";
 import getCount from "../../utils/getBlogCount";
 
 interface StyledTabProps {
@@ -223,7 +223,7 @@ const Blog: React.FC = () => {
                               </Typography>
                               <Typography component={"span"} variant={"body2"}>
                                 <ReactMarkdown
-                                  children={getContent(elm.content)}
+                                  children={getContentPreview(elm.content)}
                                 />
                               </Typography>
                             </CardContent>
@@ -322,7 +322,7 @@ const Blog: React.FC = () => {
                               </span>
                               <span>
                                 <ReactMarkdown
-                                  children={getContent(elm.content)}
+                                  children={getContentPreview(elm.content)}
                                 />
                               </span>
                             </CardContent>

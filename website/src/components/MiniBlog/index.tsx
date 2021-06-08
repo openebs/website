@@ -22,7 +22,7 @@ import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
 import Slider from "react-slick";
 import DisplayAuthorandReadTime from "../DisplayAuthorandReadTime";
 import CustomTag from "../CustomTag";
-import { getContent } from "../../utils/getContent";
+import { getContentPreview } from "../../utils/getContent";
 import getCount from "../../utils/getBlogCount";
 
 interface StyledTabProps {
@@ -239,7 +239,7 @@ const MiniBlog: React.FC = () => {
                     </Typography>
                     <span>
                       <ReactMarkdown
-                       children={getContent(elm.content)}
+                       children={getContentPreview(elm.content)}
                       />
                     </span>
                   </CardContent>
