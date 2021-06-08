@@ -24,7 +24,7 @@ const DisplayAuthorandReadTime: React.FC<displayAuthorandReadTimeProps> = ({
           <span className={classes.author}>
             <Avatar
               alt={author}
-              src={getAvatar(author)}
+              src={`../Images/blog/authors/${getAvatar(author)}.png`}
               className={classes.small}
             />
             <Button

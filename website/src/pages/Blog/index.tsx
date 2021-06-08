@@ -275,7 +275,7 @@ const Blog: React.FC = () => {
               <div className={classes.authorWrapper}>
                 <Avatar
                   alt={queryAuthorName ? queryAuthorName : ""}
-                  src={getAvatar(queryAuthorName)}
+                  src={`../Images/blog/authors/${getAvatar(queryAuthorName)}.png`}
                   className={classes.large}
                 />
                 <h1 className={classes.authorText}>{queryAuthorName}</h1>
