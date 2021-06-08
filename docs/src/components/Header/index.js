@@ -6,7 +6,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import Link from "@docusaurus/Link";
 import { useViewport } from "@site/src/hooks/useViewport";
 import { MobileNav } from "./mobile-nav";
-import Translate from '@docusaurus/Translate';
+import Translate, { translate } from '@docusaurus/Translate';
 
 export const Header = () => {
     const { siteConfig } = useDocusaurusContext();
@@ -19,10 +19,19 @@ export const Header = () => {
                 <div className={styles.header}>
                     <div className={width > 480 ? styles.logoWrapper : styles.logoWrapperSmallView }>
                         <a href={useBaseUrl('/')} target="_self">
-                            <img src={useBaseUrl('/img/openebs-logo.svg')} alt="OpenEBS Logo" />
+                            <img src={useBaseUrl('/img/openebs-logo.svg')} alt={translate({
+                                id: "component.Header.logo",
+                                description: "Header Logo",
+                                message: 'OpenEBS logo'
+                            })} />
                         </a>
                         <div className={styles.buttonWrapper}>
-                            <GitHubButton href={"https://github.com/openebs/openebs/"} data-size="large" data-show-count="true" aria-label="Star OpenEBS"><Translate>Star</Translate></GitHubButton>
+                            <GitHubButton href={"https://github.com/openebs/openebs/"} data-size="large" data-show-count="true" aria-label="Star OpenEBS">
+                                <Translate
+                                    id="component.Header.star"
+                                    description="Star button"
+                                >Star</Translate>
+                            </GitHubButton>
                         </div>
                     </div>
                 

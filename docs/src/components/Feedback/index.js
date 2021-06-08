@@ -30,10 +30,33 @@ export const Feedback = () => {
 
     return(
         <div className={styles.wrapper}>
-            <h4><Translate> Was this page helpful? We appreciate your feedback</Translate></h4>
+            <h4>
+                <Translate
+                    id="component.Feedback.heading"
+                    description="The heading of feedback widget"
+                >Was this page helpful? We appreciate your feedback</Translate>
+            </h4>
             <div className={styles.buttonGroup}>
-                <button type="button" className="doc-button doc-button-primary doc-button-curved" onClick={() => handleResponse("Yes", 1)} disabled={isThanksTextVisible}><Translate>Yes</Translate></button>
-                <button type="button" className="doc-button doc-button-outlined doc-button-curved" onClick={() => handleResponse("No", 0)} disabled={isThanksTextVisible}><Translate>No</Translate></button>
+                <button 
+                    type="button"
+                    className="doc-button doc-button-primary doc-button-curved"
+                    onClick={() => handleResponse("Yes", 1)} disabled={isThanksTextVisible}
+                >
+                    <Translate
+                        id="component.Feedback.Yes"
+                        description="Feedback button 'Yes' for positive response"
+                    >Yes</Translate>
+                </button>
+                <button 
+                    type="button"
+                    className="doc-button doc-button-primary doc-button-curved"
+                    onClick={() => handleResponse("No", 0)} disabled={isThanksTextVisible}
+                >
+                    <Translate 
+                        id="component.Feedback.No"
+                        description="Feedback button 'No' for negative response"
+                    >No</Translate>
+                </button>
             </div>
             {
                 isThanksTextVisible && (
