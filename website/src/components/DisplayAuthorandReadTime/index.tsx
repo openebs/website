@@ -23,7 +23,7 @@ const DisplayAuthorandReadTime: React.FC<displayAuthorandReadTimeProps> = ({
         <div className={classes.wrapperBlock}>
           <span className={classes.author}>
             <Avatar
-              alt={author}
+              alt={author && author}
               src={`../Images/blog/authors/${getAvatar(author)}.png`}
               className={classes.small}
             />
@@ -35,7 +35,7 @@ const DisplayAuthorandReadTime: React.FC<displayAuthorandReadTimeProps> = ({
               onClick={() => window.location.assign(`/blog/?author=${author}`)}
             >
               <Typography component={"span"} variant={"body2"}>
-                {author ? author : ""}
+                {author && author}
               </Typography>
             </Button>
           </span>

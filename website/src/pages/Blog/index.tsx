@@ -96,7 +96,6 @@ const Blog: React.FC = () => {
   const handleChange = (_event: React.ChangeEvent<{}>, newValue: string) => {
     setValue(newValue);
   };
-
   // functions to get the blog count for each individual tags
   const totalBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs
@@ -274,7 +273,7 @@ const Blog: React.FC = () => {
               <p className={classes.authorURL}>{`/blog/${queryAuthorName}`}</p>
               <div className={classes.authorWrapper}>
                 <Avatar
-                  alt={queryAuthorName ? queryAuthorName : ""}
+                  alt={queryAuthorName && queryAuthorName}
                   src={`../Images/blog/authors/${getAvatar(queryAuthorName)}.png`}
                   className={classes.large}
                 />
