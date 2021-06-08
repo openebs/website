@@ -1,0 +1,34 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Introduction": {
+    "message": "Introduction",
+    "description": "The label for category Introduction in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Concepts": {
+    "message": "Concepts",
+    "description": "The label for category Concepts in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.User Guides": {
+    "message": "User Guides",
+    "description": "The label for category User Guides in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Stateful Applications": {
+    "message": "Stateful Applications",
+    "description": "The label for category Stateful Applications in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Troubleshooting": {
+    "message": "Troubleshooting",
+    "description": "The label for category Troubleshooting in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Additional Info": {
+    "message": "Additional Info",
+    "description": "The label for category Additional Info in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Depreciated Releases": {
+    "message": "Depreciated Releases",
+    "description": "The label for category Depreciated Releases in sidebar tutorialSidebar"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version.label": {
+    "message": "1.1.1",
+    "description": "The label for version 1.1.1"
+  },
+  "sidebar.docs.category.Tutorial Basics": {
+    "message": "Tutorial Basics",
+    "description": "The label for category Tutorial Basics in sidebar docs"
+  },
+  "sidebar.docs.category.Tutorial Extra": {
+    "message": "Tutorial Extra",
+    "description": "The label for category Tutorial Extra in sidebar docs"
+  }
+}
