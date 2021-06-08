@@ -24,7 +24,11 @@ import ReactMarkdown from "react-markdown";
 import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
 import Sponsor from "../../components/Sponsor";
 import Pagination from "@material-ui/lab/Pagination";
-import DisplayTagandReadTime from "../../components/DisplayTagandReadTime";
+import DisplayAuthorandReadTime from "../../components/DisplayAuthorandReadTime";
+import CustomTag from "../../components/CustomTag";
+import { getAvatar } from "../../utils/getAvatar";
+import { getContentPreview } from "../../utils/getContent";
+import getCount from "../../utils/getBlogCount";
 
 interface StyledTabProps {
   label: string;
@@ -37,7 +41,7 @@ interface TabProps {
   blog: string;
   description: string;
   image: string;
-  tags: string;
+  tags: Array<string>;
   author: string;
   length: number;
 }
@@ -49,8 +53,6 @@ const Blog: React.FC = () => {
   const [value, setValue] = React.useState("all");
   const params = new URLSearchParams(window.location.search);
   const queryAuthorName = params.get("author");
-  const queryTitleName = params.get("title");
-  const queryTagName = params.get("tags");
   const mediumViewport = useMediaQuery(
     `(min-width:${VIEW_PORT.MOBILE_BREAKPOINT}px)`
   );
@@ -94,32 +96,40 @@ const Blog: React.FC = () => {
   const handleChange = (_event: React.ChangeEvent<{}>, newValue: string) => {
     setValue(newValue);
   };
-
   // functions to get the blog count for each individual tags
- const totalBlogCount = (jsonMdData || []).filter(
+  const totalBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs
   ).length;
 
-  const chaosBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.CHAOS_ENGINEERING) > -1).length;
+  const chaosBlogCount = getCount(
+    jsonMdData || [],
+    BLOG_KEYWORDS.CHAOS_ENGINEERING
+  );
+  const openebsBlogCount = getCount(jsonMdData || [], BLOG_KEYWORDS.OPENEBS);
+  const devopsBlogCount = getCount(jsonMdData || [], BLOG_KEYWORDS.DEVOPS);
+  const tutorialBlogCount = getCount(jsonMdData || [], BLOG_KEYWORDS.TUTORIALS);
+  const solutionBlogCount = getCount(jsonMdData || [], BLOG_KEYWORDS.SOLUTIONS);
 
-  const openebsBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.OPENEBS) > -1).length;
- 
-  const devopsBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.DEVOPS) > -1).length;
- 
+  const handleTagSelect = (tags: any) => {
+    setValue(tags);
+  };
 
-  const tutorialBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.TUTORIALS) > -1).length;
+  const getTags = (tags: any) => {
+    return tags.map((tag: any) => (
+      <button
+        key={tag}
+        onClick={() => handleTagSelect(tag)}
+        className={classes.rightSpacing}
+      >
+        <CustomTag blogLabel={tag} key={tag} />
+      </button>
+    ));
+  };
 
-
-  const solutionBlogCount = (jsonMdData || []).filter(
-    (tabs: TabProps) => tabs.tags.indexOf(BLOG_KEYWORDS.SOLUTIONS) > -1).length;
-  
   const filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
     if (value !== "all") {
-      return tabs.tags === value;
+      const tagData = tabs.tags.find((el: any) => el === value);
+      return tagData === value;
     }
     return tabs;
   });
@@ -175,11 +185,7 @@ const Blog: React.FC = () => {
           </div>
           <div className={classes.cardWrapper}>
             <h1>{t("blog.articles")}</h1>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-            >
+            <Grid container direction="row" justify="flex-start">
               {filteredData
                 ? filteredData
                     .slice((page - 1) * itemsPerPage, page * itemsPerPage)
@@ -197,9 +203,9 @@ const Blog: React.FC = () => {
                               className={classes.media}
                               image={`/Images/blog/${elm.slug}.png`}
                             />
-                            <CardContent className={classes.cardContent}>
-                              <DisplayTagandReadTime
-                                tags={elm.tags}
+                            <CardContent>
+                              <DisplayAuthorandReadTime
+                                author={elm.author}
                                 readTime={elm.content}
                               />
                               <Typography
@@ -209,48 +215,20 @@ const Blog: React.FC = () => {
                                 color="textPrimary"
                                 gutterBottom
                                 onClick={() =>
-                                  window.location.assign(
-                                    `/blog/${elm.slug}`
-                                  )
+                                  window.location.assign(`/blog/${elm.slug}`)
                                 }
                               >
                                 <ReactMarkdown children={elm.title} />
                               </Typography>
                               <Typography component={"span"} variant={"body2"}>
                                 <ReactMarkdown
-                                  children={
-                                    elm.content.substring(0, 200).replace(/[\n]/g, ". ").replace(/[^a-zA-Z ]/g, "") + "..."
-                                  }
+                                  children={getContentPreview(elm.content)}
                                 />
                               </Typography>
                             </CardContent>
                             <CardActions className={classes.actionWrapper}>
-                              <span className={classes.author}>
-                                <Avatar
-                                  alt="author1"
-                                  src={`../Images/blog/authors/${elm.author.toLowerCase()
-                                    .replace(/[^\w ]+/g,'')
-                                    .replace(/ +/g,'-')}.png`}
-                                  className={classes.small}
-                                />
-                                <Button
-                                  size="large"
-                                  disableRipple
-                                  variant="text"
-                                  className={classes.cardActionButton}
-                                  onClick={() =>
-                                    window.location.assign(
-                                      `/blog/?tags=${elm.tags}&title=${elm.title}&author=${elm.author}`
-                                    )
-                                  }
-                                >
-                                  <Typography
-                                    component={"span"}
-                                    variant={"body2"}
-                                  >
-                                    {elm.author}
-                                  </Typography>
-                                </Button>
+                              <span className={classes.tabWrapper}>
+                                {getTags(elm.tags)}
                               </span>
                               <Button
                                 size="large"
@@ -292,15 +270,11 @@ const Blog: React.FC = () => {
         <>
           <div className={classes.root}>
             <Container maxWidth="md">
-              <p
-                className={classes.authorURL}
-              >{`/blog/${queryTagName}/${queryTitleName}/${queryAuthorName}`}</p>
+              <p className={classes.authorURL}>{`/blog/${queryAuthorName}`}</p>
               <div className={classes.authorWrapper}>
                 <Avatar
-                  alt={queryAuthorName ? queryAuthorName : ""}
-                  src={`../Images/blog/authors/${queryAuthorName.toLowerCase()
-                    .replace(/[^\w ]+/g,'')
-                    .replace(/ +/g,'-')}.png`}
+                  alt={queryAuthorName && queryAuthorName}
+                  src={`../Images/blog/authors/${getAvatar(queryAuthorName)}.png`}
                   className={classes.large}
                 />
                 <h1 className={classes.authorText}>{queryAuthorName}</h1>
@@ -335,8 +309,8 @@ const Blog: React.FC = () => {
                               image={`/Images/blog/${elm.slug}.png`}
                             />
                             <CardContent>
-                              <DisplayTagandReadTime
-                                tags={elm.tags}
+                              <DisplayAuthorandReadTime
+                                author={elm.author}
                                 readTime={elm.content}
                               />
                               <span
@@ -347,27 +321,13 @@ const Blog: React.FC = () => {
                               </span>
                               <span>
                                 <ReactMarkdown
-                                  children={
-                                    elm.content.substring(0, 200).replace(/[^a-zA-Z ]/g, "") + "..."
-                                  }
+                                  children={getContentPreview(elm.content)}
                                 />
                               </span>
                             </CardContent>
                             <CardActions className={classes.actionWrapper}>
-                              <span className={classes.author}>
-                                <Avatar
-                                  alt={elm.author}
-                                  src={`../Images/blog/authors/${elm.author.toLowerCase()
-                                    .replace(/[^\w ]+/g,'')
-                                    .replace(/ +/g,'-')}.png`}
-                                  className={classes.small}
-                                />
-                                <Typography
-                                  component={"span"}
-                                  variant={"body2"}
-                                >
-                                  {elm.author}
-                                </Typography>
+                              <span className={classes.tabWrapper}>
+                                {getTags(elm.tags)}
                               </span>
                               <Button
                                 size="large"
@@ -376,7 +336,7 @@ const Blog: React.FC = () => {
                                 className={classes.cardActionButton}
                                 onClick={() =>
                                   window.location.assign(
-                                    `/blog/${elm.slug}`
+                                    `/blog/${queryAuthorName}/${elm.blog}`
                                   )
                                 }
                               >

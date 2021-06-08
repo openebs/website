@@ -98,7 +98,25 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   actionWrapper: {
     justifyContent: "space-between",
-  }
+    [theme.breakpoints.down("sm")]: {
+      display: "block",
+    },
+  },
+  tabWrapper: {
+    display: "flex",
+    overflow: "scroll",
+    paddingBottom: '2px',
+    width: "70%",
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+    },
+  },
+  rightSpacing: {
+    border: "none",
+    background: "none",
+    marginRight: theme.spacing(1),
+    cursor: "pointer",
+  },
 }));
 
 export default useStyles;

@@ -13,7 +13,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   tagsWrapper: {
     display: 'flex',
-    gap: '12px'
+    gap: '12px',
+    overflow: "scroll",
+    paddingBottom: '2px',
   },
   title: {
     fontSize: 22,
