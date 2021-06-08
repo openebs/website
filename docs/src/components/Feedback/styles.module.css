@@ -16,6 +16,17 @@
   width: 100%;
 }
 
+.feedbackResponseHidden {
+  visibility: hidden;
+  display: none;
+}
+
+.feedbackResponseVisible {
+  visibility: visible;
+  display: block;
+  padding-top: 16px;
+}
+
 @media (min-width: 980px) {
   .wrapper {
     max-width: 75%;
