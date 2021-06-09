@@ -40,6 +40,11 @@ export const Feedback = () => {
                 <button 
                     type="button"
                     className="doc-button doc-button-primary doc-button-curved"
+                    aria-label={translate({
+                        id: "theme.Feedback.YesButton",
+                        message: "Yes",
+                        description: "The ARIA label for sending positive response on button click",
+                      })}
                     onClick={() => handleResponse("Yes", 1)} disabled={isThanksTextVisible}
                 >
                     <Translate
@@ -50,6 +55,11 @@ export const Feedback = () => {
                 <button 
                     type="button"
                     className="doc-button doc-button-primary doc-button-curved"
+                    aria-label={translate({
+                        id: "theme.Feedback.NoButton",
+                        message: "No",
+                        description: "The ARIA label for sending negative response on button click",
+                      })}
                     onClick={() => handleResponse("No", 0)} disabled={isThanksTextVisible}
                 >
                     <Translate 
