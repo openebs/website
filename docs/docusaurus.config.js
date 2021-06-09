@@ -126,7 +126,8 @@ module.exports = {
     externalLinks: {
       subscribeNewsletter: 'https://lists.cncf.io/g/cncf-openebs-announcements',
       openAnIssue: 'https://github.com/openebs/openebs/issues/new',
-      kubernetesSlackOpenEBS: 'https://kubernetes.slack.com/messages/openebs/'
+      kubernetesSlackOpenEBS: 'https://kubernetes.slack.com/messages/openebs/',
+      repoUrl: 'https://github.com/openebs/openebs'
     },
     breakpoints: {
       xs: 0,
@@ -134,7 +135,7 @@ module.exports = {
       md: 996,
       lg: 1100,
       xl: 0
-    }
+    },
   },
   presets: [
     [

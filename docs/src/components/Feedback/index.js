@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from './styles.module.css';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import Translate from '@docusaurus/Translate';
+import Translate, { translate } from '@docusaurus/Translate';
 
 export const Feedback = () => {
 

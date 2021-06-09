@@ -12,6 +12,7 @@ export const Header = () => {
     const { siteConfig } = useDocusaurusContext();
     const socials = siteConfig?.customFields?.socials;
     const navLinks = siteConfig?.customFields?.navLinks;
+    const repoUrl = siteConfig?.customFields?.externalLinks?.repoUrl;
     const { width } = useViewport();
     return(
         <div className={styles.headerOuterWrapper}>
@@ -26,7 +27,7 @@ export const Header = () => {
                             })} />
                         </a>
                         <div className={styles.buttonWrapper}>
-                            <GitHubButton href={"https://github.com/openebs/openebs/"} data-size="large" data-show-count="true" aria-label="Star OpenEBS">
+                            <GitHubButton href={repoUrl} data-size="large" data-show-count="true" aria-label="Star OpenEBS">
                                 <Translate
                                     id="component.Header.star"
                                     description="Star button"
