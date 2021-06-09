@@ -1,6 +1,7 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 
 const WEBSITE_URL = `https://gallant-pasteur-5e438c.netlify.app`;
+const path = require('path');
 
 module.exports = {
   title: "OpenEBS Docs",
@@ -157,5 +158,6 @@ module.exports = {
   plugins: [
     "docusaurus-plugin-sass",
     require.resolve("docusaurus-lunr-search"),
+    path.resolve(__dirname, 'plugins/route-update-event-plugin')
   ]
 };
