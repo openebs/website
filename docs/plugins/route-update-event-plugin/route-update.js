@@ -5,7 +5,7 @@ export default (function () {
   }
   
   return {
-    onRouteUpdate({ }) {
+    onRouteUpdate() {
         const event = new Event('routeupdated');
         document.dispatchEvent(event);
     },
