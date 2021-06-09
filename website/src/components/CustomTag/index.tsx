@@ -1,7 +1,5 @@
 import { Typography } from "@material-ui/core";
-import React, { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import { BLOG_KEYWORDS } from "../../constants";
 import useStyles from "./styles";
 
 interface blogTitleProps {
@@ -11,78 +9,25 @@ interface blogTitleProps {
 const CustomTag: React.FC<blogTitleProps> = ({ blogLabel }) => {
   const classes = useStyles();
 
-  const chaosEngineering = () => {
-    return (
-      <Typography variant="h6" className={classes.chaosengineering}>
+  const getBackgroundColor = () => {
+    const backgroundColorsDictionary = ['#FFE2D5', '#FFEDAD', '#DBF0F7', '#62A7BD', '#464497', '#DCDBF7', '#B2EFE8', '#FFCDCD'];
+    const backgroundColor = backgroundColorsDictionary[Math.floor(Math.random() * backgroundColorsDictionary.length)];
+    return backgroundColor;
+  }
+
+  const getTextColor = () => {
+    const textColorsDictionary = ['#F26D00','#073D47','#FFFFFF', '#A4451B', '#3B4473', '#3B4473', '#F26D00', '#A4451B', '#A4451B', '#6A5711', '#62A7BD', '#223288', '#3D9086', '#963D16'];
+    const textColor = textColorsDictionary[Math.floor(Math.random() * textColorsDictionary.length)];
+    return textColor;
+  }
+
+  return (
+    <>
+       <Typography variant="h6" className={classes.tag} style = {{backgroundColor: getBackgroundColor(), color: getTextColor()}}>
         <ReactMarkdown children={blogLabel} />
       </Typography>
-    );
-  };
-
-  const devOps = () => {
-    return (
-      <Typography variant="h6" className={classes.devops}>
-        <ReactMarkdown children={blogLabel} />
-      </Typography>
-    );
-  };
-
-  const tutorials = () => {
-    return (
-      <Typography variant="h6" className={classes.tutorials}>
-        <ReactMarkdown children={blogLabel} />
-      </Typography>
-    );
-  };
-
-  const openEBS = () => {
-    return (
-      <Typography variant="h6" className={classes.openebs}>
-        <ReactMarkdown children={blogLabel} />
-      </Typography>
-    );
-  };
-
-  const solutions = () => {
-    return (
-      <Typography variant="h6" className={classes.solutions}>
-        <ReactMarkdown children={blogLabel} />
-      </Typography>
-    );
-  };
-
-  const secondary = () => {
-    return (
-      <Typography variant="h6" className={classes.secondary}>
-        <ReactMarkdown children={blogLabel} />
-      </Typography>
-    );
-  };
-
-  // Switch statements to handle props based on the respective tags
-  const handleTags = () => {
-    switch (blogLabel) {
-      case BLOG_KEYWORDS.CHAOS_ENGINEERING:
-        return chaosEngineering();
-      case BLOG_KEYWORDS.DEVOPS:
-        return devOps();
-      case BLOG_KEYWORDS.TUTORIALS:
-        return tutorials();
-      case BLOG_KEYWORDS.OPENEBS:
-        return openEBS();
-      case BLOG_KEYWORDS.SOLUTIONS:
-        return solutions();
-      default:
-        return secondary();
-    }
-  };
-
-  useEffect(() => {
-    handleTags();
-  });
-
-  // returns the respective tag props
-  return <>{handleTags()}</>;
+    </>
+  );
 };
 
 export default CustomTag;

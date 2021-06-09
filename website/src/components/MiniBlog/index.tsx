@@ -18,12 +18,11 @@ import {
   withStyles,
 } from "@material-ui/core";
 import ReactMarkdown from "react-markdown";
-import { BLOG_KEYWORDS, VIEW_PORT } from "../../constants";
+import { VIEW_PORT } from "../../constants";
 import Slider from "react-slick";
 import DisplayAuthorandReadTime from "../DisplayAuthorandReadTime";
 import CustomTag from "../CustomTag";
 import { getContentPreview } from "../../utils/getContent";
-import getCount from "../../utils/getBlogCount";
 
 interface StyledTabProps {
   label: string;
@@ -46,6 +45,7 @@ const MiniBlog: React.FC = () => {
   const classes = useStyles();
   const [jsonMdData, setJsonMdData] = useState<any>();
   const [value, setValue] = React.useState("all");
+  const [tagsDistribution, setTagsDistribution] = useState({});
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
   const SampleNextArrow = (props: any) => {
     const { className, style, onClick } = props;
@@ -132,11 +132,6 @@ const MiniBlog: React.FC = () => {
   const totalBlogCount = (jsonMdData || []).filter(
     (tabs: TabProps) => tabs
   ).length;
-  const chaosBlogCount = getCount((jsonMdData || []), BLOG_KEYWORDS.CHAOS_ENGINEERING);
-  const openebsBlogCount = getCount((jsonMdData || []), BLOG_KEYWORDS.OPENEBS);
-  const devopsBlogCount = getCount((jsonMdData || []), BLOG_KEYWORDS.DEVOPS);
-  const tutorialBlogCount = getCount((jsonMdData || []), BLOG_KEYWORDS.TUTORIALS);
-  const solutionBlogCount = getCount((jsonMdData || []), BLOG_KEYWORDS.SOLUTIONS);
 
   const filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
     if (value !== "all") {
@@ -145,6 +140,24 @@ const MiniBlog: React.FC = () => {
     }
     return tabs;
   });
+
+  useEffect(() => {
+    let tagsArray: Array<string> = [];
+    if (jsonMdData && jsonMdData.constructor === Array) { // this check is necessary to avoid parsing errors on JSON data
+      for (let i=0; i < jsonMdData.length; i++) {
+        tagsArray = [...tagsArray, ...jsonMdData[i].tags];
+      }
+      setTagsDistribution(tagsArray.reduce((acum: any,cur: string) => Object.assign(acum,{[cur]: (acum[cur] || 0)+1}),{}));
+    }
+  }, [jsonMdData]);
+
+  const getTagsMarkup = Object.keys(tagsDistribution).map((item: string) => 
+          <StyledTab
+            label={item + "(" + tagsDistribution[item as keyof typeof tagsDistribution] + ")"}
+            value={item}
+            key = {item}
+          />
+  );
 
   return (
     <>
@@ -169,26 +182,7 @@ const MiniBlog: React.FC = () => {
                 label={"All(" + totalBlogCount + ")"}
                 value={t("blog.all")}
               />
-              <StyledTab
-                label={"Chaos Engineering(" + chaosBlogCount + ")"}
-                value={t("blog.chaosengineering")}
-              />
-              <StyledTab
-                label={"DevOps(" + devopsBlogCount + ")"}
-                value={t("blog.devops")}
-              />
-              <StyledTab
-                label={"OpenEBS(" + openebsBlogCount + ")"}
-                value={t("blog.openebs")}
-              />
-              <StyledTab
-                label={"Solutions(" + solutionBlogCount + ")"}
-                value={t("blog.solutions")}
-              />
-              <StyledTab
-                label={"Tutorials(" + tutorialBlogCount + ")"}
-                value={t("blog.tutorials")}
-              />
+              {getTagsMarkup}
             </Tabs>
           </Paper>
         </Container>
