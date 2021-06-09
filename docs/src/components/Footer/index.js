@@ -2,13 +2,18 @@ import React, { useEffect, useState } from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Link from "@docusaurus/Link";
 import { useViewport } from "@site/src/hooks/useViewport";
+import Translate, { translate } from '@docusaurus/Translate';
 
 const FooterLogo = () => {
   const { siteConfig } = useDocusaurusContext();
   const openebsLogo = siteConfig?.customFields?.openebsLogo;
   return (
     <div className="footer_logo">
-      <img src={openebsLogo} alt="OpenEBS" />
+      <img src={openebsLogo} alt={translate({
+         id: 'component.Footer.logo', 
+         description: 'Footer logo',
+         message: 'OpenEBS logo'
+      })} />
     </div>
   );
 };
@@ -19,7 +24,10 @@ const EmailSubscription = () => {
   return (
     <>
       <span className="footer__title">
-        Stay in the know with our newsletter
+        <Translate
+          id="component.Footer.emailSubscription"
+          description="Email subscription title in footer"
+        >Stay in the know with our newsletter</Translate>
       </span>
       {
         subscribeNewsletter && (
@@ -29,7 +37,10 @@ const EmailSubscription = () => {
             href={subscribeNewsletter}
             target="_blank"
             >
-              Subscribe
+              <Translate
+                id="component.Footer.subscribe"
+                description="Email subscription action text"
+              >Subscribe</Translate>
             </a>
         </div>
         )
@@ -43,7 +54,11 @@ const LinksGettingStarted = () => {
   const gettingStarted = siteConfig?.customFields?.footbarLinks?.gettingStarted;
   return (
     <div className="col">
-      <span className="footer__title">Getting started</span>
+      <span className="footer__title">
+      <Translate
+        id="component.Footer.gettingStarted"
+        description="Getting started label in footer"
+      >Getting started</Translate></span>
       <ul className="footer__items">
         {gettingStarted?.map((link) => {
           return (
@@ -68,7 +83,12 @@ const LinksContactUs = () => {
 
   return (
     <div className="col footer__col">
-      <span className="footer__title">Contact us</span>
+      <span className="footer__title">
+        <Translate
+          id="component.Footer.contactUs"
+          description="Contact us label in footer"
+        >Contact us</Translate>
+      </span>
       <ul className="footer__items">
         {contactUs?.map((link) => {
           return (
@@ -114,7 +134,12 @@ const Contributors = () => {
     <div className="col">
       {isLoaded && items.length && (
         <>
-          <span className="footer__title">Top contributors</span>
+          <span className="footer__title">
+            <Translate
+              id="component.Footer.topContributors"
+              description="Top contributors label in footer"
+            >Top contributors</Translate>
+          </span>
           <ul className="footer__items">
             {items?.slice(0, 3).map((item) => {
               return (
@@ -141,32 +166,56 @@ const SocialMedia = () => {
   const socialLinks = siteConfig?.customFields?.socialLinks;
   const items = [
     {
-      name: "facebook",
+      name: translate({
+        message: 'facebook',
+        id: 'component.Footer.facebook',
+        description: 'Facebook icon in footer'
+      }),
       icon: require("@site/static/img/social_media/facebook.svg").default,
       link: socialLinks.facebook,
     },
     {
-      name: "github",
+      name: translate({
+        message: 'github',
+        id: 'component.Footer.github',
+        description: 'GitHub icon in footer'
+      }),
       icon: require("@site/static/img/social_media/github.svg").default,
       link: socialLinks.github,
     },
     {
-      name: "slack",
+      name: translate({
+        message: 'slack',
+        id: 'component.Footer.slack',
+        description: 'slack icon in footer'
+      }),
       icon: require("@site/static/img/social_media/slack.svg").default,
       link: socialLinks.github,
     },
     {
-      name: "linkedin",
+      name: translate({
+        message: 'linkedin',
+        id: 'component.Footer.linkedin',
+        description: 'Linkedin icon in footer'
+      }),
       icon: require("@site/static/img/social_media/linkedin.svg").default,
       link: socialLinks.linkedin,
     },
     {
-      name: "youtube",
+      name: translate({
+        message: 'youtube',
+        id: 'component.Footer.youtube',
+        description: 'Youtube icon in footer'
+      }),
       icon: require("@site/static/img/social_media/youtube.svg").default,
       link: socialLinks.youtube,
     },
     {
-      name: "twitter",
+      name: translate({
+        message: 'twitter',
+        id: 'component.Footer.twitter',
+        description: 'Twitter icon in footer'
+      }),
       icon: require("@site/static/img/social_media/twitter.svg").default,
       link: socialLinks.twitter,
     },

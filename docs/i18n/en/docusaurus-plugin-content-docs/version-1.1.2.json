@@ -1,0 +1,38 @@
+{
+  "version.label": {
+    "message": "1.1.2",
+    "description": "The label for version 1.1.2"
+  },
+  "sidebar.docs.category.Introduction": {
+    "message": "Introduction",
+    "description": "The label for category Introduction in sidebar docs"
+  },
+  "sidebar.docs.category.Home": {
+    "message": "Home",
+    "description": "The label for category Home in sidebar docs"
+  },
+  "sidebar.docs.category.Concepts": {
+    "message": "Concepts",
+    "description": "The label for category Concepts in sidebar docs"
+  },
+  "sidebar.docs.category.User guides": {
+    "message": "User guides",
+    "description": "The label for category User guides in sidebar docs"
+  },
+  "sidebar.docs.category.Stateful applications": {
+    "message": "Stateful applications",
+    "description": "The label for category Stateful applications in sidebar docs"
+  },
+  "sidebar.docs.category.Troubleshooting": {
+    "message": "Troubleshooting",
+    "description": "The label for category Troubleshooting in sidebar docs"
+  },
+  "sidebar.docs.category.Additional info": {
+    "message": "Additional info",
+    "description": "The label for category Additional info in sidebar docs"
+  },
+  "sidebar.docs.category.Deprecated releases": {
+    "message": "Deprecated releases",
+    "description": "The label for category Deprecated releases in sidebar docs"
+  }
+}
