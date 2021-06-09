@@ -3,9 +3,17 @@
     "message": "Was this page helpful? We appreciate your feedback",
     "description": "The heading of feedback widget"
   },
+  "theme.Feedback.YesButton": {
+    "message": "Yes",
+    "description": "The ARIA label for sending positive response on button click"
+  },
   "component.Feedback.Yes": {
     "message": "Yes",
     "description": "Feedback button 'Yes' for positive response"
+  },
+  "theme.Feedback.NoButton": {
+    "message": "No",
+    "description": "The ARIA label for sending negative response on button click"
   },
   "component.Feedback.No": {
     "message": "No",
@@ -33,7 +41,7 @@
   },
   "component.Footer.topContributors": {
     "message": "Top contributors",
-    "description": "Top Contributors label in footer"
+    "description": "Top contributors label in footer"
   },
   "component.Footer.facebook": {
     "message": "facebook",
@@ -115,6 +123,10 @@
     "message": "Please contact the owner of the site that linked you to the original URL and let them know their link is broken.",
     "description": "The 2nd paragraph of the 404 page"
   },
+  "theme.AnnouncementBar.closeButtonAriaLabel": {
+    "message": "Close",
+    "description": "The ARIA label for close button of announcement bar"
+  },
   "theme.blog.paginator.navAriaLabel": {
     "message": "Blog list page navigation",
     "description": "The ARIA label for the blog pagination"
@@ -154,10 +166,6 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
-  },
-  "theme.AnnouncementBar.closeButtonAriaLabel": {
-    "message": "Close",
-    "description": "The ARIA label for close button of announcement bar"
   },
   "theme.blog.post.plurals": {
     "message": "One post|{count} posts",
@@ -222,13 +230,5 @@
   "theme.common.skipToMainContent": {
     "message": "Skip to main content",
     "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
-  },
-  "theme.Feedback.YesButton": {
-    "message": "Yes",
-    "description": "The ARIA label for sending positive response on button click"
-  },
-  "theme.Feedback.NoButton": {
-    "message": "No",
-    "description": "The ARIA label for sending negative response on button click"
   }
 }

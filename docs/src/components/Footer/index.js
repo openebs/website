@@ -137,7 +137,7 @@ const Contributors = () => {
           <span className="footer__title">
             <Translate
               id="component.Footer.topContributors"
-              description="Top Contributors label in footer"
+              description="Top contributors label in footer"
             >Top contributors</Translate>
           </span>
           <ul className="footer__items">

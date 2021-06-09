@@ -15,24 +15,24 @@
     "message": "Concepts",
     "description": "The label for category Concepts in sidebar docs"
   },
-  "sidebar.docs.category.User Guides": {
-    "message": "User Guides",
-    "description": "The label for category User Guides in sidebar docs"
+  "sidebar.docs.category.User guides": {
+    "message": "User guides",
+    "description": "The label for category User guides in sidebar docs"
   },
-  "sidebar.docs.category.Stateful Applications": {
-    "message": "Stateful Applications",
-    "description": "The label for category Stateful Applications in sidebar docs"
+  "sidebar.docs.category.Stateful applications": {
+    "message": "Stateful applications",
+    "description": "The label for category Stateful applications in sidebar docs"
   },
   "sidebar.docs.category.Troubleshooting": {
     "message": "Troubleshooting",
     "description": "The label for category Troubleshooting in sidebar docs"
   },
-  "sidebar.docs.category.Additional Info": {
-    "message": "Additional Info",
-    "description": "The label for category Additional Info in sidebar docs"
+  "sidebar.docs.category.Additional info": {
+    "message": "Additional info",
+    "description": "The label for category Additional info in sidebar docs"
   },
-  "sidebar.docs.category.Deprecated Releases": {
-    "message": "Deprecated Releases",
-    "description": "The label for category Deprecated Releases in sidebar docs"
+  "sidebar.docs.category.Deprecated releases": {
+    "message": "Deprecated releases",
+    "description": "The label for category Deprecated releases in sidebar docs"
   }
 }
