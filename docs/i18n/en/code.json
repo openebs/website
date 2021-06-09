@@ -222,5 +222,13 @@
   "theme.common.skipToMainContent": {
     "message": "Skip to main content",
     "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+  },
+  "theme.Feedback.YesButton": {
+    "message": "Yes",
+    "description": "The ARIA label for sending positive response on button click"
+  },
+  "theme.Feedback.NoButton": {
+    "message": "No",
+    "description": "The ARIA label for sending negative response on button click"
   }
 }
