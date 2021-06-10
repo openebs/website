@@ -5,6 +5,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: "480px",
     boxShadow: 'none',
     background: 'transparent',
+    margin: 'auto'
   },
   media: {
     height: 0,

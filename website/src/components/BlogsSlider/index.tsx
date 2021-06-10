@@ -84,41 +84,43 @@ const getTags = (tags: Array<string>) => {
             ]}>
       {recommendedBlogs.map(( elm: any ) => {
             return (  
-              <Card key={elm.id} className={classes.cardRoot}>
-              <CardMedia
-                className={classes.media}
-                image={`/Images/blog/${elm.slug}.png`}
-              />
-              <CardContent>
-                <div className = {classes.tagsWrapper}>
-                {getTags(elm.tags)}
-                </div>
-                <Typography
-                  component={'span'} 
-                  className={classes.title}
-                  color="textSecondary"
-                  gutterBottom
-                >
-                  <ReactMarkdown children={elm.title} />
-                </Typography>
-                <span>
-                  <ReactMarkdown children={elm.content.substring(0, 200).replace(/[\n]/g, ". ").replace(/[^a-zA-Z ]/g, "") + "..."} />
-                  <Button
-                    size="small"
-                    disableRipple
-                    variant="text"
-                    className={classes.cardActionButton}
-                    onClick={() =>
-                      window.location.assign(
-                        `/blog/${elm.slug}`
-                      )
-                    }
-                  >
-                    {t("blog.readMore")}
-                  </Button>
-                </span>
-              </CardContent>
-            </Card>
+              <div>
+                  <Card key={elm.id} className={classes.cardRoot}>
+                  <CardMedia
+                    className={classes.media}
+                    image={`/Images/blog/${elm.slug}.png`}
+                  />
+                  <CardContent>
+                    <div className = {classes.tagsWrapper}>
+                    {getTags(elm.tags)}
+                    </div>
+                    <Typography
+                      component={'span'} 
+                      className={classes.title}
+                      color="textSecondary"
+                      gutterBottom
+                    >
+                      <ReactMarkdown children={elm.title} />
+                    </Typography>
+                    <span>
+                      <ReactMarkdown children={elm.content.substring(0, 200).replace(/[\n]/g, ". ").replace(/[^a-zA-Z ]/g, "") + "..."} />
+                      <Button
+                        size="small"
+                        disableRipple
+                        variant="text"
+                        className={classes.cardActionButton}
+                        onClick={() =>
+                          window.location.assign(
+                            `/blog/${elm.slug}`
+                          )
+                        }
+                      >
+                        {t("blog.readMore")}
+                      </Button>
+                    </span>
+                  </CardContent>
+                </Card>
+            </div>
             );
         })} 
       </Slider>

@@ -6,25 +6,43 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: "center",
     padding: theme.spacing(5, 5, 0),
   },
-  tabLayout: {
-    orientation: "vertical",
+  tabsWrapper: {
+    justifyContent: 'center'
   },
   tabs: {
-    maxWidth: "auto",
-    margin: `${theme.spacing(1)}px auto`,
+    maxWidth: "100%",
     padding: theme.spacing(0.3),
     backgroundColor: "transparent",
     flexGrow: 1,
     fontWeight: 700,
     boxShadow: "2px 0px 33px 5px rgba(70, 68, 151, 0)",
   },
-  mainText: {
-    display: "flex",
-    flexWrap: "wrap",
-    textAlign: "center",
-    margin: theme.spacing(8, 0),
+  tabRoot: {
     justifyContent: "center",
-    alignItems: "center",
+    '& .Mui-selected': {
+      color: theme.palette.text.hint,
+      background: theme.palette.background.paper,
+      boxShadow: '2px 5px 31px 4px rgba(70, 68, 151, 0.07)',
+      borderRadius: '12px 12px 12px 0px',
+      padding: theme.spacing(3, 1),
+      margin: theme.spacing(2.5, 2)
+    }
+  },
+  scroller: {
+    flexGrow: 0
+  },
+  mainText: {
+    fontSize: '2rem',
+    fontWeight: 700,
+    textAlign: "center",
+    margin: theme.spacing(8, 0, 3),
+    color: theme.palette.text.primary,
+    [theme.breakpoints.down('xs')]: {
+        fontSize: '1.25rem',
+        maxWidth: '250px',
+        margin: 'auto',
+        marginBottom: theme.spacing(3)
+    },
   },
   footer: {
     gridArea: "footer",
@@ -32,18 +50,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: "relative",
     bottom: 0,
   },
-  cardWrapper: {
-    [theme.breakpoints.down("lg")]: {
-      padding: theme.spacing(4, 18),
-    },
-    [theme.breakpoints.down("sm")]: {
-      padding: theme.spacing(2, 4),
-    },
-  },
   cardRoot: {
     maxWidth: "480px",
     boxShadow: 'none',
-    background: 'transparent'
+    background: 'transparent',
+    margin: 'auto'
   },
   rootBlogSection: {
     flexGrow: 1,
