@@ -188,13 +188,13 @@ const MiniBlog: React.FC = () => {
         </Container>
       </span>
       <Grid container justify="center">
-        <Grid item xs={10}>
+        <Grid item xs={filteredData.length === 1 ? 5 : 10}>
           <Slider
             dots={false}
             autoplay={true}
             autoplaySpeed={4000}
             speed={500}
-            slidesToShow={2}
+            slidesToShow={filteredData.length === 1 ? filteredData.length : 2}
             slidesToScroll={1}
             cssEase="linear"
             arrows={true}
