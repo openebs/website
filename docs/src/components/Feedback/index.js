@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from './styles.module.css';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Translate, { translate } from '@docusaurus/Translate';
@@ -14,6 +14,17 @@ export const Feedback = () => {
         setThanksTextVisibility(true);
         sendFeedback(action,value);
     }
+
+    const handleRouteUpdatedEvent = () => {
+        setThanksTextVisibility(false);
+    }
+
+    useEffect(() => {
+        document.addEventListener('routeupdated', handleRouteUpdatedEvent)
+        return () => {
+            document.removeEventListener('routeupdated',handleRouteUpdatedEvent)
+        } 
+    });
 
     function sendFeedback(action,value) {
         if(typeof window !== undefined) {
