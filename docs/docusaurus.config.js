@@ -10,7 +10,7 @@ module.exports = {
   baseUrl: "/docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "docs/img/favicon.ico",
+  favicon: "/docs/img/favicon.ico",
   organizationName: "openebs", // Usually your GitHub org/user name.
   projectName: "website", // Usually your repo name.
   i18n: {

@@ -312,7 +312,7 @@ footer.footer {
   max-width: 90%;
 }
 
-@media (max-width: 767px) {
+@media (max-width: $breakpoint-md) {
   h1 {
     padding-bottom: 0;
   }
