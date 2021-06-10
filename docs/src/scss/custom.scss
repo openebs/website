@@ -15,40 +15,55 @@
 @import "buttons";
 
 :root {
-  --ifm-font-family-base: "Montserrat";
-  --ifm-color-primary: #f26d00;
-  --ifm-color-primary-dark: rgb(33, 175, 144);
-  --ifm-color-primary-darker: rgb(31, 165, 136);
-  --ifm-color-primary-darkest: rgb(26, 136, 112);
-  --ifm-color-primary-light: rgb(70, 203, 174);
-  --ifm-color-primary-lighter: rgb(102, 212, 189);
-  --ifm-color-primary-lightest: rgb(146, 224, 208);
+  --ifm-font-family-base: #{$default-font-families};
+  --ifm-color-primary: #{$ifm-color-primary};
+  --ifm-color-primary-dark: #{$ifm-color-primary-dark};
+  --ifm-color-primary-darker: #{$ifm-color-primary-darker};
+  --ifm-color-primary-darkest: #{$ifm-color-primary-darkest};
+  --ifm-color-primary-light: #{$ifm-color-primary-light};
+  --ifm-color-primary-lighter: #{$ifm-color-primary-lighter};
+  --ifm-color-primary-lightest: #{$ifm-color-primary-lightest};
   --ifm-code-font-size: 95%;
-  --ifm-menu-color: rgb(59, 68, 115);
-  --ifm-menu-color-background-active: transparent;
-  --ifm-menu-color-active: rgb(59, 68, 115);
-  --doc-sidebar-width: 300px;
+  --ifm-menu-color: #{$ifm-menu-color};
+  --ifm-menu-color-background-active: #{$ifm-menu-color-background-active};
+  --ifm-menu-color-active: #{$ifm-menu-color-active};
+  --doc-sidebar-width: #{$doc-sidebar-width};
   --ifm-toc-padding-vertical: 0.3rem;
   --ifm-toc-padding-horizontal: 0.3rem;
   --ifm-spacing-horizontal: 0.001rem;
-  --ifm-navbar-height: 2.5rem;
-  --ifm-navbar-search-input-color: #737daf;
-  --ifm-search-container-width: 700px;
-  --ifm-search-container-width-xl: 900px;
-  --ifm-footer-link-color: #3b4473;
-  --ifm-background-surface-color: #edf6ff;
+  --ifm-navbar-height: #{$ifm-navbar-height};
+  --ifm-navbar-search-input-color: #{$ifm-navbar-search-input-color};
+  --ifm-search-container-width: #{$ifm-search-container-width};
+  --ifm-search-container-width-xl: #{$ifm-search-container-width-xl};
+  --ifm-footer-link-color: #{$ifm-footer-link-color};
+  --ifm-background-surface-color: #{$ifm-background-surface-color};
+  --ifm-pre-padding: #{$ifm-pre-padding};
+  --ifm-menu-link-padding-horizontal: #{$ifm-menu-link-padding-horizontal};
+  --ifm-alert-border-radius: 0;
+  --ifm-alert-padding-vertical: 1.5rem;
+  --ifm-alert-padding-horizontal: 0.75rem;
+  --ifm-color-danger: #{$ifm-color-danger};
+  --ifm-color-success: #{$ifm-color-success};
+  --ifm-color-info: #{$ifm-color-info};
+  --ifm-color-warning: #{$ifm-color-warning};
+  --ra-admonition-icon-color: #{$blue-500};
+  --breakpoint-xs: #{$breakpoint-xs};
+  --breakpoint-sm: #{$breakpoint-sm};
+  --breakpoint-md: #{$breakpoint-md};
+  --breakpoint-lg: #{$breakpoint-lg};
+  --breakpoint-xl: #{$breakpoint-xl};
 }
 
 .docusaurus-highlight-code-line {
-  background-color: rgb(72, 77, 91);
+  background-color: $highlight-bg;
   display: block;
-  margin: 0 calc(-1 * var(--ifm-pre-padding));
-  padding: 0 var(--ifm-pre-padding);
+  margin: 0 calc(-1 * $ifm-pre-padding);
+  padding: 0 $ifm-pre-padding;
 }
 
 //code block
 .language-shell {
-  font-family: "Menlo";
+  font-family: $code-block-font-family;
   > div {
     background-color: $blue-500 !important;
   }
@@ -100,7 +115,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    border: 2px solid $imgBox-border-color;
+    border: 2px solid $img-box-border-color;
     border-radius: 0.5rem;
     margin-bottom: 1rem;
     padding: 0.7rem;
@@ -177,8 +192,8 @@
 
 .menu__list-item:not(.menu__list-item--collapsed)
   > .menu__link--sublist.menu__link--active {
-  background-color: transparent;
-  color: #a4451b;
+  background-color: $transparent;
+  color: $orange-300;
 }
 
 .emoji_part {
@@ -198,14 +213,13 @@
 }
 
 .menu--show > .menu__list {
-  background: #edf6ff;
+  background: $blue-100;
   padding-left: 24px;
   padding-right: 24px;
   margin-top: 140px;
 }
 
-.menu__list .menu__list{
-  --ifm-menu-link-padding-horizontal: 21px;
+.menu__list .menu__list {
 }
 
 //search
@@ -215,8 +229,8 @@
 
 .docSearchInput {
   border-radius: 0;
-  border: 1px solid #aecee5;
-  background-color: transparent;
+  border: 1px solid $blue-300;
+  background-color: $transparent;
   width: 100%;
   margin-bottom: 30px;
   padding: 3px 10px 3px 48px;
@@ -227,16 +241,16 @@
     outline: none;
   }
   &::placeholder {
-    color: #737daf;
+    color: $blue-700;
     opacity: 1;
   }
 
   &:-ms-input-placeholder {
-    color: #737daf;
+    color: $blue-700;
   }
 
   &::-ms-input-placeholder {
-    color: #737daf;
+    color: $blue-700;
   }
 }
 
@@ -253,15 +267,7 @@
   options: danger | success | info | caution | note
 */
 .admonition {
-  --ifm-alert-border-radius: 0;
-  --ifm-alert-padding-vertical: 1.5rem;
-  --ifm-alert-padding-horizontal: 0.75rem;
-  --ifm-color-danger: rgba(251, 116, 120, 0.3);
-  --ifm-color-success: rgba(77, 191, 77, 0.3);
-  --ifm-color-info: rgba(135, 215, 242, 0.3);
-  --ifm-color-warning: rgba(255, 208, 77, 0.3);
-  --ra-admonition-icon-color: #3b4473;
-  color: #3b4473;
+  color: $blue-500;
   border-left-width: 8px;
   a {
     color: inherit;
@@ -294,11 +300,11 @@ footer.footer {
   background-repeat: no-repeat;
   background-position: top left;
   background-size: cover;
-  border-top: 1px solid #aecee5;
+  border-top: 1px solid $blue-300;
   .footer__bottom {
     display: flex;
     align-items: center;
-    border-top: 1px solid #aecee5;
+    border-top: 1px solid $blue-300;
     padding: 16px 0 8px;
     a {
       color: $orange-000;
@@ -308,7 +314,7 @@ footer.footer {
 }
 
 .footer__title {
-  color: #223288;
+  color: $blue-600;
   --ifm-heading-margin-bottom: 2rem;
 }
 
@@ -321,7 +327,7 @@ footer.footer {
   height: 2.5rem;
   border-radius: 10px;
   border-bottom-left-radius: 0;
-  background: #ffffff;
+  background: $white;
   margin-right: 10px;
   display: flex;
   align-items: center;
@@ -332,9 +338,9 @@ footer.footer {
     max-height: 90%;
   }
   &:hover {
-    background: #62a7bd;
+    background: $blue-400;
     path {
-      fill: #fff;
+      fill: $white;
     }
   }
 }
@@ -403,7 +409,7 @@ footer.footer {
     }
   }
   .copyButton {
-    background: rgba(0, 0, 0, 0.5) !important;
+    background: $light-black !important;
     padding: 5px !important;
     svg {
       float: left;

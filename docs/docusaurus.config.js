@@ -149,7 +149,7 @@ module.exports = {
             "https://github.com/openebs/website/edit/revamp-3.0/docs/",
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.scss"),
+          customCss: require.resolve("./src/scss/custom.scss"),
         },
         include: ["**/*.md", "**/*.mdx"], // Extensions to include.
       },
