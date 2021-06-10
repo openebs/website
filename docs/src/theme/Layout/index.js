@@ -7,7 +7,7 @@ import LayoutHead from '@theme/LayoutHead';
 import useKeyboardNavigation from '@theme/hooks/useKeyboardNavigation';
 import { ThemeClassNames } from '@docusaurus/theme-common';
 import { Header } from "../../components/Header";
-import './styles.css';
+import './styles.scss';
 
 function Layout(props) {
   const { children, noFooter, wrapperClassName, pageClassName } = props;

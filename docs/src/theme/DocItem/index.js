@@ -9,7 +9,7 @@ import DocPaginator from "@theme/DocPaginator";
 import Seo from "@theme/Seo";
 import TOC from "@theme/TOC";
 import clsx from "clsx";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import {
   useActivePlugin,
   useVersions,

@@ -17,7 +17,7 @@ import Logo from '@theme/Logo';
 import IconArrow from '@theme/IconArrow';
 import IconMenu from '@theme/IconMenu';
 import {translate} from '@docusaurus/Translate';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 const MOBILE_TOGGLE_SIZE = 24;
 import { NavbarIcon } from "../../components/NavBarIcon";
 

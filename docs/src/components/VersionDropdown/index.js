@@ -2,7 +2,7 @@ import "react-dropdown/style.css";
 import React, { useState } from "react";
 import { useHistory, useLocation } from "@docusaurus/router";
 import { useActiveVersion, useVersions } from "@theme/hooks/useDocs";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 
 export const getSelectedVersionPath = (
   options,

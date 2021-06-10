@@ -12,7 +12,7 @@ import Copy from "../../../static/img/icons/copy.svg";
 import rangeParser from "parse-numeric-range";
 import usePrismTheme from "@theme/hooks/usePrismTheme";
 import Translate, { translate } from "@docusaurus/Translate";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { useThemeConfig, parseCodeBlockTitle } from "@docusaurus/theme-common";
 const highlightLinesRangeRegex = /{([\d,-]+)}/;
 

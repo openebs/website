@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { Menu, XCircle } from 'react-feather';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Link from "@docusaurus/Link";

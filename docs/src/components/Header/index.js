@@ -1,6 +1,6 @@
 import React from "react";
 import GitHubButton from 'react-github-btn'
-import styles from "./styles.module.css"
+import styles from "./styles.module.scss"
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import Link from "@docusaurus/Link";

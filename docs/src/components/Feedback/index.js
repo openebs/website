@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Translate, { translate } from '@docusaurus/Translate';
 
