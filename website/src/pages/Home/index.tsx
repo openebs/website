@@ -549,9 +549,7 @@ const Home: React.FC = () => {
                                         <Typography className={classes.installationProvider}>
                                             {asciinemaTitle}
                                         </Typography>
-                                        <Typography className={classes.installationProviderCommand}>
-                                           <Asciinema  src={asciinemaFileSrc} />
-                                        </Typography>
+                                        <Asciinema  src={asciinemaFileSrc} />
                                     </div>
                                     
                                 </Paper>
@@ -633,9 +631,7 @@ const Home: React.FC = () => {
                                         <Typography className={classes.installationProvider}>
                                             {asciinemaTitle}
                                         </Typography>
-                                        <Typography className={classes.installationProviderCommand}>
-                                            <Asciinema  src={asciinemaFileSrc} />
-                                        </Typography>
+                                        <Asciinema  src={asciinemaFileSrc} />
                                     </div>
                                 </Paper>
                             
