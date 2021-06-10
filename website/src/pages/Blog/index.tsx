@@ -136,7 +136,7 @@ const Blog: React.FC = () => {
 
   const getTagsMarkup = Object.keys(tagsDistribution).map((item: string) => 
           <StyledTab
-            label={`${item} ( ${tagsDistribution[item as keyof typeof tagsDistribution]})`}
+            label={`${item}(${tagsDistribution[item as keyof typeof tagsDistribution]})`}
             value={item}
             key = {item}
           />
