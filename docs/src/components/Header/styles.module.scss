@@ -13,7 +13,7 @@
 }
 
 .navLink {
-  color: #3b4473;
+  color: var(--ifm-menu-color);
   text-decoration: none;
 }
 
@@ -25,15 +25,15 @@
   position: relative;
   z-index: 1000;
   margin-bottom: 65px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #aecee5;
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-light-blue);
 }
 
 .headerInnerWrapper {
   position: fixed;
-  background-color: #ffffff;
+  background-color: var(--color-white);
   width: 100%;
-  border-bottom: 1px solid #aecee5;
+  border-bottom: 1px solid var(--color-light-blue);
 }
 
 .header {
@@ -77,7 +77,7 @@
 }
 
 .navItemUnderline {
-  border-bottom: 2px solid #aecee5;
+  border-bottom: 2px solid var(--color-light-blue);
   max-width: 250px;
   width: 100%;
   display: flex;
@@ -112,7 +112,7 @@
 .navItemMob {
   position: fixed;
   height: 100%;
-  background-color: #b8ddfe;
+  background-color: var(--color-lighter-blue);
   background-image: url("/static/img/bg.png");
   background-repeat: no-repeat;
   background-size: cover;

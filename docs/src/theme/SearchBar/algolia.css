@@ -492,14 +492,14 @@
   padding: 8px 0;
   text-align: center;
   font-size: 1.2em;
-  background-color: #62a7bd;
+  background-color: var(--color-tealish-blue);
   margin-top: -8px;
 }
 
 .algolia-autocomplete
   .algolia-docsearch-suggestion--no-results
   .algolia-docsearch-suggestion--text {
-  color: #ffffff;
+  color: var(--color-white);
   margin-top: 4px;
 }
 

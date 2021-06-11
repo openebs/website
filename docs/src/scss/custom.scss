@@ -53,6 +53,11 @@
   --breakpoint-lg: #{$breakpoint-lg};
   --breakpoint-xl: #{$breakpoint-xl};
   --ifm-heading-margin-bottom: 2rem;
+  --collapse-button-bg-color-dark: #{$collapse-button-bg-color-dark};
+  --color-white: #{$white};
+  --color-light-blue: #{$blue-300};
+  --color-lighter-blue: #{$blue-800};
+  --color-tealish-blue: $blue-400;
 }
 
 .docusaurus-highlight-code-line {

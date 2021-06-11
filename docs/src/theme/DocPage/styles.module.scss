@@ -4,7 +4,7 @@
 }
 
 .sidebarWrapper {
-  background-color: #edf6ff;
+  background-color: var(--ifm-background-surface-color);
   color: #3b4473;
   position: sticky;
   top: 50px;
@@ -38,7 +38,7 @@
 .docPageHeader {
   padding: 0.5rem;
   padding-left: 2rem;
-  background-color: #edf6ff;
+  background-color: var(--ifm-background-surface-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
