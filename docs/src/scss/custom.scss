@@ -52,6 +52,7 @@
   --breakpoint-md: #{$breakpoint-md};
   --breakpoint-lg: #{$breakpoint-lg};
   --breakpoint-xl: #{$breakpoint-xl};
+  --ifm-heading-margin-bottom: 2rem;
 }
 
 .docusaurus-highlight-code-line {
@@ -150,6 +151,7 @@
   padding-top: 8px;
   padding-bottom: 8px;
   justify-content: flex-start;
+  font-size: 16px;
 }
 
 .menu__list-item:not(.menu__list-item--collapsed)
@@ -170,18 +172,11 @@
   font-weight: 700;
 }
 
-.menu {
-  padding: 0px !important;
-}
-
 .menu--show > .menu__list {
   background: $blue-100;
   padding-left: 24px;
   padding-right: 24px;
   margin-top: 140px;
-}
-
-.menu__list .menu__list {
 }
 
 //search
@@ -237,24 +232,25 @@
 }
 
 .doc-content--header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  header {
-    max-width: calc(100% - 250px);
-    padding-right: 20px;
-  }
-  .action-buttons {
-    display: flex;
-    justify-content: flex-end;
-    width: 230px;
-  }
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-auto-rows: auto;
+  gap: 1rem;
+  // header {
+  //   max-width: calc(100% - 250px);
+  //   padding-right: 20px;
+  // }
 }
 
 .dropdown__menu {
   min-width: 8rem;
   text-align: left;
 }
+
+.dropdown:not(.dropdown--nocaret) > .navbar__link {
+  padding-right: inherit;
+}
+
 // footer styles
 
 footer.footer {
@@ -277,7 +273,6 @@ footer.footer {
 
 .footer__title {
   color: $blue-600;
-  --ifm-heading-margin-bottom: 2rem;
 }
 
 .footer__items {
@@ -323,10 +318,6 @@ footer.footer {
   .doc-content--header {
     header {
       max-width: 100%;
-    }
-    .action-buttons {
-      width: 100%;
-      justify-content: flex-start;
     }
   }
   .docSearchInput {
@@ -380,7 +371,7 @@ footer.footer {
   }
 }
 
-@media (max-width: 996px) {
+@media (max-width: $breakpoint-lg) {
   .footer__col {
     margin-bottom: 8px;
   }

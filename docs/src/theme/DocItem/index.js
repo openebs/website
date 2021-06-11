@@ -79,7 +79,7 @@ function DocItem(props) {
                       <h1 className={styles.docTitle}>{title}</h1>
                     </header>
                     {(width > 767) && (
-                      <div className="action-buttons">
+                      <div className={clsx(styles.actionButtons)}>
                         <EditThisPage editUrl={editUrl} />
                         <VersionDropdown />
                       </div>
