@@ -167,10 +167,11 @@ const MiniBlog: React.FC = () => {
           <Paper className={classes.tabs}>
             <Tabs
               value={value}
+              classes={{ 
+                root: classes.tabRoot, scroller: classes.scroller }}
               onChange={handleChange}
               textColor="secondary"
               variant="scrollable"
-              className={classes.tabLayout}
               TabIndicatorProps={{
                 style: {
                   display: "none",
@@ -188,13 +189,13 @@ const MiniBlog: React.FC = () => {
         </Container>
       </span>
       <Grid container justify="center">
-        <Grid item xs={10}>
+        <Grid item xs={filteredData.length === 1 ? 5 : 10}>
           <Slider
             dots={false}
             autoplay={true}
             autoplaySpeed={4000}
             speed={500}
-            slidesToShow={2}
+            slidesToShow={filteredData.length === 1 ? filteredData.length : 2}
             slidesToScroll={1}
             cssEase="linear"
             arrows={true}
@@ -213,47 +214,49 @@ const MiniBlog: React.FC = () => {
           >
             {filteredData.map((elm: any) => {
               return (
-                <Card key={elm.id} className={classes.cardRoot}>
-                  <CardMedia
-                    className={classes.media}
-                    image={`/Images/blog/${elm.slug}.png`}
-                  />
-                  <CardContent>
-                    <DisplayAuthorandReadTime
-                      author={elm.author}
-                      readTime={elm.content}
+                <div>
+                  <Card key={elm.id} className={classes.cardRoot}>
+                    <CardMedia
+                      className={classes.media}
+                      image={`/Images/blog/${elm.slug}.png`}
                     />
-                    <Typography
-                      component={"span"}
-                      className={classes.title}
-                      color="textSecondary"
-                      gutterBottom
-                    >
-                      <ReactMarkdown children={elm.title} />
-                    </Typography>
-                    <span>
-                      <ReactMarkdown
-                       children={getContentPreview(elm.content)}
+                    <CardContent>
+                      <DisplayAuthorandReadTime
+                        author={elm.author}
+                        readTime={elm.content}
                       />
-                    </span>
-                  </CardContent>
-                  <CardActions className={classes.actionWrapper}>
-                    <span className={classes.tabWrapper}>
-                      {getTags(elm.tags)}
-                    </span>
-                    <Button
-                      size="small"
-                      disableRipple
-                      variant="text"
-                      className={classes.cardActionButton}
-                      onClick={() =>
-                        window.location.assign(`/blog/${elm.slug}`)
-                      }
-                    >
-                      {t("blog.readMore")}
-                    </Button>
-                  </CardActions>
-                </Card>
+                      <Typography
+                        component={"span"}
+                        className={classes.title}
+                        color="textSecondary"
+                        gutterBottom
+                      >
+                        <ReactMarkdown children={elm.title} />
+                      </Typography>
+                      <span>
+                        <ReactMarkdown
+                        children={getContentPreview(elm.content)}
+                        />
+                      </span>
+                    </CardContent>
+                    <CardActions className={classes.actionWrapper}>
+                      <span className={classes.tabWrapper}>
+                        {getTags(elm.tags)}
+                      </span>
+                      <Button
+                        size="small"
+                        disableRipple
+                        variant="text"
+                        className={classes.cardActionButton}
+                        onClick={() =>
+                          window.location.assign(`/blog/${elm.slug}`)
+                        }
+                      >
+                        {t("blog.readMore")}
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </div>
               );
             })}
           </Slider>

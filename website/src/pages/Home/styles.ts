@@ -342,14 +342,6 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '8px',
         },
     },
-    installationProviderCommand: {
-        fontFamily: 'Menlo',
-        fontSize: '0.75rem',
-        fontWeight: 400,
-        [theme.breakpoints.down('xs')]: {
-            fontSize: '0.375rem',
-        },
-    },
     testimonialCarousel: {
         '& .slick-prev': {
             left: '120px',

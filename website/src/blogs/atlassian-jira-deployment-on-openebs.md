@@ -2,7 +2,7 @@
 title: Atlassian Jira Deployment on OpenEBS
 author: Abhishek
 author_info: Abhishek is a Customer Success Engineer at Mayadata. He is currently working with Kubernetes and Docker.
-tags: openebs solutions
+tags: openebs
 date: 20-11-2020
 --- 
 
