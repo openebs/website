@@ -59,8 +59,7 @@
   font: var(--ifm-code-font-size) / var(--ifm-pre-line-height)
     var(--ifm-font-family-monospace);
   white-space: pre;
-  float: left;
-  min-width: 100%;
+  overflow-x: auto;
   padding: var(--ifm-pre-padding);
 }
 
