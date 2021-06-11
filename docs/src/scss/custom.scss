@@ -231,17 +231,6 @@
   }
 }
 
-.doc-content--header {
-  display: grid;
-  grid-template-columns: 70% 30%;
-  grid-auto-rows: auto;
-  gap: 1rem;
-  // header {
-  //   max-width: calc(100% - 250px);
-  //   padding-right: 20px;
-  // }
-}
-
 .dropdown__menu {
   min-width: 8rem;
   text-align: left;
@@ -304,7 +293,7 @@ footer.footer {
 
 // containers
 .container--fluid {
-  max-width: 90%;
+  max-width: 100%;
 }
 
 @media (max-width: $breakpoint-md) {
@@ -315,11 +304,6 @@ footer.footer {
     margin-bottom: 24px;
   }
 
-  .doc-content--header {
-    header {
-      max-width: 100%;
-    }
-  }
   .docSearchInput {
     padding: 8px 8px 8px 30px;
     line-height: normal;

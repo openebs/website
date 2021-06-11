@@ -74,7 +74,7 @@ function DocItem(props) {
             <article>
               {!hideTitle && (
                 <>
-                  <div className="doc-content--header">
+                  <div className={styles.docContentHeader}>
                     <header>
                       <h1 className={styles.docTitle}>{title}</h1>
                     </header>
