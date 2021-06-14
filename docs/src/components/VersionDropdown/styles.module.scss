@@ -8,12 +8,12 @@
   border-radius: 4px;
   padding: 6px 4px;
   border-radius: 6px;
-  background-color: #62a7bd;
-  border-color: #ffffff;
-  color: #ffffff;
+  background-color: var(--color-tealish-blue);
+  border-color: var(--color-white);
+  color: var(--color-white);
 }
 
 .dropdown {
-  width: 130px;
+  width: auto;
   padding-left: 0;
 }

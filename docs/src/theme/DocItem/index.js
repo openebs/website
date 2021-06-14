@@ -9,7 +9,7 @@ import DocPaginator from "@theme/DocPaginator";
 import Seo from "@theme/Seo";
 import TOC from "@theme/TOC";
 import clsx from "clsx";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import {
   useActivePlugin,
   useVersions,
@@ -74,12 +74,12 @@ function DocItem(props) {
             <article>
               {!hideTitle && (
                 <>
-                  <div className="doc-content--header">
+                  <div className={styles.docContentHeader}>
                     <header>
                       <h1 className={styles.docTitle}>{title}</h1>
                     </header>
                     {(width > 767) && (
-                      <div className="action-buttons">
+                      <div className={clsx(styles.actionButtons)}>
                         <EditThisPage editUrl={editUrl} />
                         <VersionDropdown />
                       </div>

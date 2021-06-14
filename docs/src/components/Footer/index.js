@@ -1,3 +1,4 @@
+// [TODO] -- use scss module
 import React, { useEffect, useState } from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Link from "@docusaurus/Link";
@@ -265,7 +266,7 @@ const FooterBottom = () => {
 const FooterMobileView = () => {
   return (
     <footer className="footer">
-      <div className="container container--fluid">
+      <div className="container container--fluid footer-wrapper-mob">
         <div className="row">
           <div className="row col col--12 footer__links">
             <div className="col col--4">
@@ -296,7 +297,7 @@ const FooterMobileView = () => {
 const FooterDesktopView = () => {
   return (
     <footer className="footer">
-      <div className="container container--fluid">
+      <div className="container container--fluid footer-wrapper">
         <div className="row">
           <div className="row col col--12 footer__links">
             <div className="col col--4">

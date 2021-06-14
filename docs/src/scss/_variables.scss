@@ -1,6 +1,6 @@
 $border-width: 1px !default;
 $body-bg: $white;
-$imgBox-border-color: $blue-500;
+$img-box-border-color: $blue-500;
 //tables
 $table-bg: $white;
 $table-dark-bg: $blue-500;
@@ -29,3 +29,26 @@ $input-btn-padding-y-lg: 0.5rem !default;
 $input-btn-padding-x-lg: 2.5rem !default;
 $input-btn-padding-y-sm: 0.25rem !default;
 $input-btn-padding-x-sm: 0.5rem !default;
+
+// length and width
+$doc-sidebar-width: 300px;
+$ifm-search-container-width: 700px;
+$ifm-search-container-width-xl: 900px;
+$ifm-navbar-height: 2.5rem;
+
+// font-families
+$default-font-families: "Montserrat", -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+  sans-serif;
+$code-block-font-family: "Menlo";
+
+// infima variables
+$ifm-pre-padding: 1rem;
+$ifm-menu-link-padding-horizontal: 21px;
+
+// breakpoints
+$breakpoint-xs: 0px;
+$breakpoint-sm: 600px;
+$breakpoint-md: 960px;
+$breakpoint-lg: 1280px;
+$breakpoint-xl: 1920px;

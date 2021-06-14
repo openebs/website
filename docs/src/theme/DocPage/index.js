@@ -10,7 +10,7 @@ import IconArrow from "@theme/IconArrow";
 import { matchPath } from "@docusaurus/router";
 import { translate } from "@docusaurus/Translate";
 import clsx from "clsx";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { ThemeClassNames, docVersionSearchTag } from "@docusaurus/theme-common";
 import { Feedback } from "@site/src/components/Feedback";
 import { Footer } from "@site/src/components/Footer";
@@ -115,7 +115,7 @@ function DocPageContent({ currentDocRoute, versionMetadata, children }) {
             <div className="col-fullWidth">
               <div
                 className={clsx(
-                  "container container--fluid padding-vert--lg margin-left--md",
+                  "container container--fluid padding-vert--lg",
                   styles.docItemWrapper,
                   {
                     [styles.docItemWrapperEnhanced]: hiddenSidebarContainer,

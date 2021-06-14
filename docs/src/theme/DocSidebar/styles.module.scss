@@ -5,10 +5,6 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-:root {
-  --collapse-button-bg-color-dark: #2e333a;
-}
-
 .icon {
   margin-right: 8px;
 }
@@ -54,7 +50,7 @@
 
   .menu {
     flex-grow: 1;
-    padding: 0.5rem;
+    padding: 0px;
   }
 
   .menuLinkText {
