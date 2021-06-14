@@ -211,6 +211,9 @@ contributing:
   governanceDescription: We abide by the Code of Conduct for all the projects. It is meant to be followed by all the developers of the project and the OpenEBS community.
   governanceButtonLabel: Check it out
 
+adoptersTestimonials:
+  rejectDataInfo: Unable to fetch data correctly
+
 
 # Blog 
 

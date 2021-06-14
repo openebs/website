@@ -45,10 +45,13 @@ const Home: React.FC = () => {
         //function to fecth all the adoters testimonials
     const fetchAdoptersTestimonials = async () => {
         await fetch(adopterData).then((response) => {
-         if (response.ok) return response.text();
-         else return Promise.reject("could't fetch text correctly");
-       })
-       .then((text) => {
+         if (response.ok) {
+             return response.text();
+         }
+         else {
+             return Promise.reject(t('adoptersTestimonials.rejectDatainfo'));
+         }
+       }).then((text) => {
          const testimonials = require("mdtable2json").getTables(text);
          setAdopterTestimonials(testimonials[0].json);
        })
