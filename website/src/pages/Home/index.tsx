@@ -728,7 +728,7 @@ const Home: React.FC = () => {
                                                 <Typography className={classes.testimonialText}>
                                                     {elm.testimonial}
                                                 </Typography>
-                                                {/* commented code will be used in future */}
+                                                {/* commented code will be used for upcomming releases */}
                                                 {/* <div className={classes.testimonialWriterWrapper}>
                                                     <img src={profileURL} alt={writer} />
                                                     <Typography className={classes.testimonialWriter}>{writer}</Typography>
