@@ -187,6 +187,9 @@ home:
     readTheGuide:
       title: Read the guide
       description: And you will see how to manage your workloads with OpenEBS easily
+  communityEvents:
+    title: Welcome to our community events
+    communityImageAlt: Community
 
 community:
   title: We are the community
