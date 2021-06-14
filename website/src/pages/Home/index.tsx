@@ -42,7 +42,7 @@ const Home: React.FC = () => {
 
     // const [logoSlidesPerScreen, setLogoSlidesPerScreen] = useState<number>(6);
 
-        //function to fecth all the adoters testimonials
+    //function to fecth all the adoters testimonials
     const fetchAdoptersTestimonials = async () => {
         await fetch(adopterData).then((response) => {
          if (response.ok) {
@@ -67,7 +67,6 @@ const Home: React.FC = () => {
             : setIsMobileView(false);
         };
         setResponsiveness();
-
         window.addEventListener("resize", () => {
             setResponsiveness();
         });
@@ -76,6 +75,7 @@ const Home: React.FC = () => {
         return () => window.removeEventListener("resize", () => {
             setResponsiveness();
         });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     
     // logoSliderSettings for logos carousel
