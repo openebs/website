@@ -779,12 +779,14 @@ const Home: React.FC = () => {
                             <Paper className={[classes.paper, classes.centerContent].join(' ')}>
                                 <div>
                                     <div className={classes.readGuideDiv}>
-                                        <Typography className={classes.readGuideTitle}>
-                                            {t('home.youAreReadyToStart.readTheGuide.title')}
-                                        </Typography>
-                                        <IconButton className={classes.iconButton}>
-                                            <img src="../Images/svg/arrow_orange.svg" alt={t('header.submitAlt')}/>
-                                        </IconButton>
+                                        <Link href={EXTERNAL_LINKS.OPENEBS_DOCS} className={classes.readGuideLink}>
+                                            <Typography className={classes.readGuideTitle}>
+                                                {t('home.youAreReadyToStart.readTheGuide.title')}
+                                            </Typography>
+                                            <IconButton className={classes.iconButton}>
+                                                <img src="../Images/svg/arrow_orange.svg" alt={t('header.submitAlt')}/>
+                                            </IconButton>
+                                        </Link>
                                     </div>
                                     <Typography className={classes.readGuideDescription}>
                                         {t('home.youAreReadyToStart.readTheGuide.description')}
