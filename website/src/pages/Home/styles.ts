@@ -390,6 +390,13 @@ const useStyles = makeStyles((theme) => ({
             margin: theme.spacing(2),
         },
     },
+    testimonialTitle: {
+        fontSize: '1.25rem',
+        fontWeight: 'bold',
+        color: theme.palette.text.secondary,
+        marginTop: theme.spacing(2),
+        wordBreak: 'break-word'
+    },
     testimonialText: {
         fontSize: '1rem',
         fontWeight: 400,
