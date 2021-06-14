@@ -16,7 +16,6 @@ import Newsletter from "../../components/Newsletter";
 import {IconButton} from "@material-ui/core";
 import Sponsor from "../../components/Sponsor";
 import Slider from "react-slick";
-// import { adaptorTestimonials } from './adaptorTestimonials';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { EXTERNAL_LINKS } from '../../constants';
