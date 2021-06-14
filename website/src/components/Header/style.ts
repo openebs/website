@@ -57,6 +57,7 @@ const useStyles = makeStyles((theme) => ({
     activeNavbarItem: {
         color: theme.palette.text.hint,
         backgroundColor: 'transparent',
+        fontWeight: 700
     },
     socialIconsWrapper: {
         display: 'flex',

@@ -9,6 +9,12 @@ const getPosts = () => {
         if (err) {
             console.error('Failed to load files from the directory' + err);
         }
+        var EXTENSION = '.md';
+
+files = files.filter(function(file) {
+    return path.extname(file).toLowerCase() === EXTENSION;
+});
+
         files.forEach((file, index) => {
             let obj = {};
             let post;
