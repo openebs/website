@@ -546,7 +546,12 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         position: 'relative',
         bottom: 0
-      },
+    },
+    imageFluid : {
+        '& img' :{
+            width: '100%'
+        }
+    }
 }))
 export default useStyles;
   
