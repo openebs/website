@@ -16,18 +16,20 @@ import Newsletter from "../../components/Newsletter";
 import {IconButton} from "@material-ui/core";
 import Sponsor from "../../components/Sponsor";
 import Slider from "react-slick";
-import { adaptorTestimonials } from './adaptorTestimonials';
+// import { adaptorTestimonials } from './adaptorTestimonials';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { EXTERNAL_LINKS } from '../../constants';
 import Asciinema from '../../components/Asciinema';
 import MiniBlog from '../../components/MiniBlog';
+import adopterData from "../../adopters.md";
 
 const Home: React.FC = () => {
     const classes = useStyles();
     const { t } = useTranslation();
 
     const [tabValue, setTabValue] = useState<number>(0);
+    const [adopterTestimonials, setAdopterTestimonials] = useState<any>("");
     const [copyCommand, setCopyCommand] = useState({
         text: 'helm install stable/openebs --name openebs --namespace openebs',
         status: 'Copy to clipboard'
@@ -40,6 +42,19 @@ const Home: React.FC = () => {
     const [isMobileView, setIsMobileView] = useState<boolean>(false);
 
     // const [logoSlidesPerScreen, setLogoSlidesPerScreen] = useState<number>(6);
+
+        //function to fecth all the adoters testimonials
+    const fetchAdoptersTestimonials = async () => {
+        await fetch(adopterData).then((response) => {
+         if (response.ok) return response.text();
+         else return Promise.reject("could't fetch text correctly");
+       })
+       .then((text) => {
+         const testimonials = require("mdtable2json").getTables(text);
+         setAdopterTestimonials(testimonials[0].json);
+       })
+       .catch((err) => console.error(err));
+     };
 
     useEffect(() => {
         // Function to set mobile/desktop view
@@ -54,7 +69,7 @@ const Home: React.FC = () => {
         window.addEventListener("resize", () => {
             setResponsiveness();
         });
-
+        fetchAdoptersTestimonials();
         //unregister the listerner on destroy of the hook
         return () => window.removeEventListener("resize", () => {
             setResponsiveness();
@@ -700,18 +715,22 @@ const Home: React.FC = () => {
                                     prevArrow= {<SamplePrevArrow />}
                                     nextArrow= {<SampleNextArrow />}
                                     className={classes.testimonialCarousel}>
-                                {adaptorTestimonials.map(({ adaptorLogoURL, testimonial, profileURL, writer, id }) => {
+                                {adopterTestimonials && adopterTestimonials.map((elm: any ) => {
                                     return (  
-                                        <div key={id}>
+                                        <div key={elm.id}>
                                             <div className={classes.testimonialWrapper}> 
-                                                <img src={adaptorLogoURL} alt={t('home.usedInProductionBy.bloomberg')} />
-                                                <Typography className={classes.testimonialText}>
-                                                    {testimonial}
+                                                {/* <img src={elm.organization} alt={t('home.usedInProductionBy.bloomberg')} /> */}
+                                                <Typography className={classes.testimonialTitle}>
+                                                    {elm.organization}
                                                 </Typography>
-                                                <div className={classes.testimonialWriterWrapper}>
+                                                <Typography className={classes.testimonialText}>
+                                                    {elm.testimonial}
+                                                </Typography>
+                                                {/* commented code will be used in future */}
+                                                {/* <div className={classes.testimonialWriterWrapper}>
                                                     <img src={profileURL} alt={writer} />
                                                     <Typography className={classes.testimonialWriter}>{writer}</Typography>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         </div> 
                                         
