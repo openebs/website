@@ -492,9 +492,14 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     readGuideDiv: {
+        borderBottom: `1px solid ${theme.palette.primary.main}`,
+    },
+    readGuideLink: {
         display: 'flex',
         justifyContent: 'space-between',
-        borderBottom: `1px solid ${theme.palette.primary.main}`,
+        "&:hover": {
+            textDecoration: 'none'
+        }
     },
     iconButton: {
         borderRadius: 0,
