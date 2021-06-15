@@ -7,7 +7,7 @@ import JoinCommunity from "../../components/JoinCommunity";
 import { EXTERNAL_LINKS, VIEW_PORT } from "../../constants";
 import { useViewport } from "../../hooks/viewportWidth";
 import EventSlider from '../../components/EventSlider';
-import { events } from '../../components/EventSlider/events';
+import events from '../../resources/events.json';
 
 const Community: React.FC = () => {
   const { t } = useTranslation();

@@ -23,7 +23,7 @@ import Asciinema from '../../components/Asciinema';
 import MiniBlog from '../../components/MiniBlog';
 import adopterData from "../../adopters.md";
 import EventSlider from '../../components/EventSlider';
-import { events } from '../../components/EventSlider/events';
+import events from '../../resources/events.json';
 
 const Home: React.FC = () => {
     const classes = useStyles();

@@ -3,7 +3,7 @@ import Slider from "react-slick";
 import { useTranslation } from "react-i18next";
 import { Typography, Link, Box } from "@material-ui/core";
 import useStyles from "./style";
-import { events } from "./events";
+import events from '../../resources/events.json';
 
 const EventSlider: React.FC = () => {
   const { t } = useTranslation();
@@ -69,7 +69,7 @@ const EventSlider: React.FC = () => {
     ],
   };
 
-  const FetchDate = (date: any) => {
+  function FetchDate (date: any) {
     const givenDate = new Date(date.date);
     const day = givenDate.getDate();
     const month = givenDate.toLocaleString("default", { month: "long" });
@@ -82,6 +82,12 @@ const EventSlider: React.FC = () => {
       </>
     );
   };
+
+  function checkPastDate(date:any){
+    const givenDate = new Date(date);
+    const currentDate = new Date();
+    return givenDate > currentDate;
+  }
 
   return (
     <Slider {...settings}>
@@ -98,11 +104,11 @@ const EventSlider: React.FC = () => {
               <Typography className={classes.subText}>
                 {event.description}
               </Typography>
-              {event.buttonText && (
+              {checkPastDate(event.date) && event.buttonLink && (
                 <Box mt={2}>
-                  <Link className={classes.linkText} href={event.buttonLink}>
+                  <Link className={classes.linkText} href={event.buttonLink} target="_blank">
                     <Box display="flex">
-                      {event.buttonText}
+                      {event.buttonText ? event.buttonText : 'Click here'}
                       <img src="../Images/svg/arrow_orange.svg" alt="" />
                     </Box>
                   </Link>
