@@ -689,21 +689,25 @@ const Home: React.FC = () => {
                 <JoinCommunity/>
             </section>
             {/* Section: Community events */}
-            {events.length && (
                 <section>
                     <Typography variant="h2" className={classes.sectionTitle}>
                         {t("home.communityEvents.title")}
                     </Typography>
-                    <Grid container spacing={3}>
+                    <Grid container spacing={3} className={events.length ? '' : classes.noEvents}>
                         <Grid item xs={12} sm={4} className={classes.imageFluid}>
                             <img src="../Images/svg/community.svg" alt={t("home.communityEvents.communityImageAlt")} />
                         </Grid>
-                        <Grid item xs={12} sm={8}>
-                            <EventSlider />
-                        </Grid>
+                        {events.length ? (
+                            <Grid item xs={12} sm={8}>
+                                <EventSlider />
+                            </Grid>
+                        ) : (
+                            <Typography variant="h4" className={classes.noEventText}>
+                                {t("home.communityEvents.noEvent.message")}
+                            </Typography>
+                        )}
                     </Grid>
                 </section>
-            )}
             {/* Section: Our adopters say about us */}
             <section>
                 {isMobileView && 

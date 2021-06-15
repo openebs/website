@@ -190,6 +190,8 @@ home:
   communityEvents:
     title: Welcome to our community events
     communityImageAlt: Community
+    noEvent:
+      message: No upcoming events!
 
 community:
   title: We are the community

@@ -156,7 +156,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     "& .slick-next": {
       right: '-25px',
     },
-  }
+  },
+  noEventText: {
+    textAlign: 'center',
+    fontSize: '30px',
+    margin: '4rem 0',
+    [theme.breakpoints.down('sm')]: {
+        fontSize: '19px'
+    }
+}
 }));
 
 export default useStyles;

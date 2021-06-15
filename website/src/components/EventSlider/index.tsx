@@ -10,11 +10,10 @@ const EventSlider: React.FC = () => {
   const classes = useStyles();
 
   const NextArrow = (props: any) => {
-    const { className, style, onClick } = props;
+    const { className, onClick } = props;
     return (
       <div
-        className={className}
-        style={{ ...style, display: "block" }}
+        className={`${className} ${classes.slickButtons}`}
         onClick={onClick}
       >
         <img
@@ -26,11 +25,10 @@ const EventSlider: React.FC = () => {
   };
 
   const PrevArrow = (props: any) => {
-    const { className, style, onClick } = props;
+    const { className, onClick } = props;
     return (
       <div
-        className={className}
-        style={{ ...style, display: "block" }}
+        className={`${className} ${classes.slickButtons}`}
         onClick={onClick}
       >
         <img
@@ -105,7 +103,7 @@ const EventSlider: React.FC = () => {
                 {event.description}
               </Typography>
               {checkPastDate(event.date) && event.buttonLink && (
-                <Box mt={2}>
+                <Box mt={2} className={classes.actionLInk}>
                   <Link className={classes.linkText} href={event.buttonLink} target="_blank">
                     <Box display="flex">
                       {event.buttonText ? event.buttonText : 'Click here'}

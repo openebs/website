@@ -551,6 +551,20 @@ const useStyles = makeStyles((theme) => ({
         '& img' :{
             width: '100%'
         }
+    },
+    noEvents: {
+        marginBottom: theme.spacing(2),
+        justifyContent: 'center',
+        alignItems: 'center',
+        [theme.breakpoints.down('sm')]: {
+            margin: theme.spacing(2, 0, 4)
+        }
+    },
+    noEventText: {
+        fontSize: '30px',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '19px'
+        }
     }
 }))
 export default useStyles;

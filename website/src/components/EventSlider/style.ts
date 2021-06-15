@@ -13,6 +13,12 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0px 11px 33px rgba(193, 192, 243, 0.06)",
     borderRadius: "20px 40px 20px 0px",
     transition: "all 0.3s ease-out",
+    '&:hover $actionLInk':{
+      display:'inherit'
+    }
+  },
+  actionLInk:{
+    display: 'none',
   },
   slidewrap: {
     margin: "20px 0 20px 20px",
@@ -66,6 +72,9 @@ const useStyles = makeStyles((theme) => ({
     "& img": {
       marginLeft: "1rem",
     },
+  },
+  slickButtons: {
+    display: 'block'
   },
 }));
 

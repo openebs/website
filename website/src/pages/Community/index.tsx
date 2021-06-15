@@ -63,16 +63,20 @@ const Community: React.FC = () => {
         <JoinCommunity />
       </section>
       {/* Community events slider section */}
-      {events.length && (
-        <section>
-            <Typography variant="h2" className={classes.sectionTitle}>
-              {t("community.communityEvents.title")}
-            </Typography>
-            <div className={`${classes.sectionDiv} ${classes.sliderFullWidth}`}>
-              <EventSlider />
-            </div>
-        </section>
-      )}
+      <section>
+          <Typography variant="h2" className={classes.sectionTitle}>
+            {t("community.communityEvents.title")}
+          </Typography>
+          <div className={`${classes.sectionDiv} ${classes.sliderFullWidth}`}>
+          {events.length ? (
+                <EventSlider />
+            ) : (
+                <Typography variant="h4" className={classes.noEventText}>
+                    {t("home.communityEvents.noEvent.message")}
+                </Typography>
+            )}
+          </div>
+      </section>
 
       {/* Contribution section */}
       <div className={classes.installationDiv}>
