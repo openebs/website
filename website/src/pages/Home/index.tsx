@@ -674,9 +674,7 @@ const Home: React.FC = () => {
                                     </Button>
                                 </Paper>
                             </div>
-
                         }
-                        
                     </div>
                 </div>
             </section>
@@ -739,6 +737,16 @@ const Home: React.FC = () => {
                                     );
                                 })} 
                             </Slider>
+                            <div className={classes.adopterButtonWrapper}>
+                               <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.adopterButton}
+                                    onClick={() => { window.open(EXTERNAL_LINKS.BECOME_CONTRIBUTOR, '_blank') }}
+                                >
+                                    {t("adoptersTestimonials.becomeAdopter")}
+                               </Button>
+                            </div>
                         </Paper>
                     </Grid>
                     {!isMobileView && 
