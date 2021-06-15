@@ -143,6 +143,28 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: "relative",
     bottom: 0,
   },
+  sliderFullWidth: {
+    "& div.slick-active": {
+      "& + .slick-active": {
+        "& + .slick-slide": {
+          "&  > div": {
+            opacity: 1,
+          },
+        },
+      },
+    },
+    "& .slick-next": {
+      right: '-25px',
+    },
+  },
+  noEventText: {
+    textAlign: 'center',
+    fontSize: '30px',
+    margin: theme.spacing(4, 0),
+    [theme.breakpoints.down('sm')]: {
+        fontSize: '19px'
+    }
+}
 }));
 
 export default useStyles;

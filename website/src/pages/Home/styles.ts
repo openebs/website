@@ -558,7 +558,26 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         position: 'relative',
         bottom: 0
-      },
+    },
+    imageFluid : {
+        '& img' :{
+            width: '100%'
+        }
+    },
+    noEvents: {
+        marginBottom: theme.spacing(2),
+        justifyContent: 'center',
+        alignItems: 'center',
+        [theme.breakpoints.down('sm')]: {
+            margin: theme.spacing(2, 0, 4)
+        }
+    },
+    noEventText: {
+        fontSize: '30px',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '19px'
+        }
+    }
 }))
 export default useStyles;
   

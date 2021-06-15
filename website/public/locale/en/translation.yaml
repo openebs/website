@@ -196,6 +196,15 @@ community:
   newsletter: Stay in the know with our newsletter
   contributeBtnLabel: Contribute
   checkItOutBtnLabel: Check it out
+  communityEvents:
+    title: Welcome to our community events
+    communityImageAlt: Community
+    linkImageAlt: Arrow
+    clickHere: Click here
+    nextArrowAlt: Next event
+    previousArrowAlt: Previous event
+    noEvent:
+      message: No upcoming events!
 
   sponsor:
     mainSponsor: Started and majority of its development sponsored by
