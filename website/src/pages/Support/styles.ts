@@ -79,6 +79,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: "0px 11px 33px 29px rgba(193, 192, 243, 0.06)",
     "&:hover $cardAction": {
       visibility: "visible",
+      bottom: '10px'
     },
     "&:hover": {
       height: "120%",

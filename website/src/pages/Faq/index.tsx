@@ -21,6 +21,7 @@ import Newsletter from "../../components/Newsletter";
 import Footer from "../../components/Footer";
 import FaqDetails from "./faqData";
 import ReactMarkdown from "react-markdown";
+import Sponsor from "../../components/Sponsor";
 
 interface FaqDataProps {
   id: number;
@@ -83,10 +84,11 @@ const Faq: React.FC<FaqDataProps> = () => {
           <Paper className={classes.tabs}>
             <Tabs
               value={value}
+              classes={{ 
+                root: classes.tabRoot, scroller: classes.scroller }}
               onChange={handleChange}
               textColor="secondary"
               variant="standard"
-              className={classes.tabLayout}
               TabIndicatorProps={{
                 style: {
                   display: "none",
@@ -151,13 +153,17 @@ const Faq: React.FC<FaqDataProps> = () => {
           <p>{t("faq.noData")}</p>
         )}
       </div>
+      <div className={classes.faqFooter}>
       {/* Newsletter section just need to pass the text accordingly */}
       <Newsletter newsletterTitle={t("newsletter.title")} />
 
-      {/* Display footer */}
-      <footer className={classes.footer}>
-        <Footer />
-      </footer>
+          {/* Sponsor section  */}
+          <Sponsor />
+          {/* Display footer */}
+          <footer className={classes.footer}>
+            <Footer />
+          </footer>
+      </div>
     </>
   );
 };

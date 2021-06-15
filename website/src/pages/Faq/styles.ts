@@ -24,30 +24,43 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "center",
     alignItems: "center",
   },
-  tabLayout: {
-    orientation: "vertical",
-  },
   tabs: {
-    maxWidth: "auto",
     margin: `${theme.spacing(1)}px auto`,
-    padding: theme.spacing(0.3),
-    backgroundColor: theme.palette.common.white,
+    background: 'transparent',
     flexGrow: 1,
     fontWeight: 700,
-    boxShadow: "2px 0px 33px 5px rgba(70, 68, 151, 0.04)",
+    boxShadow: 'none',
+    position: 'relative',
+    top: '25px'
+  },
+  tabRoot: {
+    justifyContent: "center",
+    '& .Mui-selected': {
+      color: theme.palette.text.hint,
+      padding: theme.spacing(2, 1),
+    }
+  },
+  scroller: {
+    flexGrow: 0,
+    background: theme.palette.background.paper,
+    boxShadow: '2px 0px 33px 5px rgba(70, 68, 151, 0.04)',
+    borderRadius: '12px 12px 12px 0px',
+    width: 'fit-content'
   },
   heading: {
-    fontSize: "pxToRem(15)",
+    fontSize: "16px",
     fontWeight: 400,
+    color: theme.palette.text.secondary
   },
   headingSelected: {
-    fontSize: "pxToRem(15)",
+    fontSize: "16px",
     fontWeight: 700,
   },
   accordionRoot: {
     width: "100%",
     [theme.breakpoints.down("xl")]: {
       padding: theme.spacing(5, 32, 0),
+      marginTop: theme.spacing(4)
     },
     [theme.breakpoints.down("md")]: {
       padding: theme.spacing(2, 8),
@@ -59,19 +72,31 @@ const useStyles = makeStyles((theme: Theme) => ({
   accordion: {
     width: "100%",
     margin: theme.spacing(4, 0),
-    padding: theme.spacing(2),
+    padding: theme.spacing(1, 2.5),
     boxShadow: "2px 5px 31px 4px rgba(70, 68, 151, 0.07)",
   },
   details: {
     borderTop: "2px solid",
     borderColor: theme.palette.grayishGreen.light,
     paddingTop: theme.spacing(2),
+    color: theme.palette.text.secondary,
+    fontSize: '16px'
   },
   footer: {
     gridArea: "footer",
     width: '100%',
     position: 'relative',
     bottom: 0,
+  },
+  faqFooter: {
+    background:  'url(/Images/png/blog_index_background.png)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    [theme.breakpoints.down('xs')]: {
+      background:  'url(/Images/png/blog_index_background_mobile.png)',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+    },
   },
   MuiAccordionroot: {
     "&.MuiAccordion-root:before": {

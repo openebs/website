@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& .MuiBreadcrumbs-ol':{
       justifyContent: 'center',
       color: theme.palette.info.light,
-      fontsize: '14px',
+      fontSize: '14px',
       fontWeight: 400
     }
   },

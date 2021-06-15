@@ -8,29 +8,48 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
     backgroundSize: "cover",
-    padding: theme.spacing(12, 5, 0),
+    padding: theme.spacing(16, 5, 5),
   },
-  tabLayout: {
-    orientation: "vertical",
+  tabRoot: {
+    justifyContent: "center",
+    '& .Mui-selected': {
+      color: theme.palette.text.hint,
+      padding: theme.spacing(2, 1),
+    }
+  },
+  breadCrumbs: {
+    '& .MuiBreadcrumbs-ol':{
+      justifyContent: 'center',
+      color: theme.palette.info.light,
+      fontSize: '14px',
+      fontWeight: 400
+    }
+  },
+  scroller: {
+    flexGrow: 0,
+    background: theme.palette.background.paper,
+    boxShadow: '2px 0px 33px 5px rgba(70, 68, 151, 0.04)',
+    borderRadius: '12px 12px 12px 0px'
   },
   authorWrapper: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    margin: theme.spacing(3, 0, 2.5),
   },
   large: {
-    width: theme.spacing(9),
-    height: theme.spacing(9),
-    marginRight: theme.spacing(4),
+    width: '60px',
+    height: '60px',
+    marginRight: theme.spacing(1.8),
   },
   tabs: {
-    maxWidth: "auto",
     margin: `${theme.spacing(1)}px auto`,
-    padding: theme.spacing(0.3),
-    backgroundColor: theme.palette.common.white,
+    background: 'transparent',
     flexGrow: 1,
     fontWeight: 700,
-    boxShadow: "2px 0px 33px 5px rgba(70, 68, 151, 0.04)",
+    boxShadow: 'none',
+    position: 'relative',
+    top: '25px'
   },
   mainText: {
     display: "flex",
@@ -54,12 +73,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexWrap: "wrap",
     textAlign: "center",
-    margin: theme.spacing(3, 0),
+    margin: theme.spacing(0),
     justifyContent: "center",
     alignItems: "center",
+    fontSize: '42px'
   },
   authorDesc: {
     paddingBottom: theme.spacing(3),
+    fontSize: '16px',
+    color: theme.palette.text.secondary
   },
   authorURL: {
     color: theme.palette.info.light,
@@ -162,6 +184,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingTop: theme.spacing(2),
     "& .Mui-selected": {
       color: theme.palette.text.hint,
+      background: theme.palette.background.paper,
+      boxShadow: '2px 0px 33px 5px rgba(70, 68, 151, 0.04)',
+      borderRadius: '8px 8px 8px 0px'
     },
     "& .MuiPaginationItem-root": {
       fontWeight: "bold",
@@ -185,6 +210,16 @@ const useStyles = makeStyles((theme: Theme) => ({
       width: "100%",
     },
   },
+  blogFooter: {
+    background:  'url(/Images/png/blog_index_background.png)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    [theme.breakpoints.down('xs')]: {
+      background:  'url(/Images/png/blog_index_background_mobile.png)',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+    },
+  }
 }));
 
 export default useStyles;
