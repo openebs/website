@@ -102,6 +102,18 @@ const useStyles = makeStyles((theme) => ({
             padding: theme.spacing(1.2)
         },
     },
+    adopterButtonWrapper: {
+      display: 'flex',
+      justifyContent: 'center',
+      width: '100%',
+      padding: theme.spacing(2),
+    },
+    adopterButton: {
+        [theme.breakpoints.down('xs')]: {
+            width: '100%',
+            padding: theme.spacing(1.2)
+        },
+    },
     outlineButton: {
         [theme.breakpoints.down('xs')]: {
             marginTop: theme.spacing(2),
