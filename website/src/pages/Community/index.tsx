@@ -72,7 +72,7 @@ const Community: React.FC = () => {
                 <EventSlider />
             ) : (
                 <Typography variant="h4" className={classes.noEventText}>
-                    {t("home.communityEvents.noEvent.message")}
+                    {t("community.communityEvents.noEvent.message")}
                 </Typography>
             )}
           </div>

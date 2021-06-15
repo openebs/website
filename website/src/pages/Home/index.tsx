@@ -689,11 +689,11 @@ const Home: React.FC = () => {
             {/* Section: Community events */}
                 <section>
                     <Typography variant="h2" className={classes.sectionTitle}>
-                        {t("home.communityEvents.title")}
+                        {t("community.communityEvents.title")}
                     </Typography>
                     <Grid container spacing={3} className={events.length ? '' : classes.noEvents}>
                         <Grid item xs={12} sm={4} className={classes.imageFluid}>
-                            <img src="../Images/svg/community.svg" alt={t("home.communityEvents.communityImageAlt")} />
+                            <img src="../Images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} />
                         </Grid>
                         {events.length ? (
                             <Grid item xs={12} sm={8}>
@@ -701,7 +701,7 @@ const Home: React.FC = () => {
                             </Grid>
                         ) : (
                             <Typography variant="h4" className={classes.noEventText}>
-                                {t("home.communityEvents.noEvent.message")}
+                                {t("community.communityEvents.noEvent.message")}
                             </Typography>
                         )}
                     </Grid>

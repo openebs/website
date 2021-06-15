@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   slide: {
     background: "#fff",
     margin: "0",
-    padding: "32px",
+    padding: theme.spacing(4),
     boxShadow: "0px 11px 33px rgba(193, 192, 243, 0.06)",
     borderRadius: "20px 40px 20px 0px",
     transition: "all 0.3s ease-out",
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
   },
   slidewrap: {
-    margin: "20px 0 20px 20px",
+    margin: theme.spacing(2, 0, 2, 2),
     "& div.slick-active": {
       "& + .slick-active": {
         "& + .slick-slide": {

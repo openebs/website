@@ -67,7 +67,7 @@ const EventSlider: React.FC = () => {
     ],
   };
 
-  function FetchDate (date: any) {
+  const FetchDate = (date: any) => {
     const givenDate = new Date(date.date);
     const day = givenDate.getDate();
     const month = givenDate.toLocaleString("default", { month: "long" });
