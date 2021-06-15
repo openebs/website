@@ -6,6 +6,8 @@ import Footer from "../../components/Footer";
 import JoinCommunity from "../../components/JoinCommunity";
 import { EXTERNAL_LINKS, VIEW_PORT } from "../../constants";
 import { useViewport } from "../../hooks/viewportWidth";
+import EventSlider from '../../components/EventSlider';
+import events from '../../resources/events.json';
 
 const Community: React.FC = () => {
   const { t } = useTranslation();
@@ -62,6 +64,22 @@ const Community: React.FC = () => {
         <JoinCommunity />
       </section>
       </div>
+      {/* Community events slider section */}
+      <section>
+          <Typography variant="h2" className={classes.sectionTitle}>
+            {t("community.communityEvents.title")}
+          </Typography>
+          <div className={`${classes.sectionDiv} ${classes.sliderFullWidth}`}>
+          {events.length ? (
+                <EventSlider />
+            ) : (
+                <Typography variant="h4" className={classes.noEventText}>
+                    {t("community.communityEvents.noEvent.message")}
+                </Typography>
+            )}
+          </div>
+      </section>
+
       {/* Contribution section */}
       <div className={classes.installationDiv}>
         <section>

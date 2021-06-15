@@ -17,6 +17,7 @@ export enum EXTERNAL_LINKS {
   CONTRIBUTE_LINK='https://github.com/openebs/openebs/blob/master/CONTRIBUTING.md',
   GOVERNANCE_LINK='https://github.com/openebs/openebs/blob/master/GOVERNANCE.md',
   SUBSCRIBE_NEWSLETTER='https://lists.cncf.io/g/cncf-openebs-announcements',
+  BECOME_ADOPTER='https://github.com/openebs/openebs/blob/master/ADOPTERS.md',
 };
 
 export const API = {

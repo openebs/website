@@ -22,6 +22,8 @@ import { EXTERNAL_LINKS } from '../../constants';
 import Asciinema from '../../components/Asciinema';
 import MiniBlog from '../../components/MiniBlog';
 import adopterData from "../../adopters.md";
+import EventSlider from '../../components/EventSlider';
+import events from '../../resources/events.json';
 
 const Home: React.FC = () => {
     const classes = useStyles();
@@ -674,9 +676,7 @@ const Home: React.FC = () => {
                                     </Button>
                                 </Paper>
                             </div>
-
                         }
-                        
                     </div>
                 </div>
             </section>
@@ -686,7 +686,26 @@ const Home: React.FC = () => {
             <section>
                 <JoinCommunity/>
             </section>
-
+            {/* Section: Community events */}
+                <section>
+                    <Typography variant="h2" className={classes.sectionTitle}>
+                        {t("community.communityEvents.title")}
+                    </Typography>
+                    <Grid container spacing={3} className={events.length ? '' : classes.noEvents}>
+                        <Grid item xs={12} sm={4} className={classes.imageFluid}>
+                            <img src="../Images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} />
+                        </Grid>
+                        {events.length ? (
+                            <Grid item xs={12} sm={8}>
+                                <EventSlider />
+                            </Grid>
+                        ) : (
+                            <Typography variant="h4" className={classes.noEventText}>
+                                {t("community.communityEvents.noEvent.message")}
+                            </Typography>
+                        )}
+                    </Grid>
+                </section>
             {/* Section: Our adopters say about us */}
             <section>
                 {isMobileView && 
@@ -739,6 +758,16 @@ const Home: React.FC = () => {
                                     );
                                 })} 
                             </Slider>
+                            <div className={classes.adopterButtonWrapper}>
+                               <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.adopterButton}
+                                    onClick={() => { window.open(EXTERNAL_LINKS.BECOME_ADOPTER, '_blank') }}
+                                >
+                                    {t("adoptersTestimonials.becomeAdopter")}
+                               </Button>
+                            </div>
                         </Paper>
                     </Grid>
                     {!isMobileView && 
