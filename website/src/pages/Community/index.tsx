@@ -7,6 +7,7 @@ import JoinCommunity from "../../components/JoinCommunity";
 import { EXTERNAL_LINKS, VIEW_PORT } from "../../constants";
 import { useViewport } from "../../hooks/viewportWidth";
 import EventSlider from '../../components/EventSlider';
+import { events } from '../../components/EventSlider/events';
 
 const Community: React.FC = () => {
   const { t } = useTranslation();
@@ -61,15 +62,17 @@ const Community: React.FC = () => {
       <section>
         <JoinCommunity />
       </section>
-      {/* Join our community section */}
-      <section>
-          <Typography variant="h2" className={classes.sectionTitle}>
-            {t("community.communityEvents.title")}
-          </Typography>
-          <div className={`${classes.sectionDiv} ${classes.sliderFullWidth}`}>
-            <EventSlider />
-          </div>
-      </section>
+      {/* Community events slider section */}
+      {events.length && (
+        <section>
+            <Typography variant="h2" className={classes.sectionTitle}>
+              {t("community.communityEvents.title")}
+            </Typography>
+            <div className={`${classes.sectionDiv} ${classes.sliderFullWidth}`}>
+              <EventSlider />
+            </div>
+        </section>
+      )}
 
       {/* Contribution section */}
       <div className={classes.installationDiv}>

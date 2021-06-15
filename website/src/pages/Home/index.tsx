@@ -23,6 +23,7 @@ import Asciinema from '../../components/Asciinema';
 import MiniBlog from '../../components/MiniBlog';
 import adopterData from "../../adopters.md";
 import EventSlider from '../../components/EventSlider';
+import { events } from '../../components/EventSlider/events';
 
 const Home: React.FC = () => {
     const classes = useStyles();
@@ -688,19 +689,21 @@ const Home: React.FC = () => {
                 <JoinCommunity/>
             </section>
             {/* Section: Community events */}
-            <section>
-                <Typography variant="h2" className={classes.sectionTitle}>
-                    {t("home.communityEvents.title")}
-                </Typography>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} sm={4} className={classes.imageFluid}>
-                        <img src="../Images/svg/community.svg" alt={t("home.communityEvents.communityImageAlt")} />
+            {events.length && (
+                <section>
+                    <Typography variant="h2" className={classes.sectionTitle}>
+                        {t("home.communityEvents.title")}
+                    </Typography>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12} sm={4} className={classes.imageFluid}>
+                            <img src="../Images/svg/community.svg" alt={t("home.communityEvents.communityImageAlt")} />
+                        </Grid>
+                        <Grid item xs={12} sm={8}>
+                            <EventSlider />
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} sm={8}>
-                        <EventSlider />
-                    </Grid>
-                </Grid>
-            </section>
+                </section>
+            )}
             {/* Section: Our adopters say about us */}
             <section>
                 {isMobileView && 
