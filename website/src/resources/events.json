@@ -7,21 +7,21 @@
         "buttonText": "Register",
         "buttonLink": "https://openebs.io/"
     }, {
-        "id": 1,
+        "id": 2,
         "date": "2020-10-05",
         "title": "Event name",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu felis nec arcu eleifend scelerisque. ",
         "buttonText": "Register",
         "buttonLink": "https://openebs.io/"
     }, {
-        "id": 1,
+        "id": 3,
         "date": "2020-09-05",
         "title": "Event name",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu felis nec arcu eleifend scelerisque. ",
         "buttonText": "Register",
         "buttonLink": "https://openebs.io/"
     }, {
-        "id": 1,
+        "id": 4,
         "date": "2020-08-05",
         "title": "Event name",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu felis nec arcu eleifend scelerisque. ",

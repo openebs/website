@@ -91,7 +91,7 @@ const EventSlider: React.FC = () => {
     <Slider {...settings}>
       {events.map((event: any) => {
         return (
-          <div>
+          <div key={event.id}>
             <div className={classes.slide}>
               <Box mb={2}>
                 <FetchDate date={event.date} />
