@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   slide: {
-    background: "#fff",
+    background: theme.palette.background.paper,
     margin: "0",
     padding: theme.spacing(4),
     boxShadow: "0px 11px 33px rgba(193, 192, 243, 0.06)",

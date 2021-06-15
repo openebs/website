@@ -18,7 +18,7 @@ const EventSlider: React.FC = () => {
       >
         <img
           src="../Images/svg/right_arrow.svg"
-          alt={t("home.adaptorsTestimonials.nextArrowAlt")}
+          alt={t("community.communityEvents.nextArrowAlt")}
         />
       </div>
     );
@@ -33,7 +33,7 @@ const EventSlider: React.FC = () => {
       >
         <img
           src="../Images/svg/left_arrow.svg"
-          alt={t("home.adaptorsTestimonials.previousArrowAlt")}
+          alt={t("community.communityEvents.previousArrowAlt")}
         />
       </div>
     );

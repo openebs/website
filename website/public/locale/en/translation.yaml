@@ -201,6 +201,8 @@ community:
     communityImageAlt: Community
     linkImageAlt: Arrow
     clickHere: Click here
+    nextArrowAlt: Next event
+    previousArrowAlt: Previous event
     noEvent:
       message: No upcoming events!
 
