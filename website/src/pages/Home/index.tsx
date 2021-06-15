@@ -742,7 +742,7 @@ const Home: React.FC = () => {
                                     variant="contained"
                                     color="secondary"
                                     className={classes.adopterButton}
-                                    onClick={() => { window.open(EXTERNAL_LINKS.BECOME_CONTRIBUTOR, '_blank') }}
+                                    onClick={() => { window.open(EXTERNAL_LINKS.BECOME_ADOPTER, '_blank') }}
                                 >
                                     {t("adoptersTestimonials.becomeAdopter")}
                                </Button>
