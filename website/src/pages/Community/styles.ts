@@ -160,7 +160,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   noEventText: {
     textAlign: 'center',
     fontSize: '30px',
-    margin: '4rem 0',
+    margin: theme.spacing(4, 0),
     [theme.breakpoints.down('sm')]: {
         fontSize: '19px'
     }
