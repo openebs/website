@@ -7,18 +7,16 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   introSection: {
     [theme.breakpoints.down("xl")]: {
-      padding: theme.spacing(8, 20),
-    },
-    [theme.breakpoints.down("lg")]: {
-      padding: theme.spacing(8, 6),
+      padding: theme.spacing(7, 0, 4),
     },
     [theme.breakpoints.down("xs")]: {
-      padding: theme.spacing(2, 3),
+      padding: theme.spacing(10, 0, 0),
     },
   },
   pageHeader: {
     fontSize: "2.625rem",
     fontWeight: 700,
+    color: theme.palette.text.primary,
     textAlign: "start",
     marginBottom: theme.spacing(5),
     [theme.breakpoints.down("xs")]: {
@@ -36,28 +34,32 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   supportDescription: {
-    [theme.breakpoints.down("xl")]: {
-      paddingLeft: theme.spacing(16),
-      paddingTop: theme.spacing(0),
-    },
-    [theme.breakpoints.down("md")]: {
-      paddingLeft: theme.spacing(0),
-      paddingTop: theme.spacing(6),
+    color: theme.palette.text.secondary,
+    fontSize: '16px',
+    [theme.breakpoints.down("xs")]: {
+      fontSize: '14px',
+      marginTop: theme.spacing(4),
     },
   },
   supportImage: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
   },
-
+  sectionDiv: {
+    padding: theme.spacing(3, 20),
+    [theme.breakpoints.down("md")]: {
+      padding: theme.spacing(3, 10),
+    },
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(3, 4),
+    },
+  },
   //Supported companies card styles
   cardWrapper: {
-    [theme.breakpoints.down("xl")]: {
-      padding: theme.spacing(6, 20),
-    },
-    [theme.breakpoints.down("lg")]: {
-      padding: theme.spacing(6, 6),
+    padding: theme.spacing(6, 14),
+    [theme.breakpoints.down("md")]: {
+      padding: theme.spacing(4, 6),
     },
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(0, 3),
@@ -68,7 +70,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: theme.spacing(0, 2),
     },
     [theme.breakpoints.down("xs")]: {
-      padding: theme.spacing(4, 0),
+      padding: theme.spacing(1, 0),
     },
   },
   cardProps: {
@@ -86,6 +88,10 @@ const useStyles = makeStyles((theme: Theme) => ({
       boxShadow: "0px 4px 34px 21px rgba(70, 68, 151, 0.04)",
       borderRadius: "20px 20px 60px 0px",
     },
+    [theme.breakpoints.down("xs")]: {
+      boxShadow:' 0px 4px 34px 21px rgba(70, 68, 151, 0.04)',
+      borderRadius: '20px 20px 40px 0px'
+    }
   },
   cardAction: {
     visibility: "hidden",
@@ -95,6 +101,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   cardText: {
     padding: theme.spacing(1, 0),
     fontSize: "1rem",
+    color: theme.palette.text.secondary,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: '14px',
+    },
   },
   cardImage: {
     height: "3.75rem",

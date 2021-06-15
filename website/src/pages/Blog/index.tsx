@@ -177,9 +177,9 @@ const Blog: React.FC = () => {
               </Paper>
             </Container>
           </div>
-          <div className={classes.cardWrapper}>
+          <div className={classes.sectionDiv}>
             <h1>{t("blog.articles")}</h1>
-            <Grid container direction="row" justify="flex-start">
+            <Grid container direction="row" className={classes.blogsWrapper} >
               {filteredData
                 ? filteredData
                     .slice((page - 1) * itemsPerPage, page * itemsPerPage)
@@ -286,7 +286,7 @@ const Blog: React.FC = () => {
               </p>
             </Container>
           </div>
-          <div className={classes.cardWrapper}>
+          <div className={classes.sectionDiv}>
             <Grid
               container
               direction="row"

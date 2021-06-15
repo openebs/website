@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
     backgroundSize: "cover",
-    padding: theme.spacing(16, 5, 5),
+    padding: theme.spacing(16, 5, 0),
   },
   tabRoot: {
     justifyContent: "center",
@@ -17,6 +17,12 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: theme.spacing(2, 1),
     }
   },
+  scroller: {
+    flexGrow: 0,
+    background: theme.palette.background.paper,
+    boxShadow: '2px 0px 33px 5px rgba(70, 68, 151, 0.04)',
+    borderRadius: '12px 12px 12px 0px'
+  },
   breadCrumbs: {
     '& .MuiBreadcrumbs-ol':{
       justifyContent: 'center',
@@ -24,12 +30,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: '14px',
       fontWeight: 400
     }
-  },
-  scroller: {
-    flexGrow: 0,
-    background: theme.palette.background.paper,
-    boxShadow: '2px 0px 33px 5px rgba(70, 68, 151, 0.04)',
-    borderRadius: '12px 12px 12px 0px'
   },
   authorWrapper: {
     display: "flex",
@@ -55,17 +55,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
     flexWrap: "wrap",
     textAlign: "center",
-    margin: theme.spacing(8, 50),
+    maxWidth: '670px',
+    margin: 'auto',
     justifyContent: "center",
     alignItems: "center",
-    [theme.breakpoints.down("md")]: {
-      margin: theme.spacing(8, 30),
-    },
+    fontSize: '42px',
     [theme.breakpoints.down("sm")]: {
-      margin: theme.spacing(8, 10),
-    },
-    [theme.breakpoints.down("sm")]: {
-      margin: theme.spacing(4, 0),
       fontSize: "24px",
     },
   },
@@ -92,37 +87,40 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: "relative",
     bottom: 0,
   },
-  cardWrapper: {
-    [theme.breakpoints.down("lg")]: {
-      padding: theme.spacing(4, 16),
-    },
+  sectionDiv: {
+    padding: theme.spacing(3, 26),
     [theme.breakpoints.down("md")]: {
-      padding: theme.spacing(4, 10),
+      padding: theme.spacing(3, 10),
     },
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(3, 4),
+    },
+  },
+  blogsWrapper: {
+    justifyContent: 'space-between',
     [theme.breakpoints.down("sm")]: {
-      padding: theme.spacing(2, 4),
+      justifyContent: 'center',
     },
   },
   cardRoot: {
-    maxWidth: "480px",
     boxShadow: "none",
     background: "transparent",
-    margin: "auto",
     height: "100%",
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "column"
+  },
+  rootBlogSection: {
+    flexGrow: 1,
+  },
+  cardSize: {
+    maxWidth: "480px",
+    paddingTop: theme.spacing(4),
     [theme.breakpoints.down("md")]: {
       maxWidth: "380px",
     },
     [theme.breakpoints.down("sm")]: {
       maxWidth: "480px",
     },
-  },
-  rootBlogSection: {
-    flexGrow: 1,
-  },
-  cardSize: {
-    paddingTop: theme.spacing(4),
   },
   media: {
     height: 0,
@@ -184,7 +182,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingTop: theme.spacing(2),
     "& .Mui-selected": {
       color: theme.palette.text.hint,
-      background: theme.palette.background.paper,
+      background: `${theme.palette.background.paper} !important`,
       boxShadow: '2px 0px 33px 5px rgba(70, 68, 151, 0.04)',
       borderRadius: '8px 8px 8px 0px'
     },

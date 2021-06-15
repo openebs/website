@@ -32,7 +32,7 @@ const Newsletter: React.FC<NewsletterTitleProps> = ({ newsletterTitle }) => {
         <div className={classes.newsletter}>
           <div className={classes.newsWrapper}>
             <Grid item lg={12}>
-              <h1>{newsletterTitle}</h1>
+              <h1 className={classes.title}>{newsletterTitle}</h1>
 
                 <Button
                   variant="contained"

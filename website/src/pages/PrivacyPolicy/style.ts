@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     pageSpacing: {
-        padding: theme.spacing(0,30),
+        padding: theme.spacing(0,39),
         [theme.breakpoints.down('md')]: {
             padding: theme.spacing(0,15),
         },
