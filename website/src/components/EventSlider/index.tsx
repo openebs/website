@@ -106,7 +106,7 @@ const EventSlider: React.FC = () => {
                 <Box mt={2} className={classes.actionLInk}>
                   <Link className={classes.linkText} href={event.buttonLink} target="_blank">
                     <Box display="flex">
-                      {event.buttonText ? event.buttonText : 'Click here'}
+                      {event.buttonText ? event.buttonText : t('community.communityEvents.clickHere')}
                       <img src="../Images/svg/arrow_orange.svg" alt="" />
                     </Box>
                   </Link>

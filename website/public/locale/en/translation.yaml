@@ -200,6 +200,7 @@ community:
     title: Welcome to our community events
     communityImageAlt: Community
     linkImageAlt: Arrow
+    clickHere: Click here
     noEvent:
       message: No upcoming events!
 
