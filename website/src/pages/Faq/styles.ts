@@ -45,7 +45,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: theme.palette.background.paper,
     boxShadow: '2px 0px 33px 5px rgba(70, 68, 151, 0.04)',
     borderRadius: '12px 12px 12px 0px',
-    width: 'fit-content'
+    width: 'fit-content',
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+    }
   },
   heading: {
     fontSize: "16px",

@@ -100,6 +100,14 @@ const useStyles = makeStyles((theme: Theme) => ({
       width: '85%'
     }
   },
+  blogTitle: {
+    fontSize: '42px',
+    fontWeight: 700,
+    textAlign: 'center',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '24px',
+    },
+  },
   blogsWrapper: {
     justifyContent: 'space-between',
     [theme.breakpoints.up("xl")]: {

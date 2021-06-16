@@ -178,7 +178,7 @@ const Blog: React.FC = () => {
             </Container>
           </div>
           <div className={classes.sectionDiv}>
-            <h1>{t("blog.articles")}</h1>
+            <h1 className={classes.blogTitle}>{t("blog.articles")}</h1>
             <Grid container direction="row" className={classes.blogsWrapper} >
               {filteredData
                 ? filteredData
