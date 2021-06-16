@@ -53,7 +53,7 @@ tbody {
   }
 }
 
-p a + a {
+.markdown p a + a {
   margin-left: 1rem;
 }
 
@@ -86,7 +86,7 @@ p a + a {
       font-size: 16px;
     }
   }
-  p a + a {
+  .markdown p a + a {
     margin-left: .6rem;
   }
 }
