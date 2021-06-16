@@ -13,13 +13,14 @@ export const Header = () => {
     const socials = siteConfig?.customFields?.socials;
     const navLinks = siteConfig?.customFields?.navLinks;
     const repoUrl = siteConfig?.customFields?.externalLinks?.repoUrl;
+    const websiteUrl = siteConfig?.url;
     const { width } = useViewport();
     return(
         <div className={styles.headerOuterWrapper}>
             <div className={styles.headerInnerWrapper}>
                 <div className={styles.header}>
                     <div className={width > 480 ? styles.logoWrapper : styles.logoWrapperSmallView }>
-                        <a href={useBaseUrl('/')} target="_self">
+                        <a href={websiteUrl} target="_self">
                             <img src={useBaseUrl('/img/openebs-logo.svg')} alt={translate({
                                 id: "component.Header.logo",
                                 description: "Header Logo",

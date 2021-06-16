@@ -53,6 +53,10 @@ tbody {
   }
 }
 
+.markdown p a + a {
+  margin-left: 1rem;
+}
+
 @media (min-width: $breakpoint-lg) {
   h1 {
     font-size: 36px;
@@ -81,6 +85,9 @@ tbody {
     td {
       font-size: 16px;
     }
+  }
+  .markdown p a + a {
+    margin-left: .6rem;
   }
 }
 
