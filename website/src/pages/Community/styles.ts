@@ -28,9 +28,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   introImage: {
-    [theme.breakpoints.down("xl")]: {
       width: "auto",
-    },
     [theme.breakpoints.down("md")]: {
       paddingTop: theme.spacing(0),
       width: "100%",
@@ -126,9 +124,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   sponsorCompany: {
-    [theme.breakpoints.down("xl")]: {
       padding: theme.spacing(0,2),
-    },
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(1),
       width: '25%'

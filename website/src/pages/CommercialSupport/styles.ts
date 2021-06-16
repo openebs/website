@@ -6,9 +6,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "100%",
   },
   introSection: {
-    [theme.breakpoints.down("xl")]: {
-      padding: theme.spacing(7, 0, 4),
-    },
+    padding: theme.spacing(7, 0, 4),
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(10, 0, 0),
     },
@@ -25,9 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   introImage: {
-    [theme.breakpoints.down("xl")]: {
       width: "auto",
-    },
     [theme.breakpoints.down("md")]: {
       paddingTop: theme.spacing(0),
       width: "100%",
@@ -66,9 +62,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   cardSection: {
-    [theme.breakpoints.down("xl")]: {
       padding: theme.spacing(0, 2),
-    },
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(1, 0),
     },
@@ -108,9 +102,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   cardImage: {
     height: "3.75rem",
-    [theme.breakpoints.down("xl")]: {
       width: "10rem",
-    },
     [theme.breakpoints.down("lg")]: {
       width: "7.5rem",
     },

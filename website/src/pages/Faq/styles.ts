@@ -58,10 +58,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   accordionRoot: {
     width: "100%",
-    [theme.breakpoints.down("xl")]: {
-      padding: theme.spacing(5, 39, 0),
-      marginTop: theme.spacing(4)
-    },
+    padding: theme.spacing(5, 39, 0),
+    marginTop: theme.spacing(4),
     [theme.breakpoints.down("md")]: {
       padding: theme.spacing(2, 8),
     },

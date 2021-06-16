@@ -18,9 +18,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   textField: {
     textAlign: "center",
-    [theme.breakpoints.down("xl")]: {
-      padding: theme.spacing(3.5, 2),
-    },
+    padding: theme.spacing(3.5, 2),
     [theme.breakpoints.down("md")]: {
       padding: theme.spacing(3.5, 2),
     },
