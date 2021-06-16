@@ -3,6 +3,7 @@ import useStyles from "./styles";
 import { useTranslation } from "react-i18next";
 import {
   Avatar,
+  Breadcrumbs,
   Button,
   Card,
   CardActions,
@@ -11,6 +12,7 @@ import {
   Container,
   createStyles,
   Grid,
+  Link,
   Paper,
   Tab,
   Tabs,
@@ -28,6 +30,7 @@ import DisplayAuthorandReadTime from "../../components/DisplayAuthorandReadTime"
 import CustomTag from "../../components/CustomTag";
 import { getAvatar } from "../../utils/getAvatar";
 import { getContentPreview } from "../../utils/getContent";
+import { useViewport } from "../../hooks/viewportWidth";
 
 interface StyledTabProps {
   label: string;
@@ -58,6 +61,8 @@ const Blog: React.FC = () => {
   );
   const itemsPerPage = 6;
   const [page, setPage] = React.useState<number>(1);
+  const { width } = useViewport();
+  const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
 
   const StyledTab = withStyles((theme: Theme) =>
     createStyles({
@@ -154,7 +159,8 @@ const Blog: React.FC = () => {
                   onChange={handleChange}
                   textColor="secondary"
                   variant="scrollable"
-                  className={classes.tabLayout}
+                  classes={{ 
+                    root: classes.tabRoot, scroller: classes.scroller }}
                   TabIndicatorProps={{
                     style: {
                       display: "none",
@@ -171,9 +177,9 @@ const Blog: React.FC = () => {
               </Paper>
             </Container>
           </div>
-          <div className={classes.cardWrapper}>
-            <h1>{t("blog.articles")}</h1>
-            <Grid container direction="row" justify="flex-start">
+          <div className={classes.sectionDiv}>
+            <h1 className={classes.blogTitle}>{t("blog.articles")}</h1>
+            <Grid container direction="row" className={classes.blogsWrapper} >
               {filteredData
                 ? filteredData
                     .slice((page - 1) * itemsPerPage, page * itemsPerPage)
@@ -186,12 +192,12 @@ const Blog: React.FC = () => {
                           key={elm.id}
                           className={classes.cardSize}
                         >
-                          <Card className={classes.cardRoot}>
+                          <Card className={classes.card}>
                             <CardMedia
                               className={classes.media}
                               image={`/Images/blog/${elm.slug}.png`}
                             />
-                            <CardContent>
+                            <CardContent classes={{root: classes.cardRoot}}>
                               <DisplayAuthorandReadTime
                                 author={elm.author}
                                 readTime={elm.content}
@@ -214,7 +220,7 @@ const Blog: React.FC = () => {
                                 />
                               </Typography>
                             </CardContent>
-                            <CardActions className={classes.actionWrapper}>
+                            <CardActions className={classes.actionWrapper} classes={{root: classes.cardRoot}}>
                               <span className={classes.tabWrapper}>
                                 {getTags(elm.tags)}
                               </span>
@@ -249,7 +255,6 @@ const Blog: React.FC = () => {
               }
               page={page}
               onChange={(_event, val) => setPage(val)}
-              shape="rounded"
               className={classes.pagination}
             />
           </div>
@@ -258,7 +263,16 @@ const Blog: React.FC = () => {
         <>
           <div className={classes.root}>
             <Container maxWidth="md">
-              <p className={classes.authorURL}>{`/blog/${queryAuthorName}`}</p>
+              {(width > mobileBreakpoint) &&
+                <Breadcrumbs aria-label="breadcrumb" className={classes.breadCrumbs}>
+                  <Link color="inherit" href="/blog">
+                    {t('blog.blog')}
+                  </Link>
+                  <Link color="inherit" href={`/blog/?author=${queryAuthorName}`}>
+                      {queryAuthorName}
+                  </Link>
+                </Breadcrumbs>
+              }
               <div className={classes.authorWrapper}>
                 <Avatar
                   alt={queryAuthorName && queryAuthorName}
@@ -272,7 +286,7 @@ const Blog: React.FC = () => {
               </p>
             </Container>
           </div>
-          <div className={classes.cardWrapper}>
+          <div className={classes.sectionDiv}>
             <Grid
               container
               direction="row"
@@ -291,12 +305,12 @@ const Blog: React.FC = () => {
                           key={elm.id}
                           className={classes.cardSize}
                         >
-                          <Card className={classes.cardRoot}>
+                          <Card className={classes.card}>
                             <CardMedia
                               className={classes.media}
                               image={`/Images/blog/${elm.slug}.png`}
                             />
-                            <CardContent>
+                            <CardContent classes={{root: classes.cardRoot}}>
                               <DisplayAuthorandReadTime
                                 author={elm.author}
                                 readTime={elm.content}
@@ -313,7 +327,7 @@ const Blog: React.FC = () => {
                                 />
                               </span>
                             </CardContent>
-                            <CardActions className={classes.actionWrapper}>
+                            <CardActions className={classes.actionWrapper} classes={{root: classes.cardRoot}}>
                               <span className={classes.tabWrapper}>
                                 {getTags(elm.tags)}
                               </span>
@@ -355,12 +369,15 @@ const Blog: React.FC = () => {
           </div>
         </>
       )}
-      {/* Sponsor section  */}
-      <Sponsor />
-      {/* Display footer */}
-      <footer className={classes.footer}>
-        <Footer />
-      </footer>
+      <div className={classes.blogFooter}>
+          {/* Sponsor section  */}
+          <Sponsor />
+          {/* Display footer */}
+          <footer className={classes.footer}>
+            <Footer />
+          </footer>
+      </div>
+      
     </>
   );
 };

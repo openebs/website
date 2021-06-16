@@ -4,16 +4,14 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     height: "100%",
     width: "100%",
+    marginTop: theme.spacing(6)
   },
-  introSection: {
-    [theme.breakpoints.down("xl")]: {
-      padding: theme.spacing(10, 20),
-    },
-    [theme.breakpoints.down("lg")]: {
-      padding: theme.spacing(9, 6),
-    },
+  communityBackground: {
+    background: "url(/Images/png/community_background.png)",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
     [theme.breakpoints.down("xs")]: {
-      padding: theme.spacing(4, 3),
+      background: "transparent",
     },
   },
   pageHeader: {
@@ -21,48 +19,56 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 700,
     textAlign: "start",
     marginBottom: theme.spacing(5),
+    color: theme.palette.text.primary,
     [theme.breakpoints.down("xs")]: {
       fontSize: "1.5rem",
       textAlign: "center",
+      marginBottom: theme.spacing(2),
+      marginTop: theme.spacing(4),
     },
   },
   introImage: {
-    [theme.breakpoints.down("xl")]: {
       width: "auto",
-    },
     [theme.breakpoints.down("md")]: {
       paddingTop: theme.spacing(0),
       width: "100%",
     },
   },
   supportDescription: {
-    [theme.breakpoints.down("xl")]: {
-      paddingLeft: theme.spacing(16),
-      paddingTop: theme.spacing(0),
-    },
-    [theme.breakpoints.down("md")]: {
-      paddingLeft: theme.spacing(0),
-      paddingTop: theme.spacing(6),
+    color: theme.palette.text.secondary,
+    fontSize: '1rem',
+    lineHeight: '22px',
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.875rem",
+      textAlign: "20px"
     },
   },
   supportImage: {
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
   },
 
   paper: {
     boxShadow: "none",
     backgroundColor: "transparent",
-    padding: theme.spacing(4),
+    [theme.breakpoints.down("sm")]: {
+      margin: theme.spacing(4, 0)
+    },
+    
   },
   sectionDiv: {
-    [theme.breakpoints.down("xl")]: {
-      padding: theme.spacing(3, 20),
-    },
+    padding: theme.spacing(3, 0),
+    width: '75%',
+    margin: 'auto',
     [theme.breakpoints.down("md")]: {
-      padding: theme.spacing(0),
+      padding: theme.spacing(3, 0),
+      width: '80%'
     },
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(3, 0),
+      width: '90%'
+    }
   },
   sectionTitle: {
     fontSize: "2rem",
@@ -70,6 +76,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: "center",
     marginBottom: theme.spacing(3),
     color: theme.palette.text.primary,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1.25rem",
+    },
+  },
+  contributionSubTitle: {
+    fontSize: '1.125rem',
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1rem",
+    },
   },
   iconHolder: {
     display: "flex",
@@ -86,57 +101,77 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.text.secondary,
     fontSize: "1rem",
     paddingBottom: theme.spacing(4),
-    [theme.breakpoints.down("xl")]: {
-      paddingRight: theme.spacing(8),
-    },
-    [theme.breakpoints.down("md")]: {
-      paddingRight: theme.spacing(0),
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "0.875rem",
     },
   },
   installationDiv: {
-    zIndex: -1,
-    [theme.breakpoints.down("xl")]: {
-      background: "url(/Images/png/community_desktop.png)",
-      backgroundRepeat: "no-repeat",
-      backgroundSize: "cover",
-    },
-    [theme.breakpoints.down("sm")]: {
+    background: "url(/Images/png/community_desktop.png)",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    [theme.breakpoints.down("xs")]: {
       background: "url(/Images/png/community_mobile.png)",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
     },
   },
-
   solidButton: {
     marginRight: theme.spacing(2.5),
+    width: '168px',
+    fontSize: '0.875rem',
+    padding: theme.spacing(1.5)
   },
-
-  sponsorRoot: {
-    background: "transparent",
-    width: "100%",
-    fontSize: "0.875rem",
-    fontWeight: 400,
-    textAlign: "center",
-    [theme.breakpoints.down("xl")]: {
-      padding: theme.spacing(10, 8),
-    },
+  sponsorAndDependentProjectsWrapper:{
+    marginTop: theme.spacing(12),
     [theme.breakpoints.down("xs")]: {
-      padding: theme.spacing(1, 0),
+      marginTop: theme.spacing(0),
     },
   },
-  sponsorCompany: {
-    paddingTop: theme.spacing(3),
-    [theme.breakpoints.down("xl")]: {
-      padding: theme.spacing(2),
-    },
+  company: {
+      padding: theme.spacing(0,2),
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(1),
+      width: '25%'
     },
   },
-  sponsorDescription: {
-    padding: theme.spacing(4),
+  rancher: {
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(1),
+      width: '40%'
+    },
   },
-
+  sponsorAndDependentProjectsDescription: {
+    fontSize: '1rem',
+    lineHeight: '22px',
+    width: '292px',
+    margin: '0 auto 32px',
+    [theme.breakpoints.down("md")]: {
+      marginBottom: theme.spacing(2),
+    },
+    [theme.breakpoints.down("xs")]: {
+      width: '95%',
+      margin: '0 auto 0',
+      fontSize: '14px',
+    },
+  },
+  sponsorAndDependentProjectsDiv: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    textAlign: 'center',
+    [theme.breakpoints.down("md")]: {
+      marginBottom: theme.spacing(6),
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginBottom: theme.spacing(2),
+    },
+  },
+  mayaDataLogo: {
+    [theme.breakpoints.down("xs")]: {
+      width: '60%',
+      margin: theme.spacing(1.5,0)
+    },
+  },
   footer: {
     gridArea: "footer",
     width: "100%",

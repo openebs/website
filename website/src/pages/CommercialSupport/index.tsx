@@ -25,17 +25,18 @@ const Support: React.FC = () => {
   return (
     <div className={classes.root}>
       <div className={classes.introSection}>
+      <div className={classes.sectionDiv}>
         {/* Commercial support intro section  */}
         {!(width < mobileBreakpoint) ? (
           /* Commercial support Desktop view  */
           <Grid container direction="row" justify="center" alignItems="center">
-            <Grid item xs={12} md={6} className={classes.supportDescription}>
+            <Grid item xs={12} sm={6}>
               <Typography variant="h1" className={classes.pageHeader}>
                 {t("commercialSupport.title")}
               </Typography>
-              <Typography>{t("commercialSupport.description")}</Typography>
+              <Typography className={classes.supportDescription}>{t("commercialSupport.description")}</Typography>
             </Grid>
-            <Grid item xs={12} md={6} className={classes.supportImage}>
+            <Grid item xs={12} sm={6} className={classes.supportImage}>
               <img
                 src="/Images/png/support_mule.png"
                 alt={t("commercialSupport.mule")}
@@ -46,7 +47,7 @@ const Support: React.FC = () => {
         ) : (
           /* Commercial support mobile view  */
           <Grid container direction="row" justify="center" alignItems="center">
-            <Grid item xs={12} className={classes.supportDescription}>
+            <Grid item xs={12}>
               <Typography variant="h1" className={classes.pageHeader}>
                 {t("commercialSupport.title")}
               </Typography>
@@ -58,11 +59,12 @@ const Support: React.FC = () => {
                 className={classes.introImage}
               />
             </Grid>
-            <Grid item xs={12} className={classes.supportDescription}>
-              <Typography>{t("commercialSupport.description")}</Typography>
+            <Grid item xs={12}>
+              <Typography className={classes.supportDescription}>{t("commercialSupport.description")}</Typography>
             </Grid>
           </Grid>
         )}
+        </div>
       </div>
 
       {/* Commercial supported companies and website links */}

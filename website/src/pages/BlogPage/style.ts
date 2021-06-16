@@ -26,16 +26,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& .MuiBreadcrumbs-ol':{
       justifyContent: 'center',
       color: theme.palette.info.light,
-      fontsize: '14px',
+      fontSize: '14px',
       fontWeight: 400
     }
   },
   blogTitle: {
-    fontSize: '42px',
+    fontSize: '2.625rem',
     fontWeight: 700,
     textAlign: 'center',
     [theme.breakpoints.down('xs')]: {
-      fontSize: '24px',
+      fontSize: '1.5rem',
     },
   },
   container: {
@@ -137,8 +137,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   },
   blogBody: {
-    padding: theme.spacing(10, 39),
+    width: '58%',
     margin: 'auto',
+    padding: theme.spacing(10, 0),
     '& p':{
       fontSize: '16px',
       color: theme.palette.text.secondary,
@@ -158,13 +159,15 @@ const useStyles = makeStyles((theme: Theme) => ({
       color: theme.palette.grayishGreen.light
     },
     [theme.breakpoints.down('md')]: {
-      padding: theme.spacing(8, 20),
+      width: '65%',
+      padding: theme.spacing(8, 0),
     },
     [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(8),
+      width: '75%'
     },
     [theme.breakpoints.down('xs')]: {
-      padding: theme.spacing(4),
+      width: '85%',
+      padding: theme.spacing(4, 0),
       '& p':{
         fontSize: '14px',
         lineHeight: '20px'

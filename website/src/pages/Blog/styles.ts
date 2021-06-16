@@ -8,58 +8,75 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
     backgroundSize: "cover",
-    padding: theme.spacing(12, 5, 0),
+    padding: theme.spacing(16, 5, 0),
   },
-  tabLayout: {
-    orientation: "vertical",
+  tabRoot: {
+    justifyContent: "center",
+    '& .Mui-selected': {
+      color: theme.palette.text.hint,
+      padding: theme.spacing(2, 1),
+    }
+  },
+  scroller: {
+    flexGrow: 0,
+    background: theme.palette.background.paper,
+    boxShadow: '2px 0px 33px 5px rgba(70, 68, 151, 0.04)',
+    borderRadius: '12px 12px 12px 0px'
+  },
+  breadCrumbs: {
+    '& .MuiBreadcrumbs-ol':{
+      justifyContent: 'center',
+      color: theme.palette.info.light,
+      fontSize: '14px',
+      fontWeight: 400
+    }
   },
   authorWrapper: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    margin: theme.spacing(3, 0, 2.5),
   },
   large: {
-    width: theme.spacing(9),
-    height: theme.spacing(9),
-    marginRight: theme.spacing(4),
+    width: '60px',
+    height: '60px',
+    marginRight: theme.spacing(1.8),
   },
   tabs: {
-    maxWidth: "auto",
     margin: `${theme.spacing(1)}px auto`,
-    padding: theme.spacing(0.3),
-    backgroundColor: theme.palette.common.white,
+    background: 'transparent',
     flexGrow: 1,
     fontWeight: 700,
-    boxShadow: "2px 0px 33px 5px rgba(70, 68, 151, 0.04)",
+    boxShadow: 'none',
+    position: 'relative',
+    top: '25px'
   },
   mainText: {
     display: "flex",
     flexWrap: "wrap",
     textAlign: "center",
-    margin: theme.spacing(8, 50),
+    maxWidth: '670px',
+    margin: 'auto',
     justifyContent: "center",
     alignItems: "center",
-    [theme.breakpoints.down("md")]: {
-      margin: theme.spacing(8, 30),
-    },
+    fontSize: '2.625rem',
     [theme.breakpoints.down("sm")]: {
-      margin: theme.spacing(8, 10),
-    },
-    [theme.breakpoints.down("sm")]: {
-      margin: theme.spacing(4, 0),
-      fontSize: "24px",
+      fontSize: "1.5rem",
     },
   },
   authorText: {
     display: "flex",
     flexWrap: "wrap",
     textAlign: "center",
-    margin: theme.spacing(3, 0),
+    margin: theme.spacing(0),
     justifyContent: "center",
     alignItems: "center",
+    fontSize: '2.625rem'
   },
   authorDesc: {
     paddingBottom: theme.spacing(3),
+    fontSize: '16px',
+    color: theme.palette.text.secondary
   },
   authorURL: {
     color: theme.palette.info.light,
@@ -70,37 +87,61 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: "relative",
     bottom: 0,
   },
-  cardWrapper: {
-    [theme.breakpoints.down("lg")]: {
-      padding: theme.spacing(4, 16),
-    },
+  sectionDiv: {
+    padding: theme.spacing(3, 0),
+    width: '75%',
+    margin: 'auto',
     [theme.breakpoints.down("md")]: {
-      padding: theme.spacing(4, 10),
+      padding: theme.spacing(3, 0),
+      width: '80%'
     },
-    [theme.breakpoints.down("sm")]: {
-      padding: theme.spacing(2, 4),
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(3, 0),
+      width: '85%'
+    }
+  },
+  blogTitle: {
+    fontSize: '2.625rem',
+    fontWeight: 700,
+    textAlign: 'center',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.5rem',
     },
   },
-  cardRoot: {
-    maxWidth: "480px",
+  blogsWrapper: {
+    justifyContent: 'space-between',
+    [theme.breakpoints.up("xl")]: {
+      justifyContent: 'left',
+    },
+    [theme.breakpoints.down("sm")]: {
+      justifyContent: 'center',
+    },
+  },
+  card: {
     boxShadow: "none",
     background: "transparent",
-    margin: "auto",
     height: "100%",
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "column"
+  },
+  cardRoot: {
+    padding: '0'
+  },
+  rootBlogSection: {
+    flexGrow: 1,
+  },
+  cardSize: {
+    maxWidth: "480px",
+    paddingTop: theme.spacing(4),
     [theme.breakpoints.down("md")]: {
       maxWidth: "380px",
     },
     [theme.breakpoints.down("sm")]: {
       maxWidth: "480px",
     },
-  },
-  rootBlogSection: {
-    flexGrow: 1,
-  },
-  cardSize: {
-    paddingTop: theme.spacing(4),
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: "90%",
+    },
   },
   media: {
     height: 0,
@@ -162,6 +203,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingTop: theme.spacing(2),
     "& .Mui-selected": {
       color: theme.palette.text.hint,
+      background: `${theme.palette.background.paper} !important`,
+      boxShadow: '2px 0px 33px 5px rgba(70, 68, 151, 0.04)',
+      borderRadius: '8px 8px 8px 0px'
     },
     "& .MuiPaginationItem-root": {
       fontWeight: "bold",
@@ -185,6 +229,16 @@ const useStyles = makeStyles((theme: Theme) => ({
       width: "100%",
     },
   },
+  blogFooter: {
+    background:  'url(/Images/png/blog_index_background.png)',
+    backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    [theme.breakpoints.down('xs')]: {
+      background:  'url(/Images/png/blog_index_background_mobile.png)',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+    },
+  }
 }));
 
 export default useStyles;

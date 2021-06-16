@@ -10,11 +10,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: "relative",
     textAlign: "center",
   },
+  title: {
+    fontSize: '32px',
+    [theme.breakpoints.down("xs")]: {
+      fontSize: '20px'
+    }
+  },
   textField: {
     textAlign: "center",
-    [theme.breakpoints.down("xl")]: {
-      padding: theme.spacing(3.5, 2),
-    },
+    padding: theme.spacing(3.5, 2),
     [theme.breakpoints.down("md")]: {
       padding: theme.spacing(3.5, 2),
     },

@@ -5,6 +5,11 @@ generic:
   openEBS: OpenEBS
   github: GitHub
   slack: Slack
+  mayadata: MayaData
+  rancher: Rancher
+  intel: Intel
+  gostor: Gostor
+  openzfs: OpenZFS
 
 header:
   menuAlt: Mobile menu
@@ -215,7 +220,6 @@ contributing:
   openEBSHackerTitle: Become an OpenEBS hacker
   openEBSHackerDescription: If you are unsure or afraid of anything, just ask or submit the issue or pull request anyways. You won't be yelled at for giving your best effort. 
   openEBSHackerButtonLabel: Contribute
-  governance: Project Governance
   governanceTitle: Project Governance
   governanceDescription: We abide by the Code of Conduct for all the projects. It is meant to be followed by all the developers of the project and the OpenEBS community.
   governanceButtonLabel: Check it out

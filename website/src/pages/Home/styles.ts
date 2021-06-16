@@ -79,9 +79,6 @@ const useStyles = makeStyles((theme) => ({
             margin: theme.spacing(4, 1)
         },
     },
-    tabsIndicator: {
-        backgroundColor: 'transparent'
-    },
     tabBodyText: {
         fontSize: '0.875rem',
         fontWeight: 400,
@@ -128,13 +125,17 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(6)
     },
     sectionDiv: {
-        padding: theme.spacing(3,20),
-        [theme.breakpoints.down('md')]: {
-            padding: theme.spacing(3,5),
+        padding: theme.spacing(3, 0),
+        width: '75%',
+        margin: 'auto',
+        [theme.breakpoints.down("md")]: {
+        padding: theme.spacing(3, 0),
+        width: '80%'
         },
-        [theme.breakpoints.down('xs')]: {
-            padding: theme.spacing(3),
-        },
+        [theme.breakpoints.down("xs")]: {
+        padding: theme.spacing(3, 0),
+        width: '90%'
+        }
     },
     sectionTitle: {
         fontSize: '2rem',
