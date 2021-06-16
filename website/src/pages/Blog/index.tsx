@@ -192,12 +192,12 @@ const Blog: React.FC = () => {
                           key={elm.id}
                           className={classes.cardSize}
                         >
-                          <Card className={classes.cardRoot}>
+                          <Card className={classes.card}>
                             <CardMedia
                               className={classes.media}
                               image={`/Images/blog/${elm.slug}.png`}
                             />
-                            <CardContent>
+                            <CardContent classes={{root: classes.cardRoot}}>
                               <DisplayAuthorandReadTime
                                 author={elm.author}
                                 readTime={elm.content}
@@ -220,7 +220,7 @@ const Blog: React.FC = () => {
                                 />
                               </Typography>
                             </CardContent>
-                            <CardActions className={classes.actionWrapper}>
+                            <CardActions className={classes.actionWrapper} classes={{root: classes.cardRoot}}>
                               <span className={classes.tabWrapper}>
                                 {getTags(elm.tags)}
                               </span>
@@ -305,12 +305,12 @@ const Blog: React.FC = () => {
                           key={elm.id}
                           className={classes.cardSize}
                         >
-                          <Card className={classes.cardRoot}>
+                          <Card className={classes.card}>
                             <CardMedia
                               className={classes.media}
                               image={`/Images/blog/${elm.slug}.png`}
                             />
-                            <CardContent>
+                            <CardContent classes={{root: classes.cardRoot}}>
                               <DisplayAuthorandReadTime
                                 author={elm.author}
                                 readTime={elm.content}
@@ -327,7 +327,7 @@ const Blog: React.FC = () => {
                                 />
                               </span>
                             </CardContent>
-                            <CardActions className={classes.actionWrapper}>
+                            <CardActions className={classes.actionWrapper} classes={{root: classes.cardRoot}}>
                               <span className={classes.tabWrapper}>
                                 {getTags(elm.tags)}
                               </span>

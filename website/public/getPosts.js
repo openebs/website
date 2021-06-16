@@ -9,7 +9,6 @@ const getPosts = () => {
         if (err) {
             console.error('Failed to load files from the directory' + err);
         }
-
         files.forEach((file, index) => {
             let obj = {};
             let post;

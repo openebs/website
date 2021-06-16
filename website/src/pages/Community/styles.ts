@@ -58,13 +58,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     
   },
   sectionDiv: {
-    padding: theme.spacing(3, 20),
+    padding: theme.spacing(3, 0),
+    width: '75%',
+    margin: 'auto',
     [theme.breakpoints.down("md")]: {
-      padding: theme.spacing(3, 10),
+      padding: theme.spacing(3, 0),
+      width: '80%'
     },
     [theme.breakpoints.down("xs")]: {
-      padding: theme.spacing(3, 4),
-    },
+      padding: theme.spacing(3, 0),
+      width: '90%'
+    }
   },
   sectionTitle: {
     fontSize: "2rem",

@@ -88,26 +88,36 @@ const useStyles = makeStyles((theme: Theme) => ({
     bottom: 0,
   },
   sectionDiv: {
-    padding: theme.spacing(3, 26),
+    padding: theme.spacing(3, 0),
+    width: '75%',
+    margin: 'auto',
     [theme.breakpoints.down("md")]: {
-      padding: theme.spacing(3, 10),
+      padding: theme.spacing(3, 0),
+      width: '80%'
     },
     [theme.breakpoints.down("xs")]: {
-      padding: theme.spacing(3, 4),
-    },
+      padding: theme.spacing(3, 0),
+      width: '85%'
+    }
   },
   blogsWrapper: {
     justifyContent: 'space-between',
+    [theme.breakpoints.up("xl")]: {
+      justifyContent: 'left',
+    },
     [theme.breakpoints.down("sm")]: {
       justifyContent: 'center',
     },
   },
-  cardRoot: {
+  card: {
     boxShadow: "none",
     background: "transparent",
     height: "100%",
     display: "flex",
     flexDirection: "column"
+  },
+  cardRoot: {
+    padding: '0'
   },
   rootBlogSection: {
     flexGrow: 1,
@@ -120,6 +130,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down("sm")]: {
       maxWidth: "480px",
+    },
+    [theme.breakpoints.down("xs")]: {
+      maxWidth: "90%",
     },
   },
   media: {

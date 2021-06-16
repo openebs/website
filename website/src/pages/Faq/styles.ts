@@ -57,12 +57,18 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 700,
   },
   accordionRoot: {
-    width: "100%",
-    padding: theme.spacing(5, 39, 0),
-    marginTop: theme.spacing(4),
-    [theme.breakpoints.down("md")]: {
-      padding: theme.spacing(2, 8),
+    marginTop: theme.spacing(15),
+    width: '58%',
+    margin: 'auto',
+    [theme.breakpoints.down('md')]: {
+        width: '65%'
     },
+    [theme.breakpoints.down('sm')]: {
+        width: '75%'
+    },
+    [theme.breakpoints.down('xs')]: {
+        width: '90%'
+    }
   },
   buttonIcon: {
     color: theme.palette.warning.main,

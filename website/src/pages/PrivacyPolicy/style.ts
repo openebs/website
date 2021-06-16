@@ -8,15 +8,16 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     pageSpacing: {
-        padding: theme.spacing(0,39),
+        width: '58%',
+        margin: 'auto',
         [theme.breakpoints.down('md')]: {
-            padding: theme.spacing(0,15),
+            width: '65%'
         },
         [theme.breakpoints.down('sm')]: {
-            padding: theme.spacing(0,10),
+            width: '75%'
         },
         [theme.breakpoints.down('xs')]: {
-            padding: theme.spacing(0,5),
+            width: '90%'
         },
     },
     pageHeader: {

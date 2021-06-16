@@ -290,7 +290,7 @@ const Home: React.FC = () => {
                         </Grid>
                         <Grid item xs={12}>
                             <Paper className={[classes.paper,classes.tabsWrapper].join(' ')}>
-                                    <Tabs value={tabValue} onChange={handleTabChange} TabIndicatorProps={{className:classes.tabsIndicator}}>
+                                    <Tabs value={tabValue} onChange={handleTabChange} TabIndicatorProps={{style: {display: "none"}}}>
                                         <Tab label={t('home.openebs.label')} {...a11yProps(0)} className={classes.tabButton}/>
                                         <Tab label={t('home.concepts.label')} {...a11yProps(1)} className={classes.tabButton}/>
                                         <Tab label={t('home.community.label')} {...a11yProps(2)} className={classes.tabButton}/>
@@ -354,7 +354,7 @@ const Home: React.FC = () => {
                                         {t('home.landingScreenTitle')}
                                     </Typography>
 
-                                    <Tabs value={tabValue} onChange={handleTabChange} TabIndicatorProps={{className:classes.tabsIndicator}}>
+                                    <Tabs value={tabValue} onChange={handleTabChange} TabIndicatorProps={{style: {display: "none"}}}>
                                         <Tab label={t('home.openebs.label')} {...a11yProps(0)} className={classes.tabButton}/>
                                         <Tab label={t('home.concepts.label')} {...a11yProps(1)} className={classes.tabButton}/>
                                         <Tab label={t('home.community.label')} {...a11yProps(2)} className={classes.tabButton}/>
@@ -526,7 +526,7 @@ const Home: React.FC = () => {
 
 
             <section>
-                <div className={[classes.sectionDiv, classes.installationDiv].join(' ')}>
+                <div className={classes.installationDiv}>
                     <Typography variant="h2" className={classes.sectionTitle}>
                         {t('home.installation.title')}
                     </Typography>
