@@ -31,11 +31,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   },
   blogTitle: {
-    fontSize: '42px',
+    fontSize: '2.625rem',
     fontWeight: 700,
     textAlign: 'center',
     [theme.breakpoints.down('xs')]: {
-      fontSize: '24px',
+      fontSize: '1.5rem',
     },
   },
   container: {

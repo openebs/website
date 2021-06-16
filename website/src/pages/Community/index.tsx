@@ -15,6 +15,29 @@ const Community: React.FC = () => {
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
 
+  const dependentProjects = [
+    {
+      label: "rancher",
+      image_src: "../Images/logos/rancher.svg",
+      alt: t("generic.rancher"),
+    },
+    {
+      label: "intel",
+      image_src: "../Images/logos/intel.svg",
+      alt: t("generic.intel"),
+    },
+    {
+      label: "gostor",
+      image_src: "../Images/logos/gostor.svg",
+      alt: t("generic.gostor"),
+    },
+    {
+      label: "openzfs",
+      image_src: "../Images/logos/openzfs.svg",
+      alt: t("generic.openzfs"),
+    },
+  ];
+
   return (
     <div className={classes.root}>
       <div className={classes.communityBackground}>
@@ -138,12 +161,12 @@ const Community: React.FC = () => {
           </div>
         </section>
 
-        {/* Sponsor and contributing companies */}
+        {/* Sponsor and Dependent Projects */}
         <div className={classes.sectionDiv}>
-          <Grid container justify="space-evenly" className={classes.sponsorWrapper}>
+          <Grid container justify="space-evenly" className={classes.sponsorAndDependentProjectsWrapper}>
             <Grid item xs={12} md={5}>
-              <div className={classes.sponsorDiv}>
-                <Typography className={classes.sponsorDescription}>
+              <div className={classes.sponsorAndDependentProjectsDiv}>
+                <Typography className={classes.sponsorAndDependentProjectsDescription}>
                   {t("community.sponsor.mainSponsor")}
                 </Typography>
                 <img
@@ -155,32 +178,21 @@ const Community: React.FC = () => {
               
             </Grid>
             <Grid item xs={12} md={7}>
-            <div className={classes.sponsorDiv}>
-              <Typography className={classes.sponsorDescription}>
+            <div className={classes.sponsorAndDependentProjectsDiv}>
+              <Typography className={classes.sponsorAndDependentProjectsDescription}>
                 {t("community.sponsor.dependentProjects")}
               </Typography>
               <div>
-                <img
-                  src="../Images/logos/rancher.svg"
-                  alt={t("generic.rancher")}
-                  className={[classes.sponsorCompany, classes.rancher].join(' ')}
-                />
-                <img
-                  src="../Images/logos/intel.svg"
-                  alt={t("generic.intel")}
-                  className={classes.sponsorCompany}
-                />
-                <img
-                  src="../Images/logos/gostor.svg"
-                  alt={t("generic.gostor")}
-                  className={classes.sponsorCompany}
-                />
-                <img
-                  src="../Images/logos/openzfs.svg"
-                  alt={t("generic.openzfs")}
-                  className={classes.sponsorCompany}
-                />
-                </div>
+                  {dependentProjects.map(({ label, image_src, alt }) => {
+                      return (
+                        <img
+                        src={image_src}
+                        alt={alt}
+                        className={[classes.company, (label === 'rancher' ? classes.rancher : '')].join(' ')}
+                      />
+                      );
+                  })}
+              </div>
               </div>
               
             </Grid>

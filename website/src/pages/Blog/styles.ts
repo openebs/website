@@ -59,9 +59,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: 'auto',
     justifyContent: "center",
     alignItems: "center",
-    fontSize: '42px',
+    fontSize: '2.625rem',
     [theme.breakpoints.down("sm")]: {
-      fontSize: "24px",
+      fontSize: "1.5rem",
     },
   },
   authorText: {
@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: theme.spacing(0),
     justifyContent: "center",
     alignItems: "center",
-    fontSize: '42px'
+    fontSize: '2.625rem'
   },
   authorDesc: {
     paddingBottom: theme.spacing(3),
@@ -101,11 +101,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   },
   blogTitle: {
-    fontSize: '42px',
+    fontSize: '2.625rem',
     fontWeight: 700,
     textAlign: 'center',
     [theme.breakpoints.down('xs')]: {
-      fontSize: '24px',
+      fontSize: '1.5rem',
     },
   },
   blogsWrapper: {

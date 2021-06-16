@@ -121,13 +121,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '0.875rem',
     padding: theme.spacing(1.5)
   },
-  sponsorWrapper:{
+  sponsorAndDependentProjectsWrapper:{
     marginTop: theme.spacing(12),
     [theme.breakpoints.down("xs")]: {
       marginTop: theme.spacing(0),
     },
   },
-  sponsorCompany: {
+  company: {
       padding: theme.spacing(0,2),
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(1),
@@ -140,7 +140,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       width: '40%'
     },
   },
-  sponsorDescription: {
+  sponsorAndDependentProjectsDescription: {
     fontSize: '1rem',
     lineHeight: '22px',
     width: '292px',
@@ -154,7 +154,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: '14px',
     },
   },
-  sponsorDiv: {
+  sponsorAndDependentProjectsDiv: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
