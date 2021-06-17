@@ -23,7 +23,6 @@ import Slider from "react-slick";
 import DisplayAuthorandReadTime from "../DisplayAuthorandReadTime";
 import CustomTag from "../CustomTag";
 import { getContentPreview } from "../../utils/getContent";
-
 interface StyledTabProps {
   label: string;
   value: string;
@@ -200,6 +199,7 @@ const MiniBlog: React.FC = () => {
             cssEase="linear"
             arrows={true}
             rtl={false}
+            className={classes.miniBlogSlider}
             prevArrow={<SamplePrevArrow />}
             nextArrow={<SampleNextArrow />}
             responsive={[
@@ -214,13 +214,13 @@ const MiniBlog: React.FC = () => {
           >
             {filteredData.map((elm: any) => {
               return (
-                <div>
+                <div className={classes.cardWrapper}>
                   <Card key={elm.id} className={classes.cardRoot}>
                     <CardMedia
                       className={classes.media}
                       image={`/Images/blog/${elm.slug}.png`}
                     />
-                    <CardContent>
+                    <CardContent className={classes.cardContent}>
                       <DisplayAuthorandReadTime
                         author={elm.author}
                         readTime={elm.content}

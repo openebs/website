@@ -50,11 +50,31 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: "relative",
     bottom: 0,
   },
+  miniBlogSlider: {
+    '& .slick-track' : {
+      display: 'flex'
+    },
+    '& .slick-slide' : {
+      height: 'inherit'
+    },
+    '& .slick-slide > div': {
+      height: '100%'
+    }
+  },
+  cardWrapper: {
+    height: '100%'
+  },
   cardRoot: {
     maxWidth: "480px",
     boxShadow: 'none',
     background: 'transparent',
-    margin: 'auto'
+    margin: 'auto',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  cardContent: {
+    flex: '1 0 auto'
   },
   rootBlogSection: {
     flexGrow: 1,
