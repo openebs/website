@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
             paddingBottom: theme.spacing(0),
         },
         [theme.breakpoints.down('xs')]: {
+            maxWidth: '250px',
             paddingBottom: theme.spacing(2),
         },
     },

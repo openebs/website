@@ -215,11 +215,11 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Menlo',
         fontSize: '1rem',
         marginRight: theme.spacing(2),
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
         [theme.breakpoints.down('xs')]: {
-            whiteSpace: 'nowrap',
-            maxWidth: '285px',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
+            maxWidth: '100%',
             fontSize: '0.875rem',
         },  
     },
@@ -229,6 +229,11 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: theme.spacing(2)
+    },
+    codeBlock: {
+        display: 'flex',
+        maxWidth: '100%',
+        borderBottom: `1px solid ${theme.palette.primary.main}`,
     },
     divider: {
         border: 0,
@@ -270,6 +275,7 @@ const useStyles = makeStyles((theme) => ({
     },
     installationCodeWrapper: {
         display: 'flex',
+        justifyContent: 'center',
         [theme.breakpoints.down('sm')]: {
             flexDirection: 'column'
         },
@@ -307,6 +313,8 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.background.paper
     },
     installationButtonsWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
         margin: theme.spacing(8, 0),
         [theme.breakpoints.down('sm')]: {
             display: 'flex',
@@ -452,30 +460,28 @@ const useStyles = makeStyles((theme) => ({
     },
     codeTextHalfWidth: {
         justifyContent: 'flex-start',
-        marginLeft: theme.spacing(6),
+        paddingLeft: theme.spacing(6),
         marginTop: theme.spacing(2),
+        maxWidth: '100%',
         [theme.breakpoints.down('md')]: {
-            marginLeft: theme.spacing(0),
+            paddingLeft: theme.spacing(0),
         },
     },
     codeTextHalfWidthText: {
         whiteSpace: 'nowrap',
-        maxWidth: '300px',
+        maxWidth: 'calc(75% - 40px)',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         [theme.breakpoints.down('md')]: {
-            maxWidth: '256px',
-        },
-        [theme.breakpoints.down('xs')]: {
-            maxWidth: '280px',
+            maxWidth: 'calc(100% - 40px)',
         },
     },
     codeTextHalfWidthUnderline: {
         maxWidth: '75%',
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(.5),
         marginLeft: theme.spacing(0),
         [theme.breakpoints.down('md')]: {
-            maxWidth: 'unset',
+            maxWidth: '100%',
         },
     },
     codeTextDescription: {
@@ -492,7 +498,7 @@ const useStyles = makeStyles((theme) => ({
     },
     flyingMuleWrapper:{
         [theme.breakpoints.down('md')]: {
-            margin: theme.spacing(0,20)
+            // margin: theme.spacing(0,20)
         },
         [theme.breakpoints.down('xs')]: {
             margin: theme.spacing(0)
@@ -577,6 +583,20 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '30px',
         [theme.breakpoints.down('sm')]: {
             fontSize: '19px'
+        }
+    },
+    copyIcon: {
+        width: '25px',
+        [theme.breakpoints.down('sm')]: {
+            width: '20px'
+        }
+    },
+    mobileContainer:{
+        [theme.breakpoints.down('sm')]: {
+            maxWidth: '90%',
+            width: '90%',
+            flex: '1 0 90%', 
+            margin: theme.spacing(0, 'auto')
         }
     }
 }))

@@ -85,34 +85,14 @@ const Home: React.FC = () => {
     // logoSliderSettings for logos carousel
     var logoSliderSettings = {
         dots: false,
-        infinite: true,
         autoplay: true,
-        autoplaySpeed: 1000,
-        speed: 500,
-        slidesToShow: 7,
+        autoplaySpeed: 0,
+        speed: 10000,
+        slidesToShow: 1,
         slidesToScroll: 1,
+        variableWidth: true,
         cssEase: "linear",
         arrows: false,
-        responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 5,
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 4,
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 2,
-              }
-            }
-          ]
     };
     
     interface TabPanelProps {
@@ -192,7 +172,7 @@ const Home: React.FC = () => {
             white_logo: "../Images/logos/mongodb_white.svg"
         },
         Prometheus : {
-            logo: "../Images/logos/prometheus.svg",
+            logo: "../Images/logos/Prometheus.svg",
             white_logo: "../Images/logos/prometheus_white.svg"
         },
         MySQL : {
@@ -454,11 +434,9 @@ const Home: React.FC = () => {
                 </Slider>
             </section>
 
-
             <section>
                 <Sponsor/>
             </section>
-
 
             <section>
                 <Typography variant="h2" className={classes.sectionTitle}>
@@ -538,14 +516,16 @@ const Home: React.FC = () => {
                         {t('home.installation.description')} 
                     </Typography>
                     <div className={classes.codeWrapper}>
-                        <Typography variant="h5" className={classes.codeText}>
-                            {copyCommand.text}
-                        </Typography>
-                        
-                        <LightTooltip title={copyCommand.status}>
-                            <Link onClick={copyToClipboard}><img loading="lazy" src="../Images/svg/copy.svg" alt={copyCommand.status}></img></Link>
-                        </LightTooltip>
-                        <hr className={classes.divider}/>
+                        <Box className={classes.codeBlock} paddingX={2}>
+                            <Typography variant="h5" className={classes.codeText}>
+                                {copyCommand.text}
+                            </Typography>
+                            <LightTooltip title={copyCommand.status}>
+                                <Link onClick={copyToClipboard} className={`${classes.copyIcon} ${classes.imageFluid}`}>
+                                    <img src="../Images/svg/copy.svg" alt={copyCommand.status} />
+                                </Link>
+                            </LightTooltip>
+                        </Box >
                     </div>
                     <Typography className={classes.orSeparatorText}>
                         {t('home.installation.or')}
@@ -692,13 +672,20 @@ const Home: React.FC = () => {
             </section>
             {/* Section: Community events */}
                 <section>
+                    {!isMobileView && 
                     <Typography variant="h2" className={classes.sectionTitle}>
                         {t("community.communityEvents.title")}
                     </Typography>
+                    }
                     <Grid container spacing={3} className={events.length ? '' : classes.noEvents}>
-                        <Grid item xs={12} sm={4} className={classes.imageFluid}>
-                            <LazyLoadImage effect="blur" loading="lazy" src="../Images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} />
+                        <Grid item xs={12} sm={4} className={`${classes.imageFluid} ${classes.mobileContainer} `}>
+                            <img src="../Images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} />
                         </Grid>
+                        {isMobileView && 
+                            <Typography variant="h2" className={classes.sectionTitle}>
+                                {t("community.communityEvents.title")}
+                            </Typography>
+                        }
                         {events.length ? (
                             <Grid item xs={12} sm={8}>
                                 <EventSlider />
@@ -813,25 +800,27 @@ const Home: React.FC = () => {
                                 </span>
                             </Paper>
                         </Grid>
-                        <Grid item lg={5} md={4} sm={6}>
+                        <Grid item lg={5} md={4} sm={6} xs={12}>
                             <Paper className={[classes.paper, classes.centerContent].join(' ')}>
                                 <div className={[classes.codeWrapper, classes.codeTextHalfWidth].join(' ')}>
-                                    <Typography variant="h5" className={[classes.codeText, classes.codeTextHalfWidthText].join(' ')}>
-                                        {copyCommand.text}
-                                    </Typography>
-                                    
-                                    <LightTooltip title={copyCommand.status}>
-                                        <Link onClick={copyToClipboard}><img loading="lazy" src="../Images/svg/copy_orange.svg" alt=""></img></Link>
-                                    </LightTooltip>
-                                    <hr className={[classes.divider, classes.codeTextHalfWidthUnderline].join(' ')}/>
+                                    <div className={classes.codeBlock}>
+                                        <Typography variant="h5" className={[classes.codeText, classes.codeTextHalfWidthText].join(' ')}>
+                                            {copyCommand.text}
+                                        </Typography>
 
+                                        <LightTooltip title={copyCommand.status}>
+                                            <Link onClick={copyToClipboard} className={`${classes.copyIcon} ${classes.imageFluid}`}>
+                                                <img src="../Images/svg/copy_orange.svg" alt="" />
+                                            </Link>
+                                        </LightTooltip>
+                                    </div>
                                     <Typography className={classes.codeTextDescription}>
                                         {t('home.youAreReadyToStart.copyCodeDescription')}
                                     </Typography>
                                 </div>
                             </Paper>
                         </Grid>
-                        <Grid item lg={3} md={4} sm={6}>
+                        <Grid item lg={3} md={4} sm={6} xs={12}>
                             <Paper className={[classes.paper, classes.centerContent].join(' ')}>
                                 <div>
                                     <div className={classes.readGuideDiv}>
