@@ -15,6 +15,8 @@ import Newsletter from "../../components/Newsletter";
 import { VIEW_PORT } from "../../constants";
 import { useViewport } from "../../hooks/viewportWidth";
 import Sponsor from "../../components/Sponsor";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Support: React.FC = () => {
   const { t } = useTranslation();
@@ -25,45 +27,63 @@ const Support: React.FC = () => {
   return (
     <div className={classes.root}>
       <div className={classes.introSection}>
-      <div className={classes.sectionDiv}>
-        {/* Commercial support intro section  */}
-        {!(width < mobileBreakpoint) ? (
-          /* Commercial support Desktop view  */
-          <Grid container direction="row" justify="center" alignItems="center">
-            <Grid item xs={12} sm={6}>
-              <Typography variant="h1" className={classes.pageHeader}>
-                {t("commercialSupport.title")}
-              </Typography>
-              <Typography className={classes.supportDescription}>{t("commercialSupport.description")}</Typography>
+        <div className={classes.sectionDiv}>
+          {/* Commercial support intro section  */}
+          {!(width < mobileBreakpoint) ? (
+            /* Commercial support Desktop view  */
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+              <Grid item xs={12} sm={6}>
+                <Typography variant="h1" className={classes.pageHeader}>
+                  {t("commercialSupport.title")}
+                </Typography>
+                <Typography className={classes.supportDescription}>
+                  {t("commercialSupport.description")}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6} className={classes.supportImage}>
+                <span className={classes.introImage}>
+                  <LazyLoadImage
+                    effect="blur"
+                    src="/Images/png/support_mule.png"
+                    alt={t("commercialSupport.mule")}
+                  />
+                </span>
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={6} className={classes.supportImage}>
-              <img
-                src="/Images/png/support_mule.png"
-                alt={t("commercialSupport.mule")}
-                className={classes.introImage}
-              />
+          ) : (
+            /* Commercial support mobile view  */
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+              <Grid item xs={12}>
+                <Typography variant="h1" className={classes.pageHeader}>
+                  {t("commercialSupport.title")}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} className={classes.supportImage}>
+                <span className={classes.introImage}>
+                  <LazyLoadImage
+                    effect="blur"
+                    src="/Images/png/support_mule.png"
+                    alt={t("commercialSupport.mule")}
+                  />
+                </span>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography className={classes.supportDescription}>
+                  {t("commercialSupport.description")}
+                </Typography>
+              </Grid>
             </Grid>
-          </Grid>
-        ) : (
-          /* Commercial support mobile view  */
-          <Grid container direction="row" justify="center" alignItems="center">
-            <Grid item xs={12}>
-              <Typography variant="h1" className={classes.pageHeader}>
-                {t("commercialSupport.title")}
-              </Typography>
-            </Grid>
-            <Grid item xs={12} className={classes.supportImage}>
-              <img
-                src="/Images/png/support_mule.png"
-                alt="support-mule"
-                className={classes.introImage}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Typography className={classes.supportDescription}>{t("commercialSupport.description")}</Typography>
-            </Grid>
-          </Grid>
-        )}
+          )}
         </div>
       </div>
 
@@ -85,6 +105,7 @@ const Support: React.FC = () => {
                   <Card className={classes.cardProps} key={elm.id}>
                     <CardContent>
                       <img
+                        loading="lazy"
                         src={elm.image}
                         alt={elm.name}
                         className={classes.cardImage}
@@ -108,6 +129,7 @@ const Support: React.FC = () => {
                         >
                           {t("commercialSupport.visitWebsite")}
                           <img
+                            loading="lazy"
                             src="../Images/svg/arrow_orange.svg"
                             alt={t("header.submitAlt")}
                             className={classes.arrow}

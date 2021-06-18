@@ -24,6 +24,8 @@ import MiniBlog from '../../components/MiniBlog';
 import adopterData from "../../adopters.md";
 import EventSlider from '../../components/EventSlider';
 import events from '../../resources/events.json';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Home: React.FC = () => {
     const classes = useStyles();
@@ -256,7 +258,7 @@ const Home: React.FC = () => {
             className={className}
             style={{ ...style, display: "block" }}
             onClick={onClick}
-          ><img src="../Images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} /></div>
+          ><img loading="lazy" src="../Images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} /></div>
         );
       }
       
@@ -267,7 +269,7 @@ const Home: React.FC = () => {
             className={className}
             style={{ ...style, display: "block" }}
             onClick={onClick}
-          ><img src="../Images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} /></div>
+          ><img loading="lazy" src="../Images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} /></div>
         );
     }
 
@@ -285,7 +287,7 @@ const Home: React.FC = () => {
                         </Grid>
                         <Grid item sm={4} xs={1}>
                             <Paper className={[classes.paper, classes.secondGrid].join(' ')}>
-                                <img src="../Images/png/homepage_main.png" alt={t('home.landingScreenImageAlt')} className={classes.landingImage}></img>
+                                <img loading="lazy" placeholder={"../Images/png/homepage_main.png?q=20"} src="../Images/png/homepage_main.png?q=20" alt={t('home.landingScreenImageAlt')} className={classes.landingImage}></img>
                             </Paper>
                         </Grid>
                         <Grid item xs={12}>
@@ -305,7 +307,7 @@ const Home: React.FC = () => {
                                         <Button
                                             variant="outlined"
                                             color="secondary"
-                                            endIcon={<img src="../Images/svg/play.svg" alt={t('home.openebs.watchDemo')}></img>}
+                                            endIcon={<img loading="lazy" src="../Images/svg/play.svg" alt={t('home.openebs.watchDemo')}></img>}
                                             className={classes.outlineButton}
                                             href={EXTERNAL_LINKS.OPENEBS_YOUTUBE_INTRO} target="_blank"
                                         >
@@ -327,14 +329,14 @@ const Home: React.FC = () => {
                                         <Button variant="contained" 
                                         color="secondary" 
                                         className={classes.solidButton}
-                                        endIcon={<img src="../Images/logos/slack_white.svg" alt={t('home.community.joinOnSlack')}></img>}
+                                        endIcon={<img loading="lazy" src="../Images/logos/slack_white.svg" alt={t('home.community.joinOnSlack')}></img>}
                                         href="/community">
                                             {t('home.community.joinOnSlack')}
                                         </Button>
                                         <Button
                                             variant="outlined"
                                             color="secondary"
-                                            endIcon={<img src="../Images/logos/github_orange.svg" alt={t('home.community.joinOnGitHub')}></img>}
+                                            endIcon={<img loading="lazy" src="../Images/logos/github_orange.svg" alt={t('home.community.joinOnGitHub')}></img>}
                                             className={classes.outlineButton}
                                             href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO} target="_blank"
                                         >
@@ -369,7 +371,7 @@ const Home: React.FC = () => {
                                         <Button
                                             variant="outlined"
                                             color="secondary"
-                                            endIcon={<img src="../Images/svg/play.svg" alt={t('home.openebs.watchDemo')}></img>}
+                                            endIcon={<img loading="lazy" src="../Images/svg/play.svg" alt={t('home.openebs.watchDemo')}></img>}
                                             href={EXTERNAL_LINKS.OPENEBS_YOUTUBE_INTRO} target="_blank"
                                         >
                                         {t('home.openebs.watchDemo')}
@@ -390,14 +392,14 @@ const Home: React.FC = () => {
                                         <Button variant="contained" 
                                         color="secondary" 
                                         className={classes.solidButton}
-                                        endIcon={<img src="../Images/logos/slack_white.svg" alt={t('home.community.joinOnSlack')}></img>}
+                                        endIcon={<img loading="lazy" src="../Images/logos/slack_white.svg" alt={t('home.community.joinOnSlack')}></img>}
                                         href="/community">
                                             {t('home.community.joinOnSlack')}
                                         </Button>
                                         <Button
                                             variant="outlined"
                                             color="secondary"
-                                            endIcon={<img src="../Images/logos/github_orange.svg" alt={t('home.community.joinOnGitHub')}></img>}
+                                            endIcon={<img loading="lazy" src="../Images/logos/github_orange.svg" alt={t('home.community.joinOnGitHub')}></img>}
                                             href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO} target="_blank"
                                         >
                                         {t('home.community.joinOnGitHub')}
@@ -407,7 +409,9 @@ const Home: React.FC = () => {
                             </Grid>
                             <Grid item lg={6} md={5} sm={4}>
                                 <Paper className={classes.paper}>
-                                    <img src="../Images/png/homepage_main.png" alt={t('home.landingScreenImageAlt')} className={classes.landingImage}></img>
+                                    <span className={classes.landingImage}>
+                                        <LazyLoadImage effect="blur" src={"../Images/png/homepage_main.png"} alt={t('home.landingScreenImageAlt')}  />                                 
+                                    </span>
                                 </Paper>
                             </Grid>
                         </Grid>
@@ -418,34 +422,34 @@ const Home: React.FC = () => {
             <section>
                 <Slider {...logoSliderSettings} className={classes.logoCarousel}>
                     <div>
-                        <img src="../Images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
+                        <img loading="lazy" src="../Images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
                     </div>
                     <div>
-                        <img src="../Images/logos/arista_blue.png" alt={t('home.usedInProductionBy.arista')} />
+                        <img loading="lazy" src="../Images/logos/arista_blue.png" alt={t('home.usedInProductionBy.arista')} />
                     </div>
                     <div>
-                        <img src="../Images/logos/orange_blue.png" alt={t('home.usedInProductionBy.orange')} />
+                        <img loading="lazy" src="../Images/logos/orange_blue.png" alt={t('home.usedInProductionBy.orange')} />
                     </div>
                     <div>
-                        <img src="../Images/logos/optoro_blue.png" alt={t('home.usedInProductionBy.optoro')} />
+                        <img loading="lazy" src="../Images/logos/optoro_blue.png" alt={t('home.usedInProductionBy.optoro')} />
                     </div>
                     <div>
-                        <img src="../Images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
+                        <img loading="lazy" src="../Images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
                     </div>
                     <div>
-                        <img src="../Images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
+                        <img loading="lazy" src="../Images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
                     </div>
                     <div>
-                        <img src="../Images/logos/arista_blue.png" alt={t('home.usedInProductionBy.arista')} />
+                        <img loading="lazy" src="../Images/logos/arista_blue.png" alt={t('home.usedInProductionBy.arista')} />
                     </div>
                     <div>
-                        <img src="../Images/logos/orange_blue.png" alt={t('home.usedInProductionBy.orange')} />
+                        <img loading="lazy" src="../Images/logos/orange_blue.png" alt={t('home.usedInProductionBy.orange')} />
                     </div>
                     <div>
-                        <img src="../Images/logos/optoro_blue.png" alt={t('home.usedInProductionBy.optoro')} />
+                        <img loading="lazy" src="../Images/logos/optoro_blue.png" alt={t('home.usedInProductionBy.optoro')} />
                     </div>
                     <div>
-                        <img src="../Images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
+                        <img loading="lazy" src="../Images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
                     </div>
                 </Slider>
             </section>
@@ -464,7 +468,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img src="../Images/svg/money_bag.svg" alt={t('home.whatsInItForYou.saveMoney')}></img>
+                                <img loading="lazy" src="../Images/svg/money_bag.svg" alt={t('home.whatsInItForYou.saveMoney')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.saveMoney')}
@@ -474,7 +478,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img src="../Images/svg/box.svg" alt={t('home.whatsInItForYou.flexibility')}></img>
+                                <img loading="lazy" src="../Images/svg/box.svg" alt={t('home.whatsInItForYou.flexibility')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.flexibility')}
@@ -484,7 +488,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img src="../Images/svg/wheel.svg" alt={t('home.whatsInItForYou.resilience')}></img>
+                                <img loading="lazy" src="../Images/svg/wheel.svg" alt={t('home.whatsInItForYou.resilience')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.resilience')}
@@ -494,7 +498,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img src="../Images/svg/cloud.svg" alt={t('home.whatsInItForYou.restoreData')}></img>
+                                <img loading="lazy" src="../Images/svg/cloud.svg" alt={t('home.whatsInItForYou.restoreData')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.restoreData')}
@@ -504,7 +508,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img src="../Images/svg/lock.svg" alt={t('home.whatsInItForYou.openSource')}></img>
+                                <img loading="lazy" src="../Images/svg/lock.svg" alt={t('home.whatsInItForYou.openSource')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.openSource')}
@@ -514,7 +518,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img src="../Images/svg/settings.svg" alt={t('home.whatsInItForYou.granularControl')}></img>
+                                <img loading="lazy" src="../Images/svg/settings.svg" alt={t('home.whatsInItForYou.granularControl')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.granularControl')}
@@ -539,7 +543,7 @@ const Home: React.FC = () => {
                         </Typography>
                         
                         <LightTooltip title={copyCommand.status}>
-                            <Link onClick={copyToClipboard}><img src="../Images/svg/copy.svg" alt={copyCommand.status}></img></Link>
+                            <Link onClick={copyToClipboard}><img loading="lazy" src="../Images/svg/copy.svg" alt={copyCommand.status}></img></Link>
                         </LightTooltip>
                         <hr className={classes.divider}/>
                     </div>
@@ -563,7 +567,7 @@ const Home: React.FC = () => {
                             <div className={classes.installationCodeWrapper}>
 
                                 <Paper className={[classes.paper, classes.desktopCommandWrapper].join(' ')}>
-                                    <img src="../Images/png/homepage_desktop.png" alt={t('home.installation.desktopImgAlt')} className={classes.desktopImage}></img>
+                                    <img loading="lazy" src="../Images/png/homepage_desktop.png" alt={t('home.installation.desktopImgAlt')} className={classes.desktopImage}></img>
                                     <div className={classes.installationProviderCommandWrapper}>
                                         <Typography className={classes.installationProvider}>
                                             {asciinemaTitle}
@@ -577,19 +581,19 @@ const Home: React.FC = () => {
                                     <Paper className={[classes.paper, classes.installationButtonsWrapper].join(' ')}>
                                         <Button variant="contained" 
                                             className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Redis.status ? classes.installationButtonActive : ''].join(' ')}
-                                            startIcon={<img src={installationButtonStatus.Redis.status ? storageProviders.Redis.white_logo : storageProviders.Redis.logo} alt={t('home.installation.redis')}></img>}
+                                            startIcon={<img loading="lazy" src={installationButtonStatus.Redis.status ? storageProviders.Redis.white_logo : storageProviders.Redis.logo} alt={t('home.installation.redis')}></img>}
                                             onClick={() => displayProviderInstallation('Redis')}>
                                             {t('home.installation.redis')}
                                         </Button>
                                         <Button variant="contained" 
                                             className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Minio.status ? classes.installationButtonActive : ''].join(' ')}
-                                            startIcon={<img src={installationButtonStatus.Minio.status ? storageProviders.Minio.white_logo :storageProviders.Minio.logo} alt={t('home.installation.minio')}></img>}
+                                            startIcon={<img loading="lazy" src={installationButtonStatus.Minio.status ? storageProviders.Minio.white_logo :storageProviders.Minio.logo} alt={t('home.installation.minio')}></img>}
                                             onClick={() => displayProviderInstallation('Minio')}>
                                             {t('home.installation.minio')}
                                         </Button>
                                         <Button variant="contained" 
                                             className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Percona.status ? classes.installationButtonActive : ''].join(' ')}
-                                            startIcon={<img src={installationButtonStatus.Percona.status ? storageProviders.Percona.white_logo : storageProviders.Percona.logo} alt={t('home.installation.percona')}></img>}
+                                            startIcon={<img loading="lazy" src={installationButtonStatus.Percona.status ? storageProviders.Percona.white_logo : storageProviders.Percona.logo} alt={t('home.installation.percona')}></img>}
                                             onClick={() => displayProviderInstallation('Percona')}>
                                             {t('home.installation.percona')}
                                         </Button>
@@ -598,19 +602,19 @@ const Home: React.FC = () => {
                                     <Paper className={[classes.paper, classes.installationButtonsWrapper].join(' ')}>
                                         <Button variant="contained" 
                                             className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.MongoDB.status ? classes.installationButtonActive : ''].join(' ')}
-                                            startIcon={<img src={installationButtonStatus.MongoDB.status ? storageProviders.MongoDB.white_logo : storageProviders.MongoDB.logo} alt={t('home.installation.mongodb')}></img>}
+                                            startIcon={<img loading="lazy" src={installationButtonStatus.MongoDB.status ? storageProviders.MongoDB.white_logo : storageProviders.MongoDB.logo} alt={t('home.installation.mongodb')}></img>}
                                             onClick={() => displayProviderInstallation('MongoDB')}>
                                             {t('home.installation.mongodb')}
                                         </Button>
                                         <Button variant="contained" 
                                             className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.Prometheus.status ? classes.installationButtonActive : ''].join(' ')}
-                                            startIcon={<img src={installationButtonStatus.Prometheus.status ? storageProviders.Prometheus.white_logo : storageProviders.Prometheus.logo} alt={t('home.installation.prometheus')}></img>}
+                                            startIcon={<img loading="lazy" src={installationButtonStatus.Prometheus.status ? storageProviders.Prometheus.white_logo : storageProviders.Prometheus.logo} alt={t('home.installation.prometheus')}></img>}
                                             onClick={() => displayProviderInstallation('Prometheus')}>
                                             {t('home.installation.prometheus')}
                                         </Button>
                                         <Button variant="contained" 
                                             className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.MySQL.status ? classes.installationButtonActive : ''].join(' ')}
-                                            startIcon={<img src={installationButtonStatus.MySQL.status ? storageProviders.MySQL.white_logo : storageProviders.MySQL.logo} alt={t('home.installation.mysql')}></img>}
+                                            startIcon={<img loading="lazy" src={installationButtonStatus.MySQL.status ? storageProviders.MySQL.white_logo : storageProviders.MySQL.logo} alt={t('home.installation.mysql')}></img>}
                                             onClick={() => displayProviderInstallation('MySQL')}>
                                             {t('home.installation.mysql')}
                                         </Button>
@@ -625,19 +629,19 @@ const Home: React.FC = () => {
                                 <Paper className={[classes.paper, classes.installationButtonsWrapper].join(' ')}>
                                     <Button variant="contained" 
                                         className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Redis.status ? classes.installationButtonActive : ''].join(' ')}
-                                        startIcon={<img src={installationButtonStatus.Redis.status ? storageProviders.Redis.white_logo : storageProviders.Redis.logo} alt={t('home.installation.redis')}></img>}
+                                        startIcon={<img loading="lazy" src={installationButtonStatus.Redis.status ? storageProviders.Redis.white_logo : storageProviders.Redis.logo} alt={t('home.installation.redis')}></img>}
                                         onClick={() => displayProviderInstallation('Redis')}>
                                         {t('home.installation.redis')}
                                     </Button>
                                     <Button variant="contained" 
                                         className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Minio.status ? classes.installationButtonActive : ''].join(' ')}
-                                        startIcon={<img src={installationButtonStatus.Minio.status ? storageProviders.Minio.white_logo :storageProviders.Minio.logo} alt={t('home.installation.minio')}></img>}
+                                        startIcon={<img loading="lazy" src={installationButtonStatus.Minio.status ? storageProviders.Minio.white_logo :storageProviders.Minio.logo} alt={t('home.installation.minio')}></img>}
                                         onClick={() => displayProviderInstallation('Minio')}>
                                         {t('home.installation.minio')}
                                     </Button>
                                     <Button variant="contained" 
                                         className={[classes.installationButton, classes.installationLeftButton, installationButtonStatus.Percona.status ? classes.installationButtonActive : ''].join(' ')}
-                                        startIcon={<img src={installationButtonStatus.Percona.status ? storageProviders.Percona.white_logo : storageProviders.Percona.logo} alt={t('home.installation.percona')}></img>}
+                                        startIcon={<img loading="lazy" src={installationButtonStatus.Percona.status ? storageProviders.Percona.white_logo : storageProviders.Percona.logo} alt={t('home.installation.percona')}></img>}
                                         onClick={() => displayProviderInstallation('Percona')}>
                                         {t('home.installation.percona')}
                                     </Button>
@@ -645,7 +649,7 @@ const Home: React.FC = () => {
                             
                             
                                 <Paper className={[classes.paper, classes.desktopCommandWrapper].join(' ')}>
-                                    <img src="../Images/png/homepage_desktop.png" alt={t('home.installation.desktopImgAlt')} className={classes.desktopImage}></img>
+                                    <img loading="lazy" src="../Images/png/homepage_desktop.png" alt={t('home.installation.desktopImgAlt')} className={classes.desktopImage}></img>
                                     <div className={classes.installationProviderCommandWrapper}>
                                         <Typography className={classes.installationProvider}>
                                             {asciinemaTitle}
@@ -658,19 +662,19 @@ const Home: React.FC = () => {
                                 <Paper className={[classes.paper, classes.installationButtonsWrapper].join(' ')}>
                                     <Button variant="contained" 
                                         className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.MongoDB.status ? classes.installationButtonActive : ''].join(' ')}
-                                        startIcon={<img src={installationButtonStatus.MongoDB.status ? storageProviders.MongoDB.white_logo : storageProviders.MongoDB.logo} alt={t('home.installation.mongodb')}></img>}
+                                        startIcon={<img loading="lazy" src={installationButtonStatus.MongoDB.status ? storageProviders.MongoDB.white_logo : storageProviders.MongoDB.logo} alt={t('home.installation.mongodb')}></img>}
                                         onClick={() => displayProviderInstallation('MongoDB')}>
                                         {t('home.installation.mongodb')}
                                     </Button>
                                     <Button variant="contained" 
                                         className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.Prometheus.status ? classes.installationButtonActive : ''].join(' ')}
-                                        startIcon={<img src={installationButtonStatus.Prometheus.status ? storageProviders.Prometheus.white_logo : storageProviders.Prometheus.logo} alt={t('home.installation.prometheus')}></img>}
+                                        startIcon={<img loading="lazy" src={installationButtonStatus.Prometheus.status ? storageProviders.Prometheus.white_logo : storageProviders.Prometheus.logo} alt={t('home.installation.prometheus')}></img>}
                                         onClick={() => displayProviderInstallation('Prometheus')}>
                                         {t('home.installation.prometheus')}
                                     </Button>
                                     <Button variant="contained" 
                                         className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.MySQL.status ? classes.installationButtonActive : ''].join(' ')}
-                                        startIcon={<img src={installationButtonStatus.MySQL.status ? storageProviders.MySQL.white_logo : storageProviders.MySQL.logo} alt={t('home.installation.mysql')}></img>}
+                                        startIcon={<img loading="lazy" src={installationButtonStatus.MySQL.status ? storageProviders.MySQL.white_logo : storageProviders.MySQL.logo} alt={t('home.installation.mysql')}></img>}
                                         onClick={() => displayProviderInstallation('MySQL')}>
                                         {t('home.installation.mysql')}
                                     </Button>
@@ -693,7 +697,7 @@ const Home: React.FC = () => {
                     </Typography>
                     <Grid container spacing={3} className={events.length ? '' : classes.noEvents}>
                         <Grid item xs={12} sm={4} className={classes.imageFluid}>
-                            <img src="../Images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} />
+                            <LazyLoadImage effect="blur" loading="lazy" src="../Images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} />
                         </Grid>
                         {events.length ? (
                             <Grid item xs={12} sm={8}>
@@ -711,7 +715,7 @@ const Home: React.FC = () => {
                 {isMobileView && 
                     <Grid item xs={12} className={classes.testimonialMuleWrapper}>
                         <Paper className={[classes.paper, classes.testimonialMule].join(' ')}>
-                            <img src="../Images/png/testimonials_mule.png" alt=""></img>
+                            <LazyLoadImage effect="blur" loading="lazy" src="../Images/png/testimonials_mule.png" alt="" />
                         </Paper>
                     </Grid>
                 }
@@ -773,7 +777,7 @@ const Home: React.FC = () => {
                     {!isMobileView && 
                         <Grid item sm={5} className={classes.testimonialMuleWrapper}>
                             <Paper className={[classes.paper, classes.testimonialMule].join(' ')}>
-                                <img src="../Images/png/testimonials_mule.png" alt=""></img>
+                                <LazyLoadImage effect="blur" src="../Images/png/testimonials_mule.png" alt="" />
                             </Paper>
                         </Grid>
                     }
@@ -804,7 +808,9 @@ const Home: React.FC = () => {
                     <Grid container spacing={3}>
                         <Grid item lg={4} md={4} sm={12}>
                             <Paper className={[classes.paper, classes.flyingMuleWrapper].join(' ')}>
-                                <img src="../Images/png/flying_mule.png" alt={t('home.youAreReadyToStart.flyingMuleAlt')} className={classes.flyingMule}></img>
+                                <span className={classes.flyingMule}>
+                                    <LazyLoadImage effect="blur" src="../Images/png/flying_mule.png" alt={t('home.youAreReadyToStart.flyingMuleAlt')} />
+                                </span>
                             </Paper>
                         </Grid>
                         <Grid item lg={5} md={4} sm={6}>
@@ -815,7 +821,7 @@ const Home: React.FC = () => {
                                     </Typography>
                                     
                                     <LightTooltip title={copyCommand.status}>
-                                        <Link onClick={copyToClipboard}><img src="../Images/svg/copy_orange.svg" alt=""></img></Link>
+                                        <Link onClick={copyToClipboard}><img loading="lazy" src="../Images/svg/copy_orange.svg" alt=""></img></Link>
                                     </LightTooltip>
                                     <hr className={[classes.divider, classes.codeTextHalfWidthUnderline].join(' ')}/>
 

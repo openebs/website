@@ -235,6 +235,7 @@ const Blog: React.FC = () => {
                               >
                                 {t("blog.read")}
                                 <img
+                                  loading="lazy"
                                   src="../Images/svg/arrow_orange.svg"
                                   alt={t("header.submitAlt")}
                                   className={classes.arrow}
@@ -344,6 +345,7 @@ const Blog: React.FC = () => {
                               >
                                 {t("blog.read")}
                                 <img
+                                  loading="lazy"
                                   src="../Images/svg/arrow_orange.svg"
                                   alt={t("header.submitAlt")}
                                   className={classes.arrow}

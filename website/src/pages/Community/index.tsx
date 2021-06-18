@@ -6,8 +6,10 @@ import Footer from "../../components/Footer";
 import JoinCommunity from "../../components/JoinCommunity";
 import { EXTERNAL_LINKS, VIEW_PORT } from "../../constants";
 import { useViewport } from "../../hooks/viewportWidth";
-import EventSlider from '../../components/EventSlider';
-import events from '../../resources/events.json';
+import EventSlider from "../../components/EventSlider";
+import events from "../../resources/events.json";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Community: React.FC = () => {
   const { t } = useTranslation();
@@ -41,160 +43,199 @@ const Community: React.FC = () => {
   return (
     <div className={classes.root}>
       <div className={classes.communityBackground}>
-      <div className={classes.sectionDiv}>
-        {/* Commercial support intro section  */}
-        {!(width < mobileBreakpoint) ? (
-          /* Commercial support Desktop view  */
-          <Grid container direction="row" justify="center" alignItems="center">
-            <Grid item xs={12} sm={6}>
-              <Typography variant="h1" className={classes.pageHeader}>
-                {t("community.title")}
-              </Typography>
-              <Typography className={classes.supportDescription}>{t("community.description")}</Typography>
+        <div className={classes.sectionDiv}>
+          {/* Commercial support intro section  */}
+          {!(width < mobileBreakpoint) ? (
+            /* Commercial support Desktop view  */
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+              <Grid item xs={12} sm={6}>
+                <Typography variant="h1" className={classes.pageHeader}>
+                  {t("community.title")}
+                </Typography>
+                <Typography className={classes.supportDescription}>
+                  {t("community.description")}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} sm={6} className={classes.supportImage}>
+                <span className={classes.introImage}>
+                  <LazyLoadImage
+                    effect="blur"
+                    src="/Images/svg/community.svg"
+                    alt={t("community.mule")}
+                  />
+                </span>
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={6} className={classes.supportImage}>
-              <img
-                src="/Images/svg/community.svg"
-                alt={t("community.mule")}
-                className={classes.introImage}
-              />
+          ) : (
+            /* Commercial support mobile view  */
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+              <Grid item xs={12}>
+                <Typography variant="h1" className={classes.pageHeader}>
+                  {t("community.title")}
+                </Typography>
+              </Grid>
+              <Grid item xs={12} className={classes.supportImage}>
+                <span className={classes.introImage}>
+                  <LazyLoadImage
+                    effect="blur"
+                    src="/Images/svg/community.svg"
+                    alt={t("community.mule")}
+                  />
+                </span>
+              </Grid>
+              <Grid item xs={12}>
+                <Typography className={classes.supportDescription}>
+                  {t("community.description")}
+                </Typography>
+              </Grid>
             </Grid>
-          </Grid>
-        ) : (
-          /* Commercial support mobile view  */
-          <Grid container direction="row" justify="center" alignItems="center">
-            <Grid item xs={12}>
-              <Typography variant="h1" className={classes.pageHeader}>
-                {t("community.title")}
-              </Typography>
-            </Grid>
-            <Grid item xs={12} className={classes.supportImage}>
-              <img
-                src="/Images/svg/community.svg"
-                alt={t("community.mule")}
-                className={classes.introImage}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <Typography className={classes.supportDescription}>{t("community.description")}</Typography>
-            </Grid>
-          </Grid>
-        )}
-      </div>
+          )}
+        </div>
 
-      {/* Join our community section */}
-      <section>
-        <JoinCommunity />
-      </section>
+        {/* Join our community section */}
+        <section>
+          <JoinCommunity />
+        </section>
       </div>
       {/* Community events slider section */}
       <section>
-          <Typography variant="h2" className={classes.sectionTitle}>
-            {t("community.communityEvents.title")}
-          </Typography>
-          <div className={`${classes.sectionDiv} ${classes.sliderFullWidth}`}>
+        <Typography variant="h2" className={classes.sectionTitle}>
+          {t("community.communityEvents.title")}
+        </Typography>
+        <div className={`${classes.sectionDiv} ${classes.sliderFullWidth}`}>
           {events.length ? (
-                <EventSlider />
-            ) : (
-                <Typography variant="h4" className={classes.noEventText}>
-                    {t("community.communityEvents.noEvent.message")}
-                </Typography>
-            )}
-          </div>
+            <EventSlider />
+          ) : (
+            <Typography variant="h4" className={classes.noEventText}>
+              {t("community.communityEvents.noEvent.message")}
+            </Typography>
+          )}
+        </div>
       </section>
 
       {/* Contribution section */}
       <div className={classes.installationDiv}>
         <section>
           <div className={classes.sectionDiv}>
-          <Typography variant="h2" className={classes.sectionTitle}>
-            {t("contributing.title")}
-          </Typography>
-          <Grid container justify="space-between">
-            <Grid item lg={5} md={6} sm={12}>
-              <Paper className={classes.paper}>
-                <div className={classes.iconHolder}>
-                  <img
-                    src="../Images/svg/openebs_hacker.svg"
-                    alt={t("contributing.openEBSHackerTitle")}
-                  ></img>
-                </div>
-                <h3 className={classes.contributionSubTitle}>{t("contributing.openEBSHackerTitle")}</h3>
-                <Typography className={classes.description}>
-                  {t("contributing.openEBSHackerDescription")}
-                </Typography>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  size="small"
-                  className={classes.solidButton}
-                  onClick={() => { window.open(EXTERNAL_LINKS.CONTRIBUTE_LINK, '_blank') }}
-                >
-                  {t("community.contributeBtnLabel")}
-                </Button>
-              </Paper>
+            <Typography variant="h2" className={classes.sectionTitle}>
+              {t("contributing.title")}
+            </Typography>
+            <Grid container justify="space-between">
+              <Grid item lg={5} md={6} sm={12}>
+                <Paper className={classes.paper}>
+                  <div className={classes.iconHolder}>
+                    <img
+                      loading="lazy"
+                      src="../Images/svg/openebs_hacker.svg"
+                      alt={t("contributing.openEBSHackerTitle")}
+                    ></img>
+                  </div>
+                  <h3 className={classes.contributionSubTitle}>
+                    {t("contributing.openEBSHackerTitle")}
+                  </h3>
+                  <Typography className={classes.description}>
+                    {t("contributing.openEBSHackerDescription")}
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    className={classes.solidButton}
+                    onClick={() => {
+                      window.open(EXTERNAL_LINKS.CONTRIBUTE_LINK, "_blank");
+                    }}
+                  >
+                    {t("community.contributeBtnLabel")}
+                  </Button>
+                </Paper>
+              </Grid>
+              <Grid item lg={5} md={6} sm={12}>
+                <Paper className={classes.paper}>
+                  <div className={classes.iconHolder}>
+                    <img
+                      loading="lazy"
+                      src="../Images/svg/governance.svg"
+                      alt={t("contributing.governanceTitle")}
+                    ></img>
+                  </div>
+                  <h3 className={classes.contributionSubTitle}>
+                    {t("contributing.governanceTitle")}
+                  </h3>
+                  <Typography className={classes.description}>
+                    {t("contributing.governanceDescription")}
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    size="small"
+                    className={classes.solidButton}
+                    onClick={() => {
+                      window.open(EXTERNAL_LINKS.GOVERNANCE_LINK, "_blank");
+                    }}
+                  >
+                    {t("community.checkItOutBtnLabel")}
+                  </Button>
+                </Paper>
+              </Grid>
             </Grid>
-            <Grid item lg={5} md={6} sm={12}>
-              <Paper className={classes.paper}>
-                <div className={classes.iconHolder}>
-                  <img
-                    src="../Images/svg/governance.svg"
-                    alt={t("contributing.governanceTitle")}
-                  ></img>
-                </div>
-                <h3 className={classes.contributionSubTitle}>{t("contributing.governanceTitle")}</h3>
-                <Typography className={classes.description}>
-                  {t("contributing.governanceDescription")}
-                </Typography>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  size="small"
-                  className={classes.solidButton}
-                  onClick={() => { window.open(EXTERNAL_LINKS.GOVERNANCE_LINK, '_blank') }}
-                >
-                  {t("community.checkItOutBtnLabel")}
-                </Button>
-              </Paper>
-            </Grid>
-          </Grid>
           </div>
         </section>
 
         {/* Sponsor and Dependent Projects */}
         <div className={classes.sectionDiv}>
-          <Grid container justify="space-evenly" className={classes.sponsorAndDependentProjectsWrapper}>
+          <Grid
+            container
+            justify="space-evenly"
+            className={classes.sponsorAndDependentProjectsWrapper}
+          >
             <Grid item xs={12} md={5}>
               <div className={classes.sponsorAndDependentProjectsDiv}>
-                <Typography className={classes.sponsorAndDependentProjectsDescription}>
+                <Typography
+                  className={classes.sponsorAndDependentProjectsDescription}
+                >
                   {t("community.sponsor.mainSponsor")}
                 </Typography>
                 <img
+                  loading="lazy"
                   src="../Images/logos/mayadata_logo.svg"
                   alt={t("generic.mayadata")}
                   className={classes.mayaDataLogo}
                 />
               </div>
-              
             </Grid>
             <Grid item xs={12} md={7}>
-            <div className={classes.sponsorAndDependentProjectsDiv}>
-              <Typography className={classes.sponsorAndDependentProjectsDescription}>
-                {t("community.sponsor.dependentProjects")}
-              </Typography>
-              <div>
+              <div className={classes.sponsorAndDependentProjectsDiv}>
+                <Typography
+                  className={classes.sponsorAndDependentProjectsDescription}
+                >
+                  {t("community.sponsor.dependentProjects")}
+                </Typography>
+                <div>
                   {dependentProjects.map(({ label, image_src, alt }) => {
-                      return (
-                        <img
+                    return (
+                      <img
+                        loading="lazy"
                         src={image_src}
                         alt={alt}
-                        className={[classes.company, (label === 'rancher' ? classes.rancher : '')].join(' ')}
+                        className={[
+                          classes.company,
+                          label === "rancher" ? classes.rancher : "",
+                        ].join(" ")}
                       />
-                      );
+                    );
                   })}
+                </div>
               </div>
-              </div>
-              
             </Grid>
           </Grid>
         </div>

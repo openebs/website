@@ -55,6 +55,7 @@ const MiniBlog: React.FC = () => {
         onClick={onClick}
       >
         <img
+          loading="lazy"
           src="../Images/svg/right_arrow.svg"
           alt={t("home.adaptorsTestimonials.nextArrowAlt")}
         />
@@ -71,6 +72,7 @@ const MiniBlog: React.FC = () => {
         onClick={onClick}
       >
         <img
+          loading="lazy"
           src="../Images/svg/left_arrow.svg"
           alt={t("home.adaptorsTestimonials.previousArrowAlt")}
         />

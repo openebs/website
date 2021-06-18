@@ -41,6 +41,7 @@ const DisplayAuthorandReadTime: React.FC<displayAuthorandReadTimeProps> = ({
           </span>
           <p className={classes.readTime}>
             <img
+              loading="lazy"
               src="../Images/svg/time-five.svg"
               alt={t("header.submitAlt")}
               className={classes.rightSpacing}
