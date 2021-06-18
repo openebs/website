@@ -4,16 +4,20 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import TagManager from 'react-gtm-module'
 import './i18n';
+import Loader from './components/Loader';
 
 const tagManagerArgs = {
   gtmId: 'GTM-KD8TCG4'
 }
 
-TagManager.initialize(tagManagerArgs)
+window.onload = () => {
+  // When page loading is complete we call the google analytics method optimizing load time
+  TagManager.initialize(tagManagerArgs)
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader />}>
     <App />
     </Suspense>
   </React.StrictMode>,
