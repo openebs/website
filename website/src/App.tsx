@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Route, Router, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from './theme/theme';
 import './fonts'
-import Scaffold from './containers/Scaffold';
-import Home from './pages/Home';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import Faq from './pages/Faq';
-import CommercialSupport from './pages/CommercialSupport';
-import Community from './pages/Community';
-import Blog from './pages/Blog';
-import BlogPage from './pages/BlogPage';
+const Scaffold = React.lazy(() => import('./containers/Scaffold'));
+const Home = React.lazy(() => import('./pages/Home'));
+const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'));
+const Faq = React.lazy(() => import('./pages/Faq'));
+const CommercialSupport = React.lazy(() => import('./pages/CommercialSupport'));
+const Community = React.lazy(() => import('./pages/Community'));
+const Blog = React.lazy(() => import('./pages/Blog'));
+const BlogPage = React.lazy(() => import('./pages/BlogPage'))
 
 const Routes: React.FC = () => {
   return (
@@ -42,9 +42,11 @@ function App() {
   const history = createBrowserHistory();
 
   return (
-    <Router history={history}>
+    <Suspense fallback={<div>Loading...</div>}>
+      <Router history={history}>
       <Routes />
     </Router>
+    </Suspense>
   );
 }
 

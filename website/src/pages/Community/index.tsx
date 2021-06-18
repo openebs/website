@@ -207,4 +207,4 @@ const Community: React.FC = () => {
     </div>
   );
 };
-export default Community;
+export default React.memo(Community);

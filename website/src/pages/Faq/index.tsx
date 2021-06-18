@@ -168,4 +168,4 @@ const Faq: React.FC<FaqDataProps> = () => {
   );
 };
 
-export default Faq;
+export default React.memo(Faq);

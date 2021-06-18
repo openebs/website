@@ -214,7 +214,7 @@ const MiniBlog: React.FC = () => {
           >
             {filteredData.map((elm: any) => {
               return (
-                <div className={classes.cardWrapper}>
+                <div className={classes.cardWrapper} key = {elm.id}>
                   <Card key={elm.id} className={classes.cardRoot}>
                     <CardMedia
                       className={classes.media}

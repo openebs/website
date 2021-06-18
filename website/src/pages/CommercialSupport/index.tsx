@@ -132,4 +132,4 @@ const Support: React.FC = () => {
     </div>
   );
 };
-export default Support;
+export default React.memo(Support);
