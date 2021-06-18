@@ -38,7 +38,7 @@
 
 @media screen and (min-width: 640px) {
   .asciinema-terminal {
-    height: 240px !important;
+    height: 210px !important;
     width: 480px !important;
     overflow-x: none;
   }
@@ -46,7 +46,7 @@
 
 @media screen and (min-width: 896px) {
   .asciinema-terminal {
-    height: 340px !important;
+    height: 210px !important;
     width: 45vw !important;
   }
 }

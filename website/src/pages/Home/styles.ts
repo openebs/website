@@ -219,7 +219,7 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden',
         textOverflow: 'ellipsis',
         [theme.breakpoints.down('xs')]: {
-            maxWidth: '100%',
+            maxWidth: `calc(100% - 20px - ${theme.spacing(2)}px)`,
             fontSize: '0.875rem',
         },  
     },
@@ -364,6 +364,9 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     testimonialCarousel: {
+        '& .slick-slide:not(.slick-active)':{
+            opacity: '.3',
+        },
         '& .slick-prev': {
             left: '120px',
             zIndex: 1,
@@ -384,20 +387,24 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.down('xs')]: {
             '& .slick-list': {
-                paddingLeft: `${theme.spacing(1.7)}px !important`
+                paddingLeft: '0 !important',
+                paddingRight: '50px important'
             },
         },
+        '& .slick-arrow':{
+            '&:before':{
+                display:'none'
+            }
+        },
+        '& .slick-track' :{
+            display: 'flex',
+            alignItems: 'center'
+        }
     },
     testimonialPaper: {
         width: '744px',
         [theme.breakpoints.down('md')]: {
-            width: '600px',
-        },
-        [theme.breakpoints.down('sm')]: {
-            width: '460px',
-        },
-        [theme.breakpoints.down('sm')]: {
-            width: '410px',
+            width: '100%',
         },
     },
     testimonialWrapper: {

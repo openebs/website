@@ -165,8 +165,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'inline-flex'
     },
     githubMobileIcon: {
-        width: '12px',
-        height: 'auto',
+        height: '20px',
         marginRight: theme.spacing(0.5)
     },
     contributorsMobile: {

@@ -54,17 +54,17 @@ const EventSlider: React.FC = () => {
     className: `${classes.slidewrap} center`,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 2,
           swipeToSlide: true,
         },
       },
       {
-        breakpoint: 768,
+        breakpoint: 850,
         settings: {
           slidesToShow: 1,
-          infinite: false,
+          centerMode: true,
           arrows: false,
         },
       },
@@ -109,7 +109,7 @@ const EventSlider: React.FC = () => {
               {checkPastDate(event.date) && event.buttonLink && (
                 <Box mt={2} className={classes.actionLInk}>
                   <Link className={classes.linkText} href={event.buttonLink} target="_blank">
-                    <Box display="flex">
+                    <Box display="flex" alignItems="center">
                       {event.buttonText ? event.buttonText : t('community.communityEvents.clickHere')}
                       <img loading="lazy" src="../Images/svg/arrow_orange.svg" alt="" />
                     </Box>

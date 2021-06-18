@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     sponsorCompany: {
+        display: 'inline-block',
         width: '80%',
         paddingTop : theme.spacing(3),
         [theme.breakpoints.down('lg')]: {
@@ -24,6 +25,16 @@ const useStyles = makeStyles((theme) => ({
             maxWidth: '250px',
             paddingBottom: theme.spacing(2),
         },
+    },
+    paragraph:{
+        [theme.breakpoints.down('md')]: {
+            fontSize: '.8rem'
+        }
+    },
+    gridContainer: {
+        [theme.breakpoints.down('sm')]: {
+            marginTop: theme.spacing(4),
+        }
     },
 }))
 export default useStyles;

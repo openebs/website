@@ -21,6 +21,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
   },
   slidewrap: {
+    "& .slick-next": {
+      right: "30%",
+    },
+    '& .slick-slide:not(.slick-active)':{
+      opacity: '.5',
+    },
     margin: theme.spacing(2, 0, 2, 2),
     "& div.slick-active": {
       "& + .slick-active": {
@@ -40,13 +46,19 @@ const useStyles = makeStyles((theme) => ({
         },
       },
     },
+    [theme.breakpoints.down("md")]: {
+      margin: '0 40px',
+      "& .slick-next": {
+        right: "-25px",
+      },
+      '& .slick-slide:not(.slick-active)':{
+        opacity: '.5',
+    },
+    },
     "&  div.slick-slide": {
       "&  > div": {
         padding: "20px",
       },
-    },
-    "& .slick-next": {
-      right: "30%",
     },
     "& .slick-disabled": {
       opacity: 0.5,
@@ -55,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
         '&:before':{
             display:'none'
         }
-    }
+    },
   },
   titleText: {
     fontSize: "22px",

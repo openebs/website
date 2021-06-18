@@ -3,22 +3,15 @@ import { useTranslation } from 'react-i18next';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './styles';
 import Paper from '@material-ui/core/Paper';
-import { Typography, Link } from '@material-ui/core';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
-import { withStyles } from '@material-ui/core/styles';
+import { Typography, Link, Tabs, Tab, Box, Button, Tooltip, IconButton, withStyles } from '@material-ui/core';
 import Footer from '../../components/Footer';
 import JoinCommunity from '../../components/JoinCommunity';
 import Newsletter from "../../components/Newsletter";
-import {IconButton} from "@material-ui/core";
 import Sponsor from "../../components/Sponsor";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { EXTERNAL_LINKS } from '../../constants';
+import { EXTERNAL_LINKS, VIEW_PORT } from '../../constants';
 import Asciinema from '../../components/Asciinema';
 import MiniBlog from '../../components/MiniBlog';
 import adopterData from "../../adopters.md";
@@ -26,11 +19,12 @@ import EventSlider from '../../components/EventSlider';
 import events from '../../resources/events.json';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { useViewport } from "../../hooks/viewportWidth";
+
 
 const Home: React.FC = () => {
     const classes = useStyles();
     const { t } = useTranslation();
-
     const [tabValue, setTabValue] = useState<number>(0);
     const [adopterTestimonials, setAdopterTestimonials] = useState<any>("");
     const [copyCommand, setCopyCommand] = useState({
@@ -43,10 +37,20 @@ const Home: React.FC = () => {
     };
 
     const [isMobileView, setIsMobileView] = useState<boolean>(false);
-
+    const [isTabletView, setIsTabletView] = useState<boolean>(false);
+    const { width } = useViewport();
+    useEffect(()=>{
+        window.innerWidth <= VIEW_PORT.MOBILE_BREAKPOINT ? setIsMobileView(true) : setIsMobileView(false);
+        window.innerWidth <= VIEW_PORT.LAPTOP_BREAKPOINT ? setIsTabletView(true) : setIsTabletView(false);
+    },[width])
     // const [logoSlidesPerScreen, setLogoSlidesPerScreen] = useState<number>(6);
 
     //function to fecth all the adoters testimonials
+
+    useEffect(()=>{
+        fetchAdoptersTestimonials();
+    },[])
+
     const fetchAdoptersTestimonials = async () => {
         await fetch(adopterData).then((response) => {
          if (response.ok) {
@@ -61,26 +65,6 @@ const Home: React.FC = () => {
        })
        .catch((err) => console.error(err));
      };
-
-    useEffect(() => {
-        // Function to set mobile/desktop view
-        const setResponsiveness = () => {
-
-        return window.innerWidth <= 768
-            ? setIsMobileView(true)
-            : setIsMobileView(false);
-        };
-        setResponsiveness();
-        window.addEventListener("resize", () => {
-            setResponsiveness();
-        });
-        fetchAdoptersTestimonials();
-        //unregister the listerner on destroy of the hook
-        return () => window.removeEventListener("resize", () => {
-            setResponsiveness();
-        });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
     
     // logoSliderSettings for logos carousel
     var logoSliderSettings = {
@@ -252,7 +236,32 @@ const Home: React.FC = () => {
           ><img loading="lazy" src="../Images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} /></div>
         );
     }
-
+    
+    const testimonialSliderSettings = {
+        dots:false,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        speed:500,
+        slidesToShow:1,
+        slidesToScroll: 1,
+        cssEase:"linear",
+        arrows:true,
+        centerMode:true,
+        prevArrow: <SamplePrevArrow />,
+        nextArrow: <SampleNextArrow />,
+        className:classes.testimonialCarousel,
+        responsive: [
+            {
+                breakpoint: 767,
+                settings: {
+                  arrows: false,
+                  swipeToSlide: true,
+                },
+              },
+        ]
+    }
+    
     return (
         <div>
             <section>
@@ -543,7 +552,7 @@ const Home: React.FC = () => {
                     </div>
                     
                     <div>
-                        {isMobileView ? 
+                        {isTabletView ? 
                             <div className={classes.installationCodeWrapper}>
 
                                 <Paper className={[classes.paper, classes.desktopCommandWrapper].join(' ')}>
@@ -678,16 +687,16 @@ const Home: React.FC = () => {
                     </Typography>
                     }
                     <Grid container spacing={3} className={events.length ? '' : classes.noEvents}>
-                        <Grid item xs={12} sm={4} className={`${classes.imageFluid} ${classes.mobileContainer} `}>
+                        <Grid item xs={12} sm={!isMobileView ? 4 : 12} xl={3} className={`${classes.imageFluid}`}>
                             <img src="../Images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} />
-                        </Grid>
-                        {isMobileView && 
+                            {isMobileView && 
                             <Typography variant="h2" className={classes.sectionTitle}>
                                 {t("community.communityEvents.title")}
                             </Typography>
                         }
+                        </Grid>
                         {events.length ? (
-                            <Grid item xs={12} sm={8}>
+                            <Grid item xs={12} sm={!isMobileView ? 8 : 12} xl={9}>
                                 <EventSlider />
                             </Grid>
                         ) : (
@@ -711,22 +720,9 @@ const Home: React.FC = () => {
                 </Typography>
                 
                 <Grid container spacing={3}>
-                    <Grid item sm={7}>
+                    <Grid item sm={isMobileView ? 12 : 7} xs={12}>
                         <Paper className={[classes.paper, classes.testimonialPaper].join(' ')}>
-                            <Slider dots={false}
-                                    infinite= {true}
-                                    autoplay= {true}
-                                    autoplaySpeed= {4000}
-                                    speed={500}
-                                    slidesToShow={1}
-                                    slidesToScroll= {1}
-                                    cssEase="linear"
-                                    arrows={true}
-                                    rtl={true}
-                                    centerMode={true}
-                                    prevArrow= {<SamplePrevArrow />}
-                                    nextArrow= {<SampleNextArrow />}
-                                    className={classes.testimonialCarousel}>
+                            <Slider {...testimonialSliderSettings}>
                                 {adopterTestimonials && adopterTestimonials.map((elm: any ) => {
                                     return (  
                                         <div key={elm.id}>
