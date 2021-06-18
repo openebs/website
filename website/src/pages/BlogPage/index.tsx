@@ -138,7 +138,7 @@ const BlogPage: React.FC = () => {
                   
                     <div className={classes.author}>
                       <div className={classes.authorImgWrapper}>
-                        <img src={`../Images/blog/authors/${currentBlogDetails?.author.toLowerCase()
+                        <img loading="lazy" src={`../Images/blog/authors/${currentBlogDetails?.author.toLowerCase()
                                     .replace(/[^\w ]+/g,'')
                                     .replace(/ +/g,'-')}.png`} className={classes.authorImg} alt={currentBlogDetails?.author}></img>
                       </div>
@@ -158,7 +158,7 @@ const BlogPage: React.FC = () => {
                                   <div className={["addthis_inline_share_toolbox", classes.socialIconButton].join(' ')} key={label}></div>
                                   :
                                   <Link className={classes.socialIconButton} key={label} onClick={(() => handleSocialSharing(label))}>
-                                      <img src={imgURL} alt={label}/>
+                                      <img loading="lazy" src={imgURL} alt={label}/>
                                   </Link>
                               );
                           })}
@@ -170,7 +170,7 @@ const BlogPage: React.FC = () => {
             </div>
 
             <div className={classes.blogBody}>
-              <img src={`/Images/blog/${queryBlogName}.png`} alt={currentBlogDetails?.title} className={classes.blogImg}></img>
+              <img loading="lazy" src={`/Images/blog/${queryBlogName}.png`} alt={currentBlogDetails?.title} className={classes.blogImg}></img>
               <ReactMarkdown children={currentBlogDetails?.content} />
             </div>
             
@@ -192,7 +192,7 @@ const BlogPage: React.FC = () => {
                           <div className={["addthis_inline_share_toolbox", classes.socialIconButton].join(' ')} key={label}></div>
                           :
                           <Link className={classes.socialIconButton} key={label} onClick={(() => handleSocialSharing(label))}>
-                              <img src={imgURL} alt={label}/>
+                              <img loading="lazy" src={imgURL} alt={label}/>
                           </Link>
                       );
                   })}
@@ -205,7 +205,7 @@ const BlogPage: React.FC = () => {
                 {width < mobileBreakpoint ?
                 <Button
                   className={classes.arrowButton}
-                  endIcon={<img src="../Images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
+                  endIcon={<img loading="lazy" src="../Images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
                   onClick={() => window.location.assign(`/blog/${previousBlog.slug}`) }
               >
                 {t('blog.previousArticle')}
@@ -213,7 +213,7 @@ const BlogPage: React.FC = () => {
               : 
               <Button
                   className={classes.arrowButton}
-                  startIcon={<img src="../Images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
+                  startIcon={<img loading="lazy" src="../Images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
                   onClick={() => window.location.assign(`/blog/${previousBlog.slug}`) }
               >
                 {t('blog.previousArticle')}
@@ -227,7 +227,7 @@ const BlogPage: React.FC = () => {
               <div className={classes.rightArrowButtonWrapper}>
                   <Button
                     className={classes.arrowButton}
-                    endIcon={<img src="../Images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} />}
+                    endIcon={<img loading="lazy" src="../Images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} />}
                     onClick={() => window.location.assign(`/blog/${nextBlog.slug}`) }
                   >
                     {t('blog.nextArticle')}

@@ -45,11 +45,11 @@ const JoinCommunity: React.FC = () => {
                 <Grid item sm={6} xs={12}>
                     <Paper className={[classes.paper, classes.leftPaper, slackFlip ? classes.flip : ''].join(' ')} onClick={()=> handleSlackFlip()}>
                         <div className={classes.front}>
-                            <img src="../Images/logos/slack_full.svg" alt={t('joinCommunity.slackAlt')}></img>
+                            <img loading="lazy" src="../Images/logos/slack_full.svg" alt={t('joinCommunity.slackAlt')}></img>
                         </div>
                         <div className={classes.back}>
                             <div className={classes.flippedCard}>
-                                <img src="../Images/logos/slack_full.svg" alt={t('joinCommunity.slackAlt')} className={classes.flippedLogo}></img>
+                                <img loading="lazy" src="../Images/logos/slack_full.svg" alt={t('joinCommunity.slackAlt')} className={classes.flippedLogo}></img>
                                 <Typography variant='h4' className={classes.cardTitle}>
                                     {t('joinCommunity.slackTitle')}
                                 </Typography>
@@ -71,7 +71,7 @@ const JoinCommunity: React.FC = () => {
                                         }}
                                         />
                                         <IconButton aria-label="submit" className={classes.iconButton} disabled={disableContinueButton} type="submit">
-                                            <img src="../Images/svg/arrow_orange.svg" alt={t('joinCommunity.submitAlt')}/>
+                                            <img loading="lazy" src="../Images/svg/arrow_orange.svg" alt={t('joinCommunity.submitAlt')}/>
                                         </IconButton>
                                     </div>
                                 </form>
@@ -82,11 +82,11 @@ const JoinCommunity: React.FC = () => {
                 <Grid item sm={6} xs={12}>
                     <Paper className={[classes.paper, classes.rightPaper, gitHubFlip ? classes.flip : ''].join(' ')} onClick={()=> handleGitHubFlip()}>
                         <div className={classes.front}>
-                            <img src="../Images/logos/github_full.svg" alt={t('joinCommunity.gitHubAlt')}></img>
+                            <img loading="lazy" src="../Images/logos/github_full.svg" alt={t('joinCommunity.gitHubAlt')}></img>
                         </div>
                         <div className={classes.back}>
                             <div className={classes.flippedCard}>
-                                <img src="../Images/logos/github_full_small.svg" alt={t('joinCommunity.gitHubAlt')} className={classes.flippedLogo}></img>
+                                <img loading="lazy" src="../Images/logos/github_full_small.svg" alt={t('joinCommunity.gitHubAlt')} className={classes.flippedLogo}></img>
                                 <Typography variant='h4' className={classes.cardTitle}>
                                     {t('joinCommunity.gitHubTitle')}
                                 </Typography>

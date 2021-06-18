@@ -31,6 +31,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({recommendedBlogs}) => {
         onClick={onClick}
       >
         <img
+          loading="lazy"
           src="../Images/svg/right_arrow.svg"
           alt={t("home.adaptorsTestimonials.nextArrowAlt")}
         />
@@ -47,6 +48,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({recommendedBlogs}) => {
         onClick={onClick}
       >
         <img
+          loading="lazy"
           src="../Images/svg/left_arrow.svg"
           alt={t("home.adaptorsTestimonials.previousArrowAlt")}
         />

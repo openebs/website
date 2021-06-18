@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
     // const [disableContinueButton, setDisableContinueButton] = useState<boolean>(true);
 
     const openEBSLogo = (
-        <img src="../Images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')}></img>
+        <img loading="lazy" src="../Images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')}></img>
     );
 
     // useEffect(() => {
@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
                 {socialLinks.map(({ label, href, imgURL }) => {
                     return (   
                         <Link href={href} target="_blank" className={classes.socialIconButton} key={label}>
-                            <img src={imgURL} alt={label}/>
+                            <img loading="lazy" src={imgURL} alt={label}/>
                         </Link>
                     );
                 })}
@@ -198,7 +198,7 @@ const Footer: React.FC = () => {
                             </div>
                             <div>
                                 <Link className={classes.contributeButton}>
-                                    <img src="../Images/logos/githubLogo.svg" className={classes.githubMobileIcon} alt={t('generic.github')}></img> 
+                                    <img loading="lazy" src="../Images/logos/githubLogo.svg" className={classes.githubMobileIcon} alt={t('generic.github')}></img> 
                                     {t('footer.contribute')}
                                 </Link>
                             </div>

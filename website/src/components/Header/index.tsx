@@ -24,7 +24,7 @@ const Header: React.FC = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
     const openEBSLogo = (
-        <img src="../Images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')}></img>
+        <img loading="lazy" src="../Images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')}></img>
     );
 
     var currentPathName = useLocation().pathname;
@@ -34,10 +34,10 @@ const Header: React.FC = () => {
           return (
               <div className={classes.socialIconsWrapper}>
                     <Link href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO}>
-                        <img src="../Images/logos/githubLogo.svg" className={classes.socialIcon} alt={t('generic.github')}></img>
+                        <img loading="lazy" src="../Images/logos/githubLogo.svg" className={classes.socialIcon} alt={t('generic.github')}></img>
                     </Link>
                     <Link href="/community">
-                        <img src="../Images/logos/slackLogo.svg" className={classes.socialIcon} alt={t('generic.slack')}></img>
+                        <img loading="lazy" src="../Images/logos/slackLogo.svg" className={classes.socialIcon} alt={t('generic.slack')}></img>
                     </Link>
               </div>
           );
@@ -79,7 +79,7 @@ const Header: React.FC = () => {
                         onClick: handleDrawerOpen,
                     }}
                     >
-                    <img src="../Images/svg/hamburger.svg" alt={t('header.menuAlt')}></img>
+                    <img loading="lazy" src="../Images/svg/hamburger.svg" alt={t('header.menuAlt')}></img>
                     </IconButton>
                 </div>
                 <Drawer elevation={0}
@@ -92,7 +92,7 @@ const Header: React.FC = () => {
                     <div className={classes.drawerPaper}>
                         <div className={classes.closeIcon}>
                             <IconButton aria-label="close drawer" onClick={() => handleDrawerClose()}>
-                                <img src="../Images/svg/x-circle.svg" alt={t('header.closeMenuAlt')}></img>
+                                <img loading="lazy" src="../Images/svg/x-circle.svg" alt={t('header.closeMenuAlt')}></img>
                             </IconButton>
                         </div>
                         <div className={classes.mobileNavWrapper}>
