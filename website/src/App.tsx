@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { Route, Router, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -42,11 +42,9 @@ function App() {
   const history = createBrowserHistory();
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
       <Router history={history}>
       <Routes />
     </Router>
-    </Suspense>
   );
 }
 
