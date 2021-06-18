@@ -504,9 +504,6 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     flyingMuleWrapper:{
-        [theme.breakpoints.down('md')]: {
-            // margin: theme.spacing(0,20)
-        },
         [theme.breakpoints.down('xs')]: {
             margin: theme.spacing(0)
         },

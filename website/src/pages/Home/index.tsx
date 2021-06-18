@@ -49,7 +49,7 @@ const Home: React.FC = () => {
 
     useEffect(()=>{
         fetchAdoptersTestimonials();
-    },[])
+    })
 
     const fetchAdoptersTestimonials = async () => {
         await fetch(adopterData).then((response) => {
