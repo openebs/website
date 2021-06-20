@@ -137,11 +137,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         padding: theme.spacing(2, 4),
         [theme.breakpoints.down('md')]: {
-            padding: theme.spacing(0),
+            padding: theme.spacing(2, 0),
         },
         [theme.breakpoints.down('xs')]: {
             flexDirection: 'column',
-            padding: theme.spacing(0),
+            padding: theme.spacing(2, 0),
             marginTop: theme.spacing(6)
         },
     },
