@@ -1,8 +1,4 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
-import useStyles from "./styles";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
 import {
   Container,
   createStyles,
@@ -10,17 +6,20 @@ import {
   Theme,
   useMediaQuery,
   withStyles,
+  Tabs,
+  Tab,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
 } from "@material-ui/core";
-import Accordion from "@material-ui/core/Accordion";
-import AccordionSummary from "@material-ui/core/AccordionSummary";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
-import Typography from "@material-ui/core/Typography";
-import AddIcon from "@material-ui/icons/Add";
-import RemoveIcon from "@material-ui/icons/Remove";
+import {Add, Remove} from "@material-ui/icons";
+import ReactMarkdown from "react-markdown";
+import { useTranslation } from "react-i18next";
+import useStyles from "./styles";
 import Newsletter from "../../components/Newsletter";
 import Footer from "../../components/Footer";
 import FaqDetails from "./faqData";
-import ReactMarkdown from "react-markdown";
 import Sponsor from "../../components/Sponsor";
 
 interface FaqDataProps {
@@ -124,9 +123,9 @@ const Faq: React.FC<FaqDataProps> = () => {
                 <AccordionSummary
                   expandIcon={
                     expanded !== query.id ? (
-                      <AddIcon className={classes.buttonIcon} />
+                      <Add className={classes.buttonIcon} />
                     ) : (
-                      <RemoveIcon className={classes.buttonIcon} />
+                      <Remove className={classes.buttonIcon} />
                     )
                   }
                   aria-controls="panel1a-content"

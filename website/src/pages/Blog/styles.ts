@@ -110,9 +110,6 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   blogsWrapper: {
     justifyContent: 'space-between',
-    [theme.breakpoints.up("xl")]: {
-      justifyContent: 'left',
-    },
     [theme.breakpoints.down("sm")]: {
       justifyContent: 'center',
     },

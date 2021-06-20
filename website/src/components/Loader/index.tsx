@@ -1,5 +1,5 @@
-import { CircularProgress, makeStyles, Theme } from '@material-ui/core';
 import React from 'react';
+import { CircularProgress, makeStyles, Theme } from '@material-ui/core';
 import Center from '../../containers/Center';
 
 interface LoaderProps {
@@ -8,7 +8,7 @@ interface LoaderProps {
 
 const useStyles = makeStyles((theme: Theme) => ({
   spinner: {
-    color: theme.palette.secondary.dark,
+    color: theme.palette.primary.main,
   },
 }));
 
