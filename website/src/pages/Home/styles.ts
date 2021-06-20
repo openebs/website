@@ -228,7 +228,6 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: theme.spacing(2)
     },
     codeBlock: {
         display: 'flex',
@@ -468,7 +467,6 @@ const useStyles = makeStyles((theme) => ({
     codeTextHalfWidth: {
         justifyContent: 'flex-start',
         paddingLeft: theme.spacing(6),
-        marginTop: theme.spacing(2),
         maxWidth: '100%',
         [theme.breakpoints.down('md')]: {
             paddingLeft: theme.spacing(0),
@@ -476,12 +474,9 @@ const useStyles = makeStyles((theme) => ({
     },
     codeTextHalfWidthText: {
         whiteSpace: 'nowrap',
-        maxWidth: 'calc(75% - 40px)',
+        maxWidth: 'calc(100% - 40px)',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
-        [theme.breakpoints.down('md')]: {
-            maxWidth: 'calc(100% - 40px)',
-        },
     },
     codeTextHalfWidthUnderline: {
         maxWidth: '75%',
@@ -495,7 +490,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '16px',
         fontWeight: 400,
         marginTop: theme.spacing(2),
-        maxWidth: '60%',
+        maxWidth: '70%',
         [theme.breakpoints.down('md')]: {
             maxWidth: 'unset',
         },
@@ -591,6 +586,7 @@ const useStyles = makeStyles((theme) => ({
     },
     copyIcon: {
         width: '25px',
+        cursor: 'pointer',
         [theme.breakpoints.down('sm')]: {
             width: '20px'
         }
@@ -602,6 +598,9 @@ const useStyles = makeStyles((theme) => ({
             flex: '1 0 90%', 
             margin: theme.spacing(0, 'auto')
         }
+    },
+    maxWidth: {
+        maxWidth: '100%'
     }
 }))
 export default useStyles;

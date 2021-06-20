@@ -19,22 +19,24 @@ const Sponsor: React.FC = () => {
             className={classes.sponsorCompany}
           />
         </Grid>
-        <Grid container xs={12} md={8} sm={12} className={classes.gridContainer}>
-          <Grid item xs={12} md={6} sm={6}>
-            <Typography className={classes.paragraph}>{t("sponsors.mayadata")}</Typography>
-            <img
-              src="../Images/logos/mayadata_logo.svg"
-              alt={t("newsletter.email")}
-              className={classes.sponsorCompany}
-            />
-          </Grid>
-          <Grid item xs={12} md={6} sm={6}>
-            <Typography className={classes.paragraph}>{t("sponsors.cncf")}</Typography>
-            <img
-              src="../Images/logos/cncf_logo.svg"
-              alt={t("newsletter.email")}
-              className={classes.sponsorCompany}
-            />
+        <Grid item xs={12} md={8} sm={12} className={classes.gridContainer}>
+          <Grid container>
+            <Grid item xs={12} md={6} sm={6}>
+              <Typography className={classes.paragraph}>{t("sponsors.mayadata")}</Typography>
+              <img
+                src="../Images/logos/mayadata_logo.svg"
+                alt={t("newsletter.email")}
+                className={classes.sponsorCompany}
+              />
+            </Grid>
+            <Grid item xs={12} md={6} sm={6}>
+              <Typography className={classes.paragraph}>{t("sponsors.cncf")}</Typography>
+              <img
+                src="../Images/logos/cncf_logo.svg"
+                alt={t("newsletter.email")}
+                className={classes.sponsorCompany}
+              />
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
