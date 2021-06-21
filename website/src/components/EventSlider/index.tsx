@@ -6,10 +6,28 @@ import { useTranslation } from "react-i18next";
 import { Typography, Link, Box } from "@material-ui/core";
 import useStyles from "./style";
 import events from '../../resources/events.json';
+import { useEffect } from "react";
+import { useState } from "react";
+
+interface events{
+  id : number;
+  title: string;
+  date: string;
+  description: string;
+  buttonText : string;
+  buttonLink : string;
+}
 
 const EventSlider: React.FC = () => {
   const { t } = useTranslation();
   const classes = useStyles();
+  const [filteredEvents,setFilteredEvents] = useState<events[]>([]);
+  useEffect(() => {
+    
+      const currentDate = new Date();
+      const filteredEvents =  events.filter((event) => new Date(event.date) >= currentDate )
+      setFilteredEvents(filteredEvents);
+  }, [])
 
   const NextArrow = (props: any) => {
     const { className, onClick } = props;
@@ -44,11 +62,11 @@ const EventSlider: React.FC = () => {
   };
 
   const settings = {
-    infinite: true,
     autoplay: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    infinite: filteredEvents.length > 2,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
     className: `${classes.slidewrap} center`,
@@ -58,6 +76,7 @@ const EventSlider: React.FC = () => {
         settings: {
           slidesToShow: 2,
           swipeToSlide: true,
+          infinite: filteredEvents.length > 1,
         },
       },
       {
@@ -94,7 +113,7 @@ const EventSlider: React.FC = () => {
   return (
     <Slider {...settings}>
       {events.map((event: any) => {
-        return (
+        return (checkPastDate(event.date) && (<>
           <div key={event.id}>
             <div className={classes.slide}>
               <Box mb={2}>
@@ -118,7 +137,8 @@ const EventSlider: React.FC = () => {
               )}
             </div>
           </div>
-        );
+        </>
+        ))
       })}
     </Slider>
   );
