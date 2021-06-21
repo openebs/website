@@ -14,8 +14,8 @@ const Sponsor: React.FC = () => {
       <Grid container justify="space-evenly" alignItems="center">
         <Grid item xs={12} md={4}>
         <LazyLoadImage effect="blur"
-            src="../images/svg/sponsor_mule.svg"
-            alt={t("newsletter.email")}
+            src="../images/png/sponsor_mule.png"
+            alt={t("generic.sponsorMule")}
             className={classes.sponsorCompany}
           />
         </Grid>
@@ -25,7 +25,7 @@ const Sponsor: React.FC = () => {
               <Typography className={classes.paragraph}>{t("sponsors.mayadata")}</Typography>
               <img
                 src="../images/logos/mayadata_logo.svg"
-                alt={t("newsletter.email")}
+                alt={t("generic.mayadata")}
                 className={classes.sponsorCompany}
               />
             </Grid>
@@ -33,7 +33,7 @@ const Sponsor: React.FC = () => {
               <Typography className={classes.paragraph}>{t("sponsors.cncf")}</Typography>
               <img
                 src="../images/logos/cncf_logo.svg"
-                alt={t("newsletter.email")}
+                alt={t("generic.cncf")}
                 className={classes.sponsorCompany}
               />
             </Grid>

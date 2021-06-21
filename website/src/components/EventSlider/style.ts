@@ -59,11 +59,11 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     [theme.breakpoints.down("xs")]: {
-      marginRight:0
+      marginRight: theme.spacing(0)
     },
     "&  div.slick-slide": {
       "&  > div": {
-        padding: "20px",
+        padding: theme.spacing(2.5),
       },
     },
     "& .slick-disabled": {
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '& .slick-list': {
       [theme.breakpoints.down("xs")]: {
-        padding: '0 !important'
+        padding: `${theme.spacing(0)} !important`
       }
     }
   },

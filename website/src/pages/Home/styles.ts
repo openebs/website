@@ -387,7 +387,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             '& .slick-list': {
                 paddingLeft: '0 !important',
-                paddingRight: '50px important'
+                paddingRight: `${theme.spacing(6.25)}px important`
             },
         },
         '& .slick-arrow':{
