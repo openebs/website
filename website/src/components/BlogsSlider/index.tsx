@@ -1,5 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useTranslation } from "react-i18next";
 import useStyles from "./style";
 import {
@@ -17,21 +19,20 @@ interface BlogsSliderProps {
   recommendedBlogs: any;
 }
 
-const BlogsSlider: React.FC<BlogsSliderProps> = ({recommendedBlogs}) => {
+const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
   const { t } = useTranslation();
   const classes = useStyles();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
 
-  const SampleNextArrow = (props: any) => {
+  const NextArrow = (props: any) => {
     const { className, style, onClick } = props;
     return (
       <div
         className={className}
-        style={{ ...style, display:"block" }}
+        style={{ ...style, display: "block" }}
         onClick={onClick}
       >
         <img
-          loading="lazy"
           src="../Images/svg/right_arrow.svg"
           alt={t("home.adaptorsTestimonials.nextArrowAlt")}
         />
@@ -39,16 +40,15 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({recommendedBlogs}) => {
     );
   };
 
-  const SamplePrevArrow = (props: any) => {
+  const PrevArrow = (props: any) => {
     const { className, style, onClick } = props;
     return (
       <div
         className={className}
-        style={{ ...style, display:"block"}}
+        style={{ ...style, display: "block" }}
         onClick={onClick}
       >
         <img
-          loading="lazy"
           src="../Images/svg/left_arrow.svg"
           alt={t("home.adaptorsTestimonials.previousArrowAlt")}
         />
@@ -56,48 +56,50 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({recommendedBlogs}) => {
     );
   };
 
-const getTags = (tags: Array<string>) => {
-    const tagItems = tags.map((tag) => <CustomTag blogLabel={tag} key = {tag}/>);
+  const getTags = (tags: Array<string>) => {
+    const tagItems = tags.map((tag) => <CustomTag blogLabel={tag} key={tag} />);
     return tagItems;
-}
+  };
 
   return (
     <>
-    <div className={classes.sliderWrapper}>
-      <Slider dots={false}
-            autoplay={true}
-            autoplaySpeed={4000}
-            speed={500}
-            slidesToShow={2}
-            slidesToScroll={1}
-            cssEase="linear"
-            arrows={true}
-            rtl={false}
-            prevArrow={<SamplePrevArrow />}
-            nextArrow={<SampleNextArrow />}
-            responsive={[
-              {
-                breakpoint: mobileBreakpoint,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1
-                }
-              }
-            ]}>
-      {recommendedBlogs.map(( elm: any ) => {
-            return (  
+      <div className={classes.sliderWrapper}>
+        <Slider
+          dots={false}
+          autoplay={true}
+          autoplaySpeed={4000}
+          speed={500}
+          slidesToShow={2}
+          slidesToScroll={1}
+          cssEase="linear"
+          arrows={true}
+          rtl={false}
+          prevArrow={<PrevArrow />}
+          nextArrow={<NextArrow />}
+          responsive={[
+            {
+              breakpoint: mobileBreakpoint,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+              },
+            },
+          ]}
+        >
+          {recommendedBlogs.map((elm: any) => {
+            return (
               <div>
-                  <Card key={elm.id} className={classes.cardRoot}>
+                <Card key={elm.id} className={classes.cardRoot}>
                   <CardMedia
                     className={classes.media}
                     image={`/Images/blog/${elm.slug}.png`}
                   />
                   <CardContent>
-                    <div className = {classes.tagsWrapper}>
-                    {getTags(elm.tags)}
+                    <div className={classes.tagsWrapper}>
+                      {getTags(elm.tags)}
                     </div>
                     <Typography
-                      component={'span'} 
+                      component={"span"}
                       className={classes.title}
                       color="textSecondary"
                       gutterBottom
@@ -105,16 +107,21 @@ const getTags = (tags: Array<string>) => {
                       <ReactMarkdown children={elm.title} />
                     </Typography>
                     <span>
-                      <ReactMarkdown children={elm.content.substring(0, 200).replace(/[\n]/g, ". ").replace(/[^a-zA-Z ]/g, "") + "..."} />
+                      <ReactMarkdown
+                        children={
+                          elm.content
+                            .substring(0, 200)
+                            .replace(/[\n]/g, ". ")
+                            .replace(/[^a-zA-Z ]/g, "") + "..."
+                        }
+                      />
                       <Button
                         size="small"
                         disableRipple
                         variant="text"
                         className={classes.cardActionButton}
                         onClick={() =>
-                          window.location.assign(
-                            `/blog/${elm.slug}`
-                          )
+                          window.location.assign(`/blog/${elm.slug}`)
                         }
                       >
                         {t("blog.readMore")}
@@ -122,10 +129,10 @@ const getTags = (tags: Array<string>) => {
                     </span>
                   </CardContent>
                 </Card>
-            </div>
+              </div>
             );
-        })} 
-      </Slider>
+          })}
+        </Slider>
       </div>
     </>
   );
