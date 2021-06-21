@@ -33,16 +33,17 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2, 0, 2, 2),
     "& div.slick-active": {
       "& + .slick-active": {
-        "& + .slick-slide": {
+        "& + .slick-slide:not(:last-child)": {
           "&  > div": {
             opacity: ".3",
+            pointerEvents: 'none'
           },
         },
       },
     },
     [theme.breakpoints.down("sm")]: {
       "& div.slick-active": {
-        "& + .slick-active": {
+        "& + .slick-active:not(:last-child)": {
           "&  > div": {
             opacity: ".3",
           },
@@ -54,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
       "& .slick-next": {
         right: "-25px",
       },
-      '& .slick-slide:not(.slick-active)':{
+      '& .slick-slide:not(.slick-active):not(:first-child)':{
         opacity: '.5',
       },
     },
@@ -96,9 +97,15 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: "1rem",
     },
   },
-  slickButtons: {
-    display: 'block'
-  },
+
+  noEventText: {
+    fontSize: '30px',
+    textAlign: 'center',
+    minHeight: '150px',
+    [theme.breakpoints.down('sm')]: {
+        fontSize: '19px'
+    }
+},
 }));
 
 export default useStyles;
