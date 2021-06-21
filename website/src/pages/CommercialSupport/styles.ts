@@ -88,7 +88,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down("xs")]: {
       boxShadow:' 0px 4px 34px 21px rgba(70, 68, 151, 0.04)',
-      borderRadius: '20px 20px 40px 0px'
+      borderRadius: '20px 20px 40px 0px',
+      padding: theme.spacing(2, 1),
     }
   },
   cardAction: {
@@ -104,11 +105,12 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: '14px',
     },
   },
-  cardImage: {
+  cardImageWrapper: {
     height: "3.75rem",
-      width: "10rem",
-    [theme.breakpoints.down("lg")]: {
-      width: "7.5rem",
+    width: "auto",
+    [theme.breakpoints.down("xs")]: {
+      height: "2rem",
+      marginBottom: theme.spacing(2)
     },
   },
   cardActionButton: {

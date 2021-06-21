@@ -45,6 +45,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: theme.spacing(5),
     [theme.breakpoints.down('xs')]: {
       display: 'block',
+      marginTop: theme.spacing(3),
     },
   },
   author: {
@@ -58,6 +59,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: theme.spacing(1),
     width: '48px',
     height: '48px',
+    [theme.breakpoints.down('xs')]: {
+      margin: 'auto'
+    },
   },
   authorImg: {
     width: '100%',
@@ -97,8 +101,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.text.secondary,
     fontWeight: 400,
     [theme.breakpoints.down('xs')]: {
+      flexDirection:'column',
       justifyContent: 'center',
-      marginTop: theme.spacing(4)
+      marginTop: theme.spacing(3),
+      gap: theme.spacing(1)
     },
   },
   share: {
@@ -141,12 +147,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: 'auto',
     padding: theme.spacing(10, 0),
     '& p':{
-      fontSize: '16px',
+      fontSize: '1rem',
+      color: theme.palette.text.secondary,
+      lineHeight: '22px'
+    },
+    '& ul li':{
+      fontSize: '1rem',
       color: theme.palette.text.secondary,
       lineHeight: '22px'
     },
     '& h2': {
-      fontSize: '32px', 
+      fontSize: '2rem', 
       lineHeight: '50px'
     },
     '& code':{
@@ -169,15 +180,19 @@ const useStyles = makeStyles((theme: Theme) => ({
       width: '85%',
       padding: theme.spacing(4, 0),
       '& p':{
-        fontSize: '14px',
+        fontSize: '0.875rem',
+        lineHeight: '20px'
+      },
+      '& ul li':{
+        fontSize: '0.875rem',
         lineHeight: '20px'
       },
       '& h2': {
-        fontSize: '20px', 
+        fontSize: '1.25rem', 
         lineHeight: '26px'
       },
       '& h4': {
-        fontSize: '14px', 
+        fontSize: '0.875rem',
         lineHeight: '20px'
       },
     },

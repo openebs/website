@@ -214,7 +214,7 @@ const Blog: React.FC = () => {
                               >
                                 <ReactMarkdown children={elm.title} />
                               </Typography>
-                              <Typography component={"span"} variant={"body2"}>
+                              <Typography component={"span"} variant={"body2"} className={classes.blogDescription}>
                                 <ReactMarkdown
                                   children={getContentPreview(elm.content)}
                                 />
@@ -291,8 +291,7 @@ const Blog: React.FC = () => {
             <Grid
               container
               direction="row"
-              justify="flex-start"
-              alignItems="center"
+              className={classes.blogsWrapper}
             >
               {filteredAuthorData
                 ? filteredAuthorData

@@ -7,8 +7,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: "center",
     color: theme.palette.primary.light,
     paddingRight: theme.spacing(4),
+    fontSize: '1rem',
     [theme.breakpoints.down("sm")]: {
       paddingRight: theme.spacing(0),
+    },
+    [theme.breakpoints.down("xs")]: {
+      fontSize: '0.875rem',
     },
   },
   wrapperBlock: {
@@ -18,13 +22,18 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   cardActionButton: {
     textTransform: "none",
-    color: theme.palette.warning.main,
-    fontWeight: 700,
+    color: theme.palette.text.disabled,
+    fontWeight: 400,
     marginRight: theme.spacing(2),
+    fontSize: '1rem',
+    padding: theme.spacing(0),
+    [theme.breakpoints.down("xs")]: {
+      fontSize: '0.875rem',
+    },
   },
   small: {
-    width: theme.spacing(3),
-    height: theme.spacing(3),
+    width: '32px',
+    height: '32px',
     marginRight: theme.spacing(1),
   },
   rightSpacing: {

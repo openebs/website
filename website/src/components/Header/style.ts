@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
     header: {
         backgroundColor: 'transparent',
         boxShadow: 'none',
+        [theme.breakpoints.down('sm')]: {
+            backgroundColor: theme.palette.background.paper
+        },
     },
     scrolledHeader: {
         backgroundColor: theme.palette.background.paper //This background gets applied to header on scroll

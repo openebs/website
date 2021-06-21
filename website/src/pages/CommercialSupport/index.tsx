@@ -46,11 +46,12 @@ const Support: React.FC = () => {
                 </Typography>
               </Grid>
               <Grid item xs={12} sm={6} className={classes.supportImage}>
-                <span className={classes.introImage}>
+                <span>
                   <LazyLoadImage
                     effect="blur"
                     src="/Images/png/support_mule.png"
                     alt={t("commercialSupport.mule")}
+                    className={classes.introImage}
                   />
                 </span>
               </Grid>
@@ -69,11 +70,12 @@ const Support: React.FC = () => {
                 </Typography>
               </Grid>
               <Grid item xs={12} className={classes.supportImage}>
-                <span className={classes.introImage}>
+                <span>
                   <LazyLoadImage
                     effect="blur"
                     src="/Images/png/support_mule.png"
                     alt={t("commercialSupport.mule")}
+                    className={classes.introImage}
                   />
                 </span>
               </Grid>
@@ -104,12 +106,14 @@ const Support: React.FC = () => {
                 >
                   <Card className={classes.cardProps} key={elm.id}>
                     <CardContent>
-                      <img
-                        loading="lazy"
-                        src={elm.image}
-                        alt={elm.name}
-                        className={classes.cardImage}
-                      />
+                      <div className={classes.cardImageWrapper}>
+                        <img
+                          loading="lazy"
+                          src={elm.image}
+                          alt={elm.name}
+                          
+                        />
+                      </div>
                       <Typography className={classes.cardText}>
                         {elm.desc}
                       </Typography>
