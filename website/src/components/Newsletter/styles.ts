@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     fontSize: '32px',
     [theme.breakpoints.down("xs")]: {
-      fontSize: '20px'
+      fontSize: '1.25rem',
+      marginTop: theme.spacing(0)
     }
   },
   textField: {
@@ -47,8 +48,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: "flex",
   },
   solidButton: {
-    marginRight: theme.spacing(2.5),
     marginTop: theme.spacing(2),
+    boxShadow: 'none'
   },
 }));
 

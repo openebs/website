@@ -3,12 +3,19 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     position: "relative",
-    backgroundImage: `url(${"/assets/images/faq_background.png"})`,
+    backgroundImage: "url(/images/png/faq_background.png)",
     textAlign: "center",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
     backgroundSize: "cover",
     padding: theme.spacing(16, 5, 0),
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(5, 5),
+      marginTop: theme.spacing(10),
+      backgroundImage: "url(/images/png/faq_background_mobile.png)",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+    },
   },
   tabRoot: {
     justifyContent: "center",
@@ -36,11 +43,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "center",
     alignItems: "center",
     margin: theme.spacing(3, 0, 2.5),
+    [theme.breakpoints.down("xs")]: {
+      flexDirection: 'column',
+      margin: theme.spacing(0),
+      gap: theme.spacing(1)
+    },
   },
   large: {
     width: '60px',
     height: '60px',
     marginRight: theme.spacing(1.8),
+    [theme.breakpoints.down("xs")]: {
+      width: '32px',
+      height: '32px',
+    },
   },
   tabs: {
     margin: `${theme.spacing(1)}px auto`,
@@ -71,12 +87,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: theme.spacing(0),
     justifyContent: "center",
     alignItems: "center",
-    fontSize: '2.625rem'
+    fontSize: '2.625rem',
+    [theme.breakpoints.down("xs")]: {
+      fontSize: '1.5rem',
+    },
   },
   authorDesc: {
     paddingBottom: theme.spacing(3),
     fontSize: '16px',
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: '0.875rem',
+      margin: theme.spacing(0),
+      paddingBottom: theme.spacing(0),
+    },
   },
   authorURL: {
     color: theme.palette.info.light,
@@ -151,9 +175,20 @@ const useStyles = makeStyles((theme: Theme) => ({
     transform: "scale(0.8)",
   },
   title: {
-    fontSize: 22,
+    fontSize: '1.375rem',
     fontWeight: 700,
     cursor: "pointer",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: '1rem'
+    },
+  },
+  blogDescription: {
+    fontSize: '1rem',
+    fontWeight: 400,
+    color: theme.palette.text.secondary,
+    [theme.breakpoints.down("xs")]: {
+      fontSize: '0.875rem'
+    },
   },
   pos: {
     marginBottom: 12,
@@ -167,6 +202,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     textTransform: "none",
     color: theme.palette.warning.main,
     fontWeight: 700,
+    [theme.breakpoints.down("xs")]: {
+      display: 'none'
+    },
   },
   linkBtn: {
     textDecoration: "none !important",

@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import useStyles from "./styles";
 import { readingTime } from "../../utils/readingTime";
-import { Avatar, Button, Typography } from "@material-ui/core";
+import { Avatar, Button } from "@material-ui/core";
 import { getAvatar } from "../../utils/getAvatar";
 
 interface displayAuthorandReadTimeProps {
@@ -34,9 +34,7 @@ const DisplayAuthorandReadTime: React.FC<displayAuthorandReadTimeProps> = ({
               className={classes.cardActionButton}
               onClick={() => window.location.assign(`/blog/?author=${author}`)}
             >
-              <Typography component={"span"} variant={"body2"}>
-                {author && author}
-              </Typography>
+              {author && author}
             </Button>
           </span>
           <p className={classes.readTime}>

@@ -89,17 +89,18 @@ const useStyles = makeStyles((theme: Theme) => ({
       boxShadow: "0px 4px 34px 21px rgba(70, 68, 151, 0.04)",
       borderRadius: "20px 20px 60px 0px",
     },
-    [theme.breakpoints.down("xs")]: {
-      boxShadow:' 0px 4px 34px 21px rgba(70, 68, 151, 0.04)',
-      borderRadius: '20px 20px 40px 0px'
-    },
     [theme.breakpoints.down("sm")]: {
       height: '100%',
       paddingBottom: '40px',
       '&:hover':{
         height: '100%'
       }
-    }
+    },
+    [theme.breakpoints.down("xs")]: {
+      boxShadow:' 0px 4px 34px 21px rgba(70, 68, 151, 0.04)',
+      borderRadius: '20px 20px 40px 0px',
+      padding: theme.spacing(2, 1),
+    },
   },
   cardAction: {
     visibility: "hidden",
@@ -119,13 +120,13 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: '14px',
     },
   },
-  cardImage: {
+  cardImageWrapper: {
     height: "3.75rem",
-      width: "10rem",
-    [theme.breakpoints.down("lg")]: {
-      width: "7.5rem",
-      height: 'auto'
-    },
+    width: "auto",
+    [theme.breakpoints.down("xs")]: {
+      height: "2rem",
+      marginBottom: theme.spacing(2),
+    }
   },
   cardActionButton: {
     textTransform: "none",
