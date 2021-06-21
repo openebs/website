@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: theme.spacing(6)
   },
   communityBackground: {
-    background: "url(/Images/png/community_background.png)",
+    background: "url(/images/png/community_background.png)",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     [theme.breakpoints.down("xs")]: {
@@ -106,11 +106,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   installationDiv: {
-    background: "url(/Images/png/community_desktop.png)",
+    background: "url(/images/png/community_desktop.png)",
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     [theme.breakpoints.down("xs")]: {
-      background: "url(/Images/png/community_mobile.png)",
+      background: "url(/images/png/community_mobile.png)",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
     },

@@ -33,7 +33,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
         onClick={onClick}
       >
         <img
-          src="../Images/svg/right_arrow.svg"
+          src="../images/svg/right_arrow.svg"
           alt={t("home.adaptorsTestimonials.nextArrowAlt")}
         />
       </div>
@@ -49,7 +49,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
         onClick={onClick}
       >
         <img
-          src="../Images/svg/left_arrow.svg"
+          src="../images/svg/left_arrow.svg"
           alt={t("home.adaptorsTestimonials.previousArrowAlt")}
         />
       </div>
@@ -92,7 +92,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
                 <Card key={elm.id} className={classes.cardRoot}>
                   <CardMedia
                     className={classes.media}
-                    image={`/Images/blog/${elm.slug}.png`}
+                    image={`/images/blog/${elm.slug}.png`}
                   />
                   <CardContent>
                     <div className={classes.tagsWrapper}>

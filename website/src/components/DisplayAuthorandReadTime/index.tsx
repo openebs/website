@@ -24,7 +24,7 @@ const DisplayAuthorandReadTime: React.FC<displayAuthorandReadTimeProps> = ({
           <span className={classes.author}>
             <Avatar
               alt={author && author}
-              src={`../Images/blog/authors/${getAvatar(author)}.png`}
+              src={`../images/blog/authors/${getAvatar(author)}.png`}
               className={classes.small}
             />
             <Button
@@ -42,7 +42,7 @@ const DisplayAuthorandReadTime: React.FC<displayAuthorandReadTimeProps> = ({
           <p className={classes.readTime}>
             <img
               loading="lazy"
-              src="../Images/svg/time-five.svg"
+              src="../images/svg/time-five.svg"
               alt={t("header.submitAlt")}
               className={classes.rightSpacing}
             />

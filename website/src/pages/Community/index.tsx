@@ -20,22 +20,22 @@ const Community: React.FC = () => {
   const dependentProjects = [
     {
       label: "rancher",
-      image_src: "../Images/logos/rancher.svg",
+      image_src: "../images/logos/rancher.svg",
       alt: t("generic.rancher"),
     },
     {
       label: "intel",
-      image_src: "../Images/logos/intel.svg",
+      image_src: "../images/logos/intel.svg",
       alt: t("generic.intel"),
     },
     {
       label: "gostor",
-      image_src: "../Images/logos/gostor.svg",
+      image_src: "../images/logos/gostor.svg",
       alt: t("generic.gostor"),
     },
     {
       label: "openzfs",
-      image_src: "../Images/logos/openzfs.svg",
+      image_src: "../images/logos/openzfs.svg",
       alt: t("generic.openzfs"),
     },
   ];
@@ -65,7 +65,7 @@ const Community: React.FC = () => {
                 <span className={classes.introImage}>
                   <LazyLoadImage
                     effect="blur"
-                    src="/Images/svg/community.svg"
+                    src="/images/svg/community.svg"
                     alt={t("community.mule")}
                   />
                 </span>
@@ -88,7 +88,7 @@ const Community: React.FC = () => {
                 <span className={classes.introImage}>
                   <LazyLoadImage
                     effect="blur"
-                    src="/Images/svg/community.svg"
+                    src="/images/svg/community.svg"
                     alt={t("community.mule")}
                   />
                 </span>
@@ -136,7 +136,7 @@ const Community: React.FC = () => {
                   <div className={classes.iconHolder}>
                     <img
                       loading="lazy"
-                      src="../Images/svg/openebs_hacker.svg"
+                      src="../images/svg/openebs_hacker.svg"
                       alt={t("contributing.openEBSHackerTitle")}
                     ></img>
                   </div>
@@ -164,7 +164,7 @@ const Community: React.FC = () => {
                   <div className={classes.iconHolder}>
                     <img
                       loading="lazy"
-                      src="../Images/svg/governance.svg"
+                      src="../images/svg/governance.svg"
                       alt={t("contributing.governanceTitle")}
                     ></img>
                   </div>
@@ -207,7 +207,7 @@ const Community: React.FC = () => {
                 </Typography>
                 <img
                   loading="lazy"
-                  src="../Images/logos/mayadata_logo.svg"
+                  src="../images/logos/mayadata_logo.svg"
                   alt={t("generic.mayadata")}
                   className={classes.mayaDataLogo}
                 />

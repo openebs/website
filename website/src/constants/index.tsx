@@ -27,6 +27,7 @@ export const API = {
 export enum VIEW_PORT {
   MOBILE_BREAKPOINT = 760,
   TABLET_BREAKPOINT = 768,
+  LAPTOP_BREAKPOINT = 960,
 };
 
 export enum EXTERNAL_LINK_LABELS {
