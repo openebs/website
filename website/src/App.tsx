@@ -5,6 +5,8 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from './theme/theme';
 import './fonts'
+import { Helmet } from "./components/Helmet";
+
 const Scaffold = React.lazy(() => import('./containers/Scaffold'));
 const Home = React.lazy(() => import('./pages/Home'));
 const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'));
@@ -18,6 +20,7 @@ const Routes: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <Helmet />
       <div>
         <Scaffold>
           {/* ---All routes should be wrapped within scaffold--- */}
