@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   cardActionButton: {
     textTransform: "none",
     color: theme.palette.text.disabled,
-    fontWeight: 400,
+    fontWeight: 700,
     marginRight: theme.spacing(2),
     fontSize: '1rem',
     padding: theme.spacing(0),

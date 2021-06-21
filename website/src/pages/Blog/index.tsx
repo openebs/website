@@ -321,7 +321,7 @@ const Blog: React.FC = () => {
                               >
                                 <ReactMarkdown children={elm.title} />
                               </span>
-                              <span>
+                              <span className={classes.blogDescription}>
                                 <ReactMarkdown
                                   children={getContentPreview(elm.content)}
                                 />

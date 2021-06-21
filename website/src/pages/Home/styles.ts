@@ -388,8 +388,8 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             width: '460px',
         },
-        [theme.breakpoints.down('sm')]: {
-            width: '410px',
+        [theme.breakpoints.down('xs')]: {
+            width: '375px',
         },
     },
     testimonialWrapper: {
