@@ -216,7 +216,7 @@ const Home: React.FC = () => {
         setAsciinemaTitle(provider);
     };
 
-    const SampleNextArrow = (props:any) => {
+    const NextArrow = (props:any) => {
         const { className, style, onClick } = props;
         return (
           <div
@@ -227,7 +227,7 @@ const Home: React.FC = () => {
         );
       }
       
-    const SamplePrevArrow = (props:any) => {
+    const PrevArrow = (props:any) => {
         const { className, style, onClick } = props;
         return (
           <div
@@ -249,8 +249,8 @@ const Home: React.FC = () => {
         cssEase:"linear",
         arrows:true,
         centerMode:true,
-        prevArrow: <SamplePrevArrow />,
-        nextArrow: <SampleNextArrow />,
+        prevArrow: <PrevArrow />,
+        nextArrow: <NextArrow />,
         className:classes.testimonialCarousel,
         responsive: [
             {
