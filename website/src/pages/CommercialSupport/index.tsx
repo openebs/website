@@ -49,7 +49,7 @@ const Support: React.FC = () => {
                 <span className={classes.introImage}>
                   <LazyLoadImage
                     effect="blur"
-                    src="/Images/png/support_mule.png"
+                    src="/images/png/support_mule.png"
                     alt={t("commercialSupport.mule")}
                   />
                 </span>
@@ -72,7 +72,7 @@ const Support: React.FC = () => {
                 <span className={classes.introImage}>
                   <LazyLoadImage
                     effect="blur"
-                    src="/Images/png/support_mule.png"
+                    src="/images/png/support_mule.png"
                     alt={t("commercialSupport.mule")}
                   />
                 </span>
@@ -131,7 +131,7 @@ const Support: React.FC = () => {
                           {t("commercialSupport.visitWebsite")}
                           <img
                             loading="lazy"
-                            src="../Images/svg/arrow_orange.svg"
+                            src="../images/svg/arrow_orange.svg"
                             alt={t("header.submitAlt")}
                             className={classes.arrow}
                           />

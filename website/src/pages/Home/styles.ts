@@ -185,7 +185,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     installationDiv: {
-        background:  'url(/Images/png/homepage_installation_background.png)',
+        background:  'url(/images/png/homepage_installation_background.png)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         padding: theme.spacing(9, 20, 0),
@@ -194,7 +194,7 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.down('xs')]: {
             padding: theme.spacing(4, 2, 0),
-            background:  'url(/Images/png/homepage_installation_background_mobile.png)',
+            background:  'url(/images/png/homepage_installation_background_mobile.png)',
             backgroundSize: 'cover',
             // backgroundPositionX: '-300px' homepage_installation_background_mobile.png
         },
@@ -543,7 +543,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center'
     },
     footerBackground: {
-        background:  'url(/Images/png/home_footer_background.png)',
+        background:  'url(/images/png/home_footer_background.png)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPositionX: 'left',
@@ -554,7 +554,7 @@ const useStyles = makeStyles((theme) => ({
             backgroundSize: 'cover',
         },
         [theme.breakpoints.down('xs')]: {
-            background:  'url(/Images/png/home_footer_background_mobile.png)',
+            background:  'url(/images/png/home_footer_background_mobile.png)',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
         },

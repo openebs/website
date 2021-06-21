@@ -57,7 +57,7 @@ const Newsletter: React.FC<NewsletterTitleProps> = ({ newsletterTitle }) => {
                     endAdornment: (
                       <IconButton aria-label="submit" type="submit">
                         <img
-                          src="../Images/svg/rightArrow_white.svg"
+                          src="../images/svg/rightArrow_white.svg"
                           alt={t("newsletter.email")}
                         />
                       </IconButton>

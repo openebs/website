@@ -20,7 +20,7 @@ const EventSlider: React.FC = () => {
       >
         <img
           loading="lazy"
-          src="../Images/svg/right_arrow.svg"
+          src="../images/svg/right_arrow.svg"
           alt={t("community.communityEvents.nextArrowAlt")}
         />
       </div>
@@ -36,7 +36,7 @@ const EventSlider: React.FC = () => {
       >
         <img
           loading="lazy"
-          src="../Images/svg/left_arrow.svg"
+          src="../images/svg/left_arrow.svg"
           alt={t("community.communityEvents.previousArrowAlt")}
         />
       </div>
@@ -111,7 +111,7 @@ const EventSlider: React.FC = () => {
                   <Link className={classes.linkText} href={event.buttonLink} target="_blank">
                     <Box display="flex" alignItems="center">
                       {event.buttonText ? event.buttonText : t('community.communityEvents.clickHere')}
-                      <img loading="lazy" src="../Images/svg/arrow_orange.svg" alt="" />
+                      <img loading="lazy" src="../images/svg/arrow_orange.svg" alt="" />
                     </Box>
                   </Link>
                 </Box>

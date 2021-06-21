@@ -141,28 +141,28 @@ const Home: React.FC = () => {
     // Installation
     const storageProviders = {
         Redis : {
-            logo: "../Images/logos/redis.svg",
-            white_logo: "../Images/logos/redis_white.svg"
+            logo: "../images/logos/redis.svg",
+            white_logo: "../images/logos/redis_white.svg"
         },
         Minio : {
-            logo: "../Images/logos/minio.svg",
-            white_logo: "../Images/logos/minio_white.svg"
+            logo: "../images/logos/minio.svg",
+            white_logo: "../images/logos/minio_white.svg"
         },
         Percona : {
-            logo: "../Images/logos/percona.svg",
-            white_logo: "../Images/logos/percona_white.svg"
+            logo: "../images/logos/percona.svg",
+            white_logo: "../images/logos/percona_white.svg"
         },
         MongoDB : {
-            logo: "../Images/logos/mongodb.svg",
-            white_logo: "../Images/logos/mongodb_white.svg"
+            logo: "../images/logos/mongodb.svg",
+            white_logo: "../images/logos/mongodb_white.svg"
         },
         Prometheus : {
-            logo: "../Images/logos/Prometheus.svg",
-            white_logo: "../Images/logos/prometheus_white.svg"
+            logo: "../images/logos/prometheus.svg",
+            white_logo: "../images/logos/prometheus_white.svg"
         },
         MySQL : {
-            logo: "../Images/logos/mysql.svg",
-            white_logo: "../Images/logos/mysql_white.svg"
+            logo: "../images/logos/mysql.svg",
+            white_logo: "../images/logos/mysql_white.svg"
         }
     };
 
@@ -223,7 +223,7 @@ const Home: React.FC = () => {
             className={className}
             style={{ ...style, display: "block" }}
             onClick={onClick}
-          ><img loading="lazy" src="../Images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} /></div>
+          ><img loading="lazy" src="../images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} /></div>
         );
       }
       
@@ -234,7 +234,7 @@ const Home: React.FC = () => {
             className={className}
             style={{ ...style, display: "block" }}
             onClick={onClick}
-          ><img loading="lazy" src="../Images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} /></div>
+          ><img loading="lazy" src="../images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} /></div>
         );
     }
     
@@ -277,7 +277,7 @@ const Home: React.FC = () => {
                         </Grid>
                         <Grid item sm={4} xs={1}>
                             <Paper className={[classes.paper, classes.secondGrid].join(' ')}>
-                                <img loading="lazy" placeholder={"../Images/png/homepage_main.png?q=20"} src="../Images/png/homepage_main.png?q=20" alt={t('home.landingScreenImageAlt')} className={classes.landingImage}></img>
+                                <img loading="lazy" placeholder={"../images/png/homepage_main.png?q=20"} src="../images/png/homepage_main.png?q=20" alt={t('home.landingScreenImageAlt')} className={classes.landingImage}></img>
                             </Paper>
                         </Grid>
                         <Grid item xs={12}>
@@ -297,7 +297,7 @@ const Home: React.FC = () => {
                                         <Button
                                             variant="outlined"
                                             color="secondary"
-                                            endIcon={<img loading="lazy" src="../Images/svg/play.svg" alt={t('home.openebs.watchDemo')}></img>}
+                                            endIcon={<img loading="lazy" src="../images/svg/play.svg" alt={t('home.openebs.watchDemo')}></img>}
                                             className={classes.outlineButton}
                                             href={EXTERNAL_LINKS.OPENEBS_YOUTUBE_INTRO} target="_blank"
                                         >
@@ -319,14 +319,14 @@ const Home: React.FC = () => {
                                         <Button variant="contained" 
                                         color="secondary" 
                                         className={classes.solidButton}
-                                        endIcon={<img loading="lazy" src="../Images/logos/slack_white.svg" alt={t('home.community.joinOnSlack')}></img>}
+                                        endIcon={<img loading="lazy" src="../images/logos/slack_white.svg" alt={t('home.community.joinOnSlack')}></img>}
                                         href="/community">
                                             {t('home.community.joinOnSlack')}
                                         </Button>
                                         <Button
                                             variant="outlined"
                                             color="secondary"
-                                            endIcon={<img loading="lazy" src="../Images/logos/github_orange.svg" alt={t('home.community.joinOnGitHub')}></img>}
+                                            endIcon={<img loading="lazy" src="../images/logos/github_orange.svg" alt={t('home.community.joinOnGitHub')}></img>}
                                             className={classes.outlineButton}
                                             href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO} target="_blank"
                                         >
@@ -361,7 +361,7 @@ const Home: React.FC = () => {
                                         <Button
                                             variant="outlined"
                                             color="secondary"
-                                            endIcon={<img loading="lazy" src="../Images/svg/play.svg" alt={t('home.openebs.watchDemo')}></img>}
+                                            endIcon={<img loading="lazy" src="../images/svg/play.svg" alt={t('home.openebs.watchDemo')}></img>}
                                             href={EXTERNAL_LINKS.OPENEBS_YOUTUBE_INTRO} target="_blank"
                                         >
                                         {t('home.openebs.watchDemo')}
@@ -382,14 +382,14 @@ const Home: React.FC = () => {
                                         <Button variant="contained" 
                                         color="secondary" 
                                         className={classes.solidButton}
-                                        endIcon={<img loading="lazy" src="../Images/logos/slack_white.svg" alt={t('home.community.joinOnSlack')}></img>}
+                                        endIcon={<img loading="lazy" src="../images/logos/slack_white.svg" alt={t('home.community.joinOnSlack')}></img>}
                                         href="/community">
                                             {t('home.community.joinOnSlack')}
                                         </Button>
                                         <Button
                                             variant="outlined"
                                             color="secondary"
-                                            endIcon={<img loading="lazy" src="../Images/logos/github_orange.svg" alt={t('home.community.joinOnGitHub')}></img>}
+                                            endIcon={<img loading="lazy" src="../images/logos/github_orange.svg" alt={t('home.community.joinOnGitHub')}></img>}
                                             href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO} target="_blank"
                                         >
                                         {t('home.community.joinOnGitHub')}
@@ -400,7 +400,7 @@ const Home: React.FC = () => {
                             <Grid item lg={6} md={5} sm={4}>
                                 <Paper className={classes.paper}>
                                     <span className={classes.landingImage}>
-                                        <LazyLoadImage effect="blur" src={"../Images/png/homepage_main.png"} alt={t('home.landingScreenImageAlt')}  />                                 
+                                        <LazyLoadImage effect="blur" src={"../images/png/homepage_main.png"} alt={t('home.landingScreenImageAlt')}  />                                 
                                     </span>
                                 </Paper>
                             </Grid>
@@ -412,34 +412,34 @@ const Home: React.FC = () => {
             <section>
                 <Slider {...logoSliderSettings} className={classes.logoCarousel}>
                     <div>
-                        <img loading="lazy" src="../Images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
+                        <img loading="lazy" src="../images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/arista_blue.png" alt={t('home.usedInProductionBy.arista')} />
+                        <img loading="lazy" src="../images/logos/arista_blue.png" alt={t('home.usedInProductionBy.arista')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/orange_blue.png" alt={t('home.usedInProductionBy.orange')} />
+                        <img loading="lazy" src="../images/logos/orange_blue.png" alt={t('home.usedInProductionBy.orange')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/optoro_blue.png" alt={t('home.usedInProductionBy.optoro')} />
+                        <img loading="lazy" src="../images/logos/optoro_blue.png" alt={t('home.usedInProductionBy.optoro')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
+                        <img loading="lazy" src="../images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
+                        <img loading="lazy" src="../images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/arista_blue.png" alt={t('home.usedInProductionBy.arista')} />
+                        <img loading="lazy" src="../images/logos/arista_blue.png" alt={t('home.usedInProductionBy.arista')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/orange_blue.png" alt={t('home.usedInProductionBy.orange')} />
+                        <img loading="lazy" src="../images/logos/orange_blue.png" alt={t('home.usedInProductionBy.orange')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/optoro_blue.png" alt={t('home.usedInProductionBy.optoro')} />
+                        <img loading="lazy" src="../images/logos/optoro_blue.png" alt={t('home.usedInProductionBy.optoro')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
+                        <img loading="lazy" src="../images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
                     </div>
                 </Slider>
             </section>
@@ -456,7 +456,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../Images/svg/money_bag.svg" alt={t('home.whatsInItForYou.saveMoney')}></img>
+                                <img loading="lazy" src="../images/svg/money_bag.svg" alt={t('home.whatsInItForYou.saveMoney')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.saveMoney')}
@@ -466,7 +466,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../Images/svg/box.svg" alt={t('home.whatsInItForYou.flexibility')}></img>
+                                <img loading="lazy" src="../images/svg/box.svg" alt={t('home.whatsInItForYou.flexibility')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.flexibility')}
@@ -476,7 +476,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../Images/svg/wheel.svg" alt={t('home.whatsInItForYou.resilience')}></img>
+                                <img loading="lazy" src="../images/svg/wheel.svg" alt={t('home.whatsInItForYou.resilience')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.resilience')}
@@ -486,7 +486,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../Images/svg/cloud.svg" alt={t('home.whatsInItForYou.restoreData')}></img>
+                                <img loading="lazy" src="../images/svg/cloud.svg" alt={t('home.whatsInItForYou.restoreData')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.restoreData')}
@@ -496,7 +496,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../Images/svg/lock.svg" alt={t('home.whatsInItForYou.openSource')}></img>
+                                <img loading="lazy" src="../images/svg/lock.svg" alt={t('home.whatsInItForYou.openSource')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.openSource')}
@@ -506,7 +506,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../Images/svg/settings.svg" alt={t('home.whatsInItForYou.granularControl')}></img>
+                                <img loading="lazy" src="../images/svg/settings.svg" alt={t('home.whatsInItForYou.granularControl')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.granularControl')}
@@ -532,7 +532,7 @@ const Home: React.FC = () => {
                             </Typography>
                             <LightTooltip title={copyCommand.status}>
                                 <Link onClick={copyToClipboard} className={`${classes.copyIcon} ${classes.imageFluid}`}>
-                                    <img loading="lazy" src="../Images/svg/copy.svg" alt={copyCommand.status} />
+                                    <img loading="lazy" src="../images/svg/copy.svg" alt={copyCommand.status} />
                                 </Link>
                             </LightTooltip>
                         </Box >
@@ -557,7 +557,7 @@ const Home: React.FC = () => {
                             <div className={classes.installationCodeWrapper}>
 
                                 <Paper className={[classes.paper, classes.desktopCommandWrapper].join(' ')}>
-                                    <img loading="lazy" src="../Images/png/homepage_desktop.png" alt={t('home.installation.desktopImgAlt')} className={classes.desktopImage}></img>
+                                    <img loading="lazy" src="../images/png/homepage_desktop.png" alt={t('home.installation.desktopImgAlt')} className={classes.desktopImage}></img>
                                     <div className={classes.installationProviderCommandWrapper}>
                                         <Typography className={classes.installationProvider}>
                                             {asciinemaTitle}
@@ -636,7 +636,7 @@ const Home: React.FC = () => {
                                 </Paper>
 
                                 <Paper className={[classes.paper, classes.desktopCommandWrapper].join(' ')}>
-                                    <img loading="lazy" src="../Images/png/homepage_desktop.png" alt={t('home.installation.desktopImgAlt')} className={classes.desktopImage}></img>
+                                    <img loading="lazy" src="../images/png/homepage_desktop.png" alt={t('home.installation.desktopImgAlt')} className={classes.desktopImage}></img>
                                     <div className={classes.installationProviderCommandWrapper}>
                                         <Typography className={classes.installationProvider}>
                                             {asciinemaTitle}
@@ -684,7 +684,7 @@ const Home: React.FC = () => {
                     }
                     <Grid container spacing={3} className={events.length ? '' : classes.noEvents}>
                         <Grid item xs={12} sm={!isMobileView ? 3 : 12} xl={3} className={`${classes.imageFluid}`}>
-                        <LazyLoadImage effect="blur" loading="lazy" src="../Images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} />
+                        <LazyLoadImage effect="blur" loading="lazy" src="../images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} />
                             {isMobileView && 
                             <Typography variant="h2" className={classes.sectionTitle}>
                                 {t("community.communityEvents.title")}
@@ -707,7 +707,7 @@ const Home: React.FC = () => {
                 {isMobileView && 
                     <Grid item xs={12} className={classes.testimonialMuleWrapper}>
                         <Paper className={[classes.paper, classes.testimonialMule].join(' ')}>
-                            <LazyLoadImage effect="blur" loading="lazy" src="../Images/png/testimonials_mule.png" alt="" />
+                            <LazyLoadImage effect="blur" loading="lazy" src="../images/png/testimonials_mule.png" alt="" />
                         </Paper>
                     </Grid>
                 }
@@ -756,7 +756,7 @@ const Home: React.FC = () => {
                     {!isMobileView && 
                         <Grid item sm={5} className={classes.testimonialMuleWrapper}>
                             <Paper className={[classes.paper, classes.testimonialMule].join(' ')}>
-                                <LazyLoadImage effect="blur" src="../Images/png/testimonials_mule.png" alt="" />
+                                <LazyLoadImage effect="blur" src="../images/png/testimonials_mule.png" alt="" />
                             </Paper>
                         </Grid>
                     }
@@ -784,7 +784,7 @@ const Home: React.FC = () => {
                         <Grid item md={4} sm={12}>
                             <Paper className={[classes.paper, classes.flyingMuleWrapper].join(' ')}>
                                 <span className={classes.flyingMule}>
-                                    <LazyLoadImage effect="blur" src="../Images/png/flying_mule.png" alt={t('home.youAreReadyToStart.flyingMuleAlt')} />
+                                    <LazyLoadImage effect="blur" src="../images/png/flying_mule.png" alt={t('home.youAreReadyToStart.flyingMuleAlt')} />
                                 </span>
                             </Paper>
                         </Grid>
@@ -800,7 +800,7 @@ const Home: React.FC = () => {
 
                                                 <LightTooltip title={copyCommand.status}>
                                                     <Link onClick={copyToClipboard} className={`${classes.copyIcon} ${classes.imageFluid}`}>
-                                                        <img loading="lazy" src="../Images/svg/copy_orange.svg" alt="" />
+                                                        <img loading="lazy" src="../images/svg/copy_orange.svg" alt="" />
                                                     </Link>
                                                 </LightTooltip>
                                             </div>
@@ -819,7 +819,7 @@ const Home: React.FC = () => {
                                                         {t('home.youAreReadyToStart.readTheGuide.title')}
                                                     </Typography>
                                                     <IconButton className={classes.iconButton}>
-                                                        <img loading="lazy" src="../Images/svg/arrow_orange.svg" alt={t('header.submitAlt')}/>
+                                                        <img loading="lazy" src="../images/svg/arrow_orange.svg" alt={t('header.submitAlt')}/>
                                                     </IconButton>
                                                 </Link>
                                             </div>

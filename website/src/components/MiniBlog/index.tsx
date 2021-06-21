@@ -58,7 +58,7 @@ const MiniBlog: React.FC = () => {
       >
         <img
           loading="lazy"
-          src="../Images/svg/right_arrow.svg"
+          src="../images/svg/right_arrow.svg"
           alt={t("home.adaptorsTestimonials.nextArrowAlt")}
         />
       </div>
@@ -75,7 +75,7 @@ const MiniBlog: React.FC = () => {
       >
         <img
           loading="lazy"
-          src="../Images/svg/left_arrow.svg"
+          src="../images/svg/left_arrow.svg"
           alt={t("home.adaptorsTestimonials.previousArrowAlt")}
         />
       </div>
@@ -222,7 +222,7 @@ const MiniBlog: React.FC = () => {
                   <Card key={elm.id} className={classes.cardRoot}>
                     <CardMedia
                       className={classes.media}
-                      image={`/Images/blog/${elm.slug}.png`}
+                      image={`/images/blog/${elm.slug}.png`}
                     />
                     <CardContent className={classes.cardContent}>
                       <DisplayAuthorandReadTime

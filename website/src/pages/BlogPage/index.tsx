@@ -78,19 +78,19 @@ const BlogPage: React.FC = () => {
   const socialLinks = [
     {
         label: SOCIAL_PLATFORMS.FACEBOOK,
-        imgURL: "../Images/logos/facebook_blue.svg",
+        imgURL: "../images/logos/facebook_blue.svg",
     },
     {
         label: SOCIAL_PLATFORMS.SLACK,
-        imgURL: "../Images/logos/slack_blue.svg",
+        imgURL: "../images/logos/slack_blue.svg",
     },
     {
         label: SOCIAL_PLATFORMS.LINKEDIN,
-        imgURL: "../Images/logos/linkedin_blue.svg",
+        imgURL: "../images/logos/linkedin_blue.svg",
     },
     {
         label: SOCIAL_PLATFORMS.TWITTER,
-        imgURL: "../Images/logos/twitter_blue.svg",
+        imgURL: "../images/logos/twitter_blue.svg",
     },
   ];
 
@@ -138,7 +138,7 @@ const BlogPage: React.FC = () => {
                   
                     <div className={classes.author}>
                       <div className={classes.authorImgWrapper}>
-                        <img loading="lazy" src={`../Images/blog/authors/${currentBlogDetails?.author.toLowerCase()
+                        <img loading="lazy" src={`../images/blog/authors/${currentBlogDetails?.author.toLowerCase()
                                     .replace(/[^\w ]+/g,'')
                                     .replace(/ +/g,'-')}.png`} className={classes.authorImg} alt={currentBlogDetails?.author}></img>
                       </div>
@@ -170,7 +170,7 @@ const BlogPage: React.FC = () => {
             </div>
 
             <div className={classes.blogBody}>
-              <img loading="lazy" src={`/Images/blog/${queryBlogName}.png`} alt={currentBlogDetails?.title} className={classes.blogImg}></img>
+              <img loading="lazy" src={`/images/blog/${queryBlogName}.png`} alt={currentBlogDetails?.title} className={classes.blogImg}></img>
               <ReactMarkdown children={currentBlogDetails?.content} />
             </div>
             
@@ -205,7 +205,7 @@ const BlogPage: React.FC = () => {
                 {width < mobileBreakpoint ?
                 <Button
                   className={classes.arrowButton}
-                  endIcon={<img loading="lazy" src="../Images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
+                  endIcon={<img loading="lazy" src="../images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
                   onClick={() => window.location.assign(`/blog/${previousBlog.slug}`) }
               >
                 {t('blog.previousArticle')}
@@ -213,7 +213,7 @@ const BlogPage: React.FC = () => {
               : 
               <Button
                   className={classes.arrowButton}
-                  startIcon={<img loading="lazy" src="../Images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
+                  startIcon={<img loading="lazy" src="../images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
                   onClick={() => window.location.assign(`/blog/${previousBlog.slug}`) }
               >
                 {t('blog.previousArticle')}
@@ -227,7 +227,7 @@ const BlogPage: React.FC = () => {
               <div className={classes.rightArrowButtonWrapper}>
                   <Button
                     className={classes.arrowButton}
-                    endIcon={<img loading="lazy" src="../Images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} />}
+                    endIcon={<img loading="lazy" src="../images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} />}
                     onClick={() => window.location.assign(`/blog/${nextBlog.slug}`) }
                   >
                     {t('blog.nextArticle')}

@@ -2,7 +2,7 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme: Theme) => ({
   blogHeader: {
-    backgroundImage: 'url(/Images/png/blog_header_background.png)',
+    backgroundImage: 'url(/images/png/blog_header_background.png)',
     backgroundSize: 'cover',
     background: '100%',
     backgroundRepeat: 'no-repeat',
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down('xs')]: {
       padding: theme.spacing(4),
       marginTop: theme.spacing(10),
-      backgroundImage: 'url(/Images/png/blog_header_background_mobile.png)',
+      backgroundImage: 'url(/images/png/blog_header_background_mobile.png)',
       backgroundSize: 'cover',
       background: '100%',
       backgroundRepeat: 'no-repeat',
@@ -265,11 +265,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   footer: {
     paddingTop: theme.spacing(8),
-    background:  'url(/Images/png/blog_footer_background.png)',
+    background:  'url(/images/png/blog_footer_background.png)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     [theme.breakpoints.down('xs')]: {
-      background:  'url(/Images/png/blog_footer_background_mobile.png)',
+      background:  'url(/images/png/blog_footer_background_mobile.png)',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
     },

@@ -227,11 +227,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   blogFooter: {
-    background:  'url(/Images/png/blog_index_background.png)',
+    background:  'url(/images/png/blog_index_background.png)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     [theme.breakpoints.down('xs')]: {
-      background:  'url(/Images/png/blog_index_background_mobile.png)',
+      background:  'url(/images/png/blog_index_background_mobile.png)',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
     },

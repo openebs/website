@@ -65,14 +65,14 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: theme.spacing(1.5)
     },
     background: {
-        background:  'url(/Images/png/privacy_policy_background.png)',
+        background:  'url(/images/png/privacy_policy_background.png)',
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
         [theme.breakpoints.down('md')]: {
             backgroundSize: 'cover',
         },
         [theme.breakpoints.down('xs')]: {
-            background:  'url(/Images/png/privacy_policy_mobile_background.png)',
+            background:  'url(/images/png/privacy_policy_mobile_background.png)',
             backgroundRepeat: 'no-repeat',
             backgroundPositionY: 'bottom',
             backgroundPositionX: 'left'

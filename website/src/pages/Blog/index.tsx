@@ -195,7 +195,7 @@ const Blog: React.FC = () => {
                           <Card className={classes.card}>
                             <CardMedia
                               className={classes.media}
-                              image={`/Images/blog/${elm.slug}.png`}
+                              image={`/images/blog/${elm.slug}.png`}
                             />
                             <CardContent classes={{root: classes.cardRoot}}>
                               <DisplayAuthorandReadTime
@@ -236,7 +236,7 @@ const Blog: React.FC = () => {
                                 {t("blog.read")}
                                 <img
                                   loading="lazy"
-                                  src="../Images/svg/arrow_orange.svg"
+                                  src="../images/svg/arrow_orange.svg"
                                   alt={t("header.submitAlt")}
                                   className={classes.arrow}
                                 />
@@ -277,7 +277,7 @@ const Blog: React.FC = () => {
               <div className={classes.authorWrapper}>
                 <Avatar
                   alt={queryAuthorName && queryAuthorName}
-                  src={`../Images/blog/authors/${getAvatar(queryAuthorName)}.png`}
+                  src={`../images/blog/authors/${getAvatar(queryAuthorName)}.png`}
                   className={classes.large}
                 />
                 <h1 className={classes.authorText}>{queryAuthorName}</h1>
@@ -309,7 +309,7 @@ const Blog: React.FC = () => {
                           <Card className={classes.card}>
                             <CardMedia
                               className={classes.media}
-                              image={`/Images/blog/${elm.slug}.png`}
+                              image={`/images/blog/${elm.slug}.png`}
                             />
                             <CardContent classes={{root: classes.cardRoot}}>
                               <DisplayAuthorandReadTime
@@ -346,7 +346,7 @@ const Blog: React.FC = () => {
                                 {t("blog.read")}
                                 <img
                                   loading="lazy"
-                                  src="../Images/svg/arrow_orange.svg"
+                                  src="../images/svg/arrow_orange.svg"
                                   alt={t("header.submitAlt")}
                                   className={classes.arrow}
                                 />
