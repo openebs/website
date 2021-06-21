@@ -49,7 +49,7 @@ const Support: React.FC = () => {
                 <span>
                   <LazyLoadImage
                     effect="blur"
-                    src="/Images/png/support_mule.png"
+                    src="/images/png/support_mule.png"
                     alt={t("commercialSupport.mule")}
                     className={classes.introImage}
                   />
@@ -73,7 +73,7 @@ const Support: React.FC = () => {
                 <span>
                   <LazyLoadImage
                     effect="blur"
-                    src="/Images/png/support_mule.png"
+                    src="/images/png/support_mule.png"
                     alt={t("commercialSupport.mule")}
                     className={classes.introImage}
                   />
@@ -99,6 +99,7 @@ const Support: React.FC = () => {
                   item
                   xs={12}
                   md={3}
+                  sm={6}
                   key={index}
                   direction="row"
                   alignItems="center"
@@ -134,7 +135,7 @@ const Support: React.FC = () => {
                           {t("commercialSupport.visitWebsite")}
                           <img
                             loading="lazy"
-                            src="../Images/svg/arrow_orange.svg"
+                            src="../images/svg/arrow_orange.svg"
                             alt={t("header.submitAlt")}
                             className={classes.arrow}
                           />

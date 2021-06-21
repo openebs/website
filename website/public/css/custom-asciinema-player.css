@@ -25,7 +25,7 @@
 .asciinema-theme-asciinema .bg-fg {    /* inverse for terminal background color */
   background-color: #073D47;
 }
-@media screen and (max-width: 639px) {
+@media screen and (max-width: 600px) {
   .asciinema-terminal {
     height: 150px !important;
     width: 290px !important;
@@ -36,31 +36,18 @@
   }
 }
 
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 600px) {
   .asciinema-terminal {
-    height: 240px !important;
+    height: 210px !important;
     width: 480px !important;
     overflow-x: none;
   }
 }
 
-@media screen and (min-width: 896px) {
+@media screen and (min-width: 1280px) {
   .asciinema-terminal {
-    height: 340px !important;
-    width: 45vw !important;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .asciinema-terminal {
-    height: 210px !important;
-    width: 420px !important;
-  }
-}
-
-@media screen and (min-width: 1240px) {
-  .asciinema-terminal {
-    height: 190px !important;
     width: 600px !important;
+    height: 210px !important;
   }
 }
+

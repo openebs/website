@@ -67,6 +67,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   cardSection: {
       padding: theme.spacing(0, 2),
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: theme.spacing(3),
+    },
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(1, 0),
     },
@@ -86,16 +89,28 @@ const useStyles = makeStyles((theme: Theme) => ({
       boxShadow: "0px 4px 34px 21px rgba(70, 68, 151, 0.04)",
       borderRadius: "20px 20px 60px 0px",
     },
+    [theme.breakpoints.down("sm")]: {
+      height: '100%',
+      paddingBottom: '40px',
+      '&:hover':{
+        height: '100%'
+      }
+    },
     [theme.breakpoints.down("xs")]: {
       boxShadow:' 0px 4px 34px 21px rgba(70, 68, 151, 0.04)',
       borderRadius: '20px 20px 40px 0px',
       padding: theme.spacing(2, 1),
-    }
+    },
   },
   cardAction: {
     visibility: "hidden",
     position: "absolute",
     paddingTop: theme.spacing(2),
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: theme.spacing(4),
+      visibility: 'visible',
+      bottom: '10px'
+    }
   },
   cardText: {
     padding: theme.spacing(1, 0),
@@ -110,8 +125,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: "auto",
     [theme.breakpoints.down("xs")]: {
       height: "2rem",
-      marginBottom: theme.spacing(2)
-    },
+      marginBottom: theme.spacing(2),
+    }
   },
   cardActionButton: {
     textTransform: "none",

@@ -135,7 +135,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   tabWrapper: {
     display: "flex",
-    overflow: "scroll",
+    overflow: "auto",
     paddingBottom: '2px',
     width: "70%",
     [theme.breakpoints.down("sm")]: {

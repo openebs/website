@@ -10,6 +10,8 @@ generic:
   intel: Intel
   gostor: Gostor
   openzfs: OpenZFS
+  cncf: Cloud Native Computing Foudation
+  sponsorMule: Sponsor mule
 
 header:
   menuAlt: Mobile menu

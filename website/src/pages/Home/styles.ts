@@ -185,7 +185,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     installationDiv: {
-        background:  'url(/Images/png/homepage_installation_background.png)',
+        background:  'url(/images/png/homepage_installation_background.png)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         padding: theme.spacing(9, 20, 0),
@@ -194,7 +194,7 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.down('xs')]: {
             padding: theme.spacing(4, 2, 0),
-            background:  'url(/Images/png/homepage_installation_background_mobile.png)',
+            background:  'url(/images/png/homepage_installation_background_mobile.png)',
             backgroundSize: 'cover',
             // backgroundPositionX: '-300px' homepage_installation_background_mobile.png
         },
@@ -215,11 +215,11 @@ const useStyles = makeStyles((theme) => ({
         fontFamily: 'Menlo',
         fontSize: '1rem',
         marginRight: theme.spacing(2),
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
         [theme.breakpoints.down('xs')]: {
-            whiteSpace: 'nowrap',
-            maxWidth: '285px',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
+            maxWidth: `calc(100% - 20px - ${theme.spacing(2)}px)`,
             fontSize: '0.875rem',
         },  
     },
@@ -228,7 +228,11 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: theme.spacing(2)
+    },
+    codeBlock: {
+        display: 'flex',
+        maxWidth: '100%',
+        borderBottom: `1px solid ${theme.palette.primary.main}`,
     },
     divider: {
         border: 0,
@@ -270,6 +274,7 @@ const useStyles = makeStyles((theme) => ({
     },
     installationCodeWrapper: {
         display: 'flex',
+        justifyContent: 'center',
         [theme.breakpoints.down('sm')]: {
             flexDirection: 'column'
         },
@@ -307,6 +312,8 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.background.paper
     },
     installationButtonsWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
         margin: theme.spacing(8, 0),
         [theme.breakpoints.down('sm')]: {
             display: 'flex',
@@ -356,6 +363,9 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     testimonialCarousel: {
+        '& .slick-slide:not(.slick-active)':{
+            opacity: '.3',
+        },
         '& .slick-prev': {
             left: '120px',
             zIndex: 1,
@@ -376,20 +386,24 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.down('xs')]: {
             '& .slick-list': {
-                paddingLeft: `${theme.spacing(1.7)}px !important`
+                paddingLeft: '0 !important',
+                paddingRight: `${theme.spacing(6.25)}px important`
             },
         },
+        '& .slick-arrow':{
+            '&:before':{
+                display:'none'
+            }
+        },
+        '& .slick-track' :{
+            display: 'flex',
+            alignItems: 'center'
+        }
     },
     testimonialPaper: {
         width: '744px',
         [theme.breakpoints.down('md')]: {
-            width: '600px',
-        },
-        [theme.breakpoints.down('sm')]: {
-            width: '460px',
-        },
-        [theme.breakpoints.down('xs')]: {
-            width: '375px',
+            width: '100%',
         },
     },
     testimonialWrapper: {
@@ -452,37 +466,31 @@ const useStyles = makeStyles((theme) => ({
     },
     codeTextHalfWidth: {
         justifyContent: 'flex-start',
-        marginLeft: theme.spacing(6),
-        marginTop: theme.spacing(2),
+        paddingLeft: theme.spacing(6),
+        maxWidth: '100%',
         [theme.breakpoints.down('md')]: {
-            marginLeft: theme.spacing(0),
+            paddingLeft: theme.spacing(0),
         },
     },
     codeTextHalfWidthText: {
         whiteSpace: 'nowrap',
-        maxWidth: '300px',
+        maxWidth: 'calc(100% - 40px)',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
-        [theme.breakpoints.down('md')]: {
-            maxWidth: '256px',
-        },
-        [theme.breakpoints.down('xs')]: {
-            maxWidth: '280px',
-        },
     },
     codeTextHalfWidthUnderline: {
         maxWidth: '75%',
-        marginTop: theme.spacing(1),
+        marginTop: theme.spacing(.5),
         marginLeft: theme.spacing(0),
         [theme.breakpoints.down('md')]: {
-            maxWidth: 'unset',
+            maxWidth: '100%',
         },
     },
     codeTextDescription: {
         fontSize: '16px',
         fontWeight: 400,
         marginTop: theme.spacing(2),
-        maxWidth: '60%',
+        maxWidth: '70%',
         [theme.breakpoints.down('md')]: {
             maxWidth: 'unset',
         },
@@ -491,9 +499,6 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     flyingMuleWrapper:{
-        [theme.breakpoints.down('md')]: {
-            margin: theme.spacing(0,20)
-        },
         [theme.breakpoints.down('xs')]: {
             margin: theme.spacing(0)
         },
@@ -538,7 +543,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center'
     },
     footerBackground: {
-        background:  'url(/Images/png/home_footer_background.png)',
+        background:  'url(/images/png/home_footer_background.png)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPositionX: 'left',
@@ -549,7 +554,7 @@ const useStyles = makeStyles((theme) => ({
             backgroundSize: 'cover',
         },
         [theme.breakpoints.down('xs')]: {
-            background:  'url(/Images/png/home_footer_background_mobile.png)',
+            background:  'url(/images/png/home_footer_background_mobile.png)',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
         },
@@ -578,6 +583,24 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             fontSize: '19px'
         }
+    },
+    copyIcon: {
+        width: '25px',
+        cursor: 'pointer',
+        [theme.breakpoints.down('sm')]: {
+            width: '20px'
+        }
+    },
+    mobileContainer:{
+        [theme.breakpoints.down('sm')]: {
+            maxWidth: '90%',
+            width: '90%',
+            flex: '1 0 90%', 
+            margin: theme.spacing(0, 'auto')
+        }
+    },
+    maxWidth: {
+        maxWidth: '100%'
     }
 }))
 export default useStyles;

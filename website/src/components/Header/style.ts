@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     drawerPaper: {
         width: '85vw',
         height: '100vh',
-        background: 'url(/Images/png/mobile_menu_background.png)',
+        background: 'url(/images/png/mobile_menu_background.png)',
         backgroundSize: 'cover',
         display: 'flex',
         flexDirection: 'column',

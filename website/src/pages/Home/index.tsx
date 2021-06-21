@@ -3,22 +3,15 @@ import { useTranslation } from 'react-i18next';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './styles';
 import Paper from '@material-ui/core/Paper';
-import { Typography, Link } from '@material-ui/core';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
-import { withStyles } from '@material-ui/core/styles';
+import { Typography, Link, Tabs, Tab, Box, Button, Tooltip, IconButton, withStyles } from '@material-ui/core';
 import Footer from '../../components/Footer';
 import JoinCommunity from '../../components/JoinCommunity';
 import Newsletter from "../../components/Newsletter";
-import {IconButton} from "@material-ui/core";
 import Sponsor from "../../components/Sponsor";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { EXTERNAL_LINKS } from '../../constants';
+import { EXTERNAL_LINKS, VIEW_PORT } from '../../constants';
 import Asciinema from '../../components/Asciinema';
 import MiniBlog from '../../components/MiniBlog';
 import adopterData from "../../adopters.md";
@@ -26,11 +19,12 @@ import EventSlider from '../../components/EventSlider';
 import events from '../../resources/events.json';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { useViewport } from "../../hooks/viewportWidth";
+
 
 const Home: React.FC = () => {
     const classes = useStyles();
     const { t } = useTranslation();
-
     const [tabValue, setTabValue] = useState<number>(0);
     const [adopterTestimonials, setAdopterTestimonials] = useState<any>("");
     const [copyCommand, setCopyCommand] = useState({
@@ -43,10 +37,21 @@ const Home: React.FC = () => {
     };
 
     const [isMobileView, setIsMobileView] = useState<boolean>(false);
-
+    const [isTabletView, setIsTabletView] = useState<boolean>(false);
+    const { width } = useViewport();
+    useEffect(()=>{
+        window.innerWidth <= VIEW_PORT.MOBILE_BREAKPOINT ? setIsMobileView(true) : setIsMobileView(false);
+        window.innerWidth <= VIEW_PORT.LAPTOP_BREAKPOINT ? setIsTabletView(true) : setIsTabletView(false);
+    },[width])
     // const [logoSlidesPerScreen, setLogoSlidesPerScreen] = useState<number>(6);
 
     //function to fecth all the adoters testimonials
+
+    useEffect(()=>{
+        fetchAdoptersTestimonials();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     const fetchAdoptersTestimonials = async () => {
         await fetch(adopterData).then((response) => {
          if (response.ok) {
@@ -61,58 +66,18 @@ const Home: React.FC = () => {
        })
        .catch((err) => console.error(err));
      };
-
-    useEffect(() => {
-        // Function to set mobile/desktop view
-        const setResponsiveness = () => {
-
-        return window.innerWidth <= 768
-            ? setIsMobileView(true)
-            : setIsMobileView(false);
-        };
-        setResponsiveness();
-        window.addEventListener("resize", () => {
-            setResponsiveness();
-        });
-        fetchAdoptersTestimonials();
-        //unregister the listerner on destroy of the hook
-        return () => window.removeEventListener("resize", () => {
-            setResponsiveness();
-        });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
     
     // logoSliderSettings for logos carousel
     var logoSliderSettings = {
         dots: false,
-        infinite: true,
         autoplay: true,
-        autoplaySpeed: 1000,
-        speed: 500,
-        slidesToShow: 7,
+        autoplaySpeed: 0,
+        speed: 10000,
+        slidesToShow: 1,
         slidesToScroll: 1,
+        variableWidth: true,
         cssEase: "linear",
         arrows: false,
-        responsive: [
-            {
-              breakpoint: 1024,
-              settings: {
-                slidesToShow: 5,
-              }
-            },
-            {
-              breakpoint: 600,
-              settings: {
-                slidesToShow: 4,
-              }
-            },
-            {
-              breakpoint: 480,
-              settings: {
-                slidesToShow: 2,
-              }
-            }
-          ]
     };
     
     interface TabPanelProps {
@@ -176,28 +141,28 @@ const Home: React.FC = () => {
     // Installation
     const storageProviders = {
         Redis : {
-            logo: "../Images/logos/redis.svg",
-            white_logo: "../Images/logos/redis_white.svg"
+            logo: "../images/logos/redis.svg",
+            white_logo: "../images/logos/redis_white.svg"
         },
         Minio : {
-            logo: "../Images/logos/minio.svg",
-            white_logo: "../Images/logos/minio_white.svg"
+            logo: "../images/logos/minio.svg",
+            white_logo: "../images/logos/minio_white.svg"
         },
         Percona : {
-            logo: "../Images/logos/percona.svg",
-            white_logo: "../Images/logos/percona_white.svg"
+            logo: "../images/logos/percona.svg",
+            white_logo: "../images/logos/percona_white.svg"
         },
         MongoDB : {
-            logo: "../Images/logos/mongodb.svg",
-            white_logo: "../Images/logos/mongodb_white.svg"
+            logo: "../images/logos/mongodb.svg",
+            white_logo: "../images/logos/mongodb_white.svg"
         },
         Prometheus : {
-            logo: "../Images/logos/prometheus.svg",
-            white_logo: "../Images/logos/prometheus_white.svg"
+            logo: "../images/logos/prometheus.svg",
+            white_logo: "../images/logos/prometheus_white.svg"
         },
         MySQL : {
-            logo: "../Images/logos/mysql.svg",
-            white_logo: "../Images/logos/mysql_white.svg"
+            logo: "../images/logos/mysql.svg",
+            white_logo: "../images/logos/mysql_white.svg"
         }
     };
 
@@ -251,28 +216,53 @@ const Home: React.FC = () => {
         setAsciinemaTitle(provider);
     };
 
-    const SampleNextArrow = (props:any) => {
+    const NextArrow = (props:any) => {
         const { className, style, onClick } = props;
         return (
           <div
             className={className}
             style={{ ...style, display: "block" }}
             onClick={onClick}
-          ><img loading="lazy" src="../Images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} /></div>
+          ><img loading="lazy" src="../images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} /></div>
         );
       }
       
-    const SamplePrevArrow = (props:any) => {
+    const PrevArrow = (props:any) => {
         const { className, style, onClick } = props;
         return (
           <div
             className={className}
             style={{ ...style, display: "block" }}
             onClick={onClick}
-          ><img loading="lazy" src="../Images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} /></div>
+          ><img loading="lazy" src="../images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} /></div>
         );
     }
-
+    
+    const testimonialSliderSettings = {
+        dots:false,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        speed:500,
+        slidesToShow:1,
+        slidesToScroll: 1,
+        cssEase:"linear",
+        arrows:true,
+        centerMode:true,
+        prevArrow: <PrevArrow />,
+        nextArrow: <NextArrow />,
+        className:classes.testimonialCarousel,
+        responsive: [
+            {
+                breakpoint: 767,
+                settings: {
+                  arrows: false,
+                  swipeToSlide: true,
+                },
+              },
+        ]
+    }
+    
     return (
         <div>
             <section>
@@ -287,7 +277,7 @@ const Home: React.FC = () => {
                         </Grid>
                         <Grid item sm={4} xs={1}>
                             <Paper className={[classes.paper, classes.secondGrid].join(' ')}>
-                                <img loading="lazy" placeholder={"../Images/png/homepage_main.png?q=20"} src="../Images/png/homepage_main.png?q=20" alt={t('home.landingScreenImageAlt')} className={classes.landingImage}></img>
+                                <img loading="lazy" placeholder={"../images/png/homepage_main.png?q=20"} src="../images/png/homepage_main.png?q=20" alt={t('home.landingScreenImageAlt')} className={classes.landingImage}></img>
                             </Paper>
                         </Grid>
                         <Grid item xs={12}>
@@ -307,7 +297,7 @@ const Home: React.FC = () => {
                                         <Button
                                             variant="outlined"
                                             color="secondary"
-                                            endIcon={<img loading="lazy" src="../Images/svg/play.svg" alt={t('home.openebs.watchDemo')}></img>}
+                                            endIcon={<img loading="lazy" src="../images/svg/play.svg" alt={t('home.openebs.watchDemo')}></img>}
                                             className={classes.outlineButton}
                                             href={EXTERNAL_LINKS.OPENEBS_YOUTUBE_INTRO} target="_blank"
                                         >
@@ -329,14 +319,14 @@ const Home: React.FC = () => {
                                         <Button variant="contained" 
                                         color="secondary" 
                                         className={classes.solidButton}
-                                        endIcon={<img loading="lazy" src="../Images/logos/slack_white.svg" alt={t('home.community.joinOnSlack')}></img>}
+                                        endIcon={<img loading="lazy" src="../images/logos/slack_white.svg" alt={t('home.community.joinOnSlack')}></img>}
                                         href="/community">
                                             {t('home.community.joinOnSlack')}
                                         </Button>
                                         <Button
                                             variant="outlined"
                                             color="secondary"
-                                            endIcon={<img loading="lazy" src="../Images/logos/github_orange.svg" alt={t('home.community.joinOnGitHub')}></img>}
+                                            endIcon={<img loading="lazy" src="../images/logos/github_orange.svg" alt={t('home.community.joinOnGitHub')}></img>}
                                             className={classes.outlineButton}
                                             href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO} target="_blank"
                                         >
@@ -371,7 +361,7 @@ const Home: React.FC = () => {
                                         <Button
                                             variant="outlined"
                                             color="secondary"
-                                            endIcon={<img loading="lazy" src="../Images/svg/play.svg" alt={t('home.openebs.watchDemo')}></img>}
+                                            endIcon={<img loading="lazy" src="../images/svg/play.svg" alt={t('home.openebs.watchDemo')}></img>}
                                             href={EXTERNAL_LINKS.OPENEBS_YOUTUBE_INTRO} target="_blank"
                                         >
                                         {t('home.openebs.watchDemo')}
@@ -392,14 +382,14 @@ const Home: React.FC = () => {
                                         <Button variant="contained" 
                                         color="secondary" 
                                         className={classes.solidButton}
-                                        endIcon={<img loading="lazy" src="../Images/logos/slack_white.svg" alt={t('home.community.joinOnSlack')}></img>}
+                                        endIcon={<img loading="lazy" src="../images/logos/slack_white.svg" alt={t('home.community.joinOnSlack')}></img>}
                                         href="/community">
                                             {t('home.community.joinOnSlack')}
                                         </Button>
                                         <Button
                                             variant="outlined"
                                             color="secondary"
-                                            endIcon={<img loading="lazy" src="../Images/logos/github_orange.svg" alt={t('home.community.joinOnGitHub')}></img>}
+                                            endIcon={<img loading="lazy" src="../images/logos/github_orange.svg" alt={t('home.community.joinOnGitHub')}></img>}
                                             href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO} target="_blank"
                                         >
                                         {t('home.community.joinOnGitHub')}
@@ -410,7 +400,7 @@ const Home: React.FC = () => {
                             <Grid item lg={6} md={5} sm={4}>
                                 <Paper className={classes.paper}>
                                     <span className={classes.landingImage}>
-                                        <LazyLoadImage effect="blur" src={"../Images/png/homepage_main.png"} alt={t('home.landingScreenImageAlt')}  />                                 
+                                        <LazyLoadImage effect="blur" src={"../images/png/homepage_main.png"} alt={t('home.landingScreenImageAlt')}  />                                 
                                     </span>
                                 </Paper>
                             </Grid>
@@ -422,43 +412,41 @@ const Home: React.FC = () => {
             <section>
                 <Slider {...logoSliderSettings} className={classes.logoCarousel}>
                     <div>
-                        <img loading="lazy" src="../Images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
+                        <img loading="lazy" src="../images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/arista_blue.png" alt={t('home.usedInProductionBy.arista')} />
+                        <img loading="lazy" src="../images/logos/arista_blue.png" alt={t('home.usedInProductionBy.arista')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/orange_blue.png" alt={t('home.usedInProductionBy.orange')} />
+                        <img loading="lazy" src="../images/logos/orange_blue.png" alt={t('home.usedInProductionBy.orange')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/optoro_blue.png" alt={t('home.usedInProductionBy.optoro')} />
+                        <img loading="lazy" src="../images/logos/optoro_blue.png" alt={t('home.usedInProductionBy.optoro')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
+                        <img loading="lazy" src="../images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
+                        <img loading="lazy" src="../images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/arista_blue.png" alt={t('home.usedInProductionBy.arista')} />
+                        <img loading="lazy" src="../images/logos/arista_blue.png" alt={t('home.usedInProductionBy.arista')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/orange_blue.png" alt={t('home.usedInProductionBy.orange')} />
+                        <img loading="lazy" src="../images/logos/orange_blue.png" alt={t('home.usedInProductionBy.orange')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/optoro_blue.png" alt={t('home.usedInProductionBy.optoro')} />
+                        <img loading="lazy" src="../images/logos/optoro_blue.png" alt={t('home.usedInProductionBy.optoro')} />
                     </div>
                     <div>
-                        <img loading="lazy" src="../Images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
+                        <img loading="lazy" src="../images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
                     </div>
                 </Slider>
             </section>
 
-
             <section>
                 <Sponsor/>
             </section>
-
 
             <section>
                 <Typography variant="h2" className={classes.sectionTitle}>
@@ -468,7 +456,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../Images/svg/money_bag.svg" alt={t('home.whatsInItForYou.saveMoney')}></img>
+                                <img loading="lazy" src="../images/svg/money_bag.svg" alt={t('home.whatsInItForYou.saveMoney')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.saveMoney')}
@@ -478,7 +466,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../Images/svg/box.svg" alt={t('home.whatsInItForYou.flexibility')}></img>
+                                <img loading="lazy" src="../images/svg/box.svg" alt={t('home.whatsInItForYou.flexibility')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.flexibility')}
@@ -488,7 +476,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../Images/svg/wheel.svg" alt={t('home.whatsInItForYou.resilience')}></img>
+                                <img loading="lazy" src="../images/svg/wheel.svg" alt={t('home.whatsInItForYou.resilience')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.resilience')}
@@ -498,7 +486,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../Images/svg/cloud.svg" alt={t('home.whatsInItForYou.restoreData')}></img>
+                                <img loading="lazy" src="../images/svg/cloud.svg" alt={t('home.whatsInItForYou.restoreData')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.restoreData')}
@@ -508,7 +496,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../Images/svg/lock.svg" alt={t('home.whatsInItForYou.openSource')}></img>
+                                <img loading="lazy" src="../images/svg/lock.svg" alt={t('home.whatsInItForYou.openSource')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.openSource')}
@@ -518,7 +506,7 @@ const Home: React.FC = () => {
                     <Grid item md={4} sm={6}>
                         <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                             <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../Images/svg/settings.svg" alt={t('home.whatsInItForYou.granularControl')}></img>
+                                <img loading="lazy" src="../images/svg/settings.svg" alt={t('home.whatsInItForYou.granularControl')}></img>
                             </div>
                             <Typography className={classes.description}>
                                 {t('home.whatsInItForYou.granularControl')}
@@ -537,16 +525,18 @@ const Home: React.FC = () => {
                     <Typography variant="h5" className={classes.sectionSubTitle}>
                         {t('home.installation.description')} 
                     </Typography>
-                    <div className={classes.codeWrapper}>
-                        <Typography variant="h5" className={classes.codeText}>
-                            {copyCommand.text}
-                        </Typography>
-                        
-                        <LightTooltip title={copyCommand.status}>
-                            <Link onClick={copyToClipboard}><img loading="lazy" src="../Images/svg/copy.svg" alt={copyCommand.status}></img></Link>
-                        </LightTooltip>
-                        <hr className={classes.divider}/>
-                    </div>
+                    <Box className={classes.codeWrapper} mt={2}>
+                        <Box className={classes.codeBlock} paddingX={2}>
+                            <Typography variant="h5" className={classes.codeText}>
+                                {copyCommand.text}
+                            </Typography>
+                            <LightTooltip title={copyCommand.status}>
+                                <Link onClick={copyToClipboard} className={`${classes.copyIcon} ${classes.imageFluid}`}>
+                                    <img loading="lazy" src="../images/svg/copy.svg" alt={copyCommand.status} />
+                                </Link>
+                            </LightTooltip>
+                        </Box >
+                    </Box>
                     <Typography className={classes.orSeparatorText}>
                         {t('home.installation.or')}
                     </Typography>
@@ -563,18 +553,17 @@ const Home: React.FC = () => {
                     </div>
                     
                     <div>
-                        {isMobileView ? 
+                        {isTabletView ? 
                             <div className={classes.installationCodeWrapper}>
 
                                 <Paper className={[classes.paper, classes.desktopCommandWrapper].join(' ')}>
-                                    <img loading="lazy" src="../Images/png/homepage_desktop.png" alt={t('home.installation.desktopImgAlt')} className={classes.desktopImage}></img>
+                                    <img loading="lazy" src="../images/png/homepage_desktop.png" alt={t('home.installation.desktopImgAlt')} className={classes.desktopImage}></img>
                                     <div className={classes.installationProviderCommandWrapper}>
                                         <Typography className={classes.installationProvider}>
                                             {asciinemaTitle}
                                         </Typography>
                                         <Asciinema  src={asciinemaFileSrc} />
                                     </div>
-                                    
                                 </Paper>
 
                                 <div className={classes.installationButtonDiv}>
@@ -619,10 +608,9 @@ const Home: React.FC = () => {
                                             {t('home.installation.mysql')}
                                         </Button>
                                     </Paper>
-                                </div>
-                                
+                                </div>                                
                             </div>
-                        
+
                         :
 
                             <div className={classes.installationCodeWrapper}>
@@ -646,10 +634,9 @@ const Home: React.FC = () => {
                                         {t('home.installation.percona')}
                                     </Button>
                                 </Paper>
-                            
-                            
+
                                 <Paper className={[classes.paper, classes.desktopCommandWrapper].join(' ')}>
-                                    <img loading="lazy" src="../Images/png/homepage_desktop.png" alt={t('home.installation.desktopImgAlt')} className={classes.desktopImage}></img>
+                                    <img loading="lazy" src="../images/png/homepage_desktop.png" alt={t('home.installation.desktopImgAlt')} className={classes.desktopImage}></img>
                                     <div className={classes.installationProviderCommandWrapper}>
                                         <Typography className={classes.installationProvider}>
                                             {asciinemaTitle}
@@ -657,8 +644,7 @@ const Home: React.FC = () => {
                                         <Asciinema  src={asciinemaFileSrc} />
                                     </div>
                                 </Paper>
-                            
-                            
+
                                 <Paper className={[classes.paper, classes.installationButtonsWrapper].join(' ')}>
                                     <Button variant="contained" 
                                         className={[classes.installationButton, classes.installationRightButton, installationButtonStatus.MongoDB.status ? classes.installationButtonActive : ''].join(' ')}
@@ -685,22 +671,28 @@ const Home: React.FC = () => {
                 </div>
             </section>
 
-
             {/* Section: Join our community */}
             <section>
                 <JoinCommunity/>
             </section>
             {/* Section: Community events */}
                 <section>
+                    {!isMobileView && 
                     <Typography variant="h2" className={classes.sectionTitle}>
                         {t("community.communityEvents.title")}
                     </Typography>
+                    }
                     <Grid container spacing={3} className={events.length ? '' : classes.noEvents}>
-                        <Grid item xs={12} sm={4} className={classes.imageFluid}>
-                            <LazyLoadImage effect="blur" loading="lazy" src="../Images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} />
+                        <Grid item xs={12} sm={!isMobileView ? 3 : 12} xl={3} className={`${classes.imageFluid}`}>
+                        <LazyLoadImage effect="blur" loading="lazy" src="../images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} />
+                            {isMobileView && 
+                            <Typography variant="h2" className={classes.sectionTitle}>
+                                {t("community.communityEvents.title")}
+                            </Typography>
+                        }
                         </Grid>
                         {events.length ? (
-                            <Grid item xs={12} sm={8}>
+                            <Grid item xs={12} sm={!isMobileView ? 9 : 12} xl={9}>
                                 <EventSlider />
                             </Grid>
                         ) : (
@@ -715,7 +707,7 @@ const Home: React.FC = () => {
                 {isMobileView && 
                     <Grid item xs={12} className={classes.testimonialMuleWrapper}>
                         <Paper className={[classes.paper, classes.testimonialMule].join(' ')}>
-                            <LazyLoadImage effect="blur" loading="lazy" src="../Images/png/testimonials_mule.png" alt="" />
+                            <LazyLoadImage effect="blur" loading="lazy" src="../images/png/testimonials_mule.png" alt="" />
                         </Paper>
                     </Grid>
                 }
@@ -724,22 +716,9 @@ const Home: React.FC = () => {
                 </Typography>
                 
                 <Grid container spacing={3}>
-                    <Grid item sm={7}>
+                    <Grid item sm={isMobileView ? 12 : 7} xs={12}>
                         <Paper className={[classes.paper, classes.testimonialPaper].join(' ')}>
-                            <Slider dots={false}
-                                    infinite= {true}
-                                    autoplay= {true}
-                                    autoplaySpeed= {4000}
-                                    speed={500}
-                                    slidesToShow={1}
-                                    slidesToScroll= {1}
-                                    cssEase="linear"
-                                    arrows={true}
-                                    rtl={true}
-                                    centerMode={true}
-                                    prevArrow= {<SamplePrevArrow />}
-                                    nextArrow= {<SampleNextArrow />}
-                                    className={classes.testimonialCarousel}>
+                            <Slider {...testimonialSliderSettings}>
                                 {adopterTestimonials && adopterTestimonials.map((elm: any ) => {
                                     return (  
                                         <div key={elm.id}>
@@ -777,26 +756,22 @@ const Home: React.FC = () => {
                     {!isMobileView && 
                         <Grid item sm={5} className={classes.testimonialMuleWrapper}>
                             <Paper className={[classes.paper, classes.testimonialMule].join(' ')}>
-                                <LazyLoadImage effect="blur" src="../Images/png/testimonials_mule.png" alt="" />
+                                <LazyLoadImage effect="blur" src="../images/png/testimonials_mule.png" alt="" />
                             </Paper>
                         </Grid>
                     }
                 </Grid>
             </section>
 
-
-
             {/* Section: Newsletter */}
             <section>
                 <Newsletter newsletterTitle={t("home.newsLetterTitle")} />
             </section>
 
-
             {/* Section: Blogs  */}
             <section>
                 <MiniBlog />
             </section>
-
 
             <div className={classes.footerBackground}>
             {/* Section: You are ready to start */}
@@ -805,61 +780,66 @@ const Home: React.FC = () => {
                     <Typography variant="h2" className={classes.sectionTitle}>
                         {t('home.youAreReadyToStart.title')}
                     </Typography>
-                    <Grid container spacing={3}>
-                        <Grid item lg={4} md={4} sm={12}>
+                    <Grid container spacing={3} alignItems="center">
+                        <Grid item md={4} sm={12}>
                             <Paper className={[classes.paper, classes.flyingMuleWrapper].join(' ')}>
                                 <span className={classes.flyingMule}>
-                                    <LazyLoadImage effect="blur" src="../Images/png/flying_mule.png" alt={t('home.youAreReadyToStart.flyingMuleAlt')} />
+                                    <LazyLoadImage effect="blur" src="../images/png/flying_mule.png" alt={t('home.youAreReadyToStart.flyingMuleAlt')} />
                                 </span>
                             </Paper>
                         </Grid>
-                        <Grid item lg={5} md={4} sm={6}>
-                            <Paper className={[classes.paper, classes.centerContent].join(' ')}>
-                                <div className={[classes.codeWrapper, classes.codeTextHalfWidth].join(' ')}>
-                                    <Typography variant="h5" className={[classes.codeText, classes.codeTextHalfWidthText].join(' ')}>
-                                        {copyCommand.text}
-                                    </Typography>
-                                    
-                                    <LightTooltip title={copyCommand.status}>
-                                        <Link onClick={copyToClipboard}><img loading="lazy" src="../Images/svg/copy_orange.svg" alt=""></img></Link>
-                                    </LightTooltip>
-                                    <hr className={[classes.divider, classes.codeTextHalfWidthUnderline].join(' ')}/>
+                        <Grid item md={8} sm={12} className={classes.maxWidth}>
+                            <Grid container spacing={3} alignItems="flex-start" justify="space-between">
+                                <Grid item lg={7} sm={6} xs={12}>
+                                    <Paper className={[classes.paper, classes.centerContent].join(' ')}>
+                                        <div className={[classes.codeWrapper, classes.codeTextHalfWidth].join(' ')}>
+                                            <div className={classes.codeBlock}>
+                                                <Typography noWrap variant="h5" className={[classes.codeText, classes.codeTextHalfWidthText].join(' ')}>
+                                                    {copyCommand.text}
+                                                </Typography>
 
-                                    <Typography className={classes.codeTextDescription}>
-                                        {t('home.youAreReadyToStart.copyCodeDescription')}
-                                    </Typography>
-                                </div>
-                            </Paper>
-                        </Grid>
-                        <Grid item lg={3} md={4} sm={6}>
-                            <Paper className={[classes.paper, classes.centerContent].join(' ')}>
-                                <div>
-                                    <div className={classes.readGuideDiv}>
-                                        <Link href={EXTERNAL_LINKS.OPENEBS_DOCS} className={classes.readGuideLink}>
-                                            <Typography className={classes.readGuideTitle}>
-                                                {t('home.youAreReadyToStart.readTheGuide.title')}
+                                                <LightTooltip title={copyCommand.status}>
+                                                    <Link onClick={copyToClipboard} className={`${classes.copyIcon} ${classes.imageFluid}`}>
+                                                        <img loading="lazy" src="../images/svg/copy_orange.svg" alt="" />
+                                                    </Link>
+                                                </LightTooltip>
+                                            </div>
+                                            <Typography className={classes.codeTextDescription}>
+                                                {t('home.youAreReadyToStart.copyCodeDescription')}
                                             </Typography>
-                                            <IconButton className={classes.iconButton}>
-                                                <img src="../Images/svg/arrow_orange.svg" alt={t('header.submitAlt')}/>
-                                            </IconButton>
-                                        </Link>
-                                    </div>
-                                    <Typography className={classes.readGuideDescription}>
-                                        {t('home.youAreReadyToStart.readTheGuide.description')}
-                                    </Typography>
-                                </div>
-                            </Paper>
+                                        </div>
+                                    </Paper>
+                                </Grid>
+                                <Grid item lg={4} sm={6} xs={12}>
+                                    <Paper className={[classes.paper, classes.centerContent].join(' ')}>
+                                        <div>
+                                            <div className={classes.readGuideDiv}>
+                                                <Link href={EXTERNAL_LINKS.OPENEBS_DOCS} className={classes.readGuideLink}>
+                                                    <Typography className={classes.readGuideTitle}>
+                                                        {t('home.youAreReadyToStart.readTheGuide.title')}
+                                                    </Typography>
+                                                    <IconButton className={classes.iconButton}>
+                                                        <img loading="lazy" src="../images/svg/arrow_orange.svg" alt={t('header.submitAlt')}/>
+                                                    </IconButton>
+                                                </Link>
+                                            </div>
+                                            <Typography className={classes.readGuideDescription}>
+                                                {t('home.youAreReadyToStart.readTheGuide.description')}
+                                            </Typography>
+                                        </div>
+                                    </Paper>
+                                </Grid>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </div>
             </section>
 
-
             {/* Display footer */}
             <footer className={classes.footer}>
                 <Footer />
             </footer> 
-            </div>
+        </div>
     </div>
     );
 };

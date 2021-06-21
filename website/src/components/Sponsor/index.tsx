@@ -14,26 +14,30 @@ const Sponsor: React.FC = () => {
       <Grid container justify="space-evenly" alignItems="center">
         <Grid item xs={12} md={4}>
         <LazyLoadImage effect="blur"
-            src="../Images/svg/sponsor_mule.svg"
-            alt={t("newsletter.email")}
+            src="../images/png/sponsor_mule.png"
+            alt={t("generic.sponsorMule")}
             className={classes.sponsorCompany}
           />
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography>{t("sponsors.mayadata")}</Typography>
-          <LazyLoadImage effect="blur"
-            src="../Images/logos/mayadata_logo.svg"
-            alt={t("newsletter.email")}
-            className={classes.sponsorCompany}
-          />
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Typography>{t("sponsors.cncf")}</Typography>
-          <LazyLoadImage effect="blur"
-            src="../Images/logos/cncf_logo.svg"
-            alt={t("newsletter.email")}
-            className={classes.sponsorCompany}
-          />
+        <Grid item xs={12} md={8} sm={12} className={classes.gridContainer}>
+          <Grid container>
+            <Grid item xs={12} md={6} sm={6}>
+              <Typography className={classes.paragraph}>{t("sponsors.mayadata")}</Typography>
+              <img
+                src="../images/logos/mayadata_logo.svg"
+                alt={t("generic.mayadata")}
+                className={classes.sponsorCompany}
+              />
+            </Grid>
+            <Grid item xs={12} md={6} sm={6}>
+              <Typography className={classes.paragraph}>{t("sponsors.cncf")}</Typography>
+              <img
+                src="../images/logos/cncf_logo.svg"
+                alt={t("generic.cncf")}
+                className={classes.sponsorCompany}
+              />
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </div>

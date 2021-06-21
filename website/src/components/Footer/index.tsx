@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
     // const [disableContinueButton, setDisableContinueButton] = useState<boolean>(true);
 
     const openEBSLogo = (
-        <img loading="lazy" src="../Images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')}></img>
+        <img loading="lazy" src="../images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')}></img>
     );
 
     // useEffect(() => {
@@ -86,7 +86,7 @@ const Footer: React.FC = () => {
                         }}
                         />
                         <IconButton aria-label="submit" className={classes.iconButton} disabled={disableContinueButton} type="submit">
-                            <img src="../Images/svg/arrow_orange.svg" alt={t('header.submitAlt')}/>
+                            <img src="../images/svg/arrow_orange.svg" alt={t('header.submitAlt')}/>
                         </IconButton>
                     </div>
                 </form> */}
@@ -198,7 +198,7 @@ const Footer: React.FC = () => {
                             </div>
                             <div>
                                 <Link className={classes.contributeButton}>
-                                    <img loading="lazy" src="../Images/logos/githubLogo.svg" className={classes.githubMobileIcon} alt={t('generic.github')}></img> 
+                                    <img loading="lazy" src="../images/logos/githubLogo.svg" className={classes.githubMobileIcon} alt={t('generic.github')}></img> 
                                     {t('footer.contribute')}
                                 </Link>
                             </div>

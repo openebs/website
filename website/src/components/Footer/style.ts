@@ -136,15 +136,20 @@ const useStyles = makeStyles((theme) => ({
     copyrightsWrapper: {
         display: 'flex',
         padding: theme.spacing(2, 4),
-
+        [theme.breakpoints.down('md')]: {
+            padding: theme.spacing(2, 0),
+        },
         [theme.breakpoints.down('xs')]: {
             flexDirection: 'column',
-            padding: theme.spacing(0),
+            padding: theme.spacing(2, 0),
             marginTop: theme.spacing(6)
         },
     },
     copyrights: {
         fontSize: '1rem',
+        [theme.breakpoints.down('md')]: {
+            fontSize: '.9rem'
+        }
     },
     privacyPolicyLink: {
         marginLeft: theme.spacing(4),
@@ -165,8 +170,7 @@ const useStyles = makeStyles((theme) => ({
         display: 'inline-flex'
     },
     githubMobileIcon: {
-        width: '12px',
-        height: 'auto',
+        height: '20px',
         marginRight: theme.spacing(0.5)
     },
     contributorsMobile: {

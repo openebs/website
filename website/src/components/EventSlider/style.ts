@@ -15,12 +15,21 @@ const useStyles = makeStyles((theme) => ({
     transition: "all 0.3s ease-out",
     '&:hover $actionLInk':{
       display:'inherit'
+    },
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(2)
     }
   },
   actionLInk:{
     display: 'none',
   },
   slidewrap: {
+    "& .slick-next": {
+      right: "30%",
+    },
+    '& .slick-slide:not(.slick-active)':{
+      opacity: '.5',
+    },
     margin: theme.spacing(2, 0, 2, 2),
     "& div.slick-active": {
       "& + .slick-active": {
@@ -40,13 +49,22 @@ const useStyles = makeStyles((theme) => ({
         },
       },
     },
-    "&  div.slick-slide": {
-      "&  > div": {
-        padding: "20px",
+    [theme.breakpoints.down("md")]: {
+      margin: '0 40px',
+      "& .slick-next": {
+        right: "-25px",
+      },
+      '& .slick-slide:not(.slick-active)':{
+        opacity: '.5',
       },
     },
-    "& .slick-next": {
-      right: "30%",
+    [theme.breakpoints.down("xs")]: {
+      marginRight: theme.spacing(0)
+    },
+    "&  div.slick-slide": {
+      "&  > div": {
+        padding: theme.spacing(2.5),
+      },
     },
     "& .slick-disabled": {
       opacity: 0.5,
@@ -55,6 +73,11 @@ const useStyles = makeStyles((theme) => ({
         '&:before':{
             display:'none'
         }
+    },
+    '& .slick-list': {
+      [theme.breakpoints.down("xs")]: {
+        padding: `${theme.spacing(0)} !important`
+      }
     }
   },
   titleText: {
