@@ -3,7 +3,7 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     position: "relative",
-    backgroundImage: "url(/Images/png/faq_background.png)",
+    backgroundImage: "url(/images/png/faq_background.png)",
     textAlign: "center",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(5, 5),
       marginTop: theme.spacing(10),
-      backgroundImage: "url(/Images/png/faq_background_mobile.png)",
+      backgroundImage: "url(/images/png/faq_background_mobile.png)",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
     },

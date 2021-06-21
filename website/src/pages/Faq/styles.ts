@@ -3,7 +3,7 @@ import { makeStyles, Theme } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     position: "relative",
-    backgroundImage: "url(/Images/png/faq_background.png)",
+    backgroundImage: "url(/images/png/faq_background.png)",
     textAlign: "center",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
