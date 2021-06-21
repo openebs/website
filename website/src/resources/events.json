@@ -1,28 +1,28 @@
 [
     {
         "id": 1,
-        "date": "2021-06-20",
+        "date": "2022-06-20",
         "title": "Event name",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu felis nec arcu eleifend scelerisque. ",
         "buttonText": "Register",
         "buttonLink": "https://openebs.io/"
     }, {
         "id": 2,
-        "date": "2021-06-21",
+        "date": "2022-06-21",
         "title": "Event name",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu felis nec arcu eleifend scelerisque. ",
         "buttonText": "Register",
         "buttonLink": "https://openebs.io/"
     }, {
         "id": 3,
-        "date": "2021-06-22",
+        "date": "2022-06-22",
         "title": "Event name",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu felis nec arcu eleifend scelerisque. ",
         "buttonText": "Register",
         "buttonLink": "https://openebs.io/"
     }, {
         "id": 4,
-        "date": "2020-08-05",
+        "date": "2022-08-05",
         "title": "Event name",
         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu felis nec arcu eleifend scelerisque. ",
         "buttonText": "Register",

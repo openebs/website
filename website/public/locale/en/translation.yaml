@@ -12,6 +12,8 @@ generic:
   openzfs: OpenZFS
   cncf: Cloud Native Computing Foudation
   sponsorMule: Sponsor mule
+  next: Next
+  prev: Previous
 
 header:
   menuAlt: Mobile menu

@@ -8,9 +8,7 @@ import Footer from '../../components/Footer';
 import JoinCommunity from '../../components/JoinCommunity';
 import Newsletter from "../../components/Newsletter";
 import Sponsor from "../../components/Sponsor";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Carousel from '../../components/Carousel';
 import { EXTERNAL_LINKS, VIEW_PORT } from '../../constants';
 import MiniBlog from '../../components/MiniBlog';
 import adopterData from "../../adopters.md";
@@ -167,8 +165,6 @@ const Home: React.FC = () => {
         cssEase:"linear",
         arrows:true,
         centerMode:true,
-        prevArrow: <PrevArrow />,
-        nextArrow: <NextArrow />,
         className:classes.testimonialCarousel,
         responsive: [
             {
@@ -328,7 +324,7 @@ const Home: React.FC = () => {
 
 
             <section>
-                <Slider {...logoSliderSettings} className={classes.logoCarousel}>
+                <Carousel settings={logoSliderSettings} className={classes.logoCarousel}>
                     <div>
                         <img loading="lazy" src="../images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
                     </div>
@@ -359,7 +355,7 @@ const Home: React.FC = () => {
                     <div>
                         <img loading="lazy" src="../images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
                     </div>
-                </Slider>
+                </Carousel>
             </section>
 
             <section>
@@ -485,7 +481,7 @@ const Home: React.FC = () => {
                 <Grid container spacing={3}>
                     <Grid item sm={isMobileView ? 12 : 7} xs={12}>
                         <Paper className={[classes.paper, classes.testimonialPaper].join(' ')}>
-                            <Slider {...testimonialSliderSettings}>
+                            <Carousel settings={testimonialSliderSettings}>
                                 {adopterTestimonials && adopterTestimonials.map((elm: any ) => {
                                     return (  
                                         <div key={elm.id}>
@@ -507,7 +503,7 @@ const Home: React.FC = () => {
                                         
                                     );
                                 })} 
-                            </Slider>
+                            </Carousel>
                             <div className={classes.adopterButtonWrapper}>
                                <Button
                                     variant="contained"

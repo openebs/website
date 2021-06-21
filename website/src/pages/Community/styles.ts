@@ -181,9 +181,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   sliderFullWidth: {
     "& div.slick-active": {
       "& + .slick-active": {
-        "& + .slick-slide": {
+        "& + .slick-slide:not(:last-child)": {
           "&  > div": {
             opacity: 1,
+            pointerEvents: 'auto'
           },
         },
       },

@@ -19,9 +19,7 @@ import {
 } from "@material-ui/core";
 import ReactMarkdown from "react-markdown";
 import { VIEW_PORT } from "../../constants";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Carousel from "../Carousel";
 import DisplayAuthorandReadTime from "../DisplayAuthorandReadTime";
 import CustomTag from "../CustomTag";
 import { getContentPreview } from "../../utils/getContent";
@@ -48,39 +46,6 @@ const MiniBlog: React.FC = () => {
   const [value, setValue] = React.useState("all");
   const [tagsDistribution, setTagsDistribution] = useState({});
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
-  const SampleNextArrow = (props: any) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block" }}
-        onClick={onClick}
-      >
-        <img
-          loading="lazy"
-          src="../images/svg/right_arrow.svg"
-          alt={t("home.adaptorsTestimonials.nextArrowAlt")}
-        />
-      </div>
-    );
-  };
-
-  const SamplePrevArrow = (props: any) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block" }}
-        onClick={onClick}
-      >
-        <img
-          loading="lazy"
-          src="../images/svg/left_arrow.svg"
-          alt={t("home.adaptorsTestimonials.previousArrowAlt")}
-        />
-      </div>
-    );
-  };
 
   const handleTagSelect = (tags: string) => {
     setValue(tags);
@@ -162,6 +127,28 @@ const MiniBlog: React.FC = () => {
           />
   );
 
+  const sliderSettings = {
+    dots:false,
+    autoplay:true,
+    autoplaySpeed:4000,
+    speed:500,
+    slidesToShow:filteredData.length === 1 ? filteredData.length : 2,
+    slidesToScroll:1,
+    cssEase:"linear",
+    arrows:true,
+    rtl:false,
+    className:classes.miniBlogSlider,
+    responsive:[
+      {
+        breakpoint: mobileBreakpoint,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ]
+  }
+
   return (
     <>
       <span className={classes.root}>
@@ -193,29 +180,7 @@ const MiniBlog: React.FC = () => {
       </span>
       <Grid container justify="center">
         <Grid item xs={filteredData.length === 1 ? 5 : 10}>
-          <Slider
-            dots={false}
-            autoplay={true}
-            autoplaySpeed={4000}
-            speed={500}
-            slidesToShow={filteredData.length === 1 ? filteredData.length : 2}
-            slidesToScroll={1}
-            cssEase="linear"
-            arrows={true}
-            rtl={false}
-            className={classes.miniBlogSlider}
-            prevArrow={<SamplePrevArrow />}
-            nextArrow={<SampleNextArrow />}
-            responsive={[
-              {
-                breakpoint: mobileBreakpoint,
-                settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1,
-                },
-              },
-            ]}
-          >
+          <Carousel settings={sliderSettings}>
             {filteredData.map((elm: any) => {
               return (
                 <div className={classes.cardWrapper} key={elm.id}>
@@ -263,7 +228,7 @@ const MiniBlog: React.FC = () => {
                 </div>
               );
             })}
-          </Slider>
+          </Carousel>
         </Grid>
       </Grid>
     </>
