@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: theme.spacing(5, 5),
       marginTop: theme.spacing(10),
       backgroundImage: "url(/Images/png/faq_background_mobile.png)",
-      textAlign: "center",
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
     },
