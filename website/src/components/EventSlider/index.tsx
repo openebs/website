@@ -1,5 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { useTranslation } from "react-i18next";
 import { Typography, Link, Box } from "@material-ui/core";
 import useStyles from "./style";
