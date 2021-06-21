@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
     transition: "all 0.3s ease-out",
     '&:hover $actionLInk':{
       display:'inherit'
+    },
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(2)
     }
   },
   actionLInk:{
@@ -53,7 +56,10 @@ const useStyles = makeStyles((theme) => ({
       },
       '& .slick-slide:not(.slick-active)':{
         opacity: '.5',
+      },
     },
+    [theme.breakpoints.down("xs")]: {
+      marginRight:0
     },
     "&  div.slick-slide": {
       "&  > div": {
@@ -68,6 +74,11 @@ const useStyles = makeStyles((theme) => ({
             display:'none'
         }
     },
+    '& .slick-list': {
+      [theme.breakpoints.down("xs")]: {
+        padding: '0 !important'
+      }
+    }
   },
   titleText: {
     fontSize: "22px",
