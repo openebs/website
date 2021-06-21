@@ -16,6 +16,7 @@ import {
   useActiveVersion,
 } from "@theme/hooks/useDocs";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import DocVersionSuggestions from '@theme/DocVersionSuggestions';
 import Search from "@theme/SearchBar";
 import EditThisPage from "@theme/GitEditThisPage";
 import { VersionDropdown } from "@site/src/components/VersionDropdown";
@@ -91,6 +92,8 @@ function DocItem(props) {
                 <Search />
                 {(width < breakpoints?.sm) && <VersionDropdown />}
               </div>
+              {/* DocVersionSuggestions will show an alert on the page if the opened documentation is not the latest one  */}
+              <DocVersionSuggestions />
               <div className="markdown">
                 <DocContent />
               </div>
