@@ -13,18 +13,6 @@ const JoinCommunity: React.FC = () => {
 
     const [slackFlip, setSlackFlip] = useState<boolean>(false);
     const [gitHubFlip, setGitHubFlip] = useState<boolean>(false);
-    const [emailValue, setEmailValue] = useState<string>('');
-    const [disableContinueButton, setDisableContinueButton] = useState<boolean>(true);
-
-    useEffect(() => {
-        // Enable continue button when email is valid
-        validateEmail(emailValue) ? setDisableContinueButton(false) : setDisableContinueButton(true);
-    },[emailValue]);
-
-    const handleSlackInvite = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        // Need to write logic to send slack invite
-    };
 
     const handleSlackFlip = () => {
         setSlackFlip(!slackFlip);
