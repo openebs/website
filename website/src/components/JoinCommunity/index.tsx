@@ -1,10 +1,9 @@
-import { Button, IconButton, TextField, Typography } from "@material-ui/core";
-import React, {useEffect, useState} from "react";
+import { Button, Typography } from "@material-ui/core";
+import React, {useState} from "react";
 import useStyles from './style';
 import { useTranslation } from "react-i18next";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { validateEmail } from "../../utils/emailValidation";
 import { EXTERNAL_LINKS } from "../../constants";
 
 const JoinCommunity: React.FC = () => {
