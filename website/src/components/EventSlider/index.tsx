@@ -17,7 +17,7 @@ interface Events {
 interface EventsProps {
   sortEvents?: boolean;
   filterEvents?: boolean;
-  sortOrder?: string;
+  sortOrder?: "asc" | "desc";
 }
 
 const EventSlider: React.FC<EventsProps> = ({
@@ -103,43 +103,41 @@ const EventSlider: React.FC<EventsProps> = ({
       <Carousel settings={sliderSettings}>
         {filteredEvents.map((event: any) => {
           return (
-            checkPastDate(event.date) && (
-              <>
-                <div key={event.id}>
-                  <div className={classes.slide}>
-                    <Box mb={2}>
-                      <FetchDate date={event.date} />
+            <>
+              <div key={event.id}>
+                <div className={classes.slide}>
+                  <Box mb={2}>
+                    <FetchDate date={event.date} />
+                  </Box>
+                  <Typography variant="h4" className={classes.titleText}>
+                    {event.title}
+                  </Typography>
+                  <Typography className={classes.subText}>
+                    {event.description}
+                  </Typography>
+                  {checkPastDate(event.date) && event.buttonLink && (
+                    <Box mt={2} className={classes.actionLInk}>
+                      <Link
+                        className={classes.linkText}
+                        href={event.buttonLink}
+                        target="_blank"
+                      >
+                        <Box display="flex" alignItems="center">
+                          {event.buttonText
+                            ? event.buttonText
+                            : t("community.communityEvents.clickHere")}
+                          <img
+                            loading="lazy"
+                            src="../images/svg/arrow_orange.svg"
+                            alt=""
+                          />
+                        </Box>
+                      </Link>
                     </Box>
-                    <Typography variant="h4" className={classes.titleText}>
-                      {event.title}
-                    </Typography>
-                    <Typography className={classes.subText}>
-                      {event.description}
-                    </Typography>
-                    {checkPastDate(event.date) && event.buttonLink && (
-                      <Box mt={2} className={classes.actionLInk}>
-                        <Link
-                          className={classes.linkText}
-                          href={event.buttonLink}
-                          target="_blank"
-                        >
-                          <Box display="flex" alignItems="center">
-                            {event.buttonText
-                              ? event.buttonText
-                              : t("community.communityEvents.clickHere")}
-                            <img
-                              loading="lazy"
-                              src="../images/svg/arrow_orange.svg"
-                              alt=""
-                            />
-                          </Box>
-                        </Link>
-                      </Box>
-                    )}
-                  </div>
+                  )}
                 </div>
-              </>
-            )
+              </div>
+            </>
           );
         })}
       </Carousel>
