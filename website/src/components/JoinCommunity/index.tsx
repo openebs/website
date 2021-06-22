@@ -36,7 +36,7 @@ const JoinCommunity: React.FC = () => {
                         </div>
                         <div className={classes.back}>
                             <div className={classes.flippedCard}>
-                                <iframe src="https://slack.k8s.io/" title="Join Kubernetes on Slack" height="480" frameBorder="0" scrolling="no"></iframe>
+                                <iframe src="https://slack.k8s.io/" title={t('joinCommunity.slackIframeTitle')} height="480" frameBorder="0" scrolling="no"></iframe>
                             </div> 
                         </div> 
                     </Paper>
