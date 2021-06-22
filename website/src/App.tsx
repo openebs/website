@@ -4,8 +4,8 @@ import { createBrowserHistory } from 'history';
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from './theme/theme';
+import { External } from "./components/External";
 import './fonts'
-import { Helmet } from "./components/Helmet";
 
 const Scaffold = React.lazy(() => import('./containers/Scaffold'));
 const Home = React.lazy(() => import('./pages/Home'));
@@ -20,7 +20,7 @@ const Routes: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Helmet />
+      <External />
       <div>
         <Scaffold>
           {/* ---All routes should be wrapped within scaffold--- */}

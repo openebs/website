@@ -5,7 +5,6 @@ import reportWebVitals from './reportWebVitals';
 import TagManager from 'react-gtm-module'
 import './i18n';
 import Loader from './components/Loader';
-import { HelmetProvider } from 'react-helmet-async';
 
 const tagManagerArgs = {
   gtmId: 'GTM-KD8TCG4'
@@ -18,11 +17,9 @@ window.onload = () => {
 
 ReactDOM.render(
   <React.StrictMode>
-    <HelmetProvider>
       <Suspense fallback={<Loader />}>
-      <App />
+        <App />
       </Suspense>
-    </HelmetProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
