@@ -42,44 +42,19 @@ const JoinCommunity: React.FC = () => {
                 {t('joinCommunity.title')}
             </Typography>
             <Grid container spacing={5}>
-                <Grid item sm={6} xs={12}>
+                <Grid item md={6} xs={12}>
                     <Paper className={[classes.paper, classes.leftPaper, slackFlip ? classes.flip : ''].join(' ')} onClick={()=> handleSlackFlip()}>
                         <div className={classes.front}>
                             <img loading="lazy" src="../images/logos/slack_full.svg" alt={t('joinCommunity.slackAlt')}></img>
                         </div>
                         <div className={classes.back}>
                             <div className={classes.flippedCard}>
-                                <img loading="lazy" src="../images/logos/slack_full.svg" alt={t('joinCommunity.slackAlt')} className={classes.flippedLogo}></img>
-                                <Typography variant='h4' className={classes.cardTitle}>
-                                    {t('joinCommunity.slackTitle')}
-                                </Typography>
-                                <form noValidate autoComplete="on" onSubmit={handleSlackInvite}>
-                                    <div className={classes.formWrapper}>
-                                        <TextField
-                                        label={t('joinCommunity.emailLabel')}
-                                        fullWidth
-                                        name="email"
-                                        onClick={(e) => e.stopPropagation()}
-                                        onChange={(e) =>
-                                            setEmailValue(e.target.value)
-                                        }
-                                        InputProps={{
-                                            className: classes.input,
-                                        }}
-                                        InputLabelProps={{
-                                            className: classes.label,
-                                        }}
-                                        />
-                                        <IconButton aria-label="submit" className={classes.iconButton} disabled={disableContinueButton} type="submit">
-                                            <img loading="lazy" src="../images/svg/arrow_orange.svg" alt={t('joinCommunity.submitAlt')}/>
-                                        </IconButton>
-                                    </div>
-                                </form>
+                                <iframe src="https://slack.k8s.io/" title="abc" height="480" frameBorder="0" scrolling="no"></iframe>
                             </div> 
                         </div> 
                     </Paper>
                 </Grid>
-                <Grid item sm={6} xs={12}>
+                <Grid item md={6} xs={12}>
                     <Paper className={[classes.paper, classes.rightPaper, gitHubFlip ? classes.flip : ''].join(' ')} onClick={()=> handleGitHubFlip()}>
                         <div className={classes.front}>
                             <img loading="lazy" src="../images/logos/github_full.svg" alt={t('joinCommunity.gitHubAlt')}></img>
