@@ -13,7 +13,10 @@ interface Carousal{
 
 const useStyles = makeStyles({
     slickButtons: {
-        display: 'block'
+        display: 'block',
+        '&:before':{
+          display: 'none'
+        }
       },
   });
 
