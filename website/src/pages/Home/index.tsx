@@ -668,7 +668,7 @@ const Home: React.FC = () => {
                         </Grid>
                         {events.length ? (
                             <Grid item xs={12} sm={!isMobileView ? 9 : 12} xl={9}>
-                                <EventSlider filterEvents={false} sortOrder="desc" />
+                                <EventSlider />
                             </Grid>
                         ) : (
                             <Typography variant="h4" className={classes.noEventText}>
