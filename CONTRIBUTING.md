@@ -21,7 +21,7 @@ For example, If the title of the blog is: ``Title of the Blog``
 Then, markdown file name will be ``title-of-the-blog.md``
 * Add this markdown file to website/src/blogs
 * The main blog image should be named as ``title-of-the-blog.png`` and add this file to ``website/website/public/images/blog``
-* If you are a new author, add your photograph with file name as author-name.png to website/website/public/images/blog/authors. Make sure the name provided in the author section of the metadata of the blog matches with this filename
+* If you are a new author, add your photograph with file name as `author-name.png` to `website/website/public/images/blog/authors`. Make sure the name provided in the author section of the metadata of the blog matches with this filename
 
 
 ## Add a new  event
@@ -46,7 +46,7 @@ Then, markdown file name will be ``title-of-the-blog.md``
 
 * Go to https://github.com/openebs/openebs/blob/master/ADOPTERS.md and grab some of the testimonials from the list and add them to the websites as shown below.
 
-* For an organization testimonial make a new entry in the website/src/adopters.md. file.
+* For an organization testimonial make a new entry in the `website/src/adopters.md`. file.
 https://github.com/openebs/website/blob/revamp-3.0/website/src/adopters.md
 
 ![testimonial table](/website/public/images/guidelines/image9.png)
@@ -207,7 +207,7 @@ Content of the category json key should match like
 
 The value of keys may be different for your case.
 
-If you are adding a category in the next (unpublished) version of the docs, you are good to go now.
+If you are adding a category in the `next` (unpublished) version of the docs, you are good to go now.
 
 But if you are adding this category in some version, then you will have to add the category object in the version sidebar json.
 
@@ -234,7 +234,7 @@ The position of the category object in the ``version-1.1.2/docs``  array will de
 ### Adding  nested levels of sidebars
 
 
-For the next (unpublished) version of the project related docs, just add the content (`directory`, `_category_.json` and md files etc) as it is in the folder.
+For the `next` (unpublished) version of the project related docs, just add the content (`directory`, `_category_.json` and md files etc) as it is in the folder.
 
 For example,
 Let’s say this is what we want to add as nested level in `introduction` category
@@ -288,20 +288,20 @@ Considering this situation
 
 ![sidebar content](/website/public/images/guidelines/image13.png)
 
-Looking at this current screenshot , we can infer that the next version will be 1.1.3.
+Looking at this current screenshot ,we can infer that the next version will be 1.1.3.
 
 ### Process of publishing the next version of the docs:
 
 * Create a new folder in versioned_docs with name of `version-1.1.3`
 * Move the content of docs to `version-1.1.3` folder
 * Create a new json file with the name of  `version-1.1.3-sidebars.json` and update the file with corresponding json object.
-* Add version number in versions.json
+* Add version number in `versions.json`
 
 After doing this, the folder structure will look like this
 
 ![version indicator](/website/public/images/guidelines/image28.png)
 
-And versions.json
+And `versions.json`
 
 ![version json file](/website/public/images/guidelines/image26.png)
 
