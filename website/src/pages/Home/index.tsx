@@ -19,11 +19,9 @@ import events from '../../resources/events.json';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useViewport } from "../../hooks/viewportWidth";
-import { useScript } from '../../hooks/useScript';
 import { Workloads } from "./workloads";
 
 const Home: React.FC = () => {
-    const asciinemaScript = useScript('js/asciinema-player.js'); 
     const classes = useStyles();
     const { t } = useTranslation();
     const [tabValue, setTabValue] = useState<number>(0);
@@ -435,11 +433,11 @@ const Home: React.FC = () => {
                     </Grid>
                 </Grid>
             </section>
-            
-            {
-                (asciinemaScript === 'ready') && <Workloads />
-            }
 
+            {/* Section: Workloads */}    
+            <section>
+                <Workloads />
+            </section>
             {/* Section: Join our community */}
             <section>
                 <JoinCommunity/>

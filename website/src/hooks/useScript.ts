@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
-
-export type Status = 'idle' | 'loading' | 'ready' | 'error'
+import { SCRIPT_STATES } from "../constants";
+export type Status = SCRIPT_STATES
 export type ScriptElement = HTMLScriptElement | null
 
-export const useScript = (src: string): Status => {
+export const useScript = (src: string): SCRIPT_STATES => {
 
-  const [status, setStatus] = useState<Status>(src ? 'loading' : 'idle')
+  const [status, setStatus] = useState<SCRIPT_STATES>(src ? SCRIPT_STATES.LOADING : SCRIPT_STATES.IDLE)
 
   useEffect(
     () => {
       if (!src) {
-        setStatus('idle')
+        setStatus(SCRIPT_STATES.IDLE)
         return
       }
 
@@ -20,13 +20,13 @@ export const useScript = (src: string): Status => {
         script = document.createElement('script')
         script.src = src
         script.async = true
-        script.setAttribute('data-status', 'loading')
+        script.setAttribute('data-status', SCRIPT_STATES.LOADING)
         document.body.appendChild(script)
 
         const setAttributeFromEvent = (event: Event) => {
           script?.setAttribute(
             'data-status',
-            event.type === 'load' ? 'ready' : 'error',
+            event.type === 'load' ? SCRIPT_STATES.READY : SCRIPT_STATES.ERROR,
           )
         }
 
@@ -37,7 +37,7 @@ export const useScript = (src: string): Status => {
       }
 
       const setStateFromEvent = (event: Event) => {
-        setStatus(event.type === 'load' ? 'ready' : 'error')
+        setStatus(event.type === 'load' ? SCRIPT_STATES.READY : SCRIPT_STATES.ERROR)
       }
 
       script.addEventListener('load', setStateFromEvent)
@@ -47,7 +47,6 @@ export const useScript = (src: string): Status => {
         if (script) {
           script.removeEventListener('load', setStateFromEvent)
           script.removeEventListener('error', setStateFromEvent)
-          document.body.removeChild(script);
         }
       }
     },

@@ -6,11 +6,13 @@ import { EXTERNAL_LINKS, VIEW_PORT } from "../../constants";
 import Asciinema from '../../components/Asciinema';
 import { useViewport } from "../../hooks/viewportWidth";
 import { useExternalStyles } from "../../hooks/useExternalStyles";
+import { useScript } from '../../hooks/useScript';
 
 export const Workloads: React.FC = () => {
-    
+
     useExternalStyles('css/asciinema-player.css');
     useExternalStyles('css/custom-asciinema-player.css');
+    const asciinemaScript = useScript('js/asciinema-player.js');
 
      const { t } = useTranslation();
      const classes = useStyles();
@@ -129,8 +131,6 @@ export const Workloads: React.FC = () => {
     };
 
     return(
-
-        <section>
         <div className={classes.installationDiv}>
             <Typography variant="h2" className={classes.sectionTitle}>
                 {t('home.installation.title')}
@@ -175,7 +175,9 @@ export const Workloads: React.FC = () => {
                                 <Typography className={classes.installationProvider}>
                                     {asciinemaTitle}
                                 </Typography>
-                                <Asciinema  src={asciinemaFileSrc} />
+                                {
+                                    (asciinemaScript === 'ready') &&  <Asciinema  src={asciinemaFileSrc} />
+                                }
                             </div>
                         </Paper>
 
@@ -254,7 +256,9 @@ export const Workloads: React.FC = () => {
                                 <Typography className={classes.installationProvider}>
                                     {asciinemaTitle}
                                 </Typography>
-                                <Asciinema  src={asciinemaFileSrc} />
+                                {
+                                    (asciinemaScript === 'ready') &&  <Asciinema  src={asciinemaFileSrc} />
+                                }
                             </div>
                         </Paper>
 
@@ -282,6 +286,5 @@ export const Workloads: React.FC = () => {
                 }
             </div>
         </div>
-    </section>
     )
 }
