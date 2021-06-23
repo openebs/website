@@ -4,7 +4,6 @@ import { createBrowserHistory } from 'history';
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from './theme/theme';
-import { External } from "./components/External";
 import './fonts'
 
 const Scaffold = React.lazy(() => import('./containers/Scaffold'));
@@ -20,7 +19,6 @@ const Routes: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <External />
       <div>
         <Scaffold>
           {/* ---All routes should be wrapped within scaffold--- */}
