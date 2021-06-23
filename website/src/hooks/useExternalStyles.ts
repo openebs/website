@@ -7,10 +7,9 @@ export const useExternalStyles = (href: string,) => {
         link.type = "text/css";
         link.rel = "stylesheet";
         link.href = href;
-        document.body.appendChild(link);
-
+        document.head.appendChild(link);
         return () => {
-            document.body.removeChild(link);
+            document.head.removeChild(link);
         }
     }, [href]);
 }

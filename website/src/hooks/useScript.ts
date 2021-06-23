@@ -47,6 +47,7 @@ export const useScript = (src: string): Status => {
         if (script) {
           script.removeEventListener('load', setStateFromEvent)
           script.removeEventListener('error', setStateFromEvent)
+          document.body.removeChild(script);
         }
       }
     },
