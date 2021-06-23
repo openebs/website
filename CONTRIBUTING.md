@@ -5,7 +5,7 @@
 * Create a markdown file and add your blog content along with the metadata in    the following format
 ```
 ---
-title: Title of the Blog
+title: Title of the blog
 author: Author name
 author_info: Author information
 tags: All the tags with space in between (Example: openebs localpv)
@@ -17,7 +17,7 @@ Blog content in the markdown format goes here…
 ```
 Reference for text formatting in markdown https://guides.github.com/features/mastering-markdown/
 * Name of the markdown file should be the title of the blog converted to all small letters with hyphen(-) separation between the words.
-For example, If the title of the blog is: ``Title of the Blog``
+For example, If the title of the blog is: ``Title of the blog``
 Then, markdown file name will be ``title-of-the-blog.md``
 * Add this markdown file to website/src/blogs
 * The main blog image should be named as ``title-of-the-blog.png`` and add this file to ``website/website/public/images/blog``
@@ -32,7 +32,7 @@ Then, markdown file name will be ``title-of-the-blog.md``
 
 ```
 {
-       "id": Unique key identifying the event (+ve number),
+       "id":  Next consecutive number to the id of the last event (+ve number),
        "date": "Date of commencement of the event in yyyy-mm-dd format",
        "title": "Event name",
        "description": "Description of the event",      
@@ -76,7 +76,7 @@ Edit the corresponding file in your forked repository and raise the PR.
 
 ### Some elements in markdown file:
 
-Code Snippet
+Code snippet
 
 ![code snippet](/website/public/images/guidelines/image27.png)
 
@@ -84,7 +84,7 @@ Result:
 
 ![result screenshot](/website/public/images/guidelines/image4.png)
 
-Code Snippet without copy icon
+Code snippet without copy icon
 
 ![code snippet](/website/public/images/guidelines/image11.png)
 
@@ -188,7 +188,7 @@ If you are updating in the `version-1.1.2-sidebars.json`, traverse to the concep
 
 ![doc type](/website/public/images/guidelines/image20.png)
 
-Here,  id is path to md file including its name
+Here, id is path to md file including its name
 
 Also as you can see that this new docs is added at 5th position of the items array. It will come at position number `5` in the sidebar also (in the browser). If you want to change the position, move the object up in items.
 
@@ -227,14 +227,14 @@ There is a custom prop named icon. This is for displaying the icon along with th
 
 Any valid name of the feather icon will work.
 
-The position of the category object in the ``version-1.1.2/docs``  array will decide the position of the category on the sidebar.
+The position of the category object in the `version-1.1.2/docs` array will decide the position of the category on the sidebar.
 
 
 
 ### Adding  nested levels of sidebars
 
 
-For the `next` (unpublished) version of the project related docs, just add the content (`directory`, `_category_.json` and md files etc) as it is in the folder.
+For the `next` (unpublished) version of the project related docs, just add the content (`directory`, `_category_.json` and other files) as it is in the folder.
 
 For example,
 Let’s say this is what we want to add as nested level in `introduction` category
@@ -266,7 +266,7 @@ Here is a screenshot of the source code folders of the docs.
 
 Here the green rectangle box represents the `next` (unpublished) version of the project. This contains the unpublished version of the project documentation (currently on which project development would be going on).
 
-Red rectangle box contains `versioned_docs` named directory. It contains all the published versions of the project. Directory name goes like `version-x.x.x`, here x.x.x is a particular version. `version-x.x.x` contains all the markdown and json files in it are that particular version.
+Red rectangle box contains `versioned_docs` named directory. It contains all the published versions of the project. Directory name goes like `version-x.x.x`, here x.x.x is a particular version. `version-x.x.x` contains all the markdown and Json files in it that are of that particular version.
 
 
 Yellow rectangle box contains `versioned_sidebars` named directory. It contains all the json files for different - 2 published versions. Based upon the content of these json files, a sidebar is created internally for that corresponding version.
@@ -288,13 +288,13 @@ Considering this situation
 
 ![sidebar content](/website/public/images/guidelines/image13.png)
 
-Looking at this current screenshot ,we can infer that the next version will be 1.1.3.
+Looking at this current screenshot, we can infer that the next version will be 1.1.3.
 
 ### Process of publishing the next version of the docs:
 
 * Create a new folder in versioned_docs with name of `version-1.1.3`
 * Move the content of docs to `version-1.1.3` folder
-* Create a new json file with the name of  `version-1.1.3-sidebars.json` and update the file with corresponding json object.
+* Create a new json file with the name of `version-1.1.3-sidebars.json` and update the file with corresponding json object.
 * Add version number in `versions.json`
 
 After doing this, the folder structure will look like this
@@ -307,6 +307,6 @@ And `versions.json`
 
 That’s it. 
 
-For more info -- [Versioning](https://docusaurus.io/docs/versioning)  and https://docusaurus.io/docs/docs-introduction 
+For more info -- [Versioning](https://docusaurus.io/docs/versioning) and https://docusaurus.io/docs/docs-introduction 
 
 
