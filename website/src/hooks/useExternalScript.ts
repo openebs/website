@@ -3,7 +3,7 @@ import { SCRIPT_STATES } from "../constants";
 export type Status = SCRIPT_STATES
 export type ScriptElement = HTMLScriptElement | null
 
-export const useScript = (src: string): SCRIPT_STATES => {
+export const useExternalScript = (src: string): SCRIPT_STATES => {
 
   const [status, setStatus] = useState<SCRIPT_STATES>(src ? SCRIPT_STATES.LOADING : SCRIPT_STATES.IDLE)
 

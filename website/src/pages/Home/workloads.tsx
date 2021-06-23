@@ -6,13 +6,13 @@ import { EXTERNAL_LINKS, VIEW_PORT } from "../../constants";
 import Asciinema from '../../components/Asciinema';
 import { useViewport } from "../../hooks/viewportWidth";
 import { useExternalStyles } from "../../hooks/useExternalStyles";
-import { useScript } from '../../hooks/useScript';
+import { useExternalScript } from '../../hooks/useExternalScript';
 
 export const Workloads: React.FC = () => {
 
     useExternalStyles('css/asciinema-player.css');
     useExternalStyles('css/custom-asciinema-player.css');
-    const asciinemaScript = useScript('js/asciinema-player.js');
+    const asciinemaScript = useExternalScript('js/asciinema-player.js');
 
      const { t } = useTranslation();
      const classes = useStyles();

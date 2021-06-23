@@ -10,7 +10,7 @@ import { useViewport } from "../../hooks/viewportWidth";
 import { SOCIAL_PLATFORMS, VIEW_PORT } from "../../constants";
 import BlogsSlider from "../../components/BlogsSlider";
 import Newsletter from "../../components/Newsletter";
-import { SlackIcon } from "./slack-icon";
+import { SlackShareIcon } from "./slack-share-icon";
 
 const BlogPage: React.FC = () => {
   const classes = useStyles();
@@ -156,7 +156,7 @@ const BlogPage: React.FC = () => {
                           {socialLinks.map(({ label, imgURL }) => {
                               return (   
                                 (label === SOCIAL_PLATFORMS.SLACK) ? 
-                                  <SlackIcon key={label} />
+                                  <SlackShareIcon key={label} />
                                   :
                                   <Link className={classes.socialIconButton} key={label} onClick={(() => handleSocialSharing(label))}>
                                       <img loading="lazy" src={imgURL} alt={label}/>
@@ -190,7 +190,7 @@ const BlogPage: React.FC = () => {
                   {socialLinks.map(({ label, imgURL }) => {
                       return (   
                         (label === SOCIAL_PLATFORMS.SLACK) ? 
-                          <SlackIcon key={label} />
+                          <SlackShareIcon key={label} />
                           :
                           <Link className={classes.socialIconButton} key={label} onClick={(() => handleSocialSharing(label))}>
                               <img loading="lazy" src={imgURL} alt={label}/>
