@@ -57,12 +57,12 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between'
     },
     flippedLogo: {
-        width: '34%',
+        width: '35%',
         [theme.breakpoints.down('sm')]: {
             width: '28%',
         },
         [theme.breakpoints.down('xs')]: {
-            width: '34%',
+            width: '45%',
         },
     },
     formWrapper: {
@@ -90,7 +90,8 @@ const useStyles = makeStyles((theme) => ({
     cardTitle: {
         fontSize: '1.375rem',
         fontWeight: 700,
-        color: theme.palette.text.primary
+        color: theme.palette.text.primary,
+        marginBottom: theme.spacing(2)
     },
     cardBodyText: {
         fontSize: '1rem',
@@ -110,13 +111,12 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         width: '100%',
         transform: 'rotateY(180deg)',
-        WebkitTransform: 'rotateY(180deg)',
+        WebkitTransform: 'rotateY(180deg) translateZ(1px)',
     },
     flip: {
         transform: 'rotateY(180deg)',
         WebkitTransform: 'rotateY(180deg)',
-    },
-
+    }
 }))
 export default useStyles;
   
