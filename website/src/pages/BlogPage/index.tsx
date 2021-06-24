@@ -10,7 +10,7 @@ import { useViewport } from "../../hooks/viewportWidth";
 import { SOCIAL_PLATFORMS, VIEW_PORT } from "../../constants";
 import BlogsSlider from "../../components/BlogsSlider";
 import Newsletter from "../../components/Newsletter";
-import { SlackShareIcon } from "./slack-share-icon";
+import { SlackShareIcon } from "./slackShareIcon";
 
 const BlogPage: React.FC = () => {
   const classes = useStyles();
