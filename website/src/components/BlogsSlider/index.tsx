@@ -55,8 +55,8 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
         <Carousel settings={sliderSettings}>
           {recommendedBlogs.map((elm: any) => {
             return (
-              <div>
-                <Card key={elm.id} className={classes.cardRoot}>
+              <div key={elm.id}>
+                <Card className={classes.cardRoot}>
                   <CardMedia
                     className={classes.media}
                     image={`/images/blog/${elm.slug}.png`}

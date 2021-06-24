@@ -96,6 +96,7 @@ joinCommunity:
   gitHubTitle: Join OpenEBS on GitHub
   gitHubDescription: Is a great place to join if you want to contribute to our codebase.
   gitHubJoinButton: Join
+  slackIframeTitle: Join Kubernetes on Slack
 
 sponsors:
    mayadata: Originally created and sponsored by

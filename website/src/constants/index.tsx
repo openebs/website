@@ -52,3 +52,10 @@ export enum SOCIAL_PLATFORMS {
   TWITTER = "Twitter",
   FACEBOOK = "Facebook"
 };
+
+export enum SCRIPT_STATES {
+  LOADING = 'loading',
+  READY = 'ready',
+  ERROR = 'error',
+  IDLE = 'idle'
+}
