@@ -103,7 +103,21 @@ const useStyles = makeStyles((theme) => ({
         background: theme.palette.background.paper,
         borderRadius: '8px 8px 8px 0px',
         boxShadow: '0px 14.5357px 48px 11px rgba(119, 116, 232, 0.08)',
-        marginRight: theme.spacing(2)
+        transition: '265ms',
+        WebkitTransition: '265ms',
+        marginRight: theme.spacing(2),
+        '&:hover' :{
+            transform: 'rotate(-180deg)',
+            MSTransform: 'rotate(-180deg)',
+            WebkitTransform: 'scale(-180deg)',
+            borderRadius: '50%',
+        },
+        '&:hover img' :{
+            transform: 'rotate(180deg) scale(1.25)',
+            MSTransform: 'rotate(180deg) scale(1.25)',
+            WebkitTransform: 'rotate(180deg) scale(1.25)',
+        }
+        
     },
     socialIconsWrapper: {
         display: 'flex',
