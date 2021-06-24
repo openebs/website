@@ -131,7 +131,6 @@ const Home: React.FC = () => {
                 status:'Copy to clipboard'})
         }, 2000);
     };
-
     const NextArrow = (props:any) => {
         const { className, style, onClick } = props;
         return (
