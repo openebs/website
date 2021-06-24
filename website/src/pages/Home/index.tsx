@@ -131,27 +131,6 @@ const Home: React.FC = () => {
                 status:'Copy to clipboard'})
         }, 2000);
     };
-    const NextArrow = (props:any) => {
-        const { className, style, onClick } = props;
-        return (
-          <div
-            className={className}
-            style={{ ...style, display: "block" }}
-            onClick={onClick}
-          ><img loading="lazy" src="../images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} /></div>
-        );
-      }
-      
-    const PrevArrow = (props:any) => {
-        const { className, style, onClick } = props;
-        return (
-          <div
-            className={className}
-            style={{ ...style, display: "block" }}
-            onClick={onClick}
-          ><img loading="lazy" src="../images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} /></div>
-        );
-    }
     
     const testimonialSliderSettings = {
         dots:false,
