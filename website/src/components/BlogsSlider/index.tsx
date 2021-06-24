@@ -1,7 +1,5 @@
 import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import Carousel from "../Carousel";
 import { useTranslation } from "react-i18next";
 import useStyles from "./style";
 import {
@@ -24,37 +22,27 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
   const classes = useStyles();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
 
-  const NextArrow = (props: any) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block" }}
-        onClick={onClick}
-      >
-        <img
-          src="../images/svg/right_arrow.svg"
-          alt={t("home.adaptorsTestimonials.nextArrowAlt")}
-        />
-      </div>
-    );
-  };
 
-  const PrevArrow = (props: any) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: "block" }}
-        onClick={onClick}
-      >
-        <img
-          src="../images/svg/left_arrow.svg"
-          alt={t("home.adaptorsTestimonials.previousArrowAlt")}
-        />
-      </div>
-    );
-  };
+  const sliderSettings = {
+    dots: false,
+    autoplay: true,
+    autoplaySpeed: 4000,
+    speed: 500,
+    slidesToShow: 2,
+    slidesToScroll: 1,
+    cssEase:"linear",
+    arrows: true,
+    rtl: false,
+    responsive: [
+      {
+        breakpoint: mobileBreakpoint,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ]
+  }
 
   const getTags = (tags: Array<string>) => {
     const tagItems = tags.map((tag) => <CustomTag blogLabel={tag} key={tag} />);
@@ -64,28 +52,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
   return (
     <>
       <div className={classes.sliderWrapper}>
-        <Slider
-          dots={false}
-          autoplay={true}
-          autoplaySpeed={4000}
-          speed={500}
-          slidesToShow={2}
-          slidesToScroll={1}
-          cssEase="linear"
-          arrows={true}
-          rtl={false}
-          prevArrow={<PrevArrow />}
-          nextArrow={<NextArrow />}
-          responsive={[
-            {
-              breakpoint: mobileBreakpoint,
-              settings: {
-                slidesToShow: 1,
-                slidesToScroll: 1,
-              },
-            },
-          ]}
-        >
+        <Carousel settings={sliderSettings}>
           {recommendedBlogs.map((elm: any) => {
             return (
               <div key={elm.id}>
@@ -132,7 +99,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
               </div>
             );
           })}
-        </Slider>
+        </Carousel>
       </div>
     </>
   );
