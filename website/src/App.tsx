@@ -5,6 +5,7 @@ import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from './theme/theme';
 import './fonts'
+
 const Scaffold = React.lazy(() => import('./containers/Scaffold'));
 const Home = React.lazy(() => import('./pages/Home'));
 const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'));
