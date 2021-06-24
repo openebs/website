@@ -57,12 +57,12 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between'
     },
     flippedLogo: {
-        width: '34%',
+        width: '35%',
         [theme.breakpoints.down('sm')]: {
             width: '28%',
         },
         [theme.breakpoints.down('xs')]: {
-            width: '34%',
+            width: '45%',
         },
     },
     formWrapper: {

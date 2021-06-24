@@ -48,7 +48,7 @@ const JoinCommunity: React.FC = () => {
                         </div>
                         <div className={classes.back}>
                             <div className={classes.flippedCard}>
-                                <img loading="lazy" src="../images/logos/github_full_small.svg" alt={t('joinCommunity.gitHubAlt')} className={classes.flippedLogo}></img>
+                                <img loading="lazy" src="../images/logos/github_full.svg" alt={t('joinCommunity.gitHubAlt')} className={classes.flippedLogo}></img>
                                 <div>
                                     <Typography variant='h4' className={classes.cardTitle}>
                                         {t('joinCommunity.gitHubTitle')}
