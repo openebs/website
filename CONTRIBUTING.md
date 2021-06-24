@@ -234,7 +234,7 @@ The position of the category object in the `version-1.1.2/docs` array will decid
 ### Adding  nested levels of sidebars
 
 
-For the `next` (unpublished) version of the project related docs, just add the content (`directory`, `_category_.json` markdown and other files) as it is in the folder.
+For the `next` (unpublished) version of the project related docs, just add the content (`directory`, `_category_.json`, markdown and other files) as it is in the folder.
 
 For example,
 Let’s say this is what we want to add as nested level in `introduction` category
