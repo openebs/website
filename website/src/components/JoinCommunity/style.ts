@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     paper: {
-        padding: theme.spacing(6),
         color: theme.palette.text.secondary,
         height: '520px',
         boxShadow: '0px 11px 33px 29px rgba(193, 192, 243, 0.06)',
@@ -48,7 +47,8 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(0),
     },
     rightPaper: {
-        borderRadius: '20px 20px 60px 0px'
+        borderRadius: '20px 20px 60px 0px',
+        padding: theme.spacing(12, 6),
     },
     flippedCard: {
         display: 'flex',
@@ -57,7 +57,13 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between'
     },
     flippedLogo: {
-        width: '34%'
+        width: '34%',
+        [theme.breakpoints.down('sm')]: {
+            width: '28%',
+        },
+        [theme.breakpoints.down('xs')]: {
+            width: '34%',
+        },
     },
     formWrapper: {
         display: "flex",
