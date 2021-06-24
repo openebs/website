@@ -17,9 +17,9 @@ window.onload = () => {
 
 ReactDOM.render(
   <React.StrictMode>
-    <Suspense fallback={<Loader />}>
-    <App />
-    </Suspense>
+      <Suspense fallback={<Loader />}>
+        <App />
+      </Suspense>
   </React.StrictMode>,
   document.getElementById('root')
 );

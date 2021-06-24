@@ -61,57 +61,63 @@
   --color-tealish-blue: #{$blue-400};
 }
 
-.docusaurus-highlight-code-line {
-  background-color: $highlight-bg;
-  display: block;
-  margin: 0 calc(-1 * #{$ifm-pre-padding});
-  padding: 0 $ifm-pre-padding;
-}
-
-//code block
-.language-shell {
-  font-family: $code-block-font-family;
-  > div {
-    background-color: $blue-500 !important;
+.markdown{
+  .docusaurus-highlight-code-line {
+    background-color: $highlight-bg;
+    display: block;
+    margin: 0 calc(-1 * #{$ifm-pre-padding});
+    padding: 0 $ifm-pre-padding;
   }
-  * {
-    color: $white !important;
-  }
-  &.codeBlock_node_modules-\@docusaurus-theme-classic-lib-next-theme-CodeBlock- {
-    border-radius: 3.9px;
-  }
-  .token-line {
-    margin-bottom: 0.5rem;
-    &:last-child {
-      margin-bottom: 0;
+  
+  //code block
+  .language-shell {
+      font-family: $code-block-font-family;
+      > div {
+      background-color: $blue-500 !important;
     }
-  }
-}
-
-//liststyle
-.col-MainContent {
-  article {
-    ul:not(.dropdown__menu) {
-      padding: 0;
-      margin: 0 0 1rem;
-      li {
-        list-style: none;
-        position: relative;
-        padding-left: 1.5rem;
-        &::before {
-          content: "";
-          background: $blue-400;
-          position: absolute;
-          left: 0;
-          top: 0.6rem;
-          width: 0.5rem;
-          height: 0.5rem;
-          border-radius: 100%;
-        }
+    * {
+      color: $white !important;
+    }
+    &.codeBlock_node_modules-\@docusaurus-theme-classic-lib-next-theme-CodeBlock- {
+      border-radius: 3.9px;
+    }
+    .token-line {
+      margin-bottom: 0.5rem;
+      &:last-child {
+        margin-bottom: 0;
       }
     }
   }
+  //liststyle
+  ul:not(.dropdown__menu) {
+    padding: 0;
+    margin: 0 0 1rem;
+    li {
+      list-style: none;
+      position: relative;
+      padding-left: 1.5rem;
+      &::before {
+        content: "";
+        background: $blue-400;
+        position: absolute;
+        left: 0;
+        top: 0.6rem;
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 100%;
+      }
+    }
+  }
+  /* admonition options: danger | success | info | caution | note */
+  .admonition {
+    color: $blue-500;
+    border-left-width: 8px;
+    a {
+      color: inherit;
+    }
+  }
 }
+
 
 //main wrapper
 @media (min-width: 997px) and (max-width: 1320px) {
@@ -225,17 +231,6 @@
   width: 100%;
 }
 
-/* admonition 
-  options: danger | success | info | caution | note
-*/
-.admonition {
-  color: $blue-500;
-  border-left-width: 8px;
-  a {
-    color: inherit;
-  }
-}
-
 .dropdown__menu {
   min-width: 8rem;
   text-align: left;
@@ -312,28 +307,15 @@ footer.footer {
 }
 
 @media (max-width: $breakpoint-md) {
-  h1 {
-    padding-bottom: 0;
-  }
   .wt_versionDropdown {
     margin-bottom: 24px;
   }
-
   .docSearchInput {
     padding: 8px 8px 8px 30px;
     line-height: normal;
     background-position-x: 10px;
     background-size: 12px;
     width: 100% !important;
-  }
-  .markdown > pre,
-  .markdown > ul,
-  .markdown > p {
-    margin-bottom: 5px;
-  }
-  .markdown > h2 {
-    margin-top: 15px;
-    margin-bottom: 10px;
   }
   .wt_versionDropdown {
     display: flex;
@@ -348,24 +330,30 @@ footer.footer {
       border-radius: 4px;
     }
   }
-  .img-wrapper {
-    .img-block {
-      padding: 8px;
-      border-width: 1px;
-      img {
-        height: 16px;
-      }
-      span {
-        font-size: 10px;
-      }
+  .markdown{
+    h1 {
+      padding-bottom: 0;
     }
-  }
-  .copyButton {
-    background: $light-black !important;
-    padding: 5px !important;
-    svg {
-      float: left;
-      width: 15px;
+    > pre,
+    > ul,
+    > p {
+      margin-bottom: 5px;
+    }
+    > h2 {
+      margin-top: 15px;
+      margin-bottom: 10px;
+    }
+    .img-wrapper {
+      .img-block {
+        padding: 8px;
+        border-width: 1px;
+        img {
+          height: 16px;
+        }
+        span {
+          font-size: 10px;
+        }
+      }
     }
   }
 }
@@ -410,5 +398,16 @@ footer.footer {
   }
   .docSearchInput {
     width: 100% !important;
+  }
+  .markdown{
+    .copyButton {
+      background: $light-black !important;
+      padding: 5px !important;
+      width: 30px;
+      svg {
+        float: left;
+        width: 100%;
+      }
+    }
   }
 }
