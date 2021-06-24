@@ -128,6 +128,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: '8px 8px 8px 0px',
     boxShadow: '0px 14.5357px 48px 11px rgba(119, 116, 232, 0.08)',
     cursor: 'pointer',
+    transition: '265ms',
+    WebkitTransition: '265ms',
     '& .at-share-btn':{
       background: 'none !important'
     },
@@ -140,6 +142,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     '& .at-resp-share-element .at-share-btn:focus, .at-resp-share-element .at-share-btn:hover':{
       transform: 'translateY(0px)'
+    },
+    '&:hover' :{
+      transform: 'rotate(-180deg)',
+      MSTransform: 'rotate(-180deg)',
+      WebkitTransform: 'scale(-180deg)',
+      borderRadius: '50%',
+    },
+    '&:hover img' :{
+        transform: 'rotate(180deg) scale(1.25)',
+        MSTransform: 'rotate(180deg) scale(1.25)',
+        WebkitTransform: 'rotate(180deg) scale(1.25)',
     }
   },
   blogBody: {
