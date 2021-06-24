@@ -1,10 +1,9 @@
-import { Button, IconButton, TextField, Typography } from "@material-ui/core";
-import React, {useEffect, useState} from "react";
+import { Button, Typography } from "@material-ui/core";
+import React, {useState} from "react";
 import useStyles from './style';
 import { useTranslation } from "react-i18next";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import { validateEmail } from "../../utils/emailValidation";
 import { EXTERNAL_LINKS } from "../../constants";
 
 const JoinCommunity: React.FC = () => {
@@ -13,18 +12,6 @@ const JoinCommunity: React.FC = () => {
 
     const [slackFlip, setSlackFlip] = useState<boolean>(false);
     const [gitHubFlip, setGitHubFlip] = useState<boolean>(false);
-    const [emailValue, setEmailValue] = useState<string>('');
-    const [disableContinueButton, setDisableContinueButton] = useState<boolean>(true);
-
-    useEffect(() => {
-        // Enable continue button when email is valid
-        validateEmail(emailValue) ? setDisableContinueButton(false) : setDisableContinueButton(true);
-    },[emailValue]);
-
-    const handleSlackInvite = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        // Need to write logic to send slack invite
-    };
 
     const handleSlackFlip = () => {
         setSlackFlip(!slackFlip);
@@ -42,44 +29,19 @@ const JoinCommunity: React.FC = () => {
                 {t('joinCommunity.title')}
             </Typography>
             <Grid container spacing={5}>
-                <Grid item sm={6} xs={12}>
+                <Grid item md={6} xs={12}>
                     <Paper className={[classes.paper, classes.leftPaper, slackFlip ? classes.flip : ''].join(' ')} onClick={()=> handleSlackFlip()}>
                         <div className={classes.front}>
                             <img loading="lazy" src="../images/logos/slack_full.svg" alt={t('joinCommunity.slackAlt')}></img>
                         </div>
                         <div className={classes.back}>
                             <div className={classes.flippedCard}>
-                                <img loading="lazy" src="../images/logos/slack_full.svg" alt={t('joinCommunity.slackAlt')} className={classes.flippedLogo}></img>
-                                <Typography variant='h4' className={classes.cardTitle}>
-                                    {t('joinCommunity.slackTitle')}
-                                </Typography>
-                                <form noValidate autoComplete="on" onSubmit={handleSlackInvite}>
-                                    <div className={classes.formWrapper}>
-                                        <TextField
-                                        label={t('joinCommunity.emailLabel')}
-                                        fullWidth
-                                        name="email"
-                                        onClick={(e) => e.stopPropagation()}
-                                        onChange={(e) =>
-                                            setEmailValue(e.target.value)
-                                        }
-                                        InputProps={{
-                                            className: classes.input,
-                                        }}
-                                        InputLabelProps={{
-                                            className: classes.label,
-                                        }}
-                                        />
-                                        <IconButton aria-label="submit" className={classes.iconButton} disabled={disableContinueButton} type="submit">
-                                            <img loading="lazy" src="../images/svg/arrow_orange.svg" alt={t('joinCommunity.submitAlt')}/>
-                                        </IconButton>
-                                    </div>
-                                </form>
+                                <iframe src="https://slack.k8s.io/" title={t('joinCommunity.slackIframeTitle')} height="480" frameBorder="0" scrolling="no"></iframe>
                             </div> 
                         </div> 
                     </Paper>
                 </Grid>
-                <Grid item sm={6} xs={12}>
+                <Grid item md={6} xs={12}>
                     <Paper className={[classes.paper, classes.rightPaper, gitHubFlip ? classes.flip : ''].join(' ')} onClick={()=> handleGitHubFlip()}>
                         <div className={classes.front}>
                             <img loading="lazy" src="../images/logos/github_full.svg" alt={t('joinCommunity.gitHubAlt')}></img>
