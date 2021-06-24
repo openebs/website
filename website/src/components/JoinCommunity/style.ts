@@ -83,7 +83,8 @@ const useStyles = makeStyles((theme) => ({
     cardTitle: {
         fontSize: '1.375rem',
         fontWeight: 700,
-        color: theme.palette.text.primary
+        color: theme.palette.text.primary,
+        marginBottom: theme.spacing(2)
     },
     cardBodyText: {
         fontSize: '1rem',
@@ -102,13 +103,12 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         height: '100%',
         transform: 'rotateY(180deg)',
-        WebkitTransform: 'rotateY(180deg)',
+        WebkitTransform: 'rotateY(180deg) translateZ(1px)',
     },
     flip: {
         transform: 'rotateY(180deg)',
         WebkitTransform: 'rotateY(180deg)',
-    },
-
+    }
 }))
 export default useStyles;
   

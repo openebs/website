@@ -87,12 +87,14 @@ const JoinCommunity: React.FC = () => {
                         <div className={classes.back}>
                             <div className={classes.flippedCard}>
                                 <img loading="lazy" src="../images/logos/github_full_small.svg" alt={t('joinCommunity.gitHubAlt')} className={classes.flippedLogo}></img>
-                                <Typography variant='h4' className={classes.cardTitle}>
-                                    {t('joinCommunity.gitHubTitle')}
-                                </Typography>
-                                <Typography className={classes.cardBodyText}>
-                                    {t('joinCommunity.gitHubDescription')}
-                                </Typography>
+                                <div>
+                                    <Typography variant='h4' className={classes.cardTitle}>
+                                        {t('joinCommunity.gitHubTitle')}
+                                    </Typography>
+                                    <Typography className={classes.cardBodyText}>
+                                        {t('joinCommunity.gitHubDescription')}
+                                    </Typography>
+                                </div>
                                 <Button variant="contained" color="secondary" size="small" className={classes.cardButton} href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO} target="_blank">
                                     {t('joinCommunity.gitHubJoinButton')}
                                 </Button>
