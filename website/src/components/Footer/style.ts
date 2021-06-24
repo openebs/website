@@ -113,9 +113,9 @@ const useStyles = makeStyles((theme) => ({
             borderRadius: '50%',
         },
         '&:hover img' :{
-            transform: 'rotate(180deg) scale(1.4)',
-            MSTransform: 'rotate(180deg) scale(1.4)',
-            WebkitTransform: 'rotate(180deg) scale(1.4)',
+            transform: 'rotate(180deg) scale(1.25)',
+            MSTransform: 'rotate(180deg) scale(1.25)',
+            WebkitTransform: 'rotate(180deg) scale(1.25)',
         }
         
     },
