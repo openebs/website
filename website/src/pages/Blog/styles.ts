@@ -45,8 +45,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: theme.spacing(3, 0, 2.5),
     [theme.breakpoints.down("xs")]: {
       flexDirection: 'column',
-      margin: theme.spacing(0),
-      gap: theme.spacing(1)
+      margin: theme.spacing(0)
     },
   },
   large: {
@@ -54,8 +53,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: '60px',
     marginRight: theme.spacing(1.8),
     [theme.breakpoints.down("xs")]: {
-      width: '32px',
-      height: '32px',
+      width: '48px',
+      height: '48px',
     },
   },
   tabs: {

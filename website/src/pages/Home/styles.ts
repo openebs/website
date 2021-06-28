@@ -436,12 +436,14 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 400,
         color: theme.palette.text.disabled
     },
-    testimonialWriterWrapper: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '10px',
-        marginTop: theme.spacing(3)
-    },
+    // commented code will be used for upcomming releases
+    // 
+    // testimonialWriterWrapper: {
+    //     display: 'flex',
+    //     alignItems: 'center',
+    //     gap: '10px',
+    //     marginTop: theme.spacing(3)
+    // },
     testimonialMule: {
         margin: theme.spacing(0,4),
         '& img': {

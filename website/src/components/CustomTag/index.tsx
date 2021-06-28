@@ -44,7 +44,7 @@ const CustomTag: React.FC<blogTitleProps> = ({ blogLabel }) => {
 
   return (
     <>
-       <Typography variant="h6" className={classes.tag} style = {getTabStyle()}>
+       <Typography variant="h6" className={classes.tag} style={getTabStyle()}>
         <ReactMarkdown children={blogLabel} />
       </Typography>
     </>

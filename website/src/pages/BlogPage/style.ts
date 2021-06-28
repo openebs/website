@@ -104,17 +104,18 @@ const useStyles = makeStyles((theme: Theme) => ({
       flexDirection:'column',
       justifyContent: 'center',
       marginTop: theme.spacing(3),
-      gap: theme.spacing(1)
     },
   },
   share: {
     fontSize: '16px',
     [theme.breakpoints.down('xs')]: {
       fontSize: '14px',
+      marginBottom: theme.spacing(1)
     },
   },
   socialIconsWrapper: {
-    display: 'flex',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(4, 1fr)',
     marginLeft: theme.spacing(1),
     gap: theme.spacing(2),
   },

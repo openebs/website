@@ -14,10 +14,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   tagsWrapper: {
     display: 'flex',
-    gap: '12px',
     overflow: "scroll",
-    paddingBottom: '2px',
+    paddingBottom: '6px',
   },
+  tag: {
+    marginRight: theme.spacing(1)
+  },
+
   title: {
     fontSize: 22,
     fontWeight: 700,
