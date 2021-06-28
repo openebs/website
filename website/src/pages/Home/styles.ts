@@ -129,12 +129,12 @@ const useStyles = makeStyles((theme) => ({
         width: '75%',
         margin: 'auto',
         [theme.breakpoints.down("md")]: {
-        padding: theme.spacing(3, 0),
-        width: '80%'
+            padding: theme.spacing(3, 0),
+            width: '80%'
         },
         [theme.breakpoints.down("xs")]: {
-        padding: theme.spacing(3, 0),
-        width: '90%'
+            padding: theme.spacing(3, 0),
+            width: '90%'
         }
     },
     sectionTitle: {

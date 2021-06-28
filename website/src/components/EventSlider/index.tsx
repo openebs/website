@@ -72,6 +72,7 @@ const EventSlider: React.FC<EventsProps> = ({
         settings: {
           slidesToShow: 1,
           centerMode: true,
+          centerPadding: '30px',
           arrows: false,
         },
       },

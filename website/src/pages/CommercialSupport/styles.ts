@@ -89,13 +89,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       boxShadow: "0px 4px 34px 21px rgba(70, 68, 151, 0.04)",
       borderRadius: "20px 20px 60px 0px",
     },
-    [theme.breakpoints.down("sm")]: {
-      height: '100%',
-      paddingBottom: theme.spacing(5),
-      '&:hover':{
-        height: '100%'
-      }
-    },
     [theme.breakpoints.down("xs")]: {
       boxShadow:' 0px 4px 34px 21px rgba(70, 68, 151, 0.04)',
       borderRadius: '20px 20px 40px 0px',
@@ -106,11 +99,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     visibility: "hidden",
     position: "absolute",
     paddingTop: theme.spacing(2),
-    [theme.breakpoints.down("sm")]: {
-      paddingTop: theme.spacing(4),
-      visibility: 'visible',
-      bottom: '10px'
-    }
   },
   cardText: {
     padding: theme.spacing(1, 0),

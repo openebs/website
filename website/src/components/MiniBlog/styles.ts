@@ -25,7 +25,10 @@ const useStyles = makeStyles((theme: Theme) => ({
       boxShadow: '2px 5px 31px 4px rgba(70, 68, 151, 0.07)',
       borderRadius: '12px 12px 12px 0px',
       padding: theme.spacing(3, 1),
-      margin: theme.spacing(2.5, 2)
+      margin: theme.spacing(2.5, 2),
+      [theme.breakpoints.down('xs')]: {
+        padding: theme.spacing(2, .5),
+      }
     }
   },
   scroller: {
@@ -56,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     '& .slick-slide' : {
       height: 'inherit',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('xs')]: {
         opacity: '.3'
       }
     },
@@ -67,7 +70,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       }
     },
     '& .slick-slide.slick-center': {
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('xs')]: {
         opacity: 1
       }
     }
