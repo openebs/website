@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down("sm")]: {
       height: '100%',
-      paddingBottom: '40px',
+      paddingBottom: theme.spacing(5),
       '&:hover':{
         height: '100%'
       }

@@ -257,7 +257,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   tabWrapper: {
     display: "flex",
     overflow: "auto",
-    paddingBottom: '2px',
+    paddingBottom: theme.spacing(0.25),
     width: "70%",
     [theme.breakpoints.down("sm")]: {
       width: "100%",

@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   tagsWrapper: {
     display: 'flex',
     overflow: "scroll",
-    paddingBottom: '6px',
+    paddingBottom: theme.spacing(0.75),
   },
   tag: {
     marginRight: theme.spacing(1)
