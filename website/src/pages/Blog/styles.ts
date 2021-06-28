@@ -53,8 +53,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: '60px',
     marginRight: theme.spacing(1.8),
     [theme.breakpoints.down("xs")]: {
-      width: '48px',
-      height: '48px',
+      width: '32px',
+      height: '32px',
     },
   },
   tabs: {
