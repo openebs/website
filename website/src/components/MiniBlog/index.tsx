@@ -143,7 +143,9 @@ const MiniBlog: React.FC = () => {
         breakpoint: mobileBreakpoint,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1,
+          arrows: false,
+          centerMode: true,
+          centerPadding: "30px",
         },
       },
     ]
@@ -179,7 +181,7 @@ const MiniBlog: React.FC = () => {
         </Container>
       </span>
       <Grid container justify="center">
-        <Grid item xs={filteredData.length === 1 ? 5 : 10}>
+        <Grid item sm={filteredData.length === 1 ? 5 : 10} xs={12} className={classes.sliderWrapper}>
           <Carousel settings={sliderSettings}>
             {filteredData.map((elm: any) => {
               return (

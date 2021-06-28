@@ -60,11 +60,14 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     [theme.breakpoints.down("xs")]: {
-      marginRight: theme.spacing(0)
+      margin: theme.spacing(0, 0, 2, 1.2),
     },
     "&  div.slick-slide": {
       "&  > div": {
         padding: theme.spacing(2.5),
+        [theme.breakpoints.down("xs")]: {
+          padding: theme.spacing(1.25)
+        }
       },
     },
     "& .slick-disabled": {

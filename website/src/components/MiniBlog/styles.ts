@@ -148,6 +148,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: theme.spacing(1),
     cursor: "pointer",
   },
+  sliderWrapper: {
+    [theme.breakpoints.down("sm")]: {
+      padding: theme.spacing(0, 1),
+      '& .slick-list': {
+        padding: `${theme.spacing(0, 3,0 ,0)} !important`
+      }
+    }
+  }
 }));
 
 export default useStyles;
