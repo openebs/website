@@ -82,16 +82,29 @@ const useStyles = makeStyles((theme) => ({
       [theme.breakpoints.down("xs")]: {
         padding: `${theme.spacing(0)} !important`
       }
+    },
+    '& .slick-center':{
+      '& $actionLInk' : {
+        [theme.breakpoints.down("xs")]: {
+          display:'inherit'
+        }
+      }
     }
   },
   titleText: {
     fontSize: "22px",
     fontWeight: 700,
     color: theme.palette.primary.main,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 16
+    }
   },
   subText: {
     fontSize: "16px",
     color: theme.palette.primary.dark,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 14
+    }
   },
   linkText: {
     color: theme.palette.secondary.main,

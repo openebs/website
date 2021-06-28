@@ -55,10 +55,21 @@ const useStyles = makeStyles((theme: Theme) => ({
       display: 'flex'
     },
     '& .slick-slide' : {
-      height: 'inherit'
+      height: 'inherit',
+      [theme.breakpoints.down('sm')]: {
+        opacity: '.3'
+      }
     },
     '& .slick-slide > div': {
-      height: '100%'
+      height: '100%',
+      [theme.breakpoints.down('sm')]: {
+        marginRight: theme.spacing(1.2)
+      }
+    },
+    '& .slick-slide.slick-center': {
+      [theme.breakpoints.down('sm')]: {
+        opacity: 1
+      }
     }
   },
   cardWrapper: {
@@ -95,6 +106,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     fontSize: 22,
     fontWeight: 700,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 16
+    }
   },
   pos: {
     marginBottom: 12,
