@@ -248,11 +248,13 @@ footer.footer {
   background-position: top left;
   background-size: cover;
   border-top: 1px solid $blue-300;
+  padding-bottom: 0px;
   .footer__bottom {
     display: flex;
     align-items: center;
     border-top: 1px solid $blue-300;
     padding: 16px 0 8px;
+    margin-top: 60px;
     a {
       color: $orange-000;
       text-decoration: underline;
@@ -264,13 +266,28 @@ footer.footer {
   color: $blue-600;
 }
 
+.footer_logo {
+  margin-bottom: 1.5rem;
+}
+
 .footer__items {
   margin-top: 1rem;
 }
 
+.footer__links {
+  margin-bottom: 4px;
+}
+
+.footer__link-item {
+  font-size: 1rem;
+  &:hover{
+    color: inherit;
+  }
+}
+
 .footer-wrapper {
-  padding-left: 80px;
-  padding-right: 80px;
+  padding-left: 100px;
+  padding-right: 100px;
 }
 
 .footer-wrapper-mob {
@@ -279,26 +296,33 @@ footer.footer {
 }
 
 .link_icon {
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 10px;
-  border-bottom-left-radius: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 8px 8px 8px 0px;
   background: $white;
-  margin-right: 10px;
+  margin-right: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.4s all;
+  transition: 265ms;
+  box-shadow: 0px 14.5357px 48px 11px rgba(119, 116, 232, 0.08);
+  margin-top: 1.5rem;
   svg {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 100%;
+    max-height: 100%;
   }
   &:hover {
-    background: $blue-400;
-    path {
-      fill: $white;
+    transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
+    -webkit-transform: scale(-180deg);
+    border-radius: 50%;
+    svg{
+      transform: rotate(180deg) scale(1.25);
+      -ms-transform: rotate(180deg) scale(1.25);
+      -webkit-transform: rotate(180deg) scale(1.25);
     }
   }
+
 }
 
 // containers

@@ -486,7 +486,7 @@ const Home: React.FC = () => {
                                <Button
                                     variant="contained"
                                     color="secondary"
-                                    className={classes.adopterButton}
+                                    className={classes.solidButton}
                                     onClick={() => { window.open(EXTERNAL_LINKS.BECOME_ADOPTER, '_blank') }}
                                 >
                                     {t("adoptersTestimonials.becomeAdopter")}

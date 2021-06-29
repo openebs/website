@@ -1,6 +1,6 @@
 .doc-button {
   display: inline-block;
-  font-weight: 400;
+  font-weight: 700;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -48,11 +48,14 @@ fieldset:disabled a.doc-button {
   color: $white;
   background-color: $primary-button-color;
   border-color: $primary-button-color;
+  box-shadow: 0px 11px 33px rgba(255, 220, 179, 0.62);
 
   &:hover {
     color: $white;
     background-color: $primary-button-hover-color;
     border-color: $primary-button-hover-color;
+    animation: pulse 1s;
+    box-shadow: 0 0 0 16px rgba(255,255,255,0),
   }
 
   &:focus,
@@ -71,6 +74,13 @@ fieldset:disabled a.doc-button {
   &:not(:disabled):not(.disabled).active:focus {
     box-shadow: 0 0 0 0.2rem rgba($primary-button-color, 0.5);
   }
+
+  &.doc-button-lg {
+    &:hover {
+      box-shadow: 0 0 0 22px rgba(255,255,255,0),
+    }
+  }
+
 }
 
 .doc-button-outlined {
@@ -121,6 +131,7 @@ fieldset:disabled a.doc-button {
 
 .doc-button-lg {
   padding: $input-btn-padding-y-lg $input-btn-padding-x-lg;
+  width: $input-btn-width-lg;
 }
 .doc-button-sm {
   padding: $input-btn-padding-y-sm $input-btn-padding-x-sm;
@@ -135,5 +146,10 @@ fieldset:disabled a.doc-button {
   }
   .doc-button-sm {
     padding: $input-btn-padding-y-sm 0.5rem;
+  }
+}
+@keyframes pulse{
+  0%{ 
+      box-shadow: 0 0 0 0 $primary-button-color
   }
 }
