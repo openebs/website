@@ -431,7 +431,7 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
         wordBreak: 'break-word',
         [theme.breakpoints.down('sm')]: {
-            fontSize: 14
+            fontSize: '14px'
         }
     },
     testimonialWriter: {
