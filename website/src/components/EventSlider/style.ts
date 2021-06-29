@@ -13,14 +13,14 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0px 11px 33px rgba(193, 192, 243, 0.06)",
     borderRadius: "20px 40px 20px 0px",
     transition: "all 0.3s ease-out",
-    '&:hover $actionLInk':{
+    '&:hover $actionLink':{
       display:'inherit'
     },
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(2)
     }
   },
-  actionLInk:{
+  actionLink:{
     display: 'none',
   },
   slidewrap: {
@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
       }
     },
     '& .slick-center':{
-      '& $actionLInk' : {
+      '& $actionLink' : {
         [theme.breakpoints.down("xs")]: {
           display:'inherit'
         }
@@ -96,14 +96,14 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     color: theme.palette.primary.main,
     [theme.breakpoints.down("sm")]: {
-      fontSize: 16
+      fontSize: '16px'
     }
   },
   subText: {
     fontSize: "16px",
     color: theme.palette.primary.dark,
     [theme.breakpoints.down("sm")]: {
-      fontSize: 14
+      fontSize: '14px'
     }
   },
   linkText: {

@@ -107,10 +107,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     transform: "scale(0.8)",
   },
   title: {
-    fontSize: 22,
+    fontSize: '22px',
     fontWeight: 700,
     [theme.breakpoints.down("sm")]: {
-      fontSize: 16
+      fontSize: '16px'
     }
   },
   pos: {
