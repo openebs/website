@@ -25,7 +25,10 @@ const useStyles = makeStyles((theme: Theme) => ({
       boxShadow: '2px 5px 31px 4px rgba(70, 68, 151, 0.07)',
       borderRadius: '12px 12px 12px 0px',
       padding: theme.spacing(3, 1),
-      margin: theme.spacing(2.5, 2)
+      margin: theme.spacing(2.5, 2),
+      [theme.breakpoints.down('xs')]: {
+        padding: theme.spacing(2, .5),
+      }
     }
   },
   scroller: {
@@ -55,10 +58,21 @@ const useStyles = makeStyles((theme: Theme) => ({
       display: 'flex'
     },
     '& .slick-slide' : {
-      height: 'inherit'
+      height: 'inherit',
+      [theme.breakpoints.down('xs')]: {
+        opacity: '.3'
+      }
     },
     '& .slick-slide > div': {
-      height: '100%'
+      height: '100%',
+      [theme.breakpoints.down('sm')]: {
+        marginRight: theme.spacing(1.2)
+      }
+    },
+    '& .slick-slide.slick-center': {
+      [theme.breakpoints.down('xs')]: {
+        opacity: 1
+      }
     }
   },
   cardWrapper: {
@@ -93,8 +107,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     transform: "scale(0.8)",
   },
   title: {
-    fontSize: 22,
+    fontSize: '22px',
     fontWeight: 700,
+    [theme.breakpoints.down("sm")]: {
+      fontSize: '16px'
+    }
   },
   pos: {
     marginBottom: 12,
@@ -136,7 +153,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   tabWrapper: {
     display: "flex",
     overflow: "auto",
-    paddingBottom: '2px',
+    paddingBottom: theme.spacing(0.25),
     width: "70%",
     [theme.breakpoints.down("sm")]: {
       width: "100%",
@@ -148,6 +165,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: theme.spacing(1),
     cursor: "pointer",
   },
+  sliderWrapper: {
+    [theme.breakpoints.down("sm")]: {
+      padding: theme.spacing(0, 1),
+      '& .slick-list': {
+        padding: `${theme.spacing(0, 3,0 ,0)} !important`
+      }
+    }
+  }
 }));
 
 export default useStyles;

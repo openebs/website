@@ -72,6 +72,7 @@ const EventSlider: React.FC<EventsProps> = ({
         settings: {
           slidesToShow: 1,
           centerMode: true,
+          centerPadding: '30px',
           arrows: false,
         },
       },
@@ -116,7 +117,7 @@ const EventSlider: React.FC<EventsProps> = ({
                     {event.description}
                   </Typography>
                   {checkPastDate(event.date) && event.buttonLink && (
-                    <Box mt={2} className={classes.actionLInk}>
+                    <Box mt={2} className={classes.actionLink}>
                       <Link
                         className={classes.linkText}
                         href={event.buttonLink}

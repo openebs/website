@@ -47,9 +47,18 @@ const useStyles = makeStyles((theme: Theme) => ({
   newsletterFormWrapper: {
     display: "flex",
   },
+  "@keyframes pulse" :{
+    "0%" :{ 
+        boxShadow: `0 0 0 0 ${theme.palette.secondary.main}`
+    }
+  },
   solidButton: {
     marginTop: theme.spacing(2),
-    boxShadow: 'none'
+    boxShadow: 'none',
+    '&:hover': {
+      animation: `$pulse 1s`,
+      boxShadow: `0 0 0 22px rgba(255,255,255,0)`,
+    },
   },
 }));
 

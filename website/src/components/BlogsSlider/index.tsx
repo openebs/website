@@ -45,7 +45,13 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
   }
 
   const getTags = (tags: Array<string>) => {
-    const tagItems = tags.map((tag) => <CustomTag blogLabel={tag} key={tag} />);
+    const tagItems = tags.map((tag) => {
+      return(
+        <div className={classes.tag} key={tag}>
+          <CustomTag blogLabel={tag} />
+        </div>
+      )
+    });
     return tagItems;
   };
 

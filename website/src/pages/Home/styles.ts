@@ -91,12 +91,21 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '0.875rem',
         },
     },
+    "@keyframes pulse" :{
+        "0%" :{ 
+            boxShadow: `0 0 0 0 ${theme.palette.secondary.main}`
+        }
+    },
     solidButton: {
         marginRight: theme.spacing(2.5),
         [theme.breakpoints.down('xs')]: {
             marginRight: theme.spacing(0),
             width: '100%',
             padding: theme.spacing(1.2)
+        },
+        '&:hover': {
+            animation: `$pulse 1s`,
+            boxShadow: `0 0 0 22px rgba(255,255,255,0)`,
         },
     },
     adopterButtonWrapper: {
@@ -105,18 +114,12 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
       padding: theme.spacing(2),
     },
-    adopterButton: {
-        [theme.breakpoints.down('xs')]: {
-            width: '100%',
-            padding: theme.spacing(1.2)
-        },
-    },
     outlineButton: {
         [theme.breakpoints.down('xs')]: {
             marginTop: theme.spacing(2),
             width: '100%',
             padding: theme.spacing(1.2)
-        },
+        }
     },
     tabsWrapper: {
         margin: theme.spacing(22, 3, 0)
@@ -129,12 +132,12 @@ const useStyles = makeStyles((theme) => ({
         width: '75%',
         margin: 'auto',
         [theme.breakpoints.down("md")]: {
-        padding: theme.spacing(3, 0),
-        width: '80%'
+            padding: theme.spacing(3, 0),
+            width: '80%'
         },
         [theme.breakpoints.down("xs")]: {
-        padding: theme.spacing(3, 0),
-        width: '90%'
+            padding: theme.spacing(3, 0),
+            width: '90%'
         }
     },
     sectionTitle: {
@@ -413,8 +416,8 @@ const useStyles = makeStyles((theme) => ({
         background: theme.palette.background.paper,
         margin: theme.spacing(3),
         [theme.breakpoints.down('sm')]: {
-            padding: theme.spacing(4),
-            margin: theme.spacing(2),
+            padding: theme.spacing(4, 2),
+            margin: theme.spacing(2, 1.5),
         },
     },
     testimonialTitle: {
@@ -429,19 +432,24 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 400,
         color: theme.palette.text.secondary,
         marginTop: theme.spacing(2),
-        wordBreak: 'break-word'
+        wordBreak: 'break-word',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px'
+        }
     },
     testimonialWriter: {
         fontSize: '1rem',
         fontWeight: 400,
         color: theme.palette.text.disabled
     },
-    testimonialWriterWrapper: {
-        display: 'flex',
-        alignItems: 'center',
-        gap: '10px',
-        marginTop: theme.spacing(3)
-    },
+    // commented code will be used for upcomming releases
+    // 
+    // testimonialWriterWrapper: {
+    //     display: 'flex',
+    //     alignItems: 'center',
+    //     gap: '10px',
+    //     marginTop: theme.spacing(3)
+    // },
     testimonialMule: {
         margin: theme.spacing(0,4),
         '& img': {

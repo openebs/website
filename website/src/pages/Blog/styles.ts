@@ -45,8 +45,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: theme.spacing(3, 0, 2.5),
     [theme.breakpoints.down("xs")]: {
       flexDirection: 'column',
-      margin: theme.spacing(0),
-      gap: theme.spacing(1)
+      margin: theme.spacing(0)
     },
   },
   large: {
@@ -258,7 +257,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   tabWrapper: {
     display: "flex",
     overflow: "auto",
-    paddingBottom: '2px',
+    paddingBottom: theme.spacing(0.25),
     width: "70%",
     [theme.breakpoints.down("sm")]: {
       width: "100%",

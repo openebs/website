@@ -486,7 +486,7 @@ const Home: React.FC = () => {
                                <Button
                                     variant="contained"
                                     color="secondary"
-                                    className={classes.adopterButton}
+                                    className={classes.solidButton}
                                     onClick={() => { window.open(EXTERNAL_LINKS.BECOME_ADOPTER, '_blank') }}
                                 >
                                     {t("adoptersTestimonials.becomeAdopter")}
@@ -524,7 +524,7 @@ const Home: React.FC = () => {
                     <Grid container spacing={3} alignItems="center">
                         <Grid item md={4} sm={12}>
                             <Paper className={[classes.paper, classes.flyingMuleWrapper].join(' ')}>
-                                <span className={classes.flyingMule}>
+                                <span className={`${classes.flyingMule} ${classes.imageFluid}`}>
                                     <LazyLoadImage effect="blur" src="../images/png/flying_mule.png" alt={t('home.youAreReadyToStart.flyingMuleAlt')} />
                                 </span>
                             </Paper>
