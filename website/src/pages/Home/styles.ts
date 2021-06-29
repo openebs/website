@@ -129,12 +129,12 @@ const useStyles = makeStyles((theme) => ({
         width: '75%',
         margin: 'auto',
         [theme.breakpoints.down("md")]: {
-        padding: theme.spacing(3, 0),
-        width: '80%'
+            padding: theme.spacing(3, 0),
+            width: '80%'
         },
         [theme.breakpoints.down("xs")]: {
-        padding: theme.spacing(3, 0),
-        width: '90%'
+            padding: theme.spacing(3, 0),
+            width: '90%'
         }
     },
     sectionTitle: {
@@ -413,8 +413,8 @@ const useStyles = makeStyles((theme) => ({
         background: theme.palette.background.paper,
         margin: theme.spacing(3),
         [theme.breakpoints.down('sm')]: {
-            padding: theme.spacing(4),
-            margin: theme.spacing(2),
+            padding: theme.spacing(4, 2),
+            margin: theme.spacing(2, 1.5),
         },
     },
     testimonialTitle: {
@@ -429,7 +429,10 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 400,
         color: theme.palette.text.secondary,
         marginTop: theme.spacing(2),
-        wordBreak: 'break-word'
+        wordBreak: 'break-word',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '14px'
+        }
     },
     testimonialWriter: {
         fontSize: '1rem',
