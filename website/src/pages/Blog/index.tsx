@@ -99,6 +99,7 @@ const Blog: React.FC = () => {
 
   const handleChange = (_event: React.ChangeEvent<{}>, newValue: string) => {
     setValue(newValue);
+    setPage(1);
   };
   // functions to get the blog count for each individual tags
   const totalBlogCount = (jsonMdData || []).filter(
@@ -107,6 +108,7 @@ const Blog: React.FC = () => {
 
   const handleTagSelect = (tags: any) => {
     setValue(tags);
+    setPage(1);
   };
 
   const getTags = (tags: any) => {
@@ -137,6 +139,21 @@ const Blog: React.FC = () => {
       setTagsDistribution(tagsArray.reduce((acum: any,cur: string) => Object.assign(acum,{[cur]: (acum[cur] || 0)+1}),{}));
     }
   }, [jsonMdData]);
+
+  const pagination = () => {
+    return (
+      <Pagination
+      count={
+        filteredData
+          ? Math.ceil(filteredData.length / 6 )
+          : 0
+      }
+      page={page}
+      onChange={(_event, val) => val? setPage(val) : setPage(1)}
+      className={classes.pagination}
+    />
+    );
+  };
 
   const getTagsMarkup = Object.keys(tagsDistribution).map((item: string) => 
           <StyledTab
@@ -247,16 +264,7 @@ const Blog: React.FC = () => {
                     })
                 : ""}
             </Grid>
-            <Pagination
-              count={
-                totalBlogCount > 6
-                  ? Math.ceil(totalBlogCount / 6 + 1)
-                  : Math.ceil(totalBlogCount / 6)
-              }
-              page={page}
-              onChange={(_event, val) => setPage(val)}
-              className={classes.pagination}
-            />
+            {pagination()}
           </div>
         </>
       ) : (
@@ -356,16 +364,7 @@ const Blog: React.FC = () => {
                     })
                 : " "}
             </Grid>
-            <Pagination
-              count={
-                filteredAuthorData.length > 6
-                  ? Math.ceil(filteredAuthorData.length / 6 + 1)
-                  : Math.ceil(filteredAuthorData.length / 6)
-              }
-              page={page}
-              onChange={(_event, val) => setPage(val)}
-              className={classes.pagination}
-            />
+            {pagination()}
           </div>
         </>
       )}
