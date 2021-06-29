@@ -63,7 +63,6 @@ const Blog: React.FC = () => {
   const [page, setPage] = React.useState<number>(1);
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
-
   const StyledTab = withStyles((theme: Theme) =>
     createStyles({
       root: {

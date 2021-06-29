@@ -63,7 +63,8 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 700
     },
     socialIconsWrapper: {
-        display: 'flex',
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
         [theme.breakpoints.up('xs')]: {
             gap: theme.spacing(2),
         },
