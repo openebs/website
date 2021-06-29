@@ -107,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1.5),
         '&:hover': {
             animation: `$pulse 1s`,
-            boxShadow: `0 0 0 1.25em rgba(255,255,255,0)`,
+            boxShadow: `0 0 0 16px rgba(255,255,255,0)`,
         },
     },
     front: {

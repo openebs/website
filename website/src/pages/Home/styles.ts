@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme) => ({
         },
         '&:hover': {
             animation: `$pulse 1s`,
-            boxShadow: `0 0 0 2em rgba(255,255,255,0)`,
+            boxShadow: `0 0 0 22px rgba(255,255,255,0)`,
         },
     },
     adopterButtonWrapper: {

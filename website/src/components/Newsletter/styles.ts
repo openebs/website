@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: 'none',
     '&:hover': {
       animation: `$pulse 1s`,
-      boxShadow: `0 0 0 1.25em rgba(255,255,255,0)`,
+      boxShadow: `0 0 0 22px rgba(255,255,255,0)`,
     },
   },
 }));
