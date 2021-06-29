@@ -34,7 +34,7 @@ const EmailSubscription = () => {
         subscribeNewsletter && (
           <div className="margin-vert--md">
             <a
-            className="doc-button doc-button-primary doc-button-curved  doc-button-lg"
+            className="doc-button doc-button-primary doc-button-curved doc-button-lg"
             href={subscribeNewsletter}
             target="_blank"
             >
@@ -240,7 +240,7 @@ const FooterBottom = () => {
   const privacyPolicy = siteConfig?.customFields?.footbarLinks?.privacyPolicy;
 
   return (
-    <div className="footer__bottom row margin-top--md col col--12">
+    <div className="footer__bottom row col col--12">
       {
         copyRight && (
           <div className="margin-right--lg">
@@ -300,7 +300,7 @@ const FooterDesktopView = () => {
       <div className="container container--fluid footer-wrapper">
         <div className="row">
           <div className="row col col--12 footer__links">
-            <div className="col col--4">
+            <div className="col col--5">
               <FooterLogo />
               <EmailSubscription />
               <SocialMedia />

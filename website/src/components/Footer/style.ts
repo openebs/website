@@ -132,6 +132,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary
     },
     columnListItem: {
+        color: theme.palette.text.secondary,
         marginBottom: theme.spacing(1),
         [theme.breakpoints.down('md')]: {
             marginBottom: theme.spacing(1.5),
@@ -190,10 +191,19 @@ const useStyles = makeStyles((theme) => ({
     contributorsMobile: {
         marginTop: theme.spacing(2),
     },
+    "@keyframes pulse" :{
+        "0%" :{ 
+            boxShadow: `0 0 0 0 ${theme.palette.secondary.main}`
+        }
+    },
     solidButton: {
         marginRight: theme.spacing(2.5),
-        marginTop: theme.spacing(2),
-      },
+        marginTop: theme.spacing(3),
+        '&:hover': {
+            animation: `$pulse 1s`,
+            boxShadow: `0 0 0 2em rgba(255,255,255,0)`,
+        },
+    },
 }))
 export default useStyles;
   

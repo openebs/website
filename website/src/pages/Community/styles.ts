@@ -115,11 +115,20 @@ const useStyles = makeStyles((theme: Theme) => ({
       backgroundSize: "cover",
     },
   },
+  "@keyframes pulse" :{
+    "0%" :{ 
+        boxShadow: `0 0 0 0 ${theme.palette.secondary.main}`
+    }
+  },
   solidButton: {
     marginRight: theme.spacing(2.5),
     width: '168px',
     fontSize: '0.875rem',
-    padding: theme.spacing(1.5)
+    padding: theme.spacing(1.5),
+    '&:hover': {
+      animation: `$pulse 1s`,
+      boxShadow: `0 0 0 1.25em rgba(255,255,255,0)`,
+    },
   },
   sponsorAndDependentProjectsWrapper:{
     marginTop: theme.spacing(12),

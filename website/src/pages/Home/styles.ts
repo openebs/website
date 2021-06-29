@@ -91,12 +91,22 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '0.875rem',
         },
     },
+    "@keyframes pulse" :{
+        "0%" :{ 
+            boxShadow: `0 0 0 0 ${theme.palette.secondary.main}`
+        }
+    },
     solidButton: {
         marginRight: theme.spacing(2.5),
         [theme.breakpoints.down('xs')]: {
             marginRight: theme.spacing(0),
             width: '100%',
             padding: theme.spacing(1.2)
+        },
+        '&:hover': {
+            animation: `$pulse 1s`,
+            boxShadow: `0 0 0 2em rgba(255,255,255,0)`,
+            // boxShadow: `0 0 0 2em rgba(${theme.palette.background.paper}, 0)`,
         },
     },
     adopterButtonWrapper: {
@@ -105,17 +115,16 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
       padding: theme.spacing(2),
     },
-    adopterButton: {
-        [theme.breakpoints.down('xs')]: {
-            width: '100%',
-            padding: theme.spacing(1.2)
-        },
-    },
     outlineButton: {
         [theme.breakpoints.down('xs')]: {
             marginTop: theme.spacing(2),
             width: '100%',
             padding: theme.spacing(1.2)
+        },
+        '&:hover': {
+            animation: `$pulse 1s`,
+            boxShadow: `0 0 0 2em rgba(255,255,255,0)`,
+            backgroundColor: "black"
         },
     },
     tabsWrapper: {

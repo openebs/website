@@ -97,9 +97,18 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '1rem',
         fontWeight: 400
     },
+    "@keyframes pulse" :{
+        "0%" :{ 
+            boxShadow: `0 0 0 0 ${theme.palette.secondary.main}`
+        }
+    },
     cardButton: {
         width: '168px',
         padding: theme.spacing(1.5),
+        '&:hover': {
+            animation: `$pulse 1s`,
+            boxShadow: `0 0 0 1.25em rgba(255,255,255,0)`,
+        },
     },
     front: {
         position: 'absolute',

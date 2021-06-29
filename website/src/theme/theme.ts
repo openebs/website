@@ -78,6 +78,11 @@ const theme = createTheme({
         boxShadow: "0px 11px 33px rgba(255, 220, 179, 0.62)",
         width: "212px",
       },
+      containedSecondary: {
+        "&:hover": {
+          backgroundColor: "#F26D00",
+        },
+      },
       outlined: {
         padding: "13px",
         width: "212px",
