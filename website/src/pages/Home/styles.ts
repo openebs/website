@@ -119,12 +119,7 @@ const useStyles = makeStyles((theme) => ({
             marginTop: theme.spacing(2),
             width: '100%',
             padding: theme.spacing(1.2)
-        },
-        '&:hover': {
-            animation: `$pulse 1s`,
-            boxShadow: `0 0 0 2em rgba(255,255,255,0)`,
-            backgroundColor: "black"
-        },
+        }
     },
     tabsWrapper: {
         margin: theme.spacing(22, 3, 0)
