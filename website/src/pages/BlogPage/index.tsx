@@ -11,6 +11,7 @@ import { SOCIAL_PLATFORMS, VIEW_PORT } from "../../constants";
 import BlogsSlider from "../../components/BlogsSlider";
 import Newsletter from "../../components/Newsletter";
 import { SlackShareIcon } from "./slackShareIcon";
+import {Helmet} from "react-helmet";
 
 const BlogPage: React.FC = () => {
   const classes = useStyles();
@@ -26,6 +27,7 @@ const BlogPage: React.FC = () => {
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
   
   let currentLocation = window.location.href;
+  let currentLocationOrigin = window.location.origin;
   
   useEffect(() => {
     const getBlogsData= async ()=>{
@@ -114,6 +116,14 @@ const BlogPage: React.FC = () => {
 
   return (
     <>
+      {currentBlogDetails?.content && 
+          <Helmet>
+              <meta property="og:title" content={currentBlogDetails?.title} />
+              <meta property="og:description" content={currentBlogDetails?.excerpt} />
+              <meta property="og:image" content={`${currentLocationOrigin}/images/blog/${queryBlogName}.png`} />
+              <meta property="og:url" content={currentLocation} />
+          </Helmet>
+      }
       <Grid
         container
         direction="row"
