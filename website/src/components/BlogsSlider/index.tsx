@@ -12,6 +12,7 @@ import {
 import { VIEW_PORT } from "../../constants";
 import CustomTag from "../CustomTag";
 import ReactMarkdown from "react-markdown";
+import { getContentPreview } from "../../utils/getContent";
 
 interface BlogsSliderProps {
   recommendedBlogs: any;
@@ -82,10 +83,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
                     <span>
                       <ReactMarkdown
                         children={
-                          elm.excerpt
-                            .substring(0, 200)
-                            .replace(/[\n]/g, ". ")
-                            .replace(/[^a-zA-Z ]/g, "") + "..."
+                          getContentPreview(elm.excerpt)
                         }
                       />
                       <Button
