@@ -58,7 +58,7 @@ const BlogPage: React.FC = () => {
           return (recommendedBlogs.indexOf(item) === index);
         })
         if(recommendedBlogs?.length<minimumRecommededBlogs){
-          const getRandomBlogs = (arr: { title: string; author: string; author_info: string; date: string; tags: Array<string>; content: string; id: number; slug: string; }[],count: number) => {
+          const getRandomBlogs = (arr: { title: string; author: string; excerpt: string, author_info: string; date: string; tags: Array<string>; content: string; id: number; slug: string; }[],count: number) => {
             let _arr = [...arr];
             return[...Array(count)].map( ()=> _arr.splice(Math.floor(Math.random() * _arr.length), 1)[0] ); 
           }
@@ -103,11 +103,11 @@ const BlogPage: React.FC = () => {
         break;
       case SOCIAL_PLATFORMS.LINKEDIN:
         window.open(
-          `https://www.linkedin.com/shareArticle?mini=true&amp;url=${currentLocation}&amp;title=${currentBlogDetails.title}`, "_blank");
+          `https://www.linkedin.com/sharing/share-offsite/?url=${currentLocation}`, "_blank");
         break;
       case SOCIAL_PLATFORMS.TWITTER:
         window.open(
-          `https://twitter.com/intent/tweet?original_referer=${currentLocation}&amp;text=${currentBlogDetails.title};url=${currentLocation}`, "_blank");
+          `https://twitter.com/intent/tweet?original_referer=${currentLocation}&text=${currentBlogDetails.title}&url=${currentLocation}`, "_blank");
         break;
     }
   };

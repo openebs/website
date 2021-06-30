@@ -2,8 +2,9 @@
 title: Storage is Evolving!
 author: Nick Connolly
 author_info: Nick is the Chief Scientist at MayaData and a pioneer of storage virtualization, holding patents ranging from highly-scalable algorithms through to data protection techniques.
-tags: openebs
+tags: OpenEBS
 date: 11-12-2020
+excerpt: Learn how storage has evolved over the years. 
 --- 
 
 Before the turn of the century, storage systems were typically controlled by dedicated firmware running on custom hardware. These proprietary systems were time-consuming to design, expensive to build, and resistant to innovation.
