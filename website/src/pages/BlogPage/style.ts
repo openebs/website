@@ -198,7 +198,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       lineHeight: '50px'
     },
     '& pre code':{
-      overflow: 'auto',
       borderRadius: '4px',
       display: 'block',
       overflowX: 'auto',
