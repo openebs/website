@@ -232,7 +232,7 @@ const Blog: React.FC = () => {
                               </Typography>
                               <Typography component={"span"} variant={"body2"} className={classes.blogDescription}>
                                 <ReactMarkdown
-                                  children={getContentPreview(elm.content)}
+                                  children={getContentPreview(elm.excerpt)}
                                 />
                               </Typography>
                             </CardContent>
@@ -330,7 +330,7 @@ const Blog: React.FC = () => {
                               </span>
                               <span className={classes.blogDescription}>
                                 <ReactMarkdown
-                                  children={getContentPreview(elm.content)}
+                                  children={getContentPreview(elm.excerpt)}
                                 />
                               </span>
                             </CardContent>

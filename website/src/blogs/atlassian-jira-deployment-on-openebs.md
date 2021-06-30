@@ -2,8 +2,9 @@
 title: Atlassian Jira Deployment on OpenEBS
 author: Abhishek
 author_info: Abhishek is a Customer Success Engineer at Mayadata. He is currently working with Kubernetes and Docker.
-tags: openebs
+tags: OpenEBS
 date: 20-11-2020
+excerpt: Learn how to deploy Atlassian Jira on OpenEBS in this short post.
 --- 
 
 **Jira** Software is part of a family of products designed to help teams of all types manage work. Originally, **Jira** was designed as a bug and issue tracker. But today, Jira has evolved into a powerful work management tool for all kinds of use cases, from requirements and test case management to agile software development.
