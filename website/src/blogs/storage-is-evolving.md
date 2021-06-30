@@ -2,7 +2,7 @@
 title: Storage is Evolving!
 author: Nick Connolly
 author_info: Nick is the Chief Scientist at MayaData and a pioneer of storage virtualization, holding patents ranging from highly-scalable algorithms through to data protection techniques.
-tags: openebs
+tags: openEBS
 date: 11-12-2020
 excerpt: Learn how storage has evolved over the years. 
 --- 

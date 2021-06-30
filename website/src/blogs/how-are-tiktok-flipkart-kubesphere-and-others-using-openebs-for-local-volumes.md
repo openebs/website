@@ -2,7 +2,7 @@
 title: How are TikTok, Flipkart, KubeSphere, and others using OpenEBS for Local Volumes
 author: Kiran Mova
 author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
-tags: Localpv, Openebs, Flipkart, TikTok, Kubernetes, Mayastor, Mayadata
+tags: Localpv, OpenEBS, Flipkart, TikTok, Kubernetes, Mayastor, MayaData
 date: 12-03-2021
 excerpt: How are TikTok, Flipkart, KubeSphere, and others using OpenEBS for Local Volumes
 --- 
