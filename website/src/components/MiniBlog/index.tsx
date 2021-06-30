@@ -206,7 +206,7 @@ const MiniBlog: React.FC = () => {
                       </Typography>
                       <span>
                         <ReactMarkdown
-                        children={getContentPreview(elm.content)}
+                        children={getContentPreview(elm.excerpt)}
                         />
                       </span>
                     </CardContent>
