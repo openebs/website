@@ -165,10 +165,33 @@ const useStyles = makeStyles((theme: Theme) => ({
       color: theme.palette.text.secondary,
       lineHeight: '22px'
     },
-    '& ul li':{
-      fontSize: '1rem',
-      color: theme.palette.text.secondary,
-      lineHeight: '22px'
+    '& ul, & ol':{
+      paddingLeft: 0,
+      '& li':{
+          paddingLeft: theme.spacing(1.85),
+          fontSize: '1rem',
+          color: theme.palette.text.secondary,
+          lineHeight: '22px',
+          listStyle: 'none',
+          position: 'relative',
+      },
+      '& li:not(:last-child)':{
+        marginBottom: theme.spacing(1)
+      },
+    },
+    '& ul': {
+      '& li': {
+        '&::before':{
+          content: '""',
+          position: "absolute",
+          left: 0,
+          top: '6px',
+          width: '8px',
+          height: '8px',
+          borderRadius: '100%',
+          background: theme.palette.info.light
+        }
+      }
     },
     '& h2': {
       fontSize: '2rem', 
@@ -187,6 +210,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: theme.spacing(.5,1),
       borderRadius: '4px',
       background: theme.palette.blue.light,
+    },
+    '& img':{
+      maxWidth: '100%'
     },
     [theme.breakpoints.down('md')]: {
       width: '65%',
