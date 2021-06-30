@@ -3,7 +3,8 @@ title: Migrate CSPIs to a different node by moving the disks
 author: Sai Chaithanya
 author_info: A developer whos is always eager to learn, loves algorithms, maths, Kubernetes, and programming, Passionate towards Data Science. Enjoys playing kabaddi and traveling.
 date: 04-11-2020
-tags: Openebs
+tags: OpenEBS
+excerpt: Step by step guide to migrate CStorPoolInstances from one node to different nodes by moving the set of underlying disks
 ---
 
 

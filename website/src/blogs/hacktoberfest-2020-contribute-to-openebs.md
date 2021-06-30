@@ -3,7 +3,8 @@ title: "Hacktoberfest 2020 - Contribute to OpenEBS"
 author: MayaData Marketing
 author_info: Mayadata Marketing Team
 date: 30-09-2020
-tags: Openebs
+tags: OpenEBS
+excerpt: Hacktoberfest 2020 is almost here. Contribute to open source project, OpenEBS, to win exciting swag.
 ---
 
 ### Hacktoberfest returns! Contribute to OpenEBS and win exciting swag

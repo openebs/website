@@ -4,6 +4,7 @@ author: Jeffry Molanus
 author_info: Jeffry is the CTO at MayaData. At MayaData, his primary focus is to make sure the product is flexible and scalable. When he is not working with code, he practices martial arts.
 date: 19-11-2020
 tags: Mayastor
+excerpt: Overview of using Mayastor to try out some of the fastest NVMe devices currently available on the market and see how we perform on top of these devices within k8s, using the container attached storage approach for which OpenEBS is well known.
 ---
 
 For a while now, we have been saying that OpenEBS Mayastor is “high” performance and community members have written [blogs](https://medium.com/volterra-io/kubernetes-storage-performance-comparison-v2-2020-updated-1c0b69f0dcf4) showing that the performance of OpenEBS Mayastor indeed is much better or on par with others even when running on relatively slow cloud volumes. However, is Mayastor high performance or just “as fast” as the other things out there? 

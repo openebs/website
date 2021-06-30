@@ -3,7 +3,8 @@ title: Scaling up cStor Volume Replica
 author: Abhishek
 author_info: Abhishek is a Customer Success Engineer at Mayadata. He is currently working with Kubernetes and Docker.
 date: 07-10-2020
-tags: Openebs
+tags: OpenEBS
+excerpt: OpenEBS provides volume replication through different storage engines. Learn how to scale up cStor Volume Replica.
 ---
 
 Even if a cluster is reliable, nodes can and do fail. Rebooting a node does not simulate a crash. There can be many reasons, such as catastrophic hardware failure, Operating System failure, or communication failure among the nodes. To overcome this hazardous situation, the Replication of volume becomes necessary.

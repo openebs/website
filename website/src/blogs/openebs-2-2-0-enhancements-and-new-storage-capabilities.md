@@ -3,7 +3,8 @@ title: OpenEBS 2.2.0 - Enhancements And New Storage Capabilities
 author: Ashutosh Kumar
 author_info: Software Engineer at MayaData | OpenEBS Reviewer and Contributor | CKA | Gopher | Kubernaut
 date: 20-10-2020
-tags: Openebs
+tags: OpenEBS
+excerpt: OpenEBS 2.2.0 is here! Read this post to learn about the new updates.
 ---
 
 ### **OpenEBS 2.2.0 is here**

@@ -3,7 +3,8 @@ title: OpenEBS Backup/Restore for ZFS-LocalPV
 author: Pawan Prakash Sharma
 author_info: It's been an amazing experience in Software Engineering because of my love for coding. In my free time, I read books, play table tennis and watch tv series
 date: 27-10-2020
-tags: Openebs
+tags: OpenEBS
+excerpt: Overview of how to use Velero Backup/Restore plugin for ZFS-LocalPV to protect it against data loss.
 ---
 
 ## Overview: OpenEBS Backup/Restore for ZFS-LocalPV

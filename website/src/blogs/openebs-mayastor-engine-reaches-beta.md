@@ -2,8 +2,9 @@
 title: Mayastor Engine Reaches Beta
 author: Glenn Bullingham
 author_info: Director of Solution Architecture
-tags: Openebs
+tags: OpenEBS
 date: 19-11-2020
+excerpt: Mayastor, the storage engine by OpenEBS has reached the beta stage. Read the blog to know more.
 ---
 
 title: Mayastor Engine Reaches Beta
