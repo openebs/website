@@ -214,6 +214,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& img':{
       maxWidth: '100%'
     },
+    '& a': {
+      textDecoration: 'underline',
+      color: theme.palette.secondary.main
+    },
     [theme.breakpoints.down('md')]: {
       width: '65%',
       padding: theme.spacing(8, 0),
