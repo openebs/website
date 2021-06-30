@@ -2,8 +2,9 @@
 title: OpenEBS on DigitalOcean Marketplace
 author: Abhishek
 author_info: Abhishek is a Customer Success Engineer at Mayadata. He is currently working with Kubernetes and Docker.
-tags: openebs chaosengineering tutorials
+tags: openebs,chaosengineering,tutorials
 date: 3-12-2020
+excerpt: Learn how to deploy OpenEBS on the DigitalOcean marketplace
 --- 
 
 Deploying OpenEBS on DigitalOcean can directly be done from the console. DigitalOcean provides the feature to create a cluster with OpenEBS deployed on it already. To get started, follow the below-mentioned steps:

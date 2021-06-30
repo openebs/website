@@ -82,7 +82,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
                     <span>
                       <ReactMarkdown
                         children={
-                          elm.content
+                          elm.excerpt
                             .substring(0, 200)
                             .replace(/[\n]/g, ". ")
                             .replace(/[^a-zA-Z ]/g, "") + "..."

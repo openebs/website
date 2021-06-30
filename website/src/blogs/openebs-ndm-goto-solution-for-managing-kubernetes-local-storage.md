@@ -4,6 +4,7 @@ author: Akhil Mohan
 author_info: Software Engineer @ MayaData, working on Cloud Native Tech.
 tags: openebs
 date: 13-01-2021
+excerpt: Read about OpEBS NDM, the go-to solution for managing Kubernetes Local Storage.
 --- 
 
 Ever since Local Volumes have become generally available (GA) in Kubernetes 1.14, the use of Local Volumes has skyrocketed. This can be attributed to the nature of cloud-native workloads distributed in nature and can sustain node failures. The bare metal underpinning Kubernetes clusters, both on-prem and cloud, can now be configured with local storage to manage stateful workloads. Kubernetes doesn’t treat storage like a native resource on par with CPU or Memory, making it a little difficult to make Kubernetes work out of the box to create effective node-attached storage. OpenEBS NDM helps alleviate this gap by discovering the different storage types attached to each worker node and then creating Kubernetes resources called block devices.
