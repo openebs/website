@@ -174,14 +174,19 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: '2rem', 
       lineHeight: '50px'
     },
-    '& code':{
+    '& pre code':{
       overflow: 'auto',
       borderRadius: '4px',
       display: 'block',
       overflowX: 'auto',
       padding: '1em',
-      background: theme.palette.grayishGreen.dark,
+      background: theme.palette.primary.dark,
       color: theme.palette.grayishGreen.light
+    },
+    '& p > code':{
+      padding: theme.spacing(.5,1),
+      borderRadius: '4px',
+      background: theme.palette.blue.light,
     },
     [theme.breakpoints.down('md')]: {
       width: '65%',
