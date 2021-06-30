@@ -103,11 +103,11 @@ const BlogPage: React.FC = () => {
         break;
       case SOCIAL_PLATFORMS.LINKEDIN:
         window.open(
-          `https://www.linkedin.com/shareArticle?mini=true&amp;url=${currentLocation}&amp;title=${currentBlogDetails.title}`, "_blank");
+          `https://www.linkedin.com/sharing/share-offsite/?url=${currentLocation}`, "_blank");
         break;
       case SOCIAL_PLATFORMS.TWITTER:
         window.open(
-          `https://twitter.com/intent/tweet?original_referer=${currentLocation}&amp;text=${currentBlogDetails.title};url=${currentLocation}`, "_blank");
+          `https://twitter.com/intent/tweet?original_referer=${currentLocation}&text=${currentBlogDetails.title}&url=${currentLocation}`, "_blank");
         break;
     }
   };
