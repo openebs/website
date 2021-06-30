@@ -2,7 +2,7 @@
 title: OpenEBS NDM, go-to solution for managing Kubernetes Local Storage
 author: Akhil Mohan
 author_info: Software Engineer @ MayaData, working on Cloud Native Tech.
-tags: openEBS
+tags: OpenEBS
 date: 13-01-2021
 excerpt: Read about OpenEBS NDM, the go-to solution for managing Kubernetes Local Storage.
 --- 
