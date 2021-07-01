@@ -9,7 +9,7 @@ excerpt: Overview of how to use Velero Backup/Restore plugin for ZFS-LocalPV to 
 
 ## Overview: OpenEBS Backup/Restore for ZFS-LocalPV
 
-**Backup **is the process of copying the data to a different/remote location to protect against accidental or corruption or any other type of data loss. Restore is the process of getting back the data from the backup. In this blog, I will discuss how we can use *Velero Backup/Restore* plugin for ***ZFS-LocalPV*** to protect it against data loss.
+**Backup** is the process of copying the data to a different/remote location to protect against accidental or corruption or any other type of data loss. Restore is the process of getting back the data from the backup. In this blog, I will discuss how we can use *Velero Backup/Restore* plugin for ***ZFS-LocalPV*** to protect it against data loss.
 
 ### Pre-requisites
 

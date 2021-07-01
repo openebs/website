@@ -9,15 +9,15 @@ excerpt: Overview of using Mayastor to try out some of the fastest NVMe devices 
 
 For a while now, we have been saying that OpenEBS Mayastor is “high” performance and community members have written [blogs](https://medium.com/volterra-io/kubernetes-storage-performance-comparison-v2-2020-updated-1c0b69f0dcf4) showing that the performance of OpenEBS Mayastor indeed is much better or on par with others even when running on relatively slow cloud volumes. However, is Mayastor high performance or just “as fast” as the other things out there? 
 
-It used to be the case that CPUs were much faster than the storage systems they served. With modern NVMe, this does not ***have*** to be the case anymore. NVMe is a ***protocol ***that can go fast but does not have to be fast. What this means is that you can use NVMe as your transport protocol for any block device, not just flash. Yes, this is what Mayastor does. It is really useful to keep in mind the distinction between NVMe as a protocol and NVMe devices - you don’t need to use them together but, when you do, additional performance can be unlocked.
+It used to be the case that CPUs were much faster than the storage systems they served. With modern NVMe, this does not ***have*** to be the case anymore. NVMe is a ***protocol*** that can go fast but does not have to be fast. What this means is that you can use NVMe as your transport protocol for any block device, not just flash. Yes, this is what Mayastor does. It is really useful to keep in mind the distinction between NVMe as a protocol and NVMe devices - you don’t need to use them together but, when you do, additional performance can be unlocked.
 
-In this blog, we will be using Mayastor to try out some of the fastest NVMe devices currently available on the market and see how we perform on top of these devices within k8s, using the container attached storage approach for which OpenEBS is well known.  We will show what happens when you marry NVMe as a protocol (embedded within Mayastor) and fast NVMe devices from our friends at Intel.  
+In this blog, we will be using Mayastor to try out some of the fastest NVMe devices currently available on the market and see how we perform on top of these devices within k8s, using the container attached storage approach for which OpenEBS is well known. We will show what happens when you marry NVMe as a protocol (embedded within Mayastor) and fast NVMe devices from our friends at Intel.
 
 Before we get started, you might wonder how we came to this point that a new project like OpenEBS Mayastor was able to deliver amongst the fastest storage available today. Richard Elling of Viking / Sanmina recently wrote an excellent blog on the trends in hardware design that puts NVMe and OpenEBS Mayastor into context:  [https://richardelling.substack.com/p/the-pendulum-swings-hard-towards](https://richardelling.substack.com/p/the-pendulum-swings-hard-towards)
 
 ## Hardware setup
 
-Let’s get to it.  We will be using three machines which will run kernel version 5.8. The hardware configuration of each host is as follows:
+Let’s get to it. We will be using three machines that will run kernel version 5.8. The hardware configuration of each host is as follows:
 
 - Intel(R) Xeon(R) Gold 6252 CPU @ 2.10GHz
 - Intel Corporation NVMe Datacenter SSD [Optane]
@@ -63,7 +63,7 @@ These numbers are incredibly high and are provided by a ***single*** device. Not
 
 ## High-level overview of the experiments
 
-My approach in this benchmarking is very much OpenEBS Mayastor “the hard way”.  If you want an easier to use solution that for example automates pool creation and device selection and so on - we call that offering Kubera Propel (also open source btw). You can learn more about Kubera Propel on the [MayaData.io](https://mayadata.io/) web site.  
+My approach in this benchmarking is very much OpenEBS Mayastor “the hard way”.  If you want an easier to use solution that for example automates pool creation and device selection and so on - we call that offering Kubera Propel (also open source btw). You can learn more about Kubera Propel on the [MayaData.io](https://mayadata.io/) website.    
 
 On two of the nodes, we create a pool (MSP CRD) which we use in the control plane to determine replica placement. To construct pools, we must have what we call a persistence layer. We support several ways to access this persistence layer. To select a particular scheme we use URIs. In this case we will be using today the pcie:/// scheme. This means that Mayastor will directly write into the NVMe devices listed above. The nice thing is that from the user perspective, things do not change that much. We simply replace disks: [‘/dev/nvme0n1’] with disks: [‘pcie:///80:00.0’]. Note that this persistence layer is used to store the replicas of the PVC. Once we have this layer up and running, we will create storage classes and select that we want to use nvmf (NVMe-oF) as the transport layer between the replicas, resulting in NVMe all the way through. 
 

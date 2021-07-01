@@ -1,7 +1,7 @@
 ---
 title: Migrate CSPIs to a different node by moving the disks
 author: Sai Chaithanya
-author_info: A developer whos is always eager to learn, loves algorithms, maths, Kubernetes, and programming, Passionate towards Data Science. Enjoys playing kabaddi and traveling.
+author_info: author_info: A developer who is always eager to learn, loves algorithms, maths, Kubernetes, and programming, Passionate about Data Science. Enjoys playing kabaddi and traveling.
 date: 04-11-2020
 tags: OpenEBS
 excerpt: Step by step guide to migrate CStorPoolInstances from one node to different nodes by moving the set of underlying disks
@@ -85,7 +85,7 @@ After applying the above CSPC manifest, the following three CStorPoolInstances(C
     cstor-disk-cspc-f56z  ip-192-168-36-89  24100M   24113200k   false     ONLINE   8h
     cstor-disk-cspc-q9yt  ip-192-168-29-151   24100M   24113200k   false     ONLINE   8h
 
-Now everything looks good. After some time, the cluster has been scaled down **0** nodes and scaled back to **3 **nodes. So after scaling operations following are new nodes in the cluster.
+Now everything looks good. After some time, the cluster has been scaled down **0** nodes and scaled back to **3** nodes. So after scaling operations following are new nodes in the cluster.
 
     Kubectl get nodes
     
@@ -110,7 +110,7 @@ From the above and previous output following are blockdevice mappings with zn ol
     blockdevice-c2c846cce1befec7fbdcbae254329b0b    ip-192-168-74-129       ip-192-168-94-113
     blockdevice-c608881cd3edbeab674a1aee7e0a1fc3    ip-192-168-29-151       ip-192-168-14-90
 
-OpenEBS **NodeDiskManager**(NDM) will automatically update the details in blockdevice CRs when the disks migrate to a new node. Based on the above output, update the CSPC manifest with new **nodeSelector **values.
+OpenEBS **NodeDiskManager**(NDM) will automatically update the details in blockdevice CRs when the disks migrate to a new node. Based on the above output, update the CSPC manifest with new **nodeSelector** values.
 
 ****Updated CSPC Manifest**:**
 

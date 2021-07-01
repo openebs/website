@@ -9,13 +9,13 @@ excerpt: Hacktoberfest 2020 is almost here. Contribute to open source project, O
 
 ### Hacktoberfest returns! Contribute to OpenEBS and win exciting swag
 
-The seventh annual [***Hacktoberfest ***](https://hacktoberfest.digitalocean.com/)celebration is almost here, and we at *OpenEBS *are happy to be participating in the contest once again. In August 2017, the OpenEBS community began growing and building a strong foundation for an open source project.
+The seventh annual [***Hacktoberfest ***](https://hacktoberfest.digitalocean.com/) celebration is almost here, and we at *OpenEBS* are happy to be participating in the contest once again. In August 2017, the OpenEBS community began growing and building a strong foundation for an open source project.
 
-We were first introduced to *Hacktoberfest *by friends and peers at the DigitalOcean Bangalore Meetup and were immediately interested in participating. We enlisted OpenEBS as one of the projects participating in Hacktoberfest 2017. We were pleasantly surprised by the participation and enthusiasm that Hacktoberfest attracts from developers around the world. The PRs have been at their peak during Hacktoberfest.
+We were first introduced to *Hacktoberfest* by friends and peers at the DigitalOcean Bangalore Meetup and were immediately interested in participating. We enlisted OpenEBS as one of the projects participating in Hacktoberfest 2017. We were pleasantly surprised by the participation and enthusiasm that Hacktoberfest attracts from developers around the world. The PRs have been at their peak during Hacktoberfest.
 ![](https://lh4.googleusercontent.com/Og_t8KLCiRni_LS66bpJsonSXMjcoAX671c8a2LD7ZjbkVdYZgZCRFq47sDC7hsEZt6qcaoCJPZi_gm2FnKmuzMvlg4UZAQKofU0agH2Z11TRmw6vBCQ8u3ssGfre75BN9OV-vOO)
 ### Get started with OpenEBS this Hacktoberfest
 
-Following the smashing success we had when we participated in the event last few years, we’re going to do the same this year! MayaData makes it more exciting to participate in **Hacktoberfest **by running multiple Meetups through-out the month, and helping contributors to get started with their favorite areas (in any of the programming languages) like website development and documentation enhancements. 
+Following the smashing success we had when we participated in the event last few years, we’re going to do the same this year! MayaData makes it more exciting to participate in **Hacktoberfest **by running multiple Meetups throughout the month and helping contributors to get started with their favorite areas (in any of the programming languages) like website development and documentation enhancements. 
 
 To top it all, there are exciting prizes to be won and every contribution deserves an additional swag from MayaData. Read [this blog](https://blog.mayadata.io/openebs/experience-with-openebs-in-this-hacktoberfest) by Aswath K, one of last year’s weekly winners, who writes about his experience with OpenEBS in Hacktoberfest 2019.
 ![](https://lh6.googleusercontent.com/2POqPppb7pyGM0OWwl_LlkHzwz-DSWXMMggxIeNCXvsU6EVVmNHdiIzIoTw23-ceK9R5iBleFMGiK-lw9JLtCP5VVjFGQS1QhIOXbpQhtvku5Gp5aCw4Eul_r6JcM-o0WuVZRZmj)
@@ -25,7 +25,7 @@ That is an excellent question! OpenEBS is a Kubernetes native Container Attached
 
 OpenEBS has several components that need your help from simple fixes like adding GitHub issue templates, to enhancing the components. These are developed using Go, Rust, Python, Javascript, Ansible, and many more interesting tools. OpenEBS is also a great way to start your journey into the exciting world of storage, containers, and Kubernetes.
 
-The [architecture overview document ](https://github.com/openebs/openebs/blob/master/contribute/design/README.md)is a great place to start learning and picking up a component that speaks to your passion. You could start your first contribution by enhancing that document itself for providing more clarity.
+The [architecture overview document ](https://github.com/openebs/openebs/blob/master/contribute/design/README.md) is a great place to start learning and picking up a component that speaks to your passion. You could start your first contribution by enhancing that document itself for providing more clarity.
 
 There are many other [good first issues](https://github.com/search?q=org%3Aopenebs+is%3Aissue+label%3A%22good+first+issue%22) to pick from.
 

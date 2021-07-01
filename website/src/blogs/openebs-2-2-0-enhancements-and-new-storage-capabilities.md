@@ -9,14 +9,14 @@ excerpt: OpenEBS 2.2.0 is here! Read this post to learn about the new updates.
 
 ### **OpenEBS 2.2.0 is here**
 
-We are excited to announce yet another ***OpenEBS ***release that comes with new storage capabilities, control plane enhancements, bug fixes, and new APIs for the world’s fastest storage engine built on RUST, also known as Mayastor.
+We are excited to announce yet another ***OpenEBS*** release that comes with new storage capabilities, control plane enhancements, bug fixes, and new APIs for the world’s fastest storage engine built on RUST, also known as Mayastor.
 
 OpenEBS has seen a wider adoption among the users, thanks to the vibrant and growing community. Like in most of the OpenEBS releases, this release responds to the feedback received in the community. If you want to learn more about the project roadmap, please browse the following link:
 [https://github.com/openebs/openebs/blob/master/ROADMAP.md](https://github.com/openebs/openebs/blob/master/ROADMAP.md)
 
 Incremental Backup and Restore in ZFS local PV and pool and volume migration in cStor are the major release milestones made into the release. The pool migration in cStor solves the use-case of replacing a bad node with a new node or sending a node for maintenance on on-premise clusters. The migration feature provides great value in cloud-managed Kubernetes clusters, too, e.g., GKE, where node reboots or voluntary scale down of nodes can cause the disks to get removed. 
 
-This release is also special due to the [*Hacktoberfest*](https://hacktoberfest.digitalocean.com/)festival, and would like to give a shout out to first-time contributors [@didier-durand](https://github.com/didier-durand), [@zlymeda](https://github.com/zlymeda), [@avats-dev](https://github.com/avats-dev), and many more.
+This release is also special due to the [*Hacktoberfest*](https://hacktoberfest.digitalocean.com/) festival and would like to give a shout out to first-time contributors [@didier-durand](https://github.com/didier-durand), [@zlymeda](https://github.com/zlymeda), [@avats-dev](https://github.com/avats-dev), and many more.
 
 ### **Key Highlights of OpenEBS 2.2.0 Release:**
 
