@@ -227,7 +227,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         content: 'open-quote',
         fontSize: '60px',
         lineHeight: '10px',
-        marginRight: '10px',
+        marginRight: theme.spacing(1.2),
         verticalAlign: '-16px'
       },
       '& p': { display: 'inline' },
