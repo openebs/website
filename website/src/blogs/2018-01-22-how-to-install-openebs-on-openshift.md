@@ -9,7 +9,7 @@ excerpt: OpenShift Origin is the upstream community project used in all deployme
 
 ## What is OpenShift Origin?
 
-**OpenShift Origin** is the upstream community project used in all deployment models provided by Red Hat OpenShift such as **OpenShift Online**, **OpenShift Dedicated**, and **OpenShift Container Platform**. **Red Hat OpenShift** is an enterprise container application platform that is based on a core of **Docker **container packaging, **Kubernetes **container cluster management and the **OpenShift Origin** project itself.
+**OpenShift Origin** is the upstream community project used in all deployment models provided by Red Hat OpenShift such as **OpenShift Online**, **OpenShift Dedicated**, and **OpenShift Container Platform**. **Red Hat OpenShift** is an enterprise container application platform that is based on a core of **Docker** container packaging, **Kubernetes** container cluster management and the **OpenShift Origin** project itself.
 
 First, having more than one option sounds confusing, but they clearly differentiate from each other. Here is the summary of all available deployment models to start with OpenShift.
 
@@ -33,7 +33,7 @@ In this blog post, I will focus on configuring **OpenEBS** as a **persistent sto
 - [OpenShift-Ansible](https://github.com/openshift/openshift-ansible) (master branch used for installation)
 - [OpenEBS 0.5.1](https://openebs.io/)
 
-**Note: **Make sure the following package dependencies are installed: python, wget, git, net-tools, bind-utils, iptables-services, bridge-utils, bash-completion, kexec-tools, sos, psacct, docker-1.12.6, ansible, pyOpenSS, httpd-tool
+**Note:** Make sure the following package dependencies are installed: python, wget, git, net-tools, bind-utils, iptables-services, bridge-utils, bash-completion, kexec-tools, sos, psacct, docker-1.12.6, ansible, pyOpenSS, httpd-tool
 
 ### Install OpenShift Origin
 
@@ -43,30 +43,39 @@ Follow instructions from [OpenShift Origin Latest Documentation](https://docs.op
 
 Execute the following commands to verify successful installation.
 
+```
     # oc get nodes
+```
 
 Number of nodes you see maybe different in your case, but status should looks similar to below showing nodes ready.
 
+```
     # oc get nodes
      NAME STATUS AGE VERSION
      oonode1 Ready 2d v1.7.6+a08f5eeb62
      oonode2 Ready 2d v1.7.6+a08f5eeb62
      oonode3 Ready 2d v1.7.6+a08f5eeb62
      oonode4 Ready 2d v1.7.6+a08f5eeb62
+```
 
 ### Configure access permissions
 
 Create a new admin user with cluster-admin role/permissions and assing password using the following commands:
 
+```
     # oc adm policy add-cluster-role-to-user cluster-admin admin — as=system:admin
     # htpasswd /etc/origin/master/htpasswd admin
+```
 
 Login as the `admin` user and you will be using default project.
 
+```
     # oc login -u admin
+```
 
 Output:
 
+```
     # oc login -u admin
      Authentication required for https://oonode1:8443 (openshift)
      Username: admin
@@ -86,13 +95,17 @@ Output:
      openshift-template-service-broker
      openshift-web-console
     Using project “default”.
+```
 
 Provide access to the host volumes which is needed by the OpenEBS volume replicas by updating the default security context (scc). If you miss this step your replicas will fail to deploy.
 
+```
     # oc edit scc restricted
+```
 
 Now set `allowHostDirVolumePlugin: true` and save changes. The file should look like below:
 
+```
     # Please edit the object below. Lines beginning with a ‘#’ will be ignored,
      # and an empty file will abort the edit. If an error occurs while saving this file will be
      # reopened with the relevant failures.
@@ -144,6 +157,7 @@ Now set `allowHostDirVolumePlugin: true` and save changes. The file should look 
      — persistentVolumeClaim
      — projected
      — secret
+```
 
 Save changes.
 
@@ -153,29 +167,38 @@ There are few easy ways to install OpenEBS. You can either apply the operator an
 
 Clone the latest OpenEBS files and sample application specs using the below command on your OpenShift master node:
 
+```
     # git clone https://github.com/openebs/openebs.git
      # cd openebs/k8s
+```
 
 Apply the file two yaml files below:
 
+```
     # oc apply -f openebs-operator.yaml
     # oc apply -f openebs-storageclasses.yaml
+```
 
 Alternative way — If you choose not to copy from the repo you can apply the yaml file direct from the URL below:
 
+```
     oc apply -f https://openebs.github.io/charts/openebs-operator.yaml
+```
 
 ### Verify OpenEBS deployment
 
 Verify that the OpenEBS provisioner and API server are created successfully and running.
 
+```
     # oc get deployments
      NAME DESIRED CURRENT UP-TO-DATE AVAILABLE AGE
      maya-apiserver 1 1 1 1 2d
      openebs-provisioner 1 1 1 1 2d
+```
 
 Check pods to confirm maya-apiserver and openebs-provisioner.
 
+```
     # oc get pods
      NAME READY STATUS RESTARTS AGE
      docker-registry-1-b5r7t 1/1 Running 0 2d
@@ -183,9 +206,11 @@ Check pods to confirm maya-apiserver and openebs-provisioner.
      openebs-provisioner-2499455298–46brm 1/1 Running 0 2d
      registry-console-1-mrpc9 1/1 Running 0 2d
      router-1-bf775 1/1 Running 3 2d
+```
 
 Check services to confirm maya-apiserver exists.
 
+```
     # oc get service
      NAME CLUSTER-IP EXTERNAL-IP PORT(S) AGE
      docker-registry 172.30.113.229 <none> 5000/TCP 2d
@@ -193,9 +218,11 @@ Check services to confirm maya-apiserver exists.
      maya-apiserver-service 172.30.17.113 <none> 5656/TCP 2d
      registry-console 172.30.148.98 <none> 9000/TCP 2d
      router 172.30.229.239 <none> 80/TCP,443/TCP,1936/TCP 2d
+```
 
 Check service accounts for openebs-maya-operator:
 
+```
     # oc get sa
      NAME SECRETS AGE
      builder 2 2d
@@ -210,9 +237,11 @@ Check service accounts for openebs-maya-operator:
     # oc get clusterrolebindings openebs-maya-operator
      NAME ROLE USERS GROUPS SERVICE ACCOUNTS SUBJECTS
      openebs-maya-operator /openebs-maya-operator default/openebs-maya-operator, default/default
+```
 
 And finally verify OpenEBS default storage classes.
 
+```
     # oc get sc
      NAME TYPE
      openebs-cassandra openebs.io/provisioner-iscsi
@@ -225,6 +254,7 @@ And finally verify OpenEBS default storage classes.
      openebs-standalone openebs.io/provisioner-iscsi
      openebs-standard openebs.io/provisioner-iscsi
      openebs-zk openebs.io/provisioner-iscsi
+```
 
 After few easy steps we are now ready to deploy workloads on persistent storage provided by OpenEBS. I’ll cover both CLI and Catalog installation through the OpenShift Web Console.
 
@@ -234,6 +264,7 @@ Use OpenEBS as persistent storage for a Percona DB deployment by selecting the `
 
 View the Percona deployment yaml:
 
+```
     # cd openebs/k8s/demo/percona
     # cat demo-percona-mysql-pvc.yaml
      — -
@@ -278,15 +309,19 @@ View the Percona deployment yaml:
      resources:
      requests:
      storage: 5G
+```
 
 As you can see in the yaml file above, `storageClassName` is set to `openebs-percona` which has 2 replicas.
 
 Now, apply the file:
 
+```
     # oc apply -f demo-percona-mysql-pvc.yaml
+```
 
 Finally, verify that Percona is deployed and OpenEBS controller and replica are running:
 
+```
     # oc get pods
      NAME READY STATUS RESTARTS AGE
      docker-registry-1-b5r7t 1/1 Running 0 2d
@@ -295,19 +330,29 @@ Finally, verify that Percona is deployed and OpenEBS controller and replica are 
      percona-1378140207–5q2gb 1/1 Running 0 15mh
      pvc-c7a24dc8-ffc7–11e7-a7cd-005056873c08-ctrl-1719480235-xf4t5 2/2 Running 0 15m
      pvc-c7a24dc8-ffc7–11e7-a7cd-005056873c08-rep-1550141838-ldm59 1/1 Running 0 15m
+```
 
 ### Install MongoDB on OpenEBS using the OpenShift Web Console
 
 Login to the OpenShift Web Console using the admin credentials we have created earlier.
+
 ![](https://cdn-images-1.medium.com/max/800/0*-IbP4t-ZgYZx4qh6.png)
+
 Click on **Add to Project** button and select **Import YAML / JSON**.
+
 ![](https://cdn-images-1.medium.com/max/800/0*FEwbuF146LMi7Zsx.png)
+
 Copy the content of [https://raw.githubusercontent.com/openebs/openebs/master/k8s/openshift/examples/v3.7/db-templates/openebs-mongodb-persistent-template.json](https://raw.githubusercontent.com/openebs/openebs/master/k8s/openshift/examples/v3.7/db-templates/openebs-mongodb-persistent-template.json) file and paste into **Import YAML / JSON** window.
 ![](https://cdn-images-1.medium.com/max/800/0*d6b0iSD6JG83ad-N.png)
+
 Click on **Create** button, select **Save template** and click **Continue**.
+
 ![](https://cdn-images-1.medium.com/max/800/0*14UvCpI6Gf-Q5Pd2.png)
+
 On the **Template Configuration** window make sure Storage Class is `openebs-standard` and click on **Create**.
+
 ![](https://cdn-images-1.medium.com/max/800/0*l_agQ7YUPJnqvKkq.png)![](https://cdn-images-1.medium.com/max/800/0*K8665fQzu2nIGNZh.png)![](https://cdn-images-1.medium.com/max/800/0*E6Vp2d7hqBWtJpzm.png)
+
 You have successfully deployed MongoDB on a persistent storage provided by OpenEBS.
 
 ---

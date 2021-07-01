@@ -22,11 +22,14 @@ We set out multiple milestones for this journey:
 ## Persistent Volumes (PVs)
 
 Most of the time, Persistent Volume Claims (PVCs) are the entry points to increasing the storage. The number of PVCs will be about the same as the number of pods, or slightly less in a reasonably-loaded Kubernetes cluster. The administrator will benefit from having visibility of which POD is using which PVCs and the associated storage classes and PVs. This is especially true if they are using the storage capacity of the Kubernetes clusters themselves. Adding this visibility is precisely is what we did to start.
-![](/content/images/2020/01/pvc-pv-sc-pod.png)PVC-PV-SC-POD Relationship on Scope
+
+![PVC-PV-SC-POD Relationship on Scope](/images/blog/pvc-pv-sc-pod.png)
+
 You can see this new visibility in Scope by using the newly-created filter “Show storage/Hide storage” under the PODs section. This filter puts the storage components in perspective with the remaining pods and associated networked-data connections. Users can **Hide storage** when not interested, or to reduce clutter.
 
 We received an enthusiastic welcome to the Scope community from the Weaveworks team. We also found encouragement from [Alexis](https://twitter.com/monadic) and plenty of technical help from [Bryan](https://twitter.com/bboreham) at Weaveworks. The first pull request (PR) was really about adding PV, PVC and Storage Class support, and was merged into the Weave Scope master recently ([https://github.com/weaveworks/scope/pull/3132](https://github.com/weaveworks/scope/pull/3132) ).
-![PV-PVC-SC Integration into Scope](https://blog.mayadata.io/hubfs/0_iYXgl-m8oxyXVs1s.gif)PV-PVC-SC Integration into Scope
+
+![PV-PVC-SC Integration into Scope](https://blog.mayadata.io/hubfs/0_iYXgl-m8oxyXVs1s.gif)
 
 ## Future work:
 
@@ -39,12 +42,10 @@ CI/CD pipelines are the most active areas in which DevOps are finding stateful a
 Hyper-converged Infrastructure (HCI) has yet to find its rhythm with Kubernetes, largely due to a lack of fully-developed tools for disk management and monitoring. Kubernetes now has a well-accepted method to provision and manage volumes and attach them to disk management. Therefore, the enabling of HCI for Kubernetes will be improved by new tools such as [Node Disk Manager (NDM)](https://github.com/openebs/node-disk-manager), to which, incidentally (humble brag), we are also contributing. With Disk being the fundamental component for storage and the main participant in the chaos engineering of storage infrastructure, it helps to have it visualised and monitored in a proper way. In large Kubernetes clusters (100+) nodes, the disks will be in the thousands. Scope’s resource utilisation panel is a powerful tool that brings in the visibility of CPU and Memory utilisation at the Host, Container and Process level. This is a natural extension to add Disk Capacity, Disk performance (IOPS and throughput) to this resource utilisation tool. Our view is shown in the figure below, that Disk performance can be added.
 
 ![Current View of the Resource Utilisation Tool on Scope](https://blog.mayadata.io/hubfs/0_9SozVWeQ2F69fDQO.gif)
-Current View of the Resource Utilisation Tool on Scope
 
 Another important aspect of disk management is simply browsing from the application volume all the way to the disk where the data is stored. It is not possible to locate the actual disk of a persistent volume if the underlying storage is a cloud-disk such as EBS or GPD, but if it is a Kubernetes local PV or OpenEBS volume, the volume data vs. physical disks relationship can be identified. This will be useful while managing the hyper-converged infrastructure on Kubernetes.
 
 ![(Future work) PODs/Disks and Nodes Relationship at Scope](https://blog.mayadata.io/hubfs/0_WJA8ii6NlaBoS94H.gif)
-(Future work) PODs/Disks and Nodes Relationship at Scope
 
 The above screens are a dirty implementation on a dev branch that is still in process. However, it provides a good, quick glimpse of how a POD’s volume is linked to the associated disks.
 

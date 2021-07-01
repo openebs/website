@@ -32,7 +32,9 @@ For details on the exact steps of scheduling, see the configuration section [her
 Use case: Let’s consider a scenario in which you have 20 nodes named Node1, Node2 ... Node20. You may want to designate Node1, Node2, Node3 as storage nodes so that all storage pods are scheduled only on these nodes.
 
 Solution: You can use Kubernetes scheduling methods to achieve this. Below are some of the possible options and their effect on scheduling pods to respective nodes.
-![](/content/images/2020/01/storage-pods.png)Storage Pods
+
+![Storage Pods](/images/blog/storage-pods.png)
+
 You may select and use any of the above options based on your unique requirements.
 
 Option 2 does not necessarily guarantee storage pod scheduling on Node1, Node2 and Node3.

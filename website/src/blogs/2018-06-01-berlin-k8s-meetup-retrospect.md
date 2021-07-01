@@ -24,7 +24,9 @@ There is also the matter of granularity; with OpenEBS, you can control everythin
 So, this was about using EBS volumes, I hope the advantages are apparent and easy to understand. This brings data agility to your applications, not just in AWS, but also across clouds: public, private or hybrid. The developer does not have to make any changes to his or her YAML, and can write once and run everywhere, precisely what containers are supposed to do. Do not let others take that freedom away from you =)
 
 Back to the non-EBS volumes, what AWS refers to as “instance store.” More information from Amazon:
-![](/content/images/2020/01/instance-stores.png)
+
+![Instance stores](/images/blog/instance-stores.png)
+
 As the docs point out, when you use this, you get high speed with zero features. With OpenEBS, you get high speed and all of the features if you delegate control of the “instance store” to OpenEBS. An interesting note, the instance store comes with the price of the machine instance itself, so there are no extra charges on your bill.
 
 In a future blog I’ll cover some other common questions that arose — and I’m also going to continue talking about the shift of IO and so forth to the user space, and what it may mean for Container Attached Storage and running IO intensive workloads in general.

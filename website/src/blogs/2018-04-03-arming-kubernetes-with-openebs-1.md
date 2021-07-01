@@ -64,39 +64,55 @@ I will start with Le Potato and compare against Raspberry Pi 3 on my next blog.
 **Armbian** provides Debian and Ubuntu based builds for ARM development boards. Armbian Ubuntu is pretty much same as Ubuntu, except the desktop interface. Armbian uses the Xfce desktop environment, which is a lighter than Gnome or KDE. Its main advantage is its speed, and it’s ideal for systems with 256 MB to 512 MB of RAM. And, I plan to disable desktop anyways.
 
 Download the [Armbian Ubuntu image](https://dl.armbian.com/lepotato/Ubuntu_xenial_next_desktop.7z) from the link [here](https://dl.armbian.com/lepotato/), extract and burn it to your SD cards using Etcher.
-![](https://cdn-images-1.medium.com/max/800/0*XI8xSg4dCl_IWvbz.png)
+
+![Etcher flashing](https://cdn-images-1.medium.com/max/800/0*XI8xSg4dCl_IWvbz.png)
+
 Plug the SD card into your Le Potato board and power on.
-![](https://cdn-images-1.medium.com/max/800/0*ojAbBScZY7giAV7b.jpg)
+
+![Terminal Window](https://cdn-images-1.medium.com/max/800/0*ojAbBScZY7giAV7b.jpg)
+
 Login as `root` and use password `1234`. You will be prompted to change this password at first login. Next, you will be asked to create a normal user account that is sudo enabled.
 
 ### Prepare Armbian host
 
 After reboot, you will auto login to your host with the new user you have created.
+
 ![Armbian Le Potato](https://cdn-images-1.medium.com/max/800/0*UOLgX8I0Oz9hw7I8.jpg)
+
 Change the hostname and set static IP by using armbian-config utility:
 
 `sudo armbian-config`
+
 ![armbian-config utility](https://cdn-images-1.medium.com/max/800/0*s8fjc1-L-9pkDzRE.png)
+
 Disable swap by running the following commands:
 
+```
     sudo systemctl disable zram-configsudo swapoff -a
+```
 
 And also comment out the reference to swap in /etc/fstab file:
 
+```
     sudo vi /etc/fstab
+```
 
 After reboot, confirm that swap space is disabled by running the following command. It should return empty.
 
+```
     sudo swapon — summary
+```
 
 Install Golang 1.10:
 
+```
     wget https://dl.google.com/go/go1.10.linux-arm64.tar.gz
     sudo tar -C /usr/local -xzf go1.10.linux-arm64.tar.gz
     export PATH=$PATH:/usr/local/go/bin
     mkdir go
     export GOPATH=”$HOME/go”
     go get github.com/kubernetes-incubator/cri-tools/cmd/crictl
+```
 
 Repeat all the steps above on all your nodes.
 
@@ -104,11 +120,14 @@ Repeat all the steps above on all your nodes.
 
 Run the following command to install Docker on all nodes. The second line is to use Docker as a non-root user, use your username instead of mine below (murat):
 
+```
     curl -sL https://get.docker.com | sh
     sudo usermod murat -aG docker
+```
 
 Successful installation would look like below:
 
+```
     murat@kubenode1:~$ curl -sL https://get.docker.com | sh
      # Executing docker install script, commit: 02d7c3c
      + sudo -E sh -c apt-get update -qq >/dev/null
@@ -146,6 +165,7 @@ Successful installation would look like below:
      docker host.
      Refer to https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface
      for more information.
+```
 
 Repeat all the steps above on all your nodes.
 
@@ -153,10 +173,12 @@ Repeat all the steps above on all your nodes.
 
 Run the following command to install Kubeadm on all nodes:
 
+```
     curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add — && \
      echo “deb http://apt.kubernetes.io/ kubernetes-xenial main” | sudo tee /etc/apt/sources.list.d/kubernetes.list && \
      sudo apt-get update -q && \
      sudo apt-get install -qy kubeadm
+```
 
 Repeat all the steps above on all your nodes.
 
@@ -164,12 +186,15 @@ Repeat all the steps above on all your nodes.
 
 Initialize your master K8s node:
 
+```
     sudo kubeadm init — pod-network-cidr=10.20.0.0/24 — apiserver-advertise-address=10.10.0.131
+```
 
 By default, token expires in 24h. If you need it longer, then you can add `— token-ttl=0` to the end of the command above to generate token that does not expire.
 
 This step may take around 10 minutes and after that, you will see a summary like below:
 
+```
     …
     Your Kubernetes master has initialized successfully!
     To start using your cluster, you need to run the following as a regular user:
@@ -182,26 +207,34 @@ This step may take around 10 minutes and after that, you will see a summary like
     You can now join any number of machines by running the following on each node
      as root:
     kubeadm join — token 17c6f2.bd9fa915e6a2fcfb 10.10.0.131:6443 — discovery-token-ca-cert-hash sha256:b4995d14fc8995d5ac271e49772b1cf5aa9fee48fa2729fd4ca7fefbbb0564ac
+```
 
 Run the following:
 
+```
     mkdir -p $HOME/.kube
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
 
 Deploy a pod network to the cluster. I used flannel, you can see your other options [here](https://kubernetes.io/docs/concepts/cluster-administration/addons/).
 
+```
     sudo sysctl net.bridge.bridge-nf-call-iptables=1
     kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+```
 
 By default, pods cannot be scheuled on the master node. If you want to be able to schedule pods on the master, e.g. for a single-machine Kubernetes cluster for development, run:
 
+```
     kubectl taint nodes — all node-role.kubernetes.io/master-
+```
 
 As soon as the pod network has been installed, you can continue by joining your nodes.
 
 To confirm that kube-dns pod is up run the command below and check the output:
 
+```
     murat@kubenode1:~$ kubectl get pods — all-namespaces
      NAMESPACE NAME READY STATUS RESTARTS AGE
      kube-system etcd-kubenode1 1/1 Running 0 1m
@@ -211,16 +244,21 @@ To confirm that kube-dns pod is up run the command below and check the output:
      kube-system kube-proxy-h7p6s 1/1 Running 0 1m
      kube-system kube-scheduler-kubenode1 1/1 Running 0 1m
      [/cce_bash]
+```
 
 Note: If kube-dns is stuck in the Pending state. Follow the steps below to fix it and re init your master. This issue and the solution was mentioned [here](https://github.com/kubernetes/kubernetes/issues/43815).
 
+```
     kubeadm reset
     sudo nano /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+```
 
 Remove the `$KUBELET_NETWORK_ARGS` entry from the ExecStart, save the file, and reload systemd and kube services.
 
+```
     systemctl daemon-reload
      systemctl restart kubelet.service
+```
 
 Initialize your master K8s node again.
 
@@ -228,6 +266,7 @@ Initialize your master K8s node again.
 
 You can now join any number of nodes by running the command with the token generated during the K8s master initialization:
 
+```
     murat@kubenode2:~$ kubeadm join — token 17c6f2.bd9fa915e6a2fcfb 10.10.0.131:6443 — discovery-token-ca-cert-hash sha256:b4995d14fc8995d5ac271e49772b1cf5aa9fee48fa2729fd4ca7fefbbb0564ac
      [preflight] Running pre-flight checks.
      [preflight] Some fatal errors occurred:
@@ -245,12 +284,15 @@ You can now join any number of nodes by running the command with the token gener
      * Certificate signing request was sent to master and a response
      was received.
      * The Kubelet was informed of the new secure connection details.
+```
 
 Run `kubectl get nodes` on the master to see this node join the cluster.
 
 If you forgot the cluster token, you can generate a new one with the command:
 
+```
     kubeadm token generate
+```
 
 Repeat all the steps above on all your nodes.
 
@@ -260,12 +302,15 @@ Similar to most of the arm based hobby boards, Le Potato doesn’t provide any a
 
 OpenEBS provides a great solution for modern x64 architecture but currently doesn’t have a build for [arm64](https://en.wikipedia.org/wiki/ARM_architecture#64/32-bit_architecture) (armv8) architecture. Therefore, I’ve opened an issue [here](https://github.com/openebs/openebs/issues/1295) and started working on it myself. I did successfully build OpenEBS images for arm64 architecture from the repo base on the 0.5.3 release and uploaded custom images to my personal docker registry [here](https://hub.docker.com/u/muratkarslioglu/). So, it is work in progress and please use it at your own risk, until it’s merged.
 
+```
     sudo apt-get install -y curl open-iscsi
     kubectl apply -f https://raw.githubusercontent.com/muratkars/openebs/lepotato-arm64/k8s/openebs-operator-arm64.yaml
     kubectl apply -f https://raw.githubusercontent.com/muratkars/openebs/lepotato-arm64/k8s/openebs-storageclasses.yaml
+```
 
 Now, get the list of storage classes using the below command:
 
+```
     $ kubectl get sc
      NAME PROVISIONER AGE
      openebs-cassandra openebs.io/provisioner-iscsi 1h
@@ -278,6 +323,7 @@ Now, get the list of storage classes using the below command:
      openebs-standalone openebs.io/provisioner-iscsi 1h
      openebs-standard openebs.io/provisioner-iscsi 4d
      openebs-zk openebs.io/provisioner-iscsi 1h
+```
 
 **Voila…!**
 
@@ -285,7 +331,9 @@ Now, get the list of storage classes using the below command:
 
 To test the OpenEBS installation you can try my Jenkins example here:
 
+```
     kubectl apply -f https://raw.githubusercontent.com/muratkars/openebs/lepotato-arm64/k8s/demo/jenkins/jenkins-arm64.yaml
+```
 
 ## Next — Installing containerized OwnCloud on OpenEBS
 

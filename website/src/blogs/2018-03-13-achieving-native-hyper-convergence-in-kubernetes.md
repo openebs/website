@@ -16,7 +16,9 @@ When it comes to storage, however, there are a few pieces that are missing. Once
 Storage management capabilities in Kubernetes have improved in the last couple of years. For example, there is now clarity around how to connect a stateful application to persistent storage. The constructs of persistent volume claim (PVC), persistent volume (PV), and storage class (SC) along with dynamic provisioners from vendors have clarified how to connect a pod to a storage volume. With these Kubernetes constructs, a large ecosystem of legacy storage found its way to be connected to application pods. Many vendors and open source projects are so excited about this connectivity to cloud native environments that they have taken to calling their traditional storage “[cloud native](https://blog.openebs.io/cloud-native-storage-vs-marketers-doing-cloud-washing-c936089c2b58)”.
 
 In order to explain why new tools and constructs are needed to improve the management of storage media, let’s start by reviewing pod connectivity. Shown below is a pod connected to external storage through a dynamic provisioner interface.
-![](https://cdn-images-1.medium.com/max/800/1*zm4UFgEvTWesM2JoxQF9Cg.jpeg)_Need for new tools and constructs in Kubernetes for managing disks_
+
+![Need for new tools and constructs in Kubernetes for managing disks](https://cdn-images-1.medium.com/max/800/1*zm4UFgEvTWesM2JoxQF9Cg.jpeg)
+
 In addition, we show the Local PV construct connected to local disks whether spinning or solid state.
 
 Currently the Local PV can manage just a single disk. In a typical hyper-converged solution, more disks would be involved for a given pod. In addition to this single disk limitation, the following are limitations or gaps in the local PV feature.
@@ -36,16 +38,20 @@ In the drawing above, these requirements are loosely shown as “constructs and 
 It may be easier to think about this using human personas. Let’s say a DevOps developer is interested in connecting a working storage volume to their workload. Meanwhile a DevOps admin wants to rely as much as possible on Kubernetes to deliver storage services.
 
 Today, DevOps admins are forced to turning to different storage solutions to create storage classes as opposed to having a generic way of writing solutions around creating storage classes in a k8s native way. The DevOps admin would love to have a native k8s way to create storage classes so that they can standardize on an approach irrespective of the underlying storage systems or even storage cloud services.
-![](https://cdn-images-1.medium.com/max/800/1*17YT5-GR_JUXEq6qW2SD1A.jpeg)_Using and constructing a storage class in Kubernetes_
+
+![Using and constructing a storage class in Kubernetes](https://cdn-images-1.medium.com/max/800/1*17YT5-GR_JUXEq6qW2SD1A.jpeg)
 
 ## Some thoughts on what these new disk related constructs and tools could be
 
 Just like storage connectivity issue is solved with a dynamic volume provisioner, we could introduce pool provisioners into Kubernetes.
-![](https://cdn-images-1.medium.com/max/800/0*eM2LjKDvhbl62mjG.)Proposed disk related constructs and interfaces
+
+![Proposed disk related constructs and interfaces](https://cdn-images-1.medium.com/max/800/0*eM2LjKDvhbl62mjG.)
+
 As shown above, DevOps administrators will have the required tools to design the storage policy decisions. A toolset called is created node-disk-manager to provision, monitor and manage disks on the node. The disks are then grouped into pools by an interface called pool provisioner. The pool provisioner gives a generic set of APIs to consume the kubernetes disk objects and create a storage technology specific pools such as OpenEBS cStorPool, OpenZFS zpool, GlusterPool etc.The advantage of representing the pools in native Kubernetes constructs is that Kubernetes native tools can be extended to manage these new constructs.
 
 With these constructs, the end-to-end volume provisioning work flow could be depicted like below.
-![](https://cdn-images-1.medium.com/max/800/1*9bAs7wOPNNGLxELpgP-4FA.jpeg)_New proposed workflow for managing local disks and achieving true hyper convergence in Kubernetes_
+
+![New proposed workflow for managing local disks and achieving true hyper convergence in Kubernetes](https://cdn-images-1.medium.com/max/800/1*9bAs7wOPNNGLxELpgP-4FA.jpeg)
 
 ## Conclusion:
 

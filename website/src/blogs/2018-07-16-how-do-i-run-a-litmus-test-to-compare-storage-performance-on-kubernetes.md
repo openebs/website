@@ -10,17 +10,19 @@ excerpt: Ever so often, developers and devops engineers building or managing sta
 This article belongs to a #HowDoI series on Kubernetes and Litmus
 
 Ever so often, developers and devops engineers building or managing stateful applications on Kubernetes are on the lookout for for suitable storage options which serves their application’s specific needs. The emphasis could be on high-availability, provisioning ease, performance etc.., **Litmus **(as detailed in this [article](https://blog.openebs.io/litmus-release-a-chaos-monkey-on-your-kubernetes-stateful-workloads-6345e01b637d)), is an attempt to arm them with the necessary info to make the right choice. One of the important storage tests is to simulate application workloads or multiply its effect using synthetic workload generators like fio. In this article, we list the steps to run a fio-based benchmark test using litmus
-![](https://cdn-images-1.medium.com/max/800/1*zRIZ9WjL7S0wq6Sp_IbzCw.png)Evaluating storage performance w/ Litmus
+
+![Evaluating storage performance w/ Litmus](https://cdn-images-1.medium.com/max/800/1*zRIZ9WjL7S0wq6Sp_IbzCw.png)
 
 ## PRE-REQUISITES
 
 - At least a single-node Kubernetes cluster with the necessary disk resources, mounted on the node. (**_Note_**: _Certain storage solutions need minimum Kubernetes versions from which they are supported. For ex: Local PVs are beta from 1.10, OpenEBS needs 1.7.5+_)
-- Storage operator installed (typically, this includes control-plane elements like the static/dynamic provisioners, storage classes and other elements) with appropriate references to the node & disk resources (**\*For example\*\***: This may involve storage pool creation OR updating disk and node details in the static provisioners etc.,\*)
+- Storage operator installed (typically, this includes control-plane elements like the static/dynamic provisioners, storage classes and other elements) with appropriate references to the node & disk resources (**_For example_**: _This may involve storage pool creation OR updating disk and node details in the static provisioners etc.,_)
 
 ## STEP-1: Setup Litmus essentials on the Kubernetes cluster
 
 - Obtain the Litmus Git repository via a Git Clone operation on the Kubernetes master/Control machine used to manage cluster & set up the Litmus namespace, service account & clusterrolebinding by applying _rbac.yaml_
 
+```
   karthik_s@cloudshell:~ (strong-eon-153112)$ git clone https://github.com/openebs/litmus.git
 
   Cloning into 'litmus'...
@@ -46,12 +48,17 @@ Ever so often, developers and devops engineers building or managing stateful app
   clusterrole "litmus" created
 
   clusterrolebinding "litmus" created
+```
 
-- Create a configmap resource out of the cluster’s config file, typically at _~/.kube/config_, _/etc/kubernetes/admin.conf_ or elsewhere depending on the type of cluster or setup method (**\*Note\*\***: Copy the config file to admin.conf before creating the configmap out of it, as the litmus job expects this path\*)
+- Create a configmap resource out of the cluster’s config file, typically at _~/.kube/config_, _/etc/kubernetes/admin.conf_ or elsewhere depending on the type of cluster or setup method
 
-  karthik_s@cloudshell:~ (strong-eon-153112)$ kubectl create configmap kubeconfig --from-file=admin.conf -n litmus
+(**Note**: _Copy the config file to admin.conf before creating the configmap out of it, as the litmus job expects this path_)
 
-  configmap "kubeconfig" created
+```
+karthik_s@cloudshell:~ (strong-eon-153112)$ kubectl create configmap kubeconfig --from-file=admin.conf -n litmus
+
+configmap "kubeconfig" created
+```
 
 ## STEP-2: Update the Litmus test job as per need
 
@@ -62,6 +69,7 @@ The litmus fio test job allows the developer to specify certain test parameters 
 - Certain simple test parameters such as the size of the test file (FIO_SAMPLE_SIZE) and duration of I/O (FIO_TESTRUN_PERIOD) can be specified as well, while the core I/O params continue to be housed in the templates.
 - The developer can choose to specify a comma-separated list of pods whose logs need to be collected for analysis of results, as well as the logs’ location on the host in the spec for the logger.
 
+```
   karthik_s@cloudshell:~ (strong-eon-153112)$ cd litmus/tests/fio/
 
   karthik_s@cloudshell:~/litmus/tests/fio (strong-eon-153112)$ cat run_litmus_test.yaml
@@ -180,25 +188,31 @@ The litmus fio test job allows the developer to specify certain test parameters 
                path: /mnt
 
                type: Directory
+```
 
 ## STEP 3: Run the Litmus fio test job.
 
 The job creates the Litmus test pod, which contains both the test runner as well as the (stern-based) logger sidecar. The test runner then launches an fio test job that uses a persistent volume (PV) based on the specified storage class.
 
+```
     karthik_s@cloudshell:~/litmus/tests/fio (strong-eon-153112)$ kubectl apply -f run_litmus_test.yaml
 
     job "litmus" created
+```
 
 ## STEP 4: View the fio run results.
 
 The results can be obtained from the log directory on the node in which the litmus pod is executed (By default, it is stored in _/mnt_). The fio & other specified pod logs are available in a tarfile (\_Logstash*<timestamp>*.tar\_\_).
 
+```
     root@gke-oebs-staging-default-pool-7cc7e313-bf16:/mnt# ls
 
     Logstash_07_07_2018_04_10_AM.tar  hosts  systemd_logs
+```
 
 The fio results are captured in JSON format with job-specific result sections. Below is a truncated snippet reproduced from the log for a sample basic rw run:
 
+```
     {
       "jobname": "basic-readwrite",
       "groupid": 0,
@@ -236,6 +250,7 @@ The fio results are captured in JSON format with job-specific result sections. B
         }
       }
     }
+```
 
 ## CONCLUSION
 

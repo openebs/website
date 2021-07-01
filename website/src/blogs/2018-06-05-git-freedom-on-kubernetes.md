@@ -53,20 +53,27 @@ GitLab depends on stateful applications like Redis and PostgeSQL, and requires p
 
 First, install OpenEBS using the chart.
 
+```
     helm install — name ‘openebs-gitlab-test’ stable/openebs
+```
 
 Optional: If you would like to customize your OpenEBS installation you can also use a copy of the [value.yaml](https://raw.githubusercontent.com/kubernetes/charts/master/stable/openebs/values.yaml) file from the OpenEBS chart and modify parameters listed [here](https://github.com/kubernetes/charts/tree/master/stable/openebs).
 
+```
     helm install — name ‘openebs-gitlab-test’ -f values.yaml stable/openebs
+```
 
 Next, add the predefined storage classes.
 
+```
     kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-storageclasses.yaml
+```
 
 There are many ways to enable OpenEBS for use by GitLab. The fastest is by making one of the OpenEBS storage classes a default StorageClass:
 
 List available OpenEBS storage classes in your cluster.
 
+```
     murat@icpnode1:~$ kubectl get sc
     NAME PROVISIONER AGE
     openebs-cassandra openebs.io/provisioner-iscsi 18d
@@ -79,13 +86,17 @@ List available OpenEBS storage classes in your cluster.
     openebs-standalone openebs.io/provisioner-iscsi 18d
     openebs-standard openebs.io/provisioner-iscsi 18d
     openebs-zk openebs.io/provisioner-iscsi 18d
+```
 
 Either create your StorageClass or pick one of the predefined classes. _openebs-standard_ creates 3 replicas and is an ideal candidate here to be used for most of the stateful workloads. Let’s mark this StorageClass as default.
 
+```
     kubectl patch storageclass openebs-standard -p ‘{“metadata”: {“annotations”:{“storageclass.kubernetes.io/is-default-class”:”true”}}}’
+```
 
 No verify that your chosen StorageClass is indeed the **default**.
 
+```
     murat@icpnode1:~$ kubectl get sc
     NAME PROVISIONER AGE
     openebs-cassandra openebs.io/provisioner-iscsi 18d
@@ -98,15 +109,19 @@ No verify that your chosen StorageClass is indeed the **default**.
     openebs-standalone openebs.io/provisioner-iscsi 18d
     openebs-standard (default) openebs.io/provisioner-iscsi 18d
     openebs-zk openebs.io/provisioner-iscsi 18d
+```
 
 Next, we can install the GitLab-ce chart. It is recommended to save your configuration options in a values.yaml file for future use.
 
+```
     wget https://raw.githubusercontent.com/kubernetes/charts/master/stable/gitlab-ce/values.yaml
+```
 
 Edit the _values.yaml_ file and at minimum, add the **externalUrl** field. Otherwise, you’ll end up with a non-functioning release.
 
 Here is how my _values.yaml_ file looks like after these changes:
 
+```
     image: gitlab/gitlab-ce:9.4.1-ce.0
     externalUrl: http://containerized.me/
     serviceType: LoadBalancer
@@ -158,13 +173,17 @@ Here is how my _values.yaml_ file looks like after these changes:
     size: 10Gi
     storageClass: openebs-standard
     accessMode: ReadWriteOnce
+```
 
 Now, install the chart.
 
+```
     helm install — name gitlab-test -f values.yaml stable/gitlab-ce
+```
 
 List the pods and confirm that all pods are ready and running.
 
+```
     $ kubectl get pods
     NAME READY STATUS RESTARTS AGE
     gitlab-test-gitlab-ce-dd69cdf4b-69vmb 1/1 Running 0 11m
@@ -188,22 +207,30 @@ List the pods and confirm that all pods are ready and running.
     pvc-cb11a791–6904–11e8–9f57–06a0a9acf800-rep-79d658d94c-5bzn6 1/1 Running 0 11m
     pvc-cb11a791–6904–11e8–9f57–06a0a9acf800-rep-79d658d94c-9dz5f 1/1 Running 0 11m
     pvc-cb11a791–6904–11e8–9f57–06a0a9acf800-rep-79d658d94c-snkfb 1/1 Running 0 11m
+```
 
 Get the list of persistent volumes.
 
+```
     $ kubectl get pv
     NAME CAPACITY ACCESS MODES RECLAIM POLICY STATUS CLAIM STORAGECLASS REASON AGE
     pvc-cb0fc1b2–6904–11e8–9f57–06a0a9acf800 10Gi RWO Delete Bound default/gitlab-test-postgresql openebs-standard 17m
     pvc-cb1064ee-6904–11e8–9f57–06a0a9acf800 10Gi RWO Delete Bound default/gitlab-test-redis openebs-standard 17m
     pvc-cb111261–6904–11e8–9f57–06a0a9acf800 10Gi RWO Delete Bound default/gitlab-test-gitlab-ce-data openebs-standard 17m
     pvc-cb11a791–6904–11e8–9f57–06a0a9acf800 1Gi RWO Delete Bound default/gitlab-test-gitlab-ce-etc openebs-standard 17m
+```
 
 You can see above that four persistent volumes were created (**postgresql, redis, gitlab-ce-etc, gitlab-ce-data**), and each volume is protected by 3 replicas.
 
 Now go to the external endpoint address you have defined and start using GitLab after you set your new password.
+
 ![](https://lh4.googleusercontent.com/9UnAe3ZuKt_weq1IbxOrgA_JQMpXE2ZCd80PgDxIodeUdFslr-wCt2DUjbWyoERYWa6RKht8JYvihV-_dQS0EYArc4dJhkPPtN0cGPNfYcDsiHgtjS7unCLOW9MTDre79AjZ660xm6IN94OPew)
+
 Now click on **Create a project**, then import your existing project from GitHub and start using GitLab.
-![](https://lh4.googleusercontent.com/CDe7SDXnBmCL5IGVTIOYATjzjZN2iMPsZaVBmuY3-l6qXFX8xReeU6M234eX0ELY1Pips6JfR1FJb4rzfL_d53KLDon0MrzBKqQvuBslQDboCw1yPehiKrSf771PMy79ckmPdLGWnhmijDFkVg)![](https://lh6.googleusercontent.com/AFqy2l5MohpC1kCk5k2yFoZA90qJGabfUymqmMmI0kFqcpgqXnrapoYCs1dMfrFDqKj-37ncNvoCe7Kf8UfCQq6VRvmFMK742abC58ju6TiRSUk2yeq1OtMBZWPMd3pqyQWawBDgUcSpSZ8Djg)
+
+![](https://lh4.googleusercontent.com/CDe7SDXnBmCL5IGVTIOYATjzjZN2iMPsZaVBmuY3-l6qXFX8xReeU6M234eX0ELY1Pips6JfR1FJb4rzfL_d53KLDon0MrzBKqQvuBslQDboCw1yPehiKrSf771PMy79ckmPdLGWnhmijDFkVg)
+
+![](https://lh6.googleusercontent.com/AFqy2l5MohpC1kCk5k2yFoZA90qJGabfUymqmMmI0kFqcpgqXnrapoYCs1dMfrFDqKj-37ncNvoCe7Kf8UfCQq6VRvmFMK742abC58ju6TiRSUk2yeq1OtMBZWPMd3pqyQWawBDgUcSpSZ8Djg)
 
 ---
 
