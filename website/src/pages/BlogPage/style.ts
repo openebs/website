@@ -166,24 +166,27 @@ const useStyles = makeStyles((theme: Theme) => ({
       lineHeight: '22px'
     },
     '& ul, & ol':{
-      paddingLeft: 0,
       '& li':{
-          paddingLeft: theme.spacing(1.85),
-          fontSize: '1rem',
-          color: theme.palette.text.secondary,
-          lineHeight: '22px',
-          listStyle: 'none',
-          position: 'relative',
+        fontSize: '1rem',
+        color: theme.palette.text.secondary,
+        lineHeight: '22px',
+        position: 'relative',
       },
       '& li:not(:last-child)':{
         marginBottom: theme.spacing(1)
       },
     },
+    '& ol': {
+      paddingLeft: theme.spacing(2)
+    },
     '& ul': {
+      paddingLeft: 0,        
       '& li': {
-        '&::before':{
-          content: '""',
-          position: "absolute",
+          paddingLeft: theme.spacing(1.85),
+          listStyle: 'none',
+          '&::before':{
+            content: '""',
+            position: "absolute",
           left: 0,
           top: '6px',
           width: '8px',
