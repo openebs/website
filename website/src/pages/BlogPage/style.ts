@@ -165,23 +165,72 @@ const useStyles = makeStyles((theme: Theme) => ({
       color: theme.palette.text.secondary,
       lineHeight: '22px'
     },
-    '& ul li':{
-      fontSize: '1rem',
-      color: theme.palette.text.secondary,
-      lineHeight: '22px'
+    '& ul, & ol':{
+      paddingLeft: 0,
+      '& li':{
+          paddingLeft: theme.spacing(1.85),
+          fontSize: '1rem',
+          color: theme.palette.text.secondary,
+          lineHeight: '22px',
+          listStyle: 'none',
+          position: 'relative',
+      },
+      '& li:not(:last-child)':{
+        marginBottom: theme.spacing(1)
+      },
+    },
+    '& ul': {
+      '& li': {
+        '&::before':{
+          content: '""',
+          position: "absolute",
+          left: 0,
+          top: '6px',
+          width: '8px',
+          height: '8px',
+          borderRadius: '100%',
+          background: theme.palette.info.light
+        }
+      }
     },
     '& h2': {
       fontSize: '2rem', 
       lineHeight: '50px'
     },
-    '& code':{
-      overflow: 'auto',
+    '& pre code':{
       borderRadius: '4px',
       display: 'block',
       overflowX: 'auto',
       padding: '1em',
-      background: theme.palette.grayishGreen.dark,
+      background: theme.palette.primary.dark,
       color: theme.palette.grayishGreen.light
+    },
+    '& p > code':{
+      padding: theme.spacing(.5,1),
+      borderRadius: '4px',
+      background: theme.palette.blue.light,
+    },
+    '& img':{
+      maxWidth: '100%'
+    },
+    '& a': {
+      textDecoration: 'underline',
+      color: theme.palette.secondary.main
+    },
+    '& blockquote': {
+      background: 'transparent',
+      borderLeft: 'none',
+      textAlign:'center',
+      margin: theme.spacing(3,0),
+      '&::before': {
+        color: theme.palette.info.light,
+        content: 'open-quote',
+        fontSize: '60px',
+        lineHeight: '10px',
+        marginRight: theme.spacing(1.2),
+        verticalAlign: '-16px'
+      },
+      '& p': { display: 'inline' },
     },
     [theme.breakpoints.down('md')]: {
       width: '65%',

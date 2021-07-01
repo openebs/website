@@ -31,34 +31,34 @@ Worker1: 3 virtual disks, one being used by LUKS and two other disks which are p
 Worker 2: 4 physical disks
 
 * Deploy NDM into the Kubernetes cluster along with OpenEBS LocalPV
-
-```kubectl apply -f https://openebs.github.io/charts/openebs-operator-lite.yaml```
-
-(The latest helm charts for deploying NDM are available [here](https://openebs.github.io/node-disk-manager/))
+    ```
+    kubectl apply -f https://openebs.github.io/charts/openebs-operator-lite.yaml
+    ```
+    (The latest helm charts for deploying NDM are available [here](https://openebs.github.io/node-disk-manager/))
 
 * Once deployed, check the blockdevices present in the cluster using
-
-```kubectl get bd -n openebs -o wide```
-
-Some block devices show partitions that did not exist initially. E.g., sdb1 instead of sdb. This is because NDM creates a partition on virtual disks to identify the disk uniquely. Also, block device resources are now created for LVMs and LUKS encrypted devices. All the block devices listed above will now be treated as individual devices and can be used by any storage engine.
+    ```
+    kubectl get bd -n openebs -o wide
+    ```
+    Some block devices show partitions that did not exist initially. E.g., sdb1 instead of sdb. This is because NDM creates a partition on virtual disks to identify the disk uniquely. Also, block device resources are now created for LVMs and LUKS encrypted devices. All the block devices listed above will now be treated as individual devices and can be used by any storage engine.
 
 * Deploy a sample application to use the block device
 
-Download the minio yaml and apply it. (NOTE: A node selector has been added to the minio application pod so that it gets scheduled on worker-1)
+    Download the minio yaml and apply it. (NOTE: A node selector has been added to the minio application pod so that it gets scheduled on worker-1)
+    ```
+    kubectl apply -f [minio-official.yaml](https://gist.githubusercontent.com/akhilerm/194a1606c514d8930addcaef56f9f19f/raw/7d339e5042b4e5e958dde558f1f3509e26c214f3/minio-official.yaml)
+    ```
+    Now check the status of block devices again
 
-kubectl apply -f [minio-official.yaml](https://gist.githubusercontent.com/akhilerm/194a1606c514d8930addcaef56f9f19f/raw/7d339e5042b4e5e958dde558f1f3509e26c214f3/minio-official.yaml)
-
-Now check the status of block devices again
-
-We can see that the device `dm-2`, is the LUKS device, has been claimed and used by the application.
+    We can see that the device `dm-2`, is the LUKS device, has been claimed and used by the application.
 
 * Pool movement across nodes
 
-NDM helps in seamlessly moving cStor pools from one node to another. Whenever the devices that constitute a pool are moved from one node to another (disconnecting disks from one node and reconnecting on another), the block device resource is updated with the latest information. NDM tracks this movement. cStor can use this information to migrate pools as required.
+  NDM helps in seamlessly moving cStor pools from one node to another. Whenever the devices that constitute a pool are moved from one node to another (disconnecting disks from one node and reconnecting on another), the block device resource is updated with the latest information. NDM tracks this movement. cStor can use this information to migrate pools as required.
 
 * Reserving storage for workloads
 
-NDM provides a feature to reserve devices for certain workloads. E.g., Users can reserve all SSDs for a performance intensive workload. This reservation is achieved using block-device-tags. More information on using block-device-tags with LocalPV can be found [here](https://docs.openebs.io/docs/next/uglocalpv-device.html#optional-block-device-tagging).
+  NDM provides a feature to reserve devices for certain workloads. E.g., Users can reserve all SSDs for a performance intensive workload. This reservation is achieved using block-device-tags. More information on using block-device-tags with LocalPV can be found [here](https://docs.openebs.io/docs/next/uglocalpv-device.html#optional-block-device-tagging).
 
 ## Future Roadmap
 
