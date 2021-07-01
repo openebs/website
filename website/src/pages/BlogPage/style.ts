@@ -217,6 +217,21 @@ const useStyles = makeStyles((theme: Theme) => ({
       textDecoration: 'underline',
       color: theme.palette.secondary.main
     },
+    '& blockquote': {
+      background: 'transparent',
+      borderLeft: 'none',
+      textAlign:'center',
+      margin: theme.spacing(3,0),
+      '&::before': {
+        color: theme.palette.info.light,
+        content: 'open-quote',
+        fontSize: '60px',
+        lineHeight: '10px',
+        marginRight: '10px',
+        verticalAlign: '-16px'
+      },
+      '& p': { display: 'inline' },
+    },
     [theme.breakpoints.down('md')]: {
       width: '65%',
       padding: theme.spacing(8, 0),
