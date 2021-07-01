@@ -13,13 +13,13 @@ First off, as mentioned in previous blog articles, OpenEBS is not yet another di
 
 - As microservices typically require only a small (relatively) amount of storage, there is no need to build a scale-out storage system
 - As Direct-attached Storage (DAS), in particular, NVMe, is the fastest storage you can get, you want the workload and the controller to be local with respect to each other; this is true even with SSD cloud storage offerings like AWS EBS instances
-- As single NVMe devices can reach 450K IOPS per device or[ more](https://www.prnewswire.com/news-releases/supermicro-delivers-groundbreaking-18-million-iops-of-storage-performance-in-new-2u-ultra-server-300508258.html) there is no longer any need to “scale out” to achieve high IOPS or low latency, in fact, scale-out adds latency as per the above argument
+- As single NVMe devices can reach 450K IOPS per device or [more](https://www.prnewswire.com/news-releases/supermicro-delivers-groundbreaking-18-million-iops-of-storage-performance-in-new-2u-ultra-server-300508258.html) there is no longer any need to “scale out” to achieve high IOPS or low latency, in fact, scale-out adds latency as per the above argument
 
 Finally, distributed applications are complex by nature. When you are building microservices, you are in fact, developing a distributed application. It seems unwise to put one distributed application on top of the other (storage) and sleep well at night. All that work you’ve done limiting single points of failure in your application layer can be undone through the use of complex distributed storage.
 
 Another fundamental aspect of OpenEBS is that it runs in user space. This too has, we like to believe, a significant advantage as it does not require you to [build a kernel module](https://github.com/portworx/px-fuse) and taint your kernel (in case of closed source) with out-of-tree code. But it does not stop there; if you want to move your data from cloud to cloud (c2c), you do not have to worry about kernel version mismatches or anything like that. User space is the new kernel — when it comes to IO.
 
-But what about performance? Linus Torvals himself said some years ago that file systems in user space are nothing but[ toys](https://www.phoronix.com/scan.php?page=news_item&px=OTYwMA). But, as it turns out, with these low latency SSDs and high-speed networking (100GbE) the kernel, in fact, has become the bottleneck!
+But what about performance? Linus Torvals himself said some years ago that file systems in user space are nothing but [toys](https://www.phoronix.com/scan.php?page=news_item&px=OTYwMA). But, as it turns out, with these low latency SSDs and high-speed networking (100GbE) the kernel, in fact, has become the bottleneck!
 
 _“fuse works fine if the thing being exported is some random low-use interface to a fundamentally slow device.”_
 
@@ -45,4 +45,4 @@ As you can see from the repository, the design is fairly straightforward and is 
 
 While the vHost work stands alone it is central to a new storage engine forthcoming in OpenEBS 0.6, code named ‘cStore’.
 
-We would really like your input so please[ open an issue](https://github.com/openebs/vhost-user/issues) or join us on Slack to discuss at[ openebs-community.slack.com](http://openebs-community.slack.com/) or just contact me directly. I can be reached at Twitter at[ @jeffrymolanus](https://twitter.com/jeffrymolanus)
+We would really like your input so please [open an issue](https://github.com/openebs/vhost-user/issues) or join us on Slack to discuss at [openebs-community.slack.com](http://openebs-community.slack.com/) or just contact me directly. I can be reached at Twitter at [@jeffrymolanus](https://twitter.com/jeffrymolanus)

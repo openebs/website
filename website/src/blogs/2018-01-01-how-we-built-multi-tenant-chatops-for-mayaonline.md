@@ -13,7 +13,7 @@ Maya-ChatOps is one of the core areas of [MayaOnline](https://mayaonline.io/), c
 
 ## What is MuleBot ?
 
-![MuleBot](/images/blog/mule-bot.png "MuleBot")
+![MuleBot](/images/blog/mule-bot.png)
 
 MuleBot is the name of the bot or slack application from Maya. MuleBot is a distributed slack application. MuleBot responds to user’s queries about configuration and status of the OpenEBS volumes. Sometimes, MuleBot tries to surprise you with smart alerts prior to a real situation happens.
 

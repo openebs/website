@@ -40,52 +40,52 @@ Steps required to patch the Replica deployment are summarised below:
 
 **Step 4**:- Replica deployment is patched with nodeAffinity
 
-    ```bash
-    # REPLACE <namespace-where-openebs-pods-are-deployed> WITH ACTUAL NAMESPACE
-    # REPLACE <name-of-persistentvolume> WITH ACTUAL PV NAME
-    # TAKE A NOTE OF THE NODE NAME(S) TO BE USED IN THE PATCH.YAML
+```bash
+# REPLACE <namespace-where-openebs-pods-are-deployed> WITH ACTUAL NAMESPACE
+# REPLACE <name-of-persistentvolume> WITH ACTUAL PV NAME
+# TAKE A NOTE OF THE NODE NAME(S) TO BE USED IN THE PATCH.YAML
 
-    kubectl get po -n <namespace-where-openebs-pods-are-deployed> \
-      -o=custom-columns=NAME:metadata.name,NODE:spec.nodeName,STATUS:status.phase \
-      | grep -E 'NAME|<name-of-persistentvolume>-rep'
-    ```
+kubectl get po -n <namespace-where-openebs-pods-are-deployed> \
+  -o=custom-columns=NAME:metadata.name,NODE:spec.nodeName,STATUS:status.phase \
+  | grep -E 'NAME|<name-of-persistentvolume>-rep'
+```
 
-    ```bash
-    $ cat replica_patch.yaml
-    ```
+```bash
+$ cat replica_patch.yaml
+```
 
-    ```yaml
+```yaml
+spec:
+  template:
     spec:
-      template:
-        spec:
-          affinity:
-            nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                - matchExpressions:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
                   - key: kubernetes.io/hostname
                     operator: In
                     values:
-                    - nodename_where_replica_pod_1_got_scheduled
-                    - nodename_where_replica_pod_2_got_scheduled
-                    - nodename_where_replica_pod_3_got_scheduled
-    ```
+                      - nodename_where_replica_pod_1_got_scheduled
+                      - nodename_where_replica_pod_2_got_scheduled
+                      - nodename_where_replica_pod_3_got_scheduled
+```
 
-    ```bash
-    # REPLACE <name-of-persistentvolume> WITH ACTUAL PV NAME
+```bash
+# REPLACE <name-of-persistentvolume> WITH ACTUAL PV NAME
 
-    kubectl patch deployment <name-of-persistentvolume>-rep \
-      -p "$(cat replica_patch.yaml)"
-    ```
+kubectl patch deployment <name-of-persistentvolume>-rep \
+  -p "$(cat replica_patch.yaml)"
+```
 
-    ```bash
-    # VERIFY IF PODs ARE BACK TO `Running` AFTER PATCH
-    # REPLACE <namespace-where-openebs-pods-are-deployed> WITH ACTUAL NAMESPACE
-    # REPLACE <name-of-persistentvolume> WITH ACTUAL PV NAME
+```bash
+# VERIFY IF PODs ARE BACK TO `Running` AFTER PATCH
+# REPLACE <namespace-where-openebs-pods-are-deployed> WITH ACTUAL NAMESPACE
+# REPLACE <name-of-persistentvolume> WITH ACTUAL PV NAME
 
-    kubectl get po -n <namespace-where-openebs-pods-are-deployed> \
-      | grep -E 'NAME|<name-of-persistentvolume>-rep'
-    ```
+kubectl get po -n <namespace-where-openebs-pods-are-deployed> \
+  | grep -E 'NAME|<name-of-persistentvolume>-rep'
+```
 
 Learn more about nodeAffinity from Kubernetes docs at [https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity).
 

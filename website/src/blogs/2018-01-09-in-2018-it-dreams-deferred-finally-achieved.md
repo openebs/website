@@ -1,5 +1,5 @@
 ---
-title: "In 2018 - IT dreams deferred finally achieved?"
+title: In 2018 - IT dreams deferred finally achieved?
 author: Evan Powell
 author_info: Founding CEO of a few companies including StackStorm (BRCD) and Nexenta — and CEO & Chairman of OpenEBS/MayaData. ML and DevOps and Python, oh my!
 date: 09-01-2018

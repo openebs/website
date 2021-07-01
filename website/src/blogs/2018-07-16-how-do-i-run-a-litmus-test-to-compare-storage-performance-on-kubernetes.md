@@ -23,31 +23,31 @@ Ever so often, developers and devops engineers building or managing stateful app
 - Obtain the Litmus Git repository via a Git Clone operation on the Kubernetes master/Control machine used to manage cluster & set up the Litmus namespace, service account & clusterrolebinding by applying _rbac.yaml_
 
 ```
-  karthik_s@cloudshell:~ (strong-eon-153112)$ git clone https://github.com/openebs/litmus.git
+karthik_s@cloudshell:~ (strong-eon-153112)$ git clone https://github.com/openebs/litmus.git
 
-  Cloning into 'litmus'...
+Cloning into 'litmus'...
 
-  remote: Counting objects: 2627, done.
+remote: Counting objects: 2627, done.
 
-  remote: Compressing objects: 100% (16/16), done.
+remote: Compressing objects: 100% (16/16), done.
 
-  remote: Total 2627 (delta 2), reused 9 (delta 2), pack-reused 2609
+remote: Total 2627 (delta 2), reused 9 (delta 2), pack-reused 2609
 
-  Receiving objects: 100% (2627/2627), 10.50 MiB | 4.23 MiB/s, done.
+Receiving objects: 100% (2627/2627), 10.50 MiB | 4.23 MiB/s, done.
 
-  Resolving deltas: 100% (740/740), done.
+Resolving deltas: 100% (740/740), done.
 
-  karthik_s@cloudshell:~ (strong-eon-153112)$ cd litmus/
+karthik_s@cloudshell:~ (strong-eon-153112)$ cd litmus/
 
-  karthik_s@cloudshell:~/litmus (strong-eon-153112)$ kubectl apply -f hack/rbac.yaml
+karthik_s@cloudshell:~/litmus (strong-eon-153112)$ kubectl apply -f hack/rbac.yaml
 
-  namespace "litmus" created
+namespace "litmus" created
 
-  serviceaccount "litmus" created
+serviceaccount "litmus" created
 
-  clusterrole "litmus" created
+clusterrole "litmus" created
 
-  clusterrolebinding "litmus" created
+clusterrolebinding "litmus" created
 ```
 
 - Create a configmap resource out of the cluster’s config file, typically at _~/.kube/config_, _/etc/kubernetes/admin.conf_ or elsewhere depending on the type of cluster or setup method
@@ -70,124 +70,124 @@ The litmus fio test job allows the developer to specify certain test parameters 
 - The developer can choose to specify a comma-separated list of pods whose logs need to be collected for analysis of results, as well as the logs’ location on the host in the spec for the logger.
 
 ```
-  karthik_s@cloudshell:~ (strong-eon-153112)$ cd litmus/tests/fio/
+karthik_s@cloudshell:~ (strong-eon-153112)$ cd litmus/tests/fio/
 
-  karthik_s@cloudshell:~/litmus/tests/fio (strong-eon-153112)$ cat run_litmus_test.yaml
+karthik_s@cloudshell:~/litmus/tests/fio (strong-eon-153112)$ cat run_litmus_test.yaml
 
-  ***
+***
 
-  apiVersion: batch/v1
+apiVersion: batch/v1
 
-  kind: Job
+kind: Job
 
-  metadata:
+metadata:
 
-  name: litmus
+name: litmus
 
-  namespace: litmus
+namespace: litmus
 
-  spec:
+spec:
 
-  template:
+template:
 
-       metadata:
+      metadata:
 
-         name: litmus
+        name: litmus
 
-       spec:
+      spec:
 
-         serviceAccountName: litmus
+        serviceAccountName: litmus
 
-         restartPolicy: Never
+        restartPolicy: Never
 
-         containers:
+        containers:
 
-         - name: ansibletest
+        - name: ansibletest
 
-           image: openebs/ansible-runner
+          image: openebs/ansible-runner
 
-           env:
+          env:
 
-             - name: ANSIBLE_STDOUT_CALLBACK
+            - name: ANSIBLE_STDOUT_CALLBACK
 
-               value: log_plays
-
-
-             - name: PROVIDER_STORAGE_CLASS
-
-               value: openebs-standard
+              value: log_plays
 
 
+            - name: PROVIDER_STORAGE_CLASS
 
-             - name: APP_NODE_SELECTOR
-
-               value: kubeminion-01
-
-
-             - name: FIO_TEST_PROFILE
-
-               value: standard-ssd
+              value: openebs-standard
 
 
-             - name: FIO_SAMPLE_SIZE
 
-               value: "128m"
+            - name: APP_NODE_SELECTOR
 
-
-             - name: FIO_TESTRUN_PERIOD
-
-               value: "60"
+              value: kubeminion-01
 
 
-           command: ["/bin/bash"]
+            - name: FIO_TEST_PROFILE
 
-           args: ["-c", "ansible-playbook ./fio/test.yaml -i /etc/ansible/hosts -v; exit 0"]
+              value: standard-ssd
 
-           volumeMounts:
 
-             - name: logs
+            - name: FIO_SAMPLE_SIZE
 
-               mountPath: /var/log/ansible
+              value: "128m"
 
-           tty: true
 
-         - name: logger
+            - name: FIO_TESTRUN_PERIOD
 
-           image: openebs/logger
+              value: "60"
 
-           command: ["/bin/bash"]
 
-           args: ["-c", "./logger.sh -d 10 -r fio,openebs; exit 0"]
+          command: ["/bin/bash"]
 
-           volumeMounts:
+          args: ["-c", "ansible-playbook ./fio/test.yaml -i /etc/ansible/hosts -v; exit 0"]
 
-             - name: kubeconfig
+          volumeMounts:
 
-               mountPath: /root/admin.conf
+            - name: logs
 
-               subPath: admin.conf
+              mountPath: /var/log/ansible
 
-             - name: logs
+          tty: true
 
-               mountPath: /mnt
+        - name: logger
 
-           tty: true
+          image: openebs/logger
 
-         volumes:
+          command: ["/bin/bash"]
 
-           - name: kubeconfig
+          args: ["-c", "./logger.sh -d 10 -r fio,openebs; exit 0"]
 
-             configMap:
+          volumeMounts:
 
-               name: kubeconfig
+            - name: kubeconfig
 
-           - name: logs
+              mountPath: /root/admin.conf
 
-             hostPath:
+              subPath: admin.conf
 
-               path: /mnt
+            - name: logs
 
-               type: Directory
+              mountPath: /mnt
+
+          tty: true
+
+        volumes:
+
+          - name: kubeconfig
+
+            configMap:
+
+              name: kubeconfig
+
+          - name: logs
+
+            hostPath:
+
+              path: /mnt
+
+              type: Directory
 ```
 
 ## STEP 3: Run the Litmus fio test job.
@@ -195,9 +195,9 @@ The litmus fio test job allows the developer to specify certain test parameters 
 The job creates the Litmus test pod, which contains both the test runner as well as the (stern-based) logger sidecar. The test runner then launches an fio test job that uses a persistent volume (PV) based on the specified storage class.
 
 ```
-    karthik_s@cloudshell:~/litmus/tests/fio (strong-eon-153112)$ kubectl apply -f run_litmus_test.yaml
+karthik_s@cloudshell:~/litmus/tests/fio (strong-eon-153112)$ kubectl apply -f run_litmus_test.yaml
 
-    job "litmus" created
+job "litmus" created
 ```
 
 ## STEP 4: View the fio run results.
@@ -205,51 +205,51 @@ The job creates the Litmus test pod, which contains both the test runner as well
 The results can be obtained from the log directory on the node in which the litmus pod is executed (By default, it is stored in _/mnt_). The fio & other specified pod logs are available in a tarfile (\_Logstash*<timestamp>*.tar\_\_).
 
 ```
-    root@gke-oebs-staging-default-pool-7cc7e313-bf16:/mnt# ls
+root@gke-oebs-staging-default-pool-7cc7e313-bf16:/mnt# ls
 
-    Logstash_07_07_2018_04_10_AM.tar  hosts  systemd_logs
+Logstash_07_07_2018_04_10_AM.tar  hosts  systemd_logs
 ```
 
 The fio results are captured in JSON format with job-specific result sections. Below is a truncated snippet reproduced from the log for a sample basic rw run:
 
 ```
-    {
-      "jobname": "basic-readwrite",
-      "groupid": 0,
-      "error": 0,
-      "eta": 0,
-      "elapsed": 61,
-      "read": {
-        "io_bytes": 28399748,
-        "bw": 473321,
-        "iops": 118330.31,
-        "runtime": 60001,
-        "total_ios": 7099937,
-        "short_ios": 0,
-        "drop_ios": 0,
-        "slat": {
-          "min": 0,
-          "max": 0,
-          "mean": 0,
-          "stddev": 0
-        },
-        "write": {
-          "io_bytes": 28400004,
-          "bw": 473325,
-          "iops": 118331.38,
-          "runtime": 60001,
-          "total_ios": 7100001,
-          "short_ios": 0,
-          "drop_ios": 0,
-          "slat": {
-            "min": 0,
-            "max": 0,
-            "mean": 0,
-            "stddev": 0
-          }
-        }
+{
+  "jobname": "basic-readwrite",
+  "groupid": 0,
+  "error": 0,
+  "eta": 0,
+  "elapsed": 61,
+  "read": {
+    "io_bytes": 28399748,
+    "bw": 473321,
+    "iops": 118330.31,
+    "runtime": 60001,
+    "total_ios": 7099937,
+    "short_ios": 0,
+    "drop_ios": 0,
+    "slat": {
+      "min": 0,
+      "max": 0,
+      "mean": 0,
+      "stddev": 0
+    },
+    "write": {
+      "io_bytes": 28400004,
+      "bw": 473325,
+      "iops": 118331.38,
+      "runtime": 60001,
+      "total_ios": 7100001,
+      "short_ios": 0,
+      "drop_ios": 0,
+      "slat": {
+        "min": 0,
+        "max": 0,
+        "mean": 0,
+        "stddev": 0
       }
     }
+  }
+}
 ```
 
 ## CONCLUSION

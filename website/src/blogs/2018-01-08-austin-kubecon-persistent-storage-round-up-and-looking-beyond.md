@@ -44,9 +44,9 @@ Kubernetes and the meta-kubernetes projects are helping administrators build �
 
 The key to the widespread adoption of Kubernetes in such a short time is the inclusive nature of it, which was well captured by this slide from the KubeCon:
 
-![](https://cdn-images-1.medium.com/max/800/1*IXods_RnXRco2z7UcngePw.png)
+![Extensibility](https://cdn-images-1.medium.com/max/800/1*IXods_RnXRco2z7UcngePw.png)
 
-[https://schd.ws/hosted*files/kccncna17/ac/KubeCon_2017*-\_Kernels_and_Distros.pdf](https://schd.ws/hosted_files/kccncna17/ac/KubeCon_2017_-_Kernels_and_Distros.pdf)
+[https://schd.ws/hosted_files/kccncna17/ac/KubeCon_2017\_-_Kernels_and_Distros.pdf](https://schd.ws/hosted_files/kccncna17/ac/KubeCon_2017_-_Kernels_and_Distros.pdf)
 
 ### **_Kubernetes is more than an orchestration engine → It is the new kernel for building clustered infrastructures._**
 
@@ -56,7 +56,7 @@ I consider this shift towards making Kubernetes a Kernel that can be extended by
 
 This past year, saw the rise in user awareness for securing Containers. Different teams started tackling this issue from different perspectives — from providing secure container runtime like Kata Containers to using different types of Service Meshes to better access control and more.
 
-Service Mesh was definitely a buzzword in 2017! The options — linkerd, envoy, istio and conduit — all of which are (or will be) accepted into CNCF sooner or later, provide a glimpse of interesting trend. For instance, [conduit ](https://buoyant.io/2017/12/05/introducing-conduit/) is from the same team that built Linkerd. Conduit provides similar capabilities like Linkerd for managing the communication between micro-services, but seems better suited for Kubernetes environment that can run across clouds and with low resource constraints.
+Service Mesh was definitely a buzzword in 2017! The options — linkerd, envoy, istio and conduit — all of which are (or will be) accepted into CNCF sooner or later, provide a glimpse of interesting trend. For instance, [conduit](https://buoyant.io/2017/12/05/introducing-conduit/) is from the same team that built Linkerd. Conduit provides similar capabilities like Linkerd for managing the communication between micro-services, but seems better suited for Kubernetes environment that can run across clouds and with low resource constraints.
 
 Like Service Mesh, the other infrastructure components — logging, monitoring, tracing, and networking are all being containerized (re-engineered) to work well with Kubernetes primitives (resources, pods, policies, federations, labels, taints, tolerations, affinity and anti-affinity, CR, CRDs, Custom Controllers, etc.)
 
@@ -78,7 +78,7 @@ While deliberations are ongoing about what Cloud Native Storage is, which I thin
 
 **Persistence Storage from External Storage Providers**
 
-Most of the cloud providers and incumbent storage vendors want the users to opt for this option where storage is connected via in-tree or out-of-tree dynamic volume provisioners. Many vendors are coming together in helping shape the CSI [(Container Storage Interface)](https://github.com/container-storage-interface/spec), and the initial implementation are slated to get into beta stage in early 2018. There are constant improvements — or strides — being made in storage workflow automation via controllers and kubectl — dynamically provisioning volumes, resizing, and snapshots.
+Most of the cloud providers and incumbent storage vendors want the users to opt for this option where storage is connected via in-tree or out-of-tree dynamic volume provisioners. Many vendors are coming together in helping shape the CSI [(Container Storage Interface)](https://github.com/container-storage-interface/spec), and the initial implementation are slated to get into beta stage in early 2018. There are constant improvements — or strides — being made in storage workflow automation via controllers and `kubectl` — dynamically provisioning volumes, resizing, and snapshots.
 
 I spoke to a number of storage users at KubeCon, including the team at GitHub who are at the forefront of putting Kubernetes in production. The users are still very wary with the state of storage w.r.t using the PVs to connected storage and the amount of work involved in rewriting their operational scripts and playbooks.
 
@@ -88,7 +88,7 @@ It is also worth noting and taking time to understand that these options of conn
 
 Learning from the HBO team that was streaming GoT using Kubernetes, it is interesting to see a solution like Rook being used on top of EBS, while EBS is provided as PVs themselves.
 
-![](https://cdn-images-1.medium.com/max/800/1*Zl5PPYzJpDZoXrK7DCL_0w.png)
+![Telemetry](https://cdn-images-1.medium.com/max/800/1*Zl5PPYzJpDZoXrK7DCL_0w.png)
 
 [https://www.youtube.com/watch?v=7skInj_vqN0](https://www.youtube.com/watch?v=7skInj_vqN0)
 

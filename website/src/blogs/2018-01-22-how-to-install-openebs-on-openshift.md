@@ -44,18 +44,18 @@ Follow instructions from [OpenShift Origin Latest Documentation](https://docs.op
 Execute the following commands to verify successful installation.
 
 ```
-    # oc get nodes
+# oc get nodes
 ```
 
 Number of nodes you see maybe different in your case, but status should looks similar to below showing nodes ready.
 
 ```
-    # oc get nodes
-     NAME STATUS AGE VERSION
-     oonode1 Ready 2d v1.7.6+a08f5eeb62
-     oonode2 Ready 2d v1.7.6+a08f5eeb62
-     oonode3 Ready 2d v1.7.6+a08f5eeb62
-     oonode4 Ready 2d v1.7.6+a08f5eeb62
+# oc get nodes
+ NAME STATUS AGE VERSION
+ oonode1 Ready 2d v1.7.6+a08f5eeb62
+ oonode2 Ready 2d v1.7.6+a08f5eeb62
+ oonode3 Ready 2d v1.7.6+a08f5eeb62
+ oonode4 Ready 2d v1.7.6+a08f5eeb62
 ```
 
 ### Configure access permissions
@@ -63,100 +63,100 @@ Number of nodes you see maybe different in your case, but status should looks si
 Create a new admin user with cluster-admin role/permissions and assing password using the following commands:
 
 ```
-    # oc adm policy add-cluster-role-to-user cluster-admin admin — as=system:admin
-    # htpasswd /etc/origin/master/htpasswd admin
+# oc adm policy add-cluster-role-to-user cluster-admin admin — as=system:admin
+# htpasswd /etc/origin/master/htpasswd admin
 ```
 
 Login as the `admin` user and you will be using default project.
 
 ```
-    # oc login -u admin
+# oc login -u admin
 ```
 
 Output:
 
 ```
-    # oc login -u admin
-     Authentication required for https://oonode1:8443 (openshift)
-     Username: admin
-     Password:
-     Login successful.
-    You have access to the following projects and can switch between them with ‘oc project <projectname>’:
-    * default
-     kube-public
-     kube-service-catalog
-     kube-system
-     logging
-     management-infra
-     openshift
-     openshift-ansible-service-broker
-     openshift-infra
-     openshift-node
-     openshift-template-service-broker
-     openshift-web-console
-    Using project “default”.
+# oc login -u admin
+ Authentication required for https://oonode1:8443 (openshift)
+ Username: admin
+ Password:
+ Login successful.
+You have access to the following projects and can switch between them with ‘oc project <projectname>’:
+* default
+ kube-public
+ kube-service-catalog
+ kube-system
+ logging
+ management-infra
+ openshift
+ openshift-ansible-service-broker
+ openshift-infra
+ openshift-node
+ openshift-template-service-broker
+ openshift-web-console
+Using project “default”.
 ```
 
 Provide access to the host volumes which is needed by the OpenEBS volume replicas by updating the default security context (scc). If you miss this step your replicas will fail to deploy.
 
 ```
-    # oc edit scc restricted
+# oc edit scc restricted
 ```
 
 Now set `allowHostDirVolumePlugin: true` and save changes. The file should look like below:
 
 ```
-    # Please edit the object below. Lines beginning with a ‘#’ will be ignored,
-     # and an empty file will abort the edit. If an error occurs while saving this file will be
-     # reopened with the relevant failures.
-     #
-     allowHostDirVolumePlugin: true
-     allowHostIPC: false
-     allowHostNetwork: false
-     allowHostPID: false
-     allowHostPorts: false
-     allowPrivilegedContainer: false
-     allowedCapabilities: []
-     allowedFlexVolumes: []
-     apiVersion: v1
-     defaultAddCapabilities: []
-     fsGroup:
-     type: MustRunAs
-     groups:
-     — system:authenticated
-     kind: SecurityContextConstraints
-     metadata:
-     annotations:
-     kubernetes.io/description: restricted denies access to all host features and requires
-     pods to be run with a UID, and SELinux context that are allocated to the namespace. This
-     is the most restrictive SCC and it is used by default for authenticated users.
-     creationTimestamp: 2018–01–20T19:39:18Z
-     name: restricted
-     resourceVersion: “68274”
-     selfLink: /api/v1/securitycontextconstraints/restricted
-     uid: 9abddec5-fe19–11e7–8d06–005056873c08
-     priority: null
-     readOnlyRootFilesystem: false
-     requiredDropCapabilities:
-     — KILL
-     — MKNOD
-     — SETUID
-     — SETGID
-     runAsUser:
-     type: MustRunAsRange
-     seLinuxContext:
-     type: MustRunAs
-     supplementalGroups:
-     type: RunAsAny
-     users: []
-     volumes:
-     — configMap
-     — downwardAPI
-     — emptyDir
-     — hostPath
-     — persistentVolumeClaim
-     — projected
-     — secret
+# Please edit the object below. Lines beginning with a ‘#’ will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+allowHostDirVolumePlugin: true
+allowHostIPC: false
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+allowPrivilegedContainer: false
+allowedCapabilities: []
+allowedFlexVolumes: []
+apiVersion: v1
+defaultAddCapabilities: []
+fsGroup:
+type: MustRunAs
+groups:
+— system:authenticated
+kind: SecurityContextConstraints
+metadata:
+annotations:
+kubernetes.io/description: restricted denies access to all host features and requires
+pods to be run with a UID, and SELinux context that are allocated to the namespace. This
+is the most restrictive SCC and it is used by default for authenticated users.
+creationTimestamp: 2018–01–20T19:39:18Z
+name: restricted
+resourceVersion: “68274”
+selfLink: /api/v1/securitycontextconstraints/restricted
+uid: 9abddec5-fe19–11e7–8d06–005056873c08
+priority: null
+readOnlyRootFilesystem: false
+requiredDropCapabilities:
+— KILL
+— MKNOD
+— SETUID
+— SETGID
+runAsUser:
+type: MustRunAsRange
+seLinuxContext:
+type: MustRunAs
+supplementalGroups:
+type: RunAsAny
+users: []
+volumes:
+— configMap
+— downwardAPI
+— emptyDir
+— hostPath
+— persistentVolumeClaim
+— projected
+— secret
 ```
 
 Save changes.
@@ -168,21 +168,21 @@ There are few easy ways to install OpenEBS. You can either apply the operator an
 Clone the latest OpenEBS files and sample application specs using the below command on your OpenShift master node:
 
 ```
-    # git clone https://github.com/openebs/openebs.git
-     # cd openebs/k8s
+# git clone https://github.com/openebs/openebs.git
+# cd openebs/k8s
 ```
 
 Apply the file two yaml files below:
 
 ```
-    # oc apply -f openebs-operator.yaml
-    # oc apply -f openebs-storageclasses.yaml
+# oc apply -f openebs-operator.yaml
+# oc apply -f openebs-storageclasses.yaml
 ```
 
 Alternative way — If you choose not to copy from the repo you can apply the yaml file direct from the URL below:
 
 ```
-    oc apply -f https://openebs.github.io/charts/openebs-operator.yaml
+oc apply -f https://openebs.github.io/charts/openebs-operator.yaml
 ```
 
 ### Verify OpenEBS deployment
@@ -190,70 +190,70 @@ Alternative way — If you choose not to copy from the repo you can apply th
 Verify that the OpenEBS provisioner and API server are created successfully and running.
 
 ```
-    # oc get deployments
-     NAME DESIRED CURRENT UP-TO-DATE AVAILABLE AGE
-     maya-apiserver 1 1 1 1 2d
-     openebs-provisioner 1 1 1 1 2d
+# oc get deployments
+NAME DESIRED CURRENT UP-TO-DATE AVAILABLE AGE
+maya-apiserver 1 1 1 1 2d
+openebs-provisioner 1 1 1 1 2d
 ```
 
 Check pods to confirm maya-apiserver and openebs-provisioner.
 
 ```
-    # oc get pods
-     NAME READY STATUS RESTARTS AGE
-     docker-registry-1-b5r7t 1/1 Running 0 2d
-     maya-apiserver-3053842955-xbx8w 1/1 Running 0 2d
-     openebs-provisioner-2499455298–46brm 1/1 Running 0 2d
-     registry-console-1-mrpc9 1/1 Running 0 2d
-     router-1-bf775 1/1 Running 3 2d
+# oc get pods
+NAME READY STATUS RESTARTS AGE
+docker-registry-1-b5r7t 1/1 Running 0 2d
+maya-apiserver-3053842955-xbx8w 1/1 Running 0 2d
+openebs-provisioner-2499455298–46brm 1/1 Running 0 2d
+registry-console-1-mrpc9 1/1 Running 0 2d
+router-1-bf775 1/1 Running 3 2d
 ```
 
 Check services to confirm maya-apiserver exists.
 
 ```
-    # oc get service
-     NAME CLUSTER-IP EXTERNAL-IP PORT(S) AGE
-     docker-registry 172.30.113.229 <none> 5000/TCP 2d
-     kubernetes 172.30.0.1 <none> 443/TCP,53/UDP,53/TCP 2d
-     maya-apiserver-service 172.30.17.113 <none> 5656/TCP 2d
-     registry-console 172.30.148.98 <none> 9000/TCP 2d
-     router 172.30.229.239 <none> 80/TCP,443/TCP,1936/TCP 2d
+# oc get service
+NAME CLUSTER-IP EXTERNAL-IP PORT(S) AGE
+docker-registry 172.30.113.229 <none> 5000/TCP 2d
+kubernetes 172.30.0.1 <none> 443/TCP,53/UDP,53/TCP 2d
+maya-apiserver-service 172.30.17.113 <none> 5656/TCP 2d
+registry-console 172.30.148.98 <none> 9000/TCP 2d
+router 172.30.229.239 <none> 80/TCP,443/TCP,1936/TCP 2d
 ```
 
 Check service accounts for openebs-maya-operator:
 
 ```
-    # oc get sa
-     NAME SECRETS AGE
-     builder 2 2d
-     default 3 2d
-     deployer 2 2d
-     openebs-maya-operator 2 2d
-     registry 3 2d
-     router 2 2d
-    # oc get clusterrole openebs-maya-operator
-     \NAME
-     openebs-maya-operator
-    # oc get clusterrolebindings openebs-maya-operator
-     NAME ROLE USERS GROUPS SERVICE ACCOUNTS SUBJECTS
-     openebs-maya-operator /openebs-maya-operator default/openebs-maya-operator, default/default
+# oc get sa
+NAME SECRETS AGE
+builder 2 2d
+default 3 2d
+deployer 2 2d
+openebs-maya-operator 2 2d
+registry 3 2d
+router 2 2d
+# oc get clusterrole openebs-maya-operator
+\NAME
+openebs-maya-operator
+# oc get clusterrolebindings openebs-maya-operator
+NAME ROLE USERS GROUPS SERVICE ACCOUNTS SUBJECTS
+openebs-maya-operator /openebs-maya-operator default/openebs-maya-operator, default/default
 ```
 
 And finally verify OpenEBS default storage classes.
 
 ```
-    # oc get sc
-     NAME TYPE
-     openebs-cassandra openebs.io/provisioner-iscsi
-     openebs-es-data-sc openebs.io/provisioner-iscsi
-     openebs-jupyter openebs.io/provisioner-iscsi
-     openebs-kafka openebs.io/provisioner-iscsi
-     openebs-mongodb openebs.io/provisioner-iscsi
-     openebs-percona openebs.io/provisioner-iscsi
-     openebs-redis openebs.io/provisioner-iscsi
-     openebs-standalone openebs.io/provisioner-iscsi
-     openebs-standard openebs.io/provisioner-iscsi
-     openebs-zk openebs.io/provisioner-iscsi
+# oc get sc
+NAME TYPE
+openebs-cassandra openebs.io/provisioner-iscsi
+openebs-es-data-sc openebs.io/provisioner-iscsi
+openebs-jupyter openebs.io/provisioner-iscsi
+openebs-kafka openebs.io/provisioner-iscsi
+openebs-mongodb openebs.io/provisioner-iscsi
+openebs-percona openebs.io/provisioner-iscsi
+openebs-redis openebs.io/provisioner-iscsi
+openebs-standalone openebs.io/provisioner-iscsi
+openebs-standard openebs.io/provisioner-iscsi
+openebs-zk openebs.io/provisioner-iscsi
 ```
 
 After few easy steps we are now ready to deploy workloads on persistent storage provided by OpenEBS. I’ll cover both CLI and Catalog installation through the OpenShift Web Console.
@@ -265,50 +265,50 @@ Use OpenEBS as persistent storage for a Percona DB deployment by selecting the `
 View the Percona deployment yaml:
 
 ```
-    # cd openebs/k8s/demo/percona
-    # cat demo-percona-mysql-pvc.yaml
-     — -
-     apiVersion: v1
-     kind: Pod
-     metadata:
-     name: percona
-     labels:
-     name: percona
-     spec:
-     containers:
-     — resources:
-     limits:
-     cpu: 0.5
-     name: percona
-     image: percona
-     args:
-     — “ — ignore-db-dir”
-     — “lost+found”
-     env:
-     — name: MYSQL_ROOT_PASSWORD
-     value: k8sDem0
-     ports:
-     — containerPort: 3306
-     name: percona
-     volumeMounts:
-     — mountPath: /var/lib/mysql
-     name: demo-vol1
-     volumes:
-     — name: demo-vol1
-     persistentVolumeClaim:
-     claimName: demo-vol1-claim
-     — -
-     kind: PersistentVolumeClaim
-     apiVersion: v1
-     metadata:
-     name: demo-vol1-claim
-     spec:
-     storageClassName: openebs-percona
-     accessModes:
-     — ReadWriteOnce
-     resources:
-     requests:
-     storage: 5G
+# cd openebs/k8s/demo/percona
+# cat demo-percona-mysql-pvc.yaml
+— -
+apiVersion: v1
+kind: Pod
+metadata:
+name: percona
+labels:
+name: percona
+spec:
+containers:
+— resources:
+limits:
+cpu: 0.5
+name: percona
+image: percona
+args:
+— “ — ignore-db-dir”
+— “lost+found”
+env:
+— name: MYSQL_ROOT_PASSWORD
+value: k8sDem0
+ports:
+— containerPort: 3306
+name: percona
+volumeMounts:
+— mountPath: /var/lib/mysql
+name: demo-vol1
+volumes:
+— name: demo-vol1
+persistentVolumeClaim:
+claimName: demo-vol1-claim
+— -
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+name: demo-vol1-claim
+spec:
+storageClassName: openebs-percona
+accessModes:
+— ReadWriteOnce
+resources:
+requests:
+storage: 5G
 ```
 
 As you can see in the yaml file above, `storageClassName` is set to `openebs-percona` which has 2 replicas.
@@ -316,42 +316,47 @@ As you can see in the yaml file above, `storageClassName` is set to `openebs-per
 Now, apply the file:
 
 ```
-    # oc apply -f demo-percona-mysql-pvc.yaml
+# oc apply -f demo-percona-mysql-pvc.yaml
 ```
 
 Finally, verify that Percona is deployed and OpenEBS controller and replica are running:
 
 ```
-    # oc get pods
-     NAME READY STATUS RESTARTS AGE
-     docker-registry-1-b5r7t 1/1 Running 0 2d
-     maya-apiserver-3053842955-xbx8w 1/1 Running 0 2d
-     openebs-provisioner-2499455298–46brm 1/1 Running 0 2d
-     percona-1378140207–5q2gb 1/1 Running 0 15mh
-     pvc-c7a24dc8-ffc7–11e7-a7cd-005056873c08-ctrl-1719480235-xf4t5 2/2 Running 0 15m
-     pvc-c7a24dc8-ffc7–11e7-a7cd-005056873c08-rep-1550141838-ldm59 1/1 Running 0 15m
+# oc get pods
+NAME READY STATUS RESTARTS AGE
+docker-registry-1-b5r7t 1/1 Running 0 2d
+maya-apiserver-3053842955-xbx8w 1/1 Running 0 2d
+openebs-provisioner-2499455298–46brm 1/1 Running 0 2d
+percona-1378140207–5q2gb 1/1 Running 0 15mh
+pvc-c7a24dc8-ffc7–11e7-a7cd-005056873c08-ctrl-1719480235-xf4t5 2/2 Running 0 15m
+pvc-c7a24dc8-ffc7–11e7-a7cd-005056873c08-rep-1550141838-ldm59 1/1 Running 0 15m
 ```
 
 ### Install MongoDB on OpenEBS using the OpenShift Web Console
 
 Login to the OpenShift Web Console using the admin credentials we have created earlier.
 
-![](https://cdn-images-1.medium.com/max/800/0*-IbP4t-ZgYZx4qh6.png)
+![OpenShift Origin](https://cdn-images-1.medium.com/max/800/0*-IbP4t-ZgYZx4qh6.png)
 
 Click on **Add to Project** button and select **Import YAML / JSON**.
 
-![](https://cdn-images-1.medium.com/max/800/0*FEwbuF146LMi7Zsx.png)
+![Add to project](https://cdn-images-1.medium.com/max/800/0*FEwbuF146LMi7Zsx.png)
 
 Copy the content of [https://raw.githubusercontent.com/openebs/openebs/master/k8s/openshift/examples/v3.7/db-templates/openebs-mongodb-persistent-template.json](https://raw.githubusercontent.com/openebs/openebs/master/k8s/openshift/examples/v3.7/db-templates/openebs-mongodb-persistent-template.json) file and paste into **Import YAML / JSON** window.
-![](https://cdn-images-1.medium.com/max/800/0*d6b0iSD6JG83ad-N.png)
+
+![Import Yaml/JSON](https://cdn-images-1.medium.com/max/800/0*d6b0iSD6JG83ad-N.png)
 
 Click on **Create** button, select **Save template** and click **Continue**.
 
-![](https://cdn-images-1.medium.com/max/800/0*14UvCpI6Gf-Q5Pd2.png)
+![Add template](https://cdn-images-1.medium.com/max/800/0*14UvCpI6Gf-Q5Pd2.png)
 
 On the **Template Configuration** window make sure Storage Class is `openebs-standard` and click on **Create**.
 
-![](https://cdn-images-1.medium.com/max/800/0*l_agQ7YUPJnqvKkq.png)![](https://cdn-images-1.medium.com/max/800/0*K8665fQzu2nIGNZh.png)![](https://cdn-images-1.medium.com/max/800/0*E6Vp2d7hqBWtJpzm.png)
+![Template configuration](https://cdn-images-1.medium.com/max/800/0*l_agQ7YUPJnqvKkq.png)
+
+![Add template configuration](https://cdn-images-1.medium.com/max/800/0*K8665fQzu2nIGNZh.png)
+
+![Result](https://cdn-images-1.medium.com/max/800/0*E6Vp2d7hqBWtJpzm.png)
 
 You have successfully deployed MongoDB on a persistent storage provided by OpenEBS.
 

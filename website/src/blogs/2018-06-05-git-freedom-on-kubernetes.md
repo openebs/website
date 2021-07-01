@@ -54,19 +54,19 @@ GitLab depends on stateful applications like Redis and PostgeSQL, and requires p
 First, install OpenEBS using the chart.
 
 ```
-    helm install — name ‘openebs-gitlab-test’ stable/openebs
+helm install — name ‘openebs-gitlab-test’ stable/openebs
 ```
 
 Optional: If you would like to customize your OpenEBS installation you can also use a copy of the [value.yaml](https://raw.githubusercontent.com/kubernetes/charts/master/stable/openebs/values.yaml) file from the OpenEBS chart and modify parameters listed [here](https://github.com/kubernetes/charts/tree/master/stable/openebs).
 
 ```
-    helm install — name ‘openebs-gitlab-test’ -f values.yaml stable/openebs
+helm install — name ‘openebs-gitlab-test’ -f values.yaml stable/openebs
 ```
 
 Next, add the predefined storage classes.
 
 ```
-    kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-storageclasses.yaml
+kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-storageclasses.yaml
 ```
 
 There are many ways to enable OpenEBS for use by GitLab. The fastest is by making one of the OpenEBS storage classes a default StorageClass:
@@ -74,47 +74,47 @@ There are many ways to enable OpenEBS for use by GitLab. The fastest is by makin
 List available OpenEBS storage classes in your cluster.
 
 ```
-    murat@icpnode1:~$ kubectl get sc
-    NAME PROVISIONER AGE
-    openebs-cassandra openebs.io/provisioner-iscsi 18d
-    openebs-es-data-sc openebs.io/provisioner-iscsi 18d
-    openebs-jupyter openebs.io/provisioner-iscsi 18d
-    openebs-kafka openebs.io/provisioner-iscsi 18d
-    openebs-mongodb openebs.io/provisioner-iscsi 18d
-    openebs-percona openebs.io/provisioner-iscsi 18d
-    openebs-redis openebs.io/provisioner-iscsi 18d
-    openebs-standalone openebs.io/provisioner-iscsi 18d
-    openebs-standard openebs.io/provisioner-iscsi 18d
-    openebs-zk openebs.io/provisioner-iscsi 18d
+murat@icpnode1:~$ kubectl get sc
+NAME PROVISIONER AGE
+openebs-cassandra openebs.io/provisioner-iscsi 18d
+openebs-es-data-sc openebs.io/provisioner-iscsi 18d
+openebs-jupyter openebs.io/provisioner-iscsi 18d
+openebs-kafka openebs.io/provisioner-iscsi 18d
+openebs-mongodb openebs.io/provisioner-iscsi 18d
+openebs-percona openebs.io/provisioner-iscsi 18d
+openebs-redis openebs.io/provisioner-iscsi 18d
+openebs-standalone openebs.io/provisioner-iscsi 18d
+openebs-standard openebs.io/provisioner-iscsi 18d
+openebs-zk openebs.io/provisioner-iscsi 18d
 ```
 
 Either create your StorageClass or pick one of the predefined classes. _openebs-standard_ creates 3 replicas and is an ideal candidate here to be used for most of the stateful workloads. Let’s mark this StorageClass as default.
 
 ```
-    kubectl patch storageclass openebs-standard -p ‘{“metadata”: {“annotations”:{“storageclass.kubernetes.io/is-default-class”:”true”}}}’
+kubectl patch storageclass openebs-standard -p ‘{“metadata”: {“annotations”:{“storageclass.kubernetes.io/is-default-class”:”true”}}}’
 ```
 
 No verify that your chosen StorageClass is indeed the **default**.
 
 ```
-    murat@icpnode1:~$ kubectl get sc
-    NAME PROVISIONER AGE
-    openebs-cassandra openebs.io/provisioner-iscsi 18d
-    openebs-es-data-sc openebs.io/provisioner-iscsi 18d
-    openebs-jupyter openebs.io/provisioner-iscsi 18d
-    openebs-kafka openebs.io/provisioner-iscsi 18d
-    openebs-mongodb openebs.io/provisioner-iscsi 18d
-    openebs-percona openebs.io/provisioner-iscsi 18d
-    openebs-redis openebs.io/provisioner-iscsi 18d
-    openebs-standalone openebs.io/provisioner-iscsi 18d
-    openebs-standard (default) openebs.io/provisioner-iscsi 18d
-    openebs-zk openebs.io/provisioner-iscsi 18d
+murat@icpnode1:~$ kubectl get sc
+NAME PROVISIONER AGE
+openebs-cassandra openebs.io/provisioner-iscsi 18d
+openebs-es-data-sc openebs.io/provisioner-iscsi 18d
+openebs-jupyter openebs.io/provisioner-iscsi 18d
+openebs-kafka openebs.io/provisioner-iscsi 18d
+openebs-mongodb openebs.io/provisioner-iscsi 18d
+openebs-percona openebs.io/provisioner-iscsi 18d
+openebs-redis openebs.io/provisioner-iscsi 18d
+openebs-standalone openebs.io/provisioner-iscsi 18d
+openebs-standard (default) openebs.io/provisioner-iscsi 18d
+openebs-zk openebs.io/provisioner-iscsi 18d
 ```
 
 Next, we can install the GitLab-ce chart. It is recommended to save your configuration options in a values.yaml file for future use.
 
 ```
-    wget https://raw.githubusercontent.com/kubernetes/charts/master/stable/gitlab-ce/values.yaml
+wget https://raw.githubusercontent.com/kubernetes/charts/master/stable/gitlab-ce/values.yaml
 ```
 
 Edit the _values.yaml_ file and at minimum, add the **externalUrl** field. Otherwise, you’ll end up with a non-functioning release.
@@ -122,102 +122,102 @@ Edit the _values.yaml_ file and at minimum, add the **externalUrl** field. Other
 Here is how my _values.yaml_ file looks like after these changes:
 
 ```
-    image: gitlab/gitlab-ce:9.4.1-ce.0
-    externalUrl: http://containerized.me/
-    serviceType: LoadBalancer
-    ingress:
-    annotations:
-    enabled: false
-    tls:
-    url: gitlab.cluster.local
-    sshPort: 22
-    httpPort: 80
-    httpsPort: 443
-    livenessPort: http
-    readinessPort: http
-    resources:
-    requests:
-    memory: 1Gi
-    cpu: 500m
-    limits:
-    memory: 2Gi
-    cpu: 1
-    persistence:
-    gitlabEtc:
-    enabled: true
-    size: 1Gi
-    storageClass: openebs-standard
-    accessMode: ReadWriteOnce
-    gitlabData:
-    enabled: true
-    size: 10Gi
-    storageClass: openebs-standard
-    accessMode: ReadWriteOnce
-    postgresql:
-    imageTag: “9.6”
-    cpu: 1000m
-    memory: 1Gi
-    postgresUser: gitlab
-    postgresPassword: gitlab
-    postgresDatabase: gitlab
-    persistence:
-    size: 10Gi
-    storageClass: openebs-standard
-    accessMode: ReadWriteOnce
-    redis:
-    redisPassword: “gitlab”
-    resources:
-    requests:
-    memory: 1Gi
-    persistence:
-    size: 10Gi
-    storageClass: openebs-standard
-    accessMode: ReadWriteOnce
+image: gitlab/gitlab-ce:9.4.1-ce.0
+externalUrl: http://containerized.me/
+serviceType: LoadBalancer
+ingress:
+annotations:
+enabled: false
+tls:
+url: gitlab.cluster.local
+sshPort: 22
+httpPort: 80
+httpsPort: 443
+livenessPort: http
+readinessPort: http
+resources:
+requests:
+memory: 1Gi
+cpu: 500m
+limits:
+memory: 2Gi
+cpu: 1
+persistence:
+gitlabEtc:
+enabled: true
+size: 1Gi
+storageClass: openebs-standard
+accessMode: ReadWriteOnce
+gitlabData:
+enabled: true
+size: 10Gi
+storageClass: openebs-standard
+accessMode: ReadWriteOnce
+postgresql:
+imageTag: “9.6”
+cpu: 1000m
+memory: 1Gi
+postgresUser: gitlab
+postgresPassword: gitlab
+postgresDatabase: gitlab
+persistence:
+size: 10Gi
+storageClass: openebs-standard
+accessMode: ReadWriteOnce
+redis:
+redisPassword: “gitlab”
+resources:
+requests:
+memory: 1Gi
+persistence:
+size: 10Gi
+storageClass: openebs-standard
+accessMode: ReadWriteOnce
 ```
 
 Now, install the chart.
 
 ```
-    helm install — name gitlab-test -f values.yaml stable/gitlab-ce
+helm install — name gitlab-test -f values.yaml stable/gitlab-ce
 ```
 
 List the pods and confirm that all pods are ready and running.
 
 ```
-    $ kubectl get pods
-    NAME READY STATUS RESTARTS AGE
-    gitlab-test-gitlab-ce-dd69cdf4b-69vmb 1/1 Running 0 11m
-    gitlab-test-postgresql-75bf9b667d-lwj2b 1/1 Running 0 11m
-    gitlab-test-redis-998998b59-hzztj 1/1 Running 0 11m
-    openebs-gitlab-test-apiserver-68fc4488fd-jf8gz 1/1 Running 0 1h
-    openebs-gitlab-test-provisioner-7dfdf646d8–9wpmg 1/1 Running 0 1h
-    pvc-cb0fc1b2–6904–11e8–9f57–06a0a9acf800-ctrl-74d4b59c9f-bjtg2 2/2 Running 0 11m
-    pvc-cb0fc1b2–6904–11e8–9f57–06a0a9acf800-rep-64f56667d-6ds26 1/1 Running 0 11m
-    pvc-cb0fc1b2–6904–11e8–9f57–06a0a9acf800-rep-64f56667d-99mbh 1/1 Running 0 11m
-    pvc-cb0fc1b2–6904–11e8–9f57–06a0a9acf800-rep-64f56667d-d8d4z 1/1 Running 0 11m
-    pvc-cb1064ee-6904–11e8–9f57–06a0a9acf800-ctrl-bd7cff65f-ph8dr 2/2 Running 0 11m
-    pvc-cb1064ee-6904–11e8–9f57–06a0a9acf800-rep-595dd9c997–2lm4x 1/1 Running 0 11m
-    pvc-cb1064ee-6904–11e8–9f57–06a0a9acf800-rep-595dd9c997-jldjs 1/1 Running 0 11m
-    pvc-cb1064ee-6904–11e8–9f57–06a0a9acf800-rep-595dd9c997-kzlrc 1/1 Running 0 11m
-    pvc-cb111261–6904–11e8–9f57–06a0a9acf800-ctrl-668f5988c5-hv8vb 2/2 Running 0 11m
-    pvc-cb111261–6904–11e8–9f57–06a0a9acf800-rep-74974f6644-hsn49 1/1 Running 0 11m
-    pvc-cb111261–6904–11e8–9f57–06a0a9acf800-rep-74974f6644-lj64g 1/1 Running 0 11m
-    pvc-cb111261–6904–11e8–9f57–06a0a9acf800-rep-74974f6644-z6kfd 1/1 Running 0 11m
-    pvc-cb11a791–6904–11e8–9f57–06a0a9acf800-ctrl-585cf7c97d-58pnq 2/2 Running 0 11m
-    pvc-cb11a791–6904–11e8–9f57–06a0a9acf800-rep-79d658d94c-5bzn6 1/1 Running 0 11m
-    pvc-cb11a791–6904–11e8–9f57–06a0a9acf800-rep-79d658d94c-9dz5f 1/1 Running 0 11m
-    pvc-cb11a791–6904–11e8–9f57–06a0a9acf800-rep-79d658d94c-snkfb 1/1 Running 0 11m
+$ kubectl get pods
+NAME READY STATUS RESTARTS AGE
+gitlab-test-gitlab-ce-dd69cdf4b-69vmb 1/1 Running 0 11m
+gitlab-test-postgresql-75bf9b667d-lwj2b 1/1 Running 0 11m
+gitlab-test-redis-998998b59-hzztj 1/1 Running 0 11m
+openebs-gitlab-test-apiserver-68fc4488fd-jf8gz 1/1 Running 0 1h
+openebs-gitlab-test-provisioner-7dfdf646d8–9wpmg 1/1 Running 0 1h
+pvc-cb0fc1b2–6904–11e8–9f57–06a0a9acf800-ctrl-74d4b59c9f-bjtg2 2/2 Running 0 11m
+pvc-cb0fc1b2–6904–11e8–9f57–06a0a9acf800-rep-64f56667d-6ds26 1/1 Running 0 11m
+pvc-cb0fc1b2–6904–11e8–9f57–06a0a9acf800-rep-64f56667d-99mbh 1/1 Running 0 11m
+pvc-cb0fc1b2–6904–11e8–9f57–06a0a9acf800-rep-64f56667d-d8d4z 1/1 Running 0 11m
+pvc-cb1064ee-6904–11e8–9f57–06a0a9acf800-ctrl-bd7cff65f-ph8dr 2/2 Running 0 11m
+pvc-cb1064ee-6904–11e8–9f57–06a0a9acf800-rep-595dd9c997–2lm4x 1/1 Running 0 11m
+pvc-cb1064ee-6904–11e8–9f57–06a0a9acf800-rep-595dd9c997-jldjs 1/1 Running 0 11m
+pvc-cb1064ee-6904–11e8–9f57–06a0a9acf800-rep-595dd9c997-kzlrc 1/1 Running 0 11m
+pvc-cb111261–6904–11e8–9f57–06a0a9acf800-ctrl-668f5988c5-hv8vb 2/2 Running 0 11m
+pvc-cb111261–6904–11e8–9f57–06a0a9acf800-rep-74974f6644-hsn49 1/1 Running 0 11m
+pvc-cb111261–6904–11e8–9f57–06a0a9acf800-rep-74974f6644-lj64g 1/1 Running 0 11m
+pvc-cb111261–6904–11e8–9f57–06a0a9acf800-rep-74974f6644-z6kfd 1/1 Running 0 11m
+pvc-cb11a791–6904–11e8–9f57–06a0a9acf800-ctrl-585cf7c97d-58pnq 2/2 Running 0 11m
+pvc-cb11a791–6904–11e8–9f57–06a0a9acf800-rep-79d658d94c-5bzn6 1/1 Running 0 11m
+pvc-cb11a791–6904–11e8–9f57–06a0a9acf800-rep-79d658d94c-9dz5f 1/1 Running 0 11m
+pvc-cb11a791–6904–11e8–9f57–06a0a9acf800-rep-79d658d94c-snkfb 1/1 Running 0 11m
 ```
 
 Get the list of persistent volumes.
 
 ```
-    $ kubectl get pv
-    NAME CAPACITY ACCESS MODES RECLAIM POLICY STATUS CLAIM STORAGECLASS REASON AGE
-    pvc-cb0fc1b2–6904–11e8–9f57–06a0a9acf800 10Gi RWO Delete Bound default/gitlab-test-postgresql openebs-standard 17m
-    pvc-cb1064ee-6904–11e8–9f57–06a0a9acf800 10Gi RWO Delete Bound default/gitlab-test-redis openebs-standard 17m
-    pvc-cb111261–6904–11e8–9f57–06a0a9acf800 10Gi RWO Delete Bound default/gitlab-test-gitlab-ce-data openebs-standard 17m
-    pvc-cb11a791–6904–11e8–9f57–06a0a9acf800 1Gi RWO Delete Bound default/gitlab-test-gitlab-ce-etc openebs-standard 17m
+$ kubectl get pv
+NAME CAPACITY ACCESS MODES RECLAIM POLICY STATUS CLAIM STORAGECLASS REASON AGE
+pvc-cb0fc1b2–6904–11e8–9f57–06a0a9acf800 10Gi RWO Delete Bound default/gitlab-test-postgresql openebs-standard 17m
+pvc-cb1064ee-6904–11e8–9f57–06a0a9acf800 10Gi RWO Delete Bound default/gitlab-test-redis openebs-standard 17m
+pvc-cb111261–6904–11e8–9f57–06a0a9acf800 10Gi RWO Delete Bound default/gitlab-test-gitlab-ce-data openebs-standard 17m
+pvc-cb11a791–6904–11e8–9f57–06a0a9acf800 1Gi RWO Delete Bound default/gitlab-test-gitlab-ce-etc openebs-standard 17m
 ```
 
 You can see above that four persistent volumes were created (**postgresql, redis, gitlab-ce-etc, gitlab-ce-data**), and each volume is protected by 3 replicas.

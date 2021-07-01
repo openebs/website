@@ -30,49 +30,49 @@ On each node, perform the following actions :
 - Identify GPD attached _fdisk -l_
 
 ```
-  root@gke-oebs-staging-default-pool-7cc7e313-0xs4:~# fdisk -l
-  Disk /dev/sda: 100 GiB, 107374182400 bytes, 209715200 sectors
-  Units: sectors of 1 \* 512 = 512 bytes
-  Sector size (logical/physical): 512 bytes / 4096 bytes
-  I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-  Disklabel type: dos
-  Disk identifier: 0x635eaac1
+root@gke-oebs-staging-default-pool-7cc7e313-0xs4:~# fdisk -l
+Disk /dev/sda: 100 GiB, 107374182400 bytes, 209715200 sectors
+Units: sectors of 1 \* 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: dos
+Disk identifier: 0x635eaac1
 
-  Device Boot Start End Sectors Size Id Type
-  /dev/sda1 \* 2048 209715166 209713119 100G 83 Linux
+Device Boot Start End Sectors Size Id Type
+/dev/sda1 \* 2048 209715166 209713119 100G 83 Linux
 
-  Disk /dev/sdb: 10 GiB, 10737418240 bytes, 20971520 sectors
-  Units: sectors of 1 \* 512 = 512 bytes
-  Sector size (logical/physical): 512 bytes / 4096 bytes
-  I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disk /dev/sdb: 10 GiB, 10737418240 bytes, 20971520 sectors
+Units: sectors of 1 \* 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
 ```
 
 - Format the disk with, say ext4 fs (_mkfs.ext4 /dev/sd<>)_
 
 ```
-  root@gke-oebs-staging-default-pool-7cc7e313-0xs4:~# mkfs.ext4 /dev/sdb
-  mke2fs 1.42.13 (17-May-2015)
-  /dev/sdb contains a ext4 file system
-  last mounted on /openebs on Fri Apr 13 05:03:42 2018
-  Proceed anyway? (y,n) y
-  Discarding device blocks: done
-   Creating filesystem with 2621440 4k blocks and 655360 inodes
-  Filesystem UUID: 87d36681-d5f3-4169-b7fc-1f2f95bd527e
-  Superblock backups stored on blocks:
-  32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632
+root@gke-oebs-staging-default-pool-7cc7e313-0xs4:~# mkfs.ext4 /dev/sdb
+mke2fs 1.42.13 (17-May-2015)
+/dev/sdb contains a ext4 file system
+last mounted on /openebs on Fri Apr 13 05:03:42 2018
+Proceed anyway? (y,n) y
+Discarding device blocks: done
+  Creating filesystem with 2621440 4k blocks and 655360 inodes
+Filesystem UUID: 87d36681-d5f3-4169-b7fc-1f2f95bd527e
+Superblock backups stored on blocks:
+32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632
 
-  Allocating group tables: done
-   Writing inode tables: done
-   Creating journal (32768 blocks): done
-  Writing superblocks and filesystem accounting information: done
+Allocating group tables: done
+  Writing inode tables: done
+  Creating journal (32768 blocks): done
+Writing superblocks and filesystem accounting information: done
 ```
 
 - Mount the disk into desired mount point (_mount -o sync /dev/sd<> /mnt/openebs_)
 
 ```
-  root@gke-oebs-staging-default-pool-7cc7e313-0xs4:~# mount -o sync /dev/sdb /mnt/openebs/
-  root@gke-oebs-staging-default-pool-7cc7e313-0xs4:~# mount | grep openebs
-  /dev/sdb on /mnt/openebs type ext4 (rw,relatime,sync,data=ordered)
+root@gke-oebs-staging-default-pool-7cc7e313-0xs4:~# mount -o sync /dev/sdb /mnt/openebs/
+root@gke-oebs-staging-default-pool-7cc7e313-0xs4:~# mount | grep openebs
+/dev/sdb on /mnt/openebs type ext4 (rw,relatime,sync,data=ordered)
 ```
 
 ### STEP-2 : Create a storage pool custom resource
@@ -80,46 +80,46 @@ On each node, perform the following actions :
 - Construct a storage pool resource specification as shown below & apply it (Note that the custom resource definition for the storage pool is already applied as part of the operator install)
 
 ```
-  apiVersion: openebs.io/v1alpha1
-  kind: StoragePool
-  metadata:
-  name: sp-mntdir
-  type: hostdir
-  spec:
-  path: "/mnt/openebs"
+apiVersion: openebs.io/v1alpha1
+kind: StoragePool
+metadata:
+name: sp-mntdir
+type: hostdir
+spec:
+path: "/mnt/openebs"
 ```
 
 ### STEP-3 : Refer the storage pool in a custom storage class
 
 ```
-    ---
-    apiVersion: storage.k8s.io/v1
-    kind: StorageClass
-    metadata:
-       name: openebs-custom
-    provisioner: openebs.io/provisioner-iscsi
-    parameters:
-      openebs.io/storage-pool: "sp-mntdir"
-      openebs.io/jiva-replica-count: "3"
-      openebs.io/volume-monitor: "true"
-      openebs.io/capacity: 5G
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+    name: openebs-custom
+provisioner: openebs.io/provisioner-iscsi
+parameters:
+  openebs.io/storage-pool: "sp-mntdir"
+  openebs.io/jiva-replica-count: "3"
+  openebs.io/volume-monitor: "true"
+  openebs.io/capacity: 5G
 ```
 
 ### STEP-4 : Use the custom storage class in an application’s PVC spec
 
 ```
-    ---
-    kind: PersistentVolumeClaim
-    apiVersion: v1
-    metadata:
-      name: demo-vol1-claim
-    spec:
-      storageClassName: openebs-custom
-      accessModes:
-        - ReadWriteOnce
-      resources:
-        requests:
-          storage: 5G
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: demo-vol1-claim
+spec:
+  storageClassName: openebs-custom
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5G
 ```
 
 ### STEP-5 : Confirm volume is created on the storage pool
@@ -127,12 +127,12 @@ On each node, perform the following actions :
 - Once the OpenEBS PV is created (_kubectl get pv, kubectl get pods_), list the contents of the custom persistent path mentioned in the storage pool custom resource. It should contain a folder with the PV name consisting of the sparse files (disk image files)
 
 ```
-  karthik_s@strong-eon-153112:~$ kubectl get pv
-  NAME CAPACITY ACCESS MODES RECLAIM POLICY STATUS CLAIM STORAGECLASS REASON AGE
-  pvc-556e7ab7-3ed9-11e8-8e6a-42010a800216 5G RWO Delete Bound default/demo-vol1-claim openebs-custom 59m
+karthik_s@strong-eon-153112:~$ kubectl get pv
+NAME CAPACITY ACCESS MODES RECLAIM POLICY STATUS CLAIM STORAGECLASS REASON AGE
+pvc-556e7ab7-3ed9-11e8-8e6a-42010a800216 5G RWO Delete Bound default/demo-vol1-claim openebs-custom 59m
 
-  root@gke-oebs-staging-default-pool-7cc7e313-0xs4:~# ls /mnt/openebs/
-  lost+found pvc-556e7ab7-3ed9-11e8-8e6a-42010a800216
+root@gke-oebs-staging-default-pool-7cc7e313-0xs4:~# ls /mnt/openebs/
+lost+found pvc-556e7ab7-3ed9-11e8-8e6a-42010a800216
 ```
 
 ### GOTCHAS !!

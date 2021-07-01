@@ -29,38 +29,38 @@ As per Kubernetes docs, taints allow a node to repel a set of pods. Taints and t
 Following are the instructions to do the same:
 
 ````
-    # Step 1  —  Taint the node(s)
-    ```bash
-    # kubeminion-01 is the name of a Kubernetes node
-    # The taint effects used here are `NoSchedule` and `NoExecute`
-    kubectl taint nodes kubeminion-01 storage=ssd:NoSchedule storage=ssd:NoExecute
-    ```
+# Step 1  —  Taint the node(s)
+```bash
+# kubeminion-01 is the name of a Kubernetes node
+# The taint effects used here are `NoSchedule` and `NoExecute`
+kubectl taint nodes kubeminion-01 storage=ssd:NoSchedule storage=ssd:NoExecute
+```
 
-    # Step 2  —  Maya API server should be deployed with below specs
-    # This ensures the replica pods are set with appropriate tolerations
-    ```yaml
-    apiVersion: apps/v1beta1
-    kind: Deployment
-    metadata:
-     name: maya-apiserver
-    spec:
-     replicas: 1
-     template:
-      metadata:
-       labels:
-        name: maya-apiserver
-     spec:
-       serviceAccountName: openebs-maya-operator
-       containers:
-       —  name: maya-apiserver
-         imagePullPolicy: Always
-         image: openebs/m-apiserver:0.5.3
-         ports:
-         —  containerPort: 5656
-         env:
-         —  name: DEFAULT_REPLICA_NODE_TAINT_TOLERATION
-           value: storage=ssd:NoSchedule,storage=ssd:NoExecute
-    ```
+# Step 2  —  Maya API server should be deployed with below specs
+# This ensures the replica pods are set with appropriate tolerations
+```yaml
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: maya-apiserver
+spec:
+  replicas: 1
+  template:
+  metadata:
+    labels:
+    name: maya-apiserver
+  spec:
+    serviceAccountName: openebs-maya-operator
+    containers:
+    —  name: maya-apiserver
+      imagePullPolicy: Always
+      image: openebs/m-apiserver:0.5.3
+      ports:
+      —  containerPort: 5656
+      env:
+      —  name: DEFAULT_REPLICA_NODE_TAINT_TOLERATION
+        value: storage=ssd:NoSchedule,storage=ssd:NoExecute
+```
 ````
 
 **Use Case #2:** In my Kubernetes Cluster, I have certain nodes that have disks attached. I call these as Storage Nodes. I want the OpenEBS Volume Replica Pods to be scheduled on these Storage Nodes. In addition, I want a better utilization of these nodes by being able to schedule my application Pods on these nodes as well.
@@ -74,41 +74,41 @@ Following are the instructions to do the same:
 Following are the instructions to do the same:
 
 ````
-    # Step 1  —  Taint the node(s)
-    ```bash
-    # kubeminion-01 is the name of a Kubernetes node
-    # The taint effect used here is `PreferNoSchedule` i.e. a soft version of `NoSchedule` 
-    # the system tries to avoid placing a pod that does not tolerate the taint on the node,
-    # but it is not mandatory.
-    kubectl taint nodes kubeminion-01 storage=ssd:PreferNoSchedule
-    ```
+# Step 1  —  Taint the node(s)
+```bash
+# kubeminion-01 is the name of a Kubernetes node
+# The taint effect used here is `PreferNoSchedule` i.e. a soft version of `NoSchedule` 
+# the system tries to avoid placing a pod that does not tolerate the taint on the node,
+# but it is not mandatory.
+kubectl taint nodes kubeminion-01 storage=ssd:PreferNoSchedule
+```
 
-    # Step 2  —  Maya API server should be deployed with below specs
-    # This ensures the replica pods are set with appropriate tolerations
-    ```yaml
-    apiVersion: apps/v1beta1
-    kind: Deployment
-    metadata:
-     name: maya-apiserver
-     namespace: default
-    spec:
-     replicas: 1
-     template:
-      metadata:
-       labels:
-        name: maya-apiserver
-      spec:
-       serviceAccountName: openebs-maya-operator
-       containers:
-       —  name: maya-apiserver
-         imagePullPolicy: Always
-         image: openebs/m-apiserver:0.5.3
-         ports:
-         —  containerPort: 5656
-         env:
-         — name: DEFAULT_REPLICA_NODE_TAINT_TOLERATION
-           value: storage=ssd:PreferNoSchedule
-     ```
+# Step 2  —  Maya API server should be deployed with below specs
+# This ensures the replica pods are set with appropriate tolerations
+```yaml
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: maya-apiserver
+  namespace: default
+spec:
+  replicas: 1
+  template:
+  metadata:
+    labels:
+    name: maya-apiserver
+  spec:
+    serviceAccountName: openebs-maya-operator
+    containers:
+    —  name: maya-apiserver
+      imagePullPolicy: Always
+      image: openebs/m-apiserver:0.5.3
+      ports:
+      —  containerPort: 5656
+      env:
+      — name: DEFAULT_REPLICA_NODE_TAINT_TOLERATION
+        value: storage=ssd:PreferNoSchedule
+  ```
 ````
 
 If you want to learn more on taints & tolerations, then go through [https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/)

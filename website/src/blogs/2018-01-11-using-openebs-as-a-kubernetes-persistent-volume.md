@@ -110,7 +110,7 @@ Installing the iSCSI service is very simple, you do not need additional configur
 Execute the following command on each node node:
 
 ```
-    yum -y install iscsi-initiator-utils systemctl enable iscsid systemctl start iscsid
+yum -y install iscsi-initiator-utils systemctl enable iscsid systemctl start iscsid
 ```
 
 ## Quick start
@@ -118,13 +118,13 @@ Execute the following command on each node node:
 Run the OpenEBS service using Operator:
 
 ```
-    wget https://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-operator.yaml kubectl apply -f openebs-operator.yaml
+wget https://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-operator.yaml kubectl apply -f openebs-operator.yaml
 ```
 
 Use the default or custom storageclass:
 
 ```
-    wget https://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-storageclasses.yaml kubectl apply -f openebs-storageclasses.yaml
+wget https://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-storageclasses.yaml kubectl apply -f openebs-storageclasses.yaml
 ```
 
 Mirror used are:
@@ -139,23 +139,23 @@ Mirror used are:
 Let’s use the Example from the official OpenEBS documentation to install the Jenkins test:
 
 ```
-    wget https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/jenkins/jenkins.yml kubectl apply -f jenkins.yml
+wget https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/jenkins/jenkins.yml kubectl apply -f jenkins.yml
 ```
 
 Check PV and PVC
 
 ```
-    $ kubectl get pv
-    NAME CAPACITY ACCESS MODES RECLAIM POLICY STATUS CLAIM STORAGECLASS REASON AGE
-    pvc-8e203e86-f1e5-11e7-aa47-f4e9d49f8ed0 5G RWO Delete Bound default/jenkins-claim openebs-standard 1h
-    $ kubectl get pvc kubectl get pvc NAME STATUS VOLUME CAPACITY ACCESS MODES STORAGECLASS AGE
-    jenkins-claim Bound pvc-8e203e86-f1e5-11e7-aa47-f4e9d49f8ed0 5G RWO openebs-standard 1h
+$ kubectl get pv
+NAME CAPACITY ACCESS MODES RECLAIM POLICY STATUS CLAIM STORAGECLASS REASON AGE
+pvc-8e203e86-f1e5-11e7-aa47-f4e9d49f8ed0 5G RWO Delete Bound default/jenkins-claim openebs-standard 1h
+$ kubectl get pvc kubectl get pvc NAME STATUS VOLUME CAPACITY ACCESS MODES STORAGECLASS AGE
+jenkins-claim Bound pvc-8e203e86-f1e5-11e7-aa47-f4e9d49f8ed0 5G RWO openebs-standard 1h
 ```
 
 View Jenkins pod:
 
 ```
-    Events: Type Reason Age From Message ---- ------ ---- ---- ------- Warning FailedScheduling 29m (x2 over 29m) default-scheduler PersistentVolumeClaim is not bound: "jenkins-claim" (repeated 3 times) Normal Scheduled 29m default-scheduler Successfully assigned jenkins-668dfbd847-vhg4c to 172.20.0.115 Normal SuccessfulMountVolume 29m kubelet, 172.20.0.115 MountVolume.SetUp succeeded for volume "default-token-3l9f0" Warning FailedMount 27m kubelet, 172.20.0.115 Unable to mount volumes for pod "jenkins-668dfbd847-vhg4c_default(8e2ad467-f1e5-11e7-aa47-f4e9d49f8ed0)": timeout expired waiting for volumes to attach/mount for pod "default"/"jenkins-668dfbd847-vhg4c". list of unattached/unmounted volumes=[jenkins-home] Warning FailedSync 27m kubelet, 172.20.0.115 Error syncing pod Normal SuccessfulMountVolume 26m kubelet, 172.20.0.115 MountVolume.SetUp succeeded for volume "pvc-8e203e86-f1e5-11e7-aa47-f4e9d49f8ed0" Normal Pulling 26m kubelet, 172.20.0.115 pulling image "sz-pg-oam-docker-hub-001.tendcloud.com/library/jenkins:lts" Normal Pulled 26m kubelet, 172.20.0.115 Successfully pulled image "sz-pg-oam-docker-hub-001.tendcloud.com/library/jenkins:lts" Normal Created 26m kubelet, 172.20.0.115 Created container Normal Started 26m kubelet, 172.20.0.115 Started container
+Events: Type Reason Age From Message ---- ------ ---- ---- ------- Warning FailedScheduling 29m (x2 over 29m) default-scheduler PersistentVolumeClaim is not bound: "jenkins-claim" (repeated 3 times) Normal Scheduled 29m default-scheduler Successfully assigned jenkins-668dfbd847-vhg4c to 172.20.0.115 Normal SuccessfulMountVolume 29m kubelet, 172.20.0.115 MountVolume.SetUp succeeded for volume "default-token-3l9f0" Warning FailedMount 27m kubelet, 172.20.0.115 Unable to mount volumes for pod "jenkins-668dfbd847-vhg4c_default(8e2ad467-f1e5-11e7-aa47-f4e9d49f8ed0)": timeout expired waiting for volumes to attach/mount for pod "default"/"jenkins-668dfbd847-vhg4c". list of unattached/unmounted volumes=[jenkins-home] Warning FailedSync 27m kubelet, 172.20.0.115 Error syncing pod Normal SuccessfulMountVolume 26m kubelet, 172.20.0.115 MountVolume.SetUp succeeded for volume "pvc-8e203e86-f1e5-11e7-aa47-f4e9d49f8ed0" Normal Pulling 26m kubelet, 172.20.0.115 pulling image "sz-pg-oam-docker-hub-001.tendcloud.com/library/jenkins:lts" Normal Pulled 26m kubelet, 172.20.0.115 Successfully pulled image "sz-pg-oam-docker-hub-001.tendcloud.com/library/jenkins:lts" Normal Created 26m kubelet, 172.20.0.115 Created container Normal Started 26m kubelet, 172.20.0.115 Started container
 ```
 
 Start up successful. The Jenkins configuration uses **NodePort** mode access and now accesses the NodePort of Jenkins service for any node in the cluster.
