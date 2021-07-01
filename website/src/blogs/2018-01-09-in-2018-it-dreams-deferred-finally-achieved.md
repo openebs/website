@@ -45,15 +45,15 @@ Kubernetes has emerged in part because it promises a world more free from lock-i
 
 Could be — the signs are incredibly promising as all the cloud vendors and RedHat and Cloud Foundry and Docker and Mesos have all embraced Kubernetes as the standard control plane. This means that you are no longer locked-in by the control plane logic and should be able to move your applications from cloud to cloud and from on premise to off. Crucially — Kubernetes itself is open source and all the major vendors have pledged to not fork it; so it shouldn’t be _too_ bad to move from one vendor supporting Kubernetes to another.
 
-**…. but what about data? **Without data mobility all you can move is the stateless components of your applications — provided you address having those components able to access your store of state.
+_…. but what about data?_ Without data mobility all you can move is the stateless components of your applications — provided you address having those components able to access your store of state.
 
 # **And your data remains largely locked-in**
 
-**Locked into** proprietary vendors.
+_Locked into_ proprietary vendors.
 
-**Locked into** underlying systems that are sources of risk and that themselves are resolutely monolithic.
+_Locked into_ underlying systems that are sources of risk and that themselves are resolutely monolithic.
 
-I harken back to a speech Randy Bias gave at one of the OpenStorage summits I helped host back in 2010 about “blast radius.” The basic idea is that microservices dramatically reduce the blast radius of any single outage; conversely putting all your state in a shared storage system is, by comparison, an anti-pattern. When your shared storage dies or slows down unexpectedly perhaps due to a rebalancing, so does your entire environment. So much for being built for failure!
+I harken back to a speech Randy Bias gave at one of the OpenStorage summits I helped host back in 2010 about `blast radius`. The basic idea is that microservices dramatically reduce the blast radius of any single outage; conversely putting all your state in a shared storage system is, by comparison, an anti-pattern. When your shared storage dies or slows down unexpectedly perhaps due to a rebalancing, so does your entire environment. So much for being built for failure!
 
 S3 for non performant data and EBS for performant data have become defacto standards. They are easy, they “just work”, and — crucially — they put the responsibility for the configuration, care and feeding of state in the hands of the teams that also control the microservices.
 
@@ -61,9 +61,9 @@ The only problem is that it is _hard_ to move your data from these AWS services 
 
 And putting all your data in a scale-out software solution running on these clouds only makes the issue worse. Now you have the blast radius issue and you have your data stored in a solution that cannot be stretched across clouds. Two sources of lock-in and at least twice the effort!
 
-It might be worth remembering that networking, security and compute are all becoming both infrastructure services delivered as services **to** today’s microservice environments and \***\*are themselves also microservice based services\*\***. Take a look at Project Calico for instance. Or at Kubernetes itself.
+It might be worth remembering that networking, security and compute are all becoming both infrastructure services delivered as services **to** today’s microservice environments and **are themselves also microservice based services**. Take a look at Project Calico for instance. Or at Kubernetes itself.
 
-N**obody says — hey, Kubernetes is just a black box that sits to the side and so it needn’t be a bunch of microservices. But not storage. Storage somehow gets a pass. It gets to live with aged architectures and typically aged business models.**
+**Nobody says — hey, Kubernetes is just a black box that sits to the side and so it needn’t be a bunch of microservices. But not storage. Storage somehow gets a pass. It gets to live with aged architectures and typically aged business models.**
 
 ## Which raises the question: What if storage was itself delivered as microservices and orchestrated by Kubernetes?
 
@@ -81,7 +81,9 @@ You’d probably agree that such an approach would have some benefits including:
 - As mentioned above, the defacto standard approach to delivering storage is to use AWS itself with each team organized around one or more microservices having their own approach to EBS for performant storage and S3 for blobs of data.
 - Using a shared storage system runs counter to this approach and cuts these teams out of the loop. They are back to lobbying central IT as one of hundreds or even thousands of workloads with particular desires as to how storage should be configured. And, yes, those configurations matter. And, actually, they are impossible to get right. We’ve talked about that in the past including at Meet-ups: [https://www.slideshare.net/MattBaldwin3/containerized-storage-for-containers-why-what-and-how-openebs-works](https://www.slideshare.net/MattBaldwin3/containerized-storage-for-containers-why-what-and-how-openebs-works)
 
-![](/content/images/2020/01/0_IqrlTxSpFwh5l-qu_.png) \***\*Performant:\*\***
+![What move the data and configs next to the app](/images/blog/what-move-the-data-and-configs-next-to-the-app.png)
+
+**Performant:**
 
 - This being a storage blog, it is worth reiterating the point that shared storage is inherently less performant these days than direct attached or DAS. That is a fairly new reality. It used to be that DAS was really slow disk and the way to get IOPS was to stripe across a bunch of faster disks. That was a primary driver for shared storage. Imagine that — at one time CEPH would have been faster than the underlying hardware! How times have changed.
 - Our CTO, Jeffry Molanus does a good job walking through how the landscape of performance has changed why this and other changes now favor what we call “container attached storage”:
@@ -96,11 +98,11 @@ You’d probably agree that such an approach would have some benefits including:
 
 # **TL;DR:**
 
-So, in short, this time perhaps it really **is** different.
+So, in short, this time perhaps it really _is_ different.
 
 This time we “won’t get fooled again” (gratuitous old guy music reference :)).
 
-This time we **will** address the sources of lock-in not just at the controller plane via Kubernetes but also at the data layer. And in so doing we will avoid ending the the cycle of innovation prematurely. Perhaps it goes without saying — only an open source solution like OpenEBS that is widely accepted and easy to fork if needed can help free us from the risk of cloud lock-in without adding yet another source of lock-in.
+This time we _will_ address the sources of lock-in not just at the controller plane via Kubernetes but also at the data layer. And in so doing we will avoid ending the the cycle of innovation prematurely. Perhaps it goes without saying — only an open source solution like OpenEBS that is widely accepted and easy to fork if needed can help free us from the risk of cloud lock-in without adding yet another source of lock-in.
 
 And we can address lock-in while respecting and extending the patterns we know are working including: every team controlling their infrastructure themselves, the elimination of single points of failure (aka “storage blast radius”), and allowing Kubernetes to control more and more of the environment, leaving the developers to focus on capabilities that add value to their end users.
 

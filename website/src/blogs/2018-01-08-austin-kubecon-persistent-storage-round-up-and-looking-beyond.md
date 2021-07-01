@@ -17,13 +17,19 @@ This rather has become a long post as I drafted it and incorporated feedback fro
 —
 
 Kubernetes Clusters are up and running at the [push of a button](https://twitter.com/muratkarslioglu/status/941399154714066944) or even better by [talking to your favorite bot](https://www.youtube.com/watch?v=07jq-5VbBVQ).
-![](https://cdn-images-1.medium.com/max/800/1*oz5esyJvsb5zBIaoyDKUeQ.png)source: Containerized Storage for Containers — session at Kubernetes Meetup [https://t.co/tdQaOue5w8](https://t.co/tdQaOue5w8)
+
+![](https://cdn-images-1.medium.com/max/800/1*oz5esyJvsb5zBIaoyDKUeQ.png)
+
+source: Containerized Storage for Containers — session at Kubernetes Meetup [https://t.co/tdQaOue5w8](https://t.co/tdQaOue5w8)
+
 But just about a year ago when we started envisioning OpenEBS — Containerized Storage for Containers — to be orchestrated by Kubernetes, setting up a cluster took a good three days. Phenomenal progress by the Kubernetes Community in 2017 — from Kubernetes — the Hard-Way to making it Child’s play!
 
 If you were at KubeCon, you would have definitely been caught up in or at least glimpsed the Euphoria around Kubernetes. Kubernetes, almost feels like Noah’s Ark right now — you are either in or wait to perish. A little exaggerated, I know, but only a little.
 
 _Every Technology and Cloud Service Provider are now providing or planning to provide a container service using Kubernetes and almost every infrastructure provider is looking at putting themselves on the map of Kubernetes._
+
 ![](https://cdn-images-1.medium.com/max/800/1*YJIF6xBEPL1WpVgOK4VV0Q.png)[https://raw.githubusercontent.com/cncf/landscape/master/landscape/CloudNativeLandscape_latest.png](https://raw.githubusercontent.com/cncf/landscape/master/landscape/CloudNativeLandscape_latest.png)
+
 And why not!
 
 Kubernetes has reached the level of maturity that can be used with ease in controlled environments and at the same time, has gained tremendous strength from a community that is not afraid to re-engineer or re-architect the core components. The popularity of Kubernetes is enabling many meta-kubernetes projects like — kubespray, stackpointcloud, kubeless, heptio ksonnet, heptio ark,etc. And with these new projects and possibilities, many _Kubernetes — blue ocean — companies are on the rise!_
@@ -34,10 +40,13 @@ I am very bullish that Kubernetes is that magical ingredient that will renew the
 
 One inevitable aspect of being an infrastructure operations admin is to be prepared for smooth operations, scaling, maintaining and recovering from faults and disasters — which usually tend to put a lot of unwarranted pressure on the admins when dealing with their own management (business impact) and the vendors whose technology they used to build a “black-box” infrastructures. A “black-box” infrastructure that doesn’t comply to what they were told and assumed would do — and involves talking to people building those black-boxes often crossing company borders, leading into non-technical calls about blaming who is at fault. Such stressful conditions also exist within an organizations where there is crunch for resources.
 
-Kubernetes and the meta-kubernetes projects are helping administrators build — what I call “white-box” infrastructures. Often professed and hardly-prevailed aspect of Infrastructure is the [_HumanOps _](https://blog.serverdensity.com/humanops/)_— “_ technology affects the well being of humans just as humans affect the reliable operation of technology*”* — which can be achieved by building “white-box” infrastructures that are easy to operate and reduce the dependency on specialists that tend to be over-worked in an organization. _The “white-box” infrastructures are built with API-driven Open Source Micro-Services._
+Kubernetes and the meta-kubernetes projects are helping administrators build — what I call “white-box” infrastructures. Often professed and hardly-prevailed aspect of Infrastructure is the [_HumanOps_](https://blog.serverdensity.com/humanops/) _— "_ technology affects the well being of humans just as humans affect the reliable operation of technology *"* — which can be achieved by building “white-box” infrastructures that are easy to operate and reduce the dependency on specialists that tend to be over-worked in an organization. _The “white-box” infrastructures are built with API-driven Open Source Micro-Services._
 
 The key to the widespread adoption of Kubernetes in such a short time is the inclusive nature of it, which was well captured by this slide from the KubeCon:
-![](https://cdn-images-1.medium.com/max/800/1*IXods_RnXRco2z7UcngePw.png)[https://schd.ws/hosted*files/kccncna17/ac/KubeCon_2017*-\_Kernels_and_Distros.pdf](https://schd.ws/hosted_files/kccncna17/ac/KubeCon_2017_-_Kernels_and_Distros.pdf)
+
+![](https://cdn-images-1.medium.com/max/800/1*IXods_RnXRco2z7UcngePw.png)
+
+[https://schd.ws/hosted*files/kccncna17/ac/KubeCon_2017*-\_Kernels_and_Distros.pdf](https://schd.ws/hosted_files/kccncna17/ac/KubeCon_2017_-_Kernels_and_Distros.pdf)
 
 ### **_Kubernetes is more than an orchestration engine → It is the new kernel for building clustered infrastructures._**
 
@@ -47,7 +56,7 @@ I consider this shift towards making Kubernetes a Kernel that can be extended by
 
 This past year, saw the rise in user awareness for securing Containers. Different teams started tackling this issue from different perspectives — from providing secure container runtime like Kata Containers to using different types of Service Meshes to better access control and more.
 
-Service Mesh was definitely a buzzword in 2017! The options — linkerd, envoy, istio and conduit — all of which are (or will be) accepted into CNCF sooner or later, provide a glimpse of interesting trend. For instance, [conduit ](https://buoyant.io/2017/12/05/introducing-conduit/)is from the same team that built Linkerd. Conduit provides similar capabilities like Linkerd for managing the communication between micro-services, but seems better suited for Kubernetes environment that can run across clouds and with low resource constraints.
+Service Mesh was definitely a buzzword in 2017! The options — linkerd, envoy, istio and conduit — all of which are (or will be) accepted into CNCF sooner or later, provide a glimpse of interesting trend. For instance, [conduit ](https://buoyant.io/2017/12/05/introducing-conduit/) is from the same team that built Linkerd. Conduit provides similar capabilities like Linkerd for managing the communication between micro-services, but seems better suited for Kubernetes environment that can run across clouds and with low resource constraints.
 
 Like Service Mesh, the other infrastructure components — logging, monitoring, tracing, and networking are all being containerized (re-engineered) to work well with Kubernetes primitives (resources, pods, policies, federations, labels, taints, tolerations, affinity and anti-affinity, CR, CRDs, Custom Controllers, etc.)
 
@@ -78,7 +87,11 @@ Another issue I heard users talk about that puts them off NAS or SAN — and
 It is also worth noting and taking time to understand that these options of connecting to network storage have been around for more than couple of years, and the fact that Stateful workloads on Kubernetes aren’t yet as prevalent says something about user acceptance of the approach! _Users are waiting for better options to be made available — like the support for local storage or something else — but not NAS!_
 
 Learning from the HBO team that was streaming GoT using Kubernetes, it is interesting to see a solution like Rook being used on top of EBS, while EBS is provided as PVs themselves.
-![](https://cdn-images-1.medium.com/max/800/1*Zl5PPYzJpDZoXrK7DCL_0w.png)[https://www.youtube.com/watch?v=7skInj_vqN0](https://www.youtube.com/watch?v=7skInj_vqN0)
+
+![](https://cdn-images-1.medium.com/max/800/1*Zl5PPYzJpDZoXrK7DCL_0w.png)
+
+[https://www.youtube.com/watch?v=7skInj_vqN0](https://www.youtube.com/watch?v=7skInj_vqN0)
+
 Rook also presented a pretty interesting study against using PVs from external storage to Pods in their talk [here](https://schd.ws/hosted_files/kccncna17/b3/Cloud%20storage-2.pdf). This is inline with what the teams at [PortWorx](https://portworx.com/ebs-stuck-attaching-state-docker-containers/), [StorageOS ](https://schd.ws/hosted_files/kccncna17/ca/2017-12-8-persistent-storage.pdf)and OpenEBS have been advocating as well.
 
 - Make static assignments of disks (physical or virtual) to nodes and use them as local storage — avoid detaching/attaching disks from nodes
@@ -123,14 +136,17 @@ The appeal for fully containerized storage for containers is in the possibilitie
 
 _StorageOS presented at KubeCon on what we call Container Attached Storage — and on how to select which storage approach for which workload and environment. It was a good talk — slides are here: _[talk](https://schd.ws/hosted_files/kccncna17/ca/2017-12-8-persistent-storage.pdf)
 
-_Kubernetes can provide an unified infrastructure layer to the applications by pooling together nodes with compute, network, and \***\*storage as well\*\***._
+_Kubernetes can provide an unified infrastructure layer to the applications by pooling together nodes with compute, network, and **storage as well**._
 
 KubeCon showcased a demo of launching [glusterfs in containers](https://schd.ws/hosted_files/kccncna17/7b/KubeRunningYourStorage1208.pdf). While this is feasible, it might put some hard requirements on the amount of RAM and CPU required for running the software optimized for running in the nodes in containers.
 
 To be container native storage, the storage software needs to be broken down into micro-services, just like how Kubernetes runs using micro-services. There has to be greater flexibility provided to the developers and operations to run seamlessly on their choice of hardware!
 
 OpenEBS does just that! OpenEBS provides all the enterprise grade storage features by its open-source containers that can run anywhere. _No kernel dependencies and vendor lock-in._ A typical data path using the OpenEBS Containers is as follows:
-![](https://cdn-images-1.medium.com/max/800/1*Ifsa-k-q4EnO7Fpg7E6jLA.png)[https://github.com/openebs/openebs/blob/master/contribute/design/OpenEBS%20Architecture%20and%20Design.pdf](https://github.com/openebs/openebs/blob/master/contribute/design/OpenEBS%20Architecture%20and%20Design.pdf)
+![](https://cdn-images-1.medium.com/max/800/1*Ifsa-k-q4EnO7Fpg7E6jLA.png)
+
+[https://github.com/openebs/openebs/blob/master/contribute/design/OpenEBS%20Architecture%20and%20Design.pdf](https://github.com/openebs/openebs/blob/master/contribute/design/OpenEBS%20Architecture%20and%20Design.pdf)
+
 OpenEBS can consume any storage connected to the node and provide enterprise grade storage features (like snapshots, replication, data-consistency, cross-cloud migration, etc.) to Stateful workloads.
 
 2017 saw a steep rise in the community for building OpenEBS with users evaluating it for different types of storage workloads from Cassandra, Minio to MySQL and some users also rolling out services to their customers using Kubernetes and OpenEBS. _I am looking forward to more application work-flow focused automation of Stateful workloads using OpenEBS in 2018._

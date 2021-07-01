@@ -70,24 +70,35 @@ Minimum requirements for deploying your Kubernetes clusters on StackPointCloud:
 ### Deploy a New Kubernetes Cluster
 
 First, go to [stackpoint.io](https://stackpoint.io/) and click on **Launch a Cluster** button to start your free trial.
+
 ![](https://cdn-images-1.medium.com/max/800/0*0cB3ttYmslFZgH1h.png)
+
 Then choose your cloud provider. In this example, I will use **Digital Ocean**.
+
 ![](https://cdn-images-1.medium.com/max/800/0*21G24JgfuqlR6snZ.png)
 
 ### Configure Access to Digital Ocean
 
 On the next screen, we need to configure our provider. You need to provide Digital Ocean API Token and optionally your SSH Key.
+
 ![](https://cdn-images-1.medium.com/max/800/0*wDcMg-_HTjIOFvgb.png)
-Click on **Add API Token **button.
+
+Click on **Add API Token** button.
+
 ![](https://cdn-images-1.medium.com/max/800/0*53wGtQ7eUt18u6pS.png)
+
 After you add your credentials, click on **Submit**.
 
 ### Configure K8s Cluster
 
 On “Configure your cluster” page click the edit button on **Distribution** and choose **Ubuntu 16.04 LTS**.
+
 ![](https://cdn-images-1.medium.com/max/800/0*NvtnryAA8GNi-fyN.png)
+
 Change the **Cluster Name** something meaningful like **OpenEBS Demo**.
+
 ![](https://cdn-images-1.medium.com/max/800/0*LTa6zBooJdTsyqss.png)
+
 Leave everything else as default and click on **Submit**.
 
 In about 10–15 minutes you will get your new cluster deployed.
@@ -97,13 +108,21 @@ In about 10–15 minutes you will get your new cluster deployed.
 First, make sure your cluster and all nodes are up.
 
 On the **Control Plane** tab click on your recently created cluster.
+
 ![](https://cdn-images-1.medium.com/max/800/0*RHQ9LbyxydjHkJSk.png)
+
 Once the Kubernetes cluster is up on Digital Ocean with functional Helm, scroll down to the **Solutions** tab and click on **Add Solution** button.
+
 ![](https://cdn-images-1.medium.com/max/800/0*sH0lzv23vHonV5Zk.png)
+
 Click on **Add Solutions**, and select **Trusted Charts**.
+
 ![](https://cdn-images-1.medium.com/max/800/0*V6iP5PzNAzFk4sME.png)
+
 From the list above select **OpenEBS**.
+
 ![](https://cdn-images-1.medium.com/max/800/0*CJkPrkJCS9Fp_GXu.png)
+
 **Release Name** is randomly generated every time. If you want to use OpenEBS example workloads provided in OpenEBS repos without any modification then use `default`as **NameSpace**. Otherwise, you need to modify the namespace for workloads you deploy and make sure to use the same name.
 
 Click on **Install** to deploy OpenEBS on your cluster.
@@ -111,11 +130,15 @@ Click on **Install** to deploy OpenEBS on your cluster.
 **Note:** Default settings assume that RBAC is enabled. If you disabled RBAC while you are configuring your provider previously then set `rbacEnable: false` otherwise use default values.
 
 State field should be green after OpenEBS is successfully added.
+
 ![](https://cdn-images-1.medium.com/max/800/0*HzCZp3Z5LbT3Hsrh.png)
+
 Now your cluster is ready; you can run your workloads on `openebs-standard` and other predefined storage classes.
 
-To confirm, click on **Kubernetes Dashboard. **This will bring up your Kubernetes Dashboard UI in a new window. You will find all predefined OpenEBS **Storage Classes **here under **Storage Classes **section.
+To confirm, click on **Kubernetes Dashboard**. This will bring up your Kubernetes Dashboard UI in a new window. You will find all predefined OpenEBS **Storage Classes** here under **Storage Classes** section.
+
 ![](https://cdn-images-1.medium.com/max/800/0*mNU-nhwvNy9UB0W5.png)
+
 Now you are ready to deploy your stateful workloads.
 
 Take a look at my previous articles on step-by-step instructions for deploying few popular stateful workloads such as [Cassandra](http://containerized.me/how-to-deploy-a-cassandra-cluster-ring-on-kubernetes-openebs/), [Jenkins](http://containerized.me/how-to-deploy-jenkins-on-kubernetes-openebs/), and [Postgres](http://containerized.me/how-to-deploy-a-postgresql-cluster-on-kubernetes-openebs/) on OpenEBS persistent storage.
