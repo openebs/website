@@ -43,6 +43,7 @@ const theme = createTheme({
     divider: "#AECEE5",
     blue: {
       main: "#669DDD",
+      light: "#EDF6FF"
     },
     purple: {
       main: "#DCDBF7",
