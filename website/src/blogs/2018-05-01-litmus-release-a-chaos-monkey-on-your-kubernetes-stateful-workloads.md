@@ -1,5 +1,5 @@
 ---
-title: "Litmus - Release a chaos monkey on your Kubernetes Stateful Workloads!"
+title: Litmus - Release a chaos monkey on your Kubernetes Stateful Workloads!
 author: Karthik Satchitanand
 author_info: Karthik has been into the Design and Development of tools for infrastructure as code, software testing performance & benchmarking & chaos engineering.
 date: 01-05-2018
