@@ -2,6 +2,7 @@
 title: Monitoring ZFS-LocalPV Volumes
 author: Pawan Prakash Sharma
 author_info: It's been an amazing experience in Software Engineering because of my love for coding. In my free time, I read books, play table tennis and watch tv series
+excerpt: In this post, we will focus on how we can set up the Prometheus alert for Provisioned volumes when space utilization has reached a critical point.
 tags: Openebs, Localpv, Zfs
 date: 28-01-2020
 ---

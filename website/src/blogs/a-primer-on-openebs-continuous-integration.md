@@ -2,6 +2,7 @@
 title: A Primer on OpenEBS Continuous Integration
 author: Karthik Satchitanand
 author_info: Karthik has been into the Design and Development of tools for infrastructure as code, software testing performance & benchmarking & chaos engineering.
+excerpt: The OpenEBS project consists of several components (control plane & data plane) that directly support the dynamic provisioning & management of a persistent storage volume on the Kubernetes cluster.
 tags: Chaos Engineering, Continuous Integration, E2e Kubernetes Litmus
 date: 02-04-2019
 ---

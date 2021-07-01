@@ -2,6 +2,7 @@
 title: OpenEBS Node Device Management (NDM) — Troubleshooting tips
 author: Akhil Mohan
 author_info: Software Engineer @ MayaData, working on Cloud Native Tech.
+excerpt: OpenEBS Node Device Management (aka NDM) helps in discovering the block devices attached to Kubernetes nodes. In this blog, I will walk through some of the scenarios I have seen working with users on the OpenEBS Slack Channel.
 tags: Docker, Openebs, Uncategorized, Troubleshooting, Tutorials
 date: 08-01-2020
 ---

@@ -2,6 +2,7 @@
 title: Handling node down/cluster scaling on LocalPV backed workloads
 author: Ranjith Raveendran
 author_info: Ranjith is working as a Software Engineer at MayaData and working in the OpenEBS project. In his free time, he listens to music, watches movies, and goes for bike riding.
+excerpt: In this article, we'll discuss the steps that is getting handled when a node down/cluster scaling on LocalPV backs workloads.
 tags: Localpv, Openebs
 date: 21-08-2020
 ---

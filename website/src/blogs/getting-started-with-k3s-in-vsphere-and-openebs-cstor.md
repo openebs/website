@@ -2,6 +2,7 @@
 title: Getting started with K3s in vSphere and OpenEBS cStor
 author: Giridhara Prasad
 author_info: Lead Engineer at Mayadata Inc. Giridhar is experienced in software test automation, chaos engineering. Currently, he's working on Litmus, an Open Source chaos engineering project.
+excerpt: In this blog, more of a tutorial, I will walk you through the steps to install K3OS and setup OpenEBS.
 tags: Openebs
 date: 26-03-2020
 ---

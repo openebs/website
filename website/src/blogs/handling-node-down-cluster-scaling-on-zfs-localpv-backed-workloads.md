@@ -2,6 +2,7 @@
 title: Handling node down/cluster scaling on ZFS LocalPV backed workloads
 author: Ranjith Raveendran
 author_info: Ranjith is working as a Software Engineer at MayaData and working in the OpenEBS project. In his free time, he listens to music, watches movies, and goes for bike riding.
+excerpt: Step-by-step blog on how MySQL app deployment runs on OpenEBS ZFS LocalPV device, handled when a node down/cluster scale down situation happens in GKE cluster
 tags: Kubernetes
 date: 01-09-2020
 ---

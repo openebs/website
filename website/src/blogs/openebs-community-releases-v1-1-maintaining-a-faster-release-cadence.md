@@ -2,6 +2,7 @@
 title: OpenEBS community releases v1.1, maintaining a faster release cadence.
 author: Kiran Mova
 author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
+excerpt: In this blog, I will provide a quick summary of the changes that were released as part of OpenEBS version 1.1 and also share some thoughts on the evolving project management process in OpenEBS and how it is helping to maintain a faster release cadence.
 tags: Kubernetes, Microservices, Openebs, Persistent Volume, Stateful Workloads
 date: 08-08-2019
 ---

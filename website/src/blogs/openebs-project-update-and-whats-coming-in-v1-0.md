@@ -2,6 +2,7 @@
 title: OpenEBS Project Update and whats coming in v1.0
 author: Kiran Mova
 author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
+excerpt: My heartfelt gratitude to hundreds of contributors and thousands of users and friends of OpenEBS who have contributed to OpenEBS becoming a CNCF Sandbox Project.
 tags: Cncf, Containerattachedstorage, Storage, Kubernetes, Openebs
 date: 16-05-2019
 ---

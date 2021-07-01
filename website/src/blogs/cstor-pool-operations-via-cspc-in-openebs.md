@@ -2,6 +2,7 @@
 title: cStor Pool Operations via CSPC in OpenEBS
 author: Ashutosh Kumar
 author_info: Software Engineer at MayaData | OpenEBS Reviewer and Contributor | CKA | Gopher | Kubernaut
+excerpt: CStor Data Engine is popular for workloads needing efficient capacity management, replicas, point in time snapshots, incremental backups, etc. The tutorial will provision striped cStor pools and perform operations on them.
 tags: Containerattachedstorage, Cspc, Kubernetes, Openebs, Operations
 date: 03-01-2020
 ---

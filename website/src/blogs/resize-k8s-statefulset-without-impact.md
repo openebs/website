@@ -2,6 +2,7 @@
 title: Resize Kubernetes StatefulSets without impact
 author: Sai Chaithanya
 author_info: A developer whos is always eager to learn, loves algorithms, maths, Kubernetes, and programming, Passionate towards Data Science. Enjoys playing kabaddi and traveling.
+excerpt: Read this post if you are a cStor CSI user who's looking to resize statefulsets without any impact of StatefulSet applcations. 
 tags: Kubernetes, Openebs
 date: 25-08-2020
 ---

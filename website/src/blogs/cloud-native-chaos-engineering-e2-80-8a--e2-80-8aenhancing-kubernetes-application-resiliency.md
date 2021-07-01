@@ -2,6 +2,7 @@
 title: Cloud Native Chaos Engineering — Enhancing Kubernetes Application Resiliency
 author: Uma Mukkara
 author_info: Contributor at openebs.io, Co-founder& COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
+excerpt: In this blog, I would like to introduce a relatively new or less frequently used term called “Cloud Native Chaos Engineering”, defined as engineering practices focused on (and built on) Kubernetes environments, applications, microservices, and infrastructure.
 tags: Chaos Engineering, Cloud Native, Docker, Kubernetes, Uncategorized
 date: 25-11-2019
 ---

@@ -2,6 +2,7 @@
 title: How to Easily Build a CI Dashboard
 author: Chandan Kumar
 author_info: Software Engineer at MayaData Inc
+excerpt: In this tutorial, we’ll go through all the necessary steps for setting up the CI dashboard
 tags: Ci Dashboard, Git, Kubernetes, Pipeline, Gitlab
 date: 26-04-2019
 ---

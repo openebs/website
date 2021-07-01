@@ -2,6 +2,7 @@
 title: Data Migration Within Kubernetes Clusters
 author: Sai Chaithanya
 author_info: A developer whos is always eager to learn, loves algorithms, maths, Kubernetes, and programming, Passionate towards Data Science. Enjoys playing kabaddi and traveling.
+excerpt: In this blog, we'll talk about migrating data within Kubernetes from one node to another without any downtime of the application.
 tags: Kubernetes
 date: 02-07-2020
 ---

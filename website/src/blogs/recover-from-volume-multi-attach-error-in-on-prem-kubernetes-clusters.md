@@ -2,6 +2,7 @@
 title: Recover from Volume Multi Attach Error in On-Prem Kubernetes Clusters
 author: Prateek Pandey
 author_info: Contributor and Maintainer @OpenEBS. Software Developer at @mayadata_inc. OpenSource Enthusiast
+excerpt: In this blog, we'll talk about recovering from volume multi attach error in On-Prem Kubernetes clusters.
 tags: Kubernetes
 date: 27-08-2020
 ---

@@ -2,6 +2,7 @@
 title: Snapshot and Clone for ZFS LocalPV
 author: Pawan Prakash Sharma
 author_info: It's been an amazing experience in Software Engineering because of my love for coding. In my free time, I read books, play table tennis and watch tv series
+excerpt: In this post, we will focus on how we can create a snapshot and clone for volumes provisioned by ZFS-LocalPV.
 tags: Openebs, Zfs, Open Source
 date: 03-03-2020
 ---

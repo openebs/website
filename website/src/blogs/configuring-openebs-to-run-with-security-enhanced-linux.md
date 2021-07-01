@@ -2,6 +2,7 @@
 title: Configuring OpenEBS to run with Security-Enhanced Linux
 author: Akhil Mohan
 author_info: Software Engineer @ MayaData, working on Cloud Native Tech.
+excerpt: In this short How-To blog, I will walk you through the steps for running OpenEBS with Security Enhanced Linux (SELinux=on).
 tags: Centos, Kubernetes, Openebs, Selinux, Uncategorized, Openshift, Tutorials
 date: 10-05-2019
 ---

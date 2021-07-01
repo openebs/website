@@ -2,6 +2,7 @@
 title: Creating manual BlockDevice
 author: Akhil Mohan
 author_info: Software Engineer @ MayaData, working on Cloud Native Tech.
+excerpt: BlockDevices are the consumable units of storage in the OpenEBS storage solution. Users can create BlockDevices manually to support custom partitions/lvms, etc., which are not detected by NDM. To create a manual BlockDevice, follow the steps below
 tags: Block Devices, Docker, Uncategorized, Disk, Openebs, Kubernetes
 date: 16-01-2020
 ---

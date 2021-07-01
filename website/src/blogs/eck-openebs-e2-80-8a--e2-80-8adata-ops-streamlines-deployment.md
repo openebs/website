@@ -2,6 +2,7 @@
 title: ECK & OpenEBS — Data Ops Streamlines Deployment
 author: Uma Mukkara
 author_info: Contributor at openebs.io, Co-founder& COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
+excerpt: Using OpenEBS, administrators can easily manage local PV storage resources for ECK seamlessly across both on-premises and multiple clouds, simplifying ElasticSearch ECK scaling and resilience while finally delivering a completely declaratively-managed application stack.
 tags: Eck, Elasticsearch, Kubernetes, Localpv, Openebs
 date: 23-08-2019
 ---
