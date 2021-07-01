@@ -43,7 +43,7 @@ The entire process is split into stages, with each stage extensible, replaceable
 
 The user experience is as simple as editing a single variables file in order to define the benchmark setup variables and running up.sh. The script will then iterate over the predefined stages, relying on the outcomes of each stage to run the next one
 
-Variables are used to define such things as the setup name (prefixed in all the provisioned resources), user access credentials, Kubernetes installation types, provisioning details, and of course, OpenEBS Mayastor tuning as well as the benchmark itself. For more details, please see the vars file at https://github.com/mayadata-io/deployment-automation-playground/blob/main/demo-playground/vars
+Variables are used to define such things as the setup name (prefixed in all the provisioned resources), user access credentials, Kubernetes installation types, provisioning details, and of course, OpenEBS Mayastor tuning as well as the benchmark itself. For more details, please see the vars file at [https://github.com/mayadata-io/deployment-automation-playground/blob/main/demo-playground/vars](https://github.com/mayadata-io/deployment-automation-playground/blob/main/demo-playground/vars)
 
 
 ## Stages
@@ -122,6 +122,13 @@ The Demo Playground project is still in very early stages, and we invite everyon
 
 The project’s flexibility allows for anyone to add in additional playbooks, which will deploy and run different workloads on top of Mayastor, and we intend to expand upon it, adding some workloads of our own beyond the basic FIO benchmark.
 
-Please visit us at https://mayadata.io and give the Demo Playground a spin at https://github.com/mayadata-io/deployment-automation-playground/tree/main/demo-playground.
+Please visit us at [https://mayadata.io](https://mayadata.io) and give the Demo Playground a spin at [https://github.com/mayadata-io/deployment-automation-playground/tree/main/demo-playground](https://github.com/mayadata-io/deployment-automation-playground/tree/main/demo-playground).
 
-You can also find my colleagues and me spending time on the Kubernetes #OpenEBS slack, or at a [Discord room](https://discord.com/invite/zsFfszM8J2) set up to focus mostly on open source collaboration with Mayastor developers (Rusticians may be especially interested), and on the Data on Kubernetes community where a huge variety of users of Kubernetes for data are sharing their perspectives (https://dok.community/.
+You can also find my colleagues and me spending time on the Kubernetes #OpenEBS slack, or at a [Discord room](https://discord.com/invite/zsFfszM8J2) set up to focus mostly on open source collaboration with Mayastor developers (Rusticians may be especially interested), and on the Data on Kubernetes community where a huge variety of users of Kubernetes for data are sharing their perspectives (https://dok.community/).
+
+
+****About the author:****
+
+![Dan Yasny](/images/blog/authors/dan-yasny.png)
+
+Dan Yasny is a Principal Field Engineer at MayaData, previously he worked as a Field Engineer at ScyllaDB, an SDET, Technical Product Manager and a Sustaining Engineer at Red Hat, working on such projects as ScyllaDB, Kubernetes, OpenShift, KubeVirt, OpenStack, oVirt/RHV and more.

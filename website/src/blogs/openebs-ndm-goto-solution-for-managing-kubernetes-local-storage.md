@@ -28,6 +28,9 @@ Master: 2 virtual disks
 
 Worker1: 3 virtual disks, one being used by LUKS and two other disks which are partitioned, several partitions are being used as PV's by the LVM.
 
+![](https://lh3.googleusercontent.com/7r1RKQF4udqvigbryA6XFOxRuoOccQSFqhM5C_e27ArTSXnsXIXZk7b3lwgJm4C2VxxWj4rHoED-pZl4PS_KVkF_SC4D2-NLJzokpg2cqlP2upSNva5PLCaBKtQCBueUhWFYTtS9)
+
+
 Worker 2: 4 physical disks
 
 * Deploy NDM into the Kubernetes cluster along with OpenEBS LocalPV
@@ -40,17 +43,22 @@ Worker 2: 4 physical disks
     ```
     kubectl get bd -n openebs -o wide
     ```
-    Some block devices show partitions that did not exist initially. E.g., sdb1 instead of sdb. This is because NDM creates a partition on virtual disks to identify the disk uniquely. Also, block device resources are now created for LVMs and LUKS encrypted devices. All the block devices listed above will now be treated as individual devices and can be used by any storage engine.
+
+![](https://lh4.googleusercontent.com/v-iVUrfW6v3wSaXmb06pbek7as_RfFTlRJCmsPzhmId460JIsP0LvXVDBkA0FUnBdO3yt203HqHIBYorT-nP6ZtCZTKdRcao0Ws3tlNyvz8yQF9ytQN_UXxbyO9ZFs6-PeLYHQOD)
+
+Some block devices show partitions that did not exist initially. E.g., sdb1 instead of sdb. This is because NDM creates a partition on virtual disks to identify the disk uniquely. Also, block device resources are now created for LVMs and LUKS encrypted devices. All the block devices listed above will now be treated as individual devices and can be used by any storage engine.
 
 * Deploy a sample application to use the block device
 
-    Download the minio yaml and apply it. (NOTE: A node selector has been added to the minio application pod so that it gets scheduled on worker-1)
-    ```
-    kubectl apply -f [minio-official.yaml](https://gist.githubusercontent.com/akhilerm/194a1606c514d8930addcaef56f9f19f/raw/7d339e5042b4e5e958dde558f1f3509e26c214f3/minio-official.yaml)
-    ```
-    Now check the status of block devices again
+Download the minio yaml and apply it. (NOTE: A node selector has been added to the minio application pod so that it gets scheduled on worker-1)
+```
+kubectl apply -f [minio-official.yaml](https://gist.githubusercontent.com/akhilerm/194a1606c514d8930addcaef56f9f19f/raw/7d339e5042b4e5e958dde558f1f3509e26c214f3/minio-official.yaml)
+```
+Now check the status of block devices again  
 
-    We can see that the device `dm-2`, is the LUKS device, has been claimed and used by the application.
+![](https://lh3.googleusercontent.com/A_JL0jXsZhmIPPrRYCSeMHVcPsey6ahFYV1_LVUapmbPLTrcgGEAao_ohbx9zU_SZl-lHmKGYgdMqh4czUCISSezbcOi4rznQNuX0sTAomO4y5HQLVYicTD4s1mPOZfUciacEOU_)
+
+We can see that the device `dm-2`, is the LUKS device, has been claimed and used by the application.
 
 * Pool movement across nodes
 
