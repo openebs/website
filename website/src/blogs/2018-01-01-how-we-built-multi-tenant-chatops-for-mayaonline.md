@@ -13,7 +13,8 @@ Maya-ChatOps is one of the core areas of [MayaOnline](https://mayaonline.io/), c
 
 ## What is MuleBot ?
 
-![](/content/images/2020/01/mule-bot.png)Mule Bot
+![MuleBot](/images/blog/mule-bot.png "MuleBot")
+
 MuleBot is the name of the bot or slack application from Maya. MuleBot is a distributed slack application. MuleBot responds to user’s queries about configuration and status of the OpenEBS volumes. Sometimes, MuleBot tries to surprise you with smart alerts prior to a real situation happens.
 
 ## How to use Maya ChatOps?
@@ -34,8 +35,10 @@ So, we looked at [Hubot](https://hubot.github.com/), [StackStorm](https://github
 
 Each one of them had their benefits but none of them were multi-tenant. Then we looked at which is easiest to add the multi-tenant support to, BotMan came surprisingly easy to add this support to. BotMan is thin, and is written as a stateless application. The preliminary approach involved passing the user configuration in environment variables. All it needed was a thin shim to get user-config details dynamically and we had achieved multi-tenancy ! It is that simple.
 
-We kept a combination of slack **\*\***team_id**\*\***, **\*\***channel-id**\*\*** as the key of the mulebot to manage the link between the slack user config and MayaOnline user config.
-![](/content/images/2020/01/bot-architecture.jpeg)Chat Ops Architecture
+We kept a combination of slack **team_id**, **channel-id** as the key of the mulebot to manage the link between the slack user config and MayaOnline user config.
+
+![Chat Ops Architecture](/images/blog/bot-architecture.jpeg)
+
 With the above design Maya ChatOps allows users to configure different slack channels for different kuberenetes clusters at MayaOline.
 
 Next steps:
