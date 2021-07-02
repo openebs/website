@@ -218,14 +218,14 @@ We can also exec into the application pod and verify that the new size is visibl
 
     $ kubectl exec -it percona-9449b4b9c-48qpw bash
     root@percona-9449b4b9c-48qpw:/# df -h
-    Filesystem      Size  Used Avail Use% Mounted on
-    none             91G   18G   69G  21% /
-    tmpfs           3.9G     0  3.9G   0% /dev
-    tmpfs           3.9G     0  3.9G   0% /sys/fs/cgroup
-    /dev/sda1        91G   18G   69G  21% /etc/hosts
-    shm              64M     0   64M   0% /dev/shm
-    /dev/zd0        7.9G  237M  7.6G   3% /var/lib/mysql
-    tmpfs           3.9G   12K  3.9G   1% /run/secrets/kubernetes.io/serviceaccount
-    tmpfs           3.9G     0  3.9G   0% /sys/firmware
+    Filesystem        Size      Used    Avail     Use%    Mounted on
+    none               91G       18G      69G      21%    /
+    tmpfs             3.9G         0     3.9G       0%    /dev
+    tmpfs             3.9G         0     3.9G       0%    /sys/fs/cgroup
+    /dev/sda1          91G       18G      69G      21%    /etc/hosts
+    shm                64M         0      64M       0%    /dev/shm
+    /dev/zd0          7.9G      237M     7.6G       3%    /var/lib/mysql
+    tmpfs             3.9G       12K     3.9G       1%    /run/secrets/kubernetes.io/serviceaccount
+    tmpfs             3.9G         0     3.9G       0%    /sys/firmware
 
 I hope you find this post useful. Feel free to contact me with any feedback or questions by using the comment section below.

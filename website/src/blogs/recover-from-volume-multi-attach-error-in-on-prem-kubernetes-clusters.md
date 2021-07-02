@@ -90,7 +90,6 @@ Here After deleting the Node resource below node related events will be generate
 
 ##### **Check the kube-controller logs for events:**
 
-    ```
     I1021 10:37:44.336523       1 attach_detach_controller.go:573] error removing node "csi-node2.mayalabs.io" from desired-state-of-world: failed to delete node "csi-node2.mayalabs.io" from list of nodes managed by attach/detach controller--the node still contains 1 volumes in its list of volumes to attach
     I1021 10:37:45.003243       1 event.go:258] Event(v1.ObjectReference{Kind:"Node", Namespace:"", Name:"csi-node2.mayalabs.io", UID:"30ca0f5e-3a8f-4d0f-99fc-776d7051fd3d", APIVersion:"", ResourceVersion:"", FieldPath:""}): type: 'Normal' reason: 'RemovingNode' Node csi-node2.mayalabs.io event: Removing Node csi-node2.mayalabs.io from Controller
     
@@ -113,8 +112,6 @@ Here After deleting the Node resource below node related events will be generate
     I1021 10:37:55.742498       1 gc_controller.go:166] Forced deletion of orphaned Pod kube-system/kube-proxy-b9q25 succeeded
     I1021 10:37:55.742697       1 gc_controller.go:62] PodGC is force deleting Pod: kube-system/calico-node-4fv7n
     I1021 10:37:55.787435       1 gc_controller.go:166] Forced deletion of orphaned Pod kube-system/calico-node-4fv7n succeeded
-    
-    ```
     
 
 ### **CSI Based Volumes:**

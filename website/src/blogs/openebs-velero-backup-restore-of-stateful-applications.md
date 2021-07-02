@@ -11,7 +11,7 @@ date: 04-08-2020
 
 SREs play a crucial role in automating operations. This role includes handling infrastructure upgrades and the upgrades of software running on that infrastructure. When running stateful workloads, the data must be backed up before any upgrades.
 
-Additionally, workloads on Kubernetes are often different than traditional monolithic applications since Kubernetes supports microservices and loosely coupled workloads. This brings-in the need for a 'cloud-native' design of backup/restore per workload or application. Once implemented this approach provides benefits to users such as an app-centric view, ease of management, setting of RPO/RTO at the workload level, and others. To learn more about cloud native backup drivers and requirements - please read this [thenewstack.io article](https://thenewstack.io/cloud-native-backups-disaster-recovery-and-migrations-on-kubernetes/).
+Additionally, workloads on Kubernetes are often different than traditional monolithic applications since Kubernetes supports microservices and loosely coupled workloads. This brings-in the need for a `cloud-native` design of backup/restore per workload or application. Once implemented this approach provides benefits to users such as an app-centric view, ease of management, setting of RPO/RTO at the workload level, and others. To learn more about cloud native backup drivers and requirements - please read this [thenewstack.io article](https://thenewstack.io/cloud-native-backups-disaster-recovery-and-migrations-on-kubernetes/).
 
 The below graphic shows microservices, and their loosely coupled nature. Managing backups and the tuning of RPO/RTO per microservice is required to preserve the loosely coupled nature of these workloads and of the teams responsible for them.
 ![Openebs Velero backup/restore of stateful applications: fig 1](https://lh4.googleusercontent.com/JyIxZZtj-1rBOGo2z1bKcYlD9-halM8dXpChtOIPro_aZEhQObTL_K5_Be_hLgqXl7aT68jYqFjNE9C6rZK0IRaV_neH4DURZhUr3z5FkVirzMirk_z8FiscY6_sb3JPhlAx1XRL)
@@ -46,11 +46,11 @@ Let's start by examining what OpenEBS, as container attached storage, offers. It
 
 OpenEBS Local PV volumes are prominent among cloud-native applications. These applications themselves take care of replicating data and snapshotting. As the name suggests, these are used in hyper-converged infrastructure. This brings in a few challenges during backup/restoration.
 
-Local PVs related storage classes will have ‘WaitForFirstConsumer.’ It provides delayed binding of volumes until Pod gets scheduled on the node. K8s sets the node name as an annotation on PVC. Restoring that PVC onto the destination cluster will leave the pod in pending state. This solution takes care of it by applying node name mapping in PVC annotation. Restore Item Action plugin, contributed by OpenEBS, in Velero performs this mapping.
+Local PVs related storage classes will have `WaitForFirstConsumer`. It provides delayed binding of volumes until Pod gets scheduled on the node. K8s sets the node name as an annotation on PVC. Restoring that PVC onto the destination cluster will leave the pod in pending state. This solution takes care of it by applying node name mapping in PVC annotation. Restore Item Action plugin, contributed by OpenEBS, in Velero performs this mapping.
 
-Velero's in-built file-based 'Restic' plugin helps in backing up the application's data. 'Init' container will be injected into the application to copy data from the destination location to the volume.
+Velero's in-built file-based `Restic` plugin helps in backing up the application's data. `Init` container will be injected into the application to copy data from the destination location to the volume.
 
-Jiva volumes are used by applications that need replication functionality from storage providers. File-based ‘Restic’ plugin can be used to backup/restore applications using jiva volumes.
+Jiva volumes are used by applications that need replication functionality from storage providers. File-based `Restic` plugin can be used to backup/restore applications using jiva volumes.
 
 ### **CStor / Local PV ZFS + Velero plugin**
 

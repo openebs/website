@@ -9,7 +9,7 @@ date: 16-07-2020
 
 Guest post by Peeyush Gupta, Sr. Developer Advocate, DigitalOcean
 
-**OpenEBS **is the leading open-source project for container-attached and container-native storage on **Kubernetes**. OpenEBS adopts Container Attached Storage (CAS) approach, where each workload is provided with a dedicated storage controller. OpenEBS implements granular storage policies and isolation that enable users to optimize storage for each specific workload. OpenEBS runs in userspace and does not have any Linux kernel module dependencies. Here is how the setup looks like for OpenEBS LocalPV hostpath:
+**OpenEBS** is the leading open-source project for container-attached and container-native storage on **Kubernetes**. OpenEBS adopts Container Attached Storage (CAS) approach, where each workload is provided with a dedicated storage controller. OpenEBS implements granular storage policies and isolation that enable users to optimize storage for each specific workload. OpenEBS runs in userspace and does not have any Linux kernel module dependencies. Here is how the setup looks like for OpenEBS LocalPV hostpath:
 ![Kubernetes StatefulSet on ppc64le using OpenEBS LocalPV provisioner](https://lh4.googleusercontent.com/-erccwTcJCmyJGswEZ3Pul1-pvJO-kvn34nr22mqYumR1IHUVhX8BWOeennt1u91EYUKtpUfAPBSiP1XD_1z6XYmG8Tlywvl9GellLpkr8EyYTFLXT3YpIZ_nneRcen_G8uKVV6Q)
 In this tutorial, we will see how we can install OpenEBS on Kubernetes running on the ppc64le platform. Then we will use the OpenEBS LocalPV provisioner to deploy a StatefulSet. The ppc64le servers used in this tutorial are running on IBM Cloud.
 Kubernetes support multi-arch platforms. You can deploy the cluster on ppc64le based servers using kubeadm. For this tutorial, I am using a 3 node cluster:
@@ -56,7 +56,7 @@ This will create 2 storage classes, openebs-device, and openebs-hostpath, on the
     openebs-device     openebs.io/local   Delete          WaitForFirstConsumer   false                  6m12s
     openebs-hostpath   openebs.io/local   Delete          WaitForFirstConsumer   false                  6m12s
 
-In our case, we are interested in the “openebs-hostpath” storage class for this tutorial. Now, we are ready to deploy the StatefulSet that will consume the volume created using the above storage class. Here is a sample StatefulSet:
+In our case, we are interested in the `openebs-hostpath` storage class for this tutorial. Now, we are ready to deploy the StatefulSet that will consume the volume created using the above storage class. Here is a sample StatefulSet:
 
     apiVersion: apps/v1
     kind: StatefulSet
@@ -94,7 +94,7 @@ In our case, we are interested in the “openebs-hostpath” storage class for t
             requests:
               storage: 5G
 
-The above YAML creates a StatefulSet named “local-test”, which has a container named “test-container”. This container has a volume mounted at path “/usr/test-pod”. The claim for this particular volume references the “openebs-hostpath” storage class. We will save this YAML using the name openebs-localpv-stateful.yaml, and this can be deployed using kubectl create:
+The above YAML creates a StatefulSet named `local-test`, which has a container named `test-container`. This container has a volume mounted at path `/usr/test-pod`. The claim for this particular volume references the `openebs-hostpath` storage class. We will save this YAML using the name openebs-localpv-stateful.yaml, and this can be deployed using kubectl create:
 
     kubectl apply -f openebs-localpv-stateful.yaml
 

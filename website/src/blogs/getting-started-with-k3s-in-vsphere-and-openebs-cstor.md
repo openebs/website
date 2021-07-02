@@ -16,26 +16,22 @@ In this blog, more of a tutorial, I will walk you through the steps to install K
 K3OS kernel is forked from Ubuntu-18.04 LTS, and its userspace binaries are from alpine. So, you need to select Ubuntu Linux (64 bit) as the guest operating system while creating a virtual machine.
 
 ![Select guest operating system](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage.png)
-Select guest operating system
 
 Download the latest K3OS iso file(currently v0.9.0) from its[https://github.com/rancher/k3os/releases](https://github.com/rancher/k3os/releases)[GitHub release](https://github.com/rancher/k3os/releases) page. Attach the iso file into a virtual machine and start it with the live installation option, as shown below.
 
 Select the option *K3OS LiveCD & install* and boot the operating system.
 
 ![Live installation](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-3.png)
-Live installation
 
 After booting up successfully, you will be landed in a login prompt. The default user in K3OS is rancher. You can login as rancher user without any password.
 
 ![Login prompt](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-6.png)
-Login prompt
 
 After performing a live install, You need to install the Operating system into a disk and can configure the machine either as a server(Master) or an agent(worker). This can be performed by executing the command sudo k3os install.
 
 Select option 1. Install to disk to install K3OS into the disk. In the preceding questions, set up a new password for rancher user for enabling ssh communication to the server.
 
 ![Installing into disk](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-4.png)
-Installing into disk
 
 ### 
 **Installing into disk**
@@ -43,12 +39,10 @@ Installing into disk
 You need to select either server or agent to install the relevant components in the machine. Select 1.server to deploy K3s server components. You can set up a token or cluster secret that could be used while joining K3s agents to the server.
 
 ![server installation](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-7.png)
-Server installation
 
 After completing the installation, a screen similar to the following one will be displayed.
 
 ![Login prompt](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-1.png)
-Login prompt
 
 Thus, the K3s server can be configured successfully. In case if DHCP is not configured, you need to assign an IP address and other networking details using connmanctl utility. Login into the server as rancher user and enter the password configured in the previous step.
 
@@ -107,7 +101,7 @@ Check if all the cluster components are configured successfully and all the pods
 
 #### **Install OpenEBS**
 
-OpenEBS is a CNCF project delivering persistent block storage to the workloads deployed in Kubernetes.[https://docs.openebs.io/docs/next/cstor.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807](https://docs.openebs.io/docs/next/cstor.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807)[cStor](https://docs.openebs.io/docs/next/cstor.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807) is one of the storage engines provided by OpenEBS besides[https://docs.openebs.io/docs/next/jiva.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807](https://docs.openebs.io/docs/next/jiva.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807)[Jiva](https://docs.openebs.io/docs/next/jiva.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807) and[https://docs.openebs.io/docs/next/localpv.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807](https://docs.openebs.io/docs/next/localpv.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807)[Local PV.](https://docs.openebs.io/docs/next/localpv.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807)
+OpenEBS is a CNCF project delivering persistent block storage to the workloads deployed in Kubernetes.[https://docs.openebs.io/docs/next/cstor.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807](https://docs.openebs.io/docs/next/cstor.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807)[cStor](https://docs.openebs.io/docs/next/cstor.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807) is one of the storage engines provided by OpenEBS besides [https://docs.openebs.io/docs/next/jiva.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807](https://docs.openebs.io/docs/next/jiva.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807)[Jiva](https://docs.openebs.io/docs/next/jiva.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807) and   [https://docs.openebs.io/docs/next/localpv.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807](https://docs.openebs.io/docs/next/localpv.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807)[Local PV.](https://docs.openebs.io/docs/next/localpv.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807)
 
 cStor was not supported in K3OS till k3os-v0.8.0 due to this[https://github.com/rancher/k3os/issues/151](https://github.com/rancher/k3os/issues/151)[issue](https://github.com/rancher/k3os/issues/151). This issue has been addressed in v0.9.0 by adding udev support.
 
@@ -142,7 +136,7 @@ Check if all the OpenEBS components are running successfully.
 
 OpenEBS cStor engine requires external disks to be attached to the agents which group to form cStor Pools.
 
-The disks or block devices are managed by the component called *Node disk manager, *shortly called as* NDM. *After attaching the disks to agent machines, check the block devices by executing the following command.
+The disks or block devices are managed by the component called *Node disk manager, shortly called as* NDM. After attaching the disks to agent machines, check the block devices by executing the following command.
 
     k3os-1374 [~]$ kubectl get blockdevices -n openebs
     NAME                                           NODENAME     SIZE          CLAIMSTATE   STATUS   AGE

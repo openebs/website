@@ -48,7 +48,7 @@ Additional details and how each of the Data engines operate are provided in this
 
 ![](/images/blog/2019/05/cas-example-openebs-cstor-volume.png)OpenEBS cStor Volume
 
-**Standard Specifications or API: **Standardization is achieved by architecting OpenEBS as a set of microservices using Kubernetes Custom Resources and Operator patterns. The same set of tooling used to manage the applications — like Helm, Prometheus, and Grafana — can also be used to manage OpenEBS itself. The configuration of OpenEBS is completely controlled via YAMLs (Custom Resources) and volumes are provisioned via the Kubernetes Dynamic Provisioners, Storage Classes and Persistent Volume Claims.
+**Standard Specifications or API:** Standardization is achieved by architecting OpenEBS as a set of microservices using Kubernetes Custom Resources and Operator patterns. The same set of tooling used to manage the applications — like Helm, Prometheus, and Grafana — can also be used to manage OpenEBS itself. The configuration of OpenEBS is completely controlled via YAMLs (Custom Resources) and volumes are provisioned via the Kubernetes Dynamic Provisioners, Storage Classes and Persistent Volume Claims.
 
 The components of OpenEBS that act on the user requests (via CRs) and generate / launch the Kubernetes Objects — like Deployments, Services and Persistent Volumes are collectively called as the *Storage Management or Control Plane*. The interactions to the Storage Management Plane can achieved via `kubectl`.
 
@@ -63,7 +63,7 @@ Another cool feature that has become a favorite of advanced OpenEBS users is tha
 
 In this regard, as we move towards 1.0, we would like to improve the documentation and governance around maintaining multiple versions of the API.
 
-**Security Controls: **Storage is a cluster add-on service. It needs to access the storage devices — either as hostpath or as block devices that are attached to the nodes. Since OpenEBS is completely Kubernetes native, access rights and privileges required by the individual components are completely transparent and can be controlled by the RBAC configuration by Kubernetes Cluster Administrators. One of the interesting feedback we received as Enterprises started to adopt OpenEBS was that — the IT Teams want to retain the control on the storage and shield the specifics of the node details or scheduling details from application developers.
+**Security Controls:** Storage is a cluster add-on service. It needs to access the storage devices — either as hostpath or as block devices that are attached to the nodes. Since OpenEBS is completely Kubernetes native, access rights and privileges required by the individual components are completely transparent and can be controlled by the RBAC configuration by Kubernetes Cluster Administrators. One of the interesting feedback we received as Enterprises started to adopt OpenEBS was that — the IT Teams want to retain the control on the storage and shield the specifics of the node details or scheduling details from application developers.
 
 OpenEBS can now be configured easily to run in:
 

@@ -9,7 +9,7 @@ date: 08-01-2020
 
 OpenEBS Node Device Management (aka NDM) helps in discovering the block devices attached to Kubernetes nodes. For many clusters, the default configuration of NDM suffices, however there are some cases where further customizations are required.
 
-> In this blog, I will walk through some of the scenarios I have seen working with Users on the [OpenEBS Slack Channel](http://slack.openebs.io/).
+> In this blog, I will walk through some of the scenarios I have seen working with Users on the [OpenEBS Slack Channel](http://slack.openebs.io/)
 
 ---
 
@@ -38,7 +38,7 @@ OK. Let us get started with some common issues reported and how to troubleshoot 
 
 I have some disks attached to the node. Installed openebs, but blockdevice resources are not created for the devices.
 
-**Symptom: **I have some disks attached to the node. Installed openebs, but blockdevice resources are not created for the devices.
+**Symptom:** I have some disks attached to the node. Installed openebs, but blockdevice resources are not created for the devices.
 
 **Troubleshooting:**
 
@@ -50,7 +50,7 @@ I have some disks attached to the node. Installed openebs, but blockdevice resou
 
 ![](https://cdn-images-1.medium.com/max/800/0*q8rBQFw284gRYqjg)
 
-**Resolution: **Update the filter configuration in configmap and restart the NDM DaemonSet pod. This will create the blockdevices.
+**Resolution:** Update the filter configuration in configmap and restart the NDM DaemonSet pod. This will create the blockdevices.
 
 ---
 
@@ -58,7 +58,7 @@ I have some disks attached to the node. Installed openebs, but blockdevice resou
 
 **After node reboot, one blockdevice became inactive and another blockdevice was created.**
 
-**Symptom: **When a node in the cluster rebooted. A blockdevice resource on that node was marked as inactive and a new resource was created. The new blockdevice also has the same details as the old one.
+**Symptom:** When a node in the cluster rebooted. A blockdevice resource on that node was marked as inactive and a new resource was created. The new blockdevice also has the same details as the old one.
 
 **Troubleshooting:**
 
@@ -68,9 +68,9 @@ I have some disks attached to the node. Installed openebs, but blockdevice resou
 4. If yes, then the new blockdevice resource was created because the path changed
 5. Check if `kubernetes.io/hostname` is different, if yes , then the blockdevice was created because the hostname of the node changed.
 
-**Resolution: **If using cStor, the newly generated BD can be added in both SPC and CSP instead of the old BD resource. Thus the storage engine will claim the new BD resource and start using it.
+**Resolution:** If using cStor, the newly generated BD can be added in both SPC and CSP instead of the old BD resource. Thus the storage engine will claim the new BD resource and start using it.
 
-**Root Cause: **Whenever the NDM deamonset pods shutdown, all the devices on that node will be marked into an UNknown state. When the pod comes backup, all the devices on that node are marked as inactive and then individual devices are processed for their statuses.
+**Root Cause:** Whenever the NDM deamonset pods shutdown, all the devices on that node will be marked into an UNknown state. When the pod comes backup, all the devices on that node are marked as inactive and then individual devices are processed for their statuses.
 
 NDM uses an md5 sum of WWN+Model+Serial of the disk to create its unique name. If none of these fields are available then NDM uses device path and hostname to create the blockdevice. There are chances that the device path/hostname has changed after reboot. If the path/hostname changes a new blockdevice resource will be created, and the old one will still be in the inactive state.
 
@@ -80,9 +80,9 @@ NDM uses an md5 sum of WWN+Model+Serial of the disk to create its unique name. I
 
 **BlockDevices are created for already used disks in which OS is installed**
 
-**Symptom: **NDM created blockdevice resources for disks which are already used for OS partitions. By default NDM excludes the blockdevices that are mounted at `/, /boot, /etc/hosts`. If these mount points are on an LVM or SoftRaid, NDM will not be able to identify that.
+**Symptom:** NDM created blockdevice resources for disks which are already used for OS partitions. By default NDM excludes the blockdevices that are mounted at `/, /boot, /etc/hosts`. If these mount points are on an LVM or SoftRaid, NDM will not be able to identify that.
 
-**Resolution: **Support for LVM and software RAID is in the design phase. Once it is supported the issue will be resolved.
+**Resolution:** Support for LVM and software RAID is in the design phase. Once it is supported the issue will be resolved.
 
 ---
 
@@ -90,11 +90,11 @@ NDM uses an md5 sum of WWN+Model+Serial of the disk to create its unique name. I
 
 **Only one Blockdevice is created, when devices are connected in multipath configuration**
 
-**Symptom: **There is a disk attached in multipath configuration to a node. i.e both sdb & sdc are the same devices. But blockdevice resource is created only for sdc.
+**Symptom:** There is a disk attached in multipath configuration to a node. i.e both sdb & sdc are the same devices. But blockdevice resource is created only for sdc.
 
-**Resolution: **Support for detecting disks in multipath configuration and attaching the same disk to multiple nodes will be available in the future versions of NDM
+**Resolution:** Support for detecting disks in multipath configuration and attaching the same disk to multiple nodes will be available in the future versions of NDM
 
-**Root Cause: **NDM generates the UID for disk identification using the disk details like WWN, Serial etc that are fetched from the disk. In case of a disk attached in multipath configuration, the details from both sdb and sdc will be the same. Therefore, NDM will first create a blockdevice for sdb, and then moves on to create for `sdc`. But at this stage it will find that a blockdevice with that UID already exists and will update the blockdevice information with the new path `sdc`. This results in a blockdevice existing only for sdc.
+**Root Cause:** NDM generates the UID for disk identification using the disk details like WWN, Serial etc that are fetched from the disk. In case of a disk attached in multipath configuration, the details from both sdb and sdc will be the same. Therefore, NDM will first create a blockdevice for sdb, and then moves on to create for `sdc`. But at this stage it will find that a blockdevice with that UID already exists and will update the blockdevice information with the new path `sdc`. This results in a blockdevice existing only for sdc.
 
 ---
 
@@ -102,18 +102,18 @@ NDM uses an md5 sum of WWN+Model+Serial of the disk to create its unique name. I
 
 **Only single BlockDevice resource is created in a multi-node Kubernetes cluster on GKE.**
 
-**Symptom: **On a multinode kubernetes cluster in GKE, with an external GPD attached to each node. NDM is creating only one blockdevice resource, instead of one blockdevice resource per node.
+**Symptom:** On a multinode kubernetes cluster in GKE, with an external GPD attached to each node. NDM is creating only one blockdevice resource, instead of one blockdevice resource per node.
 
 **Troubleshooting:**
 
 1. Was the GPD added using the gcloud CLI or google cloud console web UI.
 2. If the disk was added using gcloud CLI, check whether the ` — device-name` flag was specified during attaching the disk.
 
-**Resolution: **The command to add disk using gcloud CLI should be
+**Resolution:** The command to add disk using gcloud CLI should be
 
     gcloud compute instances attach-disk <node-name> --disk=disk-1 **--device-name=disk-1**
 
-**Root Cause: **gcloud CLI uses the value provided in the `device-name` flag as the serial number of the GPD when it is attached to the node. If it is left blank, google will assign a default serial number that is unique only to the node. When multiple nodes are present, and NDM generates the UID for the blockdevice, the disks on both nodes will have the same serial number and thus the same UID.
+**Root Cause:** gcloud CLI uses the value provided in the `device-name` flag as the serial number of the GPD when it is attached to the node. If it is left blank, google will assign a default serial number that is unique only to the node. When multiple nodes are present, and NDM generates the UID for the blockdevice, the disks on both nodes will have the same serial number and thus the same UID.
 
 NDM from one node will create the blockdevice resource and when the other NDM daemon tries to create the resource, it finds that a resource already exists and just updates the resource.
 

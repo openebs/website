@@ -19,7 +19,7 @@ Here are the steps I have followed:
 
 ****Step 1: Setup appropriate security context for OpenEBS****
 
-******On OpenShift Clusters:******Select the right SCC for OpenEBS
+**On OpenShift Clusters:** Select the right SCC for OpenEBS
 
 OpenEBS like other cluster add-on services requires its pods to be executed with privileged access as it needs to directly access the block devices. However, this will not mean that SELinux should be turned off.
 
@@ -31,7 +31,7 @@ To have OpenEBS pods running in privileged mode, add the OpenEBS service account
 
     oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:openebs-maya-operator
 
-******On CentOS/RHEL:******Enable Pod Security Policies for OpenEBS
+**On CentOS/RHEL:** Enable Pod Security Policies for OpenEBS
 
 Create a file `openebs-privileged-psp.yaml` with the below spec.
 
@@ -73,7 +73,7 @@ Download the latest version of `openebs-operator.yaml` file.
 
     wget https://openebs.github.io/charts/openebs-operator-0.8.2.yaml
 
-****On CentOS/RHEL:**** An extra step of adding PSP to the Cluster Role is required.
+**On CentOS/RHEL:** An extra step of adding PSP to the Cluster Role is required.
 
 Edit the ClusterRole in the YAML to add `openebs-privileged` PSP
 
@@ -130,7 +130,7 @@ You can skip this step if using the default cStor Sparse pool.
 
 ****Step 3a****: Verify all pods are working and cStor Pools are running
 
-![](/images/blog/2019/05/0_Ti37dZo8QJWX8tUt.png)List of all pods in openebs namespace after installation
+![List of all pods in openebs namespace after installation](/images/blog/2019/05/0_Ti37dZo8QJWX8tUt.png)
 
 ****Step 3b****: Verify that disks available on the nodes are discovered.
 
@@ -169,7 +169,7 @@ Create a `cstor-pool-config.yaml` as mentioned in the docs.
 
 Apply this file `kubectl apply -f cstor-pool-config.yaml`
 
-![](/images/blog/2019/05/0_J_r91oMArxbXjZKU.png)3 cStor pool pods will be running
+![3 cStor pool pods will be running](/images/blog/2019/05/0_J_r91oMArxbXjZKU.png)
 
 ****Step 3d****: Create a new storage class using SPC as `cstor-pool1` or edit the default storage class to use the newly created SPC. I have edited the already available default storageclass.
 
@@ -184,7 +184,7 @@ Apply the yaml file
     kubectl apply -f percona-openebs-cstor-sparse-deployment.yaml
 
 
-![](/images/blog/2019/05/0_IdPQ--1fhid-9EDI.png)The percona cstor pod up and running in default namespace
+![The percona cstor pod up and running in default namespace](/images/blog/2019/05/0_IdPQ--1fhid-9EDI.png)
 
 The `percona-cstor` pod will be up and running.
 

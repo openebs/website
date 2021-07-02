@@ -34,19 +34,19 @@ We need to have some environment variables so that we can update whenever thereâ
 
 Here is the list of a variable that weâ€™ll need:
 
-> **HELM_URL=[https://storage.googleapis.com/kubernetes-helm](https://storage.googleapis.com/kubernetes-helm) (this is the URL where we can download the helm package)**
+***HELM_URL=[https://storage.googleapis.com/kubernetes-helm](https://storage.googleapis.com/kubernetes-helm) (this is the URL where we can download the helm package)***
 
-> **HELM_TGZ=helm-v2.4.2-linux-amd64.tar.gz (this is the Helm tar filename)**
+***HELM_TGZ=helm-v2.4.2-linux-amd64.tar.gz (this is the Helm tar filename)***
 
-> **REPO_DIR=/home/travis/build/inyee786/test-helm (this is the path where Travis keep Git folder)**
+***REPO_DIR=/home/travis/build/inyee786/test-helm (this is the path where Travis keep Git folder)***
 
-> **YAMLLINT_VERSION=1.8.1 (this is yamllint version which is used to check lint of file)**
+***YAMLLINT_VERSION=1.8.1 (this is yamllint version which is used to check lint of file)***
 
-> **HARBOR_CHART_URL=https://harbor-test.mayadata.io/chartrepo (change this according to your chart registry url{harbor or Chartmuseum}**
+***HARBOR_CHART_URL=https://harbor-test.mayadata.io/chartrepo (change this according to your chart registry url{harbor or Chartmuseum}***
 
-> **HARBOR_PROJECT_NAME=maya (this is the Harbor project name, where we will store the chart)**
+***HARBOR_PROJECT_NAME=maya (this is the Harbor project name, where we will store the chart)***
 
-> **CHART_FOLDER=charts (this is the folder name, where we can keep the Helm charts)**
+***CHART_FOLDER=charts (this is the folder name, where we can keep the Helm charts)***
 
 It looks like this
 

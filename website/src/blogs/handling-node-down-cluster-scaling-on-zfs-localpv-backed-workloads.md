@@ -11,7 +11,7 @@ Kubernetes is increasingly used for running production-grade stateful services. 
 
 As everyone knows, OpenEBS is one of the leading containerized storage solutions for Kubernetes, and it is a growing Sandbox project in CNCF. MayaData is the primary maintainer and contributor of OpenEBS along with other companies. MayaData also contributed another open source project, Litmus, into CNCF, which does mostly Chaos engineering in Kubernetes, which helps SREs and developers to do all kinds of testing of their applications and components in Kubernetes before going into Production.
 
-A persistent storage solution for running any stateful application is a must requirement, be it a **Deployment **or **StatefulSet**. OpenEBS provides various storage engines, and each storage engine is suitable for specific applications or workloads. Some engines provide storage level synchronous replication, capable of taking snapshots and cloning, backup and restore, volume expansion, CSI complaint, performance-oriented, etc. So choosing the engine based on the workload requirement is an important activity.
+A persistent storage solution for running any stateful application is a must requirement, be it a **Deployment** or **StatefulSet**. OpenEBS provides various storage engines, and each storage engine is suitable for specific applications or workloads. Some engines provide storage level synchronous replication, capable of taking snapshots and cloning, backup and restore, volume expansion, CSI complaint, performance-oriented, etc. So choosing the engine based on the workload requirement is an important activity.
 
 OpenEBS provides dynamic provisioning of ***ZFS LocalPV*** using external device/devices. OpenEBS ZFS driver binds a ZFS file system into the Kubernetes environment and allows users to provision and de-provision volumes dynamically. Using a ***ZFS Local PV*** has the following advantages   as opposed to Kubernetes native Local PV backed by direct-attached devices:
 
@@ -36,7 +36,6 @@ In this article, we are discussing the steps that need to be performed to make t
     gke-openebs-mysql-default-pool-dd23ce6b-lwr3   Ready    <none>   24m   v1.16.13-gke.1
     gke-openebs-mysql-default-pool-dd23ce6b-zzqx   Ready    <none>   24m   v1.16.13-gke.1
     
-
 2. Label all the nodes with the same custom label used in the nodeSelector field in the STS app. In my case, there is no custom node label used in application deployment. So we are skipping this step.
 
 3. Attach the disk randomly to any node in the same zone.
@@ -80,11 +79,11 @@ In this article, we are discussing the steps that need to be performed to make t
     
     ```
     $ kubectl get pods -n kube-system -l role=openebs-zfs
-    NAME                       READY   STATUS              RESTARTS   AGE
-    openebs-zfs-controller-0   5/5     Running             0          91m
-    openebs-zfs-node-29dlp     2/2     Running           0          14m
+    NAME                       READY   STATUS           RESTARTS   AGE
+    openebs-zfs-controller-0   5/5     Running          0          91m
+    openebs-zfs-node-29dlp     2/2     Running          0          14m
     openebs-zfs-node-bssq7     2/2     Running          0          14m
-    openebs-zfs-node-p54tq     2/2     Running	        0          14m
+    openebs-zfs-node-p54tq     2/2     Running	    0          14m
 
 7. Check the status of the application pod. It will be in the `Pending` state.
     
@@ -102,7 +101,7 @@ In this article, we are discussing the steps that need to be performed to make t
 
 9. Create a directory and copy the YAML spec of all the associated PVs into it like below.
     
-    ````
+    ```
     $ mkdir mysql-restore
     $ cd mysql-restore/
     $ kubectl get pv pvc-e299a9db-0903-417b-8034-03c3dc77af87 -o yaml --export > pv1.yaml

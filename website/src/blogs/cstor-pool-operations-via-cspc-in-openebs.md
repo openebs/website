@@ -52,7 +52,7 @@ The tutorial will provision striped cStor pools and perform operations on them (
 *for i in {5..6}; do gcloud compute instances attach-disk gke-cstor-demo-default-pool-3385ab41-hrmr — disk demo-disk-$i — device-name demo-disk-$i — zone us-central1-a; done*
 
 - Install OpenEBS 1.5. Run following to install: ( Note that block device replacement support starts from OpenEBS version 1.5. There will be a separate blog post to describe that. )
-*kubectl apply -f *[*https://openebs.github.io/charts/openebs-operator-1.5.0.yaml*](https://openebs.github.io/charts/openebs-operator-1.6.0.yaml)
+*kubectl apply -f* [*https://openebs.github.io/charts/openebs-operator-1.5.0.yaml*](https://openebs.github.io/charts/openebs-operator-1.6.0.yaml)
 - Install CStor-Operator. Run following to install:
 kubectl apply -f [https://raw.githubusercontent.com/openebs/openebs/master/k8s/cstor-operator.yaml](https://raw.githubusercontent.com/openebs/openebs/master/k8s/cstor-operator.yaml)
 
@@ -107,7 +107,7 @@ Let us expand one cStor stripe pool on a node by editing the CSPC cspc-stripe.
 
     $ kubectl edit cspc cspc-stripe -n openebs
 
-Simply, add one more block device as follows. Make sure you do not put a block device that is a part of any other CSPC. I have added block device *blockdevice-d2d59218ed78560b206143ab0641470c *in my case.
+Simply, add one more block device as follows. Make sure you do not put a block device that is a part of any other CSPC. I have added block device *blockdevice-d2d59218ed78560b206143ab0641470c* in my case.
 
     $ kubectl edit cspc cspc-stripe -n openebs
 

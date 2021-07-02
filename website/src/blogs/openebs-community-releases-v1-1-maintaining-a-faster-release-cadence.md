@@ -48,7 +48,7 @@ Here are some issues that were raised and fixed within the current release.
 - For Jiva Volumes, created a utility that can clear the internal snapshots created during replica restart and rebuild. For long-running volumes that have gone through multiple restarts, the number of internal snapshots can hit the maximum supported value of 255, after which the Replica will fail to start. The utility to check and clear the snapshots is available [here](https://github.com/openebs/openebs/tree/master/k8s/jiva). [@rgembalik](https://github.com/rgembalik)[@amarshaw](https://github.com/amarshaw)
 - Enhanced velero-plugin to allow users to specify a backupPathPrefix for storing the volume snapshots in a custom location. This allows users to save/backup configuration and volume snapshot data under the same location rather than saving the configuration and data in different locations. [@amarshaw](https://github.com/amarshaw)
 
-***For detailed change summary, steps to upgrade from a previous version, or to get started with v1.1 please refer to: ***[***Release 1.1 Change Summary***](https://github.com/openebs/openebs/releases/tag/1.1.0)
+***For detailed change summary, steps to upgrade from a previous version, or to get started with v1.1 please refer to:***[***Release 1.1 Change Summary***](https://github.com/openebs/openebs/releases/tag/1.1.0)
 
 In short, OpenEBS 1.1 shows that OpenEBS development is marching ahead faster and faster and delivering more and more features, fixes and platforms.
 

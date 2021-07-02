@@ -69,7 +69,7 @@ Change to
 
 ### Step 3:
 
-**Optional: **If you need to use sparse pool
+**Optional:** If you need to use sparse pool
 
     kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/5860c0a4619a9feddf5d75d11f50f2ea8fdcec82/k8s/demo/fio/demo-cstor-sparse-pool-limits.yaml
 
@@ -89,8 +89,8 @@ Above approach can be followed to install OpenEBS 0.8 on SuSE CaaS platform 3.0 
 
 With OpenEBS 0.9 it would be simplified such that you would need to only apply the operator yaml to perform the installation.
 
-**SUSE CaaS Platform: **(Container as a Service Platform) is an integrated software platform which automates the process of building, managing and upgrading of Kubernetes clusters. It combines the benefits of an enterprise-ready operating system with the agility of an orchestration platform for containerized applications. More details — [https://www.suse.com/products/caas-platform/](https://www.suse.com/products/caas-platform/)
+**SUSE CaaS Platform:** (Container as a Service Platform) is an integrated software platform which automates the process of building, managing and upgrading of Kubernetes clusters. It combines the benefits of an enterprise-ready operating system with the agility of an orchestration platform for containerized applications. More details — [https://www.suse.com/products/caas-platform/](https://www.suse.com/products/caas-platform/)
 
-**OpenEBS: **OpenEBS is the leading open-source project for container-attached and container-native storage on Kubernetes. OpenEBS adopts Container Attached Storage (CAS) approach, where each workload is provided with a dedicated storage controller. OpenEBS implements granular storage policies and isolation that enable users to optimize storage for each specific workload. OpenEBS runs in userspace and does not have any Linux kernel module dependencies. More details — [https://openebs.io/](https://openebs.io/?__hstc=216392137.a6c0b8ba8416b65c52c0226c0e0b69fd.1579867391229.1579867391229.1579867391229.1&amp;__hssc=216392137.1.1579867391230&amp;__hsfp=3765904294)
+**OpenEBS:** OpenEBS is the leading open-source project for container-attached and container-native storage on Kubernetes. OpenEBS adopts Container Attached Storage (CAS) approach, where each workload is provided with a dedicated storage controller. OpenEBS implements granular storage policies and isolation that enable users to optimize storage for each specific workload. OpenEBS runs in userspace and does not have any Linux kernel module dependencies. More details — [https://openebs.io/](https://openebs.io/?__hstc=216392137.a6c0b8ba8416b65c52c0226c0e0b69fd.1579867391229.1579867391229.1579867391229.1&amp;__hssc=216392137.1.1579867391230&amp;__hsfp=3765904294)
 
 They have a very responsive community. Visit [https://slack.openebs.io](https://slack.openebs.io)

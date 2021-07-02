@@ -74,7 +74,7 @@ Check that the driver is installed:
       poolname: "zfspv-pool"
     provisioner: zfs.csi.openebs.io
 
-The storage class has a *poolname* parameter, which means that any volume provisioned using this storage class will be provisioned in this pool (zfspv-pool here). The provisioner *zfs.csi.openebs.io *is the provisioner name for the ZFS driver. You can change the poolname to the name of the ZPOOL which you have created for the provisioning. Apply the YAML to create the storage class:
+The storage class has a *poolname* parameter, which means that any volume provisioned using this storage class will be provisioned in this pool (zfspv-pool here). The provisioner *zfs.csi.openebs.io* is the provisioner name for the ZFS driver. You can change the poolname to the name of the ZPOOL which you have created for the provisioning. Apply the YAML to create the storage class:
 
     $ kubectl apply -f sc.yaml
 

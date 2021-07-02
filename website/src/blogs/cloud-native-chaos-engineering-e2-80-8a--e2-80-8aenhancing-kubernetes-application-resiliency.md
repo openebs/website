@@ -33,7 +33,7 @@ Litmus is a cloud native chaos Engineering framework for Kubernetes. It is uniqu
 - Chaos libraries and plugin framework
 - Chaos Hub
 
-![Introduction to Litmus](https://cdn-images-1.medium.com/max/800/0*GSvTfFh5KgBKM7M5.png)Introduction to Litmus
+![Introduction to Litmus](https://cdn-images-1.medium.com/max/800/0*GSvTfFh5KgBKM7M5.png)
 
 ## Chaos API
 
@@ -57,7 +57,7 @@ The Litmus Operator is implemented using the Operator-SDK. This operator manages
 
 The actual injection of chaos is done by chaos libraries or chaos executors. For example, the Litmus project has already built a chaos library called “LitmusLib”. LitmusLib is aware of how to kill a pod, how to introduce a CPU hog, how to hog memory or how to kill a node, and several other faults and degradations. Like LitmusLib, there are other open-source chaos projects like Pumba or PowerfulSeal. The CNCF landscape has more details of various chaos engineering projects. As shown below, the Litmus plugin framework allows other chaos projects to make use of Litmus for chaos orchestration. For example, one can create a chaos chart for the pod-kill experiment using Pumba or PowerfulSeal and execute it via the Litmus framework.
 
-![Chaos Libraries and external Plugins](https://cdn-images-1.medium.com/max/800/0*0vm-YfScAxXoijFd.png)Chaos Libraries and external Plugins
+![Chaos Libraries and external Plugins](https://cdn-images-1.medium.com/max/800/0*0vm-YfScAxXoijFd.png)
 
 **PowerfulSeal and Pumba are shown as examples.**
 
@@ -65,7 +65,7 @@ The actual injection of chaos is done by chaos libraries or chaos executors. For
 
 Chaos charts are located at [hub.litmuschaos.io](https://hub.litmuschaos.io/). ChaosHub brings all the reusable chaos experiments together. Application developers and SRE share their chaos experiences for others to reuse. The goal of the hub is to have the developers share the failure tests that they are using to validate their applications in CI pipelines to their users, who are typically SREs.
 
-![Chaos Hub](https://cdn-images-1.medium.com/max/800/0*22JUDGxtNFNcgU5J.png)Chaos Hub
+![Chaos Hub](https://cdn-images-1.medium.com/max/800/0*22JUDGxtNFNcgU5J.png)
 
 Currently, the chaos hub contains charts for Kubernetes chaos and OpenEBS chaos. We expect to receive more contributions from the community going forward.
 
@@ -73,7 +73,7 @@ Currently, the chaos hub contains charts for Kubernetes chaos and OpenEBS chaos.
 
 The most simple use case of Litmus is application developers using Litmus in the development phase itself. Chaos Engineering has been limited to the Production environment, and lately, we are seeing this practice being adopted in CI pipelines. But with Litmus, chaos testing is possible during development as well. Like Unit Testing, Integration Testing, and Behavior-Driven Testing, Chaos Testing is a test philosophy for developers to carry out the negative test scenarios to test the resiliency of the code before the code is merged to the repository. Chaos testing can be appended very easily to the application, as shown below: Chaos testing can be appended very easily to the application, as shown below:
 
-![](https://cdn-images-1.medium.com/max/800/0*xT_x1Wd2TFyM2LfR.gif)Example use cases
+![](https://cdn-images-1.medium.com/max/800/0*xT_x1Wd2TFyM2LfR.gif)
 
 Other use cases of Litmus are for inducing chaos in CI pipelines and production environments.
 

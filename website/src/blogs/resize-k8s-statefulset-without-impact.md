@@ -11,7 +11,7 @@ In large scale environments, storage is one of the hard things to manage, and it
 
 This blog is for OpenEBS users, specifically cStor CSI users looking to resize their ***Kubernetes StatefulSets*** without any impact of StatefulSet applications.
 
-### **Steps involved to resize *****Kubernetes StatefulSets***
+### **Steps involved to resize** ***Kubernetes StatefulSets***
 
 1. Increase the volume size of the PVC.
 

@@ -11,18 +11,18 @@ date: 23-08-2019
 
 Using OpenEBS, administrators can easily manage local PV storage resources for ECK seamlessly across both on-premises and multiple clouds, simplifying ElasticSearch ECK scaling and resilience while finally delivering a completely declaratively-managed application stack. Let’s review how.
 
-**Good News: The recently shipped **[**Elastic Cloud on Kubernetes (ECK)**](https://www.elastic.co/blog/introducing-elastic-cloud-on-kubernetes-the-elasticsearch-operator-and-beyond)** delivers Elasticsearch clusters as native, distributed Kubernetes Operators. **Elasticsearch is a distributed, open source search and analytics engine for all types of data. Widely used, Elasticsearch is storage-intensive because it builds an inverted index of collections of JSON objects that are related to each other to allow very fast full-text searches. The result is a simplified deployment of ElasticSearch for the Kubernetes admins or SREs as well as a simplified developer experience.
+**Good News: The recently shipped** [**Elastic Cloud on Kubernetes (ECK)**](https://www.elastic.co/blog/introducing-elastic-cloud-on-kubernetes-the-elasticsearch-operator-and-beyond)** delivers Elasticsearch clusters as native, distributed Kubernetes Operators. **Elasticsearch is a distributed, open source search and analytics engine for all types of data. Widely used, Elasticsearch is storage-intensive because it builds an inverted index of collections of JSON objects that are related to each other to allow very fast full-text searches. The result is a simplified deployment of ElasticSearch for the Kubernetes admins or SREs as well as a simplified developer experience.
 
 **Bad News: ElasticSearch uses fast local storage but it does not address storage provisioning and management.** ECK use of the [static provisioner for Local ](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner)PV requires administrators to manually format, mount, and configure disks on Kubernetes nodes. This is a PITA, as they say.
 
-**Good News: OpenEBS removes the burden of Storage Operations for ECK Deployments. **With OpenEBS, administrators can easily manage local PV storage resources for ECK seamlessly across both on-premises and multiple clouds, simplifying ElasticSearch scaling and resilience.
+**Good News: OpenEBS removes the burden of Storage Operations for ECK Deployments.** With OpenEBS, administrators can easily manage local PV storage resources for ECK seamlessly across both on-premises and multiple clouds, simplifying ElasticSearch scaling and resilience.
 
 ### Vanilla K8s (PITA)
 
 Typically, ElasticSearch is deployed one of two ways:
 
-- **Dedicated mode: **Elastic pods are using LocalPV which are real disks, and they need to be dynamically provisioned as the pods’ scale.
-- **Shared mode: **Elastic pods are using LocalPVs from shared storage for better capacity economics.
+- **Dedicated mode:** Elastic pods are using LocalPV which are real disks, and they need to be dynamically provisioned as the pods’ scale.
+- **Shared mode:** Elastic pods are using LocalPVs from shared storage for better capacity economics.
 
 Here is the detail on K8s static provisioners from [K8s documentation](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner)
 
