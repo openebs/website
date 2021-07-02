@@ -1,7 +1,7 @@
 ---
 title: Using OpenEBS to build a true on-premise container service
 author: Uma Mukkara
-author_info: Contributor at openebs.io, Co-founder& COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
+author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 tags: Aws Ebs, Container As A Service, Openebs, Persistent Storage, Kubernetes
 date: 28-02-2017
 excerpt: The top questions that could be lingering on the enterprise architect mind in an enterprise are

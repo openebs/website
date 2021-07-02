@@ -1,7 +1,7 @@
 ---
 title: Rancher’s Longhorn announcement solidifies the OpenEBS story
 author: Uma Mukkara
-author_info: Contributor at openebs.io, Co-founder& COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
+author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 tags: Docker, Openebs, Rancher, Stateful Applications, Longhorn
 date: 18-04-2017
 excerpt: Today, Sheng Liang unveiled project Longhorn as a new way to build distributed block storage for cloud and container-based platform.
