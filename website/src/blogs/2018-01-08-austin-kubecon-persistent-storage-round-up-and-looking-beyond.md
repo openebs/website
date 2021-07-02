@@ -18,7 +18,7 @@ This rather has become a long post as I drafted it and incorporated feedback fro
 
 Kubernetes Clusters are up and running at the [push of a button](https://twitter.com/muratkarslioglu/status/941399154714066944) or even better by [talking to your favorite bot](https://www.youtube.com/watch?v=07jq-5VbBVQ).
 
-![](https://cdn-images-1.medium.com/max/800/1*oz5esyJvsb5zBIaoyDKUeQ.png)
+![Push a button](https://cdn-images-1.medium.com/max/800/1*oz5esyJvsb5zBIaoyDKUeQ.png)
 
 source: Containerized Storage for Containers — session at Kubernetes Meetup [https://t.co/tdQaOue5w8](https://t.co/tdQaOue5w8)
 
@@ -28,7 +28,9 @@ If you were at KubeCon, you would have definitely been caught up in or at least 
 
 _Every Technology and Cloud Service Provider are now providing or planning to provide a container service using Kubernetes and almost every infrastructure provider is looking at putting themselves on the map of Kubernetes._
 
-![](https://cdn-images-1.medium.com/max/800/1*YJIF6xBEPL1WpVgOK4VV0Q.png)[https://raw.githubusercontent.com/cncf/landscape/master/landscape/CloudNativeLandscape_latest.png](https://raw.githubusercontent.com/cncf/landscape/master/landscape/CloudNativeLandscape_latest.png)
+![Cloud Native Landscape](https://cdn-images-1.medium.com/max/800/1*YJIF6xBEPL1WpVgOK4VV0Q.png)
+
+[https://raw.githubusercontent.com/cncf/landscape/master/landscape/CloudNativeLandscape_latest.png](https://raw.githubusercontent.com/cncf/landscape/master/landscape/CloudNativeLandscape_latest.png)
 
 And why not!
 
@@ -104,7 +106,7 @@ At the moment, the focus for CSI is on (simplifying a bit) provisioning and de-p
 
 Coming from a operational background, for me to consider using CSI to connect with external storage systems, CSI requires to evolve and include API for Day 2+ Operational Usecases that involve — ease of debugging, snapshots, backups, migration and most importantly, a unified monitoring system of the Kubernetes Clusters and the Storage Systems.
 
-Don;t get me wrong. We need storage, lots and lots of it and it will be served from external storage systems — cloud (EBS, GPD, etc., ) or on-premise SAN/NAS products. But these external storage systems weren’t designed to be used for micro-services environment but rather to provide volumes to Nodes (physical or virtual) that are long running and are not subject to rapid connects, disconnects and migrations.
+Don't get me wrong. We need storage, lots and lots of it and it will be served from external storage systems — cloud (EBS, GPD, etc., ) or on-premise SAN/NAS products. But these external storage systems weren’t designed to be used for micro-services environment but rather to provide volumes to Nodes (physical or virtual) that are long running and are not subject to rapid connects, disconnects and migrations.
 
 _I believe in the long run we will be using CSI with these external storage for what they were designed for — mainly to provision storage to the nodes rather than Pods._
 
@@ -143,7 +145,8 @@ KubeCon showcased a demo of launching [glusterfs in containers](https://schd.ws/
 To be container native storage, the storage software needs to be broken down into micro-services, just like how Kubernetes runs using micro-services. There has to be greater flexibility provided to the developers and operations to run seamlessly on their choice of hardware!
 
 OpenEBS does just that! OpenEBS provides all the enterprise grade storage features by its open-source containers that can run anywhere. _No kernel dependencies and vendor lock-in._ A typical data path using the OpenEBS Containers is as follows:
-![](https://cdn-images-1.medium.com/max/800/1*Ifsa-k-q4EnO7Fpg7E6jLA.png)
+
+![Stateful Apps using OpenEBS Volumes](https://cdn-images-1.medium.com/max/800/1*Ifsa-k-q4EnO7Fpg7E6jLA.png)
 
 [https://github.com/openebs/openebs/blob/master/contribute/design/OpenEBS%20Architecture%20and%20Design.pdf](https://github.com/openebs/openebs/blob/master/contribute/design/OpenEBS%20Architecture%20and%20Design.pdf)
 

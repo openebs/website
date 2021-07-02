@@ -17,7 +17,7 @@ Being an active member of the OpenEBS Slack channel and from the usage statistic
 
 KubeCon EU 19, was by far the most interesting for me — to interact with some of the above users who are already running OpenEBS in production or in the process of evaluation. For those of you, curious about the kind of views expressed from users and the partner community about OpenEBS and Kubernetes Storage at large, here are some interesting ones:
 
-**Feedback from Users running OpenEBS in production. **The choice to adopt OpenEBS was made after evaluating and comparing other available solutions as can be seen from several stories shared by the users:
+**Feedback from Users running OpenEBS in production.** The choice to adopt OpenEBS was made after evaluating and comparing other available solutions as can be seen from several stories shared by the users:
 
 ![User feedback about adoption of OpenEBS](/images/blog/slack-snnipets.png)
 

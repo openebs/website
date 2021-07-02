@@ -29,17 +29,17 @@ To know about the OpenEBS visit: [https://docs.openebs.io/docs/next/introduction
 
 - To install docker run these commands
 
-```
-sudo apt-get update
-sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository \
-  "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-  $(lsb_release -cs) \
-  stable"
-sudo apt-get update
-sudo apt-get install docker.io
-```
+  ```
+  sudo apt-get update
+  sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) \
+    stable"
+  sudo apt-get update
+  sudo apt-get install docker.io
+  ```
 
 - Or you can visit the official docker website to install docker
 
@@ -49,11 +49,11 @@ sudo apt-get install docker.io
 
 - To install open-iscsi package run these commands
 
-```
-sudo apt-get update
-sudo apt-get install open-iscsi
-sudo service open-iscsi restart
-```
+  ```
+  sudo apt-get update
+  sudo apt-get install open-iscsi
+  sudo service open-iscsi restart
+  ```
 
 3. **Golang**
 
@@ -63,26 +63,26 @@ sudo service open-iscsi restart
 
 - To install minikube, run these commands:
 
-```
-# minikube requires virtualbox to be installed as a dependency
+  ```
+  # minikube requires virtualbox to be installed as a dependency
 
-sudo apt-get install virtualbox virtualbox-ext-pack
-sudo apt-get update
+  sudo apt-get install virtualbox virtualbox-ext-pack
+  sudo apt-get update
 
-# minikube version 0.24.0
+  # minikube version 0.24.0
 
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.24.0/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
-```
+  curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.24.0/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+  ```
 
 5. **Kubectl**.
 
 - Run these commands to install Kubectl:
 
-```
-curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.8.0/bin/linux/amd64/kubectl
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
-```
+  ```
+  curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.8.0/bin/linux/amd64/kubectl
+  chmod +x ./kubectl
+  sudo mv ./kubectl /usr/local/bin/kubectl
+  ```
 
 ### How do I run mayactl in a local machine for development purposes?
 
@@ -134,32 +134,32 @@ kubectl apply -f openebs-storageclasses.yaml
 
 - To get the pods, run this command:
 
-```
-kubectl get pods
-NAME READY STATUS RESTARTS AGE
-maya-apiserver-7b8d5496cc-kgmnn 1/1 Running 0 3m
-openebs-provisioner-6797d44769-phnnc 1/1 Running 2 3m
-```
+  ```
+  kubectl get pods
+  NAME READY STATUS RESTARTS AGE
+  maya-apiserver-7b8d5496cc-kgmnn 1/1 Running 0 3m
+  openebs-provisioner-6797d44769-phnnc 1/1 Running 2 3m
+  ```
 
 7. To run/access mayactl, you will need to login/execute into the maya-apiserver pod on Kubernetes.
 
 - Find out the name of the maya api-server pod by running the following commands:
 
-```
-kubectl get pods
+  ```
+  kubectl get pods
 
-# It will access the bash shell inside the pod
+  # It will access the bash shell inside the pod
 
-kubectl exec -it <maya-apiserver-podname> /bin/bash
-```
+  kubectl exec -it <maya-apiserver-podname> /bin/bash
+  ```
 
 8. Now you can run all mayactl commands as you are inside the maya-apiserver pod.
 
 - Try running these commands after exececute/login into the pod.
 
-```
-mayactl -help
-```
+  ```
+  mayactl -help
+  ```
 
 Go through the issues ([https://github.com/openebs/maya/issues](https://github.com/openebs/maya/issues)) and start modifying the mayactl code, located in $GOPATH/src/github.com/openebs/maya/cmd/mayactl, and start contributing to OpenEBS. Also, you can start contributing by writing a small unit test code in mayactl. For every PR you raise, you will also receive goodies from the OpenEBS team. 😃
 
@@ -194,9 +194,9 @@ cd /tmp/
 
 - To run that binary, use the following command:
 
-```
-./mayactl -help
-```
+  ```
+  ./mayactl -help
+  ```
 
 Now you can easily see the changes you made in the mayactl command line tool. You are also now ready to raise the PR’s. 😃
 

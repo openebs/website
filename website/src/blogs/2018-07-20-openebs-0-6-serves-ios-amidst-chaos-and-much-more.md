@@ -26,7 +26,7 @@ The timing of OpenEBS 0.5 was perfect in that it coincided with a take-off in in
 - Here we are seeing hundreds of pods with stateful workloads spun up and destroyed repeatedly — really a great use case for container attached storage
 - Running Minio on OpenEBS which some users have called a happy marriage between OpenEBS block and Minio S3
 - We remain huge fans of Minio and are looking forward to more community led collaboration with our almost neighbors
-- OpenEBS being deployed as a basic part of DBs on kubernetes; in particular we are seeing a good amount of NuoDB on OpenShift for example
+- OpenEBS being deployed as a basic part of DBs on Kubernetes; in particular we are seeing a good amount of NuoDB on OpenShift for example
 - The elastic SQL technology of NuoDB seems to resonate with lots and lots of users; we’re pretty proud that using OpenEBS underneath is becoming a common pattern
 - And of course many Containers as a Service offerings now include OpenEBS as a default option with more to be announced shortly
 

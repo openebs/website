@@ -9,7 +9,7 @@ excerpt: Ever so often, developers and devops engineers building or managing sta
 
 This article belongs to a #HowDoI series on Kubernetes and Litmus
 
-Ever so often, developers and devops engineers building or managing stateful applications on Kubernetes are on the lookout for for suitable storage options which serves their application’s specific needs. The emphasis could be on high-availability, provisioning ease, performance etc.., **Litmus **(as detailed in this [article](https://blog.openebs.io/litmus-release-a-chaos-monkey-on-your-kubernetes-stateful-workloads-6345e01b637d)), is an attempt to arm them with the necessary info to make the right choice. One of the important storage tests is to simulate application workloads or multiply its effect using synthetic workload generators like fio. In this article, we list the steps to run a fio-based benchmark test using litmus
+Ever so often, developers and devops engineers building or managing stateful applications on Kubernetes are on the lookout for for suitable storage options which serves their application’s specific needs. The emphasis could be on high-availability, provisioning ease, performance etc.., **Litmus** (as detailed in this [article](https://blog.openebs.io/litmus-release-a-chaos-monkey-on-your-kubernetes-stateful-workloads-6345e01b637d)), is an attempt to arm them with the necessary info to make the right choice. One of the important storage tests is to simulate application workloads or multiply its effect using synthetic workload generators like fio. In this article, we list the steps to run a fio-based benchmark test using litmus
 
 ![Evaluating storage performance w/ Litmus](https://cdn-images-1.medium.com/max/800/1*zRIZ9WjL7S0wq6Sp_IbzCw.png)
 
@@ -254,9 +254,9 @@ The fio results are captured in JSON format with job-specific result sections. B
 
 ## CONCLUSION
 
-How is this different from doing an fio package installation on the kubernetes nodes and running tests?
+How is this different from doing an fio package installation on the Kubernetes nodes and running tests?
 
-- Running an fio kubernetes job will offer better control to simulating actual application loads when used with resource limits.
+- Running an fio Kubernetes job will offer better control to simulating actual application loads when used with resource limits.
 - The litmus fio jobs with various profiles can be included as part of a larger suite using the executor framework, thereby obtaining results for different profiles.
 - Litmus (as it continues to mature) will provide jobs that perform Chaos tests against storage while running different types of workloads. Running a fio job lends itself to that model.
 - Finally, it is a more “Kubernetes” way of doing things!

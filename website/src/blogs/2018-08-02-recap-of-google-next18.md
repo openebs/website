@@ -35,7 +35,7 @@ Knative, Cloud Build, and CD are other significant solutions announced at Next�
 
 ### **A new cloud availability zone, this time in your datacenter — which might be in your garage**
 
-At first,** GKE on-prem** got me interested. But, after talking to a few Google Cloud Experts again, I felt it’s very early to be seriously considered. You can read others’ thoughts here on [Hacker News](https://news.ycombinator.com/item?id=17602555).
+At first, **GKE on-prem** got me interested. But, after talking to a few Google Cloud Experts again, I felt it’s very early to be seriously considered. You can read others’ thoughts here on [Hacker News](https://news.ycombinator.com/item?id=17602555).
 
 ![Discussions on GKE on-prem](https://lh5.googleusercontent.com/q_0yHazRpRZ9bLptYCw1_GQsmdM8TpbM7xXmZ8nL8nejR3uhVg79bvJokA_BrQ91VfzYYl8OLtQ1Evl5VNJqDwJM3EKwqKFsn_jr99N91hCEa1lkazjMZE3aphRbr21LEc0atqTr)
 
@@ -139,6 +139,6 @@ Thanks for reading and for any feedback.
 
 ### **Check-out the popular hashtags :**
 
-[#next18](https://twitter.com/search?q=next18)[#googlenext18](https://twitter.com/search?q=googlenext18)[#knative](https://twitter.com/search?q=knative)[#kubernetes](https://twitter.com/search?q=kubernetes)[#istiomesh](https://twitter.com/search?q=istiomesh)
+[#next18](https://twitter.com/search?q=next18) [#googlenext18](https://twitter.com/search?q=googlenext18) [#knative](https://twitter.com/search?q=knative) [#kubernetes](https://twitter.com/search?q=kubernetes) [#istiomesh](https://twitter.com/search?q=istiomesh)
 
 Also check out the keynotes:Keynotes from last week’s[ #GoogleNext18](https://twitter.com/hashtag/GoogleNext18?src=hash) here →[ http://g.co/nextonair](https://t.co/mVuwk0hw4i)

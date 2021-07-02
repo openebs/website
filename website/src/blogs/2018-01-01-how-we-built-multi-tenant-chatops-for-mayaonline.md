@@ -39,7 +39,7 @@ We kept a combination of slack **team_id**, **channel-id** as the key of the mul
 
 ![Chat Ops Architecture](/images/blog/bot-architecture.jpeg)
 
-With the above design Maya ChatOps allows users to configure different slack channels for different Kuberenetes clusters at MayaOnline.
+With the above design Maya ChatOps allows users to configure different slack channels for different Kubernetes clusters at MayaOnline.
 
 Next steps:
 

@@ -19,7 +19,7 @@ SPC Trusted Charts currently offers 23 solutions including databases, CI/CD, mon
 ### CI/CD
 
 - [Jenkins](https://jenkins-ci.org/)
-- [Gitlab Runner](https://docs.gitlab.com/runner/)
+- [GitLab Runner](https://docs.gitlab.com/runner/)
 - [Spinnaker](https://www.spinnaker.io/)
 
 ### Databases
