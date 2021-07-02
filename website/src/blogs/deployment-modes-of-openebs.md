@@ -16,4 +16,4 @@ In the hyper-converged mode, OpenEBS Maya hooks into the K8s master and minions,
 
 ![](https://cdn-images-1.medium.com/max/800/1*MAbRf5rJfv8w_OvZz02q7g.png)*(OpenEBS — Dedicated mode)*
 
-In both modes,Flannel plays an important role in OpenEBS deployment for storage networking. A lot of issues are yet to be discovered in this area.. yes, this is just a start.
+In both modes, Flannel plays an important role in OpenEBS deployment for storage networking. A lot of issues are yet to be discovered in this area.. yes, this is just a start.
