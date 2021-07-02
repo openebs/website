@@ -14,7 +14,7 @@ StackPointCloud (SPC) introduced a concept of Trusted Charts, a list of validate
 
 Previously, I wrote about few different ways of getting OpenEBS up and running on different cloud vendors. Using Helm Chart is one of the available options to deploy OpenEBS. OpenEBS Helm Charts were available since v.5.0 both on [Github](https://github.com/openebs/openebs/tree/master/k8s/charts/openebs) and as a [packaged chart](https://openebs.github.io/charts/). Recently SPC included OpenEBS into their Trusted Charts repo and made it one-click easy for its customers.
 
-SPC Trusted Charts currently offer 23 solutions including databases, CI/CD, monitoring, storage and ingress solutions. Here is the list of Trusted Charts:
+SPC Trusted Charts currently offers 23 solutions including databases, CI/CD, monitoring, storage and ingress solutions. Here is the list of Trusted Charts:
 
 ### CI/CD
 
@@ -123,7 +123,7 @@ From the list above select **OpenEBS**.
 
 ![OpenEBS namespace](https://cdn-images-1.medium.com/max/800/0*CJkPrkJCS9Fp_GXu.png)
 
-**Release Name** is randomly generated every time. If you want to use OpenEBS example workloads provided in OpenEBS repos without any modification then use `default`as **NameSpace**. Otherwise, you need to modify the namespace for workloads you deploy and make sure to use the same name.
+**Release Name** is randomly generated every time. If you want to use OpenEBS example workloads provided in OpenEBS repos without any modification then use `default` as **NameSpace**. Otherwise, you need to modify the namespace for workloads you deploy and make sure to use the same name.
 
 Click on **Install** to deploy OpenEBS on your cluster.
 
