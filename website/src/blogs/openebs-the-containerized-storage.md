@@ -1,7 +1,7 @@
 ---
 title: OpenEBS — The containerized storage
 author: Uma Mukkara
-author_info: Contributor at openebs.io, Co-founder& COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
+author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 slug: openebs-the-containerized-storage
 date: 01-01-2017
 tags: DevOps, Docker, Kubernetes, Rancher, Golang, Openebs
@@ -13,7 +13,7 @@ In the infrastructure space, the compute environment is always the first to lead
 
 I am excited to write the first details on OpenEBS ([www.openebs.io](http://www.openebs.io/)) project.
 
-After 4 amazing years on building commercial storage products, I recently took a giant leap into the open source model of building infrastructure software. We recently launched OpenEBS project with the goal of building the developer friendly storage using coolest available infrastructure pieces underneath .. be it Docker, k8s, Rancher LongHorn, Nomad, Terraform etc.
+After 4 amazing years of building commercial storage products, I recently took a giant leap into the open source model of building infrastructure software. We recently launched OpenEBS project with the goal of building the developer friendly storage using coolest available infrastructure pieces underneath .. be it Docker, k8s, Rancher LongHorn, Nomad, Terraform, etc.
 
 ## So, what is OpenEBS, in short ?
 
@@ -29,7 +29,7 @@ Simple answer is that even the storage volumes have software associated with the
 
 ![Monolithic vs Containerized Storage](https://cdn-images-1.medium.com/max/800/1*OoQnpEsGf_ovb5BFnGI8hA.jpeg)
 
-When software upgrades happen at storage host level, all volumes behavior will change simultaneously, which may not be the desired result. Similarly, upgrade maintenance windows may not be same for all applications or storage volumes. We often observe that it is very difficult to get a convenient window that satisfies all storage volumes or associated applications..
+When software upgrades happen at storage host level, all volumes' behavior will change simultaneously, which may not be the desired result. Similarly, upgrade maintenance windows may not be the same for all applications or storage volumes. We often observe that it is very difficult to get a convenient window that satisfies all storage volumes or associated applications.
 
 With containerized storage, storage upgrades becomes simple and easy, just like application upgrades with Docker containers.
 
@@ -41,9 +41,9 @@ Kubernetes, Docker swarm, Rancher cattle, Nomad and other orchestration platform
 
 ## The building blocks of high performing, distributed block storage:
 
-***Rancher longhorn*:** We chose to adopt and enhance Rancher longhorn as the basic building block of storage block intelligence in OpenEBS. I will write a separate blog about what is longhorn, it’s features and why we chose longhorn, but in short, longhorn employs a clever and simple approach to container data connectivity, data availability (replication), data protection (snapshot). And longhorn is written in GoLang.
+***Rancher longhorn:*** We chose to adopt and enhance Rancher longhorn as the basic building block of storage block intelligence in OpenEBS. I will write a separate blog about what is longhorn, it’s features and why we chose longhorn, but in short, longhorn employs a clever and simple approach to container data connectivity, data availability (replication), data protection (snapshot). And longhorn is written in GoLang.
 
-***Gostor gotgt*: **One of the initial front ends for OpenEBS is of course the iSCSI. We chose gostor/gotgt as a good starting point. OpenEBS plans to add many new capabilities to gotgt like clustering support, performance optimizations etc.
+***Gostor gotgt:*** One of the initial front ends for OpenEBS is of course the iSCSI. We chose gostor/gotgt as a good starting point. OpenEBS plans to add many new capabilities to gotgt like clustering support, performance optimizations etc.
 
 ***Bulk Caching layer through NVMe:*** The caching layer that we see in traditional storage systems is usually small in size. The recent advancements in flash technology made it possible to offer large capacities of flash at affordable prices. Now cost is not a deterrent to have terabytes of low latency flash storage. OpenEBS provides an intelligent caching technology which keeps the hot data in the large NVMe flash layer. Intel’s 3d XPoint is a good fit for this technology.
 

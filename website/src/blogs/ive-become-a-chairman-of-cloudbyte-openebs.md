@@ -1,7 +1,7 @@
 ---
 title: I’ve become a Chairman — of CloudByte / OpenEBS
 author: Evan Powell
-author_info:Founding CEO of a few companies including StackStorm (BRCD) and Nexenta — and CEO & Chairman of OpenEBS/MayaData. ML and DevOps and Python, oh my!
+author_info: Founding CEO of a few companies including StackStorm (BRCD) and Nexenta — and CEO & Chairman of OpenEBS/MayaData. ML and DevOps and Python, oh my!
 date: 04-01-2017
 tags: DevOps, Docker
 excerpt: I’m excited to announce that I recently joined CloudByte, a developer of storage solutions for enterprises and service providers and the originator of the new OpenEBS project.
@@ -31,7 +31,7 @@ This existing customer set — and their increasing commitments as confirmed by 
 
 ## 3. **Team time!**
 
-Most importantly, as I’ve come to know the CloudByte team I’ve formed a commitment to them and their vision for the kind of company we can build. I feel honored to support our CEO and co-founder Uma — he’s brilliant, he is stubborn, and he is relentlessly making real a vision for what storage can be — as an **enabler** of the shift towards cloud native and devops as opposed to an **inhibitor**. It didn’t hurt that the new board hit it off immediately and that Raj from Fidelity / EightRoads and Sandeep from Nexus have great entrepreneur-friendly reputations as well as massive funds supporting them.
+Most importantly, as I’ve come to know the CloudByte team I’ve formed a commitment to them and their vision for the kind of company we can build. I feel honored to support our CEO and co-founder Uma — he’s brilliant, he is stubborn, and he is relentlessly making real a vision for what storage can be — as an **enabler** of the shift towards cloud native and DevOps as opposed to an **inhibitor**. It didn’t hurt that the new board hit it off immediately and that Raj from Fidelity / EightRoads and Sandeep from Nexus have great entrepreneur-friendly reputations as well as massive funds supporting them.
 
 There will be much more to come as we share our thoughts about strategy and, maybe more importantly, as [OpenEBS](http://www.openebs.io/) community members lay out what they’d like to see in containerized storage.
 

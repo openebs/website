@@ -31,7 +31,7 @@ Additionally, OpenEBS can do [synchronous replication](https://docs.openebs.io/d
 Ok, let’s get started!
 
 **Prerequisites**
-![](/images/blog/yugabyte-work-flow.png)
+![Yugabyte work flow](/images/blog/yugabyte-work-flow.png)
 
 
 Using the latest and greatest versions of the available software (as of this blog’s writing), below is the environment which we’ll use to run a YugabyteDB cluster on top of a Google Kubernetes Engine (GKE) cluster backed by OpenEBS
@@ -51,7 +51,7 @@ For the purposes of this demo, I used the Google Cloud Console to configure my K
 - **Series:** N1
 - **Machine Type: **n1-standard-4 (4 vCPU, 15 GB memory)
 
-![](/images/blog/yugabyte-nodes.png)
+![Yugabyte nodes](/images/blog/yugabyte-nodes.png)
 
 
 Click *Create* and wait for the Kubernetes cluster to come online.
@@ -250,12 +250,12 @@ You can also access the basic YugabyteDB web admin portal at:
 
 *http://<yb-master-ui-endpoint>:7000*
 
-![](/images/blog/yugabyte-master.png)
+![Yugabyte master](/images/blog/yugabyte-master.png)
 
 **Viewing Services and Ingress**
 A quick and visual way to check out all the services and ingress is to go to the “Services and Ingress” view in the Google Cloud Console. If you’ve made it this far you should see something like this:
 
-![](/images/blog/yugabyte-ingress.png)
+![Yugabyte ingress](/images/blog/yugabyte-ingress.png)
 
 Note: I have omitted the “Endpoints” column from the screenshot above, but in your view you’ll be able to see the IPs and ports of the various endpoints.
 

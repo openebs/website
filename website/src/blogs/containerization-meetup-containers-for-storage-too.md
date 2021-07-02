@@ -1,7 +1,7 @@
 ---
-title: "Containerization meetup: Containers for storage too"
+title: Containerization meetup - Containers for storage too
 author: Uma Mukkara
-author_info: Contributor at openebs.io, Co-founder& COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
+author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 date: 15-01-2017
 tags: Containerized Storage, Docker, Kubernetes, Openebs, Storage Containerization
 excerpt: I had the opportunity to talk to a very good group of technologists, DevOPs users in the Digital Ocean Containerization Meetup . Docker 1.13 details and Kubernetes deployment tips were fantastics.
@@ -23,7 +23,7 @@ OpenEBS uses or builds on:
 - Consul — for the cluster db
 - Flannel — for the container networking needs. We use the flannel’s intelligence for picking up the IP addresses for VSMs automatically, VLANS and other networking stuff. The database portion of flannel is not needed as OpenEBS has the centralized config db for Maya (consul implementation)
 
-![](/images/blog/containerization-meetup-building-blocks.png)OpenEBS Building Blocks and Integration
+![OpenEBS Building Blocks and Integration](/images/blog/containerization-meetup-building-blocks.png)
 As far as the integration points of OpenEBS are concerned, the provisioning in integrated into k8s. The provisioning of the OpenEBS can be done through the [K8s iSCSI volume interface](https://kubernetes.io/docs/user-guide/volumes/#iscsi) or through the [K8s AWS EBS interface](https://kubernetes.io/docs/user-guide/volumes/#awselasticblockstore). Yes, OpenEBS exposes AWS EBS API. Any orchestration layer or application that knows to connect to and use AWS EBS, will work with OpenEBS.
 
 As we progress from this early stage, we look forward to work closely with the Docker and k8s user communities.
