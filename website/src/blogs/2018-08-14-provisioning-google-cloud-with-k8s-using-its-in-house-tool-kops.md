@@ -17,30 +17,30 @@ These items are required to deploy the production-ready k8s cluster in GCP:
 
 - **KOPS**
 
-```
-wget -O kops
-https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
+  ```
+  wget -O kops
+  https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-linux-amd64
 
-chmod +x ./kops
+  chmod +x ./kops
 
-sudo mv ./kops /usr/local/bin/
-```
+  sudo mv ./kops /usr/local/bin/
+  ```
 
 - **GCloud**
 
-[https://cloud.google.com/sdk/](https://cloud.google.com/sdk/)
+  [https://cloud.google.com/sdk/](https://cloud.google.com/sdk/)
 
-Once you are done installing GCloud SDK, you must run _gcloud init_. This will configure your gcloud with your existing GCP project.
+  Once you are done installing GCloud SDK, you must run _gcloud init_. This will configure your gcloud with your existing GCP project.
 
 - **kubectl**
 
-From the [official kubernetes kubectl release:](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+  From the [official kubernetes kubectl release:](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
-```
-wget -O kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
-chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin/kubectl
-```
+  ```
+  wget -O kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
+  chmod +x ./kubectl
+  sudo mv ./kubectl /usr/local/bin/kubectl
+  ```
 
 - A little patience …
 
