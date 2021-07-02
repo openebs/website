@@ -59,6 +59,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginRight: theme.spacing(1),
     width: '48px',
     height: '48px',
+    '& .MuiAvatar-root':{
+      width: '100%',
+      height: '100%'
+    },
     [theme.breakpoints.down('xs')]: {
       margin: 'auto'
     },
