@@ -58,11 +58,8 @@ To understand the performance of the device we will be using throughout the test
     rw=randrw
     stonewall
 
-<<<<<<< HEAD
 ![Mayastor NVME](/images/blog/mayastor-nvme1.png)
-=======
-![mayaStor nvme](/images/blog/mayastor-nvme1.png)
->>>>>>> 303b23a (formatting and image alt texts)
+
 These numbers are incredibly high and are provided by a ***single*** device. Note that the benchmark itself is rather synthetic in the sense that, in practice, no workload is 100% random.
 
 ## High-level overview of the experiments
