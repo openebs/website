@@ -46,7 +46,7 @@ The current state of the 3 data engines supported by OpenEBS are as follows:
 
 Additional details and how each of the Data engines operate are provided in this [Presentation](https://docs.google.com/presentation/d/1mjOkAQppyd23sw7PIryxu5kSrex352bT6bINzw6mUFY/edit?usp=sharing)
 
-![](/images/blog/2019/05/cas-example-openebs-cstor-volume.png)OpenEBS cStor Volume
+![OpenEBS cStor Volume](/images/blog/2019/05/cas-example-openebs-cstor-volume.png)
 
 **Standard Specifications or API:** Standardization is achieved by architecting OpenEBS as a set of microservices using Kubernetes Custom Resources and Operator patterns. The same set of tooling used to manage the applications — like Helm, Prometheus, and Grafana — can also be used to manage OpenEBS itself. The configuration of OpenEBS is completely controlled via YAMLs (Custom Resources) and volumes are provisioned via the Kubernetes Dynamic Provisioners, Storage Classes and Persistent Volume Claims.
 

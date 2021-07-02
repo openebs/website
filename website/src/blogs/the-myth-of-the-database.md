@@ -22,7 +22,7 @@ As has been explained by Zhamak Deghani of ThoughtWorks in her excellent blog Ho
 
 Typically this pattern can be easily identified when chatting with a larger user of OpenEBS when we ask “so, what DBs and other stateful workloads like logging systems are you running?”
 
-If they give us an answer such as MySql, Prometheus, one of the 438 new SQL projects* and maybe Elastic and then *stop* — then we know they are either early in their Kubernetes deployment or that IT still runs the show. As such they may not be a great fit for doing the work necessary to achieve the data agility that comes from containerizing and distributing your data and data management in a cloud native and cloud agnostic way.
+If they give us an answer such as MySql, Prometheus, one of the 438 new *SQL projects* and maybe Elastic and then *stop* — then we know they are either early in their Kubernetes deployment or that IT still runs the show. As such they may not be a great fit for doing the work necessary to achieve the data agility that comes from containerizing and distributing your data and data management in a cloud native and cloud agnostic way.
 
 Conversely if their reply to the question is to sort of look at us like that’s an *interesting* question — and reply by saying “pretty much all of them — whatever the teams need” then we are off and running — we’ve found a kindred spirit and we typically dig into a discussion covering all sorts of topics such as:
 
@@ -69,4 +69,4 @@ So if you think that disaggregation and distributed control and responsibility a
 
 I hope to see you there. [https://openebs.io/join-our-slack-community](https://openebs.io/join-our-slack-community)
 
-![](https://cdn-images-1.medium.com/max/800/1*L1XVBW58MDn_wksYj2nKgg.png)
+![Join OpenEBS channel](https://cdn-images-1.medium.com/max/800/1*L1XVBW58MDn_wksYj2nKgg.png)

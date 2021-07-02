@@ -68,7 +68,7 @@ We need some private variables, where we can store the credentials and push it t
 
 Inside Travis, go to (****settings > Environment Variables****) to set the private env
 
-![](/images/blog/2020/02/111.png)
+![Environment variables](/images/blog/2020/02/111.png)
 
 ### Lifecycle 2 :
 
@@ -180,7 +180,9 @@ Below is the what the config will look like
           popd
 
 Wow! We have successfully completed all the steps. Now, our setup is ready to build and push the helm chart to the registry.
-![](/images/blog/2020/02/0_BbWrwzeivY6Qkcgu.png)
+
+![Project Dashboard](/images/blog/2020/02/0_BbWrwzeivY6Qkcgu.png)
+
 Here is the full Travis file
 [https://gist.github.com/inyee786/d779f347d7fa272aed4ee8457182af35.js](https://gist.github.com/inyee786/d779f347d7fa272aed4ee8457182af35.js)
 

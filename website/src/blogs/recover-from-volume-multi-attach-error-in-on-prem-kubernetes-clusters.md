@@ -23,49 +23,47 @@ I will demonstrate the approach of removing the node resource as a safe way to r
 
 ## **Problem**
 
-### **1. Start with a Stateful application:**
-
-I have a three node cluster with k8s version 1.15.3, to reproduce the
-Volume multi-attach error scenario. Deployed OpenEBS version 1.3, using cstor csi based volume and mounted to Percona pod scheduled in node csi-node2.mayalabs.io.
-
+1. ### Start with a Stateful application:
+    I have a three node cluster with k8s version 1.15.3, to reproduce the Volume multi-attach error scenario. Deployed OpenEBS version 1.3, using cstor csi based volume and mounted to Percona pod scheduled in node csi-node2.mayalabs.io.
+    ```
     $ kubectl get nodes
     NAME                     STATUS     ROLES    AGE   VERSION
     csi-master.mayalabs.io   Ready      master   39d   v1.15.3
     csi-node1.mayalabs.io    Ready      none   39d   v1.15.3
     csi-node2.mayalabs.io    Ready      none   39d   v1.15.3
     csi-node3.mayalabs.io    Ready      none   39d   v1.15.3
-    
+
 
     $ kubectl get pvc
     NAME                     STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS               AGE
     demo-csi-vol-claim   Bound    pvc-b39248ab-5a99-439b-ad6f-780aae30626c   10Gi       RWO            openebs-csi-cstor-sparse   72m
-    
+
 
     $ kubectl get pods -owide
     NAME                       READY   STATUS    RESTARTS   AGE    NODE
     percona-6795d6fb68-pqvqh   1/1     Running   0          66m    csi-node2.mayalabs.io
-    
+    ```
 
-VolumeAttachment resource created only for volume attached to Node2 in case of CSI based persistent volumes
-
+    VolumeAttachment resource created only for volume attached to Node2 in case of CSI based persistent volumes
+    ```
     $ kubectl get volumeattachment
     NAME                                                                   ATTACHER                 PV                                         NODE                    ATTACHED   AGE
     csi-9f7704015b456f146ce8c6c3bd80a5ec6cc55f4f5bfb90c61c250d0b050a283c   openebs-csi.openebs.io   pvc-b39248ab-5a99-439b-ad6f-780aae30626c   csi-node2.mayalabs.io   true       66m
-    
+    ```
 
-### **2. Node ShutDown:**
+2. ### Node ShutDown:
 
-Shutting down kubelet service in Node2 as Percona application pod has been scheduled here, to make node `NotReady` state in the Kubernetes cluster.
+    Shutting down kubelet service in Node2 as Percona application pod has been scheduled here, to make node `NotReady` state in the Kubernetes cluster.
 
-    $ kubectl get nodes
-    NAME                     STATUS     ROLES    AGE   VERSION
-    csi-master.mayalabs.io   Ready      master   39d   v1.15.3
-    csi-node1.mayalabs.io    Ready      none   39d   v1.15.3
-    csi-node2.mayalabs.io    NotReady   none    5m   v1.15.3
-    csi-node3.mayalabs.io    Ready      none   37d   v1.15.3
-    
+        $ kubectl get nodes
+        NAME                     STATUS     ROLES    AGE   VERSION
+        csi-master.mayalabs.io   Ready      master   39d   v1.15.3
+        csi-node1.mayalabs.io    Ready      none   39d   v1.15.3
+        csi-node2.mayalabs.io    NotReady   none    5m   v1.15.3
+        csi-node3.mayalabs.io    Ready      none   37d   v1.15.3
+        
 
-In this case, the Percona pod will get stuck in a container creating a state with a multi-attach error.
+    In this case, the Percona pod will get stuck in a container creating a state with a multi-attach error.
 
 ## **Solution:**
 

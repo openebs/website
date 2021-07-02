@@ -7,7 +7,7 @@ tags: Localpv, Openebs
 date: 26-03-2020
 ---
 
-Before reading this post, please read my previous[ post](https://blog.openebs.io/openebs-dynamic-volume-provisioning-on-zfs-d8670720181d?__hstc=216392137.7dc0753f698b104ea002a16b84268b54.1580207831486.1580207831486.1580207831486.1&amp;__hssc=216392137.1.1580207831487&amp;__hsfp=818904025) for instructions on setting up the ZFS-LocalPV for dynamically provisioning the volumes on the ZFS storage. Here, we will focus on how we can resize the volumes provisioned by ZFS-LocalPV without restarting the application.
+Before reading this post, please read my previous [post](https://blog.openebs.io/openebs-dynamic-volume-provisioning-on-zfs-d8670720181d?__hstc=216392137.7dc0753f698b104ea002a16b84268b54.1580207831486.1580207831486.1580207831486.1&amp;__hssc=216392137.1.1580207831487&amp;__hsfp=818904025) for instructions on setting up the ZFS-LocalPV for dynamically provisioning the volumes on the ZFS storage. Here, we will focus on how we can resize the volumes provisioned by ZFS-LocalPV without restarting the application.
 
 ### **Prerequisite**
 
@@ -184,7 +184,7 @@ Check the volume size at the application size:
     tmpfs           3.9G   12K  3.9G   1% /run/secrets/kubernetes.io/serviceaccount
     tmpfs           3.9G     0  3.9G   0% /sys/firmware
 
-From above o/p we can see that the volume has been created of size 5Gi and it is attached to the application at the given mount point (/var/lib/mysql**).**
+From above o/p we can see that the volume has been created of size 5Gi and it is attached to the application at the given mount point (/var/lib/mysql).
 
 ### **Volume Resize**
 

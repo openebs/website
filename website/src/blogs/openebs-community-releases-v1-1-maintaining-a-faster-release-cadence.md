@@ -35,7 +35,7 @@ Getting back to OpenEBS 1.1. The major features, enhancements and bug fixes in t
 
 Perhaps the greatest highlight of this release is an increased involvement from OpenEBS user community pitching in with GitHub Issues as well as providing contributions.
 
-![](https://cdn-images-1.medium.com/max/800/1*hZ7FK18EK2_PfjdCJB2OTQ.png)
+![Giacomo Longo Message](https://cdn-images-1.medium.com/max/800/1*hZ7FK18EK2_PfjdCJB2OTQ.png)
 
 Here are some issues that were raised and fixed within the current release.
 

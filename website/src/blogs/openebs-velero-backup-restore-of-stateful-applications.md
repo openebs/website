@@ -22,7 +22,7 @@ The following are **challenges** in redesigning backup/restore of K8s applicatio
 - Snapshots of selected volumes rather than entire mount point/disk in hyper-converged infrastructure
 - K8s application deployment workflow to copy data during a restore whether using operators or another method
 
-In this blog, we will go through a backup/restore solution for ***OpenEBS ***with the help of ***Velero***. OpenEBS is leading open source container attached storage solution, and Velero is one of the most used open-source tools for backups in Kubernetes environments.
+In this blog, we will go through a backup/restore solution for ***OpenEBS*** with the help of ***Velero***. OpenEBS is leading open source container attached storage solution, and Velero is one of the most used open-source tools for backups in Kubernetes environments.
 
 ### **Backup/Restore solution**
 

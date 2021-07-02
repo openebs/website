@@ -25,7 +25,7 @@ OpenEBS like other cluster add-on services requires its pods to be executed with
 
 While running on OpenShift, we need to be aware of the security constraints available and to select the right security constraint for OpenEBS. There are 7 SCCs available.
 
-![](/images/blog/2019/05/0_nYHmjUbmME9DgkbN.png)Security Context Constraints (SCC) in OpenShift
+![Security Context Constraints (SCC) in OpenShift](/images/blog/2019/05/0_nYHmjUbmME9DgkbN.png)
 
 To have OpenEBS pods running in privileged mode, add the OpenEBS service account (openebs-maya-operator) to use the privileged SCC; OpenShift will take care of setting the correct permissions (or SELinux labels) to make the container run in privileged mode. Sample commands to do this:
 
@@ -137,7 +137,7 @@ You can skip this step if using the default cStor Sparse pool.
     kubectl get disks
 
 
-![](/images/blog/2019/05/0_2GZtoi5eEYaJjP-S.png)Disks detected by NDM, along with sparse disks
+![Disks detected by NDM, along with sparse disks](/images/blog/2019/05/0_2GZtoi5eEYaJjP-S.png)
 
 ****Step 3c****: Create a storage pool claim using the instructions at [https://docs.openebs.io/docs/next/configurepools.html](https://docs.openebs.io/docs/next/configurepools.html)
 

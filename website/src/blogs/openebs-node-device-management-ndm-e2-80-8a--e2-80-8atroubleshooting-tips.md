@@ -48,7 +48,7 @@ I have some disks attached to the node. Installed openebs, but blockdevice resou
 4. From lsblk output check if the blockdevice you want to use is an LVM/software raid/ partition/LUKS filesystem. NDM currently does not support these types.
 5. If none of the above works, the logs of NDM daemonset can be checked. It will have information of disk being detected , and at what point the disk was excluded from blockdevice creation, (like `excluded by path-filter`)
 
-![](https://cdn-images-1.medium.com/max/800/0*q8rBQFw284gRYqjg)
+    ![blockdevice creation](https://cdn-images-1.medium.com/max/800/0*q8rBQFw284gRYqjg)
 
 **Resolution:** Update the filter configuration in configmap and restart the NDM DaemonSet pod. This will create the blockdevices.
 

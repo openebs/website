@@ -11,7 +11,7 @@ date: 23-08-2019
 
 Using OpenEBS, administrators can easily manage local PV storage resources for ECK seamlessly across both on-premises and multiple clouds, simplifying ElasticSearch ECK scaling and resilience while finally delivering a completely declaratively-managed application stack. Let’s review how.
 
-**Good News: The recently shipped** [**Elastic Cloud on Kubernetes (ECK)**](https://www.elastic.co/blog/introducing-elastic-cloud-on-kubernetes-the-elasticsearch-operator-and-beyond)** delivers Elasticsearch clusters as native, distributed Kubernetes Operators. **Elasticsearch is a distributed, open source search and analytics engine for all types of data. Widely used, Elasticsearch is storage-intensive because it builds an inverted index of collections of JSON objects that are related to each other to allow very fast full-text searches. The result is a simplified deployment of ElasticSearch for the Kubernetes admins or SREs as well as a simplified developer experience.
+**Good News: The recently shipped** [**Elastic Cloud on Kubernetes (ECK)**](https://www.elastic.co/blog/introducing-elastic-cloud-on-kubernetes-the-elasticsearch-operator-and-beyond) delivers Elasticsearch clusters as native, distributed Kubernetes Operators. Elasticsearch is a distributed, open source search and analytics engine for all types of data. Widely used, Elasticsearch is storage-intensive because it builds an inverted index of collections of JSON objects that are related to each other to allow very fast full-text searches. The result is a simplified deployment of ElasticSearch for the Kubernetes admins or SREs as well as a simplified developer experience.
 
 **Bad News: ElasticSearch uses fast local storage but it does not address storage provisioning and management.** ECK use of the [static provisioner for Local ](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner)PV requires administrators to manually format, mount, and configure disks on Kubernetes nodes. This is a PITA, as they say.
 
@@ -24,24 +24,24 @@ Typically, ElasticSearch is deployed one of two ways:
 - **Dedicated mode:** Elastic pods are using LocalPV which are real disks, and they need to be dynamically provisioned as the pods’ scale.
 - **Shared mode:** Elastic pods are using LocalPVs from shared storage for better capacity economics.
 
-Here is the detail on K8s static provisioners from [K8s documentation](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner)
+  Here is the detail on K8s static provisioners from [K8s documentation](https://github.com/kubernetes-sigs/sig-storage-local-static-provisioner)
 
-*Note that the local storage provisioner is different from most provisioners and does not support dynamic provisioning. Instead, it requires that administrators preconfigure the local volumes on each node and if volumes are supposed to be*
+  *Note that the local storage provisioner is different from most provisioners and does not support dynamic provisioning. Instead, it requires that administrators preconfigure the local volumes on each node and if volumes are supposed to be*
 
 - *Filesystem volumeMode (default) PVs — mount them under discovery directories.*
 - *Block volumeMode PVs — create a symbolic link under discovery directory to the block device on the node.*
 
-*The provisioner will manage the volumes under the discovery directories by creating and cleaning up PersistentVolumes for each volume.*
+  *The provisioner will manage the volumes under the discovery directories by creating and cleaning up PersistentVolumes for each volume.*
 
-*This means a Kubernetes administrator must manually manage storage operations outside of the ECK operator itself. Specifically,*
+  *This means a Kubernetes administrator must manually manage storage operations outside of the ECK operator itself. Specifically,*
 
-*– Capacity resize of underlying volumes.*
+  *– Capacity resize of underlying volumes.*
 
-*– Capacity management of shared storage when deployed in shared mode.*
+  *– Capacity management of shared storage when deployed in shared mode.*
 
-*– Shifting of some of the data volumes from one node to another automatically in case a node has to be cordoned or drained.*
+  *– Shifting of some of the data volumes from one node to another automatically in case a node has to be cordoned or drained.*
 
-*– Move data to other Kubernetes clusters.*
+  *– Move data to other Kubernetes clusters.*
 
 **Note: insert administrator sweat equity here^.**
 
@@ -49,7 +49,7 @@ Here is the detail on K8s static provisioners from [K8s documentation](https://g
 
 An OpenEBS storage cluster, itself Kubernetes-native, simplifies and automates storage provisioning and management operations either on your data center or in the cloud (or spanning both!). OpenEBS provisioners use OpenEBS disk pool operators and built-in data management capabilities to dynamically provision LocalPVs in a host path or in a disk mode to ECK pods.
 
-![](https://cdn-images-1.medium.com/max/800/1*PHw4zrcvJF_w-VcTI90RbA.png)
+![Multiple elastic data nodes sharing a pool of disks for thim provisioning effect](https://cdn-images-1.medium.com/max/800/1*PHw4zrcvJF_w-VcTI90RbA.png)
 
 ### K8s Advantage: Declarative Data Plane
 

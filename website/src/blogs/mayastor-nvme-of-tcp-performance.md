@@ -58,7 +58,11 @@ To understand the performance of the device we will be using throughout the test
     rw=randrw
     stonewall
 
+<<<<<<< HEAD
 ![Mayastor NVME](/images/blog/mayastor-nvme1.png)
+=======
+![mayaStor nvme](/images/blog/mayastor-nvme1.png)
+>>>>>>> 303b23a (formatting and image alt texts)
 These numbers are incredibly high and are provided by a ***single*** device. Note that the benchmark itself is rather synthetic in the sense that, in practice, no workload is 100% random.
 
 ## High-level overview of the experiments
@@ -167,13 +171,21 @@ After creating the PVC, Mayastor’s control plane creates a CRD, “Mayastor Vo
     Events:       <none>
 
 ## Results single replica
-![Mayastor NVME](/images/blog/mayastor-nvme2.png)![Chart](https://lh5.googleusercontent.com/whpgDl_Id_oo4tUdl7RZDv-C1Uq2ZfvM6Eh7KXbwNkNTu5Mki14meunBgF1PMWMnWLoccSGgHqCfRKXgQpJTfQG42NaS0GkwWRCuNpWGh7znOhqQ94aJXiCODJkzNUs9-G2ucqMJ)
+
+![Table (% difference of Mayastor overhead)](/images/blog/mayastor-nvme2.png)
+
+![Chart](https://lh5.googleusercontent.com/whpgDl_Id_oo4tUdl7RZDv-C1Uq2ZfvM6Eh7KXbwNkNTu5Mki14meunBgF1PMWMnWLoccSGgHqCfRKXgQpJTfQG42NaS0GkwWRCuNpWGh7znOhqQ94aJXiCODJkzNUs9-G2ucqMJ)
+
 From the results we can see that we are very close to the performance of the local device. To be sure we can put it in the right perspective, the difference between the experiments here is that with the baseline, the workload was local. With repl=1 we use the same NVMe device but export it through our pool layer (and thus provide volume management), but also go over the network.
 
 ## Results 2 replicas (mirror)
 
 We are going to repeat the same test, this time, we will use two replicas. As we now have double the disks bandwidth, we expect to see that the read performance will go up. For writes, however, we actually expect a drop in performance, because we must do each write to both disks before we can acknowledge the IO.  Note that Mayastor does not cache - if you read the blog referenced above from Richard Elling you can learn why caching seems to be falling out of favor for use cases in which millions of IOPS are desired.
-![Mayastor NVME](/images/blog/mayastor-nvme3.png)![Chart](https://lh4.googleusercontent.com/GJ7c_cZ6vuDxd9-jAnU3XxAc8L0idA9sscz2JB5XVa0taj8v56H6MSIFB56XqPQzQsy_p49-yHlwhCB8SVjZ05YfT0oRdlFt0EMBze1IDrCioqWgtWypidK9fBpb9p3ULI19Dhfa)
+
+![Mayastor nvme](/images/blog/mayastor-nvme3.png)!
+
+[Chart](https://lh4.googleusercontent.com/GJ7c_cZ6vuDxd9-jAnU3XxAc8L0idA9sscz2JB5XVa0taj8v56H6MSIFB56XqPQzQsy_p49-yHlwhCB8SVjZ05YfT0oRdlFt0EMBze1IDrCioqWgtWypidK9fBpb9p3ULI19Dhfa)
+
 ## Wrapup
 
 With the above experiments, we have demonstrated that with OpenEBS Mayastor we have built a foundational layer that allows us to abstract storage in a way that Kubernetes abstracts compute. While doing so, the user can focus on what's important -- deploying and operating stateful workloads. 

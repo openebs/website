@@ -73,7 +73,7 @@ Currently, the chaos hub contains charts for Kubernetes chaos and OpenEBS chaos.
 
 The most simple use case of Litmus is application developers using Litmus in the development phase itself. Chaos Engineering has been limited to the Production environment, and lately, we are seeing this practice being adopted in CI pipelines. But with Litmus, chaos testing is possible during development as well. Like Unit Testing, Integration Testing, and Behavior-Driven Testing, Chaos Testing is a test philosophy for developers to carry out the negative test scenarios to test the resiliency of the code before the code is merged to the repository. Chaos testing can be appended very easily to the application, as shown below: Chaos testing can be appended very easily to the application, as shown below:
 
-![](https://cdn-images-1.medium.com/max/800/0*xT_x1Wd2TFyM2LfR.gif)
+![Cloud native api for Chaos engineering](https://cdn-images-1.medium.com/max/800/0*xT_x1Wd2TFyM2LfR.gif)
 
 Other use cases of Litmus are for inducing chaos in CI pipelines and production environments.
 

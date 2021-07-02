@@ -113,7 +113,7 @@ After applying the above YAML. This results in the provisioning of volumes with 
     mongo-persistent-storage-mongo-1   Bound    pvc-fcde1fde-65ee-48ab-8f79-b7c68edfb934   5Gi        RWO            openebs-csi-sc   5m29s
     mongo-persistent-storage-mongo-2   Bound    pvc-d94e5304-7f29-4d6c-b157-1e65f75511f1   5Gi        RWO            openebs-csi-sc   4m28s
 
-Now verify the size of the volume by exec into any one of the application pods. In below output **/dev/sde **is the persistent volume and it’s capacity is **5G**.
+Now verify the size of the volume by exec into any one of the application pods. In below output **/dev/sde** is the persistent volume and it’s capacity is **5G**.
 
     system@master$ kubectl exec -it mongo-0 -n mongo-ns -c mongo -- df -h
     Filesystem      Size  Used Avail Use% Mounted on
@@ -141,7 +141,7 @@ Expand the size of the PVC size by applying below command on all the StatefulSet
     
     kubectl patch pvc mongo-persistent-storage-mongo-2 -p '{ "spec": { "resources": { "requests": { "storage": "15Gi" }}}}' -n mongo-ns
 
-After patching the above PVCs **openebs-cstor-csi **plugin is responsible for performing the resize operation on cStor volume. Verify whether volumes are expanded successfully by performing the following commands
+After patching the above PVCs **openebs-cstor-csi** plugin is responsible for performing the resize operation on cStor volume. Verify whether volumes are expanded successfully by performing the following commands
 
     system@master:  kubectl get pvc -n mongo-ns
     NAME                               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS     AGE

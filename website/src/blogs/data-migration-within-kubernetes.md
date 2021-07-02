@@ -58,7 +58,7 @@ Interfere CVC to know on which node data exists. When we do `kubectl get cvc <PV
       - cspc-stripe-pool-6qkw
       - cspc-stripe-pool-pn9p
 
-From the above info CStorVolumeReplicas(CVR) are scheduled on cStor pools **cspc-stripe-pool-6qkw** and **cspc-stripe-pool-pn9p** from the **status.poolInfo** since above pools are on **e2e1-node1** and **e2e1-node2(**able to find node info from cspi output)sodata also will be available on the same node. Info under spec i.e **spec.policy.replicaPoolInfo** will convey where to schedule cStorVolumeReplicas.
+From the above info CStorVolumeReplicas(CVR) are scheduled on cStor pools **cspc-stripe-pool-6qkw** and **cspc-stripe-pool-pn9p** from the **status.poolInfo** since above pools are on **e2e1-node1** and **e2e1-node2** (able to find node info from cspi output)sodata also will be available on the same node. Info under spec i.e **spec.policy.replicaPoolInfo** will convey where to schedule cStorVolumeReplicas.
 
 To know more details of CVR we can get from `kubectl get cvr -n openebs`
 
@@ -71,9 +71,9 @@ To know more details of CVR we can get from `kubectl get cvr -n openebs`
 1. Scale the CStorVolumeReplica to the desired Node.
 2. Scale down the CStorVolumeReplicas from unwanted Node.
 
-**Step1:****Scale the CStorVolumeReplicas to the desired node**
+**Step1: Scale the CStorVolumeReplicas to the desired node**
 
-Get cStor pool name, which doesn’t have corresponding volume CVR in it and add it under **spec.policy.replicaPoolInfo **of CVC.
+Get cStor pool name, which doesn’t have corresponding volume CVR in it and add it under **spec.policy.replicaPoolInfo** of CVC.
 
 We can get pool name name which doesn’t have CVR in it by comparing outputs of `kubectl get cspi -n openebs -l openebs.io/cstor-pool-cluster=<cspc_name>` and `kubectl get cvc <pv_name> -o yaml` as stated inspect CVC. In this example CVR of volume pvc-d1b26676-5035-4e5b-b564-68869b023306 doesn’t not exist in cStor pool **cspc-stripe-pool-psz5.** After finding the pool name add it under **policy.replicaPoolInfo** list in CVC.
 
@@ -130,7 +130,7 @@ Note:
 
 Once the newly created CVR is marked as Healthy, then we can remove the unwanted pool name from Spec of CVC replicaInfo and save it. 
 
-In this example, I need to remove the data from the pool **cspc-stripe-pool-pn9p,** scheduled on **e2e1-node2.** Once the pool name is removed from CVC **spec.policy.replicaPoolInfo, **then corresponding CVR in that pool will be deleted. CVC will generate events and status of CVC also will be updated.
+In this example, I need to remove the data from the pool **cspc-stripe-pool-pn9p,** scheduled on **e2e1-node2.** Once the pool name is removed from CVC **spec.policy.replicaPoolInfo** ,then corresponding CVR in that pool will be deleted. CVC will generate events and status of CVC also will be updated.
 
 Events on CVR:
 

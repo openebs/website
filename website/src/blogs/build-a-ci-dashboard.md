@@ -63,7 +63,9 @@ Reference the .gitlab.yaml file
     
 
 ### Step 6: Build a CI dashboard
-![https://cdn-images-1.medium.com/max/800/1*RZEUR6sumkrI96tFgWFJqQ.png](https://lh4.googleusercontent.com/hoDf2G6VnpIhhkmkQXlF07ocFRm7bJjP5f1ZkA8TZCT6PXMOPkdCO966EecYpk7koCbHPKdMemOA3_kYz8M5qrvLevRDJPw2c0MfYn-yp-iLn4j-qV8wpwT_av2iBYBuMH-4EUeB)CI Dashboard
+
+![CI Dashboard](https://lh4.googleusercontent.com/hoDf2G6VnpIhhkmkQXlF07ocFRm7bJjP5f1ZkA8TZCT6PXMOPkdCO966EecYpk7koCbHPKdMemOA3_kYz8M5qrvLevRDJPw2c0MfYn-yp-iLn4j-qV8wpwT_av2iBYBuMH-4EUeB)
+
 Create a project called [Ci dashboard backend](https://github.com/openebs/ci-e2e-dashboard-go-backend) that will fetch the pipeline details from gitlab by accessing their API and exposing the same on different API after some enhancement. Create another project called [Ci dashboard](http://github.com/openebs/ci-e2e-dashboard) that will display the gitlab pipeline details by accessing the data from the back end API.
 
 ### Step 7: Conclusion

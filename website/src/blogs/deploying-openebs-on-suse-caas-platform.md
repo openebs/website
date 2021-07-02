@@ -45,27 +45,27 @@ Note: — This step is not required if you are using the openEBS version 0.9 whi
 
 - **Change the path in runtask for cstor-pool-create-putcstorpooldeployment**
 
-    kubectl edit runtask cstor-pool-create-putcstorpooldeployment-default-0.8.1 -n openebs
+        kubectl edit runtask cstor-pool-create-putcstorpooldeployment-default-0.8.1 -n openebs
 
-Change from
+    Change from
 
-    path: /var/openebs/shared-
+        path: /var/openebs/shared-
 
-Change to
+    Change to
 
-    path /var/lib/overlay/openebs/shared-
+        path /var/lib/overlay/openebs/shared-
 
 - **Change the path in runtask for cstor-volume-create-puttargetdeployment**
 
-    kubectl edit runtask cstor-volume-create-puttargetdeployment-default-0.8.1 -n openebs
+        kubectl edit runtask cstor-volume-create-puttargetdeployment-default-0.8.1 -n openebs
 
-Change from
+    Change from
 
-    path: /var/openebs/shared--target
+        path: /var/openebs/shared--target
 
-Change to
+    Change to
 
-    path: path /var/lib/overlay/openebs/shared--target
+        path: path /var/lib/overlay/openebs/shared--target
 
 ### Step 3:
 
