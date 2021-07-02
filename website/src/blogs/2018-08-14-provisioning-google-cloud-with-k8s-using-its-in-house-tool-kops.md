@@ -3,7 +3,7 @@ title: Provisioning Google Cloud with k8s using it’s in-house tool, KOPS
 author: Harshvardhan Karn
 author_info: Harshvardhan Karn works at MayaData Inc. He is a public speaker, has talked in few local meetups and at two major conferences. In his free time, he likes to play Guitar, Netflix.
 date: 14-08-2018
-tags: Docker, Kubernetes, Openebs, Kops
+tags: Docker, Kubernetes, OpenEBS, Kops
 excerpt: Setting up and using a cluster in GCP offers a few significant advantages over using GKE. For instance, using GCP gives the user the liberty to use their custom binaries or a pure Open Source Kubernetes.
 ---
 

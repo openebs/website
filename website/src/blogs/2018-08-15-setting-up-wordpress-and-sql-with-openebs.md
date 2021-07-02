@@ -3,7 +3,7 @@ title: Setting up WordPress and SQL with OpenEBS
 author: Ashish Ranjan
 author_info: An enthusiastic person when it comes to software & computers. I don't mind getting out of my comfort zone when things related to computing need to be done at the spur of the moment.
 date: 14-08-2018
-tags: Openebs, Kubernetes, Cloud Native Storage, Open Source, State Department
+tags: OpenEBS, Kubernetes, Cloud Native Storage, Open Source, State Department
 excerpt: Wordpress is a well-known blogging platform. New bloggers are often surprised when they find out how easy it is to get set up and start their first piece in this popular tool.
 ---
 

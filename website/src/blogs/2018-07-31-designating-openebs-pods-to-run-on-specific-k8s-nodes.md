@@ -3,7 +3,7 @@ title: Designating OpenEBS pods to run on specific K8S Nodes
 author: Ajesh Baby
 author_info: Product Manager at MayaData
 date: 30-07-2018
-tags: Openebs, Kubernetes, Solutions, Scheduler, Scheduling
+tags: OpenEBS, Kubernetes, Solutions, Scheduler, Scheduling
 excerpt: OpenEBS does not have a separate scheduler used to manage scheduling pods. Instead, it uses the Kubernetes scheduler for managing the scheduling needs of an administrator.
 ---
 

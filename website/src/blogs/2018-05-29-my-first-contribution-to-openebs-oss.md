@@ -3,7 +3,7 @@ title: My First Contribution to OpenEBS \#OSS
 author: Vipul Gupta
 author_info: Enter a short bio? No, thank you. If you like to find me or my content, then I would be at http://mixstersite.wordpress.com/
 date: 28-05-2018
-tags: Openebs, Go, Golang, Summer Hackfest, Open Source
+tags: OpenEBS, Go, Golang, Summer Hackfest, Open Source
 excerpt: Writing documentation for any project is tough, be it big or small, propriety or open-source. Rewriting and improving it is even tougher. Let no one tell you any different.
 ---
 

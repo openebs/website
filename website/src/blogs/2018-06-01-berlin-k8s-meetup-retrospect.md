@@ -3,7 +3,7 @@ title: Berlin K8s meetup retrospect
 author: Jeffry Molanus
 author_info: Jeffry is the CTO at MayaData. At MayaData, his primary focus is to make sure the product is flexible and scalable. When he is not working with code, he practices martial arts.
 date: 31-05-2018
-tags: Openebs, Kubernetes, DevOps
+tags: OpenEBS, Kubernetes, DevOps
 excerpt: Last week, I was invited to give a talk about OpenEBS during the Kubernetes meetup in Berlin. The event was hosted by the friendly folks at Profitbricks, who once again I want to thank for the lovely venue and experience.
 ---
 

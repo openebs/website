@@ -3,7 +3,7 @@ title: How to install OpenEBS on OpenShift?
 author: Murat Karslioglu
 author_info: VP @OpenEBS & @MayaData_Inc. Lives to innovate! Opinions my own!
 date: 22-01-2018
-tags: Kubernetes, Mongodb, Openshift, Percona, Solutions, Openebs
+tags: Kubernetes, Mongodb, Openshift, Percona, Solutions, OpenEBS
 excerpt: OpenShift Origin is the upstream community project used in all deployment models provided by Red Hat OpenShift such as OpenShift Online, OpenShift Dedicated, and OpenShift Container Platform.
 ---
 

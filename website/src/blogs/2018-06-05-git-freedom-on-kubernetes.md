@@ -3,7 +3,7 @@ title: Git freedom on Kubernetes
 author: Murat Karslioglu
 author_info: VP @OpenEBS & @MayaData_Inc. Lives to innovate! Opinions my own!
 date: 05-06-2018
-tags: DevOps, Git, Gitlab, Kubernetes, Openebs
+tags: DevOps, Git, Gitlab, Kubernetes, OpenEBS
 excerpt: Here is one of the fastest ways to get your private repository with Gitlab up and running on your Kubernetes environment — Let’s “Make DevOps lifecycle private again”
 ---
 

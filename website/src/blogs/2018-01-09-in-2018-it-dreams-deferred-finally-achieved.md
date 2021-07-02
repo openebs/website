@@ -3,7 +3,7 @@ title: In 2018 - IT dreams deferred finally achieved?
 author: Evan Powell
 author_info: Founding CEO of a few companies including StackStorm (BRCD) and Nexenta — and CEO & Chairman of OpenEBS/MayaData. ML and DevOps and Python, oh my!
 date: 09-01-2018
-tags: Containerization, Docker, Kubernetes, Openebs, Storage
+tags: Containerization, Docker, Kubernetes, OpenEBS, Storage
 excerpt: At MayaData, we believe we, and others are building the foundation for a much longer cycle of software-centric innovation thanks to proactively eliminating sources of lock-in.
 ---
 

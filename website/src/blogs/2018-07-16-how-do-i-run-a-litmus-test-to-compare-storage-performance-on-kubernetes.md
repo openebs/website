@@ -3,7 +3,7 @@ title: How do I run a litmus test to compare storage performance on Kubernetes
 author: Karthik Satchitanand
 author_info: Karthik has been into the Design and Development of tools for infrastructure as code, software testing performance & benchmarking & chaos engineering.
 date: 16-07-2018
-tags: Benchmarking, Kubernetes, Litmus, Openebs, Solutions, Chaos Engineering
+tags: Benchmarking, Kubernetes, Litmus, OpenEBS, Solutions, Chaos Engineering
 excerpt: Ever so often, developers and devops engineers building or managing stateful applications on Kubernetes are on the lookout for for suitable storage options which serves their application’s specific needs.
 ---
 

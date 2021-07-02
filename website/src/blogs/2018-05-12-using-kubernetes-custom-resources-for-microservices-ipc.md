@@ -3,7 +3,7 @@ title: Using Kubernetes Custom Resources for Microservices IPC
 author: Ganesh Kumar
 author_info: Gopher, Open Source Contributor, Thinker, Health enthusiast
 date: 11-05-2018
-tags: Kubernetes, Golang, Openebs, Microservices
+tags: Kubernetes, Golang, OpenEBS, Microservices
 excerpt: This blog talks about why I used Custom Resources as a way for communication between different microservices (aka Kubernetes Pods).
 ---
 

@@ -3,7 +3,7 @@ title: Achieving native hyper convergence in Kubernetes
 author: Uma Mukkara
 author_info: Contributor at openebs.io, Co-founder& COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 date: 13-03-2018
-tags: Hyper Convergence, Kubernetes, Nutanix, Openebs, Persistent Storage
+tags: Hyper Convergence, Kubernetes, Nutanix, OpenEBS, Persistent Storage
 excerpt: Hyper convergence has a lot of benefits — which is one reason it has become popular in the traditional infrastructure-centric world of virtual machines with proprietary vendors like Nutanix reaching prominence over the last several years.
 ---
 

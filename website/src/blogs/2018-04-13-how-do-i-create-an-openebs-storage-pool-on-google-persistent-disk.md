@@ -3,7 +3,7 @@ title: How do I create an OpenEBS storage pool on Google Persistent Disk
 author: Karthik Satchitanand
 author_info: Karthik has been into the Design and Development of tools for infrastructure as code, software testing performance & benchmarking & chaos engineering.
 date: 13-04-2018
-tags: Docker, Openebs, Solutions, Google Cloud Platform, Kubernetes
+tags: Docker, OpenEBS, Solutions, Google Cloud Platform, Kubernetes
 excerpt: The OpenEBS volume replicas, which are the actual backend storage units of the OpenEBS iSCSI target currently store the data in a hostPath on the Kubernetes nodes.
 ---
 

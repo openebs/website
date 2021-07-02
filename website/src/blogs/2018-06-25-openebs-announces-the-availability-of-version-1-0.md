@@ -3,7 +3,7 @@ title: OpenEBS announces the availability of version 1.0
 author: Kiran Mova
 author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
 date: 24-06-2018
-tags: Cncf, Kubernetes, Openebs, Storage
+tags: Cncf, Kubernetes, OpenEBS, Storage
 excerpt: In this blog, I will touch upon what I have learned from users about Open Source CAS solutions like OpenEBS at KubeCon EU 19, followed by a quick note on the major changes in 1.0 and what is in the immediate roadmap.
 ---
 

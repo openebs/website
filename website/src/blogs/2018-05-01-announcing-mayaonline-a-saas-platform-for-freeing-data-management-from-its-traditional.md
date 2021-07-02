@@ -3,7 +3,7 @@ title: Announcing MayaOnline — A SaaS platform for freeing data management fro
 author: Uma Mukkara
 author_info: Contributor at openebs.io, Co-founder& COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 date: 01-05-2018
-tags: Gitops, Kubernetes, Mayaonline, Openebs, Stateful Workloads
+tags: Gitops, Kubernetes, Mayaonline, OpenEBS, Stateful Workloads
 excerpt: At this Kubecon, we, at MayaData, are thrilled to make couple of announcements. One of them is the launch of beta version of MayaOnline.
 ---
 

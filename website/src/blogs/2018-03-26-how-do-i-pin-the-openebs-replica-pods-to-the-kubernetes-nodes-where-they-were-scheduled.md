@@ -3,7 +3,7 @@ title: How do I pin the OpenEBS Replica Pod(s) to the Kubernetes Nodes where the
 author: Amit Kumar Das
 author_info: Engineer the DAO
 date: 26-03-2018
-tags: Howdoi, Kubernetes, Openebs, Storage, Solutions, Tutorials
+tags: Howdoi, Kubernetes, OpenEBS, Storage, Solutions, Tutorials
 excerpt: A OpenEBS Volume comprises of a Controller pod and one or more Replica pod(s). Controller pod (also known as a Target pod) is the one to which the application can make an iSCSI connection.
 ---
 

@@ -3,7 +3,7 @@ title: OpenEBS 0.6 serves IOs amidst Chaos and much more
 author: Kiran Mova
 author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
 date: 20-07-2018
-tags: DevOps, Kubernetes, Openebs, Statefulcontainers, Storage
+tags: DevOps, Kubernetes, OpenEBS, Statefulcontainers, Storage
 excerpt: We are very excited to announce the availability of OpenEBS version 0.6. I would like to take a few minutes to talk about what has been keeping us busy in making it GA.
 ---
 

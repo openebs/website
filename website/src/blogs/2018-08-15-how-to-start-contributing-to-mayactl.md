@@ -3,7 +3,7 @@ title: How to start contributing to mayactl
 author: Sumit Lalwani
 author_info: Sumit Lalwani is a Software Engineer at Mayadata. He is a Kubernetes enthusiast and passionate about open source, containers, cloud, and arm. He loves to learn and code.
 date: 14-08-2018
-tags: Docker, Openebs, Kubernetes
+tags: Docker, OpenEBS, Kubernetes
 excerpt: mayactl is the command line tool for interacting with OpenEBS volumes. mayactl is not used/required while provisioning or managing the OpenEBS volumes, but it is currently used while debugging and troubleshooting.
 ---
 

@@ -3,7 +3,7 @@ title: OpenEBS plus Red Hat OpenShift and StackPointCloud and IBM Cloud Private 
 author: Evan Powell
 author_info: Founding CEO of a few companies including StackStorm (BRCD) and Nexenta — and CEO & Chairman of OpenEBS/MayaData. ML and DevOps and Python, oh my!
 date: 05-02-2018
-tags: DevOps, Docker, Kubernetes, Updates, Openebs
+tags: DevOps, Docker, Kubernetes, Updates, OpenEBS
 excerpt: This week we announced that our partnership with Red Hat is flourishing. We achieved their Primed level of certification for their OpenShift offerings and are seeing more and more users rely upon OpenShift and Kubernetes as a means to provide persistence to their workloads.
 ---
 

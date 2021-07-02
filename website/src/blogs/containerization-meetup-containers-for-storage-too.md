@@ -3,7 +3,7 @@ title: Containerization meetup - Containers for storage too
 author: Uma Mukkara
 author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 date: 15-01-2017
-tags: Containerized Storage, Docker, Kubernetes, Openebs, Storage Containerization
+tags: Containerized Storage, Docker, Kubernetes, OpenEBS, Storage Containerization
 excerpt: I had the opportunity to talk to a very good group of technologists, DevOPs users in the Digital Ocean Containerization Meetup . Docker 1.13 details and Kubernetes deployment tips were fantastics.
 ---
 

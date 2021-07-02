@@ -3,7 +3,7 @@ title: Recap of Google Next’18
 author: Murat Karslioglu
 author-info: VP @OpenEBS & @MayaData_Inc. Lives to innovate! Opinions my own!
 date: 01-08-2018
-tags: Cloud Services Platform, Knative, Google Next18, Istio, Openebs
+tags: Cloud Services Platform, Knative, Google Next18, Istio, OpenEBS
 excerpt: This year I have attended a number of tech events and in terms of size, organization, and especially the content — Next ’18 is so far my favorite.
 ---
 

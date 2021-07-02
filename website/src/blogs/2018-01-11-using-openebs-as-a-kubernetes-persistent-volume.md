@@ -3,7 +3,7 @@ title: Using OpenEBS as a Kubernetes persistent volume
 author: Jimmy Song
 author_info: Developer Advocate at Ant Financial, CNCF Ambassador, co-founder of ServiceMesher community, blog https://jimmysong.io
 date: 10-01-2018
-tags: Kubernetes, Openebs, Docker, Cloud Native
+tags: Kubernetes, OpenEBS, Docker, Cloud Native
 excerpt: OpenEBS is a containerized block storage written in Go for cloud native and other environments which make the data workloads more reliable in Kubernetes.
 ---
 
