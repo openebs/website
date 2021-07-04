@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import useStyles from "./style";
 import useQuery from "../../hooks/useQuery";
-import { Grid, Typography, Link, Button, Breadcrumbs } from "@material-ui/core";
+import { Avatar, Grid, Typography, Link, Button, Breadcrumbs } from "@material-ui/core";
 import Footer from "../../components/Footer";
 import ReactMarkdown from "react-markdown";
 import { readingTime } from "../../utils/readingTime";
@@ -139,9 +139,13 @@ const BlogPage: React.FC = () => {
                   
                     <div className={classes.author}>
                       <div className={classes.authorImgWrapper}>
-                        <img loading="lazy" src={`../images/blog/authors/${currentBlogDetails?.author.toLowerCase()
-                                    .replace(/[^\w ]+/g,'')
-                                    .replace(/ +/g,'-')}.png`} className={classes.authorImg} alt={currentBlogDetails?.author}></img>
+                          <Avatar 
+                            className={classes.authorImg} 
+                            alt={currentBlogDetails?.author} 
+                            src={`../images/blog/authors/${currentBlogDetails?.author
+                              .toLowerCase().replace(/[^\w ]+/g,'')
+                              .replace(/ +/g,'-')}.png`}
+                          />
                       </div>
                       <div className={classes.date}>
                         <ReactMarkdown children={currentBlogDetails?.author} className={classes.authorName} />
