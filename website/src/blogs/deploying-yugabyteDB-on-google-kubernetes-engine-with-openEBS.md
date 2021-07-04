@@ -15,7 +15,10 @@ Because [YugabyteDB](https://www.yugabyte.com/) is a cloud-native, distributed S
 
 In this blog post we’ll walk you through the necessary steps to get a 3 node YugabyteDB cluster running on top of GKE, backed by OpenEBS.
 
-**Why OpenEBS and YugabyteDB?**
+[![Deploying YugabyteDB on Google Kubernetes Engine with OpenEBS](/images/blog/deploying-yugabytedb-on-google-kubernetes-engine-with-openebs-video-preview.png)](https://player.vimeo.com/video/530995643?app_id=122963)
+
+
+**Why OpenEBS and YugabyteDB?**  
 Because YugabyteDB is a transactional database often used as a system of record, it needs to be deployed as a StatefulSet on Kubernetes and requires persistent storage. OpenEBS can be used for backing YugabyteDB local disks, allowing the provisioning of large-scale persistent volumes. 
 
 Here are a few of the advantages of using OpenEBS in conjunction with a YugabyteDB database cluster:
@@ -30,7 +33,7 @@ Additionally, OpenEBS can do [synchronous replication](https://docs.openebs.io/d
 
 Ok, let’s get started!
 
-**Prerequisites**
+**Prerequisites**  
 ![Yugabyte work flow](/images/blog/yugabyte-work-flow.png)
 
 
@@ -49,7 +52,7 @@ For the purposes of this demo, I used the Google Cloud Console to configure my K
 
 - **Image Type:** Ubuntu with Docker
 - **Series:** N1
-- **Machine Type: **n1-standard-4 (4 vCPU, 15 GB memory)
+- **Machine Type:** n1-standard-4 (4 vCPU, 15 GB memory)
 
 ![Yugabyte nodes](/images/blog/yugabyte-nodes.png)
 
@@ -57,7 +60,7 @@ For the purposes of this demo, I used the Google Cloud Console to configure my K
 Click *Create* and wait for the Kubernetes cluster to come online.
 
 **Step 2: Configure iSCSI**
-The iSCSI client is a prerequisite for provisioning cStor and Jiva volumes. However, it is recommended that the iSCSI client is setup and* iscsid* service is running on worker nodes before proceeding with the OpenEBS installation. In order to set up iSCSI, we’ll first need to determine the names of the nodes in our cluster
+The iSCSI client is a prerequisite for provisioning cStor and Jiva volumes. However, it is recommended that the iSCSI client is setup and *iscsid* service is running on worker nodes before proceeding with the OpenEBS installation. In order to set up iSCSI, we’ll first need to determine the names of the nodes in our cluster
 
     $ kubectl get nodes
     
