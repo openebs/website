@@ -17,7 +17,7 @@ We understand that generic orchestration engines will not solve all the problems
 
 OpenEBS 0.2 can be used to setup an Amazon EBS-like Block Storage Service for your containers, and consume block storage for your Stateful applications.
 
-![](https://cdn-images-1.medium.com/max/800/1*itiDxdwyTmdd9VsIYwFYiA.png)
+![OpenEBS 0.2 setup](https://cdn-images-1.medium.com/max/800/1*itiDxdwyTmdd9VsIYwFYiA.png)
 
 The Ops team can easily setup an OpenEBS cluster using Bare Metal Machines or VMs, just like setting up Kubernetes Cluster. The Kubernetes minion nodes should be configured with the FlexVolume OpenEBS Driver (openebs-iscsi) to use OpenEBS Storage.
 

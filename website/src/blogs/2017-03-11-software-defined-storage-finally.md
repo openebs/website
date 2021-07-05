@@ -43,7 +43,7 @@ Today the Kubernetes community is probably our best shot for having a set of com
 Quick note — pod and resource definitions are not fully fleshed out by Kubernetes for storage. So you can do some basic things, such as limiting the amount of storage by user or application or pod, however storage specific QoS is not yet supported in these definitions. This is a work in progress.
 
 Nonetheless, what is possible today gives a good idea of what is coming. For example:
-![](/images/blog/software-defined-storage-finally-example-code.png)
+![human readable code example](/images/blog/software-defined-storage-finally-example-code.png)
 
 As you can see, very simple, human readable, and change controllable easily via GitHub or other system, which is fundamental to achieving high degree of automation and control.
 
@@ -57,7 +57,7 @@ What I learned from Pearson and other StackStorm users led me to look for storag
 
 In CloudByte I found a solution that today delivers fine grained control of QoS via an architecture that features virtualized storage controllers. What this means is that the controllers themselves can be live migrated, for example, while continuing to serve storage. This is how CloudByte delivers non disruptive upgrades — and it also means that you can migrate pieces of your data center from on premise to the cloud and back — with confidence. However, without QoS controls moving your controllers around would be madness — and so the deep understanding of QoS and the ability to set QoS SLAs by user or by volume for example is crucially important.
 
-![](/images/blog/storage-controller-migrating-from-one-site-to-another.png)
+![Storage controller migrating from one site to another](/images/blog/storage-controller-migrating-from-one-site-to-another.png)
 
 In the above image I show a storage controller migrating from one site to another.
 

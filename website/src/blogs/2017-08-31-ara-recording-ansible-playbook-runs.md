@@ -15,19 +15,19 @@ A lot of people using Ansible for medium-large scale deployments are known to us
 
 However, if there is already a system in place to perform some of the things these tools do (dynamic inventories, playbook triggers/scheduling) while not really needing others (access control, graphs), and you are only looking for the ability to store and analyse playbook runs via UI, then **ARA** (Ansible Run Analysis) is your tool.
 
-![](/images/blog/ansible-run-analysis.png)
+![ARA (Ansible Run Analysis)](/images/blog/ansible-run-analysis.png)
 
 Heavily used by openstack community in their CI projects, ARA is built to just *"record"* playbook runs (Read ARA’s [manifesto](http://ara.readthedocs.io/en/latest/manifesto.html#manifesto), to understand more about its narrow focus). It does this via an ansible callback plugin to store run details into a database and a web interface to visualise the database.
 
-![](/images/blog/playbook-tasks-summary-in-ara.png)  
+![Viewing playbook tasks summary in ARA](/images/blog/playbook-tasks-summary-in-ara.png)  
 **Viewing playbook tasks summary in ARA!**
 
-![](/images/blog/viewing-tasks-details-in-ara.png)  
+![Viewing task details in ARA](/images/blog/viewing-tasks-details-in-ara.png)  
 **Viewing task details in ARA**
 
 While it uses sqlite and an embedded webserver, respectively, for these purposes, you could even customise it to use mysql & Apache. The UI includes nifty features like host fact lookup, playbook params page, search filter, property based sort and link to code snippets !
 
-![](/images/blog/see-specific-task-ran.png)  
+![ARA code snippet](/images/blog/see-specific-task-ran.png)  
 **Click on action to see where the specific task ran**
 
 A nice video explaining the web interface, with playbooks from openstack-ansible project is [here](https://www.youtube.com/watch?v=k3i8VPCanGo)

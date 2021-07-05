@@ -55,7 +55,7 @@ When I was writing this blog post, the most current version was VirtualBox-5.2.0
 
 Once VirtualBox is installed, you will see a screen similar to the following:
 
-![](https://cdn-images-1.medium.com/max/800/0*HztM26xqSWKiYaIx.png)
+![Post VirtualBox install screenshot](https://cdn-images-1.medium.com/max/800/0*HztM26xqSWKiYaIx.png)
 
 **NOTE:** You can also use KVM, Hyper-V, and VMware Fusion.
 
@@ -63,7 +63,7 @@ Once VirtualBox is installed, you will see a screen similar to the following:
 
 Create a new VM with 4 vCPUs, 4Gb memory, and 10GB disk space.
 
-![](https://cdn-images-1.medium.com/max/800/0*8wqBzAyAPf_LsbFk.png)
+![Creating VM](https://cdn-images-1.medium.com/max/800/0*8wqBzAyAPf_LsbFk.png)
 
 Download your preferred version of [Ubuntu](https://www.ubuntu.com/download). I will be using Ubuntu 16.04.3 LTS.
 
@@ -81,7 +81,7 @@ Now you should be able to access your VM using SSH. Check the status by running:
 
     sudo service ssh status
 
-![](https://cdn-images-1.medium.com/max/800/0*1rUwIrG2T0EzoBJj.png)
+![Accessing your VM using SSH](https://cdn-images-1.medium.com/max/800/0*1rUwIrG2T0EzoBJj.png)
 
 Disable firewall on your Ubuntu VM by running:
 
@@ -94,7 +94,7 @@ Install curl if it’s not already installed:
 
 By default, for each virtual machine, VirtualBox creates a private network (10.0.2.x) which is connected to your laptop’s network using NAT. However, you may not be able to your VMs from your local host through SSH just yet. To access your VM, you need to configure port forwarding. In the network setting of the VM. Click on **Advanced/Port Forwarding** and create a rule with the **Host port 3022 **and **Guest Port 22**. Name it *SSH* and leave other fields blank.
 
-![](https://cdn-images-1.medium.com/max/800/0*uDKLTcZapcEZfK3E.png)
+![Configuring port forwarding](https://cdn-images-1.medium.com/max/800/0*uDKLTcZapcEZfK3E.png)
 
 Now you can connect to your Ubuntu VM from your laptop using SSH with localhost as the address and port 3022 instead of 22. Connect to your Ubuntu VM using the following credentials: `openebs/password`
 
@@ -108,20 +108,20 @@ On your Ubuntu VM, run the following commands:
     sudo add-apt-repository “deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable”
     sudo apt-get update
 
-![](https://cdn-images-1.medium.com/max/800/0*-4QRgWvjit9qyKaq.png)
+![Install latest version of Docker](https://cdn-images-1.medium.com/max/800/0*-4QRgWvjit9qyKaq.png)
 
 Confirm that you want to install the binaries from the Docker repository instead of the default Ubuntu repository by running:
 
     sudo apt-get install -y docker-ce
 
-![](https://cdn-images-1.medium.com/max/800/0*Hh8nFvl7xArgJnN-.png)
+![Install the binaries from the Docker repository](https://cdn-images-1.medium.com/max/800/0*Hh8nFvl7xArgJnN-.png)
 
 Install Docker and make sure it’s up and running after installation is complete:
 
     sudo apt-get install -y docker-ce
     sudo systemctl status docker
 
-![](https://cdn-images-1.medium.com/max/800/0*NTvaIXL4LiPakwEy.png)
+![Install Docker](https://cdn-images-1.medium.com/max/800/0*NTvaIXL4LiPakwEy.png)
 
 ## Add iSCSI Support
 
@@ -133,7 +133,7 @@ On your Ubuntu host, run:
     sudo apt-get install open-iscsi
     sudo service open-iscsi restart
 
-![](https://cdn-images-1.medium.com/max/800/0*OmIy-bxY3PrD_HYT.png)
+![Install the open-iscsi package on your Ubuntu machine](https://cdn-images-1.medium.com/max/800/0*OmIy-bxY3PrD_HYT.png)
 
 Check that the iSCSI initiator name is configured:
 
@@ -143,7 +143,7 @@ Verify the iSCSI service is up and running:
 
     sudo service open-iscsi status
 
-![](https://cdn-images-1.medium.com/max/800/0*30EupY6kOMa30SMj.png)
+![Check that the iSCSI initiator name is configured](https://cdn-images-1.medium.com/max/800/0*30EupY6kOMa30SMj.png)
 
 ## Set up minikube and kubectl
 
@@ -153,7 +153,7 @@ On your Ubuntu host, install minikube by running:
     chmod +x minikube
     sudo mv minikube /usr/local/bin/
 
-![](https://cdn-images-1.medium.com/max/800/0*62DCuwG4tX8iU_AX.png)
+![On Ubuntu host, install minikub](https://cdn-images-1.medium.com/max/800/0*62DCuwG4tX8iU_AX.png)
 
 Install kubectl:
 
@@ -161,7 +161,7 @@ Install kubectl:
     chmod +x kubectl
     sudo mv kubectl /usr/local/bin/
 
-![](https://cdn-images-1.medium.com/max/800/0*9jZx-rusvrdn9mEe.png)
+![Install kubectl](https://cdn-images-1.medium.com/max/800/0*9jZx-rusvrdn9mEe.png)
 
 Set up directories for storing minkube and kubectl configurations:
 
@@ -179,17 +179,17 @@ Confirm that environment variables are saved in your profile file:
 
     cat ~/.profile
 
-![](https://cdn-images-1.medium.com/max/800/0*rxjoxM6qkYkppd5h.png)
+![Confirm that environment variables are saved in your profile file](https://cdn-images-1.medium.com/max/800/0*rxjoxM6qkYkppd5h.png)
 
 Start minikube:
 
     sudo -E minikube start — vm-driver=none
 
-![](https://cdn-images-1.medium.com/max/800/0*UaQ_6Y2m4hv6P4oc.png)
+![Start minikube](https://cdn-images-1.medium.com/max/800/0*UaQ_6Y2m4hv6P4oc.png)
 
 If you forgot to install Docker, you will get the following error:
 
-![](https://cdn-images-1.medium.com/max/800/0*ysp8RnG5DWDu_Q0j.png)
+![Error screenshot when forgot to install Docker](https://cdn-images-1.medium.com/max/800/0*ysp8RnG5DWDu_Q0j.png)
 
 When using the none driver, the kubectl config and credentials generated will be root-owned and will appear in the root home directory. To fix this, set the correct permissions:
 
@@ -206,7 +206,7 @@ Verify that minikube is configured correctly and it has started by running:
 
 **Example:**
 
-![](https://cdn-images-1.medium.com/max/800/0*yK3Wlyy81I15tNZp.png)
+![Verify minikube configuration](https://cdn-images-1.medium.com/max/800/0*yK3Wlyy81I15tNZp.png)
 
 **Note**
 
@@ -225,7 +225,7 @@ Check that kubectl is configured and services are up and running by getting the 
     kubectl get nodes
     kubectl get pods — all-namespaces
 
-![](https://cdn-images-1.medium.com/max/800/0*noWgoiv0GLk43BRB.png)
+![Verify Kubernetes configuration](https://cdn-images-1.medium.com/max/800/0*noWgoiv0GLk43BRB.png)
 
 ## Set up OpenEBS
 
@@ -234,23 +234,23 @@ Download the latest OpenEBS Operator files using the following commands:
     git clone https://github.com/openebs/openebs.git
     cd openebs/k8s
 
-![](https://cdn-images-1.medium.com/max/800/0*UNKK2cZhYPJVbTDx.png)
+![Download the latest OpenEBS Operator files](https://cdn-images-1.medium.com/max/800/0*UNKK2cZhYPJVbTDx.png)
 
 By default, OpenEBS launches OpenEBS Volumes with two replicas. To set one replica, as is the case with a single-node Kubernetes cluster, in the openebs-operator.yaml file, specify the environment variable `DEFAULT_REPLICA_COUNT=1`. This is supported in OpenEBS version 0.4 onward.
 
-![](https://cdn-images-1.medium.com/max/800/0*SxXEzbDmpVA5ZhwS.png)
+![Replica count screenshot](https://cdn-images-1.medium.com/max/800/0*SxXEzbDmpVA5ZhwS.png)
 
 Apply the configuration changes:
 
     kubectl apply -f openebs-operator.yaml
 
-![](https://cdn-images-1.medium.com/max/800/0*WB16UScHye4LClft.png)
+![Applying configuration change](https://cdn-images-1.medium.com/max/800/0*WB16UScHye4LClft.png)
 
 Add the OpenEBS storage classes that can then be used by developers and applications:
 
     kubectl apply -f openebs-storageclasses.yaml
 
-![](https://cdn-images-1.medium.com/max/800/0*mojNYfZbll-g6bdk.png)
+![Adding the OpenEBS storage classes](https://cdn-images-1.medium.com/max/800/0*mojNYfZbll-g6bdk.png)
 
 #### Running stateful applications with OpenEBS storage
 
@@ -260,11 +260,11 @@ Get the list of storage classes using the following command. Choose the storage 
 
     kubectl get sc
 
-![](https://cdn-images-1.medium.com/max/800/0*artfNnT8fZSziaKH.png)
+![Getting the list of storage classes](https://cdn-images-1.medium.com/max/800/0*artfNnT8fZSziaKH.png)
 
 You can find samples of YAML files for stateful workloads using OpenEBS under the the `openebs/k8s/demo` folder.
 
-![](https://cdn-images-1.medium.com/max/800/0*KCn5Z4-av-7Hevj_.png)
+![Finding samples of YAML files for stateful workloads](https://cdn-images-1.medium.com/max/800/0*KCn5Z4-av-7Hevj_.png)
 
 Now you have your Kubernetes cluster up and running. In my next blog posts, I will cover installation of stateful workloads such as Cassandra and [PostgreSQL](http://containerized.me/how-to-deploy-a-postgresql-cluster-on-kubernetes-openebs/), as well as benefits of running your stateful workloads on OpenEBS. Stay tuned!
 

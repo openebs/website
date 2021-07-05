@@ -18,7 +18,7 @@ OK, that let the cat out of the bag
 ## Infrastructure as Code (IaC)
 
 One of the biggest IT trends over the last few years has been managing infrastructure through automation. One might argue that puppet started way back in 2005, thereby making this practice far older than most believe, but the way it has taken ops departments of most organisations by storm in the past 5–6 years is nothing less than a revolution. In fact, the paradigm of devops is built on managing infrastructure as code. And when we say code, the expectation of most ops personnel around the “language” would be that it doesn’t require deep programming knowledge and have a steep learning curve — which is what DSL (Domain Specific Language, sometimes also referred to as Domain Scripting Language) based frameworks like ansible achieve. It also helps that ansible adopts an imperative programming model (using YAML) that works well because of its alignment with the traditional command-based approach of ops teams.
-![](https://cdn-images-1.medium.com/max/800/1*7Di79EF1SxNqF0F0KD1E-A.jpeg)
+![Ansible GitHub trends ](https://cdn-images-1.medium.com/max/800/1*7Di79EF1SxNqF0F0KD1E-A.jpeg)
 **Ansible GitHub trends (Courtesy: [https://www.ansible.com/blog/another-good-year-for-ansible-users](https://www.ansible.com/blog/another-good-year-for-ansible-users))**  
 
 But, how does the above address our question ? 
@@ -28,7 +28,7 @@ But, how does the above address our question ?
 Is not an approach (and the tool) soaked in “**devops-ness**” a pre-requisite to test the storage solution specifically designed for devops usecases 🙂 ?
 
 ## Why Ansible, why not chef, puppet, salt etc., ?
-![](https://cdn-images-1.medium.com/max/800/0*NQOK_gId-YBZMe02.png)  
+![Ansible](https://cdn-images-1.medium.com/max/800/0*NQOK_gId-YBZMe02.png)  
 Err.., this seems to have been done to death on the internet. Yet, new posts on this topic seem to spring up everytime I look. So, without discussing the why nots, let me touch upon the aspects about ansible that appealed most to us.
 
 **Powerful, yet very simple** : Ansible’s power comes from its simplicity. Under the hood, it is just a DSL for a task runner over secure shell (ssh) with intuitive modules for achieving most (if not all) system functions. The soft learning curve in ansible is one of its major advantages over its rivals (*Ok, I said I won’t do the why-nots, but there is a feeling that puppet, chef etc., are over-designed for the jobs they do..*) In an open-source project like OpenEBS, a need to build a template for the contributors to write their own test workflows without spending too much time was an important consideration.

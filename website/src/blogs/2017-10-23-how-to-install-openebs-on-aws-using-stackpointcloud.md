@@ -31,23 +31,23 @@ Minimum requirements for deploying your Kubernetes clusters on StackPointCloud:
 
 First, go to [stackpoint.io](https://stackpoint.io/) and click on **Launch a Cluster** button to start your free trial.
 
-![](https://cdn-images-1.medium.com/max/800/0*3Iro4mlPVlQolQfh.png)
+![Launch a Cluster button in stackpoint.io](https://cdn-images-1.medium.com/max/800/0*3Iro4mlPVlQolQfh.png)
 
 Then choose your cloud provider. In this example, I will use **AWS**.
 
-![](https://cdn-images-1.medium.com/max/800/0*s0vkUYR7sJXoR6IU.png)
+![Configure Access to AWS](https://cdn-images-1.medium.com/max/800/0*s0vkUYR7sJXoR6IU.png)
 
 #### Configure Access to AWS
 
 On the next screen, we need to configure our provider. You need to provide AWS Access Key ID and Secret Access Key and optionally your SSH Key.
 
-![](https://cdn-images-1.medium.com/max/800/0*_2SUsICymTDtGlwK.png)
+![Cloud providers](https://cdn-images-1.medium.com/max/800/0*_2SUsICymTDtGlwK.png)
 
 If you don’t know where to find them, follow the instructions [here](https://stackpointcloud.com/community/tutorial/how-to-create-auth-credentials-on-amazon-web-services-aws) to create your user.
 
 Click on **Add Credentials** button.
 
-![](https://cdn-images-1.medium.com/max/800/0*5LX2XDbBqhnm1au8.png)
+![Add Credentials](https://cdn-images-1.medium.com/max/800/0*5LX2XDbBqhnm1au8.png)
 
 After you add your credentials, click on **Submit**.
 
@@ -55,11 +55,11 @@ After you add your credentials, click on **Submit**.
 
 On “Configure your cluster” page click the edit button on **Distribution** and choose **Ubuntu 16.04 LTS**.
 
-![](https://cdn-images-1.medium.com/max/800/0*ty0IA_1uuDxaCQoX.png)
+![Configure K8s Cluster](https://cdn-images-1.medium.com/max/800/0*ty0IA_1uuDxaCQoX.png)
 
 Change the **Cluster Name** something meaningful like **OpenEBS Demo**.
 
-![](https://cdn-images-1.medium.com/max/800/0*50cyzQI-2DZIX-AG.png)
+![Change the Cluster Name](https://cdn-images-1.medium.com/max/800/0*50cyzQI-2DZIX-AG.png)
 
 I could separate my etcd into 3 nodes dedicated cluster, but for a functional demo hosting it on the same cluster works perfectly fine. You can leave all other option as default. Now click on **Submit** to create your cluster. This should take around 5–8 minutes to bring up one Master and two Workers Kubernetes Cluster.
 
@@ -67,7 +67,7 @@ I could separate my etcd into 3 nodes dedicated cluster, but for a functional de
 
 Click on **Solutions** tab on the top of the screen and select **Import Charts** from the upper left.
 
-![](https://cdn-images-1.medium.com/max/800/0*vZr9hqN35SCCsx-a.png)
+![Import OpenEBS Helm Charts](https://cdn-images-1.medium.com/max/800/0*vZr9hqN35SCCsx-a.png)
 
 Add the chart repo with the following details:  
  — **name :** openebs-charts  
@@ -76,11 +76,11 @@ Add the chart repo with the following details:
 
 Click on **Review Repository**.
 
-![](https://cdn-images-1.medium.com/max/800/0*lkT38CLmsESK2i1T.png)
+![Update chart repo](https://cdn-images-1.medium.com/max/800/0*lkT38CLmsESK2i1T.png)
 
 Make sure **Access Verified** shows ok and click on **Save Repository** button to finish adding chart repo.
 
-![](https://cdn-images-1.medium.com/max/800/0*tS9uArAROjoOLc05.png)
+![Save Repository](https://cdn-images-1.medium.com/max/800/0*tS9uArAROjoOLc05.png)
 
 ## Adding OpenEBS to Your Kubernetes Cluster
 
@@ -88,30 +88,30 @@ First, make sure your cluster and all nodes are up.
 
 On the **Control Plane** tab click on your cluster name **OpenEBS Demo**.
 
-![](https://cdn-images-1.medium.com/max/800/0*0wxTlbbO_yPMJZ8F.png)
+![Control Plane tab](https://cdn-images-1.medium.com/max/800/0*0wxTlbbO_yPMJZ8F.png)
 
 Once the Kubernetes cluster is up on AWS with functional Helm, click on the **Solutions** tab and **Add Solution** button.
 
-![](https://cdn-images-1.medium.com/max/800/0*QofakUAHAb_DRYWp.png)
+![Solutions tab](https://cdn-images-1.medium.com/max/800/0*QofakUAHAb_DRYWp.png)
 
 Add the solution with the following details:
 
 – **namespace :** default  
 – **values -> rbacEnabled :** false  
 
-![](https://cdn-images-1.medium.com/max/800/0*JiSAsRHf5SND0Cbp.png)
+![Install OpenEBS into your cluster](https://cdn-images-1.medium.com/max/800/0*JiSAsRHf5SND0Cbp.png)
 
 Click on **Install** to finally add OpenEBS into your cluster.
 
 State field should be green after OpenEBS is successfully added.
 
-![](https://cdn-images-1.medium.com/max/800/0*1nY357dtw3PNOfAi.png)
+![OpenEBS post install screenshot](https://cdn-images-1.medium.com/max/800/0*1nY357dtw3PNOfAi.png)
 
 Now your cluster is ready; you can run your workloads on openebs-standard storage class.
 
 To confirm, click on **K8s Dashboard**. This will bring up your Kubernetes Dashboard UI in a new window. You should be able to find the **openebs-standard** option under **Storage Classes**.
 
-![](https://cdn-images-1.medium.com/max/800/0*E5eYS81HcguHaG1r.png)
+![ K8s Dashboard](https://cdn-images-1.medium.com/max/800/0*E5eYS81HcguHaG1r.png)
 
 I’ll cover some workload examples such as MongoDB, Percona, Cassandra and [Postgres](http://containerized.me/how-to-deploy-a-postgresql-cluster-on-kubernetes-openebs/) running OpenEBS on my next blogs (stay tuned).
 

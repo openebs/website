@@ -25,7 +25,7 @@ But you might ask — *so what*? What’s the big deal about marketers abusing t
 
 Well that comes down to whether we believe that the benefits of Cloud Native applications could apply to building storage software in a cloud native manner. Is what’s good for the goose, good for the gander? Is Cloud Native storage even a term worth fighting over? Could a truly Cloud Native storage solution deliver benefits much as other Cloud Native software does?
 
-![](/images/blog/goose.png)
+![Picture showing gooses](/images/blog/goose.png)
 
 **Let’s all be cloud native like the whale: goose, gander, OpenEBS mules and friends**
 

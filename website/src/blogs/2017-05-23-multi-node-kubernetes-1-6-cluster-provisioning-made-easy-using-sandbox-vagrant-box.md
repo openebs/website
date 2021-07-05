@@ -16,7 +16,7 @@ While *minikube *and *minishift* provide an easy way to setup kubernetes single 
 *An ideal solution for a developer would be a Kubernetes Sandbox. A sandbox that can be easily setup on a laptop and can work on the move (without net connectivity.) This Sandbox should be shielded from the different API or CLI changes that happen with the frequent releases of kubeadm and kubernetes.*
 
 We have used Vagrant, VirtualBox and Atlas to do just that.
-![](https://cdn-images-1.medium.com/max/800/1*7kkviZOwgh8ePDYRjFX0mQ.png)
+![Vagrant, VirtualBox and Atlas](https://cdn-images-1.medium.com/max/800/1*7kkviZOwgh8ePDYRjFX0mQ.png)
 
 ## Try It! It is Easy and Quick!
 

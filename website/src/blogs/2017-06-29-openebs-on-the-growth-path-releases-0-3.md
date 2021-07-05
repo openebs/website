@@ -11,7 +11,7 @@ It gives me immense pleasure to watch this baby (OpenEBS) successfully cross ano
 
 Thanks to our growing community (as depicted in the diagram below), we have had great conversations with thought leaders in the container world, who are constantly looking for ways to simplify the usage of Containers and Container Orchestrators. We seem to have hit a sweet spot in terms of what we set out to deliver with OpenEBS, which is resonating loud and clear with anyone, who is venturing to run persistence workloads in containers.
 
-![](https://cdn-images-1.medium.com/max/800/1*wnMG__-zl8yO06f7AAJh5w.png)  
+![OpenEBS community tracker](https://cdn-images-1.medium.com/max/800/1*wnMG__-zl8yO06f7AAJh5w.png)  
 
 While we have seen a steady growth in the followers/subscribers on our community channels, we have also seen a steady growth in the contributors to the project and we are happy to announce that we have been able to expand our team members at CloudByte(from across the world), to work full-time on OpenEBS.
 

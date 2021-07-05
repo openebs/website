@@ -23,7 +23,7 @@ Rather than building the large monolithic codebases that were the norm at the tu
 
 ## A New Era
 
-![](https://lh3.googleusercontent.com/5C8pUrteH4V8JB1li4myidOdIP1xAefDES3ksqG1SaxFX4YHhFZz2gX-tNQV7n4UVuHS-BvZejBVnDnLJiwte6LgGgHN2dzsKDKxC2cd-popha9Ljnw9CWNQ2JUvL_1a2F-w8x0i)
+![New Era](https://lh3.googleusercontent.com/5C8pUrteH4V8JB1li4myidOdIP1xAefDES3ksqG1SaxFX4YHhFZz2gX-tNQV7n4UVuHS-BvZejBVnDnLJiwte6LgGgHN2dzsKDKxC2cd-popha9Ljnw9CWNQ2JUvL_1a2F-w8x0i)
 
 A new era requires a new kind of storage stack! A stack that is based around today’s technologies rather than being anchored to the last century. A stack that is portable and flexible. A stack that supports rapid innovation. That delivers the performance that applications require.
 
@@ -43,7 +43,7 @@ The project also benefits from the work done by the DPDK on Windows community wh
 
 ## Windows Platform Development Kit
 
-![](https://lh4.googleusercontent.com/UDp5t-uCJeM6QlsMpoZCz-oxp2CyYDPS1BMhkdeaXn4asIPhdLzy0GLG74xdceDyWAa8bCrijsMLOZfrwKC7vQyQLNS-uGJbGLXyeDtBljMvMNDQphRtcfgMJ65mhZBTC7v6wFwg)
+![Windows Platform Development Kit](https://lh4.googleusercontent.com/UDp5t-uCJeM6QlsMpoZCz-oxp2CyYDPS1BMhkdeaXn4asIPhdLzy0GLG74xdceDyWAa8bCrijsMLOZfrwKC7vQyQLNS-uGJbGLXyeDtBljMvMNDQphRtcfgMJ65mhZBTC7v6wFwg)
 
 The MayaData developed and contributed Windows Platform Development Kit has currently reached ‘alpha’. Most of the required functionality is believed to be present, unit tested, and working correctly, but there are still areas that need further development.
 

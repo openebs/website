@@ -11,11 +11,11 @@ Data Science as we all know is becoming crucial to many if not most businesses a
 
 The lure towards “Data Science” has gone beyond the $$ paid to the Data Scientists. It is about the process of creating wonders. “Data Science” puts forth an unique mix of interesting challenges, that requires grappling with the enormous amounts of data and the mind numbing application of the machine learning and computational algorithms, visualization and soft-skills. These aspects associated with “Data Science” are evolving, as depicted in this [data science venn diagram](https://www.infoq.com/articles/christine-doig-data-science-team-discipline).
 
-![](https://cdn-images-1.medium.com/max/800/0*FEPtZ-3YF48YMkRs.)
+![Data Science Venn Diagrams](https://cdn-images-1.medium.com/max/800/0*FEPtZ-3YF48YMkRs.)
 
 You can see this trend expressed in this graph of searches on Google as well. An interesting point is that “Machine Learning” has been neck and neck with “Data Science” until recently when “Machine Learning” started to be searched for approximately 30% more frequently. And the gap between searches about Data Science and about Data Scientists has widened in the last couple of years; it seems people are about 3x more likely to be interested in Data Science than in the Data Scientists that actually do the work 🙂
 
-![](https://cdn-images-1.medium.com/max/800/0*Usx-pyQi3bHCTyJe.)
+![Graph of Machine Learning, Data Science, Data Scientist and Deep Learning searches on Google](https://cdn-images-1.medium.com/max/800/0*Usx-pyQi3bHCTyJe.)
 
 Interestingly, we have seen early OpenEBS users and contributors asking about OpenEBS delivering storage to containers running distributing nodes for Kafka or Spark or other pieces of a Data Science pipeline. We wanted to learn more about the needs of these users.
 
@@ -29,7 +29,7 @@ In the rest of the blog I set out a little more specifically what we have learne
 
 The workflow of a data science project typically comprises of four stages as outlined below, with data scientists going back and forth between these stages, before arriving at product/insights in the form of a report, dashboard or a data service.
 
-![](https://cdn-images-1.medium.com/max/800/0*UCJHD8p2bNOemyC9.)
+![Data Science workflow](https://cdn-images-1.medium.com/max/800/0*UCJHD8p2bNOemyC9.)
 
 Each of these stage involves tasks that can be further classified into three distinct types depending on the nature of the task as follows:
 
@@ -41,7 +41,7 @@ Type 3 : Administer Infrastructure/Tools
 
 Data Scientists are primarily interested in *Type 1 : Data Science tasks,* some sample tasks under this category (at different stages of the workflow) are:
 
-![](https://cdn-images-1.medium.com/max/800/0*t41w0qHFapFBWtX_.)
+![Data Science tasks at different stages of the workflow](https://cdn-images-1.medium.com/max/800/0*t41w0qHFapFBWtX_.)
 
 *One of the crucial requirement for the data scientist is to produce accurate and reproducible analysis by collaborating with larger teams.*[*Martin Hack*](https://twitter.com/mhackster)*, commented that he has come across situations where the accuracy of the models change from the time the models were generated to the time that they are presented to a wider audience. This is usually attributed to the change in the data using which the model was generated.*
 
@@ -49,7 +49,7 @@ The efficiency and confidence with which these tasks are performed or improved (
 
 Some sample Type 2 : Tasks at different phases of the Data Science workflow are as follows:
 
-![](https://cdn-images-1.medium.com/max/800/0*IKPVzSqbyirvwZW5.)
+![Tasks at different phases of the Data Science workflow](https://cdn-images-1.medium.com/max/800/0*IKPVzSqbyirvwZW5.)
 
 The tasks mentioned above just provide a glimpse into the challenges associated with a typical data science workflow. In workflows that require creating models by using data from multiple live sources, tracking the accuracy of the data without having something like application error logs, becomes a harder problem to solve, if not impossible. This also leads to anxious data scientists who tend to keep their work private, unless a higher level of confidence is achieved on the models generated.
 
@@ -63,7 +63,7 @@ Yet, there are a few infrastructure related tasks that are not fully integrated 
 
 Some of the tasks that fall under this *Type 3 : Infrastructure / Operations* tasks from (from a storage operations perspective) are:
 
-![](https://cdn-images-1.medium.com/max/800/0*gcVdcir6RcbetPXe.)
+![Infrastructure / Operations tasks from (from a storage operations perspective)](https://cdn-images-1.medium.com/max/800/0*gcVdcir6RcbetPXe.)
 
 *Andy and Xavier stated that they have the integration pieces with the data science tools, he finds that storage infrastructure related challenges remain and many of these would seem to be best solved with tighter integration by products like OpenEBS that are fully containerized and hypercoverged, with products like Adalog.*
 

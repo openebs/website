@@ -155,33 +155,33 @@ The above step will automatically create the OpenEBS volumes required for master
 - StatefulSet (pgset)
 - Pods (pgset-0, pgset-1)
 
-![](https://cdn-images-1.medium.com/max/800/0*_WTDmIAcGNUGL0zn.gif)
+![GIF displaying OpenEBS volumes required for master and replica postgresql containers and few other Kubernetes objects](https://cdn-images-1.medium.com/max/800/0*_WTDmIAcGNUGL0zn.gif)
 
 The volume details can be inspected using the standard kubectl commands. To check **persistent volume claims**:
 
     kubectl get pvc
 
-![](https://cdn-images-1.medium.com/max/800/0*Jj59F2CWdQqKOkjW.png)
+![Screenshot showing persistent volume claims](https://cdn-images-1.medium.com/max/800/0*Jj59F2CWdQqKOkjW.png)
 
 Check **persistent volumes**:
 
     kubectl get pv
 
-![](https://cdn-images-1.medium.com/max/800/0*cm0u7Ea_12FvQRC4.png)
+![Screenshot showing persistent volumes](https://cdn-images-1.medium.com/max/800/0*cm0u7Ea_12FvQRC4.png)
 
 List the **services**, and you will see pgset, master and replica created:
 
     kubectl get service
 
-![](https://cdn-images-1.medium.com/max/800/0*d5PjsFswTOOSBAcq.png)
+![Listing services](https://cdn-images-1.medium.com/max/800/0*d5PjsFswTOOSBAcq.png)
 
 List the **statefulsets**, and you will see pgset listed with two desired and current sets:
 
-![](https://cdn-images-1.medium.com/max/800/0*F3eKWl181xp3yKLJ.png)
+![Listing statefulsets](https://cdn-images-1.medium.com/max/800/0*F3eKWl181xp3yKLJ.png)
 
 If you use the **Kubernetes Dashboard**, you can see the same under **Workloads > Stateful Sets** and quickly scale up as well.
 
-![](https://cdn-images-1.medium.com/max/800/0*fQO6h-cj00rbePIi.png)
+![Kubernetes Dashboard](https://cdn-images-1.medium.com/max/800/0*fQO6h-cj00rbePIi.png)
 
 ### Test your Database
 

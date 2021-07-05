@@ -45,7 +45,7 @@ One strength of clouds like AWS is that they enable you to consume storage in a 
 
 ****Uhh, huh — and OpenEBS?****
 
-![](/images/blog/uhh-huh-openebs.png)
+![Uhh, huh — and OpenEBS?](/images/blog/uhh-huh-openebs.png)
 
 **Uhh huh — data, cloud, DevOps, lock-in and, err, OpenEBS?**
 

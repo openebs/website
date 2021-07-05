@@ -20,20 +20,20 @@ OpenEBS helps the enterprises to build an AWS EBS equivalent or GPD equivalent p
 
 Containerization of block storage volumes gives the benefit of flexible storage upgrade schedules, treating the storage volume as part of your K8s POD etc. However, there is more to consider as benefits of OpenEBS. OpenEBS is “Open source” EBS. A quick feature comparison is as follows
 
-![](https://cdn-images-1.medium.com/max/800/1*uu_mIhdqobjf3ftNOtf8KQ.png)
+![Comparing AWS EBS & OpenEBS](https://cdn-images-1.medium.com/max/800/1*uu_mIhdqobjf3ftNOtf8KQ.png)
 
 Next, provisioning and consuming persistent volumes through OpenEBS is very similar and simple to that of AWS EBS
 
 In AWS EBS a user creates and attaches a disk to an EC2 instance. The nuances of underlying storage protocols is hidden underneath and not exposed to the consumer/user.
 
-![](https://cdn-images-1.medium.com/max/800/1*zShnxODcXjTNu-X-qsJa5g.png)
+![Connectivity in AWS EBS](https://cdn-images-1.medium.com/max/800/1*zShnxODcXjTNu-X-qsJa5g.png)
 
 Flow of provisioning and consuming persistent block volumes on AWS EBS
 In OpenEBS, it is very similar. Once the OpenEBS volumes are expressed as intent in the application yaml config file, the volumes are automatically created on the OpenEBS platform,mounted on K8s minions and the persistent storage is made available to the application.
 
 Example of OpenEBS volumes getting consumed through iSCSI:
 
-![](https://cdn-images-1.medium.com/max/800/1*Mh9MzX5a_YbV9K_LR8EynA.png)
+![Connectivity in OpenEBS](https://cdn-images-1.medium.com/max/800/1*Mh9MzX5a_YbV9K_LR8EynA.png)
 
 Example of OpenEBS volumes getting dynamically provisioned and consumed using k8s-openebs provider is shown below
 
@@ -41,13 +41,13 @@ Example of OpenEBS volumes getting dynamically provisioned and consumed using k8
 
 The next comparison of OpenEBS to AWS EBS is how the volume snapshots are managed for data protection.
 
-![](https://cdn-images-1.medium.com/max/800/1*elAnAeYarCwxeCEyXv_Xow.png)
+![Snapshots on AWS EBS vs OpenEBS](https://cdn-images-1.medium.com/max/800/1*elAnAeYarCwxeCEyXv_Xow.png)
 **Comparing snapshots management on OpenEBS to that of AWS EBS**  
 
 As shown above, using OpenEBS, you will have a standard S3 snapshot upload capability so that you can choose your S3 provider. With on-premise S3 technologies like Minio, you can have the container backup infrastructure also as on-prem.
 
 On the advanced features comparison, OpenEBS steps up to match AWS EBS. Granular QoS control, advanced IOPs management features such as using burst and credit IOPS are some of the features that will be home at OpenEBS
 
-![](https://cdn-images-1.medium.com/max/800/1*1WGi8-GdTamykwgnJ0lqjw.png)
+![Other features comparison of AWS EBS & OpenEBS](https://cdn-images-1.medium.com/max/800/1*1WGi8-GdTamykwgnJ0lqjw.png)
 
 Building reliable storage platforms in open source is a hard thing. With all the expertise in serving for large enterprises, the team seems to be up for the challenge. We hope to see the incresing levels of community engagement in the months to come !!

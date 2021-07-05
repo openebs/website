@@ -13,7 +13,7 @@ excerpt: These redditers are like the nights-watch-men (Operations Team) who are
 
 These redditers are like the nights-watch-men (Operations Team) who are guarding the wall (production services) from army of dead (issues). These redditers are akin to “the tech Enthusiasts” as depicted in the following diagram, who can foresee the challenges and are looking for innovative solutions.  
 
-![](https://cdn-images-1.medium.com/max/800/1*11EOWUuoRjWn8pZ1uMXidg.png)
+![Container native storage adaption curve](https://cdn-images-1.medium.com/max/800/1*11EOWUuoRjWn8pZ1uMXidg.png)
 
 With S-less (server and state) architectures on the rise and faster networks at every possible end point, we can envision building and deploying services that can scale to yet unseen/unknown/unimaginable magnitude, **but!** (*Ned Stark once told me, that anything said before but*, ..*a GoT in-joke*) **State will be the bottleneck.**
 

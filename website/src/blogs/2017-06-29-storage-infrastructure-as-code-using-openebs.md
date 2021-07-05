@@ -32,7 +32,7 @@ The intelligent-storage-robot or what we call at OpenEBS as “Storage bot” ha
 - Work with the application for scheduling application aware snapshots, capacity management, data migration changes, automated data recovery etc
 - Work with centralised ML engine (if there is one) to upload the application behaviour or to learn about the application behaviour so that it becomes more intelligent
 
-![](https://cdn-images-1.medium.com/max/800/1*3wWTPR7i1gAVagzBYlOBmg.png)
+![Storage bot helping app developer of stateful container application and storage admin of the platform](https://cdn-images-1.medium.com/max/800/1*3wWTPR7i1gAVagzBYlOBmg.png)
 **Storage bot helping app developer of stateful container application and storage admin of the platform** 
 
 As depicted above, the storage solution designer is replaced by a storage-Bot (code) which is more effective as it predicts and updates the parameters of storage platform as well as the application in real time.
@@ -48,7 +48,7 @@ The platform configuration is specific to OpenEBS and the initial version is ava
 [https://github.com/openebs/openebs/blob/master/k8s/openebs-config.yaml](https://github.com/openebs/openebs/blob/master/k8s/openebs-config.yaml)
 
 The storage platform engineer develops this yaml file to scale the storage platform from few nodes to thousands of nodes across multiple locations. The yaml files can be version-controlled in a git repository and deployed into production to roll out the storage build-up process.
-![](https://cdn-images-1.medium.com/max/800/1*WiZS5A4iLPeMtwxUmdxunQ.png)
+![Storage platform deployment through yaml file automation](https://cdn-images-1.medium.com/max/800/1*WiZS5A4iLPeMtwxUmdxunQ.png)
 
 **Storage platform deployment through yaml file automation**
 
