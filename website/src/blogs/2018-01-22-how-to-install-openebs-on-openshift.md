@@ -163,7 +163,7 @@ Save changes.
 
 ### Install OpenEBS on Origin
 
-There are few easy ways to install OpenEBS. You can either apply the operator and storageclasses direct from the URL or clone the repo and execute from the local copy. I prefer to clone a local copy, but i’ll also give you the other option if you prefer.
+There are few easy ways to install OpenEBS. You can either apply the operator and storage classes direct from the URL or clone the repo and execute from the local copy. I prefer to clone a local copy, but i’ll also give you the other option if you prefer.
 
 Clone the latest OpenEBS files and sample application specs using the below command on your OpenShift master node:
 
@@ -311,7 +311,7 @@ requests:
 storage: 5G
 ```
 
-As you can see in the yaml file above, `storageClassName` is set to `openebs-percona` which has 2 replicas.
+As you can see in the YAML file above, `storageClassName` is set to `openebs-percona` which has 2 replicas.
 
 Now, apply the file:
 

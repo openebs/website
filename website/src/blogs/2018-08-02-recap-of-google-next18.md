@@ -23,7 +23,7 @@ First of all, a big shout out to all involved in the [**Istio** project](https:/
 
 ![GCSP Dashboard — After deploying my first app in less than 30 seconds.](https://lh4.googleusercontent.com/taoSgNELqkMCnfsqUd84nPfbIATkjucboLYdbzMUWKct5ZFiXb_PZFjoU5KFBc5LZNBz6mhuwHXEpMs49tREabCzrMDCuNTrKniQ4UYuk_i1pNxR08pUHOEjtZ3nxfUOZswcA_xe)
 
-Later this year, Google is targeting to make all components of their CSP available (in some form). CSP will combine **Kubernetes**, **GKE**, **GKE On-Prem**and **Istio **with Google’s infrastructure, security, and operations to increase velocity, reliability and manage governance at scale.
+Later this year, Google is targeting to make all components of their CSP available (in some form). CSP will combine **Kubernetes**, **GKE**, **GKE On-Prem** and **Istio** with Google’s infrastructure, security, and operations to increase velocity, reliability, and manage governance at scale.
 
 Cloud Services Platform will be extensible through an open ecosystem. **Stackdriver Monitoring** and **Marketplace** are the extensions to platform services. [Marketplace](https://console.cloud.google.com/marketplace/browse?filter=solution-type:k8s) already has 27 Kubernetes apps including commonly used components of many environments such as Elasticsearch and Cassandra.
 

@@ -4,10 +4,10 @@ author: Sudarshan Darga
 author_info: Senior Software Engineer at MayaData
 date: 12-04-2018
 tags: OpenEBS, Chaos Engineering, Kubernetes, Solutions
-excerpt: Chaos Engineering is the discipline of proving the reliability of any system by causing “chaos”. The work ‘Chaos’ means the state of confusion or failure caused due to unexpected reason.
+excerpt: Chaos Engineering is the discipline of proving the reliability of any system by causing “chaos”. The word ‘Chaos’ means the state of confusion or failure caused due to unexpected reason.
 ---
 
-**Chaos Engineering** is the discipline of proving the reliability of any system by causing “chaos”. The work ‘Chaos’ means the state of confusion or failure caused due to unexpected reason.
+**Chaos Engineering** is the discipline of proving the reliability of any system by causing “chaos”. The word ‘Chaos’ means the state of confusion or failure caused due to unexpected reason.
 
 ### Failures can be caused due to:
 

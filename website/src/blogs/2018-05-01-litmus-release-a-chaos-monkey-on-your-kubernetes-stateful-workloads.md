@@ -23,7 +23,7 @@ You are not alone, as can be seen by the ever increasing conversations on Kubern
 
 [What are the storage solutions offered in Kubernetes today? Which one will suit my workload](https://twitter.com/rothgar/status/978694465975083009)
 
-And say, you somehow have made the journey to explore different solutions out there, mostly referring to product documentation and blogs, how can you be sure that the solution will continue to work in your enterprise environment ?
+And say, you somehow have made the journey to explore different solutions out there, mostly referring to product documentation and blogs, how can you be sure that the solution will continue to work in your enterprise environment?
 
 As enterprises move to DevOps and microservices, more and more of the infrastructure from policy engines through storage and everything in between such as DNS, tracing, logging and more are selected and operated by all in one teams. With this control and autonomy comes greater agility — and all too often, _stress_.
 
@@ -62,7 +62,7 @@ First, it might be useful to understand the basic pieces of Litmus. Litmus has t
 - **Deployments** that help in setting up different types of Kubernetes Clusters like on-premise, cloud, OpenShift, etc. The default is that the deployments provision and configure OpenEBS storage, however, these deployments are easily extended to support other storage and we are happy to help any user or storage vendor to build additional deployments.
 - **Facilitators** for test execution that aid: defining and running test suites, capturing logs and generating reports about the test runs, fault/error injection tools that help to perform chaos tests, examples that demonstrate how to integrate these test pipelines with Slack notifications
 - **Test modules** that are triggered from within a Kubernetes cluster. Think of these as containerized tests. For instance, the **_mysql-client_** can be launched as a pod to validate MySQL resiliency while the underlying nodes and the connected storage are subjected to chaos engineering.
-- **Tests** that themselves are written in easy to understand formats, either in plain English (thanks [Godog](https://github.com/DATA-DOG/godog)!) or in Ansible Playbooks. These tests primarily interact with the Kubernetes cluster via **_kubectl_**making them highly portable.
+- **Tests** that themselves are written in easy to understand formats, either in plain English (thanks [Godog](https://github.com/DATA-DOG/godog)!) or in Ansible Playbooks. These tests primarily interact with the Kubernetes cluster via **_kubectl_** making them highly portable.
 
 Litmus can be used to test a given workload in a variety of Kubernetes environments, for example, a developer minikube or a GKE cluster with a specific storage solution or as a part of a full-fledged CI setup.
 

@@ -1,7 +1,7 @@
 ---
 title: Kubernetes storage extensions to Weave Scope
 author: Uma Mukkara
-author_info: Contributor at openebs.io, Co-founder& COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
+author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 date: 28-6-2018
 tags: Open Source, Weave Scope, Node Disk Manager, Persistent Volume, Kubernetes
 excerpt: It was in Austin KubeCon 2017 that I first got a deep look at Weave Scope, and could not stop falling in love with it. The visualisation Scope provides into Kubernetes resources is simply amazing.

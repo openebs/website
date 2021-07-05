@@ -11,7 +11,7 @@ excerpt: Here is one of the fastest ways to get your private repository with Git
 
 After Microsoft announced the acquisition of GitHub, many developers raised concerns on social media about Microsoft’s history of unsuccessfully running the acquired businesses like Skype, Nokia’s handset business, Navision and other 150 companies (you probably haven’t noticed) they have swallowed up over the years.
 
-Other than keeping the developer’s life-support plugged, one of the biggest concern is that MS would use its power on GitHub repositories to analyze trends among software development in order to launch competing products. Fears that GitHub privacy may be in jeopardy have already led many developers to jump off the ship or consider alternatives. GitLab’s publicly available [status graphs](https://t.co/svpWpI0Rb2) show spikes of 70x increase in imported repositories (average 100 vs 7.5K), a validation of increased user apprehension.
+Other than keeping the developer’s life-support plugged, one of the biggest concerns is that MS would use its power on GitHub repositories to analyze trends among software development in order to launch competing products. Fears that GitHub privacy may be in jeopardy have already led many developers to jump off the ship or consider alternatives. GitLab’s publicly available [status graphs](https://t.co/svpWpI0Rb2) show spikes of 70x increase in imported repositories (average 100 vs 7.5K), a validation of increased user apprehension.
 
 Here is one of the fastest way to get your private repository with Gitlab up and running on your Kubernetes environment — Let’s “**Make DevOps lifecycle private again**” ©
 
@@ -234,4 +234,4 @@ Now click on **Create a project**, then import your existing project from GitHub
 
 ---
 
-Hopefully this helps anyone who is motivated to reexamine their approach to Git to quickly and easily start running GitLab on Kubernetes. Thank you for reading, and please provide any feedback below or via twitter — [**@**muratkarslioglu](https://twitter.com/muratkarslioglu)_Originally published at _[_Containerized Me_](http://containerized.me/git-freedom-on-kubernetes/)_._
+Hopefully, this helps anyone who is motivated to reexamine their approach to Git to quickly and easily start running GitLab on Kubernetes. Thank you for reading, and please provide any feedback below or via Twitter — [**@**muratkarslioglu](https://twitter.com/muratkarslioglu)_Originally published at _[_Containerized Me_](http://containerized.me/git-freedom-on-kubernetes/)_._

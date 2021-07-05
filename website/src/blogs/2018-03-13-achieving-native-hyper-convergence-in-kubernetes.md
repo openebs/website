@@ -1,7 +1,7 @@
 ---
 title: Achieving native hyper convergence in Kubernetes
 author: Uma Mukkara
-author_info: Contributor at openebs.io, Co-founder& COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
+author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 date: 13-03-2018
 tags: Hyper Convergence, Kubernetes, Nutanix, OpenEBS, Persistent Storage
 excerpt: Hyper convergence has a lot of benefits — which is one reason it has become popular in the traditional infrastructure-centric world of virtual machines with proprietary vendors like Nutanix reaching prominence over the last several years.
@@ -47,7 +47,7 @@ Just like storage connectivity issue is solved with a dynamic volume provisioner
 
 ![Proposed disk related constructs and interfaces](https://cdn-images-1.medium.com/max/800/0*eM2LjKDvhbl62mjG.)
 
-As shown above, DevOps administrators will have the required tools to design the storage policy decisions. A toolset called is created node-disk-manager to provision, monitor and manage disks on the node. The disks are then grouped into pools by an interface called pool provisioner. The pool provisioner gives a generic set of APIs to consume the kubernetes disk objects and create a storage technology specific pools such as OpenEBS cStorPool, OpenZFS zpool, GlusterPool etc.The advantage of representing the pools in native Kubernetes constructs is that Kubernetes native tools can be extended to manage these new constructs.
+As shown above, DevOps administrators will have the required tools to design the storage policy decisions. A toolset called is created node-disk-manager to provision, monitor, and manage disks on the node. The disks are then grouped into pools by an interface called pool provisioner. The pool provisioner gives a generic set of APIs to consume the Kubernetes disk objects and create a storage technology specific pools such as OpenEBS cStorPool, OpenZFS zpool, GlusterPool etc.The advantage of representing the pools in native Kubernetes constructs is that Kubernetes native tools can be extended to manage these new constructs.
 
 With these constructs, the end-to-end volume provisioning work flow could be depicted like below.
 
@@ -55,7 +55,7 @@ With these constructs, the end-to-end volume provisioning work flow could be dep
 
 ## Conclusion:
 
-Kubernetes native constructs and tools to manage and monitor local disks will help move towards achieving true hyper-convergence. We have observed many users in the OpenEBS community are using OpenEBS dynamic provisioner seamlessly, and requesting tools to manage the disks and storage pools. We are thinking of adding such tools to Kubernetes itself so that they are available to the larger community. A draft design proposal is available at We are looking forward to proposing and discussing these thoughts with K8S SIG leadership.
+Kubernetes native constructs and tools to manage and monitor local disks will help move towards achieving true hyper-convergence. We have observed many users in the OpenEBS community are using OpenEBS dynamic provisioner seamlessly and requesting tools to manage the disks and storage pools. We are thinking of adding such tools to Kubernetes itself so that they are available to the larger community. A draft design proposal is available at We are looking forward to proposing and discussing these thoughts with K8S SIG leadership.
 
 We are cooking up some draft proposals in the OpenEBS project before we take the to K8S SIG. Your feedback is appreciated and needed.
 

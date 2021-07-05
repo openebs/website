@@ -21,7 +21,7 @@ Now, OpenEBS is still under active development from the team. Hence comes in, [S
 
 Refer to this [quick guide](https://github.com/search?utf8=%E2%9C%93&q=org%3Aopenebs+is%3Aissue+label%3Asummerhack+label%3Akind%2Funit-test&type=) to get started. You would also need to be familiar with the basics of Go, hence you can refer to the widely recommended tutorial [https://tour.golang.org/](https://tour.golang.org/), for the same. After that, make sure to join the OpenEBS Slack channel to resolve all doubts and questions that you might have. The link can be found here in the [contributing document](https://github.com/openebs/openebs/blob/master/CONTRIBUTING.md) on their repository. Read the document (I re-wrote it) And you are committed.
 
-Go to their website that I linked above, and figure out which section of issues you would like to contribute too. Once done. Head over there, and do your thing. Push the changes, make that PR and rest is history.
+Go to their website that I linked above, and figure out which section of issues you would like to contribute. Once done. Head over there, and do your thing. Push the changes, make that PR and rest is history.
 
 ## Well, sure thing but how was your experience?
 

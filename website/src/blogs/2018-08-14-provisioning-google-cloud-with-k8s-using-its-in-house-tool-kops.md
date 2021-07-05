@@ -46,7 +46,7 @@ These items are required to deploy the production-ready k8s cluster in GCP:
 
 ## Let’s Begin!
 
-A quick note: every time you create a cluster, it also creates a _Virtual Private Cloud _(**VPC**), per se. Google Cloud allows you to create only a maximum of 5 VPC’s in one project, and a total of only 5 clusters. So, to resolve this problem, we can create a **VPC** explicitly and use it as a common Network for the rest of the clusters.
+A quick note: every time you create a cluster, it also creates a _Virtual Private Cloud_ (**VPC**), per se. Google Cloud allows you to create only a maximum of 5 VPC’s in one project, and a total of only 5 clusters. So, to resolve this problem, we can create a **VPC** explicitly and use it as a common Network for the rest of the clusters.
 
 ### Create a VPC
 

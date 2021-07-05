@@ -11,7 +11,7 @@ This article belongs to #HowDoI series on Kubernetes and OpenEBS.
 
 The OpenEBS volume replicas, which are the actual backend storage units of the OpenEBS iSCSI target currently store the data in a hostPath on the Kubernetes nodes. By default, a folder with the volume (PV) name is created on the root filesystem, in a parent directory (/var/openebs) & bind mounted into the container during the replica pod instantiation. This parent directory (also created if not already available), which is basically a persistent path to hold the individual volumes is referred to as a **_Storage Pool_**.
 
-Note: The notion of the storage pool described above is specific to the current default storage engine ,i.e., Jiva. Future releases may see availability of additional storage-engines which can consume block devices instead of hostdir to create storage pools
+Note: The notion of the storage pool described above is specific to the current default storage engine,i.e., Jiva. Future releases may see availability of additional storage-engines which can consume block devices instead of hostdir to create storage pools
 
 For various reasons, it may be desirable to create this storage pool on an external disk (GPD, EBS, SAN) mounted into specific locations on the Kubernetes nodes. This is facilitated by the **OpenEBS storage pool policy**, which defines the storage pool as a **_Kubernetes Custom Resource_** with the persistent path as an attribute.
 

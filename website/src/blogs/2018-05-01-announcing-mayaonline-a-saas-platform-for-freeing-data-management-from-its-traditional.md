@@ -1,7 +1,7 @@
 ---
 title: Announcing MayaOnline — A SaaS platform for freeing data management from its traditional…
 author: Uma Mukkara
-author_info: Contributor at openebs.io, Co-founder& COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
+author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 date: 01-05-2018
 tags: Gitops, Kubernetes, Mayaonline, OpenEBS, Stateful Workloads
 excerpt: At this Kubecon, we, at MayaData, are thrilled to make couple of announcements. One of them is the launch of beta version of MayaOnline.
@@ -11,7 +11,7 @@ At this Kubecon, we, at MayaData, are thrilled to make couple of [announcements]
 
 MayaOnline provides application developers, Kubernetes administrators and CIOs different variants of visibility into stateful applications data and helps these users to better manage data operations.
 
-It has become an almost untold expectation that the modern era tools being built for easing / helping DevOps are built with easy integration into GitOps; change controlling configurations much in the way that code is managed has been identified as a key determinant of success. MayaOnline takes the GitOps philosophy into its design;configurations come from single source of truth — Git repositories.
+It has become an almost untold expectation that the modern era tools being built for easing / helping DevOps are built with easy integration into GitOps; change controlling configurations much in the way that code is managed has been identified as a key determinant of success. MayaOnline takes the GitOps philosophy into its design; configurations come from single source of truth — Git repositories.
 
 Talking about simple integrations — we also have made APIs first class citizens in the design of MayaOnline. Almost anything you can do via the GUI you can do via APIs.
 
@@ -26,7 +26,7 @@ MayaOnline is released as a beta version today and comes live with the following
 
 ## Sifting through your PVCs and PVs:
 
-Microservices architectures typically split applications into multiple kubernetes PODs. It is not uncommon to have a production Kubernetes cluster with hundreds of PODs, in some cases even thousands. Each POD can have multiple volumes claims (PVCs), derived from a combination of storage classes (SCs) and resulting in volumes (PVs). Thanks in large part to our newly released Weave Scope integration, MayaOnline provides an efficient way to view, debug and for some scenarios manage these PVC and PVs and their relationships.
+Microservices architectures typically split applications into multiple Kubernetes PODs. It is not uncommon to have a production Kubernetes cluster with hundreds of PODs, in some cases even thousands. Each POD can have multiple volumes claims (PVCs), derived from a combination of storage classes (SCs) and resulting in volumes (PVs). Thanks in large part to our newly released Weave Scope integration, MayaOnline provides an efficient way to view, debug and for some scenarios manage these PVC and PVs and their relationships.
 
 One simple use case is sifting through the snapshots of a volume and creating a clone out of one.
 
@@ -34,7 +34,7 @@ One simple use case is sifting through the snapshots of a volume and creating a 
 
 ## Managing hyper-convergence:
 
-The same problem of sifting through hundreds of objects and their logical and physical relationships can arise while managing underlying storage media, including disks, cloud volumes, SSDs and more. MayaOnline helps here as well, simplifying disk monitoring and management, the pooling of disks, expansion of capacity . OpenEBS NDM is a key piece go get the hyper-convergence management right, you can refer to [this blog](https://blog.openebs.io/achieving-native-hyper-convergence-in-kubernetes-cb93e0bcf5d3) for more thoughts on contributing NDM to Kubernetes itself.
+The same problem of sifting through hundreds of objects and their logical and physical relationships can arise while managing underlying storage media, including disks, cloud volumes, SSDs, and more. MayaOnline helps here as well, simplifying disk monitoring and management, the pooling of disks, expansion of capacity . OpenEBS NDM is a key piece go get the hyper-convergence management right, you can refer to [this blog](https://blog.openebs.io/achieving-native-hyper-convergence-in-kubernetes-cb93e0bcf5d3) for more thoughts on contributing NDM to Kubernetes itself.
 
 ![Browse disks relationship to a volume](https://cdn-images-1.medium.com/max/800/1*7w2jYA2KghNxT7c96snCxw.gif)
 
