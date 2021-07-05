@@ -1,9 +1,9 @@
 ---
 title: Litmus - Journey of a storage e2e and chaos framework for Kubernetes
-slug: litmus-journey-of-a-storage-e2e-and-chaos-framework-for-kubernetes
 author: Karthik Satchitanand
+author_info: Karthik has been into the Design and Development of tools for infrastructure as code, software testing performance & benchmarking & chaos engineering.
 date: 26-03-2019
-tags: Chaos Engineering, Continuous Integration, Kubernetes, Litmus, Openebs
+tags: Chaos Engineering, Continuous Integration, Kubernetes, Litmus, OpenEBS
 excerpt: The objective of the Litmus project is to help evaluate stateful workloads on Kubernetes via storage & infrastructure focused end-to-end (e2e) tests that use chaos engineering tools & principles
 ---
 

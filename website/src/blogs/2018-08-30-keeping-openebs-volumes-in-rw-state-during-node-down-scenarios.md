@@ -1,9 +1,9 @@
 ---
 title: Keeping OpenEBS volumes in RW state during “Node down” scenarios
-slug: keeping-openebs-volumes-in-rw-state-during-node-down-scenarios
-author: SAI CHAITHANYA
+author: Sai Chaithanya
+author_info: A developer who is always eager to learn, loves algorithms, maths, Kubernetes, and programming, passionate about Data Science. Enjoys playing kabaddi and traveling.
 date: 30-08-2018
-tags: Kubernetes, Chaos Engineering, Statefulset, Openebs
+tags: Kubernetes, Chaos Engineering, Statefulset, OpenEBS
 excerpt: In this blog, I will go through a read-only issue faced at our lab in Kubernetes environment while using OpenEBS, and will also go through its possible workarounds.
 ---
 
@@ -11,9 +11,9 @@ In this post, I will go through a read-only issue experienced in the Kubernetes 
 
 OpenEBS has the below deployment method for providing persistent storage to applications in Kubernetes clusters.
 
-As shown in the above diagram, the application container runs on Node1, and an iSCSI target is runs on Node2 [There can be a case where the application and iSCSI target are running on same node, but we don’t notice the issue in this scenario]. The iSCSI initiator of Node1 discovers and logs in to the iSCSI target and creates the disk /dev/sdb. The application consumes the mount point /mnt/vol1 created over the disk /dev/sdb as persistent storage.
+As shown in the above diagram, the application container runs on Node1, and an iSCSI target is runs on Node2 [There can be a case where the application and iSCSI target are running on same node, but we don’t notice the issue in this scenario]. The iSCSI initiator of Node1 discovers and logs in to the iSCSI target and creates the disk `/dev/sdb`. The application consumes the mount point `/mnt/vol1` created over the disk `/dev/sdb` as persistent storage.
 
-When the node on which the iSCSI target, i.e. Node2, goes down, K8s then takes 5 minutes to schedule the iSCSI target on another node. This causes the mount point to enter a Read-Only (RO) state. Below are logs related to this issue:
+When the node on which the iSCSI target, i.e. Node2, goes down, K8s then takes 5 minutes to schedule the iSCSI target on another node. This causes the mount point to enter a `Read-Only (RO)` state. Below are logs related to this issue:
 
     Aug 28 18:13:29 instance-1 kernel: [28477.898809] connection12:0: detected conn error (1020)
     Aug 28 18:15:30 instance-1 kernel: [28598.723742] sd 1:0:0:0: rejecting I/O to offline device
@@ -143,7 +143,7 @@ The below command can be used to change the setting for logged-in sessions:
 
     iscsiadm -m node -T <target> -p <ip:port> -o update -n node.session.timeo.replacement_timeout -v 400
 
-“iscsiadm -m session -P 3” output is shown below:
+“`iscsiadm -m session -P 3`” output is shown below:
 
     <<snippet>>
     Iface Initiatorname: iqn.1993–08.org.debian:01:9b16db669dce
@@ -170,7 +170,7 @@ The below command can be used to change the setting for logged-in sessions:
     <<snippet>>
     
 
-You may notice the change in the “Attached scsi disk” value. This causes the volume to become unmounted and, therefore, needs to be remounted.
+You may notice the change in the “`Attached scsi disk`” value. This causes the volume to become unmounted and, therefore, needs to be remounted.
 
 If you are aware of the iSCSI target login process, you likely know that it is a two-step process. The first step is to discover the target, and the second step is to log into the target. The “iscsiadm -o update” command can also be used after discovering the target but before logging into the target. Updating the setting in this way means that you do not need to remount the volume, as the login didn’t happen before the “iscsiadm -o update” command.
 
@@ -186,11 +186,11 @@ Below are the kernel logs related to the case where the iSCSI target is brought 
 
 Superb!!!
 
-As you can see in the above logs, the iSCSI connection was successful even after 300 seconds. The mount point did not go into RO state, and thus the application container will remain in the ‘Running’ state. This avoids lot of manual work for the user.
+As you can see in the above logs, the iSCSI connection was successful even after 300 seconds. The mount point did not go into RO state, and thus the application container will remain in the `Running` state. This avoids lot of manual work for the user.
 
 **What about cases when the iSCSI login is already done, and the volume mountpoint can’t be remounted?**
 
-One way to do this is by modifying the content of a file in the /sys/class/iscsi_session/ directory path, from which the iSCSI initiator reads this setting.
+One way to do this is by modifying the content of a file in the `/sys/class/iscsi_session/` directory path, from which the iSCSI initiator reads this setting.
 
 The file related to this setting is as follows:
 
@@ -206,4 +206,4 @@ Execute this command to run as a root to modify this setting within the file:
 
 **Conclusion**: When Kubernetes takes time in rescheduling the iSCSI target pod into a different node, modifying this setting in any of the above methods prevents the mount point from entering the RO state.
 
-**There is one “gotcha”:** If multipathing is enabled, the multipath-related setting takes precedence over this setting if the setting modification is done either through the iscsid.conf file or “iscsiadm -o output” command.
+**There is one “gotcha”**: If multipathing is enabled, the multipath-related setting takes precedence over this setting if the setting modification is done either through the iscsid.conf file or “iscsiadm -o output” command.

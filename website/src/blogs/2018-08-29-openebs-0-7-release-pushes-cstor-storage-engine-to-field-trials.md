@@ -1,19 +1,19 @@
 ---
 title: OpenEBS 0.7 Release pushes cStor Storage Engine to field trials!
-slug: openebs-0-7-release-pushes-cstor-storage-engine-to-field-trials
 author: Kiran Mova
+author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
 date: 29-08-2018
-tags: Container, Kubernetes, Openebs, Storage Solutions
+tags: Container, Kubernetes, OpenEBS, Storage Solutions
 excerpt: Before I get into some fascinating features of 0.7 release, I would like to take this opportunity to thank all users who have taken our OpenEBS survey and have come forward to share your Kubernetes Stateful Workload and OpenEBS adoption stories.
 ---
 
 Before I get into some fascinating features of 0.7 release, I would like to take this opportunity to thank all users who have taken our OpenEBS survey and have come forward to share your Kubernetes Stateful Workload and OpenEBS adoption stories. When I hear statements like ***“OpenEBS just works!”***, it is definitely a sign that the project and the OpenEBS Developer Community is headed in the right direction. It is both heartening and humbling. Thank you!
-![](https://cdn-images-1.medium.com/max/800/0*8J2dBBRWCnbu82R_)
+![](https://cdn-images-1.medium.com/max/800/08J2dBBRWCnbu82R_)
 We would welcome more contributions to the survey mentioned above, for example, whether you are an OpenEBS user (yet) or not: [https://www.surveymonkey.com/r/BRDCCWY](https://www.surveymonkey.com/r/BRDCCWY)
 
 —
 
-While 0.6 was mainly focused towards making the storage resilient via building chaos tools like [Litmus](https://github.com/openebs/litmus); 0.7 has taken a huge leap towards bringing a new Storage Engine for your OpenEBS Volumes — called cStor. — **c**ontainer **Stor**age and incidentally it is a **Stor**age written in **c**)!
+While 0.6 was mainly focused towards making the storage resilient via building chaos tools like [Litmus](https://github.com/openebs/litmus); 0.7 has taken a huge leap towards bringing a new Storage Engine for your OpenEBS Volumes — called cStor. — **container** **Storage** and incidentally it is a **Storage** written in **c**)!
 
 Speaking of OpenEBS 0.7, the geek in me would like to banter about the OpenEBS CAST (Container Attached Storage Templates or read it as moulding) framework that we developed to help easily plugin new Storage Engines, or about how we use the new Kubernetes Dynamic Client to do some heavy lifting of interacting with the Kubernetes CRDs and Scheduling. Anyways, let us keep it for the upcoming KubeCons!
 
@@ -131,7 +131,7 @@ When the PVs are created for the Mongo StatefulSet, the Replicas are configured 
 
 The complete YAML file for Mongo StatefulSet using OpenEBS PV is available [here](https://github.com/openebs/openebs/blob/master/k8s/demo/mongodb/mongo-statefulset.yml).
 
-**Example 2: **When running in hyper-converged mode along with applications, it is imperative to deploy granular control on how much memory or cpu can be allocated for serving a storage volume. Again, this is a relatively common scenario, and we know how to control it for the Application Deployments! The same can be extended to the Storage!
+**Example 2:** When running in hyper-converged mode along with applications, it is imperative to deploy granular control on how much memory or cpu can be allocated for serving a storage volume. Again, this is a relatively common scenario, and we know how to control it for the Application Deployments! The same can be extended to the Storage!
 
 For example, you can define the Resource Requests and Limits for different storage pods:
 

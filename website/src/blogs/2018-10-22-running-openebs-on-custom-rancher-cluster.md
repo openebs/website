@@ -1,13 +1,13 @@
 ---
 title: Running OpenEBS On Custom Rancher Cluster
-slug: running-openebs-on-custom-rancher-cluster
 author: Chandan Sagar Pradhan
+author_info: Software Engineer at MayaData
 date: 22-10-2018
-tags: Cas, Cloud Native Storage, Kubernetes, Openebs, Rancher
+tags: Cas, Cloud Native Storage, Kubernetes, OpenEBS, Rancher
 excerpt: In this blog, I will be explaining how to deploy an application in a custom Rancher cluster on an OpenEBS volume.
 ---
 
-In this blog, I will be explaining how to deploy an application in a custom Rancher cluster on an OpenEBS volume. **OpenEBS** is a leading open-source storage platform that provides persistent and containerized block storage for DevOps and container environments. **Rancher **is enterprise management for Kubernetes. Before you begin, please make sure all the prerequisites are met.
+In this blog, I will be explaining how to deploy an application in a custom Rancher cluster on an OpenEBS volume. **OpenEBS** is a leading open-source storage platform that provides persistent and containerized block storage for DevOps and container environments. **Rancher** is enterprise management for Kubernetes. Before you begin, please make sure all the prerequisites are met.
 
 ## Node Requirements:
 
@@ -60,7 +60,7 @@ SampleOutput:
     libiscsi 53248 2 libiscsi_tcp,iscsi_tcp
     scsi_transport_iscsi 98304 2 libiscsi,iscsi_tcp
 
-If your output is similar to the sample above, then, you are good to go. If your output doesn’t have *iscsi_tcp*, you need to follow the below steps to load the *iscsi_tcp* module.
+If your output is similar to the sample above, then, you are good to go. If your output doesn’t have `iscsi_tcp`, you need to follow the below steps to load the `iscsi_tcp` module.
 
     modprobe iscsi_tcp
 
@@ -70,7 +70,7 @@ You can verify the same from the command below. Now the output should be similar
 
 ### Persist iscsi_tcp module to load after reboot:
 
-You can make the kernel load iscsi_tcp automatically every time the node reboots by appending the line iscsi_tcp in /etc/ modules.
+You can make the kernel load iscsi_tcp automatically every time the node reboots by appending the line `iscsi_tcp in /etc/` modules.
 
 Example:
 
@@ -87,21 +87,21 @@ Now if all prerequisites have been met, go ahead with setting up the cluster. Yo
 - Once you have deployed Rancher, you should be able to access the UI. Login to your rancher UI using your credentials
 
 ![https://cdn-images-1.medium.com/max/800/0*9hGJnGOsGQCTQHOT](https://lh5.googleusercontent.com/GPlkMiXFCbx2NDcEpBnPts6RyogvKkba2FB-KXK8MJGPNSIUPtc8m0XDgfyEHrFd4gbt0m_pnZlrjJxJyZMpt3n8TG6HleaK-PXx5w2sK79acOpDEG75qx1_ADiqr-IYKiptoWWnEDjmVZJvzg)
-- Now click on the global tab and then click on add cluster button. We should see the ‘add cluster’ window.
+- Now click on the global tab and then click on add cluster button. We should see the `add cluster` window.
 
 Example:
 ![https://cdn-images-1.medium.com/max/800/0*wvgcOh-f-sej1z7K](https://lh4.googleusercontent.com/8I-bx0annuUna6yqZW4WBKx7B2yJ1HZqAULkMU8Cy0ml4qrDOg8uDdlgvBllT3TrLDLjguVzih3NWm21wa1LEryF-DJJ4C_xMYbrmLvTmvQCvbP38xWNgEGTiR_hHuD78ja3avF1eqh3EHDFkQ)
 - Under the add cluster option, click on the custom. Then give the cluster a name. You can customize the cluster under Cluster Options. You can choose Kubernetes version, Network provider and other options. Here, I have selected Kubernetes Version as V.1.11.2-rancher1–1, Network provider as Canal and Cloud Provider as none.
 
 Example:
-![https://cdn-images-1.medium.com/max/800/0*TUdHPrwikhS2ayyc](https://lh3.googleusercontent.com/HdRA1u7VmMHKX0x3zLGMLCenORq8wyJaOCMo7QROGW77Id8m9gOTLB_Pyj444jYmcE9-MOsyTrt7kDtqx8hsiTVcM63bAb_qGZpOZnOgUSLM6WcvSOxy1FXN2X8DNbfFjZNhno9dLPfJpZwLEw)![https://cdn-images-1.medium.com/max/800/0*WmuNv-q8y2DWCrtf](https://lh4.googleusercontent.com/iFYGuhO9hdQhd8yx3nnznxRIsLQf6jtrcDgyPX6XayuI0JTC0zM4tsCzVrN6HEqZys4qKYHW1rMUiFnoEvPUlFO_ikh2dCKRWt6yjpvVShC8xE7enhy0bpyeNSG1y_KhcNATX70YGdDUulqCZg)
-- Now, click on the Next button; it will open another page. On this page, you can select node roles like etcd/ Control Plane / Worker. Click on “Show advanced options.” Now add the i/p address of the node in the Internal Address section.
+![https://cdn-images-1.medium.com/max/800/0TUdHPrwikhS2ayyc](https://lh3.googleusercontent.com/HdRA1u7VmMHKX0x3zLGMLCenORq8wyJaOCMo7QROGW77Id8m9gOTLB_Pyj444jYmcE9-MOsyTrt7kDtqx8hsiTVcM63bAb_qGZpOZnOgUSLM6WcvSOxy1FXN2X8DNbfFjZNhno9dLPfJpZwLEw)![https://cdn-images-1.medium.com/max/800/0WmuNv-q8y2DWCrtf](https://lh4.googleusercontent.com/iFYGuhO9hdQhd8yx3nnznxRIsLQf6jtrcDgyPX6XayuI0JTC0zM4tsCzVrN6HEqZys4qKYHW1rMUiFnoEvPUlFO_ikh2dCKRWt6yjpvVShC8xE7enhy0bpyeNSG1y_KhcNATX70YGdDUulqCZg)
+- Now, click on the Next button; it will open another page. On this page, you can select node roles like etcd/ Control Plane / Worker. Click on `Show advanced options.` Now add the i/p address of the node in the Internal Address section.
 
 Example:
-![https://cdn-images-1.medium.com/max/800/0*vdEKTs_03NjU_ABz](https://lh5.googleusercontent.com/PxmfXKEX56zJs9wZtN2SE0ssvtVvU74FU12HPhuUu4f0dT1Ctr3pDRe_VBQGsFVCnJWE54CMa3Qp9kDaPa1oXggWyaza90-7HAkwWSyEqm4aCeZZwPths6zNSeBX2TqCyJNA5MsT9SjqCbdkSw)
-- Copy the command mentioned in the page to the node, which will be added to the cluster. Once you run the command, the page will show *1 new node registered.*
+![https://cdn-images-1.medium.com/max/800/0vdEKTs_03NjU_ABz](https://lh5.googleusercontent.com/PxmfXKEX56zJs9wZtN2SE0ssvtVvU74FU12HPhuUu4f0dT1Ctr3pDRe_VBQGsFVCnJWE54CMa3Qp9kDaPa1oXggWyaza90-7HAkwWSyEqm4aCeZZwPths6zNSeBX2TqCyJNA5MsT9SjqCbdkSw)
+- Copy the command mentioned in the page to the node, which will be added to the cluster. Once you run the command, the page will show `1 new node registered.`
 
-![https://cdn-images-1.medium.com/max/800/0*RWPLUNaKkqjytKS2](https://lh3.googleusercontent.com/Nwmz-UPUTa_BGznUiBU_E3KmMNU-1yvh9f1Y3j5M-3hHssizRSMtCNlejgB_qDmVxUeoLDuXqT9EZDtbIuHuCq-7KP66f8scl6f2xE_H_dzd1oFbmEyoX-SUiBFBcjzRF2nhmyQQrd_9Jdx7-w)
+![https://cdn-images-1.medium.com/max/800/0RWPLUNaKkqjytKS2](https://lh3.googleusercontent.com/Nwmz-UPUTa_BGznUiBU_E3KmMNU-1yvh9f1Y3j5M-3hHssizRSMtCNlejgB_qDmVxUeoLDuXqT9EZDtbIuHuCq-7KP66f8scl6f2xE_H_dzd1oFbmEyoX-SUiBFBcjzRF2nhmyQQrd_9Jdx7-w)
 - Now click on *Done*. Follow the same process to add more nodes to the cluster.
 - Once all the nodes are added, you can deploy OpenEBS on the cluster.
 
@@ -125,7 +125,7 @@ Jiva can be provisioned in your Kubernetes cluster by using the following proced
 
 ### Verify if the OpenEBS installation is complete.
 
-OpenEBS pods are created under “*openebs*” namespace, default Storage Pool and default Storage Classes are created after installation.
+OpenEBS pods are created under `openebs` namespace, default Storage Pool and default Storage Classes are created after installation.
 
 You can get the OpenEBS pods status by running following command
 
@@ -142,7 +142,7 @@ You can use the default Jiva storage class in your application YAML to run the a
     openebs-jiva-default openebs.io/provisioner-iscsi 4m
     openebs-snapshot-promoter volumesnapshot.external-storage.k8s.io/snapshot-promoter 4m
 
-OpenEBS installation will create Jiva storage pool also. It will be created by default on “/var/openebs” inside the hosted path on the nodes.
+OpenEBS installation will create Jiva storage pool also. It will be created by default on `/var/openebs` inside the hosted path on the nodes.
 
 You can get the storage pool details by running the following command.
 
@@ -168,7 +168,7 @@ You can get the percona deployment YAML from the command below:
 
 You have to edit the percona-openebs-deployment.yaml to use the jiva storage engine.
 
-Use vi command to edit the YAML file. Inside the YAML file under the PersistentVolumeClaim section, you have to update the storageClassName. You have to use the *openebs-jiva-default* storage class.
+Use vi command to edit the YAML file. Inside the YAML file under the PersistentVolumeClaim section, you have to update the storageClassName. You have to use the `openebs-jiva-default` storage class.
 
 Example:
 
@@ -220,7 +220,7 @@ Example Scenario 2:
 
 - As part of the startup of the node, iscsi was already installed and running on the node.
 - Kubelet startup doesn’t start the iscsid as it is already running on the node.
-- When volume login is initiated, iscsiadm from kubelet is trying to contact the iscsid (running on the host) to initiate the connection. The version doesn’t match that results in an error from iscsid to iscsiadm and prints *12 — module not loaded.*
+- When volume login is initiated, iscsiadm from kubelet is trying to contact the iscsid (running on the host) to initiate the connection. The version doesn’t match that results in an error from iscsid to iscsiadm and prints `12 — module not loaded`.
 
 **Recovery Step:**
 
@@ -230,7 +230,7 @@ Example Scenario 2:
 
 **Cause:**
 
-- After reboot, the kernel may not load the iscsi_tcp module automatically.
+- After reboot, the kernel may not load the `iscsi_tcp` module automatically.
 
 **Recovery Step:**
 

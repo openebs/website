@@ -1,7 +1,7 @@
 ---
 title: OpenEBS Snapshots using Kubectl
-slug: openebs-snapshots-using-kubectl
 author: Prateek Pandey
+author_info: Contributor and Maintainer @OpenEBS. Software Developer at @mayadata_inc. OpenSource Enthusiast
 date: 14-12-2018
 tags: Clone, Kubernetes, Snapshot, Storage
 excerpt: Kubernetes has a very “pluggable” method for adding your own logic in the form of a controller using CustomResourceDefinition(CRD).
@@ -9,9 +9,9 @@ excerpt: Kubernetes has a very “pluggable” method for adding your own logic 
 
 In Kubernetes 1.8, many of the changes involve storage. For example, volume snapshotting API has been released as a ‘prototype’ level. It is external to core Kubernetes API’s, and you can find the project under the snapshot subdirectory of the [kubernetes-incubator/external-storage](https://github.com/kubernetes-incubator/external-storage) repository. There is, however, an ongoing proposal to add them as a core Kubernetes API here. For a detailed explanation of the implementation of volume snapshotting, you can read the design proposal here. The prototype currently supports GCE PD, AWS EBS, OpenStack Cinder, Gluster, Kubernetes hostPath, and OpenEBS volumes. It is important to note that aside from hostPath volumes, the logic for snapshotting a volume is implemented by cloud providers and core Kubernetes storage providers. The purpose of volume snapshotting in Kubernetes is to provide a common API for negotiating with different cloud providers in order to take snapshots and restore it as new persistent volume.
 
-Kubernetes has a very “pluggable” method for adding your own logic in the form of a controller using [CustomResourceDefinition](https://kubernetes.io/docs/concepts/api-extension/custom-resources/#customresourcedefinitions)(CRD). VolumeSnapshot and VolumeSnapshotData are the two new CustomResources, and will be registered with the Kubernetes API server. This [user guide](https://github.com/kubernetes-incubator/external-storage/blob/master/snapshot/doc/user-guide.md#lifecycle-of-a-volume-snapshot-and-volume-snapshot-data) provides an overview of the lifecycle of these two resources. ***Snapshot-controller*** will create a CRD for each of these two CustomResources when it starts and will also watch for VolumeSnapshot resources. It will take snapshots of the volumes based on the referred snapshot plugin. ***Snapshot-provisioner ***will be used to restore a snapshot as a new persistent volume via dynamic provisioning.
+Kubernetes has a very `pluggable` method for adding your own logic in the form of a controller using [CustomResourceDefinition](https://kubernetes.io/docs/concepts/api-extension/custom-resources/#customresourcedefinitions)(CRD). VolumeSnapshot and VolumeSnapshotData are the two new CustomResources, and will be registered with the Kubernetes API server. This [user guide](https://github.com/kubernetes-incubator/external-storage/blob/master/snapshot/doc/user-guide.md#lifecycle-of-a-volume-snapshot-and-volume-snapshot-data) provides an overview of the lifecycle of these two resources. **`Snapshot-controller`** will create a CRD for each of these two CustomResources when it starts and will also watch for VolumeSnapshot resources. It will take snapshots of the volumes based on the referred snapshot plugin. **`Snapshot-provisioner`** will be used to restore a snapshot as a new persistent volume via dynamic provisioning.
 
-The OpenEBS operator will deploy each ***Snapshot-controller*** and ***snapshot-provisioner*** container inside the single pod called snapshot-controller.
+The OpenEBS operator will deploy each **`Snapshot-controller`** and **`Snapshot-provisioner`** container inside the single pod called snapshot-controller.
 
     apiVersion: v1
     kind: ServiceAccount
@@ -90,7 +90,7 @@ The OpenEBS operator will deploy each ***Snapshot-controller*** and ***snapshot-
               image: openebs/snapshot-provisioner:ci
               imagePullPolicy: Always
 
-Once ***Snapshot-controller*** is running, you will be able to see the created CustomResourceDefinitions(CRD).
+Once **`Snapshot-controller`** is running, you will be able to see the created CustomResourceDefinitions(CRD).
 
     $ kubectl get crd
     NAME                                                         AGE
@@ -99,7 +99,7 @@ Once ***Snapshot-controller*** is running, you will be able to see the created C
 
 ### Create Snapshot:
 
-To create a snapshot, let’s now create the *PersistentVolumeClaim* to be snapshotted.
+To create a snapshot, let’s now create the `PersistentVolumeClaim` to be snapshotted.
 
     kind: PersistentVolumeClaim
     apiVersion: v1
@@ -223,7 +223,7 @@ We can now look at the corresponding VolumeSnapshotData resource that was create
 
 ### Restore Snapshot:
 
-Now that we have created a snapshot, we can restore it to a new PVC. To do this, we need to create a special StorageClass implemented by snapshot-provisioner. We will then create a PersistentVolumeClaim referencing this StorageClass to dynamically provision a new PersistentVolume. An annotation on the PersistentVolumeClaim will communicate to **snapshot-provisioner** where to find the information it needs to deal with the OpenEBS API server to restore the snapshot. The StorageClass can be defined according to the code below.  Here, the provisioner field in the spec defines which provisioner should be used and what parameters should be passed to that provisioner when dynamic provisioning is invoked.
+Now that we have created a snapshot, we can restore it to a new PVC. To do this, we need to create a special StorageClass implemented by snapshot-provisioner. We will then create a PersistentVolumeClaim referencing this StorageClass to dynamically provision a new PersistentVolume. An annotation on the PersistentVolumeClaim will communicate to **`Snapshot-provisioner`** where to find the information it needs to deal with the OpenEBS API server to restore the snapshot. The StorageClass can be defined according to the code below.  Here, the provisioner field in the spec defines which provisioner should be used and what parameters should be passed to that provisioner when dynamic provisioning is invoked.
 
     kind: StorageClass
     apiVersion: storage.k8s.io/v1
@@ -255,7 +255,7 @@ We can check the state of demo-snap-vol-claim to see if it is Bound or not. We c
     I1104 11:59:10.987620  1 controller.go:830] volume "pvc-8eed96e4-c157-11e7-8910-42010a840164" for claim "default/demo-snap-vol-claim" saved 
     I1104 11:59:10.987740  1 controller.go:866] volume "pvc-8eed96e4-c157-11e7-8910-42010a840164" provisioned for claim "default/demo-snap-vol-claim"
 
-Now, let’s mount the “demo-snap-vol-claim” PersistentVolumeClaim onto a busybox-snapshot Pod to check whether the snapshot was restored properly. After the busybox-snapshot pod is in a running state, we can check the integrity of the files that were created before taking the snapshot.
+Now, let’s mount the `demo-snap-vol-claim` PersistentVolumeClaim onto a busybox-snapshot Pod to check whether the snapshot was restored properly. After the busybox-snapshot pod is in a running state, we can check the integrity of the files that were created before taking the snapshot.
 
     apiVersion: v1
     kind: Pod
@@ -279,4 +279,6 @@ Now, let’s mount the “demo-snap-vol-claim” PersistentVolumeClaim onto a bu
         persistentVolumeClaim:
           claimName: demo-snap-vol-claim
 
-**Clean-Up: **We can delete the VolumeSnapshot resource, which will also delete the corresponding VolumeSnapshotData resource from K8s. This will not affect any PersistentVolumeClaims or PersistentVolumes we have already provisioned using the snapshot. Conversely, deleting any PersistentVolumeClaims or PersistentVolumes that have been used to create the snapshot or have been provisioned using a snapshot will not delete the snapshot from the OpenEBS backend. As such, we must delete them manually.
+**Clean-Up:** 
+
+We can delete the VolumeSnapshot resource, which will also delete the corresponding VolumeSnapshotData resource from K8s. This will not affect any PersistentVolumeClaims or PersistentVolumes we have already provisioned using the snapshot. Conversely, deleting any PersistentVolumeClaims or PersistentVolumes that have been used to create the snapshot or have been provisioned using a snapshot will not delete the snapshot from the OpenEBS backend. As such, we must delete them manually.

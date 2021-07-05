@@ -1,9 +1,9 @@
 ---
 title: Using OpenEBS as the TSDB for Prometheus
-slug: using-openebs-as-the-tsdb-for-prometheus
 author: Uma Mukkara
+author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 date: 02-10-2018
-tags: Cloud Native Storage, Kubernetes, Openebs, Prometheus, Solutions
+tags: Cloud Native Storage, Kubernetes, OpenEBS, Prometheus, Solutions
 excerpt: Prometheus has become one of the favorite tools for monitoring metrics of applications and infrastructure in the cloud native space, especially when using Kubernetes; 
 ---
 
@@ -16,7 +16,7 @@ One of the challenges with Prometheus is how to setup and manage the storage for
 ## Storage for Prometheus : Local and Remote
 
 Prometheus 2.4 documentation categorizes the storage for Prometheus into two types. Local storage and Remote storage. When using local storage, data monitoring data is written in TSDB format and when using Remote storage, the data is written through storage adaptors and the format in which the data is stored is not controlled by Prometheus. Here is a quick infographic about Local and Remote storage usage for Prometheus.
-![](https://cdn-images-1.medium.com/max/800/0*N9cDfVd6xzRsAFK3)Prometheus storage — Local vs Remote
+![Prometheus storage — Local vs Remote](https://cdn-images-1.medium.com/max/800/0*N9cDfVd6xzRsAFK3)
 Prometheus does a great job of simplifying the data format to be written to local TSDB. However, there are some disadvantages when choosing local raw disks as the final place to store these TSDB entries, including:
 
 1. No replicated data.
@@ -32,13 +32,15 @@ The following (mentioned [here](https://prometheus.io/docs/prometheus/latest/sto
 “If your local storage becomes corrupted for whatever reason, your best bet is to shut down Prometheus and remove the entire storage directory. However, you can also try removing individual block directories to resolve the problem. This means losing a time window of around two hours’ worth of data per block directory. Again, Prometheus’s local storage is not meant for durable long-term storage.”
 
 ## Use OpenEBS volume as Prometheus TSDB for durability and scalability
-![](/content/images/2020/01/replicated-tsdb-storage-for-prometheus.png)Replicated TSDB storage for Prometheus
+![Replicated TSDB storage for Prometheus](/public/images/blog/replicated-tsdb-storage-for-prometheus.png)
+
 OpenEBS volumes are replicated synchronously, in that way, data is protected and is always made available against either a node outage or a disk outage. Replica and quorum policies are independently controlled so that, for example, OpenEBS can be configured to acknowledge a write when N replicas respond, where N is <= replica count. OpenEBS can configure Kubernetes in such a way that a Prometheus pod is always scheduled in one of the three nodes that the OpenEBS replica resides. To make the data even more highly available, the OpenEBS replicas can reside in different Availability Zones of Kubernetes which in general (if in the cloud) are mapped to physical AZs of the cloud provider.
 
 ## Scalability of storage
 
 The fact that capacity cannot be added easily as needed is one of the top limitations of using local storage for Prometheus. OpenEBS helps to address this issue; capacity can be added on-demand and on-the-fly to OpenEBS volumes. So, your Prometheus local storage never runs out of storage space with OpenEBS.
-![](/content/images/2020/01/scalability-of-storage.png)On the fly storage expansion with OpenEBS
+![On the fly storage expansion with OpenEBS](/public/images/blog/scalability-of-storage.png)
+
 Local disks are grouped into storage pools, and OpenEBS volumes are carved out from these storage pools. Because of the pooling concept, you can start with small size for the storage volume and expand dynamically on demand without any service disruption i.e., on-the-fly. Disk failures are protected against an optional RAID configuration among the disks. Even an entire pool failure (can happen when a disk fails on a stripe group for example or when storage infrastructure fails) is non-fatal in OpenEBS as the rebuilding of the data happens from other replicas. So you have both local redundancy and cross-host redundancy by using OpenEBS.
 
 ## What about performance? WAL support
@@ -49,7 +51,7 @@ Because OpenEBS is a pluggable, containerized architecture it can easily use dif
 
 Just build the storage class and update your Prometheus YAML. Your Prometheus is up and running with highly available TSDB storage with OpenEBS volumes automatically created and configured.
 
-Pay attention below to the storage class parameters in the storage class. “*openebs-prometheus-sc*”
+Pay attention below to the storage class parameters in the storage class. **`openebs-prometheus-sc`**
 
     ---
     # prometheus-deployment
@@ -138,7 +140,6 @@ Pay attention below to the storage class parameters in the storage class. “*op
     - disk-d172a48ad8b0fb536b9984609b7ee653
     ---
 
-## 
-Summary:
+## Summary:
 
 Using OpenEBS as storage for Prometheus on Kubernetes clusters is an easy and viable solution for production-grade deployments. Try using OpenEBS and see if it lives up to the expectation of being the easiest-to-use cloud-native storage project in Kubernetes ecosystem. Join our [slack](http://slack.openebs.io/?__hstc=216392137.66231d5c5a305b0a901ac5f8b69a7f4c.1580127122062.1580127122062.1580127122062.1&amp;__hssc=216392137.1.1580127122063&amp;__hsfp=3765904294) channel if you need help or to share your success story.

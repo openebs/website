@@ -1,9 +1,9 @@
 ---
 title: Dynamic provisioning of Kubernetes Local PVs using OpenEBS
-slug: dynamic-provisioning-of-kubernetes-local-pvs-using-openebs
 author: Kiran Mova
+author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
 date: 29-03-2019
-tags: Kubernetes, Open Source, Openebs, Stateful Applications, Storage
+tags: Kubernetes, Open Source, OpenEBS, Stateful Applications, Storage
 excerpt: In this blog I discuss why we are adding the support of Local Persistent Volumes to the open source OpenEBS -  I view this as a significant step forward in our mission of delivery true data agility to the broader cloud native community and I welcome your feedback.
 ---
 

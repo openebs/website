@@ -2,7 +2,6 @@
 title: OpenEBS — The containerized storage
 author: Uma Mukkara
 author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
-slug: openebs-the-containerized-storage
 date: 01-01-2017
 tags: DevOps, Docker, Kubernetes, Rancher, Golang, OpenEBS
 excerpt: In the infrastructure space, the compute environment is always the first to lead the change. Docker has brought in the new thinking into every DevOPs administrator and application developer.

@@ -1,9 +1,9 @@
 ---
 title: Inspired by SCale17x — a short history of data storage
-slug: inspired-by-scale17x-e2-80-8a--e2-80-8aa-short-history-of-data-storage
 author: Evan Powell
+author_info: Founding CEO of a few companies including StackStorm (BRCD) and Nexenta — and CEO & Chairman of OpenEBS/MayaData. ML and DevOps and Python, oh my!
 date: 11-03-2019
-tags: DevOps, Openebs, Kubernetes, Open Source
+tags: DevOps, OpenEBS, Kubernetes, Open Source
 excerpt: Last weekend I had the pleasure of attending SCale 17x in Pasadena, just outside Los Angeles. Whether it was Robert Treat’s excellent talk on logical replication for PostgreSQL or refreshing my knowledge of Terraform
 ---
 

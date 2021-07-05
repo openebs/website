@@ -1,9 +1,9 @@
 ---
 title: (Storage) Chaos Engineering with Litmus - An Overview
-slug: storage-chaos-engineering-with-litmus-an-overview
 author: Karthik Satchitanand
+author_info: Karthik has been into the Design and Development of tools for infrastructure as code, software testing performance & benchmarking & chaos engineering.
 date: 20-03-2019
-tags: Chaos Engineering, Docker, Kubernetes, Litmus, Openebs
+tags: Chaos Engineering, Docker, Kubernetes, Litmus, OpenEBS
 excerpt: In this extremely insightful article, Evan Powell outlines various possible failures that could occur in a Kubernetes cluster running stateful workloads & the possible means to mitigate them..
 ---
 

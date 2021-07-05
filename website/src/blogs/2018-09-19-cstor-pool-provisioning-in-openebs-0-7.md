@@ -1,9 +1,9 @@
 ---
 title: cStor Pool Provisioning in OpenEBS 0.7
-slug: cstor-pool-provisioning-in-openebs-0-7
 author: Ashutosh Kumar
+author_info: Software Engineer at MayaData | OpenEBS Reviewer and Contributor | CKA | Gopher | Kubernaut
 date: 19-08-2018
-tags: Kubernetes, Openebs, Pool, Storage
+tags: Kubernetes, OpenEBS, Pool, Storage
 excerpt: OpenEBS team is happy to announce the release of 0.7 which comes with a new storage engine for creating storage pool known as cStor engine.
 ---
 

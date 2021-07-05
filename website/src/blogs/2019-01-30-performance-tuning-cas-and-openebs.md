@@ -1,21 +1,21 @@
 ---
 title: Performance tuning, CAS and OpenEBS
-slug: performance-tuning-cas-and-openebs
 author: Evan Powell
+author_info: Founding CEO of a few companies including StackStorm (BRCD) and Nexenta — and CEO & Chairman of OpenEBS/MayaData. ML and DevOps and Python, oh my!
 date: 30-01-2019
-tags: Cassandra, Kubectl, Kubernetes, Mayaonline, Openebs, Uncategorized
+tags: Cassandra, Kubectl, Kubernetes, Mayaonline, OpenEBS, Uncategorized
 excerpt: Now and again — ok almost every day — we get a question on the community or from our commercial users about performance.
 ---
 
 Now and again — ok almost every day — we get a question on the community or from our commercial users about performance.
-![](/content/images/2020/01/1.png)IOPS SCREENS FROM MAYAONLINE
+![IOPS SCREENS FROM MAYAONLINE](/content/images/2020/01/1.png)
 And our typical response is “mileage may vary.” Sometimes we also mention that there are a bunch of tunables then talk to us for help. And by the way — we love to discuss performance requirements as it shows off how CAS is different and also we get to learn much more about how OpenEBS is being used.
 
 This blog shares some high-level points and then shares info.
 
-First, it is worth noting that Container Attached Storage — where the workload is married to the storage controller — is by definition ****per workload storage****. So when you compare OpenEBS to, for example, CEPH or some other pre-Kubernetes antediluvian scale-out storage system you risk apples to banana comparisons. While CAS will be constrained by the environment itself and how many resources OpenEBS utilizes from Kubernetes — it will not be directly impacted by the addition of more and more workloads. Those workloads are more or less an island as to themselves. By comparison, a system that checks with a metadata store to determine where to write and where to read the data and stripes data across nodes, for example, will have far greater performance impacts as more workloads are added.
+First, it is worth noting that Container Attached Storage — where the workload is married to the storage controller — is by definition **`per workload storage`**. So when you compare OpenEBS to, for example, CEPH or some other pre-Kubernetes antediluvian scale-out storage system you risk apples to banana comparisons. While CAS will be constrained by the environment itself and how many resources OpenEBS utilizes from Kubernetes — it will not be directly impacted by the addition of more and more workloads. Those workloads are more or less an island as to themselves. By comparison, a system that checks with a metadata store to determine where to write and where to read the data and stripes data across nodes, for example, will have far greater performance impacts as more workloads are added.
 
-Secondly, as I mentioned on twitter the other day, sometimes the performance you are looking to optimize should be human as opposed to workload. With OpenEBS running natively in Kubernetes you can spin up storage in seconds on a per-workload basis — and manage it in a very familiar Kubernetes way. No external distributed system run on a foundation other than Kubernetes can be as simple to run and scale. You’ll need a team of experts to run that external distributed storage system — experts that arguably should be applied to running the distributed system you are betting upon — Kubernetes itself. And you’ll inevitably find that it takes weeks to understand any external distributed state store and years to understand how it will behave in the real world. By comparison, **if you know how to run Kubernetes, you already know how to run OpenEBS.** So, if you compare the human factor of storage performance — the humans and their ability to understand and run the storage software itself — there is no real comparison between OpenEBS and any other storage. (yes, I see my fellow members of the CAS category and I know what having a kernel module means for ongoing operations :)).
+Secondly, as I mentioned on twitter the other day, sometimes the performance you are looking to optimize should be human as opposed to workload. With OpenEBS running natively in Kubernetes you can spin up storage in seconds on a per-workload basis — and manage it in a very familiar Kubernetes way. No external distributed system run on a foundation other than Kubernetes can be as simple to run and scale. You’ll need a team of experts to run that external distributed storage system — experts that arguably should be applied to running the distributed system you are betting upon — Kubernetes itself. And you’ll inevitably find that it takes weeks to understand any external distributed state store and years to understand how it will behave in the real world. By comparison, `if you know how to run Kubernetes, you already know how to run OpenEBS.` So, if you compare the human factor of storage performance — the humans and their ability to understand and run the storage software itself — there is no real comparison between OpenEBS and any other storage. (yes, I see my fellow members of the CAS category and I know what having a kernel module means for ongoing operations :)).
 
 Alright, enough with the high-altitude view! If you are still reading, I assume you want to know the details about tuning OpenEBS.
 

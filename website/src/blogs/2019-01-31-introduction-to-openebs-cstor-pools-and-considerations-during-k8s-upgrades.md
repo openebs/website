@@ -1,7 +1,7 @@
 ---
 title: Introduction to OpenEBS cStor Pools and considerations during K8s upgrades
-slug: introduction-to-openebs-cstor-pools-and-considerations-during-k8s-upgrades
 author: Uma Mukkara
+author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 date: 31-01-2019
 tags: Cloud Native Storage, Kubernetes Upgrades, Persistent Storage, Persistent Volume, Kubernetes
 excerpt: Developers and DevOps administrators like Kubernetes for the way it has eased the tasks in their daily lives. It has changed the way applications are designed, developed and managed. 
@@ -13,7 +13,7 @@ excerpt: Developers and DevOps administrators like Kubernetes for the way it has
 
 Developers and DevOps administrators like Kubernetes for the way it has eased the tasks in their daily lives. It has changed the way applications are designed, developed and managed. However, the churn of features and capabilities of Kubernetes continues to be high and frequent upgrades to the platform are not uncommon. Kubernetes development releases are coming out on quarterly basis and production upgrades are common every 4 to 6 months. What is more — if you are running on a Kubernetes service you typically are not 100% in control of when and how those upgrades are performed. The infrastructure software that runs on Kubernetes need to be cognitive of these upgrades so that application developers and Kubernetes administrators do not need to do any hand holding during such upgrades.
 
-OpenEBS is a infrastructure software component for stateful applications running on Kubernetes as it provides persistent storage volumes and associated data management capabilities. OpenEBS as cloud native or “container attached” storage has seen increased adoption since the release (last year) of the cStor storage engine, probably thanks to it’s support for enterprise grade snapshots and clones as well as improvements to cross availability zone awareness etc. OpenEBS is designed in such a way that the administrators manage the storage operations in a Kubernetes native way using kubectl commands.
+OpenEBS is a infrastructure software component for stateful applications running on Kubernetes as it provides persistent storage volumes and associated data management capabilities. OpenEBS as cloud native or `container attached` storage has seen increased adoption since the release (last year) of the cStor storage engine, probably thanks to it’s support for enterprise grade snapshots and clones as well as improvements to cross availability zone awareness etc. OpenEBS is designed in such a way that the administrators manage the storage operations in a Kubernetes native way using kubectl commands.
 
 In this blog, I would like to drive home three points:,
 
@@ -37,7 +37,7 @@ This scenario when more than one or all worker nodes are offline is when “Volu
 
 DevOps architects and Kubernetes administrators need to be watchful of this situation when Kubernetes upgrades are occurring. Instigating a planned node reboot that leads some cStor volumes to lose quorum may not be desired. This is a specific case where container attached storage like OpenEBS has a far smaller “blast radius” than typical external scale out storage. In the case of OpenEBS, you will likely lose availability to your storage for a **particular workload** when you simultaneously reboot more than one node and cause volume replicas to lose quorum. However, in the case of shared scale out external storage, such a scenario will result in data unavailability for all of your workloads at once.
 
-*Nonetheless, when performing a Kubernetes reboot the question that is often asked is ”what is the blast radius right now?” In other words, what volumes will lose quorum if a particular node is rebooted or lost?*
+`Nonetheless, when performing a Kubernetes reboot the question that is often asked is **what is the blast radius right now?** In other words, what volumes will lose quorum if a particular node is rebooted or lost?`
 
 While you can figure this out directly via kubectl, it is not trivial, especially as your environment scales. This is one of the reasons we have enabled the topology view of the storage resources for use in MayaOnline. We contributed those views upstream to the WeaveScope project as well.
 

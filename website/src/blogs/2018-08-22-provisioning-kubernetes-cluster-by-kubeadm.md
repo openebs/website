@@ -1,9 +1,9 @@
 ---
 title: Provisioning Kubernetes cluster by kubeadm
-author: CHANDAN KUMAR
-slug: provisioning-kubernetes-cluster-by-kubeadm
+author: Chandan Kumar
+author_info: Software Engineer at MayaData Inc
 date: 22-08-2018
-tags: Containerized Storage, Kubeadm, Kubernetes, Openebs, Stateful Workloads
+tags: Containerized Storage, Kubeadm, Kubernetes, OpenEBS, Stateful Workloads
 excerpt: Kubeadm is a new tool that is part of the Kubernetes distribution of 1.4.0. It allows you to install and set up a Kubernetes cluster.
 ---
 
@@ -29,13 +29,13 @@ Beginners can set up the pre-requisites in their own machine by creating virtual
 Install these requirements in each node:
 
 - Docker
-
+```
     $ sudo apt-get update
     $ sudo apt-get install -y docker.io
-    
+```   
 
 - Kubeadm, Kubelet, Kubectl
-
+```
     $ sudo apt-get update && sudo apt-get install -y apt-transport-https curl
     $ sudo -i
     $ curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
@@ -45,7 +45,7 @@ Install these requirements in each node:
     $ exit
     $ sudo apt-get update
     $ sudo apt-get install -y kubelet kubeadm kubectl
-    
+```  
 
 ### Master Node:
 
@@ -57,38 +57,39 @@ Before running kubeadm init in master node, first choose a pod network add-on an
 - [list of arguments](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/)
 
 ### Configure the cgroup Driver used by kubelet
-
+```
     $ sudo sed -i "s/cgroup-driver=systemd/cgroup-driver=cgroupfs/g" /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
-
+```
 ### Restart kubelet
-
+```
     $ sudo systemctl daemon-reload
     $ sudo systemctl restart kubelet
-    
+```  
 
 Example:
 
+```
     $ sudo kubeadm init --apiserver-advertise-address=<master-private-ip> --apiserver-cert-extra-sans=10.0.2.15 --pod-network-cidr 10.1.0.0/16
     $ sudo mkdir -p $HOME/.kube
     $ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
     $ sudo sysctl net.bridge.bridge-nf-call-iptables=1
     $ sudo KUBECONFIG=/etc/kubernetes/admin.conf
-    $ kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
-    
+    $ kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml 
+```
 
 After you finish running kubeadm init in master node, it provides the token, master-ip, sha and hash as follows:
-
+```
     $ kubeadm join --token <token> <master-ip>:<master-port> --discovery-token-ca-cert-hash sha256:<hash>
-
+```
 If you do not have the token, you can obtain it by running the following command on the master node:
-
+```
     $ kubeadm token list
-
+```
 By default, tokens expire after 24 hours. If you are joining a node to the cluster after the current token has expired, you can create a new token using the following command:
-
+```
     $ kubeadm token create
-
+```
 For reference, you can view this document: [https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/)
 
 ### Worker nodes:
@@ -106,7 +107,7 @@ To add nodes to your cluster, do the following for each machine:
     $ kubeadm join — token <token> <master-ip>:<master-port> — discovery-token-ca-cert-hash sha256:<hash>
 
 Now you are all set and can list the nodes from the master by running
-
+```
     $ kubectl get nodes
-
+```
 Please leave your valuable comments and questions below.

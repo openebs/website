@@ -1,13 +1,13 @@
 ---
 title: Celebrate Hacktoberfest 2018 with OpenEBS !!
-slug: celebrate-hacktoberfest-2018-with-openebs
 author: Uma Mukkara
+author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 date: 27-09-2018
-tags: Digital Ocean, Hacktoberfest 2018, Hacktoberfest, Openebs, Open Source
+tags: Digital Ocean, Hacktoberfest 2018, Hacktoberfest, OpenEBS, Open Source
 excerpt: The 5th edition of Hacktoberfest is around the corner and it will be the second Hacktoberfest experience for the OpenEBS community. All of us are excited!
 ---
 
-The 5th edition of[ Hacktoberfest](https://hacktoberfest.digitalocean.com/) is around the corner and it will be the second[ Hacktoberfest](https://openebs.io/hackfests/hacktoberfest-2018) experience for the OpenEBS community. All of us are excited!
+The 5th edition of [Hacktoberfest](https://hacktoberfest.digitalocean.com/) is around the corner and it will be the second [Hacktoberfest](https://openebs.io/hackfests/hacktoberfest-2018) experience for the OpenEBS community. All of us are excited!
 
 In August 2017, OpenEBS community began growing and it was a beginning to building a strong foundation for an open source project. We were first introduced to Hacktoberfest by friends & peers at the DigitalOcean Bangalore Meetup and were interested in participating in it. We enlisted OpenEBS as one of the projects participating in Hacktoberfest 2017. We were pleasantly surprised with the participation and enthusiasm that Hacktoberfest attracts from developers around the world. The result was that the OpenEBS community grew by 20+ new contributor friends with ~100 PRs.
 
@@ -23,13 +23,14 @@ GitHub makes it really simple for contributors to get started. Just search for t
 4. Send a PR and with the continued interaction, you will eventually be able to get your PR merged. After sometime, your t-shirt and stickers will arrive. In the meantime enjoy working on more issues you enjoy solving.
 
 ## Get additional swag from OpenEBS
-![](https://cdn-images-1.medium.com/max/600/1*BXesj2ROGdmUH3vXHkRaRA.png)OpenEBS swag for Hactoberfest 2018
+![OpenEBS swag for Hactoberfest 2018](https://cdn-images-1.medium.com/max/600/1*BXesj2ROGdmUH3vXHkRaRA.png)
 When your PR to any OpenEBS repositories gets merged, we will get in touch with you to fill up a form to send a special edition t-shirt designed for Hacktoberfest.
 
 We also send some of our popular mule stickers along with your t-shirt. The best PR also gets to win a new laptop. Additional details can be found [here](https://openebs.io/hackfests/hacktoberfest-2018?__hstc=216392137.2860b2a415ee07539ccc6f5e86f86eda.1580127992304.1580127992304.1580127992304.1&amp;__hssc=216392137.1.1580127992304&amp;__hsfp=3765904294).
 
 ## Onsite workshops in Bangalore
-![](/content/images/2020/01/openebs-cafe.jpg)Open Source Cafe at HSR Layout Bangalore
+![Open Source Cafe at HSR Layout Bangalore](/public/images/blog/openebs-cafe.png)
+
 We hope to have even greater success in this year’s edition of Hacktoberfest. With that intention, we are hosting onsite workshops on all Saturdays in October in our Open Source Cafe — Bangalore.
 
 **Schedule on the day of workshops**
@@ -41,7 +42,8 @@ We hope to have even greater success in this year’s edition of Hacktoberfest. 
 ***11:00–3:00 PM — Hacktoberfest Onsite Hackathon***
 
 ***11:00–12:00 PM — On-demand 30 minute sessions such as Kubernetes 101 / OpenEBS 101***
-![](/content/images/2020/01/event-details.png)Onsite Hacktoberfest workshops in Bangalore
+![Onsite Hacktoberfest workshops in Bangalore](/public/images/blog/event-details.png)
+
 To help the beginners start their open-source journey, there will be 101-level courses in the mornings. All workshop participants will receive help from our team in getting started, and they all get to win the special edition t-shirts. Bring your own hacking gear, such as laptops!
 
 *As you will be lost in code while you are at the open-source cafe, we will bring the lunch to your hacking table :) Submit a PR on those days at the venue, collect the hacktoberfest t-shirt from the OpenEBS team, and if you order a beverage, that beer is on us. Yes, bring it on! :)*

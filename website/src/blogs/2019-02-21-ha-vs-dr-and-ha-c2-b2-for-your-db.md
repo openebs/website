@@ -1,9 +1,9 @@
 ---
 title: HA vs. DR and HA² for your DB
-slug: ha-vs-dr-and-ha-c2-b2-for-your-db
 author: Evan Powell
+author_info: Founding CEO of a few companies including StackStorm (BRCD) and Nexenta — and CEO & Chairman of OpenEBS/MayaData. ML and DevOps and Python, oh my!
 date: 21-02-2019
-tags: Cloud Storage, DevOps, Database Administration, Openebs, Kubernetes
+tags: Cloud Storage, DevOps, Database Administration, OpenEBS, Kubernetes
 excerpt: This post is intended to share observations gathered from a couple of decades worth of experience in helping enterprises build resilient systems and presented based on feedback from Kubernetes and StackStorm users over the past 4-5 years.
 ---
 

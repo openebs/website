@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL anywhere — via Kubernetes with some help from OpenEBS and credativ engineering
-slug: postgresql-anywhere-e2-80-8a--e2-80-8avia-kubernetes-with-some-help-from-openebs-and-credativ-engineering
 author: Murat Karslioglu
+author_info: VP @OpenEBS & @MayaData_Inc. Lives to innovate! Opinions my own!
 date: 18-03-2019
 tags: DevOps, Kubernetes, Postgres, Postgresql, Solutions
 excerpt: In this blog, we’d like to briefly cover how using cloud-native or “container attached” storage can help in the deployment and ongoing operations of PostgreSQL on Kubernetes.

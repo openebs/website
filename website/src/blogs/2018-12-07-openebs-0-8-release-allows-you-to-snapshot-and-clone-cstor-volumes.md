@@ -1,15 +1,15 @@
 ---
 title: OpenEBS 0.8 release allows you to Snapshot and Clone cStor Volumes
-slug: openebs-0-8-release-allows-you-to-snapshot-and-clone-cstor-volumes
 author: Kiran Mova
+author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
 date: 07-12-2018
-tags: Cloud Native, Kubernetes, Openebs, Storage, DevOps
+tags: Cloud Native, Kubernetes, OpenEBS, Storage, DevOps
 excerpt: cStor as a new Storage Engine and Node Disk Manager (NDM) that were introduced in the previous release have proven to be quite popular with DevOps user community.
 ---
 
 cStor as a new Storage Engine and Node Disk Manager (NDM) that were introduced in the previous release have proven to be quite popular with DevOps user community.
 
-The following picture shows the locations where OpenEBS is deployed. *(More on this image later in the blog.)*
+The following picture shows the locations where OpenEBS is deployed. `(More on this image later in the blog.)`
 
 IMO, this rise in adoption/installations can be attributed:
 
@@ -17,13 +17,13 @@ IMO, this rise in adoption/installations can be attributed:
 - Kubernetes mainly focuses on the workflow of attaching Storage to Applications, but not managing the Storage itself. The Agility that Cloud Native Architectures bring are somewhat lost when a dependency is created on one specialized team ( Storage IT Team) which essentially slows down the Application Delivery Process.
 - Enterprises want the same experience with their Kubernetes Clusters whether they opt for Managed Kubernetes Clusters or have their own Kubernetes Clusters either On Premise or in Public/Private Cloud.
 
-*cStor Storage Engine* — being developed in the user space doesn’t require any special Kernel taints and just works on *any platform* of user’s choice — whether On Premise or On Cloud.
+`cStor Storage Engine` — being developed in the user space doesn’t require any special Kernel taints and just works on `any platform` of user’s choice — whether On Premise or On Cloud.
 
-*NDM* — addresses another missing aspect from Kubernetes about handling various types of Disks (or Storage Devices) connected to the Kubernetes Nodes and managing them, the Kubernetes way!
+`NDM` — addresses another missing aspect from Kubernetes about handling various types of Disks (or Storage Devices) connected to the Kubernetes Nodes and managing them, the Kubernetes way!
 
 As one CTO evaluating OpenEBS, put it:
 
-> “I love OpenEBS Architecture, it helps remove the layers from the application delivery process. There is no need for a dedicated storage administrator or team. I can easily scale up and down this solution.”
+> `I love OpenEBS Architecture, it helps remove the layers from the application delivery process. There is no need for a dedicated storage administrator or team. I can easily scale up and down this solution.`
 
 In the spirit of Open Source Transparency, the CTO reached out to us to share his admiration for OpenEBS and express his concern over performance of OpenEBS running completely in User space. The fact that none of the other Storage Providers do this and when push comes to shove, CTO office needs to convince the DevOps Teams to pick OpenEBS over traditional/non-cloud native Storage Systems. DevOps Teams are aware of exactly where those legacy solutions break due to their distributed nature, and they also hold a long sustained perception of Kernel being faster than User space.
 
@@ -54,9 +54,9 @@ Let me stick in this blog primarily to the cStor 0.8 features:
 - Big Data. The Analysis Workloads typically involve downloading large amounts of data from external sources into the Kubernetes volumes (a process called — warm-up) before running the intended computation jobs. And oftentimes the data downloaded doesn’t change very frequently. With cStor volumes, the data can be downloaded once and snapshotted. The computations jobs can use the cloned volumes. Save on network bandwidth and faster processing of the data. All this without losing the granularity of isolating the different workloads from each other.
 - Improving the Onboarding experience of users. SaaS Platforms such as — exam or certification portals or development IDEs require a set of prerequisite packages to be downloaded and installed. Snapshots can help in making sure prerequisite activities are performed outside of the Onboarding workflow. When a user requests for a service, a volume can be rapidly provided by cloning from snapshots. User experience matters! 5 mins to get your IDE or exam to being are not acceptable anymore.
 
-cStor Snapshot and Clone functionality are triggered via **kubectl **itself. cStor Snapshots and Clones are reference based and are highly optimized for lowering the capacity required for maintaining large number of snapshots and clones.
+cStor Snapshot and Clone functionality are triggered via **kubectl** itself. cStor Snapshots and Clones are reference based and are highly optimized for lowering the capacity required for maintaining large number of snapshots and clones.
 
-**cStor Volumes managed via kubectl**. cStor volumes comprise of a Target Pod that exposes iSCSI. This target pod is instrumental in making the Applications using cStor Volumes portable. The cStor Target Pod then replicates the data to cStor Storage Pools. For redundancy and high-availability, the data is replicated to cStor Pools that are located on different nodes. *(Note that multiple cStor Target Pods can write to the same set of cStor Pools).*
+**cStor Volumes managed via kubectl**. cStor volumes comprise of a Target Pod that exposes iSCSI. This target pod is instrumental in making the Applications using cStor Volumes portable. The cStor Target Pod then replicates the data to cStor Storage Pools. For redundancy and high-availability, the data is replicated to cStor Pools that are located on different nodes. `(Note that multiple cStor Target Pods can write to the same set of cStor Pools).`
 ![](/content/images/2020/01/cstor-volume.png)cStor Volume
 The cStor Target (aka cStor Volume), cStor Volume Replica and the cStor Pools are all Kubernetes custom resources. You can use the `kubectl describe` commands to check the health or events on each of these entities. And moreover, the Disks where the cStor Pools eventually write the data to, are also represented by Kubernetes Custom Resources.
 
@@ -72,4 +72,4 @@ What was most surprising (or not) is that users don’t always wait on releases.
 
 Of course, you can also turn off sending the analytics if you so desire.
 
-And by the way, if you have not yet, claim your free access to [MayaOnline](https://mayaonline.io/). MayaData team has made some significant and useful additions to its *Maya Data Agility Platform (MDAP)*. You will be surprised how easy it can be to visualize and manage your storage needs.
+And by the way, if you have not yet, claim your free access to [MayaOnline](https://mayaonline.io/). MayaData team has made some significant and useful additions to its `Maya Data Agility Platform (MDAP)`. You will be surprised how easy it can be to visualize and manage your storage needs.

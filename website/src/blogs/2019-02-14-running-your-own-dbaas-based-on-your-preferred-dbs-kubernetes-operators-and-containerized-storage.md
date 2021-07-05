@@ -1,9 +1,9 @@
 ---
 title: Running your own DBaaS based on your preferred DBs, Kubernetes operators and containerized storage
-slug: running-your-own-dbaas-based-on-your-preferred-dbs-kubernetes-operators-and-containerized-storage
 author: Evan Powell
+author_info: Founding CEO of a few companies including StackStorm (BRCD) and Nexenta — and CEO & Chairman of OpenEBS/MayaData. ML and DevOps and Python, oh my!
 date: 14-02-2019
-tags: DevOps, Kubernetes, Openebs, Stackstorm, Cassandra
+tags: DevOps, Kubernetes, OpenEBS, Stackstorm, Cassandra
 excerpt: This blog is intended to outline some things to think about when running your own DBaaS. While I recommend considering these, I also suggest that you should think long and hard about operations automation and, of course, underlying data resilience.
 ---
 

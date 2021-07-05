@@ -1,13 +1,13 @@
 ---
 title: How to install IBM Cloud Private? [Updated]
-slug: how-to-install-ibm-cloud-private-updated
 author: Murat Karslioglu
+author_info: VP @OpenEBS & @MayaData_Inc. Lives to innovate! Opinions my own!
 date: 12-10-2018
-tags: IBM, Icp, Kubernetes, Openebs, Persistent Storage
+tags: IBM, Icp, Kubernetes, OpenEBS, Persistent Storage
 excerpt: In this blog, I will provide step-by-step instructions on how to configure a Kubernetes-based managed private cloud using ICP.
 ---
 
-It’s been some time since I wrote about [**IBM Cloud Private** 2.1](http://containerized.me/introduction-to-ibm-cloud-private/), although I’ve been heavily using it in my lab.
+It’s been some time since I wrote about [IBM Cloud Private 2.1](http://containerized.me/introduction-to-ibm-cloud-private/), although I’ve been heavily using it in my lab.
 
 Improvements from version 1.2 to 2.1 were massive. We have also noticed the changes in the OpenEBS user community, according to our surveys usage of ICP increased dramatically. The Community Edition of the ICP 3.1 came out three weeks ago. CE container images were released with a slight delay of two weeks after the enterprise version announced. And I believe that it deserves an updated blog to talk about the steadily advancing developer experience (and my favorite new features).
 
@@ -15,11 +15,11 @@ In this blog, I will provide step-by-step instructions on how to configure a Kub
 
 ![IBM Cloud Private Architecture](https://cdn-images-1.medium.com/max/800/0*9oSUd2enJ2qhcmdk.jpg)
 
-***Quick note:**** Developers who use only public cloud ask me this question frequently, “Why would you need a private cloud, and maintain it, everything on the public cloud is much easier?”. Well, you are probably not the one paying the cloud bill, right? For various tests, (some running IO intensive workloads) and learning experiments, I maintain 4 clusters (IBM Cloud Private, Rancher, Red Hat OpenShift and one installed with kubeadm) — each 3–5 nodes. That’s 16–20 nodes, exactly $1,069.05/month — I learned it all the hard way. True that education is expensive, but running the same on a few *[*cheap servers*](https://www.ebay.com/sch/i.html?_odkw=hp+proliant+g6&amp;_osacat=0&amp;_from=R40&amp;_trksid=p2045573.m570.l1313.TR1.TRC0.A0.H0.X+HP+Proliant+DL360+G6.TRS0&amp;_nkw=+HP+Proliant+DL360+G6&amp;_sacat=0)* adds only ~$135/month to my electric bill — soon will be almost free thanks to the *[*solar panels*](https://www.amazon.com/gp/product/B00FF1KG8U/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00FF1KG8U&amp;linkCode=as2&amp;tag=containerized-20&amp;linkId=6304f51d54206e4f79da35d403ef4e96)* 😉*
+***Quick note:**** Developers who use only public cloud ask me this question frequently, “Why would you need a private cloud, and maintain it, everything on the public cloud is much easier?”. Well, you are probably not the one paying the cloud bill, right? For various tests, (some running IO intensive workloads) and learning experiments, I maintain 4 clusters (IBM Cloud Private, Rancher, Red Hat OpenShift and one installed with kubeadm) — each 3–5 nodes. That’s 16–20 nodes, exactly $1,069.05/month — I learned it all the hard way. True that education is expensive, but running the same on a few `[*cheap servers*](https://www.ebay.com/sch/i.html?_odkw=hp+proliant+g6&amp;_osacat=0&amp;_from=R40&amp;_trksid=p2045573.m570.l1313.TR1.TRC0.A0.H0.X+HP+Proliant+DL360+G6.TRS0&amp;_nkw=+HP+Proliant+DL360+G6&amp;_sacat=0)` adds only ~$135/month to my electric bill — soon will be almost free thanks to the `[*solar panels*](https://www.amazon.com/gp/product/B00FF1KG8U/ref=as_li_tl?ie=UTF8&amp;camp=1789&amp;creative=9325&amp;creativeASIN=B00FF1KG8U&amp;linkCode=as2&amp;tag=containerized-20&amp;linkId=6304f51d54206e4f79da35d403ef4e96)` 😉`
 
-*When it’s not enough I also use StackPointCloud to deploy temporary clusters on AWS or GKE, etc, but I never keep them overnight unless I have to.*
+`When it’s not enough I also use StackPointCloud to deploy temporary clusters on AWS or GKE, etc, but I never keep them overnight unless I have to.`
 
-> [*On-premise turnkey solutions*](https://kubernetes.io/docs/setup/pick-right-solution/#on-premises-turnkey-cloud-solutions)* that allow me to create Kubernetes clusters on my internal, secure, cloud network with only a few commands like IBM Cloud Private makes my live really easy.*
+> [`On-premise turnkey solutions`](https://kubernetes.io/docs/setup/pick-right-solution/#on-premises-turnkey-cloud-solutions)  `that allow me to create Kubernetes clusters on my internal, secure, cloud network with only a few commands like IBM Cloud Private makes my live really easy.`
 
 Now, let’s take a look at the requirements.
 
@@ -48,18 +48,18 @@ If you are already using the older version of the ICP, you can skip the cluster 
 
 We need a few things installed before we get up and running with ICP 3.1. First, I’ll configure my Ubuntu servers and share SSH keys so that the master node can access all my other nodes. Then I’ll install Docker and after that ICP. From there, ICP will take care of my Kubernetes cluster installation.
 
-#### *Install the base O/S — Ubuntu (30–45mins)*
+#### `Install the base O/S — Ubuntu (30–45mins)`
 
 Download your preferred version of [Ubuntu](https://www.ubuntu.com/download). I use Ubuntu Server 16.04.3 LTS.
 
 Install Ubuntu on all servers with default options. I used ***user/nopassword*** as username/password for simplicity.
 
 Log in to your Ubuntu host via terminal.
-Edit the */etc/network/interfaces* file, assign a static IP and set a hostname.
+Edit the `/etc/network/interfaces` file, assign a static IP and set a hostname.
 
-Edit the */etc/hosts* file, add your nodes to the list and make sure you can ping them by the hostname:
-*cat /etc/hosts*
- For my setup, this is how *hosts* file looks like:
+Edit the `etc/hosts` file, add your nodes to the list and make sure you can ping them by the hostname:
+`cat /etc/hosts`
+ For my setup, this is how `hosts` file looks like:
 
     $ cat /etc/hosts
      127.0.0.1 localhost
@@ -126,7 +126,7 @@ Log in to the other nodes and restart the SSH service:
 
 Now the boot node can connect through SSH to all other nodes without the password.
 
-#### *Install Docker CE (5mins)*
+#### `Install Docker CE (5mins)`
 
 To get the latest supported version of Docker, install it from the official Docker repository.
 On your Ubuntu nodes, update the apt package index:
@@ -176,7 +176,7 @@ Make sure it’s up and running after installation is complete:
      CPU: 55min 10.946s
      CGroup: /system.slice/docker.service
 
-#### *Install IBM Cloud Private-CE 3.1 (60–75 mins)*
+#### `Install IBM Cloud Private-CE 3.1 (60–75 mins)`
 
 Download the IBM Cloud Private-CE container images:
 
@@ -189,12 +189,12 @@ Create an installation folder for configuration files and extract the sample con
     sudo docker run -e LICENSE=accept \
     -v “$(pwd)”:/data ibmcom/icp-inception:3.1.0 cp -r cluster/data
 
-Above command creates the **cluster** directory under */opt/ibm-cloud-private-ce-3.1.0* with the following files: *config.yaml*, *hosts*, and *ssh_key*. Before deploying ICP, these files need to be modified.
-Replace the *ssh_key* file with the private SSH key you have created earlier.
+Above command creates the **cluster** directory under `/opt/ibm-cloud-private-ce-3.1.0` with the following files: `config.yaml`, `hosts`, and `ssh_key`. Before deploying ICP, these files need to be modified.
+Replace the `ssh_key` file with the private SSH key you have created earlier.
 
     sudo cp ~/.ssh/master.id_rsa /opt/cluster/ssh_key
 
-Add the IP address of all your nodes to the *hosts* file in the */opt/ibm-cloud-private-ce-3.1.0/cluster* directory. If you plan to run serious workloads, I recommend separating master and worker Kubernetes nodes. Since Community Edition supports single master node only, my config file looks like this:
+Add the IP address of all your nodes to the *hosts* file in the `/opt/ibm-cloud-private-ce-3.1.0/cluster` directory. If you plan to run serious workloads, I recommend separating master and worker Kubernetes nodes. Since Community Edition supports single master node only, my config file looks like this:
 
     $ cat /opt/ibm-cloud-private-ce-3.1.0/cluster/hosts
     [master]
@@ -212,7 +212,7 @@ Add the IP address of all your nodes to the *hosts* file in the */opt/ibm-cloud-
     #[va]
     #5.5.5.5
 
-Finally, deploy the environment. Change directory to the cluster folder with the *config.yaml* file and deploy your ICP environment:
+Finally, deploy the environment. Change directory to the cluster folder with the `config.yaml` file and deploy your ICP environment:
 
     sudo docker run — net=host -t -e LICENSE=accept \
     -v “$(pwd)”:/installer/cluster ibmcom/icp-inception:3.1.0 install
@@ -245,9 +245,9 @@ After a successful install you should see a message similar to the below:
      localhost : ok=265 changed=161 unreachable=0 failed=0POST DEPLOY MESSAGE ************************************************************The Dashboard URL: https://10.10.0.161:8443, default username/password is admin/admin
     Playbook run took 0 days, 0 hours, 53 minutes, 54 seconds
 
-One thing I have noticed is that the installation completed much faster than the previous version. ICP got smarter and only pulling images that are required for the roles, also seems like taking advantage of the local image registries. My 5 node installation time dropped from 95 minutes to 53 minutes. If your deployment is successful, you should be able to access your ICP login screen by visiting *https://MASTERNODEIP:8443* (Default username/password is admin/admin).
-![https://cdn-images-1.medium.com/max/800/0*icEkTNw9gTeerOUW.png](https://lh4.googleusercontent.com/zLjFhjjYasubn8qOstAt53Dk-KONjCxMXqngIhhYqLyRWKt3C4UOJI_hc4IBcZ7KA6qefUGP1GQIUDF14QQZuKSYM64g5sDbJgspI4dAtzTRQOVE_-71xUNh6wgfcZwiBEmLFgSCJF8A7XJHeA)IBM Cloud Private Login Screen![https://cdn-images-1.medium.com/max/800/0*35UO58nb7V2f6Lwr.png](https://lh4.googleusercontent.com/gg0FToYgEP-8WMOZxm80wyHDFPx_cXO8VMrEIhM-YXIR_jWQiUQuWU12Ttj1iWALZv3O60yYcZWjwg0TKuh-4g_m7Jdf2JbhmOQEEHHvSiau7H492Da5AZF6iMeh7AmXy0NONQeTJgrkpaaz1w)IBM Cloud Private Dashboard![https://cdn-images-1.medium.com/max/800/0*xtFeNgX5Z-iPQQFS.png](https://lh6.googleusercontent.com/vTnBDyMf3S-Rct0ideYAJTMMAiUqChItSPxRghrtbFLtf7koXrGuPPcZjFAYvEdD6kVu0gAuAHYRBy1xHnRWADOOqQwtRJN4sgcMMCWFJqJwxjYEh5Y53xgOcRQ_INjZ2bK61cLHVF3aD6Wlrw)IBM Cloud Private Catalog
-#### *Uninstalling an older version of the IBM Cloud Private*
+One thing I have noticed is that the installation completed much faster than the previous version. ICP got smarter and only pulling images that are required for the roles, also seems like taking advantage of the local image registries. My 5 node installation time dropped from 95 minutes to 53 minutes. If your deployment is successful, you should be able to access your ICP login screen by visiting `https://MASTERNODEIP:8443` (Default username/password is admin/admin).
+![https://cdn-images-1.medium.com/max/800/0icEkTNw9gTeerOUW.png](https://lh4.googleusercontent.com/zLjFhjjYasubn8qOstAt53Dk-KONjCxMXqngIhhYqLyRWKt3C4UOJI_hc4IBcZ7KA6qefUGP1GQIUDF14QQZuKSYM64g5sDbJgspI4dAtzTRQOVE_-71xUNh6wgfcZwiBEmLFgSCJF8A7XJHeA)IBM Cloud Private Login Screen![https://cdn-images-1.medium.com/max/800/035UO58nb7V2f6Lwr.png](https://lh4.googleusercontent.com/gg0FToYgEP-8WMOZxm80wyHDFPx_cXO8VMrEIhM-YXIR_jWQiUQuWU12Ttj1iWALZv3O60yYcZWjwg0TKuh-4g_m7Jdf2JbhmOQEEHHvSiau7H492Da5AZF6iMeh7AmXy0NONQeTJgrkpaaz1w)IBM Cloud Private Dashboard![https://cdn-images-1.medium.com/max/800/0xtFeNgX5Z-iPQQFS.png](https://lh6.googleusercontent.com/vTnBDyMf3S-Rct0ideYAJTMMAiUqChItSPxRghrtbFLtf7koXrGuPPcZjFAYvEdD6kVu0gAuAHYRBy1xHnRWADOOqQwtRJN4sgcMMCWFJqJwxjYEh5Y53xgOcRQ_INjZ2bK61cLHVF3aD6Wlrw)IBM Cloud Private Catalog
+#### `Uninstalling an older version of the IBM Cloud Private`
 
 IBM documentation is very clear with upgrade steps described [here](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.1.0/installing/upgrade_ce.html). It is unfortunate that upgrade is only supported from the 2.1.0.3 release since I had problems installing that version. I kept my cluster at 2.1.0.2, and later clean install was the online way to go for me.
 
@@ -259,7 +259,7 @@ Also removed all stopped containers:
 
     docker system prune -af
 
-#### *What’s next?*
+#### `What’s next?`
 
 I will go over the configuration of other optional features in my next blog post as I get more familiar with the new platform.
 
@@ -278,4 +278,4 @@ To be continued…
 
 ---
 
-*Originally published at *[*Containerized Me*](http://containerized.me/how-to-install-ibm-cloud-private-updated/)*.*
+`Originally published at `[`Containerized Me`](http://containerized.me/how-to-install-ibm-cloud-private-updated/)`.`

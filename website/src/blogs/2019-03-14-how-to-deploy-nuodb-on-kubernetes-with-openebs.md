@@ -1,9 +1,9 @@
 ---
 title: How to deploy NuoDB on Kubernetes with OpenEBS
-slug: how-to-deploy-nuodb-on-kubernetes-with-openebs
 author: Murat Karslioglu
+author_info: VP @OpenEBS & @MayaData_Inc. Lives to innovate! Opinions my own!
 date: 14-03-2019
-tags: DevOps, Kubernetes, Nuodb, Solutions, Openebs
+tags: DevOps, Kubernetes, Nuodb, Solutions, OpenEBS
 excerpt: NuoDB is a container-native adaptive-scale distributed SQL database designed with distributed application deployment challenges in mind.
 ---
 

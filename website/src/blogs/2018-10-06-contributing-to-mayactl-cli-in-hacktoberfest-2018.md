@@ -1,9 +1,9 @@
 ---
 title: Contributing to mayactl cli in Hacktoberfest 2018
-slug: contributing-to-mayactl-cli-in-hacktoberfest-2018
 author: Ashish Ranjan
+author_info: An enthusiastic person when it comes to software & computers. I don't mind getting out of my comfort zone when things related to computing need to be done at the spur of the moment.
 date: 05-10-2018
-tags: Openebs, Minikube, Hacktoberfest, Ubuntu, Kubernetes
+tags: OpenEBS, Minikube, Hacktoberfest, Ubuntu, Kubernetes
 excerpt: Hacktoberfest is an excellent platform for first-time, open-source hackers to start their journey. mayactl is a tool that allows for contribution at any level.
 ---
 
@@ -54,7 +54,7 @@ Some pre-requisites for this:
 
 ## Cloning and making maya resources ready 
 
-Once you have completed the previous steps, it’s time to [fork](https://guides.github.com/activities/forking/) and [clone](https://help.github.com/articles/cloning-a-repository/) the [openebs/maya](https://github.com/openebs/maya) repo in your system. The repo should be cloned in following path $GOPATH/src/github.com/openebs/.
+Once you have completed the previous steps, it’s time to [fork](https://guides.github.com/activities/forking/) and [clone](https://help.github.com/articles/cloning-a-repository/) the [openebs/maya](https://github.com/openebs/maya) repo in your system. The repo should be cloned in following path `$GOPATH/src/github.com/openebs/`.
 
     mkdir -p $GOPATH/src/github.com/src/openebs
     cd $GOPATH/src/github.com/src/openebs
@@ -138,11 +138,11 @@ The source code of mayactl can be found in cmd/mayactl in the maya [repository](
 
 ## Building the mayactl Binary
 
-After playing with the code, it’s time to compile the code to binary and test it against the maya-apiserver. For building the mayactl binary, you can use the make mayactl command. This will trigger the build process, and the newly-built binary can found in bin/maya under the maya directory that you have cloned. This will generate an output of ls -ltr bin/maya/ -ltr :
+After playing with the code, it’s time to compile the code to binary and test it against the maya-apiserver. For building the mayactl binary, you can use the make mayactl command. This will trigger the build process, and the newly-built binary can found in `bin/maya` under the maya directory that you have cloned. This will generate an output of ls -ltr `bin/maya/` -ltr :
 
 ## Copying the mayactl Binary to a maya-apiserver Pod
 
-Once we are ready with the binary, we can run a test by copying it to the maya-apiserver pod’s /tmp folder. For copying the binary, run the following command:
+Once we are ready with the binary, we can run a test by copying it to the maya-apiserver pod’s `/tmp` folder. For copying the binary, run the following command:
 
     kubectl cp bin/maya/mayactl <maya-apiserver pod name>:/tmp -n openebs.
 
@@ -151,7 +151,7 @@ This will copy your mayactl binary to the maya-apiserver pod.
 ## Testing the mayactl Binary
 
 In order to test the mayactl binary, again get into the pod's shell using
-kubectl exec -it <maya-api server pod name> -n openebs. Then access the tmp directory using cd /tmp. You can run your new mayactl binary by prefixing the ./ before mayactl using ./mayactl version.
+kubectl exec -it <maya-api server pod name> -n openebs. Then access the tmp directory using cd `/tmp`. You can run your new mayactl binary by prefixing the ./ before mayactl using `./mayactl` version.
 
 ## A Bash Shortcut for the Above Process
 

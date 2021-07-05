@@ -1,9 +1,9 @@
 ---
 title: Using OpenEBS for running Kubernetes stateful applications on AWS instance store disks
-slug: using-openebs-for-running-kubernetes-stateful-applications-on-aws-instance-store-disks
 author: Ranjith Raveendran
+author_info: Ranjith is working as a Software Engineer at MayaData and working in the OpenEBS project. In his free time, he listens to music, watches movies, and goes for bike riding.
 date: 07-10-2018
-tags: Kubernetes, Openebs, Solutions, Stateful Applications, Tutorials
+tags: Kubernetes, OpenEBS, Solutions, Stateful Applications, Tutorials
 excerpt: In this post, I will cover the topic of “How to set up persistent storage” using AWS instance store disks for applications running on Kubernetes clusters. 
 ---
 
@@ -13,7 +13,7 @@ In this post, I will cover the topic of “How to set up persistent storage” u
 2. Using Local disks or instance store disks
 
 ## Running Stateful Apps using EBS Volumes
-![](https://lh5.googleusercontent.com/t7qvZRLBbTPxhPJhzO6bSg6PjSD52wv2b_aDSm8G1WYai8oOc4ogMEELkN9zSmCHgY3T4XASqlguUhmLfMl0FtmCTgWD8yURvTyVZaULU9qM47L2alvFO6GQMxmd5yIenJhqHxJXRb4sHxvYNA)Stateful Applications using EBS volumes
+![Stateful Applications using EBS volumes](https://lh5.googleusercontent.com/t7qvZRLBbTPxhPJhzO6bSg6PjSD52wv2b_aDSm8G1WYai8oOc4ogMEELkN9zSmCHgY3T4XASqlguUhmLfMl0FtmCTgWD8yURvTyVZaULU9qM47L2alvFO6GQMxmd5yIenJhqHxJXRb4sHxvYNA)
 ## The Problems with this Approach
 
 - When a node goes down, a new node arises as part of Auto Scaling Groups (ASG). EBS disks that are associated with the old node must be detached from the old node and attached to the new node. This process is slow and not guaranteed to work seamlessly. Also, the new EBS volume will not contain any data.
@@ -23,7 +23,7 @@ In this post, I will cover the topic of “How to set up persistent storage” u
 - Poor I/O, unless you wish to spend a lot of unused disk space.
 
 ## Why Can’t We Use Instance Disks as is for Kubernetes?
-![](https://lh3.googleusercontent.com/FWlk8RIHRK8tk7jvrN8jYCgV6Ho1zP8GBqiuE49y16WkaJ3gyW-8g-Z08KP0dpknnw6PNCazKMp0pCBh6AUpbJpe92Pq9Eskzb7EODaeGAYBHx4dlGBzrIX2n6iV5YMH3EFBN5hD3MycE3WeEA)Stateful Applications using Instance Stores
+![Stateful Applications using Instance Stores](https://lh3.googleusercontent.com/FWlk8RIHRK8tk7jvrN8jYCgV6Ho1zP8GBqiuE49y16WkaJ3gyW-8g-Z08KP0dpknnw6PNCazKMp0pCBh6AUpbJpe92Pq9Eskzb7EODaeGAYBHx4dlGBzrIX2n6iV5YMH3EFBN5hD3MycE3WeEA)
 - When a node goes down, a new node arises with its own disks, meaning any data is lost. This is because of AWS’s auto-scaling group and other policies. Per the ASG policy, the entire component associated with an instance is deleted during the termination of an EC2 instance. The user application, which has the capability to manage replication itself, has to manage the data replication across nodes.
 - What if your applications do not have this capability?
 - If a local disk fails, then your data is lost.
@@ -35,7 +35,7 @@ OpenEBS is a viable option for high availability of data, combined with the adva
 ## How is Replication Done with OpenEBS?
 
 OpenEBS will have a minimum of 3 replicas to run the OpenEBS cluster with high availability. If a node fails, OpenEBS will manage the data to be replicated to a new disk, which will come up as part of ASG. In the meantime, your workload is in accessing the live data from one of the replicas.
-![](https://lh4.googleusercontent.com/XJCdP9q-4LX4sGr0lro6Gyj0BCMgeh85_2MTao6wnlzBAZSvtudxXplxrwDOG1zqN9n9tpltpPdHb0ssQINs2aNmQWR0M8EJRtyj30nQLMo8Zl01C-ZzTANOi0F29oUAMDvydBloOGuWme-v2w)Stateful Applications using OpenEBS and Instance Stores
+![Stateful Applications using OpenEBS and Instance Stores](https://lh4.googleusercontent.com/XJCdP9q-4LX4sGr0lro6Gyj0BCMgeh85_2MTao6wnlzBAZSvtudxXplxrwDOG1zqN9n9tpltpPdHb0ssQINs2aNmQWR0M8EJRtyj30nQLMo8Zl01C-ZzTANOi0F29oUAMDvydBloOGuWme-v2w)
 ## How do we Quickly Demonstrate OpenEBS on AWS?
 
 1. Setup K8s nodes to automount the disks and configure iSCSI initiators during reboot.
@@ -82,25 +82,25 @@ Below I provide step by step instructions that you should be able to cut, paste,
 
 1. Download the AWS CLI utility in your local machine.
 2. Connect with your AWS account by executing the following command:
-
+```
     aws configure
-
+```
 > **Note:** You must specify your AWS Access Key, Secret Access Key, Default region name, and Default output format in order to keep the configuration details.
 
 3. Create an S3 bucket to store your cluster configuration details as follows:
-
+```
     aws s3 mb s3://<bucket_name>
-    
+```   
 
 4. Export the s3 bucket details using the following command:
-
+```
     export KOPS_STATE_STORE=s3://<bucket_name>
-    
+```    
 
 5. Create the cluster using the following command:
-
+```
     kops create cluster — name=<cluster_name>.k8s.local — vpc=<vpc_id> — zones=<zone_name>
-    
+```    
 
 This will create a cluster in the mentioned zone in your provided region as part of the AWS configuration.
 
@@ -124,30 +124,30 @@ Finally, configure your cluster with: kops update cluster name.k8s.local —�
 **Example:**
 
 Change your node configuration by executing as follows:
-
+```
     kops edit ig — name=<cluster_name>.k8s.local nodes
-
+```
 Change your master instance type and number of machines by executing as follows:
-
+```
     kops edit ig — name=<cluster_name>.k8s.local master-<zone_name>
-    
+```    
 
 **Note:** We used c3.xlarge as the instance type for both Master and Nodes. The number of worker nodes used is 3 and the master node as 1.
 
 8. Once the customization is done, you can update the changes as follows:
-
+```
     kops update cluster <cluster_name>.k8s.local — yes
-
+```
 9. The above step will deploy a 3 Node OpenEBS cluster in AWS. You can check the instance creation status by finding the EC2 instance page and choosing the corresponding region.
 
 10. From the EC2 instance page, obtain each instance type Public IP.
 
 **Example:**
-![](https://lh5.googleusercontent.com/MR4HVU7V-kKHlBr5J1aI8GPzVzpBwX1MAsYVCyJjIVVVatEKDXQeIPm5MMaHAe3qw9fRMnZWdOti94nqfe8C39NXI1xbQ2l9Hz30UfVFDuLd5ENPp7cZ4-mg4z2haaPWlZFFUa2wncxpsXhrMw)
+![ink](https://lh5.googleusercontent.com/MR4HVU7V-kKHlBr5J1aI8GPzVzpBwX1MAsYVCyJjIVVVatEKDXQeIPm5MMaHAe3qw9fRMnZWdOti94nqfe8C39NXI1xbQ2l9Hz30UfVFDuLd5ENPp7cZ4-mg4z2haaPWlZFFUa2wncxpsXhrMw)
 11. Go to the **Launch Configuration** section on the EC2 page and take a *copy of the Launch configuration* for nodes. Select the configuration for the Node group and click on the Actions pane.
 
 **Example:**
-![](https://lh6.googleusercontent.com/NpHS772BGXBmArOERpQyZ2Vj3U15sEq9DAhRgutrSIZxn_yTgbVgEJPaQHYX_YNtlEwxtwWPLArSzDqxrnqqhfK8IUjgIpM6vqs94nS16n7ocHgnmg9by0CAFmN3yd_IE3Zg0I7xQzR5lYdYtw)
+![link](https://lh6.googleusercontent.com/NpHS772BGXBmArOERpQyZ2Vj3U15sEq9DAhRgutrSIZxn_yTgbVgEJPaQHYX_YNtlEwxtwWPLArSzDqxrnqqhfK8IUjgIpM6vqs94nS16n7ocHgnmg9by0CAFmN3yd_IE3Zg0I7xQzR5lYdYtw)
 12. Perform changes in the **Configure Details** section as follows:
 
 a. Change the new configuration name if required.
@@ -168,19 +168,19 @@ b. Edit the **Advanced Details** section and add the following entry at the end 
     
 
 **Example:**
-![](https://lh4.googleusercontent.com/4qOeijgmFhAVn1Z5zWtTlWKNwZh6GyRz5a2PvEcUafuOtzmocD6AzHb_rZ_u_A265jn87iXK085k-Qyq5Nw8EelTkdKO_g9E7SVxhIY02CnVoEXDPHXSBnJTnERQQ7bAJOme5BrGlQHT19irug)
+![link](https://lh4.googleusercontent.com/4qOeijgmFhAVn1Z5zWtTlWKNwZh6GyRz5a2PvEcUafuOtzmocD6AzHb_rZ_u_A265jn87iXK085k-Qyq5Nw8EelTkdKO_g9E7SVxhIY02CnVoEXDPHXSBnJTnERQQ7bAJOme5BrGlQHT19irug)
 Click **Skip** to review and proceed with the Create launch configuration.
 
 13. Go to the **Auto Scale Group** section on the EC2 page. Select the configuration for the Node group and click on the Actions pane to edit the Launch Configuration. Change the existing one with the new Launch Configuration and save the new setup.
 
 **Example:**
-![](https://lh5.googleusercontent.com/590yBjH_Yp97YgfGpYh4eGM-mnj2qTQr6XcjQVgzW7lzGo5-0P7fismEoBP6_XNw-2xxD4yFYPiEiqTZQk1KEEJl5TgMo9JlWEEE6tKzngV2T0H3nTu-_cZ0iXNY-UInoG6ytvlheSr8qm1eSA)
+![link](https://lh5.googleusercontent.com/590yBjH_Yp97YgfGpYh4eGM-mnj2qTQr6XcjQVgzW7lzGo5-0P7fismEoBP6_XNw-2xxD4yFYPiEiqTZQk1KEEJl5TgMo9JlWEEE6tKzngV2T0H3nTu-_cZ0iXNY-UInoG6ytvlheSr8qm1eSA)
 14. SSH to each node using its public key as follows:
-
+```
     ssh -i ~/.ssh/id_rsa admin@<public_ip>
-
+```
 15. SSH to all Nodes where OpenEBS will be installed, and perform the following commands to install the iSCSI packages and auto mounting of the local disk during reboot.
-
+```
     sudo apt-get update
     sudo apt-get install open-iscsi
     sudo service open-iscsi restart
@@ -189,19 +189,19 @@ Click **Skip** to review and proceed with the Create launch configuration.
     sudo sudo sh -c ‘echo “/dev/xvdd /mnt/openebs_xvdd auto defaults,nofail,comment=cloudconfig 0 2” >> /etc/fstab’
     grep “@reboot root sleep 120;service open-iscsi restart” /etc/crontab || sudo sh -c ‘echo “@reboot root sleep 120;service open-iscsi restart” >> /etc/crontab’
     sudo reboot
-    
+ ```   
 
 16. SSH to Master Node and perform the following commands to clone the OpenEBS YAML file and deploy it.
-
+```
     wget
     https://raw.githubusercontent.com/openebs/openebs/v0.6/k8s/openebs-operator.yaml
     
     wget
     https://raw.githubusercontent.com/openebs/openebs/v0.6/k8s/openebs-storageclasses.yaml
-    
+```    
 
-17. Edit *openebs-operator.yaml* and add the following entry. This will create a storage pool on one of the local disks attached to the hosts. Refer to OpenEBS Storage Pools for more information.
-
+17. Edit `openebs-operator.yaml` and add the following entry. This will create a storage pool on one of the local disks attached to the hosts. Refer to OpenEBS Storage Pools for more information.
+```
     — -
     apiVersion: openebs.io/v1alpha1
     kind: StoragePool
@@ -211,12 +211,12 @@ Click **Skip** to review and proceed with the Create launch configuration.
     spec:
     path: “/mnt/openebs_xvdd”
     — -
-    
+```  
 
-18. Edit *openebs-storageclasses.yaml* by adding the following entry in your corresponding storage class:
-
+18. Edit `openebs-storageclasses.yaml`  by adding the following entry in your corresponding storage class:
+```
     openebs.io/storage-pool: “jivaawspool”
-
+```
 **Example:**
 
     — -
@@ -233,24 +233,24 @@ Click **Skip** to review and proceed with the Create launch configuration.
     openebs.io/storage-pool: “jivaawspool”— -
     — -
 
-19. Apply openebs-operator.yaml by executing the following command:
-
+19. Apply  `openebs-operator.yaml` by executing the following command:
+```
     kubectl apply -f openebs-operator.yaml
-
+```
 20. Apply openebs-storageclasses.yaml by executing the following command:
-
+```
     kubectl apply -f openebs-storageclasses.yaml
-
+```
 21. Deploy your application YAML that will be created on the local disk.
 
 **Example:**
-
+```
     kubectl apply -f percona-openebs-deployment.yaml
-
+```
 22. To check the status of applications and Jiva Pods, use the following command:
-
+```
     kubectl get pods -o wide
-    
+```    
 
 An output similar to the following should be displayed.
 
@@ -264,9 +264,9 @@ An output similar to the following should be displayed.
     
 
 23. Obtain the status of PVC using the following command:
-
+```
     kubectl get pvc
-
+```
 An output similar to the following is displayed.
 
     NAME STATUS VOLUME CAPACITY ACCESS MODES STORAGECLASS AGE
@@ -274,9 +274,9 @@ An output similar to the following is displayed.
     
 
 24. View the status of PV using the following command:
-
+```
     kubectl get pv
-
+```
 The output from the above command will be similar to the following.
 
     NAME CAPACITY ACCESS MODES RECLAIM POLICY STATUS CLAIM STORAGECLASS REASON AGE

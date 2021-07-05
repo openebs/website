@@ -1,9 +1,9 @@
 ---
 title: Storage Scheduling goes mainstream in Kubernetes 1.12
-slug: storage-scheduling-goes-mainstream-in-kubernetes-1-12
 author: Kiran Mova
+author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
 date: 01-10-2018
-tags: Kubernetes, Open Source, Openebs, Storage Containers
+tags: Kubernetes, Open Source, OpenEBS, Storage Containers
 excerpt: With every new release of Kubernetes, I find myself in awe and also at ease with the choices we made early on to marry OpenEBS with Kubernetes.
 ---
 
@@ -46,7 +46,7 @@ For instance, OpenEBS storage classes also can be set with *volumeBindingMode* o
 
 The PVCs provisioned with the above StorageClass will contain the information of the Node selected by the scheduler to launch the associated Pod in the following PVC annotation.
 
-## “volume.kubernetes.io/selected-node”
+## `volume.kubernetes.io/selected-node`
 
 OpenEBS can then use the above annotation to determine the preferred node where the Target Pod can be scheduled. This provides a simpler way to schedule the Target Pods on the same Node as the Application Pod.
 
