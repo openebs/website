@@ -4,7 +4,7 @@ author: Satyam Zode
 author_info: Go Developer @openebs | Open Source Contributor | Avid Learner
 date: 31-12-2017
 tags: Kubernetes, Slack, Chatbots, ChatOps, Chatbot Design
-excerpt: Maya-ChatOps is one of the core areas of MayaOnline, covering the storage operational support of kubernetes clusters.
+excerpt: Maya-ChatOps is one of the core areas of MayaOnline, covering the storage operational support of Kubernetes clusters.
 ---
 
 ## What is Maya ChatOps?

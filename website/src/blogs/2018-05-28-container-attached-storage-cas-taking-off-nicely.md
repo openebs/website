@@ -3,7 +3,7 @@ title: Container Attached Storage (CAS) — Taking off nicely
 author: Uma Mukkara
 author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 date: 28-05-2018
-tags: Cas, Kubernetes, Stateful Applications, OpenEBS, Mayaonline
+tags: Cas, Kubernetes, Stateful Applications, OpenEBS, MayaOnline
 excerpt: I had the fortune of presenting to a group of brilliant folks at SNIA India SDC event last week. This event being in Bangalore, I could sense the heat emanating from technology savvy brains mostly from the storage companies like DELL-EMC, NetApp, RedHat storage, HP storage etc
 ---
 

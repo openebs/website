@@ -7,7 +7,7 @@ tags: Container, Docker, Kubernetes, OpenEBS, Storage For Containers
 excerpt: OpenEBS supports two modes — Hyper-converged and dedicated. The deployment mode really depends on where and how you want to use OpenEBS.
 ---
 
-OpenEBS supports two modes — Hyper-converged and dedicated. The deployment mode really depends on where and how you want to use OpenEBS. If you are adding block storage capability to existing kubernetes minions, hyper-converged mode is most desired, so that you can use the existing hardware as is. If the desire is to get a full fledged EBS type functionality to your on-premise cloud or container needs, then dedicated storage servers for OpenEBS is a better choice.
+OpenEBS supports two modes — Hyper-converged and dedicated. The deployment mode really depends on where and how you want to use OpenEBS. If you are adding block storage capability to existing Kubernetes minions, hyper-converged mode is most desired, so that you can use the existing hardware as is. If the desire is to get a full fledged EBS type functionality to your on-premise cloud or container needs, then dedicated storage servers for OpenEBS is a better choice.
 
 In the hyper-converged mode, OpenEBS Maya hooks into the K8s master and minions, hooking into scheduling algorithms for creating OpenEBS VSMs. When used in dedicated mode, the provisioning API are exposed via the OpenEBS Maya master. Dynamic Provisioning of the storage can be enabled using the volume plugin drivers or use the EBS volume plugin as in the case with K8s.
 

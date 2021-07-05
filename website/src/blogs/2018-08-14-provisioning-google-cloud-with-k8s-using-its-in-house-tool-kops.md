@@ -34,7 +34,7 @@ These items are required to deploy the production-ready k8s cluster in GCP:
 
 - **kubectl**
 
-  From the [official kubernetes kubectl release:](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+  From the [Official Kubernetes kubectl release:](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 
   ```
   wget -O kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl

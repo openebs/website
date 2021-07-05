@@ -3,7 +3,7 @@ title: Install OpenEBS using StackPointCloud Trusted Charts?
 author: Murat Karslioglu
 author_info: VP @OpenEBS & @MayaData_Inc. Lives to innovate! Opinions my own!
 date: 07-01-2018
-tags: Digital Ocean, Helm, Kubernetes, Solutions, Stackpointcloud
+tags: Digital Ocean, Helm, Kubernetes, Solutions, StackPointCloud
 excerpt: What is StackPointCloud Trusted Charts?
 StackPointCloud (SPC) introduced a concept of Trusted Charts, a list of validated Helm Charts provided by its partners to quickly spin up a solution in a Kubernetes cluster. 
 ---
