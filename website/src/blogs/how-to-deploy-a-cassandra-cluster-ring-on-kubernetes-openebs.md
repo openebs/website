@@ -8,7 +8,7 @@ excerpt: Apache Cassandra is a distributed key-value store intended to run in a 
 ---
 
 
-Apache Cassandra is a **distributed key-value store** intended to run in a data center and also across multiple data centers. Initially it was designed as Facebook as an infrastructure for their messaging platform. Later it is open sourced, and today it’s one of the most active Apache projects.
+Apache  Cassandra is a **distributed key-value store** intended to run in a data center and also across multiple data centers. Initially it was designed as Facebook as an infrastructure for their messaging platform. Later it is open sourced, and today it’s one of the most active Apache projects.
 
 If you are using eBay, Twitter, Spotify or Netflix you are consuming data provided by Cassandra. For example, Netflix uses Cassandra to keep track of your current place in a streaming video, as well as movie ratings, bookmarks and user history of 90+ million users.
 
@@ -19,6 +19,7 @@ In summary, Cassandra solves the problem of mapping the key-value pair to a serv
 For development work, the SimpleStrategy class is acceptable. For production work, the NetworkTopologyStrategy class must be set. In production, you will end up with multiple rings using mostly NetworkTopology placement which is by-itself extremely complex to plan.
 
 If you want to learn the architecture of Cassandra, the University of Illinois has a great course on [Cloud Computing Concepts](https://www.coursera.org/learn/cloud-computing/home/welcome) and [Key-Value Stores](https://www.coursera.org/learn/cloud-computing/home/week/4) which covers internals of Cassandra. You can also find more about custom SeedProvider and Snitches [here](https://github.com/kubernetes/kubernetes/issues/24286).
+
 
 Cassandra doesn’t like shared storage, therefore use of NFS or GlusterFS not recommended for Cassandra rings. It’s also recommended to use SSD or NVMe, since it’s essential to have low latency random reads and good sequential writes at the same time. This kind of requirements can be only satisfied with OpenEBS like local and persistent storage solution.
 
