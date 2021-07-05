@@ -3,7 +3,7 @@ title: OpenEBS Building blocks — Rancher Longhorn
 author: Uma Mukkara
 author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 date: 2017-01-06
-tags: Container, DevOps, Longhorn, Openebs, Docker
+tags: Container, DevOps, Longhorn, OpenEBS, Docker
 excerpt: In the previous blog post, I shared the initial details of OpenEBS. In this post, I will continue to discuss the OpenEBS technology building blocks and touch upon the details of Rancher longhorn and why we chose longhorn .
 ---
 
@@ -15,9 +15,9 @@ OpenEBS platform contains three core building blocks:
 - Containerized storage volumes called Virtual Storage Machines or VSMs and
 - Maya managed backing stores or data stores residing either locally on OpenEBS hosts or remotely over network
 
-***Just to recap, why storage containerization?*** With storage containerization, the storage upgrades are flexible, easy, and effective. The containerization of storage means that the core functionality of storage (like front end protocol ISCSI, snapshotting, replication, backup) is abstracted into a Docker container and managed outside the kernel. A software patch to correct or enhance the replication behavior of a volume does not affect the other volume in the same host. Each of these Docker containers do a specific job of either running [gotgt ](https://github.com/gostor/gotgt)iSCSI or running a [longhorn ](https://github.com/rancher/longhorn)replica. The storage software is built as [Docker image](https://hub.docker.com/r/openebs/jiva/) and is the core/essence of OpenEBS technology. Hence, we named it “Jiva” (meaning “life”, [Wikipedia](https://en.wikipedia.org/wiki/Jiva)).
+**_Just to recap, why storage containerization?_** With storage containerization, the storage upgrades are flexible, easy, and effective. The containerization of storage means that the core functionality of storage (like front end protocol ISCSI, snapshotting, replication, backup) is abstracted into a Docker container and managed outside the kernel. A software patch to correct or enhance the replication behavior of a volume does not affect the other volume in the same host. Each of these Docker containers do a specific job of either running [gotgt ](https://github.com/gostor/gotgt)iSCSI or running a [longhorn ](https://github.com/rancher/longhorn)replica. The storage software is built as [Docker image](https://hub.docker.com/r/openebs/jiva/) and is the core/essence of OpenEBS technology. Hence, we named it “Jiva” (meaning “life”, [Wikipedia](https://en.wikipedia.org/wiki/Jiva)).
 
-***About VSM:*** Virtual Storage Machine is the logical set of storage pods that encapsulates the entire functionality of the life cycle of a volume. The components of an OpenEBS VSM is shown in the below picture.
+**_About VSM:_** Virtual Storage Machine is the logical set of storage pods that encapsulates the entire functionality of the life cycle of a volume. The components of an OpenEBS VSM is shown in the below picture.
 
 ![Fig: OpenEBS VSM components](https://cdn-images-1.medium.com/max/800/1*-Bl0JyjyNdVe_bp6YI-n6w.png)
 
@@ -29,17 +29,19 @@ Longhorn is a simplified block storage software, implemented in golang, that sto
 
 LHC and LHR can be deployed in two modes.
 
-- *Hyper-converged container model,* where LHC and LHR are on the same host as that of compute or Docker Host. TCMU is used for block storage volume drive emulation on Docker Host.
-- *Remote storage model,* where LHC and LHR are on separate storage host. The compute Docker Host connects to LHC using iSCSI. iSCSI client is used for block storage volume drive emulation on Docker Host.
+- _Hyper-converged container model,_ where LHC and LHR are on the same host as that of compute or Docker Host. TCMU is used for block storage volume drive emulation on Docker Host.
+- _Remote storage model,_ where LHC and LHR are on separate storage host. The compute Docker Host connects to LHC using iSCSI. iSCSI client is used for block storage volume drive emulation on Docker Host.
 
 These two models are shown below
 
 #### LHC and LHR are on the Docker Host
+
 ![Fig. Longhorn deployment mode : Hyper-converged](https://cdn-images-1.medium.com/max/800/1*nlswAfJqgqaWRJpKYLr_jA.png)
 
-*Note: Minimum linux kernel version required for hyper-converged mode is 4.4*
+_Note: Minimum linux kernel version required for hyper-converged mode is 4.4_
 
 ## LHC and LHR are on the remote Storage
+
 ![Fig: Longhorn deployment mode : Network storage](https://cdn-images-1.medium.com/max/800/1*wB_PG-Y_jZm8lMmSzKJAww.png)
 
 A third mode is also possible, where LHC runs on the Docker Host and LHR runs on the remote storage host, the discussion about this is for a later day.
