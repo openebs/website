@@ -11,15 +11,15 @@ date: 02-04-2019
 
 The OpenEBS project consists of several components (control plane & data plane) that directly support the dynamic provisioning & management of a persistent storage volume on the Kubernetes cluster. As with any microservice-oriented system following the DevOps paradigm, there is a need to continuously build and test each component, both in isolation (via unit tests) as well as in relation with the other pieces (integration tests) with emphasis on standard end-user scenarios (e2e). Factor in the need for basic interoperability verification (in terms of supported OS/Platform/Cluster versions) and you have the requirements for the CI framework spelt out.
 
-The OpenEBS CI infrastructure is based on the Cloud-Native Gitlab CI framework which is setup to monitor commits to the core components such as [Maya](https://github.com/openebs/maya), [Jiva ](https://github.com/openebs/jiva)& [cStor](https://github.com/openebs/zfs) and also [e2e ](https://github.com/openebs/e2e-packet)(reduces turnaround time to verify testcase sanity). It uses Litmus to drive the e2e pipelines, thereby providing a reference implementation for a Litmus-Experiment based e2e suite.
+The OpenEBS CI infrastructure is based on the Cloud-Native GitLab CI framework which is setup to monitor commits to the core components such as [Maya](https://github.com/openebs/maya), [Jiva ](https://github.com/openebs/jiva)& [cStor](https://github.com/openebs/zfs) and also [e2e ](https://github.com/openebs/e2e-packet)(reduces turnaround time to verify testcase sanity). It uses Litmus to drive the e2e pipelines, thereby providing a reference implementation for a Litmus-Experiment based e2e suite.
 
-## Gitlab Infrastructure
+## GitLab Infrastructure
 
-Some of the reasons for adopting Gitlab as the CI framework of choice (amongst standard benefits such as tight integration with our existing SCM, 2-factor auth, webhook support, well-defined UI with pipeline graphs etc..,) was the need to move away from a plugin-based model (jenkins thrives on plugins, which may not always be advantageous) to a self-contained platform that supports simple pipeline definitions (.gitlab-ci.yaml is far easier to maintain than the groovy-based jenkinsfile!). Gitlab also offers a more mature kubernetes-native solution that gives users the ability to dogfood OpenEBS storage as the back-end store (PostgreSQL) for the Gitlab server.
+Some of the reasons for adopting GitLab as the CI framework of choice (amongst standard benefits such as tight integration with our existing SCM, 2-factor auth, webhook support, well-defined UI with pipeline graphs etc..,) was the need to move away from a plugin-based model (jenkins thrives on plugins, which may not always be advantageous) to a self-contained platform that supports simple pipeline definitions (`.gitlab-ci.yaml` is far easier to maintain than the groovy-based `jenkinsfile`!). GitLab also offers a more mature kubernetes-native solution that gives users the ability to dogfood OpenEBS storage as the back-end store (PostgreSQL) for the GitLab server.
 
-![Gitlab server](/images/blog/2019/04/openebs-control-and-data-plane.png)
+![GitLab server](/images/blog/2019/04/openebs-control-and-data-plane.png)
 
-The Gitlab server (with its microservices such as Unicorn, Shell, Workhorse, Registry, Sidekiq, Gitaly, PostgreSQL, Redis, Minio) is hosted on a multi-node baremetal OpenShift cluster and is configured with pull-based repository mirroring of the OpenEBS component Github repos and a webhook based setup that triggers the pipelines upon commits.
+The GitLab server (with its microservices such as Unicorn, Shell, Workhorse, Registry, Sidekiq, Gitaly, PostgreSQL, Redis, Minio) is hosted on a multi-node baremetal OpenShift cluster and is configured with pull-based repository mirroring of the OpenEBS component Github repos and a webhook based setup that triggers the pipelines upon commits.
 
 While Maya and Jiva repos are mapped to shell-based executors due to certain build and integration-test requirements, cStor (zfs) and e2e repos are mapped to docker-machine based executors. The docker-machine executors are inherently auto-scaling, a necessary feature for e2e builds as multiple parallel jobs are spawned during the course of e2e pipelines.
 
@@ -32,13 +32,13 @@ The e2e phase involves running several parallel pipelines (based on Kubernetes c
 
 ![OpenEBS CI Workflow](/images/blog/2019/04/openebs-ci-flow.jpg)
 
-**Note**: *Currently, the Gitlab CI works in a “retrospective mode,” as it is invoked on commits to the upstream branches. There is work in progress to extend the support for pull requests (presently, a travis-based build verifies commit sanity to aid PR acceptance).*
+**Note**: *Currently, the GitLab CI works in a “retrospective mode,” as it is invoked on commits to the upstream branches. There is work in progress to extend the support for pull requests (presently, a travis-based build verifies commit sanity to aid PR acceptance).*
 
 ## Baseline Commit
 
 Before triggering the e2e pipelines as part of the final step, the build pipeline performs a pre-e2e routine to generate metadata about the impending e2e run. As is evident from the previous discussion, the e2e pipelines are triggered against commits to any of the OpenEBS component repos (maya, jiva, zfs/cstor, e2e). Images pushed as part of the build pipeline are deployed during the e2e. Therefore, it is necessary to baseline or identify an e2e run against the primary trigger (commit) while maintaining the details of image versions of the other relative components.
 
-This is achieved by writing the details of the baseline commit (timestamp, component repo, branch and commit ID) into the file head of a “baseline artifact” maintained in a separate repository. Once the e2e pipeline is initiated, the baseline artifact is [parsed ](https://github.com/openebs/e2e-infrastructure/blob/master/env/env_exporter.py)ffor the “most current” image tags of each component, which will invariably include the current baseline commit and the latest ones for other components, in the test-bed preparation stage. This information is then used to [precondition ](https://github.com/openebs/e2e-infrastructure/blob/master/env-update/env.py)the OpenEBS Operator manifest before its deployment on the test clusters.
+This is achieved by writing the details of the baseline commit (timestamp, component repo, branch and commit ID) into the file head of a “baseline artifact” maintained in a separate repository. Once the e2e pipeline is initiated, the baseline artifact is [parsed ](https://github.com/openebs/e2e-infrastructure/blob/master/env/env_exporter.py) for the “most current” image tags of each component, which will invariably include the current baseline commit and the latest ones for other components, in the test-bed preparation stage. This information is then used to [precondition ](https://github.com/openebs/e2e-infrastructure/blob/master/env-update/env.py) the OpenEBS Operator manifest before its deployment on the test clusters.
 
 ## OpenEBS e2e Pipelines: Leveraging Litmus
 
@@ -69,15 +69,15 @@ The various stages in the e2e pipeline are discussed below:
 
 **Infrastructure Chaos Tests:** The cluster components such as storage pools, nodes and disks are subjected to different failures using kubernetes APIs (forces evicts, cordon, drain) as well as platform/provider specific APIs (gcloud, awscli, packet) to verify data persistence and application liveness.
 
-**Stateful Application Cleanup:** TThe deployed apps are deleted in this stage, thereby verifying de-provisioning and cleanup functionalities in the OpenEBS control plane.
+**Stateful Application Cleanup:** The deployed apps are deleted in this stage, thereby verifying de-provisioning and cleanup functionalities in the OpenEBS control plane.
 
 **Cluster Cleanup:** The cluster resources (nodes, disks, VPCs) are deleted. With this final step, the e2e pipeline ends.
 
-## Gitlab e2e Job Runner Template
+## GitLab e2e Job Runner Template
 
-Each Gitlab job running the e2e test executes (bash) scripts containing steps to run and monitor a Litmus experiment. These scripts are invoked using desired arguments, specified as part of the job definition in the e2e repository’s `.gitlab-ci.yml`. The standard template maintained in these (bash) runner scripts and the performed tasks are described below.
+Each GitLab job running the e2e test executes (bash) scripts containing steps to run and monitor a Litmus experiment. These scripts are invoked using desired arguments, specified as part of the job definition in the e2e repository’s `.gitlab-ci.yml`. The standard template maintained in these (bash) runner scripts and the performed tasks are described below.
 
-![Gitlab runner template(E2E)](/images/blog/2019/04/gitlab-job-runner.png)
+![GitLab runner template(E2E)](/images/blog/2019/04/gitlab-job-runner.png)
 
 **Generate Unique Test Name:** Each gitlab job is associated with a litmus experiment that has a test/experiment name. The result of this litmus experiment is stored in a Litmus Custom Resource (CR) of the same name. The success of a test and therefore the gitlab job is derived from this CR. Occasionally, it is possible that the same litmus experiment is run against different applications or storage engines in a pipeline, thereby necessitating a unique element or ID in the CR name. In this step, a user-defined input (run_id) is accepted to generate a unique test/CR name.
 
@@ -91,7 +91,7 @@ Each Gitlab job running the e2e test executes (bash) scripts containing steps to
 
 **Logging Framework for e2e**
 
-OpenEBS CI uses the popular EFK (Elasticsearch-Fluentd-Kibana) stack as the logging framework for the e2e pipelines. Each target cluster brought up as part of the e2e pipeline is configured with the fluentd-forwarder daemonset and fluentd-aggregator deployment, with the latter streaming the logs to the remote ElasticSearch instance running on the master (Gitlab-CI) cluster. These are then rendered by the Kibana visualization platform that is also running on the master cluster. The forwarders are configured with the appropriate filters based on pipeline and commit IDs to aid in a quick data analysis.
+OpenEBS CI uses the popular EFK (Elasticsearch-Fluentd-Kibana) stack as the logging framework for the e2e pipelines. Each target cluster brought up as part of the e2e pipeline is configured with the fluentd-forwarder daemonset and fluentd-aggregator deployment, with the latter streaming the logs to the remote ElasticSearch instance running on the master (GitLab-CI) cluster. These are then rendered by the Kibana visualization platform that is also running on the master cluster. The forwarders are configured with the appropriate filters based on pipeline and commit IDs to aid in a quick data analysis.
 
 ![EFK-Based Logging framework](/images/blog/2019/04/efk-based-logging-framework.png)
 

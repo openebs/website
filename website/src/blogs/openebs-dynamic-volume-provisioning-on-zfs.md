@@ -3,7 +3,7 @@ title: OpenEBS Dynamic Volume Provisioning on ZFS
 author: Pawan Prakash Sharma
 author_info: It's been an amazing experience in Software Engineering because of my love for coding. In my free time, I read books, play table tennis and watch tv series
 excerpt: OpenEBS’ ZFS driver binds a ZFS file system into the Kubernetes environment and allows users to provision and de-provision volumes dynamically. This blog will demonstrate how to deploy a Percona application on the ZFS storage system with OpenEBS.
-tags: Cncf, Kubernetes, Persistent Volume, Zfs, Openebs
+tags: Cncf, Kubernetes, Persistent Volume, Zfs, OpenEBS
 date: 13-12-2019
 ---
 

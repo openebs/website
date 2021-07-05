@@ -3,7 +3,7 @@ title: OpenEBS community releases v1.1, maintaining a faster release cadence.
 author: Kiran Mova
 author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
 excerpt: In this blog, I will provide a quick summary of the changes that were released as part of OpenEBS version 1.1 and also share some thoughts on the evolving project management process in OpenEBS and how it is helping to maintain a faster release cadence.
-tags: Kubernetes, Microservices, Openebs, Persistent Volume, Stateful Workloads
+tags: Kubernetes, Microservices, OpenEBS, Persistent Volume, Stateful Workloads
 date: 08-08-2019
 ---
 
@@ -11,7 +11,7 @@ In this blog, I will provide a quick summary of the changes that were released a
 
 OpenEBS Release 1.1 has been about fixing and documenting the cross-platform usability issues reported by users and also laying the foundation for some of the long-overdue backlogs like CSI Driver, automated upgrades, day 2 operations, and others.
 
-Before we get into the specifics of the current release, the last three OpenEBS releases have set an interesting precedent towards attaining a *monthly release cadence.*
+Before we get into the specifics of the current release, the last three OpenEBS releases have set an interesting precedent towards attaining a *monthly release cadence*.
 
 OpenEBS was built by adopting the cloud-native and microservices principles, and it is almost only natural to also reap the benefits of true DevOps product with faster releases. It is easier said than done though! After having experimented with several tools and having looked at various open-source projects including Kubernetes, we have arrived at the following process, which is helping us maintain release cadence and thereby being responsive to the user requirements.
 

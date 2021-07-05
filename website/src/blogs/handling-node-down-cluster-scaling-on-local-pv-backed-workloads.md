@@ -3,7 +3,7 @@ title: Handling node down/cluster scaling on LocalPV backed workloads
 author: Ranjith Raveendran
 author_info: Ranjith is working as a Software Engineer at MayaData and working in the OpenEBS project. In his free time, he listens to music, watches movies, and goes for bike riding.
 excerpt: In this article, we'll discuss the steps that is getting handled when a node down/cluster scaling on LocalPV backs workloads.
-tags: Localpv, Openebs
+tags: LocalPV, OpenEBS
 date: 21-08-2020
 ---
 
@@ -92,7 +92,7 @@ In this article, we discuss the steps that need to be performed to make the appl
               operator: In
               values:
               - gke-openebs-mysql-default-pool-d55297a7-bjjp
-
+    ```
 10. Now get the PV and then delete the PV
    
     ```
@@ -121,7 +121,7 @@ In this article, we discuss the steps that need to be performed to make the appl
     $ kubectl get pod -o wide
     NAME                      READY   STATUS    RESTARTS   AGE   IP          NODE                                           NOMINATED NODE   READINESS GATES
     percona-9fbdb8678-lncd5   1/1     Running   0          29m   10.16.0.2   gke-openebs-mysql-default-pool-d55297a7-bjjp   <none>           <none>
-
+    ```
 14. Log in to the application and verify that you are able to access the data.
 
     ```

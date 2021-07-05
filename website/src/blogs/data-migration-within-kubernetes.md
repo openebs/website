@@ -7,10 +7,10 @@ tags: Kubernetes
 date: 02-07-2020
 ---
 
-In large scale environments, storage is one of the hard things to manage, and it will be the most crucial component as it has DATA with it. OpenEBS, leading open source Cloud Native Storage, makes managing storage easier in Kubernetes environments. Mayadata, the company behind the OpenEBS project, has the vision of achieving data agility by transforming Kubernetes as a data plane. cStor is one of the storage engines of OpenEBS. 
+In large scale environments, storage is one of the hard things to manage, and it will be the most crucial component as it has DATA with it. OpenEBS, leading open source Cloud Native Storage, makes managing storage easier in Kubernetes environments. MayaData, the company behind the OpenEBS project, has the vision of achieving data agility by transforming Kubernetes as a data plane. cStor is one of the storage engines of OpenEBS. 
 This blog is for OpenEBS users, specifically **cStor CSI** users looking to **migrate data within Kubernetes** from one node to another without any downtime of the application.
 
-![Data Migration from Kubernetes from Node2 to Node3](/images/blog/2020/07/Data-migration-diagram.png)Migrate data from Node2 to Node3
+![Data Migration from Kubernetes from Node2 to Node3](/images/blog/2020/07/Data-migration-diagram.png)
 
 ### Create cStor Pools(CSPC):
 
@@ -130,7 +130,7 @@ Note:
 
 Once the newly created CVR is marked as Healthy, then we can remove the unwanted pool name from Spec of CVC replicaInfo and save it. 
 
-In this example, I need to remove the data from the pool **cspc-stripe-pool-pn9p,** scheduled on **e2e1-node2.** Once the pool name is removed from CVC **spec.policy.replicaPoolInfo** ,then corresponding CVR in that pool will be deleted. CVC will generate events and status of CVC also will be updated.
+In this example, I need to remove the data from the pool **cspc-stripe-pool-pn9p**, scheduled on **e2e1-node2**. Once the pool name is removed from CVC **spec.policy.replicaPoolInfo**, then corresponding CVR in that pool will be deleted. CVC will generate events and status of CVC also will be updated.
 
 Events on CVR:
 

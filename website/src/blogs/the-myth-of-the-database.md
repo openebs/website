@@ -3,7 +3,7 @@ title: The Myth of THE database
 author: Evan Powell
 author_info: Founding CEO of a few companies including StackStorm (BRCD) and Nexenta — and CEO & Chairman of OpenEBS/MayaData. ML and DevOps and Python, oh my!
 excerpt: In this blog I briefly discuss the disaggregation of the DB at what might be called the macro or architecture level and then at the micro or intra DB level. 
-tags: DevOps, Kubernetes, Openebs, Postgresql, Database
+tags: DevOps, Kubernetes, OpenEBS, Postgresql, Database
 date: 21-08-2019
 ---
 

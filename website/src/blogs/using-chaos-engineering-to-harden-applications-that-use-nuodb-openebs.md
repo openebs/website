@@ -3,7 +3,7 @@ title: Using Chaos Engineering to harden applications that use NuoDB, OpenEBS
 author: Sudarshan Darga
 author_info: Senior Software Engineer at MayaData
 excerpt: Developer agility is key to increasing the efficiency of software development. One of the primary areas in which development could be slowed down is the process that kicks in once the code is merged by the developers.
-tags: Openebs, K8s, Litmus, Kubernetes, Nuodb, NoSQL, Chaos Engineering
+tags: OpenEBS, K8s, Litmus, Kubernetes, Nuodb, NoSQL, Chaos Engineering
 date: 14-08-2019
 ---
 

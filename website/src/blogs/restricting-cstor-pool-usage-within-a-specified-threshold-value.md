@@ -3,7 +3,7 @@ title: Restricting cStor pool usage within a specified threshold value
 author: Giridhara Prasad
 author_info: Lead Engineer at Mayadata Inc. Giridhar is experienced in software test automation, chaos engineering. Currently, he's working on Litmus, an Open Source chaos engineering project.
 excerpt: Learn how to restrict cStor pool usage within a specified threshold value
-tags: Openebs, cStor
+tags: OpenEBS, cStor
 date: 20-05-2020
 ---
 

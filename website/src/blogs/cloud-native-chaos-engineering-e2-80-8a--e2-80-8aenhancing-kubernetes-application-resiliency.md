@@ -1,7 +1,7 @@
 ---
 title: Cloud Native Chaos Engineering — Enhancing Kubernetes Application Resiliency
 author: Uma Mukkara
-author_info: Contributor at openebs.io, Co-founder& COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
+author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 excerpt: In this blog, I would like to introduce a relatively new or less frequently used term called “Cloud Native Chaos Engineering”, defined as engineering practices focused on (and built on) Kubernetes environments, applications, microservices, and infrastructure.
 tags: Chaos Engineering, Cloud Native, Docker, Kubernetes, Uncategorized
 date: 25-11-2019
@@ -43,11 +43,11 @@ Currently, Litmus provides three APIs:
 - ChaosExperiment
 - ChaosResult
 
-ChaosEngine: ChaosEngine CR is created for a given application and is tagged with appLabel. This CR ties one or more ChaosExperiments to an application.
+*ChaosEngine:* ChaosEngine CR is created for a given application and is tagged with appLabel. This CR ties one or more ChaosExperiments to an application.
 
-ChaosExperiment: ChaosExperiment CR is created to hold and operate the details of actual chaos on an application. It defines the type of experiment and key parameters of the experiment.
+*ChaosExperiment:* ChaosExperiment CR is created to hold and operate the details of actual chaos on an application. It defines the type of experiment and key parameters of the experiment.
 
-ChaosResult: ChaosResult CR is created by the operator after an experiment is run. One ChaosResult CR is maintained per ChaosEngine. The ChaosResult CR is useful in making sense of a given ChaosExperiment. This CR is used for generating chaos analytics which can be extremely useful — for example when certain components are upgraded between the chaos experiments, and the results need to be easily compared
+*ChaosResult:* ChaosResult CR is created by the operator after an experiment is run. One ChaosResult CR is maintained per ChaosEngine. The ChaosResult CR is useful in making sense of a given ChaosExperiment. This CR is used for generating chaos analytics which can be extremely useful — for example when certain components are upgraded between the chaos experiments, and the results need to be easily compared
 
 ## Chaos Operator
 

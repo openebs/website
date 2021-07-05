@@ -3,7 +3,7 @@ title: Resizing the ZFS-LocalPV Volumes
 author: Pawan Prakash Sharma
 author_info: It's been an amazing experience in Software Engineering because of my love for coding. In my free time, I read books, play table tennis and watch tv series
 excerpt: In this post, we will focus on how we can resize the volumes provisioned by ZFS-LocalPV without restarting the application.
-tags: Localpv, Openebs
+tags: Localpv, OpenEBS
 date: 26-03-2020
 ---
 

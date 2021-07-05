@@ -35,7 +35,7 @@ In this article, we are discussing the steps that need to be performed to make t
     gke-openebs-mysql-default-pool-dd23ce6b-f8rd   Ready    <none>   24m   v1.16.13-gke.1
     gke-openebs-mysql-default-pool-dd23ce6b-lwr3   Ready    <none>   24m   v1.16.13-gke.1
     gke-openebs-mysql-default-pool-dd23ce6b-zzqx   Ready    <none>   24m   v1.16.13-gke.1
-    
+    ```
 2. Label all the nodes with the same custom label used in the nodeSelector field in the STS app. In my case, there is no custom node label used in application deployment. So we are skipping this step.
 
 3. Attach the disk randomly to any node in the same zone.
@@ -62,7 +62,7 @@ In this article, we are discussing the steps that need to be performed to make t
     $ zpool list
     NAME         SIZE  ALLOC   FREE  EXPANDSZ   FRAG    CAP  DEDUP  HEALTH  ALTROOT
     zfspv-pool  14.5G   463M  14.0G         -     0%     3%  1.0
-
+    ```
 5. Verify the details of the ZFS dataset detail where the volume is present. This information is required in step 10. In the case of Statefulset, the ZFS dataset will be present on multiple nodes. So you should note down the details of the ZFS dataset and corresponding node information.
     
     ```
@@ -84,21 +84,21 @@ In this article, we are discussing the steps that need to be performed to make t
     openebs-zfs-node-29dlp     2/2     Running          0          14m
     openebs-zfs-node-bssq7     2/2     Running          0          14m
     openebs-zfs-node-p54tq     2/2     Running	    0          14m
-
+    ```
 7. Check the status of the application pod. It will be in the `Pending` state.
     
     ```
     $ kubectl get pod
     NAME                      READY   STATUS    RESTARTS   AGE
     percona-9fbdb8678-z79vr   0/1     Pending   0          70m
-
+    ```
 8. Get the PV details of the associated application
     
     ```
     $ kubectl get pv
     NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                     STORAGECLASS     REASON   AGE
     pvc-e299a9db-0903-417b-8034-03c3dc77af87  10Gi         RWO            Delete           Bound    default/demo-vol1-claim   openebs-zfspv           33m
-
+    ```
 9. Create a directory and copy the YAML spec of all the associated PVs into it like below.
     
     ```
@@ -121,7 +121,7 @@ In this article, we are discussing the steps that need to be performed to make t
               - gke-openebs-mysql-default-pool-dd23ce6b-tf5j
       persistentVolumeReclaimPolicy: Delete
       storageClassName: openebs-zfspv
-
+    ```
 11. Also, update the node information where the ZFS dataset resides into `zv`(ZFS volume) cr. The node name has to be given to the path  `spec.ownerNodeID`.
     
     ```
@@ -138,7 +138,7 @@ In this article, we are discussing the steps that need to be performed to make t
       fsType: ext4
       ownerNodeID: gke-openebs-mysql-default-pool-dd23ce6b-tf5j
       poolName: zfspv-pool
-
+    ```
 12. Now get the PV and then delete the PV
     
     ```
@@ -162,7 +162,7 @@ In this article, we are discussing the steps that need to be performed to make t
     ```
     $ kubectl delete pv pvc-e299a9db-0903-417b-8034-03c3dc77af87
     persistentvolume "pvc-e299a9db-0903-417b-8034-03c3dc77af87" deleted
-
+    ```
 14. Now, apply the updated YAML files of the PV. 
     
     ```

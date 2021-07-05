@@ -3,7 +3,7 @@ title: High Availability For Jira Using OpenEBS
 author: Patrick Hoolboom
 author_info: Works @MayaData
 excerpt: Up time, high availability, disaster recovery. Anyone that has been working in development or IT operations roles knows these terms. Maintaining these things is always touted as the most critical of critical tasks.
-tags: Openebs, Kubernetes, K8s, Jira, Docker, Mayaonline
+tags: OpenEBS, Kubernetes, K8s, Jira, Docker, Mayaonline
 date: 21-04-2019
 ---
 

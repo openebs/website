@@ -3,11 +3,11 @@ title: Getting started with K3s in vSphere and OpenEBS cStor
 author: Giridhara Prasad
 author_info: Lead Engineer at Mayadata Inc. Giridhar is experienced in software test automation, chaos engineering. Currently, he's working on Litmus, an Open Source chaos engineering project.
 excerpt: In this blog, more of a tutorial, I will walk you through the steps to install K3OS and setup OpenEBS.
-tags: Openebs
+tags: OpenEBS
 date: 26-03-2020
 ---
 
-[K3OS](https://github.com/rancher/k3os/) is a Linux distribution built to run lightweight Kubernetes clusters called[https://github.com/rancher/k3s/](https://github.com/rancher/k3s/)[K3s](https://github.com/rancher/k3s/). It is specifically designed only to have what is needed to run[https://github.com/rancher/k3s](https://github.com/rancher/k3s)[k3s.](https://github.com/rancher/k3s)
+[K3OS](https://github.com/rancher/k3os/) is a Linux distribution built to run lightweight Kubernetes clusters called [K3s](https://github.com/rancher/k3s/). It is specifically designed only to have what is needed to run [k3s](https://github.com/rancher/k3s).
 
 In this blog, more of a tutorial, I will walk you through the steps to install K3OS and setup OpenEBS, a CNCF project, and leading Open Source Container Attached Storage solution for Kubernetes Stateful Workloads.
 
@@ -17,7 +17,7 @@ K3OS kernel is forked from Ubuntu-18.04 LTS, and its userspace binaries are from
 
 ![Select guest operating system](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage.png)
 
-Download the latest K3OS iso file(currently v0.9.0) from its[https://github.com/rancher/k3os/releases](https://github.com/rancher/k3os/releases)[GitHub release](https://github.com/rancher/k3os/releases) page. Attach the iso file into a virtual machine and start it with the live installation option, as shown below.
+Download the latest K3OS iso file (currently v0.9.0) from its [GitHub release](https://github.com/rancher/k3os/releases) page. Attach the iso file into a virtual machine and start it with the live installation option, as shown below.
 
 Select the option *K3OS LiveCD & install* and boot the operating system.
 
@@ -101,7 +101,7 @@ Check if all the cluster components are configured successfully and all the pods
 
 #### **Install OpenEBS**
 
-OpenEBS is a CNCF project delivering persistent block storage to the workloads deployed in Kubernetes.[cStor](https://docs.openebs.io/docs/next/cstor.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807)  is one of the storage engines provided by OpenEBS besides [Jiva](https://docs.openebs.io/docs/next/jiva.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807) and [Local PV.](https://docs.openebs.io/docs/next/localpv.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807)
+OpenEBS is a CNCF project delivering persistent block storage to the workloads deployed in Kubernetes.[cStor](https://docs.openebs.io/docs/next/cstor.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807)  is one of the storage engines provided by OpenEBS besides [Jiva](https://docs.openebs.io/docs/next/jiva.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807) and [Local PV.](https://docs.openebs.io/docs/next/localpv.html?__hstc=216392137.6a5433d986ca5a9bb31cbcea3a03df67.1585216160857.1585216160857.1585216160857.1&amp;__hssc=216392137.1.1585216160858&amp;__hsfp=170476807).
 
 cStor was not supported in K3OS till k3os-v0.8.0 due to this [issue](https://github.com/rancher/k3os/issues/151). This issue has been addressed in v0.9.0 by adding udev support.
 

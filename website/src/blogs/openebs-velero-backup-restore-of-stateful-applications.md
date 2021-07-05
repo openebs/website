@@ -3,7 +3,7 @@ title: OpenEBS-Velero backup/restore of stateful applications
 author: Vishnu Itta
 author_info: Developer who is always eager to learn, loves math, algorithms, & programming. Have a good experience in storage protocols, ZFS, FreeBSD internals, Linux, device drivers.
 excerpt: In this blog, we will go through the backup/restore solution provided to its users by OpenEBS with the help of Velero.
-tags: Openebs, Velero
+tags: OpenEBS, Velero
 date: 04-08-2020
 ---
 
@@ -14,7 +14,7 @@ SREs play a crucial role in automating operations. This role includes handling i
 Additionally, workloads on Kubernetes are often different than traditional monolithic applications since Kubernetes supports microservices and loosely coupled workloads. This brings-in the need for a `cloud-native` design of backup/restore per workload or application. Once implemented this approach provides benefits to users such as an app-centric view, ease of management, setting of RPO/RTO at the workload level, and others. To learn more about cloud native backup drivers and requirements - please read this [thenewstack.io article](https://thenewstack.io/cloud-native-backups-disaster-recovery-and-migrations-on-kubernetes/).
 
 The below graphic shows microservices, and their loosely coupled nature. Managing backups and the tuning of RPO/RTO per microservice is required to preserve the loosely coupled nature of these workloads and of the teams responsible for them.
-![Openebs Velero backup/restore of stateful applications: fig 1](https://lh4.googleusercontent.com/JyIxZZtj-1rBOGo2z1bKcYlD9-halM8dXpChtOIPro_aZEhQObTL_K5_Be_hLgqXl7aT68jYqFjNE9C6rZK0IRaV_neH4DURZhUr3z5FkVirzMirk_z8FiscY6_sb3JPhlAx1XRL)
+![OpenEBS Velero backup/restore of stateful applications: fig 1](https://lh4.googleusercontent.com/JyIxZZtj-1rBOGo2z1bKcYlD9-halM8dXpChtOIPro_aZEhQObTL_K5_Be_hLgqXl7aT68jYqFjNE9C6rZK0IRaV_neH4DURZhUr3z5FkVirzMirk_z8FiscY6_sb3JPhlAx1XRL)
 The following are **challenges** in redesigning backup/restore of K8s applications:
 
 - Ability to look from the application view rather than only the data

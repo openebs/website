@@ -3,7 +3,7 @@ title: Deploying OpenEBS on SUSE CaaS platform
 author: Ashok Babu
 author_info: Senior DevOps consultant at Wipro works on App Anywhere & cloud-native technologies.
 excerpt: I am recently introduced to OpenEBS, an easy to use persistent storage option for Kubernetes and found it nicely working on the SuSE CaaS platform where I could certify the cloud native databases. 
-tags: Kubernetes, Cloud Native Storage, Mayadata, SUSE, Containerattachedstorage, Openebs
+tags: Kubernetes, Cloud Native Storage, Mayadata, SUSE, Containerattachedstorage, OpenEBS
 date: 24-04-2019
 ---
 
@@ -33,7 +33,7 @@ To install OpenEBS on SuSE platform run the following custom yaml file instead o
 
     kubectl apply -f https://openebs.github.io/charts/openebs-operator-susecaas.yaml
 
-This is a customized operator yaml file for SuSE CaaS platform that uses the role suse:caasp:psp:privileged for creating privileged DaemonSet
+This is a customized operator YAML file for SuSE CaaS platform that uses the role `suse:caasp:psp:privileged` for creating privileged DaemonSet
 
 [https://www.suse.com/documentation/suse-caasp-3/singlehtml/book_caasp_admin/book_caasp_admin.html#ex.admin.security.pod_policies.daemonset](https://www.suse.com/documentation/suse-caasp-3/singlehtml/book_caasp_admin/book_caasp_admin.html#ex.admin.security.pod_policies.daemonset)
 

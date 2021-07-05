@@ -3,7 +3,7 @@ title: How to Easily Build a CI Dashboard
 author: Chandan Kumar
 author_info: Software Engineer at MayaData Inc
 excerpt: In this tutorial, we’ll go through all the necessary steps for setting up the CI dashboard
-tags: Ci Dashboard, Git, Kubernetes, Pipeline, Gitlab
+tags: Ci Dashboard, Git, Kubernetes, Pipeline, GitLab
 date: 26-04-2019
 ---
 
@@ -15,9 +15,9 @@ In this tutorial, we’ll go through all the necessary steps for setting up the 
 
 1. *Create a project*
 2. *Push the code to GitHub*
-3. *Setup the CI of the project using Gitlab*
-4. *Select the chaos test from L*[*itmus*](https://github.com/openebs/litmus)
-5. *Add the script in Gitlab YAML to create pipelines for executing the chaos tests*
+3. *Setup the CI of the project using GitLab*
+4. *Select the chaos test from [*Litmus*](https://github.com/openebs/litmus)*
+5. *Add the script in GitLab YAML to create pipelines for executing the chaos tests*
 6. *Build a CI dashboard(ex: *[*openebs.ci*](https://openebs.ci/)* ) to display the gitlab pipeline history and status*
 7. *Conclusion*
 
@@ -27,7 +27,7 @@ First, create a [project](https://github.com/openebs/maya) and write some automa
 
 ### Step 2: Put the codes on GitHub
 
-Create a repository on GitHub and add a .gitignore file to ignore the auto-generated folder or file. Follow the script below to put changes into GitHub.
+Create a repository on GitHub and add a `.gitignore` file to ignore the auto-generated folder or file. Follow the script below to put changes into GitHub.
 
     $ git init
     $ git add .
@@ -48,7 +48,7 @@ Select the chaos test (litmus book) from the [litmus](https://github.com/openebs
 
 Create a [repository](https://github.com/openebs/e2e-packet) for the execution of the platform-based pipeline. Add .gitlab.yaml file and related script to create a cluster, or use the executing cluster and run the different chaos tests in various stages of the [pipeline](https://gitlab.openebs.ci/openebs/e2e-packet/pipelines).
 
-Reference the .gitlab.yaml file
+Reference the `.gitlab.yaml` file
 [https://raw.githubusercontent.com/openebs/e2e-packet/master/.gitlab-ci.yml](https://raw.githubusercontent.com/openebs/e2e-packet/master/.gitlab-ci.yml)
 
     cleanup-packet:

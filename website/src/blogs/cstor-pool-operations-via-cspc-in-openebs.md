@@ -3,7 +3,7 @@ title: cStor Pool Operations via CSPC in OpenEBS
 author: Ashutosh Kumar
 author_info: Software Engineer at MayaData | OpenEBS Reviewer and Contributor | CKA | Gopher | Kubernaut
 excerpt: CStor Data Engine is popular for workloads needing efficient capacity management, replicas, point in time snapshots, incremental backups, etc. The tutorial will provision striped cStor pools and perform operations on them.
-tags: Containerattachedstorage, Cspc, Kubernetes, Openebs, Operations
+tags: Containerattachedstorage, Cspc, Kubernetes, OpenEBS, Operations
 date: 03-01-2020
 ---
 
@@ -42,19 +42,23 @@ The tutorial will provision striped cStor pools and perform operations on them (
 ](https://cloud.google.com/sdk/gcloud/reference/compute/disks/create)[https://cloud.google.com/sdk/gcloud/reference/compute/instances/attach-disk
 ](https://cloud.google.com/sdk/gcloud/reference/compute/instances/attach-disk)If you are using other providers, check with their reference manuals on how to attach a disk. Also, feel free to reach out on the OpenEBS slack channel if you need any assistance.
 - I have used the following script to create 6 disks.
-*{ for i in {1..6}; do gcloud compute disks create demo-disk-$i — zone=us-central1-a — size=100GB; done; }*
+  *{ for i in {1..6}; do gcloud compute disks create demo-disk-$i — zone=us-central1-a — size=100GB; done; }*
 - Now, I will attach 2 disks to each of the nodes. I have used the following commands to attach.
 
-*for i in {1..2}; do gcloud compute instances attach-disk gke-cstor-demo-default-pool-3385ab41–2ldq — disk demo-disk-$i — device-name demo-disk-$i — zone us-central1-a; done*
+  *for i in {1..2}; do gcloud compute instances attach-disk gke-cstor-demo-default-pool-3385ab41–2ldq — disk demo-disk-$i — device-name demo-disk-$i — zone us-central1-a; done*
 
-*for i in {3..4}; do gcloud compute instances attach-disk gke-cstor-demo-default-pool-3385ab41-bb69 — disk demo-disk-$i — device-name demo-disk-$i — zone us-central1-a; done*
+  *for i in {3..4}; do gcloud compute instances attach-disk gke-cstor-demo-default-pool-3385ab41-bb69 — disk demo-disk-$i — device-name demo-disk-$i — zone us-central1-a; done*
 
-*for i in {5..6}; do gcloud compute instances attach-disk gke-cstor-demo-default-pool-3385ab41-hrmr — disk demo-disk-$i — device-name demo-disk-$i — zone us-central1-a; done*
+  *for i in {5..6}; do gcloud compute instances attach-disk gke-cstor-demo-default-pool-3385ab41-hrmr — disk demo-disk-$i — device-name demo-disk-$i — zone us-central1-a; done*
 
 - Install OpenEBS 1.5. Run following to install: ( Note that block device replacement support starts from OpenEBS version 1.5. There will be a separate blog post to describe that. )
-*kubectl apply -f* [*https://openebs.github.io/charts/openebs-operator-1.5.0.yaml*](https://openebs.github.io/charts/openebs-operator-1.6.0.yaml)
+    ```
+    kubectl apply -f [https://openebs.github.io/charts/openebs-operator-1.5.0.yaml](https://openebs.github.io/charts/openebs-operator-1.6.0.yaml)
+    ```
 - Install CStor-Operator. Run following to install:
-kubectl apply -f [https://raw.githubusercontent.com/openebs/openebs/master/k8s/cstor-operator.yaml](https://raw.githubusercontent.com/openebs/openebs/master/k8s/cstor-operator.yaml)
+    ```
+    kubectl apply -f [https://raw.githubusercontent.com/openebs/openebs/master/k8s/cstor-operator.yaml](https://raw.githubusercontent.com/openebs/openebs/master/k8s/cstor-operator.yaml)
+    ```
 
 #### Pool Provisioning
 
@@ -211,15 +215,17 @@ You can see that a new pool cspc-stripe-twvv has come up online.
 You can also delete the CStorPoolCluster too. If you do so, all the CStorPoolInstances associated with it will get deleted.
 
 The command is :
-
+    ```
     $ kubectl delete cspc <cspc-name> <cspc-namespace>
-
+    ```
 NOTES:
 
 - Whenever a block device is used for pool creation or expansion a blockdeviceclaim CR is created and the block device will show a Claimed status.
-The following are the commands to visualize this.
-kubectl get blockdevice -n openebs 
-kubectl get blockdeviceclaim -n openebs
+  The following are the commands to visualize this.
+    ```
+    kubectl get blockdevice -n openebs 
+    kubectl get blockdeviceclaim -n openebs
+    ```
 - Whenever a pool is deleted for a CSPC by removing the node config, the associated block-device is not ‘Unclaimed’ and if the same block device needs to be used in another CSPC, the associated blockdeviceclaim needs to be cleared manually. Although, the block-device can be again used for the same CSPC.
 
 To unclaim a block device claim, below are the steps.

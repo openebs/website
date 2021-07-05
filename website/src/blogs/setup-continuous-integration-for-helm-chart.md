@@ -3,7 +3,7 @@ title: Setup Continuous Integration for Helm chart
 author: Intakhab Ali
 author_info: Software Engineer at MayaData
 excerpt: In this blog, we'll set up a continuous integration of the Helm chart. We'll package the Helm chart with the help of CI tools & push them to chart registry.
-tags: Helm, Openebs, Tutorials, Kubernetes
+tags: Helm, OpenEBS, Tutorials, Kubernetes
 date: 05-02-2020
 ---
 
