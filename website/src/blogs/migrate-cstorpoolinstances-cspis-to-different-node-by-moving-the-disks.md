@@ -29,7 +29,7 @@ I have a three-node cluster with CSPC and CSI volumes already provisioned(To cre
     Kubernetes Version: v1.15.9
     OpenEBS Version: 2.2.0
 
-\***\*Node and BlockDevice details**: \*\*Attached three disks to three nodes(each node has one disk)
+**Node and BlockDevice details**: Attached three disks to three nodes(each node has one disk)
 
     Kubectl get nodes
 
@@ -44,7 +44,7 @@ I have a three-node cluster with CSPC and CSI volumes already provisioned(To cre
     blockdevice-c2c846cce1befec7fbdcbae254329b0b   ip-192-168-74-129 10737418240   Claimed      Active
     blockdevice-c608881cd3edbeab674a1aee7e0a1fc3   ip-192-168-29-151 10737418240   Claimed      Active
 
-\***\*CSPC Manifest**: \*\*Applied following CSPC manifest to provision cStor pools
+**CSPC Manifest**: Applied following CSPC manifest to provision cStor pools
 
     apiVersion: cstor.openebs.io/v1
     kind: CStorPoolCluster
@@ -111,7 +111,7 @@ From the above and previous output following are blockdevice mappings with zn ol
 
 OpenEBS **NodeDiskManager**(NDM) will automatically update the details in blockdevice CRs when the disks migrate to a new node. Based on the above output, update the CSPC manifest with new **nodeSelector** values.
 
-\***\*Updated CSPC Manifest**:\*\*
+**Updated CSPC Manifest**:
 
     apiVersion: cstor.openebs.io/v1
     kind: CStorPoolCluster
@@ -142,7 +142,7 @@ OpenEBS **NodeDiskManager**(NDM) will automatically update the details in blockd
           poolConfig:
             dataRaidGroupType: "stripe"
 
-Once the CSPC manifest is updated then CSPIs will automatically migrate to the new node (which can be verified using \***\*kubectl get cspi -n openebs\*\***).
+Once the CSPC manifest is updated then CSPIs will automatically migrate to the new node (which can be verified using **kubectl get cspi -n openebs**).
 
     kubectl get cspi -n openebs
 

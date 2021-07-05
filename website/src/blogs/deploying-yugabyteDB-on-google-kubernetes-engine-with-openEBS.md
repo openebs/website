@@ -11,7 +11,7 @@ excerpt: In this blog post, we’ll walk you through the necessary steps to get 
 
 Because [YugabyteDB](https://www.yugabyte.com/) is a cloud-native, distributed SQL database that runs in Kubernetes environments, it can interoperate with OpenEBS and many other CNCF projects.
 
-**\*Wait, what is YugabyteDB?** It is an open source, and high-performance distributed SQL database built on a scalable and fault-tolerant design inspired by Google Spanner. Yugabyte’s YSQL API is PostgreSQL wire compatible.\*
+**Wait, what is YugabyteDB?** _It is an open source, and high-performance distributed SQL database built on a scalable and fault-tolerant design inspired by Google Spanner. Yugabyte’s YSQL API is PostgreSQL wire compatible._
 
 In this blog post we’ll walk you through the necessary steps to get a 3 node YugabyteDB cluster running on top of GKE, backed by OpenEBS.
 
@@ -42,7 +42,7 @@ Using the latest and greatest versions of the available software (as of this blo
 **Step 1: Setting Up a Cluster on GKE**
 To deploy YugabyteDB on the Google Cloud Platform (GCP), we first have to set up a cluster using Ubuntu as our base node image.
 
-**\*Note**: GKE’s Container-Optimized OS does not come with an iSCSI client pre-installed and does not allow the installation of an iSCSI client. Therefore, we’ll be using the Ubuntu with Docker image type for our nodes.\*
+**Note**: _GKE’s Container-Optimized OS does not come with an iSCSI client pre-installed and does not allow the installation of an iSCSI client. Therefore, we’ll be using the Ubuntu with Docker image type for our nodes._
 
 For the purposes of this demo, I used the Google Cloud Console to configure my Kubernetes cluster. Aside from the typical defaults, here’s the options under the* Node Pools > default-pool > Nodes*  I selected
 
@@ -258,7 +258,7 @@ As mentioned, MayData is the chief sponsor of the OpenEBS project. It offers an 
 - Learn more about OpenEBS by visiting the [GitHub](https://github.com/openebs/openebs) and [official Docs](https://docs.openebs.io/) pages.
 - Learn more about YugabyteDB by visiting the [GitHub](https://github.com/yugabyte/yugabyte-db) and [official Docs](https://docs.yugabyte.com/) pages.
 
-\***\*About the author:\*\***
+**About the author:**
 
 ![Jimmy Guerrero](/images/blog/authors/jimmy-guerrero.png)
 
