@@ -31,7 +31,7 @@ Additionally, OpenEBS can do [synchronous replication](https://docs.openebs.io/d
 Ok, let’s get started!
 
 **Prerequisites**
-![Yugabyte work flow](/images/blog/yugabyte-work-flow.png)
+![yugabyte work flow](/images/blog/yugabyte-work-flow.png)
 
 Using the latest and greatest versions of the available software (as of this blog’s writing), below is the environment which we’ll use to run a YugabyteDB cluster on top of a Google Kubernetes Engine (GKE) cluster backed by OpenEBS
 
