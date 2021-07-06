@@ -20,7 +20,7 @@ During those days we implemented some of the strategies that helped nullify the 
 1. Start your baby steps at GO [**Playground**](https://play.golang.org/). This will remove the initial hassles of downloading Go and setting up GOPATH & stimulate you towards coding (read *familiarising with the newer syntax*) & start believing the language by viewing & analyzing the output expected from your logic i.e. *WYSIWYG*.
 2. Get familiar with [**Vagrant**](https://www.vagrantup.com/) (*I understand this is a different tool & is in no way related to Go programming*). Vagrant with its pitch for ‘*Development Environments Made Easy*’ will help you to set up VMs which has all the necessary Go based downloads and GOPATH settings. One can search for simple open-source projects that does below:
 
-**a**.Vagrantfile that makes use of some sample Go programs (probably scripting a g*it clone to <some-github-url>*), &
+**a**.Vagrantfile that makes use of some sample Go programs (probably scripting a *git clone to <some-github-url>*), &
 
 **b**. Makefiles that have the logic to compile & build.
 

@@ -17,7 +17,7 @@ Having said this, implementing high availability logic in a '*Container Native*'
 
 All of a sudden, programming becomes fun again (*HA logic becomes more like placing the [lego](https://en.wikipedia.org/wiki/Lego) blocks in a fashion/pattern to get your favorite character into action*).
 
-Programmers now need to build the required HA logic by tying together appropriate placement components that result in a customized HA solution. We at OpenEBS [***toolroom***](https://github.com/openebs/) have been trying to maximize the offerings provided by [*Kubernetes*](https://kubernetes.io/) towards achieving a true container native solution for OpenEBS high availability. All the advancements in Kubernetes will make OpenEBS better and the scenarios handled by OpenEBS (*which will never be simple*) can become a point of reference in Kubernetes.
+Programmers now need to build the required HA logic by tying together appropriate placement components that result in a customized HA solution. We at OpenEBS [***toolroom***](https://github.com/openebs/) have been trying to maximize the offerings provided by [*Kubernetes*](https://kubernetes.io/) towards achieving a true container-native solution for OpenEBS high availability. All the advancements in Kubernetes will make OpenEBS better and the scenarios handled by OpenEBS (*which will never be simple*) can become a point of reference in Kubernetes.
 
 Let’s get into some storage specific HA basics:
 

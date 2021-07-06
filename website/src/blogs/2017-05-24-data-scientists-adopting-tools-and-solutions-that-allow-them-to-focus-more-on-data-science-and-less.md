@@ -7,9 +7,9 @@ date: 24-05-2017
 excerpt: Data Science as we all know is becoming crucial to many if not most businesses around the world. Data Science and ML are decidedly, the most trendy skills that a lot of people are aspiring to acquire or be associated with.
 ---
 
-Data Science as we all know is becoming crucial to many if not most businesses around the world. Data Science and ML are decidedly, the most trendy skills that a lot of people are aspiring to acquire or be associated with. In my recent interactions ( in the context of hiring for OpenEBS) with college graduates and software engineers, the one question that pops up is, if they join OpenEBS, will they get a chance to work on ML / Data Science (and the answer is a definite “maybe” :)).
+Data Science as we all know is becoming crucial to many if not most businesses around the world. Data Science and ML are decidedly, the most trendy skills that a lot of people are aspiring to acquire or be associated with. In my recent interactions (in the context of hiring for OpenEBS) with college graduates and software engineers, the one question that pops up is, if they join OpenEBS, will they get a chance to work on ML / Data Science (and the answer is a definite “maybe” :)).
 
-The lure towards “Data Science” has gone beyond the $$ paid to the Data Scientists. It is about the process of creating wonders. “Data Science” puts forth an unique mix of interesting challenges, that requires grappling with the enormous amounts of data and the mind numbing application of machine learning and computational algorithms, visualization, and soft skills. These aspects associated with “Data Science” are evolving, as depicted in this [data science Venn diagram](https://www.infoq.com/articles/christine-doig-data-science-team-discipline).
+The lure towards “Data Science” has gone beyond the $$ paid to the Data Scientists. It is about the process of creating wonders. “Data Science” puts forth a unique mix of interesting challenges, that requires grappling with the enormous amounts of data and the mind numbing application of machine learning and computational algorithms, visualization, and soft skills. These aspects associated with “Data Science” are evolving, as depicted in this [data science Venn diagram](https://www.infoq.com/articles/christine-doig-data-science-team-discipline).
 
 ![Data Science Venn Diagrams](https://cdn-images-1.medium.com/max/800/0*FEPtZ-3YF48YMkRs.)
 
@@ -39,11 +39,11 @@ Type 2: Best Practices or Governance
 
 Type 3: Administer Infrastructure/Tools
 
-Data Scientists are primarily interested in *Type 1: Data Science tasks,* some sample tasks under this category (at different stages of the workflow) are:
+Data Scientists are primarily interested in *Type 1: Data Science tasks*, some sample tasks under this category (at different stages of the workflow) are:
 
 ![Data Science tasks at different stages of the workflow](https://cdn-images-1.medium.com/max/800/0*t41w0qHFapFBWtX_.)
 
-*One of the crucial requirements for the data scientist is to produce accurate and reproducible analysis by collaborating with larger teams.*[*Martin Hack*](https://twitter.com/mhackster)*, commented that he has come across situations where the accuracy of the models change from the time the models were generated to the time that they are presented to a wider audience. This is usually attributed to the change in the data using which the model was generated.*
+*One of the crucial requirements for the data scientist is to produce accurate and reproducible analysis by collaborating with larger teams. *[Martin Hack](https://twitter.com/mhackster)*, commented that he has come across situations where the accuracy of the models change from the time the models were generated to the time that they are presented to a wider audience. This is usually attributed to the change in the data using which the model was generated.*
 
 The efficiency and confidence with which these tasks are performed or improved (in an iterative way) are dependent, in the current scenario, on some *best practices*. The best practices range from following certain naming conventions for the data files used to tuning infrastructure/tools — like databases, distributed systems that are used to run the analytical or modeling tasks.
 
@@ -92,6 +92,6 @@ Kubernetes and OpenEBS will help in further simplifying the infrastructure manag
 6. *OpenEBS volumes come with fine-grained allocation of resources and auto-tuning which can help with running high-priority modeling jobs faster than the others.*
 7. *From Adalog, the user can trigger OpenEBS volumes (data) to be backed up or restored from S3 bucket.*
 
-As a next step, we are planning to provide a sandboxed version of adalog running on Kubernetes and storage managed by OpenEBS. Much like the vagrant box we built to enable OpenEBS to be tried out on Kubernetes — and then became a favorite tool of some largely for trying out Kubernetes — we are hopeful that this sandbox will be useful as well as being a way to see OpenEBS in action.
+As a next step, we are planning to provide a sandboxed version of adalog running on Kubernetes and storage managed by OpenEBS. Much like the vagrant box we built to enable OpenEBS to be tried out on Kubernetes, and then became a favorite tool of some largely for trying out Kubernetes — we are hopeful that this sandbox will be useful as well as being a way to see OpenEBS in action.
 
 *If you want to earn massive open-source karma (and stickers of course) — let us know on our *[*OpenEBS Slack channel*](http://slack.openebs.io/)* that you’d like to help with this solution building exercise.*

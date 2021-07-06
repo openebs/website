@@ -9,7 +9,7 @@ excerpt: Learn about Repeatable OpenEBS Mayastor deployments and benchmarks
 
 ## Introduction
 
-OpenEBS is one of the most popular Storage-related projects in CNCF, and the newest addition to OpenEBS - Mayastor, is a missing piece that has been absent from the Kubernetes stack for a long time - Kubernetes-native, high performance, distributed Software Defined Storage or what is increasingly called Container Attached Storage (CAS).
+OpenEBS is one of the most popular Storage-related projects in CNCF, and the newest addition to OpenEBS - Mayastor, is a missing piece that has been absent from the Kubernetes stack for a long time - Kubernetes-native, high performance, distributed Software-Defined Storage or what is increasingly called Container Attached Storage (CAS).
 
 As the lead developers of OpenEBS Mayastor, we want to be sure our message of an extremely high performing CAS is not only exciting, but also honest and easy to check. We want every interested user to be able to quickly and easily bring OpenEBS Mayastor up, properly tuned and ready for testing with whatever workload the user prefers to try.
 

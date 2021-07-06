@@ -29,13 +29,8 @@ Hence, Stateful Applications using local volumes must be able to tolerate this r
 
 As it happens, many of the Cloud Native Workloads - are distributed in nature and are typically deployed as StatefulSets with multiple replicas. These can sustain the failure or reduced availability of a single replica. MinIO, Redis, PostgreSQL, Kafka, Cassandra, Elastic are just some examples that are deployed using Local Volumes. For these applications - performance and consistent low latency, and ease of management are more important than the resiliency of a node to failures.
 
-<<<<<<< HEAD
 As the large SaaS provider, [Optoro](https://github.com/openebs/openebs/blob/master/adopters/optoro/README.md) puts it:  
 *The vast majority of applications are able to better handle failover and replication than a block level device. Instead of introducing another distributed system into an already complex environment, OpenEBS's localPVs allow us to leverage fast local storage. … OpenEBS has allowed us to not introduce a complicated distributed system into our platform. The adoption has been smooth and completely transparent to our end users.*
-=======
-As the large SaaS provider, [Optoro](https://github.com/openebs/openebs/blob/master/adopters/optoro/README.md) puts it:
-_The vast majority of applications are able to better handle failover and replication than a block level device. Instead of introducing another distributed system into an already complex environment, OpenEBS's localPVs allow us to leverage fast local storage. … OpenEBS has allowed us to not introduce a complicated distributed system into our platform. The adoption has been smooth and completely transparent to our end users._
->>>>>>> origin/revamp-3.0
 
 ## Limitations of Kubernetes LocalPV
 

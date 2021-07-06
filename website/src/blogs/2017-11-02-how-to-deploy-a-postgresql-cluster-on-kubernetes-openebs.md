@@ -15,14 +15,14 @@ PostgreSQL is the **preferred** relational database for most developers around, 
 
 There are many ways to run **high availability** with PostgreSQL; for a list, see the [PostgreSQL Documentation](https://wiki.postgresql.org/wiki/Replication,_Clustering,_and_Connection_Pooling). To be honest, manually setting it up is quite painful, while there are better ways available. My favorite **cloud-native** Postgres cluster deployment projects are [Crunchy Data](https://www.crunchydata.com/)’s, [Sorint.lab](https://www.sorint.it/)’s [Stolon](https://github.com/sorintlab/stolon) and [Zalando](https://jobs.zalando.com/tech/)’s [Patroni](https://github.com/zalando/patroni)/[Spilo](https://github.com/zalando/spilo).
 
-Since availability requires multi-node Kubernetes deployment instead of local Minikube setup, I’ll deploy crunchy-postgres on my existing K8s cluster on AWS with two worker nodes. If you don’t have a Kubernetes cluster yet, see the [instructions to deploy one using StackPointCloud](http://containerized.me/how-to-install-openebs-on-aws-using-stackpointcloud/). Instructions after that are the same in any cloud or on-premises deployment.
+Since availability requires multi-node Kubernetes deployment instead of local minikube setup, I’ll deploy crunchy-postgres on my existing K8s cluster on AWS with two worker nodes. If you don’t have a Kubernetes cluster yet, see the [instructions to deploy one using StackPointCloud](http://containerized.me/how-to-install-openebs-on-aws-using-stackpointcloud/). Instructions after that are the same in any cloud or on-premises deployment.
 
 ## Prerequisites
 
 ### Software
 
 - [crunchy-postgres](https://hub.docker.com/r/crunchydata/crunchy-postgres/) (for cluster deployment)
-- [Docker ](https://docs.docker.com/engine/installation/)installed
+- [Docker](https://docs.docker.com/engine/installation/)installed
 - Kubernetes 1.5+ cluster installed
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) installed
 - [OpenEBS](https://github.com/openebs/openebs) installed

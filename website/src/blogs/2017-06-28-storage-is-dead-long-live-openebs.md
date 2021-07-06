@@ -46,8 +46,7 @@ One strength of clouds like AWS is that they enable you to consume storage in a 
 ****Uhh, huh — and OpenEBS?****
 
 ![Uhh, huh — and OpenEBS?](/images/blog/uhh-huh-openebs.png)
-
-**Uhh huh — data, cloud, DevOps, lock-in and, err, OpenEBS?**
+(***Uhh huh — data, cloud, DevOps, lock-in and, err, OpenEBS?***)
 
 In short, the highest level vision for OpenEBS is one in which the DevOps friendly aspects of running storage in the cloud is now available on-premise and across your clouds, thus freeing you from vendor lock-in much in the way that Kubernetes helps you avoid the risk of locking yourself in through the use of cloud service specific wiring and workflow.
 
@@ -59,11 +58,11 @@ And what if your storage and CIO teams were able to establish policies that gove
 
 Last but not least, what if, having tooled your environment to work with Amazon it just worked when you added the on-premise and cross-cloud OpenEBS? Wouldn’t this limit your lock-in with any one cloud vendor?
 
-OpenEBS remains early. Today we are at release 0.3 and are just starting to be used by enterprises like Cap Gemini and others to deliver storage for stateful workloads on containers.
+OpenEBS remains early. Today we are at `release 0.3` and are just starting to be used by enterprises like Cap Gemini and others to deliver storage for stateful workloads on containers.
 
 I’m back into the storage industry because I’m sure that OpenEBS has a good chance to allow storage to slip into the background and “just work” to support the incredible boosts in agility delivered by DevOps.
 
-A bunch of us imagined a better storage industry — one more software like, one that eliminated vendor lock-in — back in the 2008 / 2009 time frame. Instead, we got some kick-ass flash and quite cool hyper-converged solutions PLUS, mostly, AWS just working (well enough) with a far better business model and ability to scale.
+A bunch of us imagined a better storage industry — one more software-like, one that eliminated vendor lock-in — back in the 2008 / 2009 time frame. Instead, we got some kick-ass flash and quite cool hyper-converged solutions PLUS, mostly, AWS just working (well enough) with a far better business model and ability to scale.
 
 So vendor lock-in remained a problem. And storage far too often remains the bottleneck that slows down the good stuff, including the shift of real workloads onto containers.
 

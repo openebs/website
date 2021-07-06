@@ -11,11 +11,12 @@ excerpt: Working on OpenEBS, a containerized storage for containers which is orc
 
 Working on OpenEBS, a containerized storage for containers which is orchestrated by Kubernetes, most of our tasks, be it development, testing and demo require us to setup and modify the nodes in Kubernetes cluster. In addition, a multi-node cluster is a must as we go beyond the initial development and testing, to explore the high availability, scale, performance, and upgrade aspects.
 
-While *minikube *and *minishift* provide an easy way to setup Kubernetes single node cluster — for multi-node cluster the fastest ways to get going are usually cloud or hosted solutions. ***kubeadm*** is the closest we can get to easily setup a cluster, but since it is still in alpha, we keep running into some issues like — [kubadm init v1.6.1 fails](https://github.com/kubernetes/kubeadm/issues/226)
+While *minikube* and *minishift* provide an easy way to setup Kubernetes single node cluster — for multi-node cluster the fastest ways to get going are usually cloud or hosted solutions. ***kubeadm*** is the closest we can get to easily setup a cluster, but since it is still in alpha, we keep running into some issues like — [kubadm init v1.6.1 fails](https://github.com/kubernetes/kubeadm/issues/226)
 
 *An ideal solution for a developer would be a Kubernetes Sandbox. A sandbox that can be easily setup on a laptop and can work on the move (without net connectivity.) This Sandbox should be shielded from the different API or CLI changes that happen with the frequent releases of kubeadm and Kubernetes.*
 
 We have used Vagrant, VirtualBox, and Atlas to do just that.
+
 ![Vagrant, VirtualBox and Atlas](https://cdn-images-1.medium.com/max/800/1*7kkviZOwgh8ePDYRjFX0mQ.png)
 
 ## Try It! It is Easy and Quick!
@@ -31,9 +32,9 @@ The above two steps will provision the following:
 
 - Ubuntu VM with Kubernetes Master (kubemaster-01)
 - Ubuntu VM with Kubernetes Minion (kubeminion-01) associated with (kubemaster-01)
-- Setup *weave *as pod network
+- Setup *weave* as pod network
 - Setup the kubectl credentials ( admin.conf) on kubemaster-01
-- Sample Kubernetes pod YAML files are located on (kubemaster-01) under the directory ( *~/demo/k8s/spec/* )
+- Sample Kubernetes pod YAML files are located on (kubemaster-01) under the directory (*~/demo/k8s/spec/*)
 
 In addition to the above, the following OpenEBS provisioning tasks are also performed.
 
@@ -50,11 +51,11 @@ Some of the configuration options available are:
 
 - KM_CPU — Number of CPUs for minion (*default 2*)
 - KM_MEM — Size of the RAM (in bytes) for minion (*default 2048*)
-- KH_NODES — Number of Kubernetes Minion VMs *(default 1)*
+- KH_NODES — Number of Kubernetes Minion VMs (*default 1*)
 - KH_CPU — Number of CPUs for minion (*default 2*)
 - KH_MEM— Size of the RAM (in bytes) for minion (*default 1024*)
-- MM_NODES — Number of OpenEBS Maya Master VMs *(default 1)*
-- MH_NODES — Number of OpenEBS Storage Host VMs *(default 2)*
+- MM_NODES — Number of OpenEBS Maya Master VMs (*default 1*)
+- MH_NODES — Number of OpenEBS Storage Host VMs *(default 2*)
 
 If you are looking for an older release of Kubernetes, checkout — [kubernetes vagrant boxes with 1.5.5](https://blog.openebs.io/setting-up-kubernetes-1-5-5-cluster-with-vagrant-dda11e33b5bc)
 

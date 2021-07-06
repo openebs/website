@@ -11,7 +11,7 @@ excerpt: I attended GopherCon India 2017, there was a talk on “Package Oriente
 
 I attended [GopherCon India](http://www.gophercon.in/) 2017, there was a [talk](https://youtu.be/spKM5CyBwJA?list=PLFjrjdmBd0CoclkJ_JdBET5fzz4u0SELZ) on “Package Oriented Design In Go” by [William Kennedy](https://twitter.com/goinggodotnet). In that talk, William explained some really important and thoughtful design principles which we can apply in our day-to-day life, while writing [Go](https://golang.org/project/). I have attempted to absorb some of the design philosophies I learned at GopherCon into practice at [OpenEBS](https://github.com/openebs). At [OpenEBS](https://github.com/openebs), as an open-source and growing Go project, We value Go principles and We try hard to leverage Go’s offerings.
 
-Briefly, OpenEBS is a [container native storage](https://blog.openebs.io/cloud-native-storage-vs-marketers-doing-cloud-washing-c936089c2b58) that is built from containers for enabling stateful containers to get into production. Being container native, OpenEBS augments the Container Orchestration (CO) Layers like Kubernetes, DockerSwarm, Mesos, etc., with Storage Specific Orchestration capabilities using “Maya” — Magic! I contribute mainly towards the “Maya” — which is a set of containerized control plane applications for hooking into several modules like the configuration, monitoring, and alerting of CO.
+Briefly, OpenEBS is a [container-native storage](https://blog.openebs.io/cloud-native-storage-vs-marketers-doing-cloud-washing-c936089c2b58) that is built from containers for enabling stateful containers to get into production. Being container-native, OpenEBS augments the Container Orchestration (CO) Layers like Kubernetes, DockerSwarm, Mesos, etc., with Storage Specific Orchestration capabilities using “Maya” — Magic! I contribute mainly towards the “Maya” — which is a set of containerized control plane applications for hooking into several modules like the configuration, monitoring, and alerting of CO.
 
 ## What is the Go Kit Project?
 
@@ -23,7 +23,7 @@ If you go through Bill’s talk, you will notice that the Kit project is charact
 
 ## How to convert existing projects to have “kit”
 
-OpenEBS being a container native project is delivered via a set of containers. For instance, with OpenEBS 0.3 release we have the following active maya related projects:
+OpenEBS being a container-native project is delivered via a set of containers. For instance, with OpenEBS 0.3 release we have the following active maya related projects:
 
 1. openebs/maya aka ****maya-cli**** : is the command-line interface like kubectl for interacting with maya services for performing storage operations.
 2. openebs/mayaserver : or ****m-apiserver**** abstracts a generic volume API that can be used to provision OpenEBS Disks using containers launched using the CO like K8s, nomad, etc.,

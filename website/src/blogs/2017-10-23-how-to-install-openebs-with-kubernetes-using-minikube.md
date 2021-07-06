@@ -2,24 +2,24 @@
 title: How to Install OpenEBS with Kubernetes using MiniKube
 author: Murat Karslioglu
 author_info: VP @OpenEBS & @MayaData_Inc. Lives to innovate! Opinions my own!
-tags: Container, Docker, Minikube, Kubernetes, Solutions, OpenEBS
+tags: Container, Docker, minikube, Kubernetes, Solutions, OpenEBS
 date: 22-10-2017
-excerpt: Whether you are a newbie to Kubernetes looking for a small setup to start or a developer who uses Kubernetes on a daily basis, Minikube is the tool that helps you quickly set up and run a Kubernetes environment locally. 
+excerpt: Whether you are a newbie to Kubernetes looking for a small setup to start or a developer who uses Kubernetes on a daily basis, minikube is the tool that helps you quickly set up and run a Kubernetes environment locally. 
 ---
 
 ## What is MiniKube?
 
-Whether you are a newbie to Kubernetes looking for a small setup to start or a developer who uses Kubernetes on a daily basis, Minikube is the tool that helps you quickly set up and run a Kubernetes environment locally. Minikube runs a single-node Kubernetes cluster inside a VM on your laptop for users looking to try out Kubernetes or develop with it day-to-day.
+Whether you are a newbie to Kubernetes looking for a small setup to start or a developer who uses Kubernetes on a daily basis, minikube is the tool that helps you quickly set up and run a Kubernetes environment locally. minikube runs a single-node Kubernetes cluster inside a VM on your laptop for users looking to try out Kubernetes or develop with it day-to-day.
 
-There are several options available for developers to install Minikube based on an operating system. You can read the detailed instructions for the three most popular operating systems in [Minikube Setup](https://github.com/kubernetes/minikube).
+There are several options available for developers to install minikube based on an operating system. You can read the detailed instructions for the three most popular operating systems in [minikube Setup](https://github.com/kubernetes/minikube).
 
-However, if you are already an experienced Minikube user, skip the Minikube setup instructions and jump directly to the **Setup OpenEBS** section.
+However, if you are already an experienced minikube user, skip the minikube setup instructions and jump directly to the **Setup OpenEBS** section.
 
-In this post, I will explain how to set up Kubernetes using Minikube directly on Ubuntu 16.04 (without using any VM drivers) and how to configure OpenEBS in hyper-converged mode or, more accurately, create your Container-Converged Infrastructure using OpenEBS Container Attached Storage (CAS).
+In this post, I will explain how to set up Kubernetes using minikube directly on Ubuntu 16.04 (without using any VM drivers) and how to configure OpenEBS in hyper-converged mode or, more accurately, create your Container-Converged Infrastructure using OpenEBS Container Attached Storage (CAS).
 
 ## Prerequisites
 
-Minimum requirements for Minikube:
+Minimum requirements for minikube:
 
 ### Hardware
 
@@ -35,7 +35,7 @@ Minimum requirements for Minikube:
 - If using Linux:
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) or KVM.
 
-**NOTE:** Minikube supports the `-vm-driver=none` option that runs Kubernetes components on the host and not in a VM. Docker is required to use this driver, but no the hypervisor.
+**NOTE:** minikube supports the `-vm-driver=none` option that runs Kubernetes components on the host and not in a VM. Docker is required to use this driver, but no the hypervisor.
 
 - If using Windows:
 - [VirtualBox](https://www.virtualbox.org/wiki/Downloads) or Hyper-V. VMware Workstation is not supported.

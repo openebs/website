@@ -18,8 +18,9 @@ OK, that let the cat out of the bag
 ## Infrastructure as Code (IaC)
 
 One of the biggest IT trends over the last few years has been managing infrastructure through automation. One might argue that puppet started way back in 2005, thereby making this practice far older than most believe, but the way it has taken ops departments of most organizations by storm in the past 5–6 years is nothing less than a revolution. In fact, the paradigm of DevOps is built on managing infrastructure as code. And when we say code, the expectation of most ops personnel around the “language” would be that it doesn’t require deep programming knowledge and have a steep learning curve — which is what DSL (Domain Specific Language, sometimes also referred to as Domain Scripting Language) based frameworks like ansible achieve. It also helps that ansible adopts an imperative programming model (using YAML) that works well because of its alignment with the traditional command-based approach of ops teams.
+
 ![Ansible GitHub trends ](https://cdn-images-1.medium.com/max/800/1*7Di79EF1SxNqF0F0KD1E-A.jpeg)
-**Ansible GitHub trends (Courtesy: [https://www.ansible.com/blog/another-good-year-for-ansible-users](https://www.ansible.com/blog/another-good-year-for-ansible-users))**  
+(***Ansible GitHub trends (Courtesy: [https://www.ansible.com/blog/another-good-year-for-ansible-users](https://www.ansible.com/blog/another-good-year-for-ansible-users))*** )
 
 But, how does the above address our question? 
 
@@ -28,7 +29,9 @@ But, how does the above address our question?
 Is not an approach (and the tool) soaked in “**devops-ness**” a pre-requisite to test the storage solution specifically designed for DevOps use cases 🙂 ?
 
 ## Why Ansible, why not chef, puppet, salt, etc.?
+
 ![Ansible](https://cdn-images-1.medium.com/max/800/0*NQOK_gId-YBZMe02.png)  
+
 Err.., this seems to have been done to death on the internet. Yet, new posts on this topic seem to spring up everytime I look. So, without discussing the why not, let me touch upon the aspects about ansible that appealed most to us.
 
 **Powerful, yet very simple**: Ansible’s power comes from its simplicity. Under the hood, it is just a DSL for a task runner over a secure shell (ssh) with intuitive modules for achieving most (if not all) system functions. The soft learning curve in ansible is one of its major advantages over its rivals (*Ok, I said I won’t do the why-not, but there is a feeling that puppet, chef, etc., are over-designed for the jobs they do.*) In an open-source project like OpenEBS, a need to build a template for the contributors to write their own test workflows without spending too much time was an important consideration.
@@ -53,7 +56,7 @@ a) A means to enable rapid deployments of applications in user environments. Tod
 
 b) As a “***test orchestrator***”, i.e., for provisioning testbeds, executing test logic, and notifying users. That doesn’t mean we have stopped writing shell scripts or python scripts in QA (there are still functions which one might have to execute via shell or the ansible “shell” module or python, due to lack of actual ansible modules. Not to mention existing scripts which one wouldn’t bother converting into playbooks).
 
-Our current CI workflow involves a Jenkins master polling for updates to git repos, followed by bringing up VMs on-premise using vagrant, configuring those using ansible, followed by execution of test playbooks and user notification on slack. The CI is still evolving and efforts are on to make it more robust — you could join the OpenEBS-CI [slack channel ](http://slack.openebs.io/)& browse the [github pages](https://github.com/openebs/openebs/tree/master/e2e) if you are an enthusiast/would like to contribute!
+Our current CI workflow involves a Jenkins master polling for updates to git repos, followed by bringing up VMs on-premise using vagrant, configuring those using ansible, followed by execution of test playbooks and user notification on slack. The CI is still evolving and efforts are on to make it more robust — you could join the OpenEBS-CI [slack channel ](http://slack.openebs.io/) & browse the [github pages](https://github.com/openebs/openebs/tree/master/e2e) if you are an enthusiast/would like to contribute!
 
 In forthcoming blogs, I would like to discuss more on the “***How***” and share thoughts, challenges, solutions around using ansible both as a preferred application deployment mechanism as well as a “test orchestrator”.
 

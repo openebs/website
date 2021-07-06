@@ -20,7 +20,7 @@ Significant functionality changes include:
 - OpenEBS Storage Containers (VSMs) are completely orchestrated and managed via Kubernetes.
 - VSMs seamlessly work with your preferred pod networking
 - OpenEBS supports dynamic provisioners like EBS and GCP
-- *maya,* the Storage CLI can be used to fetch granular IO usage statistics similar to your Amazon Cloud Watch
+- *maya*, the Storage CLI can be used to fetch granular IO usage statistics similar to your Amazon Cloud Watch
 
 Additional changes can be looked up at our [OpenEBS Project Tracker](https://github.com/openebs/openebs/wiki/Project-Tracker).
 
@@ -28,8 +28,8 @@ We are very attentive towards making the onboarding experience as smooth and sim
 
 ---
 
-kubectl apply -f openebs-operator.yaml  
-kubectl apply -f openebs-storageclasses.yaml
+`kubectl apply -f openebs-operator.yaml` 
+`kubectl apply -f openebs-storageclasses.yaml`
 
 ---
 
@@ -52,4 +52,4 @@ As we accelerate towards our enterprise version of the product towards the end o
 - Optimize for high performance storage and networking infra.
 - Provide additional examples of Persistence Workloads that make use of the Application aware intelligence provided by OpenEBS
 
-We always love to hear from you and what you think are the biggest storage operations pain points that you want to see eliminated. Do drop into our [*Slack Channel*](http://slack.openebs.io) or stay connected with us via our other channels *Twitter (@openebs)*, [*GitHub*](https://github.com/openebs/openebs/).
+We always love to hear from you and what you think are the biggest storage operations pain points that you want to see eliminated. Do drop into our *[Slack Channel](http://slack.openebs.io) or stay connected with us via our other channels [Twitter](https://twitter.com/openebs), [GitHub](https://github.com/openebs/openebs/)*.

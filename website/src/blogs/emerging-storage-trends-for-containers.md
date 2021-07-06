@@ -21,7 +21,7 @@ While it is very easy to setup and run containers, are dockers really ready for 
 
 ![Containers in development & production](https://cdn-images-1.medium.com/max/800/0*nDL6ATRys2vPH8m9.png)
 
-Learning from the recent past, the cloud was led by the compute virtualization, but it wasn’t a true cloud until the network and storage also were fully virtualized, giving way to Software Defined Storage and Software Defined Networking. These days it is about SDDC, which involves significant improvement in the orchestration of infrastructure and the services running on them. For those of us that have contributed and implemented the cloud, and operated them in production — the journey was exciting and in some instances nail biting!!
+Learning from the recent past, the cloud was led by the compute virtualization, but it wasn’t a true cloud until the network and storage also were fully virtualized, giving way to software-defined Storage and software-defined Networking. These days it is about SDDC, which involves significant improvement in the orchestration of infrastructure and the services running on them. For those of us that have contributed and implemented the cloud, and operated them in production — the journey was exciting and in some instances nail biting!!
 
 I keep hearing developers say, I don’t care about the infrastructure. That’s great, but it just means that someone else is taking care of it, usually the operations team! I wonder if the DevOps is bringing developers closer to operations or Operations closer to Developers? I bet it is the Operations Team getting closer to Developers and making the life of Developers much easier.
 
@@ -29,13 +29,13 @@ The Developers are excited about the stateless containers or server-less archite
 
 The Operations Teams are the one that need to define this robust infrastructure for running the containers. Unlike VMs that were provisioned (or self provisioned on designated infrastructure) for specific use-cases, the container infrastructure must come with a brain of its own, where the containers are provisioned and moved depending on the load and performance parameters.
 
-An application or service in the container world, will be a set of interconnected containers (stateful or stateless — much like a K8s Pod), that will require compute, network and storage. And for these Application Pods to be portable, the infrastructure also needs to move along with them. It is time for programmable infrastructure to go mainstream. Just as virtualization paved way for software defined networks and software defined storage, we are now seeing the need for container defined network and container defined storage.
+An application or service in the container world, will be a set of interconnected containers (stateful or stateless — much like a K8s Pod), that will require compute, network and storage. And for these Application Pods to be portable, the infrastructure also needs to move along with them. It is time for programmable infrastructure to go mainstream. Just as virtualization paved way for software-defined networks and software-defined storage, we are now seeing the need for container defined network and container defined storage.
 
 For a recent [Bangalore Docker meetup](http://neependra.net/?p=2141), I took a shot at looking through the various storage startups that are trying to build storage for the containers. The slides are available here : [Emerging Storage Trends for Containers](http://www.slideshare.net/kiranmova/emerging-storagetrendsforcontainers)
 
 The storage trends can be summarized as follows:
 
-(1) (Slide#22) **Elastic Storage Infrastructure** — The storage can be horizontally scaled, much like the docker hosts in docker swarm. The technology to implement the Elastic Storage is already in production with many vendors supplying **_Software Defined Scale-out/Distributed Storage_** in the cloud environments.
+(1) (Slide#22) **Elastic Storage Infrastructure** — The storage can be horizontally scaled, much like the docker hosts in docker swarm. The technology to implement the Elastic Storage is already in production with many vendors supplying **_Software-Defined Scale-out/Distributed Storage_** in the cloud environments.
 
 (2) (Slide #23) **Ease of Accessing the Storage**— The volume of volumes required by the containerized applications will be manyfold compared to volumes used in the VM storage. And the volumes will be more portable. Operations team should be shielded from having to mount/unmount volumes or datastores. **_The integration into the orchestration layers for mounting the storage and providing access to the volumes, without requiring additional software changes will be paramount._** The TCMU/iSCSI, NBD/NFS interfaces are two different approaches with each coming with its own nuances w.r.t isolation vs ease.
 

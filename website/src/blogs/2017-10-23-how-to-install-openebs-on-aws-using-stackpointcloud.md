@@ -2,7 +2,7 @@
 title: How to Install OpenEBS on AWS using StackPointCloud?
 author: Murat Karslioglu
 author_info: VP @OpenEBS & @MayaData_Inc. Lives to innovate! Opinions my own!
-tags: Kubernetes, Solutions, Stackpointcloud, Ubuntu, Openebs
+tags: Kubernetes, Solutions, StackPointCloud, Ubuntu, OpenEBS
 date: 23-10-2017
 excerpt: What is StackPointCloud? StackPointCloud is a managed Kubernetes control plane to build cloud-native stacks on AWS, Google Cloud (GKE & GCE), Azure & DigitalOcean. 
 ---

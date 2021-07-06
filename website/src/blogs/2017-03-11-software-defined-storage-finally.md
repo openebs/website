@@ -4,16 +4,16 @@ author: Evan Powell
 author_info: Founding CEO of a few companies including StackStorm (BRCD) and Nexenta — and CEO & Chairman of OpenEBS/MayaData. ML and DevOps and Python, oh my!
 tags: DevOps, Docker
 date: 11-03-2017
-excerpt: In this blog I’ll discuss what went wrong — why we didn’t achieve the the promise of software defined storage — and why software defined storage is now, finally, possible.
+excerpt: In this blog, I’ll discuss what went wrong — why we didn’t achieve the promise of software-defined storage — and why software-defined storage is now, finally, possible.
 ---
 
-Many years ago there was a flowering of what we called software defined infrastructure. Those of us at the forefront of the trend were no doubt encouraged by the success of Martin Casado and the Nicera team who quickly went from Ph.D. thesis to $1.26bn purchase by VMware thanks to the promise of software defined *networking*. In hindsight we were misguided, but a handful of us built companies built on the premise — why not *storage*?
+Many years ago there was a flowering of what we called software-defined infrastructure. Those of us at the forefront of the trend were no doubt encouraged by the success of Martin Casado and the Nicera team who quickly went from Ph.D. thesis to $1.26bn purchase by VMware thanks to the promise of software-defined *networking*. In hindsight we were misguided, but a handful of us built companies built on the premise — why not *storage*?
 
-Today we finally have the ingredients in and around the storage industry to achieve what we all were shooting for 5–7 years ago. I’m so encouraged by these enabling trends that I’ve gotten back into storage even as it has fallen out of investor favor. Cutting edge users are now achieving the cost savings and boost to their agility we all promised — and truly believed — were around the corner years ago.
+Today we finally have the ingredients in and around the storage industry to achieve what we all were shooting for 5–7 years ago. I’m so encouraged by these enabling trends that I’ve gotten back into storage even as it has fallen out of investor favor. Cutting-edge users are now achieving the cost savings and boost to their agility we all promised — and truly believed — were around the corner years ago.
 
-In this blog I’ll discuss what went wrong — why we didn’t achieve the promise of software defined storage — and why software defined storage is now, finally, possible.
+In this blog I’ll discuss what went wrong — why we didn’t achieve the promise of software-defined storage — and why software-defined storage is now, finally, possible.
 
-There are at least a handful of reasons that storage failed to achieve the true promise of software defined storage — that we did not live up to the radical flexibility of virtualized compute for example, where compute jobs were largely freed from their underlying hardware:
+There are at least a handful of reasons that storage failed to achieve the true promise of software-defined storage — that we did not live up to the radical flexibility of virtualized compute for example, where compute jobs were largely freed from their underlying hardware:
 
 1. The lack of portability of the controllers themselves
 2. The inherent stickiness of the underlying data
@@ -36,24 +36,25 @@ This problem has aspects of the traveling salesman problem, which is to say, it 
 
 ****Immature common standards****
 
-As if the inherent difficulty of somehow addressing QoS for storage, while allowing controllers themselves to become more flexible, was not hard enough, the industry structure of IT 4–5 years ago itself made it more difficult to deliver software defined storage. VMware tried hard to get everyone on the same page via their VASA APIs, which was a way to pass information about applications to the storage and for the storage to essentially sign-up for the performance needed, however, this effort ended up making less transparent and more proprietary the DNA, or operating instructions, of the software defined data center. Perhaps because these operating instructions themselves were so opaque they never caught on in software defined data centers.
+As if the inherent difficulty of somehow addressing QoS for storage, while allowing controllers themselves to become more flexible, was not hard enough, the industry structure of IT 4–5 years ago itself made it more difficult to deliver software-defined storage. VMware tried hard to get everyone on the same page via their VASA APIs, which was a way to pass information about applications to the storage and for the storage to essentially sign-up for the performance needed, however, this effort ended up making less transparent and more proprietary the DNA, or operating instructions, of the software-defined data center. Perhaps because these operating instructions themselves were so opaque they never caught on in software-defined data centers.
 
-Today the Kubernetes community is probably our best shot for having a set of commonly accepted application definitions that flow into the infrastructure, to actually deliver software defined infrastructure. In this case, the DNA is human readable YAML and is managed by a set of open source technologies.
+Today the Kubernetes community is probably our best shot for having a set of commonly accepted application definitions that flow into the infrastructure, to actually deliver software-defined infrastructure. In this case, the DNA is human readable YAML and is managed by a set of open source technologies.
 
 Quick note — pod and resource definitions are not fully fleshed out by Kubernetes for storage. So you can do some basic things, such as limiting the amount of storage by user or application or pod, however storage specific QoS is not yet supported in these definitions. This is a work in progress.
 
 Nonetheless, what is possible today gives a good idea of what is coming. For example:
+
 ![human readable code example](/images/blog/software-defined-storage-finally-example-code.png)
 
 As you can see, very simple, human readable, and change controllable easily via GitHub or other systems, which is fundamental to achieving a high degree of automation and control.
 
-****The unevenly distributed future****
+**The unevenly distributed future**
 
-While this blog and self-assessment of where we got to in software defined storage may be a bit depressing, there are signs of hope.
+While this blog and self-assessment of where we got to in software-defined storage may be a bit depressing, there are signs of hope.
 
 Within the Kubernetes community, for example, hardy pioneers with deep technical expertise such as Pearson are using solutions like StackStorm and much else to build truly developer defined infrastructures that include the use of containers for stateful workloads.
 
-What I learned from Pearson and other StackStorm users led me to look for storage intellectual property — and the teams that built it — that could enable the storage freedom promised by Software Defined Storage. Specifically, I went looking for technologies that could virtualize or containerize storage controllers while somehow ensuring the delivery of QoS.
+What I learned from Pearson and other StackStorm users led me to look for storage intellectual property — and the teams that built it — that could enable the storage freedom promised by software-defined Storage. Specifically, I went looking for technologies that could virtualize or containerize storage controllers while somehow ensuring the delivery of QoS.
 
 In CloudByte I found a solution that today delivers fine grained control of QoS via an architecture that features virtualized storage controllers. What this means is that the controllers themselves can be live migrated, for example, while continuing to serve storage. This is how CloudByte delivers non-disruptive upgrades — and it also means that you can migrate pieces of your data center from on-premise to the cloud and back — with confidence. However, without QoS controls moving your controllers around would be madness — and so the deep understanding of QoS and the ability to set QoS SLAs by the user or by volume for example is crucially important.
 

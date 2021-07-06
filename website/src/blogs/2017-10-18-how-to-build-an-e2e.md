@@ -15,18 +15,18 @@ Well *e2e* which expands into end to end speaks for itself. It can be treated as
 
 Before even getting into the How’s part, we must rather be comfortable with following questions:
 
-— *Do we need to ?*  
- — *Does our project need one ?*
+— *Do we need to?*  
+ — *Does our project need one?*
 
 More often than not, a code based project will love to have one. Perhaps not with this name but the need will definitely exist. Some of the guiding principles highlighted in this article will also help us in getting the answers to these questions. So keep reading.
 
 ### Assuming our project needs one, how to build it then?
 
-Are there any guidelines / rules that we can follow ? Here they are:
+Are there any guidelines/rules that we can follow? Here they are:
 
 — ***`Refer and re-use wherever possible than build from scratch`*** is the golden rule.
 
-— ***`Start Small`***. In this context it refers to '*not to gulp the entire code base and be very selective even to the point of refusing 90% of the code that is available for free*'. This is the learning I have had all these years as a programmer. This is essential if one wants to reach the milestones in time which will otherwise become a mirage. I have burnt my fingers multiple times with regards to this principle. The latest one was when I tried to reuse the entire Kubernetes e2e for [Maya’s](https://github.com/openebs/maya/) e2e. Needless to say I failed miserably. Some of these reasons are explained in this article.
+— ***`Start Small`***. In this context, it refers to '*not to gulp the entire code base and be very selective even to the point of refusing 90% of the code that is available for free*'. This is the learning I have had all these years as a programmer. This is essential if one wants to reach the milestones in time which will otherwise become a mirage. I have burnt my fingers multiple times with regards to this principle. The latest one was when I tried to reuse the entire Kubernetes e2e for [Maya’s](https://github.com/openebs/maya/) e2e. Needless to say I failed miserably. Some of these reasons are explained in this article.
 
 ### Is that all?
 
@@ -37,7 +37,7 @@ To clarify it further, I had these queries when I started with the e2e journey f
 - Should e2e be shell wrappers over [CLI](https://en.wikipedia.org/wiki/Command-line_interface), for example, [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) & [mayactl](https://github.com/openebs/maya/tree/master/cmd/mayactl)?
 - Should it be tied to Go [*testing*](https://golang.org/pkg/testing/) library? Any benefits?
 - Should it use the [*Ginkgo*](https://onsi.github.io/ginkgo/) library? Anything to gain?
-- Should it be moulded with [*Ansible*](https://www.ansible.com/) and let the scene get enacted by its players (*read playbooks)*?
+- Should it be moulded with [*Ansible*](https://www.ansible.com/) and let the scene get enacted by its players (*read playbooks*)?
 
 ### Simplicity — One Rule to Rule them All
 

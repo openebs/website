@@ -9,7 +9,7 @@ excerpt: I am delighted that we have been able to push the OpenEBS 0.2 release f
 
 I am delighted that we have been able to push the [OpenEBS 0.2 release](https://github.com/openebs/openebs/releases/tag/v0.2) for community consumption, a version that demonstrates that storage controllers can be containerized. This release comes with k8s flex volume driver called “openebs-iscsi”
 
-The past week has been very exciting for the OpenEBS Team — engaging with container technology evangelists, enthusiasts, and users at the [Bangalore Container Conference — BCC 2017](http://www.containerconf.in/), followed by a very interactive meetup on the [Containerized Storage for Containers](http://www.containerconf.in/) with [Evan Powell](https://twitter.com/epowell101), [Ian Lewis](https://twitter.com/IanMLewis) and my fellow Bangalore Entrepreneurs and OpenSource fans.
+The past week has been very exciting for the OpenEBS Team — engaging with container technology evangelists, enthusiasts, and users at the [Bangalore Container Conference — BCC 2017](http://www.containerconf.in/), followed by a very interactive meetup on the [Containerized Storage for Containers](http://www.containerconf.in/) with [Evan Powell](https://twitter.com/epowell101), [Ian Lewis](https://twitter.com/IanMLewis), and my fellow Bangalore Entrepreneurs and OpenSource fans.
 
 By containerizing the storage functionality, the OpenEBS delivers the core storage capabilities like block-layout and its management, data protection, consistency, and availability as a “microservice”, thus bringing the advantages of containers to the storage volumes. Containerization also helps in dynamic provisioning at scale, scale-up/down the storage cluster, monitoring, ease of upgrades, etc.
 

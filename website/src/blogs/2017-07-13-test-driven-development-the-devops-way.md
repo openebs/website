@@ -2,7 +2,7 @@
 title: Test Driven Development — The DevOps Way
 author: Amit Kumar Das
 author_info: Engineer the DAO
-tags: Docker, Kubernetes, OpenEBS, Tdd, Software Development, DevOps
+tags: Docker, Kubernetes, OpenEBS, TDD, Software Development, DevOps
 date: 13-07-2017
 excerpt: TDD is the abbreviated form for `Test Driven Development`. It might also be true in-case of newbies to have never heard of TDD in the current season where DevOps, NoOps, DataOps, ML, IOT rule the roost.
 ---

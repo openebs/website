@@ -9,7 +9,7 @@ excerpt: Learn how storage has evolved over the years.
 
 Before the turn of the century, storage systems were typically controlled by dedicated firmware running on custom hardware. These proprietary systems were time-consuming to design, expensive to build, and resistant to innovation.
 
-In 1998, Software Defined Storage was pioneered by DataCore Software with its SANsymphony suite of products, based on the realization that general-purpose computers had become fast enough to handle the demands of a high-performance storage stack. For context, this was an era when a system with more than two cores was a rarity and both memory and storage were measured in MBs! The primary protocol in use in the enterprise was SCSI, whether directly connected or accessed through a Fibre Channel network, response times were measured in the tens of milliseconds, and accessing storage over Ethernet using iSCSI was only just starting to be worked on.
+In 1998, Software-Defined Storage was pioneered by DataCore Software with its SANsymphony suite of products, based on the realization that general-purpose computers had become fast enough to handle the demands of a high-performance storage stack. For context, this was an era when a system with more than two cores was a rarity and both memory and storage were measured in MBs! The primary protocol in use in the enterprise was SCSI, whether directly connected or accessed through a Fibre Channel network, response times were measured in the tens of milliseconds, and accessing storage over Ethernet using iSCSI was only just starting to be worked on.
 
 ## The hardware environment is changing!
 
@@ -52,7 +52,7 @@ It is possible to build the SPDK tree, run the associated unit tests, serve an i
 It is anticipated that this collaboration will deliver the following benefits to Windows users:
 
 1. Enable high-performance access to NVMe storage directly from applications.
-2. Native software defined storage stacks, including OpenEBS Mayastor.
+2. Native software-defined storage stacks, including OpenEBS Mayastor.
 3. Support for NVMe-oF adaptors from manufacturers such as Mellanox and Broadcom.
 
-The Windows Platform Development Kit is open source, under a BSD-3 clause license.  Community contributions are welcomed and needed! To get started please head to [https://wpdk.github.io](https://wpdk.github.io) or access the WPDK code and documentation on [GitHub](https://github.com/wpdk/wpdk).
+The Windows Platform Development Kit is open source, under a BSD-3 clause license. Community contributions are welcomed and needed! To get started please head to [https://wpdk.github.io](https://wpdk.github.io) or access the WPDK code and documentation on [GitHub](https://github.com/wpdk/wpdk).

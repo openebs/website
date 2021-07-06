@@ -68,7 +68,7 @@ Like Service Mesh, the other infrastructure components — logging, monitori
 
 Storage is no different. How data is stored and managed is also being transformed by the possibilities afforded by Kubernetes. Like Service Mesh of initial days, a lot of incumbent storage vendors are providing a patched (which some view as cloud washed or container plugged) solutions that will result in operations and developers spending endless hours firefighting to make them work with cloud native environments.
 
-The key for any infrastructure component to be called container native will be characterized by being hardware agnostic and usable at scale! The past few months, there is an active workgroup team grappling with defining — [_Cloud Native Storage (WIP White Paper by CNCF Storage Workgroup)_](https://docs.google.com/document/d/1cJLgOAIWbi-Ya27BY7mjH61yoO3oWcO5tOZYteaDVgI/edit#heading=h.ik4inq9mv6b4)
+The key for any infrastructure component to be called container-native will be characterized by being hardware agnostic and usable at scale! The past few months, there is an active workgroup team grappling with defining — [_Cloud Native Storage (WIP White Paper by CNCF Storage Workgroup)_](https://docs.google.com/document/d/1cJLgOAIWbi-Ya27BY7mjH61yoO3oWcO5tOZYteaDVgI/edit#heading=h.ik4inq9mv6b4)
 
 While deliberations are ongoing about what Cloud Native Storage is, which I think will finally be about users adoption, the talks at KubeCon suggest the community sees three distinct storage options for Kubernetes:
 
@@ -142,7 +142,7 @@ _Kubernetes can provide an unified infrastructure layer to the applications by p
 
 KubeCon showcased a demo of launching [glusterfs in containers](https://schd.ws/hosted_files/kccncna17/7b/KubeRunningYourStorage1208.pdf). While this is feasible, it might put some hard requirements on the amount of RAM and CPU required for running the software optimized for running in the nodes in containers.
 
-To be container native storage, the storage software needs to be broken down into micro-services, just like how Kubernetes runs using micro-services. There has to be greater flexibility provided to the developers and operations to run seamlessly on their choice of hardware!
+To be container-native storage, the storage software needs to be broken down into micro-services, just like how Kubernetes runs using micro-services. There has to be greater flexibility provided to the developers and operations to run seamlessly on their choice of hardware!
 
 OpenEBS does just that! OpenEBS provides all the enterprise grade storage features by its open-source containers that can run anywhere. _No kernel dependencies and vendor lock-in._ A typical data path using the OpenEBS Containers is as follows:
 

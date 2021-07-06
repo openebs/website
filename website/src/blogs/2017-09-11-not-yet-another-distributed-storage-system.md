@@ -38,7 +38,7 @@ Speaking to our early tech-preview customers, we were shocked with awe to see th
 
 Has the storage market become so consumed with itself that it keeps making storage products so complex, with each vendor, having its own **“if — and — or buts”** that they are fed up with it and revert back to DAS? Did it become so unpredictable? The time of consolidated storage churn?
 
-Yes, the storage market is consumed with itself. But there is more, the storage ******needs****** have also changed. In the early SAN days, it was about consolidating islands of storage into a bigger one as it would be easier to manage and the performance of the SAN would be higher than some individual devices. Virtual machines made it possible to consolidate compute which also made a lot of sense as boxes were mostly idle.
+Yes, the storage market is consumed with itself. But there is more, the storage **needs** have also changed. In the early SAN days, it was about consolidating islands of storage into a bigger one as it would be easier to manage and the performance of the SAN would be higher than some individual devices. Virtual machines made it possible to consolidate compute which also made a lot of sense as boxes were mostly idle.
 
 However, all of this work was done for one reason and one only — to accommodate the piece of software that matters the most: the app.
 

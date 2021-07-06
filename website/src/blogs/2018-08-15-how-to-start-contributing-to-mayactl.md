@@ -59,7 +59,7 @@ To know about the OpenEBS visit: [https://docs.openebs.io/docs/next/introduction
 
 - To install golang, visit the official golang website: [https://golang.org/doc/install](https://golang.org/doc/install)
 
-4. **Minikube**.
+4. **minikube**.
 
 - To install minikube, run these commands:
 
