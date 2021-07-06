@@ -76,17 +76,17 @@ You can start by entering your login information to your Google Cloud Platform a
 7. Once your cluster is ready, launch the gcloud shell to access your cluster using CLI.
 
 8. You may need an admin-context if you are installing OpenEBS without Helm. Use the following command to set the admin-context:
-
+    ```
     kubectl create clusterrolebinding <clustername>-cluster-admin-binding --clusterrole=cluster-admin --user=<myusername>
-
+    ```
 9. Before installing OpenEBS, you will need to select one of the mounted SSD disks to create an OpenEBS Storage Pool. You must note the mount path of the selected disk, as we need to provide the mount path details while creating the storage pool.
 
 In my cases, I have chosen two local SSDs per node, and it is mounted automatically on the Node as part of the instance creation. Among these disks, I will choose the “sdb” disk. The OpenEBS Jiva storage pool will be created on the “sdb” disk on each node. Steps for creating pools are mentioned below.
 
 You can obtain the mounted disk details on Nodes using the following command:
-
+    ```
     sudo lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
-
+    ```
 Below is an example output.
 
     NAME   FSTYPE  SIZE MOUNTPOINT      LABEL
@@ -97,15 +97,15 @@ Below is an example output.
 
 10. You are now ready to install the OpenEBS 0.7 cluster using the following command. Then follow the steps below from your master node.
 
-```
+    ```
     kubectl apply -f https://openebs.github.io/charts/openebs-operator-0.7.0.yaml
-```
+    ```
 
 11. You can check the OpenEBS running pod details using the following command:
 
-```
+    ```
     kubectl get pods -n openebs
-``` 
+    ``` 
 
 Below is an example output:
 
@@ -123,9 +123,9 @@ Below is an example output:
 
 12. You can then check the default storage classes created as part of the OpenEBS operator installation using the following command:
 
-```
+    ```
     kubectl get sc
-```
+    ```
 Again, here is an example output:
 
     NAME PROVISIONER AGE
@@ -139,9 +139,9 @@ Again, here is an example output:
 
 For example, if your external disk is mounted as `/mnt/disks/ssd0` in your nodes, change the path as shown below.
 
-```
+    ```
     path: “/mnt/disks/ssd0”
-```
+    ```
 
     Example yaml file:
 
@@ -157,17 +157,17 @@ For example, if your external disk is mounted as `/mnt/disks/ssd0` in your nodes
     
 14. Apply the modified *openebs-config.yaml* file by using the following command:
 
-```
+    ```
     kubectl apply -f openebs-config.yaml
-```
+    ```
 
 This will create a storage pool called “default” on the selected disk.
 
 15. The storage pool is now created on the Nodes according to your requirement. You can now get the storage pool details by running the following command:
 
-```
+    ```
     kubectl get sp
-```
+    ```
 
     Example output:
 
@@ -186,40 +186,40 @@ We now have the Percona deployment application YAML and need to change the stora
 
 18. We now use the following Percona deployment YAML file to deploy a stateful Percona application using the Jiva volume. Obtain the YAML file using following command:
 ```
-    wget https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/percona/percona-openebs-deployment.yaml
+ wget https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/percona/percona-openebs-deployment.yaml
 ```
 
 19. Edit the downloaded “percona-openebs-deployment.yaml” and conduct the following changes.
 
 In the “PersistentVolumeClaim” section , under metadata, add the following content.
-
-    labels:
+        ```
+        labels:
     
-        “volumeprovisioner.mapi.openebs.io/replica-topology-key-domain”: “failure-domain.beta.kubernetes.io”       
-        “volumeprovisioner.mapi.openebs.io/replica-topology-key-type”:  “zone”
-    
+            “volumeprovisioner.mapi.openebs.io/replica-topology-key-domain”: “failure-domain.beta.kubernetes.io”       
+            “volumeprovisioner.mapi.openebs.io/replica-topology-key-type”:  “zone”
+        ```   
 
 Now change the “storageClassName” from ” openebs-standard” to “openebs-jiva-default.”
 
 20. Save the modified changes and apply the YAML as follows. This will create a PVC and PV in the mentioned size.
-```
+    ```
     kubectl apply -f percona-openebs-deployment.yaml
-```
+    ```
 21. You can then view the PVC status by running the following command:
-```
+    ```
     kubectl get pvc
-```
+    ```
 Below is an example output.
 
     NAME STATUS VOLUME CAPACITY ACCESS MODES STORAGECLASS AGE
-```    
+    ```    
     demo-vol1-claim Bound default-demo-vol1-claim-2300073071 5G RWO openebs-jiva-default 11m
-``` 
+     ``` 
 
 22. You can then obtain the PV status by running the following command:
-```
+    ```
     kubectl get pv
-```
+    ```
 And here is an example output.
 
     NAME                                 CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM                     STORAGECLASS           REASON    AGE
@@ -227,9 +227,9 @@ And here is an example output.
     
 
 23. Now, your Percona application pod will be running along with three Jiva volume replicas and one Jiva Controller pod. You can view the running pod status by running the following command:
-```
+    ```
     kubectl get pods -o wide
-```
+    ```
 Which will provide the following output.
 
     NAME                                                       READY     STATUS    RESTARTS   AGE       IP           NODE

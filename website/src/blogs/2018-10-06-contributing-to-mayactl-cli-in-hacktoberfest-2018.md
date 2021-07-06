@@ -110,7 +110,7 @@ Once all of the pods are in the Running state, and once the maya-apiserver pod i
 
     kubectl exec -it <maya-api server pod name> -n openebs
 
-(e.g the pod name in my case is maya-apiserver-674c77bb4c-dhnw5). This will open the pod’s terminal over your system terminal. Typing mayactl version should produce something similar to this:
+(e.g the pod name in my case is `maya-apiserver-674c77bb4c-dhnw5`). This will open the pod’s terminal over your system terminal. Typing `mayactl version` should produce something similar to this:
 
     bash-4.3# mayactl version
     
@@ -151,7 +151,7 @@ This will copy your mayactl binary to the maya-apiserver pod.
 ## Testing the mayactl Binary
 
 In order to test the mayactl binary, again get into the pod's shell using
-kubectl exec -it <maya-api server pod name> -n openebs. Then access the tmp directory using cd `/tmp`. You can run your new mayactl binary by prefixing the ./ before mayactl using `./mayactl` version.
+kubectl exec -it <maya-api server pod name> -n openebs. Then access the tmp directory using cd `/tmp`. You can run your new mayactl binary by prefixing the `./` before mayactl using `./mayactl` version.
 
 ## A Bash Shortcut for the Above Process
 
@@ -161,7 +161,7 @@ Don’t worry, here is a shortcut that you can use to build and copy the mayactl
 
     make mayactl && kubectl cp bin/maya/mayactl `kubectl get pods -n openebs | grep maya-apiserver | awk {'print $1'}`:/tmp -n openebs && kubectl exec -it `kubectl get pods -n openebs | grep maya-apiserver | awk {'print $1'}` bash -n openebs
 
-Running the above command will build the mayactl binary and copy to the maya-apiserver pod under /tmp directory.
+Running the above command will build the mayactl binary and copy to the maya-apiserver pod under `/tmp` directory.
 
 ## Raising a PR
 
@@ -173,7 +173,7 @@ You can reach us for any queries/ announcements on our [hacktoberfest2018](https
 
 ## Hacking begins…
 
-So, what are you waiting for? Start your hacking now by picking some issues from [here](https://github.com/openebs/openebs/issues)! Contribution to the *hack-fest *can get you a chance to get into the *openebs contributor's list* and a chance to win some exciting goodies.
+So, what are you waiting for? Start your hacking now by picking some issues from [here](https://github.com/openebs/openebs/issues)! Contribution to the *hack-fest* can get you a chance to get into the *openebs contributor's list* and a chance to win some exciting goodies.
 
 ## Helpful References
 

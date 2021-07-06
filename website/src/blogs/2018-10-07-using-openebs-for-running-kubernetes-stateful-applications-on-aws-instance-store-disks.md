@@ -285,4 +285,4 @@ The output from the above command will be similar to the following.
 
 *Now you have deployed OpenEBS with AWS local disk in your k8s environment. You will see the advantages of both low latency local disk use and fault-tolerant architecture ensured by OpenEBS.*
 
-Hopefully, this helps you to better understand the benefits of using OpenEBS on top of AWS. Thank you for reading and please provide any feedback below or via twitter — @ranjithr005
+Hopefully, this helps you to better understand the benefits of using OpenEBS on top of AWS. Thank you for reading and please provide any feedback below or via Twitter — @ranjithr005

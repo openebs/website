@@ -18,7 +18,7 @@ We are recommending users of OpenEBS with cStor with Fedora 29 please upgrade to
 ## Highlights of 0.8.1 release:
 
 ### Stability fixes:
-![](https://cdn-images-1.medium.com/max/800/1*7BRJmxRw7IKONv7KKAgnkg.png)
+![image](https://cdn-images-1.medium.com/max/800/1*7BRJmxRw7IKONv7KKAgnkg.png)
 #### iSCSI discovery bug leading to Kubernetes node reboots:
 
 Some community users reported that Kubernetes cluster is becoming unstable sometimes when OpenEBS is in use. We worked with community and debugged their issues to find the root cause. After deeper analysis, we found that Kubelet continues to increase in memory usage and finally resulting in that particular node going for a reboot, causing the cluster to becoming unstable. An [issue has been reported already in Kubernetes on Kubelet](https://github.com/kubernetes/kubernetes/issues/70890), and in our case, same situation is being triggered from a different set of components, namely open-iSCSI and Fedora Kernel.

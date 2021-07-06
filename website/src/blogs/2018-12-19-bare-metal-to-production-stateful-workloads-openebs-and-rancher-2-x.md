@@ -33,7 +33,7 @@ We’ll be creating 4 Hetzner cluster servers:
 
 - Login to the instance and add a docker-compose.yml file to run Rancher:
 
-![login-to-instance](/content/images/2020/01/login-to-instance.png)
+![login-to-instance](/public/images/blog/login-to-instance.png)
 - Run: 
 
     docker-compose up -d
@@ -43,7 +43,7 @@ We’ll be creating 4 Hetzner cluster servers:
 - `Add label loadbalancer=true`
 - `Remove iscsi driver with cloud-init:`
 
-![remove-iscsi-driver](/content/images/2020/01/remove-iscsi-driver.png)
+![remove-iscsi-driver](/public/images/blog/remove-iscsi-driver.png)
 - Create a node template for workers using the same cloud-config
 
 ## Application Configuration
@@ -67,11 +67,11 @@ Which enables you to use:
 The simplest way to add Let’s Encrypt in Rancher is to install it via catalog apps.
 
 After that every ingress that contains the following annotations:
-![ingress](/content/images/2020/01/ingress.png)
+![ingress](/public/images/blog/ingress.png)
 Will be automatically handled by Let’s Encrypt.
 
 The first time you add an ingress you have to give the certificate a name by editing YAML and adding only the underlined parts below. Other ingresses can be added within the Rancher UI.
-![rancher-ui](/content/images/2020/01/rancher-ui.png)
+![rancher-ui](/public/images/blog/rancher-ui.png)
 ## Adding OpenEBS
 
 - Login to each node and run: *apt-get install open-iscsi*
@@ -80,7 +80,7 @@ The first time you add an ingress you have to give the certificate a name by edi
 - Select OpenEBS and install it via Helm Charts
 
 This will install base OpenEBS complete with storage classes. The next step is to create a persistent volume / persistent volume claim. This can be easily accomplished by running the following YAML:
-![pvc](/content/images/2020/01/pvc.png)
+![pvc](/public/images/blog/pvc.png)
 This will create a persistent volume claim named demo-vol1-claim with 10 GB of space in the storageClass: openebs-jiva-default. This storageClassName can then be passed as a parameter to various applications that require persistent and scale-able storage.
 
 ## Conclusion

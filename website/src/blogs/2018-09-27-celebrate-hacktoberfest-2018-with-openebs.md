@@ -58,14 +58,17 @@ Happy hacking!!
 
 [Hacktoberfest 2018 - DigitalOcean](https://hacktoberfest.digitalocean.com/)
 
-[Hacktoberfest is a month-long celebration of open source software.](https://hacktoberfest.digitalocean.com/)[hacktoberfest.digitalocean.com](https://hacktoberfest.digitalocean.com/)
+[Hacktoberfest is a month-long celebration of open source software.](https://hacktoberfest.digitalocean.com/)
+[hacktoberfest.digitalocean.com](https://hacktoberfest.digitalocean.com/)
 
 [Build software better, together](https://github.com/search?l=&amp;q=state%3Aopen+label%3Ahacktoberfest&amp;ref=advsearch&amp;type=Issues&amp;utf8=%E2%9C%93)
 
-[GitHub is where people build software. More than 28 million people use GitHub to discover, fork, and contribute to over…](https://github.com/search?l=&amp;q=state%3Aopen+label%3Ahacktoberfest&amp;ref=advsearch&amp;type=Issues&amp;utf8=%E2%9C%93)[github.com](https://github.com/search?l=&amp;q=state%3Aopen+label%3Ahacktoberfest&amp;ref=advsearch&amp;type=Issues&amp;utf8=%E2%9C%93)
+[GitHub is where people build software. More than 28 million people use GitHub to discover, fork, and contribute to over…](https://github.com/search?l=&amp;q=state%3Aopen+label%3Ahacktoberfest&amp;ref=advsearch&amp;type=Issues&amp;utf8=%E2%9C%93)
+[github.com](https://github.com/search?l=&amp;q=state%3Aopen+label%3Ahacktoberfest&amp;ref=advsearch&amp;type=Issues&amp;utf8=%E2%9C%93)
 
 [OpenEBS](https://openebs.io/hacktoberfest?__hstc=216392137.2860b2a415ee07539ccc6f5e86f86eda.1580127992304.1580127992304.1580127992304.1&amp;__hssc=216392137.1.1580127992304&amp;__hsfp=3765904294)
 
-[OpenEBS is an open source storage platform that provides persistent and containerized block storage for DevOps and…](https://openebs.io/hacktoberfest?__hstc=216392137.2860b2a415ee07539ccc6f5e86f86eda.1580127992304.1580127992304.1580127992304.1&amp;__hssc=216392137.1.1580127992304&amp;__hsfp=3765904294)[openebs.io](https://openebs.io/hacktoberfest?__hstc=216392137.2860b2a415ee07539ccc6f5e86f86eda.1580127992304.1580127992304.1580127992304.1&amp;__hssc=216392137.1.1580127992304&amp;__hsfp=3765904294)
+[OpenEBS is an open source storage platform that provides persistent and containerized block storage for DevOps and…](https://openebs.io/hacktoberfest?__hstc=216392137.2860b2a415ee07539ccc6f5e86f86eda.1580127992304.1580127992304.1580127992304.1&amp;__hssc=216392137.1.1580127992304&amp;__hsfp=3765904294)
+[openebs.io](https://openebs.io/hacktoberfest?__hstc=216392137.2860b2a415ee07539ccc6f5e86f86eda.1580127992304.1580127992304.1580127992304.1&amp;__hssc=216392137.1.1580127992304&amp;__hsfp=3765904294)
 
-- Thanks to [Satyam Zode](https://medium.com/@satyamz?source=post_page), [Akash Srivastava](https://medium.com/@srivastavaakash?source=post_page), [karthik satchitanand](https://medium.com/@karthik.s_5236?source=post_page), and [openebs](https://medium.com/@openebs?source=post_page).
+- Thanks to [Satyam Zode](https://medium.com/@satyamz?source=post_page), [Akash Srivastava](https://medium.com/@srivastavaakash?source=post_page), [Karthik Satchitanand](https://medium.com/@karthik.s_5236?source=post_page), and [OpenEBS](https://medium.com/@openebs?source=post_page).

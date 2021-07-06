@@ -82,6 +82,8 @@ I’ve assembled common requirements into a table, as we often get questions fro
 ![https://cdn-images-1.medium.com/max/800/1*Xjn4ZoNwH9Ch6wdxzLyjpQ.png](https://lh6.googleusercontent.com/e6aUCLpjgqN5aeVz0MyHQD7zOYeB0NIWwJl4VcmqoGGHPlLxo_R-nwIBPlcx-PkCJJ7h_Lh6Vd-zJoYov5VBpfuLbFrJ244RmgBdmMVF-59_VVwgVO2hftKICrFWFvV3dbfJqA3H)
 We’ve recently completed the testing and creation of some recommended storage classes with one of the largest NoSQL community projects. You can always see each commit to Master of OpenEBS being tested against a variety of common data based on [OpenEBS.ci](http://openebs.ci/) as well. Grab both the storage classes and the configuration for the systems doing this testing as well if you are interested.
 ![https://cdn-images-1.medium.com/max/800/0*yY-oEgLIF3DVA97o](https://lh5.googleusercontent.com/Q8RpDSbnfgZrCGAmqNBbhWVbrjPt52CfYUJ40yATyUR4uLRoFAFoVaxmPZN-Ix5UstO9GIEtXVbB7GxRXlo7zCf048JW51WewUY8Q_MrIjby4ltQgEW-1glmYKXehgSOnGcf0UG4)
+
+
 **Conclusion**
 
 This blog was intended to outline some things to think about when running your own DBaaS. While I recommend considering these, I also suggest that you should think long and hard about operations automation and, of course, underlying data resilience.At MayaData, we are actively working on a number of DBaaS implementations for enterprises and are happy to share best practices via discussions on [Slack](https://slack.openebs.io/) and elsewhere. Please do get in touch. Together, we are enabling tremendous boosts in data agility, often with the help of DBaaS deployments. Whatever your permutation of DB or other stateful workload, we are here to do our part in helping you to achieve true data agility.

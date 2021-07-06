@@ -66,7 +66,7 @@ OpenEBS Release 0.7 makes it insanely easy to specify such constructs and associ
 
 To understand this better, let’s observe a couple of examples.
 
-**Example 1: **Scheduling PVs of Mongo instances across Availability Zones. When Stateful Applications like Mongo are deployed, each Mongo instance gets its own PV and PVC. To be truly resilient against node failures , the PVs (actual storage) belonging to a given Mongo application must be spread out across nodes or occasionally even across availability zones. We already know how to ensure Mongo instances (pods) are spread out with Pod Anti-affinity rules.
+**Example 1:** Scheduling PVs of Mongo instances across Availability Zones. When Stateful Applications like Mongo are deployed, each Mongo instance gets its own PV and PVC. To be truly resilient against node failures , the PVs (actual storage) belonging to a given Mongo application must be spread out across nodes or occasionally even across availability zones. We already know how to ensure Mongo instances (pods) are spread out with Pod Anti-affinity rules.
 
 With OpenEBS, the same Pod Anti-affinity rules can be passed on and the OpenEBS Control Plane (maya) takes care of setting them on the storage pods. All you need to do is the following:
 
@@ -183,4 +183,4 @@ We would welcome more contributions to the survey mentioned above, whether you a
 
 What makes this project great is your support and feedback! Please reach out to us on Slack or comment below. [https://slack.openebs.io](https://slack.openebs.io/?__hstc=216392137.c9fd9f8df74ffca9b73b72bd793ad982.1580119894211.1580119894211.1580119894211.1&amp;__hssc=216392137.1.1580119894211&amp;__hsfp=3765904294)/
 
-Thanks to [Amit Das](https://medium.com/@amit.das?source=post_page) and [karthik satchitanand](https://medium.com/@karthik.s_5236?source=post_page). [Public domain](https://creativecommons.org/publicdomain/mark/1.0/).
+Thanks to [Amit Das](https://medium.com/@amit.das?source=post_page) and [Karthik Satchitanand](https://medium.com/@karthik.s_5236?source=post_page). [Public domain](https://creativecommons.org/publicdomain/mark/1.0/).
