@@ -2,9 +2,9 @@
 title: Monitoring ZFS-LocalPV Volumes
 author: Pawan Prakash Sharma
 author_info: It's been an amazing experience in Software Engineering because of my love for coding. In my free time, I read books, play table tennis and watch tv series
-excerpt: In this post, we will focus on how we can set up the Prometheus alert for Provisioned volumes when space utilization has reached a critical point.
-tags: OpenEBS, Localpv, Zfs
 date: 28-01-2020
+tags: OpenEBS, Localpv, Zfs
+excerpt: In this post, we will focus on how we can set up the Prometheus alert for Provisioned volumes when space utilization has reached a critical point.
 ---
 
 Before reading this post, please read my previous [post](https://blog.openebs.io/openebs-dynamic-volume-provisioning-on-zfs-d8670720181d?__hstc=216392137.7dc0753f698b104ea002a16b84268b54.1580207831486.1580207831486.1580207831486.1&amp;__hssc=216392137.1.1580207831487&amp;__hsfp=818904025) for instructions on setting up the ZFS-LocalPV for dynamically provisioning the volumes on the ZFS storage. Here, we will focus on how we can set up the Prometheus alert for Provisioned volumes when space utilization has reached a critical point.
@@ -24,9 +24,9 @@ This step uses helm as the Kubernetes package manager. If you have not setup the
     $ helm init
     Tiller (the Helm server-side component) has been installed into your Kubernetes Cluster.
     
-    Please note: by default, Tiller is deployed with an insecure 'allow unauthenticated users' policy.
+    Please note: By default, Tiller is deployed with an insecure 'allow unauthenticated users' policy.
     To prevent this, run `helm init` with the --tiller-tls-verify flag.
-    For more information on securing your installation see: https://docs.helm.sh/using_helm/#securing-your-helm-installation
+    For more information on securing your installation see: (https://docs.helm.sh/using_helm/#securing-your-helm-installation)[https://docs.helm.sh/using_helm/#securing-your-helm-installation]
     
     $ kubectl create serviceaccount --namespace kube-system tiller
     serviceaccount/tiller created

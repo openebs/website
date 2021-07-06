@@ -2,9 +2,9 @@
 title: Getting started with K3s in vSphere and OpenEBS cStor
 author: Giridhara Prasad
 author_info: Lead Engineer at Mayadata Inc. Giridhar is experienced in software test automation, chaos engineering. Currently, he's working on Litmus, an Open Source chaos engineering project.
-excerpt: In this blog, more of a tutorial, I will walk you through the steps to install K3OS and setup OpenEBS.
-tags: OpenEBS
 date: 26-03-2020
+tags: OpenEBS
+excerpt: In this blog, more of a tutorial, I will walk you through the steps to install K3OS and setup OpenEBS.
 ---
 
 [K3OS](https://github.com/rancher/k3os/) is a Linux distribution built to run lightweight Kubernetes clusters called [K3s](https://github.com/rancher/k3s/). It is specifically designed only to have what is needed to run [k3s](https://github.com/rancher/k3s).
@@ -15,34 +15,34 @@ In this blog, more of a tutorial, I will walk you through the steps to install K
 
 K3OS kernel is forked from Ubuntu-18.04 LTS, and its userspace binaries are from alpine. So, you need to select Ubuntu Linux (64 bit) as the guest operating system while creating a virtual machine.
 
-![Select guest operating system](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage.png)
+![Select guest operating system](/images/blog/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage.png)
 
 Download the latest K3OS iso file (currently v0.9.0) from its [GitHub release](https://github.com/rancher/k3os/releases) page. Attach the iso file into a virtual machine and start it with the live installation option, as shown below.
 
 Select the option *K3OS LiveCD & install* and boot the operating system.
 
-![Live installation](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-3.png)
+![Live installation](/images/blog/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-3.png)
 
 After booting up successfully, you will be landed in a login prompt. The default user in K3OS is rancher. You can login as rancher user without any password.
 
-![Login prompt](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-6.png)
+![Login prompt](/images/blog/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-6.png)
 
-After performing a live install, You need to install the Operating system into a disk and can configure the machine either as a server(Master) or an agent(worker). This can be performed by executing the command sudo k3os install.
+After performing a live install, You need to install the Operating System into a disk and can configure the machine either as a server(Master) or an agent(worker). This can be performed by executing the command `sudo k3os install`.
 
 Select option 1. Install to disk to install K3OS into the disk. In the preceding questions, set up a new password for rancher user for enabling ssh communication to the server.
 
-![Installing into disk](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-4.png)
+![Installing into disk](/images/blog/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-4.png)
 
 ### 
 **Installing into disk**
 
 You need to select either server or agent to install the relevant components in the machine. Select 1.server to deploy K3s server components. You can set up a token or cluster secret that could be used while joining K3s agents to the server.
 
-![server installation](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-7.png)
+![server installation](/images/blog/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-7.png)
 
 After completing the installation, a screen similar to the following one will be displayed.
 
-![Login prompt](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-1.png)
+![Login prompt](/images/blog/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-1.png)
 
 Thus, the K3s server can be configured successfully. In case if DHCP is not configured, you need to assign an IP address and other networking details using connmanctl utility. Login into the server as rancher user and enter the password configured in the previous step.
 
@@ -52,13 +52,13 @@ Let us find the connman network service bound to the eth0 device by executing th
 
 The above command will list the services below.
 
-![connmanctl services](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-5.png)
+![connmanctl services](/images/blog/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-5.png)
 
 After identifying the service, you can assign the IP address, netmask, gateway, and DNS server through the following command.
 
     sudo connmanctl config <ethernet service> --ipv4 manual <IP Address> <Netmask> <gateway> --nameservers <DNS Address>
 
-After executing the above command, ensure if the network is configured correctlly through ifconfig command.
+After executing the above command, ensure if the network is configured correctly through `ifconfig` command.
 
 Reboot the machine after setting up networking.
 
@@ -66,7 +66,7 @@ Reboot the machine after setting up networking.
 
 In K3s nomenclature, Kubernetes workers are called as agents. While installing k3os into a disk, you need to select the option 2. agent to configure K3s agent in the machine.
 
-![Run K3s agent](/images/blog/2020/03/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-2.png)
+![Run K3s agent](/images/blog/114---getting-started-with-k3s-in-vsphere-and-use-openebs-cstor-for-its-persistent-storage-2.png)
 
 After selecting Agent, you need to provide the URL of the server to which the agent has to be configured. The URL of the k3s server could be formed in the following way.
 
@@ -136,7 +136,7 @@ Check if all the OpenEBS components are running successfully.
 
 OpenEBS cStor engine requires external disks to be attached to the agents which group to form cStor Pools.
 
-The disks or block devices are managed by the component called *Node disk manager, shortly called as* NDM. After attaching the disks to agent machines, check the block devices by executing the following command.
+The disks or block devices are managed by the component called *Node disk manager*, shortly called as *NDM*. After attaching the disks to agent machines, check the block devices by executing the following command.
 
     k3os-1374 [~]$ kubectl get blockdevices -n openebs
     NAME                                           NODENAME     SIZE          CLAIMSTATE   STATUS   AGE

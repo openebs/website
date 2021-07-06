@@ -2,9 +2,9 @@
 title: Kubernetes StatefulSet on ppc64le using OpenEBS LocalPV provisioner
 author: Peeyush Gupta
 author_info: Peeyush, Sr. Developer Advocate, DigitalOcean, is a cloud enthusiast with 5+ years of experience in developing cloud platforms and helping customers migrate their legacy applications to the cloud.
-excerpt: In this blog, we'll explain how to install OpenEBS on Kubernetes StatefulSet running on the ppc64le platform & to using the OpenEBS LocalPV provisioner to deploy a StatefulSet.
-tags: OpenEBS, Kubernetes, Localpv
 date: 16-07-2020
+tags: OpenEBS, Kubernetes, Localpv
+excerpt: In this blog, we'll explain how to install OpenEBS on Kubernetes StatefulSet running on the ppc64le platform & to using the OpenEBS LocalPV provisioner to deploy a StatefulSet.
 ---
 
 Guest post by Peeyush Gupta, Sr. Developer Advocate, DigitalOcean
@@ -24,7 +24,7 @@ We will be deploying OpenEBS lite on this cluster. Here is an excellent blog pos
 
     kubectl apply -f https://openebs.github.io/charts/openebs-operator-lite-ppc64le.yaml
 
-Once deployed, you should be able to see the node-disk-manager and LocalPV components running. Note that node-disk-manager is not a mandatory component for provisioning LocalPV hostpath volumes . OpenEBS LocalPV provisioner can be installed and run standalone as well.
+Once deployed, you should be able to see the node-disk-manager and LocalPV components running. Note that node-disk-manager is not a mandatory component for provisioning LocalPV hostpath volumes. OpenEBS LocalPV provisioner can be installed and run standalone as well.
 
     root@openebs-k8s-server:~# kubectl  get pods --all-namespaces
     NAMESPACE     NAME                                           READY   STATUS    RESTARTS   AGE

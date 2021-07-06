@@ -2,9 +2,9 @@
 title: Handling node down/cluster scaling on ZFS LocalPV backed workloads
 author: Ranjith Raveendran
 author_info: Ranjith is working as a Software Engineer at MayaData and working in the OpenEBS project. In his free time, he listens to music, watches movies, and goes for bike riding.
-excerpt: Step-by-step blog on how MySQL app deployment runs on OpenEBS ZFS LocalPV device, handled when a node down/cluster scale down situation happens in GKE cluster
-tags: Kubernetes
 date: 01-09-2020
+tags: Kubernetes
+excerpt: Step-by-step blog on how MySQL app deployment runs on OpenEBS ZFS LocalPV device, handled when a node down/cluster scale down situation happens in GKE cluster
 ---
 
 Kubernetes is increasingly used for running production-grade stateful services. Organizations are making progress on a containerized form of their production workloads for running in Kubernetes. There are already solutions available for the containerized version of stateful applications, network, storage, etc.
@@ -46,7 +46,7 @@ In this article, we are discussing the steps that need to be performed to make t
     $ gcloud compute instances attach-disk gke-openebs-mysql-default-pool-dd23ce6b-prv2 --disk mysql-disk2 --device-name mysql-disk2 --zone=us-central1-c
 
     $ gcloud compute instances attach-disk gke-openebs-mysql-default-pool-dd23ce6b-tf5j --disk mysql-disk3 --device-name mysql-disk3 --zone=us-central1-c
-
+    ```
 4. Ensure that ZFS utils packages are installed on your worker nodes. If it is not installed, ZFS packages can be installed.
     
     ```
@@ -238,3 +238,4 @@ In this article, we are discussing the steps that need to be performed to make t
     |  3 | Charlie | River  | 2016-05-21 |
     +----+---------+--------+------------+
     3 rows in set (0.00 sec)
+    ```

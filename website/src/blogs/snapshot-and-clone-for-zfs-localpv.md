@@ -2,9 +2,9 @@
 title: Snapshot and Clone for ZFS LocalPV
 author: Pawan Prakash Sharma
 author_info: It's been an amazing experience in Software Engineering because of my love for coding. In my free time, I read books, play table tennis and watch tv series
-excerpt: In this post, we will focus on how we can create a snapshot and clone for volumes provisioned by ZFS-LocalPV.
-tags: OpenEBS, Zfs, Open Source
 date: 03-03-2020
+tags: OpenEBS, Zfs, Open Source
+excerpt: In this post, we will focus on how we can create a snapshot and clone for volumes provisioned by ZFS-LocalPV.
 ---
 
 Before reading this post, please read my previous [post](https://blog.openebs.io/openebs-dynamic-volume-provisioning-on-zfs-d8670720181d?__hstc=216392137.2b738ae93497639f7465a332e1aef247.1584602510099.1584602510099.1584602510099.1&amp;__hssc=216392137.1.1584602510100&amp;__hsfp=2870217423) for instructions on setting up the ZFS-LocalPV for dynamically provisioning the volumes on the ZFS storage. Here, we will focus on how we can create a snapshot and clone for volumes provisioned by ZFS-LocalPV.
@@ -148,7 +148,7 @@ We can create a clone volume from a snapshot and use that volume for some applic
         requests:
           storage: 4Gi
 
-The above yaml says that create a volume from the snapshot zfspv-snap. Applying the above yaml will create a clone volume on the same node where the original volume is present. The newly created clone PV will also be there on the same node where the original PV is there. Apply the clone yaml
+The above YAML says that create a volume from the snapshot zfspv-snap. Applying the above YAML will create a clone volume on the same node where the original volume is present. The newly created clone PV will also be there on the same node where the original PV is there. Apply the clone YAML
 
     $ kubectl apply -f clone.yaml 
     persistentvolumeclaim/zfspv-clone created

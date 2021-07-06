@@ -2,9 +2,9 @@
 title: Setup Continuous Integration for Helm chart
 author: Intakhab Ali
 author_info: Software Engineer at MayaData
-excerpt: In this blog, we'll set up a continuous integration of the Helm chart. We'll package the Helm chart with the help of CI tools & push them to chart registry.
-tags: Helm, OpenEBS, Tutorials, Kubernetes
 date: 05-02-2020
+tags: Helm, OpenEBS, Tutorials, Kubernetes
+excerpt: In this blog, we'll set up a continuous integration of the Helm chart. We'll package the Helm chart with the help of CI tools & push them to chart registry.
 ---
 
 [Helm](https://www.helm.sh/) is a package manager for Kubernetes that allows developers and operators to easily package, configure, and deploy applications and services onto Kubernetes clusters.
@@ -68,7 +68,7 @@ We need some private variables, where we can store the credentials and push it t
 
 Inside Travis, go to (****settings > Environment Variables****) to set the private env
 
-![Environment variables](/images/blog/2020/02/111.png)
+![Environment variables](/images/blog/environment-variables.png)
 
 ### Lifecycle 2 :
 
@@ -181,7 +181,7 @@ Below is the what the config will look like
 
 Wow! We have successfully completed all the steps. Now, our setup is ready to build and push the helm chart to the registry.
 
-![Project Dashboard](/images/blog/2020/02/0_BbWrwzeivY6Qkcgu.png)
+![Project Dashboard](/images/blog/project-dashboard.png)
 
 Here is the full Travis file
 [https://gist.github.com/inyee786/d779f347d7fa272aed4ee8457182af35.js](https://gist.github.com/inyee786/d779f347d7fa272aed4ee8457182af35.js)

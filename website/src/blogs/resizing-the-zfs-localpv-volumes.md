@@ -2,9 +2,9 @@
 title: Resizing the ZFS-LocalPV Volumes
 author: Pawan Prakash Sharma
 author_info: It's been an amazing experience in Software Engineering because of my love for coding. In my free time, I read books, play table tennis and watch tv series
-excerpt: In this post, we will focus on how we can resize the volumes provisioned by ZFS-LocalPV without restarting the application.
-tags: Localpv, OpenEBS
 date: 26-03-2020
+tags: Localpv, OpenEBS
+excerpt: In this post, we will focus on how we can resize the volumes provisioned by ZFS-LocalPV without restarting the application.
 ---
 
 Before reading this post, please read my previous [post](https://blog.openebs.io/openebs-dynamic-volume-provisioning-on-zfs-d8670720181d?__hstc=216392137.7dc0753f698b104ea002a16b84268b54.1580207831486.1580207831486.1580207831486.1&amp;__hssc=216392137.1.1580207831487&amp;__hsfp=818904025) for instructions on setting up the ZFS-LocalPV for dynamically provisioning the volumes on the ZFS storage. Here, we will focus on how we can resize the volumes provisioned by ZFS-LocalPV without restarting the application.

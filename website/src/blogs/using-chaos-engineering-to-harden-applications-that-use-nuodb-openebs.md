@@ -2,9 +2,9 @@
 title: Using Chaos Engineering to harden applications that use NuoDB, OpenEBS
 author: Sudarshan Darga
 author_info: Senior Software Engineer at MayaData
-excerpt: Developer agility is key to increasing the efficiency of software development. One of the primary areas in which development could be slowed down is the process that kicks in once the code is merged by the developers.
-tags: OpenEBS, K8s, Litmus, Kubernetes, Nuodb, NoSQL, Chaos Engineering
 date: 14-08-2019
+tags: OpenEBS, K8s, Litmus, Kubernetes, Nuodb, NoSQL, Chaos Engineering
+excerpt: Developer agility is key to increasing the efficiency of software development. One of the primary areas in which development could be slowed down is the process that kicks in once the code is merged by the developers.
 ---
 
 Developer agility is key to increasing the efficiency of software development. One of the primary areas in which development could be slowed down is the process that kicks in once the code is merged by the developers. In a typical organization with DevOps practices in place, CI/CD is set up for the application development, where developers are involved in the process until the code is merged.
@@ -15,7 +15,7 @@ This leads to an important question:
 
 - **How do we build a CI pipeline where verification and hardening of the infrastructure components can be done easily and devote more time to developing the pipeline jobs related to the application business logic?**
 
-![Building CI/CD pipeline jobs for infrastructure components should not take much time.](/images/blog/2019/08/building-cicd-pipelines-jobs.png)
+![Building CI/CD pipeline jobs for infrastructure components should not take much time.](/images/blog/building-cicd-pipelines-jobs.png)
 
 The answer to this question lies in adopting the cloud native chaos engineering into the CI/CD pipelines. Chaos Engineering is quickly becoming the most sought after method wheb building resiliency into cloud native applications. In ideal chaos engineering applications, chaos should be inserted at all layers (application, database, networking, storage, and Kubernetes), both in the CI pipelines and in production. Litmus is a chaos engineering framework designed to help with this specific need. For a good introduction to Litmus, see the Litmus docs ([https://litmusdocs.openebs.io/](https://litmusdocs.openebs.io/?__hstc=216392137.c88247b0ad679226f41f93a581cb1abd.1579859560609.1579859560609.1579859560609.1&amp;__hssc=216392137.1.1579859560609&amp;__hsfp=3765904294) )
 
@@ -23,17 +23,17 @@ In this post, we specifically want to focus on what Litmus deployers and chaos j
 
 *NuoDB is an elastic SQL database designed with distributed application deployment challenges in mind. It’s a SQL service that provides all the properties of ACID-compliant transactions and standard relational SQL language support. It’s also designed from the start as a distributed system that scales the way a cloud service has to scale, providing high availability and resiliency with no single points of failure. Different from traditional shared-disk or shared- nothing architectures, NuoDB’s presents a new kind of peer-to-peer, on-demand independence that yields high availability, low-latency, and a deployment model that is easy to manage.*
 
-![NuoDB Overview and Benefits](/images/blog/2019/08/nuodb-overview-and-benefits.png)
+![NuoDB Overview and Benefits](/images/blog/nuodb-overview-and-benefits.png)
 
 ## Full stack view of a cloud native application using NuoDB and Kubernetes
 
-![Full Stack View of an Application using NuoDB, OpenEBS and Kubernetes](/images/blog/2019/08/full-stack-view.png)
+![Full Stack View of an Application using NuoDB, OpenEBS and Kubernetes](/images/blog/full-stack-view.png)
 
 Developers and DevOps admins should really concentrate on building the test cases for the business logic involved in the application PODs. Pipelines for hardening the rest of the components of the stack, such as NuoDB implementation, OpenEBS implementation, and Kubernetes/OpenShift implementation, can be built using Litmus books. Later in this post, you will find reference implementation and example litmus books that you can use.
 
 ## Elements of a NuoDB CI/CD pipeline
 
-![GitLab CI pipeline for NuoDB on OpenShift using OpenEBS as persistent storage](/images/blog/2019/08/gitlab-cicd-pipeline-for-nuodb.png)
+![GitLab CI pipeline for NuoDB on OpenShift using OpenEBS as persistent storage](/images/blog/gitlab-cicd-pipeline-for-nuodb.png)
 
 The figure above is a sample GitLab pipeline that is running OpenShift EE 3.11 and NuoDB 3.3 EE with Litmus. The stages are:
 

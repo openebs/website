@@ -2,9 +2,9 @@
 title: Recover from Volume Multi Attach Error in On-Prem Kubernetes Clusters
 author: Prateek Pandey
 author_info: Contributor and Maintainer @OpenEBS. Software Developer at @mayadata_inc. OpenSource Enthusiast
-excerpt: In this blog, we'll talk about recovering from volume multi attach error in On-Prem Kubernetes clusters.
-tags: Kubernetes
 date: 27-08-2020
+tags: Kubernetes
+excerpt: In this blog, we'll talk about recovering from volume multi attach error in On-Prem Kubernetes clusters.
 ---
 
 If you have an unmanaged Kubernetes Cluster that you have deployed on-prem or on cloud, you would have noticed that your Stateful Application pods error out with Multi-attach error whenever the node running the stateful application is abruptly shut down.
@@ -73,7 +73,7 @@ Although these solutions are generic to recover the volume from the multi attach
 
 #### **Deleting Node Resource:**
 
-Here After deleting the Node resource below node related events will be generated which will trigger the force deletion of the pods, and they apparently will be scheduled to other available nodes:
+Here after deleting the Node resource below node related events will be generated which will trigger the force deletion of the pods, and they apparently will be scheduled to other available nodes:
 
     $ kubectl delete nodes csi-node2.mayalabs.io
     node "csi-node2.mayalabs.io" deleted

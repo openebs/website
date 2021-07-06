@@ -2,9 +2,9 @@
 title: The Myth of THE database
 author: Evan Powell
 author_info: Founding CEO of a few companies including StackStorm (BRCD) and Nexenta — and CEO & Chairman of OpenEBS/MayaData. ML and DevOps and Python, oh my!
-excerpt: In this blog I briefly discuss the disaggregation of the DB at what might be called the macro or architecture level and then at the micro or intra DB level. 
-tags: DevOps, Kubernetes, OpenEBS, Postgresql, Database
 date: 21-08-2019
+tags: DevOps, Kubernetes, OpenEBS, Postgresql, Database
+excerpt: In this blog I briefly discuss the disaggregation of the DB at what might be called the macro or architecture level and then at the micro or intra DB level. 
 ---
 
 I feel blessed these days to be on the front lines of Kubernetes becoming the preferred platform for running all workloads, including high value stateful workloads.
@@ -69,4 +69,4 @@ So if you think that disaggregation and distributed control and responsibility a
 
 I hope to see you there. [https://openebs.io/join-our-slack-community](https://openebs.io/join-our-slack-community)
 
-![Join OpenEBS channel](https://cdn-images-1.medium.com/max/800/1*L1XVBW58MDn_wksYj2nKgg.png)
+![Join OpenEBS channel](https://cdn-images-1.medium.com/max/800/openebs-channel-slack.png)

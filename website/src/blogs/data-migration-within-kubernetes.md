@@ -1,16 +1,16 @@
 ---
 title: Data Migration Within Kubernetes Clusters
 author: Sai Chaithanya
-author_info: A developer whos is always eager to learn, loves algorithms, maths, Kubernetes, and programming, Passionate towards Data Science. Enjoys playing kabaddi and traveling.
-excerpt: In this blog, we'll talk about migrating data within Kubernetes from one node to another without any downtime of the application.
-tags: Kubernetes
+author_info: A developer who is always eager to learn, loves algorithms, maths, Kubernetes, and programming, passionate about Data Science. Enjoys playing kabaddi and traveling.
 date: 02-07-2020
+tags: Kubernetes
+excerpt: In this blog, we'll talk about migrating data within Kubernetes from one node to another without any downtime of the application.
 ---
 
 In large scale environments, storage is one of the hard things to manage, and it will be the most crucial component as it has DATA with it. OpenEBS, leading open source Cloud Native Storage, makes managing storage easier in Kubernetes environments. MayaData, the company behind the OpenEBS project, has the vision of achieving data agility by transforming Kubernetes as a data plane. cStor is one of the storage engines of OpenEBS. 
 This blog is for OpenEBS users, specifically **cStor CSI** users looking to **migrate data within Kubernetes** from one node to another without any downtime of the application.
 
-![Data Migration from Kubernetes from Node2 to Node3](/images/blog/2020/07/Data-migration-diagram.png)
+![Data Migration within Kubernetes from Node2 to Node3](/images/blog/Data-migration-diagram.png)
 
 ### Create cStor Pools(CSPC):
 
@@ -58,7 +58,7 @@ Interfere CVC to know on which node data exists. When we do `kubectl get cvc <PV
       - cspc-stripe-pool-6qkw
       - cspc-stripe-pool-pn9p
 
-From the above info CStorVolumeReplicas(CVR) are scheduled on cStor pools **cspc-stripe-pool-6qkw** and **cspc-stripe-pool-pn9p** from the **status.poolInfo** since above pools are on **e2e1-node1** and **e2e1-node2** (able to find node info from cspi output)sodata also will be available on the same node. Info under spec i.e **spec.policy.replicaPoolInfo** will convey where to schedule cStorVolumeReplicas.
+From the above info CStorVolumeReplicas(CVR) are scheduled on cStor pools **cspc-stripe-pool-6qkw** and **cspc-stripe-pool-pn9p** from the **status.poolInfo** since above pools are on **e2e1-node1** and **e2e1-node2** (able to find node info from cspi output) sodata also will be available on the same node. Info under spec i.e **spec.policy.replicaPoolInfo** will convey where to schedule cStorVolumeReplicas.
 
 To know more details of CVR we can get from `kubectl get cvr -n openebs`
 

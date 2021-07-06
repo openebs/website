@@ -2,9 +2,9 @@
 title: Configuring OpenEBS to run with Security-Enhanced Linux
 author: Akhil Mohan
 author_info: Software Engineer @ MayaData, working on Cloud Native Tech.
-excerpt: In this short How-To blog, I will walk you through the steps for running OpenEBS with Security Enhanced Linux (SELinux=on).
-tags: Centos, Kubernetes, OpenEBS, Selinux, Uncategorized, Openshift, Tutorials
 date: 10-05-2019
+tags: Centos, Kubernetes, OpenEBS, Selinux, Uncategorized, Openshift, Tutorials
+excerpt: In this short How-To blog, I will walk you through the steps for running OpenEBS with Security Enhanced Linux (SELinux=on).
 ---
 
 In this short How-To blog, I will walk you through the steps for running OpenEBS with Security Enhanced Linux (SELinux=on). This applies to both OpenShift based Kubernetes Cluster or Clusters using CentOS.
@@ -25,7 +25,7 @@ OpenEBS like other cluster add-on services requires its pods to be executed with
 
 While running on OpenShift, we need to be aware of the security constraints available and to select the right security constraint for OpenEBS. There are 7 SCCs available.
 
-![Security Context Constraints (SCC) in OpenShift](/images/blog/2019/05/0_nYHmjUbmME9DgkbN.png)
+![Security Context Constraints (SCC) in OpenShift](/images/blog/security-context-constraints-(SCC)-OpenShift.png)
 
 To have OpenEBS pods running in privileged mode, add the OpenEBS service account (openebs-maya-operator) to use the privileged SCC; OpenShift will take care of setting the correct permissions (or SELinux labels) to make the container run in privileged mode. Sample commands to do this:
 
@@ -130,14 +130,14 @@ You can skip this step if using the default cStor Sparse pool.
 
 ****Step 3a****: Verify all pods are working and cStor Pools are running
 
-![List of all pods in openebs namespace after installation](/images/blog/2019/05/0_Ti37dZo8QJWX8tUt.png)
+![List of all pods in openebs namespace after installation](/images/blog/pod-lists.png)
 
 ****Step 3b****: Verify that disks available on the nodes are discovered.
 
     kubectl get disks
 
 
-![Disks detected by NDM, along with sparse disks](/images/blog/2019/05/0_2GZtoi5eEYaJjP-S.png)
+![Disks detected by NDM, along with sparse disks](/images/blog/ndm-detected-disks.png)
 
 ****Step 3c****: Create a storage pool claim using the instructions at [https://docs.openebs.io/docs/next/configurepools.html](https://docs.openebs.io/docs/next/configurepools.html)
 
@@ -169,9 +169,9 @@ Create a `cstor-pool-config.yaml` as mentioned in the docs.
 
 Apply this file `kubectl apply -f cstor-pool-config.yaml`
 
-![3 cStor pool pods will be running](/images/blog/2019/05/0_J_r91oMArxbXjZKU.png)
+![3 cStor pool pods will be running](/images/blog/cstor-pool.png)
 
-****Step 3d****: Create a new storage class using SPC as `cstor-pool1` or edit the default storage class to use the newly created SPC. I have edited the already available default storageclass.
+****Step 3d****: Create a new storage class using SPC as `cstor-pool1` or edit the default storage class to use the newly created SPC. I have edited the already available default storage class.
 
 ****Step 4: Running Percona Application****
 
@@ -184,8 +184,8 @@ Apply the yaml file
     kubectl apply -f percona-openebs-cstor-sparse-deployment.yaml
 
 
-![The percona cstor pod up and running in default namespace](/images/blog/2019/05/0_IdPQ--1fhid-9EDI.png)
+![The percona cstor pod up and running in default namespace](/images/blog/percona-pod.png)
 
 The `percona-cstor` pod will be up and running.
 
-Thanks for reading my blog! We continue to look for feedback and suggestions on how we can improve OpenEBS integration with all possible platforms and workloads. If you have any feedback on my blog or see any area of improvement with OpenEBS in general, please provide feedback below or find us on Twitter or on the OpenEBS slack community. [http://slack.openebs.io](http://slack.openebs.io/)
+Thanks for reading my blog! We continue to look for feedback and suggestions on how we can improve OpenEBS integration with all possible platforms and workloads. If you have any feedback on my blog or see any area of improvement with OpenEBS in general, please provide feedback below or find us on Twitter or on the OpenEBS slack community [http://slack.openebs.io](http://slack.openebs.io/).

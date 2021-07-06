@@ -2,9 +2,9 @@
 title: Restricting cStor pool usage within a specified threshold value
 author: Giridhara Prasad
 author_info: Lead Engineer at Mayadata Inc. Giridhar is experienced in software test automation, chaos engineering. Currently, he's working on Litmus, an Open Source chaos engineering project.
-excerpt: Learn how to restrict cStor pool usage within a specified threshold value
-tags: OpenEBS, cStor
 date: 20-05-2020
+tags: OpenEBS, cStor
+excerpt: Learn how to restrict cStor pool usage within a specified threshold value
 ---
 
 cStor is one of the storage engines provided by OpenEBS. The integral component of the cStor engine is its storage pool from which the volumes are created. The storage pool is constructed with the collection of block devices. When the pool is completely utilized, it may misbehave in such a way that the pool itself cannot be imported successfully to recover from failures.

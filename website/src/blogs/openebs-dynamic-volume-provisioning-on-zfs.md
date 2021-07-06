@@ -2,9 +2,9 @@
 title: OpenEBS Dynamic Volume Provisioning on ZFS
 author: Pawan Prakash Sharma
 author_info: It's been an amazing experience in Software Engineering because of my love for coding. In my free time, I read books, play table tennis and watch tv series
-excerpt: OpenEBS’ ZFS driver binds a ZFS file system into the Kubernetes environment and allows users to provision and de-provision volumes dynamically. This blog will demonstrate how to deploy a Percona application on the ZFS storage system with OpenEBS.
-tags: Cncf, Kubernetes, Persistent Volume, Zfs, OpenEBS
 date: 13-12-2019
+tags: CNCF, Kubernetes, Persistent Volume, ZFS, OpenEBS
+excerpt: OpenEBS’ ZFS driver binds a ZFS file system into the Kubernetes environment and allows users to provision and de-provision volumes dynamically. This blog will demonstrate how to deploy a Percona application on the ZFS storage system with OpenEBS.
 ---
 
 OpenEBS’ ZFS driver binds a ZFS file system into the Kubernetes environment and allows users to provision and de-provision volumes dynamically. This blog will demonstrate how to deploy a Percona application on the ZFS storage system with OpenEBS.
@@ -25,7 +25,7 @@ We will be using GKE with Kubernetes 1.14+ version with Ubuntu 18.4 installed on
 
     $ apt-get install -y zfsutils-linux
 
-Create and Attach the disk (if not already attached) to the nodes for setting up the ZPOOL:
+Create and attach the disk (if not already attached) to the nodes for setting up the ZPOOL:
 
     $ gcloud compute disks create <disk-name> --size <size> --type pd-standard  --zone us-central1-a
 

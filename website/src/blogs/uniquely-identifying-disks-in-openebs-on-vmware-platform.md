@@ -2,9 +2,9 @@
 title: Uniquely identifying disks in OpenEBS on VMWare platform
 author: Akhil Mohan
 author_info: Software Engineer @ MayaData, working on Cloud Native Tech.
-excerpt: A little bit of background. I work at a company called MayaData who develops a very cool Open Source software called OpenEBS (CNCF Sandbox project) that simplifies the deployment of stateful applications on Kubernetes.
-tags: OpenEBS, Vmware, Vcenter, Virtual Disk, Kubernetes
 date: 22-01-2020
+tags: OpenEBS, Vmware, Vcenter, Virtual Disk, Kubernetes
+excerpt: A little bit of background. I work at a company called MayaData who develops a very cool Open Source software called OpenEBS (CNCF Sandbox project) that simplifies the deployment of stateful applications on Kubernetes.
 ---
 
 A little bit of background. I work at a company called [MayaData](https://mayadata.io/) who develops a very cool Open Source software called OpenEBS (CNCF Sandbox project) that simplifies the deployment of stateful applications on Kubernetes. You should check it out at [www.openebs.io](http://www.openebs.io/?__hstc=216392137.84d52389458ef57b0491fddb252202d6.1570688281471.1578466343199.1578469779597.19&amp;__hssc=216392137.2.1578469779597&amp;__hsfp=2854279793).

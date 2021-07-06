@@ -2,9 +2,9 @@
 title: OpenEBS StorageClasses For ZFS-LocalPV
 author: Pawan Prakash Sharma
 author_info: It's been an amazing experience in Software Engineering because of my love for coding. In my free time, I read books, play table tennis and watch tv series
-excerpt: In this blog, I will discuss various storage classes we can use to dynamically provision the volumes backed by ZFS-LocalPV Storage Pool.
-tags: OpenEBS, Localpv, Zfs
 date: 09-09-2020
+tags: OpenEBS, Localpv, Zfs
+excerpt: In this blog, I will discuss various storage classes we can use to dynamically provision the volumes backed by ZFS-LocalPV Storage Pool.
 ---
 
 In this blog, I will discuss various storage classes we can use to dynamically provision the volumes backed by ZFS Storage Pool.
@@ -120,7 +120,7 @@ There can be a use case where we have certain kinds of ZFS Pool present on certa
          - node-1
          - node-2
 
-Here we can have ZFS Pool of name “zfspv-pool” created on the nvme disks and want to use this high performing ZFS Pool for the applications that need higher IOPS. We can use the above SorageClass to create the PVC and deploy the application using that.
+Here we can have ZFS Pool of name “zfspv-pool” created on the nvme disks and want to use this high performing ZFS Pool for the applications that need higher IOPS. We can use the above StorageClass to create the PVC and deploy the application using that.
 
 The ZFS-LocalPV driver will create the Volume in the Pool “zfspv-pool” present on the node with fewer of volumes provisioned among the given node list. In the above StorageClass, if there provisioned volumes on node-1 are less, it will create the volume on node-1 only. Alternatively, we can use `volumeBindingMode: WaitForFirstConsumer` to let the k8s select the node where the volume should be provisioned.
 

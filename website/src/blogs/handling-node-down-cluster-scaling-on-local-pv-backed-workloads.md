@@ -2,9 +2,9 @@
 title: Handling node down/cluster scaling on LocalPV backed workloads
 author: Ranjith Raveendran
 author_info: Ranjith is working as a Software Engineer at MayaData and working in the OpenEBS project. In his free time, he listens to music, watches movies, and goes for bike riding.
-excerpt: In this article, we'll discuss the steps that is getting handled when a node down/cluster scaling on LocalPV backs workloads.
-tags: LocalPV, OpenEBS
 date: 21-08-2020
+tags: LocalPV, OpenEBS
+excerpt: In this article, we'll discuss the steps that is getting handled when a node down/cluster scaling on LocalPV backs workloads.
 ---
 
 Kubernetes is increasingly used for running production-grade stateful services. Organizations are making progress on a containerized form of their production workloads for running in Kubernetes. There are already solutions available for the containerized version of stateful applications, network, storage, etc.
@@ -28,7 +28,7 @@ In this article, we discuss the steps that need to be performed to make the appl
     gke-openebs-mysql-default-pool-d55297a7-bjjp   Ready    <none>   74s   v1.16.13-gke.1
     gke-openebs-mysql-default-pool-d55297a7-j1vm   Ready    <none>   80s   v1.16.13-gke.1
     gke-openebs-mysql-default-pool-d55297a7-pvg4   Ready    <none>   85s   v1.16.13-gke.1
-
+    ```
 2. Ensure OpenEBS pods are in Running state.
     ```
     $ kubectl get pod -n openebs
@@ -42,13 +42,13 @@ In this article, we discuss the steps that need to be performed to make the appl
     openebs-ndm-operator-6cfc59b69b-684nx          1/1     Running   0          22m
     openebs-provisioner-7d9884d4ff-tfcxj           1/1     Running   0          22m
     openebs-snapshot-operator-7ff577c889-kfttj     2/2     Running   0          22m
-
+    ```
 3. Check the status of the application pod. It will be in the `Pending` state.
     ```
     $ kubectl get pod
     NAME                      READY   STATUS    RESTARTS   AGE
     percona-9fbdb8678-lncd5   0/1     Pending   0          17m
-
+    ```
 4. Label all the nodes with the same custom label used in the `nodeSelector` field in the STS app. In my case, there is no custom node label used in application deployment. So we are skipping this step.
 
 5. Attach the disk randomly to any node in the same zone. Note down the device name and node name where it is getting attached. This information will be needed in step 9.
@@ -58,7 +58,7 @@ In this article, we discuss the steps that need to be performed to make the appl
     $ gcloud compute instances attach-disk gke-openebs-mysql-default-pool-d55297a7-j1vm --disk mysql-disk2 --device-name mysql-disk2 --zone=us-central1-c
 
     $ gcloud compute instances attach-disk gke-openebs-mysql-default-pool-d55297a7-pvg4 --disk mysql-disk3 --device-name mysql-disk3 --zone=us-central1-c
-
+    ```
 6. Verify BDs are updated with new node names
     ```
     $ kubectl get bd -n openebs
@@ -66,13 +66,13 @@ In this article, we discuss the steps that need to be performed to make the appl
     blockdevice-4f51859193d333687a873af7acf8ad78   gke-openebs-mysql-default-pool-d55297a7-j1vm   32212254720   Unclaimed    Active   37m
     blockdevice-967d7816c2a2d73b91c8c6310dc70465   gke-openebs-mysql-default-pool-d55297a7-bjjp   32212254720   Claimed      Active   37m
     blockdevice-ddfc782ea661fc9007a896438f483e3d   gke-openebs-mysql-default-pool-d55297a7-pvg4   32212254720   Unclaimed    Active   37m
-
+    ```
 7. Get the PV details of the associated application
     ```
     $ kubectl get pv
     NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                     STORAGECLASS     REASON   AGE
     pvc-5cd17649-efe4-46e1-a5f3-f779b0e03999   5G         RWO            Delete           Bound    default/demo-vol1-claim   openebs-device            33m
-
+    ```
 8. Create a directory and copy the YAML spec of all the associated PVs into it like below
     ```
     $ mkdir mysql-restore
@@ -109,7 +109,7 @@ In this article, we discuss the steps that need to be performed to make the appl
     ```
     $ kubectl get pv
     No resources were found in the default namespace.
-
+    ```
 12. Now, apply the updated YAML files of the PV.
     ```
     $ kubectl apply -f  pv1.yaml 
@@ -169,3 +169,4 @@ In this article, we discuss the steps that need to be performed to make the appl
     |  3 | Charlie | River  | 2016-05-21 |
     +----+---------+--------+------------+
     3 rows in set (0.00 sec)
+    ```

@@ -1,13 +1,13 @@
 ---
 title: Resize Kubernetes StatefulSets without impact
 author: Sai Chaithanya
-author_info: A developer whos is always eager to learn, loves algorithms, maths, Kubernetes, and programming, Passionate towards Data Science. Enjoys playing kabaddi and traveling.
-excerpt: Read this post if you are a cStor CSI user who's looking to resize statefulsets without any impact of StatefulSet applcations. 
-tags: Kubernetes, OpenEBS
+author_info: A developer who is always eager to learn, loves algorithms, maths, Kubernetes, and programming, Passionate about Data Science. Enjoys playing kabaddi and traveling.
 date: 25-08-2020
+tags: Kubernetes, OpenEBS
+excerpt: Read this post if you are a cStor CSI user who's looking to resize statefulsets without any impact of StatefulSet applcations. 
 ---
 
-In large scale environments, storage is one of the hard things to manage, and it will be the most crucial component as it has DATA with it. OpenEBS, leading open source Cloud Native Storage, makes managing storage easier in Kubernetes environments. Mayadata, the company behind the OpenEBS project, has the vision of achieving data agility by transforming Kubernetes as a data plane. cStor is one of the storage engines of OpenEBS.
+In large scale environments, storage is one of the hard things to manage, and it will be the most crucial component as it has DATA with it. OpenEBS, leading open source Cloud Native Storage, makes managing storage easier in Kubernetes environments. MayaData, the company behind the OpenEBS project, has the vision of achieving data agility by transforming Kubernetes as a data plane. cStor is one of the storage engines of OpenEBS.
 
 This blog is for OpenEBS users, specifically cStor CSI users looking to resize their ***Kubernetes StatefulSets*** without any impact of StatefulSet applications.
 

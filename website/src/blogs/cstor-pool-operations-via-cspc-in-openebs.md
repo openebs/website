@@ -2,9 +2,9 @@
 title: cStor Pool Operations via CSPC in OpenEBS
 author: Ashutosh Kumar
 author_info: Software Engineer at MayaData | OpenEBS Reviewer and Contributor | CKA | Gopher | Kubernaut
-excerpt: CStor Data Engine is popular for workloads needing efficient capacity management, replicas, point in time snapshots, incremental backups, etc. The tutorial will provision striped cStor pools and perform operations on them.
-tags: Containerattachedstorage, Cspc, Kubernetes, OpenEBS, Operations
 date: 03-01-2020
+tags: Container Attached Storage, Cspc, Kubernetes, OpenEBS, Operations
+excerpt: CStor Data Engine is popular for workloads needing efficient capacity management, replicas, point in time snapshots, incremental backups, etc. The tutorial will provision striped cStor pools and perform operations on them.
 ---
 
 **An enhanced schema for OpenEBS cStor Pool Management**
@@ -51,7 +51,7 @@ The tutorial will provision striped cStor pools and perform operations on them (
 
   *for i in {5..6}; do gcloud compute instances attach-disk gke-cstor-demo-default-pool-3385ab41-hrmr — disk demo-disk-$i — device-name demo-disk-$i — zone us-central1-a; done*
 
-- Install OpenEBS 1.5. Run following to install: ( Note that block device replacement support starts from OpenEBS version 1.5. There will be a separate blog post to describe that. )
+- Install OpenEBS 1.5. Run following to install: (Note that block device replacement support starts from OpenEBS version 1.5. There will be a separate blog post to describe that.)
     ```
     kubectl apply -f [https://openebs.github.io/charts/openebs-operator-1.5.0.yaml](https://openebs.github.io/charts/openebs-operator-1.6.0.yaml)
     ```
@@ -81,7 +81,7 @@ Following command list all block devices which represent your attached disks. I 
 
     blockdevice-f6408e135943e1ee45171034655a8b88   gke-cstor-demo-default-pool-3385ab41-2ldq   107374182400   Unclaimed    Active   34s
 
-My CSPC YAML is on the following link ( you can copy/download and make changes accordingly).
+My CSPC YAML is on the following link (you can copy/download and make changes accordingly).
 
 [https://raw.githubusercontent.com/openebs/elves/a8ce5d6401f1ab829a35214ea01c284ccfb03c13/demo/cspc/cspc-stripe.yaml](https://raw.githubusercontent.com/openebs/elves/a8ce5d6401f1ab829a35214ea01c284ccfb03c13/demo/cspc/cspc-stripe.yaml)
 
@@ -226,7 +226,7 @@ NOTES:
     kubectl get blockdevice -n openebs 
     kubectl get blockdeviceclaim -n openebs
     ```
-- Whenever a pool is deleted for a CSPC by removing the node config, the associated block-device is not ‘Unclaimed’ and if the same block device needs to be used in another CSPC, the associated blockdeviceclaim needs to be cleared manually. Although, the block-device can be again used for the same CSPC.
+- Whenever a pool is deleted for a CSPC by removing the node config, the associated block-device is not ‘Unclaimed’ and if the same block device needs to be used in another CSPC, the associated blockdeviceclaim needs to be cleared manually. Although, the block-device can be again used for the same CSPC.  
 
 To unclaim a block device claim, below are the steps.
 

@@ -2,9 +2,9 @@
 title: OpenEBS Project Update and whats coming in v1.0
 author: Kiran Mova
 author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
-excerpt: My heartfelt gratitude to hundreds of contributors and thousands of users and friends of OpenEBS who have contributed to OpenEBS becoming a CNCF Sandbox Project.
-tags: Cncf, Containerattachedstorage, Storage, Kubernetes, OpenEBS
 date: 16-05-2019
+tags: Cncf, Containerattachedstorage, Storage, Kubernetes, OpenEBS
+excerpt: My heartfelt gratitude to hundreds of contributors and thousands of users and friends of OpenEBS who have contributed to OpenEBS becoming a CNCF Sandbox Project.
 ---
 
 My heartfelt gratitude to hundreds of contributors and thousands of users and friends of OpenEBS who have contributed to OpenEBS becoming a CNCF Sandbox Project.
@@ -13,7 +13,7 @@ For those of you who have just heard of OpenEBS or are curious about the current
 
 The OpenEBS vision has been pretty clear since the start: provide an Open Source Storage Solution that enables Enterprises and Solution Architects to reap the Agility benefits promised by Container Native Architectures. We decided a few years ago that delivering data agility could best be done by using the tools that deliver agility in development and operations already — cloud native architectures, including containers and Kubernetes. Specifically we decided to move Stateful Workloads and the logic that delivers storage services to protect and manage them into a microservices based architecture deployed via containers. We also set out to enable agility by fighting the lock-in of data into vendor and cloud specific storage silos that lock users into specialized systems and services that themselves require special skills to run and scale.
 
-Over the last couple of years the notion of containerizing stateful workloads and managing them via Kubernetes has become increasingly accepted. We now see a great breadth of deployments of different workloads on different flavors of Kubernetes — you can read more about how the pattern of cloud native or what we call Container Attached Storage is being adopted on the CNCF blog we helped author here: [A Year Later — Updating Container Attached Storage](https://www.cncf.io/blog/2019/05/16/a-year-later-updating-container-attached-storage/).
+Over the last couple of years the notion of containerizing stateful workloads and managing them via Kubernetes has become increasingly accepted. We now see a great breadth of deployments of different workloads on different flavors of Kubernetes — you can read more about how the pattern of cloud native or what we call Container Attached Storage is being adopted on the CNCF blog we helped author here: [A Year Later — Updating Container Attached Storage](https://www.cncf.io/blog/16/a-year-later-updating-container-attached-storage/).
 
 *Quick point that you may have already gathered: OpenEBS is completely Kubernetes native and if you know how to manage your applications in Kubernetes, you already know how to use OpenEBS.*
 
@@ -46,7 +46,7 @@ The current state of the 3 data engines supported by OpenEBS are as follows:
 
 Additional details and how each of the Data engines operate are provided in this [Presentation](https://docs.google.com/presentation/d/1mjOkAQppyd23sw7PIryxu5kSrex352bT6bINzw6mUFY/edit?usp=sharing)
 
-![OpenEBS cStor Volume](/images/blog/2019/05/cas-example-openebs-cstor-volume.png)
+![OpenEBS cStor Volume](/images/blog/cas-example-openebs-cstor-volume.png)
 
 **Standard Specifications or API:** Standardization is achieved by architecting OpenEBS as a set of microservices using Kubernetes Custom Resources and Operator patterns. The same set of tooling used to manage the applications — like Helm, Prometheus, and Grafana — can also be used to manage OpenEBS itself. The configuration of OpenEBS is completely controlled via YAMLs (Custom Resources) and volumes are provisioned via the Kubernetes Dynamic Provisioners, Storage Classes and Persistent Volume Claims.
 
@@ -75,7 +75,7 @@ OpenEBS can now be configured easily to run in:
 
 Another aspect of OpenEBS Volumes when it comes to performance is that each Volume is completely isolated and doesn’t get impacted by work/load on other Volumes. For example, a node rebuild will not degrade ALL volumes in the cluster.
 
-As OpenEBS is completely developed in user space and run as Kubernetes Pods, administrators get completely control on the resources like CPU/RAM that should be allocated to Storage. There won’t be cases of kernels hogging all the resources. Administrators also can tune for example the number of threads allocated and parallel IOs supported per Volume — tuning will have impact depending on the type of workloads (Sequential / Random).
+As OpenEBS is completely developed in user space and run as Kubernetes Pods, administrators get complete control on the resources like CPU/RAM that should be allocated to Storage. There won’t be cases of kernels hogging all the resources. Administrators also can tune for example the number of threads allocated and parallel IOs supported per Volume — tuning will have an impact depending on the type of workloads (Sequential / Random).
 
 Of course, then we have workloads that require low latency, and need to work to be deployed on nodes with limited storage available, for example a couple of NVMe devices. OpenEBS Local PVs provide the functionality to make use of the Local Storage and help with dynamic provisioning of Local PVs. OpenEBS Local PVs offer an excellent choice for cases like NuoDB where replication is inherently taken by NuoDB itself and the expectation is only to get a persistent storage with node affinity configured for the storage pods. A default storage class called — `openebs-hostpath` is available in the current release. Check it out and let us know what you think.
 

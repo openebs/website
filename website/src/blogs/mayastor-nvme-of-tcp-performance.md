@@ -179,7 +179,7 @@ From the results we can see that we are very close to the performance of the loc
 
 We are going to repeat the same test, this time, we will use two replicas. As we now have double the disks bandwidth, we expect to see that the read performance will go up. For writes, however, we actually expect a drop in performance, because we must do each write to both disks before we can acknowledge the IO.  Note that Mayastor does not cache - if you read the blog referenced above from Richard Elling you can learn why caching seems to be falling out of favor for use cases in which millions of IOPS are desired.
 
-![Mayastor nvme](/images/blog/mayastor-nvme3.png)!
+![Mayastor nvme](/images/blog/mayastor-nvme3.png)
 
 [Chart](https://lh4.googleusercontent.com/GJ7c_cZ6vuDxd9-jAnU3XxAc8L0idA9sscz2JB5XVa0taj8v56H6MSIFB56XqPQzQsy_p49-yHlwhCB8SVjZ05YfT0oRdlFt0EMBze1IDrCioqWgtWypidK9fBpb9p3ULI19Dhfa)
 

@@ -2,9 +2,9 @@
 title: Cloud Native Chaos Engineering — Enhancing Kubernetes Application Resiliency
 author: Uma Mukkara
 author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
-excerpt: In this blog, I would like to introduce a relatively new or less frequently used term called “Cloud Native Chaos Engineering”, defined as engineering practices focused on (and built on) Kubernetes environments, applications, microservices, and infrastructure.
-tags: Chaos Engineering, Cloud Native, Docker, Kubernetes, Uncategorized
 date: 25-11-2019
+tags: Chaos Engineering, Cloud Native, Docker, Kubernetes, Uncategorized
+excerpt: In this blog, I would like to introduce a relatively new or less frequently used term called “Cloud Native Chaos Engineering”, defined as engineering practices focused on (and built on) Kubernetes environments, applications, microservices, and infrastructure.
 ---
 
 ## Extending Cloud Native Principles to Chaos Engineering
@@ -71,7 +71,7 @@ Currently, the chaos hub contains charts for Kubernetes chaos and OpenEBS chaos.
 
 ### Example use cases of Litmus:
 
-The most simple use case of Litmus is application developers using Litmus in the development phase itself. Chaos Engineering has been limited to the Production environment, and lately, we are seeing this practice being adopted in CI pipelines. But with Litmus, chaos testing is possible during development as well. Like Unit Testing, Integration Testing, and Behavior-Driven Testing, Chaos Testing is a test philosophy for developers to carry out the negative test scenarios to test the resiliency of the code before the code is merged to the repository. Chaos testing can be appended very easily to the application, as shown below: Chaos testing can be appended very easily to the application, as shown below:
+The most simple use case of Litmus is application developers using Litmus in the development phase itself. Chaos Engineering has been limited to the Production environment, and lately, we are seeing this practice being adopted in CI pipelines. But with Litmus, chaos testing is possible during development as well. Like Unit Testing, Integration Testing, and Behavior-Driven Testing, Chaos Testing is a test philosophy for developers to carry out the negative test scenarios to test the resiliency of the code before the code is merged to the repository. Chaos testing can be appended very easily to the application, as shown below:
 
 ![Cloud native api for Chaos engineering](https://cdn-images-1.medium.com/max/800/0*xT_x1Wd2TFyM2LfR.gif)
 
@@ -79,7 +79,7 @@ Other use cases of Litmus are for inducing chaos in CI pipelines and production 
 
 ## Summary
 
-With the introduction of chaos operator, chaos CRDs, and chaos hub, Litmus has all the key ingredients of cloud native Chaos Engineering.
+With the introduction of chaos operator, chaos CRDs, and chaos hub, Litmus has all the key ingredients of Cloud Native Chaos Engineering.
 
 ### Important links:
 

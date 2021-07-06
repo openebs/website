@@ -2,9 +2,9 @@
 title: How to Easily Build a CI Dashboard
 author: Chandan Kumar
 author_info: Software Engineer at MayaData Inc
-excerpt: In this tutorial, we’ll go through all the necessary steps for setting up the CI dashboard
-tags: Ci Dashboard, Git, Kubernetes, Pipeline, GitLab
 date: 26-04-2019
+tags: CI Dashboard, Git, Kubernetes, Pipeline, GitLab
+excerpt: In this tutorial, we’ll go through all the necessary steps for setting up the CI dashboard
 ---
 
 A code that is never executed for users is essentially a digital waste product. To prevent this building of waste and to showcase the results of code on the Kubernetes environment, we can use the CI Dashboard, along with chaos testing.
@@ -46,7 +46,7 @@ Select the chaos test (litmus book) from the [litmus](https://github.com/openebs
 
 ### Step 5: Add script in gitlab.yaml
 
-Create a [repository](https://github.com/openebs/e2e-packet) for the execution of the platform-based pipeline. Add .gitlab.yaml file and related script to create a cluster, or use the executing cluster and run the different chaos tests in various stages of the [pipeline](https://gitlab.openebs.ci/openebs/e2e-packet/pipelines).
+Create a [repository](https://github.com/openebs/e2e-packet) for the execution of the platform-based pipeline. Add `.gitlab.yaml` file and related script to create a cluster, or use the executing cluster and run the different chaos tests in various stages of the [pipeline](https://gitlab.openebs.ci/openebs/e2e-packet/pipelines).
 
 Reference the `.gitlab.yaml` file
 [https://raw.githubusercontent.com/openebs/e2e-packet/master/.gitlab-ci.yml](https://raw.githubusercontent.com/openebs/e2e-packet/master/.gitlab-ci.yml)
