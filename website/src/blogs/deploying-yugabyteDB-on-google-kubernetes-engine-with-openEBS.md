@@ -20,8 +20,6 @@ In this blog post we’ll walk you through the necessary steps to get a 3 node Y
 
 **Why OpenEBS and YugabyteDB?**  
 Because YugabyteDB is a transactional database often used as a system of record, it needs to be deployed as a StatefulSet on Kubernetes and requires persistent storage. OpenEBS can be used for backing YugabyteDB local disks, allowing the provisioning of large-scale persistent volumes. 
-**Why OpenEBS and YugabyteDB?**
-Because YugabyteDB is a transactional database often used as a system of record, it needs to be deployed as a StatefulSet on Kubernetes and requires persistent storage. OpenEBS can be used for backing YugabyteDB local disks, allowing the provisioning of large-scale persistent volumes.
 
 Here are a few of the advantages of using OpenEBS in conjunction with a YugabyteDB database cluster:
 
@@ -44,7 +42,7 @@ Using the latest and greatest versions of the available software (as of this blo
 2. OpenEBS - [Version 2.7.0](https://github.com/openebs/openebs)
 3. A [Google Cloud Platform](https://cloud.google.com/gcp/) account
 
-**Step 1: Setting Up a Cluster on GKE**
+**Step 1: Setting Up a Cluster on GKE**  
 To deploy YugabyteDB on the Google Cloud Platform (GCP), we first have to set up a cluster using Ubuntu as our base node image.
 
 **Note**: _GKE’s Container-Optimized OS does not come with an iSCSI client pre-installed and does not allow the installation of an iSCSI client. Therefore, we’ll be using the Ubuntu with Docker image type for our nodes._
@@ -59,7 +57,7 @@ For the purposes of this demo, I used the Google Cloud Console to configure my K
 
 Click _Create_ and wait for the Kubernetes cluster to come online.
 
-**Step 2: Configure iSCSI**
+**Step 2: Configure iSCSI**  
 The iSCSI client is a prerequisite for provisioning cStor and Jiva volumes. However, it is recommended that the iSCSI client is setup and *iscsid* service is running on worker nodes before proceeding with the OpenEBS installation. In order to set up iSCSI, we’ll first need to determine the names of the nodes in our cluster
 
     $ kubectl get nodes
@@ -93,7 +91,7 @@ The iSCSI client is a prerequisite for provisioning cStor and Jiva volumes. Howe
     Mar 26 02:25:42 gke-cluster-1-default-pool-be95f6dd-5x65 iscsid[10052]: iSCSI logger with pid=10057 started!
     Mar 26 02:25:42 gke-cluster-1-default-pool-be95f6dd-5x65 systemd[1]: Started iSCSI initiator daemon (iscsid).
 
-**Step 3: Install OpenEBS**
+**Step 3: Install OpenEBS**  
 Next, let’s install OpenEBS. I’ve found that the OpenEBS Operator is one of the simplest ways to get the software up and running.
 
     $ kubectl apply -f https://openebs.github.io/charts/openebs-operator.yaml
@@ -113,7 +111,7 @@ Once the installation is completed, check and verify the status of the pods. You
     openebs-provisioner-544cb85449-w9spl            1/1     Running
     openebs-snapshot-operator-6d65b778dd-79zcn      2/2     Running
 
-**Step 4: Create and Attach Disks to Nodes**
+**Step 4: Create and Attach Disks to Nodes**  
 Our worker nodes need to have disks attached. These disks need to be unmounted and not have a filesystem on them. To accomplish this we’ll need to execute the following commands on each node.
 
     $ gcloud compute disks create disk1 --size=10GB
@@ -134,7 +132,7 @@ Our worker nodes need to have disks attached. These disks need to be unmounted a
     blockdevice-85... gke-cluster-1-default-pool-be9...  10736352768   Claimed      Active
     blockdevice-b0... gke-cluster-1-default-pool-be9...  10736352768   Claimed      Active
 
-**Step 5: Create a Storage Pool Claim**
+**Step 5: Create a Storage Pool Claim**  
 Now that we have the names of our block devices and have verified that they are active, the next step is to create a Storage Pool Claim. We’ll use this to then create a Storage Class, and finally use that for our Persistent Volume Claims. The first step in this chain of steps is to configure our Storage Pool Claim YAML file. In this demo, I’ve named it “cstor-pool1-config.yaml”.
 
     $ vim cstor-pool1-config.yaml
@@ -176,7 +174,7 @@ We can verify our storage pool with the following command:
     cstor-disk-pool-jql6   40.6M       9.90G   9.94G      Healthy   false      striped
     cstor-disk-pool-vbz5   68.2M       9.87G   9.94G      Healthy   false      striped
 
-**Step 6: Create a Storage Class**
+**Step 6: Create a Storage Class**  
 Now that we have a storage pool, let’s configure the YAML file for our storage class.  In this demo, I’ve named it “openebs-sc-rep1.yaml”.
 
     $ vim openebs-sc-rep1.yaml
@@ -214,8 +212,7 @@ Finally, let’s verify the storage class.
 
 At this point, we are now set up for Persistent Volume Claims.
 
-**Step 7: Install YugabyteDB**
-
+**Step 7: Install YugabyteDB**  
 In this final step we’ll install a 3 node YugabyteDB cluster running on top of GKE that will be backed by the OpenEBS deployment we just completed.
 
 The first step is to create a namespace.
@@ -248,7 +245,7 @@ _http://<yb-master-ui-endpoint>:7000_
 
 ![Yugabyte master](/images/blog/yugabyte-master.png)
 
-**Viewing Services and Ingress**
+**Viewing Services and Ingress**  
 A quick and visual way to check out all the services and ingress is to go to the “Services and Ingress” view in the Google Cloud Console. If you’ve made it this far you should see something like this:
 
 ![Yugabyte ingress](/images/blog/yugabyte-ingress.png)
@@ -257,7 +254,7 @@ Note: I have omitted the “Endpoints” column from the screenshot above, but i
 
 That’s it! You now have a 3 node YugabyteDB cluster running on GKE with OpenEBS storage.
 
-**Next Steps**
+**Next Steps**  
 As mentioned, MayData is the chief sponsor of the OpenEBS project. It offers an enterprise-grade OpenEBS platform that makes it easier to run stateful applications on Kubernetes by helping get your workloads provisioned, backed-up, monitored, logged, managed, tested, and even migrated across clusters and clouds. You can learn more about MayaData [here.](https://mayadata.io/)
 
 - Learn more about OpenEBS by visiting the [GitHub](https://github.com/openebs/openebs) and [official Docs](https://docs.openebs.io/) pages.
