@@ -2,7 +2,7 @@
 title: How to Install OpenEBS with Kubernetes using MiniKube
 author: Murat Karslioglu
 author_info: VP @OpenEBS & @MayaData_Inc. Lives to innovate! Opinions my own!
-tags: Container, Docker, Minikube, Kubernetes, Solutions, Openebs
+tags: Container, Docker, Minikube, Kubernetes, Solutions, OpenEBS
 date: 22-10-2017
 excerpt: Whether you are a newbie to Kubernetes looking for a small setup to start or a developer who uses Kubernetes on a daily basis, Minikube is the tool that helps you quickly set up and run a Kubernetes environment locally. 
 ---
@@ -92,7 +92,7 @@ Install curl if it’s not already installed:
 
     sudo apt install curl
 
-By default, for each virtual machine, VirtualBox creates a private network (10.0.2.x) which is connected to your laptop’s network using NAT. However, you may not be able to your VMs from your local host through SSH just yet. To access your VM, you need to configure port forwarding. In the network setting of the VM. Click on **Advanced/Port Forwarding** and create a rule with the **Host port 3022 **and **Guest Port 22**. Name it *SSH* and leave other fields blank.
+By default, for each virtual machine, VirtualBox creates a private network (10.0.2.x) which is connected to your laptop’s network using NAT. However, you may not be able to your VMs from your localhost through SSH just yet. To access your VM, you need to configure port forwarding. In the network setting of the VM. Click on **Advanced/Port Forwarding** and create a rule with the **Host port 3022 **and **Guest Port 22**. Name it *SSH* and leave other fields blank.
 
 ![Configuring port forwarding](https://cdn-images-1.medium.com/max/800/0*uDKLTcZapcEZfK3E.png)
 
@@ -108,7 +108,7 @@ On your Ubuntu VM, run the following commands:
     sudo add-apt-repository “deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable”
     sudo apt-get update
 
-![Install latest version of Docker](https://cdn-images-1.medium.com/max/800/0*-4QRgWvjit9qyKaq.png)
+![Install the latest version of Docker](https://cdn-images-1.medium.com/max/800/0*-4QRgWvjit9qyKaq.png)
 
 Confirm that you want to install the binaries from the Docker repository instead of the default Ubuntu repository by running:
 
@@ -262,11 +262,11 @@ Get the list of storage classes using the following command. Choose the storage 
 
 ![Getting the list of storage classes](https://cdn-images-1.medium.com/max/800/0*artfNnT8fZSziaKH.png)
 
-You can find samples of YAML files for stateful workloads using OpenEBS under the the `openebs/k8s/demo` folder.
+You can find samples of YAML files for stateful workloads using OpenEBS under the `openebs/k8s/demo` folder.
 
 ![Finding samples of YAML files for stateful workloads](https://cdn-images-1.medium.com/max/800/0*KCn5Z4-av-7Hevj_.png)
 
-Now you have your Kubernetes cluster up and running. In my next blog posts, I will cover installation of stateful workloads such as Cassandra and [PostgreSQL](http://containerized.me/how-to-deploy-a-postgresql-cluster-on-kubernetes-openebs/), as well as benefits of running your stateful workloads on OpenEBS. Stay tuned!
+Now you have your Kubernetes cluster up and running. In my next blog posts, I will cover the installation of stateful workloads such as Cassandra and [PostgreSQL](http://containerized.me/how-to-deploy-a-postgresql-cluster-on-kubernetes-openebs/), as well as the benefits of running your stateful workloads on OpenEBS. Stay tuned!
 
 ---
 

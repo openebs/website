@@ -15,9 +15,9 @@ These redditers are like the nights-watch-men (Operations Team) who are guarding
 
 ![Container native storage adaption curve](https://cdn-images-1.medium.com/max/800/1*11EOWUuoRjWn8pZ1uMXidg.png)
 
-With S-less (server and state) architectures on the rise and faster networks at every possible end point, we can envision building and deploying services that can scale to yet unseen/unknown/unimaginable magnitude, **but!** (*Ned Stark once told me, that anything said before but*, ..*a GoT in-joke*) **State will be the bottleneck.**
+With S-less (server and state) architectures on the rise and faster networks at every possible endpoint, we can envision building and deploying services that can scale to yet unseen/unknown/unimaginable magnitude, **but!** (*Ned Stark once told me, that anything said before but*, ..*a GoT in-joke*) **State will be the bottleneck.**
 
-What ever you do with Compute (S-less) containers, you always need to start and end with Data. Data is State. *State — is the beginning and end! the Alpha and Omega!*
+Whatever you do with Compute (S-less) containers, you always need to start and end with Data. Data is State. *State — is the beginning and end! the Alpha and Omega!*
 
 S-less will have no (busine$$) value without State! (*Well, agreed that you can offload the maintenance of State to someone else. But at what cost! Whoever owns the data, owns the $$*)
 
@@ -30,7 +30,7 @@ The real question is where to put the State!
 
 **Connected Storage**: save the State external to container hosts and use the Orchestrator Volume Plugins to attach/detach storage from SAN/NAS or Cloud Disks.
 
-There is a huge community (of cash rich vendors, a.k.a Roses and Lions!) and a majority of enterprises (consumers of storage) locked-in with these vendors are working on making this option succeed.
+There is a huge community (of cash rich vendors, a.k.a Roses, and Lions!) and a majority of enterprises (consumers of storage) locked in with these vendors are working on making this option succeed.
 
 These enterprises are stuck with Roses or Lions not because they love them, but these are the only options that are available to them. This reverberates in the comments of the Reddit thread, here is a gist of the views expressed:
 
@@ -38,15 +38,15 @@ These enterprises are stuck with Roses or Lions not because they love them, but 
 
 Applied Use Cases:
 
-- Applications that store data in file — images or text or backup
+- Applications that store data in the file — images or text or backup
 - Applications that need shared access to the data from multiple containers, running on different hosts.
 
 Concerns:
 
-- Hard to keep up with performance and capacity needs of the massively scalable applications
-- Seeing Performance Issues — when saving huge number of small sized files
+- Hard to keep up with the performance and capacity needs of the massively scalable applications
+- Seeing Performance Issues — when saving a huge number of small-sized files
 - Need to be careful about Data Integrity from shared access. Needs a lot of hand-holding for secured access
-- Not a good option for databases or high random write work-loads
+- Not a good option for databases or high random write workloads
 
 (b) Connecting to SAN or Cloud Disks (attached locally)
 
@@ -58,26 +58,26 @@ Applied Use Cases:
 Concerns:
 
 - Longer re-build times and degraded windows, as the size of the data increases.
-- Connecting one LUN per Container increases the boot-up times upto 10 minutes in worst cases
+- Connecting one LUN per Container increases the boot-up times up to 10 minutes in worst cases
 
-*Roses and Lions have been there for a very long time, fighting for the dominion of the realms, by any means necessary. But these are summer lands. They are not prepared for the Great Winters that has begun in the North.*
+*Roses and Lions have been there for a very long time, fighting for the dominion of the realms, by any means necessary. But these are summer lands. They are not prepared for the Great Winter that has begun in the North.*
 
-The “tech Enthusiasts” (or the nights watch) have seen the challenges that the massive scaled applications (Winter) can bring and are seeking for alternate options.
+The “tech Enthusiasts” (or the nights watch) have seen the challenges that the massively scaled applications (Winter) can bring and are seeking alternate options.
 
 A handful of vendors like [portworx](https://t.co/Aawo9fr4Dz), [storage_os](https://storageos.com/), [rook](https://rook.io/), [openebs](https://www.openebs.io/) are working on alternate options, what is now being termed as [Cloud Native Storage](https://blog.openebs.io/cloud-native-storage-vs-marketers-doing-cloud-washing-c936089c2b58) or [Container Native Storage](https://storageos.com/storageos-vision-cloud-native-storage-todays-modern/).
 
 *While the blogs above (and many others) dwell into what makes a storage container native, the one that stands out is — ***the flexibility***.*
 
-*The tech enthusiasts/operations personnel will have the choice of technology used to deliver their services like Kubernetes, DockerSwarm, Mesos — on Google, Amazon, Azure or Private Cloud with storage that integrates seamlessly with these cloud environments.*
+*The tech enthusiasts/operations personnel will have the choice of technology used to deliver their services like Kubernetes, DockerSwarm, Mesos — on Google, Amazon, Azure, or Private Cloud with storage that integrates seamlessly with these cloud environments.*
 
 **Container Native Storage:** storage controller functionality is containerized and can co-exist with the containers (even fly with them) across the clouds.
 
-Portworx, is leading the pack, has been successful in getting some reference customers (*we are yet to hear from them in the open forums — hard to convince the council at kings landing with just a reference!*)
+Portworx is leading the pack, has been successful in getting some reference customers (*we are yet to hear from them in the open forums — hard to convince the council at kings landing with just a reference!*)
 
 Some of the apprehensions surrounding this option are:
 
 - writing a new storage layer is hard.
-- missing some standard bench marking tools that can clearly demonstrate the performance boost obtained by this relatively new way of provisioning storage.
+- missing some standard benchmarking tools that can clearly demonstrate the performance boost obtained by this relatively new way of provisioning storage.
 - there are questions raised about Rook / CEPH performance for DBs
 - dependency on the kernel drivers (this is probably hinting at PortWorx, if I read, between the lines/comments).
 

@@ -2,28 +2,28 @@
 title: Multi-Node Kubernetes 1.6 Cluster provisioning made easy using SandBox (Vagrant box)
 author: Kiran Mova
 author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
-tags: Kubeadm, Kubernetes, Openebs, Vagrant, Virtualbox
+tags: Kubeadm, Kubernetes, OpenEBS, Vagrant, Virtualbox
 date: 23-05-2017
 excerpt: Working on OpenEBS, a containerized storage for containers which is orchestrated by Kubernetes, most of our tasks, be it development, testing and demo require us to setup and modify the nodes in Kubernetes cluster.
 ---
 
 ### Background
 
-Working on OpenEBS, a containerized storage for containers which is orchestrated by Kubernetes, most of our tasks, be it development, testing and demo require us to setup and modify the nodes in Kubernetes cluster. In addition, a multi-node cluster is a must as we go beyond the initial development and testing, to explore the high availability, scale, performance and upgrade aspects.
+Working on OpenEBS, a containerized storage for containers which is orchestrated by Kubernetes, most of our tasks, be it development, testing and demo require us to setup and modify the nodes in Kubernetes cluster. In addition, a multi-node cluster is a must as we go beyond the initial development and testing, to explore the high availability, scale, performance, and upgrade aspects.
 
-While *minikube *and *minishift* provide an easy way to setup kubernetes single node cluster — for multi-node cluster the fastest ways to get going are usually cloud or hosted solutions. ***kubeadm*** is the closest we can get to easily setup a cluster, but since it is still in alpha, we keep running into some issues like — [kubadm init v1.6.1 fails](https://github.com/kubernetes/kubeadm/issues/226)
+While *minikube *and *minishift* provide an easy way to setup Kubernetes single node cluster — for multi-node cluster the fastest ways to get going are usually cloud or hosted solutions. ***kubeadm*** is the closest we can get to easily setup a cluster, but since it is still in alpha, we keep running into some issues like — [kubadm init v1.6.1 fails](https://github.com/kubernetes/kubeadm/issues/226)
 
-*An ideal solution for a developer would be a Kubernetes Sandbox. A sandbox that can be easily setup on a laptop and can work on the move (without net connectivity.) This Sandbox should be shielded from the different API or CLI changes that happen with the frequent releases of kubeadm and kubernetes.*
+*An ideal solution for a developer would be a Kubernetes Sandbox. A sandbox that can be easily setup on a laptop and can work on the move (without net connectivity.) This Sandbox should be shielded from the different API or CLI changes that happen with the frequent releases of kubeadm and Kubernetes.*
 
-We have used Vagrant, VirtualBox and Atlas to do just that.
+We have used Vagrant, VirtualBox, and Atlas to do just that.
 ![Vagrant, VirtualBox and Atlas](https://cdn-images-1.medium.com/max/800/1*7kkviZOwgh8ePDYRjFX0mQ.png)
 
 ## Try It! It is Easy and Quick!
 
 Once you have Vagrant (1.9.1 or higher) and VirtualBox (5.1.14 or higher) installed on your laptop/machine, just do the following:
 
-Step 1 : Download the Vagrantfile from [OpenEBS Github](https://raw.githubusercontent.com/openebs/openebs/master/k8s/lib/vagrant/test/k8s/1.6/Vagrantfile)
-Step 2 : Run **vagrant up**
+Step 1: Download the Vagrantfile from [OpenEBS Github](https://raw.githubusercontent.com/openebs/openebs/master/k8s/lib/vagrant/test/k8s/1.6/Vagrantfile)
+Step 2: Run **vagrant up**
 
 Detailed instructions can be found [here](https://github.com/openebs/openebs/tree/master/k8s/lib/vagrant/test/k8s/1.6).
 
@@ -33,12 +33,12 @@ The above two steps will provision the following:
 - Ubuntu VM with Kubernetes Minion (kubeminion-01) associated with (kubemaster-01)
 - Setup *weave *as pod network
 - Setup the kubectl credentials ( admin.conf) on kubemaster-01
-- Sample kubernetes pod yaml files are located on (kubemaster-01) under the directory ( *~/demo/k8s/spec/* )
+- Sample Kubernetes pod YAML files are located on (kubemaster-01) under the directory ( *~/demo/k8s/spec/* )
 
 In addition to the above, the following OpenEBS provisioning tasks are also performed.
 
 - Install OpenEBS iSCSI FlexVolume Driver on the kubeminion-01
-- Ubuntu VMs installed with OpenEBS Maya Master and OpenEBS Storage Hosts. (If you don’t want to use the storage, you can skip installation of these VMs. Check the customization steps below).
+- Ubuntu VMs installed with OpenEBS Maya Master and OpenEBS Storage Hosts. (If you don’t want to use the storage, you can skip the installation of these VMs. Check the customization steps below).
 
 ## Customizing the Kubernetes Sandbox
 
@@ -62,12 +62,12 @@ If you are looking for an older release of Kubernetes, checkout — [kuberne
 
 Btw, the process of creating these Kubernetes Sandboxes is Open Sourced.
 
-The majority of the issues that are encountered during the kubernetes cluster setup using kubeadm are related to the software api/cli options changed across different versions of kubeadm or the interfaces between kubeadm and kubernetes. Another nagging issue is the need to have connectivity to the network.
+The majority of the issues that are encountered during the Kubernetes cluster setup using kubeadm are related to the software api/cli options changed across different versions of kubeadm or the interfaces between kubeadm and Kubernetes. Another nagging issue is the need to have connectivity to the network.
 
-These issues are resolved by having Sandbox (vagrant boxes) that pre-package the required software with versions that are compatible. The tasks of downloading the required software is automated via the scripts.
+These issues are resolved by having Sandbox (vagrant boxes) that pre-package the required software with versions that are compatible. The task of downloading the required software is automated via the scripts.
 
 Once a VM is initialized with network/IP address details, certain initialization tasks will have to be executed. These are placed in the configuration scripts (which are also pre-packaged with the sandboxes) and are invoked from the Vagrantfile itself.
 
-Currently, the Sandboxes use *weave* as a pod network, you can easily extend this to use different scheme for pod network.
+Currently, the Sandboxes use *weave* as a pod network, you can easily extend this to use a different scheme for pod network.
 
-If you like to contribute or learn more about these box generation scripts, checkout our [GitHub](https://github.com/openebs/openebs/tree/master/k8s/lib/vagrant) or join our [*Slack Channel*](http://slack.openebs.io).
+If you like to contribute or learn more about these box generation scripts, check out our [GitHub](https://github.com/openebs/openebs/tree/master/k8s/lib/vagrant) or join our [*Slack Channel*](http://slack.openebs.io).

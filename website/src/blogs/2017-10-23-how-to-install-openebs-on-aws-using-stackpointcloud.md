@@ -9,7 +9,7 @@ excerpt: What is StackPointCloud? StackPointCloud is a managed Kubernetes contro
 
 ## What is StackPointCloud?
 
-StackPointCloud is a managed Kubernetes control plane to build cloud-native stacks on AWS, Google Cloud (GKE & GCE), Azure & DigitalOcean. StackPointCloud simplifies installation and aggregation of multiple Kubernetes clusters pretty much on any platform. Even if you are an expert, provisioning your own Kubernetes stack their easy to use interface and capabilities to centralize all your deployments in one place is compelling. StackPointCloud is free for the first 30 days and $49.95 month after for any number of Kubernetes clusters.
+StackPointCloud is a managed Kubernetes control plane to build cloud-native stacks on AWS, Google Cloud (GKE & GCE), Azure & DigitalOcean. StackPointCloud simplifies installation and aggregation of multiple Kubernetes clusters pretty much on any platform. Even if you are an expert, provisioning your own Kubernetes stack their easy to use interface and capabilities to centralize all your deployments in one place is compelling. StackPointCloud is free for the first 30 days and $49.95 a month after for any number of Kubernetes clusters.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ Minimum requirements for deploying your Kubernetes clusters on StackPointCloud:
 
 ## Start your StackPoint Trial
 
-First, go to [stackpoint.io](https://stackpoint.io/) and click on **Launch a Cluster** button to start your free trial.
+First, go to [stackpoint.io](https://stackpoint.io/) and click on the **Launch a Cluster** button to start your free trial.
 
 ![Launch a Cluster button in stackpoint.io](https://cdn-images-1.medium.com/max/800/0*3Iro4mlPVlQolQfh.png)
 
@@ -53,7 +53,7 @@ After you add your credentials, click on **Submit**.
 
 ## Configure K8s Cluster
 
-On “Configure your cluster” page click the edit button on **Distribution** and choose **Ubuntu 16.04 LTS**.
+On the “Configure your cluster” page click the edit button on **Distribution** and choose **Ubuntu 16.04 LTS**.
 
 ![Configure K8s Cluster](https://cdn-images-1.medium.com/max/800/0*ty0IA_1uuDxaCQoX.png)
 
@@ -61,11 +61,11 @@ Change the **Cluster Name** something meaningful like **OpenEBS Demo**.
 
 ![Change the Cluster Name](https://cdn-images-1.medium.com/max/800/0*50cyzQI-2DZIX-AG.png)
 
-I could separate my etcd into 3 nodes dedicated cluster, but for a functional demo hosting it on the same cluster works perfectly fine. You can leave all other option as default. Now click on **Submit** to create your cluster. This should take around 5–8 minutes to bring up one Master and two Workers Kubernetes Cluster.
+I could separate my etcd into 3 nodes dedicated cluster, but for a functional demo hosting it on the same cluster works perfectly fine. You can leave all other options as default. Now click on **Submit** to create your cluster. This should take around 5–8 minutes to bring up one Master and two Workers Kubernetes Cluster.
 
 ## Import OpenEBS Helm Charts
 
-Click on **Solutions** tab on the top of the screen and select **Import Charts** from the upper left.
+Click on the **Solutions** tab on the top of the screen and select **Import Charts** from the upper left.
 
 ![Import OpenEBS Helm Charts](https://cdn-images-1.medium.com/max/800/0*vZr9hqN35SCCsx-a.png)
 
@@ -78,7 +78,7 @@ Click on **Review Repository**.
 
 ![Update chart repo](https://cdn-images-1.medium.com/max/800/0*lkT38CLmsESK2i1T.png)
 
-Make sure **Access Verified** shows ok and click on **Save Repository** button to finish adding chart repo.
+Make sure **Access Verified** shows ok and click on the **Save Repository** button to finish adding chart repo.
 
 ![Save Repository](https://cdn-images-1.medium.com/max/800/0*tS9uArAROjoOLc05.png)
 
@@ -113,7 +113,7 @@ To confirm, click on **K8s Dashboard**. This will bring up your Kubernetes Dashb
 
 ![ K8s Dashboard](https://cdn-images-1.medium.com/max/800/0*E5eYS81HcguHaG1r.png)
 
-I’ll cover some workload examples such as MongoDB, Percona, Cassandra and [Postgres](http://containerized.me/how-to-deploy-a-postgresql-cluster-on-kubernetes-openebs/) running OpenEBS on my next blogs (stay tuned).
+I’ll cover some workload examples such as MongoDB, Percona, Cassandra, and [Postgres](http://containerized.me/how-to-deploy-a-postgresql-cluster-on-kubernetes-openebs/) running OpenEBS on my next blogs (stay tuned).
 
 ---
 

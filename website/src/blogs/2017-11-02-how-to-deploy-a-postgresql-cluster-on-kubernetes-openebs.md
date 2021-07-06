@@ -2,20 +2,20 @@
 title: How to deploy a PostgreSQL Cluster on Kubernetes + OpenEBS
 author: Murat Karslioglu
 author_info: VP @OpenEBS & @MayaData_Inc. Lives to innovate! Opinions my own!
-tags: Crunchy, Kubectl, Solutions, Kubernetes, Openebs
+tags: Crunchy, Kubectl, Solutions, Kubernetes, OpenEBS
 date: 02-11-2017
-excerpt: Why Postgres on Kubernetes? Well, the answer is in the question. If you are already running Kubernetes on some form of cloud, you understand the ease-of-use, scalability and monitoring benefits of Kubernetes that you can apply to your database at scale.
+excerpt: Why Postgres on Kubernetes? Well, the answer is in the question. If you are already running Kubernetes on some form of cloud, you understand the ease-of-use, scalability, and monitoring benefits of Kubernetes that you can apply to your database at scale.
 ---
 
 ## Why Postgres on Kubernetes?
 
-Well, the answer is in the question. If you are already running Kubernetes on some form of cloud, you understand the **ease-of-use**, **scalability** and **monitoring** benefits of Kubernetes that you can apply to your database at scale.
+Well, the answer is in the question. If you are already running Kubernetes on some form of cloud, you understand the **ease-of-use**, **scalability**, and **monitoring** benefits of Kubernetes that you can apply to your database at scale.
 
 PostgreSQL is the **preferred** relational database for most developers around, although setting up a highly available Postgres cluster from scratch is always a challenge, being **cloud-native** adds a bit to the difficulty.
 
 There are many ways to run **high availability** with PostgreSQL; for a list, see the [PostgreSQL Documentation](https://wiki.postgresql.org/wiki/Replication,_Clustering,_and_Connection_Pooling). To be honest, manually setting it up is quite painful, while there are better ways available. My favorite **cloud-native** Postgres cluster deployment projects are [Crunchy Data](https://www.crunchydata.com/)’s, [Sorint.lab](https://www.sorint.it/)’s [Stolon](https://github.com/sorintlab/stolon) and [Zalando](https://jobs.zalando.com/tech/)’s [Patroni](https://github.com/zalando/patroni)/[Spilo](https://github.com/zalando/spilo).
 
-Since availability requires multi-node Kubernetes deployment instead of local Minikube setup, I’ll deploy crunchy-postgres on my existing K8s cluster on AWS with two worker nodes. If you don’t have a Kubernetes cluster yet, see the [instructions to deploy one using StackPointCloud](http://containerized.me/how-to-install-openebs-on-aws-using-stackpointcloud/). Instructions after that are same in any cloud or on-premises deployment.
+Since availability requires multi-node Kubernetes deployment instead of local Minikube setup, I’ll deploy crunchy-postgres on my existing K8s cluster on AWS with two worker nodes. If you don’t have a Kubernetes cluster yet, see the [instructions to deploy one using StackPointCloud](http://containerized.me/how-to-install-openebs-on-aws-using-stackpointcloud/). Instructions after that are the same in any cloud or on-premises deployment.
 
 ## Prerequisites
 
