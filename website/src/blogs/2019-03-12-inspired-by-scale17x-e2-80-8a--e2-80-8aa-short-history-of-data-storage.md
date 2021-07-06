@@ -24,7 +24,7 @@ You can read more about our efforts to mature OpenEBS and its docs and related m
 
 [https://blog.openebs.io/openebs-releases-0-8-1-with-stability-fixes-and-improved-documentation-374dd6b7c4a5](https://blog.openebs.io/openebs-releases-0-8-1-with-stability-fixes-and-improved-documentation-374dd6b7c4a5)
 
-Maturity and polishing is our top area of focus, and it is coming along quickly with the help of additional users and our dedicated, well-experienced engineering team. The next time you see them [on Slack](https://openebs-community.slack.com/) please say thank you; the effort level by all involved is phenomenal.
+Maturity and polishing is our top area of focus, and it is coming along quickly with the help of additional users and our dedicated, well-experienced engineering team. The next time you see them [on slack](https://openebs-community.slack.com/), please say thank you; the effort level by all involved is phenomenal.
 
 Regarding #2 — *where did the idea come from* — when trying to answer that question, I often roll the tape back a bit to see where storage has come from.
 
@@ -41,6 +41,7 @@ So, rolling the tape back to the 2000s, there were at least a few major differen
 Back then, it all sort of made sense. You needed software and systems that could combine many servers and disks into a highly resilient system to make sure your monolith continued to operate.
 
 **What has changed and how is that changing the data layer?**
+
 ![https://cdn-images-1.medium.com/max/800/0*ZJ8CaKQdxEesL7eE](https://lh3.googleusercontent.com/I8EEDuFVhtL2yoa5VUjoOOGvAO5X7o5miPjxV3fe4rombAU9Gz6ZA7sD-C3Alw8fRVpyMzCqW-OqCsGib5RyW0pi-7xJnZpdruVdGKMDeuU-P9sca_2XY6X1itGjMREag0MoLj8D)
 Storage was disrupted by flash. But now we are done with that, right? Well, not really…. Today’s scale-out storage systems almost always impose massive latency versus underlying, extremely fast NVMe connected non-volatile systems. As a result, and from a desire to avoid the complexity of running a distributed system like Cassandra on top of a distributed storage system (often with the distributed Kubernetes system in between), DAS has beaten all existing storage for many workloads.
 

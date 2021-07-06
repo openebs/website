@@ -35,16 +35,18 @@ All users running cStor with Fedora 29 are advised to upgrade to 0.8.1 release.
 **Documentation improvements**
 
 Our docs also received significant improvements. Simplified instructions and getting-started steps are provided to new users, and more troubleshooting scenarios are covered for advanced users. We have also certified cStor 0.8.1 for use with many stateful applications like GitLab, ElasticSearch, Minio, and Prometheus with the latest Helm charts and user documentation updated accordingly.
-![](/content/images/2020/01/stateful-applications-in-openebs.png)New docs — Stateful Applications with OpenEBS
+![New docs — Stateful Applications with OpenEBS](/content/images/2020/01/stateful-applications-in-openebs.png)
 User guides for backup and restore and RWM support are also important parts of this new documentation.
-![](/content/images/2020/01/backup-and-restores.png)Backup and Restore Applications using OpenEBS Persistent Volumes
+![Backup and Restore Applications using OpenEBS Persistent Volumes](/content/images/2020/01/backup-and-restores.png)
+
 **Improved MayaOnline Capabilities**
 
 MayaOnline is always adding more features. You can now debug your OpenEBS-powered Kubernetes cluster even more easily. With the recently added logs feature, OpenEBS volume and pool pod logs are now automatically uploaded and available to you on MayaOnline. You can run a pod describe of any Kubernetes resources in the topology view. This requires only two clicks to get to any Kubernetes resource-describe.
-![](/content/images/2020/01/mayaonline-topology-view.png)Kubernetes resource “describe” on MayaOnline topology view.
+![Kubernetes resource “describe” on MayaOnline topology view](/content/images/2020/01/mayaonline-topology-view.png)
+
 **Summary:**
 
-As stated before, we recommend all cStor users upgrade to 0.8.1. We always welcome your feedback, so if you would like to see a new feature or need to report a problem, write a GitHub issue at [https://github.com/openebs/openebs/issues.](https://github.com/openebs/openebs/issues)
+As stated before, we recommend all cStor users upgrade to 0.8.1. We always welcome your feedback, so if you would like to see a new feature or need to report a problem, write a GitHub issue at [https://github.com/openebs/openebs/issues](https://github.com/openebs/openebs/issues)
 
 Join our slack community at [https://slack.openebs.io](https://slack.openebs.io/?__hstc=216392137.be744436714e40be6d0b15e325bdf0b3.1580126064003.1580126064003.1580126064003.1&amp;__hssc=216392137.1.1580126064004&amp;__hsfp=3765904294)
 

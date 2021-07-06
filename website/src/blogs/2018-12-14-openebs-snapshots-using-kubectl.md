@@ -7,7 +7,7 @@ tags: Clone, Kubernetes, Snapshot, Storage
 excerpt: Kubernetes has a very “pluggable” method for adding your own logic in the form of a controller using CustomResourceDefinition(CRD).
 ---
 
-In Kubernetes 1.8, many of the changes involve storage. For example, volume snapshotting API has been released as a ‘prototype’ level. It is external to core Kubernetes API’s, and you can find the project under the snapshot subdirectory of the [kubernetes-incubator/external-storage](https://github.com/kubernetes-incubator/external-storage) repository. There is, however, an ongoing proposal to add them as a core Kubernetes API here. For a detailed explanation of the implementation of volume snapshotting, you can read the design proposal here. The prototype currently supports GCE PD, AWS EBS, OpenStack Cinder, Gluster, Kubernetes hostPath, and OpenEBS volumes. It is important to note that aside from hostPath volumes, the logic for snapshotting a volume is implemented by cloud providers and core Kubernetes storage providers. The purpose of volume snapshotting in Kubernetes is to provide a common API for negotiating with different cloud providers in order to take snapshots and restore it as new persistent volume.
+In Kubernetes 1.8, many of the changes involve storage. For example, volume snapshotting API has been released as a ‘prototype’ level. It is external to core Kubernetes API’s, and you can find the project under the snapshot subdirectory of the [kubernetes-incubator/external-storage](https://github.com/kubernetes-incubator/external-storage) repository. There is, however, an ongoing proposal to add them as a core Kubernetes APIs here. For a detailed explanation of the implementation of volume snapshotting, you can read the design proposal here. The prototype currently supports GCE PD, AWS EBS, OpenStack Cinder, Gluster, Kubernetes hostPath, and OpenEBS volumes. It is important to note that aside from hostPath volumes, the logic for snapshotting a volume is implemented by cloud providers and core Kubernetes storage providers. The purpose of volume snapshotting in Kubernetes is to provide a common API for negotiating with different cloud providers in order to take snapshots and restore it as new persistent volume.
 
 Kubernetes has a very `pluggable` method for adding your own logic in the form of a controller using [CustomResourceDefinition](https://kubernetes.io/docs/concepts/api-extension/custom-resources/#customresourcedefinitions)(CRD). VolumeSnapshot and VolumeSnapshotData are the two new CustomResources, and will be registered with the Kubernetes API server. This [user guide](https://github.com/kubernetes-incubator/external-storage/blob/master/snapshot/doc/user-guide.md#lifecycle-of-a-volume-snapshot-and-volume-snapshot-data) provides an overview of the lifecycle of these two resources. **`Snapshot-controller`** will create a CRD for each of these two CustomResources when it starts and will also watch for VolumeSnapshot resources. It will take snapshots of the volumes based on the referred snapshot plugin. **`Snapshot-provisioner`** will be used to restore a snapshot as a new persistent volume via dynamic provisioning.
 
@@ -138,7 +138,7 @@ Note that this uses the openebs-standard StorageClass, which will dynamically pr
      persistentVolumeClaim:
      claimName: demo-vol1-claim
 
-Once the busybox pod is in a running state, we are ready to take a snapshot. After we create the VolumeSnapshot resource below, the snapshot-controller will attempt to create the snapshot by interacting with the OpenEBS snapshot API’s. If successful, the VolumeSnapshot resource is bound to a corresponding VolumeSnapshotData resource. To create the snapshot, we need to reference the PersistentVolumeClaim name in the snapshot spec that references the data we want to capture.
+Once the busybox pod is in a running state, we are ready to take a snapshot. After we create the VolumeSnapshot resource below, the snapshot-controller will attempt to create the snapshot by interacting with the OpenEBS snapshot APIs. If successful, the VolumeSnapshot resource is bound to a corresponding VolumeSnapshotData resource. To create the snapshot, we need to reference the PersistentVolumeClaim name in the snapshot spec that references the data we want to capture.
 
     $ cat snapshot.yaml
     apiVersion: volumesnapshot.external-storage.k8s.io/v1
@@ -155,7 +155,7 @@ Once the busybox pod is in a running state, we are ready to take a snapshot. Aft
     NAME            AGE 
     snapshot-demo   18s
 
-The conditions listed towards the bottom of the output below show that our snapshot was indeed created successfully. We can also check the snapshot-controller’s logs to verify this.
+The conditions listed towards the bottom of the output below show that our snapshot was indeed created successfully. We can also check the snapshot controller’s logs to verify this.
 
     $ kubectl get volumesnapshot -o yaml
      apiVersion: v1

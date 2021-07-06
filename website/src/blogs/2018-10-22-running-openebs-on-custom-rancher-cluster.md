@@ -41,7 +41,7 @@ Sample Output:
     root@worker1 ~ # sudo docker exec kubelet iscsiadm -V
     iscsiadm version 2.0–874
 
-Ifyour output is similar to the sample above, then you have to remove iscsi from the node. OpenEBS target will use the iscsi inside the kubelet. Run the commands below to remove iscsi from the node.
+If your output is similar to the sample above, then you have to remove iscsi from the node. OpenEBS target will use the iscsi inside the kubelet. Run the commands below to remove iscsi from the node.
 
     service iscsid stop
     sudo apt remove open-iscsi
@@ -86,22 +86,23 @@ Now if all prerequisites have been met, go ahead with setting up the cluster. Yo
 
 - Once you have deployed Rancher, you should be able to access the UI. Login to your rancher UI using your credentials
 
-![https://cdn-images-1.medium.com/max/800/0*9hGJnGOsGQCTQHOT](https://lh5.googleusercontent.com/GPlkMiXFCbx2NDcEpBnPts6RyogvKkba2FB-KXK8MJGPNSIUPtc8m0XDgfyEHrFd4gbt0m_pnZlrjJxJyZMpt3n8TG6HleaK-PXx5w2sK79acOpDEG75qx1_ADiqr-IYKiptoWWnEDjmVZJvzg)
+![rancher-ui](/public/images/blog/rancher-ui-1.png)
 - Now click on the global tab and then click on add cluster button. We should see the `add cluster` window.
 
 Example:
-![https://cdn-images-1.medium.com/max/800/0*wvgcOh-f-sej1z7K](https://lh4.googleusercontent.com/8I-bx0annuUna6yqZW4WBKx7B2yJ1HZqAULkMU8Cy0ml4qrDOg8uDdlgvBllT3TrLDLjguVzih3NWm21wa1LEryF-DJJ4C_xMYbrmLvTmvQCvbP38xWNgEGTiR_hHuD78ja3avF1eqh3EHDFkQ)
+![rancher-ui-example1](/public/images/blog/rancher-ui-2.png)
 - Under the add cluster option, click on the custom. Then give the cluster a name. You can customize the cluster under Cluster Options. You can choose Kubernetes version, Network provider and other options. Here, I have selected Kubernetes Version as V.1.11.2-rancher1–1, Network provider as Canal and Cloud Provider as none.
 
 Example:
-![https://cdn-images-1.medium.com/max/800/0TUdHPrwikhS2ayyc](https://lh3.googleusercontent.com/HdRA1u7VmMHKX0x3zLGMLCenORq8wyJaOCMo7QROGW77Id8m9gOTLB_Pyj444jYmcE9-MOsyTrt7kDtqx8hsiTVcM63bAb_qGZpOZnOgUSLM6WcvSOxy1FXN2X8DNbfFjZNhno9dLPfJpZwLEw)![https://cdn-images-1.medium.com/max/800/0WmuNv-q8y2DWCrtf](https://lh4.googleusercontent.com/iFYGuhO9hdQhd8yx3nnznxRIsLQf6jtrcDgyPX6XayuI0JTC0zM4tsCzVrN6HEqZys4qKYHW1rMUiFnoEvPUlFO_ikh2dCKRWt6yjpvVShC8xE7enhy0bpyeNSG1y_KhcNATX70YGdDUulqCZg)
+![rancher-ui-example2](/public/images/blog/rancher-ui-3.png)
+![https://cdn-images-1.medium.com/max/800/0WmuNv-q8y2DWCrtf](/public/images/blog/rancher-ui-4.png)
 - Now, click on the Next button; it will open another page. On this page, you can select node roles like etcd/ Control Plane / Worker. Click on `Show advanced options.` Now add the i/p address of the node in the Internal Address section.
 
 Example:
-![https://cdn-images-1.medium.com/max/800/0vdEKTs_03NjU_ABz](https://lh5.googleusercontent.com/PxmfXKEX56zJs9wZtN2SE0ssvtVvU74FU12HPhuUu4f0dT1Ctr3pDRe_VBQGsFVCnJWE54CMa3Qp9kDaPa1oXggWyaza90-7HAkwWSyEqm4aCeZZwPths6zNSeBX2TqCyJNA5MsT9SjqCbdkSw)
+![rancher-ui-example3](/public/images/blog/rancher-ui-5.png)
 - Copy the command mentioned in the page to the node, which will be added to the cluster. Once you run the command, the page will show `1 new node registered.`
 
-![https://cdn-images-1.medium.com/max/800/0RWPLUNaKkqjytKS2](https://lh3.googleusercontent.com/Nwmz-UPUTa_BGznUiBU_E3KmMNU-1yvh9f1Y3j5M-3hHssizRSMtCNlejgB_qDmVxUeoLDuXqT9EZDtbIuHuCq-7KP66f8scl6f2xE_H_dzd1oFbmEyoX-SUiBFBcjzRF2nhmyQQrd_9Jdx7-w)
+![rancher-ui-example4](/public/images/blog/rancher-ui-6.png)
 - Now click on *Done*. Follow the same process to add more nodes to the cluster.
 - Once all the nodes are added, you can deploy OpenEBS on the cluster.
 

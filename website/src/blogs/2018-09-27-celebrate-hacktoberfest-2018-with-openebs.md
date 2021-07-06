@@ -9,7 +9,7 @@ excerpt: The 5th edition of Hacktoberfest is around the corner and it will be th
 
 The 5th edition of [Hacktoberfest](https://hacktoberfest.digitalocean.com/) is around the corner and it will be the second [Hacktoberfest](https://openebs.io/hackfests/hacktoberfest-2018) experience for the OpenEBS community. All of us are excited!
 
-In August 2017, OpenEBS community began growing and it was a beginning to building a strong foundation for an open source project. We were first introduced to Hacktoberfest by friends & peers at the DigitalOcean Bangalore Meetup and were interested in participating in it. We enlisted OpenEBS as one of the projects participating in Hacktoberfest 2017. We were pleasantly surprised with the participation and enthusiasm that Hacktoberfest attracts from developers around the world. The result was that the OpenEBS community grew by 20+ new contributor friends with ~100 PRs.
+In August 2017, OpenEBS community began growing and it was a beginning to building a strong foundation for an open source project. We were first introduced to Hacktoberfest by friends & peers at the DigitalOcean Bangalore Meetup and were interested in participating in it. We enlisted OpenEBS as one of the projects participating in Hacktoberfest 2017. We were pleasantly surprised by the participation and enthusiasm that Hacktoberfest attracts from developers around the world. The result was that the OpenEBS community grew by 20+ new contributor friends with ~100 PRs.
 
 We are excited to announce that OpenEBS would be participating in Hacktoberfest 2018 as well! Look for latest updates [here](https://openebs.io/hacktoberfest)
 
@@ -17,8 +17,8 @@ We are excited to announce that OpenEBS would be participating in Hacktoberfest 
 
 GitHub makes it really simple for contributors to get started. Just search for the tag “[hacktoberfest](https://github.com/search?l=&amp;q=state%3Aopen+label%3Ahacktoberfest&amp;ref=advsearch&amp;type=Issues&amp;utf8=%E2%9C%93)” at the GitHub level. Within a few minutes, you can filter tens of issues to start working on that which matches your interest. First timers can look out for “good first time” tag. Anyways, here are the quick steps for you if you are interested in participating.
 
-1. Register at [DigitalOcean](https://hacktoberfest.digitalocean.com/) website and provide your mailing address so that their system knows you are participating and can send you the t-shirt and stickers later. Well, we all want them, matter of pride 🙂
-2. Next, filter the issues with[ hacktoberfest](https://github.com/search?l=&amp;q=state%3Aopen+label%3Ahacktoberfest&amp;ref=advsearch&amp;type=Issues&amp;utf8=%E2%9C%93) tag, and further filter out based on language, documentation, good first issue etc
+1. Register at [DigitalOcean](https://hacktoberfest.digitalocean.com/) website and provide your mailing address so that their system knows you are participating and can send you the t-shirt and stickers later. Well, we all want them, a matter of pride 🙂
+2. Next, filter the issues with [hacktoberfest](https://github.com/search?l=&amp;q=state%3Aopen+label%3Ahacktoberfest&amp;ref=advsearch&amp;type=Issues&amp;utf8=%E2%9C%93) tag, and further filter out based on language, documentation, good first issue, etc
 3. Pick up few issues and let the author of the issues know that you want to fix them and start the interaction.
 4. Send a PR and with the continued interaction, you will eventually be able to get your PR merged. After sometime, your t-shirt and stickers will arrive. In the meantime enjoy working on more issues you enjoy solving.
 
@@ -44,7 +44,7 @@ We hope to have even greater success in this year’s edition of Hacktoberfest. 
 ***11:00–12:00 PM — On-demand 30 minute sessions such as Kubernetes 101 / OpenEBS 101***
 ![Onsite Hacktoberfest workshops in Bangalore](/public/images/blog/event-details.png)
 
-To help the beginners start their open-source journey, there will be 101-level courses in the mornings. All workshop participants will receive help from our team in getting started, and they all get to win the special edition t-shirts. Bring your own hacking gear, such as laptops!
+To help beginners start their open-source journey, there will be 101-level courses in the mornings. All workshop participants will receive help from our team in getting started, and they all get to win the special edition t-shirts. Bring your own hacking gear, such as laptops!
 
 *As you will be lost in code while you are at the open-source cafe, we will bring the lunch to your hacking table :) Submit a PR on those days at the venue, collect the hacktoberfest t-shirt from the OpenEBS team, and if you order a beverage, that beer is on us. Yes, bring it on! :)*
 

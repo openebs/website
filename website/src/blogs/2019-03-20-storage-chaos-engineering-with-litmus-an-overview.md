@@ -19,7 +19,7 @@ Though Litmus has been designed to be easily extendable to work with different p
 
 **The Litmus Job Template**
 
-***Note**: To set the context (though it may already be known), a majority of the litmus tests are essentially ansible playbooks being executed from within a runner pod, which in turn is managed by the Kubernetes job controller.*
+***Note**: _To set the context (though it may already be known), a majority of the litmus tests are essentially ansible playbooks being executed from within a runner pod, which in turn is managed by the Kubernetes job controller._*
 
 One of the requirements of the “deployable” litmus test or chaos experiment is that the *control variables *(typically, chaos params — considering that different applications, storage engines, PV component versions, and deployment models are evaluated against a particular chaos sequence) and* independent variables *(PV, application and K8s deployment params) should be defined in the test artifact, which, in this case, is a Kubernetes job specification. This is achieved by specifying them as pod/container environment (ENV) variables. In most cases, the final object (cluster resource) of chaos is derived from the application or persistent volume claim info passed in the job.
 ![](/content/images/2020/01/sample-litmus-chaos-test.png)Sample Litmus Chaos Test Variables/Tunables

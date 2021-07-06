@@ -8,13 +8,13 @@ excerpt: NuoDB is a container-native adaptive-scale distributed SQL database des
 ---
 
 **NuoDB** is a container-native adaptive-scale distributed SQL database designed with distributed application deployment challenges in mind. The NuoDB database is ANSI SQL compliant and seen in a new category called “NewSQL.” If you are not familiar, what is different with NewSQL solutions is explained in a 2016 research paper [here](https://sigmodrecord.org/publications/sigmodRecord/1606/pdfs/07_forum_Pavlo.pdf).
-Some of the solutions in this category are [Amazon Aurora](https://en.wikipedia.org/wiki/Amazon_Aurora), [Google Spanner](https://en.wikipedia.org/wiki/Google_Spanner), TiDB, [CockroachDB](https://en.wikipedia.org/wiki/Cockroach_Labs), [Altibase](https://en.wikipedia.org/wiki/Altibase), [Apache Ignite](https://en.wikipedia.org/wiki/Apache_Ignite), [GridGain](https://en.wikipedia.org/wiki/GridGain_Systems), [Clustrix](https://en.wikipedia.org/wiki/Clustrix), [VoltDB](https://en.wikipedia.org/wiki/VoltDB), [MemSQL](https://en.wikipedia.org/wiki/MemSQL), [NuoDB](https://en.wikipedia.org/wiki/NuoDB), [HarperDB](https://en.wikipedia.org/w/index.php?title=HarperDB&amp;action=edit&amp;redlink=1), and [Trafodion.](https://en.wikipedia.org/wiki/Trafodion)
+Some of the solutions in this category are [Amazon Aurora](https://en.wikipedia.org/wiki/Amazon_Aurora), [Google Spanner](https://en.wikipedia.org/wiki/Google_Spanner), TiDB, [CockroachDB](https://en.wikipedia.org/wiki/Cockroach_Labs), [Altibase](https://en.wikipedia.org/wiki/Altibase), [Apache Ignite](https://en.wikipedia.org/wiki/Apache_Ignite), [GridGain](https://en.wikipedia.org/wiki/GridGain_Systems), [Clustrix](https://en.wikipedia.org/wiki/Clustrix), [VoltDB](https://en.wikipedia.org/wiki/VoltDB), [MemSQL](https://en.wikipedia.org/wiki/MemSQL), [NuoDB](https://en.wikipedia.org/wiki/NuoDB), [HarperDB](https://en.wikipedia.org/w/index.php?title=HarperDB&amp;action=edit&amp;redlink=1), and [Trafodion](https://en.wikipedia.org/wiki/Trafodion)
 
 NuoDB has a distributed object architecture that works in the cloud, which means that in order to scale-out the database, a new node can be added and database runs faster. That’s why it represents the perfect example of a new-gen cloud-native architecture and a solution for the containerized applications running on Kubernetes.
 
 NuoDB provides all the properties of ACID-compliant transactions and standard relational SQL language support. It’s designed from the start as a distributed system that scales the way a cloud-native service is expected to scale, providing **continuous availability (CA)** and resiliency with no single points of failure. Different from traditional shared-disk or shared-nothing architectures, NuoDB presents a new kind of peer-to-peer, on-demand independence that yields CA, low-latency, and a deployment model that is easy to manage. The chart below is a simple comparison and decision chart from the [*NuoDB website*](https://www.nuodb.com/product/database-comparison).
 
-![](https://cdn-images-1.medium.com/max/800/1*lQzxj0rx5WUBhinV2oaMsQ.jpeg)Choosing the right database
+![Choosing the right database](https://cdn-images-1.medium.com/max/800/1*lQzxj0rx5WUBhinV2oaMsQ.jpeg)
 
 ### Quick Notes on the NuoDB Architecture
 
@@ -39,7 +39,7 @@ Running applications on traditional virtualized systems or bare metal are differ
 - NuoDB backups can be taken at the storage level and stored in S3. Using the backup/restore capabilities of OpenEBS, NuoDB instances can be moved across clouds or Kubernetes clusters seamlessly. There is no vendor lock-in problem when OpenEBS is used as the underlying storage.
 - Last, but not least — OpenEBS is 100% open source and in userspace.
 
-![https://cdn-images-1.medium.com/max/800/1*n8y6QhOqwWgL6vvs6okowA.png](https://lh4.googleusercontent.com/Z0-oN7vZMN7b3VmYtJXIR9Gd_Fj8RUjUyS-gBwIs12hOQfe1BxwNvSNU0HeSZzoEAjcZ0iu86k5gzSik8bWoj51KN4ZMmnKa3-lt0mj7VdFB_gIvlZ8-lx8kuXuNCpHpmywdYBff)Typical production deployment of NuoDB using OpenEBS.
+![https://cdn-images-1.medium.com/max/800/1*n8y6QhOqwWgL6vvs6okowA.png](https://lh4.googleusercontent.com/Z0-oN7vZMN7b3VmYtJXIR9Gd_Fj8RUjUyS-gBwIs12hOQfe1BxwNvSNU0HeSZzoEAjcZ0iu86k5gzSik8bWoj51KN4ZMmnKa3-lt0mj7VdFB_gIvlZ8-lx8kuXuNCpHpmywdYBff) Typical production deployment of NuoDB using OpenEBS.
 Let’s deploy our first NuoDB instance on our existing small, three-node OpenShift K8s cluster with OpenEBS.
 
 **Note:** NuoDB Community Edition supports only 1 SM and 3 TE configurations. To increase the number of SMs and TEs, the Enterprise edition should be used instead.
@@ -121,6 +121,7 @@ Connecting the Kubernetes cluster to MayaOnline provides enhanced visibility of 
 6. Copy the command and run it on your OpenShift cluster.
 
 ![https://cdn-images-1.medium.com/max/800/1*Ly8vOA6QI9JKn_s4ds5UXQ.png](https://lh6.googleusercontent.com/AqnF8XokVF8RH8fnZ18AeC4MGFD5NPpccIwlkOelrc5ZATBAK3WIkNYc98yWEmZvIqJD3KFUTqvc1xxvUEDMmYN5ifTe7BsdwPzp4ZBi1WSp5kp17zp2ctqeyjvmXlGYRBcchYtv)
+
 ### Configure cStor Pool
 
 After OpenEBS is installed, cStor pool must be configured. If cStor Pool is not already configured in your OpenEBS cluster, this can be done following the instructions [here.](https://docs.openebs.io/docs/next/configurepools.html) A sample YAML named openebs-config.yaml used for configuring cStor Pool is provided in the Configuration details below. During cStor Pool creation, make sure that the maxPools parameter is set to >=3.
@@ -175,15 +176,15 @@ You must configure a StorageClass to provision a cStor volume on a given cStor p
 ### Import the NuoDB CE Template
 
 Import the NuoDB CE template *ce-template-persistent.yaml* into OpenShift by navigating to the “Overview” Tab, clicking “Import YAML/JSON,” and running the import.
-![https://cdn-images-1.medium.com/max/800/1*T_lFODN53hH1TG4BJSwQTg.png](https://lh5.googleusercontent.com/Zhc3-gEZhH99qZn7kcq9cwoydndCqUX19I4yCRYuRA-p2i7jK2QwZntz75OMZMxNj9WA4xL5MnyCJazJY3H7qpkCHUzAtRdumamFb_Mfwwi_VxRJlFlaoHtrvcJ8WtEF-3FKybTV)Import YAML Template
+![https://cdn-images-1.medium.com/max/800/1*T_lFODN53hH1TG4BJSwQTg.png](https://lh5.googleusercontent.com/Zhc3-gEZhH99qZn7kcq9cwoydndCqUX19I4yCRYuRA-p2i7jK2QwZntz75OMZMxNj9WA4xL5MnyCJazJY3H7qpkCHUzAtRdumamFb_Mfwwi_VxRJlFlaoHtrvcJ8WtEF-3FKybTV) Import YAML Template
 Follow the installation prompts and change the “SM persistent storage class name” and “Admin persistent storage class name” to *openebs-nuodb*.
-![https://cdn-images-1.medium.com/max/800/1*czUYUHGurALlprKXfNOFRw.png](https://lh6.googleusercontent.com/IFU0DD7TkcwEtSxRkr1FBbfDuYJ1ByFCia8-zLyue_PmJ_R3yHvN5AZ6QaESnxEaT-r0A-O6h2TgoCmJGSYIu1q701WtANmhyZ0V2AzwVyKC968oY_0UhftirsgWZBfVvDE6bQ19)Set Persistent Storage Class Name
+![https://cdn-images-1.medium.com/max/800/1*czUYUHGurALlprKXfNOFRw.png](https://lh6.googleusercontent.com/IFU0DD7TkcwEtSxRkr1FBbfDuYJ1ByFCia8-zLyue_PmJ_R3yHvN5AZ6QaESnxEaT-r0A-O6h2TgoCmJGSYIu1q701WtANmhyZ0V2AzwVyKC968oY_0UhftirsgWZBfVvDE6bQ19) Set Persistent Storage Class Name
 Click “Create,” and shortly after you will see one pod each for the Administrative Service (Admin), Storage Manager (SM), Transaction Engine (TE) and Insights processes started under the *nuodb* namespace with volumes provided by OpenEBS.
 ![https://cdn-images-1.medium.com/max/800/1*T0iJ_JrW2HOXc5bAuI6vYw.png](https://lh4.googleusercontent.com/rTR2I1vN0xsfQKgYZ3oitHRVYw_87D9F8zDcDPHS_JN17v_BPJpYMiAy2uDuRXsi9VUhkQw6XxQVu36ovWNzATdIcSh0-dPY89F-Wc9RxfibatLorRMpFmx5OVGpDF2C3NPbOyjU)NuoDB Successfully Deployed
 #### *What’s Next?*
 
 If you would like to read more about the design considerations, running test loads with YCSB, monitoring Insights or volume metrics through MayaOnline, and inserting some chaos engineering with Litmus, you can find a detailed solution doc on MayaData’s website under the Resources section [here](https://mayadata.io/).
-![https://cdn-images-1.medium.com/max/800/1*CQD4ylzM8UcXl5QrgX5Ibg.png](https://lh6.googleusercontent.com/ogccZIDALEqW0YTKV_wbBfJNSU9dMHG24iCTYAdx1v3WF4grj2R3YYUj-4R4wMHenuEXtiwC_s3052ROCQR_8C3dpTjhj6-Qm4QUwB_PE7USp6RxcmJRYftoUtqNqm-X8qQZooYQ)NuoDB and OpenEBS Solution Guide Available on MayaData.io
+![https://cdn-images-1.medium.com/max/800/1*CQD4ylzM8UcXl5QrgX5Ibg.png](https://lh6.googleusercontent.com/ogccZIDALEqW0YTKV_wbBfJNSU9dMHG24iCTYAdx1v3WF4grj2R3YYUj-4R4wMHenuEXtiwC_s3052ROCQR_8C3dpTjhj6-Qm4QUwB_PE7USp6RxcmJRYftoUtqNqm-X8qQZooYQ) NuoDB and OpenEBS Solution Guide Available on MayaData.io
 Next, I plan to cover some 2nd-day operations for NuoDB using OpenEBS snapshots, clones, backup, recovery using MayaOnline functionalities such as topology and access logs. If you’d like to see or discuss anything not covered here, feel free to comment on my blog or contact me via Twitter @muratkarslioglu.
 
 ---

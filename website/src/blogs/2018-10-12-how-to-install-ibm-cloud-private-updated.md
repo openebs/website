@@ -9,7 +9,7 @@ excerpt: In this blog, I will provide step-by-step instructions on how to config
 
 It’s been some time since I wrote about [IBM Cloud Private 2.1](http://containerized.me/introduction-to-ibm-cloud-private/), although I’ve been heavily using it in my lab.
 
-Improvements from version 1.2 to 2.1 were massive. We have also noticed the changes in the OpenEBS user community, according to our surveys usage of ICP increased dramatically. The Community Edition of the ICP 3.1 came out three weeks ago. CE container images were released with a slight delay of two weeks after the enterprise version announced. And I believe that it deserves an updated blog to talk about the steadily advancing developer experience (and my favorite new features).
+Improvements from version 1.2 to 2.1 were massive. We have also noticed the changes in the OpenEBS user community, according to our surveys usage of ICP increased dramatically. The Community Edition of the ICP 3.1 came out three weeks ago. CE container images were released with a slight delay of two weeks after the enterprise version was announced. And I believe that it deserves an updated blog to talk about the steadily advancing developer experience (and my favorite new features).
 
 In this blog, I will provide step-by-step instructions on how to configure a Kubernetes-based managed private cloud using ICP. I will also highlight the top improvements since the last version that makes me excited.
 

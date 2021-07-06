@@ -25,7 +25,7 @@ As one CTO evaluating OpenEBS, put it:
 
 > `I love OpenEBS Architecture, it helps remove the layers from the application delivery process. There is no need for a dedicated storage administrator or team. I can easily scale up and down this solution.`
 
-In the spirit of Open Source Transparency, the CTO reached out to us to share his admiration for OpenEBS and express his concern over performance of OpenEBS running completely in User space. The fact that none of the other Storage Providers do this and when push comes to shove, CTO office needs to convince the DevOps Teams to pick OpenEBS over traditional/non-cloud native Storage Systems. DevOps Teams are aware of exactly where those legacy solutions break due to their distributed nature, and they also hold a long sustained perception of Kernel being faster than User space.
+In the spirit of Open Source Transparency, the CTO reached out to us to share his admiration for OpenEBS and express his concern over the performance of OpenEBS running completely in Userspace. The fact that none of the other Storage Providers do this and when push comes to shove,the CTO office needs to convince the DevOps Teams to pick OpenEBS over traditional/non-cloud native Storage Systems. DevOps Teams are aware of exactly where those legacy solutions break due to their distributed nature, and they also hold a long sustained perception of Kernel being faster than Userspace.
 
 We knew performance is going to surface as a concern sooner or later. However, we have also found that users who have evaluated OpenEBS against other solutions still pick OpenEBS for its ease of use even if they incur a slight overhead.
 
@@ -66,7 +66,7 @@ Now, about that world map that I shared earlier, OpenEBS release v0.8 introduced
 
 - What is a typical lifespan of a Storage Volume in the Cloud Native Environments?
 - What is the max (or average) capacity of Volumes in Kubernetes?
-- A slightly more involved question is around the nature of the Cloud Native Applications and what it means to the storage features like replication. In other words, do applications really require a storage that does replication. Or do they just need Local PVs.
+- A slightly more involved question is around the nature of the Cloud Native Applications and what it means to the storage features like replication. In other words, do applications really require a storage that does replication?. Or do they just need Local PVs?.
 
 What was most surprising (or not) is that users don’t always wait on releases. They also tend to pick up the master builds, if it contains what they need! The above diagram depicts the Kubernetes clusters that used the OpenEBS master build before its release.
 

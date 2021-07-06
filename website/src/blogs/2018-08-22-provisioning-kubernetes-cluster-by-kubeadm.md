@@ -51,7 +51,7 @@ Install these requirements in each node:
 
 The master is the machine where the control plane components run, including etcd (the cluster database) and the API server (which the kubectl CLI communicates with).
 ![](https://lh5.googleusercontent.com/BbzeYd9ttUgNLHIn-zS1gndo_sCNLYOiqe-HTHQLDNqegK72Lc7Nzg88tfUCXSo_p6Wyrq-beic2mf0ZR7tFMw3dW_IZvGYC-MT-GVCSWPqoS4OsglbwCQ2ZskBuT2FsJLI9jzY-UdokGUJnpA)
-Before running kubeadm init in master node, first choose a pod network add-on and verify whether it requires any arguments to be passed for kubeadm initialization. Depending on which third-party provider you choose, you might need to set the --pod-network-cidr argument with kubeadm init <args>.
+Before running kubeadm init in master node, first, choose a pod network add-on and verify whether it requires any arguments to be passed for kubeadm initialization. Depending on which third-party provider you choose, you might need to set the --pod-network-cidr argument with kubeadm init <args>.
 
 - [list of pod network add-on.](https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#pod-network)
 - [list of arguments](https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-init/)

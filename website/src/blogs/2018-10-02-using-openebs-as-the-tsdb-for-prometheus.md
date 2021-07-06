@@ -7,9 +7,9 @@ tags: Cloud Native Storage, Kubernetes, OpenEBS, Prometheus, Solutions
 excerpt: Prometheus has become one of the favorite tools for monitoring metrics of applications and infrastructure in the cloud native space, especially when using Kubernetes; 
 ---
 
-Prometheus has become one of the favorite tools for monitoring metrics of applications and infrastructure in the cloud native space, especially when using Kubernetes; afterall Prometheus was the second project adopted by the CNCF after Kubernetes itself and in August of 2018 was the second project to graduate from CNCF as well.
+Prometheus has become one of the favorite tools for monitoring metrics of applications and infrastructure in the cloud native space, especially when using Kubernetes; After all, Prometheus was the second project adopted by the CNCF after Kubernetes itself and in August of 2018 was the second project to graduate from CNCF as well.
 
-Given this lineage, setting up Prometheus on Kubernetes is quite straight forward. You can read much more about getting going on Prometheus as well as how it compares to alternatives such as Graphite or InfluxDB on their documentation: [https://prometheus.io/docs/introduction/overview/](https://prometheus.io/docs/introduction/overview/)
+Given this lineage, setting up Prometheus on Kubernetes is quite sstraightforward. You can read much more about getting going on Prometheus as well as how it compares to alternatives such as Graphite or InfluxDB on their documentation: [https://prometheus.io/docs/introduction/overview/](https://prometheus.io/docs/introduction/overview/)
 
 One of the challenges with Prometheus is how to setup and manage the storage for it. The default behavior of Prometheus is to simply have each node store data locally however this of course exposes the user to the loss of data stored locally when the local node goes down.
 

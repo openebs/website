@@ -33,7 +33,7 @@ We’ll be creating 4 Hetzner cluster servers:
 
 - Login to the instance and add a docker-compose.yml file to run Rancher:
 
-![login-to-instance](/public/images/blog/login-to-instance.png)
+![Login to instance](/public/images/blog/login-to-instance.png)
 - Run: 
 
     docker-compose up -d
@@ -43,7 +43,7 @@ We’ll be creating 4 Hetzner cluster servers:
 - `Add label loadbalancer=true`
 - `Remove iscsi driver with cloud-init:`
 
-![remove-iscsi-driver](/public/images/blog/remove-iscsi-driver.png)
+![Remove iscsi driver](/public/images/blog/remove-iscsi-driver.png)
 - Create a node template for workers using the same cloud-config
 
 ## Application Configuration
@@ -60,7 +60,7 @@ Which enables you to use:
 
 - **Example 1.** `cooby.tech` and to use nginx ingress to route it to the example1 workload. Also in the DNS server, you can do, for example, cooby.in.montel.care CNAME montel.cooby.tech and again use our nginx-loadbalancer to route cooby.in.montel.care to your desired workload.
 
-**Pro Tip:** Once an Ingress service is created it defaults to port 42. Remember to edit the services’ yaml and change it to the port your application requires. You will save yourself hours of confusion.
+**Pro Tip:** Once an Ingress service is created it defaults to port 42. Remember to edit the services’ YAML and change it to the port your application requires. You will save yourself hours of confusion.
 
 ## Let’s Encrypt Issuer
 

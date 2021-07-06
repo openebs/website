@@ -11,7 +11,7 @@ In this post, I will go through a read-only issue experienced in the Kubernetes 
 
 OpenEBS has the below deployment method for providing persistent storage to applications in Kubernetes clusters.
 
-As shown in the above diagram, the application container runs on Node1, and an iSCSI target is runs on Node2 [There can be a case where the application and iSCSI target are running on same node, but we don’t notice the issue in this scenario]. The iSCSI initiator of Node1 discovers and logs in to the iSCSI target and creates the disk `/dev/sdb`. The application consumes the mount point `/mnt/vol1` created over the disk `/dev/sdb` as persistent storage.
+As shown in the above diagram, the application container runs on Node1, and an iSCSI target is runs on Node2 [There can be a case where the application and iSCSI target are running on the same node, but we don’t notice the issue in this scenario]. The iSCSI initiator of Node1 discovers and logs in to the iSCSI target and creates the disk `/dev/sdb`. The application consumes the mount point `/mnt/vol1` created over the disk `/dev/sdb` as persistent storage.
 
 When the node on which the iSCSI target, i.e. Node2, goes down, K8s then takes 5 minutes to schedule the iSCSI target on another node. This causes the mount point to enter a `Read-Only (RO)` state. Below are logs related to this issue:
 
@@ -186,7 +186,7 @@ Below are the kernel logs related to the case where the iSCSI target is brought 
 
 Superb!!!
 
-As you can see in the above logs, the iSCSI connection was successful even after 300 seconds. The mount point did not go into RO state, and thus the application container will remain in the `Running` state. This avoids lot of manual work for the user.
+As you can see in the above logs, the iSCSI connection was successful even after 300 seconds. The mount point did not go into RO state, and thus the application container will remain in the `Running` state. This avoids a lot of manual work for the user.
 
 **What about cases when the iSCSI login is already done, and the volume mountpoint can’t be remounted?**
 

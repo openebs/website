@@ -76,8 +76,9 @@ Below I provide step by step instructions that you should be able to cut, paste,
 1. Create a Virtual Private Cloud (VPC). To do this, go to VPC service and create a VPC.
 
 ![](https://lh6.googleusercontent.com/Oy2n7BoGwjRClKfVuV-_ZJh_gGH1JMV8vEf32envoIktSPNLGn8vTrB4SSkhF0-OXwVgeM0Xyo5_8qiqSn88flr9EUFyOM0AntMT78pEJqSEK2yxCm3EYKf82pHO4VYttPr35-fuMgs2lHBvTw)
-2. Create an Internet gateway and associate your VPC with this Internet Gateway. This will attach internet connectivity to your VPC. All nodes under this VPC will have the outside connectivity.
+2. Create an Internet gateway and associate your VPC with this Internet Gateway. This will attach internet connectivity to your VPC. All nodes under this VPC will have outside connectivity.
 ![](https://lh3.googleusercontent.com/Yd06EwIqsr8spFLw6zwShPu0Jh53jPSrWU5evOa2YVIULFvoMG5BoV3JkbgbLLPuP2ICUXGzcJs7XlxYjN9GA241bEzY5uuppT3M0KM07m4k380AP93X5NkEXlbmVTeEgRMiCOEx3oGFFMVLXA)
+
 ### **Perform the following procedure from your local ubuntu machine:**
 
 1. Download the AWS CLI utility in your local machine.
@@ -213,7 +214,7 @@ Click **Skip** to review and proceed with the Create launch configuration.
     — -
 ```  
 
-18. Edit `openebs-storageclasses.yaml`  by adding the following entry in your corresponding storage class:
+18. Edit `openebs-storageclasses.yaml` by adding the following entry in your corresponding storage class:
 ```
     openebs.io/storage-pool: “jivaawspool”
 ```

@@ -7,7 +7,7 @@ tags: Container, Kubernetes, OpenEBS, Storage Solutions
 excerpt: Before I get into some fascinating features of 0.7 release, I would like to take this opportunity to thank all users who have taken our OpenEBS survey and have come forward to share your Kubernetes Stateful Workload and OpenEBS adoption stories.
 ---
 
-Before I get into some fascinating features of 0.7 release, I would like to take this opportunity to thank all users who have taken our OpenEBS survey and have come forward to share your Kubernetes Stateful Workload and OpenEBS adoption stories. When I hear statements like ***“OpenEBS just works!”***, it is definitely a sign that the project and the OpenEBS Developer Community is headed in the right direction. It is both heartening and humbling. Thank you!
+Before I get into some fascinating features of 0.7 release, I would like to take this opportunity to thank all users who have taken our OpenEBS survey and have come forward to share your Kubernetes Stateful Workload and OpenEBS adoption stories. When I hear statements like ***“OpenEBS just works!”***, it is definitely a sign that the project and the OpenEBS Developer Community are headed in the right direction. It is both heartening and humbling. Thank you!
 ![](https://cdn-images-1.medium.com/max/800/08J2dBBRWCnbu82R_)
 We would welcome more contributions to the survey mentioned above, for example, whether you are an OpenEBS user (yet) or not: [https://www.surveymonkey.com/r/BRDCCWY](https://www.surveymonkey.com/r/BRDCCWY)
 
@@ -49,7 +49,7 @@ OpenEBS remains committed to being Easy to Setup and Use, and we are continuing 
 
 ## OpenEBS Control Plane (maya):
 
-As you use OpenEBS, you realize that you almost never interact with any of the actual components of OpenEBS. This is thanks in part to the beauty of Kubernetes and how OpenEBS plugs itself into the kubernetes orchestration layer. You can hardly notice when there is an addition to the control plane that helps provision and manage OpenEBS Volumes.
+As you use OpenEBS, you realize that you almost never interact with any of the actual components of OpenEBS. This is thanks in part to the beauty of Kubernetes and how OpenEBS plugs itself into the Kubernetes orchestration layer. You can hardly notice when there is an addition to the control plane that helps provision and manage OpenEBS Volumes.
 
 Typical Storage Solutions come with a separate heavy-weight control plane, which essentially must do everything that Kubernetes does, albeit for Storage constructs like Pools and Volumes. If Storage Volumes and Pools are treated as Containers, then Kubernetes itself can Orchestrate Storage, right?
 
@@ -66,7 +66,7 @@ OpenEBS Release 0.7 makes it insanely easy to specify such constructs and associ
 
 To understand this better, let’s observe a couple of examples.
 
-**Example 1:** Scheduling PVs of Mongo instances across Availability Zones. When Stateful Applications like Mongo are deployed, each Mongo instance gets its own PV and PVC. To be truly resilient against node failures , the PVs (actual storage) belonging to a given Mongo application must be spread out across nodes or occasionally even across availability zones. We already know how to ensure Mongo instances (pods) are spread out with Pod Anti-affinity rules.
+**Example 1:** Scheduling PVs of Mongo instances across Availability Zones. When Stateful Applications like Mongo are deployed, each Mongo instance gets its own PV and PVC. To be truly resilient against node failures, the PVs (actual storage) belonging to a given Mongo application must be spread out across nodes or occasionally even across availability zones. We already know how to ensure Mongo instances (pods) are spread out with Pod Anti-affinity rules.
 
 With OpenEBS, the same Pod Anti-affinity rules can be passed on and the OpenEBS Control Plane (maya) takes care of setting them on the storage pods. All you need to do is the following:
 
@@ -131,7 +131,7 @@ When the PVs are created for the Mongo StatefulSet, the Replicas are configured 
 
 The complete YAML file for Mongo StatefulSet using OpenEBS PV is available [here](https://github.com/openebs/openebs/blob/master/k8s/demo/mongodb/mongo-statefulset.yml).
 
-**Example 2:** When running in hyper-converged mode along with applications, it is imperative to deploy granular control on how much memory or cpu can be allocated for serving a storage volume. Again, this is a relatively common scenario, and we know how to control it for the Application Deployments! The same can be extended to the Storage!
+**Example 2:** When running in hyper-converged mode along with applications, it is imperative to deploy granular control on how much memory or CPU can be allocated for serving a storage volume. Again, this is a relatively common scenario, and we know how to control it for the Application Deployments! The same can be extended to the Storage!
 
 For example, you can define the Resource Requests and Limits for different storage pods:
 
@@ -157,11 +157,11 @@ For example, you can define the Resource Requests and Limits for different stora
     memory: 2Gi
     cpu: 200m
 
-I have only covered a couple of examples here , but I am very excited that with the framework we have now embedded within OpenEBS, we can support any kind of scheduling requests you might have. **Bring it On!**
+I have only covered a couple of examples here, but I am very excited that with the framework we have now embedded within OpenEBS, we can support any kind of scheduling requests you might have. **Bring it On!**
 
 —
 
-**cStor Storage Engine (cStor)** is the latest addition to the storage engines supported by OpenEBS. Similar to the previous Jiva/Longhorn storage engine, cStor is also completely Open Source and has no dependency on the Kernel. It can run in the platform of your choice — either on premise or cloud!
+**cStor Storage Engine (cStor)** is the latest addition to the storage engines supported by OpenEBS. Similar to the previous Jiva/Longhorn storage engine, cStor is also completely Open Source and has no dependency on the Kernel. It can run in the platform of your choice — either on-premise or cloud!
 
 While cStor Volumes work just like the previous OpenEBS volumes in terms of replication and high availability, cStor has many advantages:
 

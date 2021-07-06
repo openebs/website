@@ -19,11 +19,11 @@ WordPress, when deployed on Kubernetes, requires both shared storage volumes on 
 The typical deployment of a scalable WordPress application is shown in the below diagram.
 ![wordpress-deployment-architecture](/public/images/blog/wordpress-deployment-architecture.png)
 
-As shown in the above, OpenEBS can be used to serve the storage volumes in both RWO and RWX mode. The NFS storage volume for WordPress is served through the Kubernetes external storage plugin “[nfs](https://github.com/kubernetes-incubator/external-storage/tree/master/nfs)”. The block storage for the database needs of WordPress is provided through OpenEBS JIVA volumes. If distributed databases like Percona or MariaDB are used then a common approach is that the database is deployed as a StatefulSet for horizontal scalability and Jiva volumes are deployed as a single replica. Alternatively one can use MySQL with jiva persistent volume replicating to three copies for enhanced resiliency.
+As shown in the above, OpenEBS can be used to serve the storage volumes in both RWO and RWX modes. The NFS storage volume for WordPress is served through the Kubernetes external storage plugin “[nfs](https://github.com/kubernetes-incubator/external-storage/tree/master/nfs)”. The block storage for the database needs of WordPress is provided through OpenEBS JIVA volumes. If distributed databases like Percona or MariaDB are used then a common approach is that the database is deployed as a StatefulSet for horizontal scalability and Jiva volumes are deployed as a single replica. Alternatively one can use MySQL with jiva persistent volume replicating to three copies for enhanced resiliency.
 
 ## Configuration details of PVC's and Storage Classes
 ![pvc-and-storage-classes](/public/images/blog/pvc-and-storage-classes.png)
-The PVC construct openebs-nfs-pvc and storage class construct openebs-nfs-sc are used to create an NFS share in RWX mode to be consumed by the WordPress pod. The deployment spec of nfs-provisioner uses an OpenEBS PVC claim which dynamically provisions the JIVA volumes in RWO mode and mounts it inside the nfs-provisioner pod. The entire process can take under 10–15 seconds.
+The PVC construct openebs-nfs-pvc and storage class construct openebs-nfs-sc are used to create an NFS share in RWX mode to be consumed by the WordPress pod. The deployment spec of nfs-provisioner uses an OpenEBS PVC claim which dynamically provisions the JIVA volumes in RWO mode and mounts them inside the nfs-provisioner pod. The entire process can take under 10–15 seconds.
 
 ## A note on the required size of the NFS volume and the provisioned size of Jiva volume
 
@@ -37,7 +37,7 @@ Shared storage can be provisioned in RWX mode on OpenEBS through a single PVC re
 
 ## YAML spec examples:
 
-The same YAML spec can be found in the Kubernetes external storage nfs plugin. The YAML specs below show how to provision the OpenEBS iSCSI storage in the nfs-provisioner pod automatically.
+The same YAML spec can be found in the Kubernetes external storage NFS plugin. The YAML specs below show how to provision the OpenEBS iSCSI storage in the nfs-provisioner pod automatically.
 
 ## YAML spec for NFS provisioner security policy
 
@@ -134,7 +134,7 @@ GitHub Code Snippet:
       name: openebs-leader-locking-nfs-provisioner
       apiGroup: rbac.authorization.k8s.io
 
-The above YAML will successfully create role bindings for the NFS provisioner. So it’s time to configure NFS provisioner YAML to use OpenEBS volumes and apply it to the Kubernetes cluster.
+The above YAML will successfully create role bindings for the NFS provisioner. So it’s time to configure NFS provisioner YAML to use OpenEBS volumes and apply them to the Kubernetes cluster.
 
 ## YAML spec for NFS provisioner deployment
 

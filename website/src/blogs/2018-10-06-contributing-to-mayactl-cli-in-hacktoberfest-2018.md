@@ -84,11 +84,11 @@ You can verify your cluster by using the kubectl command that was previously ins
 
 ## Setting up OpenEBS on Minikube
 
-Once the kubernetes cluster is ready, it’s time to install openebs. Installing openebs on kubernetes is very easy; just apply the openebs-operator to the cluster using the following command:
+Once the Kubernetes cluster is ready, it’s time to install OpenEBS. Installing OpenEBS on Kubernetes is very easy; just apply the openebs-operator to the cluster using the following command:
 
     kubectl appy -fhttps://raw.githubusercontent.com/openebs/openebs/master/k8s/openebs-operator.yaml.
 
-Applying the openebs-operator creates openebs resources in kubernetes. We can obtain the openebs-related resources in the openebs namespace, and we can verify it by typing the following command:
+Applying the openebs-operator creates OpenEBS resources in Kubernetes. We can obtain the openebs-related resources in the OpenEBS namespace, and we can verify it by typing the following command:
 
     ashishranjan738@Ashish-PC:~$ kubectl get pods -n openebs
     
@@ -169,11 +169,11 @@ Once finished with the hacking, you can raise the PR to the maya repo. Before ra
 
 ## Joining the Slack Channel
 
-You can reach us for any queries/ announcements on our [hacktoberfest2018](https://openebs-community.slack.com/?redir=%2Fmessages%2Fhacktoberfest2018%2F) Slack channel.
+You can reach us for any queries/announcements on our [hacktoberfest2018](https://openebs-community.slack.com/?redir=%2Fmessages%2Fhacktoberfest2018%2F) Slack channel.
 
 ## Hacking begins…
 
-So, what are you waiting for? Start your hacking now by picking some issues from [here](https://github.com/openebs/openebs/issues)! Contribution to the *hack-fest* can get you a chance to get into the *openebs contributor's list* and a chance to win some exciting goodies.
+So, what are you waiting for? Start your hacking now by picking some issues from [here](https://github.com/openebs/openebs/issues)! Contribution to the *hack-fest* can get you a chance to get into the *OpenEBS contributor's list* and a chance to win some exciting goodies.
 
 ## Helpful References
 

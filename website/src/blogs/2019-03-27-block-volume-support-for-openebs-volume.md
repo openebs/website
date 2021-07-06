@@ -98,4 +98,4 @@ A *block volume* is a volume that appears as a block device inside the container
 - Block devices that are actually SCSI disks support the sending of SCSI commands to the device using Linux ioctls.
 - Faster I/O without an overhead UNIX file system, more synchronous I/O without UNIX file system buffering, etc.
 
-Thanks to K[arthik Satchitanand](https://medium.com/@karthik.s_5236?source=post_page).
+Thanks to [Karthik Satchitanand](https://medium.com/@karthik.s_5236?source=post_page).

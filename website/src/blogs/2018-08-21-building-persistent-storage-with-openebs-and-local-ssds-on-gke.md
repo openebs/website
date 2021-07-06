@@ -83,29 +83,28 @@ You can start by entering your login information to your Google Cloud Platform a
 
 In my cases, I have chosen two local SSDs per node, and it is mounted automatically on the Node as part of the instance creation. Among these disks, I will choose the “sdb” disk. The OpenEBS Jiva storage pool will be created on the “sdb” disk on each node. Steps for creating pools are mentioned below.
 
-You can obtain the mounted disk details on Nodes using the following command:
-    ```
-    sudo lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
-    ```
-Below is an example output.
+        You can obtain the mounted disk details on Nodes using the following command:
 
-    NAME   FSTYPE  SIZE MOUNTPOINT      LABEL
-    sdb    ext4    375G /mnt/disks/ssd0
-    sdc    ext4    375G /mnt/disks/ssd1
-    sda            100G
-    └─sda1 ext4    100G /               cloudimg-rootfs
+        sudo lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
+
+        Below is an example output.
+
+        NAME   FSTYPE  SIZE MOUNTPOINT      LABEL
+        sdb    ext4    375G /mnt/disks/ssd0
+        sdc    ext4    375G /mnt/disks/ssd1
+        sda            100G
+        └─sda1 ext4    100G /               cloudimg-rootfs
 
 10. You are now ready to install the OpenEBS 0.7 cluster using the following command. Then follow the steps below from your master node.
 
     ```
-    kubectl apply -f https://openebs.github.io/charts/openebs-operator-0.7.0.yaml
+        kubectl apply -f https://openebs.github.io/charts/openebs-operator-0.7.0.yaml
+
     ```
 
 11. You can check the OpenEBS running pod details using the following command:
 
-    ```
     kubectl get pods -n openebs
-    ``` 
 
 Below is an example output:
 
@@ -124,7 +123,7 @@ Below is an example output:
 12. You can then check the default storage classes created as part of the OpenEBS operator installation using the following command:
 
     ```
-    kubectl get sc
+        kubectl get sc
     ```
 Again, here is an example output:
 
@@ -139,9 +138,7 @@ Again, here is an example output:
 
 For example, if your external disk is mounted as `/mnt/disks/ssd0` in your nodes, change the path as shown below.
 
-    ```
     path: “/mnt/disks/ssd0”
-    ```
 
     Example yaml file:
 
@@ -191,35 +188,34 @@ We now have the Percona deployment application YAML and need to change the stora
 
 19. Edit the downloaded “percona-openebs-deployment.yaml” and conduct the following changes.
 
-In the “PersistentVolumeClaim” section , under metadata, add the following content.
-        ```
+In the “PersistentVolumeClaim” section, under metadata, add the following content.
+
         labels:
     
-            “volumeprovisioner.mapi.openebs.io/replica-topology-key-domain”: “failure-domain.beta.kubernetes.io”       
-            “volumeprovisioner.mapi.openebs.io/replica-topology-key-type”:  “zone”
-        ```   
+        “volumeprovisioner.mapi.openebs.io/replica-topology-key-domain”: “failure-domain.beta.kubernetes.io”       
+        “volumeprovisioner.mapi.openebs.io/replica-topology-key-type”:  “zone” 
 
-Now change the “storageClassName” from ” openebs-standard” to “openebs-jiva-default.”
+Now change the “storageClassName” from ”openebs-standard” to “openebs-jiva-default”.
 
 20. Save the modified changes and apply the YAML as follows. This will create a PVC and PV in the mentioned size.
-    ```
+
     kubectl apply -f percona-openebs-deployment.yaml
-    ```
+
 21. You can then view the PVC status by running the following command:
-    ```
+
     kubectl get pvc
-    ```
+
 Below is an example output.
 
     NAME STATUS VOLUME CAPACITY ACCESS MODES STORAGECLASS AGE
-    ```    
+   
     demo-vol1-claim Bound default-demo-vol1-claim-2300073071 5G RWO openebs-jiva-default 11m
-     ``` 
+
 
 22. You can then obtain the PV status by running the following command:
-    ```
+
     kubectl get pv
-    ```
+
 And here is an example output.
 
     NAME                                 CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM                     STORAGECLASS           REASON    AGE
@@ -227,9 +223,9 @@ And here is an example output.
     
 
 23. Now, your Percona application pod will be running along with three Jiva volume replicas and one Jiva Controller pod. You can view the running pod status by running the following command:
-    ```
+
     kubectl get pods -o wide
-    ```
+    
 Which will provide the following output.
 
     NAME                                                       READY     STATUS    RESTARTS   AGE       IP           NODE
@@ -243,4 +239,4 @@ Which will provide the following output.
 ### Summary
 
 ![OpenEBS on GKE](https://lh5.googleusercontent.com/3zgM48Nep0Uszwxu_mIfewSP2SXCSdWHTeSzA7JbJfgaQnbaxB8SVd5gF6ADpXmmnnd84NqctMrm7CfFlkDuhSTPsuLCWxRm9dgtSXI6bOh-Gl_oKsbkubON_To3QcDbHXJA20n909Jie0lLXQ)
-> *Local SSDs on your GKE cluster can be used as persistent storage for stateful applications such as Prometheus, WordPress, MongoDB etc. This gives you the advantages of both the low latency local SSD use and fault-tolerant architecture ensured by OpenEBS.Thank you for reading. Feel free to join our *[*Slack*](https://slack.openebs.io/)* channel for any questions or help needed, or to share your success stories of using OpenEBS on GKE.*
+> *Local SSDs on your GKE cluster can be used as persistent storage for stateful applications such as Prometheus, WordPress, MongoDB, etc. This gives you the advantages of both the low latency local SSD use and fault-tolerant architecture ensured by OpenEBS.Thank you for reading. Feel free to join our *[*Slack*](https://slack.openebs.io/)* channel for any questions or help needed, or to share your success stories of using OpenEBS on GKE.*

@@ -7,7 +7,7 @@ tags: Chaos Engineering, Continuous Integration, Kubernetes, Litmus, OpenEBS
 excerpt: The objective of the Litmus project is to help evaluate stateful workloads on Kubernetes via storage & infrastructure focused end-to-end (e2e) tests that use chaos engineering tools & principles
 ---
 
-**This article is part of a #ProjectUpdates series on Litmus. In this blog post, we will share the latest developments in the project, which was announced & open-sourced during the **[**KubeCon Europe 2018**](https://blog.openebs.io/litmus-release-a-chaos-monkey-on-your-kubernetes-stateful-workloads-6345e01b637d)**.**
+**This article is part of a #ProjectUpdates series on Litmus. In this blog post, we will share the latest developments in the project, which was announced & open-sourced during the **[KubeCon Europe 2018](https://blog.openebs.io/litmus-release-a-chaos-monkey-on-your-kubernetes-stateful-workloads-6345e01b637d)**
 
 The objective of the Litmus project is to help evaluate stateful workloads on Kubernetes via storage & infrastructure focused end-to-end (e2e) tests that use chaos engineering tools & principles, amongst other aids, with the test cases executed as kubernetes jobs. Over the last 10 months, there have been several improvements to the framework based on community feedback alongside an increase in the test library. The focus areas & improvements through this period, ongoing efforts & upcoming features have been summarised in the subsequent sections.
 
@@ -39,7 +39,7 @@ For more details on chaos engineering using Litmus, read this [article](https://
 
 ## Litmus e2e test result visualization
 
-One of the important enablers for the adoption of any given test (suite) into a CI framework is the result mechanism to determine success/failure. During the said period, Litmus moved over from extracting results from test container logs to storing this information in a Kubernetes static custom resource (“*litmusresult”, which is updated by the test code at the beginning & end of test execution via a JSON merge patch operation*), with the resource name dynamically generated based on user tags. This resource also holds other test metadata such as *appType*, *testType*, *testStatus *etc., apart from the actual *verdict *(result). CI jobs that implement/run the litmusbooks can be configured to derive job status from these CRs.
+One of the important enablers for the adoption of any given test (suite) into a CI framework is the result mechanism to determine success/failure. During the said period, Litmus moved over from extracting results from test container logs to storing this information in a Kubernetes static custom resource (*“litmusresult”, which is updated by the test code at the beginning & end of test execution via a JSON merge patch operation*), with the resource name dynamically generated based on user tags. This resource also holds other test metadata such as *appType*, *testType*, *testStatus *etc., apart from the actual *verdict *(result). CI jobs that implement/run the litmusbooks can be configured to derive job status from these CRs.
 ![](/content/images/2020/01/cr-structure.png)A jinja template describing the result CR structure
 ## Other notable enhancements
 
@@ -81,7 +81,7 @@ More details on the composition & functioning of this CI framework is available 
 
 ## Ongoing Efforts & Upcoming Features In Litmus
 
-At this point, the Litmus contributions are mainly focused towards increasing the application & storage life cycle tests, more specifically,** Day-2 operations **of standard stateful applications, while continuing to increase the **stability **of the current tests.
+At this point, the Litmus contributions are mainly focused towards increasing the application & storage life cycle tests, more specifically,**Day-2 operations** of standard stateful applications, while continuing to increase the **stability** of the current tests.
 
 Some of the near-term improvements & enhancements include:
 
