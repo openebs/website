@@ -3,7 +3,7 @@ title: Kubernetes StatefulSet on ppc64le using OpenEBS LocalPV provisioner
 author: Peeyush Gupta
 author_info: Peeyush, Sr. Developer Advocate, DigitalOcean, is a cloud enthusiast with 5+ years of experience in developing cloud platforms and helping customers migrate their legacy applications to the cloud.
 date: 16-07-2020
-tags: OpenEBS, Kubernetes, Localpv
+tags: OpenEBS, Kubernetes, LocalPV
 excerpt: In this blog, we'll explain how to install OpenEBS on Kubernetes StatefulSet running on the ppc64le platform & to using the OpenEBS LocalPV provisioner to deploy a StatefulSet.
 ---
 

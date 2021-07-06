@@ -3,7 +3,7 @@ title: OpenEBS StorageClasses For ZFS-LocalPV
 author: Pawan Prakash Sharma
 author_info: It's been an amazing experience in Software Engineering because of my love for coding. In my free time, I read books, play table tennis and watch tv series
 date: 09-09-2020
-tags: OpenEBS, Localpv, Zfs
+tags: OpenEBS, LocalPV, ZFS
 excerpt: In this blog, I will discuss various storage classes we can use to dynamically provision the volumes backed by ZFS-LocalPV Storage Pool.
 ---
 
