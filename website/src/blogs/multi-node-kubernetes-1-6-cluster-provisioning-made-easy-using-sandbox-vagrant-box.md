@@ -55,7 +55,7 @@ Some of the configuration options available are:
 - KH_CPU — Number of CPUs for minion (*default 2*)
 - KH_MEM— Size of the RAM (in bytes) for minion (*default 1024*)
 - MM_NODES — Number of OpenEBS Maya Master VMs (*default 1*)
-- MH_NODES — Number of OpenEBS Storage Host VMs *(default 2*)
+- MH_NODES — Number of OpenEBS Storage Host VMs (*default 2*)
 
 If you are looking for an older release of Kubernetes, checkout — [kubernetes vagrant boxes with 1.5.5](https://blog.openebs.io/setting-up-kubernetes-1-5-5-cluster-with-vagrant-dda11e33b5bc)
 

@@ -7,7 +7,7 @@ date: 20-02-2017
 excerpt: Torus (from CoreOS), that aimed at providing container-native distributed storage announced that it would discontinue development due to lack of traction.
 ---
 
-[Torus (from CoreOS)](https://github.com/coreos/torus), which aimed at providing container-native distributed storage announced that it would discontinue development due to lack of traction. It just goes to show the dynamics of the Open source projects and how business needs could influence them.
+[Torus (from CoreOS)](https://github.com/coreos/torus), which aimed at providing container-native distributed storage announced that it would discontinue development due to lack of traction. It just goes to show the dynamics of the open source projects and how business needs could influence them.
 
 Torus attempted to solve one of the core infrastructure problems, and like any projects that aim to solve the infrastructure problems — compute, network or storage, are slightly harder problems to crack with only a handful of people really venturing into solving them. Maybe, this inertia is also due to the fact that, when infrastructure fails, hell breaks loose — we are all too familiar with those network outages and data loss situations where Database teams spend days recovering data.
 
@@ -27,5 +27,4 @@ OpenEBS also inherits the data protection capabilities, pushing backups onto Ama
 
 OpenEBS Storage is delivered through VSMs which are essentially containers — frontend and backend, that can be scheduled by Kubernetes along with the Application Pods. The storage specific parameters are fed into the scheduling algorithms through our OpenEBS storage orchestration layer — maya. This container mode of deployment also reduces the burden of managing a separate storage network. The building blocks of the OpenEBS were covered in this post — [OpenEBS building blocks](https://blog.openebs.io/openebs-building-blocks-rancher-longhorn-b8928b5921fa#.r7kzqlucd)
 
-If you were planning to contribute to Torus or just interested in getting your hands dirty with container-native storage platform, please take a closer look at [OpenEBS](https://github.com/openebs/openebs), which is completely Open source.
-s
+If you were planning to contribute to Torus or just interested in getting your hands dirty with container-native storage platform, please take a closer look at [OpenEBS](https://github.com/openebs/openebs), which is completely open source.

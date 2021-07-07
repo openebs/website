@@ -48,6 +48,7 @@ One strength of clouds like AWS is that they enable you to consume storage in a 
 ![Uhh, huh — and OpenEBS?](/images/blog/uhh-huh-openebs.png)
 (***Uhh huh — data, cloud, DevOps, lock-in and, err, OpenEBS?***)
 
+
 In short, the highest level vision for OpenEBS is one in which the DevOps friendly aspects of running storage in the cloud is now available on-premise and across your clouds, thus freeing you from vendor lock-in much in the way that Kubernetes helps you avoid the risk of locking yourself in through the use of cloud service specific wiring and workflow.
 
 What if your developers and DevOps teams could orchestrate your storage controllers just like other containers? How much more productive could they be?
