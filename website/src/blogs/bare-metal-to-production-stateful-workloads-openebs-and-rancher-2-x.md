@@ -33,8 +33,9 @@ We’ll be creating 4 Hetzner cluster servers:
 
 - Login to the instance and add a docker-compose.yml file to run Rancher:
 
-![Login to instance](/public/images/blog/login-to-instance.png)
-- Run: 
+    ![Login to instance](/public/images/blog/login-to-instance.png)
+
+- Run:
 
     docker-compose up -d
 

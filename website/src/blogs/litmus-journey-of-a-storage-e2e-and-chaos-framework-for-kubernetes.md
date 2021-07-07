@@ -64,7 +64,10 @@ The project also saw some other organic changes which have resulted in its faste
 **Optimized Test Images**: The litmus runner (go, ansible) as well the test facilitators images have been optimized with respect to the number of layers, size and binary versions used.
 
 ## Case Study: OpenEBS CI Powered By Litmus
-![](/content/images/2020/01/openebs-ci-powered-by-litmus.png)OpenEBS CI Powered By Litmus
+
+![openebs-ci-powered-by-litmus](/public/images/blog/openebs-ci-powered-by-litmus.png)
+(***OpenEBS CI Powered By Litmus***)
+
 The Continuous Integration framework for the OpenEBS project, i.e., the various components such as Maya, Node-Disk-Manager (control plane), Jiva, cStor (data plane) is built using **Gitlab**, with the e2e tests executed via **Litmusbooks **& supported by an Elasticsearch-Fluentd-Kibana (**EFK) **based logging framework. Post the build phase (where the above-mentioned components are built and images pushed to respective repositories) multiple gitlab e2e pipelines based on the Kubernetes cluster version are triggered, each of which includes the following litmus-powered stages to:
 
 - Create K8s cluster on the bare metal cloud platform Packet
