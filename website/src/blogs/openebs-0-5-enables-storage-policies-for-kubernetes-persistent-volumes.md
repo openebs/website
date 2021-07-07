@@ -11,9 +11,11 @@ excerpt: Personally, it is very exciting and enriching to see the growth of the 
 Personally, it is very exciting and enriching to see the growth of the OpenEBS project — from its capabilities, contributors and community perspective!
 
 I believe the metric to measure the success of OpenSource Projects is determined by the number of users and the conversion ratio of users turning into contributors. The past couple of months (thanks to campaigns like Hacktoberfest and the ongoing OpenEBS Hackfest), we have seen a steep rise in the number of contributors and contributions to the OpenEBS project.
+
 ![OpenEBS contributors](https://cdn-images-1.medium.com/max/800/1*BMOr9ULh_7KnM6k8aUj9hw.png)
 
 In almost all the interactions we had with the user community, we are seeing a clear resonance of the value proposition that OpenEBS brings to the [DevOps teams managing systems with large number of micro-services](https://twitter.com/muratkarslioglu/status/921072858628997121). The best part is that the users are independently evaluating OpenEBS and finding ways to automate their Compute, Network, Storage, and Data related Operations.
+
 ![Towards Kubernetes](https://cdn-images-1.medium.com/max/800/0*XilwHl_ucs5K5fcK.jpg)
 
 Today, I can look back on our decision to use Kubernetes as a framework to build OpenEBS is one of the best decisions we have made. While the core of the Kubernetes community is helping DevOps teams treat Compute and Network as Code — we at OpenEBS are focused at extending Kubernetes to enable treating Storage and Data also as Code.
