@@ -31,6 +31,7 @@ import CustomTag from "../../components/CustomTag";
 import { getAvatar } from "../../utils/getAvatar";
 import { getContentPreview } from "../../utils/getContent";
 import { useViewport } from "../../hooks/viewportWidth";
+import { pageCount } from "../../utils/getPageCount";
 
 interface StyledTabProps {
   label: string;
@@ -143,10 +144,8 @@ const Blog: React.FC = () => {
   const pagination = () => {
     return (
       <Pagination
-      count={
-        filteredData
-          ? Math.ceil(filteredData.length / 6 )
-          : 0
+      count={ queryAuthorName ?
+       pageCount(filteredAuthorData) : pageCount(filteredData)
       }
       page={page}
       onChange={(_event, val) => val? setPage(val) : setPage(1)}

@@ -105,7 +105,7 @@ There are two types of roles in iSCSI:
 
 The following figure in Kubernetes uses iSCSI architecture (Source: [http://rootfs.github.io/iSCSI-Kubernetes/)](https://translate.googleusercontent.com/translate_c?depth=1&hl=en&rurl=translate.google.co.in&sl=zh-CN&sp=nmt4&tl=en&u=http://rootfs.github.io/iSCSI-Kubernetes/%25EF%25BC%2589&usg=ALkJrhgk4iuBd1pHB1zGq6XKLwffkSGZew)
 
-![iSCSI-Kubernetes](/content/images/2020/01/iscsi-kubernetes.png)
+![iSCSI-Kubernetes](/images/blog/iscsi-kubernetes.png)
 
 Installing the iSCSI service is very simple, you do not need additional configuration, just start the service after installation.
 
