@@ -22,7 +22,8 @@ NuoDB provides all the properties of ACID-compliant transactions and standard re
 
 Although it appears as a single, logical SQL database to the application, it has two-layers that retain strict transactional consistency. It can even be deployed across multiple availability zones (even on different clouds!) and is optimized for in-memory speeds, continuous availability, and adaptive scale-out that adjusts to the application needs.
 
-![NuoDB Architecture](/public/images/blog/nuodb-architecture.png) NuoDB Architecture: TEs (Top), SMs (Bottom)
+![NuoDB Architecture](/images/blog/nuodb-architecture.png) 
+(***NuoDB Architecture: TEs (Top), SMs (Bottom)***)
 
 Transaction Engines (TEs): The TE layer is used for (ACID) SQL and caching, made up of in-memory process nodes that coordinate with each other and the SM layer.
 
@@ -41,7 +42,7 @@ Running applications on traditional virtualized systems or bare metal are differ
 - NuoDB backups can be taken at the storage level and stored in S3. Using the backup/restore capabilities of OpenEBS, NuoDB instances can be moved across clouds or Kubernetes clusters seamlessly. There is no vendor lock-in problem when OpenEBS is used as the underlying storage.
 - Last, but not least — OpenEBS is 100% open source and in userspace.
 
-![production deployment of NuoDB](/public/images/blog/production-deployment-of-nuodb.png) Typical production deployment of NuoDB using OpenEBS.
+![production deployment of NuoDB](/images/blog/production-deployment-of-nuodb.png) (***Typical production deployment of NuoDB using OpenEBS.***)
 
 Let’s deploy our first NuoDB instance on our existing small, three-node OpenShift K8s cluster with OpenEBS.
 
@@ -103,7 +104,7 @@ Enter these values:
 
 This should look similar to the screenshot below:
 
-![Create an Image Pull Secret](/public/images/blog/create-an-image-pull-secret.png)
+![Create an Image Pull Secret](/images/blog/create-an-image-pull-secret.png)
 
 You can find the RHCC instructions [here](https://access.redhat.com/containers/?tab=images&amp;platform=openshift#/registry.connect.redhat.com/nuodb/nuodb-ce) if needed.
 As an alternative, you can use the Docker registry images (not suggested for production).
@@ -125,7 +126,7 @@ Connecting the Kubernetes cluster to MayaOnline provides enhanced visibility of 
 5. Click on the “Connect” button.
 6. Copy the command and run it on your OpenShift cluster.
 
-![Connect to MayaOnline](/public/images/blog/connect-to-mayaonline.png)
+![Connect to MayaOnline](/images/blog/connect-to-mayaonline.png)
 
 ### Configure cStor Pool
 
@@ -182,23 +183,24 @@ You must configure a StorageClass to provision a cStor volume on a given cStor p
 
 Import the NuoDB CE template *ce-template-persistent.yaml* into OpenShift by navigating to the “Overview” Tab, clicking “Import YAML/JSON,” and running the import.
 
-![Import the NuoDB CE Template](/public/images/blog/import-the-nuodb-ce-template.png)
+![Import the NuoDB CE Template](/images/blog/import-the-nuodb-ce-template.png)
 (***Import YAML Template***)
 
 Follow the installation prompts and change the “SM persistent storage class name” and “Admin persistent storage class name” to *openebs-nuodb*.
 
-![Set Persistent Storage Class Name](/public/images/blog/set-persistent-storage-class-name.png) 
+![Set Persistent Storage Class Name](/images/blog/set-persistent-storage-class-name.png) 
 (***Set Persistent Storage Class Name***)
 
 Click “Create,” and shortly after you will see one pod each for the Administrative Service (Admin), Storage Manager (SM), Transaction Engine (TE) and Insights processes started under the *nuodb* namespace with volumes provided by OpenEBS.
 
-![nuoDB Successfully Deployed](/public/images/blog/nuodb-successfully-deployed.png) 
+![nuoDB Successfully Deployed](/images/blog/nuodb-successfully-deployed.png) 
 (***NuoDB Successfully Deployed***)
 #### *What’s Next?*
 
 If you would like to read more about the design considerations, running test loads with YCSB, monitoring Insights or volume metrics through MayaOnline, and inserting some chaos engineering with Litmus, you can find a detailed solution doc on MayaData’s website under the Resources section [here](https://mayadata.io/).
 
-![NuoDB and OpenEBS](/public/images/blog/nuodb-and-openebs.png) NuoDB and OpenEBS Solution Guide Available on MayaData.io
+![NuoDB and OpenEBS](/images/blog/nuodb-and-openebs.png) 
+(***NuoDB and OpenEBS Solution Guide Available on MayaData.io***)
 
 Next, I plan to cover some 2nd-day operations for NuoDB using OpenEBS snapshots, clones, backup, recovery using MayaOnline functionalities such as topology and access logs. If you’d like to see or discuss anything not covered here, feel free to comment on my blog or contact me via Twitter @muratkarslioglu.
 

@@ -32,7 +32,10 @@ Another consideration was Litmus tests being used to drive Continuous Integratio
 **App/Storage lifecycle “operators”: **Performs standard functional operations such as app/storage scale, backup/restore, reschedule, app/storage upgrades etc.., (should not be mistaken for actual “kubernetes operators”)
 
 **Chaos inducers: **Litmusbooks that induce failures on specified targets on the cluster, including application replicas, storage & cluster infrastructure (network, nodes, disks, memory, CPU)
-![](/content/images/2020/01/litmus-framework.png)Litmus Framework
+
+![Litmus Framework](/images/blog/litmus-framework.png)
+(***Litmus Framework***)
+
 Typically, the lifecycle functionality & chaos litmusbooks include steps for post-test health checks on the application and persistent storage components, including **data integrity **validation. All the above requirements necessitated the creation of multiple “*test facilitator containers*”(maintained [here](https://github.com/openebs/test-tools)) that implement python-based application clients and integrate other popular opensource chaos tools such as **pumba**, **chaostoolkit **& **chaoskube**.
 
 For more details on chaos engineering using Litmus, read this [article](https://blog.openebs.io/storage-chaos-engineering-with-litmus-an-overview-ef6d8f1e89fd?__hstc=216392137.a909c2d2cc44264c6d1aa717b549f14e.1580153178674.1580153178674.1580153178674.1&amp;__hssc=216392137.1.1580153178674&amp;__hsfp=3765904294).
@@ -65,7 +68,7 @@ The project also saw some other organic changes which have resulted in its faste
 
 ## Case Study: OpenEBS CI Powered By Litmus
 
-![openebs-ci-powered-by-litmus](/public/images/blog/openebs-ci-powered-by-litmus.png)
+![openebs-ci-powered-by-litmus](/images/blog/openebs-ci-powered-by-litmus.png)
 (***OpenEBS CI Powered By Litmus***)
 
 The Continuous Integration framework for the OpenEBS project, i.e., the various components such as Maya, Node-Disk-Manager (control plane), Jiva, cStor (data plane) is built using **Gitlab**, with the e2e tests executed via **Litmusbooks **& supported by an Elasticsearch-Fluentd-Kibana (**EFK) **based logging framework. Post the build phase (where the above-mentioned components are built and images pushed to respective repositories) multiple gitlab e2e pipelines based on the Kubernetes cluster version are triggered, each of which includes the following litmus-powered stages to:

@@ -34,7 +34,7 @@ Conceptually, you can think of CAS as the decomposition of previously monolithic
 
 **PostgreSQL plus OpenEBS**
 
-![Postgres Operator using OpenEBS](/public/images/blog/postgres-operator-using-openebs.png)
+![Postgres Operator using OpenEBS](/images/blog/postgres-operator-using-openebs.png)
 (***Postgres-Operator using OpenEBS as the Storage Provider***)
 
 We have seen joint users adopting OpenEBS as a substrate to PostgreSQL for a variety of reasons. Here are a few of the reasons that stand out:
@@ -74,7 +74,9 @@ One use case that clones can support is improved reporting. For example, let’s
 In addition to the benefits of using OpenEBS, there is also value in using MayaOnline for the management of stateful workloads. We may address these in future blogs that examine common day 2 operations and optimization of your PostgreSQL on Kubernetes.
 
 **Running Postgres-Operator on OpenEBS**
-![](/content/images/2020/01/image3.png)PostgreSQL with OpenEBS persistent volumes
+
+![PostgreSQL with OpenEBS persistent volumes](/images/blog/postgres-operator-on-openebs.png)(***PostgreSQL with OpenEBS persistent volumes***)
+
 **Software Requirements**
 
 - [Postgres-Operator](https://github.com/zalando/postgres-operator) (for cluster deployment)

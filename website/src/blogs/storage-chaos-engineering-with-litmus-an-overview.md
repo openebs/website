@@ -23,13 +23,13 @@ Though Litmus has been designed to be easily extendable to work with different p
 
 One of the requirements of the “deployable” litmus test or chaos experiment is that the *control variables *(typically, chaos params — considering that different applications, storage engines, PV component versions, and deployment models are evaluated against a particular chaos sequence) and* independent variables *(PV, application and K8s deployment params) should be defined in the test artifact, which, in this case, is a Kubernetes job specification. This is achieved by specifying them as pod/container environment (ENV) variables. In most cases, the final object (cluster resource) of chaos is derived from the application or persistent volume claim info passed in the job.
 
-![sample litmus chaos test](/public/images/blog/sample-litmus-chaos-test.png)
+![sample litmus chaos test](/images/blog/sample-litmus-chaos-test.png)
 (***Sample Litmus Chaos Test Variables/Tunables***)
 ## Test Execution Workflow
 
 The standard chaos test execution workflow is described in the schematic diagram shown below.
 
-![litmus chaos test execution](/public/images/blog/litmus-chaos-test-execution.png)
+![litmus chaos test execution](/images/blog/litmus-chaos-test-execution.png)
 (***Litmus Chaos Test Execution Workflow***)
 ## Container Crash
 
@@ -79,10 +79,10 @@ Sample utils for service chaos on GKE and AWS clusters can be viewed [here ](htt
 
 While we discussed simulating node conditions via eviction taints, it is also necessary to actually induce resource exhaustion such as *CPU burn*, *Memory Hog, *and* Filled Disks *to gauge real-time behavior. Litmus uses simple docker containers that run (a) a python program to keep appending large data to a growing string to [consume system memory](https://github.com/openebs/test-tools/tree/master/memleak), and (b) a forkbomb used to cause process multiplication resulting in [CPU burn](https://github.com/openebs/test-tools/tree/master/forkbomb).
 
-![system memory consumption](/public/images/blog/system-memory-consumption.png)(a) 
+![system memory consumption](/images/blog/system-memory-consumption.png)(a) 
 (***system memory consumption***)
 
-![cpu burn](/public/images/blog/cpu-burn.png)(b) 
+![cpu burn](/images/blog/cpu-burn.png)(b) 
 (***CPU burn via forkbomb***)
 
 A [node-action daemonset](https://github.com/openebs/litmus/blob/master/apps/percona/chaos/node_freeze/node_freeze.yml) that mounts the host’s **/var/run** is used to execute docker commands that run the above containers with Litmus monitoring node status and end-application I/O. The sample chaos util for resource exhaustion can be found [here](https://github.com/openebs/litmus/blob/master/chaoslib/chaoskube/node_freeze_chaos.yml)**.**[Disk/Capacity fill utils](https://github.com/openebs/litmus/tree/master/apps/fio/tests/pool_capacity), available in Litmus currently, are implemented within the storage volume and storage pool layers using **fio** tool.

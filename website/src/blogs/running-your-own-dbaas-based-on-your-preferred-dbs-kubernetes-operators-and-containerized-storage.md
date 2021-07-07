@@ -9,7 +9,7 @@ excerpt: This blog is intended to outline some things to think about when runnin
 
 **Why would you want to do that?**
 
-![workloads onto Kubernetes](/public/images/blog/workloads-onto-kubernetes.png)
+![workloads onto Kubernetes](/images/blog/workloads-onto-kubernetes.png)
 Nearly every day I hear about someone looking to move more workloads onto Kubernetes. This makes sense as the above data from StackOverflow indicates that Kubernetes usage has skyrocketed.
 
 This differs from 2017, when I was mostly asked  about how running Kubernetes via OpenShift, Rancher, Kubespray, or from the source compares to buying it by the drip from the Big 3.  Now at [MayaData](http://www.mayadata.io/) and in the [OpenEBS](http://www.openebs.io/) community, we are often asked for advice about running your own Redis or Cassandra or MongoDB. The comparison these users are making is the DB as a service offering from the Big 3, or even from the DB providers themselves.
@@ -23,7 +23,9 @@ Of course, when it comes to data,  security is a top priority as well. Many 
 With each of the major cloud offerings, you can buy many flavors of DBaaS. Your choice will likely depend on your technical requirements and, of course, on your relationship with these cloud vendors. Generally speaking, you will want a high-quality solution that minimizes downtime and delivers exactly what your engineers need with minimum hassle.
 
 A common way to analyze the variety of DBs is to examine the CAP theorem and what your applications need. Typically, the rule of thumb is you pick two out of three. There are many, many blogs and discussions on picking a DB, but the idea is that there is an ever-growing number of DBs, and a subset of those are run as a service by tier-one clouds.
-![DBaaS Alternatives](/public/images/blog/dbaas-alternatives.png)
+
+![DBaaS Alternatives](/images/blog/dbaas-alternatives.png)
+
 **A quick aside on data base flavors:**
 
 There are many available DB solutions, many of which have little in common other than their primary task of ordering data for faster storage or access for a particular use case. There are at least eight main types:
@@ -42,7 +44,9 @@ Relatively old and well-known SQL solutions seem to be extremely prevalent for a
 You can get a subset of these varieties from the cloud ventures as services. So, why are users increasingly running their own DBaaS? In addition to the obvious points above, more control, including running the particular DB du jour, and less spending and fewer security concerns. Whether they are well founded or not,why else might users select to build and operate their own DBaaS?
 
 **Compose a Stack that Better Serves the DB**
-![Compose Stack](/public/images/blog/compose-stack.png)
+
+![Compose Stack](/images/blog/compose-stack.png)
+
 DBs are themselves composed of pieces of software that have different requirements. You also have choices as to which underlying storage engines you use with each database and how you configure these storage engines as well. As an example, depending on the version and underlying storage engine being utilized, MongoDB has a journal, various data directories, and a replication log. Cassandra has commit_logs, data_files, and saved_caches. Similarly, PostgreSQL has a WAL director and data directory. With today’s container attached storage systems and the storage class construct in Kubernetes, you can easily match each component of a DB to a well-suited and tuned underlying storage component.
 
 As an aside, if you’d like to learn about the differences between  BTrees and LSM approaches, their underlying storage engines, and related concepts tying back to the underlying computer science, you would benefit from this talk given by Damian Gryski last year:
@@ -52,7 +56,9 @@ As an aside, if you’d like to learn about the differences between  BTrees and
 So, while the permutations of DBs are nearly endless, with many examples of many types of DBs that can be configured differently, you can use all of them on a common storage layer across any underlying physical disk or cloud volume. This can be done with the help of a solution like OpenEBS that is typically automatically customized for each permutation.
 
 You can read more about storage for each component of a DB in the documentation of the many flavors of DBs; for example, the MongoDB documentation states:
-![mongoDB documentation](/public/images/blog/mongodb-documentation.png)
+
+![mongoDB documentation](/images/blog/mongodb-documentation.png)
+
 It is probably worth also noting that to deal with disk or SSD failures, the MongoDB documentation also suggests the use of RAID 10.
 
 **Easily Integrate your Disparate Data Sources**
@@ -80,9 +86,12 @@ So — where does storage fit into all of this?
 Whether or not you choose to use a generalizable approach to operators  or use one of the many one-offs emerging in the Kubernetes community,  you can approach a level of generalization through the use of Container Attached Storage. While storage and related capabilities will not completely care for your stateful workloads, it can provide some common services that every database needs, and thereby allow engineers to focus on those particular aspects of each DB that need their attention.
 
 I’ve assembled common requirements into a table, as we often get questions from the community (and investors, customers, and new team members) that suggest that the lines between the dozens of DBs fighting for attention and underlying containerized storage sometimes seems lost in all the hubbub. For example, did you know that storage engines for DBs are not “really storage”? Feel free to make comments below or even better, ask questions on StackOverflow or on our Slack community: [https://slack.openebs.io](https://slack.openebs.io/).
-![workload dashboard](/public/images/blog/workload-dashboard.png)
+
+![workload dashboard](/images/blog/workload-dashboard.png)
+
 We’ve recently completed the testing and creation of some recommended storage classes with one of the largest NoSQL community projects. You can always see each commit to Master of OpenEBS being tested against a variety of common data based on [OpenEBS.ci](http://openebs.ci/) as well. Grab both the storage classes and the configuration for the systems doing this testing as well if you are interested.
-![storage testing](/public/images/blog/storage-testing.png)
+
+![storage testing](/images/blog/storage-testing.png)
 
 
 **Conclusion**

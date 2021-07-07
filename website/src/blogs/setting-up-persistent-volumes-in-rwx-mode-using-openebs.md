@@ -10,19 +10,23 @@ excerpt: Many stateful applications like WordPress require persistent storage in
 Many stateful applications like WordPress require persistent storage in Read-Write-Many or RWX mode. OpenEBS is popular in the open-source community for its ease of use, and its simplistic design for pluggable storage engines.
 
 Currently, block volume or iSCSI support is provided natively by OpenEBS. Here, native iSCSI support means that the iSCSI stack is part of OpenEBS project and has full support for synchronous replication, granular monitoring, day 2 storage operations like backup restore, etc. iSCSI is typically used in Read-Write-Once or RWO mode which is common for all block storage engines. There have been multiple inquiries from the OpenEBS community about RWX support from OpenEBS, in other words, support for NFS. Though native support for NFS is being considered, it is already possible today to provision RWX mode storage using OpenEBS and to use it for applications like WordPress that require RXW mode.
-![openebs-nfs](/public/images/blog/wordpress-with-openebs-over-nfs.png)
+
+![openebs-nfs](/images/blog/wordpress-with-openebs-over-nfs.png)
 
 In this blog, an example of WordPress is taken to show how OpenEBS storage volumes are exposed in RWX mode through the use of NFS in between WordPress and the Jiva volumes of OpenEBS.
 
 WordPress, when deployed on Kubernetes, requires both shared storage volumes on NFS and block storage volumes on iSCSI. The shared storage is required to store the core WordPress content or the admin managed content so that all the WordPress PODs can share the same data quickly. When PODs are spawned by Kubernetes on the fly to service more traffic, the PODs need to initialize quickly and require the core data to be available close to the application and in RWX mode. As an extremely high percentage of the shared storage traffic is Read traffic, the RWX volume need not be highly performant for writes and therefore the data can be served through NFS sitting in front of an iSCSI volume.
 
 The typical deployment of a scalable WordPress application is shown in the below diagram.
-![wordpress-deployment-architecture](/public/images/blog/wordpress-deployment-architecture.png)
+
+![wordpress-deployment-architecture](/images/blog/wordpress-deployment-architecture.png)
 
 As shown in the above, OpenEBS can be used to serve the storage volumes in both RWO and RWX modes. The NFS storage volume for WordPress is served through the Kubernetes external storage plugin “[nfs](https://github.com/kubernetes-incubator/external-storage/tree/master/nfs)”. The block storage for the database needs of WordPress is provided through OpenEBS JIVA volumes. If distributed databases like Percona or MariaDB are used then a common approach is that the database is deployed as a StatefulSet for horizontal scalability and Jiva volumes are deployed as a single replica. Alternatively one can use MySQL with jiva persistent volume replicating to three copies for enhanced resiliency.
 
 ## Configuration details of PVC's and Storage Classes
-![pvc-and-storage-classes](/public/images/blog/pvc-and-storage-classes.png)
+
+![pvc-and-storage-classes](/images/blog/pvc-and-storage-classes.png)
+
 The PVC construct openebs-nfs-pvc and storage class construct openebs-nfs-sc are used to create an NFS share in RWX mode to be consumed by the WordPress pod. The deployment spec of nfs-provisioner uses an OpenEBS PVC claim which dynamically provisions the JIVA volumes in RWO mode and mounts them inside the nfs-provisioner pod. The entire process can take under 10–15 seconds.
 
 ## A note on the required size of the NFS volume and the provisioned size of Jiva volume

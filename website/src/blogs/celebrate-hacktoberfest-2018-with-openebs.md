@@ -29,7 +29,7 @@ When your PR to any OpenEBS repositories gets merged, we will get in touch with 
 We also send some of our popular mule stickers along with your t-shirt. The best PR also gets to win a new laptop. Additional details can be found [here](https://openebs.io/hackfests/hacktoberfest-2018?__hstc=216392137.2860b2a415ee07539ccc6f5e86f86eda.1580127992304.1580127992304.1580127992304.1&amp;__hssc=216392137.1.1580127992304&amp;__hsfp=3765904294).
 
 ## Onsite workshops in Bangalore
-![Open Source Cafe at HSR Layout Bangalore](/public/images/blog/openebs-cafe.png)
+![Open Source Cafe at HSR Layout Bangalore](/images/blog/openebs-cafe.png)
 
 We hope to have even greater success in this year’s edition of Hacktoberfest. With that intention, we are hosting onsite workshops on all Saturdays in October in our Open Source Cafe — Bangalore.
 
@@ -42,7 +42,7 @@ We hope to have even greater success in this year’s edition of Hacktoberfest. 
 ***11:00–3:00 PM — Hacktoberfest Onsite Hackathon***
 
 ***11:00–12:00 PM — On-demand 30 minute sessions such as Kubernetes 101 / OpenEBS 101***
-![Onsite Hacktoberfest workshops in Bangalore](/public/images/blog/event-details.png)
+![Onsite Hacktoberfest workshops in Bangalore](/images/blog/event-details.png)
 
 To help beginners start their open-source journey, there will be 101-level courses in the mornings. All workshop participants will receive help from our team in getting started, and they all get to win the special edition t-shirts. Bring your own hacking gear, such as laptops!
 

@@ -33,7 +33,7 @@ We’ll be creating 4 Hetzner cluster servers:
 
 - Login to the instance and add a docker-compose.yml file to run Rancher:
 
-    ![Login to instance](/public/images/blog/login-to-instance.png)
+    ![Login to instance](/images/blog/login-to-instance.png)
 
 - Run:
 
@@ -44,14 +44,14 @@ We’ll be creating 4 Hetzner cluster servers:
 - `Add label loadbalancer=true`
 - `Remove iscsi driver with cloud-init:`
 
-![Remove iscsi driver](/public/images/blog/remove-iscsi-driver.png)
+![Remove iscsi driver](/images/blog/remove-iscsi-driver.png)
 - Create a node template for workers using the same cloud-config
 
 ## Application Configuration
 
 Schedule pods so that they are not running on a node with tag **loadbalancer**. This is not a hard requirement, but in our example cluster it really makes sense.
 
-![application config](/public/images/blog/application-config.png)
+![application config](/images/blog/application-config.png)
 
 ## Adding Nginx-Ingress
 
@@ -71,13 +71,13 @@ The simplest way to add Let’s Encrypt in Rancher is to install it via catalog 
 
 After that every ingress that contains the following annotations:
 
-![ingress](/public/images/blog/ingress.png)
+![ingress](/images/blog/ingress.png)
 
 Will be automatically handled by Let’s Encrypt.
 
 The first time you add an ingress you have to give the certificate a name by editing YAML and adding only the underlined parts below. Other ingresses can be added within the Rancher UI.
 
-![rancher-ui](/public/images/blog/rancher-ui.png)
+![rancher-ui](/images/blog/rancher-ui.png)
 
 ## Adding OpenEBS
 
@@ -88,7 +88,7 @@ The first time you add an ingress you have to give the certificate a name by edi
 
 This will install base OpenEBS complete with storage classes. The next step is to create a persistent volume / persistent volume claim. This can be easily accomplished by running the following YAML:
 
-![pvc](/public/images/blog/pvc.png)
+![pvc](/images/blog/pvc.png)
 
 This will create a persistent volume claim named demo-vol1-claim with 10 GB of space in the storageClass: openebs-jiva-default. This storageClassName can then be passed as a parameter to various applications that require persistent and scale-able storage.
 

@@ -35,14 +35,18 @@ All users running cStor with Fedora 29 are advised to upgrade to 0.8.1 release.
 **Documentation improvements**
 
 Our docs also received significant improvements. Simplified instructions and getting-started steps are provided to new users, and more troubleshooting scenarios are covered for advanced users. We have also certified cStor 0.8.1 for use with many stateful applications like GitLab, ElasticSearch, Minio, and Prometheus with the latest Helm charts and user documentation updated accordingly.
-![New docs — Stateful Applications with OpenEBS](/content/images/2020/01/stateful-applications-in-openebs.png)
+
+![New docs — Stateful Applications with OpenEBS](/images/blog/stateful-applications-in-openebs.png)
+
 User guides for backup and restore and RWM support are also important parts of this new documentation.
-![Backup and Restore Applications using OpenEBS Persistent Volumes](/content/images/2020/01/backup-and-restores.png)
+
+![Backup and Restore Applications using OpenEBS Persistent Volumes](/images/blog/backup-and-restores.png)
 
 **Improved MayaOnline Capabilities**
 
 MayaOnline is always adding more features. You can now debug your OpenEBS-powered Kubernetes cluster even more easily. With the recently added logs feature, OpenEBS volume and pool pod logs are now automatically uploaded and available to you on MayaOnline. You can run a pod describe of any Kubernetes resources in the topology view. This requires only two clicks to get to any Kubernetes resource-describe.
-![Kubernetes resource “describe” on MayaOnline topology view](/content/images/2020/01/mayaonline-topology-view.png)
+
+![Kubernetes resource “describe” on MayaOnline topology view](/images/blog/mayaonline-topology-view.png)
 
 **Summary:**
 

@@ -86,23 +86,30 @@ Now if all prerequisites have been met, go ahead with setting up the cluster. Yo
 
 - Once you have deployed Rancher, you should be able to access the UI. Login to your rancher UI using your credentials
 
-![rancher-ui](/public/images/blog/rancher-ui-1.png)
+![rancher login screen](/images/blog/rancher-login-screen.png)
+
 - Now click on the global tab and then click on add cluster button. We should see the `add cluster` window.
 
 Example:
-![rancher-ui-example1](/public/images/blog/rancher-ui-2.png)
+![rancher ui add cluster](/images/blog/rancher-ui-add-cluster.png)
+
 - Under the add cluster option, click on the custom. Then give the cluster a name. You can customize the cluster under Cluster Options. You can choose Kubernetes version, Network provider and other options. Here, I have selected Kubernetes Version as V.1.11.2-rancher1–1, Network provider as Canal and Cloud Provider as none.
 
 Example:
-![rancher-ui-example2](/public/images/blog/rancher-ui-3.png)
-![https://cdn-images-1.medium.com/max/800/0WmuNv-q8y2DWCrtf](/public/images/blog/rancher-ui-4.png)
+![rancher ui add custom](/images/blog/rancher-ui-add-custom.png)
+
+![rancher ui custom options](/images/blog/rancher-ui-custom-options.png)
+
 - Now, click on the Next button; it will open another page. On this page, you can select node roles like etcd/ Control Plane / Worker. Click on `Show advanced options.` Now add the i/p address of the node in the Internal Address section.
 
 Example:
-![rancher-ui-example3](/public/images/blog/rancher-ui-5.png)
+
+![rancher ui cluster summary](/images/blog/rancher-ui-cluster-summary.png)
+
 - Copy the command mentioned in the page to the node, which will be added to the cluster. Once you run the command, the page will show `1 new node registered.`
 
-![rancher-ui-example4](/public/images/blog/rancher-ui-6.png)
+![rancher ui more options](/images/blog/rancher-ui-more-options.png)
+
 - Now click on *Done*. Follow the same process to add more nodes to the cluster.
 - Once all the nodes are added, you can deploy OpenEBS on the cluster.
 

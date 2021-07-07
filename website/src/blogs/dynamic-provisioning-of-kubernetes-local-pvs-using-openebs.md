@@ -21,7 +21,10 @@ Kubernetes provides an option to use Host Paths (and very recently the use of Lo
 There are many scenarios where Host Paths are the only option since the Kubernetes Nodes can have a limitation on the number of Disks (or devices) that can be attached — either due to node capabilities or just for cost purposes.
 
 However, for Kubernetes Cluster administrators — it can soon become a nightmare if they give free reign to their application developers to use Host Path volumes — as can be seen from a recent conversation in the Kubernetes Slack.
-![](/content/images/2020/01/slack-conversation.png)Issues - Slack conversation
+
+![slack conversation](/images/blog/slack-conversation.png) 
+(***Issues - Slack conversation***)
+
 Typically Kubernetes Administrators lockdown (or disable) the `hostPath` feature using Pod Security Policies, especially in enterprises where security policies trump everything else.
 
 Interestingly, most of these challenges with the Host Path volumes can be overcome, by using a Dynamic Local PV Provisioner (managed by StorageClasses and PersistentVolumeClaims) that can be configured to create a Local PV with either a subpath or the entire disk.
@@ -93,7 +96,10 @@ The implementation has been inspired by the feedback from the OpenEBS community 
 OpenEBS v1.0 continues to make significant progress in enhancing capabilities to the existing Storage Engines like ability to expand cStor Pools by adding additional disks, ability to replace a failed disk without affecting the applications, ability to resize the cStor volumes and many more. OpenEBS Local PVs will provide an additional option for the DevOps teams to cost effectively run their Stateful workloads.
 
 OpenEBS Dynamic Provisioner for Local Persistent Volumes works in tandem with the capabilities that are provided already by the OpenEBS Node Device Manager (NDM).
-![](/content/images/2020/01/openebs-local-pv.png)OpenEBS Local PVs
+
+![openebs local pv](/images/blog/openebs-local-pv.png)
+(***OpenEBS Local PVs***)
+
 The Disk/Device Management Layer is provided by the OpenEBS NDM and projects built using Restic, that help with:
 
 - Discovering the devices attached to the Nodes

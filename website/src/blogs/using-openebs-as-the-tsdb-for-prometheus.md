@@ -32,14 +32,16 @@ The following (mentioned [here](https://prometheus.io/docs/prometheus/latest/sto
 “If your local storage becomes corrupted for whatever reason, your best bet is to shut down Prometheus and remove the entire storage directory. However, you can also try removing individual block directories to resolve the problem. This means losing a time window of around two hours’ worth of data per block directory. Again, Prometheus’s local storage is not meant for durable long-term storage.”
 
 ## Use OpenEBS volume as Prometheus TSDB for durability and scalability
-![Replicated TSDB storage for Prometheus](/public/images/blog/replicated-tsdb-storage-for-prometheus.png)
+
+![Replicated TSDB storage for Prometheus](/images/blog/replicated-tsdb-storage-for-prometheus.png)
 
 OpenEBS volumes are replicated synchronously, in that way, data is protected and is always made available against either a node outage or a disk outage. Replica and quorum policies are independently controlled so that, for example, OpenEBS can be configured to acknowledge a write when N replicas respond, where N is <= replica count. OpenEBS can configure Kubernetes in such a way that a Prometheus pod is always scheduled in one of the three nodes that the OpenEBS replica resides. To make the data even more highly available, the OpenEBS replicas can reside in different Availability Zones of Kubernetes which in general (if in the cloud) are mapped to physical AZs of the cloud provider.
 
 ## Scalability of storage
 
 The fact that capacity cannot be added easily as needed is one of the top limitations of using local storage for Prometheus. OpenEBS helps to address this issue; capacity can be added on-demand and on-the-fly to OpenEBS volumes. So, your Prometheus local storage never runs out of storage space with OpenEBS.
-![On the fly storage expansion with OpenEBS](/public/images/blog/scalability-of-storage.png)
+
+![On the fly storage expansion with OpenEBS](/images/blog/scalability-of-storage.png)
 
 Local disks are grouped into storage pools, and OpenEBS volumes are carved out from these storage pools. Because of the pooling concept, you can start with small size for the storage volume and expand dynamically on demand without any service disruption i.e., on-the-fly. Disk failures are protected against an optional RAID configuration among the disks. Even an entire pool failure (can happen when a disk fails on a stripe group for example or when storage infrastructure fails) is non-fatal in OpenEBS as the rebuilding of the data happens from other replicas. So you have both local redundancy and cross-host redundancy by using OpenEBS.
 

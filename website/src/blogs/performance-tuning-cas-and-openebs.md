@@ -9,7 +9,7 @@ excerpt: Now and again — ok almost every day — we get a question on the comm
 
 Now and again — ok almost every day — we get a question on the community or from our commercial users about performance.
 
-![IOPS SCREENS FROM MAYAONLINE](/public/images/blog/iops-screen-from-mayaonline.png)
+![IOPS SCREENS FROM MAYAONLINE](/images/blog/iops-screen-from-mayaonline.png)
 
 And our typical response is “mileage may vary.” Sometimes we also mention that there are a bunch of tunables then talk to us for help. And by the way — we love to discuss performance requirements as it shows off how CAS is different and also we get to learn much more about how OpenEBS is being used.
 
@@ -30,13 +30,13 @@ Here are the two main tunings that can help improve performance:
 
 ## Scheduling
 
-![Scheduling the Application and Associated cStor Storage Pods](/public/images/blog/scheduling-the-application-and-associated-ctor-storage-pods.png)
+![Scheduling the Application and Associated cStor Storage Pods](/images/blog/scheduling-the-application-and-associated-ctor-storage-pods.png)
 
 cStor is the OpenEBS storage engine written in C. It is Kubernetes-native and follows the same constructs as other application pods, where affinity and anti-affinity rules can be specified to localize the access to the data and to distribute the storage pods to be resilient against node and zone failures. cStor uses synchronous replication behind the scenes to keep copies of your data, so the network latency between the cStor target and its replicas will have a performance impact that needs to be accounted for when designing the system for resiliency. Note that quorum policies are configurable, so you can specify if you want cStor to acknowledge writes when received or, more typically, when received and then confirmed by one or two replicas. Perhaps not surprisingly, performance is best when the application, the cStor target, and its replicas are co-located or connected via a fast network.
 
 ## Tuning the cStor Volume
 
-![Tuning the cStor Volume Based on the Application IO Pattern](/public/images/blog/tuning-the-cstor-volume-based-on-the-application-io-pattern.png)
+![Tuning the cStor Volume Based on the Application IO Pattern](/images/blog/tuning-the-cstor-volume-based-on-the-application-io-pattern.png)
 
 The two main tunings are LU, or “lun worker,” and queue depth, which is simply the depth of the queue used in IO for the OpenEBS target. By default, when you turn up OpenEBS and use the default configurations, OpenEBS runs in a lightweight manner. However, performance improves as you add more CPU to add more workers to LU and QD.
 
@@ -46,7 +46,7 @@ You can read more about these storage policies both for cStor and for the earlie
 
 [OpenEBS Storage Policies](https://docs.openebs.io/docs/next/storagepolicies.html?__hstc=216392137.181b23812f103703b848f80cc28e7104.1575964270497.1575964270497.1575964270497.1&amp;__hssc=216392137.1.1575964270498&amp;__hsfp=2230078507)[docs.openebs.io](https://docs.openebs.io/docs/next/storagepolicies.html?__hstc=216392137.181b23812f103703b848f80cc28e7104.1575964270497.1575964270497.1575964270497.1&amp;__hssc=216392137.1.1575964270498&amp;__hsfp=2230078507)
 
-![Types of Storage Policies for cStor](/public/images/blog/types-of-storage-policies-for-cstor.png) 
+![Types of Storage Policies for cStor](/images/blog/types-of-storage-policies-for-cstor.png) 
 (***Types of Storage Policies for cStor***)
 
 Keep in mind that optimizing performance based on environmental and workload characteristics can be fairly complex. For example, performance often depends upon whether your workload is sequential or random and of course whether it is largely read or write. Many transactional DBs are sequential write-heavy, whereas analytic workloads are often sequential read-heavy and logging is typically more random writes. Also, the block sizes matter as does the characteristics of the underlying storage device (disks vs. SSDs for example). In the case of sequential workloads on cStor, your write performance may actually **degrade** with additional workers. In that case, you would want to decrease the workers to only one thread.

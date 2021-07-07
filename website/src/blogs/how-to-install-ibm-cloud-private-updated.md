@@ -247,11 +247,12 @@ After a successful install you should see a message similar to the below:
 
 One thing I have noticed is that the installation completed much faster than the previous version. ICP got smarter and only pulling images that are required for the roles, also seems like taking advantage of the local image registries. My 5 node installation time dropped from 95 minutes to 53 minutes. If your deployment is successful, you should be able to access your ICP login screen by visiting `https://MASTERNODEIP:8443` (Default username/password is admin/admin).
 
-![account login](/public/images/blog/account-login.png)(***IBM Cloud Private Login Screen***)
+![account login](/images/blog/account-login.png)(***IBM Cloud Private Login Screen***)
 
-![IBM Cloud Private Dashboard](/public/images/blog/ibm-cloud-private-dashboard.png)(***IBM Cloud Private Dashboard***)
+![IBM Cloud Private Dashboard](/images/blog/ibm-cloud-private-dashboard.png)(***IBM Cloud Private Dashboard***)
 
-![IBM Cloud Private Catalog](/public/images/blog/ibm-cloud-private-catalog.png)(***IBM Cloud Private Catalog***)
+![IBM Cloud Private Catalog](/images/blog/ibm-cloud-private-catalog.png)(***IBM Cloud Private Catalog***)
+
 #### `Uninstalling an older version of the IBM Cloud Private`
 
 IBM documentation is very clear with upgrade steps described [here](https://www.ibm.com/support/knowledgecenter/en/SSBS6K_3.1.0/installing/upgrade_ce.html). It is unfortunate that upgrade is only supported from the 2.1.0.3 release since I had problems installing that version. I kept my cluster at 2.1.0.2, and later clean install was the online way to go for me.

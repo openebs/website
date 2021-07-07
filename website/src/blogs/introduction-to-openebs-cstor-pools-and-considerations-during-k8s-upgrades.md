@@ -22,7 +22,10 @@ In this blog, I would like to drive home three points:
 - Some dos and don’ts about cStor volumes and pools during Kubernetes upgrades
 
 ## Introduction to cStor Pools
-![](/content/images/2020/01/cstor-pools.png)cStor pools provide thin provision and save up to 50% of your storage costs on clouds.
+
+![cStor Pools](/images/blog/cstor-pools.png)
+(***cStor pools provide thin provision and save up to 50% of your storage costs on clouds.***)
+
 A cStor-Pool (Shown in the above figure as Pool1) is a set of pool instances on each participating node, where a pool instance is formed over a set of disks. The cStor target places data replicas on each of the pool instances and synchronously replicates the volume data onto those replicas. The target manages the quorum logic and rebuilds the data among replicas when they become unavailable/available. For example, if a node disappears or is rescheduled, the workload will not notice as OpenEBS will continue serving the data.
 
 Each cStor pool instance provides enterprise-grade data protection features such as data consistency, copy-on-write snapshots, RAID resiliency of disks, self-healing of data, and thin provisioning of data. The pools can be scaled within the node by adding more disks on demand or as the used capacity crosses a preset threshold such as 80%. This thin provisioning capability of cStor Pool instances typically leads to a savings of about 50% when pools are setup over cloud provider disks such as EBS, GPD, etc. and helps to limit operational overhead.
@@ -47,9 +50,11 @@ With the MayaOnline topology view of cStor Pool custom resources, you can see th
 
 Here are some example screenshots where one pool instance’s replicas are healthy and the other pool instance’s replicas are not.
 
-![cstor-disk-standard](/public/images/blog/cstor-disk-standard.png) cStor pool with all replicas in healthy state
+![cstor-disk-standard](/images/blog/cstor-disk-standard.png) 
+(***cStor pool with all replicas in healthy state***)
 
-![ci-ssd-pool](/public/images/blog/ci-ssd-pool.png) cStor pool with some volume replicas in unhealthy state‌‌
+![ci-ssd-pool](/images/blog/ci-ssd-pool.png) 
+(***cStor pool with some volume replicas in unhealthy state‌‌***)
 
 ### Ephemeral Disks Scenario
 
