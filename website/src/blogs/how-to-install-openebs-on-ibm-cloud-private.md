@@ -3,13 +3,13 @@ title: How to install OpenEBS on IBM Cloud Private
 author: Murat Karslioglu
 author_info: VP @OpenEBS & @MayaData_Inc. Lives to innovate! Opinions my own!
 date: 19-11-2017
-tags: Helm Charts, Openebs, Solutions, Icp
+tags: Helm Charts, OpenEBS, Solutions, ICP
 excerpt: What is IBM Cloud Private? IBM Cloud Private (ICP) is a new application platform that is based on Kubernetes and provides services for developing and managing on-premises containerized applications. 
 ---
 
 ## What is IBM Cloud Private?
 
-**IBM Cloud Private (ICP)** is a new application platform that is based on **Kubernetes** and provides services for developing and managing **on-premises** containerized applications. ICP Community Edition (ICP-CE) is distributed free of charge for non-production use and is available on Docker Hub. For commercial use, you would need the Enterprise package.
+**IBM Cloud Private (ICP)** is a new application platform that is based on **Kubernetes** and provides services for developing and managing **on-premises** containerized applications. ICP Community Edition *(ICP-CE)* is distributed free of charge for non-production use and is available on Docker Hub. For commercial use, you would need the Enterprise package.
 
 In my previous blog post, [Introduction to IBM Cloud Private](http://containerized.me/introduction-to-ibm-cloud-private/), I have covered step-by-step installation of ICP 2.1. This time I will focus on configuring **OpenEBS** as a **persistent storage** option and deploying a stateful workload (MongoDB) using OpenEBS storage classes.
 
@@ -34,20 +34,25 @@ Follow instructions from [Introduction to IBM Cloud Private](http://containerize
 1. Log in to the ICP console and go to the **Admin/Repositories** menu.
 
 ![OpenEBS on ICP](https://cdn-images-1.medium.com/max/800/0*PPZPNSr9_mW_9AZq.png)
+
 1. Click **Add repository**.
 
 ![Add repository](https://cdn-images-1.medium.com/max/800/0*ZNaLIkk1gxFLWUJK.png)
+
 1. Add a chart repository with the following parameters:
  — **Name:** openebs-charts
- — **URL:**[https://openebs.github.io/charts/](https://openebs.github.io/charts/)
+ — **URL:** [https://openebs.github.io/charts/](https://openebs.github.io/charts/)
 
 ![Confirm charts](https://cdn-images-1.medium.com/max/800/0*2m2J6V9YhnYk5_Cx.png)
+
 1. After you click **Add**, confirm that **openebs-charts** is listed under Repositories.
 
 ![Catalog menu](https://cdn-images-1.medium.com/max/800/0*wkPxIB_Q2DevkgWh.png)
+
 1. Go to the **Catalog** menu, select **openebs** from the list.
 
 ![Configure](https://cdn-images-1.medium.com/max/800/0*7Lt6IE4f_da0jZEB.png)
+
 1. On OpenEBS chart instructions page, click **Configure**.
 2. Configure OpenEBS deployment with the following parameters:
  — **Release name:** openebs-<your-release-name> (you need to pick a unique name)
@@ -62,12 +67,15 @@ Follow instructions from [Introduction to IBM Cloud Private](http://containerize
  — **replicas:** 2 (Number of Jiva Volume replicas)
 
 ![Installation](https://cdn-images-1.medium.com/max/800/0*qfLs4pg_3TE1PbCB.png)
+
 1. Click **Install**. When finished click **View Helm Release.**
 
 ![Storage classes](https://cdn-images-1.medium.com/max/800/0*raLyHiJeZ0hC_BAk.png)
+
 1. On the Helm Release page, you can see the status of OpenEBS, deployment, and available **Storage Classes**.
 
 ![Deploy stateful application](https://cdn-images-1.medium.com/max/800/0*-gCAd374s2jXY3AP.jpg)
+
 1. Now, let’s try to deploy a stateful app on OpenEBS.
 
 ### Install MongoDB on OpenEBS
@@ -84,15 +92,19 @@ Follow instructions from [Introduction to IBM Cloud Private](http://containerize
  Accept the license agreements, keep all the other values as default and click **Install**.
 
 ![Workloads release](https://cdn-images-1.medium.com/max/800/0*UTiLWk3zOy5bw_Wh.png)
+
 1. Go to **Workloads/Helm Releases** and select your MongoDB release. Under the **PersistentVolumeClaim** table you are going to see the volume claim and OpenEBS storage class.
 
 ![Workloads deployment](https://cdn-images-1.medium.com/max/800/0*PNNp0nDxsZXzYwIH.png)
+
 1. If you go to the **Workloads/Deployments** page, you can find the storage controller and two volume replicas (as configured) running.
 
 ![Repository](https://cdn-images-1.medium.com/max/800/0*uaEIPO8n2vY0yUet.png)
+
 1. Confirm that replicas are running on separate nodes. Click on the PVC name ending with **rep** (Example:pvc-23025190-c516–11e7-b45e-e8fd90000064-rep). Scroll down, and you will see that pods are running on separate hosts.
 
-![DEployment successful](https://cdn-images-1.medium.com/max/800/0*pD7rHAX_D8_cxcfl.png)
+![Deployment successful](https://cdn-images-1.medium.com/max/800/0*pD7rHAX_D8_cxcfl.png)
+
 You have successfully deployed a stateful application on a persistent block storage presented by OpenEBS.
 
 ### How does storage HA work for stateful workloads?

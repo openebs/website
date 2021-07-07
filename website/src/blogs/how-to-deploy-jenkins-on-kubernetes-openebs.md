@@ -3,7 +3,7 @@ title: How to deploy Jenkins on Kubernetes + OpenEBS
 author: Murat Karslioglu
 author_info: VP @OpenEBS & @MayaData_Inc. Lives to innovate! Opinions my own!
 date: 16-11-2017
-tags: Jenkins, Kubernetes, Open Source, Solutions, Openebs
+tags: Jenkins, Kubernetes, Open Source, Solutions, OpenEBS
 excerpt: Modern development requires Continuous Integration / Continuous Delivery (CI/CD) and it means building and validating your software on every commit to make sure your development & test environments are always up-to-date. 
 ---
 
@@ -17,9 +17,9 @@ Deploying Jenkins on Kubernetes provides the following benefits:
 - Allows increased resource utilization and efficiency
 - Dynamically scale up Jenkins slaves on demand
 
-Especially, running dynamic slaves in a Kubernetes/Docker environment and automating the scaling of Jenkins slaves running in Kubernetes on top of OpenEBS can **minimize the deployment time and cost**. With OpenEBS, you can build extremely scalable test cycles. You will be able to create instant snapshots (thanks to the [**CoW**](https://en.wikipedia.org/wiki/Copy-on-write)) from the master and **deploy new slaves faster and dynamically on demand**. This process will eliminate the need to perform container-to-container copies.
+Especially, running dynamic slaves in a Kubernetes/Docker environment and automating the scaling of Jenkins slaves running in Kubernetes on top of OpenEBS can **minimize the deployment time and cost**. With OpenEBS, you can build extremely scalable test cycles. You will be able to create instant snapshots (thanks to the [**CoW**](https://en.wikipedia.org/wiki/Copy-on-write)) from the master and **deploy new slaves faster and dynamically on-demand**. This process will eliminate the need to perform container-to-container copies.
 
-In Jenkins, slaves are optional. OpenEBS can also help when you have a smaller environment and running a **monolithic master**. In that model, state on the master would be lost when you shut down the Jenkins master service. When using monolithic master on OpenEBS, your volume is persistent and replicated over to n nodes (defined in your OpenEBS storage class). In that case, the master can exit, even if your node fails it can start on other nodes, migrate from private to public cloud, vice-versa when needed and your data will follow you.
+In Jenkins, slaves are optional. OpenEBS can also help when you have a smaller environment and running a **monolithic master**. In that model, state on the master would be lost when you shut down the Jenkins master service. When using monolithic master on OpenEBS, your volume is persistent and replicated over to n nodes *(defined in your OpenEBS storage class)*. In that case, the master can exit, even if your node fails it can start on other nodes, migrate from private to public cloud, vice-versa when needed and your data will follow you.
 
 Let’s deploy Jenkins on our existing K8s cluster with OpenEBS. You will notice that it’s not much different than deploying on local storage, except your data will be protected with OpenEBS.
 
@@ -27,7 +27,7 @@ Let’s deploy Jenkins on our existing K8s cluster with OpenEBS. You will notice
 
 ### Software
 
-- [Docker ](https://docs.docker.com/engine/installation/)installed
+- [Docker](https://docs.docker.com/engine/installation/) installed
 - Kubernetes 1.7.3+ RBAC enabled cluster
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) installed
 - [OpenEBS](https://github.com/openebs/openebs) installed
@@ -44,7 +44,7 @@ Before getting started, check the status of the cluster using the following comm
 
     kubectl get nodes
 
-In my environment, i have one master and two worker nodes.
+In my environment, I have one master and two worker nodes.
 
     ubuntu@ip-172–23–1–115:~$ kubectl get nodes
     NAME STATUS ROLES AGE VERSION
@@ -180,12 +180,12 @@ Example output below:
     ubuntu@ip-172–23–1–115:~$ kubectl describe svc jenkins-svc | grep NodePort:
      NodePort: <unset> 31705/TCP
 
-IP above is your private IP on AWS, can be used if you are accesing through another instance on AWS. To access it remotely, you also need to open that port on E2C instance’s security group.
+IP above is your private IP on AWS, which can be used if you are accessing through another instance on AWS. To access it remotely, you also need to open that port on E2C instance’s security group.
 
 Go to the Network & Security -> Security Group settings in the left hand navigation
- Find the **Security Group** that your instance is apart of. Click on **Inbound Rules. **Click on **Edit** and **Add Rule** button. Then add HTTP (port 31705). Click **Save**.
+Find the **Security Group** that your instance is a part of. Click on **Inbound Rules**. Click on **Edit** and **Add Rule** button. Then add HTTP (port 31705). Click **Save**.
 
-Now, combine your public IP and port number and open that in your browser. In my case it is [https://34.223.235.50:31705.](https://34.223.235.50:31705.)
+Now, combine your public IP and port number and open that in your browser. In my case, it is [https://34.223.235.50:31705.](https://34.223.235.50:31705.)
 
 Once you access the URL the Getting Started page is displayed. Follow the procedure below to setup Jenkins.
 
@@ -219,4 +219,4 @@ Click **Continue as admin** if you want to perform further administrator tasks o
 ![jenkins-is-ready](/images/blog/jenkins-is-ready.png)
 
 
-*Originally published at *[*Containerized Me*](http://containerized.me/how-to-deploy-jenkins-on-kubernetes-openebs/)*.*
+_Originally published at [*Containerized Me*](http://containerized.me/how-to-deploy-jenkins-on-kubernetes-openebs/)_.

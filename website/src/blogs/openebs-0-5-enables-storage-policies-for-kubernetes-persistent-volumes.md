@@ -23,7 +23,7 @@ I am delighted to announce that OpenEBS 0.5 is released with 300+ PRs coming fro
 Some notable changes include:
 
 - Storage Policy Enforcement Framework that allows DevOps teams to deploy a customized storage
-- Extend OpenEBS API Server to expose volume snapshot api
+- Extend OpenEBS API Server to expose volume snapshot API
 - Support for deploying OpenEBS via helm charts
 - Support for monitor and get insights into OpenEBS volumes via Prometheus and Grafana
 - Sample Deployment YAMLs and corresponding Policy enabled Storage Classes for several stateful applications
@@ -31,7 +31,7 @@ Some notable changes include:
 
 ***My favorite capability is the Storage Policy Framework that will enable each DevOps team to have their own storage controller — with their own storage policies. And the possibilities it will open-up!***
 
-Imagine as a Developer I want to test my service against MySQL database with different datasets. On my staging PV (mysqldata), I can create multiple snapshots containing different datasets — say snaps like *sandy* and *wendy*. Now I can extend OpenEBS to support a new policy “o*penebs.io/jiva-replica-snap”,* that can launch a new volume using snapshot for seed data.
+Imagine as a Developer I want to test my service against MySQL database with different datasets. On my staging PV (mysqldata), I can create multiple snapshots containing different datasets — say snaps like *sandy* and *wendy*. Now I can extend OpenEBS to support a new policy *"openebs.io/jiva-replica-snap"*, that can launch a new volume using snapshot for seed data.
 
 The policy can be defined for snap — *sandy* as follows:
 
@@ -59,7 +59,7 @@ and another one for *wendy*:
       openebs.io/jiva-source-pv: "mysqldata"
       openebs.io/jiva-replica-snap: "mysqldata-ds-wendy"
 
-In my PVC, I can now use the above StorageClasses(augmented with OpenEBS Storage Policies) to point to different dataset and independently test my service.
+In my PVC, I can now use the above StorageClasses (augmented with OpenEBS Storage Policies) to point to the different datasets and independently test my service.
 
 All this from ***kubectl***.
 

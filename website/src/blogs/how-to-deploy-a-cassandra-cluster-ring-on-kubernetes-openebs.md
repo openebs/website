@@ -8,26 +8,19 @@ excerpt: Apache Cassandra is a distributed key-value store intended to run in a 
 ---
 
 
-Apache  Cassandra is a **distributed key-value store** intended to run in a data center and also across multiple data centers. Initially it was designed as Facebook as an infrastructure for their messaging platform. Later it is open sourced, and today it’s one of the most active Apache projects.
+Apache  Cassandra is a **distributed key-value store** intended to run in a data center and also across multiple data centers. Initially, it was designed as Facebook as an infrastructure for their messaging platform. Later it is open sourced, and today it’s one of the most active Apache projects.
+If you are using eBay, Twitter, Spotify, or Netflix you are consuming data provided by Cassandra. For example, Netflix uses Cassandra to keep track of your current place in a streaming video, as well as movie ratings, bookmarks, and user history of 90+ million users.
+Amazing to see how much of this technology we consume in our day-to-day life. The feature that allowed me and my wife to start watching Stranger Things on our long trip on a tablet and continued on TV was depending on Cassandra. To give you an idea of its size, according to a [recent presentation](https://www.youtube.com/watch?v=2l0_onmQsPI), Cassandra serving Netflix has 250+ Clusters, 10,000+ Nodes, and 3+ PB of data.
+In summary, Cassandra solves the problem of mapping the key-value pair to a server/node, in our case to a container. This mapping is called the **partitioner**. There are two common placement strategies used by Cassandra: **SimpleStrategy** or **NetworkTopologyStrategy**. SimpleStrategy uses partitioner Murmur3Partitioner by default. Both **Murmur3Partitioner** and **RandomPartitioner** partitioners uniformly distribute data to nodes across the cluster. Read and write requests to the cluster are evenly distributed while using these partitioners. Load balancing is simplified as each part of the hash range receives an equal number of rows on average. **Byte-Order Partitioner **is not recommended other than key range queries.
 
-If you are using eBay, Twitter, Spotify or Netflix you are consuming data provided by Cassandra. For example, Netflix uses Cassandra to keep track of your current place in a streaming video, as well as movie ratings, bookmarks and user history of 90+ million users.
-
-Amazing to see how much of this technology we consume in our day-to-day life. The feature that allowed me and my wife to start watching Stranger Things on our long trip on a tablet and continued on TV was depending on Cassandra. To give you an idea of its size, according to a [recent presentation](https://www.youtube.com/watch?v=2l0_onmQsPI), Cassandra serving Netflix has 250+ Clusters, 10,000+ Nodes and 3+ PB of data.
-
-In summary, Cassandra solves the problem of mapping the key-value pair to a server/node, in our case to a container. This mapping is called as the **partitioner**. There are two common placement strategies used by Cassandra: **SimpleStrategy** or **NetworkTopologyStrategy**. SimpleStrategy uses partitioner Murmur3Partitioner by default. Both **Murmur3Partitioner** and **RandomPartitioner** partitioners uniformly distribute data to nodes across the cluster. Read and write requests to the cluster are evenly distributed while using these partitioners. Load balancing is simplified as each part of the hash range receives an equal number of rows on average. **Byte-Order Partitioner **is not recommended other than key range queries.
-
-For development work, the SimpleStrategy class is acceptable. For production work, the NetworkTopologyStrategy class must be set. In production, you will end up with multiple rings using mostly NetworkTopology placement which is by-itself extremely complex to plan.
-
+For development work, the SimpleStrategy class is acceptable. For production work, the NetworkTopologyStrategy class must be set. In production, you will end up with multiple rings using mostly NetworkTopology placement which is by itself extremely complex to plan.
 If you want to learn the architecture of Cassandra, the University of Illinois has a great course on [Cloud Computing Concepts](https://www.coursera.org/learn/cloud-computing/home/welcome) and [Key-Value Stores](https://www.coursera.org/learn/cloud-computing/home/week/4) which covers internals of Cassandra. You can also find more about custom SeedProvider and Snitches [here](https://github.com/kubernetes/kubernetes/issues/24286).
-
-
-Cassandra doesn’t like shared storage, therefore use of NFS or GlusterFS not recommended for Cassandra rings. It’s also recommended to use SSD or NVMe, since it’s essential to have low latency random reads and good sequential writes at the same time. This kind of requirements can be only satisfied with OpenEBS like local and persistent storage solution.
-
-To achieve the best fault tolerance with Cassandra, you need to have an excellent understanding of the [**snitch**](http://cassandra.apache.org/doc/latest/operating/snitch.html)and placement strategies. There is a big debate on whether if Cassandra or the storage should handle the placement of data. My suggestion would be to have a balanced approach and have both. OpenEBS can help you to place your persistent volumes across the datacenter, multiple cloud vendors and fault domains against Cassandra replica failures. First, you can **avoid rebalancing** your cluster in case of a datacenter failure. Second, in case of node failures in a rack, you can bring up the same node from a snapshot and **minimize the time needed to rebalance**.
+Cassandra doesn’t like shared storage, therefore use of NFS or GlusterFS not recommended for Cassandra rings. It’s also recommended to use SSD or NVMe, since it’s essential to have low latency random reads and good sequential writes at the same time. These kinds of requirements can be only satisfied with OpenEBS like local and persistent storage solutions.
+To achieve the best fault tolerance with Cassandra, you need to have an excellent understanding of the [**snitch**](http://cassandra.apache.org/doc/latest/operating/snitch.html)and placement strategies. There is a big debate on whether if Cassandra or the storage should handle the placement of data. My suggestion would be to have a balanced approach and have both. OpenEBS can help you to place your persistent volumes across the datacenter, multiple cloud vendors, and fault domains against Cassandra replica failures. First, you can **avoid rebalancing** your cluster in case of a datacenter failure. Second, in case of node failures in a rack, you can bring up the same node from a snapshot and **minimize the time needed to rebalance**.
 
 I will use Cassandra custom Kubernetes SeedProvider that allows discovery within Kubernetes clusters as they join the cluster and deploy using `gcr.io/google-samples/cassandra:v11` image from Google’s container registry.
 
-Let’s deploy our first three replica Cassandra cluster on our existing AWS K8s cluster with OpenEBS. If you are using on local minikube or datacenter, you can keep the default **SimpleStrategy **and **Murmur3Partitioner **in `cassandra.yaml` file.
+Let’s deploy our first three replica Cassandra cluster on our existing AWS K8s cluster with OpenEBS. If you are using on local minikube or datacenter, you can keep the default **SimpleStrategy** and **Murmur3Partitioner** in `cassandra.yaml` file.
 
 #### **Prerequisites**
 
@@ -63,7 +56,7 @@ On my setup, I have one master and four worker nodes on AWS in the same US West 
      ip-172–23–1–35.us-west-2.compute.internal Ready <none> 21h v1.8.3
      ip-172–23–1–46.us-west-2.compute.internal Ready <none> 21h v1.8.3
 
-Download openebs github repo to your host, where sample yaml files are stored.
+Download OpenEBS GitHub repo to your host, where sample YAML files are stored.
 
     git clone [https://github.com/openebs/openebs.git](https://github.com/openebs/openebs.git)
 
@@ -184,15 +177,15 @@ Note: There are few parameters you may want to modify.
 
 `apiVersion: apps/v1beta2` API group and version is introduced 1.8 release.
 
-`replicas: 3`, i’m starting with 3 replicas and will increase later.
+`replicas: 3`, I’m starting with 3 replicas and will increase later.
 
-`image: gcr.io/google-samples/cassandra:v12` is the latest image available at the time I&#8217;ve tested.
+`image: gcr.io/google-samples/cassandra:v12` is the latest image available at the time I've tested.
 
-`volume.beta.kubernetes.io/storage-class: openebs-cassandra` i’m using a predefined OpenEBS storage class. You can modify it separately.
+`volume.beta.kubernetes.io/storage-class: openebs-cassandra` I’m using a predefined OpenEBS storage class. You can modify it separately.
 
 #### Create a Cassandra Headless Service
 
-To be able to have a simple discovery of the Cassandra seed node we need to create a “headless” service. If you view the `cassandra-service.yaml`file, you will notice that `clusterIP` is set to None. This will allows us to use KubeDNS for the Pods to discover the IP address of the Cassandra seed.
+To be able to have a simple discovery of the Cassandra seed node we need to create a “headless” service. If you view the `cassandra-service.yaml`file, you will notice that `clusterIP` is set to None. This will allow us to use KubeDNS for the Pods to discover the IP address of the Cassandra seed.
 
     ubuntu@ip-172–23–1–236:~/openebs/k8s/demo/cassandra$ cat cassandra-service.yaml
      apiVersion: v1
@@ -230,7 +223,7 @@ Check if your StatefulSet has deployed using the command below. Time may take ar
      NAME DESIRED CURRENT AGE
      cassandra 3 3 5m
 
-If you don’t see all 3 replicas ready, you can check status of pods to watch progress. For example, i ran `kubectl get pods` after 2 minutes below. First node was ready and second was still creating. All three pods were ready after around 5 minutes.
+If you don’t see all 3 replicas ready, you can check status of pods to watch progress. For example, I ran `kubectl get pods` after 2 minutes below. First node was ready and second was still creating. All three pods were ready after around 5 minutes.
 
     ubuntu@ip-172–23–1–236:~/openebs/k8s/demo/cassandra$ kubectl get pods
      NAME READY STATUS RESTARTS AGE
@@ -264,7 +257,7 @@ Verify that all the OpenEBS persistent volumes are created, the Cassandra headle
      pvc-d13bf437-d225–11e7–955b-062af127ae24-rep-74d4cf4b84–5m8nz 1/1 Running 0 6m 10.2.3.3 ip-172–23–1–225.us-west-2.compute.internal
      pvc-d13bf437-d225–11e7–955b-062af127ae24-rep-74d4cf4b84-c4t9c 1/1 Running 0 6m 10.2.4.4 ip-172–23–1–46.us-west-2.compute.internal
 
-On the list of the Pods above, you see 3 Pods running. Your Pod names should be cassandra-0, cassandra-1, cassandra-2 and the next pods would follow the ordinal number (cassandra-3, cassandra-4,..) Use this command to view the Pods created by the StatefulSet:
+On the list of the Pods above, you see 3 Pods running. Your Pod names should be cassandra-0, cassandra-1, cassandra-2 and the next pods would follow the ordinal number (cassandra-3, cassandra-4,...). Use this command to view the Pods created by the StatefulSet:
 
     ubuntu@ip-172–23–1–236:~/openebs/k8s/demo/cassandra$ kubectl get svc
      NAME TYPE CLUSTER-IP EXTERNAL-IP PORT(S) AGE
@@ -277,7 +270,7 @@ On the list of the Pods above, you see 3 Pods running. Your Pod names should be 
 
 #### Verifying Successful Cassandra Deployment
 
-Check if the Cassandra nodes are up, perform a `**nodetool status**`on cassandra-0 node**:**
+Check if the Cassandra nodes are up, perform a **`nodetool status`** on cassandra-0 node :
 
     ubuntu@ip-172–23–1–236:~/openebs/k8s/demo/cassandra$ kubectl exec -ti cassandra-0 — nodetool status
      Datacenter: DC1-K8Demo
@@ -289,7 +282,7 @@ Check if the Cassandra nodes are up, perform a `**nodetool status**`on cassandra
      UN 10.2.1.6 65.65 KiB 32 59.5% 552569fe-c6df-4edb-a553–9efdcf682fb3 Rack1-K8Demo
      UN 10.2.2.4 83.12 KiB 32 64.9% 92060271-d8cd-48be-a489-c830a8553462 Rack1-K8Demo
 
-UN means node is **up **and in **normal **state. You will also notice that each node has 32 tokens. This is the default value, in production workloads a good default value for this is 256. See more information [here](http://docs.datastax.com/en/archived/cassandra/2.0/cassandra/architecture/architectureDataDistributeVnodesUsing_c.html).
+UN means node is **up** and in **normal** state. You will also notice that each node has 32 tokens. This is the default value, in production workloads, a good default value for this is 256. See more information [here](http://docs.datastax.com/en/archived/cassandra/2.0/cassandra/architecture/architectureDataDistributeVnodesUsing_c.html).
 
 The **Owns** column suggests the data distribution percentage for the content placed into the Cassandra keyspaces.
 
@@ -326,7 +319,7 @@ I will create a keyspace using NetworkTopologyStrategy by running the following 
 
     ntsks system_schema system_auth system system_distributed system_traces
 
-To use NetworkTopologyStrategy with data centers in a production environment, you need to change the default snitch, **SimpleSnitch** to a network-aware **Ec2Snitch.** You need to define one or more data center names in the snitch properties file, and use those data center names to define the keyspace; otherwise, Cassandra will fail to find a node. You can find the instructions to change the default Snitch [here](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_switch_snitch.html).
+To use NetworkTopologyStrategy with data centers in a production environment, you need to change the default snitch, **SimpleSnitch** to a network-aware **Ec2Snitch**. You need to define one or more data center names in the snitch properties file, and use those data center names to define the keyspace; otherwise, Cassandra will fail to find a node. You can find the instructions to change the default Snitch [here](https://docs.datastax.com/en/cassandra/2.1/cassandra/operations/ops_switch_snitch.html).
 
 Create a table with test content and view the data using the following commands.
 
@@ -440,7 +433,7 @@ If your Cassandra nodes are not joining, delete your controller/statefulset then
 
     kubectl delete statefulset cassandra
 
-if you created the Cassandra StatefulSet:
+If you created the Cassandra StatefulSet:
 
     kubectl delete svc cassandra
 
@@ -450,4 +443,4 @@ To delete everything:
 
 ---
 
-*Originally published at *[*Containerized Me*](http://containerized.me/how-to-deploy-a-cassandra-cluster-ring-on-kubernetes-openebs/)*.*
+*Originally published at [Containerized Me](http://containerized.me/how-to-deploy-a-cassandra-cluster-ring-on-kubernetes-openebs/)*.
