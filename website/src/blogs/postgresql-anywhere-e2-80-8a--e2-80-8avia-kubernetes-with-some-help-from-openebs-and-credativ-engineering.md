@@ -33,7 +33,10 @@ If you are curious about what container attached storage of CAS is , you can rea
 Conceptually, you can think of CAS as the decomposition of previously monolithic storage software into containerized microservices that run on Kubernetes. This provides the same advantages of running Kubernetes to the storage and data management layer as well. Like Kubernetes, OpenEBS runs anywhere, so the same advantages below apply whether it is used on-premises or on any of the hosted Kubernetes services.
 
 **PostgreSQL plus OpenEBS**
-![](/content/images/2020/01/image4.png)Postgres-Operator using OpenEBS as the Storage Provider
+
+![Postgres Operator using OpenEBS](/public/images/blog/postgres-operator-using-openebs.png)
+(***Postgres-Operator using OpenEBS as the Storage Provider***)
+
 We have seen joint users adopting OpenEBS as a substrate to PostgreSQL for a variety of reasons. Here are a few of the reasons that stand out:
 
 **Consistency in underlying disk or cloud volume management.**

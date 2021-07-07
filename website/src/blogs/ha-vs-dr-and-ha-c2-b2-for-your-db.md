@@ -23,7 +23,7 @@ Here are a few hard-learned principles that I draw upon:
 
 1. **Shift down** — tackle failure as close as possible to the failure source to limit the risk of injuring yourself with cascading failures.
 2. **Build every layer** — and  every system,  so that it is built to fail.
-3. ***Build***** every layer** — do not think you have DR when you have HA; and don’t think you have HA just because you have one workload that spans several clusters.
+3. ***Build*** *every layer* — do not think you have DR when you have HA; and don’t think you have HA just because you have one workload that spans several clusters.
 4. **Infrastructure as code –** related to #3. Always; no black boxes. The desired state is in the repo. Yes, the control loop at the center of Kubernetes will make simple decisions to trade off workloads and behaviors to the best of its ability. Grok that, and insist on everything  by deploying this approach.
 5. **Simplicity**. Yes, this is the UNIX philosophy of do one thing and do it well. No, a human cannot grok the entire system in many cases, but they must be able to grok the behavior of each subsection.
 

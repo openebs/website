@@ -14,9 +14,13 @@ I would like to tell you about my experience with the Certified Kubernetes Admin
 I was first exposed to Kubernetes when I started to work on OpenEBS, a Container Attached Storage solution.
 
 After working on the project for a period of time, I thought about taking the CKA certification exam. I took approximately one and a half months to practice and get my hands dirty. I completed the exam on the 28th of December 2018 and was excitedly able to pass the exam.
+
 ![](https://lh6.googleusercontent.com/xjqXS1OHG4peRCNCbgIucCHlqEEgY4dzFr2vCot0pj0dRz075Xv7Ed2p9yBiqYMWLkvKOFLLIkXL-6lTtqIap981KBWebNZvfBn8SYmOstKa-SjdUruWyli92vsGatDvXt5Nveq2)
+
 ## CKA is about making friends!
+
 ![](https://lh6.googleusercontent.com/y-dr6deMc6gBAJs4UKCCdA_rmDTbRLyyUd5OLMj1u6_deX1JIDWVUJq-iQvBnJXKMrs3z5pqcT6FPEfaH8qJ80Gt0BdoQ5qOOEdDoy5ZI6KNfySYzr-dy52ojIb-U-W4ZiCXHJDR)
+
 When I was involved in developing the OpenEBS control plane, I was required to understand some basic concepts, specifically, the storage concepts of Kubernetes.
 
 I started to explore Kubernetes Docs which, in my opinion, is the greatest source for learning Kubernetes. I applied my newfound knowledge to the project. My in-house team members my company MayaData, namely Karthik, Amit, Vishnu, and Kiran just to name a few, groomed me and provided me with the right knowledge. From there, I started to develop more interest in the subject.
@@ -32,7 +36,9 @@ I came to know about the Kubernaut Slack channel, space where you can join and a
 This journey was very exciting, and it became a journey to make new friends and, of course, this led to becoming a CKA. 
 
 ## About the Exam
+
 ![](https://lh6.googleusercontent.com/8O1iFmqiXACiozyrrBeMHHX3GKf9HstipsrtEK7MnPyppP9kQVxxIL1aXogrCYs8fdOCYe1952aBSpqp2bokSxpMpvkn770m4wfMjuBlNEWeeETInd7cSX-l70GUq1o3QI3SonVq)
+
 - The duration of the exam is 3 hours.
 - There will be 6 Kubernetes clusters on which the questions are based.
 - There are 24 total questions.
@@ -48,7 +54,9 @@ To learn more about the exam syllabus, visit the following link:
 [https://github.com/cncf/curriculum](https://github.com/cncf/curriculum)
 
 ## Preparation and Tips
+
 ![](https://lh3.googleusercontent.com/y5Y0lbm9j0gl9pMSf2pV9cAwHrLHzk2As5oReKk-gtz--IeZvCs4V1lPQeUKQImkpKQvoX3N7YGl-3OMMva5-vNzQpEYT6curv_PbRdDIZgMuKkGzx9wj4yD5CAc62xMU5YrOdid)
+
 - Go through the Kubernetes docs exhaustively, especially the concepts and task sections, so that when you see a question you can easily open the relevant topic in docs quickly.
 - Practice with Kubectl, e.g. create a deployment, service etc., without writing YAML.
 [https://kubernetes.io/docs/reference/kubectl/conventions/](https://kubernetes.io/docs/reference/kubectl/conventions/)

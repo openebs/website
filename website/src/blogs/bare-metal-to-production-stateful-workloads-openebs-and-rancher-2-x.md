@@ -49,7 +49,9 @@ We’ll be creating 4 Hetzner cluster servers:
 ## Application Configuration
 
 Schedule pods so that they are not running on a node with tag **loadbalancer**. This is not a hard requirement, but in our example cluster it really makes sense.
+
 ![application config](/public/images/blog/application-config.png)
+
 ## Adding Nginx-Ingress
 
 DNS scheme is configured like this:
@@ -67,11 +69,15 @@ Which enables you to use:
 The simplest way to add Let’s Encrypt in Rancher is to install it via catalog apps.
 
 After that every ingress that contains the following annotations:
+
 ![ingress](/public/images/blog/ingress.png)
+
 Will be automatically handled by Let’s Encrypt.
 
 The first time you add an ingress you have to give the certificate a name by editing YAML and adding only the underlined parts below. Other ingresses can be added within the Rancher UI.
+
 ![rancher-ui](/public/images/blog/rancher-ui.png)
+
 ## Adding OpenEBS
 
 - Login to each node and run: *apt-get install open-iscsi*
@@ -80,7 +86,9 @@ The first time you add an ingress you have to give the certificate a name by edi
 - Select OpenEBS and install it via Helm Charts
 
 This will install base OpenEBS complete with storage classes. The next step is to create a persistent volume / persistent volume claim. This can be easily accomplished by running the following YAML:
+
 ![pvc](/public/images/blog/pvc.png)
+
 This will create a persistent volume claim named demo-vol1-claim with 10 GB of space in the storageClass: openebs-jiva-default. This storageClassName can then be passed as a parameter to various applications that require persistent and scale-able storage.
 
 ## Conclusion

@@ -17,7 +17,7 @@ In order to create a block volume, provisioners need to support *volumeMode*, th
 
 With the release of OpenEBS 0.7.0, users can create a block volume via the OpenEBS external-provisioner. With this provisioner, during volume creation, the user requests the PersistentVolumeClaim, which sets *volumeMode=”Block”* in the *PersistentVolumeClaimSpec*, binds it with *PersistentVolume* objects, and Block devices are eventually attached to the pods by including them in the volumes array of the *podSpec.*
 
-Regardless of the *volumeMode*, provisioner can set *FSType* into the plugin’s volumeSource, but the value will be ignored at the volume plugin side if volumeMode = Block. Leaving *volumeMode *blank is essentially the same as specifying*volumeMode = “Filesystem,”* which results in the traditional behavior.
+Regardless of the *volumeMode*, provisioner can set *FSType* into the plugin’s volumeSource, but the value will be ignored at the volume plugin side if volumeMode = Block. Leaving *volumeMode* blank is essentially the same as specifying *volumeMode = “Filesystem,”* which results in the traditional behavior.
 
 When using a raw block volume in your Pods, you must specify a *VolumeDevice *attributein the Container section of the *PodSpec* rather than a *VolumeMount*. *VolumeDevices* utilize *devicePaths* instead of *mountPaths*. Inside the container, applications will see a device at that path instead of a mounted file system.
 
@@ -93,7 +93,7 @@ Here, the user creates an application pod whose containers consume both block an
 
 ## Conclusion
 
-A *block volume* is a volume that appears as a block device inside the container and allows low-level access to the storage without intermediate layers, as with file-system volumes. There are several advantages* of raw disk partitions, *including:
+A *block volume* is a volume that appears as a block device inside the container and allows low-level access to the storage without intermediate layers, as with file-system volumes. There are several advantages *of raw disk partitions*, including:
 
 - Block devices that are actually SCSI disks support the sending of SCSI commands to the device using Linux ioctls.
 - Faster I/O without an overhead UNIX file system, more synchronous I/O without UNIX file system buffering, etc.
