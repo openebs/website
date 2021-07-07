@@ -11,9 +11,9 @@ excerpt: How are TikTok, Flipkart, KubeSphere, and others using OpenEBS for Loca
 
 We have recently seen a massive increase in the usage of different flavors of OpenEBS Local PV. We estimate by looking at container pulls for underlying components combined with some call home data for those users of OpenEBS that enable the capturing of metrics that the weekly new deployments of OpenEBS for LocalPV increased by nearly 10x during 2020. This can be attributed to the fact that more and more cloud native Stateful applications are moving into Kubernetes
 
-![kg-image](https://admin.mayadata.io/content/images/2021/03/Local-PV-Deployment.PNG)
+![LocalPv Deployment](https://admin.mayadata.io/content/images/2021/03/Local-PV-Deployment.PNG)
 
-Some of the prominent users of OpenEBS Local PV include the CNCF, Optoro, ByteDance / TikTok, Flipkart, and many more. You can always read more about OpenEBS users on the OpenEBS.io website and on the GitHub project page here: https://github.com/openebs/openebs/blob/master/ADOPTERS.md.
+Some of the prominent users of OpenEBS Local PV include the CNCF, Optoro, ByteDance / TikTok, Flipkart, and many more. You can always read more about OpenEBS users on the OpenEBS.io website and on the GitHub project page here: [https://github.com/openebs/openebs/blob/master/ADOPTERS.md](https://github.com/openebs/openebs/blob/master/ADOPTERS.md).
 
 While Kubernetes provides native support or interfaces for consuming Local Volumes, the adoption of OpenEBS for LocalPV management suggests that some capabilities are missing that are desired by users. At a high level, dynamic provisioning and the simplicity of deleting Local Volumes are two reasons often given for the preference of some users for the use of OpenEBS LocalPV.
 
@@ -29,8 +29,8 @@ Hence, Stateful Applications using local volumes must be able to tolerate this r
 
 As it happens, many of the Cloud Native Workloads - are distributed in nature and are typically deployed as StatefulSets with multiple replicas. These can sustain the failure or reduced availability of a single replica. MinIO, Redis, PostgreSQL, Kafka, Cassandra, Elastic are just some examples that are deployed using Local Volumes. For these applications - performance and consistent low latency, and ease of management are more important than the resiliency of a node to failures.
 
-As the large SaaS provider, [Optoro](https://github.com/openebs/openebs/blob/master/adopters/optoro/README.md) puts it:
-_The vast majority of applications are able to better handle failover and replication than a block level device. Instead of introducing another distributed system into an already complex environment, OpenEBS's localPVs allow us to leverage fast local storage. … OpenEBS has allowed us to not introduce a complicated distributed system into our platform. The adoption has been smooth and completely transparent to our end users._
+As the large SaaS provider, [Optoro](https://github.com/openebs/openebs/blob/master/adopters/optoro/README.md) puts it:  
+*The vast majority of applications are able to better handle failover and replication than a block level device. Instead of introducing another distributed system into an already complex environment, OpenEBS's localPVs allow us to leverage fast local storage. … OpenEBS has allowed us to not introduce a complicated distributed system into our platform. The adoption has been smooth and completely transparent to our end users.*
 
 ## Limitations of Kubernetes LocalPV
 
@@ -77,4 +77,4 @@ Or read more on what our OpenEBS users and partners have to say about Local PV. 
 
 And from one of the most broadly deployed Kubernetes distributions, Kubesphere: [OpenEBS Local PV is default Storage Class in Kubesphere](https://github.com/openebs/openebs/tree/master/adopters/kubesphere)
 
-Or, again, you can find more stories and can add your own to Adopters.MD on the OpenEBS GitHub: https://github.com/openebs/openebs/blob/master/ADOPTERS.md
+Or, again, you can find more stories and can add your own to Adopters.MD on the OpenEBS GitHub: [https://github.com/openebs/openebs/blob/master/ADOPTERS.md](https://github.com/openebs/openebs/blob/master/ADOPTERS.md)

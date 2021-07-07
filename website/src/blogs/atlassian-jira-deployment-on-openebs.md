@@ -7,7 +7,7 @@ date: 20-11-2020
 excerpt: Learn how to deploy Atlassian Jira on OpenEBS in this short post.
 --- 
 
-**Jira** Software is part of a family of products designed to help teams of all types manage work. Originally, **Jira** was designed as a bug and issue tracker. But today, Jira has evolved into a powerful work management tool for all kinds of use cases, from requirements and test case management to agile software development.
+***Jira*** Software is part of a family of products designed to help teams of all types manage work. Originally, **Jira** was designed as a bug and issue tracker. But today, **Jira** has evolved into a powerful work management tool for all kinds of use cases, from requirements and test case management to agile software development.
 
 ## Requirements
 
@@ -128,15 +128,19 @@ spec:
       storage: 10G
 ```
 
-Next, apply both the **Jira deployment** and service to your Kubernetes cluster.
+Next, apply both the ***Jira deployment*** and service to your Kubernetes cluster.
 
-```kubectl apply -f jira.yaml```
+```
+kubectl apply -f jira.yaml
+```
 
 #### Verify Jira Pods:
 
 #### Run the following to get the status of Jira pods:
 
-```kubectl get pods```
+```
+kubectl get pods
+```
 
 Following is an example output:
 
