@@ -25,6 +25,7 @@ When a GKE node goes down, a new node comes up as part of Cluster Autoscaler. GP
 ## Restrictions for Using Local SSDs as -is for Kubernetes
 
 Google cloud documentation on the restrictions for using local SSDs for Kubernetes is mentioned [here](https://cloud.google.com/kubernetes-engine/docs/how-to/persistent-volumes/local-ssd).
+
 ![Use of local disks has restrictions on GKE](https://lh4.googleusercontent.com/uE8p6fJtr2AYnqYAuv_4XWEf5ZQ1lgZ8p-wthognqxV2ayxGQf2iCh7C6LEK5qM_OwvrnDx3R4D9BaiQLac8LE1fmqm3u1BI_bDFYn2c3T-zc1cFmuvL-0WVZoAbHsv4Vo0elHttSxmdQv9OUw)
 ### Here is a quick reference summarizing the restrictions.
 
@@ -104,7 +105,7 @@ In my cases, I have chosen two local SSDs per node, and it is mounted automatica
 
 11. You can check the OpenEBS running pod details using the following command:
 
-    kubectl get pods -n openebs
+        kubectl get pods -n openebs
 
 Below is an example output:
 
@@ -155,7 +156,7 @@ For example, if your external disk is mounted as `/mnt/disks/ssd0` in your nodes
 14. Apply the modified *openebs-config.yaml* file by using the following command:
 
     ```
-    kubectl apply -f openebs-config.yaml
+        kubectl apply -f openebs-config.yaml
     ```
 
 This will create a storage pool called “default” on the selected disk.
@@ -163,7 +164,7 @@ This will create a storage pool called “default” on the selected disk.
 15. The storage pool is now created on the Nodes according to your requirement. You can now get the storage pool details by running the following command:
 
     ```
-    kubectl get sp
+        kubectl get sp
     ```
 
     Example output:
@@ -183,7 +184,7 @@ We now have the Percona deployment application YAML and need to change the stora
 
 18. We now use the following Percona deployment YAML file to deploy a stateful Percona application using the Jiva volume. Obtain the YAML file using following command:
 ```
- wget https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/percona/percona-openebs-deployment.yaml
+         wget https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/percona/percona-openebs-deployment.yaml
 ```
 
 19. Edit the downloaded “percona-openebs-deployment.yaml” and conduct the following changes.
@@ -199,41 +200,45 @@ Now change the “storageClassName” from ”openebs-standard” to “openebs-
 
 20. Save the modified changes and apply the YAML as follows. This will create a PVC and PV in the mentioned size.
 
-    kubectl apply -f percona-openebs-deployment.yaml
+
+        kubectl apply -f percona-openebs-deployment.yaml
+
 
 21. You can then view the PVC status by running the following command:
 
-    kubectl get pvc
+        kubectl get pvc
 
-Below is an example output.
+    Below is an example output.
 
-    NAME STATUS VOLUME CAPACITY ACCESS MODES STORAGECLASS AGE
+        NAME STATUS VOLUME CAPACITY ACCESS MODES STORAGECLASS AGE
    
-    demo-vol1-claim Bound default-demo-vol1-claim-2300073071 5G RWO openebs-jiva-default 11m
+        demo-vol1-claim Bound default-demo-vol1-claim-2300073071 5G RWO openebs-jiva-default 11m
 
 
 22. You can then obtain the PV status by running the following command:
 
-    kubectl get pv
+        kubectl get pv
 
 And here is an example output.
 
-    NAME                                 CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM                     STORAGECLASS           REASON    AGE
-    default-demo-vol1-claim-2300073071   5G         RWO            Delete           Bound     default/demo-vol1-claim   openebs-jiva-default
+        NAME                                 CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM                     STORAGECLASS           REASON    AGE
+        default-demo-vol1-claim-2300073071   5G         RWO            Delete           Bound     default/demo-vol1-claim   openebs-jiva-default
     
 
 23. Now, your Percona application pod will be running along with three Jiva volume replicas and one Jiva Controller pod. You can view the running pod status by running the following command:
 
-    kubectl get pods -o wide
-    
+
+        kubectl get pods -o wide
+
+
 Which will provide the following output.
 
-    NAME                                                       READY     STATUS    RESTARTS   AGE       IP           NODE
-    default-demo-vol1-claim-2300073071-ctrl-78d4fbc66d-v4454   2/2       Running   0          14m       10.44.2.9    gke-mayadata-gke-default-pool-2d42a511-7gcz
-    default-demo-vol1-claim-2300073071-rep-79f97d5494-cvd8z    1/1       Running   0          14m       10.44.0.8    gke-mayadata-gke-default-pool-5eed8925-7391
-    default-demo-vol1-claim-2300073071-rep-79f97d5494-g2hff    1/1       Running   0          14m       10.44.1.8    gke-mayadata-gke-default-pool-54c3be93-qsgl
-    default-demo-vol1-claim-2300073071-rep-79f97d5494-qqvv4    1/1       Running   0          14m       10.44.2.10   gke-mayadata-gke-default-pool-2d42a511-7gcz
-    percona-7f6bff67f6-mjp9d                                   1/1       Running   0          14m       10.44.1.9    gke-mayadata-gke-default-pool-54c3be93-qsgl
+        NAME                                                       READY     STATUS    RESTARTS   AGE       IP           NODE
+        default-demo-vol1-claim-2300073071-ctrl-78d4fbc66d-v4454   2/2       Running   0          14m       10.44.2.9    gke-mayadata-gke-default-pool-2d42a511-7gcz
+        default-demo-vol1-claim-2300073071-rep-79f97d5494-cvd8z    1/1       Running   0          14m       10.44.0.8    gke-mayadata-gke-default-pool-5eed8925-7391
+        default-demo-vol1-claim-2300073071-rep-79f97d5494-g2hff    1/1        Running   0          14m       10.44.1.8    gke-mayadata-gke-default-pool-54c3be93-qsgl
+        default-demo-vol1-claim-2300073071-rep-79f97d5494-qqvv4    1/1       Running   0          14m       10.44.2.10   gke-mayadata-gke-default-pool-2d42a511-7gcz
+        percona-7f6bff67f6-mjp9d                                   1/1       Running   0          14m       10.44.1.9    gke-mayadata-gke-default-pool-54c3be93-qsgl
     
 
 ### Summary

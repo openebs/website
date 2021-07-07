@@ -57,7 +57,7 @@ Let me stick in this blog primarily to the cStor 0.8 features:
 cStor Snapshot and Clone functionality are triggered via **kubectl** itself. cStor Snapshots and Clones are reference based and are highly optimized for lowering the capacity required for maintaining large number of snapshots and clones.
 
 **cStor Volumes managed via kubectl**. cStor volumes comprise of a Target Pod that exposes iSCSI. This target pod is instrumental in making the Applications using cStor Volumes portable. The cStor Target Pod then replicates the data to cStor Storage Pools. For redundancy and high-availability, the data is replicated to cStor Pools that are located on different nodes. `(Note that multiple cStor Target Pods can write to the same set of cStor Pools).`
-![](/content/images/2020/01/cstor-volume.png)cStor Volume
+![cStor Volume](/pubic/images/blog/cstor-volume.png) cStor Volume
 The cStor Target (aka cStor Volume), cStor Volume Replica and the cStor Pools are all Kubernetes custom resources. You can use the `kubectl describe` commands to check the health or events on each of these entities. And moreover, the Disks where the cStor Pools eventually write the data to, are also represented by Kubernetes Custom Resources.
 
 Please give it a try and looking forward to your feedback. More details usage and examples are provided in the [release notes](https://github.com/openebs/openebs/releases/tag/0.8)

@@ -49,7 +49,7 @@ We’ll be creating 4 Hetzner cluster servers:
 ## Application Configuration
 
 Schedule pods so that they are not running on a node with tag **loadbalancer**. This is not a hard requirement, but in our example cluster it really makes sense.
-![](/content/images/2020/01/application-config.png)
+![application config](/public/images/blog/application-config.png)
 ## Adding Nginx-Ingress
 
 DNS scheme is configured like this:

@@ -40,7 +40,9 @@ For more details on chaos engineering using Litmus, read this [article](https://
 ## Litmus e2e test result visualization
 
 One of the important enablers for the adoption of any given test (suite) into a CI framework is the result mechanism to determine success/failure. During the said period, Litmus moved over from extracting results from test container logs to storing this information in a Kubernetes static custom resource (*“litmusresult”, which is updated by the test code at the beginning & end of test execution via a JSON merge patch operation*), with the resource name dynamically generated based on user tags. This resource also holds other test metadata such as *appType*, *testType*, *testStatus *etc., apart from the actual *verdict *(result). CI jobs that implement/run the litmusbooks can be configured to derive job status from these CRs.
-![](/content/images/2020/01/cr-structure.png)A jinja template describing the result CR structure
+
+![cr-structure](/pubic/images/blog/cr-structure.png)A jinja template describing the result CR structure
+
 ## Other notable enhancements
 
 The project also saw some other organic changes which have resulted in its faster adoption into CI systems & increased efficiency of the tests. They have been briefly described below:
