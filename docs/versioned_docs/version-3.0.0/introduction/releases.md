@@ -8,7 +8,7 @@ sidebar_label: Releases
 
 ## 2.10.0 - Jun 15 2021
 
-<br /><font size="4">Latest Release</font><br/> (Recommended)<br/>
+### Latest Release (Recommended)
 
 OpenEBS v2.10 is another maintenance release before moving towards 3.0 primarily focusing on enhancing the E2e tests, build, release workflows, and documentation. This release also includes enhancements to improve the user experience and fixes for bugs reported by users and E2e tools. There has been some significant progress made on the alpha features as well.
 
@@ -253,7 +253,7 @@ Here are some of the key highlights in this release.
 
 ## 2.6.0 - Feb 15 2021
 
-<br /><font size="4">Latest Release</font><br/> (Recommended)<br/>
+### Latest Release (Recommended)
 
 OpenEBS v2.6 contains some key enhancements and several fixes for the issues reported by the user community across all 9 types of OpenEBS volumes.
 
@@ -319,8 +319,6 @@ Here are some of the key highlights in this release.
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.6.0)
 - [Upgrade Steps](/docs/next/upgrade.html)
 
-<br />
-
 ## 2.5.0 - Jan 15 2021
 
 ### New capabilities
@@ -379,8 +377,6 @@ Here are some of the key highlights in this release.
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.5.0)
 - [Upgrade Steps](/docs/next/upgrade.html)
-
-<br />
 
 ## 2.4.0 - Dec 15 2020
 
@@ -450,8 +446,6 @@ Here are some of the key highlights in this release.
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.4.0)
 - [Upgrade Steps](/docs/next/upgrade.html)
-
-<br />
 
 ## 2.3.0 - Nov 15 2020
 
@@ -512,8 +506,6 @@ Here are some of the key highlights in this release.
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.5.0)
 - [Upgrade Steps](/docs/next/upgrade.html)
 
-<br />
-
 ## 2.4.0 - Dec 15 2020
 
 ### New capabilities
@@ -583,8 +575,6 @@ Here are some of the key highlights in this release.
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.4.0)
 - [Upgrade Steps](/docs/next/upgrade.html)
 
-<br />
-
 ## 2.3.0 - Nov 15 2020
 
 ### New capabilities
@@ -616,8 +606,6 @@ Here are some of the key highlights in this release.
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.3.0)
 - [Upgrade Steps](/docs/next/upgrade.html)
-
-<br />
 
 ## 2.2.0 - Oct 15 2020
 
@@ -651,8 +639,6 @@ Here are some of the key highlights in this release.
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.2.0)
 - [Upgrade Steps](/docs/next/upgrade.html)
-
-<br />
 
 ## 2.1.0 - Sept 15 2020
 
@@ -844,18 +830,6 @@ Here are some of the key highlights in this release.
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.8.0)
 - [Upgrade Steps](/v180/docs/next/upgrade.html)
 
-<br />
-
 ## See Also:
 
-### [OpenEBS Upgrade](/docs/next/upgrade.html)
-
-### [Deprecated OpenEBS 1.x Releases](/docs/next/releases-0x.html)
-
-### [Deprecated OpenEBS 0.x Releases](/docs/next/releases-0x.html)
-
-### [OpenEBS FAQ](/docs/next/faq.html)
-
-### [Container Attached Storage or CAS](/docs/next/cas.html)
-
-<hr />
+[OpenEBS Upgrade](/docs/next/upgrade.html) [Deprecated OpenEBS 1.x Releases](/docs/next/releases-0x.html) [Deprecated OpenEBS 0.x Releases](/docs/next/releases-0x.html) [OpenEBS FAQ](/docs/next/faq.html) [Container Attached Storage or CAS](/docs/next/cas.html)

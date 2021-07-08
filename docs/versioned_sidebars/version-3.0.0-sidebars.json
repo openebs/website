@@ -11,6 +11,30 @@
         {
           "type": "doc",
           "id": "version-3.0.0/introduction/intro"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.0.0/introduction/overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.0.0/introduction/features"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.0.0/introduction/alphafeatures"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.0.0/introduction/usecases"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.0.0/introduction/releases"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.0.0/introduction/support"
         }
       ]
     }

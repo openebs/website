@@ -32,16 +32,6 @@ Join our OpenEBS CNCF Mailing lists
 
 Join our weekly or monthly [community meetings](https://github.com/openebs/openebs/tree/master/community#community-meetings).
 
-<br />
-<hr />
-<br />
-
 ## See Also:
 
-### [Commercial Support](/docs/next/commercial.html)
-
-### [Troubleshooting](/docs/next/troubleshooting.html)
-
-### [FAQs](/docs/next/faq.html)
-
-### [Latest release notes](/docs/next/releases.html)
+[Commercial Support](/docs/next/commercial.html) [Troubleshooting](/docs/next/troubleshooting.html) [FAQs](/docs/next/faq.html) [Latest release notes](/docs/next/releases.html)
