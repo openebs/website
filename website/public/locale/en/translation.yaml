@@ -93,7 +93,7 @@ joinCommunity:
   emailLabel: Email address
   submitAlt: Submit
   gitHubAlt: Visit on GitHub
-  gitHubTitle: Visit OpenEBS on  GitHub
+  gitHubTitle: Visit OpenEBS on GitHub
   gitHubDescription: Is a great place to join if you want to contribute to our codebase.
   gitHubJoinButton: Visit
   slackIframeTitle: Join Kubernetes on Slack
