@@ -213,7 +213,7 @@ Here are some of the key highlights in this release.
 ### Key Improvements
 
 - [Mayastor] Several bug fixes to the Mayastor volumes and preparing to support ANA. See [Mayastor release notes](https://github.com/openebs/Mayastor/releases/tag/v0.8.1).
-- [Jiva] Hardening the Jiva CSI driver (introduced for alpha testing) with automated E2e tests and fixing some of the issues found in the e2e tests. The driver is available for alpha testing. For instructions on how to set up and use the Jiva CSI driver, please see. https://github.com/openebs/jiva-operator.
+- [Jiva] Hardening the Jiva CSI driver (introduced for alpha testing) with automated E2e tests and fixing some of the issues found in the e2e tests. The driver is available for alpha testing. For instructions on how to set up and use the Jiva CSI driver, please see https://github.com/openebs/jiva-operator.
 - [LVM Local PV](https://github.com/openebs/lvm-localpv) is enhanced with additional features and some key bug fixes like:
   - Support for creating CSIStorageCapacity objects to allow dynamic provisioning based on available capacity.
   - Enhance the provisioning workflow to handle capacity exhaustion on LVM group and allow the volume to be re-scheduled to another node.
@@ -270,7 +270,7 @@ Here are some of the key highlights in this release.
   - Auto-remount of volumes that are marked read-only by iSCSI client due to intermittent network issues
   - Handle the case of multi-attach error sometimes seen on on-premise clusters
   - A custom resource for Jiva volumes to help with easy access to the volume status
-    For instructions on how to set up and use the Jiva CSI driver, please see. https://github.com/openebs/jiva-operator.
+    For instructions on how to set up and use the Jiva CSI driver, please see https://github.com/openebs/jiva-operator.
 
 ### Key Improvements
 

@@ -37,6 +37,7 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} The OpenEBS Authors | All rights reserved`,
     },
   },
+  onBrokenLinks: 'log',
   customFields: {
     openebsLogo: "/docs/img/openebs-logo.svg",
     githubApiContributors:
