@@ -35,7 +35,7 @@ module.exports = {
     },
     footer: {
       copyright: `Copyright © ${new Date().getFullYear()} The OpenEBS Authors | All rights reserved`,
-    }
+    },
   },
   customFields: {
     openebsLogo: "/docs/img/openebs-logo.svg",
@@ -147,6 +147,7 @@ module.exports = {
           routeBasePath: "/",
           editUrl:
             "https://github.com/openebs/website/edit/revamp-3.0/docs/",
+          includeCurrentVersion: false,
         },
         theme: {
           customCss: require.resolve("./src/scss/custom.scss"),
