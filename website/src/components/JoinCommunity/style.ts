@@ -27,20 +27,7 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: '0px 11px 33px 29px rgba(193, 192, 243, 0.06)',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
-        cursor: 'pointer',
-        position: 'relative',
-        transformStyle: 'preserve-3d',
-        WebkitTransformStyle: 'preserve-3d',
-        transition: '150ms',
-        WebkitTransition: '150ms',
-        transform: 'perspective(1000px) rotateY(0deg)',
-        WebkitTransform: 'perspective(1000px) rotateY(0deg)',
-
-        '& div': {
-        WebkitBackfaceVisibility: 'hidden',
-        backfaceVisibility: 'hidden',    
-        }
+        justifyContent: 'center'
     },
     leftPaper: {
         borderRadius: '60px 20px 0px',
@@ -50,13 +37,14 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '20px 20px 60px 0px',
         padding: theme.spacing(12, 6),
     },
-    flippedCard: {
+    communityCard: {
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
+        width: '100%',
         justifyContent: 'space-between'
     },
-    flippedLogo: {
+    gitHubLogo: {
         width: '35%',
         [theme.breakpoints.down('sm')]: {
             width: '28%',
@@ -114,13 +102,6 @@ const useStyles = makeStyles((theme) => ({
         position: 'absolute',
         transform: 'rotateY(0)',
         WebkitTransform: 'rotateY(0)'
-    },
-    back: {
-        position: 'relative',
-        height: '100%',
-        width: '100%',
-        transform: 'rotateY(180deg)',
-        WebkitTransform: 'rotateY(180deg) translateZ(1px)',
     },
     flip: {
         transform: 'rotateY(180deg)',
