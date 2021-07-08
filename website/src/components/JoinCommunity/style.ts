@@ -97,15 +97,6 @@ const useStyles = makeStyles((theme) => ({
             animation: `$pulse 1s`,
             boxShadow: `0 0 0 16px rgba(255,255,255,0)`,
         },
-    },
-    front: {
-        position: 'absolute',
-        transform: 'rotateY(0)',
-        WebkitTransform: 'rotateY(0)'
-    },
-    flip: {
-        transform: 'rotateY(180deg)',
-        WebkitTransform: 'rotateY(180deg)',
     }
 }))
 export default useStyles;
