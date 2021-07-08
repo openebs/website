@@ -1,0 +1,18 @@
+{
+  "version-3.0.0/docs": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Introduction",
+      "customProps": {
+        "icon": "Smile"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-3.0.0/introduction/intro"
+        }
+      ]
+    }
+  ]
+}
