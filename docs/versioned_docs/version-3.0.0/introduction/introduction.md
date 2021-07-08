@@ -8,7 +8,7 @@ sidebar_label: Overview
 
 ![OpenEBS Architecture](../assets/openebs-architecture.svg)
 
-OpenEBS helps Developers and Platform SREs easily deploy Kubernetes Stateful Workloads that require fast and highly reliable [container attached storage](/docs/next/cas.html).
+OpenEBS helps Developers and Platform SREs easily deploy Kubernetes Stateful Workloads that require fast and highly reliable [container attached storage](#).
 
 OpenEBS turns any storage available on the Kubernetes worker nodes into local or distributed Kubernetes Persistent Volumes.
 
@@ -91,4 +91,4 @@ OpenEBS has a vibrant community that can help you get started. If you have furth
 
 ## See Also:
 
-[Quickstart](/docs/next/quickstart.html) [Use cases and Examples](/docs/next/usecases.html) [Container Attached Storage (CAS)](/docs/next/cas.html) [OpenEBS Architecture](/docs/next/architecture.html) [OpenEBS Local PV](/docs/next/localpv.html) [OpenEBS Mayastor](/docs/next/mayastor.html)
+[Quickstart](#) [Use cases and Examples](/docs/introduction/usecases) [Container Attached Storage (CAS)](#) [OpenEBS Architecture](#) [OpenEBS Local PV](#) [OpenEBS Mayastor](#)

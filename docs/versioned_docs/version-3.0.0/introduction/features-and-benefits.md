@@ -1,7 +1,7 @@
 ---
 id: features
 title: OpenEBS Features
-sidebar_label: Features
+sidebar_label: Features and Benefits
 ---
 
 - [Containerized storage for containers](#containerized-storage-for-containers)
@@ -11,14 +11,14 @@ sidebar_label: Features
 - [Prometheus metrics and Grafana dashboard](#prometheus-metrics-for-workload-tuning)
 
 :::tip
-For information on how OpenEBS is used in production, visit the [use cases](/docs/next/usecases.html) section or see examples of users and their stories on the OpenEBS Adopters section [here](https://github.com/openebs/openebs/blob/master/ADOPTERS.md) where you can also share your experience.
+For information on how OpenEBS is used in production, visit the [use cases](/docs/introduction/usecases) section or see examples of users and their stories on the OpenEBS Adopters section [here](https://github.com/openebs/openebs/blob/master/ADOPTERS.md) where you can also share your experience.
 :::
 
 ### Containerized Storage for Containers
 
 ![Containerized Storage Icon](../assets/f-cas.svg)
 
-OpenEBS is an example of Container Attached Storage or CAS. Volumes provisioned through OpenEBS are always containerized. Each volume has a dedicated storage controller that increases the agility and granularity of persistent storage operations of the stateful applications. Benefits and more details on CAS architecture are found <a href="/docs/next/cas.html" target="_blank">here</a>.
+OpenEBS is an example of Container Attached Storage or CAS. Volumes provisioned through OpenEBS are always containerized. Each volume has a dedicated storage controller that increases the agility and granularity of persistent storage operations of the stateful applications. Benefits and more details on CAS architecture are found <a href="#" target="_blank">here</a>.
 
 ### Synchronous Replication
 
@@ -46,4 +46,4 @@ OpenEBS volumes are instrumented for granular data metrics such as volume IOPS, 
 
 ## See Also:
 
-[OpenEBS Benefits](/docs/next/benefits.html) [Object Storage with OpenEBS](/docs/next/minio.html) [Read Write Many (RWX) PVs with OpenEBS](/docs/next/rwm.html) [Local storage for Prometheus ](/docs/next/prometheus.html)
+[OpenEBS Benefits](#) [Object Storage with OpenEBS](#) [Read Write Many (RWX) PVs with OpenEBS](#) [Local storage for Prometheus ](#)
