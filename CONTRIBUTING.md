@@ -28,7 +28,7 @@ Then, markdown file name will be ``title-of-the-blog.md``
 
 * **Italic text:** To bold text, add two asterisks or underscores before and after a word or phrase. For example, `*italic text*`, `_italic text_`. Both of these texts will be rendered as *italic text*.
 * **Bold text:** To italicize text, add one asterisk or underscore before and after a word or phrase. For example, `**bold text**`, `__bold text__`. Both of these texts will be rendered as **bold text**
-* **Bold text:** To emphasize text with bold and italics at the same time, add three asterisks or underscores before and after a word or phrase. For example, `***bold text***`, `___bold text___`. Both of these texts will be rendered as ***bold text***
+* **Bold text with italics:** To emphasize text with bold and italics at the same time, add three asterisks or underscores before and after a word or phrase. For example, `***bold text***`, `___bold text___`. Both of these texts will be rendered as ***bold text***
 * **Code block:** The basic Markdown syntax allows you to create code blocks by indenting lines by four spaces or one tab. Or, you can use three backticks (```) before and after the code block
 * **Figure caption:** To display a figure caption, we use three asterisks before and after a word or phrase enclosed within curly braces. For example, `(***Figure caption***)`. Please add figure caption on the line next to the image in the markdown without leaving any line space in between
 ## Add a new  event
