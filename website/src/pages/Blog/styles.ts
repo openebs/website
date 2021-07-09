@@ -170,11 +170,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: 'relative',
     overflow: 'hidden',
     '& img':{
+      minWidth: '100%',
+      minHeight: '100%',
       maxWidth: '100%',
       position: 'absolute',
-      left: '50%',
-      top: '50%',
-      transform: 'translate(-50%,-50%)'
+      left: '0',
+      top: '0',
+      objectFit: 'cover',
+      objectPosition: 'left'
     }
   },
   bullet: {
