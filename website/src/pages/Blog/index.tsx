@@ -211,9 +211,13 @@ const Blog: React.FC = () => {
                           <Card className={classes.card}>
                             <CardMedia
                               className={classes.media}
-                            >
-                              <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title} />
-                            </CardMedia>
+                              image={`/images/blog/${elm.slug}.png`}
+                              onClick={() =>
+                                window.location.assign(
+                                  `/blog/${elm.slug}`
+                                )
+                              }
+                            />
                             <CardContent classes={{root: classes.cardRoot}}>
                               <DisplayAuthorandReadTime
                                 author={elm.author}
@@ -316,9 +320,13 @@ const Blog: React.FC = () => {
                           <Card className={classes.card}>
                             <CardMedia
                               className={classes.media}
-                            >
-                              <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title} />
-                            </CardMedia>
+                              image={`/images/blog/${elm.slug}.png`}
+                              onClick={() =>
+                                window.location.assign(
+                                  `/blog/${elm.slug}`
+                                )
+                              }
+                            />
                             <CardContent classes={{root: classes.cardRoot}}>
                               <DisplayAuthorandReadTime
                                 author={elm.author}
@@ -347,7 +355,7 @@ const Blog: React.FC = () => {
                                 className={classes.cardActionButton}
                                 onClick={() =>
                                   window.location.assign(
-                                    `/blog/${queryAuthorName}/${elm.blog}`
+                                    `/blog/${elm.slug}`
                                   )
                                 }
                               >
