@@ -11,6 +11,7 @@ import { SOCIAL_PLATFORMS, VIEW_PORT } from "../../constants";
 import BlogsSlider from "../../components/BlogsSlider";
 import Newsletter from "../../components/Newsletter";
 import { SlackShareIcon } from "./slackShareIcon";
+import BlogImage from '../../components/BlogImage';
 
 const BlogPage: React.FC = () => {
   const classes = useStyles();
@@ -175,7 +176,7 @@ const BlogPage: React.FC = () => {
             </div>
 
             <div className={classes.blogBody}>
-              <img loading="lazy" src={`/images/blog/${queryBlogName}.png`} alt={currentBlogDetails?.title} className={classes.blogImg}></img>
+              <BlogImage imgPath={`/images/blog/${queryBlogName}.png`} alt={currentBlogDetails?.title} className={classes.blogImg} />
               <ReactMarkdown children={currentBlogDetails?.content} />
             </div>
             

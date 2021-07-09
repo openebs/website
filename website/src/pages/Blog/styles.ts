@@ -167,6 +167,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: 0,
     paddingTop: "56.25%", // 16:9
     borderRadius: "24px 24px 24px 0px",
+    position: 'relative',
+    overflow: 'hidden',
+    '& img':{
+      maxWidth: '100%',
+      position: 'absolute',
+      left: '50%',
+      top: '50%',
+      transform: 'translate(-50%,-50%)'
+    }
   },
   bullet: {
     display: "inline-block",
