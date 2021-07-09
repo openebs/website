@@ -23,7 +23,6 @@ const BlogPage: React.FC = () => {
   const [recommendedBlogs, setRecommendedBlogs] = useState<any[]>([]);
 
   const queryBlogName = useQuery();
-  console.log(queryBlogName);
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
   
