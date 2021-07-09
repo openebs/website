@@ -13,6 +13,7 @@ import { VIEW_PORT } from "../../constants";
 import CustomTag from "../CustomTag";
 import ReactMarkdown from "react-markdown";
 import { getContentPreview } from "../../utils/getContent";
+import BlogImage from '../BlogImage';
 
 interface BlogsSliderProps {
   recommendedBlogs: any;
@@ -66,8 +67,9 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
                 <Card className={classes.cardRoot}>
                   <CardMedia
                     className={classes.media}
-                    image={`/images/blog/${elm.slug}.png`}
-                  />
+                  >
+                    <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title} />
+                  </CardMedia>
                   <CardContent>
                     <div className={classes.tagsWrapper}>
                       {getTags(elm.tags)}
