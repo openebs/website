@@ -1,0 +1,44 @@
+{
+  "version-3.0.0/docs": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Introduction",
+      "customProps": {
+        "icon": "Smile"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-3.0.0/introduction/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.0.0/introduction/features",
+          "label": "Features and benefits"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.0.0/introduction/alphafeatures",
+          "label": "Alpha features"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.0.0/introduction/usecases",
+          "label": "Use cases"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.0.0/introduction/releases",
+          "label": "Releases"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.0.0/introduction/support",
+          "label": "Support"
+        }
+      ]
+    }
+  ]
+}
