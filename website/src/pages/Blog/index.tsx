@@ -162,8 +162,6 @@ const Blog: React.FC = () => {
             key = {item}
           />
   );
-  
-
   return (
     <>
       {!queryAuthorName ? (
