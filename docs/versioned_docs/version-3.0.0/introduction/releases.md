@@ -1,7 +1,6 @@
 ---
 id: releases
 title: OpenEBS Releases
-sidebar_label: Releases
 ---
 
 ---

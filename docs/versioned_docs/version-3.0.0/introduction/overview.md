@@ -1,14 +1,14 @@
 ---
 id: overview
 title: OpenEBS Documentation
-sidebar_label: Overview
+slug: /
 ---
 
 ## What is OpenEBS?
 
 ![OpenEBS Architecture](../assets/openebs-architecture.svg)
 
-OpenEBS helps Developers and Platform SREs easily deploy Kubernetes Stateful Workloads that require fast and highly reliable [container attached storage](/docs/next/cas.html).
+OpenEBS helps Developers and Platform SREs easily deploy Kubernetes Stateful Workloads that require fast and highly reliable [Container Attached Storage](/docs/next/cas.html).
 
 OpenEBS turns any storage available on the Kubernetes worker nodes into local or distributed Kubernetes Persistent Volumes.
 
@@ -20,7 +20,7 @@ OpenEBS was originally built by [MayaData](https://mayadata.io) and donated to t
 
 ## Why do users prefer OpenEBS?
 
-The <a href="https://github.com/openebs/openebs/blob/master/ADOPTERS.md" target="_blank">OpenEBS Adoption stories</a>, mention the top reasons driving users towards OpenEBS as:
+The [OpenEBS Adoption stories](https://github.com/openebs/openebs/blob/master/ADOPTERS.md), mention the top reasons driving users towards OpenEBS as:
 
 - OpenEBS can be used across all Kubernetes distributions - On-premise and Cloud.
 - OpenEBS with Kubernetes increases Developer and Platform SRE Productivity.

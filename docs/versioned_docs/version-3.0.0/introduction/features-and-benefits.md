@@ -1,7 +1,6 @@
 ---
 id: features
 title: OpenEBS Features
-sidebar_label: Features and Benefits
 ---
 
 - [Containerized storage for containers](#containerized-storage-for-containers)

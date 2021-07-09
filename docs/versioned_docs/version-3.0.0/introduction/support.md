@@ -1,9 +1,6 @@
 ---
 id: support
 title: OpenEBS Community
-sidebar_label: Community
----
-
 ---
 
 ## GitHub
