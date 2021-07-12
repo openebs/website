@@ -4,6 +4,7 @@ import useStyles from "./styles";
 import { readingTime } from "../../utils/readingTime";
 import { Avatar, Button } from "@material-ui/core";
 import { getAvatar } from "../../utils/getAvatar";
+import { useHistory } from "react-router-dom";
 
 interface displayAuthorandReadTimeProps {
   author: string;
@@ -17,6 +18,10 @@ const DisplayAuthorandReadTime: React.FC<displayAuthorandReadTimeProps> = ({
 }) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const history = useHistory();
+  const handleRedirectPath = (author: string) => {
+    history.push(`/blog/?author=${author}`);
+  };
   const displayTagandTimeRequiredToRead = () => {
     return (
       <>
@@ -32,7 +37,7 @@ const DisplayAuthorandReadTime: React.FC<displayAuthorandReadTimeProps> = ({
               disableRipple
               variant="text"
               className={classes.cardActionButton}
-              onClick={() => window.location.assign(`/blog/?author=${author}`)}
+              onClick={() => handleRedirectPath(author)}
             >
               {author && author}
             </Button>

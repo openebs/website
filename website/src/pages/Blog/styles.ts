@@ -151,7 +151,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexGrow: 1,
   },
   cardSize: {
-    maxWidth: "49%",
+    maxWidth: "480px !important",
     paddingTop: theme.spacing(4),
     [theme.breakpoints.down("md")]: {
       maxWidth: "380px",

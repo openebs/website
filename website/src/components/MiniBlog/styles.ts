@@ -110,12 +110,14 @@ const useStyles = makeStyles((theme: Theme) => ({
       top: '0',
       objectFit: 'cover',
       objectPosition: 'left'
-    }
+    },
+    cursor: 'pointer',
   },
   bullet: {
     display: "inline-block",
     margin: "0 2px",
     transform: "scale(0.8)",
+    cursor: 'pointer',
   },
   title: {
     fontSize: '22px',

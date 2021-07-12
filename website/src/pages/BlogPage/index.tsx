@@ -12,11 +12,12 @@ import BlogsSlider from "../../components/BlogsSlider";
 import Newsletter from "../../components/Newsletter";
 import { SlackShareIcon } from "./slackShareIcon";
 import BlogImage from '../../components/BlogImage';
+import { useHistory } from "react-router-dom";
 
 const BlogPage: React.FC = () => {
   const classes = useStyles();
   const { t } = useTranslation();
-
+  const history = useHistory();
   const [previousBlog, setPreviousBlog] = useState<any>({});
   const [nextBlog, setNextBlog] = useState<any>({});
   const [currentBlogDetails, setCurrentBlogDetails] = useState<any>({});
@@ -27,6 +28,12 @@ const BlogPage: React.FC = () => {
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
   
   let currentLocation = window.location.href;
+
+  const handleRedirectPath = (slug: any) => {
+    window.scrollTo(0, 0);
+    history.push(`/blog/${slug}`);
+  };
+
   
   useEffect(() => {
     const getBlogsData= async ()=>{
@@ -212,7 +219,7 @@ const BlogPage: React.FC = () => {
                 <Button
                   className={classes.arrowButton}
                   endIcon={<img loading="lazy" src="../images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
-                  onClick={() => window.location.assign(`/blog/${previousBlog.slug}`) }
+                  onClick={() => handleRedirectPath(previousBlog.slug)}
               >
                 {t('blog.previousArticle')}
               </Button>
@@ -220,13 +227,13 @@ const BlogPage: React.FC = () => {
               <Button
                   className={classes.arrowButton}
                   startIcon={<img loading="lazy" src="../images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
-                  onClick={() => window.location.assign(`/blog/${previousBlog.slug}`) }
+                  onClick={() => handleRedirectPath(previousBlog.slug)}
               >
                 {t('blog.previousArticle')}
               </Button>
               }
                 
-                <Typography className={classes.blogLink} onClick={() => window.location.assign(`/blog/${previousBlog.slug}`) }>{previousBlog.title}</Typography>
+                <Typography className={classes.blogLink} onClick={() => handleRedirectPath(previousBlog.slug)}>{previousBlog.title}</Typography>
             </div>
           }
           {nextBlog && 
@@ -234,11 +241,11 @@ const BlogPage: React.FC = () => {
                   <Button
                     className={classes.arrowButton}
                     endIcon={<img loading="lazy" src="../images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} />}
-                    onClick={() => window.location.assign(`/blog/${nextBlog.slug}`) }
+                    onClick={() => handleRedirectPath(nextBlog.slug)}
                   >
                     {t('blog.nextArticle')}
                   </Button>
-                  <Typography className={classes.blogLink} onClick={() => window.location.assign(`/blog/${nextBlog.slug}`) }>{nextBlog.title}</Typography>
+                  <Typography className={classes.blogLink} onClick={() => handleRedirectPath(nextBlog.slug)}>{nextBlog.title}</Typography>
               </div>
           }
             

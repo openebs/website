@@ -32,7 +32,7 @@ import { getAvatar } from "../../utils/getAvatar";
 import { getContentPreview } from "../../utils/getContent";
 import { useViewport } from "../../hooks/viewportWidth";
 import { pageCount } from "../../utils/getPageCount";
-import BlogImage from '../../components/BlogImage';
+import { useHistory } from "react-router-dom";
 
 interface StyledTabProps {
   label: string;
@@ -65,6 +65,7 @@ const Blog: React.FC = () => {
   const [page, setPage] = React.useState<number>(1);
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
+  const history = useHistory();
   const StyledTab = withStyles((theme: Theme) =>
     createStyles({
       root: {
@@ -89,6 +90,10 @@ const Blog: React.FC = () => {
   const fetchBlogs = async () => {
     const { default: blogs } = await import(`../../posts.json`);
     setJsonMdData(blogs);
+  };
+
+  const handleRedirectPath = (slug: any) => {
+    history.push(`/blog/${slug}`);
   };
 
   useEffect(() => {
@@ -212,11 +217,7 @@ const Blog: React.FC = () => {
                             <CardMedia
                               className={classes.media}
                               image={`/images/blog/${elm.slug}.png`}
-                              onClick={() =>
-                                window.location.assign(
-                                  `/blog/${elm.slug}`
-                                )
-                              }
+                              onClick={() => handleRedirectPath(elm.slug)}
                             />
                             <CardContent classes={{root: classes.cardRoot}}>
                               <DisplayAuthorandReadTime
@@ -229,9 +230,7 @@ const Blog: React.FC = () => {
                                 className={classes.title}
                                 color="textPrimary"
                                 gutterBottom
-                                onClick={() =>
-                                  window.location.assign(`/blog/${elm.slug}`)
-                                }
+                                onClick={() => handleRedirectPath(elm.slug)}
                               >
                                 <ReactMarkdown children={elm.title} />
                               </Typography>
@@ -250,9 +249,7 @@ const Blog: React.FC = () => {
                                 disableRipple
                                 variant="text"
                                 className={classes.cardActionButton}
-                                onClick={() =>
-                                  window.location.assign(`/blog/${elm.slug}`)
-                                }
+                                onClick={() => handleRedirectPath(elm.slug)}
                               >
                                 {t("blog.read")}
                                 <img
@@ -321,11 +318,7 @@ const Blog: React.FC = () => {
                             <CardMedia
                               className={classes.media}
                               image={`/images/blog/${elm.slug}.png`}
-                              onClick={() =>
-                                window.location.assign(
-                                  `/blog/${elm.slug}`
-                                )
-                              }
+                              onClick={() => handleRedirectPath(elm.slug)}
                             />
                             <CardContent classes={{root: classes.cardRoot}}>
                               <DisplayAuthorandReadTime
@@ -335,6 +328,7 @@ const Blog: React.FC = () => {
                               <span
                                 className={classes.title}
                                 color="textPrimary"
+                                onClick={() => handleRedirectPath(elm.slug)}
                               >
                                 <ReactMarkdown children={elm.title} />
                               </span>
@@ -353,11 +347,7 @@ const Blog: React.FC = () => {
                                 disableRipple
                                 variant="text"
                                 className={classes.cardActionButton}
-                                onClick={() =>
-                                  window.location.assign(
-                                    `/blog/${elm.slug}`
-                                  )
-                                }
+                                onClick={() => handleRedirectPath(elm.slug)}
                               >
                                 {t("blog.read")}
                                 <img

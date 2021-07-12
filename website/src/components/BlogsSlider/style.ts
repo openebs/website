@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme: Theme) => ({
       top: '0',
       objectFit: 'cover',
       objectPosition: 'left'
-    }
+    },
+    cursor: 'pointer',
   },
   tagsWrapper: {
     display: 'flex',
