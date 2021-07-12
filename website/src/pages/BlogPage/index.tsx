@@ -29,8 +29,7 @@ const BlogPage: React.FC = () => {
   
   let currentLocation = window.location.href;
 
-  const handleRedirectPath = (slug: any) => {
-    window.scrollTo(0, 0);
+  const handleRedirectPath = (slug: any) => { 
     history.push(`/blog/${slug}`);
   };
 

@@ -26,7 +26,6 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
   const history = useHistory();
   const handleRedirectPath = (slug: any) => {
-    window.scrollTo(0, 0);
     history.push(`/blog/${slug}`);
   };
 
