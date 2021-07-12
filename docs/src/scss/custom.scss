@@ -61,18 +61,22 @@
   --color-tealish-blue: #{$blue-400};
 }
 
-.markdown{
+.markdown {
   .docusaurus-highlight-code-line {
     background-color: $highlight-bg;
     display: block;
     margin: 0 calc(-1 * #{$ifm-pre-padding});
     padding: 0 $ifm-pre-padding;
   }
-  
+
+  p > img {
+    width: 100%;
+  }
+
   //code block
   .language-shell {
-      font-family: $code-block-font-family;
-      > div {
+    font-family: $code-block-font-family;
+    > div {
       background-color: $blue-500 !important;
     }
     * {
@@ -117,7 +121,6 @@
     }
   }
 }
-
 
 //main wrapper
 @media (min-width: 997px) and (max-width: 1320px) {
@@ -280,7 +283,7 @@ footer.footer {
 
 .footer__link-item {
   font-size: 1rem;
-  &:hover{
+  &:hover {
     color: inherit;
   }
 }
@@ -316,13 +319,12 @@ footer.footer {
     -ms-transform: rotate(-180deg);
     -webkit-transform: scale(-180deg);
     border-radius: 50%;
-    svg{
+    svg {
       transform: rotate(180deg) scale(1.25);
       -ms-transform: rotate(180deg) scale(1.25);
       -webkit-transform: rotate(180deg) scale(1.25);
     }
   }
-
 }
 
 // containers
@@ -354,7 +356,7 @@ footer.footer {
       border-radius: 4px;
     }
   }
-  .markdown{
+  .markdown {
     h1 {
       padding-bottom: 0;
     }
@@ -423,7 +425,7 @@ footer.footer {
   .docSearchInput {
     width: 100% !important;
   }
-  .markdown{
+  .markdown {
     .copyButton {
       background: $light-black !important;
       padding: 5px !important;
