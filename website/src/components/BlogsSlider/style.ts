@@ -14,9 +14,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     position: 'relative',
     overflow: 'hidden',
     '& img':{
-      minWidth: '100%',
       minHeight: '100%',
-      maxWidth: '100%',
+      width: '100%',
       position: 'absolute',
       left: '0',
       top: '0',
