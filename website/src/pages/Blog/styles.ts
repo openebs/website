@@ -154,13 +154,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     maxWidth: "480px !important",
     paddingTop: theme.spacing(4),
     [theme.breakpoints.down("md")]: {
-      maxWidth: "380px",
+      maxWidth: "380px !important",
     },
     [theme.breakpoints.down("sm")]: {
       maxWidth: "480px",
     },
     [theme.breakpoints.down("xs")]: {
-      maxWidth: "90%",
+      maxWidth: "90% !important",
     },
   },
   media: {
