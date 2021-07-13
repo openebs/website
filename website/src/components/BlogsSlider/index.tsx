@@ -73,8 +73,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
                     className={classes.media}
                     onClick={() => handleRedirectPath(elm.slug)}
                   >
-                    <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title}
-                     />
+                    <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title} />
                   </CardMedia>
                   <CardContent>
                     <div className={classes.tagsWrapper}>
