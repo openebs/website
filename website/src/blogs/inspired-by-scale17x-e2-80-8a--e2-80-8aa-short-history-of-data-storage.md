@@ -31,7 +31,9 @@ Regarding #2 — *where did the idea come from* — when trying to answe
 We put together a few slides that offer a light-hearted approach to answering this question.
 
 **The Era of Slow Disk Drives and Scale-up Architectures**
-![https://cdn-images-1.medium.com/max/800/0*6SPflCuTGC2rWXmH](https://lh3.googleusercontent.com/5sIOx2RN3WtVDqKMxZBCb7KhQRudb4Y7p7SlJ8RmR9JAqw5qLuAQRsoZePf21-e6NkA6_8Eo2oZIudCtqYTICYVj42C10H-Px6NUTaGyQwO1UjEcdXxwaRVdmijtMi7bCL4LuHG3)
+
+![https://cdn-images-1.medium.com/max/800/0*6SPflCuTGC2rWXmH](https://cdn-images-1.medium.com/max/800/0*6SPflCuTGC2rWXmH)
+
 So, rolling the tape back to the 2000s, there were at least a few major differences as the slide expresses.
 
 1. At the bottom were slow disk drives; striping was required for adequate performance.
@@ -42,27 +44,38 @@ Back then, it all sort of made sense. You needed software and systems that could
 
 **What has changed and how is that changing the data layer?**
 
-![https://cdn-images-1.medium.com/max/800/0*ZJ8CaKQdxEesL7eE](https://lh3.googleusercontent.com/I8EEDuFVhtL2yoa5VUjoOOGvAO5X7o5miPjxV3fe4rombAU9Gz6ZA7sD-C3Alw8fRVpyMzCqW-OqCsGib5RyW0pi-7xJnZpdruVdGKMDeuU-P9sca_2XY6X1itGjMREag0MoLj8D)
+![https://cdn-images-1.medium.com/max/800/0*ZJ8CaKQdxEesL7eE](https://cdn-images-1.medium.com/max/800/0*ZJ8CaKQdxEesL7eE)
+
 Storage was disrupted by flash. But now we are done with that, right? Well, not really…. Today’s scale-out storage systems almost always impose massive latency versus underlying, extremely fast NVMe connected non-volatile systems. As a result, and from a desire to avoid the complexity of running a distributed system like Cassandra on top of a distributed storage system (often with the distributed Kubernetes system in between), DAS has beaten all existing storage for many workloads.
 
 In short, **the very reason that we started striping across nodes — to add resilience and performance to slow disks — no longer applies.**
 
 So, what else?
-![https://cdn-images-1.medium.com/max/800/0*VzhXdDLpxtERp1Sk](https://lh5.googleusercontent.com/uIhhtZPwN54Uedbe_dG4TvCXH93sRVcjUXLHTFUPdEPCiQY1PTAbR1YG74riT4ZXM4YkLUh1AB3o6tm0B9mCJhW3IA8t3WLZdOuF6FYSZQY4g8YNV6jd-74Eg6GxoqTipETxU3Jk)
+
+![https://cdn-images-1.medium.com/max/800/0*VzhXdDLpxtERp1Sk](https://cdn-images-1.medium.com/max/800/0*VzhXdDLpxtERp1Sk)
+
 Perhaps most importantly, the workloads — the way DBs are built and run — has changed. They are of much shorter duration, typically much smaller, and they move around! This is not your father’s monolith!
-![https://cdn-images-1.medium.com/max/800/0*Yuk0vAdoZe4qp24s](https://lh3.googleusercontent.com/CDsuKlaIdhRlDvXXmMeuCNQ5hyO587JtKXrBctGqRErHZxvNY06Cx6JbclRlCbx86-fmgeBGRg6_guSNItC8SII58vTgou9xfe_Y31i1eDNEpO-w5RF00WNg_XcuY6Og09QhAXIE)
+
+![https://cdn-images-1.medium.com/max/800/0*Yuk0vAdoZe4qp24s](https://cdn-images-1.medium.com/max/800/0*Yuk0vAdoZe4qp24s)
+
 Then you run it on the cloud, which gives you and your teams incredible agility. However, you now introduce dependencies because each cloud’s storage differs. So, if you are not careful, before you know it you are locked-in. Even for some of our users listed here, ^^ their AWS bills are growing quickly. And, again, your teams are less agile because there has been a collective decision to grab some opaque service such as a stripped down and standardized version of open source MySQL or Redis from another company.
 
 To sum things up, the world has changed in many ways! Therefore, storage has changed too, right? Well, not really. Storage is hard. It is far easier through marketing and open source influence peddling to get your 20-year-old project labelled “cloud native” than it is to actually start an entirely new storage system that runs anywhere.
-![https://cdn-images-1.medium.com/max/800/0*vNlv_UcOVV5Y456W](https://lh5.googleusercontent.com/I45Q124TO2nST7bzWOk11g3IWsNc59HdZkrFxpTD5480D6_2w5Px_hdVYn3eVvLzYg3QpD9JSEIF7_EjsG7ckBrhvnm52ETIcytvlLSnG28Ru8I9hIpEiS2ehd_uIIaMWb5DptFe)
+
+![https://cdn-images-1.medium.com/max/800/0*vNlv_UcOVV5Y456W](https://cdn-images-1.medium.com/max/800/0*vNlv_UcOVV5Y456W)
+
 To begin at the bottom of the stack, you not only have to accommodate the presence of extremely fast storage hardware, you also have to accommodate running *on clouds* themselves. How can you do this? And how do you do so in a way that does not itself introduce another single point of failure?
 
 The approach we take at OpenEBS is to run our storage capabilities in a decoupled way so that the controller — that serves the actual workloads — is itself stateless and easily rescheduled. Also, it runs in the user space in containers so that it really can run anywhere. It then coordinates reads and writes to logically underlying data containers.
 
 We also keep the data local and utilize intelligence in our control plane to leverage Kubernetes to optimize data placement of primary data stores and replicas. There is much more I could discuss here, but I’ll leave it at this high level for now.
-![https://cdn-images-1.medium.com/max/800/0*ZFFma1SdaG9GaiAS](https://lh6.googleusercontent.com/RHiDJdReInvNww3Xa8BLpafkAU_Wig2V7zbP45feMmRoqr_nmRFA0W3WIb596vQsSJqjYE3CfjzZYe0b4Qo3jFpKcjDIi3ywXqxPzRmjEFMepS43Z8B-ECoQuWMcoKBL3bzF4a_3)
+
+![https://cdn-images-1.medium.com/max/800/0*ZFFma1SdaG9GaiAS](https://cdn-images-1.medium.com/max/800/0*ZFFma1SdaG9GaiAS)
+
 Secondly, instead of having a one size fits all storage system that is limited in its ability to make trade-offs for each of the potentially thousands of workloads, each workload has its own storage system with OpenEBS. The specific needs of those workloads and of the “two pizza” teams that build and run the workloads are each served by their own OpenEBS. This limits the need for cross-functional team meetings in which members argue about how they want the storage to behave. They simply invoke their particular flavor via a Helm chart and, with the help of the right storage classes, away they go!
-![https://cdn-images-1.medium.com/max/800/0*w9bt1flsblASWqcG](https://lh5.googleusercontent.com/WTaj_EcsD5vq_q2EmSxpOByODAp4uOFmX0x8mvCulxvQsG8pGqmpxC0QFk2xnMpCz1qRkkwrP8cAN-7e2PRMmT1cpDFtfUnk2WCptEAbD9xqURIu19rqTxt6Tj4WhVTC-GWrsgoI)
+
+![https://cdn-images-1.medium.com/max/800/0*w9bt1flsblASWqcG](https://cdn-images-1.medium.com/max/800/0*w9bt1flsblASWqcG)
+
 Because you can customize OpenEBS to run however you want it and it abstracts away the underlying differences from storage vendors or storage services, you are now less locked-in than before.
 
 Plus, with OpenEBS and MayaData we are providing per workload back-up and recovery and entire workload data migration as well. Common use cases include disaster recovery of stateful workloads, where you cannot, of course, have the workload itself doing all its own replication if the disaster you are protecting against is a catastrophic situation on that workload. Other common use cases include moving workloads from one cloud to another to save funds or possibly moving workloads closer to other cloud services.
