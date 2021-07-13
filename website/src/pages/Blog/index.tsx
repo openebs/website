@@ -161,13 +161,20 @@ const Blog: React.FC = () => {
     );
   };
 
-  const getTagsMarkup = Object.keys(tagsDistribution).map((item: string) => 
-          <StyledTab
-            label={`${item}(${tagsDistribution[item as keyof typeof tagsDistribution]})`}
-            value={item}
-            key = {item}
-          />
-  );
+  const getTagsMarkup = Object.keys(tagsDistribution).map((item: string) => {
+    if (tagsDistribution[item as keyof typeof tagsDistribution] > 1) {
+      return (
+        <StyledTab
+          label={`${item}(${
+            tagsDistribution[item as keyof typeof tagsDistribution]
+          })`}
+          value={item}
+          key={item}
+        />
+      );
+    }
+    return null;
+  });
 
   return (
     <>
