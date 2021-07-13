@@ -122,6 +122,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     fontSize: '22px',
     fontWeight: 700,
+    cursor: 'pointer',
     [theme.breakpoints.down("sm")]: {
       fontSize: '16px'
     }
