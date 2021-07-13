@@ -84,6 +84,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
                       component={"span"}
                       className={classes.title}
                       color="textSecondary"
+                      onClick={() => handleRedirectPath(elm.slug)}
                       gutterBottom
                     >
                       <ReactMarkdown children={elm.title} />

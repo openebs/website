@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     fontSize: 22,
     fontWeight: 700,
+    cursor: 'pointer',
   },
   cardActionButton: {
     textTransform: "none",
