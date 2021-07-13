@@ -32,6 +32,7 @@ import { getAvatar } from "../../utils/getAvatar";
 import { getContentPreview } from "../../utils/getContent";
 import { useViewport } from "../../hooks/viewportWidth";
 import { pageCount } from "../../utils/getPageCount";
+import BlogImage from '../../components/BlogImage';
 
 interface StyledTabProps {
   label: string;
@@ -210,8 +211,9 @@ const Blog: React.FC = () => {
                           <Card className={classes.card}>
                             <CardMedia
                               className={classes.media}
-                              image={`/images/blog/${elm.slug}.png`}
-                            />
+                            >
+                              <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title} />
+                            </CardMedia>
                             <CardContent classes={{root: classes.cardRoot}}>
                               <DisplayAuthorandReadTime
                                 author={elm.author}
@@ -314,8 +316,9 @@ const Blog: React.FC = () => {
                           <Card className={classes.card}>
                             <CardMedia
                               className={classes.media}
-                              image={`/images/blog/${elm.slug}.png`}
-                            />
+                            >
+                              <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title} />
+                            </CardMedia>
                             <CardContent classes={{root: classes.cardRoot}}>
                               <DisplayAuthorandReadTime
                                 author={elm.author}

@@ -23,6 +23,8 @@ import Carousel from "../Carousel";
 import DisplayAuthorandReadTime from "../DisplayAuthorandReadTime";
 import CustomTag from "../CustomTag";
 import { getContentPreview } from "../../utils/getContent";
+import BlogImage from '../BlogImage';
+
 interface StyledTabProps {
   label: string;
   value: string;
@@ -189,8 +191,9 @@ const MiniBlog: React.FC = () => {
                   <Card key={elm.id} className={classes.cardRoot}>
                     <CardMedia
                       className={classes.media}
-                      image={`/images/blog/${elm.slug}.png`}
-                    />
+                    >
+                      <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title} />
+                    </CardMedia>
                     <CardContent className={classes.cardContent}>
                       <DisplayAuthorandReadTime
                         author={elm.author}

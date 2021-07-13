@@ -10,7 +10,18 @@ const useStyles = makeStyles((theme: Theme) => ({
   media: {
     height: 0,
     paddingTop: "56.25%",
-    borderRadius: '24px 24px 24px 0px',
+    borderRadius: "24px 24px 24px 0px",
+    position: 'relative',
+    overflow: 'hidden',
+    '& img':{
+      minHeight: '100%',
+      width: '100%',
+      position: 'absolute',
+      left: '0',
+      top: '0',
+      objectFit: 'cover',
+      objectPosition: 'left'
+    }
   },
   tagsWrapper: {
     display: 'flex',
