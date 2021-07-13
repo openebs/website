@@ -32,7 +32,7 @@ We put together a few slides that offer a light-hearted approach to answering th
 
 **The Era of Slow Disk Drives and Scale-up Architectures**
 
-![https://cdn-images-1.medium.com/max/800/0*6SPflCuTGC2rWXmH](https://cdn-images-1.medium.com/max/800/0*6SPflCuTGC2rWXmH)
+![Slow Disk Drives and Scale-up Architectures](https://cdn-images-1.medium.com/max/800/0*6SPflCuTGC2rWXmH)
 
 So, rolling the tape back to the 2000s, there were at least a few major differences as the slide expresses.
 
@@ -44,7 +44,7 @@ Back then, it all sort of made sense. You needed software and systems that could
 
 **What has changed and how is that changing the data layer?**
 
-![https://cdn-images-1.medium.com/max/800/0*ZJ8CaKQdxEesL7eE](https://cdn-images-1.medium.com/max/800/0*ZJ8CaKQdxEesL7eE)
+![Flash and NVMe extrememly fast. Striping slows them down. DAS beats storage](https://cdn-images-1.medium.com/max/800/0*ZJ8CaKQdxEesL7eE)
 
 Storage was disrupted by flash. But now we are done with that, right? Well, not really…. Today’s scale-out storage systems almost always impose massive latency versus underlying, extremely fast NVMe connected non-volatile systems. As a result, and from a desire to avoid the complexity of running a distributed system like Cassandra on top of a distributed storage system (often with the distributed Kubernetes system in between), DAS has beaten all existing storage for many workloads.
 
@@ -52,17 +52,17 @@ In short, **the very reason that we started striping across nodes — to add
 
 So, what else?
 
-![https://cdn-images-1.medium.com/max/800/0*VzhXdDLpxtERp1Sk](https://cdn-images-1.medium.com/max/800/0*VzhXdDLpxtERp1Sk)
+![75x increase in the number of workloads. 95% decrease in size & duration. Ephemeral](https://cdn-images-1.medium.com/max/800/0*VzhXdDLpxtERp1Sk)
 
 Perhaps most importantly, the workloads — the way DBs are built and run — has changed. They are of much shorter duration, typically much smaller, and they move around! This is not your father’s monolith!
 
-![https://cdn-images-1.medium.com/max/800/0*Yuk0vAdoZe4qp24s](https://cdn-images-1.medium.com/max/800/0*Yuk0vAdoZe4qp24s)
+![You pay clouds for storage. Data gravity -> ^ spending, less agility. Lock-in](https://cdn-images-1.medium.com/max/800/0*Yuk0vAdoZe4qp24s)
 
 Then you run it on the cloud, which gives you and your teams incredible agility. However, you now introduce dependencies because each cloud’s storage differs. So, if you are not careful, before you know it you are locked-in. Even for some of our users listed here, ^^ their AWS bills are growing quickly. And, again, your teams are less agile because there has been a collective decision to grab some opaque service such as a stripped down and standardized version of open source MySQL or Redis from another company.
 
 To sum things up, the world has changed in many ways! Therefore, storage has changed too, right? Well, not really. Storage is hard. It is far easier through marketing and open source influence peddling to get your 20-year-old project labelled “cloud native” than it is to actually start an entirely new storage system that runs anywhere.
 
-![https://cdn-images-1.medium.com/max/800/0*vNlv_UcOVV5Y456W](https://cdn-images-1.medium.com/max/800/0*vNlv_UcOVV5Y456W)
+![Run anywhere with dynamic provisioning. Don't stripe across nodes. Reduce SPOF](https://cdn-images-1.medium.com/max/800/0*vNlv_UcOVV5Y456W)
 
 To begin at the bottom of the stack, you not only have to accommodate the presence of extremely fast storage hardware, you also have to accommodate running *on clouds* themselves. How can you do this? And how do you do so in a way that does not itself introduce another single point of failure?
 
@@ -70,11 +70,11 @@ The approach we take at OpenEBS is to run our storage capabilities in a decouple
 
 We also keep the data local and utilize intelligence in our control plane to leverage Kubernetes to optimize data placement of primary data stores and replicas. There is much more I could discuss here, but I’ll leave it at this high level for now.
 
-![https://cdn-images-1.medium.com/max/800/0*ZFFma1SdaG9GaiAS](https://cdn-images-1.medium.com/max/800/0*ZFFma1SdaG9GaiAS)
+![Every workload has its own data storage. Every team as well. Quick & agile](https://cdn-images-1.medium.com/max/800/0*ZFFma1SdaG9GaiAS)
 
 Secondly, instead of having a one size fits all storage system that is limited in its ability to make trade-offs for each of the potentially thousands of workloads, each workload has its own storage system with OpenEBS. The specific needs of those workloads and of the “two pizza” teams that build and run the workloads are each served by their own OpenEBS. This limits the need for cross-functional team meetings in which members argue about how they want the storage to behave. They simply invoke their particular flavor via a Helm chart and, with the help of the right storage classes, away they go!
 
-![https://cdn-images-1.medium.com/max/800/0*w9bt1flsblASWqcG](https://cdn-images-1.medium.com/max/800/0*w9bt1flsblASWqcG)
+![Run Dbs w/o any headache. Achieve data agility and cost savings. No lock-in. Unicorn](https://cdn-images-1.medium.com/max/800/0*w9bt1flsblASWqcG)
 
 Because you can customize OpenEBS to run however you want it and it abstracts away the underlying differences from storage vendors or storage services, you are now less locked-in than before.
 
