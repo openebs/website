@@ -92,7 +92,7 @@ const Blog: React.FC = () => {
     setJsonMdData(blogs);
   };
 
-  const handleRedirectPath = (slug: any) => {
+  const handleRedirectPath = (slug: string) => {
     history.push(`/blog/${slug}`);
   };
 
