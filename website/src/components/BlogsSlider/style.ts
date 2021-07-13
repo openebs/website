@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme: Theme) => ({
       top: '0',
       objectFit: 'cover',
       objectPosition: 'left'
-    }
+    },
+    cursor: 'pointer',
   },
   tagsWrapper: {
     display: 'flex',
@@ -35,6 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     fontSize: 22,
     fontWeight: 700,
+    cursor: 'pointer',
   },
   cardActionButton: {
     textTransform: "none",

@@ -24,6 +24,7 @@ import DisplayAuthorandReadTime from "../DisplayAuthorandReadTime";
 import CustomTag from "../CustomTag";
 import { getContentPreview } from "../../utils/getContent";
 import BlogImage from '../BlogImage';
+import { useHistory } from "react-router-dom";
 
 interface StyledTabProps {
   label: string;
@@ -48,10 +49,16 @@ const MiniBlog: React.FC = () => {
   const [value, setValue] = React.useState("all");
   const [tagsDistribution, setTagsDistribution] = useState({});
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
-
+  const history = useHistory();
   const handleTagSelect = (tags: string) => {
     setValue(tags);
   };
+
+
+  const handleRedirectPath = (slug: string) => {
+    history.push(`/blog/${slug}`);
+  };
+
 
   const getTags = (tags: Array<string>) => {
     return tags.map((tag: string) => (
@@ -191,6 +198,9 @@ const MiniBlog: React.FC = () => {
                   <Card key={elm.id} className={classes.cardRoot}>
                     <CardMedia
                       className={classes.media}
+                      onClick={() =>
+                        handleRedirectPath(elm.slug)
+                      }
                     >
                       <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title} />
                     </CardMedia>
@@ -204,6 +214,9 @@ const MiniBlog: React.FC = () => {
                         className={classes.title}
                         color="textSecondary"
                         gutterBottom
+                        onClick={() =>
+                          handleRedirectPath(elm.slug)
+                        }
                       >
                         <ReactMarkdown children={elm.title} />
                       </Typography>
@@ -223,7 +236,7 @@ const MiniBlog: React.FC = () => {
                         variant="text"
                         className={classes.cardActionButton}
                         onClick={() =>
-                          window.location.assign(`/blog/${elm.slug}`)
+                          handleRedirectPath(elm.slug)
                         }
                       >
                         {t("blog.readMore")}

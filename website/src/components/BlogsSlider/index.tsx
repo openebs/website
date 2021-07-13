@@ -14,6 +14,7 @@ import CustomTag from "../CustomTag";
 import ReactMarkdown from "react-markdown";
 import { getContentPreview } from "../../utils/getContent";
 import BlogImage from '../BlogImage';
+import { useHistory } from "react-router-dom";
 
 interface BlogsSliderProps {
   recommendedBlogs: any;
@@ -23,7 +24,10 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
   const { t } = useTranslation();
   const classes = useStyles();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
-
+  const history = useHistory();
+  const handleRedirectPath = (slug: string) => {
+    history.push(`/blog/${slug}`);
+  };
 
   const sliderSettings = {
     dots: false,
@@ -32,7 +36,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
-    cssEase:"linear",
+    cssEase: "linear",
     arrows: true,
     rtl: false,
     responsive: [
@@ -43,16 +47,16 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
           slidesToScroll: 1,
         },
       },
-    ]
-  }
+    ],
+  };
 
   const getTags = (tags: Array<string>) => {
     const tagItems = tags.map((tag) => {
-      return(
+      return (
         <div className={classes.tag} key={tag}>
           <CustomTag blogLabel={tag} />
         </div>
-      )
+      );
     });
     return tagItems;
   };
@@ -67,6 +71,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
                 <Card className={classes.cardRoot}>
                   <CardMedia
                     className={classes.media}
+                    onClick={() => handleRedirectPath(elm.slug)}
                   >
                     <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title} />
                   </CardMedia>
@@ -78,24 +83,21 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
                       component={"span"}
                       className={classes.title}
                       color="textSecondary"
+                      onClick={() => handleRedirectPath(elm.slug)}
                       gutterBottom
                     >
                       <ReactMarkdown children={elm.title} />
                     </Typography>
                     <span>
                       <ReactMarkdown
-                        children={
-                          getContentPreview(elm.excerpt)
-                        }
+                        children={getContentPreview(elm.excerpt)}
                       />
                       <Button
                         size="small"
                         disableRipple
                         variant="text"
                         className={classes.cardActionButton}
-                        onClick={() =>
-                          window.location.assign(`/blog/${elm.slug}`)
-                        }
+                        onClick={() => handleRedirectPath(elm.slug)}
                       >
                         {t("blog.readMore")}
                       </Button>

@@ -151,16 +151,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexGrow: 1,
   },
   cardSize: {
-    maxWidth: "480px",
+    maxWidth: "480px !important",
     paddingTop: theme.spacing(4),
     [theme.breakpoints.down("md")]: {
-      maxWidth: "380px",
+      maxWidth: "380px !important",
     },
     [theme.breakpoints.down("sm")]: {
       maxWidth: "480px",
     },
     [theme.breakpoints.down("xs")]: {
-      maxWidth: "90%",
+      maxWidth: "90% !important",
     },
   },
   media: {
@@ -177,7 +177,8 @@ const useStyles = makeStyles((theme: Theme) => ({
       top: '0',
       objectFit: 'cover',
       objectPosition: 'left'
-    }
+    },
+    cursor: 'pointer',
   },
   bullet: {
     display: "inline-block",
