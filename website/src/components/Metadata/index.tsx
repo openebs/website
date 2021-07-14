@@ -21,6 +21,8 @@ export const Metadata: React.FC<MetadataProps> = ({ title , description, url, is
         shareImageHeight: '523px'
     }
 
+    const jsonLd = {};
+
     return(
         <Helmet>
             <title>{title || defaultConfig.title}</title>
@@ -37,9 +39,23 @@ export const Metadata: React.FC<MetadataProps> = ({ title , description, url, is
             {/** Twitter */}
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:creator" content="@openebs" />
+            <meta name="twitter:site" content="https://twitter.com/openebs" />
             <meta name="twitter:title" content={title || defaultConfig.title} />
             <meta name="twitter:description" content={description || defaultConfig.description} />
             <meta name="twitter:image" content={image || defaultConfig.image} />
+
+            {/* {isPost && tags.map((keyword, i) => (
+                <meta property="article:tag" content={keyword} key={i} />
+            ))} */}
+            {isPost && (
+                <>
+                <meta name="twitter:label1" content="Written by" />
+                <meta name="twitter:data1" content={"Author"} />
+                </>
+            )}
+            <script type="application/ld+json">
+                {JSON.stringify(jsonLd, undefined, 4)}
+            </script>
         </Helmet>
     )
 }
