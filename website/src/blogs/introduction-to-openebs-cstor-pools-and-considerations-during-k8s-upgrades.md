@@ -41,7 +41,7 @@ This scenario when more than one or all worker nodes are offline is when “Volu
 
 DevOps architects and Kubernetes administrators need to be watchful of this situation when Kubernetes upgrades are occurring. Instigating a planned node reboot that leads some cStor volumes to lose quorum may not be desired. This is a specific case where container attached storage like OpenEBS has a far smaller “blast radius” than typical external scale out storage. In the case of OpenEBS, you will likely lose availability to your storage for a **particular workload** when you simultaneously reboot more than one node and cause volume replicas to lose quorum. However, in the case of shared scale out external storage, such a scenario will result in data unavailability for all of your workloads at once.
 
-`Nonetheless, when performing a Kubernetes reboot the question that is often asked is what is the blast radius right now? In other words, what volumes will lose quorum if a particular node is rebooted or lost?`
+`Nonetheless, when performing a Kubernetes reboot the question that is often asked is "what is the blast radius right now"? In other words, what volumes will lose quorum if a particular node is rebooted or lost?`
 
 While you can figure this out directly via kubectl, it is not trivial, especially as your environment scales. This is one of the reasons we have enabled the topology view of the storage resources for use in MayaOnline. We contributed those views upstream to the WeaveScope project as well.
 
