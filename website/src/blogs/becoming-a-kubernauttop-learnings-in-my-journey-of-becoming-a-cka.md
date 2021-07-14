@@ -1,5 +1,5 @@
 ---
-title: "Becoming a Kubernaut: Top Learnings in my journey of becoming a CKA"
+title: Becoming a Kubernaut - Top Learnings in my journey of becoming a CKA
 author: Ashutosh Kumar
 author_info: Software Engineer at MayaData | OpenEBS Reviewer and Contributor | CKA | Gopher | Kubernaut
 date: 05-03-2019

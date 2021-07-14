@@ -1,5 +1,5 @@
 ---
-title: "Hacktoberfest 2020 - Contribute to OpenEBS"
+title: Hacktoberfest 2020 - Contribute to OpenEBS
 author: MayaData Marketing
 author_info: Mayadata Marketing Team
 date: 30-09-2020
@@ -9,7 +9,7 @@ excerpt: Hacktoberfest 2020 is almost here. Contribute to open source project, O
 
 ### Hacktoberfest returns! Contribute to OpenEBS and win exciting swag
 
-The seventh annual [***Hacktoberfest ***](https://hacktoberfest.digitalocean.com/) celebration is almost here, and we at *OpenEBS* are happy to be participating in the contest once again. In August 2017, the OpenEBS community began growing and building a strong foundation for an open source project.
+The seventh annual [***Hacktoberfest***](https://hacktoberfest.digitalocean.com/) celebration is almost here, and we at *OpenEBS* are happy to be participating in the contest once again. In August 2017, the OpenEBS community began growing and building a strong foundation for an open source project.
 
 We were first introduced to *Hacktoberfest* by friends and peers at the DigitalOcean Bangalore Meetup and were immediately interested in participating. We enlisted OpenEBS as one of the projects participating in Hacktoberfest 2017. We were pleasantly surprised by the participation and enthusiasm that Hacktoberfest attracts from developers around the world. The PRs have been at their peak during Hacktoberfest.
 
@@ -17,7 +17,7 @@ We were first introduced to *Hacktoberfest* by friends and peers at the DigitalO
 
 ### Get started with OpenEBS this Hacktoberfest
 
-Following the smashing success we had when we participated in the event last few years, we’re going to do the same this year! MayaData makes it more exciting to participate in **Hacktoberfest **by running multiple Meetups throughout the month and helping contributors to get started with their favorite areas (in any of the programming languages) like website development and documentation enhancements. 
+Following the smashing success we had when we participated in the event last few years, we’re going to do the same this year! MayaData makes it more exciting to participate in **Hacktoberfest** by running multiple Meetups throughout the month and helping contributors to get started with their favorite areas (in any of the programming languages) like website development and documentation enhancements. 
 
 To top it all, there are exciting prizes to be won and every contribution deserves an additional swag from MayaData. Read [this blog](https://blog.mayadata.io/openebs/experience-with-openebs-in-this-hacktoberfest) by Aswath K, one of last year’s weekly winners, who writes about his experience with OpenEBS in Hacktoberfest 2019.
 
