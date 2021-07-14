@@ -44,7 +44,7 @@ Back then, it all sort of made sense. You needed software and systems that could
 
 **What has changed and how is that changing the data layer?**
 
-![Flash and NVMe extrememly fast. Striping slows them down. DAS beats storage](https://cdn-images-1.medium.com/max/800/0*ZJ8CaKQdxEesL7eE)
+![Flash and NVMe extremely fast. Striping slows them down. DAS beats storage](https://cdn-images-1.medium.com/max/800/0*ZJ8CaKQdxEesL7eE)
 
 Storage was disrupted by flash. But now we are done with that, right? Well, not really…. Today’s scale-out storage systems almost always impose massive latency versus underlying, extremely fast NVMe connected non-volatile systems. As a result, and from a desire to avoid the complexity of running a distributed system like Cassandra on top of a distributed storage system (often with the distributed Kubernetes system in between), DAS has beaten all existing storage for many workloads.
 

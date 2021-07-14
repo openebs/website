@@ -11,7 +11,7 @@ excerpt: How are TikTok, Flipkart, KubeSphere, and others using OpenEBS for Loca
 
 We have recently seen a massive increase in the usage of different flavors of OpenEBS Local PV. We estimate by looking at container pulls for underlying components combined with some call home data for those users of OpenEBS that enable the capturing of metrics that the weekly new deployments of OpenEBS for LocalPV increased by nearly 10x during 2020. This can be attributed to the fact that more and more cloud native Stateful applications are moving into Kubernetes
 
-![LocalPv Deployment](/images/blog/Local-PV-Deployment.png)
+![LocalPv Deployment](/images/blog/local-pv-deployment.png)
 
 Some of the prominent users of OpenEBS Local PV include the CNCF, Optoro, ByteDance / TikTok, Flipkart, and many more. You can always read more about OpenEBS users on the OpenEBS.io website and on the GitHub project page here: [https://github.com/openebs/openebs/blob/master/ADOPTERS.md](https://github.com/openebs/openebs/blob/master/ADOPTERS.md).
 
