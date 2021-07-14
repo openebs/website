@@ -1,0 +1,1 @@
+export const getHostOrigin = window && window.location.origin;

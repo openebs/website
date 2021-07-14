@@ -1,8 +1,8 @@
 import React from 'react';
-import { Route, Router, Switch } from 'react-router-dom';
+import { Route, Router, Switch, useHistory, useLocation } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import { ThemeProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from './theme/theme';
 import './fonts'
 
@@ -17,6 +17,9 @@ const BlogPage = React.lazy(() => import('./pages/BlogPage'));
 const ErrorPage = React.lazy(() => import('./pages/ErrorPage'));
 
 const Routes: React.FC = () => {
+  const history = useHistory();
+  const location = useLocation();
+  console.log(location, " location", history, " history");
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

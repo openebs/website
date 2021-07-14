@@ -18,6 +18,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useViewport } from "../../hooks/viewportWidth";
 import { Workloads } from "./workloads";
+import { Metadata } from "../../components/Metadata";
 
 const Home: React.FC = () => {
     const classes = useStyles();
@@ -157,6 +158,7 @@ const Home: React.FC = () => {
     
     return (
         <div>
+            <Metadata title="" description="" url="" image="" isPost={false}  />
             <section>
                 {isMobileView ? 
                     <Grid container spacing={0}>
