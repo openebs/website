@@ -31,12 +31,12 @@ A common way to analyze the variety of DBs is to examine the CAP theorem and wha
 There are many available DB solutions, many of which have little in common other than their primary task of ordering data for faster storage or access for a particular use case. There are at least eight main types:
 
 - **Key value stores** — such as the ETCD inside of Kubernetes
-- **Column stores **— such as Amazon’s Redshift. These are generally most efficient for analytics. SAP Hana is a famous proprietary in memory DB often classified as a columnar DB
-- **Document stores **— such as MongoDB
+- **Column stores** — such as Amazon’s Redshift. These are generally most efficient for analytics. SAP Hana is a famous proprietary in memory DB often classified as a columnar DB
+- **Document stores** — such as MongoDB
 - **Graph databases** — such as Neo4J
-- **Row stores **— Although sometimes referred to as a columnar store, Cassandra actually belongs to this category. Generally, row oriented DBs are better at writes.
+- **Row stores** — Although sometimes referred to as a columnar store, Cassandra actually belongs to this category. Generally, row oriented DBs are better at writes.
 - **In memory databases** — such as Redis (please note our [VP of Product](https://redislabs.com/redisconf19/) is speaking at the April 2–3 Redis conf on considerations on Kubernetes)
-- **“Synthetic”**—such as CockroachDB, NuoDB and TiDB. These are able to retain consistency while scaling horizontally reads and writes, so arguably stretching or even making moot the ACP trade off highlighted above
+- **“Synthetic”** — such as CockroachDB, NuoDB and TiDB. These are able to retain consistency while scaling horizontally reads and writes, so arguably stretching or even making moot the ACP trade off highlighted above
 - **Time series databases** such as Influx DB, which often runs under Prometheus, arguably the most common stateful workload on Kubernetes. This is the default monitoring solution; you can read more about using OpenEBS under Prometheus in this blog post from October 2018: [https://blog.openebs.io/using-openebs-as-the-tsdb-for-prometheus-fac3744d5507](https://blog.openebs.io/using-openebs-as-the-tsdb-for-prometheus-fac3744d5507).
 
 Relatively old and well-known SQL solutions seem to be extremely prevalent for a variety of reasons , such as the decreasing sizes of some workloads as microservices take off. Architectures increasingly use message systems like Kafka along with service meshes to pass relevant information and  data back and forth,  as opposed to dropping everything into shared NoSQL platforms. This is likely one reason that we see an enormous amount of PostgreSQL and MySQL applications running on top of OpenEBS. There are some distributed SQL systems that scale out and yet retain SQL semantics. Notable examples include TiDB and Couchase, each of which have key value stores ordering underlying data structures, and NuoDB, which is based upon a distributed memory cache. In between are solutions such as Vitess that take MySQL (or similar) and manage sharding and some of the operational automation needed to scale MySQL horizontally.

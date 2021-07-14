@@ -24,6 +24,7 @@ In this blog, I would like to drive home three points:
 ## Introduction to cStor Pools
 
 ![cStor Pools](/images/blog/cstor-pools.png)
+
 (***cStor pools provide thin provision and save up to 50% of your storage costs on clouds.***)
 
 A cStor-Pool (Shown in the above figure as Pool1) is a set of pool instances on each participating node, where a pool instance is formed over a set of disks. The cStor target places data replicas on each of the pool instances and synchronously replicates the volume data onto those replicas. The target manages the quorum logic and rebuilds the data among replicas when they become unavailable/available. For example, if a node disappears or is rescheduled, the workload will not notice as OpenEBS will continue serving the data.
@@ -40,7 +41,7 @@ This scenario when more than one or all worker nodes are offline is when “Volu
 
 DevOps architects and Kubernetes administrators need to be watchful of this situation when Kubernetes upgrades are occurring. Instigating a planned node reboot that leads some cStor volumes to lose quorum may not be desired. This is a specific case where container attached storage like OpenEBS has a far smaller “blast radius” than typical external scale out storage. In the case of OpenEBS, you will likely lose availability to your storage for a **particular workload** when you simultaneously reboot more than one node and cause volume replicas to lose quorum. However, in the case of shared scale out external storage, such a scenario will result in data unavailability for all of your workloads at once.
 
-`Nonetheless, when performing a Kubernetes reboot the question that is often asked is **what is the blast radius right now?** In other words, what volumes will lose quorum if a particular node is rebooted or lost?`
+`Nonetheless, when performing a Kubernetes reboot the question that is often asked is what is the blast radius right now? In other words, what volumes will lose quorum if a particular node is rebooted or lost?`
 
 While you can figure this out directly via kubectl, it is not trivial, especially as your environment scales. This is one of the reasons we have enabled the topology view of the storage resources for use in MayaOnline. We contributed those views upstream to the WeaveScope project as well.
 
@@ -50,10 +51,12 @@ With the MayaOnline topology view of cStor Pool custom resources, you can see th
 
 Here are some example screenshots where one pool instance’s replicas are healthy and the other pool instance’s replicas are not.
 
-![cstor-disk-standard](/images/blog/cstor-disk-standard.png) 
+![cstor-disk-standard](/images/blog/cstor-disk-standard.png)
+
 (***cStor pool with all replicas in healthy state***)
 
 ![ci-ssd-pool](/images/blog/ci-ssd-pool.png) 
+
 (***cStor pool with some volume replicas in unhealthy state‌‌***)
 
 ### Ephemeral Disks Scenario
