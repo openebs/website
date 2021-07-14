@@ -111,7 +111,7 @@ const MiniBlog: React.FC = () => {
   ).length;
 
   const filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
-    if (value !== "all") {
+    if (value !== t("blog.all").toLowerCase()) {
       const tagData = tabs.tags.find((el: string) => el === value);
       return tagData === value;
     }
@@ -132,9 +132,7 @@ const MiniBlog: React.FC = () => {
     if (tagsDistribution[item as keyof typeof tagsDistribution] > 1) {
       return (
         <StyledTab
-          label={`${item}(${
-            tagsDistribution[item as keyof typeof tagsDistribution]
-          })`}
+          label={`${item} (${tagsDistribution[item as keyof typeof tagsDistribution]})`}
           value={item}
           key={item}
         />
@@ -188,8 +186,8 @@ const MiniBlog: React.FC = () => {
               orientation={mobileBreakpoint ? "horizontal" : "vertical"}
             >
               <StyledTab
-                label={"All(" + totalBlogCount + ")"}
-                value={t("blog.all")}
+                label={t('blog.all') + " (" + totalBlogCount + ")"}
+                value={t("blog.all").toLowerCase()}
               />
               {getTagsMarkup}
             </Tabs>

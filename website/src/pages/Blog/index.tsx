@@ -161,16 +161,24 @@ const Blog: React.FC = () => {
     );
   };
 
+  const handleTabClickOnMobile = (newValue: string) => {
+    setValue(newValue);
+    setPage(1);
+  }
+
   const getTagsMarkup = Object.keys(tagsDistribution).map((item: string) => {
     if (tagsDistribution[item as keyof typeof tagsDistribution] > 1) {
       return (
-        <StyledTab
-          label={`${item}(${
-            tagsDistribution[item as keyof typeof tagsDistribution]
-          })`}
-          value={item}
-          key={item}
-        />
+        mediumViewport ? 
+          <StyledTab
+            label={`${item} (${tagsDistribution[item as keyof typeof tagsDistribution]})`}
+            value={item}
+            key = {item}
+          />
+          :
+          <Grid item xs={6} key={item}>
+            <Button className={[classes.tabButton, (value === item) ? classes.activeTabButton : ''].join(' ')} onClick={() => handleTabClickOnMobile(item)}>{item} <span className={(value !== item) ? classes.tagCount : ''}>({tagsDistribution[item as keyof typeof tagsDistribution]})</span></Button>
+          </Grid>
       );
     }
     return null;
@@ -184,26 +192,36 @@ const Blog: React.FC = () => {
             <Container maxWidth="lg">
               <h1 className={classes.mainText}>{t("blog.title")}</h1>
               <Paper className={classes.tabs}>
+                {mediumViewport ?
                 <Tabs
-                  value={value}
-                  onChange={handleChange}
-                  textColor="secondary"
-                  variant="scrollable"
-                  classes={{ 
-                    root: classes.tabRoot, scroller: classes.scroller }}
-                  TabIndicatorProps={{
-                    style: {
-                      display: "none",
-                    },
-                  }}
-                  orientation={mediumViewport ? "horizontal" : "vertical"}
-                >
-                  <StyledTab
-                    label={"All(" + totalBlogCount + ")"}
-                    value={t("blog.all")}
-                  />
+                value={value}
+                onChange={handleChange}
+                textColor="secondary"
+                variant="scrollable"
+                classes={{ 
+                  root: classes.tabRoot, scroller: classes.scroller }}
+                TabIndicatorProps={{
+                  style: {
+                    display: "none",
+                  },
+                }}
+                orientation="horizontal"
+              >
+                <StyledTab
+                  label={t('blog.all') + " (" + totalBlogCount + ")"}
+                  value={t("blog.all").toLowerCase()}
+                />
+                {getTagsMarkup}
+              </Tabs>
+              :
+              <Grid container className={classes.mobileTabsWrapper}>
+                  <Grid item xs={6}>
+                      <Button className={[classes.tabButton, (value === t("blog.all").toLowerCase()) ? classes.activeTabButton : ''].join(' ')} onClick={() => handleTabClickOnMobile(t("blog.all").toLowerCase())}>{t('blog.all')} <span className={(value !== 'all') ? classes.tagCount : ''}>({totalBlogCount})</span></Button>
+                  </Grid>
                   {getTagsMarkup}
-                </Tabs>
+              </Grid>
+            }
+                
               </Paper>
             </Container>
           </div>
