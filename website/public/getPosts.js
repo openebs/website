@@ -61,7 +61,7 @@ const getPosts = () => {
                         author: metadata.author || 'No author',
                         author_info: metadata.author_info || 'No author information',
                         date: metadata.date || 'No date available',
-                        tags: metadata.tags.trim().split(',') || 'No tags available',
+                        tags: metadata.tags.split(',').map(e => e.trim()) || 'No tags available',
                         excerpt: metadata.excerpt || '',
                         content: content || 'No content available'
                     };
