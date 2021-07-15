@@ -3,7 +3,7 @@ title: Running OpenEBS On Custom Rancher Cluster
 author: Chandan Sagar Pradhan
 author_info: Software Engineer at MayaData
 date: 22-10-2018
-tags: Cas, Cloud Native Storage, Kubernetes, OpenEBS, Rancher
+tags: CAS, Cloud Native Storage, Kubernetes, OpenEBS, Rancher
 excerpt: In this blog, I will be explaining how to deploy an application in a custom Rancher cluster on an OpenEBS volume.
 ---
 
