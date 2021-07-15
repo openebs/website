@@ -19,7 +19,7 @@ const ErrorPage: React.FC = () => {
                     justify="center"
                     alignItems="center"
                 >
-                    <Grid item xs={12} lg={12}>
+                    <Grid item xs={12}>
                         <img
                             loading="lazy"
                             className={classes.errorImage}
