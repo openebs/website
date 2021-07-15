@@ -23,7 +23,7 @@ import {
 } from "@material-ui/core";
 import Footer from "../../components/Footer";
 import ReactMarkdown from "react-markdown";
-import { VIEW_PORT } from "../../constants";
+import { BLOG_TAGS, VIEW_PORT } from "../../constants";
 import Sponsor from "../../components/Sponsor";
 import Pagination from "@material-ui/lab/Pagination";
 import DisplayAuthorandReadTime from "../../components/DisplayAuthorandReadTime";
@@ -114,8 +114,8 @@ const Blog: React.FC = () => {
     (tabs: TabProps) => tabs
   ).length;
 
-  const handleTagSelect = (tags: any) => {
-    setValue(tags);
+  const handleTagSelect = (tag: string) => {
+    setValue(tag);
     setPage(1);
   };
 
@@ -163,14 +163,25 @@ const Blog: React.FC = () => {
 
   const getTagsMarkup = Object.keys(tagsDistribution).map((item: string) => {
     if (tagsDistribution[item as keyof typeof tagsDistribution] > 1) {
+      // If medium view port display StyledTab of material-ui else display grid for custom tabs to match Figma design
       return (
-        <StyledTab
-          label={`${item}(${
-            tagsDistribution[item as keyof typeof tagsDistribution]
-          })`}
-          value={item}
-          key={item}
-        />
+        mediumViewport ? 
+          <StyledTab
+            label={`${item} (${tagsDistribution[item as keyof typeof tagsDistribution]})`}
+            value={item}
+            key = {item}
+          />
+          :
+          <Grid item xs={6} key={item}>
+            <Button 
+              className={[classes.tabButton, (value === item) ? classes.activeTabButton : ''].join(' ')} 
+              onClick={() => handleTagSelect(item)}>
+              {item} 
+              <span className={(value !== item) ? classes.tagCount : ''}>
+                  ({tagsDistribution[item as keyof typeof tagsDistribution]})
+              </span>
+            </Button>
+          </Grid>
       );
     }
     return null;
@@ -184,26 +195,41 @@ const Blog: React.FC = () => {
             <Container maxWidth="lg">
               <h1 className={classes.mainText}>{t("blog.title")}</h1>
               <Paper className={classes.tabs}>
+                {mediumViewport ?
                 <Tabs
-                  value={value}
-                  onChange={handleChange}
-                  textColor="secondary"
-                  variant="scrollable"
-                  classes={{ 
-                    root: classes.tabRoot, scroller: classes.scroller }}
-                  TabIndicatorProps={{
-                    style: {
-                      display: "none",
-                    },
-                  }}
-                  orientation={mediumViewport ? "horizontal" : "vertical"}
-                >
-                  <StyledTab
-                    label={"All(" + totalBlogCount + ")"}
-                    value={t("blog.all")}
-                  />
+                value={value}
+                onChange={handleChange}
+                textColor="secondary"
+                variant="scrollable"
+                classes={{ 
+                  root: classes.tabRoot, scroller: classes.scroller }}
+                TabIndicatorProps={{
+                  style: {
+                    display: "none",
+                  },
+                }}
+                orientation="horizontal"
+              >
+                <StyledTab
+                  label={`${t('blog.all')} (${totalBlogCount})`}
+                  value={BLOG_TAGS.ALL}
+                />
+                {getTagsMarkup}
+              </Tabs>
+              :
+              <Grid container className={classes.mobileTabsWrapper}>
+                  <Grid item xs={6}>
+                      <Button 
+                        className={[classes.tabButton, (value === BLOG_TAGS.ALL) ? classes.activeTabButton : ''].join(' ')} 
+                        onClick={() => handleTagSelect(BLOG_TAGS.ALL)}>
+                        {t('blog.all')} 
+                        <span className={(value !== BLOG_TAGS.ALL) ? classes.tagCount : ''}>({totalBlogCount})</span>
+                      </Button>
+                  </Grid>
                   {getTagsMarkup}
-                </Tabs>
+              </Grid>
+            }
+                
               </Paper>
             </Container>
           </div>

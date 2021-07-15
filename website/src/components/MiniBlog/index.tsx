@@ -18,7 +18,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import ReactMarkdown from "react-markdown";
-import { VIEW_PORT } from "../../constants";
+import { BLOG_TAGS, VIEW_PORT } from "../../constants";
 import Carousel from "../Carousel";
 import DisplayAuthorandReadTime from "../DisplayAuthorandReadTime";
 import CustomTag from "../CustomTag";
@@ -111,7 +111,7 @@ const MiniBlog: React.FC = () => {
   ).length;
 
   const filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
-    if (value !== "all") {
+    if (value !== BLOG_TAGS.ALL) {
       const tagData = tabs.tags.find((el: string) => el === value);
       return tagData === value;
     }
@@ -132,9 +132,7 @@ const MiniBlog: React.FC = () => {
     if (tagsDistribution[item as keyof typeof tagsDistribution] > 1) {
       return (
         <StyledTab
-          label={`${item}(${
-            tagsDistribution[item as keyof typeof tagsDistribution]
-          })`}
+          label={`${item} (${tagsDistribution[item as keyof typeof tagsDistribution]})`}
           value={item}
           key={item}
         />
@@ -188,8 +186,8 @@ const MiniBlog: React.FC = () => {
               orientation={mobileBreakpoint ? "horizontal" : "vertical"}
             >
               <StyledTab
-                label={"All(" + totalBlogCount + ")"}
-                value={t("blog.all")}
+                label={`${t('blog.all')} (${totalBlogCount})`}
+                value={BLOG_TAGS.ALL}
               />
               {getTagsMarkup}
             </Tabs>

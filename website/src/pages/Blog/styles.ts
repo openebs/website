@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundSize: "cover",
     padding: theme.spacing(16, 5, 0),
     [theme.breakpoints.down("xs")]: {
-      padding: theme.spacing(5, 5),
+      padding: theme.spacing(5, 1),
       marginTop: theme.spacing(10),
       backgroundImage: "url(/images/png/faq_background_mobile.png)",
       backgroundRepeat: "no-repeat",
@@ -65,6 +65,23 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: 'none',
     position: 'relative',
     top: '25px'
+  },
+  mobileTabsWrapper: {
+    background: theme.palette.background.paper,
+    boxShadow: '2px 0px 33px 5px rgba(70, 68, 151, 0.04)',
+    borderRadius: '12px 12px 12px 0px',
+    padding: theme.spacing(2,0)
+  },
+  tabButton: {
+    color: theme.palette.text.secondary,
+    fontSize: '14px'
+  },
+  activeTabButton: {
+    color: theme.palette.text.hint
+  },
+  tagCount: {
+    color: theme.palette.text.disabled,
+    marginLeft: theme.spacing(0.5)
   },
   mainText: {
     display: "flex",

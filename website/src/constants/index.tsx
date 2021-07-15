@@ -59,3 +59,7 @@ export enum SCRIPT_STATES {
   ERROR = 'error',
   IDLE = 'idle'
 }
+
+export enum BLOG_TAGS {
+  ALL = 'all'
+}
