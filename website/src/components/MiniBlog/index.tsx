@@ -25,6 +25,7 @@ import CustomTag from "../CustomTag";
 import { getContentPreview } from "../../utils/getContent";
 import BlogImage from '../BlogImage';
 import { useHistory } from "react-router-dom";
+import { getTagsSorted } from "../../utils/getTags";
 
 interface StyledTabProps {
   label: string;
@@ -128,7 +129,8 @@ const MiniBlog: React.FC = () => {
     }
   }, [jsonMdData]);
 
-  const getTagsMarkup = Object.keys(tagsDistribution).map((item: string) => {
+  const sortedTags = getTagsSorted(tagsDistribution,"length");
+  const tagsMarkup = sortedTags.map((item: string) => {
     if (tagsDistribution[item as keyof typeof tagsDistribution] > 1) {
       return (
         <StyledTab
@@ -189,7 +191,7 @@ const MiniBlog: React.FC = () => {
                 label={`${t('blog.all')} (${totalBlogCount})`}
                 value={BLOG_TAGS.ALL}
               />
-              {getTagsMarkup}
+              {tagsMarkup}
             </Tabs>
           </Paper>
         </Container>

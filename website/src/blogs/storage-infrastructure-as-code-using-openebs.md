@@ -2,7 +2,7 @@
 title: Storage infrastructure as code using OpenEBS
 author: Uma Mukkara
 author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
-tags: Containerised Storage, DevOps, Kubernetes, Openebs, Stateful Applications
+tags: Containerised Storage, DevOps, Kubernetes, OpenEBS, Stateful Applications
 date: 29-06-2017
 excerpt: With a vision to become de-facto block storage choice for stateful container applications, OpenEBS brings out many unique features to the open source storage space. 
 ---

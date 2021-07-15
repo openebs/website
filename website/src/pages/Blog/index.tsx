@@ -34,6 +34,7 @@ import { useViewport } from "../../hooks/viewportWidth";
 import { pageCount } from "../../utils/getPageCount";
 import { useHistory } from "react-router-dom";
 import BlogImage from "../../components/BlogImage";
+import { getTagsSorted } from "../../utils/getTags";
 
 interface StyledTabProps {
   label: string;
@@ -160,8 +161,8 @@ const Blog: React.FC = () => {
     />
     );
   };
-
-  const getTagsMarkup = Object.keys(tagsDistribution).map((item: string) => {
+  const sortedTags = getTagsSorted(tagsDistribution,"length");
+  const tagsMarkup = sortedTags.map((item: string) => {
     if (tagsDistribution[item as keyof typeof tagsDistribution] > 1) {
       // If medium view port display StyledTab of material-ui else display grid for custom tabs to match Figma design
       return (

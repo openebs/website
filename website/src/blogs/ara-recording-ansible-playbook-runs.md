@@ -2,7 +2,7 @@
 title: ARA - Recording Ansible Playbook Runs
 author: Karthik Satchitanand
 author_info: Karthik has been into the Design and Development of tools for infrastructure as code, software testing performance & benchmarking & chaos engineering.
-tags: Ansible, Automation, DevOps, Openebs
+tags: Ansible, Automation, DevOps, OpenEBS
 date: 31-08-2017
 excerpt: Ansible playbooks can generate quite a lot of console data. Add the -v (I do it by default!) and you have quite a lot to scroll through.
 ---

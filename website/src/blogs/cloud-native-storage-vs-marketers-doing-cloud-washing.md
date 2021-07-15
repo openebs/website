@@ -2,7 +2,7 @@
 title: Cloud Native storage vs. marketers doing Cloud Washing
 author: Evan Powell
 author_info: Founding CEO of a few companies including StackStorm (BRCD) and Nexenta — and CEO & Chairman of OpenEBS/MayaData. ML and DevOps and Python, oh my!
-tags: Cloud Native, DevOps, Docker, Kubernetes, Openebs
+tags: Cloud Native, DevOps, Docker, Kubernetes, OpenEBS
 date: 18-07-2017
 excerpt: Let’s try to protect the phrases Cloud-Native storage and Container Native storage; or maybe we should start using a yet more specific phrase such as Containerized Storage for Containers
 ---
