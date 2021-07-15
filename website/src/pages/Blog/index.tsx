@@ -215,7 +215,7 @@ const Blog: React.FC = () => {
                   label={`${t('blog.all')} (${totalBlogCount})`}
                   value={BLOG_TAGS.ALL}
                 />
-                {getTagsMarkup}
+                {tagsMarkup}
               </Tabs>
               :
               <Grid container className={classes.mobileTabsWrapper}>
@@ -227,7 +227,7 @@ const Blog: React.FC = () => {
                         <span className={(value !== BLOG_TAGS.ALL) ? classes.tagCount : ''}>({totalBlogCount})</span>
                       </Button>
                   </Grid>
-                  {getTagsMarkup}
+                  {tagsMarkup}
               </Grid>
             }
                 
