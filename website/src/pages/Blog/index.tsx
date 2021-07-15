@@ -114,8 +114,8 @@ const Blog: React.FC = () => {
     (tabs: TabProps) => tabs
   ).length;
 
-  const handleTagSelect = (tags: any) => {
-    setValue(tags);
+  const handleTagSelect = (tag: string) => {
+    setValue(tag);
     setPage(1);
   };
 
@@ -161,13 +161,9 @@ const Blog: React.FC = () => {
     );
   };
 
-  const handleTabClickOnMobile = (newValue: string) => {
-    setValue(newValue);
-    setPage(1);
-  }
-
   const getTagsMarkup = Object.keys(tagsDistribution).map((item: string) => {
     if (tagsDistribution[item as keyof typeof tagsDistribution] > 1) {
+      // If medium view port display StyledTab of material-ui else display grid for custom tabs to match Figma design
       return (
         mediumViewport ? 
           <StyledTab
@@ -177,7 +173,7 @@ const Blog: React.FC = () => {
           />
           :
           <Grid item xs={6} key={item}>
-            <Button className={[classes.tabButton, (value === item) ? classes.activeTabButton : ''].join(' ')} onClick={() => handleTabClickOnMobile(item)}>{item} <span className={(value !== item) ? classes.tagCount : ''}>({tagsDistribution[item as keyof typeof tagsDistribution]})</span></Button>
+            <Button className={[classes.tabButton, (value === item) ? classes.activeTabButton : ''].join(' ')} onClick={() => handleTagSelect(item)}>{item} <span className={(value !== item) ? classes.tagCount : ''}>({tagsDistribution[item as keyof typeof tagsDistribution]})</span></Button>
           </Grid>
       );
     }
@@ -216,7 +212,7 @@ const Blog: React.FC = () => {
               :
               <Grid container className={classes.mobileTabsWrapper}>
                   <Grid item xs={6}>
-                      <Button className={[classes.tabButton, (value === t("blog.all").toLowerCase()) ? classes.activeTabButton : ''].join(' ')} onClick={() => handleTabClickOnMobile(t("blog.all").toLowerCase())}>{t('blog.all')} <span className={(value !== 'all') ? classes.tagCount : ''}>({totalBlogCount})</span></Button>
+                      <Button className={[classes.tabButton, (value === t("blog.all").toLowerCase()) ? classes.activeTabButton : ''].join(' ')} onClick={() => handleTagSelect(t("blog.all").toLowerCase())}>{t('blog.all')} <span className={(value !== 'all') ? classes.tagCount : ''}>({totalBlogCount})</span></Button>
                   </Grid>
                   {getTagsMarkup}
               </Grid>
