@@ -23,7 +23,7 @@ import {
 } from "@material-ui/core";
 import Footer from "../../components/Footer";
 import ReactMarkdown from "react-markdown";
-import { VIEW_PORT } from "../../constants";
+import { BLOG_TAGS, VIEW_PORT } from "../../constants";
 import Sponsor from "../../components/Sponsor";
 import Pagination from "@material-ui/lab/Pagination";
 import DisplayAuthorandReadTime from "../../components/DisplayAuthorandReadTime";
@@ -212,7 +212,7 @@ const Blog: React.FC = () => {
               >
                 <StyledTab
                   label={`${t('blog.all')} (${totalBlogCount})`}
-                  value={t("blog.all").toLowerCase()}
+                  value={BLOG_TAGS.ALL}
                 />
                 {getTagsMarkup}
               </Tabs>
@@ -220,10 +220,10 @@ const Blog: React.FC = () => {
               <Grid container className={classes.mobileTabsWrapper}>
                   <Grid item xs={6}>
                       <Button 
-                        className={[classes.tabButton, (value === t("blog.all").toLowerCase()) ? classes.activeTabButton : ''].join(' ')} 
-                        onClick={() => handleTagSelect(t("blog.all").toLowerCase())}>
+                        className={[classes.tabButton, (value === BLOG_TAGS.ALL) ? classes.activeTabButton : ''].join(' ')} 
+                        onClick={() => handleTagSelect(BLOG_TAGS.ALL)}>
                         {t('blog.all')} 
-                        <span className={(value !== 'all') ? classes.tagCount : ''}>({totalBlogCount})</span>
+                        <span className={(value !== BLOG_TAGS.ALL) ? classes.tagCount : ''}>({totalBlogCount})</span>
                       </Button>
                   </Grid>
                   {getTagsMarkup}

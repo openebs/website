@@ -18,7 +18,7 @@ import {
   withStyles,
 } from "@material-ui/core";
 import ReactMarkdown from "react-markdown";
-import { VIEW_PORT } from "../../constants";
+import { BLOG_TAGS, VIEW_PORT } from "../../constants";
 import Carousel from "../Carousel";
 import DisplayAuthorandReadTime from "../DisplayAuthorandReadTime";
 import CustomTag from "../CustomTag";
@@ -187,7 +187,7 @@ const MiniBlog: React.FC = () => {
             >
               <StyledTab
                 label={`${t('blog.all')} (${totalBlogCount})`}
-                value={t("blog.all").toLowerCase()}
+                value={BLOG_TAGS.ALL}
               />
               {getTagsMarkup}
             </Tabs>
