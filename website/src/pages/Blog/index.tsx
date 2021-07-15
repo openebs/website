@@ -161,7 +161,7 @@ const Blog: React.FC = () => {
     />
     );
   };
-  const sortedTags = getTagsSorted(tagsDistribution,"length");
+  const sortedTags = getTagsSorted(tagsDistribution);
   const tagsMarkup = sortedTags.map((item: string) => {
     if (tagsDistribution[item as keyof typeof tagsDistribution] > 1) {
       // If medium view port display StyledTab of material-ui else display grid for custom tabs to match Figma design

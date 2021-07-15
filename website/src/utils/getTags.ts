@@ -1,6 +1,6 @@
 /**
  * 
- * @param tagsDistribution contains the tag list with number of occurances
+ * @param tagsDistribution contains the tag list with number of occurrences
  * @param sortBy can have two values name | length; default set as name
  * @returns tags
  * 

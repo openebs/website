@@ -129,7 +129,7 @@ const MiniBlog: React.FC = () => {
     }
   }, [jsonMdData]);
 
-  const sortedTags = getTagsSorted(tagsDistribution,"length");
+  const sortedTags = getTagsSorted(tagsDistribution);
   const tagsMarkup = sortedTags.map((item: string) => {
     if (tagsDistribution[item as keyof typeof tagsDistribution] > 1) {
       return (
