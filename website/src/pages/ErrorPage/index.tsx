@@ -25,7 +25,7 @@ const ErrorPage: React.FC = () => {
                             className={classes.errorImage}
                             src="../images/svg/404_Image.svg"
                             alt={t("errorPage.errorAltText")}
-                        ></img>
+                        />
                         <Typography variant="h3" className={classes.pageHeader}>
                             {t("errorPage.description")}
                         </Typography>
@@ -45,9 +45,9 @@ const ErrorPage: React.FC = () => {
                 <img
                     loading="lazy"
                     width="100%"
-                    src="../images/svg/cloud_bottom.svg"
-                    alt={t("errorPage.cloudAltText")}
-                ></img>
+                    src="../images/svg/background_illustration.svg"
+                    alt={t("errorPage.backgroundAltText")}
+                />
             </div>
             {/* Display footer */}
             <footer className={classes.footer}>
