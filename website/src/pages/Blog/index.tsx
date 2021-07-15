@@ -34,7 +34,7 @@ import { useViewport } from "../../hooks/viewportWidth";
 import { pageCount } from "../../utils/getPageCount";
 import { useHistory } from "react-router-dom";
 import BlogImage from "../../components/BlogImage";
-import { getTagsSorted } from "../../utils/getTags";
+import { getTagsSorted } from "../../utils/sortTags";
 
 interface StyledTabProps {
   label: string;

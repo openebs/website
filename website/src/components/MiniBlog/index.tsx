@@ -25,7 +25,7 @@ import CustomTag from "../CustomTag";
 import { getContentPreview } from "../../utils/getContent";
 import BlogImage from '../BlogImage';
 import { useHistory } from "react-router-dom";
-import { getTagsSorted } from "../../utils/getTags";
+import { getTagsSorted } from "../../utils/sortTags";
 
 interface StyledTabProps {
   label: string;
