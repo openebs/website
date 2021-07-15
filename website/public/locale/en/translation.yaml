@@ -34,7 +34,7 @@ errorPage:
   description: Page you're looking for was not found
   homeBtnLable: Back to home
   errorAltText: Error 404
-  cloudAltText: Cloud Illustration
+  cloudAltText: Cloud illustration
 
 privacyPolicy:
   pageTitle: OpenEBS Privacy Policy
