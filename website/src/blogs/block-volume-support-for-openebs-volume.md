@@ -1,7 +1,7 @@
 ---
 title: Block volume support for OpenEBS volume
 author: Prateek Pandey
-author_info: Contributor and Maintainer @OpenEBS. Software Developer at @mayadata_inc. OpenSource Enthusiast
+author_info: Contributor and Maintainer @OpenEBS. Software Developer at @mayadata_inc. Open Source Enthusiast
 date: 27-03-2019
 tags: Block, Iscsi, Kubernetes, OpenEBS, Volume
 excerpt: A block volume is a volume that appears as a block device inside the container and allows low-level access to the storage without intermediate layers, as with file-system volumes.

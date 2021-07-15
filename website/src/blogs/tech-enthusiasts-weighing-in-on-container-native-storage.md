@@ -2,7 +2,7 @@
 title: Tech Enthusiasts weighing in on Container Native Storage
 author: Kiran Mova
 author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
-tags: Docker, Game of Thrones, Openebs, Reddit, Statefulcontainers
+tags: Docker, Game of Thrones, OpenEBS, Reddit, Statefulcontainers
 date: 27-07-2017
 excerpt: These redditers are like the nights-watch-men (Operations Team) who are guarding the wall (production services) from army of dead (issues).
 ---

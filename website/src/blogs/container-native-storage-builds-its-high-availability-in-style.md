@@ -2,7 +2,7 @@
 title: Container Native Storage builds its High Availability in style
 author: Amit Kumar Das
 author_info: Engineer the DAO
-tags: Docker, High Availability, Kubernetes, Openebs, Storage
+tags: Docker, High Availability, Kubernetes, OpenEBS, Storage
 date: 17-07-2017
 excerpt: Infrastructure components are the toughest to build. It is meant to work always by default. 
 ---

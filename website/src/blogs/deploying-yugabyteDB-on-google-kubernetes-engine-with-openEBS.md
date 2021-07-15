@@ -2,7 +2,7 @@
 title: Deploying YugabyteDB on Google Kubernetes Engine with OpenEBS
 author: OPENEBS
 author_info:
-tags: OpenEBS, OpenSource, Yugabyte, Cloud Native Gke
+tags: OpenEBS, Open Source, Yugabyte, Cloud Native Gke
 date: 05-04-2021
 excerpt: In this blog post, we’ll walk you through the necessary steps to get a 3 node YugabyteDB cluster running on top of GKE, backed by OpenEBS.
 ---

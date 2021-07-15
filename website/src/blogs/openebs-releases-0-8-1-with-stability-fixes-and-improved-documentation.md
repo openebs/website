@@ -3,7 +3,7 @@ title: OpenEBS releases 0.8.1 with stability fixes and improved documentation
 author: Uma Mukkara
 author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 date: 25-02-2019
-tags: Cas, Cloud Native Storage, Kubernetes, OpenEBS, Stateful Applications
+tags: CAS, Cloud Native Storage, Kubernetes, OpenEBS, Stateful Applications
 excerpt: OpenEBS 0.8.1 is released today. In spite of being a tagged as a minor release, it has significant stability improvements and few important features. 
 ---
 

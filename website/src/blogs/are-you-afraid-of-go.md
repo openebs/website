@@ -2,7 +2,7 @@
 title: Are you afraid of Go?
 author: Amit Kumar Das
 author_info: Engineer the DAO
-tags: Docker, Go, Openebs, Programming Languages, Programming Tips, Tutorials
+tags: Docker, Go, OpenEBS, Programming Languages, Programming Tips, Tutorials
 date: 27-07-2017
 excerpt: Are you an experienced C programmer or perhaps an adept Java hacker finding Go somewhat awkward to deal with.
 ---
