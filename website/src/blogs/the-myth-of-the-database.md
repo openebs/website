@@ -69,4 +69,4 @@ So if you think that disaggregation and distributed control and responsibility a
 
 I hope to see you there. [https://openebs.io/join-our-slack-community](https://openebs.io/join-our-slack-community)
 
-![Join OpenEBS channel](https://cdn-images-1.medium.com/max/800/openebs-channel-slack.png)
+![Join OpenEBS channel](https://cdn-images-1.medium.com/max/800/1*L1XVBW58MDn_wksYj2nKgg.png)

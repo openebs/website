@@ -87,11 +87,11 @@ Whether or not you choose to use a generalizable approach to operators  or u
 
 I’ve assembled common requirements into a table, as we often get questions from the community (and investors, customers, and new team members) that suggest that the lines between the dozens of DBs fighting for attention and underlying containerized storage sometimes seems lost in all the hubbub. For example, did you know that storage engines for DBs are not “really storage”? Feel free to make comments below or even better, ask questions on StackOverflow or on our Slack community: [https://slack.openebs.io](https://slack.openebs.io/).
 
-![workload dashboard](/images/blog/workload-dashboard.png)
+![common requirements](/images/blog/requirements.png)
 
 We’ve recently completed the testing and creation of some recommended storage classes with one of the largest NoSQL community projects. You can always see each commit to Master of OpenEBS being tested against a variety of common data based on [OpenEBS.ci](http://openebs.ci/) as well. Grab both the storage classes and the configuration for the systems doing this testing as well if you are interested.
 
-![storage testing](/images/blog/storage-testing.png)
+![workload dashboard](/images/blog/workload-dashboard.png)
 
 
 **Conclusion**
