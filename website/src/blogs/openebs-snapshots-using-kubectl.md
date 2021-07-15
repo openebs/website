@@ -1,7 +1,7 @@
 ---
 title: OpenEBS Snapshots using Kubectl
 author: Prateek Pandey
-author_info: Contributor and Maintainer @OpenEBS. Software Developer at @mayadata_inc. Open source Enthusiast
+author_info: Contributor and Maintainer @OpenEBS. Software Developer at @mayadata_inc. Open Source Enthusiast
 date: 14-12-2018
 tags: Clone, Kubernetes, Snapshot, Storage
 excerpt: Kubernetes has a very “pluggable” method for adding your own logic in the form of a controller using CustomResourceDefinition(CRD).
