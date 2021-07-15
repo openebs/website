@@ -111,7 +111,7 @@ const MiniBlog: React.FC = () => {
   ).length;
 
   const filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
-    if (value !== t("blog.all").toLowerCase()) {
+    if (value !== BLOG_TAGS.ALL) {
       const tagData = tabs.tags.find((el: string) => el === value);
       return tagData === value;
     }
