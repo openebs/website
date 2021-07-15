@@ -19,6 +19,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   tabRoot: {
     justifyContent: "center",
+    '& .MuiButtonBase-root': {
+      [theme.breakpoints.down('xs')]: {
+        fontSize: '14px',
+      },
+    },
     '& .Mui-selected': {
       color: theme.palette.text.hint,
       background: theme.palette.background.paper,
