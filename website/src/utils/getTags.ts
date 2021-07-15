@@ -1,14 +1,14 @@
 /**
  * 
  * @param tagsDistribution contains the tag list with number of occurrences
- * @param sortBy can have two values name | length; default set as name
+ * @param sortBy can have two values name | count; default set as name
  * @returns tags
  * 
- * ex : getTagsSorted(tagsDistribution,"length");
- * for this function call the tags will be returned in sorted by length order
+ * ex : getTagsSorted(tagsDistribution,"count");
+ * for this function call the tags will be returned in sorted by count order
  */
 
-const getTagsSorted = (tagsDistribution: any, sortBy: "name" | "length" = "name") => {
+const getTagsSorted = (tagsDistribution: any, sortBy: "name" | "count" = "name") => {
   let tags = tagsDistribution;
   tags =
     sortBy === "name"
