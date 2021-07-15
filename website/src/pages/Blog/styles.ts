@@ -74,6 +74,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   tabButton: {
     color: theme.palette.text.secondary,
+    fontSize: '14px'
   },
   activeTabButton: {
     color: theme.palette.text.hint
