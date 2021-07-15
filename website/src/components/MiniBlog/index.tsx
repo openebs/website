@@ -186,7 +186,7 @@ const MiniBlog: React.FC = () => {
               orientation={mobileBreakpoint ? "horizontal" : "vertical"}
             >
               <StyledTab
-                label={t('blog.all') + " (" + totalBlogCount + ")"}
+                label={`${t('blog.all')} (${totalBlogCount})`}
                 value={t("blog.all").toLowerCase()}
               />
               {getTagsMarkup}

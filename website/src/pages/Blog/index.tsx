@@ -173,7 +173,14 @@ const Blog: React.FC = () => {
           />
           :
           <Grid item xs={6} key={item}>
-            <Button className={[classes.tabButton, (value === item) ? classes.activeTabButton : ''].join(' ')} onClick={() => handleTagSelect(item)}>{item} <span className={(value !== item) ? classes.tagCount : ''}>({tagsDistribution[item as keyof typeof tagsDistribution]})</span></Button>
+            <Button 
+              className={[classes.tabButton, (value === item) ? classes.activeTabButton : ''].join(' ')} 
+              onClick={() => handleTagSelect(item)}>
+              {item} 
+              <span className={(value !== item) ? classes.tagCount : ''}>
+                  ({tagsDistribution[item as keyof typeof tagsDistribution]})
+              </span>
+            </Button>
           </Grid>
       );
     }
@@ -204,7 +211,7 @@ const Blog: React.FC = () => {
                 orientation="horizontal"
               >
                 <StyledTab
-                  label={t('blog.all') + " (" + totalBlogCount + ")"}
+                  label={`${t('blog.all')} (${totalBlogCount})`}
                   value={t("blog.all").toLowerCase()}
                 />
                 {getTagsMarkup}
@@ -212,7 +219,12 @@ const Blog: React.FC = () => {
               :
               <Grid container className={classes.mobileTabsWrapper}>
                   <Grid item xs={6}>
-                      <Button className={[classes.tabButton, (value === t("blog.all").toLowerCase()) ? classes.activeTabButton : ''].join(' ')} onClick={() => handleTagSelect(t("blog.all").toLowerCase())}>{t('blog.all')} <span className={(value !== 'all') ? classes.tagCount : ''}>({totalBlogCount})</span></Button>
+                      <Button 
+                        className={[classes.tabButton, (value === t("blog.all").toLowerCase()) ? classes.activeTabButton : ''].join(' ')} 
+                        onClick={() => handleTagSelect(t("blog.all").toLowerCase())}>
+                        {t('blog.all')} 
+                        <span className={(value !== 'all') ? classes.tagCount : ''}>({totalBlogCount})</span>
+                      </Button>
                   </Grid>
                   {getTagsMarkup}
               </Grid>
