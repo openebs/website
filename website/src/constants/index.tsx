@@ -9,7 +9,7 @@ export enum EXTERNAL_LINKS {
   GRIDWORKZ_SUPPORT= 'https://www.gridworkz.com/',
   MAYADATA_SUPPORT= 'https://mayadata.io/',
   OPENEBS_BLOGS = 'https://openebs.io/blog',
-  OPENEBS_GET_STARTED = 'https://docs.openebs.io/docs/next/quickstart.html', // This should be directed new docs URL once
+  OPENEBS_GET_STARTED = 'https://docs.openebs.io/docs/next/quickstart.html', // This should be directed to new docs URL once
   OPENEBS_YOUTUBE_INTRO = 'https://www.youtube.com/watch?v=94SFY3xdjXs&t=1s',
   CONTRIBUTE_LINK='https://github.com/openebs/openebs/blob/master/CONTRIBUTING.md',
   GOVERNANCE_LINK='https://github.com/openebs/openebs/blob/master/GOVERNANCE.md',
