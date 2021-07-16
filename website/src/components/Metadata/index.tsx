@@ -1,28 +1,46 @@
 import React from "react";
 import {Helmet} from "react-helmet";
 import { getHostOrigin } from "../../utils/getHostOrigin";
+import { articleSchema } from "./articleSchema";
+import { websiteSchema } from "./websiteSchema";
+import { Author } from "./metadata.models";
+
 
 interface MetadataProps {
     title: string;
     description: string;
     url: string;
-    isPost: boolean;
     image: string;
+    type?: string;
+    isPost: boolean;
+    tags?: [string];
+    author?: Author;
 }
 
-export const Metadata: React.FC<MetadataProps> = ({ title , description, url, isPost , image }) => {
+
+export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isPost , image, tags, author, type }) => {
+    
+    const site = {
+        logo: `${getHostOrigin}/images/logos/logo.svg`,
+        siteUrl: `${getHostOrigin}`
+    }
+    let imageObj = {
+        src: image,
+        shareImageWidth: '1000px',
+        shareImageHeight: '523px'
+    };
+
     const defaultConfig = {
         title: `OpenEBS - Container Attached Storage`,
         description: `OpenEBS is an open source storage platform that provides persistent and containerized block storage for DevOps and
         container environments.`,
-        url: `${getHostOrigin}`,
-        image: `${getHostOrigin}/images/logos/logo.svg`,
-        shareImageWidth: '1000px',
-        shareImageHeight: '523px'
+        url: site.siteUrl,
+        image: site.logo,
+        shareImageWidth: imageObj.shareImageWidth,
+        shareImageHeight: imageObj.shareImageHeight,
     }
 
-    const jsonLd = {};
-
+    const jsonLd = isPost ? articleSchema({title, description, url, image: imageObj, author, tags, site }) : websiteSchema( {title, description, url, image: imageObj, type , site });
     return(
         <Helmet>
             <title>{title || defaultConfig.title}</title>
@@ -43,16 +61,21 @@ export const Metadata: React.FC<MetadataProps> = ({ title , description, url, is
             <meta name="twitter:title" content={title || defaultConfig.title} />
             <meta name="twitter:description" content={description || defaultConfig.description} />
             <meta name="twitter:image" content={image || defaultConfig.image} />
-
-            {/* {isPost && tags.map((keyword, i) => (
-                <meta property="article:tag" content={keyword} key={i} />
-            ))} */}
+            
             {isPost && (
                 <>
-                <meta name="twitter:label1" content="Written by" />
-                <meta name="twitter:data1" content={"Author"} />
+                {tags && tags.map((keyword, i) => (
+                    <meta property="article:tag" content={keyword} key={i} />
+                ))}
+                {author && (
+                    <>
+                    <meta name="twitter:label1" content="Written by" />
+                    <meta name="twitter:data1" content={author.name} />
+                    </>
+                )}
                 </>
             )}
+
             <script type="application/ld+json">
                 {JSON.stringify(jsonLd, undefined, 4)}
             </script>

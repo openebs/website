@@ -1,34 +1,33 @@
+import { Author, Image, SiteMetadata } from "./metadata.models";
 interface ArticleSchemaProps {
-    authorName: string;
-    authorImage: string;
-    tags: [string];
     title: string;
     description: string;
     url: string;
-    image: string;
-    shareImageWidth: string;
-    shareImageHeight: string;
-    logo: string;
-    siteUrl: string;
+    image: Image;
+    author?: Author;
+    tags?: [string];
+    site: SiteMetadata;
 }
-export const articleSchema = ({ authorName, authorImage, tags, title, description, url, image, shareImageWidth, shareImageHeight, logo, siteUrl }: ArticleSchemaProps) => {
+
+export const articleSchema = ({ title, description, url, image, author, tags, site }: ArticleSchemaProps) => {
+
     return {
         '@context': `https://schema.org/`,
         '@type': `Article`,
         author: {
           '@type': `Person`,
-          name: authorName,
-          image: authorImage ? authorImage : undefined,
+          name: author?.name,
+          image: author?.image ? author?.image : undefined,
         },
-        keywords: tags.length ? tags.join(`, `) : undefined,
+        keywords: tags?.length ? tags?.join(`, `) : undefined,
         headline: title,
         url: url,
-        image: image
+        image: image.src
           ? {
               '@type': `ImageObject`,
-              url: image,
-              width: shareImageWidth,
-              height: shareImageHeight,
+              url: image.src,
+              width: image.shareImageWidth,
+              height: image.shareImageHeight,
             }
           : undefined,
         publisher: {
@@ -36,7 +35,7 @@ export const articleSchema = ({ authorName, authorImage, tags, title, descriptio
           name: `OpenEBS`,
           logo: {
             '@type': `ImageObject`,
-            url: logo,
+            url: site.logo,
             width: 60,
             height: 60,
           },
@@ -44,7 +43,7 @@ export const articleSchema = ({ authorName, authorImage, tags, title, descriptio
         description: description,
         mainEntityOfPage: {
           '@type': `WebPage`,
-          '@id': siteUrl,
+          '@id': site.siteUrl,
         },
       }
     

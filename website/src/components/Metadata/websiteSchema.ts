@@ -1,25 +1,23 @@
+import { Image, SiteMetadata } from "./metadata.models";
 interface WebsiteSchemaProps {
   title: string;
   description: string;
-  type: string;
+  type?: string;
   url: string;
-  image: string;
-  shareImageWidth: string;
-  shareImageHeight: string;
-  logo: string;
-  siteUrl: string;
+  image: Image;
+  site: SiteMetadata;
 }
-export const websiteSchema = ({ title, description, type, url, image, shareImageWidth, shareImageHeight, logo, siteUrl }: WebsiteSchemaProps) => {
+export const websiteSchema = ({ title, description, type, url, image, site }: WebsiteSchemaProps) => {
   return {
     '@context': `https://schema.org/`,
-    '@type': type,
+    '@type': `${type || 'Website'}`,
     url: url,
-    image: image
+    image: image.src
       ? {
           '@type': `ImageObject`,
-          url: image,
-          width: shareImageWidth,
-          height: shareImageHeight,
+          url: image.src,
+          width: image.shareImageWidth,
+          height: image.shareImageHeight,
         }
       : undefined,
     headline: title,
@@ -28,14 +26,14 @@ export const websiteSchema = ({ title, description, type, url, image, shareImage
       name: `OpenEBS`,
       logo: {
         '@type': `ImageObject`,
-        url: logo,
+        url: site.logo,
         width: 60,
         height: 60,
       },
     },
     mainEntityOfPage: {
       '@type': `WebPage`,
-      '@id': siteUrl,
+      '@id': site.siteUrl,
     },
     description,
   }
