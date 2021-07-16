@@ -13,6 +13,8 @@ import Newsletter from "../../components/Newsletter";
 import { SlackShareIcon } from "./slackShareIcon";
 import BlogImage from '../../components/BlogImage';
 import { useHistory } from "react-router-dom";
+import { getHostOrigin } from "../../utils/getHostOrigin";
+import { Metadata } from "../../components/Metadata";
 
 const BlogPage: React.FC = () => {
   const classes = useStyles();
@@ -28,6 +30,7 @@ const BlogPage: React.FC = () => {
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
   
   let currentLocation = window.location.href;
+  let currentPathname = window.location.pathname;
 
   const handleRedirectPath = (slug: string) => { 
     history.push(`/blog/${slug}`);
@@ -121,6 +124,18 @@ const BlogPage: React.FC = () => {
 
   return (
     <>
+    {currentBlogDetails.id && (
+      <Metadata 
+        title={currentBlogDetails?.title} 
+        description={currentBlogDetails?.excerpt} 
+        url={currentLocation} 
+        image={`${getHostOrigin}/images${currentPathname}.png` || `${getHostOrigin}/images/blog/defaultImage.png`} 
+        isPost={true}
+        author={{ name: currentBlogDetails?.author, image: `${getHostOrigin}/images/blog/authors/${currentBlogDetails?.author
+        .toLowerCase().replace(/[^\w ]+/g,'')
+        .replace(/ +/g,'-')}.png` }}
+        tags={currentBlogDetails.tags}  />
+    )}
       <Grid
         container
         direction="row"
@@ -128,6 +143,7 @@ const BlogPage: React.FC = () => {
         alignItems="center"
       >
         {currentBlogDetails?.content ? (
+
           <Grid item xs={12}>
             <div className={classes.blogHeader}>
               {(width > mobileBreakpoint) &&
@@ -190,6 +206,7 @@ const BlogPage: React.FC = () => {
         ) : (
           " "
         )}
+
         <hr className={classes.divider}/>
         <div className={classes.footerDivWrapper}>
             <div>

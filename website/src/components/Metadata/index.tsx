@@ -61,19 +61,15 @@ export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isP
             <meta name="twitter:title" content={title || defaultConfig.title} />
             <meta name="twitter:description" content={description || defaultConfig.description} />
             <meta name="twitter:image" content={image || defaultConfig.image} />
-            
-            {isPost && (
-                <>
-                {tags && tags.map((keyword, i) => (
+
+            {isPost && tags && tags.map((keyword, i) => (
                     <meta property="article:tag" content={keyword} key={i} />
-                ))}
-                {author && (
-                    <>
-                    <meta name="twitter:label1" content="Written by" />
+            ))}
+            {isPost && author?.name && (
+                <meta name="twitter:label1" content="Written by" />
+            )}
+             {isPost && author?.name && (
                     <meta name="twitter:data1" content={author.name} />
-                    </>
-                )}
-                </>
             )}
 
             <script type="application/ld+json">
