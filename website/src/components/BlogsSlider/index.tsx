@@ -75,7 +75,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
                   >
                     <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title} />
                   </CardMedia>
-                  <CardContent>
+                  <CardContent className={classes.cardContent}>
                     <div className={classes.tagsWrapper}>
                       {getTags(elm.tags)}
                     </div>

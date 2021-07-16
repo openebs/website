@@ -3,8 +3,7 @@ import { EXTERNAL_LINKS } from "../../constants";
 export const getStarted = [
     {
         label: "Docs",
-        // href: "/docs",
-        href: EXTERNAL_LINKS.OPENEBS_DOCS
+        href: "/docs",
     },
     {
         label: "GitHub",
@@ -36,22 +35,6 @@ export const contactUs = [
     {
         label: "Feature request",
         href: "feature-request",
-    }
-];
-
-// Need to replace this with top contributors from GitHub 
-export const topContributors = [
-    {
-        label: "Contributor1",
-        href: "/contributor1",
-    },
-    {
-        label: "Contributor2",
-        href: "/contributor2",
-    },
-    {
-        label: "Contributor3",
-        href: "/contributor3",
     }
 ];
 

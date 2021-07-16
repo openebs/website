@@ -1,10 +1,7 @@
-import {EXTERNAL_LINKS} from "../../constants"
-
 const navbarItems = [
     {
       label: "Docs",
-      // href: "/docs",
-      href: EXTERNAL_LINKS.OPENEBS_DOCS,
+      href: "/docs",
     },
     {
       label: "Community",

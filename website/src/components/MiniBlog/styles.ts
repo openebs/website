@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   tabRoot: {
     justifyContent: "center",
     '& .MuiButtonBase-root': {
+      color: theme.palette.text.secondary,
       [theme.breakpoints.down('xs')]: {
         fontSize: '14px',
       },
@@ -93,7 +94,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'column'
   },
   cardContent: {
-    flex: '1 0 auto'
+    flex: '1 0 auto',
+    padding: theme.spacing(2,0)
   },
   rootBlogSection: {
     flexGrow: 1,
@@ -165,6 +167,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   actionWrapper: {
     justifyContent: "space-between",
+    padding: theme.spacing(0),
     [theme.breakpoints.down("sm")]: {
       display: "block",
     },

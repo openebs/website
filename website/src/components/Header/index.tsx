@@ -13,7 +13,7 @@ import { Link as RouterLink, useLocation } from "react-router-dom";
 import navbarItems from './navbar'
 import GitHubButton from 'react-github-btn'
 import { useTranslation } from "react-i18next";
-import {EXTERNAL_LINKS, EXTERNAL_LINK_LABELS, VIEW_PORT} from "../../constants"
+import {EXTERNAL_LINKS, VIEW_PORT} from "../../constants"
 import { useViewport } from "../../hooks/viewportWidth";
 
 const Header: React.FC = () => {
@@ -98,26 +98,6 @@ const Header: React.FC = () => {
                         <div className={classes.mobileNavWrapper}>
                             {navbarItems.map(({ label, href }) => {
                                 return (
-                                (label === EXTERNAL_LINK_LABELS.DOCS) ? 
-                                <Link
-                                    {...{
-                                        key: label,
-                                        to: href,
-                                        href: href,
-                                        target: "_self",
-                                        className: classes.navbarItem,
-                                        onClick: () => handleDrawerClose()
-                                    }}
-                                >
-                                
-                                <MenuItem className={classes.menuItemMobile}>{label}</MenuItem>
-
-                                {/* Hiding divider for last item in the navbar items */}
-                                 {(label !== navbarItems[navbarItems.length - 1].label) &&
-                                    <hr className={classes.mobileDivider}/>
-                                }
-                                </Link>
-                                :
                                 <Link
                                     {...{
                                         key: label,
@@ -162,18 +142,6 @@ const Header: React.FC = () => {
                 <div className={classes.rightContent}>
                 {navbarItems.map(({ label, href }) => {
                     return (    
-                        (label === EXTERNAL_LINK_LABELS.DOCS) ? 
-                        <Button
-                            {...{
-                                key: label,
-                                href: href,
-                                target: "_self",
-                                className: classes.navbarItem
-                            }}
-                        >
-                        {label}
-                        </Button>
-                        :
                         <Button
                             {...{
                                 key: label,

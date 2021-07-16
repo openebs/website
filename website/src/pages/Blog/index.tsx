@@ -200,7 +200,6 @@ const Blog: React.FC = () => {
                 <Tabs
                 value={value}
                 onChange={handleChange}
-                textColor="secondary"
                 variant="scrollable"
                 classes={{ 
                   root: classes.tabRoot, scroller: classes.scroller }}

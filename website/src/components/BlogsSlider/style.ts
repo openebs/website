@@ -24,6 +24,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     cursor: 'pointer',
   },
+  cardContent: {
+    padding: theme.spacing(2,0)
+  },
   tagsWrapper: {
     display: 'flex',
     overflow: "scroll",
@@ -43,6 +46,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.warning.main,
     fontWeight: 700,
     marginRight: theme.spacing(2),
+    padding: theme.spacing(0)
   },
   sliderWrapper: {
       '& .slick-slide':{
