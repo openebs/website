@@ -17,6 +17,9 @@ import { useViewport } from "../../hooks/viewportWidth";
 import Sponsor from "../../components/Sponsor";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import SeoJson from "../../resources/seo.json";
+import { getHostOrigin } from "../../utils/getHostOrigin";
+import { Metadata } from "../../components/Metadata";
 
 const Support: React.FC = () => {
   const { t } = useTranslation();
@@ -25,6 +28,8 @@ const Support: React.FC = () => {
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
 
   return (
+    <>
+    <Metadata title={SeoJson.pages.commericalsupport.title} description={SeoJson.pages.commericalsupport.description} url={`${getHostOrigin}${SeoJson.pages.commericalsupport.url}`} image={`${getHostOrigin}${SeoJson.pages.commericalsupport.image}`} isPost={false} />
     <div className={classes.root}>
       <div className={classes.introSection}>
         <div className={classes.sectionDiv}>
@@ -157,6 +162,7 @@ const Support: React.FC = () => {
         <Footer />
       </footer>
     </div>
+  </>
   );
 };
 export default React.memo(Support);

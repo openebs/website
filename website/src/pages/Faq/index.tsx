@@ -21,6 +21,9 @@ import Newsletter from "../../components/Newsletter";
 import Footer from "../../components/Footer";
 import FaqDetails from "./faqData";
 import Sponsor from "../../components/Sponsor";
+import SeoJson from "../../resources/seo.json";
+import { getHostOrigin } from "../../utils/getHostOrigin";
+import { Metadata } from "../../components/Metadata";
 
 interface FaqDataProps {
   id: number;
@@ -75,6 +78,7 @@ const Faq: React.FC<FaqDataProps> = () => {
   const filteredData = FaqDetails().filter((e: any) => e.topic_id === value);
   return (
     <>
+      <Metadata title={SeoJson.pages.faq.title} description={SeoJson.pages.faq.description} url={`${getHostOrigin}${SeoJson.pages.faq.url}`} image={`${getHostOrigin}${SeoJson.pages.faq.image}`} isPost={false} />
       {/* Heading section for desktop and mobile views */}
       <div className={classes.root}>
         <Container maxWidth="lg">

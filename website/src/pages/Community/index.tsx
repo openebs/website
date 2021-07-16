@@ -10,6 +10,9 @@ import EventSlider from "../../components/EventSlider";
 import events from "../../resources/events.json";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import SeoJson from "../../resources/seo.json";
+import { getHostOrigin } from "../../utils/getHostOrigin";
+import { Metadata } from "../../components/Metadata";
 
 const Community: React.FC = () => {
   const { t } = useTranslation();
@@ -41,6 +44,8 @@ const Community: React.FC = () => {
   ];
 
   return (
+    <>
+    <Metadata title={SeoJson.pages.community.title} description={SeoJson.pages.community.description} url={`${getHostOrigin}${SeoJson.pages.community.url}`} image={`${getHostOrigin}${SeoJson.pages.community.image}`} isPost={false} />
     <div className={classes.root}>
       <div className={classes.communityBackground}>
         <div className={classes.sectionDiv}>
@@ -246,6 +251,7 @@ const Community: React.FC = () => {
         </footer>
       </div>
     </div>
+   </>
   );
 };
 export default React.memo(Community);
