@@ -13,7 +13,8 @@ const Faq = React.lazy(() => import('./pages/Faq'));
 const CommercialSupport = React.lazy(() => import('./pages/CommercialSupport'));
 const Community = React.lazy(() => import('./pages/Community'));
 const Blog = React.lazy(() => import('./pages/Blog'));
-const BlogPage = React.lazy(() => import('./pages/BlogPage'))
+const BlogPage = React.lazy(() => import('./pages/BlogPage'));
+const ErrorPage = React.lazy(() => import('./pages/ErrorPage'));
 
 const Routes: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ const Routes: React.FC = () => {
             <Route exact path='/commercial-support' component={CommercialSupport} />
             <Route exact path='/blog' component={Blog} />
             <Route exact path='/blog/:blogName' component={BlogPage} />
+            <Route path='*' component={ErrorPage} />
           </Switch>
         </Scaffold>
       </div>
@@ -43,7 +45,7 @@ function App() {
   const history = createBrowserHistory();
 
   return (
-      <Router history={history}>
+    <Router history={history}>
       <Routes />
     </Router>
   );
