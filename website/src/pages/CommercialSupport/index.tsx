@@ -113,12 +113,16 @@ const Support: React.FC = () => {
                   <Card className={classes.cardProps} key={elm.id}>
                     <CardContent>
                       <div className={classes.cardImageWrapper}>
-                        <img
-                          loading="lazy"
-                          src={elm.image}
-                          alt={elm.name}
-                          
-                        />
+                        <a href={elm.website}
+                        rel="noopener noreferrer"
+                        target="_blank">
+                          <img
+                            loading="lazy"
+                            src={elm.image}
+                            alt={elm.name}
+                            
+                          />
+                        </a>
                       </div>
                       <Typography className={classes.cardText}>
                         {elm.desc}

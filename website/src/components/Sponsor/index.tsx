@@ -23,19 +23,23 @@ const Sponsor: React.FC = () => {
           <Grid container>
             <Grid item xs={12} md={6} sm={6}>
               <Typography className={classes.paragraph}>{t("sponsors.mayadata")}</Typography>
-              <img
-                src="../images/logos/mayadata_logo.svg"
-                alt={t("generic.mayadata")}
-                className={classes.sponsorCompany}
-              />
+              <a href="https://mayadata.io/" rel="noreferrer" target="_blank">
+                <img
+                  src="../images/logos/mayadata_logo.svg"
+                  alt={t("generic.mayadata")}
+                  className={classes.sponsorCompany}
+                />
+              </a>
             </Grid>
             <Grid item xs={12} md={6} sm={6}>
               <Typography className={classes.paragraph}>{t("sponsors.cncf")}</Typography>
-              <img
-                src="../images/logos/cncf_logo.svg"
-                alt={t("generic.cncf")}
-                className={classes.sponsorCompany}
-              />
+              <a href="https://www.cncf.io/" rel="noreferrer" target="_blank">
+                <img
+                  src="../images/logos/cncf_logo.svg"
+                  alt={t("generic.cncf")}
+                  className={classes.sponsorCompany}
+                />
+              </a>
             </Grid>
           </Grid>
         </Grid>
