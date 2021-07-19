@@ -18,7 +18,7 @@ import Sponsor from "../../components/Sponsor";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import SeoJson from "../../resources/seo.json";
-import { getHostOrigin } from "../../utils/getHostOrigin";
+import { currentOrigin } from "../../utils/currentHost";
 import { Metadata } from "../../components/Metadata";
 
 const Support: React.FC = () => {
@@ -29,7 +29,7 @@ const Support: React.FC = () => {
 
   return (
     <>
-    <Metadata title={SeoJson.pages.commericalsupport.title} description={SeoJson.pages.commericalsupport.description} url={`${getHostOrigin}${SeoJson.pages.commericalsupport.url}`} image={`${getHostOrigin}${SeoJson.pages.commericalsupport.image}`} isPost={false} />
+    <Metadata title={SeoJson.pages.commericalsupport.title} description={SeoJson.pages.commericalsupport.description} url={`${currentOrigin}${SeoJson.pages.commericalsupport.url}`} image={`${currentOrigin}${SeoJson.pages.commericalsupport.image}`} isPost={false} />
     <div className={classes.root}>
       <div className={classes.introSection}>
         <div className={classes.sectionDiv}>

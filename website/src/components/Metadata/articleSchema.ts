@@ -1,12 +1,12 @@
 import { Author, Image, SiteMetadata } from "./metadata.models";
 interface ArticleSchemaProps {
-    title: string;
-    description: string;
-    url: string;
-    image: Image;
-    author?: Author;
-    tags?: [string];
-    site: SiteMetadata;
+  title: string;
+  description: string;
+  url: string;
+  image: Image;
+  author?: Author;
+  tags?: [string];
+  site: SiteMetadata;
 }
 
 export const articleSchema = ({ title, description, url, image, author, tags, site }: ArticleSchemaProps) => {
@@ -23,11 +23,11 @@ export const articleSchema = ({ title, description, url, image, author, tags, si
     url: url,
     image: image.src
       ? {
-          '@type': `ImageObject`,
-          url: image.src,
-          width: image.shareImageWidth,
-          height: image.shareImageHeight,
-        }
+        '@type': `ImageObject`,
+        url: image.src,
+        width: image.shareImageWidth,
+        height: image.shareImageHeight,
+      }
       : undefined,
     publisher: {
       '@type': `Organization`,
@@ -44,5 +44,5 @@ export const articleSchema = ({ title, description, url, image, author, tags, si
       '@type': `WebPage`,
       '@id': site.siteUrl,
     },
-  }   
+  }
 }

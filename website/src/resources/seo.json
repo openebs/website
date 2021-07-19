@@ -20,10 +20,10 @@
         "url": "/community"
       },
       "commericalsupport": {
-        "title": "Commerical support for OpenEBS - (Kubernetes Container Attached Storage)",
+        "title": "Commercial support for OpenEBS - (Kubernetes Container Attached Storage)",
         "description": "List of companies providing commercial products and support around OpenEBS",
         "image": "/images/seo/openebs.png",
-        "url": "/commerical-support"
+        "url": "/commercial-support"
       },
       "privacypolicy": {
         "title": "Privacy Policy - OpenEBS (Kubernetes Container Attached Storage)",

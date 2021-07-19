@@ -13,7 +13,7 @@ import Newsletter from "../../components/Newsletter";
 import { SlackShareIcon } from "./slackShareIcon";
 import BlogImage from '../../components/BlogImage';
 import { useHistory } from "react-router-dom";
-import { getHostOrigin } from "../../utils/getHostOrigin";
+import { currentOrigin, currentLocation, currentPathname } from "../../utils/currentHost";
 import { Metadata } from "../../components/Metadata";
 
 const BlogPage: React.FC = () => {
@@ -29,9 +29,6 @@ const BlogPage: React.FC = () => {
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
   
-  let currentLocation = window.location.href;
-  let currentPathname = window.location.pathname;
-
   const handleRedirectPath = (slug: string) => { 
     history.push(`/blog/${slug}`);
   };
@@ -129,9 +126,9 @@ const BlogPage: React.FC = () => {
         title={currentBlogDetails?.title} 
         description={currentBlogDetails?.excerpt} 
         url={currentLocation} 
-        image={`${getHostOrigin}/images${currentPathname}.png` || `${getHostOrigin}/images/blog/defaultImage.png`} 
+        image={`${currentOrigin}/images${currentPathname}.png` || `${currentOrigin}/images/blog/defaultImage.png`} 
         isPost={true}
-        author={{ name: currentBlogDetails?.author, image: `${getHostOrigin}/images/blog/authors/${currentBlogDetails?.author
+        author={{ name: currentBlogDetails?.author, image: `${currentOrigin}/images/blog/authors/${currentBlogDetails?.author
         .toLowerCase().replace(/[^\w ]+/g,'')
         .replace(/ +/g,'-')}.png` }}
         tags={currentBlogDetails.tags}  />

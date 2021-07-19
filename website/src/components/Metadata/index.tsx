@@ -1,11 +1,9 @@
 import React from "react";
-import {Helmet} from "react-helmet";
-import { getHostOrigin } from "../../utils/getHostOrigin";
+import { Helmet } from "react-helmet";
+import { currentOrigin } from "../../utils/currentHost";
 import { articleSchema } from "./articleSchema";
 import { websiteSchema } from "./websiteSchema";
 import { Author } from "./metadata.models";
-
-
 interface MetadataProps {
     title: string;
     description: string;
@@ -17,17 +15,17 @@ interface MetadataProps {
     author?: Author;
 }
 
+export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isPost, image, tags, author, type }) => {
 
-export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isPost , image, tags, author, type }) => {
-    
     const site = {
-        logo: `${getHostOrigin}/images/png/logo.png`,
-        siteUrl: `${getHostOrigin}`
+        logo: `${currentOrigin}/images/png/logo.png`,
+        siteUrl: `${currentOrigin}`
     }
+
     let imageObj = {
         src: image,
-        shareImageWidth: '1000px',
-        shareImageHeight: '523px'
+        shareImageWidth: '1200px',
+        shareImageHeight: '630px'
     };
 
     const defaultConfig = {
@@ -40,17 +38,18 @@ export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isP
         shareImageHeight: imageObj.shareImageHeight,
     }
 
-    const jsonLd = isPost ? articleSchema({title, description, url, image: imageObj, author, tags, site }) : websiteSchema( {title, description, url, image: imageObj, type , site });
-    return(
+    const jsonLd = isPost ? articleSchema({ title, description, url, image: imageObj, author, tags, site }) : websiteSchema({ title, description, url, image: imageObj, type, site });
+
+    return (
         <Helmet>
             <title>{title || defaultConfig.title}</title>
             <meta name="description" content={description || defaultConfig.description} />
             <meta name="image" content={image} />
             <link rel="canonical" href={url || defaultConfig.url} />
-             {/** Open Graph  */}
+            {/** Open Graph  */}
             <meta property="og:type" content={isPost ? 'article' : 'website'} />
             <meta property="og:title" content={title || defaultConfig.title} />
-            <meta property="og:site_name" content={getHostOrigin} />
+            <meta property="og:site_name" content={currentOrigin} />
             <meta property="og:url" content={url || defaultConfig.url} />
             <meta property="og:description" content={description || defaultConfig.description} />
             <meta property="og:image" content={image || defaultConfig.image} />
@@ -63,17 +62,15 @@ export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isP
             <meta name="twitter:title" content={title || defaultConfig.title} />
             <meta name="twitter:description" content={description || defaultConfig.description} />
             <meta name="twitter:image" content={image || defaultConfig.image} />
-
             {isPost && tags && tags.map((keyword, i) => (
-                    <meta property="article:tag" content={keyword} key={i} />
+                <meta property="article:tag" content={keyword} key={i} />
             ))}
             {isPost && author?.name && (
                 <meta name="twitter:label1" content="Written by" />
             )}
-             {isPost && author?.name && (
-                    <meta name="twitter:data1" content={author.name} />
+            {isPost && author?.name && (
+                <meta name="twitter:data1" content={author.name} />
             )}
-
             <script type="application/ld+json">
                 {JSON.stringify(jsonLd, undefined, 4)}
             </script>
