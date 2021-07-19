@@ -98,15 +98,17 @@ const Header: React.FC = () => {
                         <div className={classes.mobileNavWrapper}>
                             {navbarItems.map(({ label, href }) => {
                                 return (
-                                <Link
-                                    {...{
-                                        key: label,
-                                        to: href,
-                                        component: RouterLink,
-                                        className: [classes.navbarItem,(href === currentPathName) ? classes.activeNavbarItem : ''].join(' '),
-                                        onClick: () => handleDrawerClose()
-                                    }}
-                                >
+                                // <Link
+                                //     {...{
+                                //         key: label,
+                                //         to: href,
+                                //         component: RouterLink,
+                                //         className: [classes.navbarItem,(href === currentPathName) ? classes.activeNavbarItem : ''].join(' '),
+                                //         onClick: () => handleDrawerClose()
+                                //     }}
+                                // >
+                            <Link href={href} key={label} className={[classes.navbarItem,(href === currentPathName) ? classes.activeNavbarItem : ''].join(' ')}
+                            onClick={() => handleDrawerClose()}>
                                 
                                 <MenuItem className={classes.menuItemMobile}>{label}</MenuItem>
 
