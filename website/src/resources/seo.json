@@ -1,0 +1,41 @@
+
+{
+    "pages": {
+      "home": {
+        "title": "OpenEBS - Kubernetes storage simplified.",
+        "description": "OpenEBS makes it easy to attach Dynamic Local PV or Replicated Volumes to any Kubernetes application by abstracting all of the complex commands involved in creating robust multi-zone storage in a simple one-line command.",
+        "image": "/images/seo/openebs.png",
+        "url": "/"
+      },
+      "faq": {
+        "title": "Frequently asked questions - OpenEBS (Kubernetes Container Attached Storage)",
+        "description": "Have a question about OpenEBS? Need an answer? Check out our FAQs and you should be good to go.",
+        "image": "/images/seo/openebs.png",
+        "url": "/faq"
+      },
+      "community": {
+        "title": "Open Source Community for OpenEBS - (Kubernetes Container Attached Storage)",
+        "description": "The only 2,000-strong member community devoted to building better Kubernetes storage. We’d love to have you, too! Join us on Slack or contribute directly on GitHub!",
+        "image": "/images/seo/openebs.png",
+        "url": "/community"
+      },
+      "commericalsupport": {
+        "title": "Commercial support for OpenEBS - (Kubernetes Container Attached Storage)",
+        "description": "List of companies providing commercial products and support around OpenEBS",
+        "image": "/images/seo/openebs.png",
+        "url": "/commercial-support"
+      },
+      "privacypolicy": {
+        "title": "Privacy Policy - OpenEBS (Kubernetes Container Attached Storage)",
+        "description": "Let’s be honest: we’re not doing anything fishy with your data. But read this policy in case you want to know exactly what we are doing with it.",
+        "image": "/images/seo/openebs.png",
+        "url": "/privacy-policy"
+      },
+      "blog": {
+        "title": "Blog - OpenEBS (Kubernetes Container Attached Storage)",
+        "description": "OpenEBS is a storage platform that provides persistent and containerized block storage for DevOps and container environments.",
+        "image": "/images/seo/openebs.png",
+        "url": "/blog"
+      }
+    }
+  }

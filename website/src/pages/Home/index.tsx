@@ -18,6 +18,9 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { useViewport } from "../../hooks/viewportWidth";
 import { Workloads } from "./workloads";
+import { Metadata } from "../../components/Metadata";
+import SeoJson from "../../resources/seo.json";
+import { currentOrigin } from "../../utils/currentHost";
 
 const Home: React.FC = () => {
     const classes = useStyles();
@@ -157,6 +160,7 @@ const Home: React.FC = () => {
     
     return (
         <div>
+            <Metadata title={SeoJson.pages.home.title} description={SeoJson.pages.home.description} url={`${currentOrigin}${SeoJson.pages.home.url}`} image={`${currentOrigin}${SeoJson.pages.home.image}`} isPost={false}  />
             <section>
                 {isMobileView ? 
                     <Grid container spacing={0}>

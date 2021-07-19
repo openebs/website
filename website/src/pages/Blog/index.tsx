@@ -35,6 +35,9 @@ import { pageCount } from "../../utils/getPageCount";
 import { useHistory } from "react-router-dom";
 import BlogImage from "../../components/BlogImage";
 import { getTagsSorted } from "../../utils/sortTags";
+import SeoJson from "../../resources/seo.json";
+import { currentOrigin } from "../../utils/currentHost";
+import { Metadata } from "../../components/Metadata";
 
 interface StyledTabProps {
   label: string;
@@ -190,6 +193,7 @@ const Blog: React.FC = () => {
 
   return (
     <>
+     <Metadata title={SeoJson.pages.blog.title} description={SeoJson.pages.blog.description} url={`${currentOrigin}${SeoJson.pages.blog.url}`} image={`${currentOrigin}${SeoJson.pages.blog.image}`} isPost={false} type="Series"  />
       {!queryAuthorName ? (
         <>
           <div className={classes.root}>
