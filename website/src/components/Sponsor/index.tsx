@@ -1,9 +1,10 @@
 import React from "react";
 import useStyles from "./styles";
 import { useTranslation } from "react-i18next";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Link, Typography } from "@material-ui/core";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { EXTERNAL_LINKS } from "../../constants";
 
 const Sponsor: React.FC = () => {
   const classes = useStyles();
@@ -23,23 +24,23 @@ const Sponsor: React.FC = () => {
           <Grid container>
             <Grid item xs={12} md={6} sm={6}>
               <Typography className={classes.paragraph}>{t("sponsors.mayadata")}</Typography>
-              <a href="https://mayadata.io/" rel="noreferrer" target="_blank">
+              <Link href={EXTERNAL_LINKS.MAYADATA_SUPPORT} rel="noreferrer" target="_blank">
                 <img
                   src="../images/logos/mayadata_logo.svg"
                   alt={t("generic.mayadata")}
                   className={classes.sponsorCompany}
                 />
-              </a>
+              </Link>
             </Grid>
             <Grid item xs={12} md={6} sm={6}>
               <Typography className={classes.paragraph}>{t("sponsors.cncf")}</Typography>
-              <a href="https://www.cncf.io/" rel="noreferrer" target="_blank">
+              <Link href={EXTERNAL_LINKS.CNCF_WEBSITE} rel="noreferrer" target="_blank">
                 <img
                   src="../images/logos/cncf_logo.svg"
                   alt={t("generic.cncf")}
                   className={classes.sponsorCompany}
                 />
-              </a>
+              </Link>
             </Grid>
           </Grid>
         </Grid>

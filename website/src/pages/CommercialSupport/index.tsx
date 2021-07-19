@@ -4,6 +4,7 @@ import {
   CardActions,
   CardContent,
   Grid,
+  Link,
   Typography,
 } from "@material-ui/core";
 import React from "react";
@@ -113,7 +114,7 @@ const Support: React.FC = () => {
                   <Card className={classes.cardProps} key={elm.id}>
                     <CardContent>
                       <div className={classes.cardImageWrapper}>
-                        <a href={elm.website}
+                        <Link href={elm.website}
                         rel="noopener noreferrer"
                         target="_blank">
                           <img
@@ -122,7 +123,7 @@ const Support: React.FC = () => {
                             alt={elm.name}
                             
                           />
-                        </a>
+                        </Link>
                       </div>
                       <Typography className={classes.cardText}>
                         {elm.desc}
