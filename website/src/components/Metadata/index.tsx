@@ -21,7 +21,7 @@ interface MetadataProps {
 export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isPost , image, tags, author, type }) => {
     
     const site = {
-        logo: `${getHostOrigin}/images/logos/logo.svg`,
+        logo: `${getHostOrigin}/images/png/logo.png`,
         siteUrl: `${getHostOrigin}`
     }
     let imageObj = {
