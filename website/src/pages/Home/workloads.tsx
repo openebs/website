@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Typography, Link, Box, Button, Paper, withStyles, Tooltip } from '@material-ui/core';
 import { useTranslation } from "react-i18next";
 import useStyles from './styles';
-import { EXTERNAL_LINKS, VIEW_PORT } from "../../constants";
+import { VIEW_PORT } from "../../constants";
 import Asciinema from '../../components/Asciinema';
 import { useViewport } from "../../hooks/viewportWidth";
 import { useExternalStyles } from "../../hooks/useExternalStyles";
@@ -153,7 +153,7 @@ export const Workloads: React.FC = () => {
             <Typography className={classes.orSeparatorText}>
                 {t('home.installation.or')}
             </Typography>
-            <Button variant="contained" color="secondary" className={[classes.solidButton,classes.middleButton].join(' ')} href={EXTERNAL_LINKS.OPENEBS_INSTALLATION_GUIDE} target="_blank">
+            <Button variant="contained" color="secondary" className={[classes.solidButton,classes.middleButton].join(' ')} href="/docs">
                 {t('home.installation.readTheGuide.button')}
             </Button>
             <div className={classes.installationDescriptionWrapper}>

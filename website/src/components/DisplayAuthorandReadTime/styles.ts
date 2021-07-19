@@ -6,11 +6,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: "space-between",
     alignItems: "center",
     color: theme.palette.primary.light,
-    paddingRight: theme.spacing(4),
     fontSize: '1rem',
-    [theme.breakpoints.down("sm")]: {
-      paddingRight: theme.spacing(0),
-    },
     [theme.breakpoints.down("xs")]: {
       fontSize: '0.875rem',
     },

@@ -200,7 +200,7 @@ const Home: React.FC = () => {
                                         <Typography className={classes.tabBodyText}>
                                             {t('home.concepts.description')}
                                         </Typography>
-                                        <Button variant="contained" color="secondary" className={classes.solidButton} href={EXTERNAL_LINKS.OPENEBS_CONCEPTS} target="_blank">
+                                        <Button variant="contained" color="secondary" className={classes.solidButton} href="/docs">
                                             {t('home.concepts.checkConcepts')}
                                         </Button>
                                     </TabPanel>
@@ -263,7 +263,7 @@ const Home: React.FC = () => {
                                         <Typography className={classes.tabBodyText}>
                                             {t('home.concepts.description')}
                                         </Typography>
-                                        <Button variant="contained" color="secondary" className={classes.solidButton} href={EXTERNAL_LINKS.OPENEBS_CONCEPTS} target="_blank">
+                                        <Button variant="contained" color="secondary" className={classes.solidButton} href="/docs">
                                             {t('home.concepts.checkConcepts')}
                                         </Button>
                                     </TabPanel>
@@ -555,7 +555,7 @@ const Home: React.FC = () => {
                                     <Paper className={[classes.paper, classes.centerContent].join(' ')}>
                                         <div>
                                             <div className={classes.readGuideDiv}>
-                                                <Link href={EXTERNAL_LINKS.OPENEBS_DOCS} className={classes.readGuideLink}>
+                                                <Link href="/docs" className={classes.readGuideLink}>
                                                     <Typography className={classes.readGuideTitle}>
                                                         {t('home.youAreReadyToStart.readTheGuide.title')}
                                                     </Typography>

@@ -19,8 +19,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   tabRoot: {
     justifyContent: "center",
+    '& .MuiTab-root': {
+      color: `${theme.palette.text.secondary} !important`,
+    },
     '& .Mui-selected': {
-      color: theme.palette.text.hint,
+      color: `${theme.palette.text.hint} !important`,
       padding: theme.spacing(2, 1),
     }
   },

@@ -178,7 +178,6 @@ const MiniBlog: React.FC = () => {
               classes={{ 
                 root: classes.tabRoot, scroller: classes.scroller }}
               onChange={handleChange}
-              textColor="secondary"
               variant="scrollable"
               TabIndicatorProps={{
                 style: {

@@ -8,12 +8,9 @@ export enum EXTERNAL_LINKS {
   CODEWAVE_SUPPORT= 'https://codewave.eu/',
   GRIDWORKZ_SUPPORT= 'https://www.gridworkz.com/',
   MAYADATA_SUPPORT= 'https://mayadata.io/',
-  OPENEBS_DOCS = '/docs',
   OPENEBS_BLOGS = 'https://openebs.io/blog',
-  OPENEBS_GET_STARTED = 'https://docs.openebs.io/docs/next/quickstart.html',
+  OPENEBS_GET_STARTED = 'https://docs.openebs.io/docs/next/quickstart.html', // This should be directed to new docs URL once
   OPENEBS_YOUTUBE_INTRO = 'https://www.youtube.com/watch?v=94SFY3xdjXs&t=1s',
-  OPENEBS_CONCEPTS = 'https://docs.openebs.io/',
-  OPENEBS_INSTALLATION_GUIDE = 'https://docs.openebs.io/docs/next/overview.html',
   CONTRIBUTE_LINK='https://github.com/openebs/openebs/blob/master/CONTRIBUTING.md',
   GOVERNANCE_LINK='https://github.com/openebs/openebs/blob/master/GOVERNANCE.md',
   SUBSCRIBE_NEWSLETTER='https://lists.cncf.io/g/cncf-openebs-announcements',
@@ -31,8 +28,6 @@ export enum VIEW_PORT {
 };
 
 export enum EXTERNAL_LINK_LABELS {
-  DOCS = 'Docs',
-  BLOG = 'Blog',
   GITHUB = 'GitHub'
 };
 
