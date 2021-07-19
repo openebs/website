@@ -47,9 +47,11 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '0.875rem',
         lineHeight: '18px',
         textTransform: 'uppercase',
+        padding: theme.spacing(0.75,1),
         '&:hover': {
             color: theme.palette.warning.main,
             backgroundColor: 'transparent',
+            textDecoration: 'none'
         },
         [theme.breakpoints.down('sm')]: {
             fontSize: '0.75rem',

@@ -1,7 +1,6 @@
 import {
     AppBar,
     Toolbar,
-    Button,
     Link,
     IconButton,
     Drawer,
@@ -9,7 +8,7 @@ import {
   } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import useStyles from './style';
-import { Link as RouterLink, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import navbarItems from './navbar'
 import GitHubButton from 'react-github-btn'
 import { useTranslation } from "react-i18next";
@@ -98,22 +97,14 @@ const Header: React.FC = () => {
                         <div className={classes.mobileNavWrapper}>
                             {navbarItems.map(({ label, href }) => {
                                 return (
-                                <Link
-                                    {...{
-                                        key: label,
-                                        to: href,
-                                        component: RouterLink,
-                                        className: [classes.navbarItem,(href === currentPathName) ? classes.activeNavbarItem : ''].join(' '),
-                                        onClick: () => handleDrawerClose()
-                                    }}
-                                >
-                                
-                                <MenuItem className={classes.menuItemMobile}>{label}</MenuItem>
+                                <Link href={href} key={label} className={[classes.navbarItem,(href === currentPathName) ? classes.activeNavbarItem : ''].join(' ')}
+                                    onClick={() => handleDrawerClose()}>
+                                    <MenuItem className={classes.menuItemMobile}>{label}</MenuItem>
 
-                                {/* Hiding divider for last item in the navbar items */}
-                                 {(label !== navbarItems[navbarItems.length - 1].label) &&
-                                    <hr className={classes.mobileDivider}/>
-                                }
+                                    {/* Hiding divider for last item in the navbar items */}
+                                    {(label !== navbarItems[navbarItems.length - 1].label) &&
+                                        <hr className={classes.mobileDivider}/>
+                                    }
                                 </Link>
                                 );
                             })}
@@ -142,16 +133,9 @@ const Header: React.FC = () => {
                 <div className={classes.rightContent}>
                 {navbarItems.map(({ label, href }) => {
                     return (    
-                        <Button
-                            {...{
-                                key: label,
-                                to: href,
-                                component: RouterLink,
-                                className: [classes.navbarItem,(href === currentPathName) ? classes.activeNavbarItem : ''].join(' ')
-                            }}
-                        >
-                        {label}
-                        </Button>
+                        <Link href={href} key={label} className={[classes.navbarItem,(href === currentPathName) ? classes.activeNavbarItem : ''].join(' ')}>
+                            {label}
+                        </Link>
                     );
                 })}
                 <div>
