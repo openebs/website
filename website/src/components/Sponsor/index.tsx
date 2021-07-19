@@ -24,7 +24,7 @@ const Sponsor: React.FC = () => {
           <Grid container>
             <Grid item xs={12} md={6} sm={6}>
               <Typography className={classes.paragraph}>{t("sponsors.mayadata")}</Typography>
-              <Link href={EXTERNAL_LINKS.MAYADATA_SUPPORT} rel="noreferrer" target="_blank">
+              <Link href={EXTERNAL_LINKS.MAYADATA_WEBSITE} rel="noreferrer" target="_blank">
                 <img
                   src="../images/logos/mayadata_logo.svg"
                   alt={t("generic.mayadata")}
