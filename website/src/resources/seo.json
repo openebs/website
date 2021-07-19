@@ -33,7 +33,7 @@
       },
       "blog": {
         "title": "Blog - OpenEBS (Kubernetes Container Attached Storage)",
-        "description": "OpenEBS blogs",
+        "description": "OpenEBS is a storage platform that provides persistent and containerized block storage for DevOps and container environments.",
         "image": "/images/seo/openebs.png",
         "url": "/blog"
       }
