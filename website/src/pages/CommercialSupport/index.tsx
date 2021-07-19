@@ -121,7 +121,6 @@ const Support: React.FC = () => {
                             loading="lazy"
                             src={elm.image}
                             alt={elm.name}
-                            
                           />
                         </Link>
                       </div>
