@@ -38,7 +38,3 @@ export const websiteSchema = ({ title, description, type, url, image, site }: We
     description,
   }
 }
-
-
-
-

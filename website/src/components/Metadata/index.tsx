@@ -49,6 +49,8 @@ export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isP
             <link rel="canonical" href={url || defaultConfig.url} />
              {/** Open Graph  */}
             <meta property="og:type" content={isPost ? 'article' : 'website'} />
+            <meta property="og:title" content={title || defaultConfig.title} />
+            <meta property="og:site_name" content={getHostOrigin} />
             <meta property="og:url" content={url || defaultConfig.url} />
             <meta property="og:description" content={description || defaultConfig.description} />
             <meta property="og:image" content={image || defaultConfig.image} />
