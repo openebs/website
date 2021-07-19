@@ -4,6 +4,7 @@ import {
   CardActions,
   CardContent,
   Grid,
+  Link,
   Typography,
 } from "@material-ui/core";
 import React from "react";
@@ -113,12 +114,15 @@ const Support: React.FC = () => {
                   <Card className={classes.cardProps} key={elm.id}>
                     <CardContent>
                       <div className={classes.cardImageWrapper}>
-                        <img
-                          loading="lazy"
-                          src={elm.image}
-                          alt={elm.name}
-                          
-                        />
+                        <Link href={elm.website}
+                        rel="noopener noreferrer"
+                        target="_blank">
+                          <img
+                            loading="lazy"
+                            src={elm.image}
+                            alt={elm.name}
+                          />
+                        </Link>
                       </div>
                       <Typography className={classes.cardText}>
                         {elm.desc}

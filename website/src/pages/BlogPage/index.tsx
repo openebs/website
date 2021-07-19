@@ -233,6 +233,8 @@ const BlogPage: React.FC = () => {
                   className={classes.arrowButton}
                   endIcon={<img loading="lazy" src="../images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
                   onClick={() => handleRedirectPath(previousBlog.slug)}
+                  disableFocusRipple={true}
+                  disableRipple={true}
               >
                 {t('blog.previousArticle')}
               </Button>
@@ -241,6 +243,8 @@ const BlogPage: React.FC = () => {
                   className={classes.arrowButton}
                   startIcon={<img loading="lazy" src="../images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
                   onClick={() => handleRedirectPath(previousBlog.slug)}
+                  disableFocusRipple={true}
+                  disableRipple={true}
               >
                 {t('blog.previousArticle')}
               </Button>
@@ -255,6 +259,8 @@ const BlogPage: React.FC = () => {
                     className={classes.arrowButton}
                     endIcon={<img loading="lazy" src="../images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} />}
                     onClick={() => handleRedirectPath(nextBlog.slug)}
+                    disableFocusRipple={true}
+                    disableRipple={true}
                   >
                     {t('blog.nextArticle')}
                   </Button>
