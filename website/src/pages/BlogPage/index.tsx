@@ -15,6 +15,7 @@ import BlogImage from '../../components/BlogImage';
 import { useHistory } from "react-router-dom";
 import { currentOrigin, currentLocation, currentPathname } from "../../utils/currentHost";
 import { Metadata } from "../../components/Metadata";
+import ErrorPage from "../ErrorPage";
 
 const BlogPage: React.FC = () => {
   const classes = useStyles();
@@ -55,11 +56,11 @@ const BlogPage: React.FC = () => {
       let minimumRecommededBlogs = 6;
       const {default: blogs} = await import(`../../posts.json`);
       const currentBlog = blogs?.filter(blog => blog.slug === queryBlogName)[0];
-      let recommendedBlogs = blogs?.filter(blog => (blog.author === currentBlog.author) && (blog?.tags).some((tag) => currentBlog.tags.includes(tag)));
+      let recommendedBlogs = blogs?.filter(blog => (blog?.author === currentBlog?.author) && (blog?.tags).some((tag) => currentBlog.tags.includes(tag)));
       
       if(recommendedBlogs?.length<minimumRecommededBlogs){
-        let filteredBlogs = blogs?.filter(blog => (blog.author === currentBlog.author) || (blog?.tags).some((tag) => currentBlog.tags.includes(tag)));
-        recommendedBlogs = recommendedBlogs?.concat(filteredBlogs).filter(blog => blog.slug !== currentBlog.slug);
+        let filteredBlogs = blogs?.filter(blog => (blog?.author === currentBlog?.author) || (blog?.tags).some((tag) => currentBlog?.tags.includes(tag)));
+        recommendedBlogs = recommendedBlogs?.concat(filteredBlogs).filter(blog => blog?.slug !== currentBlog?.slug);
         // Removes duplicates
         recommendedBlogs = recommendedBlogs.filter((item,index)=>{
           return (recommendedBlogs.indexOf(item) === index);
@@ -69,7 +70,7 @@ const BlogPage: React.FC = () => {
             let _arr = [...arr];
             return[...Array(count)].map( ()=> _arr.splice(Math.floor(Math.random() * _arr.length), 1)[0] ); 
           }
-        recommendedBlogs = recommendedBlogs.concat(getRandomBlogs(blogs, minimumRecommededBlogs-recommendedBlogs.length)).filter(blog => blog.slug !== currentBlog.slug);
+        recommendedBlogs = recommendedBlogs?.concat(getRandomBlogs(blogs, minimumRecommededBlogs-recommendedBlogs.length)).filter(blog => blog?.slug !== currentBlog?.slug);
         // Removes duplicates
         recommendedBlogs = recommendedBlogs.filter((item,index)=>{
           return (recommendedBlogs.indexOf(item) === index);
@@ -121,7 +122,7 @@ const BlogPage: React.FC = () => {
 
   return (
     <>
-    {currentBlogDetails.id && (
+    {currentBlogDetails?.id && (
       <Metadata 
         title={currentBlogDetails?.title} 
         description={currentBlogDetails?.excerpt} 
@@ -188,8 +189,7 @@ const BlogPage: React.FC = () => {
                               );
                           })}
                       </div> 
-                    </div>
-                  
+                    </div> 
               </div>
               </div>
             </div>
@@ -203,7 +203,8 @@ const BlogPage: React.FC = () => {
         ) : (
           " "
         )}
-
+        {currentBlogDetails ? 
+        <>
         <hr className={classes.divider}/>
         <div className={classes.footerDivWrapper}>
             <div>
@@ -225,6 +226,12 @@ const BlogPage: React.FC = () => {
               </div> 
             </div>
         </div>
+        </> : 
+        <ErrorPage  blogStatus={true} />
+    }
+
+
+
         <div className={classes.footerDivWrapper}>
           {previousBlog &&
               <div>
