@@ -3,7 +3,7 @@ id: benefits
 title: OpenEBS Benefits
 ---
 
-import { List } from "../../../src/components/List";
+import { TwoColumn } from "../../../src/components/TwoColumn";
 
 - [Open Source Cloud Native storage for Kubernetes](#open-source-cloud-native-storage-for-kubernetes)
 - [Granular policies per stateful workload](#granular-policies-per-stateful-workload)
@@ -18,7 +18,7 @@ For information on how OpenEBS is used in production, visit the [use cases](/doc
 
 ### Open Source Cloud Native Storage for Kubernetes
 
-<List>
+<TwoColumn>
   <p>
     OpenEBS is cloud native storage for stateful applications on Kubernetes
     where "cloud native" means following a loosely coupled architecture. As such
@@ -30,7 +30,7 @@ For information on how OpenEBS is used in production, visit the [use cases](/doc
 
 ![Cloud Native Storage Icon](../assets/b-cn.svg)
 
-</List>
+</TwoColumn>
 
 Some key aspects that make OpenEBS different compared to other traditional storage solutions:
 
@@ -41,7 +41,7 @@ Some key aspects that make OpenEBS different compared to other traditional stora
 
 ### Avoid Cloud Lock-in
 
-<List>
+<TwoColumn>
   <p>
     Even though Kubernetes provides an increasingly ubiquitous control plane,
     concerns about data gravity resulting in lock-in and otherwise inhibiting
@@ -55,33 +55,33 @@ Some key aspects that make OpenEBS different compared to other traditional stora
 
 ![Avoid Cloud Lock-in Icon](../assets/b-no-lockin.svg)
 
-</List>
+</TwoColumn>
 
 ### Granular Policies Per Stateful Workload
 
-<List>
+<TwoColumn>
     <p>
         One reason for the rise of cloud native, loosely coupled architectures is that they enable loosely coupled teams. These small teams are enabled by cloud native architectures to move faster, free of most cross functional dependencies thereby unlocking innovation and customer responsiveness. OpenEBS also unlocks small teams by enabling them to retain their autonomy by virtue of deploying their own storage system. Practically, this means storage parameters are monitored on a workload and per volume basis and storage policies and settings are declared to achieve the desired result for a given workload. The policies are tested and tuned, keeping only the particular workload in mind, while other workloads are unaffected. Workloads - and teams - remain loosely coupled.
     </p>
 
 ![Workload Granular Policies Icon](../assets/b-granular.svg)
 
-</List>
+</TwoColumn>
 
 ### Reduced Storage TCO up to 50%
 
-<List>
+<TwoColumn>
     <p>
      On most clouds, block storage is charged based on how much is purchased and not on how much is used; capacity is often over provisioned in order to achieve higher performance and in order to remove the risk of disruption when the capacity is fully utilized. Thin provisioning capabilities of OpenEBS can pool local storage or cloud storage and then grow the data volumes of stateful applications as needed. The storage can be added on the fly without disruption to the volumes exposed to the workloads or applications. Certain users have reported savings in excess of 60% due to the use of thin provisioning from OpenEBS.
     </p>
 
 ![Reduced Storage TCO Icon](../assets/b-lowtco.svg)
 
-</List>
+</TwoColumn>
 
 ### Natively Hyperconverged on Kubernetes
 
-<List>
+<TwoColumn>
   <p>
     Node Disk Manager (NDM) in OpenEBS can be used to enable disk management in
     a Kubernetes way by using Kubernetes constructs. Using NDM and OpenEBS,
@@ -96,11 +96,11 @@ Some key aspects that make OpenEBS different compared to other traditional stora
 
 ![Natively HCI on K8s Icon](../assets/b-hci.svg)
 
-</List>
+</TwoColumn>
 
 ### High Availability
 
-<List>
+<TwoColumn>
   <p>
     Because OpenEBS follows the CAS architecture, upon node failure the OpenEBS
     controller will be rescheduled by Kubernetes while the underlying data is
@@ -117,7 +117,7 @@ Some key aspects that make OpenEBS different compared to other traditional stora
 
 ![High Availability Icon](../assets/b-ha.svg)
 
-</List>
+</TwoColumn>
 
 ## See Also:
 
