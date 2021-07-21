@@ -338,7 +338,7 @@ const Blog: React.FC = () => {
             </Container>
           </div>
           <div className={classes.sectionDiv}>
-          {filteredAuthorData[0] ?
+          {filteredAuthorData.length ?
             <>
             <Grid
               container
