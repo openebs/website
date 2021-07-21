@@ -63,9 +63,7 @@ const ErrorPage: React.FC<NotFound> = ({ blogStatus }) => {
         />
       </div>
       {/* Blog status check if true then hide the footer */}
-      {blogStatus ? (
-        <></>
-      ) : (
+      {!blogStatus && (
         <footer className={classes.footer}>
           <Footer />
         </footer>
