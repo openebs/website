@@ -91,4 +91,4 @@ OpenEBS has a vibrant community that can help you get started. If you have furth
 
 ## See Also:
 
-[Quickstart](/docs/next/quickstart.html) [Use cases and Examples](/docs/next/usecases.html) [Container Attached Storage (CAS)](/docs/next/cas.html) [OpenEBS Architecture](/docs/next/architecture.html) [OpenEBS Local PV](/docs/next/localpv.html) [OpenEBS Mayastor](/docs/next/mayastor.html)
+[Quickstart](/docs/next/quickstart.html) [Use cases and Examples](/docs/introduction/usecases) [Container Attached Storage (CAS)](/docs/next/cas.html) [OpenEBS Architecture](/docs/next/architecture.html) [OpenEBS Local PV](/docs/next/localpv.html) [OpenEBS Mayastor](/docs/next/mayastor.html)
