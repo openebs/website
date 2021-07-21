@@ -29,7 +29,9 @@ const EventSlider: React.FC<EventsProps> = ({
   const classes = useStyles();
   const [events, setEvents] = useState<Events[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<Events[]>([]);
-
+  useEffect(() => {
+    setEvents(eventsList);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     /*
      * 1. Using current date to filter the events
@@ -37,7 +39,6 @@ const EventSlider: React.FC<EventsProps> = ({
      * 3. @sortEvents default true, events will be sorted using the date
      * 4. @sortOrder default asc, events will be sorted in ascending order
      */
-    setEvents(eventsList);
     const currentDate = new Date();
     let eventsData = [];
     if (events.length) {
@@ -53,8 +54,7 @@ const EventSlider: React.FC<EventsProps> = ({
         : eventsData;
       setFilteredEvents(eventsData);
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+  }, [events]); // eslint-disable-line react-hooks/exhaustive-deps
   const sliderSettings = {
     autoplay: false,
     speed: 500,
