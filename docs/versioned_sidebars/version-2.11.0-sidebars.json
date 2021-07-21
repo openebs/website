@@ -20,6 +20,11 @@
         },
         {
           "type": "doc",
+          "id": "version-2.11.0/introduction/benefits",
+          "label": "Benefits"
+        },
+        {
+          "type": "doc",
           "id": "version-2.11.0/introduction/alphafeatures",
           "label": "Alpha features"
         },
