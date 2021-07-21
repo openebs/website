@@ -1,1 +1,12 @@
+/** 
+    Sample event data structure
+    {
+        "id": 1,
+        "date": "2022-06-21",
+        "title": "Event name",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eu felis nec arcu eleifend scelerisque. ",
+        "buttonText": "Register", 
+        "buttonLink": "https://openebs.io/" // if there is no need for displaying a button leave the buttonLink as blank
+    },
+*/
 []
