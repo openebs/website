@@ -3,12 +3,12 @@ import Carousel from "../Carousel";
 import { useTranslation } from "react-i18next";
 import { Typography, Link, Box } from "@material-ui/core";
 import useStyles from "./style";
-import events from "../../resources/events.json";
+import eventsList from "../../resources/events.json";
 
 interface Events {
   id: number;
   title: string;
-  date: any;
+  date: string;
   description: string;
   buttonText: string;
   buttonLink: string;
@@ -27,8 +27,11 @@ const EventSlider: React.FC<EventsProps> = ({
 }) => {
   const { t } = useTranslation();
   const classes = useStyles();
+  const [events, setEvents] = useState<Events[]>([]);
   const [filteredEvents, setFilteredEvents] = useState<Events[]>([]);
-
+  useEffect(() => {
+    setEvents(eventsList);
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
   useEffect(() => {
     /*
      * 1. Using current date to filter the events
@@ -38,19 +41,20 @@ const EventSlider: React.FC<EventsProps> = ({
      */
     const currentDate = new Date();
     let eventsData = [];
-    eventsData = filterEvents
-      ? events.filter((event) => new Date(event.date) >= currentDate)
-      : events;
-    eventsData = sortEvents
-      ? eventsData.sort((eventA, eventB) => {
-          const dateA: any = new Date(eventB.date);
-          const dateB: any = new Date(eventA.date);
-          return sortOrder === "asc" ? dateB - dateA : dateB + dateA;
-        })
-      : eventsData;
-    setFilteredEvents(eventsData);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
+    if (events.length) {
+      eventsData = filterEvents
+        ? events?.filter((event) => new Date(event?.date) >= currentDate)
+        : events;
+      eventsData = sortEvents
+        ? eventsData?.sort((eventA, eventB) => {
+            const dateA: any = new Date(eventB?.date);
+            const dateB: any = new Date(eventA?.date);
+            return sortOrder === "asc" ? dateB - dateA : dateB + dateA;
+          })
+        : eventsData;
+      setFilteredEvents(eventsData);
+    }
+  }, [events]); // eslint-disable-line react-hooks/exhaustive-deps
   const sliderSettings = {
     autoplay: false,
     speed: 500,
@@ -72,7 +76,7 @@ const EventSlider: React.FC<EventsProps> = ({
         settings: {
           slidesToShow: 1,
           centerMode: true,
-          centerPadding: '30px',
+          centerPadding: "30px",
           arrows: false,
         },
       },
@@ -99,10 +103,10 @@ const EventSlider: React.FC<EventsProps> = ({
     return givenDate > currentDate;
   }
 
-  return filteredEvents.length ? (
+  return filteredEvents?.length ? (
     <>
       <Carousel settings={sliderSettings}>
-        {filteredEvents.map((event: any) => {
+        {filteredEvents?.map((event: any) => {
           return (
             <>
               <div key={event.id}>
