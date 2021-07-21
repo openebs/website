@@ -1,5 +1,5 @@
 ---
-id: support
+id: community
 title: OpenEBS Community
 ---
 

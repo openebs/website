@@ -25,11 +25,6 @@
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/introduction/alphafeatures",
-          "label": "Alpha features"
-        },
-        {
-          "type": "doc",
           "id": "version-2.11.0/introduction/usecases",
           "label": "Use cases"
         },
@@ -40,7 +35,12 @@
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/introduction/support",
+          "id": "version-2.11.0/introduction/community",
+          "label": "Community"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/introduction/commercial",
           "label": "Support"
         }
       ]
