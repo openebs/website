@@ -28,7 +28,7 @@ const Home: React.FC = () => {
     const [tabValue, setTabValue] = useState<number>(0);
     const [adopterTestimonials, setAdopterTestimonials] = useState<any>("");
     const [copyCommand, setCopyCommand] = useState({
-        text: 'helm install stable/openebs --name openebs --namespace openebs',
+        text: 'helm install openebs --namespace openebs openebs/openebs --create-namespace',
         status: 'Copy to clipboard'
     });
 
@@ -126,11 +126,11 @@ const Home: React.FC = () => {
     const copyToClipboard = () => {
         navigator.clipboard.writeText(copyCommand.text)
         setCopyCommand({
-            text: 'helm install stable/openebs --name openebs --namespace openebs',
+            text: 'helm install openebs --namespace openebs openebs/openebs --create-namespace',
             status: 'Copied to clipboard'})
         setTimeout(() => {
             setCopyCommand({
-                text: 'helm install stable/openebs --name openebs --namespace openebs',
+                text: 'helm install openebs --namespace openebs openebs/openebs --create-namespace',
                 status:'Copy to clipboard'})
         }, 2000);
     };
