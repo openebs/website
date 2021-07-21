@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     height: "100%",
     width: "100%",
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(10),
   },
   footer: {
     gridArea: "footer",
