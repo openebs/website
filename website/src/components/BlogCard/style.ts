@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         background: "none",
         marginRight: theme.spacing(1),
     },
-    cursorPoiter: {
+    cursorPointer: {
         cursor: "pointer",
     },
     card: {

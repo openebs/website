@@ -30,7 +30,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog, isAuthorPage, handleTagSelect
         <button
             key={tag}
             onClick={() => handleTagSelect(tag)}
-            className={[classes.tagButton, !isAuthorPage ? classes.cursorPoiter : ''].join(' ')}
+            className={[classes.tagButton, !isAuthorPage ? classes.cursorPointer : ''].join(' ')}
         >
             <CustomTag blogLabel={tag} key={tag} />
         </button>
