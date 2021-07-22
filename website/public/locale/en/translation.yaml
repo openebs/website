@@ -32,7 +32,8 @@ footer:
 
 errorPage:
   description: oops! The page you're looking for was not found
-  homeBtnLable: Back to home
+  homeBtnLabel: Back to home
+  blogBtnLabel: Back to blog
   errorAltText: Error 404
   backgroundAltText: Background illustration
 

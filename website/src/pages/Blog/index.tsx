@@ -38,6 +38,7 @@ import { getTagsSorted } from "../../utils/sortTags";
 import SeoJson from "../../resources/seo.json";
 import { currentOrigin } from "../../utils/currentHost";
 import { Metadata } from "../../components/Metadata";
+import ErrorPage from "../ErrorPage";
 
 interface StyledTabProps {
   label: string;
@@ -232,8 +233,7 @@ const Blog: React.FC = () => {
                   </Grid>
                   {tagsMarkup}
               </Grid>
-            }
-                
+            }    
               </Paper>
             </Container>
           </div>
@@ -307,6 +307,7 @@ const Blog: React.FC = () => {
                 : ""}
             </Grid>
             {pagination()}
+
           </div>
         </>
       ) : (
@@ -337,6 +338,8 @@ const Blog: React.FC = () => {
             </Container>
           </div>
           <div className={classes.sectionDiv}>
+          {filteredAuthorData.length ?
+            <>
             <Grid
               container
               direction="row"
@@ -406,6 +409,8 @@ const Blog: React.FC = () => {
                 : " "}
             </Grid>
             {pagination()}
+            </>:
+            <ErrorPage blogStatus={true} />}
           </div>
         </>
       )}
