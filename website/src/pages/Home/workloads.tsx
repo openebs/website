@@ -18,7 +18,7 @@ export const Workloads: React.FC = () => {
      const classes = useStyles();
 
      const [copyCommand, setCopyCommand] = useState({
-        text: 'helm install stable/openebs --name openebs --namespace openebs',
+        text: 'helm install openebs --namespace openebs openebs/openebs --create-namespace',
         status: 'Copy to clipboard'
     });
 
@@ -42,11 +42,11 @@ export const Workloads: React.FC = () => {
     const copyToClipboard = () => {
         navigator.clipboard.writeText(copyCommand.text)
         setCopyCommand({
-            text: 'helm install stable/openebs --name openebs --namespace openebs',
+            text: 'helm install openebs --namespace openebs openebs/openebs --create-namespace',
             status: 'Copied to clipboard'})
         setTimeout(() => {
             setCopyCommand({
-                text: 'helm install stable/openebs --name openebs --namespace openebs',
+                text: 'helm install openebs --namespace openebs openebs/openebs --create-namespace',
                 status:'Copy to clipboard'})
         }, 2000);
     };
@@ -136,7 +136,7 @@ export const Workloads: React.FC = () => {
                 {t('home.installation.title')}
             </Typography>
             <Typography variant="h5" className={classes.sectionSubTitle}>
-                {t('home.installation.description')} 
+                {t('home.installation.description')}
             </Typography>
             <Box className={classes.codeWrapper} mt={2}>
                 <Box className={classes.codeBlock} paddingX={2}>
