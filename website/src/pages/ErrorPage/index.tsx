@@ -21,7 +21,7 @@ const ErrorPage: React.FC<NotFound> = ({ blogStatus }) => {
             <img
               loading="lazy"
               className={classes.errorImage}
-              src="../images/svg/404_Image.svg"
+              src="/images/svg/404_Image.svg"
               alt={t("errorPage.errorAltText")}
             />
             <Typography variant="h3" className={classes.pageHeader}>
@@ -58,7 +58,7 @@ const ErrorPage: React.FC<NotFound> = ({ blogStatus }) => {
         <img
           loading="lazy"
           width="100%"
-          src="../images/svg/background_illustration.svg"
+          src="/images/svg/background_illustration.svg"
           alt={t("errorPage.backgroundAltText")}
         />
       </div>

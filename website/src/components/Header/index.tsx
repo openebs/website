@@ -23,7 +23,7 @@ const Header: React.FC = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
     const openEBSLogo = (
-        <img loading="lazy" src="../images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')}></img>
+        <img loading="lazy" src="/images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')}></img>
     );
 
     var currentPathName = useLocation().pathname;
@@ -33,10 +33,10 @@ const Header: React.FC = () => {
           return (
               <div className={classes.socialIconsWrapper}>
                     <Link href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO}>
-                        <img loading="lazy" src="../images/logos/githubLogo.svg" className={classes.socialIcon} alt={t('generic.github')}></img>
+                        <img loading="lazy" src="/images/logos/githubLogo.svg" className={classes.socialIcon} alt={t('generic.github')}></img>
                     </Link>
                     <Link href="/community">
-                        <img loading="lazy" src="../images/logos/slackLogo.svg" className={classes.socialIcon} alt={t('generic.slack')}></img>
+                        <img loading="lazy" src="/images/logos/slackLogo.svg" className={classes.socialIcon} alt={t('generic.slack')}></img>
                     </Link>
               </div>
           );

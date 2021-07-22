@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import useStyles from "./style";
-import useQuery from "../../hooks/useQuery";
+import { useBlogName } from "../../hooks/extractBlogPath";
 import { Avatar, Grid, Typography, Link, Button, Breadcrumbs } from "@material-ui/core";
 import Footer from "../../components/Footer";
 import ReactMarkdown from "react-markdown";
@@ -26,7 +26,7 @@ const BlogPage: React.FC = () => {
   const [currentBlogDetails, setCurrentBlogDetails] = useState<any>({});
   const [recommendedBlogs, setRecommendedBlogs] = useState<any[]>([]);
 
-  const queryBlogName = useQuery();
+  const queryBlogName = useBlogName();
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
   
