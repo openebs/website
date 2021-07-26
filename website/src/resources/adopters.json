@@ -1,0 +1,179 @@
+[
+    {
+        "message": "Storage of Apache Solr data, Transmission of micro-service messages and shared storage for micro-service.",
+        "organizationName": "Agnes Intelligence"
+    },
+    {
+        "message": "Easy for developers to use: developers don't have to worry beyond choosing the right storageclass and size of storage. Decouples developers from storage integrity and unnecessary details that they shouldn't have to worry about.",
+        "organizationName": "Arista Networks"
+    },
+    {
+        "message": "The dynamic provisioning feature is great in our use case, as we save lots of time on setup and maintain storage disk, in ES cluster.",
+        "organizationName": "ByteDance"
+    },
+    {
+        "message": "Easy to setup, stable, excellent support, active project",
+        "organizationName": "CLEW Medical"
+    },
+    {
+        "message": "Using OpenEBS for Kafka implementations (Confluent as well as Strimzi) on bare-metal Kubernetes clusters. For most of the statefulsets on bare-metal environments, we are using OpenEBS.",
+        "organizationName": "Clouds Sky GmbH"
+    },
+    {
+        "message": "Installing Kubernetes, then configuring /var/openebs on all nodes, then installing OpenEBS, making openebs-hostpath default storage engine, installing NFS for shared access. Finally, everything installed in Kubernetes uses OpenEBS.",
+        "organizationName": "CNCF, The Linux Foundation"
+    },
+    {
+        "message": "We started using OpenEBS over one year ago, mostly because we found it easier to use and a bit more stable on our cluster than it's competition. It's not the only way of supporting persistent apps, but currently, it's most often used in our case and OpenEBS StorageClass serves as our default SC.",
+        "organizationName": "Code Wave"
+    },
+    {
+        "message": "We are currently using openebs as persistent storage for a lot of our monitoring, alerting, and metrics gathering applications (Prometheus, Alertmanager, and Influxdb). We are also using it as the backend storage for helm chartmuseum where we store our custom helm charts used for deployments.",
+        "organizationName": "Comcast"
+    },
+    {
+        "message": "OpenEBS has been very helpful and reliable. We are happy with the support and commitment provided by the community to resolve the issues reported in a timely manner. We are planning to use OpenEBS in production once we have completed additional testing around Backup and Restore using OpenEBS Director and Velero.",
+        "organizationName": "CORT"
+    },
+    {
+        "message": "Simplicity of installation is one strong point. Excellent support from the community is really helpful. Storage Capabilities of cStor like resize",
+        "organizationName": "DISID"
+    },
+    {
+        "message": "We where using local volumes at first but we had to become HA and then we had to adopt a dedicated system. We tried longhorn and migrated to OpenEBS. We lost a node (bare metal) recently which was used as a cStor blockdevice, the replication seemed to work as we didn't loose any data ;)",
+        "organizationName": "D-Rating"
+    },
+    {
+        "message": "We are currently using openebs as persistent storage in every deployment where we couldn't have a CEPH cluster and sometimes in hardware that's not state-of-the-art. It comes as a fruitful solution for medium and small workloads, but we're planning to use it in bigger workloads in the future for our customers.",
+        "organizationName": "eXact-lab"
+    },
+    {
+        "message": "Makes PVC management easier. Brings in new features: monitoring, hard limits on capacity, custom filesystems. Negligible performance overhead",
+        "organizationName": "Hamravesh"
+    },
+    {
+        "message": "We are using ZFS for years which makes ZFS LocalPV and cStor the perfect choice. OpenEBS is well documented and has been proven to be easy to use, reliable and provides helpful resources like an active community.",
+        "organizationName": "IDNT"
+    },
+    {
+        "message": "The goal was to be able to adapt the storage solution easily without too much knowledge about the solution. We don't want to hire a cloud administrator to handle the storage and configuration, instead we use a devops approach to simplify the process. With OpenEBS it is easy to switch storage solution (cStor, localpv) when we need. We use OpenEBS on premise and the nodes won't have internet access once the solution is deployed so we couldn't used external cloud solution.",
+        "organizationName": "Jerabi Inc."
+    },
+    {
+        "message": "Recommended by a colleague. Simplicity of installation. Needed a solution that can provide HA. We started using version 0.7.0. Upgraded to 1.10 now.",
+        "organizationName": "KPN"
+    },
+    {
+        "message": "OpenEBS has been tightly integrated into our open source product KubeSphere. OpenEBS Local PV is the default storageclass when users use the installer KubeKey to deploy a KubeSphere and Kubernetes cluster. Thanks to OpenEBS, it makes installation of KubeSphere easier for the Kubernetes novice, OpenEBS has also been widely adopted by our community users.",
+        "organizationName": "KubeSphere"
+    },
+    {
+        "message": "In comparison to Redhat OCS, OpenEBS is a great solution which not take a lot of resources, flexible, and good enough for my requirements. I wanted a simple-to-use solution that will give me the ability to use my local node's storage without the hassle of NFS.",
+        "organizationName": "Lannister Investments LTD"
+    },
+    {
+        "message": "The vast majority of applications are able to better handle failover and replication than a block level device. Instead of introducing another distributed system into an already complex environment, OpenEBS's localPVs allow us to leverage fast local storage. Additionly, by leveraging ZFS we are able to have encryption at rest for all of our workloads, compression, and the piece of mind of a COW based filesystem. OpenEBS has allowed us to not introduce a complicated distributed system into our platform. The adoption has been smooth and completely transparent to our end users.",
+        "organizationName": "Optoro"
+    },
+    {
+        "message": "Installed on several K8S deployed by bosh. It gives same storageclass on our different IaaS (openstack/cloudwatt/vsphere). The excellent support and responsiveness provided by the OpenEBS team is highly appreciated.",
+        "organizationName": "Orange"
+    },
+    {
+        "message": "Initially we used Portworx, but maintaining an external etcd cluster was troublesome for us and the cost of the setup was a bit excessive for an evaluation. So we evaluated OpenEBS as an alternative and it fit our needs well",
+        "organizationName": "Plaid Cloud"
+    },
+    {
+        "message": "OpenEBS solves failover issue out of the box when having a new product without time consuming \n 1. nodes are in different locations and connected through VPN TUN using Calico \n 2. so interested in high-availability when some nodes don't excel with great uptime",
+        "organizationName": "Renthopper"
+    },
+    {
+        "message": "OpenEBS allows us to provision persistent storage that overcomes the Stuck EBS problem in AWS. It also allows us to feel confident that we could utilize persistent storage if we ever have to switch to running on bare metal in a datacenter.",
+        "organizationName": "Sharecare, Inc."
+    },
+    {
+        "message": "We are using OpenEBS to store certificates for Ceryx router-loadbalancer with NFS on OpenEBS cstor volumes. Also for Redis for the same setup of API programmable routing clusters (ceryx+redis+custom agent). We also experimenting with Wordpress and MySQL, MariaDB setup with persistent volumes on OpenEBS.",
+        "organizationName": "Stratus5"
+    },
+    {
+        "message": "Relative simple installation, high flexibility, robust, outstanding support even on Sunday!",
+        "organizationName": "TOBG Services Ltd"
+    },
+    {
+        "message": "Easy to setup, stable, excellent support, active project",
+        "organizationName": "Verizon Media"
+    },
+    {
+        "message": "Dynamic local provisioning with ZFS localPV was easy to set up, very stable, works great. Great support from the OpenEBS developers.",
+        "organizationName": "Zeta Associates"
+    },
+    {
+        "githubUsername": "Perfect-Web",
+        "message": "OpenEBS offers an interesting replacement for aws",
+        "name": "Alin Jurj"
+    },
+    {
+        "githubUsername": "rm3l",
+        "message": "Well-written documentation with practical guides. \n Simplicity of installation and use. \nLow-resource usage and no vendor lock-in. \nVery responsive team and active community",
+        "name": "Armel Soro"
+    },
+    {
+        "githubUsername": "artw",
+        "message": "Running 3 node k3s cluster for IT monitoring and administration purposes. Set it up mostly to learn Kubernetes way. And to consolidate workloads in three vms and save some euro. OpenEBS with LocalPV is the proper way to bring ZFS goodies into K8S world.",
+        "name": "Art Win"
+    },
+    {
+        "githubUsername": "danielsand",
+        "message": "Im running for 3+ Years a Baremetal Kubernetes Cluster at home - 4 Intel Nodes in total - the PVC was done before with rook / NFS / Native Ceph / GlusterFS Most of the time i sticked to 3 Node Rook Ceph setup - which works good but has a lot of Memory usage especially on a long running enviroment. Also i wanted to shift to aarch64 since the RPI4 8GB versions reached the marked out of power consumption reasons.",
+        "name": "Daniel Sand"
+    },
+    {
+        "githubUsername": "dstathos",
+        "message": "Raspberry PI Kubernetes-based Dramble project using NGINX web server and MariaDB. Various programs to auto build content on NGINX with content stored in MariaDB. OpenEBS is to be used initially as a way to abstract storage in a cluster and pools it as a resource but, now, will be used to enable the automated mapping of a node to the data and properly normalizing content based on content type and not necessarily include nodename. It just makes things easier!",
+        "name": "Dean Stathos"
+    },
+    {
+        "githubUsername": "kuja53",
+        "message": "Mainly as storage backend to have complete agnostic approach to make easiness of operations part.",
+        "name": "jkuzelka"
+    },
+    {
+        "githubUsername": "meyskens",
+        "message": "Restic uploads my laptop to Minio running on my home Kubernetes cluster. Minio runs on a 2 replica OpenEBS cStor PV . A mc mirror pod then watches the bucket and uploads it's content to the cloud. I get full speed backups on my laptop and still have a cloud copy",
+        "name": "Maartje Eyskens"
+    },
+    {
+        "githubUsername": "mikroskeem",
+        "message": "Hosting hobby projects for me and my friends.",
+        "name": "Mark V."
+    },
+    {
+        "message": "Practicing day 2 management of a vanilla Kubernetes cluster on bare metal. The whole purpose is to build empathy for practioners such as system administrators and DevOps teams who need to keep clusters running. \nThe systems run in the cluster erve as MacGuffins to keep the cluster healthy and suppress the urge to delete the whole thing and start fresh.",
+        "name": "Mike T."
+    },
+    {
+        "githubUsername": "radicand",
+        "message": "I have a small Raspberry Pi-based Kubernetes cluster (using k3s.io), operating using the official Raspbian 64-bit kernel. My cluster is capable of running arm (32bit) or arm64 containers, and for OpenEBS I'm using the new arm64 images recently published. My home lab setup is small (3 nodes), but they have external storage attached and it's helpful to know that if one node goes down, the pods can safely migrate to another node and be recreated with the same storage.",
+        "name": "Nick Pappas"
+    },
+    {
+        "githubUsername": "proegssilb",
+        "message": "OpenEBS is making it easy for me to put storage and compute on the same cheap hardware, and make that storage available to whatever workload might need it. When the lab is done, I expect the cluster to be fairly dense with functionality. Workloads vary between latency-sensitive databases and simple slow-but-reliable file storage.",
+        "name": "proegssilb"
+    },
+    {
+        "githubUsername": "stevefan1999-personal",
+        "message": "I use OpenEBS ZFS Local PV to provision various game servers and I have been evaluating OpenEBS and its CSI capabilities",
+        "name": "Steve Fan"
+    },
+    {
+        "githubUsername": "tardich",
+        "message": "Simplicity of installation, relatively low on resources, excellent support",
+        "name": "tardich"
+    },
+    {
+        "githubUsername": "aretakisv",
+        "message": "Home cluster mix of Arm and Intel i3 based.\n2x Intel NUC (i3).\n3x Raspberry pi (4GB memory).\n1x NAS/Custom build machine.",
+        "name": "V. Aretakis"
+    }
+]

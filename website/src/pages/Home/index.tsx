@@ -11,8 +11,8 @@ import Sponsor from "../../components/Sponsor";
 import Carousel from '../../components/Carousel';
 import { EXTERNAL_LINKS, VIEW_PORT } from '../../constants';
 import MiniBlog from '../../components/MiniBlog';
-import adopterData from "../../adopters.md";
 import EventSlider from '../../components/EventSlider';
+import adopters from '../../resources/adopters.json';
 import events from '../../resources/events.json';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -21,16 +21,22 @@ import { Workloads } from "./workloads";
 import { Metadata } from "../../components/Metadata";
 import SeoJson from "../../resources/seo.json";
 import { currentOrigin } from "../../utils/currentHost";
+import TestimonialSlider from '../../components/testimonialSlider';
+import { Testimonial } from "../../components//testimonialSlider/interface";
 
 const Home: React.FC = () => {
     const classes = useStyles();
     const { t } = useTranslation();
     const [tabValue, setTabValue] = useState<number>(0);
-    const [adopterTestimonials, setAdopterTestimonials] = useState<any>("");
     const [copyCommand, setCopyCommand] = useState({
         text: 'helm install openebs --namespace openebs openebs/openebs --create-namespace',
         status: 'Copy to clipboard'
     });
+    const [adopterTestimonials, setAdopterTestimonials] = useState<Testimonial[]>([]);
+    useEffect(()=>{
+        setAdopterTestimonials(adopters);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const handleTabChange = (_event: React.ChangeEvent<{}>, newTabValue: number) => {
         setTabValue(newTabValue);
@@ -42,28 +48,6 @@ const Home: React.FC = () => {
         window.innerWidth <= VIEW_PORT.MOBILE_BREAKPOINT ? setIsMobileView(true) : setIsMobileView(false);
     },[width])
 
-    //function to fecth all the adoters testimonials
-
-    useEffect(()=>{
-        fetchAdoptersTestimonials();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-
-    const fetchAdoptersTestimonials = async () => {
-        await fetch(adopterData).then((response) => {
-         if (response.ok) {
-             return response.text();
-         }
-         else {
-             return Promise.reject(t('adoptersTestimonials.rejectDatainfo'));
-         }
-       }).then((text) => {
-         const testimonials = require("mdtable2json").getTables(text);
-         setAdopterTestimonials(testimonials[0].json);
-       })
-       .catch((err) => console.error(err));
-     };
-    
     // logoSliderSettings for logos carousel
     var logoSliderSettings = {
         dots: false,
@@ -134,29 +118,6 @@ const Home: React.FC = () => {
                 status:'Copy to clipboard'})
         }, 2000);
     };
-    
-    const testimonialSliderSettings = {
-        dots:false,
-        infinite: true,
-        autoplay: true,
-        autoplaySpeed: 4000,
-        speed:500,
-        slidesToShow:1,
-        slidesToScroll: 1,
-        cssEase:"linear",
-        arrows:true,
-        centerMode:true,
-        className:classes.testimonialCarousel,
-        responsive: [
-            {
-                breakpoint: 767,
-                settings: {
-                  arrows: false,
-                  swipeToSlide: true,
-                },
-              },
-        ]
-    }
     
     return (
         <div>
@@ -463,29 +424,10 @@ const Home: React.FC = () => {
                 <Grid container spacing={3}>
                     <Grid item sm={isMobileView ? 12 : 7} xs={12}>
                         <Paper className={[classes.paper, classes.testimonialPaper].join(' ')}>
-                            <Carousel settings={testimonialSliderSettings}>
-                                {adopterTestimonials && adopterTestimonials.map((elm: any ) => {
-                                    return (  
-                                        <div key={elm.id}>
-                                            <div className={classes.testimonialWrapper}> 
-                                                {/* <img src={elm.organization} alt={t('home.usedInProductionBy.bloomberg')} /> */}
-                                                <Typography className={classes.testimonialTitle}>
-                                                    {elm.organization}
-                                                </Typography>
-                                                <Typography className={classes.testimonialText}>
-                                                    {elm.testimonial}
-                                                </Typography>
-                                                {/* commented code will be used for upcomming releases */}
-                                                {/* <div className={classes.testimonialWriterWrapper}>
-                                                    <img src={profileURL} alt={writer} />
-                                                    <Typography className={classes.testimonialWriter}>{writer}</Typography>
-                                                </div> */}
-                                            </div>
-                                        </div> 
-                                        
-                                    );
-                                })} 
-                            </Carousel>
+                            {adopterTestimonials && (
+                                <TestimonialSlider testimonials={adopterTestimonials} />
+                                )
+                            }
                             <div className={classes.adopterButtonWrapper}>
                                <Button
                                     variant="contained"
