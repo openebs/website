@@ -22,7 +22,7 @@ interface BlogCardProps {
             id: number;
             slug: string; 
         }
-    handleTagSelect: any;
+    handleTagSelect: (tag: string) => void;
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({ blog, isAuthorPage, handleTagSelect }) => {
@@ -34,8 +34,8 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog, isAuthorPage, handleTagSelect
         history.push(`/blog/${slug}`);
       };
 
-    const getTags = (tags: any) => {
-        return tags.map((tag: any) => (
+    const getTags = (tags: string[]) => {
+        return tags.map((tag: string) => (
         <button
             key={tag}
             onClick={() => handleTagSelect(tag)}
