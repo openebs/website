@@ -1,0 +1,12 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  grid-auto-rows: auto;
+  gap: 1.5rem;
+}
+
+.wrapper p:last-of-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

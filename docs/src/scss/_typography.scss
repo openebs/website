@@ -34,6 +34,10 @@ li {
   color: $paragraph-color;
 }
 
+.prism-code * {
+  color: inherit;
+}
+
 a {
   font-size: 14px;
 }
@@ -87,7 +91,7 @@ tbody {
     }
   }
   .markdown p a + a {
-    margin-left: .6rem;
+    margin-left: 0.6rem;
   }
 }
 

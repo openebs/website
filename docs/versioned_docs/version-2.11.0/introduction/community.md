@@ -1,5 +1,5 @@
 ---
-id: support
+id: community
 title: OpenEBS Community
 ---
 
@@ -31,4 +31,4 @@ Join our weekly or monthly [community meetings](https://github.com/openebs/opene
 
 ## See Also:
 
-[Commercial Support](/docs/next/commercial.html) [Troubleshooting](/docs/next/troubleshooting.html) [FAQs](/docs/next/faq.html) [Latest release notes](/docs/next/releases.html)
+[Commercial Support](/docs/introduction/commercial) [Troubleshooting](/docs/next/troubleshooting.html) [FAQs](/docs/next/faq.html) [Latest release notes](/docs/introduction/releases)

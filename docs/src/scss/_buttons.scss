@@ -55,7 +55,7 @@ fieldset:disabled a.doc-button {
     background-color: $primary-button-hover-color;
     border-color: $primary-button-hover-color;
     animation: pulse 1s;
-    box-shadow: 0 0 0 16px rgba(255,255,255,0),
+    box-shadow: 0 0 0 16px rgba(255, 255, 255, 0);
   }
 
   &:focus,
@@ -77,10 +77,9 @@ fieldset:disabled a.doc-button {
 
   &.doc-button-lg {
     &:hover {
-      box-shadow: 0 0 0 22px rgba(255,255,255,0),
+      box-shadow: 0 0 0 22px rgba(255, 255, 255, 0);
     }
   }
-
 }
 
 .doc-button-outlined {
@@ -148,8 +147,22 @@ fieldset:disabled a.doc-button {
     padding: $input-btn-padding-y-sm 0.5rem;
   }
 }
-@keyframes pulse{
-  0%{ 
-      box-shadow: 0 0 0 0 $primary-button-color
+
+@media (max-width: 540px) {
+  .doc-button-lg {
+    padding: $input-btn-padding-y-lg 1rem;
+    width: 100%;
+  }
+  .pagination-nav__item {
+    margin-right: 16px;
+  }
+  .pagination-nav__item:last-of-type {
+    margin-right: 0px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 $primary-button-color;
   }
 }
