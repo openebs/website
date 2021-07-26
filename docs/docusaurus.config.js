@@ -3,6 +3,10 @@
 const WEBSITE_URL = `https://gallant-pasteur-5e438c.netlify.app`;
 const path = require('path');
 
+const prismCustomColors =  {
+  plain: { color: '#ffffff', backgroundColor: '#3B4473' }
+}
+
 module.exports = {
   title: "OpenEBS Docs",
   tagline: "OpenEBS Docs: Information regarding the latest releases",
@@ -37,7 +41,7 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} The OpenEBS Authors | All rights reserved`,
     },
     prism: {
-      theme: Object.assign(require('prism-react-renderer/themes/github'), { plain: { color: '#ffffff', backgroundColor: '#3B4473' }})
+      theme: Object.assign(require('prism-react-renderer/themes/github'), prismCustomColors)
     }
   },
   onBrokenLinks: 'log',
