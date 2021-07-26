@@ -44,7 +44,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog, isAuthorPage, handleTagSelect
             className={classes.media}
             onClick={() => handleRedirectPath(blog.slug)}
             >
-            <BlogImage imgPath={`/images/blog/${blog.slug}.png`} alt={blog.title} />
+                <BlogImage imgPath={`/images/blog/${blog.slug}.png`} alt={blog.title} />
             </CardMedia>
             <CardContent classes={{root: classes.cardRoot}}>
             <DisplayAuthorandReadTime
@@ -65,24 +65,24 @@ const BlogCard: React.FC<BlogCardProps> = ({ blog, isAuthorPage, handleTagSelect
             </span>
             </CardContent>
             <CardActions className={classes.actionWrapper} classes={{root: classes.cardRoot}}>
-            <span className={classes.tabWrapper}>
-                {getTags(blog.tags)}
-            </span>
-            <Button
-                size="large"
-                disableRipple
-                variant="text"
-                className={classes.cardActionButton}
-                onClick={() => handleRedirectPath(blog.slug)}
-            >
-                {t("blog.read")}
-                <img
-                loading="lazy"
-                src="/images/svg/arrow_orange.svg"
-                alt={t("header.submitAlt")}
-                className={classes.arrow}
-                />
-            </Button>
+                <span className={classes.tabWrapper}>
+                    {getTags(blog.tags)}
+                </span>
+                <Button
+                    size="large"
+                    disableRipple
+                    variant="text"
+                    className={classes.cardActionButton}
+                    onClick={() => handleRedirectPath(blog.slug)}
+                >
+                    {t("blog.read")}
+                    <img
+                    loading="lazy"
+                    src="/images/svg/arrow_orange.svg"
+                    alt={t("header.submitAlt")}
+                    className={classes.arrow}
+                    />
+                </Button>
             </CardActions>
         </Card>
     </>

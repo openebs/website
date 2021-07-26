@@ -178,13 +178,13 @@ const Blog: React.FC = () => {
                   },
                 }}
                 orientation="horizontal"
-              >
-                <StyledTab
-                  label={`${t('blog.all')} (${totalBlogCount})`}
-                  value={BLOG_TAGS.ALL}
-                />
-                {tagsMarkup}
-              </Tabs>
+                >
+                  <StyledTab
+                    label={`${t('blog.all')} (${totalBlogCount})`}
+                    value={BLOG_TAGS.ALL}
+                  />
+                  {tagsMarkup}
+                </Tabs>
               :
               <Grid container className={classes.mobileTabsWrapper}>
                   <Grid item xs={6}>
@@ -216,6 +216,7 @@ const Blog: React.FC = () => {
                           key={elm.id}
                           className={classes.cardSize}
                         >
+                          {/* Passing parameters isAuthorPage(boolean value to determine if BlogCard is called in author page or blog index page), blog(passing complete blog object), and handleTagSelect(this fuction handles the action when tag button is clicked)  */}
                           <BlogCard isAuthorPage={false} blog={elm} handleTagSelect={handleTagSelect}></BlogCard>
                         </Grid>
                       );

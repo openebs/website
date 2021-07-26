@@ -14,7 +14,7 @@ const Sponsor: React.FC = () => {
     <div className={classes.root}>
       <Grid container justify="space-evenly" alignItems="center">
         <Grid item xs={12} md={4}>
-        <LazyLoadImage effect="blur"
+          <LazyLoadImage effect="blur"
             src="/images/png/sponsor_mule.png"
             alt={t("generic.sponsorMule")}
             className={classes.sponsorCompany}
