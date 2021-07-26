@@ -294,13 +294,13 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     installationButton: {
-        background: theme.palette.background.paper,
+        background: `${theme.palette.background.paper} !important`,
         boxShadow: '0px 4px 34px 12px #B3D8E5',
-        borderRadius: '8px',
-        width: '184px',
+        borderRadius: '8px !important',
+        width: '184px !important',
         marginBottom: theme.spacing(3),
         '&:hover':{
-            background: theme.palette.info.light,
+            background:  `${theme.palette.info.light} !important`,
             color: theme.palette.background.paper,
             boxShadow: 'inherit'
         },
@@ -311,7 +311,7 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     installationButtonActive: {
-        background: theme.palette.info.light,
+        background: `${theme.palette.info.light} !important`,
         color: theme.palette.background.paper
     },
     installationButtonsWrapper: {
