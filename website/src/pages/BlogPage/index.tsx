@@ -33,7 +33,6 @@ const BlogPage: React.FC = () => {
   const handleRedirectPath = (slug: string) => { 
     history.push(`/blog/${slug}`);
   };
-
   
   useEffect(() => {
     const getBlogsData= async ()=>{
@@ -66,7 +65,7 @@ const BlogPage: React.FC = () => {
           return (recommendedBlogs.indexOf(item) === index);
         })
         if(recommendedBlogs?.length<minimumRecommededBlogs){
-          const getRandomBlogs = (arr: { title: string; author: string; excerpt: string, author_info: string; date: string; tags: Array<string>; content: string; id: number; slug: string; }[],count: number) => {
+          const getRandomBlogs = (arr: { title: string; author: string; excerpt: string; author_info: string; date: string; tags: Array<string>; content: string; id: number; slug: string; }[],count: number) => {
             let _arr = [...arr];
             return[...Array(count)].map( ()=> _arr.splice(Math.floor(Math.random() * _arr.length), 1)[0] ); 
           }

@@ -22,16 +22,37 @@ import { Pagination } from "@material-ui/lab";
 import BlogCard from "../../../components/BlogCard";
 import ErrorPage from "../../ErrorPage";
 
+interface blog { 
+  title: string;
+  author: string;
+  excerpt: string;
+  author_info: string;
+  date: string;
+  tags: Array<string>;
+  content: string;
+  id: number;
+  slug: string; 
+}
+
 const Blog: React.FC = () => {
   const { t } = useTranslation();
   const classes = useStyles();
-  const [jsonMdData, setJsonMdData] = useState<any>("");
+  const [jsonMdData, setJsonMdData] = useState<blog[]>([
+    { title: "",
+      author: "",
+      excerpt: "",
+      author_info: "",
+      date: "",
+      tags: [""],
+      content: "",
+      id: 0,
+      slug: "" }
+  ]);
   const authorName = useAuthorName();
   const itemsPerPage = 6;
   const [page, setPage] = React.useState<number>(1);
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
-  
 
   const fetchBlogs = async () => {
     const { default: blogs } = await import(`../../../posts.json`);
@@ -40,22 +61,22 @@ const Blog: React.FC = () => {
 
   useEffect(() => {
     fetchBlogs();
-  });
+  },[]);
 
   const filteredAuthorData = (jsonMdData || []).filter(
-    (blog: any) => blog.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName
+    (blog: blog) => blog.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName
   );
 
   const pagination = () => {
     return (
       <Pagination
-      count={
-       pageCount(filteredAuthorData)
-      }
-      page={page}
-      onChange={(_event, val) => val? setPage(val) : setPage(1)}
-      className={classes.pagination}
-    />
+        count={
+        pageCount(filteredAuthorData)
+        }
+        page={page}
+        onChange={(_event, val) => val? setPage(val) : setPage(1)}
+        className={classes.pagination}
+      />
     );
   };
 
@@ -78,7 +99,7 @@ const Blog: React.FC = () => {
               <div className={classes.authorWrapper}>
                 <Avatar
                   alt={filteredAuthorData[0]?.author}
-                  src={`/images/blog/authors/${getAvatar(filteredAuthorData[0]?.author || authorName)}.png`}
+                  src={`/images/blog/authors/${getAvatar(filteredAuthorData[0]?.author)}.png`}
                   className={classes.large}
                 />
                 <h1 className={classes.authorText}>{filteredAuthorData[0]?.author || authorName}</h1>

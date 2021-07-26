@@ -11,10 +11,19 @@ import CustomTag from "../CustomTag";
 
 interface BlogCardProps {
     isAuthorPage: boolean;
-    blog: { title: string; author: string; excerpt: string, author_info: string; date: string; tags: Array<string>; content: string; id: number; slug: string; }
+    blog: { 
+            title: string;
+            author: string;
+            excerpt: string;
+            author_info: string;
+            date: string;
+            tags: Array<string>;
+            content: string;
+            id: number;
+            slug: string; 
+        }
     handleTagSelect: any;
 }
-
 
 const BlogCard: React.FC<BlogCardProps> = ({ blog, isAuthorPage, handleTagSelect }) => {
     const { t } = useTranslation();
