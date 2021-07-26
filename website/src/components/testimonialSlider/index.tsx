@@ -3,7 +3,7 @@ import { Typography } from "@material-ui/core";
 import GithubAvatar from "../GithubAvatar";
 import Carousel from "../Carousel";
 import useStyles from "./styles";
-import { Testimonials } from "./interface";
+import { Testimonials, Testimonial } from "./interface";
 
 const TestimonialSlider: React.FC<Testimonials> = ({ testimonials }) => {
   const classes = useStyles();
@@ -33,7 +33,7 @@ const TestimonialSlider: React.FC<Testimonials> = ({ testimonials }) => {
   return (
     <Carousel settings={testimonialSliderSettings}>
       {testimonials &&
-        testimonials.map((testimonial: any) => {
+        testimonials.map((testimonial: Testimonial) => {
           return (
             <div key={testimonial.organizationName}>
               <div className={classes.testimonialWrapper}>
