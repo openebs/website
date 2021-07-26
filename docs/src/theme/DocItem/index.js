@@ -28,6 +28,7 @@ function DocItem(props) {
   const breakpoints = siteConfig?.customFields?.breakpoints;
   const { content: DocContent } = props;
   const { metadata, frontMatter } = DocContent;
+  const { url } = siteConfig;
   const {
     image,
     keywords,
@@ -62,6 +63,7 @@ function DocItem(props) {
           description,
           keywords,
           image,
+          siteUrl: url,
         }}
       />
 

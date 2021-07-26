@@ -10,7 +10,7 @@ const prismCustomColors =  {
 module.exports = {
   title: "OpenEBS Docs",
   tagline: "OpenEBS Docs: Information regarding the latest releases",
-  url: `${WEBSITE_URL}/`,
+  url: `${WEBSITE_URL}`,
   baseUrl: "/docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
