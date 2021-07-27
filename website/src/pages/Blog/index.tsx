@@ -119,9 +119,14 @@ const Blog: React.FC = () => {
     (tabs: TabProps) => tabs
   ).length;
 
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  }
+
   const handleTagSelect = (tag: string) => {
     setValue(tag);
     setPage(1);
+    scrollToTop();
   };
 
   const getTags = (tags: any) => {
@@ -153,6 +158,11 @@ const Blog: React.FC = () => {
     }
   }, [jsonMdData]);
 
+  const changePage = (val:number = 1) => {
+    setPage(val);
+    scrollToTop();
+  }
+
   const pagination = () => {
     return (
       <Pagination
@@ -160,7 +170,7 @@ const Blog: React.FC = () => {
        pageCount(filteredAuthorData) : pageCount(filteredData)
       }
       page={page}
-      onChange={(_event, val) => val? setPage(val) : setPage(1)}
+      onChange={(_event, val) => changePage(val)}
       className={classes.pagination}
     />
     );
