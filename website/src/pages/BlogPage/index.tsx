@@ -15,7 +15,6 @@ import BlogImage from '../../components/BlogImage';
 import { useHistory } from "react-router-dom";
 import { useCurrentHost } from "../../hooks/useCurrentHost";
 import { Metadata } from "../../components/Metadata";
-import { isImageExist } from "../../utils/isImageExist";
 import ErrorPage from "../ErrorPage";
 
 const BlogPage: React.FC = () => {
@@ -128,7 +127,7 @@ const BlogPage: React.FC = () => {
         title={currentBlogDetails?.title} 
         description={currentBlogDetails?.excerpt} 
         url={currentLocation} 
-        image={isImageExist(`${currentOrigin}/images${currentPathname}.png`) ? `${currentOrigin}/images${currentPathname}.png` :  `${currentOrigin}/images/blog/defaultImage.png`} 
+        image={`${currentOrigin}/images${currentPathname}.png`} 
         isPost={true}
         author={{ name: currentBlogDetails?.author, image: `${currentOrigin}/images/blog/authors/${currentBlogDetails?.author
         .toLowerCase().replace(/[^\w ]+/g,'')
