@@ -14,7 +14,6 @@ import Sponsor from "../../../components/Sponsor";
 import { getAvatar } from "../../../utils/getAvatar";
 import { useViewport } from "../../../hooks/viewportWidth";
 import { pageCount } from "../../../utils/getPageCount";
-import SeoJson from "../../../resources/seo.json";
 import { useCurrentHost } from "../../../hooks/useCurrentHost";
 import { Metadata } from "../../../components/Metadata";
 import { useAuthorName } from "../../../hooks/extractBlogPath";
@@ -34,10 +33,18 @@ interface blog {
   slug: string; 
 }
 
+interface AuthorMetadata {
+  author: string;
+  author_info: string;
+  image: string;
+  url: string;
+}
+
 const Blog: React.FC = () => {
   const { t } = useTranslation();
   const classes = useStyles();
   const { currentOrigin } = useCurrentHost();
+  const [ authorMetadata, setAuthorMetadata ] = useState<AuthorMetadata | null>(null);
   const [jsonMdData, setJsonMdData] = useState<blog[]>([
     { title: "",
       author: "",
@@ -81,9 +88,19 @@ const Blog: React.FC = () => {
     );
   };
 
+  useEffect(() => {
+    const fiteredAuthorData = filteredAuthorData.find(res => res.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName);
+    const { author, author_info } = fiteredAuthorData!;
+    const image = `${currentOrigin}/images/blog/authors/${getAvatar(filteredAuthorData[0]?.author)}.png`;
+    const url = `${currentOrigin}/blog/author/${authorName}`;
+    setAuthorMetadata({ author, author_info, image, url });
+  }, [filteredAuthorData]);
+
   return (
     <>
-     <Metadata title={SeoJson.pages.blog.title} description={SeoJson.pages.blog.description} url={`${currentOrigin}${SeoJson.pages.blog.url}`} image={`${currentOrigin}${SeoJson.pages.blog.image}`} isPost={false} type="Series"  />
+     { authorMetadata && (
+       <Metadata title={authorMetadata?.author} description={authorMetadata?.author_info} url={authorMetadata?.url} image={authorMetadata?.image} isPost={false} type="Series"  />
+       )}
         <>
           <div className={classes.root}>
             <Container maxWidth="md">
