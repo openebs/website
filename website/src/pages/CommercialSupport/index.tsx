@@ -19,12 +19,13 @@ import Sponsor from "../../components/Sponsor";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import SeoJson from "../../resources/seo.json";
-import { currentOrigin } from "../../utils/currentHost";
+import { useCurrentHost } from "../../hooks/useCurrentHost";
 import { Metadata } from "../../components/Metadata";
 
 const Support: React.FC = () => {
   const { t } = useTranslation();
   const classes = useStyles();
+  const { currentOrigin } = useCurrentHost();
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
 
