@@ -59,6 +59,7 @@
   --color-light-blue: #{$blue-300};
   --color-lighter-blue: #{$blue-800};
   --color-tealish-blue: #{$blue-400};
+  --ifm-code-background: #{$ifm-code-background};
 }
 
 .markdown {
@@ -119,6 +120,11 @@
     a {
       color: inherit;
     }
+  }
+  code {
+    border-radius: 4px;
+    border: none;
+    color: inherit;
   }
 }
 
