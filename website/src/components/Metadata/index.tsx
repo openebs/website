@@ -4,7 +4,7 @@ import { useCurrentHost } from "../../hooks/useCurrentHost";
 import { articleSchema } from "./articleSchema";
 import { websiteSchema } from "./websiteSchema";
 import { Author } from "./metadata.models";
-import { isImageExist } from "../../utils/isImageExist";
+import { doesImageExist } from "../../utils/doesImageExist";
 interface MetadataProps {
     title: string;
     description: string;
@@ -41,7 +41,7 @@ export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isP
 
     const jsonLd = isPost ? articleSchema({ title, description, url, image: imageObj, author, tags, site }) : websiteSchema({ title, description, url, image: imageObj, type, site });
 
-    if(!isImageExist(image)) {
+    if(!doesImageExist(image)) {
      image = `${currentOrigin}/images/blog/defaultImage.png`;   
     }
     
