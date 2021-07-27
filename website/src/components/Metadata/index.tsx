@@ -4,6 +4,7 @@ import { useCurrentHost } from "../../hooks/useCurrentHost";
 import { articleSchema } from "./articleSchema";
 import { websiteSchema } from "./websiteSchema";
 import { Author } from "./metadata.models";
+import { isImageExist } from "../../utils/isImageExist";
 interface MetadataProps {
     title: string;
     description: string;
@@ -16,7 +17,7 @@ interface MetadataProps {
 }
 
 export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isPost, image, tags, author, type }) => {
-    const {currentOrigin } = useCurrentHost();
+    const { currentOrigin } = useCurrentHost();
     const site = {
         logo: `${currentOrigin}/images/png/logo.png`,
         siteUrl: `${currentOrigin}`
@@ -40,6 +41,10 @@ export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isP
 
     const jsonLd = isPost ? articleSchema({ title, description, url, image: imageObj, author, tags, site }) : websiteSchema({ title, description, url, image: imageObj, type, site });
 
+    if(!isImageExist(image)) {
+     image = `${currentOrigin}/images/blog/defaultImage.png`;   
+    }
+    
     return (
         <Helmet>
             <title>{title || defaultConfig.title}</title>
@@ -52,7 +57,7 @@ export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isP
             <meta property="og:site_name" content={currentOrigin} />
             <meta property="og:url" content={url || defaultConfig.url} />
             <meta property="og:description" content={description || defaultConfig.description} />
-            <meta property="og:image" content={image || defaultConfig.image} />
+            <meta property="og:image" content={image} />
             <meta property="og:image:width" content={defaultConfig.shareImageWidth} />
             <meta property="og:image:height" content={defaultConfig.shareImageHeight} />
             {/** Twitter */}
@@ -61,7 +66,7 @@ export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isP
             <meta name="twitter:site" content="https://twitter.com/openebs" />
             <meta name="twitter:title" content={title || defaultConfig.title} />
             <meta name="twitter:description" content={description || defaultConfig.description} />
-            <meta name="twitter:image" content={image || defaultConfig.image} />
+            <meta name="twitter:image" content={image} />
             {isPost && tags && tags.map((keyword, i) => (
                 <meta property="article:tag" content={keyword} key={i} />
             ))}
