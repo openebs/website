@@ -303,25 +303,29 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     installationButton: {
-        background: theme.palette.background.paper,
-        boxShadow: '0px 4px 34px 12px #B3D8E5',
-        borderRadius: '8px',
-        width: '184px',
-        marginBottom: theme.spacing(3),
-        '&:hover':{
+        '&.MuiButton-contained': {
+            background: theme.palette.background.paper,
+            boxShadow: '0px 4px 34px 12px #B3D8E5',
+            borderRadius: '8px',
+            width: '184px',
+            marginBottom: theme.spacing(3),
+            '&:hover':{
             background:  theme.palette.info.light,
             color: theme.palette.background.paper,
             boxShadow: 'inherit'
-        },
-        [theme.breakpoints.down('xs')]: {
+            },
+            [theme.breakpoints.down('xs')]: {
             fontSize: '0.875rem',
             width: '136px',
             padding: theme.spacing(1)
-        },
+            },
+        }
     },
     installationButtonActive: {
+        '&.MuiButton-contained': {
         background: theme.palette.info.light,
         color: theme.palette.background.paper,
+        }
     },
     installationButtonsWrapper: {
         display: 'flex',
