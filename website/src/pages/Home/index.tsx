@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './styles';
@@ -33,12 +33,9 @@ const Home: React.FC = () => {
         status: 'Copy to clipboard'
     });
     const [adopterTestimonials, setAdopterTestimonials] = useState<Testimonial[]>([]);
-    // We know that adopterTestimonials won't change it's signature overtime so
-    // it's safe to tell React that. By wrapping the original helper inside an useCallback.
-    const adopterSetter = useCallback(() => setAdopterTestimonials([]), []);
     useEffect(()=>{
         setAdopterTestimonials(adopters);
-    }, [adopterSetter]);
+    }, []);// eslint-disable-line react-hooks/exhaustive-deps
     const handleTabChange = (_event: React.ChangeEvent<{}>, newTabValue: number) => {
         setTabValue(newTabValue);
     };
