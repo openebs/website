@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
 import useStyles from "./style";
-import useQuery from "../../hooks/useQuery";
+import { useBlogName } from "../../hooks/extractBlogPath";
 import { Avatar, Grid, Typography, Link, Button, Breadcrumbs } from "@material-ui/core";
 import Footer from "../../components/Footer";
 import ReactMarkdown from "react-markdown";
@@ -26,14 +26,13 @@ const BlogPage: React.FC = () => {
   const [currentBlogDetails, setCurrentBlogDetails] = useState<any>({});
   const [recommendedBlogs, setRecommendedBlogs] = useState<any[]>([]);
 
-  const queryBlogName = useQuery();
+  const queryBlogName = useBlogName();
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
   
   const handleRedirectPath = (slug: string) => { 
     history.push(`/blog/${slug}`);
   };
-
   
   useEffect(() => {
     const getBlogsData= async ()=>{
@@ -66,7 +65,7 @@ const BlogPage: React.FC = () => {
           return (recommendedBlogs.indexOf(item) === index);
         })
         if(recommendedBlogs?.length<minimumRecommededBlogs){
-          const getRandomBlogs = (arr: { title: string; author: string; excerpt: string, author_info: string; date: string; tags: Array<string>; content: string; id: number; slug: string; }[],count: number) => {
+          const getRandomBlogs = (arr: { title: string; author: string; excerpt: string; author_info: string; date: string; tags: Array<string>; content: string; id: number; slug: string; }[],count: number) => {
             let _arr = [...arr];
             return[...Array(count)].map( ()=> _arr.splice(Math.floor(Math.random() * _arr.length), 1)[0] ); 
           }
@@ -150,47 +149,44 @@ const BlogPage: React.FC = () => {
                     {t('blog.blog')}
                   </Link>
                   <Link color="inherit" href={`/blog/${currentBlogDetails?.slug}`}>
-                      {currentBlogDetails?.title}
+                    {currentBlogDetails?.title}
                   </Link>
                 </Breadcrumbs>
               }
             <ReactMarkdown children={currentBlogDetails?.title} className={classes.blogTitle} />
               <div>
-              <div className={classes.container}>
-                  
-                    <div className={classes.author}>
-                      <div className={classes.authorImgWrapper}>
-                          <Avatar 
-                            className={classes.authorImg} 
-                            alt={currentBlogDetails?.author} 
-                            src={`../images/blog/authors/${currentBlogDetails?.author
-                              .toLowerCase().replace(/[^\w ]+/g,'')
-                              .replace(/ +/g,'-')}.png`}
-                          />
-                      </div>
-                      <div className={classes.date}>
-                        <ReactMarkdown children={currentBlogDetails?.author} className={classes.authorName} />
-                        <div className={classes.dateAndTimeWrapper}><ReactMarkdown children={currentBlogDetails?.date} />  / {readingTime(currentBlogDetails?.content)} {t('blog.minToRead')}</div>
-                      </div>
+                <div className={classes.container}> 
+                  <div className={classes.author}>
+                    <div className={classes.authorImgWrapper}>
+                        <Avatar 
+                          className={classes.authorImg} 
+                          alt={currentBlogDetails?.author} 
+                          src={`../images/blog/authors/${currentBlogDetails?.author
+                            .toLowerCase().replace(/[^\w ]+/g,'')
+                            .replace(/ +/g,'-')}.png`}
+                        />
                     </div>
-                  
-                  
-                    <div className={classes.shareWrapper}>
-                      <Typography className={classes.share}>{t('blog.share')}</Typography>
-                      <div className={classes.socialIconsWrapper}>
-                          {socialLinks.map(({ label, imgURL }) => {
-                              return (   
-                                (label === SOCIAL_PLATFORMS.SLACK) ? 
-                                  <SlackShareIcon key={label} />
-                                  :
-                                  <Link className={classes.socialIconButton} key={label} onClick={(() => handleSocialSharing(label))}>
-                                      <img loading="lazy" src={imgURL} alt={label}/>
-                                  </Link>
-                              );
-                          })}
-                      </div> 
+                    <div className={classes.date}>
+                      <ReactMarkdown children={currentBlogDetails?.author} className={classes.authorName} />
+                      <div className={classes.dateAndTimeWrapper}><ReactMarkdown children={currentBlogDetails?.date} />  / {readingTime(currentBlogDetails?.content)} {t('blog.minToRead')}</div>
+                    </div>
+                  </div>
+                  <div className={classes.shareWrapper}>
+                    <Typography className={classes.share}>{t('blog.share')}</Typography>
+                    <div className={classes.socialIconsWrapper}>
+                        {socialLinks.map(({ label, imgURL }) => {
+                            return (   
+                              (label === SOCIAL_PLATFORMS.SLACK) ? 
+                                <SlackShareIcon key={label} />
+                                :
+                                <Link className={classes.socialIconButton} key={label} onClick={(() => handleSocialSharing(label))}>
+                                    <img loading="lazy" src={imgURL} alt={label}/>
+                                </Link>
+                            );
+                        })}
                     </div> 
-              </div>
+                  </div> 
+                </div>
               </div>
             </div>
 
@@ -204,75 +200,71 @@ const BlogPage: React.FC = () => {
           " "
         )}
         {currentBlogDetails ? 
-        <>
-        <hr className={classes.divider}/>
-        <div className={classes.footerDivWrapper}>
-            <div>
-              <Typography className={classes.footerText}>{t('blog.greetings')} </Typography>
+          <>
+            <hr className={classes.divider}/>
+            <div className={classes.footerDivWrapper}>
+                <div>
+                  <Typography className={classes.footerText}>{t('blog.greetings')} </Typography>
+                </div>
+                <div className={classes.shareWrapper}>
+                  <Typography className={classes.share}>{t('blog.share')}</Typography>
+                  <div className={classes.socialIconsWrapper}>
+                      {socialLinks.map(({ label, imgURL }) => {
+                          return (   
+                            (label === SOCIAL_PLATFORMS.SLACK) ? 
+                              <SlackShareIcon key={label} />
+                              :
+                              <Link className={classes.socialIconButton} key={label} onClick={(() => handleSocialSharing(label))}>
+                                  <img loading="lazy" src={imgURL} alt={label}/>
+                              </Link>
+                          );
+                      })}
+                  </div> 
+                </div>
             </div>
-            <div className={classes.shareWrapper}>
-              <Typography className={classes.share}>{t('blog.share')}</Typography>
-              <div className={classes.socialIconsWrapper}>
-                  {socialLinks.map(({ label, imgURL }) => {
-                      return (   
-                        (label === SOCIAL_PLATFORMS.SLACK) ? 
-                          <SlackShareIcon key={label} />
-                          :
-                          <Link className={classes.socialIconButton} key={label} onClick={(() => handleSocialSharing(label))}>
-                              <img loading="lazy" src={imgURL} alt={label}/>
-                          </Link>
-                      );
-                  })}
-              </div> 
-            </div>
-        </div>
-        </> : 
-        <ErrorPage  blogStatus={true} />
-    }
-
-
-
+          </> : 
+          <ErrorPage  blogStatus={true} />
+        }
         <div className={classes.footerDivWrapper}>
           {previousBlog &&
-              <div>
-                {width < mobileBreakpoint ?
+            <div>
+              {width < mobileBreakpoint ?
                 <Button
                   className={classes.arrowButton}
                   endIcon={<img loading="lazy" src="../images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
                   onClick={() => handleRedirectPath(previousBlog.slug)}
                   disableFocusRipple={true}
                   disableRipple={true}
-              >
-                {t('blog.previousArticle')}
-              </Button>
+                >
+                  {t('blog.previousArticle')}
+                </Button>
               : 
-              <Button
-                  className={classes.arrowButton}
-                  startIcon={<img loading="lazy" src="../images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
-                  onClick={() => handleRedirectPath(previousBlog.slug)}
-                  disableFocusRipple={true}
-                  disableRipple={true}
-              >
-                {t('blog.previousArticle')}
-              </Button>
+                <Button
+                    className={classes.arrowButton}
+                    startIcon={<img loading="lazy" src="../images/svg/left_arrow.svg" alt={t('home.adaptorsTestimonials.previousArrowAlt')} />}
+                    onClick={() => handleRedirectPath(previousBlog.slug)}
+                    disableFocusRipple={true}
+                    disableRipple={true}
+                >
+                  {t('blog.previousArticle')}
+                </Button>
               }
-                
-                <Typography className={classes.blogLink} onClick={() => handleRedirectPath(previousBlog.slug)}>{previousBlog.title}</Typography>
+              <Typography className={classes.blogLink} onClick={() => handleRedirectPath(previousBlog.slug)}>{previousBlog.title}</Typography>
             </div>
           }
           {nextBlog && 
-              <div className={classes.rightArrowButtonWrapper}>
-                  <Button
-                    className={classes.arrowButton}
-                    endIcon={<img loading="lazy" src="../images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} />}
-                    onClick={() => handleRedirectPath(nextBlog.slug)}
-                    disableFocusRipple={true}
-                    disableRipple={true}
-                  >
-                    {t('blog.nextArticle')}
-                  </Button>
-                  <Typography className={classes.blogLink} onClick={() => handleRedirectPath(nextBlog.slug)}>{nextBlog.title}</Typography>
-              </div>
+            <div className={classes.rightArrowButtonWrapper}>
+              <Button
+                className={classes.arrowButton}
+                endIcon={<img loading="lazy" src="../images/svg/right_arrow.svg" alt={t('home.adaptorsTestimonials.nextArrowAlt')} />}
+                onClick={() => handleRedirectPath(nextBlog.slug)}
+                disableFocusRipple={true}
+                disableRipple={true}
+              >
+                {t('blog.nextArticle')}
+              </Button>
+              <Typography className={classes.blogLink} onClick={() => handleRedirectPath(nextBlog.slug)}>{nextBlog.title}</Typography>
+            </div>
           }
             
         </div>

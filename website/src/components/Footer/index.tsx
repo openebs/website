@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
     // const [disableContinueButton, setDisableContinueButton] = useState<boolean>(true);
 
     const openEBSLogo = (
-        <img loading="lazy" src="../images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')}></img>
+        <img loading="lazy" src="/images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')}/>
     );
 
     // useEffect(() => {
@@ -199,7 +199,7 @@ const Footer: React.FC = () => {
                             </div>
                             <div>
                                 <Link className={classes.contributeButton}>
-                                    <img loading="lazy" src="../images/logos/githubLogo.svg" className={classes.githubMobileIcon} alt={t('generic.github')}></img> 
+                                    <img loading="lazy" src="/images/logos/githubLogo.svg" className={classes.githubMobileIcon} alt={t('generic.github')}/>
                                     {t('footer.contribute')}
                                 </Link>
                             </div>

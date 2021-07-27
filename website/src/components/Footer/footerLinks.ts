@@ -42,31 +42,31 @@ export const socialLinks = [
     {
         label: "Facebook",
         href: EXTERNAL_LINKS.OPENEBS_FACEBOOK,
-        imgURL: "../images/logos/facebook_blue.svg"
+        imgURL: "/images/logos/facebook_blue.svg"
     },
     {
         label: "GitHub",
         href: EXTERNAL_LINKS.OPENEBS_GITHUB_REPO,
-        imgURL: "../images/logos/github_blue.svg"
+        imgURL: "/images/logos/github_blue.svg"
     },
     {
         label: "Slack",
         href: "/community",
-        imgURL: "../images/logos/slack_blue.svg"
+        imgURL: "/images/logos/slack_blue.svg"
     },
     {
         label: "LinkedIn",
         href: EXTERNAL_LINKS.OPENEBS_LINKEDIN,
-        imgURL: "../images/logos/linkedin_blue.svg"
+        imgURL: "/images/logos/linkedin_blue.svg"
     },
     {
         label: "Youtube",
         href: EXTERNAL_LINKS.OPENEBS_YOUTUBE,
-        imgURL: "../images/logos/youtube_blue.svg"
+        imgURL: "/images/logos/youtube_blue.svg"
     },
     {
         label: "Twitter",
         href: EXTERNAL_LINKS.OPENEBS_TWITTER,
-        imgURL: "../images/logos/twitter_blue.svg"
+        imgURL: "/images/logos/twitter_blue.svg"
     },
 ];

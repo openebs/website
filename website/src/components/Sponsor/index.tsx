@@ -14,8 +14,8 @@ const Sponsor: React.FC = () => {
     <div className={classes.root}>
       <Grid container justify="space-evenly" alignItems="center">
         <Grid item xs={12} md={4}>
-        <LazyLoadImage effect="blur"
-            src="../images/png/sponsor_mule.png"
+          <LazyLoadImage effect="blur"
+            src="/images/png/sponsor_mule.png"
             alt={t("generic.sponsorMule")}
             className={classes.sponsorCompany}
           />
@@ -26,7 +26,7 @@ const Sponsor: React.FC = () => {
               <Typography className={classes.paragraph}>{t("sponsors.mayadata")}</Typography>
               <Link href={EXTERNAL_LINKS.MAYADATA_WEBSITE} rel="noreferrer" target="_blank">
                 <img
-                  src="../images/logos/mayadata_logo.svg"
+                  src="/images/logos/mayadata_logo.svg"
                   alt={t("generic.mayadata")}
                   className={classes.sponsorCompany}
                 />
@@ -36,7 +36,7 @@ const Sponsor: React.FC = () => {
               <Typography className={classes.paragraph}>{t("sponsors.cncf")}</Typography>
               <Link href={EXTERNAL_LINKS.CNCF_WEBSITE} rel="noreferrer" target="_blank">
                 <img
-                  src="../images/logos/cncf_logo.svg"
+                  src="/images/logos/cncf_logo.svg"
                   alt={t("generic.cncf")}
                   className={classes.sponsorCompany}
                 />
