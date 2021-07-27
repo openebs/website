@@ -1,7 +1,7 @@
 ---
 title: Repeatable OpenEBS Mayastor deployments and benchmarks
-author: OPENEBS
-author_info: 
+author: OpenEBS
+author_info: OpenEBS is the most widely deployed and easy to use open source storage solution for Kubernetes
 tags: Mayastor,OpenEBS
 date: 22-03-2021
 excerpt: Learn about Repeatable OpenEBS Mayastor deployments and benchmarks
