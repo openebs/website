@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
   },
   testimonialTitle: {
     fontSize: "1.25rem",
-    fontWeight: "bold",
+    fontWeight: 700,
     color: theme.palette.text.secondary,
     marginTop: theme.spacing(2),
     wordBreak: "break-word",
