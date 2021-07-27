@@ -32,7 +32,7 @@ const Header: React.FC = () => {
     const displaySocialLinks = () => {
           return (
               <div className={classes.socialIconsWrapper}>
-                    <Link href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO}>
+                    <Link href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO} target="_blank" rel="noopener">
                         <img loading="lazy" src="/images/logos/githubLogo.svg" className={classes.socialIcon} alt={t('generic.github')}/>
                     </Link>
                     <Link href="/community">

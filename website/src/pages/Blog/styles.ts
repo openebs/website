@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '14px'
   },
   activeTabButton: {
-    color: theme.palette.text.hint
+    color: `${theme.palette.text.hint} !important`,
   },
   tagCount: {
     color: theme.palette.text.disabled,
