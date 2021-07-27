@@ -23,7 +23,7 @@ const Header: React.FC = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
     const openEBSLogo = (
-        <img loading="lazy" src="../images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')}></img>
+        <img loading="lazy" src="/images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')}/>
     );
 
     var currentPathName = useLocation().pathname;
@@ -32,11 +32,11 @@ const Header: React.FC = () => {
     const displaySocialLinks = () => {
           return (
               <div className={classes.socialIconsWrapper}>
-                    <Link href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO}>
-                        <img loading="lazy" src="../images/logos/githubLogo.svg" className={classes.socialIcon} alt={t('generic.github')}></img>
+                    <Link href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO} target="_blank" rel="noopener">
+                        <img loading="lazy" src="/images/logos/githubLogo.svg" className={classes.socialIcon} alt={t('generic.github')}/>
                     </Link>
                     <Link href="/community">
-                        <img loading="lazy" src="../images/logos/slackLogo.svg" className={classes.socialIcon} alt={t('generic.slack')}></img>
+                        <img loading="lazy" src="/images/logos/slackLogo.svg" className={classes.socialIcon} alt={t('generic.slack')}/>
                     </Link>
               </div>
           );
@@ -91,7 +91,7 @@ const Header: React.FC = () => {
                     <div className={classes.drawerPaper}>
                         <div className={classes.closeIcon}>
                             <IconButton aria-label="close drawer" onClick={() => handleDrawerClose()}>
-                                <img loading="lazy" src="../images/svg/x-circle.svg" alt={t('header.closeMenuAlt')}></img>
+                                <img loading="lazy" src="../images/svg/x-circle.svg" alt={t('header.closeMenuAlt')}/>
                             </IconButton>
                         </div>
                         <div className={classes.mobileNavWrapper}>

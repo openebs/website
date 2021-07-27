@@ -2,43 +2,27 @@ import React, { useEffect, useState } from "react";
 import useStyles from "./styles";
 import { useTranslation } from "react-i18next";
 import {
-  Avatar,
-  Breadcrumbs,
   Button,
-  Card,
-  CardActions,
-  CardContent,
-  CardMedia,
   Container,
   createStyles,
   Grid,
-  Link,
   Paper,
   Tab,
   Tabs,
   Theme,
-  Typography,
   useMediaQuery,
   withStyles,
 } from "@material-ui/core";
 import Footer from "../../components/Footer";
-import ReactMarkdown from "react-markdown";
 import { BLOG_TAGS, VIEW_PORT } from "../../constants";
 import Sponsor from "../../components/Sponsor";
 import Pagination from "@material-ui/lab/Pagination";
-import DisplayAuthorandReadTime from "../../components/DisplayAuthorandReadTime";
-import CustomTag from "../../components/CustomTag";
-import { getAvatar } from "../../utils/getAvatar";
-import { getContentPreview } from "../../utils/getContent";
-import { useViewport } from "../../hooks/viewportWidth";
 import { pageCount } from "../../utils/getPageCount";
-import { useHistory } from "react-router-dom";
-import BlogImage from "../../components/BlogImage";
 import { getTagsSorted } from "../../utils/sortTags";
 import SeoJson from "../../resources/seo.json";
 import { currentOrigin } from "../../utils/currentHost";
 import { Metadata } from "../../components/Metadata";
-import ErrorPage from "../ErrorPage";
+import BlogCard from "../../components/BlogCard";
 
 interface StyledTabProps {
   label: string;
@@ -69,9 +53,6 @@ const Blog: React.FC = () => {
   );
   const itemsPerPage = 6;
   const [page, setPage] = React.useState<number>(1);
-  const { width } = useViewport();
-  const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
-  const history = useHistory();
   const StyledTab = withStyles((theme: Theme) =>
     createStyles({
       root: {
@@ -96,10 +77,6 @@ const Blog: React.FC = () => {
   const fetchBlogs = async () => {
     const { default: blogs } = await import(`../../posts.json`);
     setJsonMdData(blogs);
-  };
-
-  const handleRedirectPath = (slug: string) => {
-    history.push(`/blog/${slug}`);
   };
 
   useEffect(() => {
@@ -127,18 +104,6 @@ const Blog: React.FC = () => {
     setValue(tag);
     setPage(1);
     scrollToTop();
-  };
-
-  const getTags = (tags: any) => {
-    return tags.map((tag: any) => (
-      <button
-        key={tag}
-        onClick={() => handleTagSelect(tag)}
-        className={classes.rightSpacing}
-      >
-        <CustomTag blogLabel={tag} key={tag} />
-      </button>
-    ));
   };
 
   const filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
@@ -205,7 +170,6 @@ const Blog: React.FC = () => {
   return (
     <>
      <Metadata title={SeoJson.pages.blog.title} description={SeoJson.pages.blog.description} url={`${currentOrigin}${SeoJson.pages.blog.url}`} image={`${currentOrigin}${SeoJson.pages.blog.image}`} isPost={false} type="Series"  />
-      {!queryAuthorName ? (
         <>
           <div className={classes.root}>
             <Container maxWidth="lg">
@@ -224,13 +188,13 @@ const Blog: React.FC = () => {
                   },
                 }}
                 orientation="horizontal"
-              >
-                <StyledTab
-                  label={`${t('blog.all')} (${totalBlogCount})`}
-                  value={BLOG_TAGS.ALL}
-                />
-                {tagsMarkup}
-              </Tabs>
+                >
+                  <StyledTab
+                    label={`${t('blog.all')} (${totalBlogCount})`}
+                    value={BLOG_TAGS.ALL}
+                  />
+                  {tagsMarkup}
+                </Tabs>
               :
               <Grid container className={classes.mobileTabsWrapper}>
                   <Grid item xs={6}>
@@ -262,55 +226,8 @@ const Blog: React.FC = () => {
                           key={elm.id}
                           className={classes.cardSize}
                         >
-                          <Card className={classes.card}>
-                            <CardMedia
-                              className={classes.media}
-                              onClick={() => handleRedirectPath(elm.slug)}
-                            >
-                              <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title} />
-                            </CardMedia>
-                            <CardContent classes={{root: classes.cardRoot}}>
-                              <DisplayAuthorandReadTime
-                                author={elm.author}
-                                readTime={elm.content}
-                              />
-                              <Typography
-                                component={"span"}
-                                variant={"body2"}
-                                className={classes.title}
-                                color="textPrimary"
-                                gutterBottom
-                                onClick={() => handleRedirectPath(elm.slug)}
-                              >
-                                <ReactMarkdown children={elm.title} />
-                              </Typography>
-                              <Typography component={"span"} variant={"body2"} className={classes.blogDescription}>
-                                <ReactMarkdown
-                                  children={getContentPreview(elm.excerpt)}
-                                />
-                              </Typography>
-                            </CardContent>
-                            <CardActions className={classes.actionWrapper} classes={{root: classes.cardRoot}}>
-                              <span className={classes.tabWrapper}>
-                                {getTags(elm.tags)}
-                              </span>
-                              <Button
-                                size="large"
-                                disableRipple
-                                variant="text"
-                                className={classes.cardActionButton}
-                                onClick={() => handleRedirectPath(elm.slug)}
-                              >
-                                {t("blog.read")}
-                                <img
-                                  loading="lazy"
-                                  src="../images/svg/arrow_orange.svg"
-                                  alt={t("header.submitAlt")}
-                                  className={classes.arrow}
-                                />
-                              </Button>
-                            </CardActions>
-                          </Card>
+                          {/* Passing parameters isAuthorPage(boolean value to determine if BlogCard is called in author page or blog index page), blog(passing complete blog object), and handleTagSelect(this fuction handles the action when tag button is clicked)  */}
+                          <BlogCard isAuthorPage={false} blog={elm} handleTagSelect={handleTagSelect}></BlogCard>
                         </Grid>
                       );
                     })
@@ -320,110 +237,6 @@ const Blog: React.FC = () => {
 
           </div>
         </>
-      ) : (
-        <>
-          <div className={classes.root}>
-            <Container maxWidth="md">
-              {(width > mobileBreakpoint) &&
-                <Breadcrumbs aria-label="breadcrumb" className={classes.breadCrumbs}>
-                  <Link color="inherit" href="/blog">
-                    {t('blog.blog')}
-                  </Link>
-                  <Link color="inherit" href={`/blog/?author=${queryAuthorName}`}>
-                      {queryAuthorName}
-                  </Link>
-                </Breadcrumbs>
-              }
-              <div className={classes.authorWrapper}>
-                <Avatar
-                  alt={queryAuthorName && queryAuthorName}
-                  src={`../images/blog/authors/${getAvatar(queryAuthorName)}.png`}
-                  className={classes.large}
-                />
-                <h1 className={classes.authorText}>{queryAuthorName}</h1>
-              </div>
-              <p className={classes.authorDesc}>
-                {filteredAuthorData[0] ? filteredAuthorData[0].author_info : ""}
-              </p>
-            </Container>
-          </div>
-          <div className={classes.sectionDiv}>
-          {filteredAuthorData.length ?
-            <>
-            <Grid
-              container
-              direction="row"
-              className={classes.blogsWrapper}
-            >
-              {filteredAuthorData
-                ? filteredAuthorData
-                    .slice((page - 1) * itemsPerPage, page * itemsPerPage)
-                    .map((elm: any) => {
-                      return (
-                        <Grid
-                          item
-                          xs={12}
-                          md={6}
-                          key={elm.id}
-                          className={classes.cardSize}
-                        >
-                          <Card className={classes.card}>
-                            <CardMedia
-                              className={classes.media}
-                              onClick={() => handleRedirectPath(elm.slug)}
-                            >
-                               <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title} />
-                            </CardMedia>
-                            <CardContent classes={{root: classes.cardRoot}}>
-                              <DisplayAuthorandReadTime
-                                author={elm.author}
-                                readTime={elm.content}
-                              />
-                              <span
-                                className={classes.title}
-                                color="textPrimary"
-                                onClick={() => handleRedirectPath(elm.slug)}
-                              >
-                                <ReactMarkdown children={elm.title} />
-                              </span>
-                              <span className={classes.blogDescription}>
-                                <ReactMarkdown
-                                  children={getContentPreview(elm.excerpt)}
-                                />
-                              </span>
-                            </CardContent>
-                            <CardActions className={classes.actionWrapper} classes={{root: classes.cardRoot}}>
-                              <span className={classes.tabWrapper}>
-                                {getTags(elm.tags)}
-                              </span>
-                              <Button
-                                size="large"
-                                disableRipple
-                                variant="text"
-                                className={classes.cardActionButton}
-                                onClick={() => handleRedirectPath(elm.slug)}
-                              >
-                                {t("blog.read")}
-                                <img
-                                  loading="lazy"
-                                  src="../images/svg/arrow_orange.svg"
-                                  alt={t("header.submitAlt")}
-                                  className={classes.arrow}
-                                />
-                              </Button>
-                            </CardActions>
-                          </Card>
-                        </Grid>
-                      );
-                    })
-                : " "}
-            </Grid>
-            {pagination()}
-            </>:
-            <ErrorPage blogStatus={true} />}
-          </div>
-        </>
-      )}
       <div className={classes.blogFooter}>
           {/* Sponsor section  */}
           <Sponsor />

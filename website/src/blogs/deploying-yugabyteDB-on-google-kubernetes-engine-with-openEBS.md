@@ -1,7 +1,7 @@
 ---
 title: Deploying YugabyteDB on Google Kubernetes Engine with OpenEBS
-author: OPENEBS
-author_info:
+author: OpenEBS
+author_info: OpenEBS is the most widely deployed and easy to use open source storage solution for Kubernetes
 tags: OpenEBS, Open Source, Yugabyte, Cloud Native Gke
 date: 05-04-2021
 excerpt: In this blog post, we’ll walk you through the necessary steps to get a 3 node YugabyteDB cluster running on top of GKE, backed by OpenEBS.

@@ -198,7 +198,7 @@ const MiniBlog: React.FC = () => {
       <Grid container justify="center">
         <Grid item sm={filteredData.length === 1 ? 5 : 10} xs={12} className={classes.sliderWrapper}>
           <Carousel settings={sliderSettings}>
-            {filteredData.slice(0, 9).map((elm: any) => {
+            {filteredData.slice(0, 10).map((elm: any) => {
               return (
                 <div className={classes.cardWrapper} key={elm.id}>
                   <Card key={elm.id} className={classes.cardRoot}>
