@@ -293,15 +293,6 @@ const useStyles = makeStyles((theme) => ({
             minWidth: '400px',
         },
     },
-    overrides: {
-        '.MuiButton-contained': {
-            background: theme.palette.background.paper,
-            width: '184px',
-        },
-        '.MuiButton-root': {
-            borderRadius: '8px',
-        }
-    },
     installationButton: {
         '&.MuiButton-contained': {
             background: theme.palette.background.paper,
