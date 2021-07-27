@@ -11,13 +11,14 @@ import events from "../../resources/events.json";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import SeoJson from "../../resources/seo.json";
-import { currentOrigin } from "../../utils/currentHost";
+import { useCurrentHost } from "../../hooks/useCurrentHost";
 import { Metadata } from "../../components/Metadata";
 
 const Community: React.FC = () => {
   const { t } = useTranslation();
   const classes = useStyles();
   const { width } = useViewport();
+  const { currentOrigin } = useCurrentHost();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
 
   const dependentProjects = [

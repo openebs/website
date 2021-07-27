@@ -20,7 +20,7 @@ import Pagination from "@material-ui/lab/Pagination";
 import { pageCount } from "../../utils/getPageCount";
 import { getTagsSorted } from "../../utils/sortTags";
 import SeoJson from "../../resources/seo.json";
-import { currentOrigin } from "../../utils/currentHost";
+import { useCurrentHost } from "../../hooks/useCurrentHost";
 import { Metadata } from "../../components/Metadata";
 import BlogCard from "../../components/BlogCard";
 
@@ -43,6 +43,7 @@ interface TabProps {
 const Blog: React.FC = () => {
   const { t } = useTranslation();
   const classes = useStyles();
+  const { currentOrigin } = useCurrentHost();
   const [jsonMdData, setJsonMdData] = useState<any>("");
   const [value, setValue] = React.useState("all");
   const [tagsDistribution, setTagsDistribution] = useState({});

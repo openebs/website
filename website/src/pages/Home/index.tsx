@@ -20,13 +20,14 @@ import { useViewport } from "../../hooks/viewportWidth";
 import { Workloads } from "./workloads";
 import { Metadata } from "../../components/Metadata";
 import SeoJson from "../../resources/seo.json";
-import { currentOrigin } from "../../utils/currentHost";
 import TestimonialSlider from '../../components/testimonialSlider';
 import { Testimonial } from "../../components//testimonialSlider/interface";
+import { useCurrentHost } from "../../hooks/useCurrentHost";
 
 const Home: React.FC = () => {
     const classes = useStyles();
     const { t } = useTranslation();
+    const { currentOrigin } = useCurrentHost();
     const [tabValue, setTabValue] = useState<number>(0);
     const [copyCommand, setCopyCommand] = useState({
         text: 'helm install openebs --namespace openebs openebs/openebs --create-namespace',

@@ -22,7 +22,7 @@ import Footer from "../../components/Footer";
 import FaqDetails from "./faqData";
 import Sponsor from "../../components/Sponsor";
 import SeoJson from "../../resources/seo.json";
-import { currentOrigin } from "../../utils/currentHost";
+import { useCurrentHost } from "../../hooks/useCurrentHost";
 import { Metadata } from "../../components/Metadata";
 
 interface FaqDataProps {
@@ -60,6 +60,7 @@ const Faq: React.FC<FaqDataProps> = () => {
 
   const { t } = useTranslation();
   const classes = useStyles();
+  const { currentOrigin } = useCurrentHost();
   const [value, setValue] = React.useState(0);
   const [expanded, setExpanded] = React.useState<number | false>(0);
   const mediumViewport = useMediaQuery("(min-width:600px)");

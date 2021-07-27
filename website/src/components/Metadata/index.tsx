@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { currentOrigin } from "../../utils/currentHost";
+import { useCurrentHost } from "../../hooks/useCurrentHost";
 import { articleSchema } from "./articleSchema";
 import { websiteSchema } from "./websiteSchema";
 import { Author } from "./metadata.models";
@@ -16,7 +16,7 @@ interface MetadataProps {
 }
 
 export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isPost, image, tags, author, type }) => {
-
+    const {currentOrigin } = useCurrentHost();
     const site = {
         logo: `${currentOrigin}/images/png/logo.png`,
         siteUrl: `${currentOrigin}`
