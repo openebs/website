@@ -128,7 +128,7 @@ const BlogPage: React.FC = () => {
         title={currentBlogDetails?.title} 
         description={currentBlogDetails?.excerpt} 
         url={currentLocation} 
-        image={ isImageExist(`${currentOrigin}/images${currentPathname}.png`) ? `${currentOrigin}/images${currentPathname}.png` :  `${currentOrigin}/images/blog/defaultImage.png`} 
+        image={isImageExist(`${currentOrigin}/images${currentPathname}.png`) ? `${currentOrigin}/images${currentPathname}.png` :  `${currentOrigin}/images/blog/defaultImage.png`} 
         isPost={true}
         author={{ name: currentBlogDetails?.author, image: `${currentOrigin}/images/blog/authors/${currentBlogDetails?.author
         .toLowerCase().replace(/[^\w ]+/g,'')

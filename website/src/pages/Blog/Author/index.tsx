@@ -15,7 +15,7 @@ import { getAvatar } from "../../../utils/getAvatar";
 import { useViewport } from "../../../hooks/viewportWidth";
 import { pageCount } from "../../../utils/getPageCount";
 import SeoJson from "../../../resources/seo.json";
-import { currentOrigin } from "../../../utils/currentHost";
+import { useCurrentHost } from "../../../hooks/useCurrentHost";
 import { Metadata } from "../../../components/Metadata";
 import { useAuthorName } from "../../../hooks/extractBlogPath";
 import { Pagination } from "@material-ui/lab";
@@ -37,6 +37,7 @@ interface blog {
 const Blog: React.FC = () => {
   const { t } = useTranslation();
   const classes = useStyles();
+  const { currentOrigin } = useCurrentHost();
   const [jsonMdData, setJsonMdData] = useState<blog[]>([
     { title: "",
       author: "",
