@@ -33,7 +33,7 @@ const Header: React.FC = () => {
           return (
               <div className={classes.socialIconsWrapper}>
                     <Link href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO} target="_blank" rel="noopener">
-                        <img loading="lazy" src="../images/logos/githubLogo.svg" className={classes.socialIcon} alt={t('generic.github')}></img>
+                        <img loading="lazy" src="/images/logos/githubLogo.svg" className={classes.socialIcon} alt={t('generic.github')}/>
                     </Link>
                     <Link href="/community">
                         <img loading="lazy" src="/images/logos/slackLogo.svg" className={classes.socialIcon} alt={t('generic.slack')}/>
