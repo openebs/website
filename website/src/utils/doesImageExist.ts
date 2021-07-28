@@ -1,5 +1,6 @@
 export const doesImageExist = (src: string) => {
-    const img = new Image();
-    img.src = src;
-    return img.width
+    var http = new XMLHttpRequest();
+    http.open('HEAD', src, false);
+    http.send();
+    return http.status !== 404;
 }
