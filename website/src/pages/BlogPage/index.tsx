@@ -122,12 +122,24 @@ const BlogPage: React.FC = () => {
     
   return (
     <>
-    {currentBlogDetails?.id && (
+    {currentBlogDetails?.id && Boolean(currentBlogDetails?.notHasFeatureImage) && (
       <Metadata 
         title={currentBlogDetails?.title} 
         description={currentBlogDetails?.excerpt} 
         url={currentLocation} 
-        image={!currentBlogDetails?.hasFeatureImage ? `${currentOrigin}/images${currentPathname}.png` : `${currentOrigin}/images/blog/defaultImage.png`} 
+        image={`${currentOrigin}/images/blog/defaultImage.png`} 
+        isPost={true}
+        author={{ name: currentBlogDetails?.author, image: `${currentOrigin}/images/blog/authors/${currentBlogDetails?.author
+        .toLowerCase().replace(/[^\w ]+/g,'')
+        .replace(/ +/g,'-')}.png` }}
+        tags={currentBlogDetails.tags}  />
+    )}
+    {currentBlogDetails?.id && !Boolean(currentBlogDetails?.hasFeatureImage) && (
+      <Metadata 
+        title={currentBlogDetails?.title} 
+        description={currentBlogDetails?.excerpt} 
+        url={currentLocation} 
+        image={`${currentOrigin}/images${currentPathname}.png`} 
         isPost={true}
         author={{ name: currentBlogDetails?.author, image: `${currentOrigin}/images/blog/authors/${currentBlogDetails?.author
         .toLowerCase().replace(/[^\w ]+/g,'')

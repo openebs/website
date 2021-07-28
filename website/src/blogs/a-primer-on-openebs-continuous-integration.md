@@ -5,7 +5,7 @@ author_info: Karthik has been into the Design and Development of tools for infra
 date: 02-04-2019
 tags: Chaos Engineering, Continuous Integration, E2e Kubernetes Litmus
 excerpt: The OpenEBS project consists of several components (control plane & data plane) that directly support the dynamic provisioning & management of a persistent storage volume on the Kubernetes cluster.
-has_feature_image: false
+not_has_feature_image: true
 ---
 
 **This article is part of a #Concepts series on Kubernetes and Litmus. Here, we present an overview of the OpenEBS CI infrastructure with its Litmus powered e2e pipelines.**
