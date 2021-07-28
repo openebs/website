@@ -119,7 +119,7 @@ const BlogPage: React.FC = () => {
         break;
     }
   };
-  
+    
   return (
     <>
     {currentBlogDetails?.id && (
@@ -127,7 +127,7 @@ const BlogPage: React.FC = () => {
         title={currentBlogDetails?.title} 
         description={currentBlogDetails?.excerpt} 
         url={currentLocation} 
-        image={`${currentOrigin}/images${currentPathname}.png`} 
+        image={!currentBlogDetails?.hasFeatureImage ? `${currentOrigin}/images${currentPathname}.png` : `${currentOrigin}/images/blog/defaultImage.png`} 
         isPost={true}
         author={{ name: currentBlogDetails?.author, image: `${currentOrigin}/images/blog/authors/${currentBlogDetails?.author
         .toLowerCase().replace(/[^\w ]+/g,'')

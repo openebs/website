@@ -63,7 +63,8 @@ const getPosts = () => {
                         date: metadata.date || 'No date available',
                         tags: metadata.tags.split(',').map(e => e.trim()) || 'No tags available',
                         excerpt: metadata.excerpt || '',
-                        content: content || 'No content available'
+                        content: content || 'No content available', 
+                        hasFeatureImage: metadata.has_feature_image 
                     };
                 }
                 
