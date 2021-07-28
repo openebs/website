@@ -5,6 +5,7 @@ author_info: Karthik has been into the Design and Development of tools for infra
 tags: Ansible, Ci, DevOps, Jenkins, Vagrant
 date: 31-07-2017
 excerpt: We are using Ansible as one of the critical moving parts of our automated test suite in the CI pipeline @OpenEBS. The question was expected in some ways,
+not_has_feature_image: true
 ---
 
 During a telephone conversation with a former colleague and good friend I was confronted with an interesting question, “I know Ansible is a great configuration management tool, why bend it as a test automation framework?”
@@ -22,7 +23,7 @@ One of the biggest IT trends over the last few years has been managing infrastru
 ![Ansible GitHub trends ](https://cdn-images-1.medium.com/max/800/1*7Di79EF1SxNqF0F0KD1E-A.jpeg)
 (***Ansible GitHub trends (Courtesy: [https://www.ansible.com/blog/another-good-year-for-ansible-users](https://www.ansible.com/blog/another-good-year-for-ansible-users))*** )
 
-But, how does the above address our question? 
+But, how does the above address our question?
 
 **Answer**: A major portion of the test duration of infrastructure-based software, such as storage software involves “manipulation” of infrastructure. Setting up bare-metal boxes, virtual machines, or containers, installing packages, executing various commands that control & alter system state, monitoring for specific behavior are key aspects of this process. Consider the need to run the above as batch processes and perform parallel execution on multiple nodes — and the inevitability of a workflow orchestrator dawns upon you. Especially so when you are testing a solution like OpenEBS that is designed to provide storage for DevOps use cases (read more about this [here](https://blog.openebs.io/storage-infrastructure-as-code-using-openebs-6a76b37aebe6))
 

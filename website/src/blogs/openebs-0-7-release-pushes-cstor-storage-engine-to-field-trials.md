@@ -5,6 +5,7 @@ author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaDa
 date: 29-08-2018
 tags: Container, Kubernetes, OpenEBS, Storage Solutions
 excerpt: Before I get into some fascinating features of 0.7 release, I would like to take this opportunity to thank all users who have taken our OpenEBS survey and have come forward to share your Kubernetes Stateful Workload and OpenEBS adoption stories.
+not_has_feature_image: true
 ---
 
 Before I get into some fascinating features of 0.7 release, I would like to take this opportunity to thank all users who have taken our OpenEBS survey and have come forward to share your Kubernetes Stateful Workload and OpenEBS adoption stories. When I hear statements like ***“OpenEBS just works!”***, it is definitely a sign that the project and the OpenEBS Developer Community are headed in the right direction. It is both heartening and humbling. Thank you!
@@ -41,7 +42,7 @@ OpenEBS remains committed to being Easy to Setup and Use, and we are continuing 
     disk-cdf294e8662a87.. 2h kubernetes.io/hostname=node1...
     disk-eaf3931c96c1d9.. 2h kubernetes.io/hostname=node2...
     disk-edc04b8fcf924e.. 2h kubernetes.io/hostname=gke-kmova-
-    
+
     To learn more about NDM and its commands, please visit
     https://github.com/openebs/node-disk-manager
 

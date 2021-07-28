@@ -4,7 +4,8 @@ author: Uma Mukkara
 author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 tags: Containerised Storage, DevOps, Kubernetes, OpenEBS, Stateful Applications
 date: 29-06-2017
-excerpt: With a vision to become de-facto block storage choice for stateful container applications, OpenEBS brings out many unique features to the open source storage space. 
+excerpt: With a vision to become de-facto block storage choice for stateful container applications, OpenEBS brings out many unique features to the open source storage space.
+not_has_feature_image: true
 ---
 
 With a vision to become de-facto block storage choice for stateful container applications, OpenEBS brings out many unique features to the open-source storage space. One of the unique features that I talk about in more depth in this blog is “how storage platform builders and storage platform users can manifest their requirements as code using OpenEBS”.

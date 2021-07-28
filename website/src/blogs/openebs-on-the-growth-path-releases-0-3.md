@@ -1,10 +1,11 @@
 ---
 title: OpenEBS on the Growth Path! Releases 0.3
 author: Kiran Mova
-author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS. 
+author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
 tags: Jupyter Notebook, Kubernetes, OpenEBS, Postgresql, Storage Containers
 date: 29-06-2017
-excerpt: It gives me immense pleasure to watch this baby (OpenEBS) successfully cross another milestone with its 0.3 release. 
+excerpt: It gives me immense pleasure to watch this baby (OpenEBS) successfully cross another milestone with its 0.3 release.
+not_has_feature_image: true
 ---
 
 It gives me immense pleasure to watch this baby (OpenEBS) successfully cross another milestone with its 0.3 release. OpenEBS 0.3 not only marks the delivery of additional functionality but also comes with an all-rounded growth.
@@ -28,7 +29,7 @@ We are very attentive towards making the onboarding experience as smooth and sim
 
 ---
 
-`kubectl apply -f openebs-operator.yaml` 
+`kubectl apply -f openebs-operator.yaml`
 `kubectl apply -f openebs-storageclasses.yaml`
 
 ---

@@ -5,6 +5,7 @@ author_info: Gopher, Open Source Contributor, Thinker, Health enthusiast
 date: 11-05-2018
 tags: Kubernetes, Golang, OpenEBS, Microservices
 excerpt: This blog talks about why I used Custom Resources as a way for communication between different microservices (aka Kubernetes Pods).
+not_has_feature_image: true
 ---
 
 This blog talks about why I used [Custom Resources](https://kubernetes.io/docs/concepts/api-extension/custom-resources) as a way for communication between different microservices (aka Kubernetes Pods).

@@ -5,6 +5,7 @@ author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led produ
 tags: AWS EBS, Container as a Service, OpenEBS, Persistent Storage, Kubernetes
 date: 28-02-2017
 excerpt: The top questions that could be lingering on the enterprise architect mind in an enterprise are
+not_has_feature_image: true
 ---
 
 The top questions that could be lingering on the enterprise architect mind in an enterprise are

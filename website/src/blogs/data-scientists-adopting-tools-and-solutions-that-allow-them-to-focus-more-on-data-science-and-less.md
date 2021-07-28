@@ -5,6 +5,7 @@ author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaDa
 tags: Adalog, Data Science, Kubernetes, OpenEBS, Jupyter Notebook, Solutions
 date: 24-05-2017
 excerpt: Data Science as we all know is becoming crucial to many if not most businesses around the world. Data Science and ML are decidedly, the most trendy skills that a lot of people are aspiring to acquire or be associated with.
+not_has_feature_image: true
 ---
 
 Data Science as we all know is becoming crucial to many if not most businesses around the world. Data Science and ML are decidedly, the most trendy skills that a lot of people are aspiring to acquire or be associated with. In my recent interactions (in the context of hiring for OpenEBS) with college graduates and software engineers, the one question that pops up is, if they join OpenEBS, will they get a chance to work on ML / Data Science (and the answer is a definite “maybe” :)).

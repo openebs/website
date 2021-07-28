@@ -5,6 +5,7 @@ author_info: Go Developer @openebs | Open Source Contributor | Avid Learner
 tags: Golang, OpenEBS, DevOps, Container Orchestration
 date: 25-07-2017
 excerpt: I attended GopherCon India 2017, there was a talk on “Package Oriented Design In Go” by William Kennedy. In that talk, William explained some really important and thoughtful design principles which we can apply in our day-to-day life, while writing Go.
+not_has_feature_image: true
 ---
 
 ## Motivation

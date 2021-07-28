@@ -5,6 +5,7 @@ author_info: Building Cooby Cloud at Hetzner
 date: 18-12-2018
 tags: OpenEBS, Stateful Workloads, Bare metal, Docker
 excerpt: Besides having a really cool name, Montel Intergalactic is also a cool company to work with. I met one of their engineers in an OpenEBS Slack forum and explained to him what I was up to
+not_has_feature_image: true
 ---
 
 Besides having a really cool name, [Montel Intergalactic](https://www.montel.fi/index.en.html) is also a cool company to work with. I met one of their engineers in an OpenEBS Slack forum and explained to him what I was up to. The next thing was that within a week we had everything setup at Hetzner. All Montel wanted in return was this humble blog post. A note to others in the space, THIS is how you build customer loyalty and a simple gesture like this can go a long way.

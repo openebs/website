@@ -5,6 +5,7 @@ author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaDa
 date: 08-01-2018
 tags: Kubecon, Kubernetes, Persistence, Storage Containers, Updates
 excerpt: Kubernetes Clusters are up and running at the push of a button or even better by talking to your favorite bot.
+not_has_feature_image: true
 ---
 
 TL;DR

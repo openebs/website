@@ -4,7 +4,8 @@ author: Uma Mukkara
 author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led product development in the early days of MayaData (CloudByte).
 date: 06-01-2017
 tags: Container, DevOps, Longhorn, OpenEBS, Docker
-excerpt: In the previous blog post, I shared the initial details of OpenEBS. In this post, I will continue to discuss the OpenEBS technology building blocks and touch upon the details of Rancher longhorn and why we chose longhorn .
+excerpt: In the previous blog post, I shared the initial details of OpenEBS. In this post, I will continue to discuss the OpenEBS technology building blocks and touch upon the details of Rancher longhorn and why we chose longhorn.
+not_has_feature_image: true
 ---
 
 In the [previous ](https://blog.openebs.io/openebs-the-containerized-storage-f76e394a9543#.vaquo22zw)blog post, I shared the initial details of OpenEBS. In this post, I will continue to discuss the OpenEBS technology building blocks and touch upon the details of Rancher longhorn and why we chose [longhorn ](https://github.com/rancher/longhorn).

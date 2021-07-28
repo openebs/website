@@ -5,6 +5,7 @@ author_info: Jeffry is the CTO at MayaData. At MayaData, his primary focus is to
 tags: Kubernetes, Docker, Container
 date: 10-09-2017
 excerpt: These days, it seems that a lot of storage vendors are taking a scale out approach to delivering high-performance storage to meet the increasing demand for IOPS and bandwidth.
+not_has_feature_image: true
 ---
 
 These days, it seems that a lot of storage vendors are taking a scale-out approach to deliver high-performance storage to meet the increasing demand for IOPS and bandwidth. Reduced latency is also high on the storage requirement list, however, scale-out distributed systems typically result in the inverse, i.e., it increases latency.

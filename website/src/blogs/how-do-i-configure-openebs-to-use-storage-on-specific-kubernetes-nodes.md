@@ -5,6 +5,7 @@ author_info: Engineer the DAO
 date: 18-03-2018
 tags: Howdoi, OpenEBS, Solutions, Kubernetes, Tutorials
 excerpt: A OpenEBS Volume comprises of a Target pod and Replica pod(s). There can be one or more Replica pods. The Replica pods are the ones that access the underlying disk resources for storing the data.
+not_has_feature_image: true
 ---
 
 This article belongs to **#HowDoI** series on [**Kubernetes**](https://kubernetes.io/) and [**OpenEBS**](https://openebs.io/).

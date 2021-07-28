@@ -5,6 +5,7 @@ author_info: Engineer the DAO
 tags: Docker, Go, OpenEBS, Programming Languages, Programming Tips, Tutorials
 date: 27-07-2017
 excerpt: Are you an experienced C programmer or perhaps an adept Java hacker finding Go somewhat awkward to deal with.
+not_has_feature_image: true
 ---
 
 Are you an experienced **C** programmer or perhaps an adept **Java** hacker finding [**Go**](https://github.com/golang/go/wiki/whygo) somewhat awkward to deal with? There may be different elements of surprise or familiarity based on the programmer’s background e.g a Java programmer may relate the GOPATH settings with the settings associated with JAVA_HOME. On a similar note, the very same programmer might be surprised with Makefiles that are used to script the compilation, build & other stuff. I am sure though that this experience will be different for a seasoned C programmer.

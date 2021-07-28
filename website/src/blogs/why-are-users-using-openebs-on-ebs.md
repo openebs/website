@@ -5,6 +5,7 @@ author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led produ
 tags: Container Native Storage, Featured, MySQL, Kubernetes, OpenEBS
 date: 19-10-2017
 excerpt: We were a little surprised to see OpenEBS started to be used on top of EBS itself. So we dug in and asked why?
+not_has_feature_image: true
 ---
 
 We were a little surprised to see OpenEBS started to be used on top of EBS itself. So we dug in and asked why?

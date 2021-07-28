@@ -5,6 +5,7 @@ author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaDa
 tags: Docker, Game of Thrones, OpenEBS, Reddit, Statefulcontainers
 date: 27-07-2017
 excerpt: These redditers are like the nights-watch-men (Operations Team) who are guarding the wall (production services) from army of dead (issues).
+not_has_feature_image: true
 ---
 
 *Full disclosure: I contribute to OpenEBS and I relish GoT (not IoT).*

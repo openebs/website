@@ -5,6 +5,7 @@ author_info: Software Engineer at MayaData | OpenEBS Reviewer and Contributor | 
 date: 05-03-2019
 tags: Cka, Kubernauts, Kubernetes, Mayadata, OpenEBS
 excerpt: I would like to tell you about my experience with the Certified Kubernetes Administrator (CKA) exam.
+not_has_feature_image: true
 ---
 
 Hello, my fellow Kubernetes Developers,
@@ -33,7 +34,7 @@ Throughout my experience, I frequently used the Kubernetes Slack channel and ask
 
 I came to know about the Kubernaut Slack channel, space where you can join and ask about Kubernetes-related information, such as setting up CNI, performing workload operations, etc.
 
-This journey was very exciting, and it became a journey to make new friends and, of course, this led to becoming a CKA. 
+This journey was very exciting, and it became a journey to make new friends and, of course, this led to becoming a CKA.
 
 ## About the Exam
 

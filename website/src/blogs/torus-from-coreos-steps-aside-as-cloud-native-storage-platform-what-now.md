@@ -5,6 +5,7 @@ author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaDa
 tags: DevOps, Docker, Storage Containers, Kubernetes
 date: 20-02-2017
 excerpt: Torus (from CoreOS), that aimed at providing container-native distributed storage announced that it would discontinue development due to lack of traction.
+not_has_feature_image: true
 ---
 
 [Torus (from CoreOS)](https://github.com/coreos/torus), which aimed at providing container-native distributed storage announced that it would discontinue development due to lack of traction. It just goes to show the dynamics of the open source projects and how business needs could influence them.

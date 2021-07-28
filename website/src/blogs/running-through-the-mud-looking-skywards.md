@@ -5,6 +5,7 @@ author_info: Engineer the DAO
 date: 2017-02-11
 tags: Education, Industry, Storage, OpenEBS
 excerpt: I always believe, bridging the minds of academia & industry has to go beyond the nuances of theory vs. practical.
+not_has_feature_image: true
 ---
 
 I knew we would be running through the mud looking skywards for those brightest stars. We were not at all disappointed with our first attempt at _Kuppam Engineering College_, India.

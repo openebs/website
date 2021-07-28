@@ -4,7 +4,8 @@ author: Amit Kumar Das
 author_info: Engineer the DAO
 tags: Docker, High Availability, Kubernetes, OpenEBS, Storage
 date: 17-07-2017
-excerpt: Infrastructure components are the toughest to build. It is meant to work always by default. 
+excerpt: Infrastructure components are the toughest to build. It is meant to work always by default.
+not_has_feature_image: true
 ---
 
 Infrastructure components are the toughest to build. It is meant to work always by default. It must be telecom grade as scores of applications rely on the infra component’s zero downtime, no deterioration in QoS, etc. However, we all know software has got defects and it is no different for infrastructure software components as well. One of the things the software can do is implement high availability as its core feature and somehow buy time (by the virtue of HA) when one of these components experiences a breakdown due to defects or otherwise.

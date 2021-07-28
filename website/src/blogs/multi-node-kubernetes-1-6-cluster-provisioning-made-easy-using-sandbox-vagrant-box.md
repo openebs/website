@@ -5,6 +5,7 @@ author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaDa
 tags: Kubeadm, Kubernetes, OpenEBS, Vagrant, Virtualbox
 date: 23-05-2017
 excerpt: Working on OpenEBS, a containerized storage for containers which is orchestrated by Kubernetes, most of our tasks, be it development, testing and demo require us to setup and modify the nodes in Kubernetes cluster.
+not_has_feature_image: true
 ---
 
 ### Background
