@@ -134,7 +134,7 @@ const BlogPage: React.FC = () => {
         .replace(/ +/g,'-')}.png` }}
         tags={currentBlogDetails.tags}  />
     )}
-    {currentBlogDetails?.id && !Boolean(currentBlogDetails?.hasFeatureImage) && (
+    {currentBlogDetails?.id && !Boolean(currentBlogDetails?.notHasFeatureImage) && (
       <Metadata 
         title={currentBlogDetails?.title} 
         description={currentBlogDetails?.excerpt} 
