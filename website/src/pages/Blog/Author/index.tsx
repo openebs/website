@@ -89,11 +89,13 @@ const Blog: React.FC = () => {
   };
 
   useEffect(() => {
-    const fiteredAuthorData = filteredAuthorData.find(res => res.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName);
-    const { author, author_info } = fiteredAuthorData!;
-    const image = `${currentOrigin}/images/blog/authors/${getAvatar(filteredAuthorData[0]?.author)}.png`;
-    const url = `${currentOrigin}/blog/author/${authorName}`;
-    setAuthorMetadata({ author, author_info, image, url });
+    if(filteredAuthorData.length && currentOrigin && authorName) {
+      const authorData = filteredAuthorData.find(res => res.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName);
+      const { author, author_info } = authorData!;
+      const image = `${currentOrigin}/images/blog/authors/${getAvatar(filteredAuthorData[0]?.author)}.png`;
+      const url = `${currentOrigin}/blog/author/${authorName}`;
+      setAuthorMetadata({ author, author_info, image, url });
+    }
   }, [filteredAuthorData, currentOrigin, authorName]);
 
   return (
