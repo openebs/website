@@ -33,7 +33,7 @@ The e2e phase involves running several parallel pipelines (based on Kubernetes c
 
 ![OpenEBS CI Workflow](/images/blog/openebs-ci-flow.jpg)
 
-**Note**: _Currently, the GitLab CI works in a “retrospective mode,” as it is invoked on commits to the upstream branches. There is work in progress to extend the support for pull requests (presently, a travis-based build verifies commit sanity to aid PR acceptance)._
+**Note**: *Currently, the GitLab CI works in a “retrospective mode,” as it is invoked on commits to the upstream branches. There is work in progress to extend the support for pull requests (presently, a travis-based build verifies commit sanity to aid PR acceptance).*
 
 ## Baseline Commit
 
@@ -43,7 +43,7 @@ This is achieved by writing the details of the baseline commit (timestamp, compo
 
 ## OpenEBS e2e Pipelines: Leveraging Litmus
 
-_One of the arguments against the inclusion of e2e as part of CI pipelines is that they could be flaky and time-consuming (under ideal circumstances it involves testing every moving part of the microservice and needs more maintenance). However, the e2e can confirm achievement of the goals that the solution was conceived and built to accomplish. The extent of coverage and the schedules can be optimized for development agility, but at OpenEBS, we feel it is a must-have in our CI pipelines._
+*One of the arguments against the inclusion of e2e as part of CI pipelines is that they could be flaky and time-consuming (under ideal circumstances it involves testing every moving part of the microservice and needs more maintenance). However, the e2e can confirm achievement of the goals that the solution was conceived and built to accomplish. The extent of coverage and the schedules can be optimized for development agility, but at OpenEBS, we feel it is a must-have in our CI pipelines.*
 
 OpenEBS CI makes use of Litmus to drive its e2e pipelines, right from test bed creation (cluster creation playbooks) all the way through the e2e tests (litmus experiments). The e2e pipeline involves several stages, with one or more gitlab jobs scheduled to run in a given stage. Each gitlab job is associated with a “runner script” that runs an “e2e test.” This in turn invokes/executes a litmus experiment (or litmus ansible playbook in the case of cluster creation/destroy jobs).
 
