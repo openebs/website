@@ -94,7 +94,7 @@ const Blog: React.FC = () => {
     const image = `${currentOrigin}/images/blog/authors/${getAvatar(filteredAuthorData[0]?.author)}.png`;
     const url = `${currentOrigin}/blog/author/${authorName}`;
     setAuthorMetadata({ author, author_info, image, url });
-  }, [filteredAuthorData]);
+  }, [filteredAuthorData, currentOrigin, authorName]);
 
   return (
     <>
