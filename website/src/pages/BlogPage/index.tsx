@@ -16,7 +16,6 @@ import { useHistory } from "react-router-dom";
 import { useCurrentHost } from "../../hooks/useCurrentHost";
 import { Metadata } from "../../components/Metadata";
 import ErrorPage from "../ErrorPage";
-import { doesImageExist } from "../../utils/doesImageExist";
 
 const BlogPage: React.FC = () => {
   const { currentOrigin, currentLocation, currentPathname } = useCurrentHost();
@@ -128,7 +127,7 @@ const BlogPage: React.FC = () => {
         title={currentBlogDetails?.title} 
         description={currentBlogDetails?.excerpt} 
         url={currentLocation} 
-        image={doesImageExist(`${currentOrigin}/images${currentPathname}.png`) ? `${currentOrigin}/images${currentPathname}.png` : `${currentOrigin}/images/blog/defaultImage.png`} 
+        image={`${currentOrigin}/images${currentPathname}.png`} 
         isPost={true}
         author={{ name: currentBlogDetails?.author, image: `${currentOrigin}/images/blog/authors/${currentBlogDetails?.author
         .toLowerCase().replace(/[^\w ]+/g,'')
