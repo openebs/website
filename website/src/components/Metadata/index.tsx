@@ -4,6 +4,7 @@ import { useCurrentHost } from "../../hooks/useCurrentHost";
 import { articleSchema } from "./articleSchema";
 import { websiteSchema } from "./websiteSchema";
 import { Author } from "./metadata.models";
+import { METADATA_TYPES } from "../../constants";
 interface MetadataProps {
     title: string;
     description: string;
@@ -47,7 +48,7 @@ export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isP
             <meta name="image" content={image} />
             <link rel="canonical" href={url || defaultConfig.url} />
             {/** Open Graph  */}
-            <meta property="og:type" content={isPost ? 'article' : 'website'} />
+            <meta property="og:type" content={isPost ? METADATA_TYPES.ARTICLE : METADATA_TYPES.WEBSITE} />
             <meta property="og:title" content={title || defaultConfig.title} />
             <meta property="og:site_name" content={currentOrigin} />
             <meta property="og:url" content={url || defaultConfig.url} />

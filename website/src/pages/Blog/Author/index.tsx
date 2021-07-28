@@ -9,7 +9,7 @@ import {
   Link,
 } from "@material-ui/core";
 import Footer from "../../../components/Footer";
-import { VIEW_PORT } from "../../../constants";
+import { VIEW_PORT, METADATA_TYPES } from "../../../constants";
 import Sponsor from "../../../components/Sponsor";
 import { getAvatar } from "../../../utils/getAvatar";
 import { useViewport } from "../../../hooks/viewportWidth";
@@ -101,7 +101,7 @@ const Blog: React.FC = () => {
   return (
     <>
      { authorMetadata && (
-       <Metadata title={authorMetadata?.author} description={authorMetadata?.author_info} url={authorMetadata?.url} image={authorMetadata?.image} isPost={false} type="Series"  />
+       <Metadata title={authorMetadata?.author} description={authorMetadata?.author_info} url={authorMetadata?.url} image={authorMetadata?.image} isPost={false} type={METADATA_TYPES.SERIES}  />
        )}
         <>
           <div className={classes.root}>

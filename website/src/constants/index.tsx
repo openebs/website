@@ -59,3 +59,13 @@ export enum SCRIPT_STATES {
 export enum BLOG_TAGS {
   ALL = 'all'
 }
+
+export enum METADATA_TYPES {
+  SERIES = 'Series',
+  ARTICLE = 'Article',
+  WEBSITE = 'Website',
+  PERSON = 'Person',
+  IMAGE_OBJECT = 'ImageObject',
+  ORGANIZATION = 'Organization',
+  WEBPAGE = 'WebPage'
+}

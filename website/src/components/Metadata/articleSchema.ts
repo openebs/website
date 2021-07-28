@@ -1,4 +1,5 @@
 import { Author, Image, SiteMetadata } from "./metadata.models";
+import { METADATA_TYPES } from "../../constants";
 interface ArticleSchemaProps {
   title: string;
   description: string;
@@ -12,9 +13,9 @@ interface ArticleSchemaProps {
 export const articleSchema = ({ title, description, url, image, author, tags, site }: ArticleSchemaProps) => {
   return {
     '@context': `https://schema.org/`,
-    '@type': `Article`,
+    '@type': METADATA_TYPES.ARTICLE,
     author: {
-      '@type': `Person`,
+      '@type': METADATA_TYPES.PERSON,
       name: author?.name,
       image: author?.image ? author?.image : undefined,
     },
@@ -23,17 +24,17 @@ export const articleSchema = ({ title, description, url, image, author, tags, si
     url: url,
     image: image.src
       ? {
-        '@type': `ImageObject`,
+        '@type': METADATA_TYPES.IMAGE_OBJECT,
         url: image.src,
         width: image.shareImageWidth,
         height: image.shareImageHeight,
       }
       : undefined,
     publisher: {
-      '@type': `Organization`,
+      '@type': METADATA_TYPES.ORGANIZATION,
       name: `OpenEBS`,
       logo: {
-        '@type': `ImageObject`,
+        '@type': METADATA_TYPES.IMAGE_OBJECT,
         url: site.logo,
         width: 60,
         height: 60,
@@ -41,7 +42,7 @@ export const articleSchema = ({ title, description, url, image, author, tags, si
     },
     description: description,
     mainEntityOfPage: {
-      '@type': `WebPage`,
+      '@type': METADATA_TYPES.WEBPAGE,
       '@id': site.siteUrl,
     },
   }
