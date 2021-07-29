@@ -40,7 +40,6 @@ export const Metadata: React.FC<MetadataProps> = ({ title, description, url, isP
     }
 
     const jsonLd = isPost ? articleSchema({ title, description, url, image: imageObj, author, tags, site }) : websiteSchema({ title, description, url, image: imageObj, type, site });
-    
     return (
         <Helmet>
             <title>{title || defaultConfig.title}</title>
