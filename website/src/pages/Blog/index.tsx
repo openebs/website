@@ -14,13 +14,13 @@ import {
   withStyles,
 } from "@material-ui/core";
 import Footer from "../../components/Footer";
-import { BLOG_TAGS, VIEW_PORT } from "../../constants";
+import { BLOG_TAGS, VIEW_PORT, METADATA_TYPES } from "../../constants";
 import Sponsor from "../../components/Sponsor";
 import Pagination from "@material-ui/lab/Pagination";
 import { pageCount } from "../../utils/getPageCount";
 import { getTagsSorted } from "../../utils/sortTags";
 import SeoJson from "../../resources/seo.json";
-import { currentOrigin } from "../../utils/currentHost";
+import { useCurrentHost } from "../../hooks/useCurrentHost";
 import { Metadata } from "../../components/Metadata";
 import BlogCard from "../../components/BlogCard";
 
@@ -43,6 +43,7 @@ interface TabProps {
 const Blog: React.FC = () => {
   const { t } = useTranslation();
   const classes = useStyles();
+  const { currentOrigin } = useCurrentHost();
   const [jsonMdData, setJsonMdData] = useState<any>("");
   const [value, setValue] = React.useState("all");
   const [tagsDistribution, setTagsDistribution] = useState({});
@@ -169,7 +170,7 @@ const Blog: React.FC = () => {
 
   return (
     <>
-     <Metadata title={SeoJson.pages.blog.title} description={SeoJson.pages.blog.description} url={`${currentOrigin}${SeoJson.pages.blog.url}`} image={`${currentOrigin}${SeoJson.pages.blog.image}`} isPost={false} type="Series"  />
+     <Metadata title={SeoJson.pages.blog.title} description={SeoJson.pages.blog.description} url={`${currentOrigin}${SeoJson.pages.blog.url}`} image={`${currentOrigin}${SeoJson.pages.blog.image}`} isPost={false} type={METADATA_TYPES.SERIES}  />
         <>
           <div className={classes.root}>
             <Container maxWidth="lg">

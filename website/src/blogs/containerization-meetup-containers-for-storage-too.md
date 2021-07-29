@@ -5,6 +5,7 @@ author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led produ
 date: 15-01-2017
 tags: Containerized Storage, Docker, Kubernetes, OpenEBS, Storage Containerization
 excerpt: I had the opportunity to talk to a very good group of technologists, DevOPs users in the Digital Ocean Containerization Meetup . Docker 1.13 details and Kubernetes deployment tips were fantastics.
+not_has_feature_image: true
 ---
 
 I had the opportunity to talk to a very good group of technologists, DevOPs users in the [Digital Ocean Containerization Meetup](https://www.meetup.com/DigitalOceanBangalore/events/236353004/) . Docker 1.13 details and Kubernetes deployment tips were fantastics.

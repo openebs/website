@@ -5,6 +5,7 @@ author_info: Developer Advocate at Ant Financial, CNCF Ambassador, co-founder of
 date: 10-01-2018
 tags: Kubernetes, OpenEBS, Docker, Cloud Native
 excerpt: OpenEBS is a containerized block storage written in Go for cloud native and other environments which make the data workloads more reliable in Kubernetes.
+not_has_feature_image: true
 ---
 
 [OpenEBS](https://www.openebs.io/) is a containerized block storage written in Go for cloud native and other environments which make the data workloads more reliable in Kubernetes.

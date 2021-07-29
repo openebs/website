@@ -5,6 +5,7 @@ author_info: Founding CEO of a few companies including StackStorm (BRCD) and Nex
 date: 30-01-2019
 tags: Cassandra, Kubectl, Kubernetes, Mayaonline, OpenEBS, Uncategorized
 excerpt: Now and again — ok almost every day — we get a question on the community or from our commercial users about performance.
+not_has_feature_image: true
 ---
 
 Now and again — ok almost every day — we get a question on the community or from our commercial users about performance.
@@ -46,7 +47,7 @@ You can read more about these storage policies both for cStor and for the earlie
 
 [OpenEBS Storage Policies](https://docs.openebs.io/docs/next/storagepolicies.html?__hstc=216392137.181b23812f103703b848f80cc28e7104.1575964270497.1575964270497.1575964270497.1&amp;__hssc=216392137.1.1575964270498&amp;__hsfp=2230078507)[docs.openebs.io](https://docs.openebs.io/docs/next/storagepolicies.html?__hstc=216392137.181b23812f103703b848f80cc28e7104.1575964270497.1575964270497.1575964270497.1&amp;__hssc=216392137.1.1575964270498&amp;__hsfp=2230078507)
 
-![Types of Storage Policies for cStor](/images/blog/types-of-storage-policies-for-cstor.png) 
+![Types of Storage Policies for cStor](/images/blog/types-of-storage-policies-for-cstor.png)
 (***Types of Storage Policies for cStor***)
 
 Keep in mind that optimizing performance based on environmental and workload characteristics can be fairly complex. For example, performance often depends upon whether your workload is sequential or random and of course whether it is largely read or write. Many transactional DBs are sequential write-heavy, whereas analytic workloads are often sequential read-heavy and logging is typically more random writes. Also, the block sizes matter as does the characteristics of the underlying storage device (disks vs. SSDs for example). In the case of sequential workloads on cStor, your write performance may actually **degrade** with additional workers. In that case, you would want to decrease the workers to only one thread.

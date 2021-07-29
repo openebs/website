@@ -5,6 +5,7 @@ author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led produ
 date: 01-01-2017
 tags: DevOps, Docker, Kubernetes, Rancher, Golang, OpenEBS
 excerpt: In the infrastructure space, the compute environment is always the first to lead the change. Docker has brought in the new thinking into every DevOPs administrator and application developer.
+not_has_feature_image: true
 ---
 
 In the infrastructure space, the compute environment is always the first to lead the change. Docker has brought in the new thinking into every DevOps administrator and application developer. CIOs across the spectrum are beginning to include Docker into their policies. As the IT environment begins to adopt containerization into mainstream, there are holes that still need to be plugged in, specifically in the storage space.

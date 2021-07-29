@@ -5,6 +5,7 @@ author_info: Software Engineer at MayaData Inc
 date: 22-08-2018
 tags: Containerized Storage, Kubeadm, Kubernetes, OpenEBS, Stateful Workloads
 excerpt: Kubeadm is a new tool that is part of the Kubernetes distribution of 1.4.0. It allows you to install and set up a Kubernetes cluster.
+not_has_feature_image: true
 ---
 
 **Kubeadm** is a new tool that is part of the Kubernetes distribution of 1.4.0. It allows you to install and set up a Kubernetes cluster. One of the most frequent criticisms of Kubernetes is that it’s difficult to install. Kubeadm makes this much easier, so I strongly suggest you give it a try.
@@ -75,7 +76,7 @@ Example:
     $ sudo chown $(id -u):$(id -g) $HOME/.kube/config
     $ sudo sysctl net.bridge.bridge-nf-call-iptables=1
     $ sudo KUBECONFIG=/etc/kubernetes/admin.conf
-    $ kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml 
+    $ kubectl apply -f https://raw.githubusercontent.com/cloudnativelabs/kube-router/master/daemonset/kubeadm-kuberouter.yaml
 ```
 
 After you finish running kubeadm init in master node, it provides the token, master-ip, sha and hash as follows:

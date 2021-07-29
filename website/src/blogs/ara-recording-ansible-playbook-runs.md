@@ -5,6 +5,7 @@ author_info: Karthik has been into the Design and Development of tools for infra
 tags: Ansible, Automation, DevOps, OpenEBS
 date: 31-08-2017
 excerpt: Ansible playbooks can generate quite a lot of console data. Add the -v (I do it by default!) and you have quite a lot to scroll through.
+not_has_feature_image: true
 ---
 
 Ansible playbooks can generate quite a lot of console data. Add the -v (I do it by default!) and you have quite a lot to scroll through. Oftentimes, one tends to feel the need for a better reporting mechanism — one which is easy to scour for specific task status, whilst having the luxury to extract additional debug info for the same if needed. Also, it would be great if this aid is available for playbook runs across time, i.e., for older playbook runs as well. This would be especially beneficial when running ansible-based CI suites, like @OpenEBS, where the application deployments, test setup & execution are driven by Ansible.

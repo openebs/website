@@ -13,11 +13,12 @@ import Newsletter from "../../components/Newsletter";
 import { SlackShareIcon } from "./slackShareIcon";
 import BlogImage from '../../components/BlogImage';
 import { useHistory } from "react-router-dom";
-import { currentOrigin, currentLocation, currentPathname } from "../../utils/currentHost";
+import { useCurrentHost } from "../../hooks/useCurrentHost";
 import { Metadata } from "../../components/Metadata";
 import ErrorPage from "../ErrorPage";
 
 const BlogPage: React.FC = () => {
+  const { currentOrigin, currentLocation, currentPathname } = useCurrentHost();
   const classes = useStyles();
   const { t } = useTranslation();
   const history = useHistory();
@@ -118,15 +119,27 @@ const BlogPage: React.FC = () => {
         break;
     }
   };
-
+    
   return (
     <>
-    {currentBlogDetails?.id && (
+    {currentBlogDetails?.id && Boolean(currentBlogDetails?.notHasFeatureImage) && (
       <Metadata 
         title={currentBlogDetails?.title} 
         description={currentBlogDetails?.excerpt} 
         url={currentLocation} 
-        image={`${currentOrigin}/images${currentPathname}.png` || `${currentOrigin}/images/blog/defaultImage.png`} 
+        image={`${currentOrigin}/images/blog/defaultImage.png`} 
+        isPost={true}
+        author={{ name: currentBlogDetails?.author, image: `${currentOrigin}/images/blog/authors/${currentBlogDetails?.author
+        .toLowerCase().replace(/[^\w ]+/g,'')
+        .replace(/ +/g,'-')}.png` }}
+        tags={currentBlogDetails.tags}  />
+    )}
+    {currentBlogDetails?.id && !Boolean(currentBlogDetails?.notHasFeatureImage) && (
+      <Metadata 
+        title={currentBlogDetails?.title} 
+        description={currentBlogDetails?.excerpt} 
+        url={currentLocation} 
+        image={`${currentOrigin}/images${currentPathname}.png`} 
         isPost={true}
         author={{ name: currentBlogDetails?.author, image: `${currentOrigin}/images/blog/authors/${currentBlogDetails?.author
         .toLowerCase().replace(/[^\w ]+/g,'')

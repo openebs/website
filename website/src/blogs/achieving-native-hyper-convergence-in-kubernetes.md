@@ -5,6 +5,7 @@ author_info: Contributor at openebs.io, Co-founder & COO@MayaData. Uma led produ
 date: 13-03-2018
 tags: Hyper Convergence, Kubernetes, Nutanix, OpenEBS, Persistent Storage
 excerpt: Hyper convergence has a lot of benefits — which is one reason it has become popular in the traditional infrastructure-centric world of virtual machines with proprietary vendors like Nutanix reaching prominence over the last several years.
+not_has_feature_image: true
 ---
 
 Hyper convergence has a lot of benefits — which is one reason it has become popular in the traditional infrastructure-centric world of virtual machines with proprietary vendors like Nutanix reaching prominence over the last several years.

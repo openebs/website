@@ -5,6 +5,7 @@ author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaDa
 date: 30-11-2017
 tags: Container, Open Source, Storage Containers, Kubernetes, Updates
 excerpt: Personally, it is very exciting and enriching to see the growth of the OpenEBS project — from its capabilities, contributors and community perspective!
+not_has_feature_image: true
 ---
 
 
@@ -37,7 +38,7 @@ Imagine as a Developer I want to test my service against MySQL database with dif
 
 The policy can be defined for snap — *sandy* as follows:
 
-    # Define a SC referring to snapshot sandy 
+    # Define a SC referring to snapshot sandy
     apiVersion: storage.k8s.io/v1
     kind: StorageClass
     metadata:

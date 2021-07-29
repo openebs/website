@@ -5,6 +5,7 @@ author_info: Engineer the DAO
 tags: Cloud Storage, E2e Testing, Featured, Kubernetes, Storage
 date: 17-10-2017
 excerpt: e2e which expands into end to end speaks for itself. It can be treated as component testing, integration testing, or something that tries to test stuff outside the scope of unit tests.
+not_has_feature_image: true
 ---
 
 ### What is e2e?
@@ -43,7 +44,7 @@ To clarify it further, I had these queries when I started with the e2e journey f
 
 All these queries should be answered with simplicity in mind. In other words, how to construct test code that is simple?
 
-With simplicity in mind, let us pen down some dos and don’ts that will be an 
+With simplicity in mind, let us pen down some dos and don’ts that will be an
 indicator of simplicity versus complexity.
 
 ### Simplicity — Direct Thinking!!

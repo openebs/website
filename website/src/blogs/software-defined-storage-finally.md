@@ -5,6 +5,7 @@ author_info: Founding CEO of a few companies including StackStorm (BRCD) and Nex
 tags: DevOps, Docker
 date: 11-03-2017
 excerpt: In this blog, I’ll discuss what went wrong — why we didn’t achieve the promise of software-defined storage — and why software-defined storage is now, finally, possible.
+not_has_feature_image: true
 ---
 
 Many years ago there was a flowering of what we called software-defined infrastructure. Those of us at the forefront of the trend were no doubt encouraged by the success of Martin Casado and the Nicera team who quickly went from Ph.D. thesis to $1.26bn purchase by VMware thanks to the promise of software-defined *networking*. In hindsight we were misguided, but a handful of us built companies built on the premise — why not *storage*?

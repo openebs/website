@@ -5,6 +5,7 @@ author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaDa
 date: 11-01-2017
 tags: DevOps, Docker, OpenEBS, Startup, Storage
 excerpt: The smiling docker whale is everywhere these days. You either have ridden on it or you want to know how to ride on it. As far as operations teams are concerned the docker whale is just teasing them.
+not_has_feature_image: true
 ---
 
 The smiling docker whale is everywhere these days. You either have ridden on it or you want to know how to ride on it. As far as operations teams are concerned the docker whale is just teasing them. In the recent meetups and conferences I attended here, very few hands rise when asked if they have deployed containers in production.

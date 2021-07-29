@@ -5,6 +5,7 @@ author_info: Engineer the DAO
 date: 29-11-2017
 tags: Container, DevOps, Kubernetes, Storage Policy, Updates
 excerpt: One of the most common disbelief at the operator’s end would be the reports of an application’s (that consumed this storage) sudden death after introducing a much awaited shiny new storage feature.
+not_has_feature_image: true
 ---
 
 

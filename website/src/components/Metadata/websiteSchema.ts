@@ -1,4 +1,5 @@
 import { Image, SiteMetadata } from "./metadata.models";
+import { METADATA_TYPES } from "../../constants"
 interface WebsiteSchemaProps {
   title: string;
   description: string;
@@ -10,11 +11,11 @@ interface WebsiteSchemaProps {
 export const websiteSchema = ({ title, description, type, url, image, site }: WebsiteSchemaProps) => {
   return {
     '@context': `https://schema.org/`,
-    '@type': `${type || 'Website'}`,
+    '@type': `${type || METADATA_TYPES.WEBSITE}`,
     url: url,
     image: image.src
       ? {
-          '@type': `ImageObject`,
+          '@type': METADATA_TYPES.IMAGE_OBJECT,
           url: image.src,
           width: image.shareImageWidth,
           height: image.shareImageHeight,
@@ -22,17 +23,17 @@ export const websiteSchema = ({ title, description, type, url, image, site }: We
       : undefined,
     headline: title,
     publisher: {
-      '@type': `Organization`,
+      '@type': METADATA_TYPES.ORGANIZATION,
       name: `OpenEBS`,
       logo: {
-        '@type': `ImageObject`,
+        '@type': METADATA_TYPES.IMAGE_OBJECT,
         url: site.logo,
         width: 60,
         height: 60,
       },
     },
     mainEntityOfPage: {
-      '@type': `WebPage`,
+      '@type': METADATA_TYPES.WEBPAGE,
       '@id': site.siteUrl,
     },
     description,

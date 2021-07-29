@@ -5,6 +5,7 @@ author_info: Karthik has been into the Design and Development of tools for infra
 date: 16-07-2018
 tags: Benchmarking, Kubernetes, Litmus, OpenEBS, Solutions, Chaos Engineering
 excerpt: Ever so often, developers and devops engineers building or managing stateful applications on Kubernetes are on the lookout for for suitable storage options which serves their application’s specific needs.
+not_has_feature_image: true
 ---
 
 This article belongs to a #HowDoI series on Kubernetes and Litmus
