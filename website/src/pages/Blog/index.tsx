@@ -108,7 +108,7 @@ const Blog: React.FC = () => {
   };
 
   const filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
-    if (value !== "all") {
+    if (value !== BLOG_TAGS.ALL) {
       const tagData = tabs.tags.find(
         (tag: string) => tag.toLowerCase() === value.toLowerCase()
       );
