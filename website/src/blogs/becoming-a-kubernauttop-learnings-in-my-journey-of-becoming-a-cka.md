@@ -3,7 +3,7 @@ title: Becoming a Kubernaut - Top Learnings in my journey of becoming a CKA
 author: Ashutosh Kumar
 author_info: Software Engineer at MayaData | OpenEBS Reviewer and Contributor | CKA | Gopher | Kubernaut
 date: 05-03-2019
-tags: Cka, Kubernauts, Kubernetes, Mayadata, OpenEBS
+tags: Cka, Kubernauts, Kubernetes, MayaData, OpenEBS
 excerpt: I would like to tell you about my experience with the Certified Kubernetes Administrator (CKA) exam.
 not_has_feature_image: true
 ---
