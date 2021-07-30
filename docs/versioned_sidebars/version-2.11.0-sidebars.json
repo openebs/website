@@ -90,6 +90,11 @@
         },
         {
           "type": "doc",
+          "id": "version-2.11.0/troubleshooting/t-localpv",
+          "label": "LocalPV"
+        },
+        {
+          "type": "doc",
           "id": "version-2.11.0/troubleshooting/t-mayastor",
           "label": "Mayastor"
         }
