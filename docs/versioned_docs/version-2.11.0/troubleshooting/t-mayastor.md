@@ -4,8 +4,6 @@ title: Troubleshooting Mayastor
 sidebar_label: Mayastor
 ---
 
----
-
 # Troubleshooting
 
 :::note

@@ -4,9 +4,7 @@ title: Troubleshooting OpenEBS - NDM
 sidebar_label: NDM
 ---
 
----
-
-<font size="5">General guidelines for troubleshooting</font>
+# General guidelines for troubleshooting
 
 - Contact <a href="/docs/next/support.html" target="_blank">OpenEBS Community</a> for support.
 - Search for similar issues added in this troubleshooting section.

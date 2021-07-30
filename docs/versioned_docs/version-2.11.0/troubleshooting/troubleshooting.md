@@ -4,8 +4,6 @@ title: Troubleshooting OpenEBS - Overview
 sidebar_label: Overview
 ---
 
----
-
 # General guidelines for troubleshooting
 
 - Search for similar issues mentioned in this page as well as the following troubleshooting sections.

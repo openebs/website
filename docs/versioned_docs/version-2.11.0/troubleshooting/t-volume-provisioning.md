@@ -4,9 +4,7 @@ title: Troubleshooting OpenEBS - Provisioning
 sidebar_label: Volume Provisioning
 ---
 
----
-
-<font size="5">General guidelines for troubleshooting</font>
+# General guidelines for troubleshooting
 
 - Contact <a href="/docs/next/support.html" target="_blank">OpenEBS Community</a> for support.
 - Search for similar issues added in this troubleshooting section.

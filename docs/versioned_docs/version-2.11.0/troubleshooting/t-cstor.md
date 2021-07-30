@@ -4,8 +4,6 @@ title: Troubleshooting OpenEBS - cStor
 sidebar_label: cStor
 ---
 
----
-
 # General guidelines for troubleshooting
 
 - Contact [OpenEBS Community](/docs/next/support.html) for support.
