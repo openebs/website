@@ -1,10 +1,9 @@
 ---
 id: t-cstor
 title: Troubleshooting OpenEBS - cStor
-sidebar_label: cStor
 ---
 
-# General guidelines for troubleshooting
+## General guidelines for troubleshooting
 
 - Contact [OpenEBS Community](/docs/next/support.html) for support.
 - Search for similar issues added in this troubleshooting section.

@@ -1,19 +1,17 @@
 ---
 id: troubleshooting
 title: Troubleshooting OpenEBS - Overview
-sidebar_label: Overview
 ---
 
-# General guidelines for troubleshooting
+## General guidelines for troubleshooting
 
 - Search for similar issues mentioned in this page as well as the following troubleshooting sections.
-  - <a href="/docs/next/t-install.html" target="_blank">Troubleshooting Install</a>.
-  - <a href="/docs/next/t-uninstall.html" target="_blank">Troubleshooting Uninstall</a>.
-  - <a href="/docs/next/t-ndm.html" target="_blank">Troubleshooting NDM</a>.
-  - <a href="/docs/next/t-jiva.html" target="_blank">Troubleshooting Jiva</a>.
-  - <a href="/docs/next/t-cstor.html" target="_blank">Troubleshooting cStor</a>.
-  - <a href="/docs/next/t-mayastor.html" target="_blank">Troubleshooting Mayastor</a>.
-  - <a href="/docs/next/t-localpv.html" target="_blank">Troubleshooting LocalPV</a>.
+  - [Troubleshooting Install](/docs/troubleshooting/t-install).
+  - [Troubleshooting Uninstall](/docs/troubleshooting/t-uninstall).
+  - [Troubleshooting NDM](/docs/troubleshooting/t-ndm).
+  - [Troubleshooting Jiva](/docs/troubleshooting/t-jiva).
+  - [Troubleshooting cStor](/docs/troubleshooting/t-cstor).
+  - [Troubleshooting LocalPV](/docs/troubleshooting/t-localpv).
 - Contact <a href="/docs/next/support.html" target="_blank">OpenEBS Community</a> for support.
 - Search for similar issues on <a href="https://github.com/openebs/openebs/issues" target="_blank">OpenEBS GitHub repository</a>.
 - Search for any reported issues on <a href="https://stackoverflow.com/questions/tagged/openebs" target="_blank">StackOverflow under OpenEBS tag</a>.

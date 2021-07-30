@@ -1,10 +1,9 @@
 ---
 id: t-volume-provisioning
 title: Troubleshooting OpenEBS - Provisioning
-sidebar_label: Volume Provisioning
 ---
 
-# General guidelines for troubleshooting
+## General guidelines for troubleshooting
 
 - Contact <a href="/docs/next/support.html" target="_blank">OpenEBS Community</a> for support.
 - Search for similar issues added in this troubleshooting section.

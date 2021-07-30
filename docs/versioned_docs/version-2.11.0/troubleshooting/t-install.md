@@ -1,10 +1,9 @@
 ---
 id: t-install
 title: Troubleshooting OpenEBS Install
-sidebar_label: Install
 ---
 
-# General guidelines for troubleshooting
+## General guidelines for troubleshooting
 
 - Contact [OpenEBS Community](/docs/next/support.html) for support.
 - Search for similar issues added in this troubleshooting section.

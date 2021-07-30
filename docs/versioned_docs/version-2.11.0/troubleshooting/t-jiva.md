@@ -1,10 +1,9 @@
 ---
 id: t-jiva
 title: Troubleshooting OpenEBS - Jiva
-sidebar_label: Jiva
 ---
 
-# General guidelines for troubleshooting
+## General guidelines for troubleshooting
 
 - Contact <a href="/docs/next/support.html" target="_blank">OpenEBS Community</a> for support.
 - Search for similar issues added in this troubleshooting section.
