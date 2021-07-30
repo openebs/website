@@ -3,7 +3,7 @@ title: Deploying OpenEBS on SUSE CaaS platform
 author: Ashok Babu
 author_info: Senior DevOps consultant at Wipro works on App Anywhere & cloud-native technologies.
 date: 24-04-2019
-tags: Kubernetes, Cloud Native Storage, Mayadata, SUSE, Container attached storage, OpenEBS
+tags: Kubernetes, Cloud Native Storage, MayaData, SUSE, Container attached storage, OpenEBS
 excerpt: I am recently introduced to OpenEBS, an easy to use persistent storage option for Kubernetes and found it nicely working on the SuSE CaaS platform where I could certify the cloud native databases. 
 ---
 

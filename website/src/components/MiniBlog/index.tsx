@@ -113,19 +113,31 @@ const MiniBlog: React.FC = () => {
 
   const filteredData = (jsonMdData || []).filter((tabs: TabProps) => {
     if (value !== BLOG_TAGS.ALL) {
-      const tagData = tabs.tags.find((el: string) => el === value);
-      return tagData === value;
+      const tagData = tabs.tags.find(
+        (tag: string) => tag.toLowerCase() === value.toLowerCase()
+      );
+      return tagData;
     }
     return tabs;
   });
 
+  const reducer = (acum: { [key: string]: any }, cur: string) => {
+    const keys = Object.keys(acum);
+    const key: string = keys.find(
+        (item) => cur.toLowerCase() === item.toLowerCase()
+      ) || cur;
+    return Object.assign(acum, { [key]: (acum[key] || 0) + 1 });
+  };
+
   useEffect(() => {
     let tagsArray: Array<string> = [];
     if (jsonMdData && jsonMdData.constructor === Array) { // this check is necessary to avoid parsing errors on JSON data
-      for (let i=0; i < jsonMdData.length; i++) {
+      for (let i = jsonMdData.length - 1; i >= 0; i--) {
         tagsArray = [...tagsArray, ...jsonMdData[i].tags];
       }
-      setTagsDistribution(tagsArray.reduce((acum: any,cur: string) => Object.assign(acum,{[cur]: (acum[cur] || 0)+1}),{}));
+      setTagsDistribution(
+        tagsArray.reduce<Record<string, string>>(reducer, {})
+      );
     }
   }, [jsonMdData]);
 
