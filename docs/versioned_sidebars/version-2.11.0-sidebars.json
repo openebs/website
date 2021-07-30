@@ -44,6 +44,56 @@
           "label": "Support"
         }
       ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Troubleshooting",
+      "customProps": {
+        "icon": "BookOpen"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/troubleshooting",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/t-install",
+          "label": "Install"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/t-uninstall",
+          "label": "Uninstall"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/t-ndm",
+          "label": "NDM"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/t-volume-provisioning",
+          "label": "Volume Provisioning"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/t-jiva",
+          "label": "Jiva"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/t-cstor",
+          "label": "cStor"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/t-mayastor",
+          "label": "Mayastor"
+        }
+      ]
     }
   ]
 }
