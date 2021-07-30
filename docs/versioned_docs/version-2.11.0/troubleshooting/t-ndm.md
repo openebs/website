@@ -5,18 +5,19 @@ title: Troubleshooting OpenEBS - NDM
 
 ## General guidelines for troubleshooting
 
-- Contact <a href="/docs/next/support.html" target="_blank">OpenEBS Community</a> for support.
+- Contact [OpenEBS Community](/docs/introduction/community) for support.
 - Search for similar issues added in this troubleshooting section.
-- Search for any reported issues on <a href=" https://stackoverflow.com/questions/tagged/openebs" target="_blank">StackOverflow under OpenEBS tag</a>
+- Search for any reported issues on [StackOverflow under OpenEBS tag](https://stackoverflow.com/questions/tagged/openebs)
 
 [Blockdevices are not detected by NDM](#bd-not-detected)
 
 [Unable to claim blockdevices by NDM operator](#unable-to-claim-blockdevices)
 
-<h3><a class="anchor" aria-hidden="true" id="bd-not-detected"></a>Blockdevices are not detected by NDM</h3>
+### Blockdevices are not detected by NDM {#bd-not-detected}
+
 One additional disk is connected to the node, with multiple partitions on the disk. Some of the partitions have a filesystem and is mounted. `kubectl get bd -n openebs` does not show any blockdevices. Ideally the blockdevice resources for the partitions should have been shown.
 
-```
+```shell hideCopy
 NAME   FSTYPE MOUNTPOINT   SIZE
 sda                        1.8T
 ├─sda1                     500G
@@ -42,7 +43,7 @@ The `ndm-config-map` needs to be edited.
 
 The blockdevices should now be created for the unused partitions.
 
-<h3><a class="anchor" aria-hidden="true" id="unable-to-claim-blockdevices"></a>Unable to claim blockdevices by NDM operator</h3>
+### Unable to claim blockdevices by NDM operator{#unable-to-claim-blockdevices}
 
 BlockDeviceClaims may remain in pending state, even if blockdevices are available in Unclaimed and Active state. The main reason for this will be there are no blockdevices that match the criteria specified in the BlockDeviceClaim. Sometimes, even if the criteria matches the blockdevice may be in an Unclaimed state.
 
@@ -96,4 +97,4 @@ wipefs -fa /dev/sdb
 
 ## See Also:
 
-[FAQs](/docs/next/faq.html) [Seek support or help](/docs/next/support.html) [Latest release notes](/docs/next/releases.html)
+[FAQs](/docs/next/faq.html) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)

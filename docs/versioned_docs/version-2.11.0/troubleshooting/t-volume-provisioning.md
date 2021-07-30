@@ -5,13 +5,13 @@ title: Troubleshooting OpenEBS - Provisioning
 
 ## General guidelines for troubleshooting
 
-- Contact <a href="/docs/next/support.html" target="_blank">OpenEBS Community</a> for support.
+- Contact [OpenEBS Community](/docs/introduction/community) for support.
 - Search for similar issues added in this troubleshooting section.
-- Search for any reported issues on <a href=" https://stackoverflow.com/questions/tagged/openebs" target="_blank">StackOverflow under OpenEBS tag</a>
-
-[Unable to create persistentVolumeClaim due to certificate verification error](#admission-server-ca)
+- Search for any reported issues on [StackOverflow under OpenEBS tag](https://stackoverflow.com/questions/tagged/openebs)
 
 [Application complaining ReadOnly filesystem](#application-read-only)
+
+[Unable to create persistentVolumeClaim due to certificate verification error](#admission-server-ca)
 
 [Application pods are not running when OpenEBS volumes are provisioned on Rancher](#application-pod-not-running-Rancher)
 
@@ -39,7 +39,7 @@ title: Troubleshooting OpenEBS - Provisioning
 
 [Persistent volumes indefinitely remain in pending state](#persistent-volumes-indefinitely-remain-in-pending-state)
 
-<h3><a class="anchor" aria-hidden="true" id="application-read-only"></a> Application complaining ReadOnly filesystem</h3>
+### Application complaining ReadOnly filesystem {#application-read-only}
 
 Application sometimes complain about the underlying filesystem has become ReadOnly.
 
@@ -53,11 +53,11 @@ This can happen for many reasons.
 
 Go through the Kubelet logs and application pod logs to know the reason for marking the ReadOnly and take appropriate action. [Maintaining volume quorum](/docs/next/k8supgrades.html) is necessary during Kubernetes node reboots.
 
-<h3><a class="anchor" aria-hidden="true" id="admission-server-ca"></a>Unable to create persistentVolumeClaim due to certificate verification error</h3>
+### Unable to create persistentVolumeClaim due to certificate verification error {#admission-server-ca}
 
 An issue can appear when creating a PersistentVolumeClaim:
 
-```
+```shell hideCopy
 Error from server (InternalError):Internal error occurred: failed calling webhook "admission-webhook.openebs.io": Post https://admission-server-svc.openebs.svc:443/validate?timeout=30s: x509: certificate signed by unknown authority (possibly because of "crypto/rsa: verification error" while trying to verify candidate authority certificate "admission-server-ca")
 ```
 
@@ -73,11 +73,11 @@ This can be fixed by restarting the admission controller:
 kubectl -n openebs get pods -o name | grep admission-server | xargs kubectl -n openebs delete
 ```
 
-<h3><a class="anchor" aria-hidden="true" id="application-pod-not-running-Rancher"></a>Application pods are not running when OpenEBS volumes are provisioned on Rancher</h3>
+### Application pods are not running when OpenEBS volumes are provisioned on Rancher{#application-pod-not-running-Rancher}
 
 The setup environment where the issue occurs is rancher/rke with bare metal hosts running CentOS. After installing OpenEBS, OpenEBS pods are running, but application pod is in _ContainerCreating_ state. It consume Jiva volume. The output of `kubectl get pods` is displayed as follows.
 
-```
+```shell hideCopy
 NAME                                                             READY     STATUS              RESTARTS   AGE
 nginx-deployment-57849d9f57-12345                                0/1       ContainerCreating   0          2m
 pvc-adb79406-8e3e-11e8-a06a-001c42c2325f-ctrl-58dcdf997f-n4kd9   2/2       Running             0          8m
@@ -91,6 +91,7 @@ pvc-adb79406-8e3e-11e8-a06a-001c42c2325f-rep-696b599894-vs97n    1/1       Runni
 Make sure the following prerequisites are done.
 
 1. Verify iSCSI initiator is installed on nodes and services are running.
+
 2. Added extra_binds under kubelet service in cluster YAML
 
 More details are mentioned [here](/docs/next/prerequisites.html#rancher).
@@ -128,11 +129,11 @@ More details are mentioned [here](/docs/next/prerequisites.html#rancher).
   - _allowHostDirVolumePlugin: true_
   - _runAsUser: runAsAny_
 
-<h3><a class="anchor" aria-hidden="true" id="cstor-pool-failed-centos-partition-disk"></a>Creating cStor pool fails on CentOS when there are partitions on the disk.</h3>
+### Creating cStor pool fails on CentOS when there are partitions on the disk. {#cstor-pool-failed-centos-partition-disk}
 
 Creating cStor pool fails with the following error message:
 
-```
+```shell hideCopy
 E0920 14:51:17.474702       8 pool.go:78] Unable to create pool: /dev/disk/by-id/ata-WDC_WD2500BOOM-00JJ
 ```
 
@@ -171,7 +172,7 @@ sdc           8:32   0 232.9G  0 disk
 
    Output of the above command will be similar to the following.
 
-   ```
+   ```shell hideCopy
    Name             Maj Min Stat Open Targ Event  UUID
    usr              254   0 L--r    1    1      0 CRYPT-VERITY-959135d6b3894b3b8125503de238d5c4-usr
    centos-home      254   2 L--w    0    1      0 LVM-1kqWMeQWqH3qTsiHhYw3ygAzOvpfDL58dDmziWBI0panwOGRq2rp9PjpmE6qdf1V
@@ -187,7 +188,7 @@ sdc           8:32   0 232.9G  0 disk
    sudo dmsetup remove centos-root
    ```
 
-<h3><a class="anchor" aria-hidden="true" id="application-crashloopbackoff"></a>Application pod enters CrashLoopBackOff states</h3>
+### Application pod enters CrashLoopBackOff states {#application-crashloopbackoff}
 
 Application pod enters CrashLoopBackOff state
 
@@ -243,7 +244,7 @@ The procedure to ensure application recovery in the above cases is as follows:
 
 1. The above procedure works for applications that are either pods or deployments/statefulsets. In case of the latter, the application pod can be restarted (i.e., deleted) after step-4 (iscsi logout) as the deployment/statefulset controller will take care of rescheduling the application on a same/different node with the volume.
 
-<h3><a class="anchor" aria-hidden="true" id="cstor-pool-pod-not-running"></a>cStor pool pods are not running</h3>
+### cStor pool pods are not running {#cstor-pool-pod-not-running}
 
 The cStor disk pods are not coming up after it deploy with the YAML. On checking the pool pod logs, it says `/dev/xvdg is in use and contains a xfs filesystem.`
 
@@ -258,14 +259,14 @@ wipefs -a <block device path>
 
 The following is an example output of `lsblk` on node.
 
-<div class="co">
+```shell hideCopy
 NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 loop0     7:0    0   89M  1 loop /snap/core/7713
 loop1     7:1    0   18M  1 loop /snap/amazon-ssm-agent/1480
 xvda    202:0    0  128G  0 disk
 └─xvda1 202:1    0  128G  0 part /
 xvdf    202:80   0   50G  0 disk /home/openebs-ebs
-</div>
+```
 
 From the above output, it shows that `/dev/xvdf` is mounted on `/home/openebs-ebs`. The following commands will unmount disk first and then remove the file system.
 
@@ -278,7 +279,7 @@ After performing the above commands, verify the disk status using `lsblk` comman
 
 Example output:
 
-<div class="co">
+```shell hideCopy
 ubuntu@ip-10-5-113-122:~$ lsblk
 NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 loop0     7:0    0   89M  1 loop /snap/core/7713
@@ -286,9 +287,9 @@ loop1     7:1    0   18M  1 loop /snap/amazon-ssm-agent/1480
 xvda    202:0    0  128G  0 disk
 └─xvda1 202:1    0  128G  0 part /
 xvdf    202:80   0   50G  0 disk
-</div>
+```
 
-<h3><a class="anchor" aria-hidden="true" id="Jiva-provisioning-failed-080"></a>OpenEBS Jiva PVC is not provisioning in 0.8.0</h3>
+### OpenEBS Jiva PVC is not provisioning in 0.8.0 {#Jiva-provisioning-failed-080}
 
 Even all OpenEBS pods are in running state, unable to provision Jiva volume if you install through helm.
 
@@ -296,7 +297,7 @@ Even all OpenEBS pods are in running state, unable to provision Jiva volume if y
 
 Check the latest logs showing in the OpenEBS provisioner logs. If the particular PVC creation entry logs are not coming on the OpenEBS provisioner pod, then restart the OpenEBS provisioner pod. From 0.8.1 version, liveness probe feature will check the OpenEBS provisioner pod status periodically and ensure its availability for OpenEBS PVC creation.
 
-<h3><a class="anchor" aria-hidden="true" id="recovery-readonly-when-kubelet-is-container"></a>Recovery procedure for Read-only volume where kubelet is running in a container.</h3>
+### Recovery procedure for Read-only volume where kubelet is running in a container. {#recovery-readonly-when-kubelet-is-container}
 
 In environments where the kubelet runs in a container, perform the following steps as part of the recovery procedure for a Volume-Read only issue.
 
@@ -311,7 +312,7 @@ In environments where the kubelet runs in a container, perform the following ste
    - Verify if the application pod is able to start using/writing into the newly mounted device.
 2. Once the application is back in "Running" state post recovery by following steps 1-9, if existing/older data is not visible (i.e., it comes up as a fresh instance), it is possible that the application pod is using the docker container filesystem instead of the actual PV (observed sometimes due to the reconciliation attempts by Kubernetes to get the pod to a desired state in the absence of the mounted iSCSI disk). This can be checked by performing a `df -h` or `mount` command inside the application pods. These commands should show the scsi device `/dev/sd*` mounted on the specified mount point. If not, the application pod can be forced to use the PV by restarting it (deployment/statefulset) or performing a docker stop of the application container on the node (pod).
 
-<h3><a class="anchor" aria-hidden="true" id="recovery-readonly-xfs-volume"></a>Recovery procedure for Read-only volume for XFS formatted volumes</h3>
+### Recovery procedure for Read-only volume for XFS formatted volumes {#recovery-readonly-xfs-volume}
 
 In case of `XFS` formatted volumes, perform the following steps once the iSCSI target is available in RW state & logged in:
 
@@ -321,7 +322,7 @@ In case of `XFS` formatted volumes, perform the following steps once the iSCSI t
 - Perform `xfs_repair /dev/<device>`. This fixes if any file system related errors on the device
 - Perform application pod deletion to facilitate fresh mount of the volume. At this point, the app pod may be stuck on `terminating` OR `containerCreating` state. This can be resolved by deleting the volume folder (w/ app content) on the local directory.
 
-<h3><a class="anchor" aria-hidden="true" id="unable-to-clone-from-snapshot"></a>Unable to clone OpenEBS volume from snapshot</h3>
+### Unable to clone OpenEBS volume from snapshot {#unable-to-clone-from-snapshot}
 
 Taken a snapshot of a PVC successfully. But unable to clone the volume from the snapshot.
 
@@ -329,7 +330,7 @@ Taken a snapshot of a PVC successfully. But unable to clone the volume from the 
 
 Logs from snapshot-controller pods are follows.
 
-```
+```shell hideCopy
 ERROR: logging before flag.Parse: I0108 18:11:54.017909      1 volume.go:73] OpenEBS volume provisioner namespace openebs
 I0108 18:11:54.181897      1 snapshot-controller.go:95] starting snapshot controller
 I0108 18:11:54.200069      1 snapshot-controller.go:167] Starting snapshot controller
@@ -383,7 +384,7 @@ I0109 04:11:54.212249      1 snapshot-controller.go:197] [CONTROLLER] OnUpdate o
 
 This can be happen due to the stale entries of snapshot and snapshot data. By deleting those entries will resolve this issue.
 
-<h3><a class="anchor" aria-hidden="true" id="unable-to-mount-xfs-volume"></a>Unable to mount XFS formatted volumes into Pod</h3>
+### Unable to mount XFS formatted volumes into Pod {#unable-to-mount-xfs-volume}
 
 I created PVC with FSType as `xfs`. OpenEBS PV is successfully created and I have verified that iSCSI initiator is available on the Application node. But application pod is unable to mount the volume.
 
@@ -391,7 +392,7 @@ I created PVC with FSType as `xfs`. OpenEBS PV is successfully created and I hav
 
 Describing application pod is showing following error:
 
-```
+```shell hideCopy
 Events:
   Type     Reason                  Age                From                     Message
   ----     ------                  ----               ----                     -------
@@ -414,7 +415,7 @@ iscsiadm: No portals found
 
 kubelet had following errors during mount process:
 
-```
+```shell hideCopy
 kubelet[687]: I0315 15:14:54.179765     687 mount_linux.go:453] `fsck` error fsck from util-linux 2.27.1
 kubelet[687]: fsck.ext2: Bad magic number in super-block while trying to open /dev/sdn
 kubelet[687]: /dev/sdn:
@@ -424,7 +425,7 @@ kubelet[687]: filesystem.  If the device is valid and it really contains an ext2
 
 And dmesg was showing errors like:
 
-```
+```shell hideCopy
 [5985377.220132] XFS (sdn): Invalid superblock magic number
 [5985377.306931] XFS (sdn): Invalid superblock magic number
 ```
@@ -437,11 +438,11 @@ This can happen due to `xfs_repair` failure on the application node. Make sure t
 apt install xfsprogs
 ```
 
-<h3><a class="anchor" aria-hidden="true" id="unable-to-create-or-delete-a-pvc"></a>Unable to create or delete a PVC</h3>
+### Unable to create or delete a PVC {#unable-to-create-or-delete-a-pvc}
 
 User is unable to create a new PVC or delete an existing PVC. While doing any of these operation, the following error is coming on the PVC.
 
-```
+```shell hideCopy
 Error from server (InternalError): Internal error occurred: failed calling webhook "admission-webhook.openebs.io": Post https://admission-server-svc.openebs.svc:443/validate?timeout=30s: Bad Gateway
 ```
 
@@ -452,7 +453,7 @@ By default admission webhook service has been configured to 443 port and the err
 
 User is unable to create a new PVC or delete an existing PVC. While doing any of these operation, the following error is coming on the PVC.
 
-```
+```shell hideCopy
 Error from server (InternalError): Internal error occurred: failed calling webhook "admission-webhook.openebs.io": Post https://admission-server-svc.openebs.svc:443/validate?timeout=30s: Bad Gateway
 ```
 
@@ -461,11 +462,11 @@ Error from server (InternalError): Internal error occurred: failed calling webho
 When a user creates or deletes a PVC, there are validation triggers and a request has been intercepted by the admission webhook controller after authentication/authorization from kube-apiserver.
 By default admission webhook service has been configured to 443 port and the error above suggests that either port 443 is not allowed to use in cluster or admission webhook service has to be allowed in k8s cluster Proxy settings.
 
-<h3><a class="anchor" aria-hidden="true" id="unable-to-provision-openebs-volume-on-DigitalOcean"></a>Unable to provision OpenEBS volume on DigitalOcean</h3>
+### Unable to provision OpenEBS volume on DigitalOcean {#unable-to-provision-openebs-volume-on-DigitalOcean}
 
 User is unable to provision cStor or jiva volume on DigitalOcean, encountering error thrown from iSCSI PVs:
 
-```
+```shell hideCopy
 MountVolume.WaitForAttach failed for volume “pvc-293d3560-a5c3–41d5–8911–67f33115b8ee” : executable file not found in $PATH
 ```
 
@@ -473,12 +474,14 @@ MountVolume.WaitForAttach failed for volume “pvc-293d3560-a5c3–41d5–8911�
 
 To avoid this issue, the Kubelet Service needs to be updated to mount the required packages to establish iSCSI connection to the target. Kubelet Service on all the nodes in the cluster should be updated.
 
-<blockquote>
- The exact mounts may vary depending on the OS.
- The following steps have been verified on:
+:::info
+The exact mounts may vary depending on the OS.
+The following steps have been verified on:
+
 1. Digital Ocean Kubernetes Release: 1.15.3-do.2
 2. Nodes running OS Debian Release: 9.11
-</blockquote>
+
+:::
 
 Add the below lines (volume mounts) to the file on each of the nodes:
 
@@ -491,16 +494,16 @@ Add the below lines (volume mounts) to the file on each of the nodes:
 -v /lib/x86_64-linux-gnu/libisns-nocrypto.so.0:/lib/x86_64-linux-gnu/libisns-nocrypto.so.0 \
 ```
 
-<b>Restart the kubelet service using the following commands:</b>
+**Restart the kubelet service using the following commands:**
 
 ```
 systemctl daemon-reload
 service kubelet restart
 ```
 
-To know more about provisioning cStor volume on DigitalOcean<a href="/docs/next/prerequisites.html#do"> click here</a>
+To know more about provisioning cStor volume on DigitalOcean [click here](/docs/next/prerequisites.html#do).
 
-<h3><a class="anchor" aria-hidden="true" id="persistent-volumes-indefinitely-remain-in-pending-state"></a>Persistent volumes indefinitely remain in pending state</h3>
+### Persistent volumes indefinitely remain in pending state {#persistent-volumes-indefinitely-remain-in-pending-state}
 
 If users have a strict firewall setup on their Kubernetes nodes, the provisioning of a PV from a storageclass backed by a cStor storage pool may fail. The pool can be created without any issue and even the storage class is created, but the PVs may stay in pending state indefinitely.
 
@@ -532,4 +535,4 @@ To avoid this issue, open the port `5656/tcp` on the nodes that run the OpenEBS 
 
 ## See Also:
 
-[FAQs](/docs/next/faq.html) [Seek support or help](/docs/next/support.html) [Latest release notes](/docs/next/releases.html)
+[FAQs](/docs/next/faq.html) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)

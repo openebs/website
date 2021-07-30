@@ -5,7 +5,7 @@ title: Troubleshooting OpenEBS Install
 
 ## General guidelines for troubleshooting
 
-- Contact [OpenEBS Community](/docs/next/support.html) for support.
+- Contact [OpenEBS Community](/docs/introduction/community) for support.
 - Search for similar issues added in this troubleshooting section.
 - Search for any reported issues on [StackOverflow under OpenEBS tag](https://stackoverflow.com/questions/tagged/openebs)
 
@@ -19,11 +19,11 @@ title: Troubleshooting OpenEBS Install
 
 [A multipath.conf file claims all SCSI devices in OpenShift](#multipath-conf-claims-all-scsi-devices-openshift)
 
-<a class="anchor" aria-hidden="true" id="install-failed-user-rights"></a>Installation failed because of insufficient user rights
+### Installation failed because of insufficient user rights {#install-failed-user-rights}
 
 OpenEBS installation can fail in some cloud platform with the following errors.
 
-```
+```shell hideCopy
 namespace "openebs" created
 serviceaccount "openebs-maya-operator" created
 clusterrolebinding.rbac.authorization.k8s.io "openebs-maya-operator" created
@@ -44,11 +44,11 @@ You must enable RBAC before OpenEBS installation. This can be done from the kube
 kubectl create clusterrolebinding  <cluster_name>-admin-binding --clusterrole=cluster-admin --user=<user-registered-email-with-the-provider>
 ```
 
-<a class="anchor" aria-hidden="true" id="install-failed-iscsi-not-configured"></a>iSCSI client is not setup on Nodes. Pod is in ContainerCreating state.
+### iSCSI client is not setup on Nodes. Pod is in ContainerCreating state. {#install-failed-iscsi-not-configured}
 
 After OpenEBS installation, you may proceed with application deployment which will provision OpenEBS volume. This may fail due to the following error. This can be found by describing the application pod.
 
-```
+```shell hideCopy
 MountVolume.WaitForAttach failed for volume “pvc-ea5b871b-32d3-11e9-9bf5-0a8e969eb15a” : open /sys/class/iscsi_host: no such file or directory -
 ```
 
@@ -56,7 +56,7 @@ MountVolume.WaitForAttach failed for volume “pvc-ea5b871b-32d3-11e9-9bf5-0a8e9
 
 This logs points that iscsid.service may not be enabled and running on your Nodes. You need to check if the service `iscsid.service` is running. If it is not running, you have to `enable` and `start` the service. You can refer [prerequisites](/docs/next/prerequisites.html) section and choose your platform to get the steps for enabling it.
 
-<a class="anchor" aria-hidden="true" id="openebs-provisioner-restart-continuously"></a>Why does OpenEBS provisioner pod restart continuously?
+### Why does OpenEBS provisioner pod restart continuously?{#openebs-provisioner-restart-continuously}
 
 The following output displays the pod status of all namespaces in which the OpenEBS provisioner is restarting continuously.
 
@@ -92,13 +92,15 @@ Perform the following steps to verify if the issue is due to misconfiguration wh
 
 4. Try other network components such as Calico, kube-router etc. if you are not using any of these.
 
-<a class="anchor" aria-hidden="true" id="install-failed-azure-no-rbac-set"></a>OpenEBS installation fails on Azure
+### OpenEBS installation fails on Azure {#install-failed-azure-no-rbac-set}
 
 On AKS, while installing OpenEBS using Helm, you may see the following error.
 
 ```
 $ helm install openebs/openebs --name openebs --namespace openebs
+```
 
+```shell hideCopy
 Error: release openebs failed: clusterroles.rbac.authorization.k8s.io "openebs" isforbidden: attempt to grant extra privileges:[PolicyRule{Resources:["nodes"], APIGroups:["*"],Verbs:["get"]} PolicyRule{Resources:["nodes"],APIGroups:["*"], Verbs:["list"]}PolicyRule{Resources:["nodes"], APIGroups:["*"],Verbs:["watch"]} PolicyRule{Resources:["nodes/proxy"],APIGroups:["*"], Verbs:["get"]}PolicyRule{Resources:["nodes/proxy"], APIGroups:["*"],Verbs:["list"]} PolicyRule{Resources:["nodes/proxy"],APIGroups:["*"], Verbs:["watch"]}PolicyRule{Resources:["namespaces"], APIGroups:["*"],Verbs:["*"]} PolicyRule{Resources:["services"],APIGroups:["*"], Verbs:["*"]} PolicyRule{Resources:["pods"],APIGroups:["*"], Verbs:["*"]}PolicyRule{Resources:["deployments"], APIGroups:["*"],Verbs:["*"]} PolicyRule{Resources:["events"],APIGroups:["*"], Verbs:["*"]}PolicyRule{Resources:["endpoints"], APIGroups:["*"],Verbs:["*"]} PolicyRule{Resources:["persistentvolumes"],APIGroups:["*"], Verbs:["*"]} PolicyRule{Resources:["persistentvolumeclaims"],APIGroups:["*"], Verbs:["*"]}PolicyRule{Resources:["storageclasses"],APIGroups:["storage.k8s.io"], Verbs:["*"]}PolicyRule{Resources:["storagepools"], APIGroups:["*"],Verbs:["get"]} PolicyRule{Resources:["storagepools"], APIGroups:["*"],Verbs:["list"]} PolicyRule{NonResourceURLs:["/metrics"],Verbs:["get"]}] user=&{system:serviceaccount:kube-system:tiller6f3172cc-4a08-11e8-9af5-0a58ac1f1729 [system:serviceaccounts system:serviceaccounts:kube-systemsystem:authenticated] map[]} ownerrules=[]ruleResolutionErrors=[clusterroles.rbac.authorization.k8s.io"cluster-admin" not found]
 ```
 
@@ -106,7 +108,7 @@ Error: release openebs failed: clusterroles.rbac.authorization.k8s.io "openebs" 
 
 You must enable RBAC on Azure before OpenEBS installation. For more details, see [Prerequisites](/docs/next/prerequisites.html).
 
-<a class="anchor" aria-hidden="true" id="multipath-conf-claims-all-scsi-devices-openshift"></a>A multipath.conf file claims all SCSI devices in OpenShift
+### A multipath.conf file claims all SCSI devices in OpenShift {#multipath-conf-claims-all-scsi-devices-openshift}
 
 A multipath.conf file without either find_multipaths or a manual blacklist claims all SCSI devices.
 
@@ -125,4 +127,4 @@ A multipath.conf file without either find_multipaths or a manual blacklist claim
 
 ## See Also:
 
-[FAQs](/docs/next/faq.html) [Seek support or help](/docs/next/support.html) [Latest release notes](/docs/next/releases.html)
+[FAQs](/docs/next/faq.html) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)

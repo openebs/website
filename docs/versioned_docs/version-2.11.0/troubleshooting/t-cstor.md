@@ -5,7 +5,7 @@ title: Troubleshooting OpenEBS - cStor
 
 ## General guidelines for troubleshooting
 
-- Contact [OpenEBS Community](/docs/next/support.html) for support.
+- Contact [OpenEBS Community](/docs/introduction/community) for support.
 - Search for similar issues added in this troubleshooting section.
 - Search for any reported issues on [StackOverflow under OpenEBS tag](https://stackoverflow.com/questions/tagged/openebs)
 
@@ -19,23 +19,24 @@ title: Troubleshooting OpenEBS - cStor
 
 [Volume Migration when the underlying cStor pool is lost](#volume-migration-pool-lost)
 
-<a class="anchor" aria-hidden="true" id="CVR-showing-status-as-invalid-after-poolpod-gets-recreated"></a>One of the cStorVolumeReplica(CVR) will have its status as `Invalid` after corresponding pool pod gets recreated
+### One of the cStorVolumeReplica(CVR) will have its status as `Invalid` after corresponding pool pod gets recreated {#CVR-showing-status-as-invalid-after-poolpod-gets-recreated}
 
 When User delete a cStor pool pod, there are high chances for that corresponding pool-related CVR's can goes into `Invalid` state.
 Following is a sample output of `kubectl get cvr -n openebs`
 
-<div class="co">NAME                                                         USED   ALLOCATED   STATUS    AGE
+```shell hideCopy
+NAME                                                         USED   ALLOCATED   STATUS    AGE
 pvc-738f76c0-b553-11e9-858e-54e1ad4a9dd4-cstor-sparse-p8yp   6K     6K          Invalid   6m
-</div>
+```
 
 **Troubleshooting**
 
 Sample logs of `cstor-pool-mgmt` when issue happens:
 
-```
-<div class="co">rm /usr/local/bin/zrepl
+```shell hideCopy
+rm /usr/local/bin/zrepl
 exec /usr/local/bin/cstor-pool-mgmt start
-<b>I0802 18:35:13.814623 6 common.go:205] CStorPool CRD found</b>
+I0802 18:35:13.814623 6 common.go:205] CStorPool CRD found
 I0802 18:35:13.822382 6 common.go:223] CStorVolumeReplica CRD found
 I0802 18:35:13.824957 6 new_pool_controller.go:103] Setting up event handlers
 I0802 18:35:13.827058 6 new_pool_controller.go:105] Setting up event handlers for CSP
@@ -66,9 +67,7 @@ I0802 18:35:13.968689 6 run_backup_controller.go:53] Started CStorBackup workers
 I0802 18:35:43.869876 6 handler.go:456] cStorPool pending: 48d3b2ba-b553-11e9-858e-54e1ad4a9dd4
 I0802 18:35:43.869961 6 new_pool_controller.go:160] cStorPool Modify event : cstor-sparse-p8yp, 48d3b2ba-b553-11e9-858e-54e1ad4a9dd4
 I0802 18:35:43.870552 6 event.go:221] Event(v1.ObjectReference{Kind:"CStorPool", Namespace:"", Name:"cstor-sparse-p8yp", UID:"48d3b2ba-b553-11e9-858e-54e1ad4a9dd4", APIVersion:"openebs.io/v1alpha1", ResourceVersion:"2070", FieldPath:""}): type: 'Normal' reason: 'Synced' Received Resource modify event
-<b>I0802 18:35:44.905633 6 pool.go:93] Import command successful with true dontimport: false importattr: [import -c /tmp/pool1.cache -o cachefile=/tmp/pool1.cache cstor-48d3b2ba- b553-11e9-858e-54e1ad4a9dd4] out:</b>
-</div>
-
+I0802 18:35:44.905633 6 pool.go:93] Import command successful with true dontimport: false importattr: [import -c /tmp/pool1.cache -o cachefile=/tmp/pool1.cache cstor-48d3b2ba- b553-11e9-858e-54e1ad4a9dd4] out:
 ```
 
 From the above highlighted logs, we can confirm `cstor-pool-mgmt` in new pod is communicating with `cstor-pool` in old pod as first highlighted log says `cstor pool found` then next highlighted one says pool is really `imported`.
@@ -83,7 +82,7 @@ When a cstor pool pod is deleted there are high chances that two cstor pool pods
 
 Edit the `Phase` of cStorVolumeReplica (cvr) from `Invalid` to `Offline`. After few seconds CVR will be `Healthy` or `Degraded` state depends on rebuilding progress.
 
-<h3><a class="anchor" aria-hidden="true" id="cstor-volume-read-only"></a>cStor volume become read only state</h3>
+### cStor volume become read only state {#cstor-volume-read-only}
 
 Application mount point running on cStor volume went into read only state.
 
@@ -99,10 +98,11 @@ Check the status of corresponding cStor volume using the following command:
 kubectl get cstorvolume -n <openebs_installed_namespace> -l openebs.io/persistent-volume=<PV_NAME>
 ```
 
-If cStor volume exists in `Healthy` or `Degraded` state then restarting of the application pod alone will bring back cStor volume to `RW` mode. If cStor volume exists in `Offline`, reach out to <a href="/docs/next/support.html" target="_blank">OpenEBS Community</a> for assistance.
+If cStor volume exists in `Healthy` or `Degraded` state then restarting of the application pod alone will bring back cStor volume to `RW` mode. If cStor volume exists in `Offline`, reach out to [OpenEBS Community](/docs/introduction/community) for assistance.
 
-<h3><a class="anchor" aria-hidden="true" id="pools-volume-offline"></a>cStor pools, volumes are offline and pool manager pods are stuck in pending state</h3>
-The cStor pools and volumes are offline, the pool manager pods are stuck in a <code>pending</code> state, as shown below:
+### cStor pools, volumes are offline and pool manager pods are stuck in pending state {#pools-volume-offline}
+
+The cStor pools and volumes are offline, the pool manager pods are stuck in a `pending` state, as shown below:
 
 ```
 $ kubectl get po -n openebs -l app=cstor-pool
@@ -110,7 +110,7 @@ $ kubectl get po -n openebs -l app=cstor-pool
 
 Sample Output:
 
-```
+```shell hideCopy
 NAME                               READY   STATUS    RESTARTS   AGE
 cstor-cspc-chjg-85f65ff79d-pq9d2   0/3     Pending   0          16m
 cstor-cspc-h99x-57888d4b5-kh42k    0/3     Pending   0          15m
@@ -119,18 +119,18 @@ cstor-cspc-xs4b-85dbbbb59b-wvhmr   0/3     Pending   0          18m
 
 One such scenario that can lead to such a situation is, when the nodes have been scaled down and then scaled up. This results in nodes coming up with a different hostName and node name, i.e, the nodes that have come up are new nodes and not the same as previous nodes that existed earlier. Due to this, the disks that were attached to the older nodes now get attached to the newer nodes.
 
-<b>Troubleshooting</b>
+**Troubleshooting**
 To bring cStor pool back to online state carry out the below mentioned steps,
 
 1. **Update validatingwebhookconfiguration resource's failurePolicy**:
-   Update the <code>validatingwebhookconfiguration</code> resource's failure policy to <code>Ignore</code>. It would be previously set to <code>Fail</code>. This informs the kube-APIServer to ignore the error in case cStor admission server is not reachable.
+   Update the `validatingwebhookconfiguration` resource's failure policy to `Ignore`. It would be previously set to `Fail`. This informs the kube-APIServer to ignore the error in case cStor admission server is not reachable.
    To edit, execute:
 
    ```
    $ kubectl edit validatingwebhookconfiguration openebs-cstor-validation-webhook
    ```
 
-   Sample Output with updated <code>failurePolicy</code>
+   Sample Output with updated `failurePolicy`
 
    ```
     kind: ValidatingWebhookConfiguration
@@ -163,42 +163,42 @@ To bring cStor pool back to online state carry out the below mentioned steps,
    ```
 
 3. **Update the CSPC spec nodeSelector**:
-   The <code>CStorPoolCluster</code> needs to be updated with the new <code>nodeSelector</code> values. The updated CSPC now points to the new nodes instead of the old nodeSelectors.
+   The `CStorPoolCluster` needs to be updated with the new `nodeSelector` values. The updated CSPC now points to the new nodes instead of the old nodeSelectors.
 
-   Update <code>kubernetes.io/hostname</code> with the new values.
+   Update `kubernetes.io/hostname` with the new values.
 
    Sample Output:
 
-```
-apiVersion: cstor.openebs.io/v1
-kind: CStorPoolCluster
-metadata:
-  name: cstor-cspc
-  namespace: openebs
-spec:
-  pools:
-    - nodeSelector:
-        kubernetes.io/hostname: "ip-192-168-25-235"
-      dataRaidGroups:
-      - blockDevices:
-          - blockDeviceName: "blockdevice-798dbaf214f355ada15d097d87da248c"
-      poolConfig:
-        dataRaidGroupType: "stripe"
-    - nodeSelector:
-        kubernetes.io/hostname: "ip-192-168-33-15"
-      dataRaidGroups:
-      - blockDevices:
-          - blockDeviceName: "blockdevice-4505d9d5f045b05995a5654b5493f8e0"
-      poolConfig:
-        dataRaidGroupType: "stripe"
-    - nodeSelector:
-        kubernetes.io/hostname: "ip-192-168-75-156"
-      dataRaidGroups:
-      - blockDevices:
-          - blockDeviceName: "blockdevice-c783e51a80bc51065402e5473c52d185"
-      poolConfig:
-        dataRaidGroupType: "stripe"
-```
+   ```shell hideCopy
+   apiVersion: cstor.openebs.io/v1
+   kind: CStorPoolCluster
+   metadata:
+   name: cstor-cspc
+   namespace: openebs
+   spec:
+   pools:
+       - nodeSelector:
+           kubernetes.io/hostname: "ip-192-168-25-235"
+       dataRaidGroups:
+       - blockDevices:
+           - blockDeviceName: "blockdevice-798dbaf214f355ada15d097d87da248c"
+       poolConfig:
+           dataRaidGroupType: "stripe"
+       - nodeSelector:
+           kubernetes.io/hostname: "ip-192-168-33-15"
+       dataRaidGroups:
+       - blockDevices:
+           - blockDeviceName: "blockdevice-4505d9d5f045b05995a5654b5493f8e0"
+       poolConfig:
+           dataRaidGroupType: "stripe"
+       - nodeSelector:
+           kubernetes.io/hostname: "ip-192-168-75-156"
+       dataRaidGroups:
+       - blockDevices:
+           - blockDeviceName: "blockdevice-c783e51a80bc51065402e5473c52d185"
+       poolConfig:
+           dataRaidGroupType: "stripe"
+   ```
 
 To apply the above configuration, execute:
 
@@ -209,7 +209,7 @@ $ kubectl apply -f cspc.yaml
 5.  **Update nodeSelectors, labels and NodeName**:
 
     Next, the CSPI needs to be updated with the correct node details.
-    Get the node details on which the previous blockdevice was attached and after fetching node details update hostName, nodeSelector values and <code>kubernetes.io/hostname</code> values in labels of CSPI with new details.
+    Get the node details on which the previous blockdevice was attached and after fetching node details update hostName, nodeSelector values and `kubernetes.io/hostname` values in labels of CSPI with new details.
     To update, execute:
 
     ```
@@ -227,7 +227,7 @@ $ kubectl apply -f cspc.yaml
 
     Sample Output:
 
-    ```
+    ```shell hideCopy
     ...
     ...
     Events:
@@ -240,23 +240,25 @@ $ kubectl apply -f cspc.yaml
     This brings back the cStor admission server to running state. As well as admission server is required to validate the modifications made to CSPC API in future.
     `$ kubectl scale deploy openebs-cstor-admission-server -n openebs --replicas=1`
 
-        Sample Output:
+    Sample Output:
 
-          ```
-           deployment.extensions/openebs-cstor-admission-server scaled
-          ```
+    ```shell hideCopy
+    deployment.extensions/openebs-cstor-admission-server scaled
+    ```
 
-        Now, update the <code>failurePolicy</code> back to <code>Fail</code> under validatingwebhookconfiguration. To edit, execute:
+    Now, update the `failurePolicy` back to `Fail` under validatingwebhookconfiguration. To edit, execute:
 
-        ```
-        $ kubectl edit validatingwebhookconfiguration openebs-cstor-validation-webhook
-        ```
-        Sample Output:
-        ```
-         validatingwebhookconfiguration.admissionregistration.k8s.io/openebs-cstor-validation-webhook edited
-        ```
+    ```
+    $ kubectl edit validatingwebhookconfiguration openebs-cstor-validation-webhook
+    ```
 
-<h3><a class="anchor" aria-hidden="true" id="pool-operation-hung"></a>Pool Operation hung due to Bad Disk</h3>
+    Sample Output:
+
+    ```shell hideCopy
+        validatingwebhookconfiguration.admissionregistration.k8s.io/openebs-cstor-validation-webhook edited
+    ```
+
+### Pool Operation hung due to Bad Disk {#pool-operation-hung}
 
 cStor scans all the devices on the node while it tries to import the pool in case there is a pool manager pod restart. Pool(s) are always imported before creation.
 On pool creation all of the devices are scanned and as there are no existing pool(s), a new pool is created. Now, when the pool is created the participating devices are cached for faster import of the pool (in case of pool manager pod restart). If the import utilises cache then this issue won't be hit but there is a chance of import without cache (when the pool is being created for the first time)
@@ -266,15 +268,15 @@ In such cases where pool import happens without cache file and if any of the dev
 **Troubleshooting**
 This might be encountered because of one of the following situations:
 
-1. The device that has gone bad is actually a part of the cStor pool on the node. In such cases, Block device replacement needs to be done, the detailed steps to it can be found <a href="/docs/next/ugcstor-csi.html#a-class-anchor-aria-hidden-true-id-performance-tunings-in-cstor-pools-a-performance-tunings-in-cstor-pools" target="_blank">here</a>.
+1. The device that has gone bad is actually a part of the cStor pool on the node. In such cases, Block device replacement needs to be done, the detailed steps to it can be found [here](/docs/next/ugcstor-csi.html#a-class-anchor-aria-hidden-true-id-performance-tunings-in-cstor-pools-a-performance-tunings-in-cstor-pools).
 
 **Note**: Block device replacement is not supported for stripe raid configuration. Please visit this link for some use cases and solutions.
 
 2. The device that has gone bad is not part of the cStor pool on the node. In this case, removing the bad disk from the node and restarting the pool manager pod with fix the problem.
 
-<h3><a class="anchor" aria-hidden="true" id="volume-migration-pool-lost"></a>Volume Migration when the underlying cStor pool is lost</h3>
+### Volume Migration when the underlying cStor pool is lost {#volume-migration-pool-lost}
 
-<h4>Scenarios that can result in losing of cStor pool(s):</h4>
+#### Scenarios that can result in losing of cStor pool(s):
 
 - If the node is lost.
 - If one or more disks participating in the cStor pool are lost. This occurs when the pool configuration is set to stripe.
@@ -288,16 +290,16 @@ If the volume replica that resided on the lost pool was configured in high avail
 
 **NOTE**:The CStorVolume associated to the volume replicas have to be migrated should be in Healthy state.
 
-<b>STEP 1:</b>
+**STEP 1:**
 **Remove the cStorVolumeReplicas from the lost pool**:
 
-To remove the pool the <code>CStorVolumeConfig</code> needs to updated. The <code>poolName</code> for the corresponding pool needs to be removed from <code>replicaPoolInfo</code>. This ensures that the admission server accepts the scale down request.
+To remove the pool the `CStorVolumeConfig` needs to updated. The `poolName` for the corresponding pool needs to be removed from `replicaPoolInfo`. This ensures that the admission server accepts the scale down request.
 
 **NOTE**: Ensure that the cstorvolume and target pods are in running state.
 
 A sample CVC resource(corresponding to the volume) that has 3 pools.
 
-```
+```shell hideCopy
 ...
 ...
   policy:
@@ -319,7 +321,7 @@ Now edit the CVC and remove the desired poolName.
 $ kubectl edit cvc pvc-81746e7a-a29d-423b-a048-76edab0b0826 -n openebs
 ```
 
-```
+```shell hideCopy
 ...
 ...
   policy:
@@ -333,7 +335,7 @@ $ kubectl edit cvc pvc-81746e7a-a29d-423b-a048-76edab0b0826 -n openebs
 ...
 ```
 
-From the above spec, <code>cstor-cspc-4tr5</code> CSPI entry is removed. This needs to be repeated for all the volumes which have cStor volume replicas on the lost pool. To get the list of volume replicas in lost pool, execute:
+From the above spec, `cstor-cspc-4tr5` CSPI entry is removed. This needs to be repeated for all the volumes which have cStor volume replicas on the lost pool. To get the list of volume replicas in lost pool, execute:
 
 ```
 $ kubectl get cvr -n openebs -l cstorpoolinstance.openebs.io/name=<CSPI_name>
@@ -344,11 +346,11 @@ NAME                                                       USED   ALLOCATED   ST
 pvc-81746e7a-a29d-423b-a048-76edab0b0826-cstor-cspc-bf9h   6K     6K          Healthy   4m7s
 ```
 
-<b>STEP 2:</b>
+**STEP 2:**
 
 **Remove the finalizer from cStor volume replicas**
 
-The CVRs need to be deleted from the etcd, this requires the <code>finalizer</code> under <code>cstorvolumereplica.openebs.io/finalizer</code> to be removed from the CVRs which were present on the lost cStor pool.
+The CVRs need to be deleted from the etcd, this requires the `finalizer` under `cstorvolumereplica.openebs.io/finalizer` to be removed from the CVRs which were present on the lost cStor pool.
 
 Usually, the finalizer is removed by pool-manager pod but as in this case the pod is not in running state hence manual intervention is required.
 
@@ -360,7 +362,7 @@ $ kubectl get cvr -n openebs
 
 Sample Output:
 
-```
+```shell hideCopy
 NAME                                                       USED   ALLOCATED   STATUS    AGE
 pvc-81746e7a-a29d-423b-a048-76edab0b0826-cstor-cspc-xnxx   6K     6K          Healthy   52m
 pvc-81746e7a-a29d-423b-a048-76edab0b0826-cstor-cspc-zdvk   6K     6K          Healthy   52m
@@ -374,7 +376,7 @@ $ kubectl describe cvc <pv_name> -n openebs
 
 Sample Output:
 
-```
+```shell hideCopy
 Events:
 Type     Reason                 Age    From                         Message
 ----     ------                 ----   ----                         -------
@@ -400,14 +402,14 @@ $ kubectl get cspc -n openebs
 
 Sample Output:
 
-```
+```shell hideCopy
 NAME         HEALTHYINSTANCES   PROVISIONEDINSTANCES   DESIREDINSTANCES   AGE
 cstor-cspc   2                  3                      2                  56m
 ```
 
-Since CSPI has pool protection finalizer i.e <code>openebs.io/pool-protection</code> the CSPC operator was unable to delete the CSPI. Due to this reason the count for provisioned instances still remains 3.
+Since CSPI has pool protection finalizer i.e `openebs.io/pool-protection` the CSPC operator was unable to delete the CSPI. Due to this reason the count for provisioned instances still remains 3.
 
-To fix this <code>openebs.io/pool-protection</code> finalizer must be removed from the CSPI that was present on the lost node.
+To fix this `openebs.io/pool-protection` finalizer must be removed from the CSPI that was present on the lost node.
 
 To edit, execute:
 
@@ -417,7 +419,7 @@ kubectl edit cspi  <cspi_name>
 
 After the finalizer is removed the CSPI count goes to the desired number.
 
-```
+```shell hideCopy
 $ kubectl get cspc -n openebs
 NAME         HEALTHYINSTANCES   PROVISIONEDINSTANCES   DESIREDINSTANCES   AGE
 cstor-cspc   2                  2                      2                  68m
@@ -438,13 +440,13 @@ $ kubectl get cspi -n openebs
 
 Sample Output:
 
-```
+```shell hideCopy
 NAME             HOSTNAME           ALLOCATED  FREE   CAPACITY  READONLY  PROVISIONEDREPLICAS  HEALTHYREPLICAS  TYPE    STATUS  AGE
 cstor-cspc-bf9h  ip-192-168-49-174  230k       9630M  9630230k  false     0                    0                stripe  ONLINE  66s
 ```
 
 Next, add the newly created CStorPoolInstance under CVC.Spec
-In this example we are adding, <code>cstor-cspc-bf9h </code>
+In this example we are adding, `cstor-cspc-bf9h `
 
 To edit, execute:
 
@@ -482,7 +484,7 @@ $ kubectl get cvr -n openebs
 
 Sample Output:
 
-```
+```shell hideCopy
 NAME                                                       USED   ALLOCATED   STATUS    AGE
 pvc-81746e7a-a29d-423b-a048-76edab0b0826-cstor-cspc-bf9h   6K     6K          Healthy   11m
 pvc-81746e7a-a29d-423b-a048-76edab0b0826-cstor-cspc-xnxx   6K     6K          Healthy   96m
@@ -498,7 +500,7 @@ $ kubectl get cspi -n openebs
 
 Sample Output:
 
-```
+```shell hideCopy
 NAME              HOSTNAME            ALLOCATED  FREE   CAPACITY  READONLY  PROVISIONEDREPLICAS  HEALTHYREPLICAS  TYPE    STATUS  AGE
 cstor-cspc-bf9h  ip-192-168-49-174    230k       9630M  9630230k  false     1                    1                stripe  ONLINE  66s
 cstor-cspc-xnxx   ip-192-168-79-76    101k       9630M  9630101k  false     1                    1                stripe  ONLINE  4m25s
@@ -508,4 +510,4 @@ cstor-cspc-zdvk   ip-192-168-29-217   98k        9630M  9630098k  false     1   
 
 ## See Also:
 
-[FAQs](/docs/next/faq.html) [Seek support or help](/docs/next/support.html) [Latest release notes](/docs/next/releases.html)
+[FAQs](/docs/next/faq.html) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)

@@ -5,17 +5,17 @@ title: Troubleshooting OpenEBS - Jiva
 
 ## General guidelines for troubleshooting
 
-- Contact <a href="/docs/next/support.html" target="_blank">OpenEBS Community</a> for support.
+- Contact [OpenEBS Community](/docs/introduction/community) for support.
 - Search for similar issues added in this troubleshooting section.
-- Search for any reported issues on <a href=" https://stackoverflow.com/questions/tagged/openebs" target="_blank">StackOverflow under OpenEBS tag</a>
+- Search for any reported issues on [StackOverflow under OpenEBS tag](https://stackoverflow.com/questions/tagged/openebs)
 
 [Jiva replica pod logs showing meta file missing entry](#replica-pod-meta-file-error)
 
-<h3><a class="anchor" aria-hidden="true" id="replica-pod-meta-file-error"></a>Jiva replica pod logs showing "Failed to find metadata"</h3>
+### Jiva replica pod logs showing "Failed to find metadata" {#replica-pod-meta-file-error}
 
 Jiva target pod may not be syncing data across all replicas when replica pod logs contains below kind of messages:
 
-```
+```shell hideCopy
 level=error msg="Error in request: Failed to find metadata for volume-snap-b72764f0-4ca8-49b1-b9ca-57cb9dfb6fa9.img"
 ```
 
@@ -33,7 +33,7 @@ Perform following steps to restore the missing metadata file of internal snapsho
 
   Example snippet of Healthy replica:
 
-  ```
+  ```shell hideCopy
   revision.counter                                           volume-snap-792e7036-877d-4807-9641-4843c987d0a5.img
   volume-head-005.img                                        volume-snap-792e7036-877d-4807-9641-4843c987d0a5.img.meta
   volume-head-005.img.meta                                   volume-snap-b72764f0-4ca8-49b1-b9ca-57cb9dfb6fa9.img
@@ -47,7 +47,7 @@ Perform following steps to restore the missing metadata file of internal snapsho
 
   Example snippet of of faulty replica:
 
-  ```
+  ```shell hideCopy
   revision.counter                                           volume-snap-792e7036-877d-4807-9641-4843c987d0a5.img
   volume-head-005.img                                        volume-snap-792e7036-877d-4807-9641-4843c987d0a5.img.meta
   volume-head-005.img.meta                                   volume-snap-b72764f0-4ca8-49b1-b9ca-57cb9dfb6fa9.img
@@ -68,4 +68,4 @@ Perform following steps to restore the missing metadata file of internal snapsho
 
 ## See Also:
 
-[FAQs](/docs/next/faq.html) [Seek support or help](/docs/next/support.html) [Latest release notes](/docs/next/releases.html)
+[FAQs](/docs/next/faq.html) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)
