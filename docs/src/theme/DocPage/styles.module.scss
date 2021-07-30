@@ -49,6 +49,10 @@
   display: none;
 }
 
+.colMainContent {
+  width: 100vw;
+}
+
 @media (min-width: 997px) {
   .logoWrapper {
     padding: 30px 0px 10px 0px;
@@ -63,7 +67,11 @@
   }
 
   .docPage {
-    grid-template-columns: 298px 1fr;
+    grid-template-columns: var(--doc-sidebar-width) 1fr;
+  }
+
+  .colMainContent {
+    width: calc(100vw - var(--doc-sidebar-width));
   }
 
   .docMainContainerEnhanced {
