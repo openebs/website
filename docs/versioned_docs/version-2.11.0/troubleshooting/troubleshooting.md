@@ -3,7 +3,7 @@ id: troubleshooting
 title: Troubleshooting OpenEBS - Overview
 ---
 
-## General guidelines for troubleshooting
+### General guidelines for troubleshooting
 
 - Search for similar issues mentioned in this page as well as the following troubleshooting sections.
   - [Troubleshooting Install](/docs/troubleshooting/t-install).
@@ -12,29 +12,29 @@ title: Troubleshooting OpenEBS - Overview
   - [Troubleshooting Jiva](/docs/troubleshooting/t-jiva).
   - [Troubleshooting cStor](/docs/troubleshooting/t-cstor).
   - [Troubleshooting LocalPV](/docs/troubleshooting/t-localpv).
-- Contact <a href="/docs/next/support.html" target="_blank">OpenEBS Community</a> for support.
-- Search for similar issues on <a href="https://github.com/openebs/openebs/issues" target="_blank">OpenEBS GitHub repository</a>.
-- Search for any reported issues on <a href="https://stackoverflow.com/questions/tagged/openebs" target="_blank">StackOverflow under OpenEBS tag</a>.
+- Contact [OpenEBS Community](/docs/introduction/community) for support.
+- Search for similar issues on [OpenEBS GitHub repository](https://github.com/openebs/openebs/issues).
+- Search for any reported issues on [StackOverflow under OpenEBS tag](https://stackoverflow.com/questions/tagged/openebs).
 
-## Kubernetes related
+#### Kubernetes related
 
 [Kubernetes node reboots because of increase in memory consumed by Kubelet](#node-reboot-when-kubelet-memory-increases)
 
 [Application and OpenEBS pods terminate/restart under heavy I/O load](#Pods-restart-terminate-when-heavy-load)
 
-## Others
+#### Others
 
 [Nodes in the cluster reboots frequently almost everyday in openSUSE CaaS](#reboot-cluster-nodes)
 
 <font size="6" color="green">Kubernetes related</font>
 
-<h3><a class="anchor" aria-hidden="true" id="node-reboot-when-kubelet-memory-increases"></a>Kubernetes node reboots because of increase in memory consumed by Kubelet</h3>
+## Kubernetes node reboots because of increase in memory consumed by Kubelet {#node-reboot-when-kubelet-memory-increases}
 
 Sometime it is observed that iscsiadm is continuously fails and repeats rapidly and for some reason this causes the memory consumption of kubelet to grow until the node goes out-of-memory and needs to be rebooted. Following type of error can be observed in journalctl and cstor-istgt container.
 
 **journalctl logs**
 
-```
+```shell hideCopy
 Feb 06 06:11:38 <hostname> kubelet[1063]: iscsiadm: failed to send SendTargets PDU
 Feb 06 06:11:38 <hostname> kubelet[1063]: iscsiadm: connection login retries (reopen_max) 5 exceeded
 Feb 06 06:11:38 <hostname> kubelet[1063]: iscsiadm: Connection to Discovery Address 10.233.46.76 failed
@@ -49,7 +49,7 @@ Feb 06 06:11:38 <hostname> kubelet[1063]: iscsiadm: failed to send SendTargets P
 
 **cstor-istgt container logs**
 
-```
+```shell hideCopy
 2019-02-05/15:43:30.250 worker            :6088: c#0.140005771040512.: iscsi_read_pdu() EOF
 
 2019-02-05/15:43:30.250 sender            :5852: s#0.140005666154240.: sender loop ended (0:14:43084)
@@ -82,11 +82,13 @@ The cause of high memory consumption of kubelet is mainly due to the following.
 
 There are 3 modules are involved - cstor-istgt, kubelet and iscsiInitiator(iscsiadm). kubelet runs iscsiadm command to do discovery on cstor-istgt. If there is any delay in receiving response of discovery opcode (either due to network or delay in processing on target side), iscsiadm retries few times, and, gets into infinite loop dumping error messages as below:
 
-    iscsiadm: Connection to Discovery Address 127.0.0.1 failed
-    iscsiadm: failed to send SendTargets PDU
-    iscsiadm: connection login retries (reopen_max) 5 exceeded
-    iscsiadm: Connection to Discovery Address 127.0.0.1 failed
-    iscsiadm: failed to send SendTargets PDU
+```shell hideCopy
+iscsiadm: Connection to Discovery Address 127.0.0.1 failed
+iscsiadm: failed to send SendTargets PDU
+iscsiadm: connection login retries (reopen_max) 5 exceeded
+iscsiadm: Connection to Discovery Address 127.0.0.1 failed
+iscsiadm: failed to send SendTargets PDU
+```
 
 kubelet keeps taking this response and accumulates the memory. More details can be seen [here](https://github.com/openebs/openebs/issues/2382).
 
@@ -94,7 +96,7 @@ kubelet keeps taking this response and accumulates the memory. More details can 
 
 Restart the corresponding istgt pod to avoid memory consumption.
 
-<h3><a class="anchor" aria-hidden="true" id="Pods-restart-terminate-when-heavy-load"></a>Application and OpenEBS pods terminate/restart under heavy I/O load</h3>
+## Application and OpenEBS pods terminate/restart under heavy I/O load {#Pods-restart-terminate-when-heavy-load}
 
 This is caused due to lack of resources on the Kubernetes nodes, which causes the pods to evict under loaded conditions as the node becomes _unresponsive_. The pods transition from _Running_ state to _unknown_ state followed by _Terminating_ before restarting again.
 
@@ -108,7 +110,7 @@ You can resolve this issue by upgrading the Kubernetes cluster infrastructure re
 
 <font size="6" color="orange">Others</font>
 
-<h3><a class="anchor" aria-hidden="true" id="reboot-cluster-nodes"></a>Nodes in the cluster reboots frequently almost everyday in openSUSE CaaS</h3>
+## Nodes in the cluster reboots frequently almost everyday in openSUSE CaaS {#reboot-cluster-nodes}
 
 Setup the cluster using RKE with openSUSE CaaS MicroOS using CNI Plugin Cilium. Install OpenEBS, create a PVC and allocate to a fio job/ busybox. Run FIO test on the same. Observed nodes in the cluster getting restarted on a schedule basis.
 
@@ -118,7 +120,7 @@ Check journalctl logs of each nodes and check if similar logs are observed. In t
 
 Node1:
 
-```
+```shell hideCopy
 Apr 12 00:21:01 mos2 transactional-update[7302]: /.snapshots/8/snapshot/root/.bash_history
 Apr 12 00:21:01 mos2 transactional-update[7302]: /.snapshots/8/snapshot/var/run/reboot-needed
 Apr 12 00:21:01 mos2 transactional-update[7302]: transactional-update finished - rebooting machine
@@ -129,7 +131,7 @@ Apr 12 00:21:01 mos2 systemd[1]: Stopped Update the system.
 
 Node2:
 
-```
+```shell hideCopy
 01:44:19 mos3 transactional-update[17442]: other mounts and will not be visible to the system:
 Apr 12 01:44:19 mos3 transactional-update[17442]: /.snapshots/8/snapshot/root/.bash_history
 Apr 12 01:44:19 mos3 transactional-update[17442]: /.snapshots/8/snapshot/var/run/reboot-needed
@@ -141,7 +143,7 @@ Apr 12 01:44:20 mos3 systemd[1]: Stopped Update the system.
 
 Node3:
 
-```
+```shell hideCopy
 Apr 12 03:00:13 mos4 systemd[1]: snapper-timeline.service: Succeeded.
 Apr 12 03:30:00 mos4 rebootmgrd[1612]: rebootmgr: reboot triggered now!
 Apr 12 03:30:00 mos4 systemd[1]: rebootmgr.service: Succeeded.
@@ -184,4 +186,4 @@ Set the reboot timer schedule at different time i.e staggered at various interva
 
 ## See Also:
 
-[Troubleshooting Install](/docs/next/t-install.html) [Troubleshooting Uninstall](/docs/next/t-uninstall.html) [Troubleshooting NDM](/docs/next/t-ndm.html) [Troubleshooting Jiva](/docs/next/t-jiva.html) [Troubleshooting cStor](/docs/next/t-cstor.html) [Troubleshooting Local PV](/docs/next/t-localpv.html) [Troubleshooting Mayastor](/docs/next/t-mayastor.html) [FAQs](/docs/next/faq.html) [Seek support or help](/docs/next/support.html) [Latest release notes](/docs/next/releases.html)
+[Troubleshooting Install](/docs/troubleshooting/t-install) [Troubleshooting Uninstall](/docs/troubleshooting/t-uninstall) [Troubleshooting NDM](/docs/troubleshooting/t-ndm) [Troubleshooting Jiva](/docs/troubleshooting/t-jiva) [Troubleshooting cStor](/docs/troubleshooting/t-cstor) [Troubleshooting Local PV](/docs/troubleshooting/t-localpv) [Troubleshooting Mayastor](/docs/troubleshooting/t-mayastor) [FAQs](/docs/next/faq.html) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)
