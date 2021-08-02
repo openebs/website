@@ -1,7 +1,6 @@
 ---
 id: localpv-hostpath
 title: OpenEBS Local PV Hostpath User Guide
-sidebar_label: Local PV Hostpath
 ---
 
 This guide will help you to set up and use OpenEBS Local Persistent Volumes backed by Hostpath. 
@@ -14,8 +13,6 @@ This guide will help you to set up and use OpenEBS Local Persistent Volumes back
 - Protect against hostpath security vulnerabilities by masking the hostpath completely from the application YAML and pod.
 
 OpenEBS Local PV uses volume topology aware pod scheduling enhancements introduced by [Kubernetes Local Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#local)
-
-<br />
 
 :::tip QUICKSTART
 
@@ -75,25 +72,25 @@ You can skip this section if you have already installed OpenEBS.
    *OpenEBS Dynamic Local Provisioner* offers some configurable parameters that can be applied during the OpenEBS Installation. Some key configurable parameters available for OpenEBS Dynamic Local Provisioner are:
 
    - The location of the *OpenEBS Dynamic Local PV provisioner* container image.
-     <div class="co">
+     ```shell hideCopy
      Default value: openebs/provisioner-localpv
      YAML specification: spec.image on Deployment(localpv-provisioner)
      Helm key: localprovisioner.image
-     </div>
+     ```
 
    - The location of the *Provisioner Helper* container image. *OpenEBS Dynamic Local Provisioner* create a *Provisioner Helper* pod to create and delete hostpath directories on the nodes.
-     <div class="co">
+     ```shell hideCopy
      Default value: openebs/linux-utils
      YAML specification: Environment Variable (OPENEBS_IO_HELPER_IMAGE) on Deployment(localpv-provisioner) 
      Helm key: helper.image
-     </div>
+     ```
 
    - The absolute path on the node where the Hostpath directory of a Local PV Volume will be created.
-     <div class="co">
+     ```shell hideCopy
      Default value: /var/openebs/local
      YAML specification: Environment Variable (OPENEBS_IO_LOCALPV_HOSTPATH_DIR) on Deployment(maya-apiserver)
      Helm key: localprovisioner.basePath
-     </div>
+     ```
 
 2. You can proceed to install OpenEBS either using kubectl or helm using the steps below. 
 
@@ -121,8 +118,6 @@ You can skip this section if you have already installed OpenEBS.
      helm install --namespace openebs --name openebs openebs/openebs
      ```
 
-
-
 ## Create StorageClass
 
 You can skip this section if you would like to use default OpenEBS Local PV Hostpath StorageClass created by OpenEBS. 
@@ -147,26 +142,26 @@ The default Storage Class is called `openebs-hostpath` and its `BasePath` is con
    reclaimPolicy: Delete
    volumeBindingMode: WaitForFirstConsumer
    ```
-#### (Optional) Custom Node Labelling
+    #### (Optional) Custom Node Labelling
 
-You can use custom node affinity labels instead of hostname in the hostpath provisioner. This
-helps in cases where the hostname changes when the node is removed and added back with the disks
-still intact. 
-For eg: If the custom node label is `openebs.io/custom-node-unique-id`, it can be added to the storage class config under `metadata.annotations`.
+    You can use custom node affinity labels instead of hostname in the hostpath provisioner. This
+    helps in cases where the hostname changes when the node is removed and added back with the disks
+    still intact. 
+    For eg: If the custom node label is `openebs.io/custom-node-unique-id`, it can be added to the storage class config under `metadata.annotations`.
 
-```
-   metadata:
-     name: local-hostpath
-     annotations:
-       openebs.io/cas-type: local
-       cas.openebs.io/config: |
-         - name: NodeAffinityLabel
-           value: "openebs.io/custom-node-unique-id"
-```
+    ```
+      metadata:
+        name: local-hostpath
+        annotations:
+          openebs.io/cas-type: local
+          cas.openebs.io/config: |
+            - name: NodeAffinityLabel
+              value: "openebs.io/custom-node-unique-id"
+    ```
 
-   :::note 
-   The `volumeBindingMode` MUST ALWAYS be set to `WaitForFirstConsumer`. `volumeBindingMode: WaitForFirstConsumer` instructs Kubernetes to initiate the creation of PV only after Pod using PVC is scheduled to the node.
-   :::
+  :::note 
+  The `volumeBindingMode` MUST ALWAYS be set to `WaitForFirstConsumer`. `volumeBindingMode: WaitForFirstConsumer` instructs Kubernetes to initiate the creation of PV only after Pod using PVC is scheduled to the node.
+  :::
 
 2. Edit `local-hostpath-sc.yaml` and update with your desired values for `metadata.name` and `cas.openebs.io/config.BasePath`.
 
@@ -196,10 +191,10 @@ Once you have installed OpenEBS, verify that *OpenEBS Local PV provisioner* is r
    ```
 
    The output should indicate `openebs-localpv-provisioner` pod is running. 
-   <div class="co">
+   ```shell hideCopy
    NAME                                           READY   STATUS    RESTARTS   AGE
    openebs-localpv-provisioner-5ff697f967-nb7f4   1/1     Running   0          2m49s
-   </div>
+   ```
 
 2. To verify *OpenEBS Local PV Hostpath* StorageClass is created, execute the following command. 
 
@@ -208,12 +203,11 @@ Once you have installed OpenEBS, verify that *OpenEBS Local PV provisioner* is r
    ```
 
    The output should indicate either the default StorageClass `openebs-hostpath` and/or custom StorageClass `local-hostpath` are displayed.
-   <div class="co">
+   ```shell hideCopy
    NAME                        PROVISIONER                                                AGE
    local-hostpath              openebs.io/local                                           5h26m
    openebs-hostpath            openebs.io/local                                           6h4m
-   </div>
-
+   ```
 
 ## Create a PersistentVolumeClaim
 
@@ -249,10 +243,10 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
 
    The output shows that the `STATUS` is `Pending`. This means PVC has not yet been used by an application pod. The next step is to create a Pod that uses your PersistentVolumeClaim as a volume.
 
-   <div class="co">
+   ```shell hideCopy
    NAME                 STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS       AGE
    local-hostpath-pvc   Pending                                      openebs-hostpath   3m7s
-   </div>
+   ```
 
 ## Create Pod to consume OpenEBS Local PV Hostpath Storage
 
@@ -308,7 +302,7 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
 
    The output shows that the Pod is running on `Node: gke-user-helm-default-pool-3a63aff5-1tmf` and using the persistent volume provided by `local-hostpath-pvc`.
 
-   <div class="co">
+   ```shell hideCopy
    Name:         hello-local-hostpath-pod
    Namespace:    default
    Priority:     0
@@ -321,7 +315,7 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
        ClaimName:  local-hostpath-pvc
        ReadOnly:   false
    ...
-   </div>
+   ```
 
 6. Look at the PersistentVolumeClaim again to see the details about the dynamically provisioned Local PersistentVolume
    ```
@@ -330,10 +324,10 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
 
    The output shows that the `STATUS` is `Bound`. A new Persistent Volume `pvc-864a5ac8-dd3f-416b-9f4b-ffd7d285b425` has been created. 
 
-   <div class="co">
+   ```shell hideCopy
    NAME                 STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE
    local-hostpath-pvc   Bound    pvc-864a5ac8-dd3f-416b-9f4b-ffd7d285b425   5G         RWO            openebs-hostpath   28m
-   </div>
+   ```
 
 7. Look at the PersistentVolume details to see where the data is stored. Replace the PVC name with the one that was displayed in the previous step. 
    ```
@@ -341,7 +335,7 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
    ```
    The output shows that the PV was provisioned in response to PVC request  `spec.claimRef.name: local-hostpath-pvc`. 
 
-   <div class="co">
+   ```shell hideCopy
    apiVersion: v1
    kind: PersistentVolume
    metadata:
@@ -379,7 +373,7 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
      volumeMode: Filesystem
    status:
      phase: Bound
-   </div>
+   ```
    <br/>
 
 :::note 
@@ -434,12 +428,12 @@ The following steps will help you to prepare and backup the data from the volume
    ```
 
    On successful completion of the backup, the output of the backup describe command will show the following:
-   <div class="co">
+   ```shell hideCopy
    ...
    Restic Backups:
      Completed:
        default/hello-local-hostpath-pod: local-storage
-   </div>
+   ```
  
 ### Restore
 
@@ -450,10 +444,10 @@ The following steps will help you to prepare and backup the data from the volume
    ```
    
    The output of should display the backups that were taken successfully. 
-   <div class="co">
+   ```shell hideCopy
    NAME     STATUS      CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
    bbb-01   Completed   2020-04-25 15:49:46 +0000 UTC   29d       default            app=test-velero-backup
-   </div>
+   ```
 
 2. Restore the application. 
 
@@ -474,11 +468,11 @@ The following steps will help you to prepare and backup the data from the volume
    ```
    
    Depending on the data, it may take a while to initialize the volume. On successful restore, the output of the above command should show:
-   <div class="co">
+   ```shell hideCopy
    ...
    Restic Restores (specify --details for more information):
      Completed:  1
-   </div>
+   ```
    
 4. Verify that data has been restored. The application pod used in this example, write periodic messages (greetings) to the volume. 
 
@@ -487,11 +481,11 @@ The following steps will help you to prepare and backup the data from the volume
    ```
    
    The output will show that backed up data as well as new greetings that started appearing after application pod was restored. 
-   <div class="co">
+   ```shell hideCopy
    Sat Apr 25 15:41:30 UTC 2020 [hello-local-hostpath-pod] Hello from OpenEBS Local PV.
    Sat Apr 25 15:46:30 UTC 2020 [hello-local-hostpath-pod] Hello from OpenEBS Local PV.
    Sat Apr 25 16:11:25 UTC 2020 [hello-local-hostpath-pod] Hello from OpenEBS Local PV.
-   </div>
+   ```
 
 ## Troubleshooting 
 
@@ -507,8 +501,4 @@ If you encounter issues or have a question, file an [Github issue](https://githu
 
 ## See Also:
 
-### [Understand OpenEBS Local PVs ](/docs/next/localpv.html)
-
-
-<br />
-
+[Understand OpenEBS Local PVs ](/docs/next/localpv.html)

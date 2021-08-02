@@ -1,10 +1,9 @@
 ---
 id: quickstart
 title: OpenEBS Quickstart Guide
-sidebar_label: Quickstart
 ---
 
-This guide will help you to setup OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with [Kubernetes Storage Concepts](/docs/next/k8s-storage.html). 
+This guide will help you to setup OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with [Kubernetes Storage Concepts](/concepts/k8s-storage).
 
 
 In most cases, the following steps is all you need to install OpenEBS. You can read through the rest of the document to understand the choices you have and optimize OpenEBS for your Kubernetes cluster. 
@@ -31,10 +30,9 @@ The OpenEBS workflow fits nicely into the reconcilation pattern introduced by Ku
 
 ![control plane overview](../assets/control-plane-overview.svg)
 
-
 ### 1. Kubernetes Cluster Design
 
-As a Kubernetes cluster administrator, you will have to work with your Platform or Infrastructure teams on the composition of the Kubernetes worker nodes like - RAM, CPU, Network and the storage devices attached to the worker nodes. The [resources available to the Kubernetes nodes](docs/next/casengines.html#node-capabilities) determine what OpenEBS engines to use for your stateful workloads. 
+As a Kubernetes cluster administrator, you will have to work with your Platform or Infrastructure teams on the composition of the Kubernetes worker nodes like - RAM, CPU, Network and the storage devices attached to the worker nodes. The [resources available to the Kubernetes nodes](/concepts/casengines#node-capabilities) determine what OpenEBS engines to use for your stateful workloads. 
 
 As a Kubernetes cluster administrator or Platform SREs you will have to decide which deployment strategy works best for you - either use an hyperconverged mode where Stateful applications and storage volumes are co-located or run Stateful applications and storage on different pools of nodes. 
 
@@ -58,7 +56,7 @@ Please read through the relevant section of the [pre-requisites](/user-guides/pr
 - [Digital Ocean](/user-guides/prerequisites#do)
 - [Konvoy](/user-guides/prerequisites#konvoy)
 
-If your platform is missing in the above list, please [raise an issue on the docs](https://github.com/openebs/openebs/issues/new/choose) or reach us on the [community slack](/docs/next/support.html) to let us know. 
+If your platform is missing in the above list, please [raise an issue on the docs](https://github.com/openebs/openebs/issues/new/choose) or reach us on the [community slack](/introduction/community) to let us know. 
 
 ### 2. Install OpenEBS and Setup Storage Classes
 
@@ -66,16 +64,16 @@ OpenEBS is Kubernetes native, which makes it possible to install OpenEBS into yo
 
 You can install OpenEBS only using Kubernetes admin context as you will require cluster level permissions to create Storage Classes. 
 
-OpenEBS offers different modes of [installation](/docs/next/installation.html). The most popular ones are using:
-- [OpenEBS Helm chart](/docs/next/installation.html#installation-through-helm)
-- [OpenEBS YAML(s) via `kubectl`](/docs/next/installation.html#installation-through-kubectl)
+OpenEBS offers different modes of [installation](/user-guides/installation). The most popular ones are using:
+- [OpenEBS Helm chart](//user-guides/installation#installation-through-helm)
+- [OpenEBS YAML(s) via `kubectl`](//user-guides/installation#installation-through-kubectl)
 
 OpenEBS will install a couple of default storage classes that you an use for Local Volumes (`openebs-hostpath`) and Replicated Volumes (`openebs-hostpath`). The data of the volumes created by these default storage classes will be saved under `/var/openebs`. 
 
 As a Platform SRE / Cluster Administrator, you can customize several things about OpenEBS installer to suite your specific environment and create the setup the required Storage Classes. You can jump to the relevant sections based on your choice of [data engines](docs/next/casengines.html#data-engine-capabilities):
 
-- [Local PV hostpath](/docs/next/uglocalpv-hostpath.html)
-- [Local PV device](/docs/next/uglocalpv-device.html)
+- [Local PV hostpath](/user-guides/localpv-hostpath)
+- [Local PV device](/user-guides/localpv-device)
 - [Local PV ZFS](https://github.com/openebs/zfs-localpv)
 - [Local PV LVM](https://github.com/openebs/lvm-localpv)
 - [Local PV Rawfile](https://github.com/openebs/rawfile-localpv)

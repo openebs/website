@@ -1,12 +1,9 @@
 ---
 id: localpv-device
 title: OpenEBS Local PV Device User Guide
-sidebar_label: Local PV Device
 ---
 
-<a href="/docs/assets/svg/4-config-sequence.svg" target="_blank"><img src="/docs/assets/svg/4-config-sequence.svg" alt="OpenEBS configuration flow" style="width:100%" /></a>
-
-<br />
+![OpenEBS configuration flow](../assets/4-config-sequence.svg)
 
 This guide will help you to set up and use OpenEBS Local Persistent Volumes backed by Block Devices.
 
@@ -17,8 +14,6 @@ This guide will help you to set up and use OpenEBS Local Persistent Volumes back
 - Better management of the Block Devices used for creating Local PVs by OpenEBS NDM. NDM provides capabilities like discovering Block Device properties, setting up Device Filters, metrics collection and ability to detect if the Block Devices have moved across nodes. 
 
 OpenEBS Local PV uses volume topology aware pod scheduling enhancements introduced by [Kubernetes Local Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#local)
-
-<br />
 
 :::tip QUICKSTART
 
@@ -71,47 +66,48 @@ You can skip this section if you have already installed OpenEBS.
 *OpenEBS Dynamic Local Provisioner* uses the Block Devices discovered by NDM to create Local PVs. NDM offers some configurable parameters that can be applied during the OpenEBS Installation. Some key configurable parameters available for NDM are:
 
 1. Prepare to install OpenEBS by providing custom values for configurable parameters.
-   - The location of the *OpenEBS Dynamic Local PV provisioner* container image.
-     <div class="co">
-     Default value: openebs/provisioner-localpv
-     YAML specification: spec.image on Deployment(localpv-provisioner)
-     Helm key: localprovisioner.image
-     </div>  
+    - The location of the *OpenEBS Dynamic Local PV provisioner* container image.
+      ```shell hideCopy
+      Default value: openebs/provisioner-localpv
+      YAML specification: spec.image on Deployment(localpv-provisioner)
+      Helm key: localprovisioner.image
+      ```
 
-   - The location of the *OpenEBS NDM DaemonSet* container image. NDM DaemonSet helps with discovering block devices attached to a node and creating Block Device Resources.
-     <div class="co">
-     Default value: openebs/node-disk-manager
-     YAML specification: spec.image on DaemonSet(openebs-ndm)
-     Helm key: ndm.image
-     </div>  
+    - The location of the *OpenEBS NDM DaemonSet* container image. NDM DaemonSet helps with discovering block devices attached to a node and creating Block Device Resources.
+      ```shell hideCopy
+      Default value: openebs/node-disk-manager
+      YAML specification: spec.image on DaemonSet(openebs-ndm)
+      Helm key: ndm.image
+      ```
 
-   - The location of the *OpenEBS NDM Operator* container image. NDM Operator helps with allocating Block Devices to Block Device Claims raised by *OpenEBS Dynamic Local PV Provisioner*. 
-     <div class="co">
-     Default value: openebs/node-disk-operator
-     YAML specification: spec.image on Deployment(openebs-ndm-operator)
-     Helm key: ndmOperator.image
-     </div>  
+    - The location of the *OpenEBS NDM Operator* container image. NDM Operator helps with allocating Block Devices to Block Device Claims raised by *OpenEBS Dynamic Local PV Provisioner*. 
+      ```shell hideCopy
+      Default value: openebs/node-disk-operator
+      YAML specification: spec.image on Deployment(openebs-ndm-operator)
+      Helm key: ndmOperator.image
+      ```
 
-   - The location of the *Provisioner Helper* container image. *OpenEBS Dynamic Local Provisioner* create a *Provisioner Helper* pod to clean up the data from the block device after the PV has been deleted.
-     <div class="co">
-     Default value: openebs/linux-utils
-     YAML specification: Environment Variable (CLEANUP_JOB_IMAGE) on Deployment(ndm-operator) 
-     Helm key: helper.image
-     </div>
+    - The location of the *Provisioner Helper* container image. *OpenEBS Dynamic Local Provisioner* create a *Provisioner Helper* pod to clean up the data from the block device after the PV has been deleted.
+    
+      ```shell hideCopy
+      Default value: openebs/linux-utils
+      YAML specification: Environment Variable (CLEANUP_JOB_IMAGE) on Deployment(ndm-operator) 
+      Helm key: helper.image
+      ```
 
-   - Specify the list of block devices for which BlockDevice CRs must be created. A comma separated values of path regular expressions can be specified. 
-     <div class="co">
-     Default value: all
-     YAML specification: data."node-disk-manager.config".filterconfigs.key["path-filter"].include on ConfigMap(openebs-ndm-config)
-     Helm key: ndm.filters.includePaths
-     </div>
+    - Specify the list of block devices for which BlockDevice CRs must be created. A comma separated values of path regular expressions can be specified. 
+      ```shell hideCopy
+      Default value: all
+      YAML specification: data."node-disk-manager.config".filterconfigs.key["path-filter"].include on ConfigMap(openebs-ndm-config)
+      Helm key: ndm.filters.includePaths
+      ```
 
-   - Specify the list of block devices for which BlockDevice CRs must not be created. A comma separated values of path regular expressions can be specified. 
-     <div class="co">
-     Default value: "loop,fd0,sr0,/dev/ram,/dev/dm-,/dev/md"
-     YAML specification: data."node-disk-manager.config".filterconfigs.key["path-filter"].exclude on ConfigMap(openebs-ndm-config)
-     Helm key: ndm.filters.excludePaths
-     </div>
+    - Specify the list of block devices for which BlockDevice CRs must not be created. A comma separated values of path regular expressions can be specified. 
+      ```shell hideCopy
+      Default value: "loop,fd0,sr0,/dev/ram,/dev/dm-,/dev/md"
+      YAML specification: data."node-disk-manager.config".filterconfigs.key["path-filter"].exclude on ConfigMap(openebs-ndm-config)
+      Helm key: ndm.filters.excludePaths
+      ```
 
 2. You can proceed to install OpenEBS either using kubectl or helm using the steps below. 
 
@@ -237,10 +233,10 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
 
    The output shows that the `STATUS` is `Pending`. This means PVC has not yet been used by an application pod. The next step is to create a Pod that uses your PersistentVolumeClaim as a volume.
 
-   <div class="co">
+   ```shell hideCopy
    NAME               STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS     AGE
    local-device-pvc   Pending                                      local-device   31s
-   </div>
+   ```
 
 ### Using Raw Block Volume
 
@@ -261,9 +257,9 @@ By default, Local PV volume will be provisioned with volumeMode as filesystem. I
          storage: 5G
    ```
 
-   :::note 
-   Raw Block Volume support was introduced for OpenEBS Local PV OpenEBS 1.5. 
-   :::
+:::note 
+Raw Block Volume support was introduced for OpenEBS Local PV OpenEBS 1.5. 
+:::
 
 
 ## Create Pod to consume OpenEBS Local PV backed by Block Device
@@ -315,7 +311,7 @@ By default, Local PV volume will be provisioned with volumeMode as filesystem. I
 
    The output shows that the Pod is running on `Node: gke-user-helm-default-pool-3a63aff5-1tmf` and using the persistent volume provided by `local-describe-pvc`.
 
-   <div class="co">
+   ```shell hideCopy
    Name:         hello-local-device-pod
    Namespace:    default
    Priority:     0
@@ -328,7 +324,7 @@ By default, Local PV volume will be provisioned with volumeMode as filesystem. I
        ClaimName:  local-device-pvc
        ReadOnly:   false
    ...
-   </div>
+   ```
 
 5. Look at the PersistentVolumeClaim again to see the details about the dynamically provisioned Local PersistentVolume
    ```
@@ -337,10 +333,10 @@ By default, Local PV volume will be provisioned with volumeMode as filesystem. I
 
    The output shows that the `STATUS` is `Bound`. A new Persistent Volume `pvc-79d25095-eb1f-4028-9843-7824cb82f07f` has been created. 
 
-   <div class="co">
+   ```shell hideCopy
    NAME               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS     AGE
    local-device-pvc   Bound    pvc-79d25095-eb1f-4028-9843-7824cb82f07f   5G         RWO            local-device   5m56s
-   </div>
+   ```
 
 6. Look at the PersistentVolume details to see where the data is stored. Replace the PVC name with the one that was displayed in the previous step. 
    ```
@@ -348,7 +344,7 @@ By default, Local PV volume will be provisioned with volumeMode as filesystem. I
    ```
    The output shows that the PV was provisioned in response to PVC request  `spec.claimRef.name: local-device-pvc`. 
 
-   <div class="co">
+   ```shell hideCopy
    apiVersion: v1
    kind: PersistentVolume
    metadata:
@@ -386,8 +382,7 @@ By default, Local PV volume will be provisioned with volumeMode as filesystem. I
      volumeMode: Filesystem
    status:
      phase: Bound
-   </div>
-   <br/>
+   ```
 
 :::note 
 A few important characteristics of a *OpenEBS Local PV* can be seen from the above output: 
@@ -402,10 +397,10 @@ A few important characteristics of a *OpenEBS Local PV* can be seen from the abo
 
    The output shows that the `PHASE` is `Bound`, and provides the name of the Block Device `blockdevice-d1ef1e1b9dccf224e000c6f2e908c5f2`
 
-   <div class="co">
+   ```shell hideCopy
    NAME                                           BLOCKDEVICENAME                                PHASE   AGE
    bdc-pvc-79d25095-eb1f-4028-9843-7824cb82f07f   blockdevice-d1ef1e1b9dccf224e000c6f2e908c5f2   Bound   12m
-   </div>
+   ```
 
 8. Look at the BlockDevice details to see where the data is stored. Replace the BDC name with the one that was displayed in the previous step. 
    ```
@@ -413,7 +408,7 @@ A few important characteristics of a *OpenEBS Local PV* can be seen from the abo
    ```
    The output shows that the BD is on the node `spec.nodeAttributes.nodeName: gke-user-helm-default-pool-92abeacf-89nd`. 
 
-   <div class="co">
+   ```shell hideCopy
    apiVersion: openebs.io/v1alpha1
    kind: BlockDevice
    metadata:
@@ -459,8 +454,7 @@ A few important characteristics of a *OpenEBS Local PV* can be seen from the abo
      status:
        claimState: Claimed
        state: Active 
-   </div>
-   <br/>
+   ```
 
 :::note 
 A few important details from the above Block Device are:
@@ -468,7 +462,6 @@ A few important details from the above Block Device are:
   - If the block device is pre-formatted as in the above case, the PV will be created with path as `spec.filesystem.mountPoint`.
   - If the block device is not formatted, it will be formatted with the filesystem specified in the PVC and StorageClass. Default is `ext4`.
 :::
-
 
 ## Cleanup
 
@@ -516,12 +509,12 @@ The following steps will help you to prepare and backup the data from the volume
    ```
 
    On successful completion of the backup, the output of the backup describe command will show the following:
-   <div class="co">
+   ```shell hideCopy
    ...
    Restic Backups:
      Completed:
        default/hello-local-device-pod: local-storage
-   </div>
+   ```
  
 ### Restore
 
@@ -532,10 +525,10 @@ The following steps will help you to prepare and backup the data from the volume
    ```
    
    The output of should display the backups that were taken successfully. 
-   <div class="co">
+   ```shell hideCopy
    NAME     STATUS      CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
    bbb-01   Completed   2020-04-25 15:49:46 +0000 UTC   29d       default            app=test-velero-backup
-   </div>
+   ```
 
 2. Restore the application. 
 
@@ -556,11 +549,11 @@ The following steps will help you to prepare and backup the data from the volume
    ```
    
    Depending on the data, it may take a while to initialize the volume. On successful restore, the output of the above command should show:
-   <div class="co">
+   ```shell hideCopy
    ...
    Restic Restores (specify --details for more information):
      Completed:  1
-   </div>
+   ```
    
 4. Verify that data has been restored. The application pod used in this example, write periodic messages (greetings) to the volume. 
 
@@ -569,11 +562,11 @@ The following steps will help you to prepare and backup the data from the volume
    ```
    
    The output will show that backed up data as well as new greetings that started appearing after application pod was restored. 
-   <div class="co">
+   ```shell hideCopy
    Sat Apr 25 15:41:30 UTC 2020 [hello-local-device-pod] Hello from OpenEBS Local PV.
    Sat Apr 25 15:46:30 UTC 2020 [hello-local-device-pod] Hello from OpenEBS Local PV.
    Sat Apr 25 16:11:25 UTC 2020 [hello-local-device-pod] Hello from OpenEBS Local PV.
-   </div>
+   ```
    
 ## Troubleshooting 
 
@@ -589,11 +582,5 @@ If you encounter issues or have a question, file an [Github issue](https://githu
 
 ## See Also:
 
-### [Understand OpenEBS Local PVs ](/docs/next/localpv.html)
-
-### [Node Disk Manager](/docs/next/ugndm.html)
-
-
-<br />
-
+[Understand OpenEBS Local PVs ](/docs/next/localpv.html) [Node Disk Manager](/docs/next/ugndm.html)
 

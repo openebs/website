@@ -1,12 +1,9 @@
 ---
 id: ndm
 title: Node Disk Manager User Guide
-sidebar_label: NDM
 ---
 
-<a href="/docs/assets/svg/2-config-sequence.svg" target="_blank"><img src="/docs/assets/svg/2-config-sequence.svg" alt="OpenEBS configuration flow" style="width:100%" /></a>
-
-<br />
+![OpenEBS configuration flow](../assets/2-config-sequence.svg)
 
 This section provides the operations need to performed by the Admin for configuring NDM.
 
@@ -16,14 +13,12 @@ This section provides the operations need to performed by the Admin for configur
 
 [Exclude filters](#Exclude-filters)
 
-[Create blockdevice CRs for unsupported disks](#create-blockdevice-CRs-for-partitioned-disks) 
+[Create blockdevice CRs for unsupported disks](#create-blockdevice-CRs-for-partitioned-disks)
 
+## Admin Operations
+-----
 
-
-<h2><a class="anchor" aria-hidden="true" id="admin-operations"></a>Admin Operations</h2>
-<hr />
-
-<h3><a class="anchor" aria-hidden="true" id="Include-filters"></a>Include filters</h3>
+### Include filters
 
 Users can include only selected block device for the creation of blockdevice CR and then use only the created blockdevice CR for cStor pool creation or using for provisioning Local PV based on device. For including the selected blockdevices, update the operator YAML file with the required blockdevices under NDM configuration section so that only these blockdevice will be taken for the creation of blockdevice CR. Add the blockdevice path in the following configuration for specifying particular disks. This configuration must be added in `openebs-ndm-config` under `Configmap` in `openebs-operator.yaml`. 
 
@@ -45,9 +40,7 @@ When the above configuration is used, only the block device `/dev/sda` will be u
 
 - Regex support is not available on the `filterconfigs` in NDM `Configmap` and the `Configmap` is applicable to cluster level. This means, if user provide `/dev/sdb` in `filterconfigs` as an include filter, then all `/dev/sdb` blockdevices from all nodes in the cluster will be used for the creation of blockdevice CR by NDM.
 
-
-
-<h3><a class="anchor" aria-hidden="true" id="Exclude-filters"></a>Exclude filters</h3>
+### Exclude filters
 
 NDM do some filtering on the disks to exclude, for example boot disk. By default, NDM excludes the following device path while creating block device CR. This configuration is added in `openebs-ndm-config` under `Configmap` in `openebs-operator.yaml`.
 
@@ -147,9 +140,7 @@ filterconfigs:
   ---
   ```
 
-
-
-<h3><a class="anchor" aria-hidden="true" id="create-blockdevice-CRs-for-partitioned-disks"></a>Create blockdevice CRs for unsupported disks</h3>
+### Create blockdevice CRs for unsupported disks
 
 Currently, NDM out of the box manages disks, partitions, lvm, crypt and other dm devices. If the user need to have blockdevice for other device types like md array or 
 any other unsupported device types, the blockdevice resource can be manually created using the following steps:

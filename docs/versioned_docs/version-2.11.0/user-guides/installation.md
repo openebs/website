@@ -1,7 +1,6 @@
 ---
 id: installation
 title: Installing OpenEBS
-sidebar_label: Installation
 ---
 
 This guide will help you to customize and install OpenEBS. 
@@ -10,13 +9,13 @@ This guide will help you to customize and install OpenEBS.
 
 If this is your first time installing OpenEBS, make sure that your Kubernetes nodes meet the [required prerequisites](/user-guides/prerequisites). At a high level OpenEBS requires:
 
-- Verify that you have the admin context. If you do not have admin permissions to your cluster, please check with your Kubernetes cluster administrator to help with installing OpenEBS or if you are the owner of the cluster, check out the <a href="/docs/next/installation.html#set-cluster-admin-user-context" target="_blank"> steps to create a new admin context </a> and use it for installing OpenEBS.
+- Verify that you have the admin context. If you do not have admin permissions to your cluster, please check with your Kubernetes cluster administrator to help with installing OpenEBS or if you are the owner of the cluster, check out the [steps to create a new admin context](#set-cluster-admin-user-context) and use it for installing OpenEBS.
 - You have Kubernetes 1.18 version or higher.
 - Each storage engine may have few additional requirements like having:
   - iSCSI initiator utils installed for Jiva and cStor volumes
   - Depending on the managed Kubernetes platform like Rancher or MicroK8s - set up the right bind mounts
   - Decide which of the devices on the nodes should be used by OpenEBS or if you need to create LVM Volume Groups or ZFS Pools
-- Join [OpenEBS community on Kubernetes slack](docs/next/support.html).
+- Join [OpenEBS community on Kubernetes slack](/introduction/commercial).
 
 
 ## Installation through helm
@@ -33,7 +32,7 @@ OpenEBS provides several options that you can customize during install like:
 - specifying the directory where hostpath volume data is stored or
 - specifying the nodes on which OpenEBS components should be deployed, and so forth. 
 
-The default OpenEBS helm chart will only install Local PV hostpath and Jiva data engines. Please refer to <a href="https://github.com/openebs/charts/tree/master/charts/openebs" target="_blank">OpenEBS helm chart documentation</a> for full list of customizable options and using cStor and other flavors of OpenEBS data engines by setting the correct helm values. 
+The default OpenEBS helm chart will only install Local PV hostpath and Jiva data engines. Please refer to [OpenEBS helm chart documentation](https://github.com/openebs/charts/tree/master/charts/openebs) for full list of customizable options and using cStor and other flavors of OpenEBS data engines by setting the correct helm values. 
 
 Install OpenEBS helm chart with default values. 
 
@@ -57,7 +56,7 @@ As a next step [verify](#verifying-openebs-installation) your installation and d
 
 ## Installation through kubectl 
 
-OpenEBS provides a list of YAMLs that will allow you to easily customize and run OpenEBS in your Kubernetes cluster. For custom installation, <a href="https://openebs.github.io/charts/openebs-operator.yaml" target="_blank">download</a> the **openebs-operator** YAML file, update the configurations and use the customized YAML for installation in the below `kubectl` command.
+OpenEBS provides a list of YAMLs that will allow you to easily customize and run OpenEBS in your Kubernetes cluster. For custom installation, [download](https://openebs.github.io/charts/openebs-operator.yaml) the **openebs-operator** YAML file, update the configurations and use the customized YAML for installation in the below `kubectl` command.
 
 To continue with default installation mode, use the following command to install OpenEBS. OpenEBS is installed in `openebs` namespace. 
 
@@ -93,7 +92,7 @@ List the pods in `<openebs>` namespace
 
 In the successful installation of OpenEBS, you should see an example output like below.
 
-``` hideCopy
+```shell hideCopy
 NAME                                           READY   STATUS    RESTARTS   AGE
 maya-apiserver-d77867956-mv9ls                 1/1     Running   3          99s
 openebs-admission-server-7f565bcbb5-lp5sk      1/1     Running   0          95s
@@ -121,7 +120,7 @@ kubectl get sc
 
 In the successful installation, you should have the following StorageClasses are created.
 
-``` hideCopy
+```shell hideCopy
 NAME                        PROVISIONER                                                AGE
 openebs-device              openebs.io/local                                           64s
 openebs-hostpath            openebs.io/local                                           64s
@@ -129,10 +128,7 @@ openebs-jiva-default        openebs.io/provisioner-iscsi                        
 openebs-snapshot-promoter   volumesnapshot.external-storage.k8s.io/snapshot-promoter   64s
 ```
 
-
 ## Post-Installation considerations
-
-
 
 For testing your OpenEBS installation, you can use the below default storage classes
 
@@ -142,9 +138,9 @@ For testing your OpenEBS installation, you can use the below default storage cla
 
 
 You can follow through the below user guides for each of the engines to use storage devices available on the nodes instead of the `/var/openebs` directory to save the data.  
-- [cStor](/docs/next/ugcstor-csi.html)
-- [Jiva](/docs/next/jivaguide.html)
-- [Local PV](/docs/next/uglocalpv-hostpath.html)
+- [cStor](/user-guides/cstor-csi)
+- [Jiva](/user-guides/jivaguide)
+- [Local PV](/user-guides/localpv-hostpath)
 
 ## Troubleshooting
 
@@ -184,7 +180,7 @@ kubectl config use-context admin-ctx
 
 ## See Also:
 
-[OpenEBS Architecture](/docs/next/architecture.html) [OpenEBS Examples](/docs/next/usecases.html) [Troubleshooting](/docs/next/troubleshooting.html)
+[OpenEBS Architecture](/concepts/architecture) [OpenEBS Examples](/introduction/usecases) [Troubleshooting](/troubleshooting/troubleshooting)
 
 
 

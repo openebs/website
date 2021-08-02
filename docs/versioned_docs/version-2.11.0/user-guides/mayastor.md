@@ -1,7 +1,6 @@
 ---
 id: mayastor
 title: Mayastor User Guide
-sidebar_label: Mayastor
 ---
 
 :::note

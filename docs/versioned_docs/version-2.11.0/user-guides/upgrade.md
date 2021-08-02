@@ -1,7 +1,6 @@
 ---
 id: upgrade
 title: Upgrading OpenEBS
-sidebar_label: Upgrade
 ---
 
 Latest stable version of OpenEBS is 2.11.0. Check the release notes [here](https://github.com/openebs/openebs/releases/tag/v2.11.0).  

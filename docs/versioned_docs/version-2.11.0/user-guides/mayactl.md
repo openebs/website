@@ -1,12 +1,9 @@
 ---
 id: mayactl
 title: mayactl
-sidebar_label: mayactl
 ---
 
 The `mayactl` is the command line tool for interacting with OpenEBS volumes and Pools. The  `mayactl` is not used or required while provisioning or managing the OpenEBS volumes, but it is currently used while debugging and troubleshooting.  OpenEBS volume and pool status can be get using the `mayactl` command.
-
-
 
 ### Summary
 
@@ -16,8 +13,6 @@ The `mayactl` is the command line tool for interacting with OpenEBS volumes and 
 [Accessing mayactl](#accessing-mayactl)
 
 [Using mayactl](#using-mayactl)
-
-
 
 ## Commands used with mayactl
 
@@ -33,8 +28,6 @@ The following commands can be run using mayactl to get the details of OpenEBS vo
 3. OpenEBS version related
    - mayactl version
 
-
-
 ## Accessing mayactl
 
 For getting access to `mayactl` command line tool, you have to login or execute into the maya-apiserver pod on Kubernetes. The steps are outlined below.
@@ -47,8 +40,8 @@ For getting access to `mayactl` command line tool, you have to login or execute 
 
    Following is an example output.
    
-   ``` hideCopy
-   maya-apiserver-7f5689b96b-p1p2p                                   1/1       Running   0          10d</div>
+   ```shell hideCopy
+   maya-apiserver-7f5689b96b-p1p2p                                   1/1       Running   0          10d
    ```
 
 2. It is possible that there are multiple instances of maya-apiserver pods for scaling purposes. You can run mayactl in any one of them. Shell into one of the pods using ` kubectl exec` command . You can do as following way.
@@ -63,8 +56,6 @@ For getting access to `mayactl` command line tool, you have to login or execute 
    bash-4.3#
    ```
 
-
-
 ## Using mayactl
 
 Once you are inside the maya -apiserver,use mayactl help command for more details.
@@ -75,7 +66,7 @@ mayactl help
 
 **Example Output:**
 
-``` hideCopy
+```shell hideCopy
 Maya means 'Magic' a tool for storage orchestration
 Usage:
   mayactl [command]
@@ -96,7 +87,7 @@ mayactl volume
 
  **Example Output:**
 
-``` hideButton=true
+```shell hideCopy
 The following commands helps in operating a Volume such as create, list, and so on.
 Usage: mayactl volume <subcommand> [options] [args]
 Examples:
@@ -118,8 +109,6 @@ Available Commands:
   stats       Displays the runtime statistics of Volume
 ```
 
-
-
 The following command shows the list of all OpenEBS volumes including both Jiva and cStor.
 
 ```
@@ -128,13 +117,11 @@ mayactl volume list
 
 **Example Output:**
 
-``` hideCopy
+```shell hideCopy
 Namespace  Name                                      Status   Type   Capacity  StorageClass          Access Mode
 ---------  ----                                      ------   ----   --------  -------------         -----------
 openebs    pvc-dc3cb979-51ec-11e9-803f-42010a800179  Running  cstor  8G        openebs-cstor-sparse  ReadWriteOnce
 ```
-
-
 
 The following command shows the description of a OpenEBS volume.
 
@@ -144,7 +131,7 @@ mayactl volume describe --volname pvc-dc3cb979-51ec-11e9-803f-42010a800179 -n op
 
 **Example Output:**
 
-``` hideCopy
+```shell hideCopy
 Portal Details :
 -------- --------
 IQN               :   iqn.2016-09.com.openebs.cstor:pvc-dc3cb979-51ec-11e9-803f-42010a800179
@@ -171,7 +158,7 @@ mayactl volume stats --volname pvc-448deccf-40d9-11e9-a23b-0050569331ce -n opene
 
 **Example Output:**
 
-``` hideCopy
+```shell hideCopy
 Portal Details :
 ------ ---------
 Volume  :   pvc-dc3cb979-51ec-11e9-803f-42010a800179
@@ -188,8 +175,6 @@ LOGICAL(GB)      USED(GB)
 0.000            3.246
 ```
 
-
-
 ### mayactl for OpenEBS Storage Pools
 OpenEBS storage pool command usage examples are shown below.
 
@@ -199,9 +184,7 @@ mayactl pool
 
 It will show the available commands which can run with `mayactl` for getting details of OpenEBS pools.
 
-
-
-``` hideButton=true
+```shell hideCopy
 Command provides operations related to a storage pools.
 Usage: mayactl pool <subcommand> [options] [args]
 Examples:
@@ -214,8 +197,6 @@ Available Commands:
   list        Lists all the pools
 ```
 
-
-
 The following command shows the list of all OpenEBS StoragePools.
 
 ```
@@ -224,15 +205,13 @@ mayactl pool list
 
 **Example Output:**
 
-``` hideCopy
+```shell hideCopy
 POOL NAME                  NODE NAME              POOL TYPE
 ---------                  ---------              ---------
 cstor-pool1-5lwv           node3.mayalab.com      striped
 cstor-pool1-qba6           node2.mayalab.com      striped
 cstor-pool1-v4oy           node4.mayalab.com      striped
 ```
-
-
 
 The following command show the description of OpenEBS StoragePool.
 
@@ -242,7 +221,7 @@ The following command show the description of OpenEBS StoragePool.
 
 **Example Output:**
 
-``` hideCopy
+```shell hideCopy
 Pool Details :
 ------ ------
 Storage Pool Name  : cstor-pool1-5lwv
@@ -258,8 +237,6 @@ Disk List :
 disk-42b4fb20cd36896dfc2a486b977363de
 ```
 
-
-
 ### mayactl Version
 OpenEBS installed version can be obtained using the following command. This will show the status of maya-apiserver and its URL.
 
@@ -269,7 +246,7 @@ mayactl version
 
  **Example Output:**
 
-``` hideCopy
+```shell hideCopy
 Version: 1.2.0-released
 Git commit: c00fc22aab1425e824ed24ed4b7e6f49c9c1468c
 GO Version: go1.11.2
@@ -279,9 +256,6 @@ m-apiserver url:  http://10.44.1.5:5656
 m-apiserver status:  running
 ```
 
-
 ## See Also:
 
-### [FAQ](/docs/next/faq.html)
-
-### [Troubleshooting Guide](/docs/next/troubleshooting.html)
+[FAQ](/docs/next/faq.html) [Troubleshooting Guide](/docs/next/troubleshooting.html)

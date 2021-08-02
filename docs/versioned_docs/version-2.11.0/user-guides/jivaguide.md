@@ -1,17 +1,15 @@
 ---
 id: jivaguide
 title: Jiva User Guide
-sidebar_label: Jiva
 ---
 
 :::note 
   The recommended approach to provision Jiva volumes is via CSI Driver. For detailed instructions on how to get started with new Jiva CSI Driver please refer to the [Quickstart guide on Github](https://github.com/openebs/jiva-operator).
 :::
 
-
 ![OpenEBS configuration flow](../assets/6-config-sequence.svg)
 
-For details of how Jiva works, see <a href="/docs/next/jiva.html" >Jiva overview page</a>
+For details of how Jiva works, see [Jiva overview page](/concepts/jiva)
 
 Jiva is a light weight storage engine that is recommended to use for low capacity workloads. The snapshot and storage management features of the other cStor engine are more advanced and is recommended when snapshots are a need. 
 
@@ -56,7 +54,7 @@ In this mode, local disks on each node has to be formatted and mounted at a dire
    
 ### 1.Percona
 
-Here we illustrate the usage of default Jiva storage class. In the following example manifest, the default storage class `openebs-jiva-default` is specified in `PersistentVolumeClaim` specification. So, the Jiva volume will be created with 3 replicas adhering to the default configuration. The manifest for deploying Percona can be downloaded from <a href="https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/percona/percona-openebs-deployment.yaml"> here</a> or use the following spec.
+Here we illustrate the usage of default Jiva storage class. In the following example manifest, the default storage class `openebs-jiva-default` is specified in `PersistentVolumeClaim` specification. So, the Jiva volume will be created with 3 replicas adhering to the default configuration. The manifest for deploying Percona can be downloaded from [here](https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/percona/percona-openebs-deployment.yaml) or use the following spec.
 
 - Percona spec
 
@@ -147,82 +145,82 @@ Here we illustrate the usage of default Jiva storage class. In the following exa
    Before provisioning the application ensure that all the below mentioned steps are carried out:
 
   1. Ensure that the filesystem is mounted as per requirement. 
-    To know more about mount status <a href="/docs/next/faq.html#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume" target="_blank">click here</a>.
-  2. First, You need to ***Create a Jiva Pool*** specifying the filesystem path on each node. To know about the detailed steps <a href="/docs/next/jivaguide.html#create-a-pool" target="_blank">click here.</a>  
-  3. Using this storage pool, create a storage class by referring<a href="/docs/next/jivaguide.html#create-a-sc" target="_blank"> here.</a>
+    To know more about mount status [click here](additional-info/faq#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume).
+  2. First, You need to ***Create a Jiva Pool*** specifying the filesystem path on each node. To know about the detailed steps [click here](/user-guides/jivaguide#create-a-pool).
+  3. Using this storage pool, create a storage class by referring [here](/user-guides/jivaguide#create-a-sc).
   4. Once all the above actions have been successfully executed, You can deploy Busybox with Jiva volume as follows
     Copy the below spec into a file, say ***demo-busybox-jiva.yaml*** and update  ***storageClassName*** to ***openebs-jiva-gpd-3repl***.
 
-    ```
-      apiVersion: apps/v1
-      kind: Deployment
-      metadata:
-        name: busybox
-        labels:
-          app: busybox
-      spec:
-        replicas: 1
-        strategy:
-          type: RollingUpdate
-        selector:
-          matchLabels:
+      ```
+        apiVersion: apps/v1
+        kind: Deployment
+        metadata:
+          name: busybox
+          labels:
             app: busybox
-        template:
-          metadata:
-            labels:
+        spec:
+          replicas: 1
+          strategy:
+            type: RollingUpdate
+          selector:
+            matchLabels:
               app: busybox
-          spec:
-            containers:
-            - resources:
-                limits:
-                  cpu: 0.5
-              name: busybox
-              image: busybox
-              command: ['sh', '-c', 'echo Container 1 is Running ; sleep 3600']
-              imagePullPolicy: IfNotPresent
-              ports:
-              - containerPort: 3306
+          template:
+            metadata:
+              labels:
+                app: busybox
+            spec:
+              containers:
+              - resources:
+                  limits:
+                    cpu: 0.5
                 name: busybox
-              volumeMounts:
-              - mountPath: /var/lib/mysql
-                name: demo-vol1
-            volumes:
-            - name: demo-vol1
-              persistentVolumeClaim:
-                claimName: demo-vol1-claim
-      ---
-      kind: PersistentVolumeClaim
-      apiVersion: v1
-      metadata:
-        name: demo-vol1-claim
-      spec:
-        storageClassName: openebs-jiva-gpd-3repl
-        accessModes:
-          - ReadWriteOnce
-        resources:
-          requests:
-            storage: 5G
-      ---
-      apiVersion: v1
-      kind: Service
-      metadata:
-        name: busybox-mysql
-        labels:
+                image: busybox
+                command: ['sh', '-c', 'echo Container 1 is Running ; sleep 3600']
+                imagePullPolicy: IfNotPresent
+                ports:
+                - containerPort: 3306
+                  name: busybox
+                volumeMounts:
+                - mountPath: /var/lib/mysql
+                  name: demo-vol1
+              volumes:
+              - name: demo-vol1
+                persistentVolumeClaim:
+                  claimName: demo-vol1-claim
+        ---
+        kind: PersistentVolumeClaim
+        apiVersion: v1
+        metadata:
+          name: demo-vol1-claim
+        spec:
+          storageClassName: openebs-jiva-gpd-3repl
+          accessModes:
+            - ReadWriteOnce
+          resources:
+            requests:
+              storage: 5G
+        ---
+        apiVersion: v1
+        kind: Service
+        metadata:
           name: busybox-mysql
-      spec:
-        ports:
-          - port: 3306
-            targetPort: 3306
-        selector:
-            name: busybox
+          labels:
+            name: busybox-mysql
+        spec:
+          ports:
+            - port: 3306
+              targetPort: 3306
+          selector:
+              name: busybox
 
-      ```
-    
-      To deploy busybox, execut
+        ```
+      
+        To deploy busybox, execut
 
-      ```
-      kubectl apply -f demo-busybox-jiva.yaml
-      ```
+        ```
+        kubectl apply -f demo-busybox-jiva.yaml
+        ```
     5. To verify whether the application is successfully deployed, execute the following command
 
         ```
@@ -405,7 +403,7 @@ velero restore get
 
 The following is an example output. Once the restore is completed you should see the status marked as `Completed`.
 
-``` hideCopy
+```shell hideCopy
 NAME                          BACKUP         STATUS       WARNINGS   ERRORS   CREATED                         SELECTOR
 hostpathbkp2-20190619171932   hostpathbkp2   Completed    44          0        2019-06-19 17:19:33 +0530 IST   <none>
 ```
@@ -593,7 +591,7 @@ metadata:
 provisioner: openebs.io/provisioner-iscsi
 ```
 
-`#### Controller Image Policy
+#### Controller Image Policy
 
 You can specify the jiva controller image using the *value* for *ControllerImage* property.
 
@@ -961,7 +959,7 @@ This StorageClass Policy is for deploying the Jiva pods in OpenEBS Namespace. By
 
 ## See Also:
 
-[Understanding Jiva](/docs/next/jiva.html)
+[Understanding Jiva](/concepts/jiva)
 
 
 
