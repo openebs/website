@@ -44,6 +44,81 @@
           "label": "Support"
         }
       ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Stateful applications",
+      "customProps": {
+        "icon": "Layers"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.11.0/stateful_applications/mysql",
+          "label": "RDS like MySQL"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/stateful_applications/prometheus",
+          "label": "Prometheus"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/stateful_applications/minio",
+          "label": "MinIO"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/stateful_applications/gitlab",
+          "label": "GitLab"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/stateful_applications/percona",
+          "label": "Percona"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/stateful_applications/elasticsearch",
+          "label": "Elasticsearch"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/stateful_applications/cockroachdb",
+          "label": "CockroachDB"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/stateful_applications/cassandra",
+          "label": "Cassandra"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/stateful_applications/nuodb",
+          "label": "NuoDB"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/stateful_applications/postgres",
+          "label": "PostgreSQL"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/stateful_applications/redis",
+          "label": "Redis"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/stateful_applications/mongodb",
+          "label": "MongoDB"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/stateful_applications/jira",
+          "label": "Jira"
+        }
+      ]
     }
   ]
 }
