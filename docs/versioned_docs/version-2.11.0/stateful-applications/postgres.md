@@ -11,14 +11,12 @@ PostgreSQL is a powerful, open source object-relational database system. It supp
 
 StackGres is a full stack PostgreSQL distribution for Kubernetes, packed into an easy deployment unit. The StackGres stack consists of connection pooling, automatic failover and HA, monitoring, backups and DR, centralized logging, and many more. This stack is made with the help of Kubernetes operator and makes the easy way of packaging, deploying and managing PostgreSQL applications in Kubernetes ecosystem. A StackGres cluster is basically a StatefulSet where each pod is a database instance. The StatefulSet guarantees that each pod is always bound to its own persistent volume therefore the database instance data will be mapped to the state of a patroni instance inside kubernetes
 
-This guide explains the basic installation for StackGres PostgreSQL on OpenEBS Local PV device. It also contains the creation of a sample database, tables and tuples.  StackGres PostgreSQL is a StatefulSet type and the high performance of OpenEBS Local PV storage engine will be suitable for a persistent storage solution for PostgreSQL databases which can deal with heavy load. 
-
-
+This guide explains the basic installation for StackGres PostgreSQL on OpenEBS Local PV device. It also contains the creation of a sample database, tables and tuples. StackGres PostgreSQL is a StatefulSet type and the high performance of OpenEBS Local PV storage engine will be suitable for a persistent storage solution for PostgreSQL databases which can deal with heavy load. 
 ## Deployment model
+
 [![OpenEBS and StackGres PostgreSQL localpv device](../assets/StackGres-Postgres-LocalPV.svg)](../assets/StackGres-Postgres-LocalPV.svg)
 
 We will use GKE, where we will install Stackgres PostgreSQL with OpenEBS storage engine. The Local PV volume will be provisioned on a node where Stackgres PostgreSQL pod is getting scheduled and uses one of the matching unclaimed block devices, which will then use the entire block device for storing data. No other application can use this device. If users have limited blockdevices attached to some nodes, they can use `nodeSelector` in the application YAML to provision applications on particular nodes where the available block device is present. The recommended configuration is to have at least three nodes and one unclaimed external disk to be attached per node. 
-
 ## Configuration workflow
 
 1. [Install OpenEBS](#install-openebs)
@@ -27,17 +25,14 @@ We will use GKE, where we will install Stackgres PostgreSQL with OpenEBS storage
 4. [Installing StackGres PostgreSQL Operator](#installing-stackgres-postgresql-operator)
 5. [Installing PostgreSQL Database](#installing-postgresql-database)
 6. [Accessing PostgreSQL database](#accessing-postgresql-database)
-
 ### Install OpenEBS
 
 If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user_guides/installation). If OpenEBS is already installed, go to the next step.
-
 ### Select OpenEBS storage engine
 
 A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and chooses the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/docs/overview#types-of-openebs-storage-engines).
 
 In this document, we are deploying StackGres PostgreSQL using OpenEBS Local PV device. 
-
 ### Configure OpenEBS Local PV StorageClass
 
 There are 2 ways to use OpenEBS Local PV.
@@ -49,7 +44,6 @@ There are 2 ways to use OpenEBS Local PV.
 The Storage Class `openebs-device` has been chosen to deploy StackGres PostgreSQL in the Kubernetes cluster.
 
 **Note:** Ensure that you have a disk with the required capacity is added to the corresponding nodes. In this example, we have added 100G disks to each node.
-
 ### Installing StackGres PostgreSQL Operator
 
 In this section, we will install the StackGres operator. We will later deploy the latest available version of PostgreSQL application using StackGres. 
@@ -58,7 +52,7 @@ In this section, we will install the StackGres operator. We will later deploy th
 $ kubectl apply -f https://stackgres.io/downloads/stackgres-k8s/stackgres/1.0.0-alpha1/stackgres-operator-demo.yml
 ```
 
-Once it’s ready, you will see that the two pods are  `Running` and the other pods are in `Completed` state. 
+Once it’s ready, you will see that the two pods are `Running` and the other pods are in `Completed` state. 
 
 ```
 $ kubectl get pod -n stackgres
@@ -99,7 +93,6 @@ $ kubectl get secret -n stackgres stackgres-restapi --template '{{ print (.data.
 
 AYzpZCPhSJvhEEazHCmMfamtEzL9NFsAOcZQwy06
 ```
-
 ### Installing PostgreSQL Database
 
 To create your first StackGres cluster you have to create a simple custom resource that reflects the cluster configuration. The following configuration file has been saved as *stackgres.yaml*.
@@ -196,7 +189,6 @@ $ kubectl exec -ti "$(kubectl get pod --selector app=StackGresCluster,cluster=tr
 ```
 
 Out of all of the PostgreSQL servers, one will be elected as the master, the rest will remain as read-only replicas.
-
 ### Accessing PostgreSQL database
 
 Get the details of PostgreSQL database service.
@@ -212,7 +204,7 @@ app1-db-replicas   ClusterIP   10.8.13.224   <none>        5432/TCP,5433/TCP   5
 Install *postgresql-client* on your master node or a node from where you have access to the Kubernetes cluster.
 
 ```
-$  sudo apt-get install postgresql-client
+$ sudo apt-get install postgresql-client
 ```
 
 Let’s access the database by accessing one of the application pods.
@@ -284,7 +276,6 @@ app=# select * from public.company;
 
 app-# \q
 ```
-
 ## See Also:
 
 [OpenEBS use cases](/docs/introduction/usecases)

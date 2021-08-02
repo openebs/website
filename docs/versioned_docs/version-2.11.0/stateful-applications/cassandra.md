@@ -6,7 +6,6 @@ title: OpenEBS for Cassandra
 ![OpenEBS and Cassandra](../assets/o-cassandra.png)
 
 This tutorial provides detailed instructions to run a Kudo operator based Cassandra StatefulSets with OpenEBS storage and perform some simple database operations to verify the successful deployment and it's performance benchmark.
-
 ## Introduction
 
 Apache Cassandra is a free and open-source distributed NoSQL database management system designed to handle a large amounts of data across nodes, providing high availability with no single point of failure. It uses asynchronous masterless replication allowing low latency operations for all clients. 
@@ -18,11 +17,9 @@ Depending on the performance and high availability requirements of Cassandra, yo
 For optimal performance, deploy Cassandra with OpenEBS Local PV. If you would like to use storage layer capabilities like high availability, snapshots, incremental backups and restore and so forth, you can select OpenEBS cStor. 
 
 Whether you use OpenEBS Local PV or cStor, you can set up the Kubernetes cluster with all its nodes in a single availability zone/data center or spread across multiple zones/ data centers.
-
 ## Deployment model 
 
 [![OpenEBS and Cassandra](../assets/cassandra-deployment.svg)](../assets/cassandra-deployment.svg)
-
 ## Configuration workflow 
 
 1. Install OpenEBS
@@ -32,23 +29,19 @@ Whether you use OpenEBS Local PV or cStor, you can set up the Kubernetes cluster
 5. Install Kudo based Cassandra
 6. Verify Cassandra is up and running
 7. Testing Cassandra performance on OpenEBS
-
 ### Install OpenEBS
 
 If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/overview). If OpenEBS is already installed, go to the next step.
-
 ### Select OpenEBS storage engine
 
 A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and chooses the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/docs/overview#openebs-storage-engines).
-
 ### Configure OpenEBS Local PV StorageClass
 
 In this tutorial, OpenEBS Local PV device has been used as the storage engine for deploying Kudo Cassandra. There are 2 ways to use OpenEBS Local PV.
 
-- `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/`<cassandra-pv>`/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](https://docs.openebs.io/docs/user_guides/uglocalpv-hostpath#create-storageclass). 
-  
-- `openebs-device` - Using this option, it will create Kubernetes Local PVs using the block devices attached to the node. Select this option when you want to dedicate a complete block device on a node to a Cassandra node. You can customize which devices will be discovered and managed by OpenEBS using the instructions [here](https://docs.openebs.io/docs/user_guides/ugndm). 
+- `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/`<cassandra-pv>`/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](/docs/user_guides/uglocalpv-hostpath#create-storageclass). 
 
+- `openebs-device` - Using this option, it will create Kubernetes Local PVs using the block devices attached to the node. Select this option when you want to dedicate a complete block device on a node to a Cassandra node. You can customize which devices will be discovered and managed by OpenEBS using the instructions [here](/docs/user_guides/ugndm). 
 ### Install Kudo operator to install Cassandra 
 
 - Make the environment to install Kudo operator using the following steps.
@@ -97,10 +90,9 @@ In this tutorial, OpenEBS Local PV device has been used as the storage engine fo
   NAME                        READY   STATUS    RESTARTS   AGE
   kudo-controller-manager-0   1/1     Running   0          2m40s
   ```
-
 ### Install Kudo operator based Cassandra 
      
-Install Kudo based Cassandra using OpenEBS storage engine. In this example, the storage class used is `openebs-device`. Before deploying Cassandra, ensure that there are enough  block devices that can be used to consume Cassandra application, by running `kubectl get bd -n openebs`.
+Install Kudo based Cassandra using OpenEBS storage engine. In this example, the storage class used is `openebs-device`. Before deploying Cassandra, ensure that there are enough block devices that can be used to consume Cassandra application, by running `kubectl get bd -n openebs`.
     
 ```
 $ export instance_name=cassandra-openebs
@@ -108,13 +100,12 @@ $ export namespace_name=cassandra
 $ kubectl create ns cassandra 
 $ kubectl kudo install cassandra --namespace=$namespace_name --instance $instance_name -p NODE_STORAGE_CLASS=openebs-device
 ```
-  
 ### Verify Cassandra is up and running
   
 - Get the Cassandra Pods, StatefulSet, Service and PVC details. It should show that StatefulSet is deployed with 3 Cassandra pods in running state and a headless service is configured. 
 
   ```
-  $kubectl get pod,service,sts,pvc -n cassandra  
+  $kubectl get pod,service,sts,pvc -n cassandra
   
   NAME                                    READY   STATUS    RESTARTS   AGE
   cassandra-openebs-node-0   2/2          Running     0                4m
@@ -199,8 +190,7 @@ $ kubectl kudo install cassandra --namespace=$namespace_name --instance $instanc
       1 |      fin |      fred |    smith
   (1 rows)
   cqlsh:dev> exit
-  ```
-      
+  ```  
 ### Testing Cassandra Performance on OpenEBS
    
 - Login to one of the cassandra pod and run the following sample loadgen command to write and read some entry to and from the database.
@@ -239,7 +229,6 @@ $ kubectl kudo install cassandra --namespace=$namespace_name --instance $instanc
   ```
   cassandra@cassandra-openebs-node-0:/opt/cassandra/tools/bin$ ./cassandra-stress read n=200000 -rate threads=50 -node 192.168.52.94
   ```
-
 ## See Also:
 
 [OpenEBS architecture](/docs/concepts/architecture)

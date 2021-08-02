@@ -4,11 +4,9 @@ title: Using OpenEBS as storage for Jira on Kubernetes
 ---
 
 ![OpenEBS and Jira](../assets/o-jira.png)
-
 ## Introduction
 
-Jira is a product designed to provide issue tracking and assist in moving tasks through the software development lifecycle.  For this example we are leveraging a container image created by Kelsey Hightower.  We will be creating a deployment and a service in this example.
-
+Jira is a product designed to provide issue tracking and assist in moving tasks through the software development lifecycle. For this example we are leveraging a container image created by Kelsey Hightower. We will be creating a deployment and a service in this example.
 ## Requirements
 
 1. **Install OpenEBS**
@@ -17,7 +15,7 @@ Jira is a product designed to provide issue tracking and assist in moving tasks 
 
 2. **Configure cStor Pool**
 
-   If cStor Pool is not configured in your OpenEBS cluster, this can be done from [here](/docs/deprecated/ugcstor#creating-cStor-storage-pools).  Sample YAML named **openebs-config.yaml** for configuring cStor Pool is provided in the configuration details below. If cStor pool is already configured, go to the next step.
+   If cStor Pool is not configured in your OpenEBS cluster, this can be done from [here](/docs/deprecated/ugcstor#creating-cStor-storage-pools). Sample YAML named **openebs-config.yaml** for configuring cStor Pool is provided in the configuration details below. If cStor pool is already configured, go to the next step.
 
 3. **Create Storage Class**
 
@@ -25,12 +23,11 @@ Jira is a product designed to provide issue tracking and assist in moving tasks 
 
 ## Deployment of Jira with OpenEBS
 
-Next apply both the Jira deployment and service to your Kubernetes cluster.  There is an example at the bottom of this guide for both.
+Next apply both the Jira deployment and service to your Kubernetes cluster. There is an example at the bottom of this guide for both.
 
 ```
 kubectl apply -f jira.yaml
 ```
-
 ## Verify Jira Pods
 
 Run the following to get the status of PostgreSQL pods.
@@ -45,8 +42,6 @@ Following is an example output.
 NAME                    READY   STATUS    RESTARTS   AGE
 jira-5bd96c488d-2gj8p   1/1     Running   0          2d14h
 ```
-
-
 ## Configuration Details
 
 **openebs-config.yaml**

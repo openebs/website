@@ -4,7 +4,6 @@ title: OpenEBS for NuoDB
 ---
 
 ![OpenEBS and Nuodb](../assets/o-nuodb.png)
-
 ## Introduction
 
 NuoDB’s distributed SQL database combines the elastic scale and continuous availability of the cloud with the transactional consistency and durability that databases of record demand. NuoDB is deployed usually as a `StatefulSet` on Kubernetes and requires persistent storage for each instance of NuoDB StorageManager instance. OpenEBS provides persistent volumes on the fly when StorageManagers are scaled up.
@@ -16,12 +15,10 @@ NuoDB’s distributed SQL database combines the elastic scale and continuous ava
 - Start with small storage and add disks as needed on the fly. Sometimes NuoDB instances are scaled up because of capacity on the nodes. With OpenEBS persistent volumes, capacity can be thin provisioned and disks can be added to OpenEBS on the fly without disruption of service 
 - If required, take backup of the NuoDB data periodically and back them up to S3 or any object storage so that restoration of the same data is possible to the same or any other Kubernetes cluster
 
-*Note: NuoDB can be deployed both as `deployment` or as `statefulset`. When NuoDB deployed as `statefulset`, you don't need to replicate the data again at OpenEBS level. When NuoDB is deployed as `deployment`, consider 3 OpenEBS replicas, choose the StorageClass accordingly.*
-
+*Note: NuoDB can be deployed both as `deployment` or as `statefulset`. When NuoDB deployed as `statefulset`, you don't need to replicate the data again at OpenEBS level. When NuoDB is deployed as `deployment`, consider 3 OpenEBS replicas, choose the StorageClass accordingly*.
 ## Deployment model
 
 [![OpenEBS and NuoDB](../assets/nuodb-deployment.svg)](../assets/nuodb-deployment.svg)
-
 ## Configuration workflow
 
 1. **Install OpenEBS**
@@ -34,7 +31,7 @@ NuoDB’s distributed SQL database combines the elastic scale and continuous ava
 
 4. **Create Storage Class**
 
-   You must configure a StorageClass to provision cStor volume on given cStor pool. StorageClass is the interface through which most of the OpenEBS storage policies are defined. In this solution we are using a StorageClass to consume the cStor Pool which is created using external disks attached on the Nodes.  Since NuoDB is a StatefulSet application, it requires only single storage replica. So cStor volume `replicaCount` is =1. Sample YAML named **openebs-sc-disk.yaml** to consume cStor pool with cStor volume replica count as 1 is provided in the configuration details below.
+   You must configure a StorageClass to provision cStor volume on given cStor pool. StorageClass is the interface through which most of the OpenEBS storage policies are defined. In this solution we are using a StorageClass to consume the cStor Pool which is created using external disks attached on the Nodes. Since NuoDB is a StatefulSet application, it requires only single storage replica. So cStor volume `replicaCount` is =1. Sample YAML named **openebs-sc-disk.yaml** to consume cStor pool with cStor volume replica count as 1 is provided in the configuration details below.
 
 5. Download the YAML spec files from OpenEBS litmus repository. 
 
@@ -50,14 +47,13 @@ NuoDB’s distributed SQL database combines the elastic scale and continuous ava
 
 7. **Launch and test NuoDB**
 
-   Create a namespace called **testns** and  apply following YAML files to deploy NuoDB application. Sample YAML files are provided in the Configuration details below.
+   Create a namespace called **testns** and apply following YAML files to deploy NuoDB application. Sample YAML files are provided in the Configuration details below.
 
    ```
    kubectl apply -f nuodb.yaml -n testns
    kubectl apply -f nuodb-sm.yaml -n testns
    kubectl apply -f nuodb-te.yaml -n testns
    ```
-
 ## Reference at [openebs.ci](https://openebs.ci/)
 
 Deployment YAML spec files for NuoDB and OpenEBS resources are found [here](https://github.com/openebs/litmus/blob/master/apps/nuodb/deployers/nuodb.yaml)
@@ -65,7 +61,6 @@ Deployment YAML spec files for NuoDB and OpenEBS resources are found [here](http
 [OpenEBS-CI dashboard of NuoDB](https://openebs.ci/nuodb-cstor)
 
 [Live access to NuoDB dashboard](https://insights.nuodb.com/3N5YV375G0/)
-
 ## Post deployment Operations
 
 **Monitor OpenEBS Volume size** 
@@ -75,7 +70,6 @@ It is not seamless to increase the cStor volume size (refer to the roadmap item)
 **Monitor cStor Pool size**
 
 As in most cases, cStor pool may not be dedicated to just NuoDB database alone. It is recommended to watch the pool capacity and add more disks to the pool before it hits 80% threshold. See [cStorPool metrics](/docs/deprecated/ugcstor#monitor-pool) 
-
 ## Configuration details
 
 **openebs-config.yaml**
@@ -205,7 +199,7 @@ spec:
         image: nuodb/nuodb-ce:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - { containerPort: 8888,  protocol: TCP }
+        - { containerPort: 8888, protocol: TCP }
         - { containerPort: 48004, protocol: TCP }
         - { containerPort: 48005, protocol: TCP }
         resources:
@@ -272,7 +266,7 @@ metadata:
   name: insights-server
 spec:
   ports:
-  - { name: 8080-tcp,   port: 8080,   protocol: TCP,  targetPort: 8080  }
+  - { name: 8080-tcp, port: 8080, protocol: TCP, targetPort: 8080 }
   selector:
     app: insights
     group: nuodb
@@ -300,7 +294,7 @@ data:
        description : Collection from NuoDB engines
        nuocaCollectionName: NuoMon
        api_server: https://domain:8888
-       client_key:  /etc/nuodb/keys/nuocmd.pem
+       client_key: /etc/nuodb/keys/nuocmd.pem
     OUTPUT_PLUGINS:
     - RestClient:
         url: ${INSIGHTS_INGEST_URL}
@@ -321,7 +315,7 @@ data:
       metadata = nuoca.get_insights_metadata(conn)
       return metadata.get(nuoca.INSIGHTS_DASHBOARD_KEY,None)
 
-      #ingest_url    = metadata[nuoca.INSIGHTS_URL_KEY]
+      #ingest_url = metadata[nuoca.INSIGHTS_URL_KEY]
       #subscriber_id = metadata[nuoca.INSIGHTS_ID_KEY]
       #return ingest_url[:-6] + subscriber_id
 
@@ -391,7 +385,7 @@ spec:
     imagePullPolicy: IfNotPresent
     args: [ "nuoinsights" ]
     ports:
-    - { name: 8080-tcp,  containerPort: 8080,  protocol: TCP }
+    - { name: 8080-tcp, containerPort: 8080, protocol: TCP }
     env:
     - { name: NUOCMD_API_SERVER , value: "https://domain:8888" }
     volumeMounts:
@@ -554,7 +548,6 @@ spec:
         - name: logdir
           emptyDir: {}
 ```
-
 ## See Also:
 
 [OpenEBS architecture](/docs/concepts/architecture)

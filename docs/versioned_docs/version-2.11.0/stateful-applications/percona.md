@@ -4,7 +4,6 @@ title: OpenEBS for Percona
 ---
 
 ![OpenEBS and Percona](../assets/o-percona.png)
-
 ## Introduction
 
 The Percona XtraDB Cluster (PXC) is a fully open-source high-availability solution for MySQL. It integrates Percona Server for MySQL and Percona XtraBackup with the Galera library to enable synchronous multi-master replication. A cluster consists of nodes, where each node contains the same set of data synchronized across nodes. The recommended configuration is to have at least three nodes. Each node is a regular Percona Server for MySQL instances. 
@@ -12,13 +11,11 @@ The Percona XtraDB Cluster (PXC) is a fully open-source high-availability soluti
 Percona XtraDB Cluster can be provisioned with OpenEBS volumes using OpenEBS storage engine- OpenEBS Local PV. Depending on the performance and high availability requirements of Percona, you can select any of the storage engine to run Percona with the following deployment options:
 - For optimal performance, deploy Percona PXC with OpenEBS Local PV. 
 - If you would like to use storage layer capabilities like high availability, snapshots, incremental backups and restore and so forth, you can select OpenEBS cStor. 
-
 ## Deployment model 
 
 [![OpenEBS and Percona](../assets/percona-deployment-new.svg)](../assets/percona-deployment-new.svg)
 
 This tutorial provides detailed instructions to run a Percona XtraDB Cluster(PXC) with OpenEBS Local PV and perform some simple database operations to verify the successful deployment and it's performance benchmark.
-
 ## Configuration workflow 
 
 1. Install OpenEBS
@@ -29,25 +26,21 @@ This tutorial provides detailed instructions to run a Percona XtraDB Cluster(PXC
 6. Install the Percona XtraDB Cluster
 7. Access Percona MySQL database
 8. Run performance benchmark
-
 ### Install OpenEBS
 
 If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/overview). If OpenEBS is already installed, go to the next step.
-
 ### Select OpenEBS storage engine
 
 A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines. Choose the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/docs/overview#openebs-storage-engines).
-
 ### Configure OpenEBS Local PV StorageClass
 
 In this tutorial, OpenEBS Local PV device has been used as the storage engine for deploying Percona PXC. There are 2 ways to use OpenEBS Local PV.
 
 - `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/`<percona-pv>`/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](/docs/user_guides/uglocalpv-hostpath#create-storageclass). 
-  
+
 - `openebs-device` - Using this option, it will create Kubernetes Local PVs using the block devices attached to the node. Select this option when you want to dedicate a complete block device on a node to a Percona node. You can customize which devices will be discovered and managed by OpenEBS using the instructions [here](/docs/user_guides/ugndm). 
 
 The Storage Class `openebs-device` has been chosen to deploy PXC in the Kubernetes cluster.
-
 ### Install the Percona XtraDB Cluster operator
 
 ```
@@ -63,11 +56,9 @@ $ kubectl get pod
 NAME                                               READY   STATUS    RESTARTS   AGE
 percona-xtradb-cluster-operator-749b86b678-8f4q5   1/1     Running   0          23s
 ```
-
 #### Update Storage and Monitoring specification
 
 In this document, we have made changes in the storage section for PXC and the monitoring section PMM.
-
 ##### Changes done in the Storage section for PXC: 
 
 Update Storage Class name and required storage parameters in deploy/cr.yaml. In this example, we have updated the following parameters: 
@@ -90,14 +81,13 @@ Sample snippet:
 ```
 
 **Note:** Ensure you have 100Gi is attached with each Node. Else, provide the storage capacity as per the capacity of the available disk. 
-
 ###### Changes done in the Monitoring section for PMM:
 
 Enable monitoring service and server user name. In this example, we have updated the following parameters:
 
 ```
 spec.pmm.enabled as “true”
-spec.pmm.serverUser as “admin”  
+spec.pmm.serverUser as “admin”
 ```
 
 The following is the sample snippet of PMM spec of Percona XtraDB where we enabled monitoring feature and updated the PMM server username.
@@ -109,11 +99,9 @@ The following is the sample snippet of PMM spec of Percona XtraDB where we enabl
     serverHost: monitoring-service
     serverUser: admin
 ```
-
 ### Install the Percona XtraDB Cluster
 
 There is a dependency if you are enabling a monitoring service(PMM) for your PXC. In this case, you must install the PMM server using the following command before installing PXC. We have used Percona [blog](https://www.percona.com/blog/2020/07/23/using-percona-kubernetes-operators-with-percona-monitoring-and-management/) to enable the monitoring service.
-
 #### Use Helm to install PMM Server
 
 Using helm, add the Percona chart repository and update the information for the available charts as follows:
@@ -143,7 +131,7 @@ $ kubectl apply -f deploy/cr.yaml
 After applying the above command, you may see that cluster1-pxc-0 pod started in `CreateContainerConfigError` state. 
 
 ```
-$  kubectl get pod
+$ kubectl get pod
 NAME                                               READY   STATUS                       RESTARTS   AGE
 cluster1-haproxy-0                                 1/2     Running                      0          21s
 cluster1-pxc-0                                     0/2     CreateContainerConfigError   0          21s
@@ -223,7 +211,6 @@ cluster1-pxc-unready        ClusterIP      None             <none>              
 kubernetes                  ClusterIP      10.100.0.1       <none>                                                                         443/TCP                       5h19m
 monitoring-service          LoadBalancer   10.100.32.246    a543e9e1d189644f9bf4f7fdf0ba15b3-1159960729.ap-southeast-1.elb.amazonaws.com   443:30317/TCP                 112m
 ```
-
 ### Access Percona MySQL database
 
 ```
@@ -260,7 +247,7 @@ $ kubectl run -i --rm --tty percona-client --image=percona:8.0 --restart=Never -
 
 percona-client:/$ mysql -h cluster1-haproxy -uroot -pZuvpSbDe8QhiZ3fwV
 mysql: [Warning] Using a password on the command line interface can be insecure.
-Welcome to the MySQL monitor.  Commands end with ; or \g.
+Welcome to the MySQL monitor. Commands end with ; or \g.
 Your MySQL connection id is 3352
 Server version: 8.0.20-11.2 Percona XtraDB Cluster (GPL), Release rel11, Revision 9132e55, WSREP version 26.4.3
 
@@ -336,7 +323,6 @@ Bye
 [mysql@percona-client /]$ exit
 logout
 ```
-
 ### Run Percona Performance benchmark 
 
 Let’s create a SysBench pod to perform the performance benchmark of the PXC database.
@@ -348,6 +334,7 @@ root@sysbench-client:/sysbench#
 ```
 
 The above command will create a temporary pod for SysBench. This pod will be used to run the benchmark commands. In this example, we are using the PXC service name as the mysql host in the following performance benchmark test command. The root password used in the following command can be obtained from the previous section. 
+
 Run the following tests from the SysBench pod.
  
 #### Prepare the data
@@ -357,25 +344,21 @@ Ensure the same database has already been created before running the tests. In t
 ```
 root@sysbench-client:/sysbench# sysbench oltp_read_only --tables=10 --table_size=1000000 --mysql-port=3306 --mysql-db=sbtest --mysql-host=cluster1-pxc --mysql-user=root --mysql-password=ZuvpSbDe8QhiZ3fwV prepare
 ```
-
 #### Perform Read-only test
 
 ```
-root@sysbench-client:/sysbench# sysbench oltp_read_only --tables=10 --table_size=1000000 --threads=8 --mysql-port=3306 --mysql-db=sbtest  --mysql-host=cluster1-pxc --mysql-user=root --mysql-password=ZuvpSbDe8QhiZ3fwV --report-interval=1 --time=300 run
+root@sysbench-client:/sysbench# sysbench oltp_read_only --tables=10 --table_size=1000000 --threads=8 --mysql-port=3306 --mysql-db=sbtest --mysql-host=cluster1-pxc --mysql-user=root --mysql-password=ZuvpSbDe8QhiZ3fwV --report-interval=1 --time=300 run
 ```
-
 #### Perform Write-only test
 
 ```
 root@sysbench-client:/sysbench# sysbench oltp_write_only --tables=10 --table_size=1000000 --threads=8 --mysql-port=3306 --mysql-db=sbtest --mysql-host=cluster1-pxc --mysql-user=root --mysql-password=ZuvpSbDe8QhiZ3fwV --time=60 --report-interval=1 run
 ```
-
 #### Perform Read-Write test
 
 ```
 root@sysbench-client:/sysbench# sysbench oltp_read_write --tables=10 --table_size=1000000 --threads=8 --mysql-port=3306 --mysql-db=sbtest --mysql-host=cluster1-pxc --mysql-user=root --mysql-password=ZuvpSbDe8QhiZ3fwV --time=300 --report-interval=1 run
 ```
-
 ## See Also:
 
 [OpenEBS architecture](/docs/concepts/architecture)

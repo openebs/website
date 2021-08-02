@@ -4,19 +4,16 @@ title: OpenEBS for CockroachDB
 ---
 
 ![OpenEBS and CockroachDB](../assets/o-cockroachdb.png)
-
 ## Introduction
 
 CockroachDB is a cloud-native SQL database for building global, scalable cloud services that survive disasters. It is a distributed SQL database built on a transactional and strongly consistent key-value store. It scales horizontally; survives disk, machine, rack, and even data center failures with minimal latency disruption and no manual intervention; supports strongly consistent ACID transactions; and provides a familiar SQL API for structuring, manipulating, and querying data.
 
 This guide explains the basic installation for CockroachDB operators on OpenEBS Local PV devices.
-
 ## Deployment model 
 
 [![OpenEBS and CockroachDB](../assets/Local-PV-Distributed-device-cockroachdb.svg)](../assets/Local-PV-Distributed-device-cockroachdb.svg)
 
 The Local PV volume will be provisioned on a node where CockroachDB pods are getting scheduled and uses one of the matching unclaimed block devices for each of them, which will then use the entire block device for storing data. No other application can use this device. If users have limited block devices attached to some nodes, they can use `nodeSelector` in the application YAML to provision applications on particular nodes where the available block device is present. The recommended configuration is to have at least three nodes and one unclaimed external disk to be attached per node. 
-
 ## Configuration workflow 
 
 1. [Install OpenEBS](#install-openebs)
@@ -24,11 +21,9 @@ The Local PV volume will be provisioned on a node where CockroachDB pods are get
 3. [Configure OpenEBS Local PV StorageClass](#configure-openebs-local-pv-storageclass) 
 4. [Install CockroachDB Operator](#install-cockroachdb-operator)
 5. [Accessing CockroachDB](#accessing-cockroachdb)
-
 ### Install OpenEBS
 
 If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user_guides/installation). If OpenEBS is already installed, go to the next step.
-
 ### Select OpenEBS storage engine
 
 A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and you should choose the right engine that suits your application requirements and storage available on your Kubernetes nodes. For more information you can read [here](/docs/overview#types-of-openebs-storage-engines).
@@ -40,7 +35,6 @@ After OpenEBS installation, choose the OpenEBS storage engine as per your requir
 - Choose **OpenEBS Local PV**, If you are looking for direct-attached storage or low latency data write or if the application manages data replication.
 
 In this document, we are deploying CockroachDB using OpenEBS Local PV. 
-
 ### Configure OpenEBS Local PV StorageClass
 
 Depending on the type of storage attached to your Kubernetes worker nodes, you can select from different flavors of Dynamic Local PV - Hostpath, Device, LVM, ZFS, or Rawfile. For more information, you can read [here](/docs/concepts/localpv).
@@ -48,7 +42,6 @@ Depending on the type of storage attached to your Kubernetes worker nodes, you c
 The Storage Class `openebs-device` will be used to deploy CockroachDB in the Kubernetes cluster.
 
 **Note:** Ensure that you have at least one disk with the required capacity added to the corresponding nodes before CockroachDB installation. In this example, we have added one 100GB disk to each node.
-
 ### Install CockroachDB Operator
 
 - Install the CRD using the following command.
@@ -86,7 +79,7 @@ The Storage Class `openebs-device` will be used to deploy CockroachDB in the Kub
 
   ```bash
   kubectl apply -f https://raw.githubusercontent.com/cockroachdb/cockroach-operator/master/manifests/operator.yaml
-  ```  
+  ```
 
   ```bash
   #sample output
@@ -112,7 +105,6 @@ The Storage Class `openebs-device` will be used to deploy CockroachDB in the Kub
   NAME                                  READY   STATUS    RESTARTS   AGE
   cockroach-operator-599465988d-k6ffx   1/1     Running   0          48s
   ```
-
 #### Deploying CockroachDB cluster
 
 - Download the cluster configuration file and make the necessary changes as per your requirement.
@@ -121,7 +113,7 @@ The Storage Class `openebs-device` will be used to deploy CockroachDB in the Kub
   curl -O https://raw.githubusercontent.com/cockroachdb/cockroach-operator/master/examples/example.yaml
   ```
 
-  We will update the storage class to use `openebs-device`, as shown below. Please note that for the production environment, make necessary other changes as per your requirement.  
+  We will update the storage class to use `openebs-device`, as shown below. Please note that for the production environment, make necessary other changes as per your requirement.
 
   Sample `example.yaml` changes
 
@@ -153,13 +145,12 @@ The Storage Class `openebs-device` will be used to deploy CockroachDB in the Kub
   ```bash
   kubectl apply -f example.yaml
   ```
-
 ### Verify CockroachDB is up and running
   
 - Get the CockroachDB Pods, StatefulSet, Service, and PVC details. It should show that StatefulSet is deployed with 3 cockroach pods in a running state. 
 
   ```bash
-  kubectl  get pod,pv,pvc,sc
+  kubectl get pod,pv,pvc,sc
   ```
 
   ```bash
@@ -189,7 +180,6 @@ The Storage Class `openebs-device` will be used to deploy CockroachDB in the Kub
   storageclass.storage.k8s.io/standard (default)          kubernetes.io/gce-pd                                       Delete          Immediate              true                   38m
   storageclass.storage.k8s.io/standard-rwo                pd.csi.storage.gke.io                                      Delete          WaitForFirstConsumer   true                   38m
   ```
-
 #### Accessing CockroachDB
 
 - We will be using the built-in sql-client for accessing and running some sql queries. Enter into one of the cockroachdb pods by using the exec command.
@@ -227,7 +217,7 @@ The Storage Class `openebs-device` will be used to deploy CockroachDB in the Kub
   (1 row)
   ```
 
-- Create a database user with a  password for accessing the database using web UI.
+- Create a database user with a password for accessing the database using web UI.
 
   ```bash
   root@:26257/defaultdb> CREATE USER roach WITH PASSWORD 'Q7gc8rEdS';
@@ -240,7 +230,6 @@ The Storage Class `openebs-device` will be used to deploy CockroachDB in the Kub
   root@:26257/defaultdb> CREATE DATABASE sbtest;
   root@:26257/defaultdb> \q
   ```
- 
 #### Accessing the database's web interface. 
 
 We will be using NodePort for accessing the service.
@@ -300,7 +289,6 @@ In the production environment either use a load balancer or ingress services as 
   Login credentials for the web UI
   Username: `roach`
   Password: `Q7gc8rEdS`
-
 ## See Also:
 
 [OpenEBS architecture](/docs/concepts/architecture)
