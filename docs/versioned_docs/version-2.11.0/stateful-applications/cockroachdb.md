@@ -291,10 +291,4 @@ In the production environment either use a load balancer or ingress services as 
   Password: `Q7gc8rEdS`
 ## See Also:
 
-[OpenEBS architecture](/docs/concepts/architecture)
-
-[OpenEBS use cases](/docs/introduction/usecases)
-
-[Local PV concepts](/docs/concepts/localpv)
-
-[Understanding NDM](/docs/user_guides/ugndm)
+[OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [Local PV concepts](/docs/concepts/localpv) [Understanding NDM](/docs/user_guides/ugndm)

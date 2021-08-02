@@ -307,10 +307,4 @@ Users can upload a Grafana dashboard for Prometheus in 3 ways.
 - The other way to monitor Prometheus Operator is by using the inbuilt Prometheus dashboard. This can be obtained by searching on the Grafana dashboard and finding the Prometheus dashboard under the General category.
 ## See Also:
 
-[OpenEBS use cases](/docs/introduction/usecases)
-
-[Understanding NDM](/docs/user_guides/ugndm)
-
-[Local PV concepts](/docs/concepts/localpv)
-
-[Local PV User guide](/docs/user_guides/uglocalpv-device)
+[OpenEBS use cases](/docs/introduction/usecases) [Understanding NDM](/docs/user_guides/ugndm) [Local PV concepts](/docs/concepts/localpv) [Local PV User guide](/docs/user_guides/uglocalpv-device)

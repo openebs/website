@@ -329,10 +329,4 @@ $ echo 'M2ZiNGFlZGQtYTU1Yy00YjM4LWJkNTQtODEyNmViOTg5ZmZk' | base64 -d
 ```
 ## See Also:
 
-[OpenEBS use cases](/docs/introduction/usecases)
-
-[Understanding NDM](/docs/user_guides/ugndm)
-
-[Local PV concepts](/docs/concepts/localpv)
-
-[Local PV User guide](/docs/user_guides/uglocalpv-device)
+[OpenEBS use cases](/docs/introduction/usecases) [Understanding NDM](/docs/user_guides/ugndm) [Local PV concepts](/docs/concepts/localpv) [Local PV User guide](/docs/user_guides/uglocalpv-device)

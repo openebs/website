@@ -474,10 +474,4 @@ If you want to get the logs of NDM pods, type the following text inside the `Fil
 You will see the OpenEBS NDM pod logs listed on the page.
 ## See Also:
 
-[OpenEBS use cases](/docs/introduction/usecases)
-
-[Understanding NDM](/docs/user_guides/ugndm)
-
-[Local PV concepts](/docs/concepts/localpv)
-
-[Local PV User guide](/docs/user_guides/uglocalpv-device)
+[OpenEBS use cases](/docs/introduction/usecases) [Understanding NDM](/docs/user_guides/ugndm) [Local PV concepts](/docs/concepts/localpv) [Local PV User guide](/docs/user_guides/uglocalpv-device)
