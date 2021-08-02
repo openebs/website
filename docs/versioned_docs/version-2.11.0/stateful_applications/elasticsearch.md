@@ -40,11 +40,11 @@ The Elasticsearch deployment has the following components, which will use the Op
 6. [Installing Kibana](#installing-kibana)
 7. [Installing Fluentd-ES](#installing-fluentd-es)
 
-### Install OpenEBS {#install-openebs}
+### Install OpenEBS
 
 If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user_guides/installation). If OpenEBS is already installed, go to the next step. 
 
-### Select OpenEBS storage engine {#select-openebs-storage-engine}
+### Select OpenEBS storage engine
 
 A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and you should choose the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/docs/overview#types-of-openebs-storage-engines).
 
@@ -56,7 +56,7 @@ After OpenEBS installation, choose the OpenEBS storage engine as per your requir
 
 In this document, we are deploying Elasticsearch using OpenEBS Local PV. 
 
-### Configure OpenEBS Local PV StorageClass {#configure-openebs-local-pv-storageclass}
+### Configure OpenEBS Local PV StorageClass
 
 Depending on the type of storage attached to your Kubernetes worker nodes, you can select from different flavors of Dynamic Local PV - Hostpath, Device, LVM, ZFS or Rawfile. For more information you can read [here](/docs/concepts/localpv).
 
@@ -64,7 +64,7 @@ The Storage Class `openebs-device` has been chosen to deploy Elasticsearch in th
 
 **Note:** Ensure that you have two disks with the required capacity added to the corresponding nodes prior to Elasticsearch installation. In this example, we have added two 100G disks to each node.
 
-###  Installing KUDO Operator {#installing-kudo-operator}
+###  Installing KUDO Operator
 
 In this section, we will install the KUDO operator. We will later deploy the latest available version of Elasticsearch using KUDO. 
 
@@ -149,7 +149,7 @@ standard                    kubernetes.io/gce-pd                                
 standard-rwo                pd.csi.storage.gke.io                                      Delete          WaitForFirstConsumer   true                   5h13
 ```
 
-### Installing and Accessing Elasticsearch {#installing-and-accessing-elasticsearch}
+### Installing and Accessing Elasticsearch
 
 Set instance and namespace variables:
 
@@ -321,7 +321,7 @@ curl localhost:9200
 }
 ```
 
-### Installing Kibana {#installing-kibana}
+### Installing Kibana
 
 First, add helm repository of Elastic.
 
@@ -381,7 +381,7 @@ kibana-kibana            NodePort    10.48.12.146   <none>        5601:30295/TCP
 kubernetes               ClusterIP   10.48.0.1      <none>        443/TCP          5h36m
 ```
 
-### Installing Fluentd-ES {#installing-fluentd-es}
+### Installing Fluentd-ES
 
 Fetch the `values.yaml`:
 
@@ -495,10 +495,10 @@ You will see the OpenEBS NDM pod logs listed on the page.
 
 ## See Also:
 
-### [OpenEBS use cases](/docs/introduction/usecases)
+[OpenEBS use cases](/docs/introduction/usecases)
 
-### [Understanding NDM](/docs/user_guides/ugndm)
+[Understanding NDM](/docs/user_guides/ugndm)
 
-### [Local PV concepts](/docs/concepts/localpv)
+[Local PV concepts](/docs/concepts/localpv)
 
-### [Local PV User guide](/docs/user_guides/uglocalpv-device)
+[Local PV User guide](/docs/user_guides/uglocalpv-device)

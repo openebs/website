@@ -29,11 +29,11 @@ We will add 100G of two disks to each node. Disks will be consumed by Prometheus
 
 5. [Accessing Prometheus and Grafana](#accessing-prometheus-and-grafana)
 
-### Install OpenEBS {#install-openebs}
+### Install OpenEBS
 
 If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user_guides/installation). If OpenEBS is already installed, go to the next step.
 
-### Select OpenEBS storage engine {#select-openebs-storage-engine}
+### Select OpenEBS storage engine
 
 A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and chooses the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/docs/overview#types-of-openebs-storage-engines).
 
@@ -44,7 +44,7 @@ After OpenEBS installation, choose the OpenEBS storage engine as per your requir
 
 In this document, we are deploying Prometheus Operator using OpenEBS Local PV device. 
 
-### Configure OpenEBS Local PV StorageClass {#configure-openebs-local-pv-storageclass}
+### Configure OpenEBS Local PV StorageClass
 
 There are 2 ways to use OpenEBS Local PV.
 
@@ -56,7 +56,7 @@ The Storage Class `openebs-device` has been chosen to deploy Prometheus Operator
 
 **Note:** Ensure that you have two disks with the required capacity is added to the corresponding nodes prior to Prometheus installation. In this example, we have added two 100G disks to each node.
 
-### Installing Prometheus Operator {#installing-prometheus-operator}
+### Installing Prometheus Operator
 
 In this section, we will install the Prometheus operator. We will later deploy the latest available version of Prometheus application. The following are the high-level overview.
 
@@ -262,7 +262,7 @@ prometheus-operated                   ClusterIP   None             <none>       
 prometheus-prometheus-node-exporter   ClusterIP   10.100.69.43     <none>        9100/TCP                     69m
 ```
 
-### Accessing Prometheus and Grafana {#accessing-prometheus-and-grafana}
+### Accessing Prometheus and Grafana
 
 Get the node details using the following command:
 
@@ -322,10 +322,10 @@ Users can upload a Grafana dashboard for Prometheus in 3 ways.
 
 ## See Also:
 
-### [OpenEBS use cases](/docs/introduction/usecases)
+[OpenEBS use cases](/docs/introduction/usecases)
 
-### [Understanding NDM](/docs/user_guides/ugndm)
+[Understanding NDM](/docs/user_guides/ugndm)
 
-### [Local PV concepts](/docs/concepts/localpv)
+[Local PV concepts](/docs/concepts/localpv)
 
-### [Local PV User guide](/docs/user_guides/uglocalpv-device)
+[Local PV User guide](/docs/user_guides/uglocalpv-device)

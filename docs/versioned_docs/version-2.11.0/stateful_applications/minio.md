@@ -39,13 +39,13 @@ In this tutorial, Local PV volume will be provisioned on the node where the appl
 
 If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/overview). If OpenEBS is already installed, go to the next step.
 
-### Select OpenEBS storage engine {#select-openebs-storage-engine}
+### Select OpenEBS storage engine
 
 A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and chooses the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/docs/overview#openebs-storage-engines).
 
 In this document, it is mentioned about the installation of MinIO operator using OpenEBS Local PV device. 
 
-### Configure OpenEBS Local PV StorageClass {#configure-openebs-local-pv-storageclass}
+### Configure OpenEBS Local PV StorageClass
 
 There are 2 ways to use OpenEBS Local PV.
 
@@ -57,7 +57,7 @@ MinIO can provide the replication of data by itself in distributed mode. This me
 
 The Storage Class `openebs-device` has been chosen to deploy MinIO in the Kubernetes cluster.
 
-### Install the MinIO plugin {#install-the-minio-plugin}
+### Install the MinIO plugin
 
 The MinIO operator offers MinIO Tenant (MinIO cluster) creation, management of cluster, upgrade, zone addition, and more. Install the MinIO operator plugin using the following command. 
 
@@ -67,7 +67,7 @@ $ kubectl krew install minio
 
 **Note:** Install `kubectl minio` plugin using krew. Installation of krew can be done from [here](https://krew.sigs.k8s.io/docs/user-guide/setup/install/).
 
-### Install the MinIO operator deployment {#install-the-minio-operator-deployment}
+### Install the MinIO operator deployment
 
 Let’s get started by initializing the MinIO operator deployment. This is a one time process.
 
@@ -90,7 +90,7 @@ NAME                              READY   STATUS    RESTARTS   AGE
 minio-operator-59b8965ff5-tzx8n   1/1     Running   0          18s
 ```
 
-### Install the MinIO cluster {#install-the-minio-cluster}
+### Install the MinIO cluster
 
 A tenant is a MinIO cluster created and managed by the operator. Before creating a tenant, please ensure you have requisite nodes and drives in place.
 In this guide, we are using 4 Nodes with one 100Gi block device attached per each node. Using the MinIO operator, the following command will generate a YAML file as per the given requirement and the file can be modified as per user specific requirements. 
@@ -216,7 +216,7 @@ tenant1-console   NodePort    10.100.50.135   <none>        9090:30383/TCP,9443:
 tenant1-hl        ClusterIP   None            <none>        9000/TCP                        3m10s
 ```
 
-### Access MinIO console {#access-minio-console}
+### Access MinIO console
 
 There are 2 different console for User and Admin.
 
@@ -343,10 +343,10 @@ $ echo 'M2ZiNGFlZGQtYTU1Yy00YjM4LWJkNTQtODEyNmViOTg5ZmZk' | base64 -d
 
 ## See Also:
 
-### [OpenEBS use cases](/docs/introduction/usecases)
+[OpenEBS use cases](/docs/introduction/usecases)
 
-### [Understanding NDM](/docs/user_guides/ugndm)
+[Understanding NDM](/docs/user_guides/ugndm)
 
-### [Local PV concepts](/docs/concepts/localpv)
+[Local PV concepts](/docs/concepts/localpv)
 
-### [Local PV User guide](/docs/user_guides/uglocalpv-device)
+[Local PV User guide](/docs/user_guides/uglocalpv-device)

@@ -378,9 +378,9 @@ root@sysbench-client:/sysbench# sysbench oltp_read_write --tables=10 --table_siz
 
 ## See Also:
 
-### [OpenEBS architecture](/docs/concepts/architecture)
+[OpenEBS architecture](/docs/concepts/architecture)
 
-### [OpenEBS use cases](/docs/introduction/usecases)
+[OpenEBS use cases](/docs/introduction/usecases)
 
-### [OpenEBS Local PV Device User Guide](/docs/user_guides/uglocalpv-device)
+[OpenEBS Local PV Device User Guide](/docs/user_guides/uglocalpv-device)
 

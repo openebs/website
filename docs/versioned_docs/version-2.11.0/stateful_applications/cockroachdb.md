@@ -25,11 +25,11 @@ The Local PV volume will be provisioned on a node where CockroachDB pods are get
 4. [Install CockroachDB Operator](#install-cockroachdb-operator)
 5. [Accessing CockroachDB](#accessing-cockroachdb)
 
-### Install OpenEBS {#install-openebs}
+### Install OpenEBS
 
 If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user_guides/installation). If OpenEBS is already installed, go to the next step.
 
-### Select OpenEBS storage engine {#select-openebs-storage-engine}
+### Select OpenEBS storage engine
 
 A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and you should choose the right engine that suits your application requirements and storage available on your Kubernetes nodes. For more information you can read [here](/docs/overview#types-of-openebs-storage-engines).
 
@@ -41,7 +41,7 @@ After OpenEBS installation, choose the OpenEBS storage engine as per your requir
 
 In this document, we are deploying CockroachDB using OpenEBS Local PV. 
 
-### Configure OpenEBS Local PV StorageClass {#configure-openebs-local-pv-storageclass}
+### Configure OpenEBS Local PV StorageClass
 
 Depending on the type of storage attached to your Kubernetes worker nodes, you can select from different flavors of Dynamic Local PV - Hostpath, Device, LVM, ZFS, or Rawfile. For more information, you can read [here](/docs/concepts/localpv).
 
@@ -49,7 +49,7 @@ The Storage Class `openebs-device` will be used to deploy CockroachDB in the Kub
 
 **Note:** Ensure that you have at least one disk with the required capacity added to the corresponding nodes before CockroachDB installation. In this example, we have added one 100GB disk to each node.
 
-### Install CockroachDB Operator {#install-cockroachdb-operator}
+### Install CockroachDB Operator
 
 - Install the CRD using the following command.
 
@@ -190,7 +190,7 @@ The Storage Class `openebs-device` will be used to deploy CockroachDB in the Kub
   storageclass.storage.k8s.io/standard-rwo                pd.csi.storage.gke.io                                      Delete          WaitForFirstConsumer   true                   38m
   ```
 
-#### Accessing CockroachDB {#accessing-cockroachdb}
+#### Accessing CockroachDB
 
 - We will be using the built-in sql-client for accessing and running some sql queries. Enter into one of the cockroachdb pods by using the exec command.
 
@@ -303,10 +303,10 @@ In the production environment either use a load balancer or ingress services as 
 
 ## See Also:
 
-### [OpenEBS architecture](/docs/concepts/architecture)
+[OpenEBS architecture](/docs/concepts/architecture)
 
-### [OpenEBS use cases](/docs/introduction/usecases)
+[OpenEBS use cases](/docs/introduction/usecases)
 
-### [Local PV concepts](/docs/concepts/localpv)
+[Local PV concepts](/docs/concepts/localpv)
 
-### [Understanding NDM](/docs/user_guides/ugndm)
+[Understanding NDM](/docs/user_guides/ugndm)

@@ -55,67 +55,67 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful_applications/mysql",
+          "id": "version-2.11.0/stateful-applications/mysql",
           "label": "RDS like MySQL"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful_applications/prometheus",
+          "id": "version-2.11.0/stateful-applications/prometheus",
           "label": "Prometheus"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful_applications/minio",
+          "id": "version-2.11.0/stateful-applications/minio",
           "label": "MinIO"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful_applications/gitlab",
+          "id": "version-2.11.0/stateful-applications/gitlab",
           "label": "GitLab"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful_applications/percona",
+          "id": "version-2.11.0/stateful-applications/percona",
           "label": "Percona"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful_applications/elasticsearch",
+          "id": "version-2.11.0/stateful-applications/elasticsearch",
           "label": "Elasticsearch"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful_applications/cockroachdb",
+          "id": "version-2.11.0/stateful-applications/cockroachdb",
           "label": "CockroachDB"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful_applications/cassandra",
+          "id": "version-2.11.0/stateful-applications/cassandra",
           "label": "Cassandra"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful_applications/nuodb",
+          "id": "version-2.11.0/stateful-applications/nuodb",
           "label": "NuoDB"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful_applications/postgres",
+          "id": "version-2.11.0/stateful-applications/postgres",
           "label": "PostgreSQL"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful_applications/redis",
+          "id": "version-2.11.0/stateful-applications/redis",
           "label": "Redis"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful_applications/mongodb",
+          "id": "version-2.11.0/stateful-applications/mongodb",
           "label": "MongoDB"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful_applications/jira",
+          "id": "version-2.11.0/stateful-applications/jira",
           "label": "Jira"
         }
       ]

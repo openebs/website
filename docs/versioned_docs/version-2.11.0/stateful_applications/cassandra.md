@@ -242,10 +242,10 @@ $ kubectl kudo install cassandra --namespace=$namespace_name --instance $instanc
 
 ## See Also:
 
-### [OpenEBS architecture](/docs/concepts/architecture)
+[OpenEBS architecture](/docs/concepts/architecture)
 
-### [OpenEBS use cases](/docs/introduction/usecases)
+[OpenEBS use cases](/docs/introduction/usecases)
 
-### [Local PV concepts](/docs/concepts/localpv)
+[Local PV concepts](/docs/concepts/localpv)
 
-### [Understanding NDM](/docs/user_guides/ugndm)
+[Understanding NDM](/docs/user_guides/ugndm)
