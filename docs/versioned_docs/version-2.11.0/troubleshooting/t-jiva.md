@@ -45,7 +45,7 @@ Perform following steps to restore the missing metadata file of internal snapsho
   volume-snap-466d32e7-c443-46dd-afdd-8412e76f348e.img.meta  volume.meta
   ```
 
-  Example snippet of of faulty replica:
+  Example snippet of faulty replica:
 
   ```shell hideCopy
   revision.counter                                           volume-snap-792e7036-877d-4807-9641-4843c987d0a5.img
@@ -62,7 +62,7 @@ Perform following steps to restore the missing metadata file of internal snapsho
 
 - If only one meta file is missing, then copy meta file name and content from one of the healthy replica to the faulty replica.
 
-  For above case, copy `volume-snap-b72764f0-4ca8-49b1-b9ca-57cb9dfb6fa9.img.meta`from healthy replica to faulty replica and restart the faulty replica. You can verify the logs of the replica pod to ensure that there are no error messages as mentioned above.
+  For above case, copy `volume-snap-b72764f0-4ca8-49b1-b9ca-57cb9dfb6fa9.img.meta` from healthy replica to faulty replica and restart the faulty replica. You can verify the logs of the replica pod to ensure that there are no error messages as mentioned above.
 
 - If multiple meta files are missing, then delete all files from replica pods and then restart the faulty replica pod to rebuild from healthy replica.
 

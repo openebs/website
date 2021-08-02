@@ -96,7 +96,7 @@ Make sure the following prerequisites are done.
 
 More details are mentioned [here](/docs/next/prerequisites.html#rancher).
 
-<h3><a class="anchor" aria-hidden="true" id="application-pod-stuck-after-deployment"></a>Application pod is stuck in ContainerCreating state after deployment</h3>
+### Application pod is stuck in ContainerCreating state after deployment{#application-pod-stuck-after-deployment}
 
 **Troubleshooting**
 

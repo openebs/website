@@ -54,10 +54,10 @@ Check if the blockdevice is having any of the following annotations:
 1.
 
 ```
-metadata:
-  annotations:
-    internal.openebs.io/partition-uuid: <uuid>
-    internal.openebs.io/uuid-scheme: legacy
+  metadata:
+    annotations:
+      internal.openebs.io/partition-uuid: <uuid>
+      internal.openebs.io/uuid-scheme: legacy
 ```
 
 or
@@ -66,9 +66,9 @@ or
 
 ```
 metadata:
-  annotations:
-    internal.openebs.io/fsuuid: <uuid>
-    internal.openebs.io/uuid-scheme: legacy
+annotations:
+internal.openebs.io/fsuuid: <uuid>
+internal.openebs.io/uuid-scheme: legacy
 ```
 
 If `1.` is present, it means the blockdevice was previously being used by cstor and it was not properly cleaned up. The cstor pool can be from a previous release or the disk already container some zfs labels.
@@ -81,14 +81,18 @@ If `2.` is present, it means the blockdevice was previously being used by localP
 2. If the disk has partitions, run wipefs on all the partitions
 
 ```
+
 wipefs -fa /dev/sdb1
 wipefs -fa /dev/sdb9
+
 ```
 
 3. Run wipefs on the disk
 
 ```
+
 wipefs -fa /dev/sdb
+
 ```
 
 4. Restart NDM pod running on the node
@@ -98,3 +102,7 @@ wipefs -fa /dev/sdb
 ## See Also:
 
 [FAQs](/docs/next/faq.html) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)
+
+```
+
+```

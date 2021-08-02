@@ -200,63 +200,63 @@ To bring cStor pool back to online state carry out the below mentioned steps,
            dataRaidGroupType: "stripe"
    ```
 
-To apply the above configuration, execute:
+4. To apply the above configuration, execute:
 
-```
-$ kubectl apply -f cspc.yaml
-```
+   ```
+   $ kubectl apply -f cspc.yaml
+   ```
 
-5.  **Update nodeSelectors, labels and NodeName**:
+5. **Update nodeSelectors, labels and NodeName**:
 
-    Next, the CSPI needs to be updated with the correct node details.
-    Get the node details on which the previous blockdevice was attached and after fetching node details update hostName, nodeSelector values and `kubernetes.io/hostname` values in labels of CSPI with new details.
-    To update, execute:
+   Next, the CSPI needs to be updated with the correct node details.
+   Get the node details on which the previous blockdevice was attached and after fetching node details update hostName, nodeSelector values and `kubernetes.io/hostname` values in labels of CSPI with new details.
+   To update, execute:
 
-    ```
-    kubectl edit cspi <cspi_name> -n openebs
-    ```
+   ```
+   kubectl edit cspi <cspi_name> -n openebs
+   ```
 
-    **NOTE**: The same process needs to be repeated for all other CSPIs which are in pending state and belongs to the updated CSPC.
+   **NOTE**: The same process needs to be repeated for all other CSPIs which are in pending state and belongs to the updated CSPC.
 
-6.  **Verification**:
-    On successful implementation of the above steps, the updated CSPI generates an event, <b>pool is successfully imported</b> which verifies the above steps have been completed successfully.
+6. **Verification**:
+   On successful implementation of the above steps, the updated CSPI generates an event, _pool is successfully imported_ which verifies the above steps have been completed successfully.
 
-    ```
-    kubectl describe cspi cstor-cspc-xs4b -n openebs
-    ```
+   ```
+   kubectl describe cspi cstor-cspc-xs4b -n openebs
+   ```
 
-    Sample Output:
+   Sample Output:
 
-    ```shell hideCopy
-    ...
-    ...
-    Events:
-      Type    Reason         Age    From               Message
-      ----    ------         ----   ----               -------
-      Normal  Pool Imported  2m48s  CStorPoolInstance  Pool Import successful: cstor-07c4bfd1-aa1a-4346-8c38-f81d33070ab7
-    ```
+   ```shell hideCopy
+   ...
+   ...
+   Events:
+     Type    Reason         Age    From               Message
+     ----    ------         ----   ----               -------
+     Normal  Pool Imported  2m48s  CStorPoolInstance  Pool Import successful: cstor-07c4bfd1-aa1a-4346-8c38-f81d33070ab7
+   ```
 
-7.  **Scale-up the cStor admission server and update validatingwebhookconfiguration**:
-    This brings back the cStor admission server to running state. As well as admission server is required to validate the modifications made to CSPC API in future.
-    `$ kubectl scale deploy openebs-cstor-admission-server -n openebs --replicas=1`
+7. **Scale-up the cStor admission server and update validatingwebhookconfiguration**:
+   This brings back the cStor admission server to running state. As well as admission server is required to validate the modifications made to CSPC API in future.
+   `$ kubectl scale deploy openebs-cstor-admission-server -n openebs --replicas=1`
 
-    Sample Output:
+   Sample Output:
 
-    ```shell hideCopy
-    deployment.extensions/openebs-cstor-admission-server scaled
-    ```
+   ```shell hideCopy
+   deployment.extensions/openebs-cstor-admission-server scaled
+   ```
 
-    Now, update the `failurePolicy` back to `Fail` under validatingwebhookconfiguration. To edit, execute:
+   Now, update the `failurePolicy` back to `Fail` under validatingwebhookconfiguration. To edit, execute:
 
-    ```
-    $ kubectl edit validatingwebhookconfiguration openebs-cstor-validation-webhook
-    ```
+   ```
+   $ kubectl edit validatingwebhookconfiguration openebs-cstor-validation-webhook
+   ```
 
-    Sample Output:
+   Sample Output:
 
-    ```shell hideCopy
-        validatingwebhookconfiguration.admissionregistration.k8s.io/openebs-cstor-validation-webhook edited
-    ```
+   ```shell hideCopy
+       validatingwebhookconfiguration.admissionregistration.k8s.io/openebs-cstor-validation-webhook edited
+   ```
 
 ### Pool Operation hung due to Bad Disk {#pool-operation-hung}
 
@@ -291,6 +291,7 @@ If the volume replica that resided on the lost pool was configured in high avail
 **NOTE**:The CStorVolume associated to the volume replicas have to be migrated should be in Healthy state.
 
 **STEP 1:**
+
 **Remove the cStorVolumeReplicas from the lost pool**:
 
 To remove the pool the `CStorVolumeConfig` needs to updated. The `poolName` for the corresponding pool needs to be removed from `replicaPoolInfo`. This ensures that the admission server accepts the scale down request.
@@ -384,6 +385,7 @@ Normal   ScalingVolumeReplicas  6m10s  cstorvolumeclaim-controller  successfully
 ```
 
 **STEP 3:**
+
 **Remove the pool spec from CSPC belongs to lost node**
 
 Next, the corresponding CSPC needs to be edited and the pool spec that belongs to the nodes, which no longer exists, needs to be removed. To edit the cspc, execute:
@@ -426,6 +428,7 @@ cstor-cspc   2                  2                      2                  68m
 ```
 
 **STEP 4:**
+
 **Scale the cStorVolumeReplicas back to the original number**
 
 Scale the CStorVolumeReplicas back to the desired number on new or existing cStor pool where a volume replica of the same volume doesn't exist.
