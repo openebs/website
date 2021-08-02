@@ -244,7 +244,7 @@ $ kubectl kudo install cassandra --namespace=$namespace_name --instance $instanc
 
 ### [OpenEBS architecture](/docs/concepts/architecture)
 
-### [OpenEBS use cases](/docs/usecases)
+### [OpenEBS use cases](/docs/introduction/usecases)
 
 ### [Local PV concepts](/docs/concepts/localpv)
 

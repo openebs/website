@@ -32,13 +32,13 @@ The Elasticsearch deployment has the following components, which will use the Op
 
 ## Configuration workflow
 
-1. [Install OpenEBS](/docs/stateful_applications/elasticsearch#install-openebs)
-2. [Select OpenEBS storage engine](/docs/stateful_applications/elasticsearch#select-openebs-storage-engine)
-3. [Configure OpenEBS Local PV StorageClass](/docs/stateful_applications/elasticsearch#configure-openebs-local-pv-storageclass)
-4. [Installing KUDO Operator](/docs/stateful_applications/elasticsearch#installing-kudo-operator)
-5. [Installing and Accessing Elasticsearch](/docs/stateful_applications/elasticsearch#installing-and-accessing-elasticsearch)
-6. [Installing Kibana](/docs/stateful_applications/elasticsearch#installing-kibana)
-7. [Installing Fluentd-ES](/docs/stateful_applications/elasticsearch#installing-fluentd-es)
+1. [Install OpenEBS](#install-openebs)
+2. [Select OpenEBS storage engine](#select-openebs-storage-engine)
+3. [Configure OpenEBS Local PV StorageClass](#configure-openebs-local-pv-storageclass)
+4. [Installing KUDO Operator](#installing-kudo-operator)
+5. [Installing and Accessing Elasticsearch](h#installing-and-accessing-elasticsearch)
+6. [Installing Kibana](#installing-kibana)
+7. [Installing Fluentd-ES](#installing-fluentd-es)
 
 ### Install OpenEBS {#install-openebs}
 
@@ -495,7 +495,7 @@ You will see the OpenEBS NDM pod logs listed on the page.
 
 ## See Also:
 
-### [OpenEBS use cases](/docs/usecases)
+### [OpenEBS use cases](/docs/introduction/usecases)
 
 ### [Understanding NDM](/docs/user_guides/ugndm)
 

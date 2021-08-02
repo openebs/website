@@ -118,6 +118,6 @@ reclaimPolicy: Delete
 
 ### [OpenEBS architecture](/docs/concepts/architecture)
 
-### [OpenEBS use cases](/docs/usecases)
+### [OpenEBS use cases](/docs/introduction/usecases)
 
 ### [cStor pools overview](/docs/concepts/cstor#cstor-pools)

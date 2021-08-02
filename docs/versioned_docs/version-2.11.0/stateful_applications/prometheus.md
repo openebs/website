@@ -19,15 +19,15 @@ We will add 100G of two disks to each node. Disks will be consumed by Prometheus
 
 ## Configuration workflow
 
-1. [Install OpenEBS](/docs/stateful_applications/prometheus#install-openebs)
+1. [Install OpenEBS](#install-openebs)
 
-2. [Select OpenEBS storage engine](/docs/stateful_applications/prometheus#select-openebs-storage-engine)
+2. [Select OpenEBS storage engine](#select-openebs-storage-engine)
 
-3. [Configure OpenEBS Local PV StorageClass](/docs/stateful_applications/prometheus#configure-openebs-local-pv-storageclass)
+3. [Configure OpenEBS Local PV StorageClass](#configure-openebs-local-pv-storageclass)
 
-4. [Installing Prometheus Operator](/docs/stateful_applications/prometheus#installing-prometheus-operator)
+4. [Installing Prometheus Operator](#installing-prometheus-operator)
 
-5. [Accessing Prometheus and Grafana](/docs/stateful_applications/prometheus#accessing-prometheus-and-grafana)
+5. [Accessing Prometheus and Grafana](#accessing-prometheus-and-grafana)
 
 ### Install OpenEBS {#install-openebs}
 
@@ -322,7 +322,7 @@ Users can upload a Grafana dashboard for Prometheus in 3 ways.
 
 ## See Also:
 
-### [OpenEBS use cases](/docs/usecases)
+### [OpenEBS use cases](/docs/introduction/usecases)
 
 ### [Understanding NDM](/docs/user_guides/ugndm)
 

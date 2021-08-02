@@ -19,11 +19,11 @@ The Local PV volume will be provisioned on a node where CockroachDB pods are get
 
 ## Configuration workflow 
 
-1. [Install OpenEBS](/docs/stateful_applications/cockroachdb#install-openebs)
-2. [Select OpenEBS storage engine](/docs/stateful_applications/cockroachdb#select-openebs-storage-engine) 
-3. [Configure OpenEBS Local PV StorageClass](/docs/stateful_applications/cockroachdb#configure-openebs-local-pv-storageclass) 
-4. [Install CockroachDB Operator](/docs/stateful_applications/cockroachdb#install-cockroachdb-operator)
-5. [Accessing CockroachDB](/docs/stateful_applications/cockroachdb#accessing-cockroachdb)
+1. [Install OpenEBS](#install-openebs)
+2. [Select OpenEBS storage engine](#select-openebs-storage-engine) 
+3. [Configure OpenEBS Local PV StorageClass](#configure-openebs-local-pv-storageclass) 
+4. [Install CockroachDB Operator](#install-cockroachdb-operator)
+5. [Accessing CockroachDB](#accessing-cockroachdb)
 
 ### Install OpenEBS {#install-openebs}
 
@@ -305,7 +305,7 @@ In the production environment either use a load balancer or ingress services as 
 
 ### [OpenEBS architecture](/docs/concepts/architecture)
 
-### [OpenEBS use cases](/docs/usecases)
+### [OpenEBS use cases](/docs/introduction/usecases)
 
 ### [Local PV concepts](/docs/concepts/localpv)
 

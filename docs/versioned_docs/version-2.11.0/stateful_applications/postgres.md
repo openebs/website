@@ -21,12 +21,12 @@ We will use GKE, where we will install Stackgres PostgreSQL with OpenEBS storage
 
 ## Configuration workflow
 
-1. [Install OpenEBS](/docs/stateful_applications/postgres#install-openebs)
-2. [Select OpenEBS storage engine](/docs/stateful_applications/postgres#select-openebs-storage-engine)
-3. [Configure OpenEBS Local PV StorageClass](/docs/stateful_applications/postgres#configure-openebs-local-pv-storageclass)
-4. [Installing StackGres PostgreSQL Operator](/docs/stateful_applications/postgres#installing-stackgres-postgresql-operator)
-5. [Installing PostgreSQL Database](/docs/stateful_applications/postgres#installing-postgresql-database)
-6. [Accessing PostgreSQL database](/docs/stateful_applications/postgres#accessing-postgresql-database)
+1. [Install OpenEBS](#install-openebs)
+2. [Select OpenEBS storage engine](#select-openebs-storage-engine)
+3. [Configure OpenEBS Local PV StorageClass](#configure-openebs-local-pv-storageclass)
+4. [Installing StackGres PostgreSQL Operator](#installing-stackgres-postgresql-operator)
+5. [Installing PostgreSQL Database](#installing-postgresql-database)
+6. [Accessing PostgreSQL database](#accessing-postgresql-database)
 
 ### Install OpenEBS {#install-openebs}
 
@@ -287,7 +287,7 @@ app-# \q
 
 ## See Also:
 
-### [OpenEBS use cases](/docs/usecases)
+### [OpenEBS use cases](/docs/introduction/usecases)
 
 ### [Understanding NDM](/docs/user_guides/ugndm)
 

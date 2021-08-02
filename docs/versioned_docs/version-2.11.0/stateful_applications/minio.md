@@ -27,13 +27,13 @@ In this tutorial, Local PV volume will be provisioned on the node where the appl
 
 ## Configuration workflow
 
-1. [Install OpenEBS](/docs/stateful_applications/minio#install-openebs)
-2. [Select OpenEBS storage engine](/docs/stateful_applications/minio#select-openebs-storage-engine)
-3. [Configure OpenEBS Local PV StorageClass](/docs/stateful_applications/minio#configure-openebs-local-pv-storageclass)
-4. [Install the MinIO plugin](/docs/stateful_applications/minio#install-the-minio-plugin)
-5. [Install the MinIO operator deployment](/docs/stateful_applications/minio#install-the-minio-operator-deployment)
-6. [Install the MinIO cluster](/docs/stateful_applications/minio#install-the-minio-cluster)
-7. [Access MinIO console](/docs/stateful_applications/minio#access-minio-console)
+1. [Install OpenEBS](#install-openebs)
+2. [Select OpenEBS storage engine](#select-openebs-storage-engine)
+3. [Configure OpenEBS Local PV StorageClass](#configure-openebs-local-pv-storageclass)
+4. [Install the MinIO plugin](#install-the-minio-plugin)
+5. [Install the MinIO operator deployment](#install-the-minio-operator-deployment)
+6. [Install the MinIO cluster](#install-the-minio-cluster)
+7. [Access MinIO console](#access-minio-console)
 
 ### Install OpenEBS {#install-openebs}
 
@@ -343,7 +343,7 @@ $ echo 'M2ZiNGFlZGQtYTU1Yy00YjM4LWJkNTQtODEyNmViOTg5ZmZk' | base64 -d
 
 ## See Also:
 
-### [OpenEBS use cases](/docs/usecases)
+### [OpenEBS use cases](/docs/introduction/usecases)
 
 ### [Understanding NDM](/docs/user_guides/ugndm)
 
