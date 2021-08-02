@@ -50,7 +50,7 @@
       "type": "category",
       "label": "Troubleshooting",
       "customProps": {
-        "icon": "BookOpen"
+        "icon": "Crosshair"
       },
       "items": [
         {
