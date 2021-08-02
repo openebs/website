@@ -181,7 +181,3 @@ kubectl config use-context admin-ctx
 ## See Also:
 
 [OpenEBS Architecture](/concepts/architecture) [OpenEBS Examples](/introduction/usecases) [Troubleshooting](/troubleshooting/troubleshooting)
-
-
-
-

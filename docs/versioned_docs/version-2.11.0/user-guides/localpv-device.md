@@ -582,5 +582,4 @@ If you encounter issues or have a question, file an [Github issue](https://githu
 
 ## See Also:
 
-[Understand OpenEBS Local PVs ](/docs/next/localpv.html) [Node Disk Manager](/docs/next/ugndm.html)
-
+[Understand OpenEBS Local PVs ](/concepts/localpv) [Node Disk Manager](/user-guides/ndm)

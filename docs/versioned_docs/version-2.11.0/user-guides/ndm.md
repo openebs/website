@@ -217,11 +217,9 @@ any other unsupported device types, the blockdevice resource can be manually cre
 
 **Note:** If you are creating a block device CR for an unsupported device, then you must add the corresponding disk under **exclude** filter so that NDM will not select the particular disk for BD creation. See [here](#Exclude-filters) for customizing the exclude filter in NDM configuration.
 
-<br />
 
 ## See Also:
 
-
-### [Understanding Node Disk Manager](/docs/next/ndm.html)
+[Understanding Node Disk Manager](/user-guides/ndm)
 
 

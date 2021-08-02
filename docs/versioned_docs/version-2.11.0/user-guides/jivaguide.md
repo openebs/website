@@ -261,7 +261,6 @@ openebs_writes # Write Input/Outputs on Volume
 
 Grafana charts can be built for the above Prometheus metrics. 
 
-
 ### Backup and Restore
 
 OpenEBS volume can be backed up and restore along with application using velero plugin. It helps the user for taking backup of OpenEBS volumes to a third party storage location and then restoration of the data whenever it needed. The steps for taking backup and restore are following.
@@ -278,7 +277,7 @@ OpenEBS volume can be backed up and restore along with application using velero 
 
 Velero is a utility to back up and restore your Kubernetes resource and persistent volumes. 
 
-To take backup and restore of Jiva volume, configure Velero with restic and use  `velero backup` command to take the backup of application with OpenEBS Jiva volume which invokes restic internally and copies the data from the given application including the entire data from the associated persistent volumes in that application and backs it up to the configured storage location such as S3 or [Minio](/docs/next/minio.html).
+To take backup and restore of Jiva volume, configure Velero with restic and use  `velero backup` command to take the backup of application with OpenEBS Jiva volume which invokes restic internally and copies the data from the given application including the entire data from the associated persistent volumes in that application and backs it up to the configured storage location such as S3 or [Minio](/stateful-applications/minio).
 
 The following are the step by step procedure for taking backup and restore of application with Jiva.
 
@@ -425,9 +424,6 @@ Verify PV status using the following command.
 ```
 kubectl get pv
 ```
-
-
-
 
 ## Admin Operations
 
@@ -960,6 +956,3 @@ This StorageClass Policy is for deploying the Jiva pods in OpenEBS Namespace. By
 ## See Also:
 
 [Understanding Jiva](/concepts/jiva)
-
-
-

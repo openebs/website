@@ -70,7 +70,7 @@ OpenEBS offers different modes of [installation](/user-guides/installation). The
 
 OpenEBS will install a couple of default storage classes that you an use for Local Volumes (`openebs-hostpath`) and Replicated Volumes (`openebs-hostpath`). The data of the volumes created by these default storage classes will be saved under `/var/openebs`. 
 
-As a Platform SRE / Cluster Administrator, you can customize several things about OpenEBS installer to suite your specific environment and create the setup the required Storage Classes. You can jump to the relevant sections based on your choice of [data engines](docs/next/casengines.html#data-engine-capabilities):
+As a Platform SRE / Cluster Administrator, you can customize several things about OpenEBS installer to suite your specific environment and create the setup the required Storage Classes. You can jump to the relevant sections based on your choice of [data engines](concepts/casengines#data-engine-capabilities):
 
 - [Local PV hostpath](/user-guides/localpv-hostpath)
 - [Local PV device](/user-guides/localpv-device)
@@ -87,18 +87,18 @@ The application developers will launch their application (stateful workloads) th
 
 As an application developer all you have to do is substitute the `StorageClass` in your PVCs with the OpenEBS Storage Classes available in your Kubernetes cluster. 
 
-Here are examples of some applications using OpenEBS: 
-- <a href="/docs/next/mysql.html" target="_blank"> MySQL </a>
-- <a href="/docs/next/postgres.html" target="_blank"> PostgreSQL </a>
-- <a href="/docs/next/percona.html" target="_blank"> Percona </a>
-- <a href="/docs/next/redis.html" target="_blank"> Redis </a>
-- <a href="/docs/next/mongo.html" target="_blank"> MongoDB </a>
-- <a href="/docs/next/cassandra.html" target="_blank"> Cassandra </a>
-- <a href="/docs/next/prometheus.html" target="_blank"> Prometheus </a>
-- <a href="/docs/next/elasticsearch.html" target="_blank"> Elastic </a>
-- <a href="/docs/next/minio.html" target="_blank"> Minio </a>
-- <a href="/docs/next/rwm.html" target="_blank"> Wordpress using NFS </a>
+**Here are examples of some applications using OpenEBS:**
 
+[MySQL](/stateful-applications/mysql)
+[PostgreSQL](/stateful-applications/postgres)
+[Percona](/stateful-applications/percona)
+[Redis](/stateful-applications/redis)
+[MongoDB](/stateful-applications/mongo)
+[Cassandra](/stateful-applications/cassandra)
+[Prometheus](/stateful-applications/prometheus)
+[Elastic](/stateful-applications/elasticsearch)
+[Minio](/stateful-applications/minio)
+[Wordpress using NFS](/stateful-applications/rwm)
 
 ### 4. Dynamic Persistent Volume Provisioning
 
@@ -106,7 +106,7 @@ The Kubernetes CSI (provisioning layer) will intercept the requests for the Pers
 
 OpenEBS control plane will then process the request and create the Persistent Volumes using the specified local or replicated engines. The data engine services like target and replica are deployed as Kubernetes applications as well. The containers provide storage for the containers. The new containers launched for serving the applications will be available in the `openebs` namespace. 
 
-With the magic of OpenEBS and Kubernetes, the volumes should be provisioned, pods scheduled and application ready to serve. For this magic to happen, the prerequisites should be met. Check out our [troubleshooting section](docs/next/troubleshooting.html) for some of the common errors that users run into due to setup issues. 
+With the magic of OpenEBS and Kubernetes, the volumes should be provisioned, pods scheduled and application ready to serve. For this magic to happen, the prerequisites should be met. Check out our [troubleshooting section](/troubleshooting/troubleshooting) for some of the common errors that users run into due to setup issues. 
 
 
 ### 5. Managing the Life cycle of OpenEBS components

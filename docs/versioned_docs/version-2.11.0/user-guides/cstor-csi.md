@@ -824,9 +824,8 @@ NDM provides you with an ability to reserve block devices to be used for specifi
   ```
 
   Sample Output:
-  
 
-  ```
+  ```shell hideCopy
   NAME                                           NODENAME             SIZE          CLAIMSTATE   STATUS   AGE   LABELS
   blockdevice-00439dc464b785256242113bf0ef64b9   worker-node-3        21473771008   Unclaimed    Active   34h   kubernetes.io/hostname=worker-node-3,ndm.io/blockdevice-type=blockdevice,ndm.io/managed=true,openebs.io/block-device-tag=fast
   ```
@@ -870,19 +869,15 @@ NDM provides you with an ability to reserve block devices to be used for specifi
 
   Apply the above CSPC file for CSPIs to get created and check the CSPI status.
   
-
   ```
   kubectl apply -f cspc.yaml
   ```
-
-  
 
   ```
   kubectl get cspi -n openebs
   ```
 
   Sample Output:
-  
 
   ```
   NAME             HOSTNAME        FREE   CAPACITY    READONLY PROVISIONEDREPLICAS HEALTHYREPLICAS STATUS   AGE
@@ -929,7 +924,6 @@ Following CSPC YAML specifies resources and auxResources that will get applied t
 
 In the following CSPC YAML we have only one pool spec (@spec.pools). It is also possible to override the resource and limit value for a specific pool.
  
-
 ```
 apiVersion: cstor.openebs.io/v1
 kind: CStorPoolCluster
@@ -964,10 +958,8 @@ spec:
      poolConfig:
        dataRaidGroupType: mirror
 ```
-
  
 Following CSPC YAML explains how the resource and limits can be overridden. If you look at the CSPC YAML, there are no resources and auxResources specified at pool level for worker-node-1 and worker-node-2 but specified for worker-node-3. In this case, for worker-node-1 and worker-node-2 the resources and auxResources will be applied from @spec.resources and @spec.auxResources respectively but for worker-node-3 these will be applied from @spec.pools[2].poolConfig.resources and @spec.pools[2].poolConfig.auxResources respectively.
- 
 
 ```
 apiVersion: cstor.openebs.io/v1
@@ -1031,7 +1023,7 @@ spec:
          limits:
            memory: 120Mi
            cpu: 500m
- 
+
 ```
 
 <font size="4">**Example configuration for Tolerations:**</font>
@@ -1216,7 +1208,6 @@ spec:
 ## Tuning cStor Volumes
  
 Similar to tuning of the cStor Pool cluster, there are possible ways for tuning cStor volumes. cStor volumes can be provisioned using different policy configurations. However, `cStorVolumePolicy` needs to be created first. It must be created prior to creation of StorageClass as  `CStorVolumePolicy` name needs to be specified to provision cStor volume based on configured policy. A sample StorageClass YAML that utilises `cstorVolumePolicy` is given below for reference:
-
 
 ```
 apiVersion: storage.k8s.io/v1
