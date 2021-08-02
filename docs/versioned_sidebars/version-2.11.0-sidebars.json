@@ -108,6 +108,76 @@
     {
       "collapsed": true,
       "type": "category",
+      "label": "User Guides",
+      "customProps": {
+        "icon": "Users"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/quickstart",
+          "label": "Quickstart"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/prerequisites",
+          "label": "Prerequisites"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/installation",
+          "label": "Installation"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/ndm",
+          "label": "NDM"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/cstor-csi",
+          "label": "cStor"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/jivaguide",
+          "label": "Jiva"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/mayastor",
+          "label": "Mayastor"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/localpv-hostpath",
+          "label": "Local PV Hostpath"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/localpv-device",
+          "label": "Local PV Device"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/mayactl",
+          "label": "mayactl"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/upgrade",
+          "label": "Upgrade"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/uninstall",
+          "label": "Uninstall"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
       "label": "Troubleshooting",
       "customProps": {
         "icon": "Crosshair"
