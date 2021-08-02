@@ -99,6 +99,66 @@
           "label": "Mayastor"
         }
       ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Concepts",
+      "customProps": {
+        "icon": "Server"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/basics",
+          "label": "Basics"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/cas",
+          "label": "Container Attached Storage"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/architecture",
+          "label": "Architecture"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/casengines",
+          "label": "Data Engines"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/ndm",
+          "label": "NDM"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/cstor",
+          "label": "cStor"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/jiva",
+          "label": "Jiva"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/mayastor",
+          "label": "Mayastor"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/localpv",
+          "label": "LocalPV"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/rwm",
+          "label": "Read-write-Many(RWX)"
+        }
+      ]
     }
   ]
 }
