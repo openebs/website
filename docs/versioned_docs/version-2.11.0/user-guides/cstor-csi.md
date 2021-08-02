@@ -918,7 +918,7 @@ Allow users to set available performance tunings in cStor Pools based on their w
  
 **ReadOnly threshold:** Helps in specifying read only thresholds for cStor pools.
  
-<font size="4">Example configuration for Resource and Limits:</font>
+**Example configuration for Resource and Limits:**
  
 Following CSPC YAML specifies resources and auxResources that will get applied to all pool manager pods for the CSPC. Resources get applied to cstor-pool containers and auxResources gets applied to sidecar containers i.e. cstor-pool-mgmt and pool-exporter.
 
@@ -1026,7 +1026,7 @@ spec:
 
 ```
 
-<font size="4">**Example configuration for Tolerations:**</font>
+**Example configuration for Tolerations:**
  
 Tolerations are applied in a similar manner like resources and auxResources. The following is a sample CSPC YAML that has tolerations specified. For worker-node-1 and worker-node-2 tolerations are applied form @spec.tolerations but for worker-node-3 it is applied from @spec.pools[2].poolConfig.tolerations
 
@@ -1089,7 +1089,7 @@ spec:
          effect: NoSchedule
 ```
  
-<font size="4">**Example configuration for Priority Class:**</font>
+**Example configuration for Priority Class:**
  
 Priority Classes are also applied in a similar manner like resources and auxResources. The following is a sample CSPC YAML that has a priority class specified. For worker-node-1 and worker-node-2 priority classes are applied from @spec.priorityClassName but for worker-node-3 it is applied from @spec.pools[2].poolConfig.priorityClassName. Check more info about [priorityclass](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/#priorityclass).
  
@@ -1144,7 +1144,7 @@ spec:
        priorityClassName: utlra-priority
 ```
 
-<font size="4">**Example configuration for Compression:**</font>
+**Example configuration for Compression:**
 
 Compression values can be set at **pool level only**. There is no override mechanism like it was there in case of tolerations, resources, auxResources and priorityClass. Compression value must be one of
 * on
