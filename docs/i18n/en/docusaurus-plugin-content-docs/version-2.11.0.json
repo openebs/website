@@ -7,7 +7,7 @@
     "message": "Introduction",
     "description": "The label for category Introduction in sidebar docs"
   },
-  "sidebar.docs.category.Stateful applications": {
+  "sidebar.docs.category.Stateful Applications": {
     "message": "Stateful Applications",
     "description": "The label for category Stateful Applications in sidebar docs"
   }
