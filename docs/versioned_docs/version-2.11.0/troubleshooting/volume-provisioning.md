@@ -1,5 +1,5 @@
 ---
-id: t-volume-provisioning
+id: volume-provisioning
 title: Troubleshooting OpenEBS - Provisioning
 ---
 

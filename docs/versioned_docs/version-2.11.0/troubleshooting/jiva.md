@@ -1,5 +1,5 @@
 ---
-id: t-jiva
+id: jiva
 title: Troubleshooting OpenEBS - Jiva
 ---
 

@@ -1,5 +1,5 @@
 ---
-id: t-mayastor
+id: mayastor
 title: Troubleshooting Mayastor
 ---
 

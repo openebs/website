@@ -1,5 +1,5 @@
 ---
-id: t-uninstall
+id: uninstall
 title: Troubleshooting OpenEBS - Uninstall
 ---
 

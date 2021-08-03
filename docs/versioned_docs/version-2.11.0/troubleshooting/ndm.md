@@ -1,5 +1,5 @@
 ---
-id: t-ndm
+id: ndm
 title: Troubleshooting OpenEBS - NDM
 ---
 

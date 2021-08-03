@@ -1,5 +1,5 @@
 ---
-id: t-cstor
+id: cstor
 title: Troubleshooting OpenEBS - cStor
 ---
 

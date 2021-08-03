@@ -1,5 +1,5 @@
 ---
-id: t-install
+id: install
 title: Troubleshooting OpenEBS Install
 ---
 

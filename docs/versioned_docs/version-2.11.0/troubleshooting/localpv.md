@@ -1,5 +1,5 @@
 ---
-id: t-localpv
+id: localpv
 title: Troubleshooting OpenEBS - Dynamic LocalPV
 ---
 
