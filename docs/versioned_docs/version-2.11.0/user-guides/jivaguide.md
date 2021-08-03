@@ -7,7 +7,7 @@ title: Jiva User Guide
   The recommended approach to provision Jiva volumes is via CSI Driver. For detailed instructions on how to get started with new Jiva CSI Driver please refer to the [Quickstart guide on Github](https://github.com/openebs/jiva-operator).
 :::
 
-![OpenEBS configuration flow](../assets/6-config-sequence.svg)
+[![OpenEBS configuration flow](../assets/6-config-sequence.svg)](../assets/6-config-sequence.svg)
 
 For details of how Jiva works, see [Jiva overview page](/concepts/jiva)
 

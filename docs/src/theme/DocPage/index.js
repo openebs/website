@@ -105,7 +105,7 @@ function DocPageContent({ currentDocRoute, versionMetadata, children }) {
             </div>
           </div>
         )}
-        <div className="col-MainContent">
+        <div className={styles.colMainContent}>
           <main
             className={clsx(styles.docMainContainer, {
               [styles.docMainContainerEnhanced]:

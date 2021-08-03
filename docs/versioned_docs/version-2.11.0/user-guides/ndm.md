@@ -3,7 +3,7 @@ id: ndm
 title: Node Disk Manager User Guide
 ---
 
-![OpenEBS configuration flow](../assets/2-config-sequence.svg)
+[![OpenEBS configuration flow](../assets/2-config-sequence.svg)](../assets/2-config-sequence.svg)
 
 This section provides the operations need to performed by the Admin for configuring NDM.
 

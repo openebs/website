@@ -17,7 +17,6 @@ If this is your first time installing OpenEBS, make sure that your Kubernetes no
   - Decide which of the devices on the nodes should be used by OpenEBS or if you need to create LVM Volume Groups or ZFS Pools
 - Join [OpenEBS community on Kubernetes slack](/introduction/commercial).
 
-
 ## Installation through helm
 
 Verify helm is installed and helm repo is updated. You need helm 3.2 or more. 
@@ -53,7 +52,6 @@ helm ls -n openebs
 
 As a next step [verify](#verifying-openebs-installation) your installation and do the [post installation](#post-installation-considerations) steps.
 
-
 ## Installation through kubectl 
 
 OpenEBS provides a list of YAMLs that will allow you to easily customize and run OpenEBS in your Kubernetes cluster. For custom installation, [download](https://openebs.github.io/charts/openebs-operator.yaml) the **openebs-operator** YAML file, update the configurations and use the customized YAML for installation in the below `kubectl` command.
@@ -77,7 +75,6 @@ The above command installs Jiva and Local PV components. To install and enable o
   ```
   kubectl apply -f https://openebs.github.io/charts/lvm-operator.yaml
   ```
-
 
 ## Verifying OpenEBS installation
 
@@ -109,7 +106,6 @@ openebs-snapshot-operator-5bdcdc9b77-v7n4w     2/2     Running   0          97s
 
 The control plane pods `openebs-provisioner`, `maya-apiserver` and `openebs-snapshot-operator` should be running. If you have configured nodeSelectors , check if they are scheduled on the appropriate nodes by listing the pods through `kubectl get pods -n openebs -o wide`
 
-
 **Verify StorageClasses:**
 
 List the storage classes to check if OpenEBS has installed with default StorageClasses.  
@@ -135,7 +131,6 @@ For testing your OpenEBS installation, you can use the below default storage cla
 - `openebs-jiva-default` for provisioning Jiva Volume (this uses `default` pool which means the data replicas are created in the /var/openebs/ directory of the Jiva replica pod)
 
 - `openebs-hostpath` for provisioning Local PV on hostpath.
-
 
 You can follow through the below user guides for each of the engines to use storage devices available on the nodes instead of the `/var/openebs` directory to save the data.  
 - [cStor](/user-guides/cstor-csi)
@@ -176,7 +171,6 @@ Example:
 ```
 kubectl config use-context admin-ctx
 ```
-
 
 ## See Also:
 

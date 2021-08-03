@@ -3,7 +3,7 @@ id: localpv-device
 title: OpenEBS Local PV Device User Guide
 ---
 
-![OpenEBS configuration flow](../assets/4-config-sequence.svg)
+[![OpenEBS configuration flow](../assets/4-config-sequence.svg)](../assets/4-config-sequence.svg)
 
 This guide will help you to set up and use OpenEBS Local Persistent Volumes backed by Block Devices.
 
