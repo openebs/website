@@ -513,4 +513,4 @@ cstor-cspc-zdvk   ip-192-168-29-217   98k        9630M  9630098k  false     1   
 
 ## See Also:
 
-[FAQs](/docs/next/faq.html) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)
+[FAQs](/docs/additional-info/faqs) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)

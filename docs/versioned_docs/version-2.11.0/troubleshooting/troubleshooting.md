@@ -1,7 +1,7 @@
 ---
 id: troubleshooting
 title: Troubleshooting OpenEBS - Overview
-slug: /troubleshooting/
+slug: /troubleshooting
 ---
 
 ### General guidelines for troubleshooting
@@ -187,4 +187,4 @@ Set the reboot timer schedule at different time i.e staggered at various interva
 
 ## See Also:
 
-[Troubleshooting Install](/docs/troubleshooting/install) [Troubleshooting Uninstall](/docs/troubleshooting/uninstall) [Troubleshooting NDM](/docs/troubleshooting/ndm) [Troubleshooting Jiva](/docs/troubleshooting/jiva) [Troubleshooting cStor](/docs/troubleshooting/cstor) [Troubleshooting Local PV](/docs/troubleshooting/localpv) [Troubleshooting Mayastor](/docs/troubleshooting/mayastor) [FAQs](/docs/next/faq.html) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)
+[Troubleshooting Install](/docs/troubleshooting/install) [Troubleshooting Uninstall](/docs/troubleshooting/uninstall) [Troubleshooting NDM](/docs/troubleshooting/ndm) [Troubleshooting Jiva](/docs/troubleshooting/jiva) [Troubleshooting cStor](/docs/troubleshooting/cstor) [Troubleshooting Local PV](/docs/troubleshooting/localpv) [Troubleshooting Mayastor](/docs/troubleshooting/mayastor) [FAQs](/docs/additional-info/faqs) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)
