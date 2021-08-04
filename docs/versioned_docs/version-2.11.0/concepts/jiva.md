@@ -3,9 +3,6 @@ id: jiva
 title: Jiva Overview
 ---
 
-
-
-
 ### Jiva
 
 Each Jiva Volume comprises of a Controller (or Target) and a set of Replicas. Both Controller and Replica functionalities are provided by the same binary and hence the same [docker image](https://hub.docker.com/r/openebs/jiva/). Jiva simulates a block device which is exposed via an iSCSI target implementation(gotgt - part of the Controller). This block device is discovered and mounted remotely on the host where the application pod is running. The Jiva Controller parallelly replicates the incoming IOs to its replicas. The Replica, in turn, writes these IOs to a sparse file.
@@ -35,7 +32,6 @@ The Jiva volume controller is responsible for initiating and coordinating the pr
 When the controller detects failures in one of its replicas, it marks the replica as being in an error state and the rebuilding process is triggered.
 
 **Note:** If REPLICATION_FACTOR is still met even after a replica is marked faulty, the controller will continue to serve R/W IOs. Else, it will wait for satisfying REPLICATION_FACTOR((n/2)+1; where n is the number of replicas).
-
 
 ## See Also:
 

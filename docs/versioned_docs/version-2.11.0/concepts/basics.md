@@ -3,8 +3,6 @@ id: basics
 title: Kubernetes Storage Concepts
 ---
 
-
-
 :::note
 This document provides you with a quick overview of the [Kubernetes concepts](https://kubernetes.io/docs/concepts/storage/) you need to know for running Stateful Workloads. If you are already familiar with running Stateful workloads in Kubernetes, header over to the next section on [Container Attached Storage](/docs/next/cas.html).
 :::

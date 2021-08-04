@@ -2,11 +2,7 @@
 id: cas
 title: Container Attached Storage (CAS) 
 ---
-
-
-
 ## What is CAS?
-
 
 Container Attached Storage(CAS) is a software that includes microservice based storage controllers that are orchestrated by Kubernetes.  These storage controllers can run anywhere that Kubernetes can run which means any cloud or even bare metal servers or on top of a traditional shared storage system. Critically, the data itself is also accessed via containers as opposed to being stored in an off platform shared scale out storage system.
 
@@ -19,11 +15,9 @@ CAS means that developers can work without worrying about the underlying require
 CAS reflects a broader trend of solutions – many of which are now part of Cloud Native Foundation – that reinvent particular categories or create new ones – by being built on Kubernetes and microservice and that deliver capabilities to Kubernetes based microservice environments. For example, new projects for security, DNS, networking, network policy management, messaging, tracing, logging and more have emerged in the cloud-native ecosystem and often in CNCF itself.
 
 ## Advantages of CAS
-
 ### Agility
 
 Each storage volume in CAS has a containerized storage controller and corresponding containerized replicas. Hence, maintenance and tuning of the resources around these components are truly agile. The Kubernetes rolling upgrades capability enables seamless upgrades of storage controller and  storage replicas. Resources such as CPU and memory can be tuned using container cGroups. 
-
 ### Granularity of Storage Policies
 
 Containerizing the storage software and dedicating the storage controller to each volume brings maximum granularity in storage policies. With CAS architecture, you can configure all storage policies on a per-volume basis. In addition, you can monitor storage parameters of every volume and dynamically update storage policies to achieve the desired result for each workload. The control of storage throughput, IOPS, and latency increases with this additional level of granularity in the volume storage policies.
@@ -43,7 +37,6 @@ Similar to hyperconverged systems, storage and performance of a volume in CAS ar
 CAS architecture does not follow a typical distributed storage architecture that ends up having a higher blast radius when nodes fail or rebuild is in progress. 
 
 With synchronous replication from storage controller onto the fixed storage replicas, the storage becomes highly available. The metadata required to maintain the replicas is simplified to saving the information of the nodes that have replicas and information about the status of replicas to help with quorum. If a node fails, the storage controller, which is a stateless container in this case, is spun on a node where second or third replica is running and data continues to be available. Hence, with CAS there the blast radius is much lower and also localized to the volumes that have replicas on that node. 
-
 
 ## See Also:
 

@@ -3,7 +3,6 @@ id: cstor
 title: cStor Overview
 ---
 
-
 cStor is the recommended way to provide additional resilience to workloads via OpenEBS and is the second most widely deployed storage engine behind LocalPV. cStor was originally introduced in OpenEBS 0.7 release and has been tested well in the community and in production deployments. The primary function of cStor is to serve iSCSI block storage using the underlying disks or cloud volumes in a cloud native way. cStor is a very light weight and feature rich storage engine. It provides enterprise grade features such as synchronous data replication, snapshots, clones, thin provisioning of data, high resiliency of data, data consistency and on-demand increase of capacity or performance. 
 
 When the stateful application desires the storage to provide high availability of data, cStor is configured to have 3 replicas where data is written synchronously to all the three replicas. As shown below, the cStor target is replicating the data to Node1 (R1), Node3(R2) and Node4(R3). The data is written to the three replicas before the response is sent back to the application. It is important to note that the replicas R1, R2 and R3 are copies of the same data written by the target, data is not striped across replicas or across nodes.
@@ -22,7 +21,7 @@ cStor has two main components:
 
 ## cStor targets 
 
-cStor target runs as a pod and exposes an iSCSI LUN on 3260 port. It also exports the volume metrics that can be scraped by Prometheus. 
+cStor target runs as a pod and exposes an iSCSI LUN on 3260 port. It also exports the volume metrics that can be scraped by Prometheus.
 
 ## cStor pools
 
@@ -31,6 +30,7 @@ A cStor pool is local to a node in OpenEBS. A pool on a node is an aggregation o
 [![cStor components](../assets/cstor-pool.png)](../assets/cstor-pool.png)
 
 A pool is an important OpenEBS component for the Kubernetes administrators in the design and planning of storage classes which are the primary interfaces to consume the persistent storage by applications. 
+
 **Benefits of a cStor pool**
 
 - Aggregation of disks to increase the available capacity and/or performance on demand.
@@ -44,11 +44,13 @@ cStor pool is a group of individual pools with one pool instance on each partici
 Replication of data does not happen at the pool level. Synchronous data replication and rebuilding happen at volume level by the cStor target. Volume replicas are created on cStor pools located on different nodes. In the following example figure, a pool configuration is defined to have three replicas or three independent pools .
 
 ![cStor Pools in OpenEBS](../assets/cstorpools.png)
+
 ### Relationship among PVC, PV, Storage Class, cStor pool and disks
 
 Storage administrators or DevOps administrators first build cStor pools using discovered disks on the designated nodes. Once the pools are built, they are used to design and build storage classes. Application developers then use storage class to dynamically provision PV for the applications. 
 
 [![PVC and Storage Pool relationship](../assets/pvcspc.png)](../assets/pvcspc.png)
+
 ### cStor pool spec details
 
 A cStor pool spec consists of :
@@ -73,11 +75,9 @@ A cStor pool spec consists of :
 
 ***Note:*** A pool cannot be extended beyond a node. When the pool type is STRIPE, it should not be assumed that data is striped across the nodes. The data is striped across the disks within the pool on that given node. As mentioned in the data replication section, the data is synchronously replicated to as many number of volume replicas in to as many number of pools irrespective of the type of pool.  
 
-
 ### Operations on cStor Pool 
 
 cStor Pool is an important component in the storage management. It is fundamental to storage planning especially in the context of hyperconvergence planning. The following are the different operations that can be performed on cStor Pools.
-
 
 **Create a Pool :** Create a new pool with all the configuration. It is typical to start a pool with 3 pool instances on three nodes. Currently RAID types supported for a given pool instance are striped, mirrored, raidz and raidz2. A pool needs to be created before storage classes are created. So, pool creation is the first configuration step in the cStor configuration process.
 
@@ -90,7 +90,6 @@ cStor Pool is an important component in the storage management. It is fundamenta
 **Expand a given pool instance :** cStor Pool supports thin provisioning, which means that the volume replica that resides on a given cStor pool can be given much bigger size or quota than the physical storage capacity available in the pool. When the actual capacity becomes nearly full (80% or more for example), the pool instance is expanded by adding a set of blockdevices to it. If the pool instance's disk RAID type is STRIPE, then the disks can be added in any multiples of disks (1 disk or more) at a time, but if the type is any of the RAIDZx, then the expansion is done by adding any multiples of RAIDZ groups (1 group or more). 
 
 **Delete a pool instance** : When a Kubernetes node needs to be drained in a planned manner, then the volume replicas in the pool instance that resides on that node need to be drained by moving them to other pool instance(s). Once all the volume replicas are drained, the pool instance can be deleted.
-
 
 ## cStor Volume snapshots
 
@@ -121,11 +120,10 @@ Following command is used to list the snapshots in a given namespace
 kubectl get volumesnapshots -n <namespace>
 ```
 
-
-
 *Note 1: When cStor volume has three replicas, creation of volume snapshots is possible when the volume is in quorum, which means that least two of the replicas are online and fully synced.* 
 
 [![cStor components](../assets/snapshot-scope.png)](../assets/snapshot-scope.png)
+
 ## cStor volume clones
 
 Clones in cStor are also instantaneous. They are created in the same namespace as that of the snapshot and belong to the same cStor Pool. In Kubernetes storage architecture, clone from a snapshot is the same as creating a new PV.
@@ -144,11 +142,8 @@ spec:
   storageClassName: openebs-snapshot-promoter
 ```
 
-
-
 For StatefulSet, snapshots are created against each PV. For creating a clone, any one of the snapshot is used in the volumeClaimTemplates specification. Kubernetes will launch the PVs for all the statefulset pods from the chosen snapshot.  Example specification for creating a clone out of snapshot for a StatefulSet application is shown below.
 
-  
 
 ```
 volumeClaimTemplates:
@@ -175,7 +170,6 @@ volumeClaimTemplates:
 | kubectl get cvr -n openebs         | Get the list of cStor volumes in the entire cluster          |
 | kubectl get volumesnapshot         | Get the list of volumesnapshots in the entire cluster        |
 
-
 ## High Availability of cStor
 
 cStor volumes when deployed in 3 replica mode, it provides high availability of data as long as the replicas are in quorum. At least two replicas are required to be healthy to call the volume is in quorum. In a 3 replicas setup, if two replicas become unavailable due to either pool failure or unavailability, the volume is set to read-only by the target. When the volume replicas are back online, it will start rebuilding data from the healthy replica one by one and the volume is set to be read-write as soon as the quorum is achieved. 
@@ -187,7 +181,6 @@ Kubernetes services such as GKE, EKS and AKS have cloud VMs where when a node is
 For this to work, cStor StorageClass has to be configured with `ReplicaCount=3`. With this setting data on cStor volume is replicated to three copies on different nodes. In the ephemeral nodes scenario, when a node is lost, Kubernetes brings up a new node with the same label. Data of cStor volumes continues to be available and will be served from one of the other two remaining replicas. OpenEBS detects that a new node has come up with all new disks and it will automatically reconfigure the blockdevices CR to the existing StoragePoolClaim config or StoragePool configuration. The net effect is that the cStorPool instance that was gone with the lost node is recreated on the newly replaced node. cStor will then start rebuilding the cStor volume replicas onto this new cStorPool instance. 
 
 **Note:** Rebuilding of data onto the new cStorPool instance can take time depending on the amount of data to be rebuilt. During this time the volume quorum needs to be maintained. In other words, during rebuilding time, the cStorPool is in an unprotected state where losing another node will cause permanent loss of data. Hence, during Kubernetes node upgrades, administrators need to make sure that the cStorPools are fully rebuilt and volumes are healthy/online before starting the upgrade of the next node.
-
 
 ## Thin provisioning in cStor
 
@@ -202,19 +195,15 @@ Performance testing includes setting up the pools, StorageClasses and iSCSI serv
 
 - Network latency - Latency between the pods and zones (if the replicas are placed across AZs) plays a major role in the performance results and it needs to be in the expected range
 
-  
-
 ## Known limitations
 
 **After a node shutdown, I see application stuck in container creating waiting for PV to be attached.:**
 
 When a Kubernetes node is involved in an unplanned shutdown like a power loss or software hang etc, the PVs which are mounted on that node will not be mounted by Kubelet till the timeout of 30 minutes or 1800 seconds. In such scenarios, the application will lose connectivity to persistent storage. This limitation of Kubernetes will be resolved for OpenEBS PVs when the CSI driver support is available for OpenEBS. With OpenEBS CSI driver in place, the unavailability of the node can be detected by the CSI driver node agent and do the force mount of the PV on the new node. The alpha version of CSI support is available from OpenEBS 1.2.0.
 
-
 **Cannot disable thin provisioning**
 
 By default, cStor supports thin provisioning, which means that when a storage class or PVC specifies the size of the volume and the pool from which the volume must be provisioned, and volume of that size is provisioned irrespective of whether that much free space is available in the pool or not. There is no option to specify thick provision while requesting a volume provisioning. 
-
 
 **Delayed snapshots**
 
@@ -278,7 +267,6 @@ Following are most commonly observed areas of troubleshooting
        iscsiadm: Connection to Discovery Address 127.0.0.1 failed
        iscsiadm: failed to send SendTargets PDU
    kubelet keeps taking this response and accumulates the memory.More details can be seen [here](https://github.com/openebs/openebs/issues/2382).
-   
 
 **Resolution:**
 
@@ -305,7 +293,6 @@ This issue is fixed in 0.8.1 version.
 | Scaling up of cStor Volume Replica            | 1.3.0           |
 | Scaling down of cStor Volume Replica          | 1.4.0           |
 
-
 ## Advanced concepts in cStor
 
 ### Custom resources related to cStor
@@ -331,7 +318,6 @@ Each CV will have as many CVRs as the number of replicas configured in the corre
 **Blockdevice :**
 
 Each discovered blockdevice on a node is added as a blockdevice CR. This is needed to identify a blockdevice uniquely across the Kubernetes cluster. SPC specification contains the information about the blockdevice CRs that correspond to a CSP on that given node
-
 
 ## See Also:
 

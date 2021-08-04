@@ -3,13 +3,11 @@ id: localpv
 title: OpenEBS Local PV 
 ---
 
-
 ## Overview
 
 OpenEBS provides Dynamic PV provisioners for [Kubernetes Local Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#local). A local volume implies that storage is available only from a single node.  A local volume represents a mounted local storage device such as a disk, partition or directory. 
 
 As the Local Volume is accessible only from a single node, local volumes are subject to the availability of the underlying node and are not suitable for all applications. If a node becomes unhealthy, then the local volume will also become inaccessible, and a Pod using it will not be able to run. Applications using local volumes must be able to tolerate this reduced availability, as well as potential data loss, depending on the durability characteristics of the underlying disk.
-
 
 ## Use Cases
 
@@ -39,13 +37,10 @@ OpenEBS provides different types of Local Volumes that can be used to provide lo
 - [OpenEBS Local PV using ZFS](https://github.com/openebs/zfs-localpvl)
 - [OpenEBS Local PV using Rawfile (sparse file)](https://github.com/openebs/rawfile-localpv)
 
-
 ## When to use OpenEBS Local PVs
 
 - High performance is needed by those applications which manage their own replication, data protection and other features such as snapshots and clones.
 - When local disks need to be managed dynamically and monitored for impending notice of them going bad.
-
-
 
 ## When not to use OpenEBS Local PVs
 
@@ -100,8 +95,6 @@ A quick summary of the steps to restore include:
 - Disk quotas are not enforced by Local PV. An underlying device or hostpath can have more data than requested by a PVC or storage class. Enforcing the capacity is a roadmap feature.
 - Enforce capacity and PVC resource quotas on the local disks or host paths.
 - SMART statistics of the managed disks is also a potential feature in the roadmap.
-
-
 
 ## See Also:
 
