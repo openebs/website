@@ -92,7 +92,7 @@ This user guide will help you to configure cStor storage and use cStor Volumes f
 
   Sample Output:
 
-  ```
+  ```shell hideCopy
   NAME                                             READY   STATUS    RESTARTS    AGE
   cspc-operator-5fb7db848f-wgnq8                    1/1    Running       0      6d7h
   cvc-operator-7f7d8dc4c5-sn7gv                     1/1    Running       0      6d7h
@@ -212,7 +212,7 @@ spec:
 
   Sample Output:
 
-  ```
+  ```shell hideCopy
   NAME                   HEALTHYINSTANCES   PROVISIONEDINSTANCES   DESIREDINSTANCES     AGE
   cstor-disk-pool        3                  3                      3                    2m2s
   ```
@@ -225,7 +225,7 @@ spec:
 
   Sample Output:
 
-  ```
+  ```shell hideCopy
   NAME                  HOSTNAME             ALLOCATED   FREE    CAPACITY   STATUS   AGE
   cstor-disk-pool-vn92  worker-node-1        60k         9900M    9900M     ONLINE   2m17s
   cstor-disk-pool-al65  worker-node-2        60k         9900M    9900M     ONLINE   2m17s
@@ -307,7 +307,7 @@ kubectl get pvc
 
 Sample Output:
 
-```
+ ```shell hideCopy
 NAME             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS     AGE
 cstor-pvc        Bound    pvc-f1383b36-2d4d-4e9f-9082-6728d6c55bd1   5Gi        RWO            cstor-csi-disk   12s
 ```
@@ -349,7 +349,7 @@ kubectl get pods
 
 Sample Output:
 
-```
+ ```shell hideCopy
 NAME      READY   STATUS    RESTARTS   AGE
 busybox   1/1     Running   0          97s
 ```
@@ -360,9 +360,9 @@ The example busybox application will write the current date into the mounted pat
 kubectl exec -it busybox -- cat /mnt/openebs-csi/date.txt
 ```
 
-Sample output:
+Sample Output:
 
-```
+ ```shell hideCopy
 Fri May 28 05:00:31 UTC 2021
 ```
 
@@ -432,7 +432,7 @@ kubectl get cspc -n openebs
 
 Sample Output:
 
-```shell hideCopy
+ ```shell hideCopyshell hideCopy
 NAME                     HEALTHYINSTANCES   PROVISIONEDINSTANCES   DESIREDINSTANCES   AGE
 cspc-disk-pool           4                  4                      4                  8m5s
 ```
@@ -443,7 +443,7 @@ kubectl get cspi -n openebs
 
 Sample Output:
 
-```shell hideCopy
+ ```shell hideCopyshell hideCopy
 NAME                  HOSTNAME         FREE     CAPACITY    READONLY   STATUS   AGE
 cspc-disk-pool-d9zf   worker-node-1    28800M   28800071k   false      ONLINE   7m50s
 cspc-disk-pool-lr6z   worker-node-2    28800M   28800056k   false      ONLINE   7m50s
@@ -511,94 +511,93 @@ During the installation of OpenEBS, a snapshot-controller and a snapshot-provisi
 
  1. Before proceeding to create a cStor volume snapshot and use it further for restoration, it is necessary to create a `VolumeSnapshotClass`. Copy the following YAML specification into a file called `snapshot_class.yaml`.
 
-```
-kind: VolumeSnapshotClass
-apiVersion: snapshot.storage.k8s.io/v1
-metadata:
- name: csi-cstor-snapshotclass
- annotations:
-   snapshot.storage.kubernetes.io/is-default-class: "true"
-driver: cstor.csi.openebs.io
-deletionPolicy: Delete
-```
+    ```
+    kind: VolumeSnapshotClass
+    apiVersion: snapshot.storage.k8s.io/v1
+    metadata:
+    name: csi-cstor-snapshotclass
+    annotations:
+      snapshot.storage.kubernetes.io/is-default-class: "true"
+    driver: cstor.csi.openebs.io
+    deletionPolicy: Delete
+    ```
 
-The deletion policy can be set as `Delete or Retain`. When it is set to Retain, the underlying physical snapshot on the storage cluster is retained even when the VolumeSnapshot object is deleted.
-To apply, execute:
+    The deletion policy can be set as `Delete or Retain`. When it is set to Retain, the underlying physical snapshot on the storage cluster is retained even when the VolumeSnapshot object is deleted.
+    To apply, execute:
 
-```
-kubectl apply -f snapshot_class.yaml
-```
+    ```
+    kubectl apply -f snapshot_class.yaml
+    ```
 
-**Note:** In clusters that only install `v1beta1` version of VolumeSnapshotClass as the supported version(eg. OpenShift(OCP) 4.5 ), the following error might be encountered.
+    **Note:** In clusters that only install `v1beta1` version of VolumeSnapshotClass as the supported version(eg. OpenShift(OCP) 4.5 ), the following error might be encountered.
 
-```
-no matches for kind "VolumeSnapshotClass" in version "snapshot.storage.k8s.io/v1"
-```
+    ```
+    no matches for kind "VolumeSnapshotClass" in version "snapshot.storage.k8s.io/v1"
+    ```
 
-In such cases, the apiVersion needs to be updated to `apiVersion: snapshot.storage.k8s.io/v1beta1`
+    In such cases, the apiVersion needs to be updated to `apiVersion: snapshot.storage.k8s.io/v1beta1`
  
 2.  For creating the snapshot, you need to create a YAML specification and provide the required PVC name into it. The only prerequisite check is to be performed is to ensure that there is no stale entries of snapshot and snapshot data before creating a new snapshot. Copy the following YAML specification into a file called `snapshot.yaml`.
 
-```
-apiVersion: snapshot.storage.k8s.io/v1
-kind: VolumeSnapshot
-metadata:
- name: cstor-pvc-snap
-spec:
- volumeSnapshotClassName: csi-cstor-snapshotclass
- source:
-   persistentVolumeClaimName: cstor-pvc
-```
+    ```
+    apiVersion: snapshot.storage.k8s.io/v1
+    kind: VolumeSnapshot
+    metadata:
+    name: cstor-pvc-snap
+    spec:
+    volumeSnapshotClassName: csi-cstor-snapshotclass
+    source:
+      persistentVolumeClaimName: cstor-pvc
+    ```
 
-Run the following command to create the snapshot, 
+    Run the following command to create the snapshot, 
 
-```
-kubectl create -f snapshot.yaml
-```
+    ```
+    kubectl create -f snapshot.yaml
+    ```
 
-To list the snapshots, execute:
+    To list the snapshots, execute:
 
-```
-kubectl get volumesnapshots -n default
-```
+    ```
+    kubectl get volumesnapshots -n default
+    ```
 
-Sample Output:
+    Sample Output:
 
-```
-NAME                        AGE
-cstor-pvc-snap              10s
-```
+    ```
+    NAME                        AGE
+    cstor-pvc-snap              10s
+    ```
 
-A VolumeSnapshot is analogous to a PVC and is associated with a `VolumeSnapshotContent` object that represents the actual snapshot. To identify the VolumeSnapshotContent object for the VolumeSnapshot execute:
- 
+    A VolumeSnapshot is analogous to a PVC and is associated with a `VolumeSnapshotContent` object that represents the actual snapshot. To identify the VolumeSnapshotContent object for the VolumeSnapshot execute:
 
-```
-kubectl describe volumesnapshots cstor-pvc-snap -n default
-```
+    ```
+    kubectl describe volumesnapshots cstor-pvc-snap -n default
+    ```
 
-Sample Output:
+    Sample Output:
 
-```
-Name:         cstor-pvc-snap
-Namespace:    default
-.
-.
-.
-Spec:
- Snapshot Class Name:    cstor-csi-snapshotclass
- Snapshot Content Name:  snapcontent-e8d8a0ca-9826-11e9-9807-525400f3f660
- Source:
-   API Group:
-   Kind:       PersistentVolumeClaim
-   Name:       cstor-pvc
-Status:
- Creation Time:  2020-06-20T15:27:29Z
- Ready To Use:   true
- Restore Size:   5Gi
- 
-```
- 
-The `SnapshotContentName` identifies the `VolumeSnapshotContent` object which serves this snapshot. The `Ready To Use` parameter indicates that the Snapshot has been created successfully and can be used to create a new PVC.
+    ```
+    Name:         cstor-pvc-snap
+    Namespace:    default
+    .
+    .
+    .
+    Spec:
+    Snapshot Class Name:    cstor-csi-snapshotclass
+    Snapshot Content Name:  snapcontent-e8d8a0ca-9826-11e9-9807-525400f3f660
+    Source:
+      API Group:
+      Kind:       PersistentVolumeClaim
+      Name:       cstor-pvc
+    Status:
+    Creation Time:  2020-06-20T15:27:29Z
+    Ready To Use:   true
+    Restore Size:   5Gi
+    
+    ```
+    
+    The `SnapshotContentName` identifies the `VolumeSnapshotContent` object which serves this snapshot. The `Ready To Use` parameter indicates that the Snapshot has been created successfully and can be used to create a new PVC.
  
 **Note:** All cStor snapshots should be created in the same namespace of source PVC.
 
@@ -634,7 +633,7 @@ kubectl get pvc
 
 Sample Output:
 
-```
+ ```shell hideCopy
 NAME                           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS              AGE
 restore-cstor-pvc              Bound    pvc-2f2d65fc-0784-11ea-b887-42010a80006c   5Gi        RWO            cstor-csi-disk            5s
 ```
@@ -673,9 +672,9 @@ For example an application busybox pod is using the below PVC associated with PV
 $ kubectl get pods
 ```
  
-The following is a sample output:
+The following is a Sample Output:
 
-```
+ ```shell hideCopy
 NAME            READY   STATUS    RESTARTS   AGE
 busybox         1/1     Running   0          38m
 ```
@@ -688,7 +687,7 @@ $ kubectl get pvc
 
 Sample Output:
 
-```
+ ```shell hideCopy
 NAME                           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS              AGE
 cstor-pvc                      Bound    pvc-849bd646-6d3f-4a87-909e-2416d4e00904   5Gi        RWO            cstor-csi-disk            1d
 ```
@@ -778,7 +777,7 @@ $ kubectl get pvc
 
 Sample Output:
 
-```
+ ```shell hideCopy
 NAME                           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS              AGE
 cstor-pvc                      Bound    pvc-849bd646-6d3f-4a87-909e-2416d4e00904   10Gi        RWO            cstor-csi-disk            1d
 ```
@@ -805,7 +804,7 @@ NDM provides you with an ability to reserve block devices to be used for specifi
 
   Sample Output:
 
-  ```
+  ```shell hideCopy
   NAME                                           NODENAME               SIZE          CLAIMSTATE   STATUS   AGE   LABELS
   blockdevice-00439dc464b785256242113bf0ef64b9   worker-node-3          21473771008   Unclaimed    Active   34h   kubernetes.io/hostname=worker-node-3,ndm.io/blockdevice-type=blockdevice,ndm.io/managed=true
   blockdevice-022674b5f97f06195fe962a7a61fcb64   worker-node-1          21473771008   Unclaimed    Active   34h   kubernetes.io/hostname=worker-node-1,ndm.io/blockdevice-type=blockdevice,ndm.io/managed=true
@@ -879,7 +878,7 @@ NDM provides you with an ability to reserve block devices to be used for specifi
 
   Sample Output:
 
-  ```
+  ```shell hideCopy
   NAME             HOSTNAME        FREE   CAPACITY    READONLY PROVISIONEDREPLICAS HEALTHYREPLICAS STATUS   AGE
   cspc-stripe-b9f6 worker-node-2   19300M 19300614k   false      0                     0          ONLINE   89s
   cspc-stripe-q7xn worker-node-1   19300M 19300614k   false      0                     0          ONLINE   89s
@@ -1098,67 +1097,66 @@ Priority Classes are also applied in a similar manner like resources and auxReso
 1. Priority class needs to be created beforehand. In this case, high-priority and ultra-priority priority classes should exist.
 2. The index starts from 0 for @.spec.pools list.
 
-```
-apiVersion: cstor.openebs.io/v1
-kind: CStorPoolCluster
-metadata:
- name: cstor-disk-pool
- namespace: openebs
-spec:
- 
- priorityClassName: high-priority
- 
- pools:
-   - nodeSelector:
-       kubernetes.io/hostname: worker-node-1
- 
-     dataRaidGroups:
-     - blockDevices:
-         - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f36
-         - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f37
- 
-     poolConfig:
-       dataRaidGroupType: mirror
- 
-   - nodeSelector:
-       kubernetes.io/hostname: worker-node-2
- 
-     dataRaidGroups:
-     - blockDevices:
-         - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f39
-         - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f40
- 
-     poolConfig:
-       dataRaidGroupType: mirror
- 
-   - nodeSelector:
-       kubernetes.io/hostname: worker-node-3
- 
-     dataRaidGroups:
-     - blockDevices:
-         - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f42
-         - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f43
- 
-     poolConfig:
-       dataRaidGroupType: mirror
-       priorityClassName: utlra-priority
-```
+    ```
+    apiVersion: cstor.openebs.io/v1
+    kind: CStorPoolCluster
+    metadata:
+    name: cstor-disk-pool
+    namespace: openebs
+    spec:
+    
+    priorityClassName: high-priority
+    
+    pools:
+      - nodeSelector:
+          kubernetes.io/hostname: worker-node-1
+    
+        dataRaidGroups:
+        - blockDevices:
+            - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f36
+            - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f37
+    
+        poolConfig:
+          dataRaidGroupType: mirror
+    
+      - nodeSelector:
+          kubernetes.io/hostname: worker-node-2
+    
+        dataRaidGroups:
+        - blockDevices:
+            - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f39
+            - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f40
+    
+        poolConfig:
+          dataRaidGroupType: mirror
+    
+      - nodeSelector:
+          kubernetes.io/hostname: worker-node-3
+    
+        dataRaidGroups:
+        - blockDevices:
+            - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f42
+            - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f43
+    
+        poolConfig:
+          dataRaidGroupType: mirror
+          priorityClassName: utlra-priority
+    ```
 
-**Example configuration for Compression:**
+    **Example configuration for Compression:**
 
-Compression values can be set at **pool level only**. There is no override mechanism like it was there in case of tolerations, resources, auxResources and priorityClass. Compression value must be one of
-* on
-* off
-* lzjb
-* gzip
-* gzip-[1-9]
-* zle
-* lz4
- 
+    Compression values can be set at **pool level only**. There is no override mechanism like it was there in case of tolerations, resources, auxResources and priorityClass. Compression value must be one of
+    * on
+    * off
+    * lzjb
+    * gzip
+    * gzip-[1-9]
+    * zle
+    * lz4
+    
 **Note:** lz4 is the default compression algorithm that is used if the compression field is left unspecified on the cspc. Below is the sample yaml which has compression specified.
 
 ```
- 
 apiVersion: cstor.openebs.io/v1
 kind: CStorPoolCluster
 metadata:
@@ -1235,7 +1233,7 @@ kubectl edit cvc <pv-name> -n openebs
 
 Sample Output:
 
-```
+ ```shell hideCopy
 apiVersion: cstor.openebs.io/v1
 kind: CStorVolumeConfig
 metadata:
@@ -1315,11 +1313,11 @@ The list of policies that can be configured are as follows:
  
 * [Memory and CPU Resources QoS](#memory-and-cpu-qos)
  
-* [Toleration for target pod to ensure scheduling of target pods on tainted nodes](#toleration-for-target-pod)
+* [Toleration for target pod to ensure scheduling of target pods on tainted nodes {#toleration-for-target-pod}](#toleration-for-target-pod)
  
 * [Priority class for volume target deployment](#priority-class-for-volume-target-deployment)
 
-### Replica Affinity to create a volume replica on specific pool
+### Replica Affinity to create a volume replica on specific pool {#replica-affinity}
 
  
 For StatefulSet applications, to distribute single replica volume on specific cStor pool we can use replicaAffinity enabled scheduling. This feature should be used with delay volume binding i.e. `volumeBindingMode: WaitForFirstConsumer` in StorageClass. When `volumeBindingMode` is set to `WaitForFirstConsumer` the csi-provisioner waits for the scheduler to select a node. The topology of the selected node will then be set as the first entry in preferred list and will be used by the volume controller to create the volume replica on the cstor pool scheduled on preferred node.
@@ -1477,7 +1475,7 @@ To apply the patch,
 kubectl patch cvc -n openebs -p "$(cat patch-resources-cvc.yaml)" pvc-0478b13d-b1ef-4cff-813e-8d2d13bcb316 --type merge
 ```
 
-### Toleration for target pod to ensure scheduling of target pods on tainted nodes
+### Toleration for target pod to ensure scheduling of target pods on tainted nodes {#toleration-for-target-pod}
 
 This Kubernetes feature allows users to taint the node. This ensures no pods are be scheduled to it, unless a pod explicitly tolerates the taint. This Kubernetes feature can be used to reserve nodes for specific pods by adding labels to the desired node(s).
 
@@ -1546,7 +1544,7 @@ Follow the steps below to cleanup of a cStor setup. On successful cleanup you ca
 
    Sample Output:
    
-   ```
+   ```shell hideCopy
    No resources found in default namespace.
    ```
 
@@ -1571,7 +1569,7 @@ Follow the steps below to cleanup of a cStor setup. On successful cleanup you ca
 
      Sample Output:
 
-    ```
+    ```shell hideCopy
      No resources found in default namespace.
     ```
 
@@ -1595,7 +1593,7 @@ Follow the steps below to cleanup of a cStor setup. On successful cleanup you ca
 
      Sample Output:  
 
-    ```
+    ```shell hideCopy
      No resources found
     ```
 
@@ -1608,7 +1606,7 @@ Follow the steps below to cleanup of a cStor setup. On successful cleanup you ca
 
      Sample Output:
 
-    ```
+    ```shell hideCopy
      NAME                                          NODENAME         SIZE         CLAIMSTATE  STATUS   AGE
      blockdevice-01afcdbe3a9c9e3b281c7133b2af1b68  worker-node-3    21474836480  Claimed     Active   2m10s
      blockdevice-10ad9f484c299597ed1e126d7b857967  worker-node-1    21474836480  Claimed     Active   2m17s
@@ -1635,7 +1633,7 @@ Follow the steps below to cleanup of a cStor setup. On successful cleanup you ca
 
      Sample Output:
      
-    ```
+    ```shell hideCopy
      No resources found in openebs namespace.
     ```
 
@@ -1645,7 +1643,7 @@ Follow the steps below to cleanup of a cStor setup. On successful cleanup you ca
 
      Sample Output:
 
-    ```
+    ```shell hideCopy
      No resources found in openebs namespace.
     ```
 
@@ -1658,7 +1656,7 @@ Follow the steps below to cleanup of a cStor setup. On successful cleanup you ca
      Sample output:
      
 
-    ```
+    ```shell hideCopy
      NAME                                          NODENAME         SIZE         CLAIMSTATE   STATUS   AGE
      blockdevice-01afcdbe3a9c9e3b281c7133b2af1b68  worker-node-3    21474836480   Unclaimed   Active   21m10s
      blockdevice-10ad9f484c299597ed1e126d7b857967  worker-node-1    21474836480   Unclaimed   Active   21m17s
