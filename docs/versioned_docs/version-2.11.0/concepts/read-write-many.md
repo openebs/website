@@ -13,21 +13,12 @@ This project is currently under active development. For getting started and gett
 The rest of this document contains instructions about the NFS server provisioner maintained by the Kubernetes SIGs community.
 :::
 
-
-
-[![OpenEBS and NFS provisioner](../assets/rwm-single.svg)](../assets/rwm-single.svg)
-	
+[![OpenEBS and NFS provisioner](../assets/rwm-single.svg)](../assets/rwm-single.svg)	
 
 Below are advantage of using NFS provisioner over OpenEBS cStor volumes 
 
 - NFS data is replicated, highly available across zones if configured accordingly
 - Data is thin provisioned. Persistent volume mounts are configured at the required size and cStor physical pools can be started with as low as one disk per pool instance and grow as the storage is used up
-
-
-
-
-
-
 
 
 ## Setting up a single NFS server

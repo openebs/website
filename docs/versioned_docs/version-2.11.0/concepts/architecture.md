@@ -94,10 +94,7 @@ The control plane in the context of OpenEBS refers to a set of tools or componen
 
 OpenEBS Control Plane comprises of a set of micro-services that are themselves managed by Kubernetes, making OpenEBS truly Kubernetes native. The configuration managed by the OpenEBS Control Plane is saved as Kubernetes custom resources. The functionality of the control plane can be decomposed into the various stages as follows:
 
-
 ![openebs control plane](../assets/openebs-control-plane.svg)
-
-
 ### YAML or Helm chart
 
 OpenEBS components can be installed by the administrator using a highly configurable Helm chart or kubectl/YAML. OpenEBS installation is also supported via the Management Kubernetes offerings such as OpenShift, EKS, DO, Rancher as marketplace applications or as add-on or plugins tightly integrated into Kubernetes distributions such as MicroK8s, Kinvolk, Kubesphere. 

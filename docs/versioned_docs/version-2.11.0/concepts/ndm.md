@@ -15,11 +15,7 @@ Node Disk Manager(NDM) is an important component in the OpenEBS architecture. ND
 
 In spite of doing all of the above, NDM contributes to overall ease of provisioning persistent volumes. 
 
-
-
-
 [![NDM Architecture](../assets/ndm.svg)](../assets/ndm.svg)
-
 
 NDM is deployed as a daemonset during installation of OpenEBS. NDM daemonset discovers the disks on each node and creates a custom resource called Block Device or BD.
 

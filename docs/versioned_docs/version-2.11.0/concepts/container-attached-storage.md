@@ -10,17 +10,13 @@ title: Container Attached Storage (CAS)
 
 Container Attached Storage(CAS) is a software that includes microservice based storage controllers that are orchestrated by Kubernetes.  These storage controllers can run anywhere that Kubernetes can run which means any cloud or even bare metal servers or on top of a traditional shared storage system. Critically, the data itself is also accessed via containers as opposed to being stored in an off platform shared scale out storage system.
 
-
 [![Container Attached Storage](../assets/cas.svg)](../assets/cas.svg)
-
 
 CAS is a pattern very much in line with the trend towards disaggregated data and the rise of small, autonomous teams running small, loosely coupled workloads.  In other words, my team might need Postgres for our microservice, and yours might depend on Redis and MongoDB. Some of our use cases might require performance, some might be gone in 20 minutes, others are write intensive, others read intensive, and so on. In a large organization, the technology that teams depend on will vary more and more as the size of the organization grows and as organizations increasingly trust teams to select their own tools.
 
 CAS means that developers can work without worrying about the underlying requirements of their organizations' storage architecture. To CAS, a cloud disk is the same as a SAN which is the same as bare metal or virtualized hosts.  Developers and Platform SREs don’t have meetings to select the next storage vendor or to argue for settings to support their use case, Developers can spin their own CAS containers with whatever storage is available to the Kubernetes clusters.
 
 CAS reflects a broader trend of solutions – many of which are now part of Cloud Native Foundation – that reinvent particular categories or create new ones – by being built on Kubernetes and microservice and that deliver capabilities to Kubernetes based microservice environments. For example, new projects for security, DNS, networking, network policy management, messaging, tracing, logging and more have emerged in the cloud-native ecosystem and often in CNCF itself.
-
-
 
 ## Advantages of CAS
 
