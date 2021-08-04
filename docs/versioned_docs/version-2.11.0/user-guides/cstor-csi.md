@@ -167,7 +167,7 @@ spec:
 
   Sample Output:
   
-  ```
+  ```shell hideCopy
     NAME               STATUS   ROLES    AGE    VERSION   LABELS
   
     master             Ready    master   5d2h   v1.20.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=master,kubernetes.io/os=linux,node-role.kubernetes.io/master=
@@ -276,7 +276,7 @@ Steps to create a cStor StorageClass
 
     Sample Output:
 
-    ```
+    ```shell hideCopy
     NAME                        PROVISIONER                                                RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
     cstor-csi                   cstor.csi.openebs.io                                       Delete          Immediate              true                   4s
     ```
@@ -564,7 +564,7 @@ During the installation of OpenEBS, a snapshot-controller and a snapshot-provisi
 
     Sample Output:
 
-    ```
+    ```shell hideCopy
     NAME                        AGE
     cstor-pvc-snap              10s
     ```
@@ -577,7 +577,7 @@ During the installation of OpenEBS, a snapshot-controller and a snapshot-provisi
 
     Sample Output:
 
-    ```
+    ```shell hideCopy
     Name:         cstor-pvc-snap
     Namespace:    default
     .
@@ -744,7 +744,7 @@ Now, we can validate the resize has worked correctly by checking the size of the
 $ kubectl describe pvc cstor-pvc
 ```
 
-```
+```shell hideCopy
 Name:          cstor-pvc
 Namespace:     default
 StorageClass:  cstor-csi-disk
