@@ -9,7 +9,7 @@ cStor is the recommended way to provide additional resilience to workloads via O
 When the stateful application desires the storage to provide high availability of data, cStor is configured to have 3 replicas where data is written synchronously to all the three replicas. As shown below, the cStor target is replicating the data to Node1 (R1), Node3(R2) and Node4(R3). The data is written to the three replicas before the response is sent back to the application. It is important to note that the replicas R1, R2 and R3 are copies of the same data written by the target, data is not striped across replicas or across nodes.
 
 
-![cStor components](../assets/cstor-for-deployment.png)
+[![cStor components](../assets/cstor-for-deployment.png)](../assets/cstor-for-deployment.png
 
 
 
@@ -17,7 +17,7 @@ When the stateful application desires the storage to provide high availability o
 When the stateful application itself is taking care of data replication, it is typically deployed as a Kubernetes *statefulset*. For a statefulset, it is typical to configure cStor with single replica.  This is a use case where the use of LocalPV may be preferred.  
 
 
-![cStor components](../assets/cstor-for-statefulset.png)
+[![cStor components](../assets/cstor-for-statefulset.png)](../assets/cstor-for-statefulset.png)
 
 
 
@@ -37,7 +37,7 @@ cStor target runs as a pod and exposes an iSCSI LUN on 3260 port. It also export
 A cStor pool is local to a node in OpenEBS. A pool on a node is an aggregation of set of disks which are attached to that node. A pool contains replicas of different volumes, with not more than one replica of a given volume. OpenEBS scheduler at run time decides to schedule replica in a pool according to the policy. A pool can be expanded dynamically without affecting the volumes residing in it. An advantage of this capability is the thin provisioning of cStor volumes. A cStor volume size can be much higher at the provisioning time than the actual capacity available in the pool.
 
 
-![cStor components](../assets/cstor-pool.png)
+[![cStor components](../assets/cstor-pool.png)](../assets/cstor-pool.png)
 
 
 A pool is an important OpenEBS component for the Kubernetes administrators in the design and planning of storage classes which are the primary interfaces to consume the persistent storage by applications. 
@@ -62,7 +62,7 @@ Replication of data does not happen at the pool level. Synchronous data replicat
 Storage administrators or DevOps administrators first build cStor pools using discovered disks on the designated nodes. Once the pools are built, they are used to design and build storage classes. Application developers then use storage class to dynamically provision PV for the applications. 
 
 
-![PVC and Storage Pool relationship](../assets/pvcspc.png)
+[![PVC and Storage Pool relationship](../assets/pvcspc.png)](../assets/pvcspc.png)
 
 
 ### cStor pool spec details
@@ -142,7 +142,7 @@ kubectl get volumesnapshots -n <namespace>
 *Note 1: When cStor volume has three replicas, creation of volume snapshots is possible when the volume is in quorum, which means that least two of the replicas are online and fully synced.* 
 
 
-![cStor components](../assets/snapshot-scope.png)
+[![cStor components](../assets/snapshot-scope.png)](../assets/snapshot-scope.png)
 
 
 ## cStor volume clones
@@ -339,7 +339,7 @@ This issue is fixed in 0.8.1 version.
 ### Custom resources related to cStor
 
 
-![cStor custom resources](../assets/cstor-cr.png)
+[![cStor custom resources](../assets/cstor-cr.png)](../assets/cstor-cr.png)
 
 
 **Storage Pool Claim or SPC:**
@@ -366,6 +366,3 @@ Each discovered blockdevice on a node is added as a blockdevice CR. This is need
 ## See Also:
 
 [Storage Engines in OpenEBS](/docs/next/casengines.html) [Creating cStor Pool](/docs/next/ugcstor.html#creating-cStor-storage-pools) [Provisioning cStor volumes](/docs/next/ugcstor.html#provisioning-a-cStor-volume)
-
-
-

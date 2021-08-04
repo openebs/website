@@ -40,7 +40,3 @@ When the controller detects failures in one of its replicas, it marks the replic
 ## See Also:
 
 [Which storage engine should I use ?](/docs/next/casengines.html#cstor-vs-jiva-vs-localpv-features-comparison) [Jiva User Guide ](/docs/next/jivaguide.html)
-
-
-
-

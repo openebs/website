@@ -15,7 +15,7 @@ The rest of this document contains instructions about the NFS server provisioner
 
 
 
-![OpenEBS and NFS provisioner](../assets/rwm-single.svg)
+[![OpenEBS and NFS provisioner](../assets/rwm-single.svg)](../assets/rwm-single.svg)
 	
 
 Below are advantage of using NFS provisioner over OpenEBS cStor volumes 
@@ -94,8 +94,4 @@ When multiple NFS shares are needed, use multiple NFS provisioners. Each NFS ser
 
 ## See Also:
 
-[cStor Overview](/docs/next/cstor.html) cStorPools](/docs/next/ugcstor.html#creating-cStor-storage-pools) [Setting up Object Storage](/docs/next/minio.html)
-
-
-
-​
+[cStor Overview](/docs/next/cstor.html) [cStorPools](/docs/next/ugcstor.html#creating-cStor-storage-pools) [Setting up Object Storage](/docs/next/minio.html)

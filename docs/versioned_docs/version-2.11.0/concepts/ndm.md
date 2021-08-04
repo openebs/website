@@ -18,7 +18,7 @@ In spite of doing all of the above, NDM contributes to overall ease of provision
 
 
 
-![NDM Architecture](../assets/ndm.svg)
+[![NDM Architecture](../assets/ndm.svg)](../assets/ndm.svg)
 
 
 NDM is deployed as a daemonset during installation of OpenEBS. NDM daemonset discovers the disks on each node and creates a custom resource called Block Device or BD.
@@ -80,5 +80,3 @@ More details can be found [here](/docs/next/ugndm.html).
 ## See Also:
 
 [OpenEBS Architecture](/docs/next/architecture.html) [Local PV User Guide](/docs/next/uglocalpv-device.html) [cStor User Guide](/docs/next/ugcstor.html) [Understanding Disk Mount Status on Node](/docs/next/faq.html#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume)
-
-

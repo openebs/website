@@ -106,5 +106,3 @@ A quick summary of the steps to restore include:
 ## See Also:
 
 [OpenEBS Architecture](/docs/next/architecture.html) [Understanding NDM](/docs/next/ndm.html) [Local PV Hostpath User Guide](/docs/next/uglocalpv-hostpath.html)  [Local PV Device User Guide](/docs/next/uglocalpv-device.html)
-
-
