@@ -3,18 +3,14 @@ id: architecture
 title: OpenEBS Architecture
 ---
 
-
 OpenEBS is the leading Open Source implementation of the [Container Attached Storage(CAS)](/docs/next/cas.html) pattern. As a part of this approach, OpenEBS uses containers to dynamically provision volumes and provide data services like high availability. OpenEBS relies on and extends [Kubernetes](/docs/next/k8s-storage.html) itself to orchestrate its volume services. 
 
-
 ![openebs hld](../assets/openebs-hld.svg)
-
 
 OpenEBS has many components, which can be grouped into the following two broad categories.
 
 - [OpenEBS Data Engines](#data-engines)
 - [OpenEBS Control Plane](#control-plane)
-
 ## Data Engines 
 
 The data engines are at the core of OpenEBS and are responsible for performing the read and write operations to the underlying persistent storage on behalf of the Stateful workloads they serve. 
@@ -30,7 +26,6 @@ OpenEBS follow micro-services model to implement the data engine where the funct
 The OpenEBS Data Engines comprise of the following layers:
 
 ![data engine overview](../assets/data-engine-overview.svg)
-
 ### Volume Access Layer
 
 Stateful Workloads use standard POSIX compliant mechanisms to perform read and write operations. Depending on the type of workloads, the application can prefer to perform the reads and writes either directly to the raw block device or using standard filesystems like XFS, Ext4. 
@@ -71,7 +66,6 @@ OpenEBS Volume Replicas typically go through the following states:
 - Offline, when the node or the storage where replica has failed
 - Rebuilding, when the node or storage failure has been rectified and replica is receiving its data from other healthy replicas
 - Terminating, when volume has been deleted and replica is being deleted and space being reclaimed
-
 
 ### Storage Layer 
 
