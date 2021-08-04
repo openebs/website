@@ -20,14 +20,11 @@ Below are advantage of using NFS provisioner over OpenEBS cStor volumes
 - NFS data is replicated, highly available across zones if configured accordingly
 - Data is thin provisioned. Persistent volume mounts are configured at the required size and cStor physical pools can be started with as low as one disk per pool instance and grow as the storage is used up
 
-
 ## Setting up a single NFS server
-
 
 **Select or create a cStor pool**
 
 Select or [create a cStor pool](/docs/next/ugcstor.html#creating-cStor-storage-pools) that satisfies the performance, and availability requirements
-
 
 **Select or create a cStor storage Class**
 
@@ -39,7 +36,6 @@ Select or [create a cStor pool](/docs/next/ugcstor.html#creating-cStor-storage-p
 ```
 kubectl create ns <ns-nfs-wordpress1>
 ```
-
 
 **Deploy NFS server provisioner**
 
@@ -63,26 +59,14 @@ helm install stable/nfs-server-provisioner --namespace=nfs-wp-provisioner --name
 
 **Note:**  It is recommended that the OpenEBS storage class specifies 10% more space than what is required by the RWX PVC. For example, if RWX PVC requires 100G, then provision cStor volume with 110G.
 
-
 **Provision RWX volume using the PVC**
 
 Use the StorageClass which is created in above command and create a new PVC and use the volume in your applications.
-
-
-
-
-
-
 ## Setting up multiple NFS servers
 
 When multiple NFS shares are needed, use multiple NFS provisioners. Each NFS server manages one NFS server. Same or different OpenEBS StorageClass can be used for multiple NFS provisioners.
 
-
-![OpenEBS and NFS provisioner]../assets/rwm-multiple.svg)
-
-
-
-
+![OpenEBS and NFS provisioner](../assets/rwm-multiple.svg)
 ## See Also:
 
 [cStor Overview](/docs/next/cstor.html) [cStorPools](/docs/next/ugcstor.html#creating-cStor-storage-pools) [Setting up Object Storage](/docs/next/minio.html)
