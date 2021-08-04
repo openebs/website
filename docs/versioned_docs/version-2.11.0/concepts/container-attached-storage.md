@@ -15,6 +15,7 @@ CAS means that developers can work without worrying about the underlying require
 CAS reflects a broader trend of solutions – many of which are now part of Cloud Native Foundation – that reinvent particular categories or create new ones – by being built on Kubernetes and microservice and that deliver capabilities to Kubernetes based microservice environments. For example, new projects for security, DNS, networking, network policy management, messaging, tracing, logging and more have emerged in the cloud-native ecosystem and often in CNCF itself.
 
 ## Advantages of CAS
+
 ### Agility
 
 Each storage volume in CAS has a containerized storage controller and corresponding containerized replicas. Hence, maintenance and tuning of the resources around these components are truly agile. The Kubernetes rolling upgrades capability enables seamless upgrades of storage controller and  storage replicas. Resources such as CPU and memory can be tuned using container cGroups. 
