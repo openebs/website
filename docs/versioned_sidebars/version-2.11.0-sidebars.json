@@ -99,6 +99,41 @@
           "label": "Mayastor"
         }
       ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Additional info",
+      "customProps": {
+        "icon": "File"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.11.0/additional-info/alphafeatures",
+          "label": "Alpha Features"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/additional-info/performance-testing",
+          "label": "Performance testing"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/additional-info/faqs",
+          "label": "FAQs"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/additional-info/k8supgrades",
+          "label": "Kubernetes upgrades"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/additional-info/kb",
+          "label": "Knowledge Base"
+        }
+      ]
     }
   ]
 }
