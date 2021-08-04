@@ -63,16 +63,6 @@
   padding: var(--ifm-pre-padding);
 }
 
-.userSelectionAllowed {
-  pointer-events: auto;
-  user-select: none;
-}
-
-.userSelectionDisabled {
-  pointer-events: none;
-  user-select: none;
-}
-
 @media print {
   .codeBlockLines {
     white-space: pre-wrap;
