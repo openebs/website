@@ -127,4 +127,4 @@ A multipath.conf file without either find_multipaths or a manual blacklist claim
 
 ## See Also:
 
-[FAQs](/docs/next/faq.html) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)
+[FAQs](/docs/additional-info/faqs) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)

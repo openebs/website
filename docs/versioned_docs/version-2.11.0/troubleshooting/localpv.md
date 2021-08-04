@@ -140,4 +140,4 @@ spec:
 
 ## See Also:
 
-[FAQs](/docs/next/faq.html) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)
+[FAQs](/docs/additional-info/faqs) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)

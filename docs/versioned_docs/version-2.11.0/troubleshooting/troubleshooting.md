@@ -1,17 +1,18 @@
 ---
 id: troubleshooting
 title: Troubleshooting OpenEBS - Overview
+slug: /troubleshooting
 ---
 
 ### General guidelines for troubleshooting
 
 - Search for similar issues mentioned in this page as well as the following troubleshooting sections.
-  - [Troubleshooting Install](/docs/troubleshooting/t-install).
-  - [Troubleshooting Uninstall](/docs/troubleshooting/t-uninstall).
-  - [Troubleshooting NDM](/docs/troubleshooting/t-ndm).
-  - [Troubleshooting Jiva](/docs/troubleshooting/t-jiva).
-  - [Troubleshooting cStor](/docs/troubleshooting/t-cstor).
-  - [Troubleshooting LocalPV](/docs/troubleshooting/t-localpv).
+  - [Troubleshooting Install](/docs/troubleshooting/install).
+  - [Troubleshooting Uninstall](/docs/troubleshooting/uninstall).
+  - [Troubleshooting NDM](/docs/troubleshooting/ndm).
+  - [Troubleshooting Jiva](/docs/troubleshooting/jiva).
+  - [Troubleshooting cStor](/docs/troubleshooting/cstor).
+  - [Troubleshooting LocalPV](/docs/troubleshooting/localpv).
 - Contact [OpenEBS Community](/docs/introduction/community) for support.
 - Search for similar issues on [OpenEBS GitHub repository](https://github.com/openebs/openebs/issues).
 - Search for any reported issues on [StackOverflow under OpenEBS tag](https://stackoverflow.com/questions/tagged/openebs).
@@ -186,4 +187,4 @@ Set the reboot timer schedule at different time i.e staggered at various interva
 
 ## See Also:
 
-[Troubleshooting Install](/docs/troubleshooting/t-install) [Troubleshooting Uninstall](/docs/troubleshooting/t-uninstall) [Troubleshooting NDM](/docs/troubleshooting/t-ndm) [Troubleshooting Jiva](/docs/troubleshooting/t-jiva) [Troubleshooting cStor](/docs/troubleshooting/t-cstor) [Troubleshooting Local PV](/docs/troubleshooting/t-localpv) [Troubleshooting Mayastor](/docs/troubleshooting/t-mayastor) [FAQs](/docs/next/faq.html) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)
+[Troubleshooting Install](/docs/troubleshooting/install) [Troubleshooting Uninstall](/docs/troubleshooting/uninstall) [Troubleshooting NDM](/docs/troubleshooting/ndm) [Troubleshooting Jiva](/docs/troubleshooting/jiva) [Troubleshooting cStor](/docs/troubleshooting/cstor) [Troubleshooting Local PV](/docs/troubleshooting/localpv) [Troubleshooting Mayastor](/docs/troubleshooting/mayastor) [FAQs](/docs/additional-info/faqs) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)
