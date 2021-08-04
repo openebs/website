@@ -5,7 +5,7 @@ title: OpenEBS FAQ
 
 ## General
 
-[What is most distinctive about the OpenEBS architecture?](#What-is-most-distinctive-about-the-OpenEBS-architecture?)
+[What is most distinctive about the OpenEBS architecture?](#What-is-most-distinctive-about-the-OpenEBS-architecture)
 
 [Why did you choose iSCSI? Does it introduce latency and decrease performance? ](#Why-did-you-choose-iSCSI)
 
@@ -83,7 +83,7 @@ title: OpenEBS FAQ
 
 <font size="6" color="blue">General</font>
 
-### What is most distinctive about the OpenEBS architecture?
+### What is most distinctive about the OpenEBS architecture? {#What-is-most-distinctive-about-the-OpenEBS-architecture}
 
 The OpenEBS architecture is an example of Container Attached Storage (CAS). These approaches containerize the storage controller, called IO controllers, and underlying storage targets, called “replicas”, allowing an orchestrator such as Kubernetes to automate the management of storage. Benefits include automation of management, a delegation of responsibility to developer teams, and the granularity of the storage policies which in turn can improve performance.
 
@@ -163,16 +163,15 @@ reboot
   + Add the extra_binds under Kubelet service in cluster YAML file to mount the iSCSI binary and configuration inside the kubelet.
     After installing the iSCSI initiator on your nodes, bind them into the kubelet container by editing rancher cluster.yaml, as shown in the sample below.
     
-
-    ```
-    services:
-    kubelet: 
-      extra_binds: 
-        - "/etc/iscsi:/etc/iscsi"
-        - "/sbin/iscsiadm:/sbin/iscsiadm"
-        - "/var/lib/iscsi:/var/lib/iscsi"
-        - "/lib/modules"
-    ```
+      ```
+      services:
+      kubelet: 
+        extra_binds: 
+          - "/etc/iscsi:/etc/iscsi"
+          - "/sbin/iscsiadm:/sbin/iscsiadm"
+          - "/var/lib/iscsi:/var/lib/iscsi"
+          - "/lib/modules"
+      ```
 
 [Go to top](#top)
 
@@ -585,7 +584,7 @@ kubectl get csp -n openebs
 
 Following is an example output.
 
-```
+```shell hideCopy
 NAME                     ALLOCATED   FREE    CAPACITY    STATUS    TYPE       AGE
 sparse-claim-auto-lja7   125K        9.94G   9.94G       Healthy   striped    1h
 ```
@@ -598,7 +597,7 @@ kubectl get cvr -n openebs
 
 Following is an example output.
 
-```
+```shell hideCopy
 NAME                                                              USED  ALLOCATED  	STATUS    AGE
 pvc-9ca83170-01e3-11e9-812f-54e1ad0c1ccc-sparse-claim-auto-lja7   6K    6K         Healthy   1h
 ```
@@ -611,7 +610,7 @@ kubectl get cstorvolume -n openebs
 
 Following is an example output.
 
-```
+```shell hideCopy
 NAME                                        STATUS    AGE
 pvc-9ca83170-01e3-11e9-812f-54e1ad0c1ccc    Healthy   4h
 ```
@@ -624,7 +623,7 @@ kubectl get disk
 
 Following is an example output.
 
-```
+```shell hideCopy
 NAME                                      SIZE          STATUS   AGE
 sparse-5a92ced3e2ee21eac7b930f670b5eab5   10737418240   Active   10m
 ```

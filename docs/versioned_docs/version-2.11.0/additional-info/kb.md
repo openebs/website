@@ -52,7 +52,7 @@ There are some cases where it had to delete the StatefulSet and re-install a new
 
    Example Output:
 
-   ```
+   ```shell hideCopy
    NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM                                      STORAGECLASS   REASON    AGE
    pvc-cc6767b4-52e8-11e9-b1ef-42010a800fe7   5G         RWO            Retain           Bound     default/mongo-persistent-storage-mongo-0   mongo-pv-az              9m
    ``` 
@@ -65,7 +65,7 @@ There are some cases where it had to delete the StatefulSet and re-install a new
 
    Example Output:
 
-   ```
+   ```shell hideCopy
    NAME                               STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
    mongo-persistent-storage-mongo-0   Lost      pvc-cc6767b4-52e8-11e9-b1ef-42010a800fe7   0                        mongo-pv-az    4s
    ```
@@ -111,7 +111,7 @@ There are some cases where it had to delete the StatefulSet and re-install a new
 
    Example Output:
 
-   ```
+   ```shell hideCopy
    NAME                               STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
    mongo-persistent-storage-mongo-0   Lost      pvc-cc6767b4-52e8-11e9-b1ef-42010a800fe7   0                        mongo-pv-az    4s
    ```
@@ -131,7 +131,7 @@ There are some cases where it had to delete the StatefulSet and re-install a new
 
    Example Output:
 
-   ```
+   ```shell hideCopy
    NAME                               STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
    mongo-persistent-storage-mongo-0   Bound     pvc-cc6767b4-52e8-11e9-b1ef-42010a800fe7   5G         RWO            mongo-pv-az    5m
    ```
@@ -157,7 +157,7 @@ From 0.9.0 OpenEBS version, Jiva pod deployment are scheduling with nodeAffinity
 
    Following is an example output.
 
-   ```
+   ```shell hideCopy
    NAME                                            DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
    percona                                         1         1         1            1           54s
    pvc-4cfacfdd-76d7-11e9-9319-42010a800230-ctrl   1         1         1            1           53s
@@ -210,7 +210,7 @@ From 0.9.0 OpenEBS version, Jiva pod deployment are scheduling with nodeAffinity
 
    The following is an example output.
 
-   ```
+   ```shell hideCopy
    NAME                                                             READY     STATUS    RESTARTS   AGE    IP           NODE                                   NOMINATED NODE  
    percona-66b4fd4ddf-xvswn                                         1/1       Running   0          32m      
    pvc-4cfacfdd-76d7-11e9-9319-42010a800230-ctrl-68d94478df-drj6r   2/2       Running   0          32m
@@ -279,7 +279,7 @@ Add the `privileged` SecurityContextConstraint (SCC) to the OpenEBS service acco
 
 Example output:
 
-   ```
+   ```shell hideCopy
    securitycontextconstraints.security.openshift.io/privileged added to: ["system:serviceaccount:openebs:openebs-maya-operator"]
    ```
 
@@ -288,18 +288,18 @@ Example output:
 Verify OpenEBS pod status by using `kubectl get pods -n openebs`, all pods
 should be "Running" after a few minutes. If pods are not running after a few
 minutes, start debugging with `oc get events` and viewing these container logs.
-
-    NAME                                          READY   STATUS    RESTARTS   AGE
-    maya-apiserver-594699887-4x6bj                1/1     Running   0          60m
-    openebs-admission-server-544d8fb47b-lxd52     1/1     Running   0          60m
-    openebs-localpv-provisioner-59f96b699-dpf8l   1/1     Running   0          60m
-    openebs-ndm-4v6kj                             1/1     Running   0          60m
-    openebs-ndm-8g226                             1/1     Running   0          60m
-    openebs-ndm-kkpk7                             1/1     Running   0          60m
-    openebs-ndm-operator-74d9c78cdc-lbtqt         1/1     Running   0          60m
-    openebs-provisioner-5dfd95987b-nhwb9          1/1     Running   0          60m
-    openebs-snapshot-operator-5d58bd848b-94nnt    2/2     Running   0          60m
-
+```
+NAME                                          READY   STATUS    RESTARTS   AGE
+maya-apiserver-594699887-4x6bj                1/1     Running   0          60m
+openebs-admission-server-544d8fb47b-lxd52     1/1     Running   0          60m
+openebs-localpv-provisioner-59f96b699-dpf8l   1/1     Running   0          60m
+openebs-ndm-4v6kj                             1/1     Running   0          60m
+openebs-ndm-8g226                             1/1     Running   0          60m
+openebs-ndm-kkpk7                             1/1     Running   0          60m
+openebs-ndm-operator-74d9c78cdc-lbtqt         1/1     Running   0          60m
+openebs-provisioner-5dfd95987b-nhwb9          1/1     Running   0          60m
+openebs-snapshot-operator-5d58bd848b-94nnt    2/2     Running   0          60m
+```
 If you are seeing errors with `hostNetwork` or similar, this is likely because
 the serviceAccount for that container has not been added to the `privileged` SCC.
 
@@ -768,7 +768,7 @@ The detailed information of each steps are provided below.
 
         The following is a snippet of the output of the above command:
 
-        ```
+        ```shell hideCopy
         apiVersion: v1
         items:
         - apiVersion: openebs.io/v1alpha1
@@ -831,7 +831,7 @@ The detailed information of each steps are provided below.
 
        The output will be similar to the following:
 
-       ```
+       ```shell hideCopy
        iSCSI Transport Class version 2.0-870
        version 2.0-874
        **Target: iqn.2016-09.com.openebs.cstor:pvc-5c52d001-c6a1-11e9-be30-42010a800094** (non-flash)
@@ -891,7 +891,7 @@ The detailed information of each steps are provided below.
 
        Output will be similar to the following:
 
-       ```
+       ```shell hideCopy
        iSCSI Transport Class version 2.0-870
        version 2.0-874
        **Target: iqn.2016-09.com.openebs.cstor:pvc-5c52d001-c6a1-11e9-be30-42010a800094** (non-flash)
@@ -927,7 +927,7 @@ kubectl get cvr -n openebs
 
 Output will be similar to the following:
 
-```
+```shell hideCopy
 NAME                                             USED	ALLOCATED   STATUS     AGE
 pvc-5c52d001-..........-cstor-sparse-pool-1irk   7.07M  4.12M   	Degraded   12m
 pvc-5c52d001-..........-cstor-sparse-pool-a1ud   6K  	6K       	Degraded   12m
@@ -1031,7 +1031,7 @@ Applying base snapshot to pool related to R2 involves setting a few parameters. 
 
   The output will be similar to the following:
 
-  ```
+  ```shell hideCopy
   NAME                                       	USED   AVAIL   REFER  MOUNTPOINT
   cstor-2292c294-c6a1-11e9-be30-42010a800094  9.86M  9.62G   512B   /cstor-2292c294-c6a1-11e9-be30-42010a800094
   **cstor-2292c294-c6a1-11e9-be30-42010a800094/pvc-5c52d001-c6a1-11e9-be30-42010a800094**               				 6K     9.62G 	6K     -
@@ -1160,7 +1160,7 @@ This involves streaming the incremental data to a file, copying it to R2.
 
   Output will be similar to the following:
 
-  ```
+  ```shell hideCopy
   NAME                                         USED   AVAIL   REFER  MOUNTPOINT
   cstor-2292c294-c6a1-11e9-be30-42010a800094   85.7M  9.54G   512B   /cstor-2292c294-c6a1-11e9-be30-42010a800094
   **cstor-2292c294-c6a1-11e9-be30-42010a800094/pvc-5c52d001-c6a1-11e9-be30-42010a800094**                                                84.9M  9.54G   84.9M   -
@@ -1214,7 +1214,7 @@ On performing  step 12 and 13, this newly reconstructed replica gets added to th
 
 Status of CStorVolume and CVRs related to this PV looks like:
 
-```
+```shell hideCopy
 NAME                                              USED	  ALLOCATED   	  STATUS    AGE
 pvc-5c52d001-...........-cstor-sparse-pool-1irk   7.07M   4.12M   	  Offline   3d
 pvc-5c52d001-...........-cstor-sparse-pool-a1ud   90.8M   85.0M   	  Healthy   3d
@@ -1272,7 +1272,7 @@ kubectl delete pod <cStor_target_pod> -n openebs
 
 **Step 17:** After sometime, the third replica will come to healthy state. Status of  CVRs related to this PV will looks like below:
 
-```
+```shell hideCopy
 NAME                                              USED	  ALLOCATED   STATUS	AGE
 pvc-5c52d001-...........-cstor-sparse-pool-1irk   90.8M   85.0M   	  Healthy   3d
 pvc-5c52d001-...........-cstor-sparse-pool-a1ud   90.8M   85.0M   	  Healthy   3d
@@ -1498,7 +1498,7 @@ kubectl get pod -n default -o wide
 
 Example output:
 
-```
+```shell hideCopy
 NAME                                                             READY   STATUS    RESTARTS   AGE     IP           NODE                                                 NOMINATED NODE   READINESS GATES
 percona-66db7d9b88-ltdsf                                         1/1     Running   0          9m47s   10.16.0.8    gke-ranjith-jiva-resize-default-pool-ec5045bf-mzf4   <none>           <none>
 pvc-25e8f6f1-eb2d-11e9-b8d1-42010a800093-ctrl-798dcd69d8-k5v29   2/2     Running   0          9m46s   10.16.1.8    gke-ranjith-jiva-resize-default-pool-ec5045bf-rq1b   <none>           <none>
@@ -1517,7 +1517,7 @@ lsblk
 
 Example output:
 
-```
+```shell hideCopy
 NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 sda       8:0    0   40G  0 disk 
 ├─sda1    8:1    0 39.9G  0 part /
@@ -1652,7 +1652,7 @@ curl http://10.16.1.8:9501/v1/volumes
 
 Example output:
 
-```
+```shell hideCopy
 {"data":[{"actions":{"deleteSnapshot":"http://10.16.1.8:9501/v1/volumes/cHZjLTI1ZThmNmYxLWViMmQtMTFlOS1iOGQxLTQyMDEwYTgwMDA5Mw==?action=deleteSnapshot","revert":"http://10.16.1.8:9501/v1/volumes/cHZjLTI1ZThmNmYxLWViMmQtMTFlOS1iOGQxLTQyMDEwYTgwMDA5Mw==?action=revert","shutdown":"http://10.16.1.8:9501/v1/volumes/cHZjLTI1ZThmNmYxLWViMmQtMTFlOS1iOGQxLTQyMDEwYTgwMDA5Mw==?action=shutdown","snapshot":"http://10.16.1.8:9501/v1/volumes/cHZjLTI1ZThmNmYxLWViMmQtMTFlOS1iOGQxLTQyMDEwYTgwMDA5Mw==?action=snapshot"},"id":"cHZjLTI1ZThmNmYxLWViMmQtMTFlOS1iOGQxLTQyMDEwYTgwMDA5Mw==","links":{"self":"http://10.16.1.8:9501/v1/volumes/cHZjLTI1ZThmNmYxLWViMmQtMTFlOS1iOGQxLTQyMDEwYTgwMDA5Mw=="},"name":"pvc-25e8f6f1-eb2d-11e9-b8d1-42010a800093","readOnly":"false","replicaCount":3,"type":"volume"}],"links":{"self":"http://10.16.1.8:9501/v1/volumes"},"resourceType":"volume","type":"collection"}
 ```
 
@@ -1665,7 +1665,7 @@ curl -H "Content-Type: application/json" -X POST -d '{"name":"pvc-25e8f6f1-eb2d-
 ```
 Example output:
 
-```
+```shell hideCopy
 {"actions":{"deleteSnapshot":"http://10.16.1.8:9501/v1/volumes/cHZjLTI1ZThmNmYxLWViMmQtMTFlOS1iOGQxLTQyMDEwYTgwMDA5Mw==?action=deleteSnapshot","revert":"http://10.16.1.8:9501/v1/volumes/cHZjLTI1ZThmNmYxLWViMmQtMTFlOS1iOGQxLTQyMDEwYTgwMDA5Mw==?action=revert","shutdown":"http://10.16.1.8:9501/v1/volumes/cHZjLTI1ZThmNmYxLWViMmQtMTFlOS1iOGQxLTQyMDEwYTgwMDA5Mw==?action=shutdown","snapshot":"http://10.16.1.8:9501/v1/volumes/cHZjLTI1ZThmNmYxLWViMmQtMTFlOS1iOGQxLTQyMDEwYTgwMDA5Mw==?action=snapshot"},"id":"cHZjLTI1ZThmNmYxLWViMmQtMTFlOS1iOGQxLTQyMDEwYTgwMDA5Mw==","links":{"self":"http://10.16.1.8:9501/v1/volumes/cHZjLTI1ZThmNmYxLWViMmQtMTFlOS1iOGQxLTQyMDEwYTgwMDA5Mw=="},"name":"pvc-25e8f6f1-eb2d-11e9-b8d1-42010a800093","readOnly":"false","replicaCount":3,"type":"volume"}
 ```
 
@@ -1832,7 +1832,7 @@ kubectl get pod  -n <application_namespace> -o wide
 ```
 Example output:
 
-```
+```shell hideCopy
 NAME                                                             READY   STATUS    RESTARTS   AGE   IP           NODE                                                 NOMINATED NODE   READINESS GATES
 percona-66db7d9b88-bnr8w                                         1/1     Running   0          81m   10.16.2.12   gke-ranjith-jiva-resize-default-pool-ec5045bf-24f1   <none>           <none>
 pvc-25e8f6f1-eb2d-11e9-b8d1-42010a800093-ctrl-798dcd69d8-k5v29   2/2     Running   0          8h    10.16.1.8    gke-ranjith-jiva-resize-default-pool-ec5045bf-rq1b   <none>           <none>
@@ -1849,7 +1849,7 @@ lsblk
 
 Example output:
 
-```
+```shell hideCopy
 NAME    MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 sda       8:0    0   40G  0 disk 
 ├─sda1    8:1    0 39.9G  0 part /
