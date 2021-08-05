@@ -310,7 +310,7 @@
       "type": "category",
       "label": "Additional info",
       "customProps": {
-        "icon": "File"
+        "icon": "BookOpen"
       },
       "items": [
         {
@@ -339,7 +339,7 @@
           "label": "Knowledge Base"
         }
       ]
-    }
+    },
     {
       "collapsed": true,
       "type": "category",
