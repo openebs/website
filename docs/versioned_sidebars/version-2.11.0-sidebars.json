@@ -360,7 +360,7 @@
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/deprecated/ugcstor",
+          "id": "version-2.11.0/deprecated/spc-based-cstor",
           "label": "SPC based cStor guide"
         }
       ]

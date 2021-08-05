@@ -6,6 +6,7 @@ title: OpenEBS 1.x Deprecated Releases
 ## 1.7.0 - Feb 15 2020
 
 **Change summary:**
+
 - Fixes an issue where Jiva Replicas could get stuck in WO or NA state, when the size of the replica data grows beyond 300GB.
 - Fixes an issue where unused custom resources from older versions are left in the etcd, even after openebs is upgraded. 
 - Fixes an issue where cleanup of Jiva volumes on OpenShift 4.2 environment was failing.
@@ -20,13 +21,13 @@ title: OpenEBS 1.x Deprecated Releases
 - Support for resizing Jiva Volume via CSI driver and other bug fixes.
 
 **Additional details:**
-
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.7.0)
 - [Upgrade Steps](/v170/docs/next/upgrade.html)
 
 ## 1.6.0 - Jan 15 2020
 
 **Change summary:**
+
 - Add support for building cStor on ARM builds by moving cstor-pool-mgmt, cstor-volume-mgmt, maya-exporter and cspi-mgmt build scripts to their specific folders and add arm build scripts.
 - Add support for provisioning Local PV hostpath when the nodes are tainted. It also handles the implementation of Local PV helper pods where the cleanup pod will be launched with the tolerations.
 - Enhance the logging mechanism for cStor pool pods during pool import time. These changes of logs will help to identify the existence of bad disk on the node.
@@ -34,7 +35,7 @@ title: OpenEBS 1.x Deprecated Releases
 - Enhance upgrade logs by providing pool and volume status information during the upgrade and also helps in estimating the time taken for deployment pods to come up.
 -  Improves Jiva rebuilding process by check pointing the io numbers. Now only those snapshots will be synced which has less no of io’s.
 - Fixes an issue with Jiva controller by removing WO replica if new replica with greater revision count get added to controller.
-- Disable core dump in NDM daemon by default. This can be enabled by setting an ENV variable `ENABLE_COREDUMP` to `1`. Core files will be stored inside /var/openebs/ndm/core.
+- Disable core dump in NDM daemon by default. This can be enabled by setting an ENV variable `ENABLE_COREDUMP` to `1`. Core files will be stored inside `/var/openebs/ndm/core`.
 - Fixes issues in default core dumping location for NDM. System core pattern which is common for all processes on the node will not be modified. NDM will dump the cores in a location under openebs base directory. NDM process will be launched from the openebs directory, so core files will get automatically written to the $PWD, without requiring to change the core pattern.
 - Fixes an issue in NDM which caused cleanup pods not being scheduled on nodes with taints, causing BD to be stuck in release state. The fix will add tolerations for the node taints to the cleanup pod.
 - Fixes an issue in `cstor-velero plugin` for getting the StorageClass name from the annotation if StorageClass is mentioned in PVC Annotation, not in PVC spec.
@@ -54,13 +55,13 @@ title: OpenEBS 1.x Deprecated Releases
 - Add metrics support for Jiva CSI volume which can be pulled by Prometheus to show the metrics in k8s cluster. Available metrics are `Total capacity`, `Used capacity` and `Available capacity` in Bytes.
 
 **Additional details:**
-
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.6.0)
 - [Upgrade Steps](/v160/docs/next/upgrade.html)
 
 ## 1.5.0 - Dec 15 2019
 
 **Change summary:**
+
 - Support BlockVolumeMode for OpenEBS Local PV backed by devices
 - Support ZFS as a filesystem type for OpenEBS ZFS Local PV.
 - Support for Block Device Replacement via the cStor YAML file (using new schema)
@@ -68,20 +69,20 @@ title: OpenEBS 1.x Deprecated Releases
 - Support for generating of ARM builds for cStor Data Engine.
 - Introduce block device hierarchy to NDM. 4 fields `Parent` ,`Partitions`, `Holders` and `Slaves` are used in defining the hierarchy tree of a device. Also, all the dependent devices of the discovered block device will be logged during the initial udev scan to get the disk level hierarchy of each node in the cluster. 
 - Add support for applications to provision a "zfs" filesystem directly in the ZFS POOL storage which will get the optimal performance. 
-- Enhanced the cStor pools to handle auto scale down scenarios to avoid shutting down the node where cStor pool is running. This is achieved by adding cluster-autoscaler.kubernetes.io/safe-to-evict": "false"  to the annotation of each cStor pool pod.
+- Enhanced the cStor pools to handle auto scale down scenarios to avoid shutting down the node where cStor pool is running. This is achieved by adding `cluster-autoscaler.kubernetes.io/safe-to-evict": "false"` to the annotation of each cStor pool pod.
 - Fixes an issue with liveness probe on `cstor-pool` container by adding a timeout setting for command execution. Setting the timeout value as 120 sec will kill the process if command exceeds more than 120 seconds.
 - Fixes an issue in cStor CSI volume unit size conversion while transitioning from PVC to CVC storage capacity the way kubernetes handles, by converting to Gi.
 - Fixes a bug where OpenEBS Local PV with hostpaths in OpenShift 4.1 environments was failing.
 - Fixes a vulnerability issue with default helper pod image by using the latest tag for helper pods so new version of OpenEBS will automatically get updated with new images. |
 
 **Additional details:**
-
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.5.0)
 - [Upgrade Steps](/v150/docs/next/upgrade.html)
 
 ## 1.4.0 - Nov 15 2019
 
 **Change summary:**
+
 - Support for scale down of cStor volume replicas
 - Support an alpha feature in NDM to add Prometheus exporter for exposing disk-level metrics. This Cluster level exporter gives details of blockdevice such as state, claim state etc.
 - Support of setup arm builds for apiserver and local provisioner. The images  will be built on top of arm64v8/ubuntu:18.04.
@@ -101,13 +102,13 @@ title: OpenEBS 1.x Deprecated Releases
 - Fixes a bug in NDM, where the os-disk filter was not able to exclude the blockdevices if the OS  was installed on an NVMe device.
 
 **Additional details:**
-
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.4.0)
 - [Upgrade Steps](/v140/docs/next/upgrade.html)
 
 ## 1.3.0 - Oct 15 2019
 
 **Change summary:**
+
 - Add support to scale up replicas, replica movement across  pools and replica replacement scenarios. This feature is in alpha state. This feature will work for cStor volumes which are created with existing SPC configuration.
 - Availability of NDM on different platforms like amd64 and arm64. NDM can now also be compiled in ARM architecture using manual steps.
 - Added support for provisioning CSI based volume using lease leader election API.
@@ -121,13 +122,13 @@ title: OpenEBS 1.x Deprecated Releases
 - Fixed a bug where Jiva volume running on CentOS 7 / RHEL in OpenShift cluster is going to read-only when the controller pod is restarted either due to node restart or upgrades or any other reason. This is due to iSCSI default timeout is replaced with 5 sec if multipath support is enabled on the node.
 
 **Additional details:**
-
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.3.0)
 - [Upgrade Steps](/v130/docs/next/upgrade.html)
 
 ## 1.2.0 - Sep 10 2019
 
 **Change summary:**
+
 - CSI Driver for cStor Volumes (currently in Alpha) has added support for resizing and volume expansion feature.
 - The new version of cStor Schema has been introduced to address the user feedback in terms of ease of use for cStor provisioning as well as to make a way in the schema to perform Day 2 Operations using GitOps.
 - Enhanced error logging of cStor storage pool with a new format for automatic alert generation.
@@ -147,13 +148,13 @@ title: OpenEBS 1.x Deprecated Releases
 - Fixes a bug in NDM where cleanup jobs remain in pending state in Openshift cluster. The fix will add service account to cleanup jobs, so that clean-up job pods acquire privileged access to perform the action. 
 
 **Additional details:**
-
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.2.0)
 - [Upgrade Steps](/v120/docs/next/upgrade.html)
 
 ## 1.1.0 - Aug 03 2019
 
 **Change summary:**
+
 - Support for an alpha version of CSI driver with limited functionality for provisioning and de-provisioning of cStor volumes.
 - Support for the upgrade of OpenEBS storage pools and volumes through Kubernetes Job. As a user, you no longer have to download scripts to upgrade from 1.0 to 1.1, like in earlier releases.
 - Enhanced Prometheus metrics exported by Jiva for identifying whether an iSCSI Initiator is connected to Jiva target.
@@ -169,13 +170,13 @@ title: OpenEBS 1.x Deprecated Releases
 - Fixes a bug where backup was failing where `openebs operator` was installed through helm. `velero-plugin` was checking `maya-apiserver` name and it was different when you have installed via helm based method. Updated velero-plugin to check label of maya-apiserver service name.
 
 **Additional details:**
-
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.1.0)
 - [Upgrade Steps](/v110/docs/next/upgrade.html)
 
 ## 1.0.0 - Jun 22 2019
 
 **Change summary:**
+
 - Introduced a cluster level component called NDM operator to manages the access to block devices, selecting & binding BD to BDC, cleaning up the data from the released BD.
 - Support for using Block Devices for OpenEBS Local PV.
 - Enhanced cStor Data Engine to allow interoperability of cStor Replicas across different versions.

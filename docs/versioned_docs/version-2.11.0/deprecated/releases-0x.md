@@ -40,6 +40,7 @@ This release has been deprecated. Please upgrade to the latest release. See [upg
 :::
 
 **Change summary:**
+
 - Enhanced the metrics exported by cStor Pools to include details of the provisioning errors.
 - Fixed an issue causing cStor Volume Replica CRs to be stuck, when the OpenEBS namespace was being deleted.
 - Fixed an issue where a newly added cStor Volume Replica may not be successfully registered with the cStor target, if the cStor tries to connect to Replica before the replica is completely initialized.
@@ -59,6 +60,7 @@ This release has been deprecated. Please upgrade to the latest release. See [upg
 :::
 
 **Change summary:**
+
 - Ephemeral Disk Support
 - Enhanced the placement of cStor volume replica in a distributed randomly between the available pools.
 - Enhanced the NDM to fetch additional details about the underlying disks via SeaChest.
@@ -78,6 +80,7 @@ This release has been deprecated. Please upgrade to the latest release. See [upg
 :::
 
 **Change summary:**
+
 - cStor Snapshot & Clone
 - cStor volume & Pool runtime status
 - Target Affinity for both Jiva & cStor
@@ -88,7 +91,6 @@ This release has been deprecated. Please upgrade to the latest release. See [upg
 - Enhance cStor for recreating pool by automatically selecting the disks.
 
 **Additional details:**
-
 - [Release Blog](https://openebs.io/blog/openebs-0-8-release-allows-you-to-snapshot-and-clone-cstor-volumes/)
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/0.8)
 
@@ -109,7 +111,6 @@ This release has been deprecated. Please upgrade to the latest release. See [upg
 - Enhanced exporting cStor volume metrics to prometheus
 
 **Additional details:**
-
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/0.7.2)
 
 ## 0.7.0 - Sep 09 2018
@@ -127,7 +128,6 @@ This release has been deprecated. Please upgrade to the latest release. See [upg
 - Support for specifying replica count,CPU/Memory Limits per PV,Choice of  Storage Engine, Nodes on which data copies should be copied.
 
 **Additional details:**
-
 - [Release Blog](https://openebs.io/blog/openebs-0-7-release-pushes-cstor-storage-engine-to-field-trials/)
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v0.7)
 
@@ -151,7 +151,6 @@ This release has been deprecated. Please upgrade to the latest release. See [upg
 
 
 **Additional details:**
-
 - [Release Blog](https://openebs.io/blog/openebs-0-6-serves-ios-amidst-chaos-and-much-more/)
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v0.6)
 
@@ -171,7 +170,6 @@ This release has been deprecated. Please upgrade to the latest release. See [upg
 
 
 **Additional details:**
-
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v0.5.4)
 
 ## 0.5.3 - Mar 14 2018
@@ -187,7 +185,6 @@ This release has been deprecated. Please upgrade to the latest release. See [upg
 - Enhanced memory consumption usage for Jiva Volume
 
 **Additional details:**
-
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v0.5.3)
 
 ## 0.5.2 - Feb 07 2018
@@ -201,7 +198,6 @@ This release has been deprecated. Please upgrade to the latest release. See [upg
 - Support to set non-SSL Kubernetes endpoints to use by specifying the ENV variables on  maya-apiserver and  openebs-provisioner.
 
 **Additional details:**
-
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v0.5.2)
 
 ## 0.5.1 - Jan 10 2018
@@ -269,7 +265,6 @@ This release has been deprecated. Please upgrade to the latest release. See [upg
 - Storage functionality and Orchestration/Management functionality is delivered as container images on DockerHub.
 
 **Additional details:**
-
 - [Release Blog](https://openebs.io/blog/openebs-on-the-growth-path-releases-0-3/)
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v0.3)
 
