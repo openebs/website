@@ -2,11 +2,10 @@
 id: overview
 title: OpenEBS Documentation
 slug: /
-image: /img/card-openebs.png
 keywords:
   - OpenEBS
   - OpenEBS overview
-description: OpenEBS helps Developers and Platform SREs easily deploy Kubernetes Stateful Workloads that require fast and highly reliable Container Attached Storage.
+description: OpenEBS builds on Kubernetes to enable Stateful applications to easily access Dynamic Local PVs or Replicated PVs. By using the Container Attached Storage pattern users report lower costs, easier management, and more control for their teams.
 ---
 
 ## What is OpenEBS?
