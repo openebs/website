@@ -21,6 +21,7 @@ title: OpenEBS 1.x Deprecated Releases
 - Support for resizing Jiva Volume via CSI driver and other bug fixes.
 
 **Additional details:**
+
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.7.0)
 - [Upgrade Steps](https://docs.openebs.io/v170/docs/next/upgrade.html)
 
@@ -55,6 +56,7 @@ title: OpenEBS 1.x Deprecated Releases
 - Add metrics support for Jiva CSI volume which can be pulled by Prometheus to show the metrics in k8s cluster. Available metrics are `Total capacity`, `Used capacity` and `Available capacity` in Bytes.
 
 **Additional details:**
+
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.6.0)
 - [Upgrade Steps](https://docs.openebs.io/v160/docs/next/upgrade.html)
 
@@ -76,6 +78,7 @@ title: OpenEBS 1.x Deprecated Releases
 - Fixes a vulnerability issue with default helper pod image by using the latest tag for helper pods so new version of OpenEBS will automatically get updated with new images. |
 
 **Additional details:**
+
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.5.0)
 - [Upgrade Steps](https://docs.openebs.io/v150/docs/next/upgrade.html)
 
@@ -102,6 +105,7 @@ title: OpenEBS 1.x Deprecated Releases
 - Fixes a bug in NDM, where the os-disk filter was not able to exclude the blockdevices if the OS  was installed on an NVMe device.
 
 **Additional details:**
+
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.4.0)
 - [Upgrade Steps](https://docs.openebs.io/v140/docs/next/upgrade.html)
 
@@ -122,6 +126,7 @@ title: OpenEBS 1.x Deprecated Releases
 - Fixed a bug where Jiva volume running on CentOS 7 / RHEL in OpenShift cluster is going to read-only when the controller pod is restarted either due to node restart or upgrades or any other reason. This is due to iSCSI default timeout is replaced with 5 sec if multipath support is enabled on the node.
 
 **Additional details:**
+
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.3.0)
 - [Upgrade Steps](https://docs.openebs.io/v130/docs/next/upgrade.html)
 
@@ -148,6 +153,7 @@ title: OpenEBS 1.x Deprecated Releases
 - Fixes a bug in NDM where cleanup jobs remain in pending state in Openshift cluster. The fix will add service account to cleanup jobs, so that clean-up job pods acquire privileged access to perform the action. 
 
 **Additional details:**
+
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.2.0)
 - [Upgrade Steps](https://docs.openebs.io/v120/docs/next/upgrade.html)
 
@@ -170,6 +176,7 @@ title: OpenEBS 1.x Deprecated Releases
 - Fixes a bug where backup was failing where `openebs operator` was installed through helm. `velero-plugin` was checking `maya-apiserver` name and it was different when you have installed via helm based method. Updated velero-plugin to check label of maya-apiserver service name.
 
 **Additional details:**
+
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.1.0)
 - [Upgrade Steps](https://docs.openebs.io/v110/docs/next/upgrade.html)
 
@@ -192,6 +199,7 @@ title: OpenEBS 1.x Deprecated Releases
 - Custom resource (Disk) used in earlier releases has been changed to Block Device. 
 
 **Additional details:**
+
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.0.0)
 - [Release Blog](https://openebs.io/blog/openebs-announces-the-availability-of-version-1-0/)
 - [Upgrade Steps](https://docs.openebs.io/v100/docs/next/upgrade.html)

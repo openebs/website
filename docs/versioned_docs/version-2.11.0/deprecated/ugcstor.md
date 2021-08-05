@@ -77,7 +77,7 @@ The following shows the example PVC configuration for a Deployment and a Statefu
 
 #### **Example configuration for requesting OpenEBS volume for a Deployment**
 
-```shell hideCopy
+```
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -93,7 +93,7 @@ spec:
 
 #### **Example configuration for requesting OpenEBS volume for a StatefulSet**
 
-```shell hideCopy
+```
 spec:
   volumeClaimTemplates:
   - metadata:
@@ -111,7 +111,7 @@ spec:
 
 By default the `VolumeMonitor` is set to ON in the cStor StorageClass. Volume metrics are exported when this parameter is set to ON. Following metrics are supported by cStor as of the current release.
 
-```shell hideCopy
+```
 openebs_actual_used # Actual volume size used
 openebs_connection_error_total # Total no of connection errors
 openebs_connection_retry_total # Total no of connection retry requests
@@ -150,7 +150,7 @@ The following steps will help you to create a snapshot of a cStor volume. For cr
 
 - Copy the following YAML specification into a file called *snapshot.yaml*.
 
-  ```shell hideCopy
+  ```
   apiVersion: volumesnapshot.external-storage.k8s.io/v1
   kind: VolumeSnapshot
   metadata:
@@ -187,7 +187,7 @@ Once the snapshot is created, restoration from a snapshot or cloning the snapsho
 
 - Copy the following YAML specification into a file called *snapshot_claim.yaml*.
 
-  ```shell hideCopy
+  ```
   apiVersion: v1
   kind: PersistentVolumeClaim
   metadata:
@@ -259,7 +259,7 @@ Velero is a utility to back up and restore your Kubernetes resource and persiste
 
 To do backup/restore of OpenEBS cStor volumes through Velero utility, you need to install and configure OpenEBS velero-plugin. OpenEBS velero-plugin can be installed using the below command:
 
-```shell hideCopy
+```
 velero plugin add openebs/velero-plugin:latest
 ```
 
@@ -273,7 +273,7 @@ To take a backup of cStor volume through Velero, configure `VolumeSnapshotLocati
 
 Sample spec for configuring volume snapshot location.
 
-  ```shell hideCopy
+  ```
   apiVersion: velero.io/v1
   kind: VolumeSnapshotLocation
   metadata:
@@ -304,7 +304,7 @@ For configuring parameters for `AWS` or `MinIO` in `volumesnapshotlocation`, ref
 
 Example for GCP configuration:
 
-```shell hideCopy
+```
 ---
 apiVersion: velero.io/v1
 kind: VolumeSnapshotLocation
@@ -448,7 +448,7 @@ kubectl get pod -n <namespace>
 
 Verify PVC status using the following command.
 
-```shell hideCopy
+```
 kubectl get pvc -n <namespace>
 ```
 
@@ -527,7 +527,7 @@ The deletion of Velero backup schedule doesn't destroy the backup created during
 
 1. Backup having status as ``FailedValidation``.
 
-  ```shell hideCopy
+  ```
   ~: velero backup get test
   NAME      STATUS             CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
   test      FailedValidation   0001-01-01 00:00:00 +0000 UTC   29d       default            <none>
@@ -535,7 +535,7 @@ The deletion of Velero backup schedule doesn't destroy the backup created during
 
 If you don’t provide `--storage-location` during backup then velero will use `default` backupstoragelocation. You can either create a new backupstoragelocation named `default` or specify default backupstoragelocation in velero server command line using `--default-backup-storage-location`.
 
-  ```shell hideCopy
+  ```
   ...
     spec:
       containers:
@@ -581,7 +581,7 @@ When Velero finishes a Restore, it's status changes to `Completed` regardless of
 
   To delve into the warnings and errors in more detail, you can use `velero restore describe` command:
 
-  ```shell hideCopy
+  ```
   velero restore describe s2-20190221142323
   ```
 
@@ -650,7 +650,7 @@ You can increase the verbosity of velero server logging by editing Velero deploy
 
 The Snippet of deployment YAML file looks as below:
 
-```shell hideCopy
+```
 ...
    containers:
      - name: velero
@@ -665,7 +665,7 @@ The Snippet of deployment YAML file looks as below:
 
 ### Upgrading the software version of a cStor volume {#Upgrading-the-software-version-of-a-cStor-volume}
 
-The steps are mentioned in Upgrade section. For upgrading cStorVolume, ensure that cStor Pool image is support this cStor volume image.  It should also recommended to upgrade the corresponding pool before upgrading cStor volume. The steps for upgrading the cStor volume can be find from [here](/docs/user-guides/upgradel).
+The steps are mentioned in Upgrade section. For upgrading cStorVolume, ensure that cStor Pool image is support this cStor volume image.  It should also recommended to upgrade the corresponding pool before upgrading cStor volume. The steps for upgrading the cStor volume can be find from [here](/docs/user-guides/upgrade).
 
 ### Provisioning sample application with cStor {#Provisioning-sample-application-with-cstor}
 
@@ -1062,7 +1062,7 @@ spec:
 
 This feature allow you to specify pool resource requests that need to be available before scheduling the containers. If not specified, the default values are used. The following sample configuration will set memory as `2Gi` and ephemeral-storage request value as `100Mi`. The memory  will be shared for all the volume replicas that reside on a pool. The memory can be `2Gi` to `4Gi` per pool on a given node for better performance. These values can be changed as per the node configuration for better performance. The below configuration also set the `cstor-pool` container with `100Mi` as `ephemeral-storage` requests which will avoid erroneous eviction by K8s. 
 
-```shell hideCopy
+```
 apiVersion: openebs.io/v1alpha1
 kind: StoragePoolClaim
 metadata:
@@ -1082,7 +1082,7 @@ spec:
 
 cStor pool pods can be ensure that pods are not scheduled onto inappropriate nodes. This can be achieved using taint and tolerations method. If Nodes are tainted to schedule the pods which are tolerating the taint, then cStor pool pods also can be scheduled using this method.  Tolerations are applied to cStor pool pods, and allow (but do not require) the pods to schedule onto nodes with matching taints.
 
-```shell hideCopy
+```
 apiVersion: openebs.io/v1alpha1
 kind: StoragePoolClaim
 metadata:
@@ -1113,7 +1113,7 @@ spec:
 
 You can specify the *AuxResourceLimits* which allow you to set limits on side cars. 
 
-```shell hideCopy
+```
 apiVersion: openebs.io/v1alpha1
 kind: StoragePoolClaim
 metadata:
@@ -1130,7 +1130,7 @@ metadata:
 
 The below configuration will set the cstor-pool side-cars with memory as `0.5Gi`, cpu as `100m`. This also set the `cstor-pool` side-cars with ephemeral-storage request `50Mi` which will avoid erroneous eviction by K8s. 
 
-```shell hideCopy
+```
 apiVersion: openebs.io/v1alpha1
 kind: StoragePoolClaim
 metadata:
@@ -1168,7 +1168,7 @@ StorageClass definition is an important task in the planning and execution of Op
 
 You can create a new StorageClass YAML called **openebs-sc-rep3.yaml** and add content to it from below. By using this spec, a StorageClass will be created with 3 OpenEBS cStor replicas and will configure them on the pools associated with the `StoragePoolClaim:cstor-disk-pool` .
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1210,7 +1210,7 @@ Below table lists the storage policies supported by cStor. These policies should
 
 You can specify the cStor Pool Claim name using the *value* for *StoragePoolClaim* property. This will help you choose cStor storage pool where OpenEBS volume will be created. Following is the default StorageClass template where cStor volume will be created on default cStor Sparse Pool.
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1227,7 +1227,7 @@ provisioner: openebs.io/provisioner-iscsi
 
 You can specify the cStor volume replica count using the *ReplicaCount* property. You need to ensure that the replica count should not be more than the pools created in the respective StoragePoolClaim.  In the following example, the ReplicaCount is specified as 3. Hence, three cStor volume replicas will be created.
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1246,7 +1246,7 @@ provisioner: openebs.io/provisioner-iscsi
 
 You can specify the cStor Volume Controller Image using the *value* for *VolumeControllerImage* property. This will help you choose the volume management image.
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1265,7 +1265,7 @@ provisioner: openebs.io/provisioner-iscsi
 
 You can specify the cStor Target Image using the *value* for *VolumeTargetImage* property. This will help you choose the cStor istgt target image.
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1284,7 +1284,7 @@ provisioner: openebs.io/provisioner-iscsi
 
 You can specify the cStor volume monitor feature which can be set using *value* for the *VolumeMonitor* property.  By default, volume monitor is enabled.
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1303,7 +1303,7 @@ provisioner: openebs.io/provisioner-iscsi
 
 You can specify the monitoring image policy for a particular volume using *value* for *VolumeMonitorImage* property. The following sample storage class uses the Volume Monitor Image policy.
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1322,7 +1322,7 @@ provisioner: openebs.io/provisioner-iscsi
 
 You can specify the file system type for the cStor volume where application will consume the storage using *value* for *FSType*. The following is the sample storage class. Currently OpenEBS support ext4 as the default file system and it also supports XFS.
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1341,7 +1341,7 @@ provisioner: openebs.io/provisioner-iscsi
 
 You can specify the *TargetNodeSelector* where Target pod has to be scheduled using the *value* for *TargetNodeSelector*. In following example, `node: appnode` is the node label.
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1361,7 +1361,7 @@ provisioner: openebs.io/provisioner-iscsi
 
 You can specify the *TargetResourceLimits* to restrict the memory and cpu usage of target pod within the given limit  using the *value* for *TargetResourceLimits* .
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1382,7 +1382,7 @@ provisioner: openebs.io/provisioner-iscsi
 
 You can specify the *TargetResourceRequests* to specify resource requests that need to be available before scheduling the containers. 
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1402,7 +1402,7 @@ provisioner: openebs.io/provisioner-iscsi
 
 You can specify the *TargetTolerations* to specify the tolerations for target. 
 
-```shell hideCopy
+```
 - name: TargetTolerations
   value: |-
      t1:
@@ -1421,7 +1421,7 @@ You can specify the *TargetTolerations* to specify the tolerations for target.
 
 You can specify the *AuxResourceLimits* which allow you to set limits on side cars. 
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1442,7 +1442,7 @@ provisioner: openebs.io/provisioner-iscsi
 
 This feature is useful in cases where user has to specify minimum requests like ephemeral storage etc. to avoid erroneous eviction by K8s. `AuxResourceRequests` allow you to set requests on side cars. Requests have to be specified in the format expected by Kubernetes
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1479,7 +1479,7 @@ In this approach, modification is required on StatefulSet spec and corresponding
 
 **Example snippet:**
 
-```shell hideCopy
+```
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -1506,7 +1506,7 @@ Do the following changes in the StorageClass that is referred in the claimTempla
 
 **Example snippet:**
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1557,7 +1557,7 @@ volumeBindingMode: WaitForFirstConsumer
 ##### For Deployment Applications
 This feature makes use of the Kubernetes Pod Affinity feature that is dependent on the Pod labels. User will need to add the following label to both Application and PVC.
 
-```shell hideCopy
+```
 labels:
   openebs.io/target-affinity: <application-unique-label>
 ```
@@ -1590,7 +1590,9 @@ metadata:
 #### Target Namespace {#Target-Namespace}
 
 By default, the cStor target pods are scheduled in a dedicated *openebs* namespace. The target pod also is provided with OpenEBS service account so that it can access the Kubernetes Custom Resource called `CStorVolume` and `Events`.
+
 This policy, allows the Cluster administrator to specify if the Volume Target pods should be deployed in the namespace of the workloads itself. This can help with setting the limits on the resources on the target pods, based on the namespace in which they are deployed.
+
 To use this policy, the Cluster administrator could either use the existing OpenEBS service account or create a new service account with limited access and provide it in the StorageClass as follows:
 
 ```shell hideCopy
@@ -1754,7 +1756,7 @@ Allow users to set available performance tunings in StorageClass based on their 
 
 **Example Configuration:**
 
-```shell hideCopy
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -1831,7 +1833,7 @@ This section provide the steps for scaling up the replica of a cStor volume.
 
 1. Get the current replica count of the cStor volume which is mentioned in corresponding StorageClass. Get the StorageClass name using the following command:
 
-   ```shell hideCopy
+   ```
    kubectl get sc
    ```
 
@@ -1981,7 +1983,7 @@ This section provide the steps for scaling up the replica of a cStor volume.
 
 4. Perform the following command to get the cStor Pool where the existing cStor volume replica is created:
 
-   ```shell hideCopy
+   ```
    kubectl get cvr pvc-3f86fcdf-02f6-11ea-b0f6-42010a8000f8-cstor-disk-pool-hgt4 -n openebs --show-labels |  awk '{print $6}'  | grep -i cstorpool | awk -F'[, ]' '{print $1}'
    ```
 
@@ -2052,7 +2054,7 @@ This section provide the steps for scaling up the replica of a cStor volume.
 
 7. Create a CVR in the cStor pool identified in Step 5. Below is the template to create CVR on the identified cStor pool. The values in the template can be filled from CSP YAML related to identified cStor pool, and other CVRs of the volume.
 
-   ```shell hideCopy
+   ```
    apiVersion: openebs.io/v1alpha1
    kind: CStorVolumeReplica
    metadata:
@@ -2108,13 +2110,13 @@ This section provide the steps for scaling up the replica of a cStor volume.
 
    - **<md5sum_of_pvc_uid_and_csp_uid>**: It is the unique value referred to as `replicaid` in the whole cluster. This can be generated by running the following command:
 
-     ```shell hideCopy
+     ```
      echo -n "<pvc-uid>-<csp-uid>" | md5sum | awk '{print toupper($1)}'
      ```
 
      Example command:
 
-     ```shell hideCopy
+     ```
      echo -n "3f86fcdf-02f6-11ea-b0f6-42010a8000f8-ca657af1-02f4-11ea-b0f6-42010a8000f8" | md5sum | awk '{print toupper($1)}'
      ```
 
@@ -2194,7 +2196,7 @@ This section provide the steps for scaling up the replica of a cStor volume.
 
 10. Update `Desired Replication Factor` in cStor volume with new replica count. This can be updated by editing corresponding cStor volume CR YAML.
 
-    ```shell hideCopy
+    ```
     kubectl edit cstorvolume pvc-3f86fcdf-02f6-11ea-b0f6-42010a8000f8 -n openebs
     ```
 
