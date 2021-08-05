@@ -51,7 +51,7 @@ This can happen for many reasons.
 - Node is rebooted in adhoc manner (or unscheduled reboot) and Kubernetes is waiting for Kubelet to respond to know if the node is rebooted and the pods on that node need to be rescheduled. Kubernetes can take up to 30 minutes as timeout before deciding the node is going to stay offline and pods need to be rescheduled. During this time, the iSCSI initiator at the application pod has timeout and marked the underlying filesystem as ReadOnly
 - cStor target has lost quorum because of underlying node losses and target has marked the lun as ReadOnly
 
-Go through the Kubelet logs and application pod logs to know the reason for marking the ReadOnly and take appropriate action. [Maintaining volume quorum](/docs/next/k8supgrades.html) is necessary during Kubernetes node reboots.
+Go through the Kubelet logs and application pod logs to know the reason for marking the ReadOnly and take appropriate action. [Maintaining volume quorum](/) is necessary during Kubernetes node reboots.
 
 ### Unable to create persistentVolumeClaim due to certificate verification error {#admission-server-ca}
 
@@ -94,7 +94,7 @@ Make sure the following prerequisites are done.
 
 2. Added extra_binds under kubelet service in cluster YAML
 
-More details are mentioned [here](/docs/next/prerequisites.html#rancher).
+More details are mentioned [here](/).
 
 ### Application pod is stuck in ContainerCreating state after deployment{#application-pod-stuck-after-deployment}
 
@@ -501,7 +501,7 @@ systemctl daemon-reload
 service kubelet restart
 ```
 
-To know more about provisioning cStor volume on DigitalOcean [click here](/docs/next/prerequisites.html#do).
+To know more about provisioning cStor volume on DigitalOcean [click here](/).
 
 ### Persistent volumes indefinitely remain in pending state {#persistent-volumes-indefinitely-remain-in-pending-state}
 

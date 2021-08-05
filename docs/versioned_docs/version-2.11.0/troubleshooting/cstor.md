@@ -88,7 +88,7 @@ Application mount point running on cStor volume went into read only state.
 
 **Possible Reason:**
 
-If `cStorVolume` is `Offline` or corresponding target pod is unavailable for more than 120 seconds(iSCSI timeout) then the PV will be mounted as `read-only` filesystem. For understanding different states of cStor volume, more details can be found [here](/docs/next/kb.html#verification-of-cStor-storage-volume).
+If `cStorVolume` is `Offline` or corresponding target pod is unavailable for more than 120 seconds(iSCSI timeout) then the PV will be mounted as `read-only` filesystem. For understanding different states of cStor volume, more details can be found [here](/).
 
 **Troubleshooting**
 
@@ -268,7 +268,7 @@ In such cases where pool import happens without cache file and if any of the dev
 **Troubleshooting**
 This might be encountered because of one of the following situations:
 
-1. The device that has gone bad is actually a part of the cStor pool on the node. In such cases, Block device replacement needs to be done, the detailed steps to it can be found [here](/docs/next/ugcstor-csi.html#a-class-anchor-aria-hidden-true-id-performance-tunings-in-cstor-pools-a-performance-tunings-in-cstor-pools).
+1. The device that has gone bad is actually a part of the cStor pool on the node. In such cases, Block device replacement needs to be done, the detailed steps to it can be found [here](/user-guides/cstor-csi#tuning-cstor-pools).
 
 **Note**: Block device replacement is not supported for stripe raid configuration. Please visit this link for some use cases and solutions.
 

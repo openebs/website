@@ -54,7 +54,7 @@ MountVolume.WaitForAttach failed for volume “pvc-ea5b871b-32d3-11e9-9bf5-0a8e9
 
 **Troubleshooting**
 
-This logs points that iscsid.service may not be enabled and running on your Nodes. You need to check if the service `iscsid.service` is running. If it is not running, you have to `enable` and `start` the service. You can refer [prerequisites](/docs/next/prerequisites.html) section and choose your platform to get the steps for enabling it.
+This logs points that iscsid.service may not be enabled and running on your Nodes. You need to check if the service `iscsid.service` is running. If it is not running, you have to `enable` and `start` the service. You can refer [prerequisites](/) section and choose your platform to get the steps for enabling it.
 
 ### Why does OpenEBS provisioner pod restart continuously?{#openebs-provisioner-restart-continuously}
 
@@ -106,7 +106,7 @@ Error: release openebs failed: clusterroles.rbac.authorization.k8s.io "openebs" 
 
 **Troubleshooting**
 
-You must enable RBAC on Azure before OpenEBS installation. For more details, see [Prerequisites](/docs/next/prerequisites.html).
+You must enable RBAC on Azure before OpenEBS installation. For more details, see [Prerequisites](/).
 
 ### A multipath.conf file claims all SCSI devices in OpenShift {#multipath-conf-claims-all-scsi-devices-openshift}
 
