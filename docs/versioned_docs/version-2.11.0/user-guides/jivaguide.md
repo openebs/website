@@ -145,7 +145,7 @@ Here we illustrate the usage of default Jiva storage class. In the following exa
    Before provisioning the application ensure that all the below mentioned steps are carried out:
 
   1. Ensure that the filesystem is mounted as per requirement. 
-    To know more about mount status [click here](additional-info/faq#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume).
+    To know more about mount status [click here](/additional-info/faqs#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume).
   2. First, You need to ***Create a Jiva Pool*** specifying the filesystem path on each node. To know about the detailed steps [click here](/user-guides/jivaguide#create-a-pool).
   3. Using this storage pool, create a storage class by referring [here](/user-guides/jivaguide#create-a-sc).
   4. Once all the above actions have been successfully executed, You can deploy Busybox with Jiva volume as follows
