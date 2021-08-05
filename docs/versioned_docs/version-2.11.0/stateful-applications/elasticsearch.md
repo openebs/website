@@ -35,17 +35,17 @@ The Elasticsearch deployment has the following components, which will use the Op
 2. [Select OpenEBS storage engine](#select-openebs-storage-engine)
 3. [Configure OpenEBS Local PV StorageClass](#configure-openebs-local-pv-storageclass)
 4. [Installing KUDO Operator](#installing-kudo-operator)
-5. [Installing and Accessing Elasticsearch](h#installing-and-accessing-elasticsearch)
+5. [Installing and Accessing Elasticsearch](#installing-and-accessing-elasticsearch)
 6. [Installing Kibana](#installing-kibana)
 7. [Installing Fluentd-ES](#installing-fluentd-es)
 
 ### Install OpenEBS
 
-If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user_guides/installation). If OpenEBS is already installed, go to the next step. 
+If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user-guides/installation). If OpenEBS is already installed, go to the next step. 
 
 ### Select OpenEBS storage engine
 
-A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and you should choose the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/docs/overview#types-of-openebs-storage-engines).
+A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and you should choose the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/#types-of-openebs-storage-engines).
 
 After OpenEBS installation, choose the OpenEBS storage engine as per your requirement. 
 
@@ -494,4 +494,4 @@ You will see the OpenEBS NDM pod logs listed on the page.
 
 ## See Also:
 
-[OpenEBS use cases](/docs/introduction/usecases) [Understanding NDM](/docs/user_guides/ugndm) [Local PV concepts](/docs/concepts/localpv) [Local PV User guide](/docs/user_guides/uglocalpv-device)
+[OpenEBS use cases](/docs/introduction/usecases) [Understanding NDM](/docs/user-guides/ndm) [Local PV concepts](/docs/concepts/localpv) [Local PV User guide](/docs/user-guides/localpv-device)

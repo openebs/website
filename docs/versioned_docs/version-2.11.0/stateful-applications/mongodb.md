@@ -27,7 +27,7 @@ MongoDB is a cross-platform document-oriented database. Classified as a NoSQL da
 
 1. **Install OpenEBS**
 
-   If OpenEBS is not installed in your K8s cluster, this can done from [here](/docs/user_guides/installation). If OpenEBS is already installed, go to the next step. 
+   If OpenEBS is not installed in your K8s cluster, this can done from [here](/docs/user-guides/installation). If OpenEBS is already installed, go to the next step. 
 
 2. **Configure cStor Pool**
 

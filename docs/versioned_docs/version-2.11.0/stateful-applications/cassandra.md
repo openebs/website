@@ -25,29 +25,29 @@ Whether you use OpenEBS Local PV or cStor, you can set up the Kubernetes cluster
 
 ## Configuration workflow 
 
-1. Install OpenEBS
-2. Select OpenEBS storage engine
-3. Configure OpenEBS Local PV StorageClass
-4. Install Kudo operator
-5. Install Kudo based Cassandra
-6. Verify Cassandra is up and running
-7. Testing Cassandra performance on OpenEBS
+1. [Install OpenEBS](#install-openebs)
+2. [Select OpenEBS storage engine](#select-openebs-storage-engine)
+3. [Configure OpenEBS Local PV StorageClass](#configure-openebs-local-pv-storageclass)
+4. [Install Kudo operator](#install-kudo-operator-to-install-cassandra)
+5. [Install Kudo based Cassandra](#install-kudo-operator-based-cassandra)
+6. [Verify Cassandra is up and running](#verify-cassandra-is-up-and-running)
+7. [Testing Cassandra performance on OpenEBS](#testing-cassandra-performance-on-openebs)
 
 ### Install OpenEBS
 
-If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/overview). If OpenEBS is already installed, go to the next step.
+If OpenEBS is not installed in your K8s cluster, this can be done from [here](/). If OpenEBS is already installed, go to the next step.
 
 ### Select OpenEBS storage engine
 
-A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and chooses the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/docs/overview#openebs-storage-engines).
+A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and chooses the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/#openebs-storage-engines).
 
 ### Configure OpenEBS Local PV StorageClass
 
 In this tutorial, OpenEBS Local PV device has been used as the storage engine for deploying Kudo Cassandra. There are 2 ways to use OpenEBS Local PV.
 
-- `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/`<cassandra-pv>`/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](/docs/user_guides/uglocalpv-hostpath#create-storageclass). 
+- `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/`<cassandra-pv>`/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](/docs/user-guides/localpv-hostpath#create-storageclass). 
 
-- `openebs-device` - Using this option, it will create Kubernetes Local PVs using the block devices attached to the node. Select this option when you want to dedicate a complete block device on a node to a Cassandra node. You can customize which devices will be discovered and managed by OpenEBS using the instructions [here](/docs/user_guides/ugndm). 
+- `openebs-device` - Using this option, it will create Kubernetes Local PVs using the block devices attached to the node. Select this option when you want to dedicate a complete block device on a node to a Cassandra node. You can customize which devices will be discovered and managed by OpenEBS using the instructions [here](/docs/user-guides/ndm). 
 
 ### Install Kudo operator to install Cassandra 
 
@@ -245,4 +245,4 @@ $ kubectl kudo install cassandra --namespace=$namespace_name --instance $instanc
 
 ## See Also:
 
-[OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [Local PV concepts](/docs/concepts/localpv) [Understanding NDM](/docs/user_guides/ugndm)
+[OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [Local PV concepts](/docs/concepts/localpv) [Understanding NDM](/docs/user-guides/ndm)

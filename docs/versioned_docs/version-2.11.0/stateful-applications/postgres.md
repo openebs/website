@@ -30,11 +30,11 @@ We will use GKE, where we will install Stackgres PostgreSQL with OpenEBS storage
 
 ### Install OpenEBS
 
-If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user_guides/installation). If OpenEBS is already installed, go to the next step.
+If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user-guides/installation). If OpenEBS is already installed, go to the next step.
 
 ### Select OpenEBS storage engine
 
-A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and chooses the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/docs/overview#types-of-openebs-storage-engines).
+A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and chooses the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/#types-of-openebs-storage-engines).
 
 In this document, we are deploying StackGres PostgreSQL using OpenEBS Local PV device. 
 
@@ -42,9 +42,9 @@ In this document, we are deploying StackGres PostgreSQL using OpenEBS Local PV d
 
 There are 2 ways to use OpenEBS Local PV.
 
-- `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/<"postgresql-pv-name">/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](/docs/user_guides/uglocalpv-hostpath#create-storageclass). 
+- `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/<"postgresql-pv-name">/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](/docs/user-guides/localpv-hostpath#create-storageclass). 
 
-- `openebs-device` - Using this option, it will create Kubernetes Local PVs using the block devices attached to the node. Select this option when you want to dedicate a complete block device on a node to a StackGres PostgreSQL application pod. You can customize which devices will be discovered and managed by OpenEBS using the instructions [here](/docs/user_guides/uglocalpv-device#optional-block-device-tagging). 
+- `openebs-device` - Using this option, it will create Kubernetes Local PVs using the block devices attached to the node. Select this option when you want to dedicate a complete block device on a node to a StackGres PostgreSQL application pod. You can customize which devices will be discovered and managed by OpenEBS using the instructions [here](/docs/user-guides/localpv-device#optional-block-device-tagging). 
 
 The Storage Class `openebs-device` has been chosen to deploy StackGres PostgreSQL in the Kubernetes cluster.
 
@@ -287,4 +287,4 @@ app-# \q
 
 ## See Also:
 
-[OpenEBS use cases](/docs/introduction/usecases) [Understanding NDM](/docs/user_guides/ugndm) [Local PV concepts](/docs/concepts/localpv) [Local PV User guide](/docs/user_guides/uglocalpv-device)
+[OpenEBS use cases](/docs/introduction/usecases) [Understanding NDM](/docs/user-guides/ndm) [Local PV concepts](/docs/concepts/localpv) [Local PV User guide](/docs/user-guides/localpv-device)

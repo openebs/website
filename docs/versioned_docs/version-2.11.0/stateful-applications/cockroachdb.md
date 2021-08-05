@@ -27,11 +27,11 @@ The Local PV volume will be provisioned on a node where CockroachDB pods are get
 
 ### Install OpenEBS
 
-If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user_guides/installation). If OpenEBS is already installed, go to the next step.
+If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user-guides/installation). If OpenEBS is already installed, go to the next step.
 
 ### Select OpenEBS storage engine
 
-A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and you should choose the right engine that suits your application requirements and storage available on your Kubernetes nodes. For more information you can read [here](/docs/overview#types-of-openebs-storage-engines).
+A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and you should choose the right engine that suits your application requirements and storage available on your Kubernetes nodes. For more information you can read [here](/#types-of-openebs-storage-engines).
 
 After OpenEBS installation, choose the OpenEBS storage engine as per your requirement. 
 
@@ -303,4 +303,4 @@ In the production environment either use a load balancer or ingress services as 
 
 ## See Also:
 
-[OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [Local PV concepts](/docs/concepts/localpv) [Understanding NDM](/docs/user_guides/ugndm)
+[OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [Local PV concepts](/docs/concepts/localpv) [Understanding NDM](/docs/user-guides/ndm)

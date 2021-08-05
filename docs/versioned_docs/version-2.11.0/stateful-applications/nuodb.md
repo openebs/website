@@ -26,7 +26,7 @@ NuoDB’s distributed SQL database combines the elastic scale and continuous ava
 
 1. **Install OpenEBS**
 
-   If OpenEBS is not installed in your K8s cluster, this can done from [here](/docs/user_guides/installation). If OpenEBS is already installed, go to the next step. 
+   If OpenEBS is not installed in your K8s cluster, this can done from [here](/docs/user-guides/installation). If OpenEBS is already installed, go to the next step. 
 
 2. **Configure cStor Pool**
 
@@ -557,4 +557,4 @@ spec:
 
 ## See Also:
 
-[OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [cStor pools overview](/docs/user_guides/cstor#cstor-pools)
+[OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [cStor pools overview](/docs/concepts/cstor#cstor-pools)
