@@ -16,4 +16,4 @@ The list is provided in alphabetical order.
 
 ## See Also:
 
-[Community Support](/docs/introduction/community) [Troubleshooting](/docs/next/troubleshooting.html) [FAQs](/docs/next/faq.html) [Latest release notes](/docs/introduction/community)
+[Community Support](/docs/introduction/community) [Troubleshooting](/docs/troubleshooting) [FAQs](/docs/additional-info/faqs)  [Latest release notes](/docs/introduction/community)

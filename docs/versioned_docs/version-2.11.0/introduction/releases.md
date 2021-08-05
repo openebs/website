@@ -57,7 +57,7 @@ A very special thanks to @cncf and 2021 LFX Mentees @ParthS007, @rahul799 for co
 OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners. The status of the various components as of v2.10.0 are as follows:
 
 - CSI Drivers
-  - [Mayastor](https://docs.openebs.io/docs/next/ugmayastor.html) 0.8.0 (beta)
+  - [Mayastor](/docs/user-guides/mayastor) 0.8.0 (beta)
   - [cStor](https://github.com/openebs/cstor-operators) 2.10.0 (beta)
   - [Jiva](https://github.com/openebs/jiva-operator) 2.10.0 (beta)
   - [Local PV ZFS](https://github.com/openebs/zfs-localpv) 1.8.0 (stable)
@@ -65,10 +65,10 @@ OpenEBS is a collection of data engines and operators to create different types 
   - [Local PV Rawfile](https://github.com/openebs/rawfile-localpv) 0.4.4 (beta)
   - [Local PV Partitions](https://github.com/openebs/device-localpv) 0.3.0 (alpha)
 - Out-of-tree provisioners
-  - [Jiva](https://docs.openebs.io/docs/next/jiva.html) 2.10.0 (stable)
-  - [Local PV hostpath](https://docs.openebs.io/docs/next/uglocalpv-hostpath.html) 2.10.0 (stable)
-  - [Local PV device](https://docs.openebs.io/docs/next/uglocalpv-device.html) 2.10.0 (stable)
-  - [cStor](https://docs.openebs.io/docs/next/cstor.html) 2.10.0 (beta)
+  - [Jiva](/docs/concepts/jiva) 2.10.0 (stable)
+  - [Local PV hostpath](/docs/user-guides/localpv-hostpath) 2.10.0 (stable)
+  - [Local PV device](/docs/user-guides/localpv-device) 2.10.0 (stable)
+  - [cStor](/docs/concepts/cstor) 2.10.0 (beta)
   - [Dynamic NFS Volume](https://github.com/openebs/dynamic-nfs-provisioner) 0.4.0 (alpha)
 - Other components
   - [NDM](https://github.com/openebs/node-disk-manager) 1.5.0 (beta)
@@ -76,8 +76,8 @@ OpenEBS is a collection of data engines and operators to create different types 
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.10.0)
-- [Install Steps](/docs/next/quickstart.html)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Install Steps](/docs/user-guides/quickstart)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 2.9.0 - May 15 2021
 
@@ -107,7 +107,7 @@ OpenEBS v2.9 is another maintenance release before moving towards 3.0 primarily 
 OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners. The status of the various components as of v2.9.0 are as follows:
 
 - CSI Drivers
-  - [Mayastor](https://docs.openebs.io/docs/next/ugmayastor.html) 0.8.0 (beta)
+  - [Mayastor](/docs/user-guides/mayastor) 0.8.0 (beta)
   - [cStor](https://github.com/openebs/cstor-operators) 2.9.0 (beta)
   - [Jiva](https://github.com/openebs/jiva-operator) 2.9.0 (beta)
   - [Local PV ZFS](https://github.com/openebs/zfs-localpv) 1.7.0 (stable)
@@ -115,10 +115,10 @@ OpenEBS is a collection of data engines and operators to create different types 
   - [Local PV Rawfile](https://github.com/openebs/rawfile-localpv) 0.4.4 (beta)
   - [Local PV Partitions](https://github.com/openebs/device-localpv) 0.2.0 (alpha)
 - Out-of-tree provisioners
-  - [Jiva](https://docs.openebs.io/docs/next/jiva.html) 2.9.0 (stable)
-  - [Local PV hostpath](https://docs.openebs.io/docs/next/uglocalpv-hostpath.html) 2.9.0 (stable)
-  - [Local PV device](https://docs.openebs.io/docs/next/uglocalpv-device.html) 2.9.0 (stable)
-  - [cStor](https://docs.openebs.io/docs/next/cstor.html) 2.9.0 (beta)
+  - [Jiva](/docs/user-guides/jivaguide) 2.9.0 (stable)
+  - [Local PV hostpath](/docs/user-guides/localpv-hostpath) 2.9.0 (stable)
+  - [Local PV device](/docs/user-guides/localpv-device) 2.9.0 (stable)
+  - [cStor](/docs/user-guides/cstor-csi) 2.9.0 (beta)
   - [Dynamic NFS Volume](https://github.com/openebs/dynamic-nfs-provisioner) 0.3.0 (alpha)
 - Other components
   - [NDM](https://github.com/openebs/node-disk-manager) 1.4.1 (beta)
@@ -126,8 +126,8 @@ OpenEBS is a collection of data engines and operators to create different types 
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.9.0)
-- [Install Steps](/docs/next/quickstart.html)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Install Steps](/docs/user-guides/quickstart)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 2.8.0 - Apr 16 2021
 
@@ -139,9 +139,9 @@ The latest release versions of each of the engine are as follows:
 
 - [Mayastor](https://mayastor.gitbook.io/introduction/) 0.8.0
 - [cStor](https://github.com/openebs/cstor-operators) 2.8.0
-- [Jiva](https://docs.openebs.io/docs/next/jivaguide.html) 2.8.0
-- [Local PV hostpath](https://docs.openebs.io/docs/next/uglocalpv-hostpath.html) 2.8.0
-- [Local PV device](https://docs.openebs.io/docs/next/uglocalpv-device.html) 2.8.0
+- [Jiva](/docs/user-guides/jivaguide) 2.8.0
+- [Local PV hostpath](/docs/user-guides/localpv-hostpath) 2.8.0
+- [Local PV device](/docs/user-guides/localpv-device) 2.8.0
 - [Local PV ZFS](https://github.com/openebs/zfs-localpv) 1.6.0
 - [Local PV LVM](https://github.com/openebs/lvm-localpv) 0.4.0
 - [Local PV Rawfile](https://github.com/openebs/rawfile-localpv) 0.4.4
@@ -189,7 +189,7 @@ The latest release versions of each of the engine are as follows:
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.8.0)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 2.7.0 - Mar 16 2021
 
@@ -199,9 +199,9 @@ The latest release versions of each of the engine are as follows:
 
 - [Mayastor](https://mayastor.gitbook.io/introduction/) 0.8.1
 - [cStor](https://github.com/openebs/cstor-operators) 2.7.0
-- [Jiva](https://docs.openebs.io/docs/next/jivaguide.html) 2.7.0
-- [Local PV host path](https://docs.openebs.io/docs/next/uglocalpv-hostpath.html) 2.7.0
-- [Local PV device](https://docs.openebs.io/docs/next/uglocalpv-device.html) 2.7.0
+- [Jiva](/docs/user-guides/jivaguide) 2.7.0
+- [Local PV host path](/docs/user-guides/localpv-hostpath) 2.7.0
+- [Local PV device](/docs/user-guides/localpv-device) 2.7.0
 - [Local PV ZFS](https://github.com/openebs/zfs-localpv) 1.5.0
 - [Local PV LVM](https://github.com/openebs/lvm-localpv) 0.3.0
 - [Local PV Rawfile](https://github.com/openebs/rawfile-localpv) 0.4.4
@@ -248,7 +248,7 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.6.0)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 2.6.0 - Feb 15 2021
 
@@ -256,8 +256,8 @@ Here are some of the key highlights in this release.
 
 OpenEBS v2.6 contains some key enhancements and several fixes for the issues reported by the user community across all 9 types of OpenEBS volumes.
 
-- 3 replicated types - [Mayastor](https://mayastor.gitbook.io/introduction/), [cStor](https://github.com/openebs/cstor-operators) and [Jiva](https://docs.openebs.io/docs/next/jivaguide.html).
-- 5 types of Local PV backed by [host path](https://docs.openebs.io/docs/next/uglocalpv-hostpath.html), [device](https://docs.openebs.io/docs/next/uglocalpv-device.html), [ZFS](https://github.com/openebs/zfs-localpv), [LVM](https://github.com/openebs/lvm-localpv) and [Rawfile](https://github.com/openebs/rawfile-localpv), and
+- 3 replicated types - [Mayastor](https://mayastor.gitbook.io/introduction/), [cStor](https://github.com/openebs/cstor-operators) and [Jiva](/docs/user-guides/jivaguide).
+- 5 types of Local PV backed by [host path](/docs/user-guides/localpv-hostpath), [device](/docs/user-guides/localpv-device), [ZFS](https://github.com/openebs/zfs-localpv), [LVM](https://github.com/openebs/lvm-localpv) and [Rawfile](https://github.com/openebs/rawfile-localpv), and
 - [RWX volumes using NFS](https://github.com/openebs/dynamic-nfs-provisioner).
 
 Here are some of the key highlights in this release.
@@ -316,7 +316,7 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.6.0)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 2.5.0 - Jan 15 2021
 
@@ -375,7 +375,7 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.5.0)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 2.4.0 - Dec 15 2020
 
@@ -383,7 +383,7 @@ Here are some of the key highlights in this release.
 
 - ZFS Local PV has now been graduated to stable with all the supported features and upgrade tests automated via e2e testing. ZFS Local PV is best suited for distributed workloads that require resilient local volumes that can sustain local disk failures. You can read more about using the ZFS Local volumes at https://github.com/openebs/zfs-localpv and check out how ZFS Local PVs are used in production at [Optoro](https://github.com/openebs/openebs/blob/master/adopters/optoro/README.md).
 
-- OpenEBS is introducing a new NFS dynamic provisioner to allow the creation and deletion of NFS volumes using Kernel NFS backed by block storage. This provisioner is being actively developed and released as alpha. This new provisioner allows users to provision OpenEBS RWX volumes where each volume gets its own NFS server instance. In the previous releases, OpenEBS RWX volumes were supported via the [Kubernetes NFS Ganesha and External Provisioner](https://docs.openebs.io/docs/next/rwm.html) - where multiple RWX volumes share the same NFS Ganesha Server. You can read more about the new OpenEBS Dynamic Provisioner at https://github.com/openebs/dynamic-nfs-provisioner.
+- OpenEBS is introducing a new NFS dynamic provisioner to allow the creation and deletion of NFS volumes using Kernel NFS backed by block storage. This provisioner is being actively developed and released as alpha. This new provisioner allows users to provision OpenEBS RWX volumes where each volume gets its own NFS server instance. In the previous releases, OpenEBS RWX volumes were supported via the [Kubernetes NFS Ganesha and External Provisioner](/docs/concepts/rwm) - where multiple RWX volumes share the same NFS Ganesha Server. You can read more about the new OpenEBS Dynamic Provisioner at https://github.com/openebs/dynamic-nfs-provisioner.
 
 ### Key Improvements
 
@@ -444,7 +444,7 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.4.0)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 2.3.0 - Nov 15 2020
 
@@ -503,7 +503,7 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.5.0)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 2.4.0 - Dec 15 2020
 
@@ -511,7 +511,7 @@ Here are some of the key highlights in this release.
 
 - ZFS Local PV has now been graduated to stable with all the supported features and upgrade tests automated via e2e testing. ZFS Local PV is best suited for distributed workloads that require resilient local volumes that can sustain local disk failures. You can read more about using the ZFS Local volumes at https://github.com/openebs/zfs-localpv and check out how ZFS Local PVs are used in production at [Optoro](https://github.com/openebs/openebs/blob/master/adopters/optoro/README.md).
 
-- OpenEBS is introducing a new NFS dynamic provisioner to allow the creation and deletion of NFS volumes using Kernel NFS backed by block storage. This provisioner is being actively developed and released as alpha. This new provisioner allows users to provision OpenEBS RWX volumes where each volume gets its own NFS server instance. In the previous releases, OpenEBS RWX volumes were supported via the [Kubernetes NFS Ganesha and External Provisioner](https://docs.openebs.io/docs/next/rwm.html) - where multiple RWX volumes share the same NFS Ganesha Server. You can read more about the new OpenEBS Dynamic Provisioner at https://github.com/openebs/dynamic-nfs-provisioner.
+- OpenEBS is introducing a new NFS dynamic provisioner to allow the creation and deletion of NFS volumes using Kernel NFS backed by block storage. This provisioner is being actively developed and released as alpha. This new provisioner allows users to provision OpenEBS RWX volumes where each volume gets its own NFS server instance. In the previous releases, OpenEBS RWX volumes were supported via the [Kubernetes NFS Ganesha and External Provisioner](h/docs/concepts/rwm) - where multiple RWX volumes share the same NFS Ganesha Server. You can read more about the new OpenEBS Dynamic Provisioner at https://github.com/openebs/dynamic-nfs-provisioner.
 
 ### Key Improvements
 
@@ -572,7 +572,7 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.4.0)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 2.3.0 - Nov 15 2020
 
@@ -604,7 +604,7 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.3.0)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 2.2.0 - Oct 15 2020
 
@@ -637,7 +637,7 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.2.0)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 2.1.0 - Sept 15 2020
 
@@ -662,7 +662,7 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.1.0)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 2.0.0 - Aug 15 2020
 
@@ -687,7 +687,7 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v2.0.0)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 1.12.0 - Jul 15 2020
 
@@ -714,7 +714,7 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v1.12.0)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 1.11.0 - Jun 15 2020
 
@@ -744,7 +744,7 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v1.11.0)
-- [Upgrade Steps](/docs/next/upgrade.html)
+- [Upgrade Steps](/docs/user-guides/upgrade)
 
 ## 1.10.0 - May 15 2020
 
@@ -770,7 +770,7 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/v1.10.0)
-- [Upgrade Steps](/v1100/docs/next/upgrade.html)
+- [Upgrade Steps](https://docs.openebs.io/v1100/docs/next/upgrade.html)
 
 ## 1.9.0 - Apr 15 2020
 
@@ -802,7 +802,7 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.9.0)
-- [Upgrade Steps](/v190/docs/next/upgrade.html)
+- [Upgrade Steps](https://docs.openebs.io/v190/docs/next/upgrade.html)
 
 ## 1.8.0 - Mar 15 2020
 
@@ -827,8 +827,8 @@ Here are some of the key highlights in this release.
 **Additional details:**
 
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.8.0)
-- [Upgrade Steps](/v180/docs/next/upgrade.html)
+- [Upgrade Steps](https://docs.openebs.io/v180/docs/next/upgrade.html)
 
 ## See Also:
 
-[OpenEBS Upgrade](/docs/next/upgrade.html) [Deprecated OpenEBS 1.x Releases](/docs/next/releases-0x.html) [Deprecated OpenEBS 0.x Releases](/docs/next/releases-0x.html) [OpenEBS FAQ](/docs/next/faq.html) [Container Attached Storage or CAS](/docs/next/cas.html)
+[OpenEBS Upgrade](/docs/user-guides/upgrade) [Deprecated OpenEBS 1.x Releases](/docs/deprecated/releases-1x) [Deprecated OpenEBS 0.x Releases](/docs/deprecated/releases-0x) [OpenEBS FAQ](/docs/additional-info/faqs) [Container Attached Storage or CAS](/docs/concepts/cas)

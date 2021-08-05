@@ -31,4 +31,4 @@ Join our weekly or monthly [community meetings](https://github.com/openebs/opene
 
 ## See Also:
 
-[Commercial Support](/docs/introduction/commercial) [Troubleshooting](/docs/next/troubleshooting.html) [FAQs](/docs/next/faq.html) [Latest release notes](/docs/introduction/releases)
+[Commercial Support](/docs/introduction/commercial) [Troubleshooting](/docs/troubleshooting) [FAQs](/docs/additional-info/faqs) [Latest release notes](/docs/introduction/releases)
