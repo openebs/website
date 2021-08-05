@@ -22,7 +22,7 @@ title: OpenEBS 1.x Deprecated Releases
 
 **Additional details:**
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.7.0)
-- [Upgrade Steps](/v170/docs/next/upgrade.html)
+- [Upgrade Steps](https://docs.openebs.io/v170/docs/next/upgrade.html)
 
 ## 1.6.0 - Jan 15 2020
 
@@ -56,7 +56,7 @@ title: OpenEBS 1.x Deprecated Releases
 
 **Additional details:**
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.6.0)
-- [Upgrade Steps](/v160/docs/next/upgrade.html)
+- [Upgrade Steps](https://docs.openebs.io/v160/docs/next/upgrade.html)
 
 ## 1.5.0 - Dec 15 2019
 
@@ -77,7 +77,7 @@ title: OpenEBS 1.x Deprecated Releases
 
 **Additional details:**
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.5.0)
-- [Upgrade Steps](/v150/docs/next/upgrade.html)
+- [Upgrade Steps](https://docs.openebs.io/v150/docs/next/upgrade.html)
 
 ## 1.4.0 - Nov 15 2019
 
@@ -103,7 +103,7 @@ title: OpenEBS 1.x Deprecated Releases
 
 **Additional details:**
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.4.0)
-- [Upgrade Steps](/v140/docs/next/upgrade.html)
+- [Upgrade Steps](https://docs.openebs.io/v140/docs/next/upgrade.html)
 
 ## 1.3.0 - Oct 15 2019
 
@@ -123,7 +123,7 @@ title: OpenEBS 1.x Deprecated Releases
 
 **Additional details:**
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.3.0)
-- [Upgrade Steps](/v130/docs/next/upgrade.html)
+- [Upgrade Steps](https://docs.openebs.io/v130/docs/next/upgrade.html)
 
 ## 1.2.0 - Sep 10 2019
 
@@ -149,7 +149,7 @@ title: OpenEBS 1.x Deprecated Releases
 
 **Additional details:**
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.2.0)
-- [Upgrade Steps](/v120/docs/next/upgrade.html)
+- [Upgrade Steps](https://docs.openebs.io/v120/docs/next/upgrade.html)
 
 ## 1.1.0 - Aug 03 2019
 
@@ -171,7 +171,7 @@ title: OpenEBS 1.x Deprecated Releases
 
 **Additional details:**
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.1.0)
-- [Upgrade Steps](/v110/docs/next/upgrade.html)
+- [Upgrade Steps](https://docs.openebs.io/v110/docs/next/upgrade.html)
 
 ## 1.0.0 - Jun 22 2019
 
@@ -194,8 +194,8 @@ title: OpenEBS 1.x Deprecated Releases
 **Additional details:**
 - [Release Notes](https://github.com/openebs/openebs/releases/tag/1.0.0)
 - [Release Blog](https://openebs.io/blog/openebs-announces-the-availability-of-version-1-0/)
-- [Upgrade Steps](/v100/docs/next/upgrade.html)
+- [Upgrade Steps](https://docs.openebs.io/v100/docs/next/upgrade.html)
 
 ## See Also:
 
-[OpenEBS Upgrade](/docs/next/upgrade.html) [OpenEBS Releases](/docs/next/releases.html) [OpenEBS FAQ](/docs/next/faq.html) [Container Attached Storage or CAS](/docs/next/cas.html)
+[OpenEBS Upgrade](/docs/user-guides/upgrade) [OpenEBS Releases](/docs/introduction/releases) [OpenEBS FAQ](/docs/additional-info/faqs) [Container Attached Storage or CAS](/docs/concepts/cas)
