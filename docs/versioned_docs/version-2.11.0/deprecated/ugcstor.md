@@ -672,12 +672,12 @@ The steps are mentioned in Upgrade section. For upgrading cStorVolume, ensure th
 Before provisioning an application ensure that all the below mentioned steps are carried out:
 
  1. Ensure that the filesystem is mounted as per requirement. 
-    To know more about mount status [click here](/docs/next/faq.html#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume).
+    To know more about mount status [click here](/docs/additional-info/faqs#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume).
 
  2. **Create StoragePool** specifying the Blockdevices that are to be used.
-    To know the detailed steps for creation of StoragePool [click here.](docs/next/ugcstor.html#creating-cStor-storage-pools) 
+    To know the detailed steps for creation of StoragePool [click here.](/docs/deprecated/spc-based-cstor#creating-cStor-storage-pools) 
     The name specified under **metadata** in the **StoragePoolClaim** YAML needs to be mentioned in **StorageClass** YAML (in the next step).
-    Using this StoragePool create StorageClass by referring [here](/docs/next/ugcstor.html#creating-cStor-storage-class).
+    Using this StoragePool create StorageClass by referring [here](/docs/deprecated/spc-based-cstor#creating-cStor-storage-class).
 
  3. Once all the above actions have been successfully executed, You can deploy Busybox with cStor  volume as follows:
     Copy the below spec into a file, say **demo-busybox-cstor.yaml** and update  **storageClassName**  to **openebs-sc-statefulset**.
@@ -910,7 +910,7 @@ kubectl describe blockdevice blockdevice-1c10eb1bb14c94f02a00373f2fa09b93 -n ope
 
 From the output, you will get the hostname and other blockdevice details such as State,Path,Claim State,Capacity etc.
 
-**Note:** Identify block devices which are unclaimed, unmounted on node and does not contain any filesystem. The above command will help to find these information. More information about the disk mount status on node can be read from [here](/docs/next/faq.html#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume).
+**Note:** Identify block devices which are unclaimed, unmounted on node and does not contain any filesystem. The above command will help to find these information. More information about the disk mount status on node can be read from [here](/docs/additional-info/faqs#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume).
 
 **Step2:** 
 
@@ -949,7 +949,7 @@ In the above file, change the following parameters as required.
 
   This field  represents how the data will be written to the disks on a given pool instance on a node. Supported values are `striped`, `mirrored`, `raidz` and `raidz2`.
 
-  Note: In OpenEBS, the pool instance does not extend beyond a node. The replication happens at volume level but not at the pool level. See [volumes and pools relationship](/docs/next/cstor.html#relationship-between-cstor-volumes-and-cstor-pools) in cStor for a deeper understanding.
+  Note: In OpenEBS, the pool instance does not extend beyond a node. The replication happens at volume level but not at the pool level. See [volumes and pools relationship](/docs/concepts/cstor#relationship-between-cstor-volumes-and-cstor-pools) in cStor for a deeper understanding.
 
 - `blockDeviceList`
 
@@ -1031,7 +1031,7 @@ cstor-disk-pool-ilz1-5587ff79bf-61003          3/3     Running   0          2m31
 
 If all pods are showing are running, then you can use these cStor pools for creating cStor volumes.
 
-**Note:** The cStor pool can be horizontally scale up on new OpenEBS Node by editing  the corresponding pool configuration YAML with the new disks name under `blockDeviceList` . More details can be found [here](/docs/next/ugcstor.html#expanding-cStor-pool-to-a-new-node).  If you find any issues, check common issues added in [troubleshooting](/docs/next/troubleshooting.html) section.
+**Note:** The cStor pool can be horizontally scale up on new OpenEBS Node by editing  the corresponding pool configuration YAML with the new disks name under `blockDeviceList` . More details can be found [here](/docs/deprecated/spc-based-cstor#expanding-cStor-pool-to-a-new-node).  If you find any issues, check common issues added in [troubleshooting](/docs/troubleshooting) section.
 
 > The resiliency of the cStor storage pool can be verified via `litmus` using <a href="https://docs.litmuschaos.io/docs/next/cStor-pool-chaos/"> cStor-pool-chaos </a> experiment.
 
@@ -1684,7 +1684,7 @@ spec:
 
 ### Upgrade the Software Version of a cStor pool {#Upgrade-the-software-version-of-a-cStor-pool}
 
-The steps for upgrading cStor Pool is mentioned in Upgrade section. Refer [Upgrade](/docs/next/upgrade.html) section for more details.
+The steps for upgrading cStor Pool is mentioned in Upgrade section. Refer [Upgrade](/docs/user-guides/upgrade) section for more details.
 
 ### Monitor a cStor Pool {#monitor-pool}
 
@@ -1782,7 +1782,7 @@ cStorPools can be horizontally scaled when needed typically when a new Kubernete
 The steps for expanding the pool to new nodes is given below. 
 
 #### With specifying blockDeviceList
-If you are following this approach, you should have created cStor Pool initially using the steps provided [here](/docs/next/ugcstor.html#creating-cStor-storage-pools). For expanding pool onto a new OpenEBS node, you have to edit corresponding pool configuration(SPC) YAML with the required block device names under the `blockDeviceList`.
+If you are following this approach, you should have created cStor Pool initially using the steps provided [here](/docs/deprecated/spc-based-cstor#creating-cStor-storage-pools). For expanding pool onto a new OpenEBS node, you have to edit corresponding pool configuration(SPC) YAML with the required block device names under the `blockDeviceList`.
 
 **Step 1:** Edit the existing pool configuration spec that you originally used and apply it (OR) directly edit the in-use spec file using `kubectl edit spc <SPC Name>`.
 
@@ -2493,6 +2493,6 @@ This section provide the steps for scaling down the replica of a cStor volume.
 
 ## See Also:
 
-[Understand cStorPools ](/docs/next/cstor.html#cstor-pools) [cStorPool use case for Prometheus](/docs/next/prometheus.html) [cStor roadmap](/docs/next/cstor.html#cstor-roadmap)
+[Understand cStorPools ](/docs/concepts/cstor#cstor-pools) [cStorPool use case for Prometheus](/docs/stateful-applications/prometheus) [cStor roadmap](/docs/concepts/cstor#cstor-roadmap)
 
 
