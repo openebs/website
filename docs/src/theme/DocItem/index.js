@@ -42,7 +42,9 @@ function DocItem(props) {
     lastUpdatedAt,
     formattedLastUpdatedAt,
     lastUpdatedBy,
+    permalink,
   } = metadata;
+  const currentPageUrl = `${url}${permalink}`;
   const { pluginId } = useActivePlugin({
     failfast: true,
   });
@@ -64,6 +66,7 @@ function DocItem(props) {
           keywords,
           image,
           siteUrl: url,
+          pageUrl: currentPageUrl
         }}
       />
 
