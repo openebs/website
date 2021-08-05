@@ -3,7 +3,7 @@ id: community
 title: OpenEBS Community
 keywords:
   - Community
-  - OpenEBS Community
+  - OpenEBS community
 description: You can reach out to OpenEBS contributors and maintainers through Slack, GitHub, and mailing lists.
 ---
 

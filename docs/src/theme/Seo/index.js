@@ -6,7 +6,8 @@
  */
 import React from 'react';
 import Head from '@docusaurus/Head';
-import {useThemeConfig, useTitleFormatter} from '@docusaurus/theme-common';
+import {useThemeConfig, useTitleFormatter } from '@docusaurus/theme-common';
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 const websiteSchema = ({ title, description, url, image, site }) => {
@@ -43,6 +44,7 @@ const websiteSchema = ({ title, description, url, image, site }) => {
 
 export default function Seo({title, description, keywords, image , siteUrl, pageUrl}) {
   const {image: defaultImage} = useThemeConfig();
+  const { siteConfig } = useDocusaurusContext();
   const pageTitle = useTitleFormatter(title);
   const pageImage = useBaseUrl(image || defaultImage, {
     absolute: true,
@@ -63,13 +65,13 @@ export default function Seo({title, description, keywords, image , siteUrl, page
 
   return (
     <Head>
-      {title && <title>{pageTitle}</title>}
+      <title>{pageTitle || siteConfig.title}</title>
       {description && <meta name="description" content={description} />}
       {pageImage && <meta property="image" content={pageImage} />}
       {pageUrl && <link rel="canonical" href={pageUrl} />}
       {/* Open Graph */}
       <meta property="og:type" content="website" />
-      {title && <meta property="og:title" content={pageTitle} />}
+      <meta property="og:title" content={pageTitle || siteConfig.title} />
       {siteUrl && <meta property="og:site_name" content={siteUrl} />}
       {pageUrl && <meta property="og:url" content={pageUrl} />}
       {description && <meta property="og:description" content={description} />}
@@ -84,8 +86,8 @@ export default function Seo({title, description, keywords, image , siteUrl, page
         />
       )}
       {/* Twitter Card */}
-      {pageImage && <meta name="twitter:card" content="summary_large_image" />}
-      {title && <meta name="twitter:title" content={title} />}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title || siteConfig.title} />
       {description && <meta name="twitter:description" content={description} /> }
       {pageImage && <meta name="twitter:image" content={pageImage} />}
       <meta name="twitter:creator" content="@openebs" />
