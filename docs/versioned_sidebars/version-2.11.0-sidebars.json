@@ -340,5 +340,30 @@
         }
       ]
     }
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Deprecated",
+      "customProps": {
+        "icon": "File"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.11.0/deprecated/releases-1x",
+          "label": "releases-1x"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/deprecated/releases-0x",
+          "label": "releases-0x"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/deprecated/ugcstor",
+          "label": "SPC based cStor guide"
+        }
+      ]
+    }
   ]
 }
