@@ -67,7 +67,11 @@
   }
 
   .docPage {
-    grid-template-columns: var(--doc-sidebar-width) 1fr;
+    grid-template-columns: var(--doc-sidebar-width) minmax(0, 1fr);
+  }
+
+  .colMainContent {
+    width: auto;
   }
 
   .colMainContent {

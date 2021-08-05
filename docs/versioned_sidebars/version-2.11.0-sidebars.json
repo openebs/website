@@ -48,12 +48,142 @@
     {
       "collapsed": true,
       "type": "category",
+      "label": "Concepts",
+      "customProps": {
+        "icon": "Server"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/basics",
+          "label": "Basics"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/cas",
+          "label": "Container Attached Storage"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/architecture",
+          "label": "Architecture"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/casengines",
+          "label": "Data Engines"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/ndm",
+          "label": "NDM"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/cstor",
+          "label": "cStor"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/jiva",
+          "label": "Jiva"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/mayastor",
+          "label": "Mayastor"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/localpv",
+          "label": "LocalPV"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/concepts/rwm",
+          "label": "Read-write-Many (RWX)"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "User Guides",
+      "customProps": {
+        "icon": "Users"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/quickstart",
+          "label": "Quickstart"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/prerequisites",
+          "label": "Prerequisites"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/installation",
+          "label": "Installation"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/ndm",
+          "label": "NDM"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/cstor-csi",
+          "label": "cStor"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/jivaguide",
+          "label": "Jiva"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/mayastor",
+          "label": "Mayastor"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/localpv-hostpath",
+          "label": "Local PV Hostpath"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/localpv-device",
+          "label": "Local PV Device"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/mayactl",
+          "label": "mayactl"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/upgrade",
+          "label": "Upgrade"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/user-guides/uninstall",
+          "label": "Uninstall"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
       "label": "Stateful applications",
       "customProps": {
         "icon": "Layers"
       },
       "items": [
-        {
+        {        
           "type": "doc",
           "id": "version-2.11.0/stateful-applications/mysql",
           "label": "RDS like MySQL"
@@ -117,6 +247,96 @@
           "type": "doc",
           "id": "version-2.11.0/stateful-applications/jira",
           "label": "Jira"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Troubleshooting",
+      "customProps": {
+        "icon": "Crosshair"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/troubleshooting",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/install",
+          "label": "Install"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/uninstall",
+          "label": "Uninstall"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/ndm",
+          "label": "NDM"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/volume-provisioning",
+          "label": "Volume Provisioning"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/jiva",
+          "label": "Jiva"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/cstor",
+          "label": "cStor"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/localpv",
+          "label": "LocalPV"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/troubleshooting/mayastor",
+          "label": "Mayastor"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Additional info",
+      "customProps": {
+        "icon": "File"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.11.0/additional-info/alphafeatures",
+          "label": "Alpha Features"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/additional-info/performance-testing",
+          "label": "Performance testing"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/additional-info/faqs",
+          "label": "FAQs"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/additional-info/k8supgrades",
+          "label": "Kubernetes upgrades"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/additional-info/kb",
+          "label": "Knowledge Base"
         }
       ]
     }

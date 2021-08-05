@@ -203,9 +203,6 @@ export default function CodeBlock({
             className={clsx(
               styles.codeBlockContent,
               language,
-              !hideButton
-                ? styles.userSelectionAllowed
-                : styles.userSelectionDisabled
             )}
           >
             <div
