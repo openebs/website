@@ -4,16 +4,19 @@ title: Managed database service like RDS
 ---
 
 ![OpenEBS and MySQL](../assets/o-mysql.png)
+
 ## Introduction
 
 MYSQL is most ubiquitous and commonly used database. RDS is a service that make deploying and making MYSQL easy. With OpenEBS CAS architecture each user is assigned an independent stack of storage that serves just one instance of MySQL database, making it easy to handle the provisioning and post deployment operations like capacity increase and upgrades. 
 
 Use OpenEBS and MySQL containers to quickly launch an RDS like service, where database launch is instantaneous, availability is provided across zones and increase in requested capacity can happen on the fly. 
+
 ## Deployment model 
 
 [![OpenEBS and Percona](../assets/mysql-deployment.svg)](../assets/mysql-deployment.svg)
 
 As shown above, OpenEBS volumes need to be configured with three replicas for high availability. This configuration work fine when the nodes (hence the cStor pool) is deployed across Kubernetes zones.
+
 ## Configuration workflow
 
 1. **Install OpenEBS**
@@ -35,6 +38,7 @@ helm install --name my-release --set persistence.storageClass=openebs-cstor-disk
 ```
 
 For more information about installation, see MySQL [documentation](https://github.com/helm/charts/tree/master/stable/mysql).
+
 ## Post deployment Operations
 
 **Monitor OpenEBS Volume size** 
@@ -48,6 +52,7 @@ As in most cases, cStor pool may not be dedicated to just MySQL alone. It is rec
 **Maintain volume replica quorum during node upgrades**
 
 cStor volume replicas need to be in quorum when MySQL application is deployed as `deployment` and cStor volume is configured to have `3 replicas`. Node reboots may be common during Kubernetes upgrade. Maintain volume replica quorum in such instances. See [here](/docs/additional_info/k8supgrades) for more details.
+
 ## Configuration Details
 
 **openebs-config.yaml**
@@ -100,6 +105,7 @@ provisioner: openebs.io/provisioner-iscsi
 reclaimPolicy: Delete
 ---
 ```
+
 ## See Also:
 
 [OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [cStor pools overview](/docs/user_guides/cstor#cstor-pools)

@@ -4,6 +4,7 @@ title: OpenEBS for Elasticsearch
 ---
 
 ![OpenEBS and Elasticsearch](../assets/o-elastic.png)
+
 ## Introduction
 
 EFK is the most popular cloud native logging solution on Kubernetes for On-Premise as well as cloud platforms. In the EFK stack, Elasticsearch is a stateful application that needs persistent storage. Logs of production applications need to be stored for a long time which requires reliable and highly available storage. OpenEBS and EFK together provides a complete logging solution.
@@ -14,6 +15,7 @@ Advantages of using OpenEBS LocalPV for Elasticsearch database:
 
 - All the logs data is stored locally and managed natively to Kubernetes
 - Low latency and better performance
+
 ## Deployment model
 
 [![OpenEBS and Elasticsearch](../assets/Local-PV-Devices-elastic-deployment.svg)](../assets/Local-PV-Devices-elastic-deployment.svg)
@@ -26,6 +28,7 @@ The Elasticsearch deployment has the following components, which will use the Op
 3. data pods: 2 
 
 *Note: Elasticsearch can be deployed both as `deployment` or as `statefulset`. When Elasticsearch deployed as `statefulset`, you don't need to replicate the data again at OpenEBS level. When Elasticsearch is deployed as `deployment`, consider 3 OpenEBS replicas, choose the StorageClass accordingly.*
+
 ## Configuration workflow
 
 1. [Install OpenEBS](#install-openebs)
@@ -35,9 +38,11 @@ The Elasticsearch deployment has the following components, which will use the Op
 5. [Installing and Accessing Elasticsearch](h#installing-and-accessing-elasticsearch)
 6. [Installing Kibana](#installing-kibana)
 7. [Installing Fluentd-ES](#installing-fluentd-es)
+
 ### Install OpenEBS
 
 If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user_guides/installation). If OpenEBS is already installed, go to the next step. 
+
 ### Select OpenEBS storage engine
 
 A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and you should choose the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/docs/overview#types-of-openebs-storage-engines).
@@ -49,6 +54,7 @@ After OpenEBS installation, choose the OpenEBS storage engine as per your requir
 - Choose **OpenEBS Local PV**, If you are looking for direct attached storage or low latency data write or if the application manages data replication.
 
 In this document, we are deploying Elasticsearch using OpenEBS Local PV. 
+
 ### Configure OpenEBS Local PV StorageClass
 
 Depending on the type of storage attached to your Kubernetes worker nodes, you can select from different flavors of Dynamic Local PV - Hostpath, Device, LVM, ZFS or Rawfile. For more information you can read [here](/docs/concepts/localpv).
@@ -56,11 +62,13 @@ Depending on the type of storage attached to your Kubernetes worker nodes, you c
 The Storage Class `openebs-device` has been chosen to deploy Elasticsearch in the Kubernetes cluster.
 
 **Note:** Ensure that you have two disks with the required capacity added to the corresponding nodes prior to Elasticsearch installation. In this example, we have added two 100G disks to each node.
+
 ### Installing KUDO Operator
 
 In this section, we will install the KUDO operator. We will later deploy the latest available version of Elasticsearch using KUDO. 
 
 Use the latest stable version of KUDO CLI. The latest version of KUDO can be checked from [here](https://github.com/kudobuilder/kudo/releases).
+
 #### Verify if Cert-manager is installed
 
 For installing KUDO operator, the Cert-manager must be already installed in your cluster. If not, install the Cert-manager. The instruction can be found from [here](https://cert-manager.io/docs/installation/kubernetes/#installing-with-regular-manifests). Since our K8s version is v1.18.12, we have installed Cert-manager using the following command.
@@ -73,13 +81,14 @@ kubectl apply -f https://github.com/jetstack/cert-manager/releases/download/v1.2
 kubectl get pods --namespace cert-manager
 ```
 
-```bash
+```bash hideCopy
 #sample output
 NAME                                      READY   STATUS    RESTARTS   AGE
 cert-manager-7747db9d88-7qjnm             1/1     Running   0          81m
 cert-manager-cainjector-87c85c6ff-whnzr   1/1     Running   0          81m
 cert-manager-webhook-64dc9fff44-qww8s     1/1     Running   0          81m
 ```
+
 #### Installing KUDO operator into cluster
 
 Once prerequisites are installed you need to initialize the KUDO operator. The following command will install KUDO v0.18.2.
@@ -88,7 +97,7 @@ Once prerequisites are installed you need to initialize the KUDO operator. The f
 kubectl-kudo init --version 0.18.2
 ```
 
-```bash
+```bash hideCopy
 #sample output
 $KUDO_HOME has been configured at /home/k8s/.kudo
 ✅ installed crds
@@ -104,11 +113,12 @@ Verify pods in the `kudo-system` namespace:
 kubectl get pod -n kudo-system
 ```
 
-```bash
+```bash hideCopy
 #sample output
 NAME                        READY   STATUS    RESTARTS   AGE
 kudo-controller-manager-0   1/1     Running   0          25s
 ```
+
 #### Setting OpenEBS Storage Class as default
 
 Change the default storage class from your current setting to OpenEBS LocalPV Device. For example, in this tutorial default storage class is used as `openebs-device` from standard.
@@ -117,6 +127,7 @@ Change the default storage class from your current setting to OpenEBS LocalPV De
 kubectl patch storageclass standard -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
 kubectl patch storageclass openebs-device -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 ```
+
 #### Verify default Storage Class
  
 List the storage classes and verify `openebs-device` is set to `default`.
@@ -136,6 +147,7 @@ premium-rwo                 pd.csi.storage.gke.io                               
 standard                    kubernetes.io/gce-pd                                       Delete          Immediate              true                   5h13m
 standard-rwo                pd.csi.storage.gke.io                                      Delete          WaitForFirstConsumer   true                   5h13
 ```
+
 ### Installing and Accessing Elasticsearch
 
 Set instance and namespace variables:
@@ -146,19 +158,20 @@ export namespace_name=default
 kubectl-kudo install elastic --namespace=$namespace_name --instance $instance_name
 ```
 
-```bash
+```bash hideCopy
 #sample output
 operator default/elastic created
 operatorversion default/elastic-7.0.0-0.2.1 created
 instance default/elastic created
 ```
+
 #### Verifying Elastic pods
 
 ```bash
 kubectl get pods -n $namespace_name
 ```
 
-```bash
+```bash hideCopy
 #sample output
 NAME                    READY   STATUS    RESTARTS   AGE
 elastic-coordinator-0   1/1     Running   0          31s
@@ -168,13 +181,14 @@ elastic-master-0        1/1     Running   0          2m31s
 elastic-master-1        1/1     Running   0          119s
 elastic-master-2        1/1     Running   0          90s
 ```
+
 #### Verifying Services
 
 ```bash
 kubectl get svc -n $namespace_name
 ```
 
-```bash
+```bash hideCopy
 #sample output
 NAME                     TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
 elastic-coordinator-hs   ClusterIP   None         <none>        9200/TCP   62s
@@ -183,6 +197,7 @@ elastic-ingest-hs        ClusterIP   None         <none>        9200/TCP   50s
 elastic-master-hs        ClusterIP   None         <none>        9200/TCP   3m2s
 kubernetes               ClusterIP   10.48.0.1    <none>        443/TCP    5h18m
 ```
+
 #### Verifying Elastic instance status
 
 ```bash
@@ -190,7 +205,7 @@ kubectl kudo plan status --namespace=$namespace_name \
  --instance $instance_name
 ```
 
-```bash
+```bash hideCopy
 #sample output
 Plan(s) for "elastic" in namespace "default":
 .
@@ -205,6 +220,7 @@ Plan(s) for "elastic" in namespace "default":
         └── Phase deploy-ingest (parallel strategy) [COMPLETE]
             └── Step deploy-ingest [COMPLETE]
 ```
+
 #### Accessing Elasticsearch
 
 Enter into one of the master pod using exec command:
@@ -231,7 +247,7 @@ curl -X POST "elastic-coordinator-hs:9200/twitter/_doc/" -H 'Content-Type: appli
 
 Following is the output of the above command:
 
-```bash
+```bash hideCopy
 #sample output
 {"_index":"twitter","_type":"_doc","_id":"LoliyXcBg9iVzVnOj5QL","_version":1,"result":"created","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":0,"_primary_term":1}
 [root@elastic-master-0 elasticsearch]#
@@ -243,7 +259,7 @@ The above command added data into Elasticsearch. You can use the following comma
 curl -X GET "elastic-coordinator-hs:9200/twitter/_search?q=user:openebs&pretty"
 ```
 
-```bash
+```bash hideCopy
 #sample output
 {
   "took" : 141,
@@ -283,7 +299,7 @@ Now, let's get the details of Elasticsearch cluster. The cluster information wil
 curl localhost:9200
 ```
 
-```bash
+```bash hideCopy
 #sample output
 {
   "name" : "elastic-master-0",
@@ -303,6 +319,7 @@ curl localhost:9200
   "tagline" : "You Know, for Search"
 }
 ```
+
 ### Installing Kibana
 
 First, add helm repository of Elastic.
@@ -335,7 +352,8 @@ Verifying Kibana Pods and Services:
 ```bash
 kubectl get pod
 ```
-```bash
+
+```bash hideCopy
 #sample output
 NAME                             READY   STATUS    RESTARTS   AGE
 elastic-coordinator-0            1/1     Running   0          12m
@@ -351,7 +369,7 @@ kibana-kibana-74cbc4d654-h8djr   1/1     Running   0          6m33s
 kubectl get svc
 ```
 
-```bash
+```bash hideCopy
 #sample output
 NAME                     TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
 elastic-coordinator-hs   ClusterIP   None           <none>        9200/TCP         18m
@@ -361,6 +379,7 @@ elastic-master-hs        ClusterIP   None           <none>        9200/TCP      
 kibana-kibana            NodePort    10.48.12.146   <none>        5601:30295/TCP   7m1s
 kubernetes               ClusterIP   10.48.0.1      <none>        443/TCP          5h36m
 ```
+
 ### Installing Fluentd-ES
 
 Fetch the `values.yaml`:
@@ -413,7 +432,7 @@ Verify Fluentd Daemonset, Pods and Services:
 kubectl get ds
 ```
 
-```bash
+```bash hideCopy
 #sample output
 NAME      DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
 fluentd   3         3         3       3            3           <none>          74m
@@ -423,7 +442,7 @@ fluentd   3         3         3       3            3           <none>          7
 kubectl get pod
 ```
 
-```bash
+```bash hideCopy
 #sample output
 NAME                                 READY   STATUS    RESTARTS   AGE
 pod/elastic-coordinator-0            1/1     Running   0          67m
@@ -443,7 +462,7 @@ pod/kibana-kibana-74cbc4d654-h8djr   1/1     Running   0          9m46s
 kubectl get svc
 ```
 
-```bash
+```bash hideCopy
 #sample output
 elastic-coordinator-hs   ClusterIP   None           <none>        9200/TCP             67m
 elastic-data-hs          ClusterIP   None           <none>        9200/TCP             66m
@@ -472,6 +491,7 @@ Now let's do some tests:
 If you want to get the logs of NDM pods, type the following text inside the `Filters` field.
 `kubernetes.labels.openebs_io/component-name.keyword : "ndm"` and then choose the required date and time period. After that, click Apply.
 You will see the OpenEBS NDM pod logs listed on the page.
+
 ## See Also:
 
 [OpenEBS use cases](/docs/introduction/usecases) [Understanding NDM](/docs/user_guides/ugndm) [Local PV concepts](/docs/concepts/localpv) [Local PV User guide](/docs/user_guides/uglocalpv-device)

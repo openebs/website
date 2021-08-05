@@ -4,6 +4,7 @@ title: OpenEBS for NuoDB
 ---
 
 ![OpenEBS and Nuodb](../assets/o-nuodb.png)
+
 ## Introduction
 
 NuoDB’s distributed SQL database combines the elastic scale and continuous availability of the cloud with the transactional consistency and durability that databases of record demand. NuoDB is deployed usually as a `StatefulSet` on Kubernetes and requires persistent storage for each instance of NuoDB StorageManager instance. OpenEBS provides persistent volumes on the fly when StorageManagers are scaled up.
@@ -16,9 +17,11 @@ NuoDB’s distributed SQL database combines the elastic scale and continuous ava
 - If required, take backup of the NuoDB data periodically and back them up to S3 or any object storage so that restoration of the same data is possible to the same or any other Kubernetes cluster
 
 *Note: NuoDB can be deployed both as `deployment` or as `statefulset`. When NuoDB deployed as `statefulset`, you don't need to replicate the data again at OpenEBS level. When NuoDB is deployed as `deployment`, consider 3 OpenEBS replicas, choose the StorageClass accordingly*.
+
 ## Deployment model
 
 [![OpenEBS and NuoDB](../assets/nuodb-deployment.svg)](../assets/nuodb-deployment.svg)
+
 ## Configuration workflow
 
 1. **Install OpenEBS**
@@ -54,6 +57,7 @@ NuoDB’s distributed SQL database combines the elastic scale and continuous ava
    kubectl apply -f nuodb-sm.yaml -n testns
    kubectl apply -f nuodb-te.yaml -n testns
    ```
+
 ## Reference at [openebs.ci](https://openebs.ci/)
 
 Deployment YAML spec files for NuoDB and OpenEBS resources are found [here](https://github.com/openebs/litmus/blob/master/apps/nuodb/deployers/nuodb.yaml)
@@ -61,6 +65,7 @@ Deployment YAML spec files for NuoDB and OpenEBS resources are found [here](http
 [OpenEBS-CI dashboard of NuoDB](https://openebs.ci/nuodb-cstor)
 
 [Live access to NuoDB dashboard](https://insights.nuodb.com/3N5YV375G0/)
+
 ## Post deployment Operations
 
 **Monitor OpenEBS Volume size** 
@@ -70,6 +75,7 @@ It is not seamless to increase the cStor volume size (refer to the roadmap item)
 **Monitor cStor Pool size**
 
 As in most cases, cStor pool may not be dedicated to just NuoDB database alone. It is recommended to watch the pool capacity and add more disks to the pool before it hits 80% threshold. See [cStorPool metrics](/docs/deprecated/ugcstor#monitor-pool) 
+
 ## Configuration details
 
 **openebs-config.yaml**
@@ -548,6 +554,7 @@ spec:
         - name: logdir
           emptyDir: {}
 ```
+
 ## See Also:
 
 [OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [cStor pools overview](/docs/user_guides/cstor#cstor-pools)

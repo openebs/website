@@ -4,9 +4,11 @@ title: Using OpenEBS as storage for Jira on Kubernetes
 ---
 
 ![OpenEBS and Jira](../assets/o-jira.png)
+
 ## Introduction
 
 Jira is a product designed to provide issue tracking and assist in moving tasks through the software development lifecycle. For this example we are leveraging a container image created by Kelsey Hightower. We will be creating a deployment and a service in this example.
+
 ## Requirements
 
 1. **Install OpenEBS**
@@ -42,6 +44,7 @@ Following is an example output.
 NAME                    READY   STATUS    RESTARTS   AGE
 jira-5bd96c488d-2gj8p   1/1     Running   0          2d14h
 ```
+
 ## Configuration Details
 
 **openebs-config.yaml**

@@ -4,6 +4,7 @@ title: OpenEBS for MongoDB
 ---
 
 ![OpenEBS and MongoDB](../assets/o-mongo.svg)
+
 ## Introduction
 
 MongoDB is a cross-platform document-oriented database. Classified as a NoSQL database, MongoDB eschews the traditional table-based relational database structure in favor of JSON-like documents with dynamic schemas, making the integration of data in certain types of applications easier and faster. MongoDB is deployed usually as a `Statefulset` on Kubernetes and requires persistent storage for each instance of MongoDB Storage Manager instance. OpenEBS provides persistent volumes on the fly when Storage Managers are scaled up.
@@ -17,9 +18,11 @@ MongoDB is a cross-platform document-oriented database. Classified as a NoSQL da
 - If required, take backup of the MongoDB data periodically and back them up to S3 or any object storage so that restoration of the same data is possible to the same or any other Kubernetes cluster
 
 *Note: MongoDB can be deployed both as `Deployment` or as `StatefulSet`. When MongoDB deployed as `StatefulSet`, you don't need to replicate the data again at OpenEBS level. When MongoDB is deployed as `Deployment`, consider 3 OpenEBS replicas, choose the StorageClass accordingly.*
+
 ## Deployment model
 
 [![OpenEBS and MongoDB](../assets/mongo-deployment.svg)](../assets/mongo-deployment.svg)
+
 ## Configuration workflow
 
 1. **Install OpenEBS**
@@ -43,6 +46,7 @@ MongoDB is a cross-platform document-oriented database. Classified as a NoSQL da
    ```
 
    For more information on installation, see MongoDB [documentation](https://github.com/helm/charts/tree/master/stable/mongodb).
+
 ## Reference at [openebs.ci](https://openebs.ci/)
 
 A live deployment of MongoDB using OpenEBS volumes can be seen at the website [www.openebs.ci](https://openebs.ci/)
@@ -50,6 +54,7 @@ A live deployment of MongoDB using OpenEBS volumes can be seen at the website [w
 Deployment YAML spec files for MongoDB and OpenEBS resources are found [here](https://github.com/openebs/e2e-infrastructure/blob/54fe55c5da8b46503e207fe0bc08f9624b31e24c/production/mongo-cstor/mongo-cstor-mongo.yaml)
 
 [OpenEBS-CI dashboard of MongoDB](https://openebs.ci/mongo-cstor)
+
 ## Post deployment Operations
 
 **Monitor OpenEBS Volume size** 
@@ -59,6 +64,7 @@ It is not seamless to increase the cStor volume size (refer to the roadmap item)
 **Monitor cStor Pool size**
 
 As in most cases, cStor pool may not be dedicated to just Mongo database alone. It is recommended to watch the pool capacity and add more disks to the pool before it hits 80% threshold. See [cStorPool metrics](/docs/deprecated/ugcstor#monitor-pool).
+
 ## Configuration details
 
 **openebs-config.yaml**
@@ -107,6 +113,7 @@ provisioner: openebs.io/provisioner-iscsi
 reclaimPolicy: Delete
 ---
 ```
+
 ## See Also:
 
 [OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [cStor pools overview](/docs/concepts/cstor#cstor-pools)

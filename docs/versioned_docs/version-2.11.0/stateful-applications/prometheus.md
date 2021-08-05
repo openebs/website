@@ -4,16 +4,19 @@ title: Using OpenEBS as TSDB for Prometheus
 ---
 
 ![OpenEBS and Prometheus](../assets/o-prometheus.png)
+
 ## Introduction
 
 Each and every DevOps and SRE's are looking for ease of deployment of their applications in Kubernetes. After successful installation, they will be looking for how easily it can be monitored to maintain the availability of applications in a real-time manner. They can take proactive measures before an issue arise by monitoring the application. Prometheus is the mostly widely used application for scraping cloud native application metrics. Prometheus and OpenEBS together provide a complete open source stack for monitoring.
 
 In this document, we will explain how you can easily set up a monitoring environment in your K8s cluster using Prometheus and use OpenEBS Local PV as the persistent storage for storing the metrics. This guide provides the installation of Prometheus using Helm on dynamically provisioned OpenEBS volumes. 
+
 ## Deployment model
 
 [![OpenEBS and Prometheus localpv device](../assets/localpv-device-prometheus-deployment.svg)](../assets/localpv-device-prometheus-deployment.svg)
 
 We will add 100G of two disks to each node. Disks will be consumed by Prometheus and Alert manager instances using OpenEBS local PV device storage engine. The recommended configuration is to have at least three nodes and two unclaimed external disks to be attached per node. 
+
 ## Configuration workflow
 
 1. [Install OpenEBS](#install-openebs)
@@ -25,9 +28,11 @@ We will add 100G of two disks to each node. Disks will be consumed by Prometheus
 4. [Installing Prometheus Operator](#installing-prometheus-operator)
 
 5. [Accessing Prometheus and Grafana](#accessing-prometheus-and-grafana)
+
 ### Install OpenEBS
 
 If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user_guides/installation). If OpenEBS is already installed, go to the next step.
+
 ### Select OpenEBS storage engine
 
 A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and chooses the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/docs/overview#types-of-openebs-storage-engines).
@@ -38,6 +43,7 @@ After OpenEBS installation, choose the OpenEBS storage engine as per your requir
 - Choose **OpenEBS Local PV**, if you only want to use Prometheus for generating alerts, you will need low latency storage rather than replicated storage.
 
 In this document, we are deploying Prometheus Operator using OpenEBS Local PV device. 
+
 ### Configure OpenEBS Local PV StorageClass
 
 There are 2 ways to use OpenEBS Local PV.
@@ -49,6 +55,7 @@ There are 2 ways to use OpenEBS Local PV.
 The Storage Class `openebs-device` has been chosen to deploy Prometheus Operator in the Kubernetes cluster.
 
 **Note:** Ensure that you have two disks with the required capacity is added to the corresponding nodes prior to Prometheus installation. In this example, we have added two 100G disks to each node.
+
 ### Installing Prometheus Operator
 
 In this section, we will install the Prometheus operator. We will later deploy the latest available version of Prometheus application. The following are the high-level overview.
@@ -58,6 +65,7 @@ In this section, we will install the Prometheus operator. We will later deploy t
 - Configure Prometheus Helm `values.yaml`
 - Create namespace for installing application
 - Install Prometheus operator
+
 #### Label the nodes
 
 Label the nodes with custom label so that Prometheus application will be deployed only on the matched Nodes. Label each node with `node=prometheus`. We have used this label in the Node Affinity for Prometheus and Alert Manager instances. This will ensure to schedule the Prometheus and Alert Manager pods to deploy only on the labelled nodes.
@@ -69,12 +77,14 @@ kubectl label nodes ip-192-168-30-203.ap-south-1.compute.internal node=prometheu
 kubectl label nodes ip-192-168-55-47.ap-south-1.compute.internal node=prometheus
 kubectl label nodes ip-192-168-68-28.ap-south-1.compute.internal node=prometheus
 ```
+
 #### Fetch and update Prometheus Helm repository
 
 ```
 $ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 $ helm repo update
 ```
+
 #### Configure Prometheus Helm `values.yaml`
 
 Download `values.yaml` which we will modify before installing Prometheus using Helm.
@@ -154,11 +164,13 @@ Perform the following changes:
             requests:
               storage: 90Gi
   ```
+
 #### Create namespace for installing Prometheus operator
 
 ```
 $ kubectl create ns monitoring
 ```
+
 #### Install Prometheus operator
 
 The following command will install both Prometheus and Grafana components.
@@ -248,6 +260,7 @@ prometheus-kube-state-metrics         ClusterIP   10.100.21.186    <none>       
 prometheus-operated                   ClusterIP   None             <none>        9090/TCP                     69m
 prometheus-prometheus-node-exporter   ClusterIP   10.100.69.43     <none>        9100/TCP                     69m
 ```
+
 ### Accessing Prometheus and Grafana
 
 Get the node details using the following command:
@@ -305,6 +318,7 @@ Users can upload a Grafana dashboard for Prometheus in 3 ways.
   https://raw.githubusercontent.com/FUSAKLA/Prometheus2-grafana-dashboard/master/dashboard/prometheus2-dashboard.json
 
 - The other way to monitor Prometheus Operator is by using the inbuilt Prometheus dashboard. This can be obtained by searching on the Grafana dashboard and finding the Prometheus dashboard under the General category.
+
 ## See Also:
 
 [OpenEBS use cases](/docs/introduction/usecases) [Understanding NDM](/docs/user_guides/ugndm) [Local PV concepts](/docs/concepts/localpv) [Local PV User guide](/docs/user_guides/uglocalpv-device)

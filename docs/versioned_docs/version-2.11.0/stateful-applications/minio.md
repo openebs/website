@@ -4,6 +4,7 @@ title: OpenEBS for MinIO
 ---
 
 ![OpenEBS and MinIO](../assets/o-minio.png)
+
 ## Introduction
 
 [MinIO](https://github.com/minio/minio) is a high performance distributed object storage server, designed for large-scale private cloud infrastructure. MinIO is designed in a cloud-native manner to scale sustainably in multi-tenant environments. Orchestration platforms like Kubernetes provide a perfect cloud-native environment to deploy and scale MinIO. 
@@ -15,11 +16,13 @@ Depending on the performance and high availability requirements of MinIO, you ca
 - If you would like to use storage layer capabilities like high availability, snapshots, incremental backups and restore and so forth, you can select OpenEBS cStor.
 
 This document provides the instructions to setup MinIO operator using OpenEBS Local PV.
+
 ## Deployment model
 
 [![OpenEBS and MinIO Distributed localpv device](../assets/Local-PV-Distributed-device-minio.svg)](../assets/Local-PV-Distributed-device-minio.svg)
 
 In this tutorial, Local PV volume will be provisioned on the node where the application has scheduled and one of the unclaimed and active blockdevice available on the same node will be used to provision the MinIO Object storage. This blockdevice cannot be used by another application. If there are limited blockdevices attached to some of the nodes, then users can use `nodeSelector` in the application YAML to provision application on a particular node where the available blockdevice is present. 
+
 ## Configuration workflow
 
 1. [Install OpenEBS](#install-openebs)
@@ -29,14 +32,17 @@ In this tutorial, Local PV volume will be provisioned on the node where the appl
 5. [Install the MinIO operator deployment](#install-the-minio-operator-deployment)
 6. [Install the MinIO cluster](#install-the-minio-cluster)
 7. [Access MinIO console](#access-minio-console)
+
 ### Install OpenEBS {#install-openebs}
 
 If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/overview). If OpenEBS is already installed, go to the next step.
+
 ### Select OpenEBS storage engine
 
 A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and chooses the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/docs/overview#openebs-storage-engines).
 
 In this document, it is mentioned about the installation of MinIO operator using OpenEBS Local PV device. 
+
 ### Configure OpenEBS Local PV StorageClass
 
 There are 2 ways to use OpenEBS Local PV.
@@ -48,6 +54,7 @@ There are 2 ways to use OpenEBS Local PV.
 MinIO can provide the replication of data by itself in distributed mode. This method installs MinIO application, which is a StatefulSet kind. It requires a minimum of four (4) nodes to setup MinIO in distributed mode. A distributed MinIO setup with 'n' number of disks/storage has your data safe as long as n/2 or more disks/storage are online. Users should maintain a minimum (n/2 + 1) disks/storage to create new objects. So based on the requirement, the user can choose the appropriate OpenEBS storage engine to run MinIO in distributed mode. For more information on MinIO installation, see MinIO [documentation](https://docs.min.io/docs/deploy-minio-on-kubernetes.html).
 
 The Storage Class `openebs-device` has been chosen to deploy MinIO in the Kubernetes cluster.
+
 ### Install the MinIO plugin
 
 The MinIO operator offers MinIO Tenant (MinIO cluster) creation, management of cluster, upgrade, zone addition, and more. Install the MinIO operator plugin using the following command. 
@@ -57,6 +64,7 @@ $ kubectl krew install minio
 ```
 
 **Note:** Install `kubectl minio` plugin using krew. Installation of krew can be done from [here](https://krew.sigs.k8s.io/docs/user-guide/setup/install/).
+
 ### Install the MinIO operator deployment
 
 Let’s get started by initializing the MinIO operator deployment. This is a one time process.
@@ -79,6 +87,7 @@ $ kubectl get pod
 NAME                              READY   STATUS    RESTARTS   AGE
 minio-operator-59b8965ff5-tzx8n   1/1     Running   0          18s
 ```
+
 ### Install the MinIO cluster
 
 A tenant is a MinIO cluster created and managed by the operator. Before creating a tenant, please ensure you have requisite nodes and drives in place.
@@ -205,9 +214,11 @@ minio             NodePort    10.100.59.34    <none>        80:32095/TCP        
 tenant1-console   NodePort    10.100.50.135   <none>        9090:30383/TCP,9443:30194/TCP   2m38s
 tenant1-hl        ClusterIP   None            <none>        9000/TCP                        3m10s
 ```
+
 ### Access MinIO console
 
 There are 2 different console for User and Admin.
+
 #### Access MinIO Admin console
 
 An Admin can access MinIO and do the configuration changes such as creating an account, group, bucket, and its configuration, the setting of user-level permission, file-level permission, etc.
@@ -270,6 +281,7 @@ Secret key
 $ echo 'MGQyY2NlZjktOWM0NC00N2JjLWFkMTYtM2RlNGExMjcwMzY1' | base64 -d
 0d2ccef9-9c44-47bc-ad16-3de4a1270365
 ```
+
 #### Access MinIO User console
 
 The MinIO StatefulSet application is created using NodePort as the service type. To access MinIO over a web browser, use `<Node_External_Ip>:<NodePort_of_minio_service>` this way. 
@@ -327,6 +339,7 @@ Secret key
 $ echo 'M2ZiNGFlZGQtYTU1Yy00YjM4LWJkNTQtODEyNmViOTg5ZmZk' | base64 -d
 3fb4aedd-a55c-4b38-bd54-8126eb989ffd
 ```
+
 ## See Also:
 
 [OpenEBS use cases](/docs/introduction/usecases) [Understanding NDM](/docs/user_guides/ugndm) [Local PV concepts](/docs/concepts/localpv) [Local PV User guide](/docs/user_guides/uglocalpv-device)

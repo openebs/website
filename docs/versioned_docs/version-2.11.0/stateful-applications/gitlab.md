@@ -4,6 +4,7 @@ title: OpenEBS for GitLab
 ---
 
 ![OpenEBS and GitLab](../assets/o-gitlab.png)
+
 ## Introduction
 
 GitLab is a good solution for building On-Premise cloud native CI/CD platforms, it is a single application for the entire software development lifecycle. The helm charts for GitLab are made so simple that the entire infrastructure including the underlying databases and storage needed for GitLab are dynamically provisioned. This solution discusses the use cases of using OpenEBS from a single pool of storage for all the databases required to run GitLab.
@@ -15,9 +16,11 @@ GitLab is a good solution for building On-Premise cloud native CI/CD platforms, 
 - OpenEBS volumes are highly available. Node loss, reboots and Kubernetes upgrades will not affect the availability of persistent storage to the stateful applications
 
 - Storage is scalable on demand. You can start with a small storage for all the databases required by GitLab and scale it on demand
+
 ## Deployment model
 
 [![GitLab deployment using OpenEBS](../assets/gitlab-deployment.svg)](../assets/gitlab-deployment.svg)
+
 ## Configuration workflow
 
 1. **Install OpenEBS**
@@ -54,6 +57,7 @@ GitLab is a good solution for building On-Premise cloud native CI/CD platforms, 
    For more information on installation, see GitLab [documentation](https://docs.gitlab.com/ee/install/kubernetes/gitlab_chart.html#deployment-of-gitlab-to-kubernetes).
 
 **Note:** You may be required to add "fsGroup:1000" under "spec.template.spec.securityContext" in corresponding gitlab-prometheus-server deployment spec for writing metrics to it.
+
 ## Post deployment Operations
 
 **Monitor OpenEBS Volume size** 
@@ -67,6 +71,7 @@ As in most cases, cStor pool may not be dedicated to just GitLab's databases alo
 **Maintain volume replica quorum during node upgrades**
 
  cStor volume replicas need to be in quorum when applications are deployed as `deployment` and cStor volume is configured to have `3 replicas`. Node reboots may be common during Kubernetes upgrade. Maintain volume replica quorum in such instances. See [here](/docs/additional_info/k8supgrades) for more details.
+
 ## Configuration details
 
 **openebs-config.yaml**
@@ -117,6 +122,7 @@ provisioner: openebs.io/provisioner-iscsi
 reclaimPolicy: Delete
 ---
 ```
+
 ## See Also:
 
 [OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [cStor pools overview](/docs/concepts/cstor#cstor-pools)
