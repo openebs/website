@@ -682,7 +682,7 @@ Before provisioning an application ensure that all the below mentioned steps are
  3. Once all the above actions have been successfully executed, You can deploy Busybox with cStor  volume as follows:
     Copy the below spec into a file, say **demo-busybox-cstor.yaml** and update  **storageClassName**  to **openebs-sc-statefulset**.
 
-```shell hideCopy
+```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -916,7 +916,7 @@ From the output, you will get the hostname and other blockdevice details such as
 
 Create a StoragePoolClaim configuration YAML file called `cstor-pool1-config.yaml` with the following content. In the following YAML, `PoolResourceRequests` value is set to `2Gi` and `PoolResourceLimits` value is set to `4Gi`. The resources will be shared for all the volume replicas that reside on a pool. The value of these resources can be 2Gi to 4Gi per pool on a given node for better performance. These values can be changed as per the Node configuration for better performance. Refer [setting pool policies](#setting-pool-policies) for more details on the pool policies applicable for cStor.
 
-```shell hideCopy
+```
 #Use the following YAMLs to create a cStor Storage Pool.
 apiVersion: openebs.io/v1alpha1
 kind: StoragePoolClaim
@@ -1043,7 +1043,7 @@ This section captures the policies supported for cStorPools in `StoragePoolClaim
 
 This feature allow you to set the limits on memory and cpu for pool pods. The resource and limit value should be in the same format as expected by Kubernetes. The `name` of SPC can be changed if you need.
 
-```shell hideCopy
+```
 apiVersion: openebs.io/v1alpha1
 kind: StoragePoolClaim
 metadata:
@@ -1564,7 +1564,7 @@ labels:
 
 You can specify the Target Affinity in both application and OpenEBS PVC using the following way. For Application Pod, it will be similar to the following.
 
-```shell hideCopy
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -1576,7 +1576,7 @@ metadata:
 
 The following is the sample snippet of the PVC to use Target affinity.
 
-```shell hideCopy
+```
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -1595,7 +1595,7 @@ This policy, allows the Cluster administrator to specify if the Volume Target po
 
 To use this policy, the Cluster administrator could either use the existing OpenEBS service account or create a new service account with limited access and provide it in the StorageClass as follows:
 
-```shell hideCopy
+```
 annotations:
     cas.openebs.io/config: |
       - name: PVCServiceAccountName
