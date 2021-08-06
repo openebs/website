@@ -1,6 +1,12 @@
 ---
 id: mysql
 title: Managed database service like RDS
+keywords:
+  - MYSQL
+  - Relational Database
+  - Cloud Native
+  - OpenEBS community
+description: In this article we will see how to scale up data containing capacity using OpenEBS & MYSQL.
 ---
 
 ![OpenEBS and MySQL](../assets/o-mysql.png)

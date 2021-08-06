@@ -1,6 +1,12 @@
 ---
 id: mongodb
 title: OpenEBS for MongoDB
+keywords:
+  - MongoDB
+  - Document Database
+  - Cloud Native
+  - OpenEBS community
+description: In this article we will see how to scale up Storage Managers using OpenEBS & MongoDB.
 ---
 
 ![OpenEBS and MongoDB](../assets/o-mongo.svg)

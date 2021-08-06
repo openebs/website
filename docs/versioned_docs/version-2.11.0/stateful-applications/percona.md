@@ -1,6 +1,11 @@
 ---
 id: percona
 title: OpenEBS for Percona
+keywords:
+  - Percona
+  - XtraDB Cluster (PXC)
+  - OpenEBS community
+description: In this article we will see how to configure & use OpenEBS with Percona.
 ---
 
 ![OpenEBS and Percona](../assets/o-percona.png)

@@ -1,6 +1,13 @@
 ---
 id: postgres
-title: OpenEBS for PostgreSQL 
+title: OpenEBS for PostgreSQL
+keywords:
+  - PostgreSQL
+  - Open source
+  - StackGres
+  - Kubernetes
+  - OpenEBS community
+description: In this article we will see how to configure & use OpenEBS with PostgreSQL.
 ---
 
 ![OpenEBS and PostgreSQL](../assets/o-postgres.png)

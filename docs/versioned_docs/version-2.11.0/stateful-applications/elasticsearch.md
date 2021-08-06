@@ -1,6 +1,15 @@
 ---
 id: elasticsearch
 title: OpenEBS for Elasticsearch
+keywords:
+  - Elasticsearch
+  - Persistent storage
+  - OpenEBS LocalPV
+  - KUDO
+  - FluentD
+  - Kibana
+  - OpenEBS community
+description: Basic installation for Elasticsearch operators on OpenEBS Local PV devices using KUDO.
 ---
 
 ![OpenEBS and Elasticsearch](../assets/o-elastic.png)
