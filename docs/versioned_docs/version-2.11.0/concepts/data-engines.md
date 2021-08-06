@@ -123,7 +123,7 @@ The below table identifies few differences among the different OpenEBS Local eng
 | Works on OS mounted storage                  |  Yes      |   Yes     | No         | No       | No       |
 
 
-### Replicated Engines {#cstor-vs-jiva-vs-localpv-features-comparison}
+### Replicated Engines
 
 Replicated Volumes as the name suggests, are those that can synchronously replicate the data to multiple nodes. These engines provide protection against node failures, by allowing the volume to be accessible from one of the other nodes where the data was replicated to. The replication can also be setup across availability zones helping applications move across availability zones.  Replicated Volumes are also capable of enterprise storage features like snapshots, clone, volume expansion and so forth. 
 
@@ -160,7 +160,7 @@ Below table identifies few differences among the different OpenEBS Replicated en
 | Near disk performance                        |  No     |   No     | Yes        |
 
 
-## When to choose which OpenEBS engine?
+## When to choose which OpenEBS engine? {#cstor-vs-jiva-vs-localpv-features-comparison}
 
 As indicated in the above table, each storage engine has its own advantage. Choosing an engine depends completely on your platform (resources and type of storage), the application workload as well as its current and future growth in capacity and/or performance. Below guidelines provide some help in choosing a particular engine.
 
