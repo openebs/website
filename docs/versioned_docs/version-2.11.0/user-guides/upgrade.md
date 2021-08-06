@@ -16,7 +16,7 @@ Upgrade to the latest OpenEBS 2.11.0 version is supported only from 1.0.0 and la
 :::
 
 :::note
-    If you are upgrading Jiva volumes that are running in version 1.6 and 1.7, you must use these [pre-upgrade steps](https://github.com/openebs/charts/tree/gh-pages/scripts/jiva-tools) to check if your jiva volumes are impacted by [#2956](https://github.com/openebs/openebs/issues/2956). If they are, please reach out to [OpenEBS Community](/introduction/support) for helping you with the upgrade.
+    If you are upgrading Jiva volumes that are running in version 1.6 and 1.7, you must use these [pre-upgrade steps](https://github.com/openebs/charts/tree/gh-pages/scripts/jiva-tools) to check if your jiva volumes are impacted by [#2956](https://github.com/openebs/openebs/issues/2956). If they are, please reach out to [OpenEBS Community](/introduction/community) for helping you with the upgrade.
 :::
 
 
@@ -33,4 +33,4 @@ To upgrade to the latest version from your current version, you have to follow t
 
 ## See Also:
 
-[See Release Notes](/introduction/releases) [Join our Community](/introduction/support) [Checkout Troubleshooting guides](/troubleshooting/troubleshooting)
+[See Release Notes](/introduction/releases) [Join our Community](/introduction/community) [Checkout Troubleshooting guides](/troubleshooting)

@@ -257,4 +257,4 @@ m-apiserver status:  running
 
 ## See Also:
 
-[FAQ](/additional-info/faq) [Troubleshooting Guide](/troubleshooting/troubleshooting)
+[FAQ](/additional-info/faqs) [Troubleshooting Guide](/troubleshooting)

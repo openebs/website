@@ -3,7 +3,7 @@ id: quickstart
 title: OpenEBS Quickstart Guide
 ---
 
-This guide will help you to setup OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with [Kubernetes Storage Concepts](/concepts/k8s-storage).
+This guide will help you to setup OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with [Kubernetes Storage Concepts](/concepts/basics).
 
 
 In most cases, the following steps is all you need to install OpenEBS. You can read through the rest of the document to understand the choices you have and optimize OpenEBS for your Kubernetes cluster. 
@@ -44,6 +44,7 @@ For installing OpenEBS, you Kubernetes cluster should meet the following:
 - Based on whether you are using a upstream Kubernetes cluster or using a managed Kubernetes cluster like AKS, Rancher, OpenShift, GKE, there may be additional steps required. 
 
 Please read through the relevant section of the [pre-requisites](/user-guides/prerequisites) for your Kubernetes platform, Operating System of the worker nodes.
+
 - [Ubuntu](/user-guides/prerequisites#ubuntu)
 - [RHEL](/user-guides/prerequisites#rhel)
 - [CentOS](/user-guides/prerequisites#centos)
@@ -65,12 +66,12 @@ OpenEBS is Kubernetes native, which makes it possible to install OpenEBS into yo
 You can install OpenEBS only using Kubernetes admin context as you will require cluster level permissions to create Storage Classes. 
 
 OpenEBS offers different modes of [installation](/user-guides/installation). The most popular ones are using:
-- [OpenEBS Helm chart](//user-guides/installation#installation-through-helm)
-- [OpenEBS YAML(s) via `kubectl`](//user-guides/installation#installation-through-kubectl)
+- [OpenEBS Helm chart](/user-guides/installation#installation-through-helm)
+- [OpenEBS YAML(s) via `kubectl`](/user-guides/installation#installation-through-kubectl)
 
 OpenEBS will install a couple of default storage classes that you an use for Local Volumes (`openebs-hostpath`) and Replicated Volumes (`openebs-hostpath`). The data of the volumes created by these default storage classes will be saved under `/var/openebs`. 
 
-As a Platform SRE / Cluster Administrator, you can customize several things about OpenEBS installer to suite your specific environment and create the setup the required Storage Classes. You can jump to the relevant sections based on your choice of [data engines](concepts/casengines#data-engine-capabilities):
+As a Platform SRE / Cluster Administrator, you can customize several things about OpenEBS installer to suite your specific environment and create the setup the required Storage Classes. You can jump to the relevant sections based on your choice of [data engines](/docs/concepts/casengines#data-engine-capabilities):
 
 - [Local PV hostpath](/user-guides/localpv-hostpath)
 - [Local PV device](/user-guides/localpv-device)
@@ -93,12 +94,12 @@ As an application developer all you have to do is substitute the `StorageClass` 
 [PostgreSQL](/stateful-applications/postgres)
 [Percona](/stateful-applications/percona)
 [Redis](/stateful-applications/redis)
-[MongoDB](/stateful-applications/mongo)
+[MongoDB](/stateful-applications/mongodb)
 [Cassandra](/stateful-applications/cassandra)
 [Prometheus](/stateful-applications/prometheus)
 [Elastic](/stateful-applications/elasticsearch)
 [Minio](/stateful-applications/minio)
-[Wordpress using NFS](/stateful-applications/rwm)
+[Wordpress using NFS](/concepts/rwm)
 
 ### 4. Dynamic Persistent Volume Provisioning
 
@@ -106,7 +107,7 @@ The Kubernetes CSI (provisioning layer) will intercept the requests for the Pers
 
 OpenEBS control plane will then process the request and create the Persistent Volumes using the specified local or replicated engines. The data engine services like target and replica are deployed as Kubernetes applications as well. The containers provide storage for the containers. The new containers launched for serving the applications will be available in the `openebs` namespace. 
 
-With the magic of OpenEBS and Kubernetes, the volumes should be provisioned, pods scheduled and application ready to serve. For this magic to happen, the prerequisites should be met. Check out our [troubleshooting section](/troubleshooting/troubleshooting) for some of the common errors that users run into due to setup issues. 
+With the magic of OpenEBS and Kubernetes, the volumes should be provisioned, pods scheduled and application ready to serve. For this magic to happen, the prerequisites should be met. Check out our [troubleshooting section](/troubleshooting/) for some of the common errors that users run into due to setup issues. 
 
 
 ### 5. Managing the Life cycle of OpenEBS components
@@ -115,5 +116,3 @@ Once the workloads are up and running, the platform or the operations team can o
 * Application teams can watch out for the capacity and performance and tune the PVCs accordingly. 
 * Platform or Cluster teams can check for the utilization and performance of the storage per node and decide on expansion and spreading out of the data engines 
 * Infrastructure team will be responsible for planning the expansion or optimizations based on the utilization of the resources.
-
-
