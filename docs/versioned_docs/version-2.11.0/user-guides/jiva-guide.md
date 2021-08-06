@@ -1,5 +1,5 @@
 ---
-id: jivaguide
+id: jiva-guide
 title: Jiva User Guide
 ---
 
@@ -146,8 +146,8 @@ Here we illustrate the usage of default Jiva storage class. In the following exa
 
   1. Ensure that the filesystem is mounted as per requirement. 
     To know more about mount status [click here](/additional-info/faqs#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume).
-  2. First, You need to ***Create a Jiva Pool*** specifying the filesystem path on each node. To know about the detailed steps [click here](/user-guides/jivaguide#create-a-pool).
-  3. Using this storage pool, create a storage class by referring [here](/user-guides/jivaguide#create-a-sc).
+  2. First, You need to ***Create a Jiva Pool*** specifying the filesystem path on each node. To know about the detailed steps [click here](/user-guides/jiva-guide#create-a-pool).
+  3. Using this storage pool, create a storage class by referring [here](/user-guides/jiva-guide#create-a-sc).
   4. Once all the above actions have been successfully executed, You can deploy Busybox with Jiva volume as follows
     Copy the below spec into a file, say ***demo-busybox-jiva.yaml*** and update  ***storageClassName*** to ***openebs-jiva-gpd-3repl***.
 

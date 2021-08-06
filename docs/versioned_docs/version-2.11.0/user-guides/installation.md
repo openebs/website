@@ -134,7 +134,7 @@ For testing your OpenEBS installation, you can use the below default storage cla
 
 You can follow through the below user guides for each of the engines to use storage devices available on the nodes instead of the `/var/openebs` directory to save the data.  
 - [cStor](/user-guides/cstor-csi)
-- [Jiva](/user-guides/jivaguide)
+- [Jiva](/user-guides/jiva-guide)
 - [Local PV](/user-guides/localpv-hostpath)
 
 ## Troubleshooting
