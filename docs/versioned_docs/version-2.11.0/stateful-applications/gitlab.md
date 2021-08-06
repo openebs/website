@@ -6,7 +6,7 @@ keywords:
   - Cloud native CI/CD platforms
   - Helm charts
   - OpenEBS community
-description: This article  discusses the use cases of using OpenEBS from a single pool of storage for all the databases required to run GitLab
+description: This article discusses the use cases of using OpenEBS from a single pool of storage for all the databases required to run GitLab
 ---
 
 ![OpenEBS and GitLab](../assets/o-gitlab.png)
