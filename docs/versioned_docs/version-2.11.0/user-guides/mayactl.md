@@ -1,9 +1,18 @@
 ---
 id: mayactl
 title: mayactl
+keywords:
+ - mayactl
+ - Commands used with mayactl
+ - Accessing mayactl
+ - Using mayactl
+ - mayactl for OpenEBS Storage Volume
+ - mayactl for OpenEBS Storage Pools
+ - mayactl Version
+description: The mayactl is the command line tool for interacting with OpenEBS volumes and Pools. The mayactl is not used or required while provisioning or managing the OpenEBS volumes, but it is currently used while debugging and troubleshooting.
 ---
 
-The `mayactl` is the command line tool for interacting with OpenEBS volumes and Pools. The  `mayactl` is not used or required while provisioning or managing the OpenEBS volumes, but it is currently used while debugging and troubleshooting.  OpenEBS volume and pool status can be get using the `mayactl` command.
+The `mayactl` is the command line tool for interacting with OpenEBS volumes and Pools. The `mayactl` is not used or required while provisioning or managing the OpenEBS volumes, but it is currently used while debugging and troubleshooting. OpenEBS volume and pool status can be get using the `mayactl` command.
 
 ### Summary
 

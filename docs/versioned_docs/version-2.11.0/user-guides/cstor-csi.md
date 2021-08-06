@@ -1,6 +1,18 @@
 ---
 id: cstor-csi
 title: cStor User Guide
+keywords: 
+  - cStor csi
+  - cStor User Guide
+  - Creating cStor storage pools
+  - Creating cStor storage classes
+  - Deploying a sample application
+  - Scaling cStor pools
+  - Cloning a cStor Snapshot
+  - Cleaning up a cStor setup
+  - Expanding a cStor volume
+  - Tuning cStor Volumes
+description: This user guide will help you to configure cStor storage and use cStor Volumes for running your stateful workloads.
 ---
  
 This user guide will help you to configure cStor storage and use cStor Volumes for running your stateful workloads.

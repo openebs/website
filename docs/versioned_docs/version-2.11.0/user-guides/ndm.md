@@ -1,6 +1,12 @@
 ---
 id: ndm
 title: Node Disk Manager User Guide
+keywords:
+ - ndm
+ - Node Disk Manager
+ - Admin Operations
+ - Create blockdevice CRs for unsupported disks
+description: This section provides the operations need to performed by the Admin for configuring NDM.
 ---
 
 [![OpenEBS configuration flow](../assets/2-config-sequence.svg)](../assets/2-config-sequence.svg)
