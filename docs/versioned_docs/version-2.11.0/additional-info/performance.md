@@ -7,7 +7,7 @@ title: Performance testing of OpenEBS
 
 **Setup cStorPool and StorageClass**
 
-Choose the appropriate disks (SSDs or SAS or Cloud disks) and [create pool](/user-guides/cstor#creating-cStor-storage-pools)  and [create StorageClass](/user-guides/cstor#creating-cStor-storage-class).  There are some performance tunings available and this configuration can be added in the corresponding StorageClass before provisioning the volume. The tunings are available in the [StorageClass](/user-guides/cstor#setting-performance-tunings) section. 
+Choose the appropriate disks (SSDs or SAS or Cloud disks) and [create pool](/deprecated/spc-based-cstor#creating-cStor-storage-pools)  and [create StorageClass](/deprecated/spc-based-cstor#creating-cStor-storage-class).  There are some performance tunings available and this configuration can be added in the corresponding StorageClass before provisioning the volume. The tunings are available in the [StorageClass](/deprecated/spc-based-cstor#setting-performance-tunings) section. 
 
 For performance testing, performance numbers vary based on the following factors.
 
