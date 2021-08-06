@@ -8,7 +8,7 @@ slug: /
 
 ![OpenEBS Architecture](../assets/openebs-architecture.svg)
 
-OpenEBS helps Developers and Platform SREs easily deploy Kubernetes Stateful Workloads that require fast and highly reliable [Container Attached Storage](/docs/next/cas.html).
+OpenEBS helps Developers and Platform SREs easily deploy Kubernetes Stateful Workloads that require fast and highly reliable [Container Attached Storage](/docs/concepts/cas).
 
 OpenEBS turns any storage available on the Kubernetes worker nodes into local or distributed Kubernetes Persistent Volumes.
 
@@ -63,8 +63,8 @@ Depending on the type of storage attached to your Kubernetes worker nodes, you c
 
 Installing OpenEBS in your cluster is as simple as running a few `kubectl` or `helm` commands. Here are the list of our Quickstart guides with detailed instructions for each storage engine.
 
-- [Local PV hostpath](/docs/next/uglocalpv-hostpath.html)
-- [Local PV device](/docs/next/uglocalpv-device.html)
+- [Local PV hostpath](/docs/user-guides/localpv-hostpath)
+- [Local PV device](/docs/user-guides/localpv-device)
 - [ZFS Local PV](https://github.com/openebs/zfs-localpv)
 - [LVM Local PV](https://github.com/openebs/lvm-localpv)
 - [Rawfile Local PV](https://github.com/openebs/rawfile-localpv)
@@ -81,7 +81,7 @@ Depending on the type of storage attached to your Kubernetes worker nodes and ap
 
 Installing OpenEBS in your cluster is as simple as running a few `kubectl` or `helm` commands. Here are the list of our Quickstart guides with detailed instructions for each storage engine.
 
-- [Mayastor](/docs/next/ugmayastor.html)
+- [Mayastor](/docs/user-guides/mayastor)
 - [cStor](https://github.com/openebs/cstor-operators/blob/master/docs/quick.md)
 - [Jiva](https://github.com/openebs/jiva-operator)
 
@@ -91,4 +91,4 @@ OpenEBS has a vibrant community that can help you get started. If you have furth
 
 ## See Also:
 
-[Quickstart](/docs/next/quickstart.html) [Use cases and Examples](/docs/introduction/usecases) [Container Attached Storage (CAS)](/docs/next/cas.html) [OpenEBS Architecture](/docs/next/architecture.html) [OpenEBS Local PV](/docs/next/localpv.html) [OpenEBS Mayastor](/docs/next/mayastor.html)
+[Quickstart](/docs/user-guides/quickstart) [Use cases and Examples](/docs/introduction/usecases) [Container Attached Storage (CAS)](/docs/concepts/cas) [OpenEBS Architecture](/docs/concepts/architecture) [OpenEBS Local PV](/docs/concepts/localpv) [OpenEBS Mayastor](/docs/concepts/mayastor)
