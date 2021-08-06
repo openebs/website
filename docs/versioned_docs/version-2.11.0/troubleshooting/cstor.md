@@ -268,7 +268,7 @@ In such cases where pool import happens without cache file and if any of the dev
 **Troubleshooting**
 This might be encountered because of one of the following situations:
 
-1. The device that has gone bad is actually a part of the cStor pool on the node. In such cases, Block device replacement needs to be done, the detailed steps to it can be found [here](/user-guides/cstor-csi#tuning-cstor-pools).
+1. The device that has gone bad is actually a part of the cStor pool on the node. In such cases, Block device replacement needs to be done, the detailed steps to it can be found [here](/deprecated/spc-based-cstor#setting-performance-tunings).
 
 **Note**: Block device replacement is not supported for stripe raid configuration. Please visit this link for some use cases and solutions.
 
