@@ -26,5 +26,9 @@
   "sidebar.docs.category.Additional info": {
     "message": "Additional info",
     "description": "The label for category Additional info in sidebar docs"
+  },
+  "sidebar.docs.category.Deprecated": {
+    "message": "Deprecated",
+    "description": "The label for category Deprecated in sidebar docs"
   }
 }
