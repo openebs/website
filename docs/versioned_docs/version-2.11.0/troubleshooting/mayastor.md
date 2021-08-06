@@ -1,6 +1,10 @@
 ---
 id: mayastor
 title: Troubleshooting Mayastor
+keywords:
+  - Mayastor
+  - Mayastor troubleshooting
+description: This page contains information regarding Mayastor related troubleshooting.
 ---
 
 ## Troubleshooting

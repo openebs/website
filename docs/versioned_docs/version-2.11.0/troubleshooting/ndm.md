@@ -1,6 +1,13 @@
 ---
 id: ndm
 title: Troubleshooting OpenEBS - NDM
+keywords:
+  - NDM
+  - NDM troubleshooting
+  - OpenEBS NDM
+  - OpenEBS NDM troubleshooting
+  - Node Disk Manager
+description: This page contains a list of Node Disk Manager (NDM) related troubleshooting information.
 ---
 
 ## General guidelines for troubleshooting

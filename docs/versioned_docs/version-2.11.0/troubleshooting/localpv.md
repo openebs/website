@@ -1,6 +1,12 @@
 ---
 id: localpv
 title: Troubleshooting OpenEBS - Dynamic LocalPV
+keywords:
+  - LocalPV
+  - Dynamic LocalPV
+  - LocalPV troubleshooting
+  - Dynamic LocalPV troubleshooting
+description: This page contains a list of Dynamic LocalPV / LocalPV related troubleshooting information.
 ---
 
 ### General guidelines for troubleshooting

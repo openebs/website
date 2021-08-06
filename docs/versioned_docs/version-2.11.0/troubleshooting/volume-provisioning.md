@@ -1,6 +1,10 @@
 ---
 id: volume-provisioning
 title: Troubleshooting OpenEBS - Provisioning
+keywords:
+  - Volume Provisioning
+  - Volume Provisioning troubleshooting
+description: This page contains a list of volume provisioning related troubleshooting information.
 ---
 
 ## General guidelines for troubleshooting

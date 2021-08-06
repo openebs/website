@@ -2,6 +2,10 @@
 id: troubleshooting
 title: Troubleshooting OpenEBS - Overview
 slug: /troubleshooting
+keywords:
+  - OpenEBS
+  - OpenEBS troubleshooting
+description: This page contains a list of OpenEBS related troubleshooting which contains information like troubleshooting installation, troubleshooting uninstallation, troubleshooting NDM, troubleshooting Jiva, troubleshooting cStor, troubleshooting Mayastor and troubleshooting LocalPV.
 ---
 
 ### General guidelines for troubleshooting

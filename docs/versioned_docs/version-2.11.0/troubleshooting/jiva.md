@@ -1,6 +1,10 @@
 ---
 id: jiva
 title: Troubleshooting OpenEBS - Jiva
+keywords:
+  - Jiva
+  - Jiva troubleshooting
+description: This page contains a list of Jiva related troubleshooting information.
 ---
 
 ## General guidelines for troubleshooting
