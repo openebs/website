@@ -1,6 +1,11 @@
 ---
 id: prometheus
 title: Using OpenEBS as TSDB for Prometheus
+keywords:
+  - Prometheus
+  - Kubernetes
+  - OpenEBS community
+description: Prometheus and OpenEBS together provide a complete open source stack for monitoring.
 ---
 
 ![OpenEBS and Prometheus](../assets/o-prometheus.png)

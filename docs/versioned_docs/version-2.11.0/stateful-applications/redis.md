@@ -1,6 +1,11 @@
 ---
 id: redis
 title: OpenEBS for Redis
+keywords:
+  - Redis
+  - Inmemory Database
+  - OpenEBS community
+description: OpenEBS provides persistent volumes on the fly when Storage Managers are scaled up.
 ---
 
 ![OpenEBS and Redis](../assets/o-redis.svg)

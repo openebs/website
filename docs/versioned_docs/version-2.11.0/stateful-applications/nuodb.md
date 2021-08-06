@@ -1,6 +1,11 @@
 ---
 id: nuodb
 title: OpenEBS for NuoDB
+keywords:
+  - Nuodb
+  - Distributed SQL database Database
+  - OpenEBS community
+description: OpenEBS provides persistent volumes on the fly when StorageManagers are scaled.
 ---
 
 ![OpenEBS and Nuodb](../assets/o-nuodb.png)

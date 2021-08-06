@@ -1,6 +1,12 @@
 ---
 id: minio
 title: OpenEBS for MinIO
+keywords:
+  - MinIO
+  - Distributed object storage server
+  - Cloud Native
+  - OpenEBS community
+description: In this article we will see MinIO provisioning with OpenEBS.
 ---
 
 ![OpenEBS and MinIO](../assets/o-minio.png)

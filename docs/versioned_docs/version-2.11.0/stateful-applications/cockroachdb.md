@@ -1,6 +1,11 @@
 ---
 id: cockroachdb
 title: OpenEBS for CockroachDB
+keywords:
+  - CockroachDB
+  - OpenEBS LocalPV
+  - OpenEBS community
+description: Basic installation for CockroachDB operators on OpenEBS Local PV devices.
 ---
 
 ![OpenEBS and CockroachDB](../assets/o-cockroachdb.png)

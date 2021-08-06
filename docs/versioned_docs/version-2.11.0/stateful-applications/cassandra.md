@@ -1,6 +1,12 @@
 ---
 id: cassandra
 title: OpenEBS for Cassandra
+keywords:
+  - Cassandra
+  - Kudo operator
+  - StatefulSets
+  - OpenEBS community
+description: Instructions to run a Kudo operator based Cassandra StatefulSets with OpenEBS storage
 ---
 
 ![OpenEBS and Cassandra](../assets/o-cassandra.png)

@@ -1,6 +1,12 @@
 ---
 id: jira
 title: Using OpenEBS as storage for Jira on Kubernetes
+keywords:
+  - Jira
+  - Issue tracking
+  - Kelsey Hightower
+  - OpenEBS community
+description: We will be creating a deployment and a service in this example with OpenEBS.
 ---
 
 ![OpenEBS and Jira](../assets/o-jira.png)
