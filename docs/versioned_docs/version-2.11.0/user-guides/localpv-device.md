@@ -6,7 +6,6 @@ keywords:
  - Local PV Prerequisites
  - OpenEBS Local PV Installation
  - Create StorageClass
- - Create StorageClass
  - Create a PersistentVolumeClaim
  - Create Pod to consume OpenEBS Local PV backed by Block Device
  - Cleanup

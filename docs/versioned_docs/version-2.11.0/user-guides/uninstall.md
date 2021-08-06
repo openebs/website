@@ -5,6 +5,7 @@ keywords:
  - Uninstalling OpenEBS
  - Uninstall OpenEBS
  - Deletion of Jiva Volumes
+description: This section is to describe about the graceful deletion/uninstall of your OpenEBS cluster. OpenEBS cluster has three different storage engine, cStor,Local PV and Jiva. The deletion for the data from the disks after this operation is different for these storage Engines.
 ---
 
 This section is to describe about the graceful deletion/uninstall of your OpenEBS cluster. OpenEBS cluster has three different storage engine, cStor,Local PV and Jiva. The deletion for the data from the disks after this operation is different for these storage Engines. 
