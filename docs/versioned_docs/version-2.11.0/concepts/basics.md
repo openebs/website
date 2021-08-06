@@ -1,6 +1,15 @@
 ---
 id: basics
 title: Kubernetes Storage Concepts
+keywords: 
+  - Kubernetes Storage Concepts
+  - Container Storage Interface
+  - Storage Classes
+  - Dynamic Provisioning
+  - Persistent Volume Claims
+  - Persistent Volumes
+  - StatefulSets
+description: This document provides you with a quick overview of the Kubernetes concepts you need to know for running Stateful Workloads.
 ---
 
 :::note

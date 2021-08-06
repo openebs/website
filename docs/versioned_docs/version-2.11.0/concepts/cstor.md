@@ -1,6 +1,12 @@
 ---
 id: cstor
 title: cStor Overview
+keywords: 
+  - cStor
+  - cStor pools
+  - cStor volumes
+  - cStor cli
+description: This document provides you with a detailed overview of cStor
 ---
 
 cStor is the recommended way to provide additional resilience to workloads via OpenEBS and is the second most widely deployed storage engine behind LocalPV. cStor was originally introduced in OpenEBS 0.7 release and has been tested well in the community and in production deployments. The primary function of cStor is to serve iSCSI block storage using the underlying disks or cloud volumes in a cloud native way. cStor is a very light weight and feature rich storage engine. It provides enterprise grade features such as synchronous data replication, snapshots, clones, thin provisioning of data, high resiliency of data, data consistency and on-demand increase of capacity or performance. 

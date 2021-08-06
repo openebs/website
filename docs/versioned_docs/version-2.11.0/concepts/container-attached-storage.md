@@ -1,6 +1,10 @@
 ---
 id: cas
-title: Container Attached Storage (CAS) 
+title: Container Attached Storage (CAS)
+keywords: 
+  - CAS
+  - Container Attached Storage
+description: Container Attached Storage(CAS) is a software that includes microservice based storage controllers that are orchestrated by Kubernetes.
 ---
 
 ## What is CAS?

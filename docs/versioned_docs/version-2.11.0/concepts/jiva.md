@@ -1,6 +1,9 @@
 ---
 id: jiva
 title: Jiva Overview
+keywords: 
+  - Jiva
+description: This document provides you with a detailed overview of Jiva
 ---
 
 ### Jiva
