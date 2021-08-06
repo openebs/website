@@ -7,7 +7,7 @@ cStor is the recommended way to provide additional resilience to workloads via O
 
 When the stateful application desires the storage to provide high availability of data, cStor is configured to have 3 replicas where data is written synchronously to all the three replicas. As shown below, the cStor target is replicating the data to Node1 (R1), Node3(R2) and Node4(R3). The data is written to the three replicas before the response is sent back to the application. It is important to note that the replicas R1, R2 and R3 are copies of the same data written by the target, data is not striped across replicas or across nodes.
 
-[![cStor components](../assets/cstor-for-deployment.png)](../assets/cstor-for-deployment.png
+[![cStor components](../assets/cstor-for-deployment.png)](../assets/cstor-for-deployment.png)
 
 When the stateful application itself is taking care of data replication, it is typically deployed as a Kubernetes *statefulset*. For a statefulset, it is typical to configure cStor with single replica.  This is a use case where the use of LocalPV may be preferred.  
 
@@ -60,7 +60,7 @@ A cStor pool spec consists of :
 - List of blockdevices on each node that constitute the pool on that given node
 - RAID type within the pool. Supported RAID types are striped, mirrored, raidz and raidz2.
 
-**Number of pools:** It is good to start with 3 pools as the number of volume replicas will be typically three or one. The pool capacity can be increased on the fly and different types of pool expansion can be found [here](/docs/next/ugcstor.html#expanding-cStor-pool-to-a-new-node).
+**Number of pools:** It is good to start with 3 pools as the number of volume replicas will be typically three or one. The pool capacity can be increased on the fly and different types of pool expansion can be found [here](/docs/deprecated/spc-based-cstor#expanding-cStor-pool-to-a-new-node).
 
 **List of nodes that host the pools:** This information and the number of pool replicas are implicitly provided by analyzing the provided blockdevice CRs in the Storage Pool Claim spec file. For example, if the Storage Pool Claim spec file has 3 blockdevice CRs, which belong to 3 different nodes, it implicitly means the number of pool replicas are 3 and the list of nodes taken from the blockdevice CR's metadata information.
 
@@ -81,7 +81,7 @@ cStor Pool is an important component in the storage management. It is fundamenta
 
 **Create a Pool :** Create a new pool with all the configuration. It is typical to start a pool with 3 pool instances on three nodes. Currently RAID types supported for a given pool instance are striped, mirrored, raidz and raidz2. A pool needs to be created before storage classes are created. So, pool creation is the first configuration step in the cStor configuration process.
 
-**Add a new pool instance** : A new pool instance may need to be added for many different reasons. The steps for expanding a cStor pool to a new node can be found [here](/docs/next/ugcstor.html#expanding-cStor-pool-to-a-new-node). Few example scenarios where the need of cStor pool expansion to new nodes are:
+**Add a new pool instance** : A new pool instance may need to be added for many different reasons. The steps for expanding a cStor pool to a new node can be found [here](/docs/deprecated/spc-based-cstor#expanding-cStor-pool-to-a-new-node). Few example scenarios where the need of cStor pool expansion to new nodes are:
 
 - New node is being added to the Kubernetes cluster and the blockdevices in new node needs to be considered for persistent volume storage.
 - An existing pool instance is full in capacity and it cannot be expanded as either local disks or network disks are not available. Hence, a new pool instance may be needed for hosting the new volume replicas.
@@ -253,7 +253,8 @@ Following are most commonly observed areas of troubleshooting
 
    **Resolution**: 
 
-   This error eventually could get rectified on the further retries, volume gets mounted and application is started. This error is usually seen when cStor target takes some time to initialize  on low speed networks as it takes time to download cStor image binaries from repositories ( or )  or because the cstor target is waiting for the replicas to connect and establish quorum. If the error persists beyond 5 minutes, logs need to be verified, contact [OpenEBS Community](/docs/next/support.html) for support.
+   This error eventually could get rectified on the further retries, volume gets mounted and application is started. This error is usually seen when cStor target takes some time to initialize  on low speed networks as it takes time to download cStor image binaries from repositories ( or )  or because the cstor target is waiting for the replicas to connect and establish quorum. If the error persists beyond 5 minutes, logs need to be verified, contact [OpenEBS Community](/docs/introduction/community) for support.
+
 4. **Kubelet seen consuming high RAM usage with cStor volumes**
 
    The cause of high memory consumption of Kubelet is seen on Fedora 29  mainly due to the following.
@@ -324,4 +325,4 @@ Each discovered blockdevice on a node is added as a blockdevice CR. This is need
 
 ## See Also:
 
-[Storage Engines in OpenEBS](/docs/next/casengines.html) [Creating cStor Pool](/docs/next/ugcstor.html#creating-cStor-storage-pools) [Provisioning cStor volumes](/docs/next/ugcstor.html#provisioning-a-cStor-volume)
+[Storage Engines in OpenEBS](/docs/concepts/casengines) [Creating cStor Pool](/docs/deprecated/spc-based-cstor#creating-cStor-storage-pools) [Provisioning cStor volumes](/docs/deprecated/spc-based-cstor#provisioning-a-cStor-volume)

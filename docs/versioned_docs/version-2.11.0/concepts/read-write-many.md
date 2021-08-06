@@ -24,11 +24,11 @@ Below are advantage of using NFS provisioner over OpenEBS cStor volumes
 
 **Select or create a cStor pool**
 
-Select or [create a cStor pool](/docs/next/ugcstor.html#creating-cStor-storage-pools) that satisfies the performance, and availability requirements
+Select or [create a cStor pool](/docs/deprecated/spc-based-cstor#creating-cStor-storage-pools) that satisfies the performance, and availability requirements
 
 **Select or create a cStor storage Class**
 
-[Create a storage class](/docs/next/ugcstor.html#creating-cStor-storage-class) to point to the above selected pool and also select number of replicas and default size of the volume. 
+[Create a storage class](/docs/deprecated/spc-based-cstor#creating-cStor-storage-class) to point to the above selected pool and also select number of replicas and default size of the volume. 
 
 
 **Create a namespace for deploying NFS server provisioner**
@@ -62,11 +62,13 @@ helm install stable/nfs-server-provisioner --namespace=nfs-wp-provisioner --name
 **Provision RWX volume using the PVC**
 
 Use the StorageClass which is created in above command and create a new PVC and use the volume in your applications.
+
 ## Setting up multiple NFS servers
 
 When multiple NFS shares are needed, use multiple NFS provisioners. Each NFS server manages one NFS server. Same or different OpenEBS StorageClass can be used for multiple NFS provisioners.
 
 ![OpenEBS and NFS provisioner](../assets/rwm-multiple.svg)
+
 ## See Also:
 
-[cStor Overview](/docs/next/cstor.html) [cStorPools](/docs/next/ugcstor.html#creating-cStor-storage-pools) [Setting up Object Storage](/docs/next/minio.html)
+[cStor Overview](/docs/user-guides/cstor-csi) [cStorPools](/docs/deprecated/spc-based-cstor#creating-cStor-storage-pools) [Setting up Object Storage](/docs/stateful-applications/minio)

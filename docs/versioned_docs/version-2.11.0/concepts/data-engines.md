@@ -96,9 +96,9 @@ OpenEBS data engines can be classified into two categories.
 
 OpenEBS Local Engines can create persistent volumes or PVs out of local disks or hostpaths or using the volume managers like LVM or ZFS on the Kubernetes worker nodes. Local Engines are well suited for cloud native applications that have the availability, scalability features built into them. Local Engines are also well suited for stateful workloads that are short lived like Machine Learning jobs or Edge cases where there is a single node Kubernetes cluster. 
 
-Depending on the type of storage attached to the Kubernetes worker nodes and your preference of local filesystem, you can select from different flavors of Dynamic [Local PV](/docs/next/localpv.html) - Hostpath, Device, LVM, ZFS or Rawfile.
-- [Local PV hostpath](/docs/next/uglocalpv-hostpath.html)
-- [Local PV device](/docs/next/uglocalpv-device.html)
+Depending on the type of storage attached to the Kubernetes worker nodes and your preference of local filesystem, you can select from different flavors of Dynamic [Local PV](/docs/concepts/localpv) - Hostpath, Device, LVM, ZFS or Rawfile.
+- [Local PV hostpath](/docs/user-guides/localpv-hostpath)
+- [Local PV device](/docs/user-guides/localpv-device)
 - [ZFS Local PV](https://github.com/openebs/zfs-localpv)
 - [LVM Local PV](https://github.com/openebs/lvm-localpv)
 - [Rawfile Local PV](https://github.com/openebs/rawfile-localpv)
@@ -127,7 +127,7 @@ The below table identifies few differences among the different OpenEBS Local eng
 
 Replicated Volumes as the name suggests, are those that can synchronously replicate the data to multiple nodes. These engines provide protection against node failures, by allowing the volume to be accessible from one of the other nodes where the data was replicated to. The replication can also be setup across availability zones helping applications move across availability zones.  Replicated Volumes are also capable of enterprise storage features like snapshots, clone, volume expansion and so forth. 
 
-Depending on the type of storage attached to your Kubernetes worker nodes and application performance requirements, you can select from [Jiva](/docs/next/jiva.html), [cStor](/docs/next/cstor.html) or [Mayastor](/docs/next/mayastor.html). 
+Depending on the type of storage attached to your Kubernetes worker nodes and application performance requirements, you can select from [Jiva](/docs/concepts/jiva), [cStor](/docs/concepts/cstor) or [Mayastor](/docs/concepts/mayastor). 
 
 - [Mayastor](https://mayastor.gitbook.io/introduction/)
 - [cStor](https://github.com/openebs/cstor-operators/blob/master/docs/quick.md)
@@ -160,7 +160,7 @@ Below table identifies few differences among the different OpenEBS Replicated en
 | Near disk performance                        |  No     |   No     | Yes        |
 
 
-## When to choose which OpenEBS engine?
+## When to choose which OpenEBS engine? {#cstor-vs-jiva-vs-localpv-features-comparison}
 
 As indicated in the above table, each storage engine has its own advantage. Choosing an engine depends completely on your platform (resources and type of storage), the application workload as well as its current and future growth in capacity and/or performance. Below guidelines provide some help in choosing a particular engine.
 
@@ -182,7 +182,7 @@ Do not use cStor when your underlying storage devices are NVMe SSDs and your app
 - Jiva is easiest to manage as disk management or pool management is not in the scope of this engine. A Jiva pool is a mounted path of a local disk or a network disk or a virtual disk or a cloud disk. 
 - Jiva is a preferred engine than cStor when
   - Your application does not require snapshots and clones features.
-  - When you do not have free disks on the node. Jiva can be used on a ` hostdir` and still achieve replication.
+  - When you do not have free disks on the node. Jiva can be used on a `hostdir` and still achieve replication.
   - When you do not need to expand storage dynamically on local disk. Adding more disks to a Jiva pool is not possible, so the size of Jiva pool is fixed if it on a physical disk. However if the underlying disk is a virtual or network or cloud disk then, it is possible to change the Jiva pool size on the fly.
 - Capacity requirements are small. 
 - When you need to provide cross-az available volumes in Cloud or On-premise. 
@@ -225,4 +225,4 @@ A short summary is provided below.
 
 ## See Also:
 
-[Mayastor User Guide](https://mayastor.gitbook.io/introduction/) [cStor User Guide](/docs/next/ugcstor-csi.html) [Jiva User Guide](/docs/next/jivaguide.html) [Local PV Hostpath User Guide](/docs/next/uglocalpv-hostpath.html) [Local PV Device User Guide](/docs/next/uglocalpv-device.html)
+[Mayastor User Guide](https://mayastor.gitbook.io/introduction/) [cStor User Guide](/docs/user-guides/cstor-csi) [Jiva User Guide](/docs/user-guides/jivaguide) [Local PV Hostpath User Guide](/docs/user-guides/localpv-hostpath) [Local PV Device User Guide](/docs/user-guides/localpv-device)
