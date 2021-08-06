@@ -28,6 +28,7 @@ function DocItem(props) {
   const breakpoints = siteConfig?.customFields?.breakpoints;
   const { content: DocContent } = props;
   const { metadata, frontMatter } = DocContent;
+  const { url } = siteConfig;
   const {
     image,
     keywords,
@@ -41,7 +42,9 @@ function DocItem(props) {
     lastUpdatedAt,
     formattedLastUpdatedAt,
     lastUpdatedBy,
+    permalink,
   } = metadata;
+  const currentPageUrl = `${url}${permalink}`;
   const { pluginId } = useActivePlugin({
     failfast: true,
   });
@@ -62,6 +65,8 @@ function DocItem(props) {
           description,
           keywords,
           image,
+          siteUrl: url,
+          pageUrl: currentPageUrl
         }}
       />
 

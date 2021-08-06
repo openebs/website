@@ -1,6 +1,9 @@
 ---
 id: releases
 title: OpenEBS Releases
+keywords:
+  - OpenEBS releases
+description: This contains list of OpenEBS releases.
 ---
 
 ---

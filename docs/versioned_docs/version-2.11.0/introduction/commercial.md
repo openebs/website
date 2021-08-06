@@ -1,6 +1,10 @@
 ---
 id: commercial
 title: OpenEBS Commercial Support
+keywords:
+  - Support
+  - OpenEBS commercial support
+description: This is a list of third-party companies and individuals who provide products or services related to OpenEBS.
 ---
 
 OpenEBS is an independent open source project which does not endorse any company.

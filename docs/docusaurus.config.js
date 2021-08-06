@@ -10,7 +10,7 @@ const prismCustomColors =  {
 module.exports = {
   title: "OpenEBS Docs",
   tagline: "OpenEBS Docs: Information regarding the latest releases",
-  url: `${WEBSITE_URL}/`,
+  url: `${WEBSITE_URL}`,
   baseUrl: "/docs/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -22,6 +22,7 @@ module.exports = {
     locales: ['en'],
   },
   themeConfig: {
+    image: 'img/card-openebs.png',
     gtag: {
       trackingID: 'UA-92076314-12',
       anonymizeIP: true,
