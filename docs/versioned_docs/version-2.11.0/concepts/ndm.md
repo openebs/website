@@ -48,12 +48,12 @@ To allow OpenEBS to run in privileged mode in `selinux=on` nodes, the cluster sh
 ## Filters:
 
 - Configure filters for the type of block device to be created as blockdevice CR. The filters can be configured either via vendor type or via device path patterns or mount point.
-- Filters are either `include filters` or `exclude filters` . They are configured as configmap. Admin user can configure these filters at the time of OpenEBS installation by changing the NDM configmap either in the OpenEBS operator yaml file or in the helm `values.yaml` file. If these filters need to be updated after the installation, then one of the following methods can be followed.
+- Filters are either `include filters` or `exclude filters`. They are configured as configmap. Admin user can configure these filters at the time of OpenEBS installation by changing the NDM configmap either in the OpenEBS operator yaml file or in the helm `values.yaml` file. If these filters need to be updated after the installation, then one of the following methods can be followed.
   - If OpenEBS is installed using operator.yaml file, update the filters in the configmap and apply the operator.yaml
   - If OpenEBS is installed using helm, update the filters in the configmap of values.yaml and do the helm upgrade
   - Or, directly edit NDM configmap using `kubectl edit` and update the filters
 
-More details can be found [here](/docs/next/ugndm.html).
+More details can be found [here](/docs/user-guides/ndm).
 
 ## NDM Roadmap:
 
@@ -61,4 +61,4 @@ More details can be found [here](/docs/next/ugndm.html).
 
 ## See Also:
 
-[OpenEBS Architecture](/docs/next/architecture.html) [Local PV User Guide](/docs/next/uglocalpv-device.html) [cStor User Guide](/docs/next/ugcstor.html) [Understanding Disk Mount Status on Node](/docs/next/faq.html#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume)
+[OpenEBS Architecture](/docs/concepts/architecture) [Local PV User Guide](/docs/user-guides/localpv-device) [cStor User Guide](/docs/deprecated/spc-based-cstor) [Understanding Disk Mount Status on Node](/docs/additional-info/faqs#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume)

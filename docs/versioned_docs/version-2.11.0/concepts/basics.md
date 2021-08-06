@@ -4,7 +4,7 @@ title: Kubernetes Storage Concepts
 ---
 
 :::note
-This document provides you with a quick overview of the [Kubernetes concepts](https://kubernetes.io/docs/concepts/storage/) you need to know for running Stateful Workloads. If you are already familiar with running Stateful workloads in Kubernetes, header over to the next section on [Container Attached Storage](/docs/next/cas.html).
+This document provides you with a quick overview of the [Kubernetes concepts](https://kubernetes.io/docs/concepts/storage/) you need to know for running Stateful Workloads. If you are already familiar with running Stateful workloads in Kubernetes, header over to the next section on [Container Attached Storage](/docs/concepts/cas).
 :::
 
 Kubernetes has made several enhancements to support running Stateful Workloads by providing the required abstractions for Platform (or Cluster Administrators) and Application developers. The abstractions ensure that different types of file and block storage (whether ephemeral or persistent, local or remote) are available wherever a container is scheduled (including provisioning/creating, attaching, mounting, unmounting, detaching, and deleting of volumes), storage capacity management (container ephemeral storage usage, volume resizing, etc.), influencing scheduling of containers based on storage (data gravity, availability, etc.), and generic operations on storage (snapshoting, etc.).

@@ -2,6 +2,7 @@
 id: cas
 title: Container Attached Storage (CAS) 
 ---
+
 ## What is CAS?
 
 Container Attached Storage(CAS) is a software that includes microservice based storage controllers that are orchestrated by Kubernetes.  These storage controllers can run anywhere that Kubernetes can run which means any cloud or even bare metal servers or on top of a traditional shared storage system. Critically, the data itself is also accessed via containers as opposed to being stored in an off platform shared scale out storage system.
@@ -41,4 +42,4 @@ With synchronous replication from storage controller onto the fixed storage repl
 
 ## See Also:
 
-[OpenEBS Architecture](/docs/next/architecture.html) [Blog: Container Attached Storage is Cloud Native Storage (CAS)](https://www.cncf.io/blog/2020/09/22/container-attached-storage-is-cloud-native-storage-cas/) [Blog: Container Attached Storage](https://www.cncf.io/blog/2018/04/19/container-attached-storage-a-primer/) [Webinar: Need for Container Attached Storage](https://www.cncf.io/webinars/kubernetes-for-storage-an-overview/) [Connect with Community](/docs/next/support.html)
+[OpenEBS Architecture](/docs/concepts/architecture) [Blog: Container Attached Storage is Cloud Native Storage (CAS)](https://www.cncf.io/blog/2020/09/22/container-attached-storage-is-cloud-native-storage-cas/) [Blog: Container Attached Storage](https://www.cncf.io/blog/2018/04/19/container-attached-storage-a-primer/) [Webinar: Need for Container Attached Storage](https://www.cncf.io/webinars/kubernetes-for-storage-an-overview/) [Connect with Community](/docs/introduction/community)

@@ -31,10 +31,10 @@ OpenEBS helps users to take local volumes into production by providing features 
 
 OpenEBS provides different types of Local Volumes that can be used to provide locally mounted storage to Kubernetes Stateful workloads. Follow these guides to get started with each type of Local Volume. 
 
-- [OpenEBS Local PV using Hostpath](/docs/next/uglocalpv-hostpath.html)
-- [OpenEBS Local PV using Block Devices](/docs/next/uglocalpv-device.html)
+- [OpenEBS Local PV using Hostpath](/docs/user-guides/localpv-hostpath)
+- [OpenEBS Local PV using Block Devices](/docs/user-guides/localpv-device)
 - [OpenEBS Local PV using LVM](https://github.com/openebs/lvm-localpv)
-- [OpenEBS Local PV using ZFS](https://github.com/openebs/zfs-localpvl)
+- [OpenEBS Local PV using ZFS](https://github.com/openebs/zfs-localpv)
 - [OpenEBS Local PV using Rawfile (sparse file)](https://github.com/openebs/rawfile-localpv)
 
 ## When to use OpenEBS Local PVs
@@ -89,7 +89,7 @@ A quick summary of the steps to restore include:
    velero restore create rbb-01 --from-backup bbb-01 -l app=test-velero-backup
    ```
 
-## Limitations (or Roadmap items ) of OpenEBS Local PVs
+## Limitations (or Roadmap items) of OpenEBS Local PVs
 
 - Size of the Local PV cannot be increased dynamically. LVM type of functionality inside Local PVs is a potential feature in the roadmap.
 - Disk quotas are not enforced by Local PV. An underlying device or hostpath can have more data than requested by a PVC or storage class. Enforcing the capacity is a roadmap feature.
@@ -98,4 +98,4 @@ A quick summary of the steps to restore include:
 
 ## See Also:
 
-[OpenEBS Architecture](/docs/next/architecture.html) [Understanding NDM](/docs/next/ndm.html) [Local PV Hostpath User Guide](/docs/next/uglocalpv-hostpath.html)  [Local PV Device User Guide](/docs/next/uglocalpv-device.html)
+[OpenEBS Architecture](/docs/concepts/architecture) [Understanding NDM](/docs/concepts/ndm) [Local PV Hostpath User Guide](/docs/user-guides/localpv-hostpath) [Local PV Device User Guide](/docs/user-guides/localpv-device)

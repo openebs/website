@@ -3,7 +3,7 @@ id: architecture
 title: OpenEBS Architecture
 ---
 
-OpenEBS is the leading Open Source implementation of the [Container Attached Storage(CAS)](/docs/next/cas.html) pattern. As a part of this approach, OpenEBS uses containers to dynamically provision volumes and provide data services like high availability. OpenEBS relies on and extends [Kubernetes](/docs/next/k8s-storage.html) itself to orchestrate its volume services. 
+OpenEBS is the leading Open Source implementation of the [Container Attached Storage(CAS)](/docs/concepts/cas) pattern. As a part of this approach, OpenEBS uses containers to dynamically provision volumes and provide data services like high availability. OpenEBS relies on and extends [Kubernetes](/docs/concepts/basics) itself to orchestrate its volume services. 
 
 ![openebs hld](../assets/openebs-hld.svg)
 
@@ -12,7 +12,7 @@ OpenEBS has many components, which can be grouped into the following two broad c
 - [OpenEBS Data Engines](#data-engines)
 - [OpenEBS Control Plane](#control-plane)
 
-## Data Engines 
+## Data Engines
 
 The data engines are at the core of OpenEBS and are responsible for performing the read and write operations to the underlying persistent storage on behalf of the Stateful workloads they serve. 
 
@@ -147,4 +147,4 @@ In addition, OpenEBS also has released as alpha version `kubectl plugin` to help
 
  ## See Also:
 
-[Understanding Data Engines](/docs/next/casengines.html) [Understanding Mayastor](https://mayastor.gitbook.io/introduction/) [Understanding Local PV](/docs/next/localpv.html) [Understanding cStor](/docs/next/cstor.html) [Understanding Jiva](/docs/next/jiva.html)
+[Understanding Data Engines](/docs/concepts/casengines) [Understanding Mayastor](https://mayastor.gitbook.io/introduction/) [Understanding Local PV](/docs/concepts/localpv) [Understanding cStor](/docs/concepts/cstor) [Understanding Jiva](/docs/concepts/jiva)
