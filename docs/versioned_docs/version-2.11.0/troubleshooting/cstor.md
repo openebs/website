@@ -88,7 +88,7 @@ Application mount point running on cStor volume went into read only state.
 
 **Possible Reason:**
 
-If `cStorVolume` is `Offline` or corresponding target pod is unavailable for more than 120 seconds(iSCSI timeout) then the PV will be mounted as `read-only` filesystem. For understanding different states of cStor volume, more details can be found [here](/).
+If `cStorVolume` is `Offline` or corresponding target pod is unavailable for more than 120 seconds(iSCSI timeout) then the PV will be mounted as `read-only` filesystem. For understanding different states of cStor volume, more details can be found [here](/additional-info/kb#verification-of-cstor-volume).
 
 **Troubleshooting**
 
