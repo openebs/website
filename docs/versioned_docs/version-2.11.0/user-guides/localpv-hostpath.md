@@ -1,6 +1,20 @@
 ---
 id: localpv-hostpath
 title: OpenEBS Local PV Hostpath User Guide
+keywords:
+ - OpenEBS Local PV Hostpath
+ - Local PV Hostpath
+ - Prerequisites
+ - Install
+ - Create StorageClass
+ - Install verification
+ - Create a PersistentVolumeClaim
+ - Create Pod to consume OpenEBS Local PV Hostpath Storage
+ - Cleanup
+ - Backup and Restore
+ - Troubleshooting
+ - Support
+description: This guide will help you to set up and use OpenEBS Local Persistent Volumes backed by Hostpath. 
 ---
 
 This guide will help you to set up and use OpenEBS Local Persistent Volumes backed by Hostpath. 

@@ -1,6 +1,16 @@
 ---
 id: jiva-guide
 title: Jiva User Guide
+keywords: 
+  - Jiva User Guide
+  - Provisioning of Jiva
+  - Monitoring a Jiva Volume
+  - Provision Sample Applications with Jiva Volume
+  - Install Velero
+  - Create of Jiva Pool
+  - Create a StorageClass
+  - Setting up Jiva Storage Policies
+description: The recommended approach to provision Jiva volumes is via CSI Driver. For detailed instructions on how to get started with new Jiva CSI Driver please refer to the Quickstart guide on Github.
 ---
 
 :::note 

@@ -1,6 +1,17 @@
 ---
 id: localpv-device
 title: OpenEBS Local PV Device User Guide
+keywords:
+ - OpenEBS Local PV Device
+ - Local PV Prerequisites
+ - OpenEBS Local PV Installation
+ - Create StorageClass
+ - Create a PersistentVolumeClaim
+ - Create Pod to consume OpenEBS Local PV backed by Block Device
+ - Cleanup
+ - Backup and Restore
+ - Troubleshooting 
+description: This guide will help you to set up and use OpenEBS Local Persistent Volumes backed by Block Devices.
 ---
 
 [![OpenEBS configuration flow](../assets/4-config-sequence.svg)](../assets/4-config-sequence.svg)

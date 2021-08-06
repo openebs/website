@@ -1,6 +1,11 @@
 ---
 id: installation
 title: Installing OpenEBS
+keywords: 
+  - Installing OpenEBS
+  - Installing OpenEBS through helm
+  - Installing OpenEBS through kubectl 
+description: This guide will help you to customize and install OpenEBS
 ---
 
 This guide will help you to customize and install OpenEBS. 

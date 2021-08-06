@@ -1,6 +1,14 @@
 ---
 id: quickstart
 title: OpenEBS Quickstart Guide
+keywords:
+ - How to setup and use OpenEBS
+ - Kubernetes Cluster Design
+ - Install OpenEBS and Setup Storage Classes
+ - Deploy Stateful Workloads
+ - Dynamic Persistent Volume Provisioning
+ - Managing the Life cycle of OpenEBS components
+description: This guide will help you to setup OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with Kubernetes Storage Concepts
 ---
 
 This guide will help you to setup OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with [Kubernetes Storage Concepts](/concepts/basics).

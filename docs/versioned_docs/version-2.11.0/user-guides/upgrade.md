@@ -1,6 +1,11 @@
 ---
 id: upgrade
 title: Upgrading OpenEBS
+keywords:
+ - Upgrading OpenEBS
+ - OpenEBS upgrade
+ - Supported upgrade paths
+description: Upgrade to the latest OpenEBS 2.11.0 version is supported only from v1.0.0 and later.
 ---
 
 Latest stable version of OpenEBS is 2.11.0. Check the release notes [here](https://github.com/openebs/openebs/releases/tag/v2.11.0).  
