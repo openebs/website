@@ -115,7 +115,7 @@ OpenEBS is a collection of data engines and operators to create different types 
   - [Local PV Rawfile](https://github.com/openebs/rawfile-localpv) 0.4.4 (beta)
   - [Local PV Partitions](https://github.com/openebs/device-localpv) 0.2.0 (alpha)
 - Out-of-tree provisioners
-  - [Jiva](/docs/user-guides/jivaguide) 2.9.0 (stable)
+  - [Jiva](/docs/user-guides/jiva-guide) 2.9.0 (stable)
   - [Local PV hostpath](/docs/user-guides/localpv-hostpath) 2.9.0 (stable)
   - [Local PV device](/docs/user-guides/localpv-device) 2.9.0 (stable)
   - [cStor](/docs/user-guides/cstor-csi) 2.9.0 (beta)
@@ -139,7 +139,7 @@ The latest release versions of each of the engine are as follows:
 
 - [Mayastor](https://mayastor.gitbook.io/introduction/) 0.8.0
 - [cStor](https://github.com/openebs/cstor-operators) 2.8.0
-- [Jiva](/docs/user-guides/jivaguide) 2.8.0
+- [Jiva](/docs/user-guides/jiva-guide) 2.8.0
 - [Local PV hostpath](/docs/user-guides/localpv-hostpath) 2.8.0
 - [Local PV device](/docs/user-guides/localpv-device) 2.8.0
 - [Local PV ZFS](https://github.com/openebs/zfs-localpv) 1.6.0
@@ -199,7 +199,7 @@ The latest release versions of each of the engine are as follows:
 
 - [Mayastor](https://mayastor.gitbook.io/introduction/) 0.8.1
 - [cStor](https://github.com/openebs/cstor-operators) 2.7.0
-- [Jiva](/docs/user-guides/jivaguide) 2.7.0
+- [Jiva](/docs/user-guides/jiva-guide) 2.7.0
 - [Local PV host path](/docs/user-guides/localpv-hostpath) 2.7.0
 - [Local PV device](/docs/user-guides/localpv-device) 2.7.0
 - [Local PV ZFS](https://github.com/openebs/zfs-localpv) 1.5.0
@@ -256,7 +256,7 @@ Here are some of the key highlights in this release.
 
 OpenEBS v2.6 contains some key enhancements and several fixes for the issues reported by the user community across all 9 types of OpenEBS volumes.
 
-- 3 replicated types - [Mayastor](https://mayastor.gitbook.io/introduction/), [cStor](https://github.com/openebs/cstor-operators) and [Jiva](/docs/user-guides/jivaguide).
+- 3 replicated types - [Mayastor](https://mayastor.gitbook.io/introduction/), [cStor](https://github.com/openebs/cstor-operators) and [Jiva](/docs/user-guides/jiva-guide).
 - 5 types of Local PV backed by [host path](/docs/user-guides/localpv-hostpath), [device](/docs/user-guides/localpv-device), [ZFS](https://github.com/openebs/zfs-localpv), [LVM](https://github.com/openebs/lvm-localpv) and [Rawfile](https://github.com/openebs/rawfile-localpv), and
 - [RWX volumes using NFS](https://github.com/openebs/dynamic-nfs-provisioner).
 

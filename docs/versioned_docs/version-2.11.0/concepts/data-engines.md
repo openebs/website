@@ -225,4 +225,4 @@ A short summary is provided below.
 
 ## See Also:
 
-[Mayastor User Guide](https://mayastor.gitbook.io/introduction/) [cStor User Guide](/docs/user-guides/cstor-csi) [Jiva User Guide](/docs/user-guides/jivaguide) [Local PV Hostpath User Guide](/docs/user-guides/localpv-hostpath) [Local PV Device User Guide](/docs/user-guides/localpv-device)
+[Mayastor User Guide](https://mayastor.gitbook.io/introduction/) [cStor User Guide](/docs/user-guides/cstor-csi) [Jiva User Guide](/docs/user-guides/jiva-guide) [Local PV Hostpath User Guide](/docs/user-guides/localpv-hostpath) [Local PV Device User Guide](/docs/user-guides/localpv-device)
