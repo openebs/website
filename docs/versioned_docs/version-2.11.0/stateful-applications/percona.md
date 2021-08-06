@@ -32,19 +32,19 @@ This tutorial provides detailed instructions to run a Percona XtraDB Cluster(PXC
 
 ### Install OpenEBS
 
-If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/overview). If OpenEBS is already installed, go to the next step.
+If OpenEBS is not installed in your K8s cluster, this can be done from [here](/). If OpenEBS is already installed, go to the next step.
 
 ### Select OpenEBS storage engine
 
-A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines. Choose the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/docs/overview#openebs-storage-engines).
+A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines. Choose the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/).
 
 ### Configure OpenEBS Local PV StorageClass
 
 In this tutorial, OpenEBS Local PV device has been used as the storage engine for deploying Percona PXC. There are 2 ways to use OpenEBS Local PV.
 
-- `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/`<percona-pv>`/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](/docs/user_guides/uglocalpv-hostpath#create-storageclass). 
+- `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/`<percona-pv>`/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](/docs/user-guides/localpv-hostpath#create-storageclass). 
 
-- `openebs-device` - Using this option, it will create Kubernetes Local PVs using the block devices attached to the node. Select this option when you want to dedicate a complete block device on a node to a Percona node. You can customize which devices will be discovered and managed by OpenEBS using the instructions [here](/docs/user_guides/ugndm). 
+- `openebs-device` - Using this option, it will create Kubernetes Local PVs using the block devices attached to the node. Select this option when you want to dedicate a complete block device on a node to a Percona node. You can customize which devices will be discovered and managed by OpenEBS using the instructions [here](/docs/user-guides/ndm). 
 
 The Storage Class `openebs-device` has been chosen to deploy PXC in the Kubernetes cluster.
 
@@ -378,5 +378,5 @@ root@sysbench-client:/sysbench# sysbench oltp_read_write --tables=10 --table_siz
 
 ## See Also:
 
-[OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [OpenEBS Local PV Device User Guide](/docs/user_guides/uglocalpv-device)
+[OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [OpenEBS Local PV Device User Guide](/docs/user-guides/localpv-device)
 

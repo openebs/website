@@ -35,11 +35,11 @@ In this tutorial, Local PV volume will be provisioned on the node where the appl
 
 ### Install OpenEBS {#install-openebs}
 
-If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/overview). If OpenEBS is already installed, go to the next step.
+If OpenEBS is not installed in your K8s cluster, this can be done from [here](/). If OpenEBS is already installed, go to the next step.
 
 ### Select OpenEBS storage engine
 
-A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and chooses the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/docs/overview#openebs-storage-engines).
+A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and chooses the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/).
 
 In this document, it is mentioned about the installation of MinIO operator using OpenEBS Local PV device. 
 
@@ -47,9 +47,9 @@ In this document, it is mentioned about the installation of MinIO operator using
 
 There are 2 ways to use OpenEBS Local PV.
 
-- `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/<"minio-pv-name">/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](/docs/user_guides/uglocalpv-hostpath#create-storageclass). 
+- `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/<"minio-pv-name">/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](/docs/user-guides/localpv-hostpath#create-storageclass). 
   
-- `openebs-device` - Using this option, it will create Kubernetes Local PVs using the block devices attached to the node. Select this option when you want to dedicate a complete block device on a node to a MinIO node. You can customize which devices will be discovered and managed by OpenEBS using the instructions [here](/docs/user_guides/ugndm). 
+- `openebs-device` - Using this option, it will create Kubernetes Local PVs using the block devices attached to the node. Select this option when you want to dedicate a complete block device on a node to a MinIO node. You can customize which devices will be discovered and managed by OpenEBS using the instructions [here](/docs/user-guides/ndm). 
 
 MinIO can provide the replication of data by itself in distributed mode. This method installs MinIO application, which is a StatefulSet kind. It requires a minimum of four (4) nodes to setup MinIO in distributed mode. A distributed MinIO setup with 'n' number of disks/storage has your data safe as long as n/2 or more disks/storage are online. Users should maintain a minimum (n/2 + 1) disks/storage to create new objects. So based on the requirement, the user can choose the appropriate OpenEBS storage engine to run MinIO in distributed mode. For more information on MinIO installation, see MinIO [documentation](https://docs.min.io/docs/deploy-minio-on-kubernetes.html).
 
@@ -342,4 +342,4 @@ $ echo 'M2ZiNGFlZGQtYTU1Yy00YjM4LWJkNTQtODEyNmViOTg5ZmZk' | base64 -d
 
 ## See Also:
 
-[OpenEBS use cases](/docs/introduction/usecases) [Understanding NDM](/docs/user_guides/ugndm) [Local PV concepts](/docs/concepts/localpv) [Local PV User guide](/docs/user_guides/uglocalpv-device)
+[OpenEBS use cases](/docs/introduction/usecases) [Understanding NDM](/docs/user-guides/ndm) [Local PV concepts](/docs/concepts/localpv) [Local PV User guide](/docs/user-guides/localpv-device)

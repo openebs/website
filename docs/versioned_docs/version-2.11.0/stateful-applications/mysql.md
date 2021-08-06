@@ -21,7 +21,7 @@ As shown above, OpenEBS volumes need to be configured with three replicas for hi
 
 1. **Install OpenEBS**
 
-    If OpenEBS is not installed in your K8s cluster, this can done from [here](/docs/user_guides/installation). If OpenEBS is already installed, go to the next step. 
+    If OpenEBS is not installed in your K8s cluster, this can done from [here](/docs/user-guides/installation). If OpenEBS is already installed, go to the next step. 
 
 2. **Configure cStor Pool** : After OpenEBS installation, cStor pool has to be configured. As MySQL is a deployment, it need high availability at storage level. OpenEBS cStor volume has to be configured with 3 replica. During cStor Pool creation, make sure that the maxPools parameter is set to >=3. If cStor Pool is already configured as required go to Step 4 to create MySQL StorageClass. 
 
@@ -47,11 +47,11 @@ It is not seamless to increase the cStor volume size (refer to the roadmap item)
 
 **Monitor cStor Pool size**
 
-As in most cases, cStor pool may not be dedicated to just MySQL alone. It is recommended to watch the pool capacity and add more disks to the pool before it hits 80% threshold. See [cStorPool metrics](/docs/deprecated/ugcstor#monitor-pool) 
+As in most cases, cStor pool may not be dedicated to just MySQL alone. It is recommended to watch the pool capacity and add more disks to the pool before it hits 80% threshold. See [cStorPool metrics](/docs/deprecated/spc-based-cstor#monitor-pool) 
 
 **Maintain volume replica quorum during node upgrades**
 
-cStor volume replicas need to be in quorum when MySQL application is deployed as `deployment` and cStor volume is configured to have `3 replicas`. Node reboots may be common during Kubernetes upgrade. Maintain volume replica quorum in such instances. See [here](/docs/additional_info/k8supgrades) for more details.
+cStor volume replicas need to be in quorum when MySQL application is deployed as `deployment` and cStor volume is configured to have `3 replicas`. Node reboots may be common during Kubernetes upgrade. Maintain volume replica quorum in such instances. See [here](/docs/additional-info/k8supgrades) for more details.
 
 ## Configuration Details
 
@@ -108,5 +108,5 @@ reclaimPolicy: Delete
 
 ## See Also:
 
-[OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [cStor pools overview](/docs/user_guides/cstor#cstor-pools)
+[OpenEBS architecture](/docs/concepts/architecture) [OpenEBS use cases](/docs/introduction/usecases) [cStor pools overview](/docs/concepts/cstor#cstor-pools)
 

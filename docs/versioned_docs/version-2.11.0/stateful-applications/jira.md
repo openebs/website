@@ -13,11 +13,11 @@ Jira is a product designed to provide issue tracking and assist in moving tasks 
 
 1. **Install OpenEBS**
 
-   If OpenEBS is not installed in your K8s cluster, this can done from [here](/docs/user_guides/installation). If OpenEBS is already installed, go to the next step. 
+   If OpenEBS is not installed in your K8s cluster, this can done from [here](/docs/user-guides/installation). If OpenEBS is already installed, go to the next step. 
 
 2. **Configure cStor Pool**
 
-   If cStor Pool is not configured in your OpenEBS cluster, this can be done from [here](/docs/deprecated/ugcstor#creating-cStor-storage-pools). Sample YAML named **openebs-config.yaml** for configuring cStor Pool is provided in the configuration details below. If cStor pool is already configured, go to the next step.
+   If cStor Pool is not configured in your OpenEBS cluster, this can be done from [here](/docs/deprecated/spc-based-cstor#creating-cStor-storage-pools). Sample YAML named **openebs-config.yaml** for configuring cStor Pool is provided in the configuration details below. If cStor pool is already configured, go to the next step.
 
 3. **Create Storage Class**
 
