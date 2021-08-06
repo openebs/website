@@ -74,9 +74,6 @@
     width: auto;
   }
 
-  .colMainContent {
-    width: calc(100vw - (var(--doc-sidebar-width)));
-  }
   .docMainContainerEnhanced {
     max-width: none;
   }
