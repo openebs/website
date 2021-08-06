@@ -53,16 +53,14 @@ Then, markdown file name will be ``title-of-the-blog.md``
 
 * Go to https://github.com/openebs/openebs/blob/master/ADOPTERS.md and grab some of the testimonials from the list and add them to the websites as shown below.
 
-* For an organization testimonial make a new entry in the `website/src/adopters.md`. file.
-https://github.com/openebs/website/blob/revamp-3.0/website/src/adopters.md
+* For an organization/user testimonial make a new entry in the `website/resources/adopters.json` file (`message` is required field).
 
-![testimonial table](/website/public/images/guidelines/image9.png)
- 
-* Open the raw file and add the testimonial
-![raw testimonial table](/website/public/images/guidelines/image17.png)
-
-* We need to update the testimonial in the similar method as shown above with the available column details.
-
+  ```
+    "githubUsername": Github username for the author if present
+    "name": Name of the user if present
+    "message": Testimonial
+    "organizationName": Name of the organization if present
+  ```
 
 ## Documentation Page Operations
 
