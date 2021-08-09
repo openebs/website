@@ -4,7 +4,7 @@ title: OpenEBS Local PV
 keywords: 
   - Local PV
   - OpenEBS Local PV
-description: This document provides you with a brief explanation of OpenEBS Local PV, Quick Start Guides, and when to use OpenEBS Local PV and when not to use OpenEBS Local PV and it's limitations. 
+description: This document provides you with a brief explanation of OpenEBS Local PV, quick start guides, and when to use OpenEBS Local PV, and when not to use OpenEBS Local PV and its limitations.
 ---
 
 ## Overview
