@@ -1,6 +1,12 @@
 ---
 id: alphafeatures
 title: Alpha Features
+keywords: 
+ - Alpha version
+ - OpenEBS CLI
+ - OpenEBS Monitoring
+ - Dynamic NFS Provisioner
+description: This page provides an overview of OpenEBS components and features presently in Alpha version and under active development. These features are not recommended to be used in production.
 ---
 
 This page provides an overview of OpenEBS components and features presently in Alpha version and under active development. These features are not recommended to be used in production. We suggest you to familiarize and try these features on test clusters and reach out to [OpenEBS Community](/introduction/community) if you have any queries, feedback or need help on these features.

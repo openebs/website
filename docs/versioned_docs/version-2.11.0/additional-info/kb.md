@@ -1,6 +1,11 @@
 ---
 id: kb
 title: Knowledge Base
+keywords: 
+ - Knowledge base
+ - OpenEBS Knowledge base
+description: The knowledge base may include Summary, manuals, troubleshooting guides, runbooks and other information that users may want or need to know.
+
 ---
 
 ## Summary

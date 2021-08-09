@@ -1,6 +1,13 @@
 ---
 id: releases-1x
 title: OpenEBS 1.x Deprecated Releases
+keywords: 
+ - Change summary
+ - Alpha Features
+ - Upgrade Steps
+ - Release Notes
+description: A release notes for all the versions of OpenEBS 1.X, which contains the change summary, alpha features and upgrade steps.
+
 ---
 
 ## 1.7.0 - Feb 15 2020
