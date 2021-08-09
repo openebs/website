@@ -2,9 +2,9 @@
 id: performance-testing
 title: Performance testing of OpenEBS
 keywords: 
- - Perfomance testing
+ - Performance testing
  - Testing
- - OpenEBS Performance testing
+ - OpenEBS performance testing
 description: A section to guide the user the steps for performance testing of OpenEBS.
 ---
 

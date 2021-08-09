@@ -3,9 +3,9 @@ id: releases-0x
 title: OpenEBS 0.x Deprecated Releases
 keywords: 
  - Change summary
- - Alpha Features
- - Upgrade Steps
- - Release Notes
+ - Alpha features
+ - Upgrade steps
+ - Release notes
 description: A release notes for all the versions of OpenEBS 0.x, which contains the change summary, alpha features and upgrade steps.
 ---
 

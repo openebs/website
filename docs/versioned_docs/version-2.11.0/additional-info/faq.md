@@ -4,7 +4,7 @@ title: OpenEBS FAQ
 keywords: 
  - OpenEBS FAQ
  - FAQs
-description: The FAQ section for a website helps to address common concerns, questions, and objections that users have.
+description: The FAQ section about OpenEBS helps to address common concerns, questions, and objections that users have about OpenEBS.
 ---
 
 ## General

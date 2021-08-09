@@ -4,7 +4,7 @@ title: Knowledge Base
 keywords: 
  - Knowledge base
  - OpenEBS Knowledge base
-description: The knowledge base may include Summary, manuals, troubleshooting guides, runbooks and other information that users may want or need to know.
+description: The knowledge base may include summaries, manuals, troubleshooting guides, runbooks, and other information that users want or need to know.
 
 ---
 
