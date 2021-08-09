@@ -4,6 +4,8 @@ title: Best practices to follow when upgrading Kubernetes
 keywords: 
  - Upgrading Kubernetes
  - K8s Upgrades
+ - Volume replica
+ - Kubernetes nodes
 description: Kubernetes upgrades do need to happen to new features that roll out and to get minimum requirements satisfied for the applications upgrade running on Kubernetes.
 ---
 

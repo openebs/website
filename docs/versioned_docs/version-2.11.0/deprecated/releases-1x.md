@@ -6,7 +6,7 @@ keywords:
  - Alpha features for OpenEBS 1.x
  - Upgrade steps for OpenEBS 1.x
  - Release notes for OpenEBS 1.x
-description: A release notes for all the versions of OpenEBS 1.X, which contains the change summary, alpha features and upgrade steps.
+description: A release notes for all the versions of OpenEBS 1.x, which contains the change summary, alpha features and upgrade steps.
 
 ---
 

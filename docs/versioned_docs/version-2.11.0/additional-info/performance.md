@@ -4,7 +4,8 @@ title: Performance testing of OpenEBS
 keywords: 
  - Performance testing
  - Testing
- - OpenEBS performance testing
+ - Setup cStorPool
+ - Setup StorageClass
 description: A section to guide the user the steps for performance testing of OpenEBS.
 ---
 
