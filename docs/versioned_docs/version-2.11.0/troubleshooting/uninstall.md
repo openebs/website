@@ -2,6 +2,7 @@
 id: uninstall
 title: Troubleshooting OpenEBS - Uninstall
 keywords:
+  - OpenEBS
   - OpenEBS uninstallation
   - OpenEBS uninstallation troubleshooting
 description: This page contains a list of OpenEBS uninstallation related troubleshooting information.

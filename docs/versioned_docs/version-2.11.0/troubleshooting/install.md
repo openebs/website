@@ -2,6 +2,7 @@
 id: install
 title: Troubleshooting OpenEBS Install
 keywords:
+  - OpenEBS
   - OpenEBS installation
   - OpenEBS installation troubleshooting
 description: This page contains list of OpenEBS installation related troubleshooting information.

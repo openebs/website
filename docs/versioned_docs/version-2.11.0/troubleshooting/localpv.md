@@ -2,6 +2,7 @@
 id: localpv
 title: Troubleshooting OpenEBS - Dynamic LocalPV
 keywords:
+  - OpenEBS
   - LocalPV
   - Dynamic LocalPV
   - LocalPV troubleshooting
