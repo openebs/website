@@ -62,7 +62,7 @@ export const VersionDropdown = () => {
   return (
     <div className={styles.dropDownWrapper}>
       <div
-        className={`dropdown dropdown--hoverable doc-button doc-button-outlined doc-button-secondary doc-button-secondary-light ${styles.dropdown}`}
+        className={`dropdown dropdown--hoverable doc-button doc-button-outlined doc-button-secondary doc-button-secondary-light dropdown--right ${styles.dropdown}`}
       >
         <span className="navbar__link">{currentOption.name}</span>
         <ul className="dropdown__menu">
