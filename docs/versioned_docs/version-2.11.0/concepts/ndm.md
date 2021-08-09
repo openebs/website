@@ -4,6 +4,8 @@ title: Node Disk Manager
 keywords: 
   - Node Disk Manager
   - NDM
+  - NDM daemonset
+  - NDM Roadmap
 description: Node Disk Manager(NDM) is an important component in the OpenEBS architecture. It is a daemonset which runs on each node, detects attached block devices based on the filters and loads them as block devices custom resource into Kubernetes.
 ---
 
