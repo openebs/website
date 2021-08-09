@@ -1,10 +1,15 @@
 ---
 id: k8supgrades
 title: Best practices to follow when upgrading Kubernetes
-sidebar_label: Kubernetes upgrades
+keywords: 
+ - Upgrading Kubernetes
+ - K8s Upgrades
+ - Volume replica
+ - Kubernetes nodes
+description: Kubernetes upgrades do need to happen to new features that roll out and to get minimum requirements satisfied for the applications upgrade running on Kubernetes.
 ---
 
-There are few reasons why nodes in a Kubernetes cluster get  rebooted
+There are few reasons why nodes in a Kubernetes cluster get rebooted
 
 - Kubernetes upgrades do need to happen to new features that roll out and to get minimum requirements satisfied for the applications upgrade running on Kubernetes. The upgrade process of Kubernetes cluster involves upgrading the nodes one by one. This process may involve rebooting of the nodes of the cluster.
 - Kubernetes nodes go through hardware changes

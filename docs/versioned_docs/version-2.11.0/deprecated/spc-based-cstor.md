@@ -1,6 +1,12 @@
 ---
 id: spc-based-cstor
 title: SPC based cStor Guide
+keywords: 
+  - Deprecation
+  - User operations
+  - Admin operations
+description: cStor "out-of-tree external" provisioners will be deprecated by Dec 2021 in favor of the corresponding CSI Drivers. The out of tree provisioners for cStor will stop working from Kubernetes 1.22 and forward as the version of the custom resources used by those provisioners will be deprecated.
+
 ---
 
 :::note Deprecation Notice

@@ -1,6 +1,13 @@
 ---
 id: kb
 title: Knowledge Base
+keywords: 
+ - Knowledge base
+ - OpenEBS Knowledge base
+ - OpenEBS summary
+ - Kubernetes StatefulSet
+description: The knowledge base include summaries, manuals, troubleshooting guides, runbooks, and other information that users want or need to know.
+
 ---
 
 ## Summary
