@@ -1,6 +1,13 @@
 ---
 id: architecture
 title: OpenEBS Architecture
+keywords: 
+  - OpenEBS Architecture
+  - Data Engines
+  - Control Plane
+  - CSI Driver
+  - Dynamic Volume Provisioner
+description: This document contains detailed description of OpenEBS Architecture
 ---
 
 OpenEBS is the leading Open Source implementation of the [Container Attached Storage(CAS)](/docs/concepts/cas) pattern. As a part of this approach, OpenEBS uses containers to dynamically provision volumes and provide data services like high availability. OpenEBS relies on and extends [Kubernetes](/docs/concepts/basics) itself to orchestrate its volume services. 

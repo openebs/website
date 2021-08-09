@@ -1,6 +1,10 @@
 ---
 id: localpv
-title: OpenEBS Local PV 
+title: OpenEBS Local PV
+keywords: 
+  - Local PV
+  - OpenEBS Local PV
+description: This document provides you with a brief explanation of OpenEBS Local PV, quick start guides, and when to use OpenEBS Local PV, and when not to use OpenEBS Local PV and its limitations.
 ---
 
 ## Overview

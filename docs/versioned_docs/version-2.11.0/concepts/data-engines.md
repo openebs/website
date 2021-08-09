@@ -1,6 +1,10 @@
 ---
 id: casengines
 title: OpenEBS Data Engines
+keywords: 
+  - Data Engines
+  - OpenEBS Data Engines
+description: OpenEBS Data Engine is the core component that acts as an end-point for serving the IO to the applications. OpenEBS Data engines are akin to Storage controllers or sometimes also know for implementing the software defined storage capabilities.
 ---
 
 OpenEBS Data Engine is the core component that acts as an end-point for serving the IO to the applications. OpenEBS Data engines are akin to Storage controllers or sometimes also know for implementing the software defined storage capabilities. 

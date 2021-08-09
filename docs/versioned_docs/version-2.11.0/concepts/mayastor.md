@@ -1,6 +1,9 @@
 ---
 id: mayastor
 title: Mayastor
+keywords: 
+  - Mayastor
+description: In this document you will learn about Mayastor and it's design goals.
 ---
 
 ## What is Mayastor?
