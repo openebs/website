@@ -6,6 +6,7 @@ keywords:
   - RWX
   - NFS server
   - OpenEBS
+  - OpenEBS community
 description: In this document, you learn about Provisioning Read-Write-Many (RWX) PVCs, Setting up RWM NFS share on OpenEBS, Setting up a single NFS server, and Setting up multiple NFS servers
 ---
 

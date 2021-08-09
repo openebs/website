@@ -4,6 +4,7 @@ title: Jiva Overview
 keywords: 
   - Jiva
   - OpenEBS
+  - OpenEBS community
 description: This document provides you with a detailed overview of Jiva
 ---
 
