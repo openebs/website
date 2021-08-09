@@ -1,6 +1,11 @@
 ---
 id: mayastor
 title: Troubleshooting Mayastor
+keywords:
+  - OpenEBS
+  - Mayastor
+  - Mayastor troubleshooting
+description: This page contains information regarding Mayastor related troubleshooting.
 ---
 
 ## Troubleshooting

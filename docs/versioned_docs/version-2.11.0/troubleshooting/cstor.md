@@ -1,6 +1,11 @@
 ---
 id: cstor
 title: Troubleshooting OpenEBS - cStor
+keywords:
+  - OpenEBS
+  - cStor
+  - cStor troubleshooting
+description: This page contains a list of cStor related troubleshooting information.
 ---
 
 ## General guidelines for troubleshooting
@@ -110,7 +115,7 @@ $ kubectl get po -n openebs -l app=cstor-pool
 
 Sample Output:
 
- ```shell hideCopy
+```shell hideCopy
 NAME                               READY   STATUS    RESTARTS   AGE
 cstor-cspc-chjg-85f65ff79d-pq9d2   0/3     Pending   0          16m
 cstor-cspc-h99x-57888d4b5-kh42k    0/3     Pending   0          15m
@@ -363,7 +368,7 @@ $ kubectl get cvr -n openebs
 
 Sample Output:
 
- ```shell hideCopy
+```shell hideCopy
 NAME                                                       USED   ALLOCATED   STATUS    AGE
 pvc-81746e7a-a29d-423b-a048-76edab0b0826-cstor-cspc-xnxx   6K     6K          Healthy   52m
 pvc-81746e7a-a29d-423b-a048-76edab0b0826-cstor-cspc-zdvk   6K     6K          Healthy   52m
@@ -377,7 +382,7 @@ $ kubectl describe cvc <pv_name> -n openebs
 
 Sample Output:
 
- ```shell hideCopy
+```shell hideCopy
 Events:
 Type     Reason                 Age    From                         Message
 ----     ------                 ----   ----                         -------
@@ -404,7 +409,7 @@ $ kubectl get cspc -n openebs
 
 Sample Output:
 
- ```shell hideCopy
+```shell hideCopy
 NAME         HEALTHYINSTANCES   PROVISIONEDINSTANCES   DESIREDINSTANCES   AGE
 cstor-cspc   2                  3                      2                  56m
 ```
@@ -443,7 +448,7 @@ $ kubectl get cspi -n openebs
 
 Sample Output:
 
- ```shell hideCopy
+```shell hideCopy
 NAME             HOSTNAME           ALLOCATED  FREE   CAPACITY  READONLY  PROVISIONEDREPLICAS  HEALTHYREPLICAS  TYPE    STATUS  AGE
 cstor-cspc-bf9h  ip-192-168-49-174  230k       9630M  9630230k  false     0                    0                stripe  ONLINE  66s
 ```
@@ -487,7 +492,7 @@ $ kubectl get cvr -n openebs
 
 Sample Output:
 
- ```shell hideCopy
+```shell hideCopy
 NAME                                                       USED   ALLOCATED   STATUS    AGE
 pvc-81746e7a-a29d-423b-a048-76edab0b0826-cstor-cspc-bf9h   6K     6K          Healthy   11m
 pvc-81746e7a-a29d-423b-a048-76edab0b0826-cstor-cspc-xnxx   6K     6K          Healthy   96m
@@ -503,7 +508,7 @@ $ kubectl get cspi -n openebs
 
 Sample Output:
 
- ```shell hideCopy
+```shell hideCopy
 NAME              HOSTNAME            ALLOCATED  FREE   CAPACITY  READONLY  PROVISIONEDREPLICAS  HEALTHYREPLICAS  TYPE    STATUS  AGE
 cstor-cspc-bf9h  ip-192-168-49-174    230k       9630M  9630230k  false     1                    1                stripe  ONLINE  66s
 cstor-cspc-xnxx   ip-192-168-79-76    101k       9630M  9630101k  false     1                    1                stripe  ONLINE  4m25s
