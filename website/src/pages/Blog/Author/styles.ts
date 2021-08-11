@@ -4,11 +4,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   root: {
     position: "relative",
     backgroundImage: "url(/images/png/faq_background.png)",
-    textAlign: "center",
+    textAlign: "left",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
     backgroundSize: "cover",
-    padding: theme.spacing(16, 5, 0),
+    padding: theme.spacing(16, 0, 0),
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(5, 1),
       marginTop: theme.spacing(10),
@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   breadCrumbs: {
     '& .MuiBreadcrumbs-ol':{
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       color: theme.palette.info.light,
       fontSize: '14px',
       fontWeight: 400
@@ -27,8 +27,8 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   authorWrapper: {
     display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
     margin: theme.spacing(3, 0, 2.5),
     [theme.breakpoints.down("xs")]: {
       flexDirection: 'column',
@@ -36,9 +36,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   large: {
-    width: '60px',
-    height: '60px',
-    marginRight: theme.spacing(1.8),
+    width: '50px',
+    height: '50px',
+    margin: theme.spacing(.4, 1.8, 0, 0),
     [theme.breakpoints.down("xs")]: {
       width: '32px',
       height: '32px',
@@ -47,11 +47,10 @@ const useStyles = makeStyles((theme: Theme) => ({
   authorText: {
     display: "flex",
     flexWrap: "wrap",
-    textAlign: "center",
     margin: theme.spacing(0),
-    justifyContent: "center",
     alignItems: "center",
     fontSize: '2.625rem',
+    lineHeight: 'normal',
     [theme.breakpoints.down("xs")]: {
       fontSize: '1.5rem',
     },
@@ -76,6 +75,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(3, 0),
     width: '75%',
     margin: 'auto',
+    maxWidth: 'inherit',
     [theme.breakpoints.down("md")]: {
       padding: theme.spacing(3, 0),
       width: '80%'
