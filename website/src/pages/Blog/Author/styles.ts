@@ -40,8 +40,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: '50px',
     margin: theme.spacing(.4, 1.8, 0, 0),
     [theme.breakpoints.down("xs")]: {
-      width: '32px',
-      height: '32px',
+      marginBottom: theme.spacing(2)
     },
   },
   authorText: {
