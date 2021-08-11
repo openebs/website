@@ -143,7 +143,6 @@ commercialSupport:
   mule: Support mule
   visitWebsite: Visit site
   newsletter: Stay in the know with our newsletter
-optionalKey: See the <1>description</1> below.
 home:
   landingScreenTitle: Kubernetes storage simplified
   openebs:
