@@ -123,7 +123,7 @@ const Community: React.FC = () => {
             <EventSlider />
           ) : (
             <Typography variant="h4" className={classes.noEventText}>
-              {t("community.communityEvents.noEvent.message")}
+               <a className = {classes.noEventLink} href = "https://community.cncf.io/openebs-community">{t("community.communityEvents.noEvent.message")}</a>
             </Typography>
           )}
         </div>

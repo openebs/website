@@ -143,18 +143,18 @@ commercialSupport:
   mule: Support mule
   visitWebsite: Visit site
   newsletter: Stay in the know with our newsletter
-
+optionalKey: See the <1>description</1> below.
 home:
-  landingScreenTitle: Solution to manage your Kubernetes Stateful Workloads
+  landingScreenTitle: Kubernetes storage simplified
   openebs:
     label: OpenEBS
-    description: OpenEBS is the leading open-source project for container-attached and container-native storage on Kubernetes. It is storage that follows your workloads, adding agility and flexibility to your k8s apps.
-    runOpenEBS: Run OpenEBS
+    description: OpenEBS helps Developers and Platform SREs easily deploy Kubernetes Stateful Workloads that require fast and highly reliable <1>container attached storage</1>. OpenEBS turns any storage available on the Kubernetes worker nodes into local or distributed Kubernetes Persistent Volumes.
+    runOpenEBS: Get Started
     watchDemo: Watch Demo
   concepts:
     label: Concepts
-    description: OpenEBS is an open source example of a category of storage solutions sometimes called Container Attached Storage. OpenEBS is itself deployed as a set of containers on Kubernetes worker nodes.
-    checkConcepts: Check concepts
+    description: OpenEBS is Kubernetes native Container Attached Storage solution that makes it possible for Stateful applications to easily access Dynamic Local PVs or Replicated PVs. By using the Container Attached Storage pattern users report lower costs, easier management, and more control for their teams.
+    checkConcepts: Documentation
   community:
     label: Community
     description: OpenEBS is built by a community of experts. With our comunity you can quickly and easily build, train, and deploy your data science workloads on any Kubernetes deployment.
@@ -169,18 +169,19 @@ home:
     comcast: COMCAST
   whatsInItForYou:
     title: What’s in for you
-    saveMoney: Save money by allocating storage on demand
-    flexibility: Enjoy flexibility of k8s apps with Container Storage
-    resilience: Run your K8s app on any cloud and improve resilience
-    restoreData: Efficiently backup and restore data to minimize loss
-    openSource: Avoid vendor lock-in due to 100% Open Source product
-    granularControl: Manage workloads separately with Granular Control
+    saveMoney: On most clouds, block storage is charged based on how much is purchased and not on how much is used; capacity is often over-provisioned in order to achieve higher performance and in order to remove the risk of disruption when the capacity is fully utilized. Thin provisioning capabilities of OpenEBS can pool local storage or cloud storage and then grow the data volumes of stateful applications as needed. The storage can be added on the fly without disruption to the volumes exposed to the workloads or applications. Certain users have reported savings in excess of 60% due to the use of thin provisioning from OpenEBS.
+    flexibility: OpenEBS with CAS pattern extends the benefits of Kubernetes patterns and benefits to storage. OpenEBS allows for providing volumes to applications with just enough features ranging from local to distributed. OpenEBS supports declarative management of storage and is horizontally scalable with Kubernetes. 
+    resilience: With synchronous replication from the storage controller onto the fixed storage replicas, the storage becomes highly available. The metadata required to maintain the replicas is simplified to saving the information of the nodes that have replicas and information about the status of replicas to help with quorum. The blast radius is much lower with CAS compared to traditional distributed storage solutions.
+    restoreData: The backup and restore of OpenEBS volumes works with Kubernetes backup and restore solutions such as Velero and other tools. Data backup to object storage targets such as AWS S3, GCP Object Storage, or MinIO are frequently deployed using the OpenEBS incremental snapshot capability. This storage level snapshot and backup save a significant amount of bandwidth and storage space as only incremental data is used for backup.
+    openSource: Using OpenEBS as a data abstraction layer, data can be much more easily moved amongst Kubernetes environments, whether they are on-premise and attached to traditional storage systems or in the cloud and attached to local storage or managed storage services.
+    granularControl: Each storage volume in CAS has a containerized storage controller and corresponding containerized replicas. Hence, maintenance and tuning of the resources around these components are truly granular.
   installation:
     title: Installation is as easy as 1,2,3
     description: Start installation using the following command
     or: Or
     readTheGuide:
       button: Read the Guide
+      examples: Examples
       descriptionPart1: OpenEBS orchestrates storage for any Kubernetes stack.
       descriptionPart2: Choose the best storage provider for your scenarios, and OpenEBS ensures that they all run well on Kubernetes with the same consistent experience
     redis: Redis
@@ -202,7 +203,6 @@ home:
     readTheGuide:
       title: Read the guide
       description: And you will see how to manage your workloads with OpenEBS easily
-
 community:
   title: We are the community
   description: OpenEBS is built by a community of experts. With our community you can quickly and easily build, train, and deploy your data science workloads on any Kubernetes deployment.
@@ -219,7 +219,7 @@ community:
     nextArrowAlt: Next event
     previousArrowAlt: Previous event
     noEvent:
-      message: No upcoming events!
+      message: CNCF hosted OpenEBS community events
 
   sponsor:
     mainSponsor: Started and majority of its development sponsored by

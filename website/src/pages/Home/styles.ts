@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: 'none',
         backgroundColor: 'transparent'
     },
+    link: {
+        color: theme.palette.warning.main
+    },
     firstGrid: {
         zIndex: 1
     },
@@ -274,6 +277,8 @@ const useStyles = makeStyles((theme) => ({
         fontSize: '1rem',
         fontWeight: 400,
         textAlign: 'center',
+        // Need to remove this when the casts are enabled
+        paddingBottom: '5%',
     },
     installationCodeWrapper: {
         display: 'flex',
@@ -520,6 +525,9 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
             fontSize: '19px'
         }
+    },
+    noEventLink: {
+        color: '#223288'
     },
     copyIcon: {
         width: '25px',

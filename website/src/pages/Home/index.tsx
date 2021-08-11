@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './styles';
 import Paper from '@material-ui/core/Paper';
@@ -209,9 +209,9 @@ const Home: React.FC = () => {
                                     </Tabs>
                                     <TabPanel value={tabValue} index={0} >
                                         <Typography className={classes.tabBodyText}>
-                                            {t('home.openebs.description')} 
+                                        <Trans i18nKey="home.openebs.description">OpenEBS helps Developers and Platform SREs easily deploy Kubernetes Stateful Workloads that require fast and highly reliable<Link href="/docs/concepts/cas" className={classes.link}>Container attached storage</Link> OpenEBS turns any storage available on the Kubernetes worker nodes into local or distributed Kubernetes Persistent Volumes.</Trans>
                                         </Typography>
-                                        <Button variant="contained" color="secondary" className={classes.solidButton} href={EXTERNAL_LINKS.OPENEBS_GET_STARTED} target="_blank">
+                                        <Button variant="contained" color="secondary" className={classes.solidButton} href= "/docs" target="_blank">
                                             {t('home.openebs.runOpenEBS')} 
                                         </Button>
                                         <Button
@@ -402,7 +402,7 @@ const Home: React.FC = () => {
                             </Grid>
                         ) : (
                             <Typography variant="h4" className={classes.noEventText}>
-                                {t("community.communityEvents.noEvent.message")}
+                                 <a className = {classes.noEventLink} href = "https://community.cncf.io/openebs-community">{t("community.communityEvents.noEvent.message")}</a>
                             </Typography>
                         )}
                     </Grid>
