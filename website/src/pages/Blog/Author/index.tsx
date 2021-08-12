@@ -64,10 +64,10 @@ const Blog: React.FC = () => {
 
   const fetchBlogs = async () => {
     const { default: blogs } = await import(`../../../posts.json`);
-    const filteredBlogs = blogs.filter(
+    const filteredBlogsByAuthorName = blogs.filter(
       (blog: blog) => blog.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName
     );
-    setAuthorArticlesData(filteredBlogs);
+    setAuthorArticlesData(filteredBlogsByAuthorName);
   };
 
   useEffect(() => {
