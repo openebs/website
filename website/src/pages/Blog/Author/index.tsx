@@ -105,7 +105,7 @@ const Blog: React.FC = () => {
        )}
         <>
           <div className={classes.root}>
-            <Container maxWidth="md">
+            <Container className={classes.sectionDiv}>
               {(width > mobileBreakpoint && filteredAuthorData.length > 0) &&
                 <Breadcrumbs aria-label="breadcrumb" className={classes.breadCrumbs}>
                   <Link color="inherit" href="/blog">
@@ -122,11 +122,11 @@ const Blog: React.FC = () => {
                   src={`/images/blog/authors/${getAvatar(filteredAuthorData[0]?.author)}.png`}
                   className={classes.large}
                 />
-                <h1 className={classes.authorText}>{filteredAuthorData[0]?.author || authorName}</h1>
+                <div>
+                  <h1 className={classes.authorText}>{filteredAuthorData[0]?.author || authorName}</h1>
+                  <p className={classes.authorDesc}>{filteredAuthorData[0]?.author_info}</p>
+                </div>
               </div>
-              <p className={classes.authorDesc}>
-                {filteredAuthorData[0]?.author_info}
-              </p>
             </Container>
           </div>
           <div className={classes.sectionDiv}>

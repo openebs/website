@@ -320,6 +320,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   rightArrowButtonWrapper: {
+    textAlign: 'right',
     marginLeft: 'auto'
   },
   blogLink: {
