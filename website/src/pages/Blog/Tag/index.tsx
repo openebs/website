@@ -44,7 +44,7 @@ const Blog: React.FC = () => {
       id: 0,
       slug: "" }
   ]);
-  const selectedTag = useTag() || '';
+  const selectedTag = useTag();
   const itemsPerPage = 6;
   const [page, setPage] = React.useState<number>(1);
   const history = useHistory();
@@ -52,7 +52,7 @@ const Blog: React.FC = () => {
   const fetchBlogs = async () => {
     const { default: blogs } = await import(`../../../posts.json`);
     const filteredData = blogs.filter(
-      (blog: blog) => blog.tags.find((tag: string) => tag.toLowerCase() === selectedTag.toLowerCase())
+      (blog: blog) => blog.tags.find((tag: string) => tag.toLowerCase() === selectedTag?.toLowerCase())
     );
     setFilteredData(filteredData);
   };
