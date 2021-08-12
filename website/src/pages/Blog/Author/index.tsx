@@ -21,7 +21,7 @@ import { Pagination } from "@material-ui/lab";
 import BlogCard from "../../../components/BlogCard";
 import ErrorPage from "../../ErrorPage";
 
-interface blog { 
+interface Blog { 
   title: string;
   author: string;
   excerpt: string;
@@ -45,13 +45,13 @@ const Blog: React.FC = () => {
   const classes = useStyles();
   const { currentOrigin } = useCurrentHost();
   const [ authorMetadata, setAuthorMetadata ] = useState<AuthorMetadata | null>(null);
-  const [authorBlogsData, setAuthorBlogData] = useState<blog[]>([
+  const [authorBlogsData, setAuthorBlogData] = useState<Blog[]>([
       { title: "",
         author: "",
         excerpt: "",
         author_info: "",
         date: "",
-        tags: [""],
+        tags: [],
         content: "",
         id: 0,
         slug: "" }
@@ -65,7 +65,7 @@ const Blog: React.FC = () => {
   const fetchBlogs = async () => {
     const { default: blogs } = await import(`../../../posts.json`);
     const filteredBlogsByAuthorName = blogs.filter(
-      (blog: blog) => blog.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName
+      (blog: Blog) => blog.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName
     );
     setAuthorBlogData(filteredBlogsByAuthorName);
   };
@@ -104,7 +104,7 @@ const Blog: React.FC = () => {
         { authorBlogsData && (
           <>
           <div className={classes.root}>
-            <Container maxWidth="md">
+            <Container className={classes.sectionDiv}>
               {(width > mobileBreakpoint && authorBlogsData.length > 0) &&
                 <Breadcrumbs aria-label="breadcrumb" className={classes.breadCrumbs}>
                   <Link color="inherit" href="/blog">
