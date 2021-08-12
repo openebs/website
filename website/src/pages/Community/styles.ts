@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       background: "transparent",
     },
   },
+  noEventLink: {
+    color: theme.palette.text.primary
+},
   pageHeader: {
     fontSize: "2.625rem",
     fontWeight: 700,

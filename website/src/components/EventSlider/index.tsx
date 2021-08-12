@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Typography, Link, Box } from "@material-ui/core";
 import useStyles from "./style";
 import eventsList from "../../resources/events.json";
+import { EXTERNAL_LINKS } from "../../constants";
 
 interface Events {
   id: number;
@@ -155,7 +156,7 @@ const EventSlider: React.FC<EventsProps> = ({
       height="100%"
     >
       <Typography variant="h4" className={classes.noEventText}>
-        {t("community.communityEvents.noEvent.message")}
+      <Link target="_blank" className={classes.noEventLink} href={EXTERNAL_LINKS.CNCF_EVENTS}>{t("community.communityEvents.noEvent.message")}</Link>
       </Typography>
     </Box>
   );

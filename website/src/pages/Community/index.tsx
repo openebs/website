@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, Typography } from "@material-ui/core";
+import { Button, Grid, Link, Paper, Typography } from "@material-ui/core";
 import React from "react";
 import useStyles from "./styles";
 import { useTranslation } from "react-i18next";
@@ -123,7 +123,7 @@ const Community: React.FC = () => {
             <EventSlider />
           ) : (
             <Typography variant="h4" className={classes.noEventText}>
-              {t("community.communityEvents.noEvent.message")}
+               <Link target="_blank" className={classes.noEventLink} href={EXTERNAL_LINKS.CNCF_EVENTS}>{t("community.communityEvents.noEvent.message")}</Link>
             </Typography>
           )}
         </div>

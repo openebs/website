@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2)
     }
   },
+  noEventLink: {
+    color: theme.palette.text.primary
+},
   actionLink:{
     display: 'none',
   },
