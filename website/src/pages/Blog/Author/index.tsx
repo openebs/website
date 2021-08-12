@@ -72,9 +72,7 @@ const Blog: React.FC = () => {
 
   useEffect(() => {
     fetchBlogs();
-  },[]);
-
-
+  },[]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const pagination = () => {
     return (
