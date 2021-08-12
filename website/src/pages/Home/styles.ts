@@ -278,7 +278,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 400,
         textAlign: 'center',
         // Need to remove this when the casts are enabled
-        paddingBottom: '5%',
+        paddingBottom: theme.spacing(4),
     },
     installationCodeWrapper: {
         display: 'flex',
