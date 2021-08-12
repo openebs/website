@@ -21,7 +21,7 @@ import { Pagination } from "@material-ui/lab";
 import BlogCard from "../../../components/BlogCard";
 import ErrorPage from "../../ErrorPage";
 
-interface blog { 
+interface BlogItem { 
   title: string;
   author: string;
   excerpt: string;
@@ -45,41 +45,39 @@ const Blog: React.FC = () => {
   const classes = useStyles();
   const { currentOrigin } = useCurrentHost();
   const [ authorMetadata, setAuthorMetadata ] = useState<AuthorMetadata | null>(null);
-  const [jsonMdData, setJsonMdData] = useState<blog[]>([
-    { title: "",
-      author: "",
-      excerpt: "",
-      author_info: "",
-      date: "",
-      tags: [""],
-      content: "",
-      id: 0,
-      slug: "" }
-  ]);
+  const [authorBlogsData, setAuthorBlogData] = useState<BlogItem[]>([
+      { title: "",
+        author: "",
+        excerpt: "",
+        author_info: "",
+        date: "",
+        tags: [],
+        content: "",
+        id: 0,
+        slug: "" }
+    ]);
   const authorName = useAuthorName();
   const itemsPerPage = 6;
   const [page, setPage] = React.useState<number>(1);
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
 
-  const fetchBlogs = async () => {
-    const { default: blogs } = await import(`../../../posts.json`);
-    setJsonMdData(blogs);
-  };
-
   useEffect(() => {
+    const fetchBlogs = async () => {
+      const { default: blogs } = await import(`../../../posts.json`);
+      const filteredBlogsByAuthorName = blogs.filter(
+        (blog: BlogItem) => blog.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName
+      );
+      setAuthorBlogData(filteredBlogsByAuthorName);
+    };
     fetchBlogs();
-  },[]);
-
-  const filteredAuthorData = (jsonMdData || []).filter(
-    (blog: blog) => blog.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName
-  );
+  },[authorName]); 
 
   const pagination = () => {
     return (
       <Pagination
         count={
-        pageCount(filteredAuthorData)
+        pageCount(authorBlogsData)
         }
         page={page}
         onChange={(_event, val) => val? setPage(val) : setPage(1)}
@@ -89,56 +87,56 @@ const Blog: React.FC = () => {
   };
 
   useEffect(() => {
-    if(filteredAuthorData.length && currentOrigin && authorName) {
-      const authorData = filteredAuthorData.find(res => res.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName);
-      const { author, author_info } = authorData!;
-      const image = `${currentOrigin}/images/blog/authors/${getAvatar(filteredAuthorData[0]?.author)}.png`;
+    if(authorBlogsData?.length && currentOrigin && authorName) {
+      const { author, author_info } = authorBlogsData[0]!;
+      const image = `${currentOrigin}/images/blog/authors/${getAvatar(authorBlogsData[0]?.author)}.png`;
       const url = `${currentOrigin}/blog/author/${authorName}`;
       setAuthorMetadata({ author, author_info, image, url });
     }
-  }, [filteredAuthorData, currentOrigin, authorName]);
+  }, [authorBlogsData, currentOrigin, authorName]);
 
   return (
     <>
      { authorMetadata && (
        <Metadata title={authorMetadata?.author} description={authorMetadata?.author_info} url={authorMetadata?.url} image={authorMetadata?.image} isPost={false} type={METADATA_TYPES.SERIES}  />
        )}
-        <>
+        { authorBlogsData && (
+          <>
           <div className={classes.root}>
             <Container className={classes.sectionDiv}>
-              {(width > mobileBreakpoint && filteredAuthorData.length > 0) &&
+              {(width > mobileBreakpoint && authorBlogsData.length > 0) &&
                 <Breadcrumbs aria-label="breadcrumb" className={classes.breadCrumbs}>
                   <Link color="inherit" href="/blog">
                     {t('blog.blog')}
                   </Link>
                   <Link color="inherit" href={`/blog/author/${authorName}`}>
-                      {filteredAuthorData[0]?.author}
+                      {authorBlogsData[0]?.author}
                   </Link>
                 </Breadcrumbs>
               }
               <div className={classes.authorWrapper}>
                 <Avatar
-                  alt={filteredAuthorData[0]?.author}
-                  src={`/images/blog/authors/${getAvatar(filteredAuthorData[0]?.author)}.png`}
+                  alt={authorBlogsData[0]?.author}
+                  src={`/images/blog/authors/${getAvatar(authorBlogsData[0]?.author)}.png`}
                   className={classes.large}
                 />
                 <div>
-                  <h1 className={classes.authorText}>{filteredAuthorData[0]?.author || authorName}</h1>
-                  <p className={classes.authorDesc}>{filteredAuthorData[0]?.author_info}</p>
+                  <h1 className={classes.authorText}>{authorBlogsData[0]?.author || authorName}</h1>
+                  <p className={classes.authorDesc}>{authorBlogsData[0]?.author_info}</p>
                 </div>
               </div>
             </Container>
           </div>
           <div className={classes.sectionDiv}>
-          {filteredAuthorData.length ?
+          {authorBlogsData.length ?
           <>
             <Grid
               container
               direction="row"
               className={classes.blogsWrapper}
             >
-              {filteredAuthorData
-                ? filteredAuthorData
+              {authorBlogsData
+                ? authorBlogsData
                     .slice((page - 1) * itemsPerPage, page * itemsPerPage)
                     .map((elm: any) => {
                       return (
@@ -161,6 +159,7 @@ const Blog: React.FC = () => {
             <ErrorPage blogStatus={true} />}
           </div>
         </>
+        )}
       <div className={classes.blogFooter}>
           {/* Sponsor section  */}
           <Sponsor />
