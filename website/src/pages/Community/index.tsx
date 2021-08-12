@@ -123,7 +123,7 @@ const Community: React.FC = () => {
             <EventSlider />
           ) : (
             <Typography variant="h4" className={classes.noEventText}>
-               <Link target = "_blank" className = {classes.noEventLink} href = {EXTERNAL_LINKS.CNCF_EVENTS}>{t("community.communityEvents.noEvent.message")}</Link>
+               <Link target="_blank" className={classes.noEventLink} href={EXTERNAL_LINKS.CNCF_EVENTS}>{t("community.communityEvents.noEvent.message")}</Link>
             </Typography>
           )}
         </div>
