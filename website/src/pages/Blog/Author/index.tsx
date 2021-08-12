@@ -45,17 +45,17 @@ const Blog: React.FC = () => {
   const classes = useStyles();
   const { currentOrigin } = useCurrentHost();
   const [ authorMetadata, setAuthorMetadata ] = useState<AuthorMetadata | null>(null);
-  const [jsonMdData, setJsonMdData] = useState<blog[]>([
-    { title: "",
-      author: "",
-      excerpt: "",
-      author_info: "",
-      date: "",
-      tags: [""],
-      content: "",
-      id: 0,
-      slug: "" }
-  ]);
+  const [authorArticlesData, setAuthorArticlesData] = useState<blog[] | null>([
+      { title: "",
+        author: "",
+        excerpt: "",
+        author_info: "",
+        date: "",
+        tags: [""],
+        content: "",
+        id: 0,
+        slug: "" }
+    ]);
   const authorName = useAuthorName();
   const itemsPerPage = 6;
   const [page, setPage] = React.useState<number>(1);
@@ -64,22 +64,23 @@ const Blog: React.FC = () => {
 
   const fetchBlogs = async () => {
     const { default: blogs } = await import(`../../../posts.json`);
-    setJsonMdData(blogs);
+    const filteredBlogs = blogs.filter(
+      (blog: blog) => blog.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName
+    );
+    setAuthorArticlesData(filteredBlogs);
   };
 
   useEffect(() => {
     fetchBlogs();
   },[]);
 
-  const filteredAuthorData = (jsonMdData || []).filter(
-    (blog: blog) => blog.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName
-  );
+
 
   const pagination = () => {
     return (
       <Pagination
         count={
-        pageCount(filteredAuthorData)
+        pageCount(authorArticlesData)
         }
         page={page}
         onChange={(_event, val) => val? setPage(val) : setPage(1)}
@@ -89,56 +90,56 @@ const Blog: React.FC = () => {
   };
 
   useEffect(() => {
-    if(filteredAuthorData.length && currentOrigin && authorName) {
-      const authorData = filteredAuthorData.find(res => res.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName);
-      const { author, author_info } = authorData!;
-      const image = `${currentOrigin}/images/blog/authors/${getAvatar(filteredAuthorData[0]?.author)}.png`;
+    if(authorArticlesData && authorArticlesData.length && currentOrigin && authorName) {
+      const { author, author_info } = authorArticlesData[0]!;
+      const image = `${currentOrigin}/images/blog/authors/${getAvatar(authorArticlesData[0]?.author)}.png`;
       const url = `${currentOrigin}/blog/author/${authorName}`;
       setAuthorMetadata({ author, author_info, image, url });
     }
-  }, [filteredAuthorData, currentOrigin, authorName]);
+  }, [authorArticlesData, currentOrigin, authorName]);
 
   return (
     <>
      { authorMetadata && (
        <Metadata title={authorMetadata?.author} description={authorMetadata?.author_info} url={authorMetadata?.url} image={authorMetadata?.image} isPost={false} type={METADATA_TYPES.SERIES}  />
        )}
-        <>
+        { authorArticlesData && (
+          <>
           <div className={classes.root}>
             <Container className={classes.sectionDiv}>
-              {(width > mobileBreakpoint && filteredAuthorData.length > 0) &&
+              {(width > mobileBreakpoint && authorArticlesData.length > 0) &&
                 <Breadcrumbs aria-label="breadcrumb" className={classes.breadCrumbs}>
                   <Link color="inherit" href="/blog">
                     {t('blog.blog')}
                   </Link>
                   <Link color="inherit" href={`/blog/author/${authorName}`}>
-                      {filteredAuthorData[0]?.author}
+                      {authorArticlesData[0]?.author}
                   </Link>
                 </Breadcrumbs>
               }
               <div className={classes.authorWrapper}>
                 <Avatar
-                  alt={filteredAuthorData[0]?.author}
-                  src={`/images/blog/authors/${getAvatar(filteredAuthorData[0]?.author)}.png`}
+                  alt={authorArticlesData[0]?.author}
+                  src={`/images/blog/authors/${getAvatar(authorArticlesData[0]?.author)}.png`}
                   className={classes.large}
                 />
-                <div>
-                  <h1 className={classes.authorText}>{filteredAuthorData[0]?.author || authorName}</h1>
-                  <p className={classes.authorDesc}>{filteredAuthorData[0]?.author_info}</p>
-                </div>
+                <h1 className={classes.authorText}>{authorArticlesData[0]?.author || authorName}</h1>
               </div>
+              <p className={classes.authorDesc}>
+                {authorArticlesData[0]?.author_info}
+              </p>
             </Container>
           </div>
           <div className={classes.sectionDiv}>
-          {filteredAuthorData.length ?
+          {authorArticlesData.length ?
           <>
             <Grid
               container
               direction="row"
               className={classes.blogsWrapper}
             >
-              {filteredAuthorData
-                ? filteredAuthorData
+              {authorArticlesData
+                ? authorArticlesData
                     .slice((page - 1) * itemsPerPage, page * itemsPerPage)
                     .map((elm: any) => {
                       return (
@@ -161,6 +162,7 @@ const Blog: React.FC = () => {
             <ErrorPage blogStatus={true} />}
           </div>
         </>
+        )}
       <div className={classes.blogFooter}>
           {/* Sponsor section  */}
           <Sponsor />
