@@ -16,6 +16,7 @@ import { useHistory } from "react-router-dom";
 import { useCurrentHost } from "../../hooks/useCurrentHost";
 import { Metadata } from "../../components/Metadata";
 import ErrorPage from "../ErrorPage";
+import CustomTag from "../../components/CustomTag";
 
 const BlogPage: React.FC = () => {
   const { currentOrigin, currentLocation, currentPathname } = useCurrentHost();
@@ -120,6 +121,22 @@ const BlogPage: React.FC = () => {
     }
   };
     
+  const getTags = (tags: string[]) => {
+    return tags.map((tag: string) => (
+      <button
+        key={tag}
+        onClick={() => handleTagSelect(tag)}
+        className={classes.tagButton}
+      >
+        <CustomTag blogLabel={tag} key={tag} />
+      </button>
+    ));
+  };
+
+  const handleTagSelect = (tag: string) => {
+    history.push(`/blog/tag/${tag}`)
+  };
+
   return (
     <>
     {currentBlogDetails?.id && Boolean(currentBlogDetails?.notHasFeatureImage) && (
@@ -206,6 +223,9 @@ const BlogPage: React.FC = () => {
             <div className={classes.blogBody}>
               <BlogImage imgPath={`/images/blog/${queryBlogName}.png`} alt={currentBlogDetails?.title} className={classes.blogImg} />
               <ReactMarkdown children={currentBlogDetails?.content} />
+              <div className={classes.tagsWrapper}>
+                {getTags(currentBlogDetails?.tags)}
+              </div>
             </div>
             
           </Grid>
