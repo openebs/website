@@ -120,11 +120,11 @@ const Blog: React.FC = () => {
                   src={`/images/blog/authors/${getAvatar(authorBlogsData[0]?.author)}.png`}
                   className={classes.large}
                 />
-                <h1 className={classes.authorText}>{authorBlogsData[0]?.author || authorName}</h1>
+                <div>
+                  <h1 className={classes.authorText}>{authorBlogsData[0]?.author || authorName}</h1>
+                  <p className={classes.authorDesc}>{authorBlogsData[0]?.author_info}</p>
+                </div>
               </div>
-              <p className={classes.authorDesc}>
-                {authorBlogsData[0]?.author_info}
-              </p>
             </Container>
           </div>
           <div className={classes.sectionDiv}>
