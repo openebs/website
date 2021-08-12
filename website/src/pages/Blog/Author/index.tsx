@@ -45,7 +45,7 @@ const Blog: React.FC = () => {
   const classes = useStyles();
   const { currentOrigin } = useCurrentHost();
   const [ authorMetadata, setAuthorMetadata ] = useState<AuthorMetadata | null>(null);
-  const [authorBlogsData, setAuthorBlogData] = useState<blog[] | null>([
+  const [authorBlogsData, setAuthorBlogData] = useState<blog[]>([
       { title: "",
         author: "",
         excerpt: "",
@@ -88,7 +88,7 @@ const Blog: React.FC = () => {
   };
 
   useEffect(() => {
-    if(authorBlogsData && authorBlogsData.length && currentOrigin && authorName) {
+    if(authorBlogsData?.length && currentOrigin && authorName) {
       const { author, author_info } = authorBlogsData[0]!;
       const image = `${currentOrigin}/images/blog/authors/${getAvatar(authorBlogsData[0]?.author)}.png`;
       const url = `${currentOrigin}/blog/author/${authorName}`;
