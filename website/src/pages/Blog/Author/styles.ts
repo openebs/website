@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   breadCrumbs: {
     '& .MuiBreadcrumbs-ol':{
-      justifyContent: 'flex-start',
+      justifyContent: 'center',
       color: theme.palette.info.light,
       fontSize: '14px',
       fontWeight: 400
