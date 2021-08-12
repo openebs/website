@@ -20,6 +20,7 @@ import { useAuthorName } from "../../../hooks/extractBlogPath";
 import { Pagination } from "@material-ui/lab";
 import BlogCard from "../../../components/BlogCard";
 import ErrorPage from "../../ErrorPage";
+import { useHistory } from "react-router-dom";
 
 interface blog { 
   title: string;
@@ -61,6 +62,7 @@ const Blog: React.FC = () => {
   const [page, setPage] = React.useState<number>(1);
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
+  const history = useHistory();
 
   const fetchBlogs = async () => {
     const { default: blogs } = await import(`../../../posts.json`);
@@ -149,7 +151,7 @@ const Blog: React.FC = () => {
                           key={elm.id}
                           className={classes.cardSize}
                         >
-                          <BlogCard isAuthorPage={true} blog={elm} handleTagSelect={() => {}}></BlogCard>
+                          <BlogCard blog={elm} handleTagSelect={(tag: string) => history.push(`/blog/tag/${tag}`)}></BlogCard>
                         </Grid>
                       );
                     })

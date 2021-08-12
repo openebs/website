@@ -33,9 +33,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     paddingBottom: theme.spacing(0.75),
   },
   tag: {
-    marginRight: theme.spacing(1)
+    marginRight: theme.spacing(1),
+    border: 'none',
+    background: 'transparent',
+    padding: theme.spacing(0),
+    cursor: 'pointer'
   },
-
   title: {
     fontSize: 22,
     fontWeight: 700,

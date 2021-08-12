@@ -78,7 +78,7 @@ const Header: React.FC = () => {
                         onClick: handleDrawerOpen,
                     }}
                     >
-                    <img loading="lazy" src="../images/svg/hamburger.svg" alt={t('header.menuAlt')}></img>
+                    <img loading="lazy" src="/images/svg/hamburger.svg" alt={t('header.menuAlt')}></img>
                     </IconButton>
                 </div>
                 <Drawer elevation={0}
@@ -91,7 +91,7 @@ const Header: React.FC = () => {
                     <div className={classes.drawerPaper}>
                         <div className={classes.closeIcon}>
                             <IconButton aria-label="close drawer" onClick={() => handleDrawerClose()}>
-                                <img loading="lazy" src="../images/svg/x-circle.svg" alt={t('header.closeMenuAlt')}/>
+                                <img loading="lazy" src="/images/svg/x-circle.svg" alt={t('header.closeMenuAlt')}/>
                             </IconButton>
                         </div>
                         <div className={classes.mobileNavWrapper}>
