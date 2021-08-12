@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   noEventLink: {
-    color: '#223288'
+    color: theme.palette.text.primary
 },
   actionLink:{
     display: 'none',

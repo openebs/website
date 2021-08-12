@@ -315,7 +315,9 @@ const Home: React.FC = () => {
                                 <img loading="lazy" src="../images/svg/money_bag.svg" alt={t('home.whatsInItForYou.saveMoney')}></img>
                             </div>
                             <Typography className={classes.description}>
-                                {t('home.whatsInItForYou.saveMoney')}
+                            <Trans i18nKey='home.whatsInItForYou.saveMoney'>
+                            <strong>Save money, improve the resilience of your cloud storage </strong> – thanks to thin provisioning and the ability to span availability zones and to spin up and down easily in some cases users are saving 30% or more on their cloud storage via the use of container attached storage.
+                            </Trans>
                             </Typography>
                         </Paper>
                     </Grid>
@@ -325,7 +327,9 @@ const Home: React.FC = () => {
                                 <img loading="lazy" src="../images/svg/box.svg" alt={t('home.whatsInItForYou.flexibility')}></img>
                             </div>
                             <Typography className={classes.description}>
-                                {t('home.whatsInItForYou.flexibility')}
+                            <Trans i18nKey='home.whatsInItForYou.flexibility'>
+                            <strong>Run anywhere the same way</strong> – especially with a solution like OpenEBS that is in the user space, you can abstract away from the various flavors of storage; this is consistent with the mission of Kubernetes itself of course!
+                            </Trans>
                             </Typography>
                         </Paper>
                     </Grid>
@@ -335,7 +339,9 @@ const Home: React.FC = () => {
                                 <img loading="lazy" src="../images/svg/wheel.svg" alt={t('home.whatsInItForYou.resilience')}></img>
                             </div>
                             <Typography className={classes.description}>
-                                {t('home.whatsInItForYou.resilience')}
+                            <Trans i18nKey='home.whatsInItForYou.resilience'>
+                            <strong>Kubernetes is becoming ubiquitous</strong> – providing for the first time a means to scale solutions like Container Attached Storage software. OpenEBS with CAS pattern extends the benefits of Kubernetes patterns and benefits to storage.
+                            </Trans>
                             </Typography>
                         </Paper>
                     </Grid>
@@ -345,7 +351,9 @@ const Home: React.FC = () => {
                                 <img loading="lazy" src="../images/svg/cloud.svg" alt={t('home.whatsInItForYou.restoreData')}></img>
                             </div>
                             <Typography className={classes.description}>
-                                {t('home.whatsInItForYou.restoreData')}
+                            <Trans i18nKey='home.whatsInItForYou.restoreData'>
+                            <strong>Cloud-native data protection</strong> - The backup and restore of OpenEBS volumes works with Kubernetes backup and restore solutions such as Velero. Data backup to object storage targets such as AWS S3, GCP Object Storage, or MinIO are frequently deployed using the OpenEBS.
+                            </Trans>  
                             </Typography>
                         </Paper>
                     </Grid>
@@ -355,7 +363,9 @@ const Home: React.FC = () => {
                                 <img loading="lazy" src="../images/svg/lock.svg" alt={t('home.whatsInItForYou.openSource')}></img>
                             </div>
                             <Typography className={classes.description}>
-                                {t('home.whatsInItForYou.openSource')}
+                            <Trans i18nKey='home.whatsInItForYou.openSource'>
+                                <strong>Avoid vendor lock-in</strong> - Using OpenEBS as a data abstraction layer, data can be much more easily moved amongst Kubernetes environments, whether they are on-premise and attached to traditional storage systems or in the cloud.
+                            </Trans> 
                             </Typography>
                         </Paper>
                     </Grid>
@@ -365,7 +375,9 @@ const Home: React.FC = () => {
                                 <img loading="lazy" src="../images/svg/settings.svg" alt={t('home.whatsInItForYou.granularControl')}></img>
                             </div>
                             <Typography className={classes.description}>
-                                {t('home.whatsInItForYou.granularControl')}
+                            <Trans i18nKey='home.whatsInItForYou.granularControl'>
+                            <strong>Applications have changed</strong> – applications and the teams that build them now have very different requirements; OpenEBS allows for providing volumes to applications with just enough features ranging from local to distributed persistent volumes.
+                            </Trans>
                             </Typography>
                         </Paper>
                     </Grid>
@@ -402,7 +414,7 @@ const Home: React.FC = () => {
                             </Grid>
                         ) : (
                             <Typography variant="h4" className={classes.noEventText}>
-                                 <a className = {classes.noEventLink} href = "https://community.cncf.io/openebs-community">{t("community.communityEvents.noEvent.message")}</a>
+                                 <Link target = "_blank" className = {classes.noEventLink} href = {EXTERNAL_LINKS.CNCF_EVENTS}>{t("community.communityEvents.noEvent.message")}</Link>
                             </Typography>
                         )}
                     </Grid>

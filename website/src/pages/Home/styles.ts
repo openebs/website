@@ -527,7 +527,7 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     noEventLink: {
-        color: '#223288'
+        color: theme.palette.text.primary
     },
     copyIcon: {
         width: '25px',

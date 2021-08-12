@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   noEventLink: {
-    color: '#223288'
+    color: theme.palette.text.primary
 },
   pageHeader: {
     fontSize: "2.625rem",
