@@ -21,7 +21,7 @@ import { Pagination } from "@material-ui/lab";
 import BlogCard from "../../../components/BlogCard";
 import ErrorPage from "../../ErrorPage";
 
-interface Blog { 
+interface BlogItem { 
   title: string;
   author: string;
   excerpt: string;
@@ -45,7 +45,7 @@ const Blog: React.FC = () => {
   const classes = useStyles();
   const { currentOrigin } = useCurrentHost();
   const [ authorMetadata, setAuthorMetadata ] = useState<AuthorMetadata | null>(null);
-  const [authorBlogsData, setAuthorBlogData] = useState<Blog[]>([
+  const [authorBlogsData, setAuthorBlogData] = useState<BlogItem[]>([
       { title: "",
         author: "",
         excerpt: "",
@@ -62,17 +62,16 @@ const Blog: React.FC = () => {
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
 
-  const fetchBlogs = async () => {
-    const { default: blogs } = await import(`../../../posts.json`);
-    const filteredBlogsByAuthorName = blogs.filter(
-      (blog: Blog) => blog.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName
-    );
-    setAuthorBlogData(filteredBlogsByAuthorName);
-  };
-
   useEffect(() => {
+    const fetchBlogs = async () => {
+      const { default: blogs } = await import(`../../../posts.json`);
+      const filteredBlogsByAuthorName = blogs.filter(
+        (blog: BlogItem) => blog.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName
+      );
+      setAuthorBlogData(filteredBlogsByAuthorName);
+    };
     fetchBlogs();
-  },[]); // eslint-disable-line react-hooks/exhaustive-deps
+  },[authorName]); 
 
   const pagination = () => {
     return (
