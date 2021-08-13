@@ -27,7 +27,7 @@ footer:
   contactUs: Contact us
   topContributors: Top contributors
   contribute: Contribute
-  copyrights: Copyright © 2021 The OpenEBS Authors | All rights reserved
+  copyrights: Copyright © 2018-2021 The OpenEBS Authors | All rights reserved
   privacyPolicy: Privacy policy
 
 errorPage:
@@ -175,14 +175,11 @@ home:
     openSource: <0>Avoid vendor lock-in</0> - using OpenEBS as a data abstraction layer, data can be much more easily moved amongst Kubernetes environments, whether they are on-premise and attached to traditional storage systems or in the cloud.
     granularControl: <0>Applications have changed</0> – applications and the teams that build them now have very different requirements; OpenEBS allows for providing volumes to applications with just enough features ranging from local to distributed persistent volumes.
   installation:
-    title: Installation is as easy as 1,2,3
-    description: Start installation using the following command
+    title: Installation is as easy as …
     or: Or
     readTheGuide:
       button: Read the Guide
-      examples: Examples
-      descriptionPart1: OpenEBS orchestrates storage for any Kubernetes stack.
-      descriptionPart2: Choose the best storage provider for your scenarios, and OpenEBS ensures that they all run well on Kubernetes with the same consistent experience
+      readInstallUserGuide: Read our Install User Guide
     redis: Redis
     minio: MinIo
     percona: Percona
