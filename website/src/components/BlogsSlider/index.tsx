@@ -66,7 +66,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
   };
 
   const handleTagSelect = (tag: string) => {
-    history.push(`/blog/tag/${tag}`);
+    history.push(`/blog/tag/${tag.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-')}`);
   };
 
   return (

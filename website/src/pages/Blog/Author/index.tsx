@@ -149,7 +149,7 @@ const Blog: React.FC = () => {
                           key={elm.id}
                           className={classes.cardSize}
                         >
-                          <BlogCard blog={elm} handleTagSelect={(tag: string) => history.push(`/blog/tag/${tag}`)}></BlogCard>
+                          <BlogCard blog={elm} handleTagSelect={(tag: string) => history.push(`/blog/tag/${tag.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-')}`)}></BlogCard>
                         </Grid>
                       );
                     })

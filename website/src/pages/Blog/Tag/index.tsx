@@ -17,7 +17,7 @@ import BlogCard from "../../../components/BlogCard";
 import { useTag } from "../../../hooks/extractBlogPath";
 import { useHistory } from "react-router-dom";
 
-interface blog { 
+interface blogObject { 
   title: string;
   author: string;
   excerpt: string;
@@ -29,11 +29,11 @@ interface blog {
   slug: string; 
 }
 
-const Blog: React.FC = () => {
+const Tag: React.FC = () => {
   const { t } = useTranslation();
   const classes = useStyles();
   const { currentOrigin } = useCurrentHost();
-  const [filteredData, setFilteredData] = useState<blog[]>([
+  const [filteredData, setFilteredData] = useState<blogObject[]>([
     { title: "",
       author: "",
       excerpt: "",
@@ -52,9 +52,15 @@ const Blog: React.FC = () => {
   const fetchBlogs = async () => {
     const { default: blogs } = await import(`../../../posts.json`);
     const filteredData = blogs.filter(
-      (blog: blog) => blog.tags.find((tag: string) => tag.toLowerCase() === selectedTag?.toLowerCase())
+      (blog: blogObject) => blog.tags.find((tag: string) => tag.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === selectedTag?.toLowerCase())
     );
     setFilteredData(filteredData);
+  };
+
+  const handleTagSelect = (tag: string) => {
+    if(selectedTag !== tag){
+      history.push(`/blog/tag/${tag.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-')}`)
+    }
   };
 
   useEffect(() => {
@@ -68,7 +74,6 @@ const Blog: React.FC = () => {
 
   const changePage = (val:number = 1) => {
     setPage(val);
-    setPage(1);
     scrollToTop();
   }
 
@@ -108,7 +113,7 @@ const Blog: React.FC = () => {
                           className={classes.cardSize}
                         >
                           {/* Passing parameters blog(passing complete blog object), and handleTagSelect(this fuction handles the action when tag button is clicked)  */}
-                          <BlogCard blog={elm} handleTagSelect={(tag: string) => history.push(`/blog/tag/${tag}`)}></BlogCard>
+                          <BlogCard blog={elm} handleTagSelect={(tag:string) => handleTagSelect(tag)}></BlogCard>
                         </Grid>
                       );
                     })
@@ -129,4 +134,4 @@ const Blog: React.FC = () => {
     </>
   );
 };
-export default Blog;
+export default Tag;

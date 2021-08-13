@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     }
   },
   blogTitle: {
-    fontSize: '2.625rem',
+    fontSize: '2rem',
     fontWeight: 700,
     textAlign: 'center',
     [theme.breakpoints.down('xs')]: {
