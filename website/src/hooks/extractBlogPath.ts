@@ -12,4 +12,10 @@ const useAuthorName = () => {
   return location.pathname.split("/blog/author/").pop();
 };
 
-export { useBlogName, useAuthorName };
+// custom hook for getting blog tag from the URL
+const useTag = () => {
+  const location = useLocation();
+  return location.pathname.split("/blog/tag/").pop();
+};
+
+export { useBlogName, useAuthorName, useTag };

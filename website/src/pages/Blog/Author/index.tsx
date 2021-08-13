@@ -20,6 +20,8 @@ import { useAuthorName } from "../../../hooks/extractBlogPath";
 import { Pagination } from "@material-ui/lab";
 import BlogCard from "../../../components/BlogCard";
 import ErrorPage from "../../ErrorPage";
+import { useHistory } from "react-router-dom";
+import { toLowerCaseHyphenSeparatedString } from "../../../utils/stringConversions";
 
 interface BlogItem { 
   title: string;
@@ -61,12 +63,13 @@ const Blog: React.FC = () => {
   const [page, setPage] = React.useState<number>(1);
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
+  const history = useHistory();
 
   useEffect(() => {
     const fetchBlogs = async () => {
       const { default: blogs } = await import(`../../../posts.json`);
       const filteredBlogsByAuthorName = blogs.filter(
-        (blog: BlogItem) => blog.author.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === authorName
+        (blog: BlogItem) => toLowerCaseHyphenSeparatedString(blog.author) === authorName
       );
       setAuthorBlogData(filteredBlogsByAuthorName);
     };
@@ -147,7 +150,7 @@ const Blog: React.FC = () => {
                           key={elm.id}
                           className={classes.cardSize}
                         >
-                          <BlogCard isAuthorPage={true} blog={elm} handleTagSelect={() => {}}></BlogCard>
+                          <BlogCard blog={elm} handleTagSelect={(tag: string) => history.push(`/blog/tag/${toLowerCaseHyphenSeparatedString(tag)}`)}></BlogCard>
                         </Grid>
                       );
                     })

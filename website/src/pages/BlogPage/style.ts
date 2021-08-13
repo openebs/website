@@ -349,6 +349,16 @@ const useStyles = makeStyles((theme: Theme) => ({
       margin: theme.spacing(0, 4),
     },
   },
+  tagsWrapper: {
+    marginTop: theme.spacing(5),
+  },
+  tagButton: {
+    border: "none",
+    background: "none",
+    margin: theme.spacing(0.5, 1, 0.5, 0),
+    cursor: "pointer",
+    padding: theme.spacing(0)
+  },
   footer: {
     paddingTop: theme.spacing(8),
     background:  'url(/images/png/blog_footer_background.png)',

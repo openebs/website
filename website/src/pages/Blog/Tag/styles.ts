@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
     backgroundSize: "cover",
-    padding: theme.spacing(16, 5, 0),
+    padding: theme.spacing(16, 5, 5),
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(5, 1),
       marginTop: theme.spacing(10),
@@ -16,48 +16,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       backgroundRepeat: "no-repeat",
       backgroundSize: "cover",
     },
-  },
-  tabRoot: {
-    justifyContent: "center",
-    '& .MuiTab-root': {
-      color: `${theme.palette.text.secondary} !important`,
-    },
-    '& .Mui-selected': {
-      color: `${theme.palette.text.hint} !important`,
-      padding: theme.spacing(2, 1),
-    }
-  },
-  scroller: {
-    flexGrow: 0,
-    background: theme.palette.background.paper,
-    boxShadow: '2px 0px 33px 5px rgba(70, 68, 151, 0.04)',
-    borderRadius: '12px 12px 12px 0px'
-  },
-  tabs: {
-    margin: `${theme.spacing(1)}px auto`,
-    background: 'transparent',
-    flexGrow: 1,
-    fontWeight: 700,
-    boxShadow: 'none',
-    position: 'relative',
-    top: '25px'
-  },
-  mobileTabsWrapper: {
-    background: theme.palette.background.paper,
-    boxShadow: '2px 0px 33px 5px rgba(70, 68, 151, 0.04)',
-    borderRadius: '12px 12px 12px 0px',
-    padding: theme.spacing(2,0)
-  },
-  tabButton: {
-    color: theme.palette.text.secondary,
-    fontSize: '14px'
-  },
-  activeTabButton: {
-    color: `${theme.palette.text.hint} !important`,
-  },
-  tagCount: {
-    color: theme.palette.text.disabled,
-    marginLeft: theme.spacing(0.5)
   },
   mainText: {
     display: "flex",
@@ -71,12 +29,6 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down("sm")]: {
       fontSize: "1.5rem",
     },
-  },
-  footer: {
-    gridArea: "footer",
-    width: "100%",
-    position: "relative",
-    bottom: 0,
   },
   sectionDiv: {
     padding: theme.spacing(3, 0),
@@ -126,15 +78,6 @@ const useStyles = makeStyles((theme: Theme) => ({
       fontSize: '1rem'
     },
   },
-  tag: {
-    fontSize: 16,
-    width: "fit-content",
-    padding: theme.spacing(0.1, 4),
-    borderRadius: "8px",
-    lineHeight: "8px",
-    background: theme.palette.warning.light,
-    color: theme.palette.text.hint,
-  },
   pagination: {
     display: "flex",
     justifyContent: "center",
@@ -158,7 +101,13 @@ const useStyles = makeStyles((theme: Theme) => ({
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
     },
-  }
+  },
+  footer: {
+    gridArea: "footer",
+    width: "100%",
+    position: "relative",
+    bottom: 0,
+  },
 }));
 
 export default useStyles;

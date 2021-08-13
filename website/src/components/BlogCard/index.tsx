@@ -10,7 +10,6 @@ import { getContentPreview } from "../../utils/getContent";
 import CustomTag from "../CustomTag";
 
 interface BlogCardProps {
-    isAuthorPage: boolean;
     blog: { 
             title: string;
             author: string;
@@ -25,21 +24,21 @@ interface BlogCardProps {
     handleTagSelect: (tag: string) => void;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ blog, isAuthorPage, handleTagSelect }) => {
+const BlogCard: React.FC<BlogCardProps> = ({ blog, handleTagSelect }) => {
     const { t } = useTranslation();
     const classes = useStyles();
     const history = useHistory();
 
     const handleRedirectPath = (slug: string) => {
         history.push(`/blog/${slug}`);
-      };
+    };
 
     const getTags = (tags: string[]) => {
         return tags.map((tag: string) => (
         <button
             key={tag}
             onClick={() => handleTagSelect(tag)}
-            className={[classes.tagButton, !isAuthorPage ? classes.cursorPointer : ''].join(' ')}
+            className={classes.tagButton}
         >
             <CustomTag blogLabel={tag} key={tag} />
         </button>

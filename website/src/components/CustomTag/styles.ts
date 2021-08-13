@@ -10,6 +10,9 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down("xs")]: {
       fontSize: '0.75rem'
     },
+    '& p':{
+      lineHeight: "inherit !important",
+    }
   },
 }));
 
