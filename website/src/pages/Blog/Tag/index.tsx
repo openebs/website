@@ -32,7 +32,7 @@ interface blogObject {
 const Tag: React.FC = () => {
   const { t } = useTranslation();
   const classes = useStyles();
-  const { currentOrigin } = useCurrentHost();
+  const { currentOrigin, currentLocation } = useCurrentHost();
   const [filteredData, setFilteredData] = useState<blogObject[]>([
     { title: "",
       author: "",
@@ -49,13 +49,7 @@ const Tag: React.FC = () => {
   const [page, setPage] = React.useState<number>(1);
   const history = useHistory();
 
-  const fetchBlogs = async () => {
-    const { default: blogs } = await import(`../../../posts.json`);
-    const filteredData = blogs.filter(
-      (blog: blogObject) => blog.tags.find((tag: string) => tag.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === selectedTag?.toLowerCase())
-    );
-    setFilteredData(filteredData);
-  };
+  
 
   const handleTagSelect = (tag: string) => {
     if(selectedTag !== tag){
@@ -64,8 +58,14 @@ const Tag: React.FC = () => {
   };
 
   useEffect(() => {
+    const fetchBlogs = async () => {
+      const { default: blogs } = await import(`../../../posts.json`);
+      const filteredData = blogs.filter(
+        (blog: blogObject) => blog.tags.find((tag: string) => tag.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === selectedTag?.toLowerCase())
+      );
+      setFilteredData(filteredData);
+    };
     fetchBlogs();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[selectedTag]);
 
   const scrollToTop = () => {
@@ -90,7 +90,13 @@ const Tag: React.FC = () => {
 
   return (
     <>
-     <Metadata title={SeoJson.pages.blog.title} description={SeoJson.pages.blog.description} url={`${currentOrigin}${SeoJson.pages.blog.url}`} image={`${currentOrigin}${SeoJson.pages.blog.image}`} isPost={false} type={METADATA_TYPES.SERIES}  />
+      <Metadata 
+        title={SeoJson.pages.blog.title} 
+        description={SeoJson.pages.blog.description} 
+        url={currentLocation} 
+        image={`${currentOrigin}/images/seo/openebs.png`} 
+        isPost={false}
+        type={METADATA_TYPES.SERIES} />
         <>
           <div className={classes.root}>
             <Container maxWidth="lg">
