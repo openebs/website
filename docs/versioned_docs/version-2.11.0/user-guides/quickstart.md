@@ -98,16 +98,16 @@ As an application developer all you have to do is substitute the `StorageClass` 
 
 **Here are examples of some applications using OpenEBS:**
 
-[MySQL](/stateful-applications/mysql)
-[PostgreSQL](/stateful-applications/postgres)
-[Percona](/stateful-applications/percona)
-[Redis](/stateful-applications/redis)
-[MongoDB](/stateful-applications/mongodb)
-[Cassandra](/stateful-applications/cassandra)
-[Prometheus](/stateful-applications/prometheus)
-[Elastic](/stateful-applications/elasticsearch)
-[Minio](/stateful-applications/minio)
-[Wordpress using NFS](/concepts/rwm)
+- [MySQL](/stateful-applications/mysql)
+- [PostgreSQL](/stateful-applications/postgres)
+- [Percona](/stateful-applications/percona)
+- [Redis](/stateful-applications/redis)
+- [MongoDB](/stateful-applications/mongodb)
+- [Cassandra](/stateful-applications/cassandra)
+- [Prometheus](/stateful-applications/prometheus)
+- [Elastic](/stateful-applications/elasticsearch)
+- [Minio](/stateful-applications/minio)
+- [Wordpress using NFS](/concepts/rwm)
 
 ### 4. Dynamic Persistent Volume Provisioning
 
