@@ -138,9 +138,6 @@ export const Workloads: React.FC = () => {
             <Typography variant="h2" className={classes.sectionTitle}>
                 {t('home.installation.title')}
             </Typography>
-            <Typography variant="h5" className={classes.sectionSubTitle}>
-                {t('home.installation.description')}
-            </Typography>
             <Box className={classes.codeWrapper} mt={2}>
                 <Box className={classes.codeBlock} paddingX={2}>
                     <Typography variant="h5" className={classes.codeText}>
@@ -156,17 +153,9 @@ export const Workloads: React.FC = () => {
             <Typography className={classes.orSeparatorText}>
                 {t('home.installation.or')}
             </Typography>
-            <Button variant="contained" color="secondary" className={[classes.solidButton, classes.middleButton].join(' ')} href="/docs/stateful-applications/elasticsearch">
-                {t('home.installation.readTheGuide.examples')}
+            <Button variant="contained" color="secondary" className={[classes.solidButton, classes.middleButton].join(' ')} href="/docs/user-guides/quickstart">
+                {t('home.installation.readTheGuide.readInstallUserGuide')}
             </Button>
-            <div className={classes.installationDescriptionWrapper}>
-                <Typography className={classes.installationDescription}>
-                    {t('home.installation.readTheGuide.descriptionPart1')}
-                </Typography>
-                <Typography className={classes.installationDescription}>
-                    {t('home.installation.readTheGuide.descriptionPart2')}
-                </Typography>
-            </div>
             {/* Need to remove the showCast boolean to enable casts  */}
             {showCast &&
                 <div>

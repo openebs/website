@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('xs')]: {
             marginRight: theme.spacing(0),
             width: '100%',
-            padding: theme.spacing(1.2)
+            padding: theme.spacing(1.2, 2.4)
         },
         '&:hover': {
             animation: `$pulse 1s`,
@@ -194,27 +194,15 @@ const useStyles = makeStyles((theme) => ({
         background:  'url(/images/png/homepage_installation_background.png)',
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
-        padding: theme.spacing(9, 20, 0),
+        padding: theme.spacing(9, 20, 5),
         [theme.breakpoints.down('md')]: {
-            padding: theme.spacing(9, 5, 0),
+            padding: theme.spacing(9, 5, 5),
         },
         [theme.breakpoints.down('xs')]: {
-            padding: theme.spacing(4, 2, 0),
+            padding: theme.spacing(4, 2, 4),
             background:  'url(/images/png/homepage_installation_background_mobile.png)',
             backgroundSize: 'cover',
             // backgroundPositionX: '-300px' homepage_installation_background_mobile.png
-        },
-    },
-    sectionSubTitle: {
-        fontSize: '1.375rem',
-        fontWeight: 700,
-        color: theme.palette.text.secondary,
-        textAlign: 'center',
-        [theme.breakpoints.down('xs')]: {
-            fontSize: '1rem',
-            fontWeight: 400,
-            maxWidth: '200px',
-            margin: 'auto'
         },
     },
     codeText: {
@@ -256,29 +244,16 @@ const useStyles = makeStyles((theme) => ({
     middleButton: {
         display: 'block',
         margin: 'auto',
-        textAlign: 'center'
+        textAlign: 'center',
+        '&.MuiButton-contained':{
+            width: 'fit-content'
+        }
     },
     orSeparatorText: {
         fontSize: '0.875rem',
         fontWeight: 400,
         textAlign: 'center',
         margin: theme.spacing(2,0),
-    },
-    installationDescriptionWrapper: {
-        margin: theme.spacing(4,26),
-        [theme.breakpoints.down('md')]: {
-            margin: theme.spacing(4,10),
-        },
-        [theme.breakpoints.down('xs')]: {
-            margin: theme.spacing(4),
-        },
-    },
-    installationDescription: {
-        fontSize: '1rem',
-        fontWeight: 400,
-        textAlign: 'center',
-        // Need to remove this when the casts are enabled.
-        paddingBottom: theme.spacing(4),
     },
     installationCodeWrapper: {
         display: 'flex',
