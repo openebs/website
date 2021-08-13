@@ -245,7 +245,9 @@ const useStyles = makeStyles((theme) => ({
         display: 'block',
         margin: 'auto',
         textAlign: 'center',
-        width: 'fit-content'
+        '&.MuiButton-contained':{
+            width: 'fit-content'
+        }
     },
     orSeparatorText: {
         fontSize: '0.875rem',
