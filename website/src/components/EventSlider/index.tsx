@@ -13,6 +13,7 @@ interface Events {
   description: string;
   buttonText: string;
   buttonLink: string;
+  isDateAvailable?: boolean
 }
 
 interface EventsProps {
@@ -42,18 +43,32 @@ const EventSlider: React.FC<EventsProps> = ({
      */
     const currentDate = new Date();
     let eventsData = [];
-    if (events.length) {
+    let eventsWithDate: Events[] = [];
+    let recurringEvents: Events[] = [];
+    events.forEach((item) => {
+      let givenDate = new Date(item?.date).getMonth();
+      if (isNaN(givenDate)) {
+        item.isDateAvailable = false;
+        recurringEvents.push(item);
+      }else {
+        item.isDateAvailable = true;
+        eventsWithDate.push(item);
+      }
+    });
+    if (eventsWithDate.length) {
       eventsData = filterEvents
-        ? events?.filter((event) => new Date(event?.date) >= currentDate)
-        : events;
+        ? eventsWithDate?.filter((event: Events) => new Date(event?.date) >= currentDate)
+        : eventsWithDate;
+      
       eventsData = sortEvents
-        ? eventsData?.sort((eventA, eventB) => {
+        ? eventsData?.sort((eventA: Events, eventB: Events) => {
             const dateA: any = new Date(eventB?.date);
             const dateB: any = new Date(eventA?.date);
             return sortOrder === "asc" ? dateB - dateA : dateB + dateA;
           })
         : eventsData;
-      setFilteredEvents(eventsData);
+      const allEvents = [...eventsData, ...recurringEvents];
+      setFilteredEvents([...allEvents]);    
     }
   }, [events]); // eslint-disable-line react-hooks/exhaustive-deps
   const sliderSettings = {
@@ -97,12 +112,12 @@ const EventSlider: React.FC<EventsProps> = ({
       </>
     );
   };
-
-  function checkPastDate(date: any) {
-    const givenDate = new Date(date);
-    const currentDate = new Date();
-    return givenDate > currentDate;
-  }
+ // Kept for future reference
+  // function checkPastDate(date: any) {
+  //   const givenDate = new Date(date);
+  //   const currentDate = new Date();
+  //   return givenDate > currentDate;
+  // }
 
   return filteredEvents?.length ? (
     <>
@@ -113,7 +128,10 @@ const EventSlider: React.FC<EventsProps> = ({
               <div key={event.id}>
                 <div className={classes.slide}>
                   <Box mb={2}>
-                    <FetchDate date={event.date} />
+                    {event.isDateAvailable
+                    ? <FetchDate date={event.date} /> 
+                    :
+                    <p>{event.date}</p>}
                   </Box>
                   <Typography variant="h4" className={classes.titleText}>
                     {event.title}
@@ -121,7 +139,7 @@ const EventSlider: React.FC<EventsProps> = ({
                   <Typography className={classes.subText}>
                     {event.description}
                   </Typography>
-                  {checkPastDate(event.date) && event.buttonLink && (
+                  {event.buttonLink && (
                     <Box mt={2} className={classes.actionLink}>
                       <Link
                         className={classes.linkText}
