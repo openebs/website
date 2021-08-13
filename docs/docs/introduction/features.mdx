@@ -1,0 +1,87 @@
+---
+id: features
+title: OpenEBS Features
+keywords:
+  - Containerized storage for containers
+  - Synchronous replication
+  - Snapshots and clones
+  - Backup and restore
+  - Prometheus metrics and Grafana dashboard
+  - OpenEBS Features
+description: OpenEBS features includes containerized storage for containers, synchronous replication, snapshots and clones, backup and restore, and monitoring using Prometheus metrics and Grafana dashboard.
+---
+
+import { TwoColumn } from "@site/src/components/TwoColumn";
+
+- [Containerized storage for containers](#containerized-storage-for-containers)
+- [Synchronous replication](#synchronous-replication)
+- [Snapshots and clones](#snapshots-and-clones)
+- [Backup and restore](#backup-and-restore)
+- [Prometheus metrics and Grafana dashboard](#prometheus-metrics-for-workload-tuning)
+
+:::tip
+For information on how OpenEBS is used in production, visit the [use cases](/docs/introduction/usecases) section or see examples of users and their stories on the OpenEBS Adopters section [here](https://github.com/openebs/openebs/blob/master/ADOPTERS.md) where you can also share your experience.
+:::
+
+### Containerized Storage for Containers
+
+<TwoColumn left="1fr" right="200px">
+  <p>
+    OpenEBS2 is an example of Container Attached Storage or CAS. Volumes
+    provisioned through OpenEBS are always containerized. Each volume has a
+    dedicated storage controller that increases the agility and granularity of
+    persistent storage operations of the stateful applications. Benefits and
+    more details on CAS architecture are found <a href="/docs/concepts/cas">here</a>.
+  </p>
+
+![Containerized Storage Icon](../assets/f-cas.svg)
+
+</TwoColumn>
+
+### Synchronous Replication
+
+<TwoColumn left="1fr" right="200px">
+  <p>
+    Synchronous Replication is an optional and popular feature of OpenEBS. When used with the Jiva, cStor and Mayastor storage engines, OpenEBS can synchronously replicate the data volumes for high availability. The replication happens across Kubernetes zones resulting in high availability for cross AZ setups. This feature is especially useful to build highly available stateful applications using local disks on cloud providers services such as GKE, EKS and AKS.
+  </p>
+
+![Synchronous Replication Icon](../assets/f-replication.svg)
+
+</TwoColumn>
+
+### Snapshots and Clones
+
+<TwoColumn left="1fr" right="200px">
+  <p>
+    Copy-on-write snapshots are another optional and popular feature of OpenEBS. When using the cStor engine, snapshots are created instantaneously and there is no limit on the number of snapshots. The incremental snapshot capability enhances data migration and portability across Kubernetes clusters and across different cloud providers or data centers. Operations on snapshots and clones are performed in completely Kubernetes native method using the standard kubectl commands. Common use cases include efficient replication for back-ups and the use of clones for troubleshooting or development against a read only copy of data.
+  </p>
+
+![Snapshots and Clones Icon](../assets/f-snapshots.svg)
+
+</TwoColumn>
+
+### Backup and Restore
+
+<TwoColumn left="1fr" right="200px">
+  <p>
+    The backup and restore of OpenEBS volumes works with Kubernetes backup and restore solutions such as Velero (formerly Heptio Ark) via open source OpenEBS Velero-plugins. Data backup to object storage targets such as AWS S3, GCP Object Storage or MinIO are frequently deployed using the OpenEBS incremental snapshot capability. This storage level snapshot and backup saves a significant amount of bandwidth and storage space as only incremental data is used for backup.
+  </p>
+
+![Backup and Restore Icon](../assets/f-backup.svg)
+
+</TwoColumn>
+
+### Prometheus Metrics for Workload Tuning
+
+<TwoColumn left="1fr" right="200px">
+  <p>
+    OpenEBS volumes are instrumented for granular data metrics such as volume IOPS, throughput, latency and data patterns. As OpenEBS follows the CAS pattern, stateful applications can be tuned for better performance by observing the traffic data patterns on Prometheus and modifying the storage policy parameters without worrying about neighboring workloads that are using OpenEBS thereby minimizing the incidence of "noisy neighbor" issues.
+  </p>
+
+![Prometheus and Tuning Icon](../assets/f-prometheus.svg)
+
+</TwoColumn>
+
+## See Also:
+
+[OpenEBS Benefits](/docs/introduction/benefits) [Object Storage with OpenEBS](/docs/stateful-applications/minio) [Read Write Many (RWX) PVs with OpenEBS](/docs/concepts/rwm) [Local storage for Prometheus](/docs/stateful-applications/prometheus)

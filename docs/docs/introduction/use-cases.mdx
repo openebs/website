@@ -1,0 +1,144 @@
+---
+id: usecases
+title: OpenEBS Use cases and Examples
+keywords:
+  - OpenEBS use cases
+description: OpenEBS is used as a solution for the persistent storage needs for many stateful applications on Kubernetes.
+---
+
+import ImgCard from "@site/src/components/ImgCard";
+
+OpenEBS is used as a solution for the persistent storage needs for many stateful applications on Kubernetes.
+
+Following are a few examples:
+
+- [Self Managed Database Service like RDS](#self-managed-database-service-like-rds)
+- [Open source durable storage for Observability stack](#open-source-durable-storage-for-observability-stack)
+- [Running CI/CD on Kubernetes](#running-ci-cd-on-kubernetes)
+- [Self managed Object storage service](#self-managed-object-storage-service)
+- [Building scalable websites and ML pipelines](#building-scalable-websites-and-ml-pipelines)
+
+:::tip
+For information on how OpenEBS is used in production, see examples of users and their stories on the OpenEBS Adopters section [here](https://github.com/openebs/openebs/blob/master/ADOPTERS.md) where you can also share your experience.
+:::
+
+### Self Managed Database Service like RDS
+
+As per the [CNCF Database Technology Radar report](https://radar.cncf.io/2020-11-database-storage), many companies working with sensitive data are more likely to host databases in-house and may even be required to. Also, if a company has a large amount of data, for instance, there can be significant cost overhead to using a managed database solution available from cloud providers.
+
+OpenEBS through its simplicity in setup and configuration and built on the resilience of Kubernetes orchestration can be used to easily setup a managed database service. Using OpenEBS you get the benefits of:
+
+- Fast local storage for cloud native databases
+- Synchronously replicated storage for protecting against node or AZ failures
+- Enterprise storage features like Thin provisioning, Storage Expansion, Data Protection and more.
+
+Examples:
+
+<ImgCard
+  dataList={[
+    {
+      Svg: "/docs/img/logos/mysql.svg",
+      title: "MySql",
+      url: "",
+    },
+    {
+      Svg: "/docs/img/logos/postgresql.svg",
+      title: "PostgreSQl",
+      url: "",
+    },
+    {
+      Svg: "/docs/img/logos/redis.svg",
+      title: "Redis",
+      url: "",
+    },
+    {
+      Svg: "/docs/img/logos/mongodb.svg",
+      title: "MongoDB",
+      url: "",
+    },
+    {
+      Svg: "/docs/img/logos/cassandra.svg",
+      title: "Cassandra",
+      url: "",
+    },
+    {
+      Svg: "/docs/img/logos/elasticsearch.svg",
+      title: "elasticsearch",
+      url: "",
+    },
+    {
+      Svg: "/docs/img/logos/nuodb.svg",
+      title: "NuoDB",
+      url: "",
+    },
+  ]}
+/>
+
+### Open source durable storage for Observability stack
+
+Open standards such as OpenMetrics and OpenTelemetry and open source tools like Prometheus, Grafana, Elastic have become widely adopted projects to run the [Cloud Native Observability Stack](https://radar.cncf.io/2020-09-observability). It shouldn't come as any surprise that OpenEBS, being a truly open source technology is the choice for running these open source observability stacks.
+
+Examples:
+
+<ImgCard
+  dataList={[
+    {
+      Svg: "/docs/img/logos/prometheus.svg",
+      title: "Prometheus",
+      url: "",
+    },
+    {
+      Svg: "/docs/img/logos/elasticsearch.svg",
+      title: "elasticsearch",
+      url: "",
+    },
+  ]}
+/>
+
+### Running CI/CD on Kubernetes
+
+Jenkins, Gitlab, Gerrit, Sonarqube and many of the tools built in-house are moving towards Kubernetes for better DevOps experience and agility. With Kubernetes becoming a standard to run the applications, the CI/CD tools that manage them are following suite, with many provides now providing Kubernetes Operators.
+
+Examples:
+
+<ImgCard
+  dataList={[
+    {
+      Svg: "/docs/img/logos/gitlab.svg",
+      title: "GitLab",
+      url: "",
+    },
+  ]}
+/>
+
+### Self managed Object storage service
+
+Use OpenEBS and Minio on Kubernetes to build cross AZ cloud native object storage solution. Kubernetes PVCs are used by Minio to seamlessly scale Minio nodes. OpenEBS provides easily scalable and manageable storage pools. Scalability of Minio is directly complimented by OpenEBS's feature of cloud-native scalable architecture.
+
+Examples:
+
+<ImgCard
+  dataList={[
+    {
+      Svg: "/docs/img/logos/minio.svg",
+      title: "MinIO",
+      url: "",
+    },
+  ]}
+/>
+
+### Building scalable websites and ML pipelines
+
+Web-scale applications like WordPress require shared storage with RWM access mode. OpenEBS acting as a persistent storage backend for NFS storage provider solves this need very well.
+
+Examples:
+
+<ImgCard
+  dataList={[
+    {
+      Svg: "/docs/img/logos/a-nfs.svg",
+      title: "RWM",
+      url: "",
+    },
+  ]}
+/>

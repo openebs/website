@@ -1,8 +1,4 @@
 {
-  "version.label": {
-    "message": "Next",
-    "description": "The label for version current"
-  },
   "sidebar.tutorialSidebar.category.Introduction": {
     "message": "Introduction",
     "description": "The label for category Introduction in sidebar tutorialSidebar"
@@ -30,5 +26,33 @@
   "sidebar.tutorialSidebar.category.Deprecated releases": {
     "message": "Deprecated releases",
     "description": "The label for category Deprecated releases in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Stateful Applications": {
+    "message": "Stateful Applications",
+    "description": "The label for category Stateful Applications in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.additional-info": {
+    "message": "additional-info",
+    "description": "The label for category additional-info in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.concepts": {
+    "message": "concepts",
+    "description": "The label for category concepts in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.deprecated": {
+    "message": "deprecated",
+    "description": "The label for category deprecated in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.user-guides": {
+    "message": "user-guides",
+    "description": "The label for category user-guides in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.cstor": {
+    "message": "cstor",
+    "description": "The label for category cstor in sidebar tutorialSidebar"
+  },
+  "version.label": {
+    "message": "version-main",
+    "description": "The label for version current"
   }
 }
