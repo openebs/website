@@ -16,6 +16,7 @@ import { Metadata } from "../../../components/Metadata";
 import BlogCard from "../../../components/BlogCard";
 import { useTag } from "../../../hooks/extractBlogPath";
 import { useHistory } from "react-router-dom";
+import { capitalizeTextTransform, toLowerCaseHyphenSeparatedString, replaceHyphenWithSpace } from "../../../utils/stringConversions";
 
 interface blogObject { 
   title: string;
@@ -52,8 +53,8 @@ const Tag: React.FC = () => {
   
 
   const handleTagSelect = (tag: string) => {
-    if(selectedTag !== tag){
-      history.push(`/blog/tag/${tag.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-')}`)
+    if(selectedTag !== toLowerCaseHyphenSeparatedString(tag)){
+      history.push(`/blog/tag/${toLowerCaseHyphenSeparatedString(tag)}`)
     }
   };
 
@@ -61,7 +62,7 @@ const Tag: React.FC = () => {
     const fetchBlogs = async () => {
       const { default: blogs } = await import(`../../../posts.json`);
       const filteredData = blogs.filter(
-        (blog: blogObject) => blog.tags.find((tag: string) => tag.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-') === selectedTag?.toLowerCase())
+        (blog: blogObject) => blog.tags.find((tag: string) => toLowerCaseHyphenSeparatedString(tag) === selectedTag?.toLowerCase())
       );
       setFilteredData(filteredData);
     };
@@ -104,7 +105,7 @@ const Tag: React.FC = () => {
             </Container>
           </div>
           <div className={classes.sectionDiv}>
-            <h1 className={classes.blogTitle}>{selectedTag}</h1>
+            <h1 className={classes.blogTitle}>{selectedTag && capitalizeTextTransform(replaceHyphenWithSpace(selectedTag))}</h1>
             <Grid container direction="row" className={classes.blogsWrapper} >
               {filteredData
                 ? filteredData

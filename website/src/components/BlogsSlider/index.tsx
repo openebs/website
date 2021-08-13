@@ -15,6 +15,7 @@ import ReactMarkdown from "react-markdown";
 import { getContentPreview } from "../../utils/getContent";
 import BlogImage from '../BlogImage';
 import { useHistory } from "react-router-dom";
+import { toLowerCaseHyphenSeparatedString } from "../../utils/stringConversions";
 
 interface BlogsSliderProps {
   recommendedBlogs: any;
@@ -66,7 +67,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
   };
 
   const handleTagSelect = (tag: string) => {
-    history.push(`/blog/tag/${tag.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-')}`);
+    history.push(`/blog/tag/${toLowerCaseHyphenSeparatedString(tag)}`);
   };
 
   return (

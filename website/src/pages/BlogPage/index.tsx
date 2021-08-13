@@ -17,6 +17,7 @@ import { useCurrentHost } from "../../hooks/useCurrentHost";
 import { Metadata } from "../../components/Metadata";
 import ErrorPage from "../ErrorPage";
 import CustomTag from "../../components/CustomTag";
+import { toLowerCaseHyphenSeparatedString } from "../../utils/stringConversions";
 
 const BlogPage: React.FC = () => {
   const { currentOrigin, currentLocation, currentPathname } = useCurrentHost();
@@ -134,7 +135,7 @@ const BlogPage: React.FC = () => {
   };
 
   const handleTagSelect = (tag: string) => {
-    history.push(`/blog/tag/${tag.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-')}`)
+    history.push(`/blog/tag/${toLowerCaseHyphenSeparatedString(tag)}`)
   };
 
   return (
