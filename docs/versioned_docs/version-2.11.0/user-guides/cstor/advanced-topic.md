@@ -1,389 +1,33 @@
 ---
-id: cstor-csi
-title: cStor User Guide
-keywords: 
+id: advanced
+title: cStor User Guide - Advanced
+keywords:
   - cStor csi
   - cStor User Guide
-  - Creating cStor storage pools
-  - Creating cStor storage classes
-  - Deploying a sample application
   - Scaling cStor pools
   - Cloning a cStor Snapshot
   - Cleaning up a cStor setup
   - Expanding a cStor volume
   - Tuning cStor Volumes
-description: This user guide will help you to configure cStor storage and use cStor Volumes for running your stateful workloads.
+description: This user guide of cStor contains advanced level of cStor related topics such as expanding a cStor volume, taking Snapshot and Clone of a cStor volume, scaling up cStor pools, Block Device Tagging, Tuning cStor Pools and Tuning cStor Volumes
 ---
- 
-This user guide will help you to configure cStor storage and use cStor Volumes for running your stateful workloads.
- 
-:::note
-  If you are an existing user of cStor and have [setup cStor storage using StoragePoolClaim(SPC)](/concepts/cstor), we strongly recommend you to migrate to using CStorPoolCluster(CSPC). CSPC based cStor uses Kubernetes CSI Driver, provides additional flexibility in how devices are used by cStor and has better resiliency against node failures. For detailed instructions, refer to the [cStor SPC to CSPC migration guide](https://github.com/openebs/upgrade/blob/master/docs/migration.md).
-:::
 
-## Content Overview
-
-### Install and Setup
-
-* [Pre-requisites](#prerequisites)
-* [Creating cStor storage pools](#creating-cstor-storage-pools)
-* [Creating cStor storage classes](#creating-cstor-storage-classes)
-
-### Launch Sample Application
-
-* [Deploying a sample application](#deploying-a-sample-application)
-
-### Troubleshooting
-
-* [Troubleshooting cStor setup](#troubleshooting)
-
-### Advanced Topics
-
-* [Expanding a cStor volume](#expanding-a-cstor-volume)
-* [Snapshot and Clone of a cStor Volume](#snapshot-and-clone-of-a-cstor-volume)
-* [Scaling up cStor pools](#scaling-cstor-pools)
-* [Block Device Tagging](#block-device-tagging)
-* [Tuning cStor Pools](#tuning-cstor-pools)
-* [Tuning cStor Volumes](#tuning-cstor-volumes)
-
-### Clean up
-
-* [Cleaning up a cStor setup](#cleaning-up-a-cstor-setup)
-
-## Prerequisites
-
-* cStor uses the raw block devices attached to the Kubernetes worker nodes to create cStor Pools. Applications will connect to cStor volumes using `iSCSI`. This requires you ensure the following:
-    + There are raw (unformatted) block devices attached to the Kubernetes worker nodes. The devices can be either direct attached devices (SSD/HDD) or cloud volumes (GPD, EBS)
-    + `iscsi` utilities are installed on all the worker nodes where Stateful applications will be launched. The steps for setting up the iSCSI utilities might vary depending on your Kubernetes distribution. Please see [prerequisites verification](/user-guides/prerequisites)
-
-* If you are setting up OpenEBS in a new cluster. You can use one of the following steps to install OpenEBS. If OpenEBS is already installed, skip this step.
-
-  Using helm,   
-
-  ```
-  helm repo add openebs https://openebs.github.io/charts
-  helm repo update
-  helm install openebs --namespace openebs openebs/openebs --set cstor.enabled=true --create-namespace
-  ```
-
-  The above command will install all the default OpenEBS components along with cStor. 
-
-  Using kubectl, 
-
-  ```
-  kubectl apply -f https://openebs.github.io/charts/cstor-operator.yaml
-  ```
-
-  The above command will install all the required components for running cStor. 
-
-* Enable cStor on already existing OpenEBS 
-
-  Using helm, you can enable cStor on top of your openebs installation as follows:
-
-  ```
-  helm ls -n openebs 
-  # Note the release name used for OpenEBS
-  # Upgrade the helm by enabling cStor
-  # helm upgrade [helm-release-name] [helm-chart-name] flags
-  helm upgrade openebs openebs/openebs  --set cstor.enabled=true --reuse-values --namespace openebs
-  ```
-
-  Using kubectl, 
-
-  ```
-  kubectl apply -f https://openebs.github.io/charts/cstor-operator.yaml
-  ```
-
-* Verify cStor and NDM pods are running in your cluster. 
-
-  To get the status of the pods execute:
- 
-  ```
-  kubectl get pod -n openebs
-  ```
-
-  Sample Output:
-
-  ```shell hideCopy
-  NAME                                             READY   STATUS    RESTARTS    AGE
-  cspc-operator-5fb7db848f-wgnq8                    1/1    Running       0      6d7h
-  cvc-operator-7f7d8dc4c5-sn7gv                     1/1    Running       0      6d7h
-  openebs-cstor-admission-server-7585b9659b-rbkmn   1/1    Running       0      6d7h
-  openebs-cstor-csi-controller-0                    6/6    Running       0      6d7h
-  openebs-cstor-csi-node-dl58c                      2/2    Running       0      6d7h
-  openebs-cstor-csi-node-jmpzv                      2/2    Running       0      6d7h
-  openebs-cstor-csi-node-tfv45                      2/2    Running       0      6d7h
-  openebs-ndm-gctb7                                 1/1    Running       0      6d7h
-  openebs-ndm-operator-7c8759dbb5-58zpl             1/1    Running       0      6d7h
-  openebs-ndm-sfczv                                 1/1    Running       0      6d7h
-  openebs-ndm-vgdnv                                 1/1    Running       0      6d7h
-  ```
-
-* Nodes must have disks attached to them. To get the list of attached block devices, execute:
-  
-  ```
-  kubectl get bd -n openebs
-  ```
-
-  Sample Output:
- 
-  ```shell hideCopy
-  NAME                                          NODENAME         SIZE         CLAIMSTATE  STATUS   AGE
-  blockdevice-01afcdbe3a9c9e3b281c7133b2af1b68  worker-node-3    21474836480   Unclaimed   Active   2m10s
-  blockdevice-10ad9f484c299597ed1e126d7b857967  worker-node-1    21474836480   Unclaimed   Active   2m17s
-  blockdevice-3ec130dc1aa932eb4c5af1db4d73ea1b  worker-node-2    21474836480   Unclaimed   Active   2m12s
-  ```
-
-## Creating cStor storage pools
- 
-You will need to create a Kubernetes custom resource called **CStorPoolCluster**, specifying the details of the nodes and the devices on those nodes that must be used to setup cStor pools. You can start by copying the following **Sample CSPC yaml** into a file named `cspc.yaml` and modifying it with details from your cluster.
- 
-```
-apiVersion: cstor.openebs.io/v1
-kind: CStorPoolCluster
-metadata:
- name: cstor-disk-pool
- namespace: openebs
-spec:
- pools:
-   - nodeSelector:
-       kubernetes.io/hostname: "worker-node-1"
-     dataRaidGroups:
-       - blockDevices:
-           - blockDeviceName: "blockdevice-10ad9f484c299597ed1e126d7b857967"
-     poolConfig:
-       dataRaidGroupType: "stripe"
- 
-   - nodeSelector:
-       kubernetes.io/hostname: "worker-node-2"
-     dataRaidGroups:
-       - blockDevices:
-           - blockDeviceName: "blockdevice-3ec130dc1aa932eb4c5af1db4d73ea1b"
-     poolConfig:
-       dataRaidGroupType: "stripe"
- 
-   - nodeSelector:
-       kubernetes.io/hostname: "worker-node-3"
-     dataRaidGroups:
-       - blockDevices:
-           - blockDeviceName: "blockdevice-01afcdbe3a9c9e3b281c7133b2af1b68"
-     poolConfig:
-       dataRaidGroupType: "stripe"
-```
-
-* Get all the node labels present in the cluster with the following command, these node labels will be required to modify the CSPC yaml.
-
-  ```
-  kubectl get node --show-labels
-  ```
-
-  Sample Output:
-  
-  ```shell hideCopy
-    NAME               STATUS   ROLES    AGE    VERSION   LABELS
-  
-    master             Ready    master   5d2h   v1.20.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=master,kubernetes.io/os=linux,node-role.kubernetes.io/master=
-  
-    worker-node-1      Ready    <none>   5d2h   v1.20.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=worker-node-1,kubernetes.io/os=linux
-  
-    worker-node-2      Ready    <none>   5d2h   v1.20.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=worker-node-2,kubernetes.io/os=linux
-  
-    worker-node-3      Ready    <none>   5d2h   v1.18.0   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=worker-node-3,kubernetes.io/os=linux
-  ```
- 
-* Modify the CSPC yaml to use the worker nodes. Use the value from labels `kubernetes.io/hostname=&lt; node_name &gt;`. This label value and node name could be different in some platforms. In this case, the label values and node names are: `kubernetes.io/hostname:"worker-node-1"`, `kubernetes.io/hostname: "worker-node-2"` and `kubernetes.io/hostname: "worker-node-3"`.
-
-* Modify CSPC yaml file to specify the block device attached to the above selected node where the pool is to be provisioned. You can use the following command to get the available block devices on each of the worker node: 
-
-  ```
-  kubectl get bd -n openebs
-  ```
-
-  Sample Output:
- 
-  ```
-  NAME                                          NODENAME         SIZE         CLAIMSTATE  STATUS   AGE
-  blockdevice-01afcdbe3a9c9e3b281c7133b2af1b68  worker-node-3    21474836480   Unclaimed   Active   2m10s
-  blockdevice-10ad9f484c299597ed1e126d7b857967  worker-node-1    21474836480   Unclaimed   Active   2m17s
-  blockdevice-3ec130dc1aa932eb4c5af1db4d73ea1b  worker-node-2    21474836480   Unclaimed   Active   2m12s
-  ```
-
-* The `dataRaidGroupType:` can either be set as `stripe` or `mirror` as per your requirement. In the following example it is configured as `stripe`.
-
-  We have named the configuration YAML file as `cspc.yaml`. Execute the following command for CSPC creation, 
-
-  ```
-  kubectl apply -f cspc.yaml
-  ```
-
-  To verify the status of created CSPC, execute:
-
-  ```
-  kubectl get cspc -n openebs
-  ```
-
-  Sample Output:
-
-  ```shell hideCopy
-  NAME                   HEALTHYINSTANCES   PROVISIONEDINSTANCES   DESIREDINSTANCES     AGE
-  cstor-disk-pool        3                  3                      3                    2m2s
-  ```
-
-  Check if the pool instances report their status as **ONLINE** using the below command:
-
-  ```
-  kubectl get cspi -n openebs
-  ```
-
-  Sample Output:
-
-  ```shell hideCopy
-  NAME                  HOSTNAME             ALLOCATED   FREE    CAPACITY   STATUS   AGE
-  cstor-disk-pool-vn92  worker-node-1        60k         9900M    9900M     ONLINE   2m17s
-  cstor-disk-pool-al65  worker-node-2        60k         9900M    9900M     ONLINE   2m17s
-  cstor-disk-pool-y7pn  worker-node-3        60k         9900M    9900M     ONLINE   2m17s
-  ```
-
-  Once all the pods are in running state, these pool instances can be used for creation of cStor volumes.
-
-## Creating cStor storage classes
-
-StorageClass definition is an important task in the planning and execution of OpenEBS storage. The real power of CAS architecture is to give an independent or a dedicated storage engine like cStor for each workload, so that granular policies can be applied to that storage engine to tune the behaviour or performance as per the workload's need.
-
-Steps to create a cStor StorageClass
-
-1. Decide the CStorPoolCluster for which you want to create a Storage Class. Let us say you pick up `cstor-disk-pool` that you created in the above step.
-2. Decide the replicaCount based on your requirement/workloads. OpenEBS doesn't restrict the replica count to set, but a **maximum of 5** replicas are allowed. It depends how users configure it, but for the availability of volumes **at least (n/2 + 1) replicas** should be up and connected to the target, where n is the replicaCount. The Replica Count should be always less  than or equal to the number of cStor Pool Instances(CSPIs). The following are some example cases:
-    + If a user configured replica count as 2, then always 2 replicas should be available to perform operations on volume.
-    + If a user configured replica count as 3 it should require at least 2 replicas should be available for volume to be operational.
-    + If a user configured replica count as 5 it should require at least 3 replicas should be available for volume to be operational.
-3. Create a YAML spec file `cstor-csi-disk.yaml` using the template given below. Update the pool, replica count and other policies. By using this sample configuration YAML, a StorageClass will be created with 3 OpenEBS cStor replicas and will configure themselves on the pool instances.
-
-    ```
-    kind: StorageClass
-    apiVersion: storage.k8s.io/v1
-    metadata:
-      name: cstor-csi-disk
-    provisioner: cstor.csi.openebs.io
-    allowVolumeExpansion: true
-    parameters:
-      cas-type: cstor
-      # cstorPoolCluster should have the name of the CSPC 
-      cstorPoolCluster: cstor-disk-pool
-      # replicaCount should be <= no. of CSPI created in the selected CSPC
-      replicaCount: "3"
-    ```
-
-    To deploy the YAML, execute:
-
-    ```
-    kubectl apply -f cstor-csi-disk.yaml
-    ```
-
-    To verify, execute:
-
-    ```
-    kubectl get sc
-    ```
-
-    Sample Output:
-
-    ```shell hideCopy
-    NAME                        PROVISIONER                                                RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
-    cstor-csi                   cstor.csi.openebs.io                                       Delete          Immediate              true                   4s
-    ```
-
-## Deploying a sample application
-
-To deploy a sample application using the above created CSPC and StorageClass, a PVC, that utilises the created StorageClass, needs to be deployed.  Given below is an example YAML for a PVC which uses the SC created earlier.
-
-```
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: cstor-pvc
-spec:
-  storageClassName: cstor-csi-disk
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
-```
-
-Apply the above PVC yaml to dynamically create volume and verify that the PVC has been successfully created and bound to a PersistentVolume (PV).
-
-```
-kubectl get pvc
-```
-
-Sample Output:
-
- ```shell hideCopy
-NAME             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS     AGE
-cstor-pvc        Bound    pvc-f1383b36-2d4d-4e9f-9082-6728d6c55bd1   5Gi        RWO            cstor-csi-disk   12s
-```
-
-Now, to deploy an application using the above created PVC specify the `claimName` parameter under `volumes`. 
-
-Given below is a sample busybox application YAML that uses the PVC created earlier.
-
-```
-apiVersion: v1
-kind: Pod
-metadata:
-  name: busybox
-  namespace: default
-spec:
-  containers:
-  - command:
-       - sh
-       - -c
-       - 'date >> /mnt/openebs-csi/date.txt; hostname >> /mnt/openebs-csi/hostname.txt; sync; sleep 5; sync; tail -f /dev/null;'
-    image: busybox
-    imagePullPolicy: Always
-    name: busybox
-    volumeMounts:
-    - mountPath: /mnt/openebs-csi
-      name: demo-vol
-  volumes:
-  - name: demo-vol
-    persistentVolumeClaim:
-      claimName: cstor-pvc
-```
-
-Apply the above YAML.
-Verify that the pod is running and is able to write data to the volume.
-
-```
-kubectl get pods
-```
-
-Sample Output:
-
- ```shell hideCopy
-NAME      READY   STATUS    RESTARTS   AGE
-busybox   1/1     Running   0          97s
-```
-
-The example busybox application will write the current date into the mounted path, i.e, _/mnt/openebs-csi/date.txt_ when it starts. To verify, exec into the busybox container.
-
-```
-kubectl exec -it busybox -- cat /mnt/openebs-csi/date.txt
-```
-
-Sample Output:
-
- ```shell hideCopy
-Fri May 28 05:00:31 UTC 2021
-```
+This user guide of cStor contains advanced level of cStor related topics such as expanding a cStor volume, taking Snapshot and Clone of a cStor volume, scaling up cStor pools, Block Device Tagging, Tuning cStor Pools and Tuning cStor Volumes
+
+- [Scaling up cStor pools](#scaling-cstor-pools)
+- [Snapshot and Clone of a cStor volume](#snapshot-and-clone-of-a-cstor-volume)
+- [Expanding a cStor volume](#expanding-a-cstor-volume)
+- [Block Device Tagging](#block-device-tagging)
+- [Tuning cStor Pools](#tuning-cstor-pools)
+- [Tuning cStor Volumes](#tuning-cstor-volumes)
 
 ## Scaling cStor pools
 
 Once the cStor storage pools are created you can scale-up your existing cStor pool.
 To scale-up the pool size, you need to edit the CSPC YAML that was used for creation of CStorPoolCluster.
- 
+
 Scaling up can done by two methods:
+
 1. [Adding new nodes(with new disks) to the existing CSPC](#adding-disk-new-node)
 2. [Adding new disks to existing nodes](#adding-disk-same-node)
 
@@ -391,7 +35,7 @@ Scaling up can done by two methods:
 
 ### Adding new nodes(with new disks) to the existing CSPC
 
-A new node spec needs to be added to previously deployed YAML, 
+A new node spec needs to be added to previously deployed YAML,
 
 ```
 apiVersion: cstor.openebs.io/v1
@@ -408,7 +52,7 @@ spec:
            - blockDeviceName: "blockdevice-10ad9f484c299597ed1e126d7b857967"
      poolConfig:
        dataRaidGroupType: "stripe"
- 
+
    - nodeSelector:
        kubernetes.io/hostname: "worker-node-2"
      dataRaidGroups:
@@ -416,7 +60,7 @@ spec:
            - blockDeviceName: "blockdevice-3ec130dc1aa932eb4c5af1db4d73ea1b"
      poolConfig:
        dataRaidGroupType: "stripe"
- 
+
    - nodeSelector:
        kubernetes.io/hostname: "worker-node-3"
      dataRaidGroups:
@@ -424,7 +68,7 @@ spec:
            - blockDeviceName: "blockdevice-01afcdbe3a9c9e3b281c7133b2af1b68"
      poolConfig:
        dataRaidGroupType: "stripe"
- 
+
    # New node spec added -- to create a cStor pool on worker-3
    - nodeSelector:
        kubernetes.io/hostname: "worker-node-4"
@@ -433,7 +77,7 @@ spec:
            - blockDeviceName: "blockdevice-02d9b2dc8954ce0347850b7625375e24"
      poolConfig:
        dataRaidGroupType: "stripe"
- 
+
 ```
 
 Now verify the status of CSPC and CSPI(s):
@@ -444,7 +88,7 @@ kubectl get cspc -n openebs
 
 Sample Output:
 
- ```shell hideCopyshell hideCopy
+```shell hideCopyshell hideCopy
 NAME                     HEALTHYINSTANCES   PROVISIONEDINSTANCES   DESIREDINSTANCES   AGE
 cspc-disk-pool           4                  4                      4                  8m5s
 ```
@@ -455,20 +99,20 @@ kubectl get cspi -n openebs
 
 Sample Output:
 
- ```shell hideCopyshell hideCopy
+```shell hideCopyshell hideCopy
 NAME                  HOSTNAME         FREE     CAPACITY    READONLY   STATUS   AGE
 cspc-disk-pool-d9zf   worker-node-1    28800M   28800071k   false      ONLINE   7m50s
 cspc-disk-pool-lr6z   worker-node-2    28800M   28800056k   false      ONLINE   7m50s
 cspc-disk-pool-x4b4   worker-node-3    28800M   28800056k   false      ONLINE   7m50s
 cspc-disk-pool-rt4k   worker-node-4    28800M   28800056k   false      ONLINE   15s
- 
+
 ```
 
 As a result of this, we can see that a new pool have been added, increasing the number of pools to 4
 
 ### Adding new disks to existing nodes
 
-A new `blockDeviceName` under `blockDevices` needs to be added to previously deployed YAML. Execute the following command to edit the CSPC, 
+A new `blockDeviceName` under `blockDevices` needs to be added to previously deployed YAML. Execute the following command to edit the CSPC,
 
 ```
 kubectl edit cspc -n openebs cstor-disk-pool
@@ -492,7 +136,7 @@ spec:
            - blockDeviceName: "blockdevice-f036513d98f6c7ce31fd6e1ac3fad2f5" //# New blockdevice added
      poolConfig:
        dataRaidGroupType: "stripe"
- 
+
    - nodeSelector:
        kubernetes.io/hostname: "worker-node-2"
      dataRaidGroups:
@@ -501,7 +145,7 @@ spec:
            - blockDeviceName: "blockdevice-fb7c995c4beccd6c872b7b77aad32932" //# New blockdevice added
      poolConfig:
        dataRaidGroupType: "stripe"
- 
+
    - nodeSelector:
        kubernetes.io/hostname: "worker-node-3"
      dataRaidGroups:
@@ -510,18 +154,18 @@ spec:
            - blockDeviceName: "blockdevice-46ddda7223b35b81415b0a1b12e40bcb" //# New blockdevice added
      poolConfig:
        dataRaidGroupType: "stripe"
- 
+
 ```
 
 ## Snapshot and Clone of a cStor Volume
 
 An OpenEBS snapshot is a set of reference markers for data at a particular point in time. A snapshot act as a detailed table of contents, with accessible copies of data that user can roll back to the required point of instance. Snapshots in OpenEBS are instantaneous and are managed through kubectl.
- 
+
 During the installation of OpenEBS, a snapshot-controller and a snapshot-provisioner are setup which assist in taking the snapshots. During the snapshot creation, snapshot-controller creates VolumeSnapshot and VolumeSnapshotData custom resources. A snapshot-provisioner is used to restore a snapshot as a new Persistent Volume(PV) via dynamic provisioning.
 
 ### Creating a cStor volume Snapshot
 
- 1. Before proceeding to create a cStor volume snapshot and use it further for restoration, it is necessary to create a `VolumeSnapshotClass`. Copy the following YAML specification into a file called `snapshot_class.yaml`.
+1.  Before proceeding to create a cStor volume snapshot and use it further for restoration, it is necessary to create a `VolumeSnapshotClass`. Copy the following YAML specification into a file called `snapshot_class.yaml`.
 
     ```
     kind: VolumeSnapshotClass
@@ -548,7 +192,7 @@ During the installation of OpenEBS, a snapshot-controller and a snapshot-provisi
     ```
 
     In such cases, the apiVersion needs to be updated to `apiVersion: snapshot.storage.k8s.io/v1beta1`
- 
+
 2.  For creating the snapshot, you need to create a YAML specification and provide the required PVC name into it. The only prerequisite check is to be performed is to ensure that there is no stale entries of snapshot and snapshot data before creating a new snapshot. Copy the following YAML specification into a file called `snapshot.yaml`.
 
     ```
@@ -562,7 +206,7 @@ During the installation of OpenEBS, a snapshot-controller and a snapshot-provisi
       persistentVolumeClaimName: cstor-pvc
     ```
 
-    Run the following command to create the snapshot, 
+    Run the following command to create the snapshot,
 
     ```
     kubectl create -f snapshot.yaml
@@ -606,11 +250,11 @@ During the installation of OpenEBS, a snapshot-controller and a snapshot-provisi
     Creation Time:  2020-06-20T15:27:29Z
     Ready To Use:   true
     Restore Size:   5Gi
-    
+
     ```
-    
+
     The `SnapshotContentName` identifies the `VolumeSnapshotContent` object which serves this snapshot. The `Ready To Use` parameter indicates that the Snapshot has been created successfully and can be used to create a new PVC.
- 
+
 **Note:** All cStor snapshots should be created in the same namespace of source PVC.
 
 ### Cloning a cStor Snapshot
@@ -636,7 +280,7 @@ spec:
 ```
 
 The `dataSource` shows that the PVC must be created using a VolumeSnapshot named `cstor-pvc-snap` as the source of the data. This instructs cStor CSI to create a PVC from the snapshot. Once the PVC is created, it can be attached to a pod and used just like any other PVC.
- 
+
 To verify the creation of PVC execute:
 
 ```
@@ -645,7 +289,7 @@ kubectl get pvc
 
 Sample Output:
 
- ```shell hideCopy
+```shell hideCopy
 NAME                           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS              AGE
 restore-cstor-pvc              Bound    pvc-2f2d65fc-0784-11ea-b887-42010a80006c   5Gi        RWO            cstor-csi-disk            5s
 ```
@@ -656,14 +300,13 @@ OpenEBS cStor introduces support for expanding a PersistentVolume using the CSI 
 
 For expanding a cStor PV, you must ensure the following items are taken care of:
 
+- The StorageClass must support volume expansion. This can be done by editing the StorageClass definition to set the allowVolumeExpansion: true.
+- To resize a PV, edit the PVC definition and update the spec.resources.requests.storage to reflect the newly desired size, which must be greater than the original size.
+- The PV must be attached to a pod for it to be resized. There are two scenarios when resizing an cStor PV:
+  - If the PV is attached to a pod, cStor CSI driver expands the volume on the storage backend, re-scans the device and resizes the filesystem.
+  - When attempting to resize an unattached PV, cStor CSI driver expands the volume on the storage backend. Once the PVC is bound to a pod, the driver re-scans the device and resizes the filesystem. Kubernetes then updates the PVC size after the expansion operation has successfully completed.
 
-* The StorageClass must support volume expansion. This can be done by editing the StorageClass definition to set the allowVolumeExpansion: true.
-* To resize a PV, edit the PVC definition and update the spec.resources.requests.storage to reflect the newly desired size, which must be greater than the original size.
-* The PV must be attached to a pod for it to be resized. There are two scenarios when resizing an cStor PV:
-   * If the PV is attached to a pod, cStor CSI driver expands the volume on the storage backend, re-scans the device and resizes the filesystem.
-   * When attempting to resize an unattached PV, cStor CSI driver expands the volume on the storage backend. Once the PVC is bound to a pod, the driver re-scans the device and resizes the filesystem. Kubernetes then updates the PVC size after the expansion operation has successfully completed.
-
-Below example shows the way for expanding cStor volume and how it works. For an already existing StorageClass, you can edit the StorageClass to include the `allowVolumeExpansion: true`  parameter.
+Below example shows the way for expanding cStor volume and how it works. For an already existing StorageClass, you can edit the StorageClass to include the `allowVolumeExpansion: true` parameter.
 
 ```
 apiVersion: storage.k8s.io/v1
@@ -677,20 +320,20 @@ parameters:
  cstorPoolCluster: "cspc-disk-pool"
  cas-type: "cstor"
 ```
- 
+
 For example an application busybox pod is using the below PVC associated with PV. To get the status of the pod, execute:
 
 ```
 $ kubectl get pods
 ```
- 
+
 The following is a Sample Output:
 
- ```shell hideCopy
+```shell hideCopy
 NAME            READY   STATUS    RESTARTS   AGE
 busybox         1/1     Running   0          38m
 ```
- 
+
 To list PVCs, execute:
 
 ```
@@ -699,19 +342,19 @@ $ kubectl get pvc
 
 Sample Output:
 
- ```shell hideCopy
+```shell hideCopy
 NAME                           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS              AGE
 cstor-pvc                      Bound    pvc-849bd646-6d3f-4a87-909e-2416d4e00904   5Gi        RWO            cstor-csi-disk            1d
 ```
 
 To list PVs, execute:
- 
+
 ```
 $ kubectl get pv
 ```
- 
+
 Sample Output:
- 
+
 ```
 NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS        REASON   AGE
 pvc-849bd646-6d3f-4a87-909e-2416d4e00904   5Gi        RWO            Delete           Bound    default/cstor-pvc       cstor-csi-disk               40m
@@ -719,9 +362,9 @@ pvc-849bd646-6d3f-4a87-909e-2416d4e00904   5Gi        RWO            Delete     
 
 To resize the PV that has been created from 5Gi to 10Gi, edit the PVC definition and update the spec.resources.requests.storage to 10Gi. It may take a few seconds to update the actual size in the PVC resource, wait for the updated capacity to reflect in PVC status (pvc.status.capacity.storage). It is internally a two step process for volumes containing a file system:
 
-* Volume expansion
-* FileSystem expansion
- 
+- Volume expansion
+- FileSystem expansion
+
 ```
 $ kubectl edit pvc cstor-pvc
 ```
@@ -789,7 +432,7 @@ $ kubectl get pvc
 
 Sample Output:
 
- ```shell hideCopy
+```shell hideCopy
 NAME                           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS              AGE
 cstor-pvc                      Bound    pvc-849bd646-6d3f-4a87-909e-2416d4e00904   10Gi        RWO            cstor-csi-disk            1d
 ```
@@ -799,7 +442,7 @@ $ kubectl get pv
 ```
 
 Sample Output:
- 
+
 ```
 NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                   STORAGECLASS        REASON   AGE
 pvc-849bd646-6d3f-4a87-909e-2416d4e00904   10Gi       RWO            Delete           Bound    default/cstor-pvc       cstor-csi-disk               40m
@@ -808,133 +451,134 @@ pvc-849bd646-6d3f-4a87-909e-2416d4e00904   10Gi       RWO            Delete     
 ## Block Device Tagging
 
 NDM provides you with an ability to reserve block devices to be used for specific applications via adding tag(s) to your block device(s). This feature can be used by cStor operators to specify the block devices which should be consumed by cStor pools and conversely restrict anyone else from using those block devices. This helps in protecting against manual errors in specifying the block devices in the CSPC yaml by users.
-1. Consider the following block devices in a Kubernetes cluster, they will be used to provision a  storage pool. List the labels added to these block devices,
 
-  ```
-  kubectl get bd -n openebs --show-labels
-  ```
+1. Consider the following block devices in a Kubernetes cluster, they will be used to provision a storage pool. List the labels added to these block devices,
 
-  Sample Output:
+```
+kubectl get bd -n openebs --show-labels
+```
 
-  ```shell hideCopy
-  NAME                                           NODENAME               SIZE          CLAIMSTATE   STATUS   AGE   LABELS
-  blockdevice-00439dc464b785256242113bf0ef64b9   worker-node-3          21473771008   Unclaimed    Active   34h   kubernetes.io/hostname=worker-node-3,ndm.io/blockdevice-type=blockdevice,ndm.io/managed=true
-  blockdevice-022674b5f97f06195fe962a7a61fcb64   worker-node-1          21473771008   Unclaimed    Active   34h   kubernetes.io/hostname=worker-node-1,ndm.io/blockdevice-type=blockdevice,ndm.io/managed=true
-  blockdevice-241fb162b8d0eafc640ed89588a832df   worker-node-2          21473771008   Unclaimed    Active   34h   kubernetes.io/hostname=worker-node-2,ndm.io/blockdevice-type=blockdevice,ndm.io/managed=true
- 
-  ```
+Sample Output:
+
+```shell hideCopy
+NAME                                           NODENAME               SIZE          CLAIMSTATE   STATUS   AGE   LABELS
+blockdevice-00439dc464b785256242113bf0ef64b9   worker-node-3          21473771008   Unclaimed    Active   34h   kubernetes.io/hostname=worker-node-3,ndm.io/blockdevice-type=blockdevice,ndm.io/managed=true
+blockdevice-022674b5f97f06195fe962a7a61fcb64   worker-node-1          21473771008   Unclaimed    Active   34h   kubernetes.io/hostname=worker-node-1,ndm.io/blockdevice-type=blockdevice,ndm.io/managed=true
+blockdevice-241fb162b8d0eafc640ed89588a832df   worker-node-2          21473771008   Unclaimed    Active   34h   kubernetes.io/hostname=worker-node-2,ndm.io/blockdevice-type=blockdevice,ndm.io/managed=true
+
+```
 
 2. Now, to understand how block device tagging works we will be adding `openebs.io/block-device-tag=fast` to the block device attached to worker-node-3 _(i.e blockdevice-00439dc464b785256242113bf0ef64b9)_
 
-  ```
-  kubectl label bd blockdevice-00439dc464b785256242113bf0ef64b9 -n openebs  openebs.io/block-device-tag=fast
-  ```
+```
+kubectl label bd blockdevice-00439dc464b785256242113bf0ef64b9 -n openebs  openebs.io/block-device-tag=fast
+```
 
-  ```
-  kubectl get bd -n openebs blockdevice-00439dc464b785256242113bf0ef64b9 --show-labels
-  ```
+```
+kubectl get bd -n openebs blockdevice-00439dc464b785256242113bf0ef64b9 --show-labels
+```
 
-  Sample Output:
+Sample Output:
 
-  ```shell hideCopy
-  NAME                                           NODENAME             SIZE          CLAIMSTATE   STATUS   AGE   LABELS
-  blockdevice-00439dc464b785256242113bf0ef64b9   worker-node-3        21473771008   Unclaimed    Active   34h   kubernetes.io/hostname=worker-node-3,ndm.io/blockdevice-type=blockdevice,ndm.io/managed=true,openebs.io/block-device-tag=fast
-  ```
+```shell hideCopy
+NAME                                           NODENAME             SIZE          CLAIMSTATE   STATUS   AGE   LABELS
+blockdevice-00439dc464b785256242113bf0ef64b9   worker-node-3        21473771008   Unclaimed    Active   34h   kubernetes.io/hostname=worker-node-3,ndm.io/blockdevice-type=blockdevice,ndm.io/managed=true,openebs.io/block-device-tag=fast
+```
 
-  Now, provision cStor pools using the following CSPC YAML. Note, `openebs.io/allowed-bd-tags:` is set to `cstor, ssd` which ensures the CSPC will be created using the block devices that either have the label set to cstor or ssd, or have no such label.
- 
+Now, provision cStor pools using the following CSPC YAML. Note, `openebs.io/allowed-bd-tags:` is set to `cstor, ssd` which ensures the CSPC will be created using the block devices that either have the label set to cstor or ssd, or have no such label.
 
-  ```
-  apiVersion: cstor.openebs.io/v1
-  kind: CStorPoolCluster
-  metadata:
-  name: cspc-disk-pool
-  namespace: openebs
-  annotations:
-    # This annotation helps to specify the BD that can be allowed.
-    openebs.io/allowed-bd-tags: cstor,ssd
-  spec:
-  pools:
-    - nodeSelector:
-        kubernetes.io/hostname: "worker-node-1"
-      dataRaidGroups:
+```
+apiVersion: cstor.openebs.io/v1
+kind: CStorPoolCluster
+metadata:
+name: cspc-disk-pool
+namespace: openebs
+annotations:
+  # This annotation helps to specify the BD that can be allowed.
+  openebs.io/allowed-bd-tags: cstor,ssd
+spec:
+pools:
+  - nodeSelector:
+      kubernetes.io/hostname: "worker-node-1"
+    dataRaidGroups:
+    - blockDevices:
+        - blockDeviceName: "blockdevice-022674b5f97f06195fe962a7a61fcb64"
+    poolConfig:
+      dataRaidGroupType: "stripe"
+- nodeSelector:
+      kubernetes.io/hostname: "worker-node-2"
+    dataRaidGroups:
       - blockDevices:
-          - blockDeviceName: "blockdevice-022674b5f97f06195fe962a7a61fcb64"
-      poolConfig:
-        dataRaidGroupType: "stripe"
-  - nodeSelector:
-        kubernetes.io/hostname: "worker-node-2"
-      dataRaidGroups:
-        - blockDevices:
-            - blockDeviceName: "blockdevice-241fb162b8d0eafc640ed89588a832df"
-      poolConfig:
-        dataRaidGroupType: "stripe"
-  - nodeSelector:
-        kubernetes.io/hostname: "worker-node-3"
-      dataRaidGroups:
-        - blockDevices:
-            - blockDeviceName: "blockdevice-00439dc464b785256242113bf0ef64b9"
-      poolConfig:
-        dataRaidGroupType: "stripe"
-  ```
+          - blockDeviceName: "blockdevice-241fb162b8d0eafc640ed89588a832df"
+    poolConfig:
+      dataRaidGroupType: "stripe"
+- nodeSelector:
+      kubernetes.io/hostname: "worker-node-3"
+    dataRaidGroups:
+      - blockDevices:
+          - blockDeviceName: "blockdevice-00439dc464b785256242113bf0ef64b9"
+    poolConfig:
+      dataRaidGroupType: "stripe"
+```
 
-  Apply the above CSPC file for CSPIs to get created and check the CSPI status.
-  
-  ```
-  kubectl apply -f cspc.yaml
-  ```
+Apply the above CSPC file for CSPIs to get created and check the CSPI status.
 
-  ```
-  kubectl get cspi -n openebs
-  ```
+```
+kubectl apply -f cspc.yaml
+```
 
-  Sample Output:
+```
+kubectl get cspi -n openebs
+```
 
-  ```shell hideCopy
-  NAME             HOSTNAME        FREE   CAPACITY    READONLY PROVISIONEDREPLICAS HEALTHYREPLICAS STATUS   AGE
-  cspc-stripe-b9f6 worker-node-2   19300M 19300614k   false      0                     0          ONLINE   89s
-  cspc-stripe-q7xn worker-node-1   19300M 19300614k   false      0                     0          ONLINE   89s
-  
-  ```
+Sample Output:
 
-  Note that CSPI for node **worker-node-3** is not created because:
-  - CSPC YAML created above has `openebs.io/allowed-bd-tags: cstor, ssd` in its annotation. Which means that the CSPC operator will only consider those block devices for provisioning that either do not have a BD tag, openebs.io/block-device-tag, on the block device or have the tag with the values set as `cstor or ssd`.
-  - In this case, the blockdevice-022674b5f97f06195fe962a7a61fcb64 (on node worker-node-1) and blockdevice-241fb162b8d0eafc640ed89588a832df (on node worker-node-2) do not have the label. Hence, no restrictions are applied on it and they can be used as the CSPC operator for pool provisioning.
-  - For blockdevice-00439dc464b785256242113bf0ef64b9 (on node worker-node-3), the label `openebs.io/block-device-tag` has the value fast. But on the CSPC, the annotation openebs.io/allowed-bd-tags has value cstor and ssd. There is no fast keyword present in the annotation value and hence this block device cannot be used.
- 
+```shell hideCopy
+NAME             HOSTNAME        FREE   CAPACITY    READONLY PROVISIONEDREPLICAS HEALTHYREPLICAS STATUS   AGE
+cspc-stripe-b9f6 worker-node-2   19300M 19300614k   false      0                     0          ONLINE   89s
+cspc-stripe-q7xn worker-node-1   19300M 19300614k   false      0                     0          ONLINE   89s
+
+```
+
+Note that CSPI for node **worker-node-3** is not created because:
+
+- CSPC YAML created above has `openebs.io/allowed-bd-tags: cstor, ssd` in its annotation. Which means that the CSPC operator will only consider those block devices for provisioning that either do not have a BD tag, openebs.io/block-device-tag, on the block device or have the tag with the values set as `cstor or ssd`.
+- In this case, the blockdevice-022674b5f97f06195fe962a7a61fcb64 (on node worker-node-1) and blockdevice-241fb162b8d0eafc640ed89588a832df (on node worker-node-2) do not have the label. Hence, no restrictions are applied on it and they can be used as the CSPC operator for pool provisioning.
+- For blockdevice-00439dc464b785256242113bf0ef64b9 (on node worker-node-3), the label `openebs.io/block-device-tag` has the value fast. But on the CSPC, the annotation openebs.io/allowed-bd-tags has value cstor and ssd. There is no fast keyword present in the annotation value and hence this block device cannot be used.
+
 **NOTE:**
+
 1. To allow multiple tag values, the bd tag annotation can be written in the following comma-separated manner:
-  
 
 ```
   openebs.io/allowed-bd-tags: fast,ssd,nvme
-  ```
+```
 
 2. BD tag can only have one value on the block device CR. For example,
    - openebs.io/block-device-tag: fast
-   Block devices should not be tagged in a comma-separated format. One of the reasons for this is, cStor allowed bd tag annotation takes comma-separated values and values like(i.e fast, ssd ) can never be interpreted as a single word in cStor and hence BDs tagged in above format cannot be utilised by cStor.
+     Block devices should not be tagged in a comma-separated format. One of the reasons for this is, cStor allowed bd tag annotation takes comma-separated values and values like(i.e fast, ssd ) can never be interpreted as a single word in cStor and hence BDs tagged in above format cannot be utilised by cStor.
 3. If any block device mentioned in CSPC has an empty value for `the openebs.io/block-device-tag`, then those block devices will not be considered for pool provisioning and other operations. Block devices with empty tag value are implicitly not allowed by the CSPC operator.
 
 ## Tuning cStor Pools
- 
+
 Allow users to set available performance tunings in cStor Pools based on their workload. cStor pool(s) can be tuned via CSPC and is the recommended way to do it. Below are the tunings that can be applied:
 
-**Resource requests and limits:** This ensures high quality of service when applied for the pool manager containers. 
- 
+**Resource requests and limits:** This ensures high quality of service when applied for the pool manager containers.
+
 **Toleration for pool manager pod:** This ensures scheduling of pool pods on the tainted nodes.
- 
+
 **Set priority class:** Sets the priority levels as required.
- 
+
 **Compression:** This helps in setting the compression for cStor pools.
- 
+
 **ReadOnly threshold:** Helps in specifying read only thresholds for cStor pools.
- 
+
 **Example configuration for Resource and Limits:**
- 
+
 Following CSPC YAML specifies resources and auxResources that will get applied to all pool manager pods for the CSPC. Resources get applied to cstor-pool containers and auxResources gets applied to sidecar containers i.e. cstor-pool-mgmt and pool-exporter.
 
 In the following CSPC YAML we have only one pool spec (@spec.pools). It is also possible to override the resource and limit value for a specific pool.
- 
+
 ```
 apiVersion: cstor.openebs.io/v1
 kind: CStorPoolCluster
@@ -949,7 +593,7 @@ spec:
    limits:
      memory: "4Gi"
      cpu: "500m"
- 
+
  auxResources:
    requests:
      memory: "500Mi"
@@ -960,16 +604,16 @@ spec:
  pools:
    - nodeSelector:
        kubernetes.io/hostname: worker-node-1
- 
+
      dataRaidGroups:
      - blockDevices:
          - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f36
          - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f37
- 
+
      poolConfig:
        dataRaidGroupType: mirror
 ```
- 
+
 Following CSPC YAML explains how the resource and limits can be overridden. If you look at the CSPC YAML, there are no resources and auxResources specified at pool level for worker-node-1 and worker-node-2 but specified for worker-node-3. In this case, for worker-node-1 and worker-node-2 the resources and auxResources will be applied from @spec.resources and @spec.auxResources respectively but for worker-node-3 these will be applied from @spec.pools[2].poolConfig.resources and @spec.pools[2].poolConfig.auxResources respectively.
 
 ```
@@ -1002,7 +646,7 @@ spec:
            - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f37
      poolConfig:
        dataRaidGroupType: mirror
-  
+
    - nodeSelector:
        kubernetes.io/hostname: worker-node-2
      dataRaidGroups:
@@ -1011,7 +655,7 @@ spec:
            - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f40
      poolConfig:
        dataRaidGroupType: mirror
-  
+
    - nodeSelector:
        kubernetes.io/hostname: worker-node-3
      dataRaidGroups:
@@ -1038,7 +682,7 @@ spec:
 ```
 
 **Example configuration for Tolerations:**
- 
+
 Tolerations are applied in a similar manner like resources and auxResources. The following is a sample CSPC YAML that has tolerations specified. For worker-node-1 and worker-node-2 tolerations are applied form @spec.tolerations but for worker-node-3 it is applied from @spec.pools[2].poolConfig.tolerations
 
 ```
@@ -1048,44 +692,44 @@ metadata:
  name: cstor-disk-pool
  namespace: openebs
 spec:
- 
+
  tolerations:
  - key: data-plane-node
    operator: Equal
    value: true
    effect: NoSchedule
- 
+
  pools:
    - nodeSelector:
        kubernetes.io/hostname: worker-node-1
- 
+
      dataRaidGroups:
      - blockDevices:
          - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f36
          - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f37
- 
+
      poolConfig:
        dataRaidGroupType: mirror
- 
+
    - nodeSelector:
        kubernetes.io/hostname: worker-node-2
- 
+
      dataRaidGroups:
      - blockDevices:
          - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f39
          - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f40
- 
+
      poolConfig:
        dataRaidGroupType: mirror
- 
+
    - nodeSelector:
        kubernetes.io/hostname: worker-node-3
- 
+
      dataRaidGroups:
      - blockDevices:
          - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f42
          - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f43
- 
+
      poolConfig:
        dataRaidGroupType: mirror
        tolerations:
@@ -1093,79 +737,80 @@ spec:
          operator: Equal
          value: true
          effect: NoSchedule
- 
+
        - key: apac-zone
          operator: Equal
          value: true
          effect: NoSchedule
 ```
- 
+
 **Example configuration for Priority Class:**
- 
+
 Priority Classes are also applied in a similar manner like resources and auxResources. The following is a sample CSPC YAML that has a priority class specified. For worker-node-1 and worker-node-2 priority classes are applied from @spec.priorityClassName but for worker-node-3 it is applied from @spec.pools[2].poolConfig.priorityClassName. Check more info about [priorityclass](https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/#priorityclass).
- 
+
 **Note:**
 
 1. Priority class needs to be created beforehand. In this case, high-priority and ultra-priority priority classes should exist.
 2. The index starts from 0 for @.spec.pools list.
 
-    ```
-    apiVersion: cstor.openebs.io/v1
-    kind: CStorPoolCluster
-    metadata:
-    name: cstor-disk-pool
-    namespace: openebs
-    spec:
-    
-    priorityClassName: high-priority
-    
-    pools:
-      - nodeSelector:
-          kubernetes.io/hostname: worker-node-1
-    
-        dataRaidGroups:
-        - blockDevices:
-            - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f36
-            - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f37
-    
-        poolConfig:
-          dataRaidGroupType: mirror
-    
-      - nodeSelector:
-          kubernetes.io/hostname: worker-node-2
-    
-        dataRaidGroups:
-        - blockDevices:
-            - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f39
-            - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f40
-    
-        poolConfig:
-          dataRaidGroupType: mirror
-    
-      - nodeSelector:
-          kubernetes.io/hostname: worker-node-3
-    
-        dataRaidGroups:
-        - blockDevices:
-            - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f42
-            - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f43
-    
-        poolConfig:
-          dataRaidGroupType: mirror
-          priorityClassName: utlra-priority
-    ```
+   ```
+   apiVersion: cstor.openebs.io/v1
+   kind: CStorPoolCluster
+   metadata:
+   name: cstor-disk-pool
+   namespace: openebs
+   spec:
 
-    **Example configuration for Compression:**
+   priorityClassName: high-priority
 
-    Compression values can be set at **pool level only**. There is no override mechanism like it was there in case of tolerations, resources, auxResources and priorityClass. Compression value must be one of
-    * on
-    * off
-    * lzjb
-    * gzip
-    * gzip-[1-9]
-    * zle
-    * lz4
-    
+   pools:
+     - nodeSelector:
+         kubernetes.io/hostname: worker-node-1
+
+       dataRaidGroups:
+       - blockDevices:
+           - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f36
+           - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f37
+
+       poolConfig:
+         dataRaidGroupType: mirror
+
+     - nodeSelector:
+         kubernetes.io/hostname: worker-node-2
+
+       dataRaidGroups:
+       - blockDevices:
+           - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f39
+           - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f40
+
+       poolConfig:
+         dataRaidGroupType: mirror
+
+     - nodeSelector:
+         kubernetes.io/hostname: worker-node-3
+
+       dataRaidGroups:
+       - blockDevices:
+           - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f42
+           - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f43
+
+       poolConfig:
+         dataRaidGroupType: mirror
+         priorityClassName: utlra-priority
+   ```
+
+   **Example configuration for Compression:**
+
+   Compression values can be set at **pool level only**. There is no override mechanism like it was there in case of tolerations, resources, auxResources and priorityClass. Compression value must be one of
+
+   - on
+   - off
+   - lzjb
+   - gzip
+   - gzip-[1-9]
+   - zle
+   - lz4
+
 **Note:** lz4 is the default compression algorithm that is used if the compression field is left unspecified on the cspc. Below is the sample yaml which has compression specified.
 
 ```
@@ -1178,19 +823,19 @@ spec:
  pools:
    - nodeSelector:
        kubernetes.io/hostname: worker-node-1
- 
+
      dataRaidGroups:
      - blockDevices:
          - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f36
          - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f37
- 
+
      poolConfig:
        dataRaidGroupType: mirror
        compression: lz4
 ```
 
 **Example configuration for Read Only Threshold:**
- 
+
 RO threshold can be set in a similar manner like compression. ROThresholdLimit is the threshold(percentage base) limit for pool read only mode. If ROThresholdLimit (%) amount of pool storage is consumed then the pool will be set to readonly. If ROThresholdLimit is set to 100 then entire pool storage will be used. By default it will be set to 85% i.e when unspecified on the CSPC. ROThresholdLimit value will be 0 < ROThresholdLimit <= 100. Following CSPC yaml has the ReadOnly Threshold percentage specified.
 
 ```
@@ -1203,21 +848,21 @@ spec:
  pools:
    - nodeSelector:
        kubernetes.io/hostname: worker-node-1
- 
+
      dataRaidGroups:
      - blockDevices:
          - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f36
          - blockDeviceName: blockdevice-ada8ef910929513c1ad650c08fbe3f37
- 
+
      poolConfig:
        dataRaidGroupType: mirror
- 
+
        roThresholdLimit : 70
 ```
 
 ## Tuning cStor Volumes
- 
-Similar to tuning of the cStor Pool cluster, there are possible ways for tuning cStor volumes. cStor volumes can be provisioned using different policy configurations. However, `cStorVolumePolicy` needs to be created first. It must be created prior to creation of StorageClass as  `CStorVolumePolicy` name needs to be specified to provision cStor volume based on configured policy. A sample StorageClass YAML that utilises `cstorVolumePolicy` is given below for reference:
+
+Similar to tuning of the cStor Pool cluster, there are possible ways for tuning cStor volumes. cStor volumes can be provisioned using different policy configurations. However, `cStorVolumePolicy` needs to be created first. It must be created prior to creation of StorageClass as `CStorVolumePolicy` name needs to be specified to provision cStor volume based on configured policy. A sample StorageClass YAML that utilises `cstorVolumePolicy` is given below for reference:
 
 ```
 apiVersion: storage.k8s.io/v1
@@ -1234,7 +879,7 @@ parameters:
  cstorVolumePolicy: "csi-volume-policy"
 ```
 
-If the volume policy is not created before volume provisioning and needs to be modified later, 
+If the volume policy is not created before volume provisioning and needs to be modified later,
 it can be changed by editing the cStorVolumeConfig(CVC) resource as per volume bases which will be reconciled by the CVC controller to the respected volume resources.
 Each PVC creation request will create a CStorVolumeConfig(cvc) resource which can be used to manage volume, its policies and any supported operations (like, Scale up/down), per volume bases.
 To edit, execute:
@@ -1245,93 +890,93 @@ kubectl edit cvc <pv-name> -n openebs
 
 Sample Output:
 
- ```shell hideCopy
+```shell hideCopy
 apiVersion: cstor.openebs.io/v1
 kind: CStorVolumeConfig
 metadata:
-  annotations:
-    openebs.io/persistent-volume-claim: "cstor-pvc"
-    openebs.io/volume-policy: csi-volume-policy
-    openebs.io/volumeID: pvc-25e79ecb-8357-49d4-83c2-2e63ebd66278
-  creationTimestamp: "2020-07-22T11:36:13Z"
-  finalizers:
-  - cvc.openebs.io/finalizer
-  generation: 3
-  labels:
-    cstor.openebs.io/template-hash: "3278395555"
-    openebs.io/cstor-pool-cluster: cstor-disk-pool
-  name: pvc-25e79ecb-8357-49d4-83c2-2e63ebd66278
-  namespace: openebs
-  resourceVersion: "1283"
-  selfLink: /apis/cstor.openebs.io/v1/namespaces/openebs/cstorvolumeconfigs/pvc-25e79ecb-8357-49d4-83c2-2e63ebd66278
-  uid: 389320d8-5f0b-439d-8ef2-59f4d01b393a
+ annotations:
+   openebs.io/persistent-volume-claim: "cstor-pvc"
+   openebs.io/volume-policy: csi-volume-policy
+   openebs.io/volumeID: pvc-25e79ecb-8357-49d4-83c2-2e63ebd66278
+ creationTimestamp: "2020-07-22T11:36:13Z"
+ finalizers:
+ - cvc.openebs.io/finalizer
+ generation: 3
+ labels:
+   cstor.openebs.io/template-hash: "3278395555"
+   openebs.io/cstor-pool-cluster: cstor-disk-pool
+ name: pvc-25e79ecb-8357-49d4-83c2-2e63ebd66278
+ namespace: openebs
+ resourceVersion: "1283"
+ selfLink: /apis/cstor.openebs.io/v1/namespaces/openebs/cstorvolumeconfigs/pvc-25e79ecb-8357-49d4-83c2-2e63ebd66278
+ uid: 389320d8-5f0b-439d-8ef2-59f4d01b393a
 publish:
-  nodeId: 127.0.0.1
+ nodeId: 127.0.0.1
 spec:
-  capacity:
-    storage: 1Gi
-  cstorVolumeRef:
-    apiVersion: cstor.openebs.io/v1
-    kind: CStorVolume
-    name: pvc-25e79ecb-8357-49d4-83c2-2e63ebd66278
-    namespace: openebs
-    resourceVersion: "1260"
-    uid: ea6e09f2-1e65-41ab-820a-ed1ecd14873c
-  policy:
-    provision:
-      replicaAffinity: true
-    replica:
-      zvolWorkers: "1"
-    replicaPoolInfo:
-    - poolName: cstor-disk-pool-vn92
-    target:
-      affinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-            - key: openebs.io/target-affinity
-              operator: In
-              values:
-              - percona
-          namespaces:
-          - default
-          topologyKey: kubernetes.io/hostname
-      auxResources:
-        limits:
-          cpu: 500m
-          memory: 128Mi
-        requests:
-          cpu: 250m
-          memory: 64Mi
-      luWorkers: 8
-      priorityClassName: system-cluster-critical
-      queueDepth: "16"
-      resources:
-        limits:
-          cpu: 500m
-          memory: 128Mi
-        requests:
-        .
-        .
-        .
+ capacity:
+   storage: 1Gi
+ cstorVolumeRef:
+   apiVersion: cstor.openebs.io/v1
+   kind: CStorVolume
+   name: pvc-25e79ecb-8357-49d4-83c2-2e63ebd66278
+   namespace: openebs
+   resourceVersion: "1260"
+   uid: ea6e09f2-1e65-41ab-820a-ed1ecd14873c
+ policy:
+   provision:
+     replicaAffinity: true
+   replica:
+     zvolWorkers: "1"
+   replicaPoolInfo:
+   - poolName: cstor-disk-pool-vn92
+   target:
+     affinity:
+       requiredDuringSchedulingIgnoredDuringExecution:
+       - labelSelector:
+           matchExpressions:
+           - key: openebs.io/target-affinity
+             operator: In
+             values:
+             - percona
+         namespaces:
+         - default
+         topologyKey: kubernetes.io/hostname
+     auxResources:
+       limits:
+         cpu: 500m
+         memory: 128Mi
+       requests:
+         cpu: 250m
+         memory: 64Mi
+     luWorkers: 8
+     priorityClassName: system-cluster-critical
+     queueDepth: "16"
+     resources:
+       limits:
+         cpu: 500m
+         memory: 128Mi
+       requests:
+       .
+       .
+       .
 ```
 
 The list of policies that can be configured are as follows:
-* [Replica Affinity to create a volume replica on specific pool](#replica-affinity)
- 
-* [Volume Target Pod Affinity](#volume-target-pod-affinity)
- 
-* [Volume Tunable](#volume-tunable)
- 
-* [Memory and CPU Resources QoS](#memory-and-cpu-qos)
- 
-* [Toleration for target pod to ensure scheduling of target pods on tainted nodes {#toleration-for-target-pod}](#toleration-for-target-pod)
- 
-* [Priority class for volume target deployment](#priority-class-for-volume-target-deployment)
+
+- [Replica Affinity to create a volume replica on specific pool](#replica-affinity)
+
+- [Volume Target Pod Affinity](#volume-target-pod-affinity)
+
+- [Volume Tunable](#volume-tunable)
+
+- [Memory and CPU Resources QoS](#memory-and-cpu-qos)
+
+- [Toleration for target pod to ensure scheduling of target pods on tainted nodes {#toleration-for-target-pod}](#toleration-for-target-pod)
+
+- [Priority class for volume target deployment](#priority-class-for-volume-target-deployment)
 
 ### Replica Affinity to create a volume replica on specific pool {#replica-affinity}
 
- 
 For StatefulSet applications, to distribute single replica volume on specific cStor pool we can use replicaAffinity enabled scheduling. This feature should be used with delay volume binding i.e. `volumeBindingMode: WaitForFirstConsumer` in StorageClass. When `volumeBindingMode` is set to `WaitForFirstConsumer` the csi-provisioner waits for the scheduler to select a node. The topology of the selected node will then be set as the first entry in preferred list and will be used by the volume controller to create the volume replica on the cstor pool scheduled on preferred node.
 
 ```
@@ -1365,7 +1010,7 @@ spec:
 ### Volume Target Pod Affinity
 
 The Stateful workloads access the OpenEBS storage volume by connecting to the Volume Target Pod. Target Pod Affinity policy can be used to co-locate volume target pod on the same node as the workload. This feature makes use of the Kubernetes Pod Affinity feature that is dependent on the Pod labels.
-For this labels need to be added  to both, Application and volume Policy.
+For this labels need to be added to both, Application and volume Policy.
 Given below is a sample YAML of `CStorVolumePolicy` having target-affinity label using `kubernetes.io/hostname` as a topologyKey in CStorVolumePolicy:
 
 ```
@@ -1404,9 +1049,10 @@ metadata:
 ### Volume Tunable
 
 Performance tunings based on the workload can be set using Volume Policy. The list of tunings that can be configured are given below:
-* **queueDepth:**<br /> This limits the ongoing IO count from iscsi client on Node to cStor target pod. The default value for this parameter is set at 32.
-* **luworkers:** <br /> cStor target IO worker threads, sets the number of threads that are working on QueueDepth queue. The default value for this parameter is set at 6. In case of better number of cores and RAM, this value can be 16, which means 16 threads will be running for each volume.
-* **zvolWorkers:**<br /> cStor volume replica IO worker threads, defaults to the number of cores on the machine. In case of better number of cores and RAM, this value can be 16.
+
+- **queueDepth:**<br /> This limits the ongoing IO count from iscsi client on Node to cStor target pod. The default value for this parameter is set at 32.
+- **luworkers:** <br /> cStor target IO worker threads, sets the number of threads that are working on QueueDepth queue. The default value for this parameter is set at 6. In case of better number of cores and RAM, this value can be 16, which means 16 threads will be running for each volume.
+- **zvolWorkers:**<br /> cStor volume replica IO worker threads, defaults to the number of cores on the machine. In case of better number of cores and RAM, this value can be 16.
 
 Given below is a sample YAML that has the above parameters configured.
 
@@ -1425,10 +1071,10 @@ spec:
 ```
 
 **Note:** These Policy tunable configurations can be changed for already provisioned volumes by editing the corresponding volume CStorVolumeConfig resources.
- 
+
 ### Memory and CPU Resources QoS
 
- CStorVolumePolicy can also be used to configure the volume Target pod resource requests and limits to ensure QoS. Given below is a sample YAML that configures the target container's resource requests and limits, and auxResources configuration for the sidecar containers.
+CStorVolumePolicy can also be used to configure the volume Target pod resource requests and limits to ensure QoS. Given below is a sample YAML that configures the target container's resource requests and limits, and auxResources configuration for the sidecar containers.
 
 _To know more about Resource configuration in Kubernetes, [click here](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)_.
 
@@ -1458,8 +1104,8 @@ spec:
 
 **Note:** These resource configuration(s) can be changed, for provisioned volumes, by editing the CStorVolumeConfig resource on per volume level.
 
-An example to patch an already existing `CStorVolumeConfig` resource is given below, 
-Create a file, say  patch-resources-cvc.yaml, that contains the changes and apply the patch on the resource.
+An example to patch an already existing `CStorVolumeConfig` resource is given below,
+Create a file, say patch-resources-cvc.yaml, that contains the changes and apply the patch on the resource.
 
 ```
 spec:
@@ -1481,7 +1127,7 @@ spec:
           memory: 64Mi
 ```
 
-To apply the patch, 
+To apply the patch,
 
 ```
 kubectl patch cvc -n openebs -p "$(cat patch-resources-cvc.yaml)" pvc-0478b13d-b1ef-4cff-813e-8d2d13bcb316 --type merge
@@ -1532,149 +1178,3 @@ spec:
   target:
     priorityClassName: "storage-critical"
 ```
-
-## Cleaning up a cStor setup
-
-Follow the steps below to cleanup of a cStor setup. On successful cleanup you can reuse the cluster's disks/block devices for other storage engines.
-1. Delete the application or deployment which uses CSI based cStor CAS engine. In this example we are going to delete the Busybox application that was deployed previously. To delete, execute:
-   
-   ```
-   kubectl delete pod <pod-name>
-   ```
-
-   Example command:
-
-  ```
-   kubectl delete busybox
-  ```
-
-   Verify that the application pod has been deleted
-
-   ```
-   kubectl get pods
-   ```
-
-   Sample Output:
-   
-   ```shell hideCopy
-   No resources found in default namespace.
-   ```
-
-2. Next, delete the corresponding PVC attached to the application. To delete PVC, execute:
-    
-
-    ```
-    kubectl delete pvc <pvc-name>
-    ```
-
-    Example command:
-
-    ```
-    kubectl delete pvc cstor-pvc
-    ```
-
-    Verify that the application-PVC has been deleted.
-
-    ```
-     kubectl get pvc
-    ```
-
-     Sample Output:
-
-    ```shell hideCopy
-     No resources found in default namespace.
-    ```
-
-3. Delete the corresponding StorageClass used by the application PVC. 
-     
-
-    ```
-     kubectl delete sc <storage-class-name>
-    ```
-
-     Example command:
-     ```
-     kubectl delete sc cstor-csi-disk
-     ```
-
-     To verify that the StorageClass has been deleted, execute:
-     
-     ```
-     kubectl get sc
-     ```
-
-     Sample Output:  
-
-    ```shell hideCopy
-     No resources found
-    ```
-
-4. The blockdevices used to create CSPCs will currently be in claimed state. To get the blockdevice details, execute:
-     
-
-    ```
-     kubectl get bd -n openebs
-    ```
-
-     Sample Output:
-
-    ```shell hideCopy
-     NAME                                          NODENAME         SIZE         CLAIMSTATE  STATUS   AGE
-     blockdevice-01afcdbe3a9c9e3b281c7133b2af1b68  worker-node-3    21474836480  Claimed     Active   2m10s
-     blockdevice-10ad9f484c299597ed1e126d7b857967  worker-node-1    21474836480  Claimed     Active   2m17s
-     blockdevice-3ec130dc1aa932eb4c5af1db4d73ea1b  worker-node-2    21474836480  Claimed     Active   2m12s
-    ```
-
-     To get these blockdevices to unclaimed state delete the associated CSPC. To delete, execute:
-     
-     ```
-     kubectl delete cspc <CSPC-name> -n openebs
-     ```
-
-     Example command:
-     
-     ```
-     kubectl delete cspc cstor-disk-pool -n openebs
-     ```
-
-     Verify that the CSPC and CSPIs have been deleted.
-
-    ```
-     kubectl get cspc -n openebs 
-    ```
-
-     Sample Output:
-     
-    ```shell hideCopy
-     No resources found in openebs namespace.
-    ```
-
-    ```
-     kubectl get cspi -n openebs
-    ```
-
-     Sample Output:
-
-    ```shell hideCopy
-     No resources found in openebs namespace.
-    ```
-
-    Now, the blockdevices must be unclaimed state. To verify, execute:
-     
-    ```
-     kubectl get bd -n openebs
-    ```
-
-     Sample output:
-     
-
-    ```shell hideCopy
-     NAME                                          NODENAME         SIZE         CLAIMSTATE   STATUS   AGE
-     blockdevice-01afcdbe3a9c9e3b281c7133b2af1b68  worker-node-3    21474836480   Unclaimed   Active   21m10s
-     blockdevice-10ad9f484c299597ed1e126d7b857967  worker-node-1    21474836480   Unclaimed   Active   21m17s
-     blockdevice-3ec130dc1aa932eb4c5af1db4d73ea1b  worker-node-2    21474836480   Unclaimed   Active   21m12s
-    ```
-
-## Troubleshooting
-
-* The volumes remains in `Init` state, even though pool pods are running. This can happen due to the pool pods failing to connect to Kubernetes API server. Check the logs of cstor pool pods. Restarting the pool pod can fix this issue. This is seen to happen in cases where cstor control plane is deleted and re-installed, while the pool pods were running. 

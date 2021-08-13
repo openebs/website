@@ -30,5 +30,9 @@
   "sidebar.docs.category.Deprecated": {
     "message": "Deprecated",
     "description": "The label for category Deprecated in sidebar docs"
+  },
+  "sidebar.docs.category.cStor": {
+    "message": "cStor",
+    "description": "The label for category cStor in sidebar docs"
   }
 }
