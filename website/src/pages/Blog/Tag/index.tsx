@@ -16,7 +16,7 @@ import { Metadata } from "../../../components/Metadata";
 import BlogCard from "../../../components/BlogCard";
 import { useTag } from "../../../hooks/extractBlogPath";
 import { useHistory } from "react-router-dom";
-import { capitalizeTextTransform, toLowerCaseHyphenSeparatedString, replaceHyphenWithSpace } from "../../../utils/stringConversions";
+import { toLowerCaseHyphenSeparatedString } from "../../../utils/stringConversions";
 
 interface blogObject { 
   title: string;
@@ -50,12 +50,14 @@ const Tag: React.FC = () => {
   const [page, setPage] = React.useState<number>(1);
   const history = useHistory();
 
-  
-
   const handleTagSelect = (tag: string) => {
     if(selectedTag !== toLowerCaseHyphenSeparatedString(tag)){
       history.push(`/blog/tag/${toLowerCaseHyphenSeparatedString(tag)}`)
     }
+  };
+
+  const getPageTitle = () => {
+    return filteredData[0]?.tags.find((tag:string) => selectedTag === toLowerCaseHyphenSeparatedString(tag))
   };
 
   useEffect(() => {
@@ -105,7 +107,7 @@ const Tag: React.FC = () => {
             </Container>
           </div>
           <div className={classes.sectionDiv}>
-            <h1 className={classes.blogTitle}>{selectedTag && capitalizeTextTransform(replaceHyphenWithSpace(selectedTag))}</h1>
+            <h1 className={classes.blogTitle}>{getPageTitle()}</h1>
             <Grid container direction="row" className={classes.blogsWrapper} >
               {filteredData
                 ? filteredData
