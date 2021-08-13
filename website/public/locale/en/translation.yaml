@@ -138,7 +138,7 @@ faqDetails:
   answer11: Kubernetes, of course, gives many ways to enable resilience. We leverage these wherever possible. For example, let’s say the IO container that has our iSCSI target fails. Well, it is spun back up by Kubernetes. The same applies to the underlying replica containers, where the data is stored. They are spun back up by Kubernetes. Now - the point of replicas is to make sure that when one or more of these replicas is being respun and then repopulated in the background by OpenEBS, the client applications still run. OpenEBS takes a simple approach to ensuring that multiple replicas can be accessed by an IO controller using a configurable quorum or the minimum number of replica requirements. Besides, our new cStor checks for silent data corruption and in some cases, can fix it in the background. Silent data corruption, unfortunately, can occur from poorly engineered hardware and from other underlying conditions, including those that your cloud provider is unlikely to report or identify.
 
 commercialSupport:
-  title: Meet our commercial support
+  title: Need commercial support?
   description: Third-party companies and individuals who provide products or services related to OpenEBS. OpenEBS is an independent open source project which does not endorse any company. The list is provided in alphabetical order.
   mule: Support mule
   visitWebsite: Visit site
@@ -204,7 +204,7 @@ home:
       description: And you will see how to manage your workloads with OpenEBS easily
 community:
   title: We are the community
-  description: OpenEBS is built by a community of experts. With our community you can quickly and easily build, train, and deploy your data science workloads on any Kubernetes deployment.
+  description: OpenEBS is built by community users like you and me. OpenEBS community is known to be responsive and friendly. Interact with our vibrant community to quickly and easily learn, build, and deploy your Stateful workloads on any Kubernetes deployment.
   mule: Support mule
   visitWebsite: Visit site
   newsletter: Stay in the know with our newsletter
