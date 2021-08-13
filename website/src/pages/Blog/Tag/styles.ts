@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   cardSize: {
     maxWidth: "480px !important",
-    paddingTop: theme.spacing(4),
+    padding: theme.spacing(2),
     [theme.breakpoints.down("md")]: {
       maxWidth: "380px !important",
     },
