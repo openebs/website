@@ -134,9 +134,40 @@
           "label": "NDM"
         },
         {
-          "type": "doc",
-          "id": "version-2.11.0/user-guides/cstor-csi",
-          "label": "cStor"
+
+          "collapsed": true,
+          "type": "category",
+          "label": "cStor",
+          "customProps": {
+            "icon": ""
+          },
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-2.11.0/user-guides/cstor/install-and-setup",
+              "label": "Install and Setup"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.11.0/user-guides/cstor/launch-sample-application",
+              "label": "Launch"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.11.0/user-guides/cstor/troubleshooting",
+              "label": "Troubleshooting"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.11.0/user-guides/cstor/advanced",
+              "label": "Advanced"
+            },
+            {
+              "type": "doc",
+              "id": "version-2.11.0/user-guides/cstor/clean-up",
+              "label": "Clean up"
+            }
+          ]
         },
         {
           "type": "doc",
