@@ -43,8 +43,8 @@ const EventSlider: React.FC<EventsProps> = ({
      */
     const currentDate = new Date();
     let eventsData = [];
-    let eventsWithDate: any = [];
-    let recurringEvents: any = [];
+    let eventsWithDate: Events[] = [];
+    let recurringEvents: Events[] = [];
     events.forEach((item) => {
       let givenDate = new Date(item?.date).getMonth();
       if (isNaN(givenDate)) {
@@ -57,11 +57,11 @@ const EventSlider: React.FC<EventsProps> = ({
     });
     if (eventsWithDate.length) {
       eventsData = filterEvents
-        ? eventsWithDate?.filter((event: any) => new Date(event?.date) >= currentDate)
+        ? eventsWithDate?.filter((event: Events) => new Date(event?.date) >= currentDate)
         : eventsWithDate;
       
       eventsData = sortEvents
-        ? eventsData?.sort((eventA: any, eventB: any) => {
+        ? eventsData?.sort((eventA: Events, eventB: Events) => {
             const dateA: any = new Date(eventB?.date);
             const dateB: any = new Date(eventA?.date);
             return sortOrder === "asc" ? dateB - dateA : dateB + dateA;
