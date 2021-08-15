@@ -23,9 +23,9 @@ const Community: React.FC = () => {
 
   const dependentProjects = [
     {
-      label: "rancher",
-      image_src: "../images/logos/rancher.svg",
-      alt: t("generic.rancher"),
+      label: "Longhorn",
+      image_src: "../images/logos/longhorn.svg",
+      alt: t("generic.longhorn"),
     },
     {
       label: "intel",
