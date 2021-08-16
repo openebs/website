@@ -4,26 +4,29 @@ import { makeStyles } from "@material-ui/core/styles";
 import Carousel from "../Carousel";
 
 const useStyles = makeStyles((theme) => ({
-  logoCarousel: {
+  adopterSlider: {
     marginTop: theme.spacing(6),
   },
+  adopterSlide: {
+    margin: theme.spacing(0, 2)
+  }
 }));
 
 const AdopterSlider: React.FC = () => {
   const classes = useStyles();
   const { t } = useTranslation();
 
-  var logoSliderSettings = {
+  const settings = {
     dots: false,
     autoplay: true,
     autoplaySpeed: 0,
-    speed: 10000,
+    speed: 8000,
     slidesToShow: 1,
     slidesToScroll: 1,
     variableWidth: true,
-    cssEase: "linear",
     arrows: false,
   };
+
   const adopters = [
     {
       logo: "../images/logos/bloomberg_blue.png",
@@ -148,10 +151,10 @@ const AdopterSlider: React.FC = () => {
   ];
 
   return (
-    <Carousel settings={logoSliderSettings} className={classes.logoCarousel}>
+    <Carousel settings={settings} className={classes.adopterSlider}>
       {adopters.map(({ logo, name }) => {
         return (
-          <div key={name}>
+          <div key={name} className={classes.adopterSlide}>
             <img loading="lazy" src={logo} alt={name} />
           </div>
         );
