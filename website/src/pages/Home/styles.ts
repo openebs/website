@@ -127,9 +127,6 @@ const useStyles = makeStyles((theme) => ({
     tabsWrapper: {
         margin: theme.spacing(22, 3, 0)
     },
-    logoCarousel: {
-        marginTop: theme.spacing(6)
-    },
     sectionDiv: {
         padding: theme.spacing(3, 0),
         width: '75%',

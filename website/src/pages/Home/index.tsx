@@ -8,7 +8,6 @@ import Footer from '../../components/Footer';
 import JoinCommunity from '../../components/JoinCommunity';
 import Newsletter from "../../components/Newsletter";
 import Sponsor from "../../components/Sponsor";
-import Carousel from '../../components/Carousel';
 import { EXTERNAL_LINKS, VIEW_PORT } from '../../constants';
 import MiniBlog from '../../components/MiniBlog';
 import EventSlider from '../../components/EventSlider';
@@ -23,6 +22,7 @@ import SeoJson from "../../resources/seo.json";
 import TestimonialSlider from '../../components/testimonialSlider';
 import { Testimonial } from "../../components//testimonialSlider/interface";
 import { useCurrentHost } from "../../hooks/useCurrentHost";
+import AdopterSlider from '../../components/AdoptersSlider';
 
 const Home: React.FC = () => {
     const classes = useStyles();
@@ -47,19 +47,6 @@ const Home: React.FC = () => {
         window.innerWidth <= VIEW_PORT.MOBILE_BREAKPOINT ? setIsMobileView(true) : setIsMobileView(false);
     },[width])
 
-    // logoSliderSettings for logos carousel
-    var logoSliderSettings = {
-        dots: false,
-        autoplay: true,
-        autoplaySpeed: 0,
-        speed: 10000,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        variableWidth: true,
-        cssEase: "linear",
-        arrows: false,
-    };
-    
     interface TabPanelProps {
         children?: React.ReactNode;
         index: any;
@@ -266,38 +253,7 @@ const Home: React.FC = () => {
 
 
             <section>
-                <Carousel settings={logoSliderSettings} className={classes.logoCarousel}>
-                    <div>
-                        <img loading="lazy" src="../images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
-                    </div>
-                    <div>
-                        <img loading="lazy" src="../images/logos/arista_blue.png" alt={t('home.usedInProductionBy.arista')} />
-                    </div>
-                    <div>
-                        <img loading="lazy" src="../images/logos/orange_blue.png" alt={t('home.usedInProductionBy.orange')} />
-                    </div>
-                    <div>
-                        <img loading="lazy" src="../images/logos/optoro_blue.png" alt={t('home.usedInProductionBy.optoro')} />
-                    </div>
-                    <div>
-                        <img loading="lazy" src="../images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
-                    </div>
-                    <div>
-                        <img loading="lazy" src="../images/logos/bloomberg_blue.png" alt={t('home.usedInProductionBy.bloomberg')} />
-                    </div>
-                    <div>
-                        <img loading="lazy" src="../images/logos/arista_blue.png" alt={t('home.usedInProductionBy.arista')} />
-                    </div>
-                    <div>
-                        <img loading="lazy" src="../images/logos/orange_blue.png" alt={t('home.usedInProductionBy.orange')} />
-                    </div>
-                    <div>
-                        <img loading="lazy" src="../images/logos/optoro_blue.png" alt={t('home.usedInProductionBy.optoro')} />
-                    </div>
-                    <div>
-                        <img loading="lazy" src="../images/logos/comcast_blue.png" alt={t('home.usedInProductionBy.comcast')} />
-                    </div>
-                </Carousel>
+                <AdopterSlider />
             </section>
 
             <section>

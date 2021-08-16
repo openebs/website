@@ -162,11 +162,31 @@ home:
     joinOnGitHub: Join on GitHub
   landingScreenImageAlt: Solution to manage your Kubernetes Stateful Workloads
   usedInProductionBy:
-    bloomberg: Bloomberg
+    agnes: agnes
+    byteDance: ByteDance
+    clew: CLEW
+    cloudNative: CLOUD NATIVE
+    codewave: CodeWave
+    cort: CORT
+    dRating: D-Rating
+    disid: disid
+    exact: exact
+    hamravesh: Hamravesh
+    idnt: IDNT
+    kpn: kpn
+    kubesphere: KUBESPHERE
+    plaidCloud: PlaidCloud
+    rentHopper: RENTHOPPER
+    SHARECARE: sharecare
+    stratus5: Stratus5
+    tobg: TOBG
+    verzionMedia: verizon media
+    zetaAssociates: ZETA ASSOCIATES
     arista: ARISTA
-    orange: orange
-    optoro: optoro
+    bloomberg: Bloomberg
     comcast: COMCAST
+    optoro: optoro
+    orange: orange
   whatsInItForYou:
     title: What’s in for you
     saveMoney: <0> Save money, improve the resilience of your cloud storage </0> – thanks to thin provisioning and the ability to span availability zones and to spin up and down easily in some cases users are saving 30% or more on their cloud storage via the use of container attached storage.
