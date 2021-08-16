@@ -151,7 +151,7 @@ const AdopterSlider: React.FC = () => {
     <Carousel settings={logoSliderSettings} className={classes.logoCarousel}>
       {adopters.map(({ logo, name }) => {
         return (
-          <div>
+          <div key={name}>
             <img loading="lazy" src={logo} alt={name} />
           </div>
         );
