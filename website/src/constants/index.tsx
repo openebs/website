@@ -20,7 +20,9 @@ export enum EXTERNAL_LINKS {
 };
 
 export const API = {
-  GITHUB_CONTRIBUTORS: 'https://api.github.com/repos/openebs/openebs-docs/contributors?q=contributions&order=desc'
+  // Commented for future reference
+  // GITHUB_CONTRIBUTORS: 'https://api.github.com/repos/openebs/openebs-docs/contributors?q=contributions&order=desc'
+  GITHUB_CONTRIBUTORS: 'https://openebs.devstats.cncf.io/api/ds/query'
 }
 
 export enum VIEW_PORT {

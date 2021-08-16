@@ -6,10 +6,10 @@ import {
     // TextField,
     Link,
     Button
-  } from "@material-ui/core";
+} from "@material-ui/core";
 import React, { useEffect, useState } from "react";
 import useStyles from './style';
-import {socialLinks, getStarted} from './footerLinks'
+import { socialLinks, getStarted } from './footerLinks'
 import { useTranslation } from "react-i18next";
 import Grid from '@material-ui/core/Grid';
 // import { validateEmail } from "../../utils/emailValidation";
@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
     // const [disableContinueButton, setDisableContinueButton] = useState<boolean>(true);
 
     const openEBSLogo = (
-        <img loading="lazy" src="/images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')}/>
+        <img loading="lazy" src="/images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')} />
     );
 
     // useEffect(() => {
@@ -40,17 +40,17 @@ const Footer: React.FC = () => {
 
     // This block of code is used to display social links
     const displaySocialLinks = () => {
-          return (
+        return (
             <div className={classes.socialIconsWrapper}>
                 {socialLinks.map(({ label, href, imgURL }) => {
-                    return (   
+                    return (
                         <Link href={href} target="_blank" className={classes.socialIconButton} key={label}>
-                            <img loading="lazy" src={imgURL} alt={label}/>
+                            <img loading="lazy" src={imgURL} alt={label} />
                         </Link>
                     );
                 })}
-            </div>   
-          );
+            </div>
+        );
     };
 
     // This block of code is used to display newsletter
@@ -60,14 +60,14 @@ const Footer: React.FC = () => {
                 <Typography variant='h6' className={classes.columnTitle}>
                     {t('footer.newsLetterTitle')}
                 </Typography>
-                  <Button
-                  variant="contained"
-                  color="secondary"
-                  className={classes.solidButton}
-                  onClick={() => { window.open(EXTERNAL_LINKS.SUBSCRIBE_NEWSLETTER, '_blank') }}
-                  >
-                  {t("newsletter.subscribe")}
-                  </Button>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    className={classes.solidButton}
+                    onClick={() => { window.open(EXTERNAL_LINKS.SUBSCRIBE_NEWSLETTER, '_blank') }}
+                >
+                    {t("newsletter.subscribe")}
+                </Button>
                 {/* Comment code will be used later */}
                 {/* <form noValidate autoComplete="on" onSubmit={handleNewsLetterEmailSubmit}>
                     <div className={classes.newsletterFormWrapper}>
@@ -90,7 +90,7 @@ const Footer: React.FC = () => {
                         </IconButton>
                     </div>
                 </form> */}
-            </div> 
+            </div>
         );
     };
 
@@ -103,15 +103,15 @@ const Footer: React.FC = () => {
                 </Typography>
                 <Typography className={classes.columnListWrapper}>
                     {getStarted.map(({ label, href }) => {
-                        return (   
-                            <Link href={href} className={classes.columnListItem} key={label} 
-                            target={(label === EXTERNAL_LINK_LABELS.GITHUB) ? '_blank' : '_parent'}>
+                        return (
+                            <Link href={href} className={classes.columnListItem} key={label}
+                                target={(label === EXTERNAL_LINK_LABELS.GITHUB) ? '_blank' : '_parent'}>
                                 {label}
                             </Link>
                         );
                     })}
                 </Typography>
-            </div> 
+            </div>
         );
     };
 
@@ -136,55 +136,93 @@ const Footer: React.FC = () => {
     //     );
     // };
 
+
+
+    const  getdatesForContribution = () => {
+        var today = new Date()
+        var priorDate = new Date();
+        priorDate.setDate(priorDate.getDate() - 30);
+        return {
+            today,
+            priorDate,
+            todayTimestamp: today.valueOf(),
+            priorDateTimestamp: priorDate.valueOf()
+        };
+    }
     const DisplayTopContributors: React.FC = () => {
         const githubApiContributors = API.GITHUB_CONTRIBUTORS;
         const [isLoaded, setIsLoaded] = useState<boolean>(false);
         const [items, setItems] = useState([]);
+        const reqBodyToFetchContributors = {
+            "queries": [
+                {
+                    "refId": "A",
+                    "datasourceId": 1,
+                    "rawSql": "select\n  row_number() over (order by value desc) as \"Rank\",\n  name,\n  value\nfrom\n  shpr_auth\nwhere\n  series = 'hpr_authall'\n  and period = 'm'",
+                    "format": "table",
+                    "intervalMs": 86400000,
+                    "maxDataPoints": 1255
+                }
+            ],
+            "range": {
+                "from": `${getdatesForContribution().priorDate}`,
+                "to": `${getdatesForContribution().today}`,
+                "raw": {
+                    "from": "now-1m",
+                    "to": "now"
+                }
+            },
+            "from": `${getdatesForContribution().priorDateTimestamp}`,
+            "to": `${getdatesForContribution().todayTimestamp}`
+        }
+        
         //getting the top contributors from github by sending the api order as desc
-
         useEffect(() => {
-           fetch(githubApiContributors)
-           .then((res) => res?.json())
-           .then(
-             (result) => {
-               setIsLoaded(true);
-               setItems(result);
-             },
-             (error) => {
-               setIsLoaded(true);
-               console.error(error);
-             }
-           );
-          return () => {
-            setItems([]);
-          };
-        }, []); // eslint-disable-line react-hooks/exhaustive-deps
+            fetch(githubApiContributors, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(reqBodyToFetchContributors),
+            })
+                .then(response => response.json())
+                .then(contributors => {
+                    setIsLoaded(true);
+                    setItems(contributors?.results?.A?.frames[0]?.data?.values[1]);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+
+  
+
 
         return (
-          <div>
-            {isLoaded && items.length && (
-              <>
-                 <Typography variant='h6' className={classes.columnTitle}>
-                    {t('footer.topContributors')}
-                 </Typography>
-                <Typography className={classes.columnListWrapper}>
-                  {items?.slice(0, 3).map((item: any) => {
-                    return (
-                        <Link
-                          href={item.html_url}
-                          target="_blank"
-                          className={classes.columnListItem} key={item?.login}
-                        >
-                          {item.login}
-                        </Link>
-                    );
-                  })}
-                </Typography>
-              </>
-            )}
-          </div>
+            <div>
+                {isLoaded && items?.length && (
+                    <>
+                        <Typography variant='h6' className={classes.columnTitle}>
+                            {t('footer.topContributors')}
+                        </Typography>
+                        <Typography className={classes.columnListWrapper}>
+                            {items?.slice(0, 3).map((item: any) => {
+                                return (
+                                    <Link
+                                        href={item.html_url}
+                                        target="_blank"
+                                        className={classes.columnListItem} key={item}
+                                    >
+                                        {item}
+                                    </Link>
+                                );
+                            })}
+                        </Typography>
+                    </>
+                )}
+            </div>
         );
-      };
+    };
 
     const displayMobileFooter = () => {
         return (
@@ -193,13 +231,13 @@ const Footer: React.FC = () => {
                     <Grid item xs={12} >
                         <Paper className={[classes.paper, classes.firstGrid].join(' ')}>
                             <div>
-                            <Link href="/">
-                                {openEBSLogo}
-                            </Link>
+                                <Link href="/">
+                                    {openEBSLogo}
+                                </Link>
                             </div>
                             <div>
                                 <Link className={classes.contributeButton}>
-                                    <img loading="lazy" src="/images/logos/githubLogo.svg" className={classes.githubMobileIcon} alt={t('generic.github')}/>
+                                    <img loading="lazy" src="/images/logos/githubLogo.svg" className={classes.githubMobileIcon} alt={t('generic.github')} />
                                     {t('footer.contribute')}
                                 </Link>
                             </div>
@@ -229,7 +267,7 @@ const Footer: React.FC = () => {
                 </Grid>
             </Toolbar>
         );
-      };
+    };
 
     const displayDesktopFooter = () => {
         return (
@@ -274,13 +312,13 @@ const Footer: React.FC = () => {
 
     return (
         <div className={classes.footer}>
-            <hr className={classes.topDivider}/>
-            {width < mobileBreakpoint ? displayMobileFooter(): displayDesktopFooter()}
+            <hr className={classes.topDivider} />
+            {width < mobileBreakpoint ? displayMobileFooter() : displayDesktopFooter()}
 
             {!(width < mobileBreakpoint) &&
-                <hr className={classes.bottomDivider}/>
+                <hr className={classes.bottomDivider} />
             }
-            
+
             <div className={classes.copyrightsWrapper}>
                 <Typography className={classes.copyrights}>
                     {t('footer.copyrights')}
@@ -291,6 +329,6 @@ const Footer: React.FC = () => {
             </div>
         </div>
     );
-  };
-  
-  export default Footer;
+};
+
+export default Footer;
