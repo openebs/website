@@ -156,7 +156,13 @@ module.exports = {
           routeBasePath: "/",
           editUrl:
             "https://github.com/openebs/website/edit/revamp-3.0/docs/",
-          includeCurrentVersion: false,
+          includeCurrentVersion: true,
+          versions:{
+            current:{
+              label: 'Version Main',
+              path: 'version-main'
+            }
+          }
         },
         theme: {
           customCss: require.resolve("./src/scss/custom.scss"),
