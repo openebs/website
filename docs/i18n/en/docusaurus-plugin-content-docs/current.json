@@ -50,5 +50,73 @@
   "sidebar.tutorialSidebar.category.cstor": {
     "message": "cstor",
     "description": "The label for category cstor in sidebar tutorialSidebar"
+  },
+  "version.label": {
+    "message": "Version Main",
+    "description": "The label for version current"
+  },
+  "sidebar.sidebar.category.Introduction": {
+    "message": "Introduction",
+    "description": "The label for category Introduction in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Concepts": {
+    "message": "Concepts",
+    "description": "The label for category Concepts in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.User Guides": {
+    "message": "User Guides",
+    "description": "The label for category User Guides in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.cStor": {
+    "message": "cStor",
+    "description": "The label for category cStor in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Stateful Applications": {
+    "message": "Stateful Applications",
+    "description": "The label for category Stateful Applications in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Troubleshooting": {
+    "message": "Troubleshooting",
+    "description": "The label for category Troubleshooting in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Additional info": {
+    "message": "Additional info",
+    "description": "The label for category Additional info in sidebar sidebar"
+  },
+  "sidebar.sidebar.category.Deprecated": {
+    "message": "Deprecated",
+    "description": "The label for category Deprecated in sidebar sidebar"
+  },
+  "sidebar.docs.category.Introduction": {
+    "message": "Introduction",
+    "description": "The label for category Introduction in sidebar docs"
+  },
+  "sidebar.docs.category.Concepts": {
+    "message": "Concepts",
+    "description": "The label for category Concepts in sidebar docs"
+  },
+  "sidebar.docs.category.User Guides": {
+    "message": "User Guides",
+    "description": "The label for category User Guides in sidebar docs"
+  },
+  "sidebar.docs.category.cStor": {
+    "message": "cStor",
+    "description": "The label for category cStor in sidebar docs"
+  },
+  "sidebar.docs.category.Stateful Applications": {
+    "message": "Stateful Applications",
+    "description": "The label for category Stateful Applications in sidebar docs"
+  },
+  "sidebar.docs.category.Troubleshooting": {
+    "message": "Troubleshooting",
+    "description": "The label for category Troubleshooting in sidebar docs"
+  },
+  "sidebar.docs.category.Additional info": {
+    "message": "Additional info",
+    "description": "The label for category Additional info in sidebar docs"
+  },
+  "sidebar.docs.category.Deprecated": {
+    "message": "Deprecated",
+    "description": "The label for category Deprecated in sidebar docs"
   }
 }
