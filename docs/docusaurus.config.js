@@ -152,7 +152,7 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          path: 'version-main',
+          path: 'main',
           sidebarPath: require.resolve("./sidebars.js"),
           routeBasePath: "/",
           editUrl:
@@ -160,8 +160,8 @@ module.exports = {
           includeCurrentVersion: true,
           versions:{
             current:{
-              label: 'Version Main',
-              path: 'version-main'
+              label: 'Main',
+              path: 'main'
             }
           }
         },
