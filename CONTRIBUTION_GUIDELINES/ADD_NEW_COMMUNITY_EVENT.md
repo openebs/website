@@ -24,6 +24,6 @@
        "title": "Event name",
        "description": "Description of the event",      
        "buttonText": "Register",
-       "buttonLink": "Link to register/"
+       "buttonLink": "Link to register"
 }
 ```
