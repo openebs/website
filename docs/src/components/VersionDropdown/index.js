@@ -64,7 +64,7 @@ export const VersionDropdown = () => {
       <div
         className={`dropdown dropdown--hoverable doc-button doc-button-outlined doc-button-secondary doc-button-secondary-light dropdown--right ${styles.dropdown}`}
       >
-        <span className="navbar__link">{currentOption.name}</span>
+        <span className="navbar__link">{currentOption.label}</span>
         <ul className="dropdown__menu">
           {options?.map((option) => {
             return (
