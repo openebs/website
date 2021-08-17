@@ -42,7 +42,7 @@ const EventSlider: React.FC<EventsProps> = ({
      * 4. @sortOrder default asc, events will be sorted in ascending order
      */
     const currentDate = new Date();
-    let eventsData = [];
+    let eventsData: Events[] = [];
     let eventsWithDate: Events[] = [];
     let recurringEvents: Events[] = [];
     events.forEach((item) => {
@@ -66,10 +66,10 @@ const EventSlider: React.FC<EventsProps> = ({
             const dateB: any = new Date(eventA?.date);
             return sortOrder === "asc" ? dateB - dateA : dateB + dateA;
           })
-        : eventsData;
-      const allEvents = [...eventsData, ...recurringEvents];
-      setFilteredEvents([...allEvents]);    
+        : eventsData;   
     }
+    const allEvents = [...eventsData, ...recurringEvents];
+    setFilteredEvents([...allEvents]); 
   }, [events]); // eslint-disable-line react-hooks/exhaustive-deps
   const sliderSettings = {
     autoplay: false,

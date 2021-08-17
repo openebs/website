@@ -188,7 +188,7 @@ home:
     optoro: optoro
     orange: orange
   whatsInItForYou:
-    title: What’s in for you
+    title: Why should you use OpenEBS ?
     saveMoney: <0> Save money, improve the resilience of your cloud storage </0> – thanks to thin provisioning and the ability to span availability zones and to spin up and down easily in some cases users are saving 30% or more on their cloud storage via the use of container attached storage.
     flexibility: <0>Run anywhere the same way</0> – especially with a solution like OpenEBS that is in the user space, you can abstract away from the various flavors of storage; this is consistent with the mission of Kubernetes itself of course!
     resilience: <0>Kubernetes is becoming ubiquitous</0> – providing for the first time a means to scale solutions like Container Attached Storage software. OpenEBS with CAS pattern extends the benefits of Kubernetes patterns and benefits to storage.

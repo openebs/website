@@ -1,1 +1,10 @@
-[]
+[
+    {
+        "id": 1,
+        "date": "Every Tuesday",
+        "title": "OpenEBS Community Syncup",
+        "description": "",
+        "buttonText": "Register",
+        "buttonLink": "https://community.cncf.io/openebs-community"
+    }
+]
