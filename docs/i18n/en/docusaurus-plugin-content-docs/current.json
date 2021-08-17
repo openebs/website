@@ -50,9 +50,5 @@
   "sidebar.tutorialSidebar.category.cstor": {
     "message": "cstor",
     "description": "The label for category cstor in sidebar tutorialSidebar"
-  },
-  "version.label": {
-    "message": "version-main",
-    "description": "The label for version current"
   }
 }
