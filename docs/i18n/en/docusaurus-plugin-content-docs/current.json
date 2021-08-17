@@ -51,10 +51,6 @@
     "message": "cstor",
     "description": "The label for category cstor in sidebar tutorialSidebar"
   },
-  "version.label": {
-    "message": "Version Main",
-    "description": "The label for version current"
-  },
   "sidebar.sidebar.category.Introduction": {
     "message": "Introduction",
     "description": "The label for category Introduction in sidebar sidebar"
@@ -118,5 +114,9 @@
   "sidebar.docs.category.Deprecated": {
     "message": "Deprecated",
     "description": "The label for category Deprecated in sidebar docs"
+  },
+  "version.label": {
+    "message": "Main",
+    "description": "The label for version current"
   }
 }
