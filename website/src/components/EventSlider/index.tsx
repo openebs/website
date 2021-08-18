@@ -72,7 +72,7 @@ const EventSlider: React.FC<EventsProps> = ({
     setFilteredEvents([...allEvents]); 
   }, [events]); // eslint-disable-line react-hooks/exhaustive-deps
   const sliderSettings = {
-    autoplay: false,
+    autoplay: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
@@ -88,12 +88,12 @@ const EventSlider: React.FC<EventsProps> = ({
         },
       },
       {
-        breakpoint: 850,
+        breakpoint: 425,
         settings: {
           slidesToShow: 1,
-          centerMode: true,
-          centerPadding: "30px",
-          arrows: false,
+          swipeToSlide: true,
+          autoplay: true,
+          infinite: filteredEvents.length > 1,
         },
       },
     ],

@@ -347,9 +347,18 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     testimonialPaper: {
-        width: '744px',
+        width: '90%',
         [theme.breakpoints.down('md')]: {
+            width: '87%',
+        },
+        [theme.breakpoints.down('xs')]: {
             width: '100%',
+        },
+    },
+    testimonialSection: {
+        marginTop:theme.spacing(4),
+        [theme.breakpoints.down('xs')]: {
+            marginTop:theme.spacing(2),
         },
     },
 

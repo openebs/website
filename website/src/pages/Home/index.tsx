@@ -357,7 +357,8 @@ const Home: React.FC = () => {
                     }
                     <Grid container spacing={3} className={events.length ? '' : classes.noEvents}>
                         <Grid item xs={12} sm={!isMobileView ? 3 : 12} xl={3} className={`${classes.imageFluid}`}>
-                        <LazyLoadImage effect="blur" loading="lazy" src="../images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} />
+                        {/* Kept commented  for future reference in case we need the image again */}
+                        {/* <LazyLoadImage effect="blur" loading="lazy" src="../images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} /> */}
                             {isMobileView && 
                             <Typography variant="h2" className={classes.sectionTitle}>
                                 {t("community.communityEvents.title")}
@@ -365,7 +366,7 @@ const Home: React.FC = () => {
                         }
                         </Grid>
                         {events.length ? (
-                            <Grid item xs={12} sm={!isMobileView ? 9 : 12} xl={9}>
+                            <Grid item xs={12}>
                                 <EventSlider />
                             </Grid>
                         ) : (
@@ -376,26 +377,38 @@ const Home: React.FC = () => {
                     </Grid>
                 </section>
             {/* Section: Our adopters say about us */}
-            <section>
-                {isMobileView && 
+            <section className={classes.testimonialSection}>
+                {/* {isMobileView && 
                     <Grid item xs={12} className={classes.testimonialMuleWrapper}>
                         <Paper className={[classes.paper, classes.testimonialMule].join(' ')}>
                             <LazyLoadImage effect="blur" loading="lazy" src="../images/png/testimonials_mule.png" alt="" />
                         </Paper>
                     </Grid>
-                }
+                } */}
                 <Typography variant="h2" className={classes.sectionTitle}>
                     {t('home.adaptorsTestimonials.title')}
                 </Typography>
                 
                 <Grid container spacing={3}>
-                    <Grid item sm={isMobileView ? 12 : 7} xs={12}>
+                    <Grid item xs={12}>
                         <Paper className={[classes.paper, classes.testimonialPaper].join(' ')}>
                             {adopterTestimonials && (
                                 <TestimonialSlider testimonials={adopterTestimonials} />
                                 )
                             }
-                            <div className={classes.adopterButtonWrapper}>
+                            {/* Kept commented  for future reference in case we need the image again */}
+                            {/* <div className={classes.adopterButtonWrapper}>
+                               <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.solidButton}
+                                    onClick={() => { window.open(EXTERNAL_LINKS.BECOME_ADOPTER, '_blank') }}
+                                >
+                                    {t("adoptersTestimonials.becomeAdopter")}
+                               </Button>
+                            </div> */}
+                        </Paper>
+                        <div className={classes.adopterButtonWrapper}>
                                <Button
                                     variant="contained"
                                     color="secondary"
@@ -405,15 +418,15 @@ const Home: React.FC = () => {
                                     {t("adoptersTestimonials.becomeAdopter")}
                                </Button>
                             </div>
-                        </Paper>
                     </Grid>
-                    {!isMobileView && 
+                    {/* Kept commented  for future reference in case we need the image again */}
+                    {/* {!isMobileView && 
                         <Grid item sm={5} className={classes.testimonialMuleWrapper}>
                             <Paper className={[classes.paper, classes.testimonialMule].join(' ')}>
                                 <LazyLoadImage effect="blur" src="../images/png/testimonials_mule.png" alt="" />
                             </Paper>
                         </Grid>
-                    }
+                    } */}
                 </Grid>
             </section>
 

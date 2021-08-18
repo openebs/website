@@ -13,7 +13,7 @@ const TestimonialSlider: React.FC<Testimonials> = ({ testimonials }) => {
     autoplay: true,
     autoplaySpeed: 4000,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 2,
     slidesToScroll: 1,
     cssEase: "linear",
     arrows: true,
@@ -25,6 +25,12 @@ const TestimonialSlider: React.FC<Testimonials> = ({ testimonials }) => {
         settings: {
           arrows: false,
           swipeToSlide: true,
+        },
+      },
+      {
+        breakpoint: 425,
+        settings: {
+          slidesToShow: 1,
         },
       },
     ],
