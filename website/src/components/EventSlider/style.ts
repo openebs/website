@@ -44,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
         },
       },
     },
+    "& .slick-track":{
+      margin: 0
+    },
     [theme.breakpoints.down("sm")]: {
       "& div.slick-active": {
         "& + .slick-active:not(:last-child)": {
