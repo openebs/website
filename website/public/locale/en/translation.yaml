@@ -209,7 +209,7 @@ home:
     prometheus: Prometheus
     desktopImgAlt: Desktop image
   adaptorsTestimonials:
-    title: Our adopters say about us
+    title: Who loves OpenEBS?
     nextArrowAlt: Next testimonial
     previousArrowAlt: Previous testimonial
   newsLetterTitle: Stay in the know with our newsletter

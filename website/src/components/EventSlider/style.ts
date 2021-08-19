@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     "& .slick-track":{
-      margin: 0
+      margin: 'auto'
     },
     [theme.breakpoints.down("sm")]: {
       "& div.slick-active": {
