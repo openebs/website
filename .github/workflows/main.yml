@@ -2,11 +2,11 @@ name: Updates OpenEBS Contributor list
 
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/15 * * * *'
 
   push:
     branches: [ revamp-3.0 ]
-    #paths: '**/topContributors.json'
+    paths: '**/topContributors.json'
 
   workflow_dispatch: 
 
