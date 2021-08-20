@@ -8,6 +8,8 @@ on:
     branches: [ revamp-3.0 ]
     #paths: '**/topContributors.json'
 
+  workflow_dispatch: 
+
 jobs:
   resources:
     name: Update resources
