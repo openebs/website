@@ -6,7 +6,7 @@ on:
 
   push:
     branches: [ revamp-3.0 ]
-    paths: '**/topContributors.json'
+    #paths: '**/topContributors.json'
 
 jobs:
   resources:
