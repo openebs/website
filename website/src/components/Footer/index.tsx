@@ -1,20 +1,18 @@
 import {
     Toolbar,
-    // IconButton,
     Paper,
     Typography,
-    // TextField,
     Link,
     Button
   } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useStyles from './style';
 import {socialLinks, getStarted} from './footerLinks'
 import { useTranslation } from "react-i18next";
 import Grid from '@material-ui/core/Grid';
-// import { validateEmail } from "../../utils/emailValidation";
 import { EXTERNAL_LINKS, EXTERNAL_LINK_LABELS, VIEW_PORT, API } from "../../constants"
 import { useViewport } from "../../hooks/viewportWidth";
+import topContributors from "../../resources/topContributors.json";
 
 const Footer: React.FC = () => {
     const classes = useStyles();
@@ -137,45 +135,22 @@ const Footer: React.FC = () => {
     // };
 
     const DisplayTopContributors: React.FC = () => {
-        const githubApiContributors = API.GITHUB_CONTRIBUTORS;
-        const [isLoaded, setIsLoaded] = useState<boolean>(false);
-        const [items, setItems] = useState([]);
-        //getting the top contributors from github by sending the api order as desc
-
-        useEffect(() => {
-           fetch(githubApiContributors)
-           .then((res) => res?.json())
-           .then(
-             (result) => {
-               setIsLoaded(true);
-               setItems(result);
-             },
-             (error) => {
-               setIsLoaded(true);
-               console.error(error);
-             }
-           );
-          return () => {
-            setItems([]);
-          };
-        }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
         return (
           <div>
-            {isLoaded && items.length && (
+            {topContributors.length > 0  && (
               <>
                  <Typography variant='h6' className={classes.columnTitle}>
                     {t('footer.topContributors')}
                  </Typography>
                 <Typography className={classes.columnListWrapper}>
-                  {items?.slice(0, 3).map((item: any) => {
+                  {topContributors?.slice(0, 3).map((contributor: any) => {
                     return (
                         <Link
-                          href={item.html_url}
+                          href= {`${API.GITHUB_URL}${contributor}`}
                           target="_blank"
-                          className={classes.columnListItem} key={item?.login}
+                          className={classes.columnListItem} key={contributor}
                         >
-                          {item.login}
+                          {contributor}
                         </Link>
                     );
                   })}

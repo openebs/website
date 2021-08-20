@@ -20,6 +20,7 @@ export enum EXTERNAL_LINKS {
 };
 
 export const API = {
+  GITHUB_URL: 'https://github.com/',
   GITHUB_CONTRIBUTORS: 'https://api.github.com/repos/openebs/openebs-docs/contributors?q=contributions&order=desc'
 }
 
