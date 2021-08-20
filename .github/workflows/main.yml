@@ -1,0 +1,35 @@
+name: Updates OpenEBS Contributors list
+
+on:
+  schedule:
+    - cron: '* * * * *' # will schedule the workflow on every 00:00 UTC
+  #push:
+   # branches: [ revamp-3.0 ]
+   # paths: '**/topContributors.json'
+
+jobs:
+  resources:
+    name: Update resources
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: revamp-3.0
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '15.x'
+      - name: install dep
+        run: npm install request
+      - name: Get contributors
+        working-directory: ./website
+        run: npm run getTopContributors
+      - name: Commit the changes
+        run: |
+         git status
+         git config user.name rakesh
+         git config user.email rakesh.pr@mayadata.io
+         git add '*/topContributors.json'
+         git log
+         git diff-index --quiet HEAD || (git commit -a -m'[bot] update contributor list' --allow-empty && git push -f)
