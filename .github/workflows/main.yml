@@ -2,7 +2,7 @@ name: Updates OpenEBS Contributors list
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '*/10 * * * *'
 
 jobs:
   resources:
