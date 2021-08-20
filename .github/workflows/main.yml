@@ -2,10 +2,7 @@ name: Updates OpenEBS Contributors list
 
 on:
   schedule:
-    - cron: '* * * * *' # will schedule the workflow on every 00:00 UTC
-  #push:
-   # branches: [ revamp-3.0 ]
-   # paths: '**/topContributors.json'
+    - cron: '* * * * *'
 
 jobs:
   resources:
