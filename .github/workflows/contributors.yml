@@ -2,7 +2,7 @@ name: Updates OpenEBS Contributor list
 
 on:
   schedule:
-    - cron: '* * * * *'
+    - cron: '*/10 * * * *'
 
   push:
     branches: [ revamp-3.0 ]
