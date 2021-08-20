@@ -133,7 +133,6 @@ const useStyles = makeStyles((theme) => ({
     },
     columnListItem: {
         color: theme.palette.text.secondary,
-        // pointerEvents: 'none',
         marginBottom: theme.spacing(1),
         [theme.breakpoints.down('md')]: {
             marginBottom: theme.spacing(1.5),
