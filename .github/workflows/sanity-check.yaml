@@ -5,7 +5,7 @@ on:
       - revamp-3.0
   pull_request:
     branches:
-      - revamp-3.
+      - revamp-3.0
 
 jobs:
   commits_check_job:
