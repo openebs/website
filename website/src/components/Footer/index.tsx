@@ -140,10 +140,15 @@ const Footer: React.FC = () => {
             {topContributors.length > 0  && (
               <>
                  <Typography variant='h6' className={classes.columnTitle}>
+                 <Link
+                          href= {EXTERNAL_LINK_LABELS.TOP_GITHUB_CONTRIBUTORS_URL}
+                          target="_blank"
+                        >
                     {t('footer.topContributors')}
+                    </Link>
                  </Typography>
                 <Typography className={classes.columnListWrapper}>
-                  {topContributors?.slice(0, 3).map((contributor: any) => {
+                  {topContributors?.slice(0, 6).map((contributor: any) => {
                     return (
                         <Link
                           href= {`${API.GITHUB_URL}${contributor}`}
@@ -160,6 +165,33 @@ const Footer: React.FC = () => {
           </div>
         );
       };
+
+    //   const DisplayNewContributors: React.FC = () => {
+    //     return (
+    //       <div>
+    //         {topContributors.length > 0  && (
+    //           <>
+    //              <Typography variant='h6' className={classes.columnTitle}>
+    //                 {t('footer.newContributors')}
+    //              </Typography>
+    //             <Typography className={classes.columnListWrapper}>
+    //               {topContributors?.slice(0, 6).map((contributor: any) => {
+    //                 return (
+    //                     <Link
+    //                       href= {`${API.GITHUB_URL}${contributor}`}
+    //                       target="_blank"
+    //                       className={classes.columnListItem} key={contributor}
+    //                     >
+    //                       {contributor}
+    //                     </Link>
+    //                 );
+    //               })}
+    //             </Typography>
+    //           </>
+    //         )}
+    //       </div>
+    //     );
+    //   };
 
     const displayMobileFooter = () => {
         return (
@@ -187,7 +219,7 @@ const Footer: React.FC = () => {
                         </Paper>
                     </Grid>
                     {/* To be uncommented later */}
-                    <Grid item xs={6}>
+                    <Grid item xs={12}>
                         <Paper className={classes.paper}>
                             {/* {displayContactUs()} */}
                             <div className={classes.contributorsMobile}>
@@ -195,6 +227,14 @@ const Footer: React.FC = () => {
                             </div>
                         </Paper>
                     </Grid>
+                    {/* New contributors code block mobile */}
+                    {/* <Grid item xs={12}>
+                        <Paper className={classes.paper}>
+                            <div className={classes.contributorsMobile}>
+                                <DisplayNewContributors />
+                            </div>
+                        </Paper>
+                    </Grid> */}
                     <Grid item xs={12}>
                         <Paper className={classes.paper}>
                             {displayNewsLetter()}
@@ -210,7 +250,7 @@ const Footer: React.FC = () => {
         return (
             <Toolbar className={classes.toolbar}>
                 <Grid container spacing={0} justify={'center'}>
-                    <Grid item sm={5} >
+                    <Grid item sm={6} >
                         <Paper className={[classes.paper, classes.firstGrid].join(' ')}>
                             <div>
                                 <Link href="/">
@@ -226,7 +266,7 @@ const Footer: React.FC = () => {
                         </Paper>
                     </Grid>
                     {/* Make it just sm when other footer part is uncommneted */}
-                    <Grid item sm={3}>
+                    <Grid item sm>
                         <Paper className={classes.paper}>
                             {displayGetStarted()}
                         </Paper>
@@ -242,6 +282,12 @@ const Footer: React.FC = () => {
                             <DisplayTopContributors />
                         </Paper>
                     </Grid>
+                     {/* New contributors code block mobile */}
+                    {/* <Grid item sm>
+                        <Paper className={classes.paper}>
+                            <DisplayNewContributors />
+                        </Paper>
+                    </Grid> */}
                 </Grid>
             </Toolbar>
         )

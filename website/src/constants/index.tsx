@@ -31,7 +31,8 @@ export enum VIEW_PORT {
 };
 
 export enum EXTERNAL_LINK_LABELS {
-  GITHUB = 'GitHub'
+    GITHUB = 'GitHub',
+    TOP_GITHUB_CONTRIBUTORS_URL = 'https://openebs.devstats.cncf.io/d/22/prs-authors-table?orgId=1&var-period_name=Last%20month&var-repogroup_name=All'
 };
 
 export const WORDS_PER_MINUTE = 250; // Based on wikipedia https://en.wikipedia.org/wiki/Speed_reading (Mental readers)
