@@ -32,7 +32,6 @@ jobs:
         run: npm run getTopContributors
       - name: Commit the changes
         run: |
-         git status
          git config user.name rakesh
          git config user.email rakesh.pr@mayadata.io
          git add '*/topContributors.json' '*/newContributors.json'
