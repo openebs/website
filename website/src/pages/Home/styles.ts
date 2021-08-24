@@ -168,14 +168,16 @@ const useStyles = makeStyles((theme) => ({
             minHeight: '52px',
             maxHeight: '52px',
             marginRight: theme.spacing(1.2),
-            '& img': {
-                width: '45%'
-            }
         },
     },
-    description: {
-        color: theme.palette.text.secondary,
-        fontSize: '1rem'
+    whyOpenebsIcon: {
+        width: '100%'
+    },
+    whyOpenebsContent: {
+        '& p': {
+            color: theme.palette.text.secondary,
+            fontSize: '1rem'
+        } 
     },
     iconTextContainer: {
         margin: theme.spacing(6),

@@ -80,8 +80,6 @@ const Home: React.FC = () => {
     };
     }
 
-    
-
     // function to override tooltip component default style
     const LightTooltip = withStyles((theme) => ({
     tooltip: {
@@ -105,6 +103,24 @@ const Home: React.FC = () => {
         }, 2000);
     };
     
+    const whyOpenEBS = [
+        {
+            title: t('home.whyOpenEBS.multiCloudStorage.title'),
+            imgSrc: "../images/png/multi-cloud-storage.png",
+            description: t('home.whyOpenEBS.multiCloudStorage.description'),
+        },
+        {
+            title: t('home.whyOpenEBS.builtInKubernetes.title'),
+            imgSrc: "../images/png/k8s.png",
+            description: t('home.whyOpenEBS.builtInKubernetes.description'),
+        },
+        {
+            title: t('home.whyOpenEBS.openSourceLeader.title'),
+            imgSrc: "../images/png/open-source-leader.png",
+            description: t('home.whyOpenEBS.openSourceLeader.description'),
+        },
+    ];
+
     return (
         <div>
             <Metadata title={SeoJson.pages.home.title} description={SeoJson.pages.home.description} url={`${currentOrigin}${SeoJson.pages.home.url}`} image={`${currentOrigin}${SeoJson.pages.home.image}`} isPost={false}  />
@@ -262,81 +278,24 @@ const Home: React.FC = () => {
 
             <section>
                 <Typography variant="h2" className={classes.sectionTitle}>
-                    {t('home.whatsInItForYou.title')}
+                    {t('home.whyOpenEBS.title')}
                 </Typography>
                 <Grid container spacing={3} className={classes.sectionDiv}>
-                    <Grid item md={4} sm={6}>
-                        <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
-                            <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../images/svg/money_bag.svg" alt={t('home.whatsInItForYou.saveMoney')}></img>
-                            </div>
-                            <Typography className={classes.description}>
-                            <Trans i18nKey='home.whatsInItForYou.saveMoney'>
-                            <strong>Save money, improve the resilience of your cloud storage </strong> – thanks to thin provisioning and the ability to span availability zones and to spin up and down easily in some cases users are saving 30% or more on their cloud storage via the use of container attached storage.
-                            </Trans>
-                            </Typography>
-                        </Paper>
-                    </Grid>
-                    <Grid item md={4} sm={6}>
-                        <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
-                            <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../images/svg/box.svg" alt={t('home.whatsInItForYou.flexibility')}></img>
-                            </div>
-                            <Typography className={classes.description}>
-                            <Trans i18nKey='home.whatsInItForYou.flexibility'>
-                            <strong>Run anywhere the same way</strong> – especially with a solution like OpenEBS that is in the user space, you can abstract away from the various flavors of storage; this is consistent with the mission of Kubernetes itself of course!
-                            </Trans>
-                            </Typography>
-                        </Paper>
-                    </Grid>
-                    <Grid item md={4} sm={6}>
-                        <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
-                            <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../images/svg/wheel.svg" alt={t('home.whatsInItForYou.resilience')}></img>
-                            </div>
-                            <Typography className={classes.description}>
-                            <Trans i18nKey='home.whatsInItForYou.resilience'>
-                            <strong>Kubernetes is becoming ubiquitous</strong> – providing for the first time a means to scale solutions like Container Attached Storage software. OpenEBS with CAS pattern extends the benefits of Kubernetes patterns and benefits to storage.
-                            </Trans>
-                            </Typography>
-                        </Paper>
-                    </Grid>
-                    <Grid item md={4} sm={6}>
-                        <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
-                            <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../images/svg/cloud.svg" alt={t('home.whatsInItForYou.restoreData')}></img>
-                            </div>
-                            <Typography className={classes.description}>
-                            <Trans i18nKey='home.whatsInItForYou.restoreData'>
-                            <strong>Cloud-native data protection</strong> - The backup and restore of OpenEBS volumes works with Kubernetes backup and restore solutions such as Velero. Data backup to object storage targets such as AWS S3, GCP Object Storage, or MinIO are frequently deployed using the OpenEBS.
-                            </Trans>  
-                            </Typography>
-                        </Paper>
-                    </Grid>
-                    <Grid item md={4} sm={6}>
-                        <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
-                            <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../images/svg/lock.svg" alt={t('home.whatsInItForYou.openSource')}></img>
-                            </div>
-                            <Typography className={classes.description}>
-                            <Trans i18nKey='home.whatsInItForYou.openSource'>
-                                <strong>Avoid vendor lock-in</strong> - Using OpenEBS as a data abstraction layer, data can be much more easily moved amongst Kubernetes environments, whether they are on-premise and attached to traditional storage systems or in the cloud.
-                            </Trans> 
-                            </Typography>
-                        </Paper>
-                    </Grid>
-                    <Grid item md={4} sm={6}>
-                        <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
-                            <div className={classes.iconHolder}>
-                                <img loading="lazy" src="../images/svg/settings.svg" alt={t('home.whatsInItForYou.granularControl')}></img>
-                            </div>
-                            <Typography className={classes.description}>
-                            <Trans i18nKey='home.whatsInItForYou.granularControl'>
-                            <strong>Applications have changed</strong> – applications and the teams that build them now have very different requirements; OpenEBS allows for providing volumes to applications with just enough features ranging from local to distributed persistent volumes.
-                            </Trans>
-                            </Typography>
-                        </Paper>
-                    </Grid>
+                    {whyOpenEBS?.map(item => {
+                        return(
+                            <Grid item md={4} sm={6} key={item.title}>
+                                <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
+                                    <div className={classes.iconHolder}>
+                                        <img loading="lazy" src={item.imgSrc} alt={item.title} className={classes.whyOpenebsIcon}></img>
+                                    </div>
+                                    <div className={classes.whyOpenebsContent}>
+                                        <Typography><strong>{item.title}</strong></Typography>
+                                        <Typography>{item.description}</Typography>
+                                    </div>
+                                </Paper>
+                            </Grid>
+                        )
+                    })} 
                 </Grid>
             </section>
 
