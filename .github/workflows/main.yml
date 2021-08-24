@@ -1,4 +1,4 @@
-name: Updates OpenEBS Contributor list
+name: Update OpenEBS Contributors list
 
 on:
   schedule:
