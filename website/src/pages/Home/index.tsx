@@ -121,6 +121,39 @@ const Home: React.FC = () => {
         },
     ];
 
+    const keyFeatures = [
+        {
+            title: t('home.keyFeatures.containerStorage.title'),
+            imgSrc: "../images/svg/container-storage.svg",
+            description: t('home.keyFeatures.containerStorage.description'),
+        },
+        {
+            title: t('home.keyFeatures.granularControl.title'),
+            imgSrc: "../images/svg/granular-controls.svg",
+            description: t('home.keyFeatures.granularControl.description'),
+        },
+        {
+            title: t('home.keyFeatures.noVendorLockIn.title'),
+            imgSrc: "../images/svg/vendor-lockin.svg",
+            description: t('home.keyFeatures.noVendorLockIn.description'),
+        },
+        {
+            title: t('home.keyFeatures.saveMoneyOnStorage.title'),
+            imgSrc: "../images/svg/save-money-on-storage.svg",
+            description: t('home.keyFeatures.saveMoneyOnStorage.description'),
+        },
+        {
+            title: t('home.keyFeatures.backupsAndMore.title'),
+            imgSrc: "../images/svg/backups-and-more.svg",
+            description: t('home.keyFeatures.backupsAndMore.description'),
+        },
+        {
+            title: t('home.keyFeatures.runAnywhere.title'),
+            imgSrc: "../images/svg/run-anywhere.svg",
+            description: t('home.keyFeatures.runAnywhere.description'),
+        },
+    ];
+
     return (
         <div>
             <Metadata title={SeoJson.pages.home.title} description={SeoJson.pages.home.description} url={`${currentOrigin}${SeoJson.pages.home.url}`} image={`${currentOrigin}${SeoJson.pages.home.image}`} isPost={false}  />
@@ -267,7 +300,6 @@ const Home: React.FC = () => {
                 }
             </section>
 
-
             <section>
                 <AdopterSlider />
             </section>
@@ -276,7 +308,8 @@ const Home: React.FC = () => {
                 <Sponsor/>
             </section>
 
-            <section>
+            {/* Section: Why OpenEBS */} 
+            <section className={classes.section}>
                 <Typography variant="h2" className={classes.sectionTitle}>
                     {t('home.whyOpenEBS.title')}
                 </Typography>
@@ -288,7 +321,7 @@ const Home: React.FC = () => {
                                     <div className={classes.iconHolder}>
                                         <img loading="lazy" src={item.imgSrc} alt={item.title} className={classes.whyOpenebsIcon}></img>
                                     </div>
-                                    <div className={classes.whyOpenebsContent}>
+                                    <div className={classes.cardContent}>
                                         <Typography><strong>{item.title}</strong></Typography>
                                         <Typography>{item.description}</Typography>
                                     </div>
@@ -303,10 +336,12 @@ const Home: React.FC = () => {
             <section>
                 <Workloads />
             </section>
+
             {/* Section: Join our community */}
             <section>
                 <JoinCommunity/>
             </section>
+
             {/* Section: Community events */}
                 <section>
                     {!isMobileView && 
@@ -335,8 +370,33 @@ const Home: React.FC = () => {
                         )}
                     </Grid>
                 </section>
+            
+            {/* Section: Key features */} 
+            <section className={classes.section}>
+                <Typography variant="h2" className={classes.sectionTitle}>
+                    {t('home.keyFeatures.title')}
+                </Typography>
+                <Grid container spacing={3} className={classes.sectionDiv}>
+                    {keyFeatures?.map(item => {
+                        return(
+                            <Grid item md={4} sm={6} key={item.title}>
+                                <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
+                                    <div className={classes.iconHolder}>
+                                        <img loading="lazy" src={item.imgSrc} alt={item.title} className={classes.keyFeaturesIcon}/>
+                                    </div>
+                                    <div className={classes.cardContent}>
+                                        <Typography><strong>{item.title}</strong></Typography>
+                                        <Typography>{item.description}</Typography>
+                                    </div>
+                                </Paper>
+                            </Grid>
+                        )
+                    })} 
+                </Grid>
+            </section>
+
             {/* Section: Our adopters say about us */}
-            <section className={classes.testimonialSection}>
+            <section>
                 {/* {isMobileView && 
                     <Grid item xs={12} className={classes.testimonialMuleWrapper}>
                         <Paper className={[classes.paper, classes.testimonialMule].join(' ')}>

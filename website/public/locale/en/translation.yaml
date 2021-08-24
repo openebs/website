@@ -223,6 +223,26 @@ home:
     readTheGuide:
       title: Read the guide
       description: And you will see how to manage your workloads with OpenEBS easily
+  keyFeatures:
+    title: Key features
+    containerStorage:
+      title: Container storage
+      description: Storage that follows your workloads, adding agility and flexibility to your k8s apps.
+    granularControl:
+      title: Granular control
+      description: Every workloads has its own dynamic container based storage with any controls you need.
+    noVendorLockIn:
+      title: No vendor lock-in
+      description: 100% Open Source so you'll never find your critical data locked into expensive contracts.
+    saveMoneyOnStorage:
+      title: Save money on storage
+      description: Thin provisioning and ephemeral storage let you allocate storage on demand and spend less on cloud storage.
+    backupsAndMore:
+      title: Backups and more
+      description: Move your workloads & storage from dev to production, all powered by OpenEBS
+    runAnywhere:
+      title: Run anywhere
+      description: Your K8s app can run on any cloud & improve resilience across many availability zones.
 community:
   title: We are the community
   description: OpenEBS is built by community users like you and me. OpenEBS community is known to be responsive and friendly. Interact with our vibrant community to quickly and easily learn, build, and deploy your Stateful workloads on any Kubernetes deployment.
