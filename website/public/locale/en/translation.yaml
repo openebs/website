@@ -22,7 +22,7 @@ header:
   submitAlt: Submit
 
 footer:
-  newsLetterTitle: Stay in the know with our newsletter
+  newsLetterTitle: Subscribe to OpenEBS newsletter
   emailLabel: Email address
   getStarted: Getting started
   contactUs: Contact us
@@ -143,7 +143,7 @@ commercialSupport:
   description: Third-party companies and individuals who provide products or services related to OpenEBS. OpenEBS is an independent open source project which does not endorse any company. The list is provided in alphabetical order.
   mule: Support mule
   visitWebsite: Visit site
-  newsletter: Stay in the know with our newsletter
+  newsletter: Subscribe to OpenEBS newsletter
 home:
   landingScreenTitle: Kubernetes storage simplified
   openebs:
@@ -212,7 +212,7 @@ home:
     title: Who loves OpenEBS?
     nextArrowAlt: Next testimonial
     previousArrowAlt: Previous testimonial
-  newsLetterTitle: Stay in the know with our newsletter
+  newsLetterTitle: Subscribe to OpenEBS newsletter
   youAreReadyToStart:
     title: You are ready to start
     flyingMuleAlt: Flying mule
@@ -225,7 +225,7 @@ community:
   description: OpenEBS is built by community users like you and me. OpenEBS community is known to be responsive and friendly. Interact with our vibrant community to quickly and easily learn, build, and deploy your Stateful workloads on any Kubernetes deployment.
   mule: Support mule
   visitWebsite: Visit site
-  newsletter: Stay in the know with our newsletter
+  newsletter: Subscribe to OpenEBS newsletter
   contributeBtnLabel: Contribute
   checkItOutBtnLabel: Check it out
   communityEvents:
