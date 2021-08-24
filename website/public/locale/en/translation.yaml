@@ -187,14 +187,17 @@ home:
     comcast: COMCAST
     optoro: optoro
     orange: orange
-  whatsInItForYou:
+  whyOpenEBS:
     title: Why should you use OpenEBS?
-    saveMoney: <0> Save money, improve the resilience of your cloud storage </0> – thanks to thin provisioning and the ability to span availability zones and to spin up and down easily in some cases users are saving 30% or more on their cloud storage via the use of container attached storage.
-    flexibility: <0>Run anywhere the same way</0> – especially with a solution like OpenEBS that is in the user space, you can abstract away from the various flavors of storage; this is consistent with the mission of Kubernetes itself of course!
-    resilience: <0>Kubernetes is becoming ubiquitous</0> – providing for the first time a means to scale solutions like Container Attached Storage software. OpenEBS with CAS pattern extends the benefits of Kubernetes patterns and benefits to storage.
-    restoreData: <0>Cloud-native data protection</0> - the backup and restore of OpenEBS volumes works with Kubernetes backup and restore solutions such as Velero. Data backup to object storage targets such as AWS S3, GCP Object Storage, or MinIO are frequently deployed using the OpenEBS.
-    openSource: <0>Avoid vendor lock-in</0> - using OpenEBS as a data abstraction layer, data can be much more easily moved amongst Kubernetes environments, whether they are on-premise and attached to traditional storage systems or in the cloud.
-    granularControl: <0>Applications have changed</0> – applications and the teams that build them now have very different requirements; OpenEBS allows for providing volumes to applications with just enough features ranging from local to distributed persistent volumes.
+    multiCloudStorage:
+      title: Multi cloud storage
+      description: Automated provisioning and storage replication across pods is challenging. OpenEBS makes complex cross-cloud stateful application storage easy.
+    builtInKubernetes:
+      title: Built in Kubernetes
+      description: Unlike CSI plugins or Linux kernel dependent software, OpenEBS runs entirely in userspace, making deployment and maintenance a snap.
+    openSourceLeader:
+      title: Open source leader
+      description: The largest, most active Kubernetes storage project with the biggest user base and community, OpenEBS is built by K8s SREs, and experts just like you, tailored to their needs.
   installation:
     title: Installation is as easy as …
     or: Or
@@ -220,6 +223,26 @@ home:
     readTheGuide:
       title: Read the guide
       description: And you will see how to manage your workloads with OpenEBS easily
+  keyFeatures:
+    title: Key features
+    containerStorage:
+      title: Container storage
+      description: Storage that follows your workloads, adding agility and flexibility to your k8s apps.
+    granularControl:
+      title: Granular control
+      description: Every workloads has its own dynamic container based storage with any controls you need.
+    noVendorLockIn:
+      title: No vendor lock-in
+      description: 100% Open Source so you'll never find your critical data locked into expensive contracts.
+    saveMoneyOnStorage:
+      title: Save money on storage
+      description: Thin provisioning and ephemeral storage let you allocate storage on demand and spend less on cloud storage.
+    backupsAndMore:
+      title: Backups and more
+      description: Move your workloads & storage from dev to production, all powered by OpenEBS
+    runAnywhere:
+      title: Run anywhere
+      description: Your K8s app can run on any cloud & improve resilience across many availability zones.
 community:
   title: We are the community
   description: OpenEBS is built by community users like you and me. OpenEBS community is known to be responsive and friendly. Interact with our vibrant community to quickly and easily learn, build, and deploy your Stateful workloads on any Kubernetes deployment.

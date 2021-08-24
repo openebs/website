@@ -111,6 +111,12 @@ const useStyles = makeStyles((theme) => ({
             boxShadow: `0 0 0 22px rgba(255,255,255,0)`,
         },
     },
+    section: {
+        margin: theme.spacing(4,0),
+        [theme.breakpoints.down('xs')]: {
+            margin: theme.spacing(2,0),
+        }
+    },
     adopterButtonWrapper: {
       display: 'flex',
       justifyContent: 'center',
@@ -168,14 +174,16 @@ const useStyles = makeStyles((theme) => ({
             minHeight: '52px',
             maxHeight: '52px',
             marginRight: theme.spacing(1.2),
-            '& img': {
-                width: '45%'
-            }
         },
     },
-    description: {
-        color: theme.palette.text.secondary,
-        fontSize: '1rem'
+    whyOpenebsIcon: {
+        width: '100%'
+    },
+    cardContent: {
+        '& p': {
+            color: theme.palette.text.secondary,
+            fontSize: '1rem'
+        } 
     },
     iconTextContainer: {
         margin: theme.spacing(6),
@@ -346,6 +354,9 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '8px',
         },
     },
+    keyFeaturesIcon: {
+        width: '80%'
+    },
     testimonialPaper: {
         width: '90%',
         [theme.breakpoints.down('md')]: {
@@ -355,16 +366,6 @@ const useStyles = makeStyles((theme) => ({
             width: '100%',
         },
     },
-    testimonialSection: {
-        marginTop:theme.spacing(4),
-        [theme.breakpoints.down('xs')]: {
-            marginTop:theme.spacing(2),
-        },
-    },
-
-    // commented code will be used for upcomming releases
-    // 
-
     testimonialMule: {
         margin: theme.spacing(0,4),
         '& img': {
