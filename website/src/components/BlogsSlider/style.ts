@@ -1,35 +1,35 @@
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   cardRoot: {
-    maxWidth: "480px",
+    maxWidth: '480px',
     boxShadow: 'none',
     background: 'transparent',
-    margin: 'auto'
+    margin: 'auto',
   },
   media: {
     height: 0,
-    paddingTop: "56.25%",
-    borderRadius: "24px 24px 24px 0px",
+    paddingTop: '56.25%',
+    borderRadius: '24px 24px 24px 0px',
     position: 'relative',
     overflow: 'hidden',
-    '& img':{
+    '& img': {
       minHeight: '100%',
       width: '100%',
       position: 'absolute',
       left: '0',
       top: '0',
       objectFit: 'cover',
-      objectPosition: 'left'
+      objectPosition: 'left',
     },
     cursor: 'pointer',
   },
   cardContent: {
-    padding: theme.spacing(2,0)
+    padding: theme.spacing(2, 0),
   },
   tagsWrapper: {
     display: 'flex',
-    overflow: "scroll",
+    overflow: 'scroll',
     paddingBottom: theme.spacing(0.75),
   },
   tag: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     border: 'none',
     background: 'transparent',
     padding: theme.spacing(0),
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   title: {
     fontSize: 22,
@@ -45,22 +45,22 @@ const useStyles = makeStyles((theme: Theme) => ({
     cursor: 'pointer',
   },
   cardActionButton: {
-    textTransform: "none",
+    textTransform: 'none',
     color: theme.palette.warning.main,
     fontWeight: 700,
     marginRight: theme.spacing(2),
-    padding: theme.spacing(0)
+    padding: theme.spacing(0),
   },
   sliderWrapper: {
-      '& .slick-slide':{
-        [theme.breakpoints.down('md')]: {
-            padding: theme.spacing(2),
-          },
-      }
+    '& .slick-slide': {
+      [theme.breakpoints.down('md')]: {
+        padding: theme.spacing(2),
+      },
+    },
   },
   arrowWrapper: {
-    display: "block"
-  }
+    display: 'block',
+  },
 }));
 
 export default useStyles;

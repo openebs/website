@@ -1,8 +1,5 @@
 name: Sanity check
 on:
-  push:
-    branches:
-      - revamp-3.0
   pull_request:
     branches:
       - revamp-3.0

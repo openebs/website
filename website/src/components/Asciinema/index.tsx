@@ -1,9 +1,8 @@
-import React from "react";
+import React from 'react';
 
-declare var asciinema : any;
+declare let asciinema : any;
 
 class Asciinema extends React.Component <any> {
-
   ref: HTMLDivElement | null = null;
 
   static defaultProps = {
@@ -16,30 +15,30 @@ class Asciinema extends React.Component <any> {
     preload: true,
     startAt: '00:00:02',
   }
-  
-  bindRef = (ref: HTMLDivElement) => {
-    this.ref = ref
-  }
 
   componentDidMount() {
-    asciinema.player.js.CreatePlayer(this.ref, this.props.src, this.props)
+    asciinema.player.js.CreatePlayer(this.ref, this.props.src, this.props);
   }
 
   componentDidUpdate() {
-    asciinema.player.js.UnmountPlayer(this.ref)
-    asciinema.player.js.CreatePlayer(this.ref, this.props.src, this.props)
+    asciinema.player.js.UnmountPlayer(this.ref);
+    asciinema.player.js.CreatePlayer(this.ref, this.props.src, this.props);
   }
 
   componentWillUnmount() {
-    if (!this.ref) return
+    if (!this.ref) return;
 
-    asciinema.player.js.UnmountPlayer(this.ref)
-    this.ref = null
+    asciinema.player.js.UnmountPlayer(this.ref);
+    this.ref = null;
+  }
+
+  bindRef = (ref: HTMLDivElement) => {
+    this.ref = ref;
   }
 
   render() {
-    return <div ref={this.bindRef} />
+    return <div ref={this.bindRef} />;
   }
 }
 
-export default Asciinema
+export default Asciinema;

@@ -1,28 +1,28 @@
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    position: "relative",
-    backgroundImage: "url(/images/png/faq_background.png)",
-    textAlign: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center top",
-    backgroundSize: "cover",
+    position: 'relative',
+    backgroundImage: 'url(/images/png/faq_background.png)',
+    textAlign: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center top',
+    backgroundSize: 'cover',
     padding: theme.spacing(12, 5, 0),
   },
   mainSection: {
-    position: "relative",
-    textAlign: "center",
-    display: "flex",
+    position: 'relative',
+    textAlign: 'center',
+    display: 'flex',
     zIndex: 100,
   },
   mainText: {
-    display: "flex",
-    flexWrap: "wrap",
-    textAlign: "center",
+    display: 'flex',
+    flexWrap: 'wrap',
+    textAlign: 'center',
     margin: theme.spacing(8, 0),
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   tabs: {
     margin: `${theme.spacing(1)}px auto`,
@@ -31,14 +31,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 700,
     boxShadow: 'none',
     position: 'relative',
-    top: '25px'
+    top: '25px',
   },
   tabRoot: {
-    justifyContent: "center",
+    justifyContent: 'center',
     '& .Mui-selected': {
       color: theme.palette.text.hint,
       padding: theme.spacing(2, 1),
-    }
+    },
   },
   scroller: {
     flexGrow: 0,
@@ -48,15 +48,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: 'fit-content',
     [theme.breakpoints.down('xs')]: {
       width: '100%',
-    }
+    },
   },
   heading: {
-    fontSize: "16px",
+    fontSize: '16px',
     fontWeight: 400,
-    color: theme.palette.text.secondary
+    color: theme.palette.text.secondary,
   },
   headingSelected: {
-    fontSize: "16px",
+    fontSize: '16px',
     fontWeight: 700,
   },
   accordionRoot: {
@@ -64,52 +64,52 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '58%',
     margin: 'auto',
     [theme.breakpoints.down('md')]: {
-        width: '65%'
+      width: '65%',
     },
     [theme.breakpoints.down('sm')]: {
-        width: '75%'
+      width: '75%',
     },
     [theme.breakpoints.down('xs')]: {
-        width: '90%'
-    }
+      width: '90%',
+    },
   },
   buttonIcon: {
     color: theme.palette.warning.main,
   },
   accordion: {
-    width: "100%",
+    width: '100%',
     margin: theme.spacing(4, 0),
     padding: theme.spacing(1, 2.5),
-    boxShadow: "2px 5px 31px 4px rgba(70, 68, 151, 0.07)",
+    boxShadow: '2px 5px 31px 4px rgba(70, 68, 151, 0.07)',
   },
   details: {
-    borderTop: "2px solid",
+    borderTop: '2px solid',
     borderColor: theme.palette.grayishGreen.light,
     paddingTop: theme.spacing(2),
     color: theme.palette.text.secondary,
-    fontSize: '16px'
+    fontSize: '16px',
   },
   footer: {
-    gridArea: "footer",
+    gridArea: 'footer',
     width: '100%',
     position: 'relative',
     bottom: 0,
   },
   faqFooter: {
-    background:  'url(/images/png/blog_index_background.png)',
+    background: 'url(/images/png/blog_index_background.png)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     [theme.breakpoints.down('xs')]: {
-      background:  'url(/images/png/blog_index_background_mobile.png)',
+      background: 'url(/images/png/blog_index_background_mobile.png)',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
     },
   },
   MuiAccordionroot: {
-    "&.MuiAccordion-root:before": {
+    '&.MuiAccordion-root:before': {
       backgroundColor: theme.palette.common.white,
-    }
-  }
+    },
+  },
 }));
 
 export default useStyles;
