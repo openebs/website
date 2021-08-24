@@ -57,7 +57,7 @@ const settings = (type) => ({
 });
 
 const fetchContributors = async () => {
-  const topContributors = await request.post(
+  await request.post(
     settings("topContributors"),
     function (error, response, body) {
       if (error) {
@@ -66,24 +66,22 @@ const fetchContributors = async () => {
       }
       const data = JSON.stringify(body?.results?.A?.frames[0]?.data?.values[1]);
       data && fs.writeFileSync("src/resources/topContributors.json", data);
-      return data;
     }
   );
 
-  topContributors &&
-    (await request.post(
-      settings("newContributors"),
-      function (error, response, body) {
-        if (error) {
-          console.error(error);
-          return;
-        }
-        const data = JSON.stringify(
-          body?.results?.A?.frames[0]?.data?.values[0]?.reverse()
-        );
-        data && fs.writeFileSync("src/resources/newContributors.json", data);
+  await request.post(
+    settings("newContributors"),
+    function (error, response, body) {
+      if (error) {
+        console.error(error);
+        return;
       }
-    ));
+      const data = JSON.stringify(
+        body?.results?.A?.frames[0]?.data?.values[0]?.reverse()
+      );
+      data && fs.writeFileSync("src/resources/newContributors.json", data);
+    }
+  );
 };
 
 fetchContributors();
