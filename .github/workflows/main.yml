@@ -35,6 +35,6 @@ jobs:
          git status
          git config user.name rakesh
          git config user.email rakesh.pr@mayadata.io
-         git add '*/topContributors.json'
+         git add '*/topContributors.json,*/newContributors.json'
          git log
          git diff-index --quiet HEAD || (git commit -a -m'[bot] update contributor list' --allow-empty && git push -f)
