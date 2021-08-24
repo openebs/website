@@ -60,9 +60,9 @@
     "max-len": [
       "warn",
       {
-        "code": 100,
+        "code": 250,
         "tabWidth": 2,
-        "comments": 100,
+        "comments": 250,
         "ignoreComments": false,
         "ignoreTrailingComments": true,
         "ignoreUrls": true,
@@ -73,15 +73,6 @@
     ],
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
-    "no-param-reassign": [2, {"props": false}],
-    "quotes": [
-      "error",
-      "single",
-      {"allowTemplateLiterals": true}
-  ],
-  "semi": [
-      "error",
-      "always"
-  ]
+    "no-param-reassign": [2, {"props": false}]
   }
 }
