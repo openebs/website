@@ -37,7 +37,7 @@
   },
   "scripts": {
     "postinstall": "node public/getPosts.js",
-    "getTopContributors": "node public/getTopContributors.js",
+    "getContributors": "node public/getContributors.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test"
