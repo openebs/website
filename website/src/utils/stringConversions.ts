@@ -1,5 +1,3 @@
-const toLowerCaseHyphenSeparatedString = (text: string) => {
-    return text.toLowerCase().replace(/[^\w ]+/g,'').replace(/ +/g,'-');
-}
+const toLowerCaseHyphenSeparatedString = (text: string) => text.toLowerCase().replace(/[^\w ]+/g, '').replace(/ +/g, '-');
 
-export {toLowerCaseHyphenSeparatedString};
+export default toLowerCaseHyphenSeparatedString;

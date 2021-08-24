@@ -7,10 +7,6 @@
  * for this function call the tags will be returned in sorted by name of tag
  */
 
-const getTagsSorted = (tagsDistribution: any) => {
-  return Object.keys(tagsDistribution).sort(function (a, b) {
-    return a.toLowerCase().localeCompare(b.toLowerCase());
-  });
-};
+const getTagsSorted = (tagsDistribution: any) => Object.keys(tagsDistribution).sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
 
-export { getTagsSorted };
+export default getTagsSorted;

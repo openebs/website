@@ -1,92 +1,91 @@
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        marginTop: theme.spacing(14),
-        [theme.breakpoints.down('sm')]: {
-            marginTop: theme.spacing(10)
-        },
+  root: {
+    marginTop: theme.spacing(14),
+    [theme.breakpoints.down('sm')]: {
+      marginTop: theme.spacing(10),
     },
-    pageSpacing: {
-        width: '58%',
-        margin: 'auto',
-        [theme.breakpoints.down('md')]: {
-            width: '65%'
-        },
-        [theme.breakpoints.down('sm')]: {
-            width: '75%'
-        },
-        [theme.breakpoints.down('xs')]: {
-            width: '90%'
-        },
+  },
+  pageSpacing: {
+    width: '58%',
+    margin: 'auto',
+    [theme.breakpoints.down('md')]: {
+      width: '65%',
     },
-    pageHeader: {
-        fontSize: '2.625rem',
-        fontWeight: 700,
-        textAlign: 'center',
-        marginBottom: theme.spacing(5),
-        [theme.breakpoints.down('xs')]: {
-            fontSize: '1.5rem',
-        },
+    [theme.breakpoints.down('sm')]: {
+      width: '75%',
     },
-    sectionHeader: {
-        fontSize: '2rem',
-        fontWeight: 700,
-        marginTop: theme.spacing(7),
-        [theme.breakpoints.down('xs')]: {
-            fontSize: '1.25rem',
-        },
+    [theme.breakpoints.down('xs')]: {
+      width: '90%',
     },
-    sectionSubHeader: {
-        fontSize: '1.125rem',
-        fontWeight: 700,
-        marginTop: theme.spacing(3),
-        [theme.breakpoints.down('xs')]: {
-            fontSize: '0.875rem',
-        },
+  },
+  pageHeader: {
+    fontSize: '2.625rem',
+    fontWeight: 700,
+    textAlign: 'center',
+    marginBottom: theme.spacing(5),
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.5rem',
     },
-    bodyText: {
-        fontSize: '1rem',
-        fontWeight: 400,
-        color: theme.palette.text.secondary,
-        marginTop: theme.spacing(2),
-        [theme.breakpoints.down('xs')]: {
-            fontSize: '0.875rem',
-        },
+  },
+  sectionHeader: {
+    fontSize: '2rem',
+    fontWeight: 700,
+    marginTop: theme.spacing(7),
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.25rem',
     },
-    link: {
-        color: theme.palette.warning.main
+  },
+  sectionSubHeader: {
+    fontSize: '1.125rem',
+    fontWeight: 700,
+    marginTop: theme.spacing(3),
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.875rem',
     },
-    listItem: {
-        '&::marker': {
-            color: theme.palette.info.light,
-            fontSize: '1.5rem'
-        },
-        marginBottom: theme.spacing(1.5)
+  },
+  bodyText: {
+    fontSize: '1rem',
+    fontWeight: 400,
+    color: theme.palette.text.secondary,
+    marginTop: theme.spacing(2),
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.875rem',
     },
-    background: {
-        background:  'url(/images/png/privacy_policy_background.png)',
-        backgroundSize: 'contain',
-        backgroundRepeat: 'no-repeat',
-        [theme.breakpoints.down('md')]: {
-            backgroundSize: 'cover',
-        },
-        [theme.breakpoints.down('xs')]: {
-            background:  'url(/images/png/privacy_policy_mobile_background.png)',
-            backgroundRepeat: 'no-repeat',
-            backgroundPositionY: 'bottom',
-            backgroundPositionX: 'left'
-        },
+  },
+  link: {
+    color: theme.palette.warning.main,
+  },
+  listItem: {
+    '&::marker': {
+      color: theme.palette.info.light,
+      fontSize: '1.5rem',
     },
-    lastDiv: {
-        marginBottom: theme.spacing(8)
+    marginBottom: theme.spacing(1.5),
+  },
+  background: {
+    background: 'url(/images/png/privacy_policy_background.png)',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    [theme.breakpoints.down('md')]: {
+      backgroundSize: 'cover',
     },
-    footer: {
-        gridArea: "footer",
-        width: '100%',
-        position: 'relative',
-        bottom: 0
-      },
-}))
+    [theme.breakpoints.down('xs')]: {
+      background: 'url(/images/png/privacy_policy_mobile_background.png)',
+      backgroundRepeat: 'no-repeat',
+      backgroundPositionY: 'bottom',
+      backgroundPositionX: 'left',
+    },
+  },
+  lastDiv: {
+    marginBottom: theme.spacing(8),
+  },
+  footer: {
+    gridArea: 'footer',
+    width: '100%',
+    position: 'relative',
+    bottom: 0,
+  },
+}));
 export default useStyles;
-  

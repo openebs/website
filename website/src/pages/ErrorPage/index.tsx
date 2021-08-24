@@ -1,9 +1,9 @@
-import { Button, Grid, Typography } from "@material-ui/core";
-import React from "react";
-import useStyles from "./styles";
-import { useTranslation } from "react-i18next";
-import Footer from "../../components/Footer";
-import { useHistory } from "react-router-dom";
+import { Button, Grid, Typography } from '@material-ui/core';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
+import useStyles from './styles';
+import Footer from '../../components/Footer';
 
 interface NotFound {
   blogStatus: Boolean | undefined;
@@ -22,10 +22,10 @@ const ErrorPage: React.FC<NotFound> = ({ blogStatus }) => {
               loading="lazy"
               className={classes.errorImage}
               src="/images/svg/404_Image.svg"
-              alt={t("errorPage.errorAltText")}
+              alt={t('errorPage.errorAltText')}
             />
             <Typography variant="h3" className={classes.pageHeader}>
-              {t("errorPage.description")}
+              {t('errorPage.description')}
             </Typography>
             {/* Blog status check if true then show the button to route back to blog */}
             {blogStatus ? (
@@ -35,10 +35,10 @@ const ErrorPage: React.FC<NotFound> = ({ blogStatus }) => {
                 size="large"
                 className={classes.solidButton}
                 onClick={() => {
-                  history.push("/blog");
+                  history.push('/blog');
                 }}
               >
-                {t("errorPage.blogBtnLabel")}
+                {t('errorPage.blogBtnLabel')}
               </Button>
             ) : (
               <Button
@@ -47,10 +47,10 @@ const ErrorPage: React.FC<NotFound> = ({ blogStatus }) => {
                 size="large"
                 className={classes.solidButton}
                 onClick={() => {
-                  history.push("/");
+                  history.push('/');
                 }}
               >
-                {t("errorPage.homeBtnLabel")}
+                {t('errorPage.homeBtnLabel')}
               </Button>
             )}
           </Grid>
@@ -59,7 +59,7 @@ const ErrorPage: React.FC<NotFound> = ({ blogStatus }) => {
           loading="lazy"
           width="100%"
           src="/images/svg/background_illustration.svg"
-          alt={t("errorPage.backgroundAltText")}
+          alt={t('errorPage.backgroundAltText')}
         />
       </div>
       {/* Blog status check if true then hide the footer */}

@@ -3,11 +3,11 @@ import {
   Grid,
   // IconButton,
   // TextField
-} from "@material-ui/core";
-import React from "react";
-import { useTranslation } from "react-i18next";
-import { EXTERNAL_LINKS } from "../../constants";
-import useStyles from "./styles";
+} from '@material-ui/core';
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { EXTERNAL_LINKS } from '../../constants';
+import useStyles from './styles';
 
 interface NewsletterTitleProps {
   newsletterTitle: string;
@@ -34,14 +34,14 @@ const Newsletter: React.FC<NewsletterTitleProps> = ({ newsletterTitle }) => {
             <Grid item lg={12}>
               <h1 className={classes.title}>{newsletterTitle}</h1>
 
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  className={classes.solidButton}
-                  onClick={() => { window.open(EXTERNAL_LINKS.SUBSCRIBE_NEWSLETTER, '_blank') }}
-                >
-                  {t("newsletter.subscribe")}
-                </Button>
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.solidButton}
+                onClick={() => { window.open(EXTERNAL_LINKS.SUBSCRIBE_NEWSLETTER, '_blank'); }}
+              >
+                {t('newsletter.subscribe')}
+              </Button>
               {/* Below commented code will be used later  */}
               {/* <form
                 className={classes.textField}

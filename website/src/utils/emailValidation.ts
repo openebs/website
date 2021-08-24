@@ -1,5 +1,3 @@
-const validateEmail = (email: string) => {
-    return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email) ? true : false;
-}
+const validateEmail = (email: string) => (!!/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email));
 
-export {validateEmail};
+export default validateEmail;
