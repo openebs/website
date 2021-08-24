@@ -5,13 +5,6 @@ on:
     # Runs at every 00:00
     - cron: '0 0 * * *'
 
-  push:
-    branches: [ revamp-3.0 ]
-    paths: '**/topContributors.json'
-  pull_request:
-    branches: [ revamp-3.0 ]
-    paths: '**/topContributors.json'
-
   workflow_dispatch: 
 
 jobs:
@@ -26,17 +19,17 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '15.x'
+          node-version: '14.x'
       - name: install dep
         run: npm install request
         # Getting the contributors list from node script
       - name: Get contributors
         working-directory: ./website
-        run: npm run getTopContributors
+        run: npm run getContributors
       - name: Commit the changes
         run: |
          git status
          git config user.name github-actions
          git config user.email test@mayadata.io
-         git add '*/topContributors.json'
+         git add '*/topContributors.json' '*/newContributors.json'
          git diff-index --quiet HEAD || (git commit -s -a -m'[bot] update contributor list' --allow-empty && git push -f)
