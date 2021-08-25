@@ -341,35 +341,20 @@ module.exports = {
     {
       collapsed: true,
       type: "category",
-      label: "Additional info",
+      label: "FAQs",
       customProps: {
         icon: "BookOpen"
       },
       items: [
         {
           type: "doc",
-          id: "additional-info/alphafeatures",
-          label: "Alpha Features"
+          id: "faqs/general",
+          label: "General OpenEBS FAQs"
         },
         {
           type: "doc",
-          id: "additional-info/performance-testing",
-          label: "Performance testing"
-        },
-        {
-          type: "doc",
-          id: "additional-info/faqs",
-          label: "FAQs"
-        },
-        {
-          type: "doc",
-          id: "additional-info/k8supgrades",
-          label: "Kubernetes upgrades"
-        },
-        {
-          type: "doc",
-          id: "additional-info/kb",
-          label: "Knowledge Base"
+          id: "faqs/cStorFAQ",
+          label: "cStor FAQs"
         }
       ]
     },
