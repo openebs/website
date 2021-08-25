@@ -57,7 +57,6 @@ description: The FAQ section about OpenEBS helps to address common concerns, que
 
 -----
 
-<font size="6" color="blue">General</font>
 
 ### What is most distinctive about the OpenEBS architecture? {#What-is-most-distinctive-about-the-OpenEBS-architecture}
 

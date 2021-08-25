@@ -361,6 +361,36 @@ module.exports = {
     {
       collapsed: true,
       type: "category",
+      label: "Additional info",
+      customProps: {
+        icon: "BookOpen"
+      },
+      items: [
+        {
+          type: "doc",
+          id: "additional-info/alphafeatures",
+          label: "Alpha Features"
+        },
+        {
+          type: "doc",
+          id: "additional-info/performance-testing",
+          label: "Performance testing"
+        },
+        {
+          type: "doc",
+          id: "additional-info/k8supgrades",
+          label: "Kubernetes upgrades"
+        },
+        {
+          type: "doc",
+          id: "additional-info/kb",
+          label: "Knowledge Base"
+        }
+      ]
+    },
+    {
+      collapsed: true,
+      type: "category",
       label: "Deprecated",
       customProps: {
         icon: "File"
