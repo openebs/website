@@ -144,7 +144,7 @@ const Footer: React.FC = () => {
           </Link>
         </Typography>
         <Typography className={classes.columnListWrapper}>
-          {topContributors?.slice(0, 6).map((contributor: any) => (
+          {topContributors?.slice(0, 6).map((contributor: string) => (
             <Link
               href={`${API.GITHUB_URL}${contributor}`}
               target="_blank"
@@ -173,7 +173,7 @@ const Footer: React.FC = () => {
   //         </Link>
   //       </Typography>
   //       <Typography className={classes.columnListWrapper}>
-  //         {topContributors?.slice(0, 6).map((contributor: any) => (
+  //         {topContributors?.slice(0, 6).map((contributor: string) => (
   //           <Link
   //             href={`${API.GITHUB_URL}${contributor}`}
   //             target="_blank"
