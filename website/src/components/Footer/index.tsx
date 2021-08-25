@@ -16,6 +16,7 @@ import {
 } from '../../constants';
 import useViewport from '../../hooks/viewportWidth';
 import topContributors from '../../resources/topContributors.json';
+import newContributors from '../../resources/newContributors.json';
 
 const Footer: React.FC = () => {
   const classes = useStyles();
@@ -89,6 +90,13 @@ const Footer: React.FC = () => {
     </div>
   );
 
+  const formatName = (str:string) => {
+    if (str.indexOf('(') > -1) {
+      return str.substring(str.lastIndexOf('(') + 1, str.lastIndexOf(')')).trim();
+    }
+    return str;
+  };
+
   // This block of code is used to display get started links
   const displayGetStarted = () => (
     <div>
@@ -160,34 +168,34 @@ const Footer: React.FC = () => {
     </div>
   );
 
-  // const DisplayNewContributors: React.FC = () => (
-  //   <div>
-  //     {topContributors.length > 0 && (
-  //     <>
-  //       <Typography variant="h6" className={classes.columnTitle}>
-  //         <Link
-  //           href={EXTERNAL_LINKS.TOP_GITHUB_CONTRIBUTORS_URL}
-  //           target="_blank"
-  //         >
-  //           {t('footer.newContributors')}
-  //         </Link>
-  //       </Typography>
-  //       <Typography className={classes.columnListWrapper}>
-  //         {topContributors?.slice(0, 6).map((contributor: string) => (
-  //           <Link
-  //             href={`${API.GITHUB_URL}${contributor}`}
-  //             target="_blank"
-  //             className={classes.columnListItem}
-  //             key={contributor}
-  //           >
-  //             {contributor}
-  //           </Link>
-  //         ))}
-  //       </Typography>
-  //     </>
-  //     )}
-  //   </div>
-  // );
+  const DisplayNewContributors: React.FC = () => (
+    <div>
+      {newContributors.length > 0 && (
+      <>
+        <Typography variant="h6" className={classes.columnTitle}>
+          <Link
+            href={EXTERNAL_LINKS.TOP_GITHUB_CONTRIBUTORS_URL}
+            target="_blank"
+          >
+            {t('footer.newContributors')}
+          </Link>
+        </Typography>
+        <Typography className={classes.columnListWrapper}>
+          {newContributors?.slice(0, 6).map((contributor: string) => (
+            <Link
+              href={`${API.GITHUB_URL}${formatName(contributor)}`}
+              target="_blank"
+              className={classes.columnListItem}
+              key={contributor}
+            >
+              {formatName(contributor)}
+            </Link>
+          ))}
+        </Typography>
+      </>
+      )}
+    </div>
+  );
 
   const displayMobileFooter = () => (
     <Toolbar className={classes.toolbar}>
@@ -223,13 +231,13 @@ const Footer: React.FC = () => {
           </Paper>
         </Grid>
         {/* New contributors code block mobile */}
-        {/* <Grid item xs={12}>
-                      <Paper className={classes.paper}>
-                          <div className={classes.contributorsMobile}>
-                              <DisplayNewContributors />
-                          </div>
-                      </Paper>
-                  </Grid> */}
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <div className={classes.contributorsMobile}>
+              <DisplayNewContributors />
+            </div>
+          </Paper>
+        </Grid>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             {displayNewsLetter()}
@@ -276,11 +284,11 @@ const Footer: React.FC = () => {
           </Paper>
         </Grid>
         {/* New contributors code block mobile */}
-        {/* <Grid item sm>
-                      <Paper className={classes.paper}>
-                          <DisplayNewContributors />
-                      </Paper>
-                  </Grid> */}
+        <Grid item sm>
+          <Paper className={classes.paper}>
+            <DisplayNewContributors />
+          </Paper>
+        </Grid>
       </Grid>
     </Toolbar>
   );
