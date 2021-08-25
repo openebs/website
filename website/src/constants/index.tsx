@@ -17,7 +17,8 @@ export enum EXTERNAL_LINKS {
   SUBSCRIBE_NEWSLETTER = 'https://lists.cncf.io/g/cncf-openebs-announcements',
   BECOME_ADOPTER = 'https://github.com/openebs/openebs/blob/master/ADOPTERS.md',
   CNCF_EVENTS = 'https://community.cncf.io/openebs-community',
-  TOP_GITHUB_CONTRIBUTORS_URL = 'https://openebs.devstats.cncf.io/d/22/prs-authors-table?orgId=1&var-period_name=Last%20month&var-repogroup_name=All'
+  TOP_GITHUB_CONTRIBUTORS_URL = 'https://openebs.devstats.cncf.io/d/22/prs-authors-table?orgId=1&var-period_name=Last%20month&var-repogroup_name=All',
+  NEW_GITHUB_CONTRIBUTORS_URL = 'https://openebs.devstats.cncf.io/d/52/new-contributors-table?orgId=1'
 }
 
 export const API = {

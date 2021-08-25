@@ -174,7 +174,7 @@ const Footer: React.FC = () => {
       <>
         <Typography variant="h6" className={classes.columnTitle}>
           <Link
-            href={EXTERNAL_LINKS.TOP_GITHUB_CONTRIBUTORS_URL}
+            href={EXTERNAL_LINKS.NEW_GITHUB_CONTRIBUTORS_URL}
             target="_blank"
           >
             {t('footer.newContributors')}
