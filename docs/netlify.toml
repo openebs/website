@@ -2,4 +2,8 @@
   base = "docs/"
   publish = "build/"
   command = "yarn run build"
-  
+
+[context.deploy-preview]
+  base = "docs/"
+  publish = "/"
+  command = "yarn run previewBuild"
