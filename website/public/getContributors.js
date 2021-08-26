@@ -1,16 +1,21 @@
 const request = require("request");
 const fs = require("fs");
 
-const getdatesForContribution = () => {
+const getdatesForContribution = (dateRange) => {
   const today = new Date();
   const priorDate = new Date();
-  priorDate.setDate(priorDate.getDate() - 30);
+  priorDate.setDate(priorDate.getDate() - dateRange);
   return {
     today,
     priorDate,
     todayTimestamp: today.valueOf(),
     priorDateTimestamp: priorDate.valueOf(),
   };
+};
+
+const dateRanges = {
+  topContributors: 30, // last 30 days
+  newContributors: 60, // last 60 days
 };
 
 const rawSql = {
@@ -35,14 +40,27 @@ const reqBodyToFetchContributors = (type) => ({
     },
   ],
   range: {
-    from: `${getdatesForContribution().priorDate}`,
+    from:
+      type === "topContributors"
+        ? `${getdatesForContribution(dateRanges.topContributors).priorDate}`
+        : `${getdatesForContribution(dateRanges.newContributors).priorDate}`,
     to: `${getdatesForContribution().today}`,
     raw: {
-      from: "now-1m",
+      from:
+        type === "topContributors"
+          ? `now-${dateRanges.topContributors}d`
+          : `now-${dateRanges.newContributors}d`,
       to: "now",
     },
   },
-  from: `${getdatesForContribution().priorDateTimestamp}`,
+  from:
+    type === "topContributors"
+      ? `${
+          getdatesForContribution(dateRanges.topContributors).priorDateTimestamp
+        }`
+      : `${
+          getdatesForContribution(dateRanges.newContributors).priorDateTimestamp
+        }`,
   to: `${getdatesForContribution().todayTimestamp}`,
 });
 
