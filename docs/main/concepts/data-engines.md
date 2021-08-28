@@ -23,7 +23,7 @@ Based on the CPU, RAM and Network bandwidth available to the nodes, the nodes ca
 
 * Small Instances that typically have up to 4 cores, 16GB RAM and Gigabit Ethernet
 * Medium Instances that typically have up to 16 cores, 32GB RAM and up to 10G Networks
-* Large Instances  that typically have more than 16 - even 96 cores, up to 256G or more RAM and 10 to 25G Networks
+* Large Instances that typically have more than 16 - even 96 cores, up to 256G or more RAM and 10 to 25G Networks
 
 The Storage to the above instance can be made available in the following ways: 
 
