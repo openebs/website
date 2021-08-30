@@ -83,7 +83,8 @@ const fetchContributors = async () => {
         return;
       }
       const data = JSON.stringify(body?.results?.A?.frames[0]?.data?.values[1]);
-      data && fs.writeFileSync("src/data/topContributors.json", data);
+      data && fs.writeFileSync("../website/src/resources/topContributors.json", data);
+      data && fs.writeFileSync("../docs/src/data/topContributors.json", data);
     }
   );
 
@@ -97,7 +98,8 @@ const fetchContributors = async () => {
       const data = JSON.stringify(
         body?.results?.A?.frames[0]?.data?.values[0]?.reverse()
       );
-      data && fs.writeFileSync("src/data/newContributors.json", data);
+      data && fs.writeFileSync("../website/src/resources/newContributors.json", data);
+      data && fs.writeFileSync("../docs/src/data/newContributors.json", data);
     }
   );
 };
