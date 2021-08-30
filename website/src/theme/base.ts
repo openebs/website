@@ -80,8 +80,8 @@ function createTheme(themeOptions?: ThemeOptions) {
     },
     typography: {
       fontSize: 16,
-      fontFamily: [ 'Montserrat',
-      'sans-serif'].join(',')
+      fontFamily: ['Montserrat',
+        'sans-serif'].join(','),
     },
     ...themeOptions,
   });

@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   blogHeader: {
@@ -23,12 +23,12 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
   },
   breadCrumbs: {
-    '& .MuiBreadcrumbs-ol':{
+    '& .MuiBreadcrumbs-ol': {
       justifyContent: 'center',
       color: theme.palette.info.light,
       fontSize: '14px',
-      fontWeight: 400
-    }
+      fontWeight: 400,
+    },
   },
   blogTitle: {
     fontSize: '2.625rem',
@@ -52,25 +52,25 @@ const useStyles = makeStyles((theme: Theme) => ({
     display: 'flex',
     [theme.breakpoints.down('xs')]: {
       display: 'block',
-      textAlign: 'center'
+      textAlign: 'center',
     },
   },
   authorImgWrapper: {
     marginRight: theme.spacing(1),
     width: '48px',
     height: '48px',
-    '& .MuiAvatar-root':{
+    '& .MuiAvatar-root': {
       width: '100%',
-      height: '100%'
+      height: '100%',
     },
     [theme.breakpoints.down('xs')]: {
-      margin: 'auto'
+      margin: 'auto',
     },
   },
   authorImg: {
     width: '100%',
     height: '100%',
-    borderRadius: '50%'
+    borderRadius: '50%',
   },
   authorName: {
     fontSize: '16px',
@@ -85,14 +85,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 400,
     '& p': {
       margin: theme.spacing(0),
-      marginRight: theme.spacing(1)
-    }
+      marginRight: theme.spacing(1),
+    },
   },
   dateAndTimeWrapper: {
     display: 'flex',
     fontSize: '16px',
     '& p': {
-      marginRight: theme.spacing(1)
+      marginRight: theme.spacing(1),
     },
     [theme.breakpoints.down('xs')]: {
       justifyContent: 'center',
@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.text.secondary,
     fontWeight: 400,
     [theme.breakpoints.down('xs')]: {
-      flexDirection:'column',
+      flexDirection: 'column',
       justifyContent: 'center',
       marginTop: theme.spacing(3),
     },
@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '16px',
     [theme.breakpoints.down('xs')]: {
       fontSize: '14px',
-      marginBottom: theme.spacing(1)
+      marginBottom: theme.spacing(1),
     },
   },
   socialIconsWrapper: {
@@ -135,107 +135,107 @@ const useStyles = makeStyles((theme: Theme) => ({
     cursor: 'pointer',
     transition: '265ms',
     WebkitTransition: '265ms',
-    '& .at-share-btn':{
-      background: 'none !important'
+    '& .at-share-btn': {
+      background: 'none !important',
     },
-    '& .at-icon-wrapper svg':{
+    '& .at-icon-wrapper svg': {
       fill: `${theme.palette.info.light} !important`,
       width: '25px !important',
       height: '25px !important',
       marginTop: theme.spacing(0.75),
-      marginLeft: theme.spacing(0.5)
+      marginLeft: theme.spacing(0.5),
     },
-    '& .at-resp-share-element .at-share-btn:focus, .at-resp-share-element .at-share-btn:hover':{
-      transform: 'translateY(0px)'
+    '& .at-resp-share-element .at-share-btn:focus, .at-resp-share-element .at-share-btn:hover': {
+      transform: 'translateY(0px)',
     },
-    '&:hover' :{
+    '&:hover': {
       transform: 'rotate(-180deg)',
       MSTransform: 'rotate(-180deg)',
       WebkitTransform: 'scale(-180deg)',
       borderRadius: '50%',
     },
-    '&:hover img' :{
-        transform: 'rotate(180deg) scale(1.25)',
-        MSTransform: 'rotate(180deg) scale(1.25)',
-        WebkitTransform: 'rotate(180deg) scale(1.25)',
-    }
+    '&:hover img': {
+      transform: 'rotate(180deg) scale(1.25)',
+      MSTransform: 'rotate(180deg) scale(1.25)',
+      WebkitTransform: 'rotate(180deg) scale(1.25)',
+    },
   },
   blogBody: {
     width: '58%',
     margin: 'auto',
     padding: theme.spacing(10, 0),
-    '& p':{
+    '& p': {
       fontSize: '1rem',
       color: theme.palette.text.secondary,
-      lineHeight: '22px'
+      lineHeight: '22px',
     },
-    '& ul, & ol':{
-      '& li':{
+    '& ul, & ol': {
+      '& li': {
         fontSize: '1rem',
         color: theme.palette.text.secondary,
         lineHeight: '22px',
         position: 'relative',
       },
-      '& li:not(:last-child)':{
-        marginBottom: theme.spacing(1)
+      '& li:not(:last-child)': {
+        marginBottom: theme.spacing(1),
       },
     },
     '& ol': {
-      paddingLeft: theme.spacing(2)
+      paddingLeft: theme.spacing(2),
     },
     '& ul': {
-      paddingLeft: 0,        
+      paddingLeft: 0,
       '& li': {
-          paddingLeft: theme.spacing(1.85),
-          listStyle: 'none',
-          '&::before':{
-            content: '""',
-            position: "absolute",
+        paddingLeft: theme.spacing(1.85),
+        listStyle: 'none',
+        '&::before': {
+          content: '""',
+          position: 'absolute',
           left: 0,
           top: '6px',
           width: '8px',
           height: '8px',
           borderRadius: '100%',
-          background: theme.palette.info.light
-        }
-      }
+          background: theme.palette.info.light,
+        },
+      },
     },
     '& h2': {
-      fontSize: '2rem', 
-      lineHeight: '50px'
+      fontSize: '2rem',
+      lineHeight: '50px',
     },
-    '& pre code':{
+    '& pre code': {
       borderRadius: '4px',
       display: 'block',
       overflowX: 'auto',
       padding: '1em',
       background: theme.palette.primary.dark,
-      color: theme.palette.grayishGreen.light
+      color: theme.palette.grayishGreen.light,
     },
-    '& p > code':{
-      padding: theme.spacing(.5,1),
+    '& p > code': {
+      padding: theme.spacing(0.5, 1),
       borderRadius: '4px',
       background: theme.palette.blue.light,
     },
-    '& img':{
-      maxWidth: '100%'
+    '& img': {
+      maxWidth: '100%',
     },
     '& a': {
       textDecoration: 'underline',
-      color: theme.palette.secondary.main
+      color: theme.palette.secondary.main,
     },
     '& blockquote': {
       background: 'transparent',
       borderLeft: 'none',
-      textAlign:'center',
-      margin: theme.spacing(3,0),
+      textAlign: 'center',
+      margin: theme.spacing(3, 0),
       '&::before': {
         color: theme.palette.info.light,
         content: 'open-quote',
         fontSize: '60px',
         lineHeight: '10px',
         marginRight: theme.spacing(1.2),
-        verticalAlign: '-16px'
+        verticalAlign: '-16px',
       },
       '& p': { display: 'inline' },
     },
@@ -244,26 +244,26 @@ const useStyles = makeStyles((theme: Theme) => ({
       padding: theme.spacing(8, 0),
     },
     [theme.breakpoints.down('sm')]: {
-      width: '75%'
+      width: '75%',
     },
     [theme.breakpoints.down('xs')]: {
       width: '85%',
       padding: theme.spacing(4, 0),
-      '& p':{
+      '& p': {
         fontSize: '0.875rem',
-        lineHeight: '20px'
+        lineHeight: '20px',
       },
-      '& ul li':{
+      '& ul li': {
         fontSize: '0.875rem',
-        lineHeight: '20px'
+        lineHeight: '20px',
       },
       '& h2': {
-        fontSize: '1.25rem', 
-        lineHeight: '26px'
+        fontSize: '1.25rem',
+        lineHeight: '26px',
       },
       '& h4': {
         fontSize: '0.875rem',
-        lineHeight: '20px'
+        lineHeight: '20px',
       },
     },
   },
@@ -281,7 +281,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     width: '75%',
     marginBottom: theme.spacing(4),
     [theme.breakpoints.down('md')]: {
-        width: '95%',
+      width: '95%',
     },
   },
   footerDivWrapper: {
@@ -297,18 +297,18 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     [theme.breakpoints.down('xs')]: {
       margin: theme.spacing(0, 4, 5),
-      display: 'block'
+      display: 'block',
     },
   },
   footerText: {
     fontSize: '22px',
-    fontWeight: 700
+    fontWeight: 700,
   },
   arrowButton: {
     padding: theme.spacing(0),
     marginBottom: theme.spacing(1),
     '&:hover': {
-      background: 'transparent'
+      background: 'transparent',
     },
     '& .MuiButton-label': {
       fontSize: '16px',
@@ -316,25 +316,25 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     '& .MuiButton-iconSizeMedium img': {
       width: '10px',
-      height: '10px'
+      height: '10px',
     },
   },
   rightArrowButtonWrapper: {
     textAlign: 'right',
-    marginLeft: 'auto'
+    marginLeft: 'auto',
   },
   blogLink: {
     fontSize: '16px',
     fontWeight: 400,
     color: theme.palette.text.secondary,
     maxWidth: '310px',
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
   blogRecommendationTitle: {
     fontSize: '32px',
     fontWeight: 700,
-    margin: theme.spacing(6,0),
-    textAlign: 'center'
+    margin: theme.spacing(6, 0),
+    textAlign: 'center',
   },
   blogSlider: {
     display: 'block',
@@ -353,19 +353,19 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: theme.spacing(5),
   },
   tagButton: {
-    border: "none",
-    background: "none",
+    border: 'none',
+    background: 'none',
     margin: theme.spacing(0.5, 1, 0.5, 0),
-    cursor: "pointer",
-    padding: theme.spacing(0)
+    cursor: 'pointer',
+    padding: theme.spacing(0),
   },
   footer: {
     paddingTop: theme.spacing(8),
-    background:  'url(/images/png/blog_footer_background.png)',
+    background: 'url(/images/png/blog_footer_background.png)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
     [theme.breakpoints.down('xs')]: {
-      background:  'url(/images/png/blog_footer_background_mobile.png)',
+      background: 'url(/images/png/blog_footer_background_mobile.png)',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
     },

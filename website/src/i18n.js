@@ -20,8 +20,8 @@ i18n
     useSuspense: false,
     wait: false,
     debug: true,
-    lng: "en",
-    ns: "translation",
+    lng: 'en',
+    ns: 'translation',
     backend: {
       loadPath: '/locale/{{lng}}/{{ns}}.yaml',
       parse(data) {

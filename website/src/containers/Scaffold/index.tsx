@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import useStyles from "./styles";
-import Header from "../../components/Header";
-import { useLocation, withRouter } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { useLocation, withRouter } from 'react-router-dom';
+import useStyles from './styles';
+import Header from '../../components/Header';
 
 const Scaffold: React.FC = ({ children }) => {
   const classes = useStyles();
@@ -15,7 +15,7 @@ const Scaffold: React.FC = ({ children }) => {
   };
 
   const ScrollToTop = withRouter(_ScrollToTop);
-  
+
   return (
     <div className={classes.root}>
       <ScrollToTop>

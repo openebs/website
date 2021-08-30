@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from "react";
+import React, { SyntheticEvent } from 'react';
 
 interface BlogImg {
   imgPath : string;
@@ -6,7 +6,7 @@ interface BlogImg {
   className?: string;
 }
 
-const BlogImage: React.FC<BlogImg> = ({ imgPath, alt, ...props }) => {  
+const BlogImage: React.FC<BlogImg> = ({ imgPath, alt, ...props }) => {
   function addDefaultSrc(e: SyntheticEvent<HTMLImageElement, Event>) {
     /**
      * The browser will be stuck in an endless loop if the onerror image itself generates an error.
@@ -14,13 +14,13 @@ const BlogImage: React.FC<BlogImg> = ({ imgPath, alt, ...props }) => {
      * ref: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror#element.onerror
     */
     e.currentTarget.onerror = null;
-    e.currentTarget.src = "/images/blog/defaultImage.png"; // setting the fallback src
+    e.currentTarget.src = '/images/blog/defaultImage.png'; // setting the fallback src
   }
   return (
     <>
       <img
         loading="lazy"
-        onError={(e)=>{addDefaultSrc(e)}}
+        onError={(e) => { addDefaultSrc(e); }}
         alt={alt}
         src={imgPath}
         {...props}

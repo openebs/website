@@ -2,4 +2,14 @@
   base = "docs/"
   publish = "build/"
   command = "yarn run build"
+
+[context.deploy-preview]
+  base = "docs/"
+  publish = "/"
+  command = "yarn run previewBuild"
   
+  # adding redirect rule to change the path to /docs
+  
+  [[redirects]]
+    from = "/"
+    to = "/docs"

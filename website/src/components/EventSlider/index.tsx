@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import Carousel from "../Carousel";
-import { useTranslation } from "react-i18next";
-import { Typography, Link, Box } from "@material-ui/core";
-import useStyles from "./style";
-import eventsList from "../../resources/events.json";
-import { EXTERNAL_LINKS } from "../../constants";
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Typography, Link, Box } from '@material-ui/core';
+import Carousel from '../Carousel';
+import useStyles from './style';
+import eventsList from '../../resources/events.json';
+import { EXTERNAL_LINKS } from '../../constants';
 
 interface Events {
   id: number;
@@ -19,13 +19,13 @@ interface Events {
 interface EventsProps {
   sortEvents?: boolean;
   filterEvents?: boolean;
-  sortOrder?: "asc" | "desc";
+  sortOrder?: 'asc' | 'desc';
 }
 
 const EventSlider: React.FC<EventsProps> = ({
   sortEvents = true,
   filterEvents = true,
-  sortOrder = "desc",
+  sortOrder = 'desc',
 }) => {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -33,7 +33,7 @@ const EventSlider: React.FC<EventsProps> = ({
   const [filteredEvents, setFilteredEvents] = useState<Events[]>([]);
   useEffect(() => {
     setEvents(eventsList);
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     /*
      * 1. Using current date to filter the events
@@ -43,14 +43,14 @@ const EventSlider: React.FC<EventsProps> = ({
      */
     const currentDate = new Date();
     let eventsData: Events[] = [];
-    let eventsWithDate: Events[] = [];
-    let recurringEvents: Events[] = [];
+    const eventsWithDate: Events[] = [];
+    const recurringEvents: Events[] = [];
     events.forEach((item) => {
-      let givenDate = new Date(item?.date).getMonth();
-      if (isNaN(givenDate)) {
+      const givenDate = new Date(item?.date).getMonth();
+      if (Number.isNaN(givenDate)) {
         item.isDateAvailable = false;
         recurringEvents.push(item);
-      }else {
+      } else {
         item.isDateAvailable = true;
         eventsWithDate.push(item);
       }
@@ -59,18 +59,18 @@ const EventSlider: React.FC<EventsProps> = ({
       eventsData = filterEvents
         ? eventsWithDate?.filter((event: Events) => new Date(event?.date) >= currentDate)
         : eventsWithDate;
-      
+
       eventsData = sortEvents
         ? eventsData?.sort((eventA: Events, eventB: Events) => {
-            const dateA: any = new Date(eventB?.date);
-            const dateB: any = new Date(eventA?.date);
-            return sortOrder === "asc" ? dateB - dateA : dateB + dateA;
-          })
-        : eventsData;   
+          const dateA: any = new Date(eventB?.date);
+          const dateB: any = new Date(eventA?.date);
+          return sortOrder === 'asc' ? dateB - dateA : dateB + dateA;
+        })
+        : eventsData;
     }
     const allEvents = [...eventsData, ...recurringEvents];
-    setFilteredEvents([...allEvents]); 
-  }, [events]); // eslint-disable-line react-hooks/exhaustive-deps
+    setFilteredEvents([...allEvents]);
+  }, [events]);
   const sliderSettings = {
     autoplay: true,
     speed: 500,
@@ -102,7 +102,7 @@ const EventSlider: React.FC<EventsProps> = ({
   const FetchDate = (date: any) => {
     const givenDate = new Date(date.date);
     const day = givenDate.getDate();
-    const month = givenDate.toLocaleString("default", { month: "long" });
+    const month = givenDate.toLocaleString('default', { month: 'long' });
     return (
       <>
         <Typography className={classes.titleText} variant="h6">
@@ -112,7 +112,7 @@ const EventSlider: React.FC<EventsProps> = ({
       </>
     );
   };
- // Kept for future reference
+  // Kept for future reference
   // function checkPastDate(date: any) {
   //   const givenDate = new Date(date);
   //   const currentDate = new Date();
@@ -122,48 +122,45 @@ const EventSlider: React.FC<EventsProps> = ({
   return filteredEvents?.length ? (
     <>
       <Carousel settings={sliderSettings}>
-        {filteredEvents?.map((event: any) => {
-          return (
-            <>
-              <div key={event.id}>
-                <div className={classes.slide}>
-                  <Box mb={2}>
-                    {event.isDateAvailable
-                    ? <FetchDate date={event.date} /> 
-                    :
-                    <p>{event.date}</p>}
-                  </Box>
-                  <Typography variant="h4" className={classes.titleText}>
-                    {event.title}
-                  </Typography>
-                  <Typography className={classes.subText}>
-                    {event.description}
-                  </Typography>
-                  {event.buttonLink && (
-                    <Box mt={2} className={classes.actionLink}>
-                      <Link
-                        className={classes.linkText}
-                        href={event.buttonLink}
-                        target="_blank"
-                      >
-                        <Box display="flex" alignItems="center">
-                          {event.buttonText
-                            ? event.buttonText
-                            : t("community.communityEvents.clickHere")}
-                          <img
-                            loading="lazy"
-                            src="../images/svg/arrow_orange.svg"
-                            alt=""
-                          />
-                        </Box>
-                      </Link>
+        {filteredEvents?.map((event: any) => (
+          <>
+            <div key={event.id}>
+              <div className={classes.slide}>
+                <Box mb={2}>
+                  {event.isDateAvailable
+                    ? <FetchDate date={event.date} />
+                    : <p>{event.date}</p>}
+                </Box>
+                <Typography variant="h4" className={classes.titleText}>
+                  {event.title}
+                </Typography>
+                <Typography className={classes.subText}>
+                  {event.description}
+                </Typography>
+                {event.buttonLink && (
+                <Box mt={2} className={classes.actionLink}>
+                  <Link
+                    className={classes.linkText}
+                    href={event.buttonLink}
+                    target="_blank"
+                  >
+                    <Box display="flex" alignItems="center">
+                      {event.buttonText
+                        ? event.buttonText
+                        : t('community.communityEvents.clickHere')}
+                      <img
+                        loading="lazy"
+                        src="../images/svg/arrow_orange.svg"
+                        alt=""
+                      />
                     </Box>
-                  )}
-                </div>
+                  </Link>
+                </Box>
+                )}
               </div>
-            </>
-          );
-        })}
+            </div>
+          </>
+        ))}
       </Carousel>
     </>
   ) : (
@@ -174,7 +171,7 @@ const EventSlider: React.FC<EventsProps> = ({
       height="100%"
     >
       <Typography variant="h4" className={classes.noEventText}>
-      <Link target="_blank" className={classes.noEventLink} href={EXTERNAL_LINKS.CNCF_EVENTS}>{t("community.communityEvents.noEvent.message")}</Link>
+        <Link target="_blank" className={classes.noEventLink} href={EXTERNAL_LINKS.CNCF_EVENTS}>{t('community.communityEvents.noEvent.message')}</Link>
       </Typography>
     </Box>
   );

@@ -1,0 +1,20 @@
+name: ESLint
+on:
+  pull_request:
+    branches:
+      - revamp-3.0
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14.x"
+      - name: Check for lint errors
+        working-directory: ./website
+        run: |
+          npm install
+          npm run lint

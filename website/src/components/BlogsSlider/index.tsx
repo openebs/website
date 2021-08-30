@@ -1,21 +1,21 @@
-import React from "react";
-import Carousel from "../Carousel";
-import { useTranslation } from "react-i18next";
-import useStyles from "./style";
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Button,
   Card,
   CardContent,
   CardMedia,
   Typography,
-} from "@material-ui/core";
-import { VIEW_PORT } from "../../constants";
-import CustomTag from "../CustomTag";
-import ReactMarkdown from "react-markdown";
-import { getContentPreview } from "../../utils/getContent";
+} from '@material-ui/core';
+import ReactMarkdown from 'react-markdown';
+import { useHistory } from 'react-router-dom';
+import Carousel from '../Carousel';
+import useStyles from './style';
+import { VIEW_PORT } from '../../constants';
+import CustomTag from '../CustomTag';
+import getContentPreview from '../../utils/getContent';
 import BlogImage from '../BlogImage';
-import { useHistory } from "react-router-dom";
-import { toLowerCaseHyphenSeparatedString } from "../../utils/stringConversions";
+import toLowerCaseHyphenSeparatedString from '../../utils/stringConversions';
 
 interface BlogsSliderProps {
   recommendedBlogs: any;
@@ -37,7 +37,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
-    cssEase: "linear",
+    cssEase: 'linear',
     arrows: true,
     rtl: false,
     responsive: [
@@ -51,71 +51,70 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
     ],
   };
 
-  const getTags = (tags: Array<string>) => {
-    const tagItems = tags.map((tag) => {
-      return (
-        <button
-          key={tag}
-          onClick={() => handleTagSelect(tag)}
-          className={classes.tag}
-        >
-            <CustomTag blogLabel={tag} />
-        </button>
-      );
-    });
-    return tagItems;
-  };
-
   const handleTagSelect = (tag: string) => {
     history.push(`/blog/tag/${toLowerCaseHyphenSeparatedString(tag)}`);
+  };
+
+  const getTags = (tags: Array<string>) => {
+    const tagItems = tags.map((tag) => (
+      <button
+        type="button"
+        key={tag}
+        onClick={() => handleTagSelect(tag)}
+        className={classes.tag}
+      >
+        <CustomTag blogLabel={tag} />
+      </button>
+    ));
+    return tagItems;
   };
 
   return (
     <>
       <div className={classes.sliderWrapper}>
         <Carousel settings={sliderSettings}>
-          {recommendedBlogs.map((elm: any) => {
-            return (
-              <div key={elm.id}>
-                <Card className={classes.cardRoot}>
-                  <CardMedia
-                    className={classes.media}
+          {recommendedBlogs.map((elm: any) => (
+            <div key={elm.id}>
+              <Card className={classes.cardRoot}>
+                <CardMedia
+                  className={classes.media}
+                  onClick={() => handleRedirectPath(elm.slug)}
+                >
+                  <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title} />
+                </CardMedia>
+                <CardContent className={classes.cardContent}>
+                  <div className={classes.tagsWrapper}>
+                    {getTags(elm.tags)}
+                  </div>
+                  <Typography
+                    component="span"
+                    className={classes.title}
+                    color="textSecondary"
                     onClick={() => handleRedirectPath(elm.slug)}
+                    gutterBottom
                   >
-                    <BlogImage imgPath={`/images/blog/${elm.slug}.png`} alt={elm.title} />
-                  </CardMedia>
-                  <CardContent className={classes.cardContent}>
-                    <div className={classes.tagsWrapper}>
-                      {getTags(elm.tags)}
-                    </div>
-                    <Typography
-                      component={"span"}
-                      className={classes.title}
-                      color="textSecondary"
+                    <ReactMarkdown>
+                      {elm.title}
+                    </ReactMarkdown>
+                  </Typography>
+                  <span>
+                    <ReactMarkdown>
+                      {getContentPreview(elm.excerpt)}
+                    </ReactMarkdown>
+                    <Button
+                      size="small"
+                      disableRipple
+                      variant="text"
+                      className={classes.cardActionButton}
                       onClick={() => handleRedirectPath(elm.slug)}
-                      gutterBottom
                     >
-                      <ReactMarkdown children={elm.title} />
-                    </Typography>
-                    <span>
-                      <ReactMarkdown
-                        children={getContentPreview(elm.excerpt)}
-                      />
-                      <Button
-                        size="small"
-                        disableRipple
-                        variant="text"
-                        className={classes.cardActionButton}
-                        onClick={() => handleRedirectPath(elm.slug)}
-                      >
-                        {t("blog.readMore")}
-                      </Button>
-                    </span>
-                  </CardContent>
-                </Card>
-              </div>
-            );
-          })}
+                      {t('blog.readMore')}
+                    </Button>
+                  </span>
+                </CardContent>
+              </Card>
+            </div>
+          ))}
         </Carousel>
       </div>
     </>
