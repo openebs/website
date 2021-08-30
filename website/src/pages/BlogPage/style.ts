@@ -124,6 +124,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     gap: theme.spacing(2),
   },
   socialIconButton: {
+    minWidth: 'unset',
     height: '36px',
     width: '36px',
     display: 'flex',
@@ -135,20 +136,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     cursor: 'pointer',
     transition: '265ms',
     WebkitTransition: '265ms',
-    '& .at-share-btn': {
-      background: 'none !important',
-    },
-    '& .at-icon-wrapper svg': {
-      fill: `${theme.palette.info.light} !important`,
-      width: '25px !important',
-      height: '25px !important',
-      marginTop: theme.spacing(0.75),
-      marginLeft: theme.spacing(0.5),
-    },
-    '& .at-resp-share-element .at-share-btn:focus, .at-resp-share-element .at-share-btn:hover': {
-      transform: 'translateY(0px)',
-    },
     '&:hover': {
+      background: theme.palette.background.paper,
       transform: 'rotate(-180deg)',
       MSTransform: 'rotate(-180deg)',
       WebkitTransform: 'scale(-180deg)',
