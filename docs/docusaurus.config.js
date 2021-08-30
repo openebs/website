@@ -102,7 +102,7 @@ module.exports = {
       },
       {
         label: "Commercial support",
-        link: `${WEBSITE_URL}/support`,
+        link: `${WEBSITE_URL}/commercial-support`,
       },
       {
         label: "Blog",
