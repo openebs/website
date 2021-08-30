@@ -191,7 +191,7 @@ const Home: React.FC = () => {
                       <Typography className={classes.tabBodyText}>
                         {t('home.openebs.description')}
                       </Typography>
-                      <Button variant="contained" color="secondary" className={classes.solidButton} href={EXTERNAL_LINKS.OPENEBS_GET_STARTED} target="_blank">
+                      <Button variant="contained" color="secondary" className={classes.solidButton} href="/docs/user-guides/quickstart">
                         {t('home.openebs.runOpenEBS')}
                       </Button>
                       <Button
