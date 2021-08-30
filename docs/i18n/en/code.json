@@ -230,5 +230,9 @@
   "theme.common.skipToMainContent": {
     "message": "Skip to main content",
     "description": "The skip to content label used for accessibility, allowing to rapidly navigate to main content with keyboard tab/enter navigation"
+  },
+  "component.Footer.newContributors": {
+    "message": "New contributors",
+    "description": "New contributors label in footer"
   }
 }

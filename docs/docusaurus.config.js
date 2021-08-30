@@ -48,8 +48,6 @@ module.exports = {
   onBrokenLinks: 'log',
   customFields: {
     openebsLogo: "/docs/img/openebs-logo.svg",
-    githubApiContributors:
-      "https://api.github.com/repos/openebs/openebs-docs/contributors?q=contributions&order=desc",
     footbarLinks: {
       gettingStarted: [
         {
