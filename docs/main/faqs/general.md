@@ -4,6 +4,7 @@ title: OpenEBS FAQs
 keywords: 
  - OpenEBS FAQ
  - FAQs
+ - General FAQ about OpenEBS
 description: The FAQ section about OpenEBS helps to address common concerns, questions, and objections that users have about OpenEBS.
 ---
 
@@ -173,17 +174,17 @@ An OpenEBS Jiva volume is a controller deployed during OpenEBS installation. Vol
 
 **Note:** Each replica is scheduled in a unique K8s node, and a K8s node never has two replicas of one OpenEBS volume.
 
-### What are the recommended iscsi timeout settings on the host?
+### What are the recommended iSCSI timeout settings on the host?
 
 There are cases when application pod and OpenEBS cStor target pod are running on different nodes. In such cases, there may be chances that application can go to read only when K8s takes around 5 mins to re-schedule OpenEBS target pod to a new Node. To avoid such scenarios, default iscsi timeout values can be configured to the recommended one. 
 
-#### Configure the iscsi timeout value
+#### Configure the iSCSI timeout value
 The following explains the configuration change for 2 different scenarios.
 
 1. For New iSCSI sessions
 2. For those sessions already logged in to iSCSI target.
 
-**For New iSCSI sessions**:
+**For new iSCSI sessions**:
 
 Do below configuration settings on the host node to change the default iscsi timeout value.
 

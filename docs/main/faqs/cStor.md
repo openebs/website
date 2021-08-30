@@ -2,9 +2,9 @@
 id: cStorFAQ
 title: cStor FAQs
 keywords: 
- - OpenEBS FAQ
+ - cStor FAQ
  - FAQs
-description: The FAQ section about OpenEBS helps to address common concerns, questions, and objections that users have about OpenEBS.
+description: The FAQ section about cStor helps to address common concerns, questions, and objections that users have about cStor.
 ---
 
 [Prerequisites to run CStor-CSI in rancher based clusters](#prerequisites-for-rancher)
@@ -162,7 +162,7 @@ The following steps will help to verify the cStor volume running status.
    **ReconstructingNewReplica:** cStor volume replica is newly created and it started reconstructing entire data from another healthy replica.
 
 
- ### How to handle replicas with slow disks or slow connectivity in case of cStor volumes? {#slow-replicas-in-cstor-volumes}
+### How to handle replicas with slow disks or slow connectivity in case of cStor volumes? {#slow-replicas-in-cstor-volumes}
 
 CStor target pod disconnects a replica if IO response is not received from a replica within 60 seconds. This can happen due to slow disks in cStor pools or slow connectivity between target pod and cStor pool pods. In order to allow tuning of IO wait time from its default value of 60 seconds, there is an environment variable IO_MAX_WAIT_TIME in `cstor-istgt` container of target pod.
 Add below kind of configuration in target pod deployment under `env` section of `cstor-istgt` container:
