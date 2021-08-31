@@ -158,7 +158,7 @@ home:
     checkConcepts: Documentation
   community:
     label: Community
-    description: OpenEBS is built by a community of experts. With our comunity you can quickly and easily build, train, and deploy your data science workloads on any Kubernetes deployment.
+    description: OpenEBS is built by a community of experts. Join our vibrant comunity to quickly learn, build, and deploy your stateful workloads on any Kubernetes platform.
     joinOnSlack: Join on Slack
     joinOnGitHub: Join on GitHub
   landingScreenImageAlt: Solution to manage your Kubernetes Stateful Workloads
@@ -194,7 +194,7 @@ home:
       title: Multi cloud storage
       description: Automated provisioning and storage replication across pods is challenging. OpenEBS makes complex cross-cloud stateful application storage easy.
     builtInKubernetes:
-      title: Built in Kubernetes
+      title: Kubernetes native storage
       description: Unlike CSI plugins or Linux kernel dependent software, OpenEBS runs entirely in userspace, making deployment and maintenance a snap.
     openSourceLeader:
       title: Open source leader
