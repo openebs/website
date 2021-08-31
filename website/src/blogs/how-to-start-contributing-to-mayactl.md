@@ -15,13 +15,13 @@ excerpt: mayactl is the command line tool for interacting with OpenEBS volumes. 
 
 To know more about the mayactl visit:
 
-[https://docs.openebs.io/docs/next/mayactl.html](https://docs.openebs.io/docs/next/mayactl.html)
+[https://openebs.io/docs/deprecated/mayactl](/docs/deprecated/mayactl)
 
 ## OpenEBS Architecture
 
 ![OpenEBS Architecture](/images/blog/openebs-architecture.png)
 
-To know about the OpenEBS visit: [https://docs.openebs.io/docs/next/introduction.html](https://docs.openebs.io/docs/next/introduction.html)
+To know about the OpenEBS visit: [https://openebs.io/docs](/docs)
 
 ### These few things are required to be installed in your system (with Ubuntu host) to run mayactl
 
@@ -43,7 +43,7 @@ To know about the OpenEBS visit: [https://docs.openebs.io/docs/next/introduction
 
 - Or you can visit the official docker website to install docker
 
-[https://docs.openebs.io/docs/next/mayactl.html](https://docs.openebs.io/docs/next/mayactl.html)
+[https://openebs.io/docs/deprecated/mayactl](/docs/deprecated/mayactl)
 
 2. **open-iscsi package**
 
@@ -203,4 +203,4 @@ Now you can easily see the changes you made in the mayactl command line tool. Yo
 **Reference:**
 
 - [https://www.youtube.com/watch?v=yzMEYT-yzRU](https://www.youtube.com/watch?v=yzMEYT-yzRU)
-- [https://docs.openebs.io/docs/next/introduction.html](https://docs.openebs.io/docs/next/introduction.html?__hstc=216392137.2d2e61b1b8f85b3675bfaef604437f8a.1580205967521.1580205967521.1580205967521.1&__hssc=216392137.1.1580205967522&__hsfp=2262740235)
+- [https://openebs.io/docs](/docs?__hstc=216392137.2d2e61b1b8f85b3675bfaef604437f8a.1580205967521.1580205967521.1580205967521.1&__hssc=216392137.1.1580205967522&__hsfp=2262740235)

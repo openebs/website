@@ -46,7 +46,7 @@ OpenEBS uses a minimum of three replicas to run OpenEBS clusters with high avail
 ### Quick Steps to Set Up OpenEBS on GKE
 
 - Set up a three-node GKE cluster with local disks by enabling the Cluster Autoscaler feature.
-- Install OpenEBS on Kubernetes Nodes. This should be simple, and a couple of methods are discussed at the beginning of our docs, using either a Helm Chart or directly from Kubectl. More details are mentioned in the [OpenEBS documentation](https://docs.openebs.io/).
+- Install OpenEBS on Kubernetes Nodes. This should be simple, and a couple of methods are discussed at the beginning of our docs, using either a Helm Chart or directly from Kubectl. More details are mentioned in the [OpenEBS documentation](/docs).
 - Use OpenEBS Storage Classes to create Persistent Volumes for your stateful applications.
 
 ## Detailed Explanation of OpenEBS 0.7 Cluster Deployment on GKE across AZs and Rebuilding of PVs.

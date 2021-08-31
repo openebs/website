@@ -93,7 +93,7 @@ Whichever method you use, keep in mind that the granularity of control that cont
 
 I hope this blog is of use to those of you wrestling with ways to ensure resilience while running real (stateful) workloads on Kubernetes. The good news is that OpenEBS and other open source projects in and around Kubernetes are quickly accumulating thousands or tens of thousands of production hours and there are many experts that frequent such channels and are often ready and willing to help.
 
-Some of this experience informs our docs in the OpenEBS community, including common patterns for workloads such as Minio, MySql, Cassandra, Elastic and many others: [https://docs.openebs.io/docs/next/mysql.html](https://docs.openebs.io/docs/next/mysql.html)
+Some of this experience informs our docs in the OpenEBS community, including common patterns for workloads such as Minio, MySql, Cassandra, Elastic and many others: [https://openebs.io/docs/stateful-applications/mysql](/docs/stateful-applications/mysql)
 
 As mentioned, you can also see these and other workloads on display as each commit to master for OpenEBS is tested against them. You can even choose to inject chaos into the testing of these workloads on OpenEBS as it is developed and matured: [https://openebs.ci/workload-dashboard](https://openebs.ci/workload-dashboard)
 

@@ -40,7 +40,7 @@ OpenEBS will have a minimum of 3 replicas to run the OpenEBS cluster with high a
 
 1. Setup K8s nodes to automount the disks and configure iSCSI initiators during reboot.
 2. Similarly, configure the AWS “User Data” under the launch configuration to manage the iSCSI initiators and auto mounting of disks during launch or reboot.
-3. Install OpenEBS on Kubernetes Nodes. This should be simple, and a couple of methods are discussed at the beginning of our docs, either using a Helm Chart or directly from Kubectl. More details are mentioned in [https://docs.openebs.io](https://docs.openebs.io/).
+3. Install OpenEBS on Kubernetes Nodes. This should be simple, and a couple of methods are discussed at the beginning of our docs, either using a Helm Chart or directly from Kubectl. More details are mentioned in [https://openebs.io/docs](/docs).
 4. Use OpenEBS Storage Classes to create Persistent Volumes for your stateful applications.
 
 Below I provide step by step instructions that you should be able to cut, paste, and customize. As you can see, these include how to configure your AWS account for this simple POC as well.

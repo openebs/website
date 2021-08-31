@@ -58,7 +58,7 @@ Get the available cStor Pools for creating new cStor volume replica. The followi
 
 Example Output:
 ![](https://lh6.googleusercontent.com/lcbO830nSZgValr-I4ci7FHRa6Qvqf3eG-bycWHHAniRD8mb8dwRHOwxeVObFqj4FqvXbNkb_oZUdWhMgAQuHvU1pYDecvWXhDetYGdJADBQhWfzMuwJm4d9Ywgg6bAKkj-Sd79a)
-From the above example output, there are 2 cStor pools available, i.e., ***cstor-disk-pool-2phf*** and ***cstor-disk-pool-zm8l***. So it is possible to scale up the current volume replica count to 3 from 1. If there are no cStor pools available to perform volume replica scale-up, then follow the [steps](https://docs.openebs.io/docs/next/ugcstor.html#expanding-cStor-pool-to-a-new-node) to create a new cStor pool by updating existing SPC configuration.
+From the above example output, there are 2 cStor pools available, i.e., ***cstor-disk-pool-2phf*** and ***cstor-disk-pool-zm8l***. So it is possible to scale up the current volume replica count to 3 from 1. If there are no cStor pools available to perform volume replica scale-up, then follow the [steps](/docs/deprecated/spc-based-cstor#expanding-cStor-pool-to-a-new-node) to create a new cStor pool by updating existing SPC configuration.
 
 Perform the following command to get the details of the cStor Pool where new replica will be created:
 

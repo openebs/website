@@ -106,4 +106,4 @@ pvc-0f07b9ae-3eff-11e8-8f7e-02b983f0a4db-rep-5df559c66c-gs69w    1/1       Runni
 ### Reference Links:
 
 - [https://github.com/linki/chaoskube](https://github.com/linki/chaoskube)
-- [https://docs.openebs.io/](https://docs.openebs.io/)
+- [https://openebs.io/docs](/docs)

@@ -45,7 +45,7 @@ It is possible to modify the default settings via [`kubectl exec`](https://githu
 
 You can read more about these storage policies both for cStor and for the earlier Jiva based storage engine on our docs here:
 
-[OpenEBS Storage Policies](https://docs.openebs.io/docs/next/storagepolicies.html?__hstc=216392137.181b23812f103703b848f80cc28e7104.1575964270497.1575964270497.1575964270497.1&amp;__hssc=216392137.1.1575964270498&amp;__hsfp=2230078507)[docs.openebs.io](https://docs.openebs.io/docs/next/storagepolicies.html?__hstc=216392137.181b23812f103703b848f80cc28e7104.1575964270497.1575964270497.1575964270497.1&amp;__hssc=216392137.1.1575964270498&amp;__hsfp=2230078507)
+[https://openebs.io/docs](/docs?__hstc=216392137.181b23812f103703b848f80cc28e7104.1575964270497.1575964270497.1575964270497.1&amp;__hssc=216392137.1.1575964270498&amp;__hsfp=2230078507)
 
 ![Types of Storage Policies for cStor](/images/blog/types-of-storage-policies-for-cstor.png)
 (***Types of Storage Policies for cStor***)

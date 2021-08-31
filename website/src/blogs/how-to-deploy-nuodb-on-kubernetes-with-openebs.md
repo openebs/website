@@ -130,7 +130,7 @@ Connecting the Kubernetes cluster to MayaOnline provides enhanced visibility of 
 
 ### Configure cStor Pool
 
-After OpenEBS is installed, cStor pool must be configured. If cStor Pool is not already configured in your OpenEBS cluster, this can be done following the instructions [here.](https://docs.openebs.io/docs/next/configurepools.html) A sample YAML named openebs-config.yaml used for configuring cStor Pool is provided in the Configuration details below. During cStor Pool creation, make sure that the maxPools parameter is set to >=3.
+After OpenEBS is installed, cStor pool must be configured. If cStor Pool is not already configured in your OpenEBS cluster, this can be done following the instructions [here](/docs/concepts/cstor#cstor-pools). A sample YAML named openebs-config.yaml used for configuring cStor Pool is provided in the Configuration details below. During cStor Pool creation, make sure that the maxPools parameter is set to >=3.
 
     #Use the following YAMLs to create a cStor Storage Pool.
     # and associated storage class.

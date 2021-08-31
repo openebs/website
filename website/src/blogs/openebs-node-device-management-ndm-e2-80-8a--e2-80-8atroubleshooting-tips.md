@@ -15,7 +15,7 @@ OpenEBS Node Device Management (aka NDM) helps in discovering the block devices 
 
 ### NDM Quick Overview
 
-For setting up NDM in secure mode, please see my previous [blog](https://blog.mayadata.io/openebs/configuring-openebs-to-run-with-security-enhanced-linux), and you can learn how NDM works [here](https://docs.openebs.io/docs/next/ndm.html). Here is a quick snapshot of the key components of NDM.
+For setting up NDM in secure mode, please see my previous [blog](https://blog.mayadata.io/openebs/configuring-openebs-to-run-with-security-enhanced-linux), and you can learn how NDM works [here](/docs/user-guides/ndm). Here is a quick snapshot of the key components of NDM.
 
 - NDM components are installed in the OpenEBS Namespace. Ensure that NDM pods part of the NDM DaemonSet are running on all the storage nodes. NDM Operator helps with allocating Block Devices to Block Device Claims and should be running.
 - NDM DaemonSet pod discovers all the block devices attached to the node and creates BlockDevice custom resource for each device. Note that NDM will filter out some of the devices like loopback device and so forth as configured in the NDM ConfigMap. `kubectl get bd -n openebs`

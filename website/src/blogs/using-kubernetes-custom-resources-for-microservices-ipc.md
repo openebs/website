@@ -10,7 +10,7 @@ not_has_feature_image: true
 
 This blog talks about why I used [Custom Resources](https://kubernetes.io/docs/concepts/api-extension/custom-resources) as a way for communication between different microservices (aka Kubernetes Pods).
 
-OpenEBS is a fully containerized storage solution running within Kubernetes. Infact [OpenEBS](https://docs.openebs.io/) extends the Kubernetes cluster functionality to manage storage and stateful workloads.
+OpenEBS is a fully containerized storage solution running within Kubernetes. Infact [OpenEBS](https://openebs.io/docs) extends the Kubernetes cluster functionality to manage storage and stateful workloads.
 
 OpenEBS has an operator (or orchestration component) called [Maya](https://github.com/openebs/maya) (magic) that relays Volume management operations to several storage engines. OpenEBS already supports [Jiva](https://github.com/openebs/jiva) based storage engine. The purpose is to plugin a more independent [cStor](https://github.com/openebs/cstor)based storage engine (making use of zfs on userspace).
 

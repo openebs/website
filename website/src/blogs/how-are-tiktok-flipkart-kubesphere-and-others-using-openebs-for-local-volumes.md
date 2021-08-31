@@ -71,7 +71,7 @@ OpenEBS provides different types of Local Volumes that can be used to provide lo
 
 I hope this overview of LocalPV options and OpenEBS Local has been useful. I plan to follow this with further blogs that get into the details of each flavor of the OpenEBS Local PV.
 
-In the meantime, you can get started easily with [OpenEBS Local PV](https://docs.openebs.io/docs/next/overview.html), and the community is always available on the Kubernetes Slack #openebs channel.
+In the meantime, you can get started easily with [OpenEBS Local PV](/docs), and the community is always available on the Kubernetes Slack #openebs channel.
 
 Or read more on what our OpenEBS users and partners have to say about Local PV. From our friends at 2nd Quadrant (now part of EDB): [Local Persistent Volumes and PostgreSQL usage in Kubernetes](https://www.2ndquadrant.com/en/blog/local-persistent-volumes-and-postgresql-usage-in-kubernetes/)
 
