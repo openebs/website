@@ -111,6 +111,7 @@ const LinksContactUs = () => {
   );
 };
 const Contributors = ({ isTopContributors }) => {
+  
   return (
     <div className="col">
       {(
@@ -118,51 +119,63 @@ const Contributors = ({ isTopContributors }) => {
           {
             isTopContributors ? (
               <>
-                <span className="footer__title">
-                  <Translate
-                    id="component.Footer.topContributors"
-                    description="Top contributors label in footer"
-                  >Top contributors</Translate>
-                </span>
-                <ul className="footer__items">
-                  {topContributors?.slice(0, 6).map((item) => {
-                    return (
-                      <li className="footer__item" key={item}>
-                        <Link
-                          className="footer__link-item"
-                          to={githubProfile(item)}
-                          target="_blank"
-                        >
-                          {item}
-                        </Link>
-                      </li>
-                    );
-                  })}
-                </ul>
+              {
+                topContributors.length ? (
+                  <>
+                    <span className="footer__title">
+                      <Translate
+                        id="component.Footer.topContributors"
+                        description="Top contributors label in footer"
+                      >Top contributors</Translate>
+                    </span>
+                    <ul className="footer__items">
+                      {topContributors?.slice(0, 6).map((item) => {
+                        return (
+                          <li className="footer__item" key={item}>
+                            <Link
+                              className="footer__link-item"
+                              to={githubProfile(item).profile}
+                              target="_blank"
+                            >
+                              {githubProfile(item).id}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </>
+                ) : <></>
+              }
               </>
             ) : (
               <>
-                <span className="footer__title">
-                  <Translate
-                    id="component.Footer.newContributors"
-                    description="New contributors label in footer"
-                  >New contributors</Translate>
-                </span>
-                <ul className="footer__items">
-                {newContributors?.slice(0, 6).map((item) => {
-                  return (
-                    <li className="footer__item" key={item}>
-                      <Link
-                        className="footer__link-item"
-                        to={githubProfile(item)}
-                        target="_blank"
-                      >
-                        {item}
-                      </Link>
-                    </li>
-                  );
-                })}
-                </ul>
+              {
+                newContributors.length ? (
+                  <>
+                    <span className="footer__title">
+                      <Translate
+                        id="component.Footer.newContributors"
+                        description="New contributors label in footer"
+                      >New contributors</Translate>
+                    </span>
+                    <ul className="footer__items">
+                      {newContributors?.slice(0, 6).map((item) => {
+                        return (
+                          <li className="footer__item" key={item}>
+                            <Link
+                              className="footer__link-item"
+                              to={githubProfile(item).profile}
+                              target="_blank"
+                            >
+                              {githubProfile(item).id}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </>
+                ) : <></>
+              }
             </>
             )
           }
