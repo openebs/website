@@ -9,9 +9,6 @@ const getPosts = () => {
     if (err) {
       console.error(`Failed to load files from the directory${err}`);
     }
-    const EXTENSION = '.md';
-    // eslint-disable-next-line no-param-reassign
-    files = files.filter((file) => path.extname(file).toLowerCase() === EXTENSION);
     files.forEach((file, index) => {
       const obj = {};
       let post;

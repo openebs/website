@@ -18,7 +18,7 @@ OpenEBS NDM (Node Device Manager) has been declared GA after being deployed in p
 * Local Storage Discovery - detecting partitions, devices used as a LUKS device or LVM device, or if it can be accessed as a raw block device.
 * Cluster-wide storage visibility
 * Detect the movement of storage devices across nodes
-* Book-keeping/storage asset management  - allocating/reserving, which type of storage should be provided to which workloads.
+* Book-keeping/storage asset management - allocating/reserving, which type of storage should be provided to which workloads.
 
 ## Getting Started with NDM
 

@@ -176,7 +176,7 @@ We can verify our storage pool with the following command:
     cstor-disk-pool-vbz5   68.2M       9.87G   9.94G      Healthy   false      striped
 
 **Step 6: Create a Storage Class**  
-Now that we have a storage pool, let’s configure the YAML file for our storage class.  In this demo, I’ve named it “openebs-sc-rep1.yaml”.
+Now that we have a storage pool, let’s configure the YAML file for our storage class. In this demo, I’ve named it “openebs-sc-rep1.yaml”.
 
     $ vim openebs-sc-rep1.yaml
 
