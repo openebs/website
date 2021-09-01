@@ -77,11 +77,11 @@ Note: — This step is not required if you are using the OpenEBS version 0.9 whi
 
 Configuration of storage pool, storage class and PVC are like any other platform and the steps are outlined in [https://openebs.io/docs](/docs?__hstc=216392137.a6c0b8ba8416b65c52c0226c0e0b69fd.1579867391229.1579867391229.1579867391229.1&amp;__hssc=216392137.1.1579867391230&amp;__hsfp=3765904294)
 
-Pool Configuration — [https://docs.openebs.io/docs/next/configurepools.html#manual-mode](https://docs.openebs.io/docs/next/configurepools.html?__hstc=216392137.a6c0b8ba8416b65c52c0226c0e0b69fd.1579867391229.1579867391229.1579867391229.1&amp;__hssc=216392137.1.1579867391230&amp;__hsfp=3765904294#manual-mode)
+Pool Configuration — [https://openebs.io/docs/deprecated/spc-based-cstor#creating-cStor-storage-pools](/docs/deprecated/spc-based-cstor#creating-cStor-storage-pools?__hstc=216392137.a6c0b8ba8416b65c52c0226c0e0b69fd.1579867391229.1579867391229.1579867391229.1&amp;__hssc=216392137.1.1579867391230&amp;__hsfp=3765904294#manual-mode)
 
-Storage class — [https://docs.openebs.io/docs/next/configuresc.html#creating-a-new-class](https://docs.openebs.io/docs/next/configuresc.html?__hstc=216392137.a6c0b8ba8416b65c52c0226c0e0b69fd.1579867391229.1579867391229.1579867391229.1&amp;__hssc=216392137.1.1579867391230&amp;__hsfp=3765904294#creating-a-new-class)
+Storage class — [https://openebs.io/docs/deprecated/spc-based-cstor#creating-cStor-storage-class](/docs/deprecated/spc-based-cstor#creating-cStor-storage-class?__hstc=216392137.a6c0b8ba8416b65c52c0226c0e0b69fd.1579867391229.1579867391229.1579867391229.1&amp;__hssc=216392137.1.1579867391230&amp;__hsfp=3765904294#creating-a-new-class)
 
-Volume — [https://docs.openebs.io/docs/next/provisionvols.html#provision-from-a-disk-pool](https://docs.openebs.io/docs/next/provisionvols.html?__hstc=216392137.a6c0b8ba8416b65c52c0226c0e0b69fd.1579867391229.1579867391229.1579867391229.1&amp;__hssc=216392137.1.1579867391230&amp;__hsfp=3765904294#provision-from-a-disk-pool)
+Volume — [https://openebs.io/docs/deprecated/spc-based-cstor#provisioning-a-cStor-volume](/docs/deprecated/spc-based-cstor#provisioning-a-cStor-volume?__hstc=216392137.a6c0b8ba8416b65c52c0226c0e0b69fd.1579867391229.1579867391229.1579867391229.1&amp;__hssc=216392137.1.1579867391230&amp;__hsfp=3765904294#provision-from-a-disk-pool)
 
 ## Conclusion:
 

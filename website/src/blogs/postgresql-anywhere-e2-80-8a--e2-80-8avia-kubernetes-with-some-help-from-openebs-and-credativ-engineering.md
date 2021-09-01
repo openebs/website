@@ -92,7 +92,7 @@ In addition to the benefits of using OpenEBS, there is also value in using MayaO
 
 **Configure cStor Pool**
 
-1. If cStor Pool is not configured in your OpenEBS cluster, follow the steps presented [here](https://docs.openebs.io/docs/next/configurepools.html?__hstc=216392137.adc0011a00126e4785bfdeb5ec4f8c03.1580115966430.1580115966430.1580115966430.1&amp;__hssc=216392137.1.1580115966431&amp;__hsfp=818904025). As PostgreSQL is a StatefulSet application, it requires a single storage replication factor. If you prefer additional redundancy, you can always increase the replica count to 3.
+1. If cStor Pool is not configured in your OpenEBS cluster, follow the steps presented [here](/docs/deprecated/spc-based-cstor#creating-cStor-storage-pools?__hstc=216392137.adc0011a00126e4785bfdeb5ec4f8c03.1580115966430.1580115966430.1580115966430.1&amp;__hssc=216392137.1.1580115966431&amp;__hsfp=818904025). As PostgreSQL is a StatefulSet application, it requires a single storage replication factor. If you prefer additional redundancy, you can always increase the replica count to 3.
 During cStor Pool creation, make sure that the maxPools parameter is set to >=3. If a cStor pool is already configured, move on to the next step. A sample YAML named openebs-config.yaml can be used for configuring cStor Pool and is provided in the Configuration details below.
 
 **openebs-config.yaml**
@@ -127,7 +127,7 @@ During cStor Pool creation, make sure that the maxPools parameter is set to >=3.
 
 **Create the Storage Class**
 
-1. You must configure a StorageClass to provision a cStor volume on a cStor pool. In this solution, we use a StorageClass to consume the cStor Pool. This is created using external disks attached on the Nodes. The storage pool is created using the steps provided in the [Configure StoragePool](https://docs.openebs.io/docs/next/configurepools.html?__hstc=216392137.adc0011a00126e4785bfdeb5ec4f8c03.1580115966430.1580115966430.1580115966430.1&amp;__hssc=216392137.1.1580115966431&amp;__hsfp=818904025) section. In this solution, PostgreSQL is a deployment. Because this requires replication at the storage level, the cStor volume replicaCount is 3. A sample YAML named openebs-sc-pg.yaml used to consume the cStor pool with a cStorVolume Replica count of 3 is provided in the configuration details below.
+1. You must configure a StorageClass to provision a cStor volume on a cStor pool. In this solution, we use a StorageClass to consume the cStor Pool. This is created using external disks attached on the Nodes. The storage pool is created using the steps provided in the [Configure StoragePool](/docs/deprecated/spc-based-cstor#creating-cStor-storage-pools?__hstc=216392137.adc0011a00126e4785bfdeb5ec4f8c03.1580115966430.1580115966430.1580115966430.1&amp;__hssc=216392137.1.1580115966431&amp;__hsfp=818904025) section. In this solution, PostgreSQL is a deployment. Because this requires replication at the storage level, the cStor volume replicaCount is 3. A sample YAML named openebs-sc-pg.yaml used to consume the cStor pool with a cStorVolume Replica count of 3 is provided in the configuration details below.
 
 **openebs-sc-pg.yaml**
 

@@ -139,7 +139,7 @@ You can skip this step if using the default cStor Sparse pool.
 
 ![Disks detected by NDM, along with sparse disks](/images/blog/ndm-detected-disks.png)
 
-**Step 3c**: Create a storage pool claim using the instructions at [https://docs.openebs.io/docs/next/configurepools.html](https://docs.openebs.io/docs/next/configurepools.html)
+**Step 3c**: Create a storage pool claim using the instructions at [https://openebs.io/docs/deprecated/spc-based-cstor#creating-cStor-storage-pools](/docs/deprecated/spc-based-cstor#creating-cStor-storage-pools)
 
 Create a `cstor-pool-config.yaml` as mentioned in the docs.
 
