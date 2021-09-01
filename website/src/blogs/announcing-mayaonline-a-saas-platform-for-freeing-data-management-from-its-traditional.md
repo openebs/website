@@ -34,7 +34,7 @@ One simple use case is sifting through the snapshots of a volume and creating a 
 
 ## Managing hyper-convergence:
 
-The same problem of sifting through hundreds of objects and their logical and physical relationships can arise while managing underlying storage media, including disks, cloud volumes, SSDs, and more. MayaOnline helps here as well, simplifying disk monitoring and management, the pooling of disks, expansion of capacity . OpenEBS NDM is a key piece go get the hyper-convergence management right, you can refer to [this blog](https://blog.openebs.io/achieving-native-hyper-convergence-in-kubernetes-cb93e0bcf5d3) for more thoughts on contributing NDM to Kubernetes itself.
+The same problem of sifting through hundreds of objects and their logical and physical relationships can arise while managing underlying storage media, including disks, cloud volumes, SSDs, and more. MayaOnline helps here as well, simplifying disk monitoring and management, the pooling of disks, expansion of capacity . OpenEBS NDM is a key piece go get the hyper-convergence management right, you can refer to [this blog](/blog/achieving-native-hyper-convergence-in-kubernetes) for more thoughts on contributing NDM to Kubernetes itself.
 
 ![Browse disks relationship to a volume](https://cdn-images-1.medium.com/max/800/1*7w2jYA2KghNxT7c96snCxw.gif)
 

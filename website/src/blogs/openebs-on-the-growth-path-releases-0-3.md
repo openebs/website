@@ -34,7 +34,7 @@ We are very attentive towards making the onboarding experience as smooth and sim
 
 ---
 
-The YAML files can be downloaded from [here](https://github.com/openebs/openebs/tree/master/k8s). If you don’t have an existing Kubernetes cluster, you can easily set it up using our [vagrant box](https://blog.openebs.io/multi-node-kubernetes-1-6-cluster-provisioning-made-easy-using-sandbox-vagrant-box-53dfc2ecc3cd). Detailed instructions for running OpenEBS on GKE can be found [here](https://github.com/openebs/openebs/blob/master/k8s/hyperconverged/tutorial-configure-openebs-gke.md). You could also use our [Ansible Playbooks](https://github.com/openebs/openebs/blob/master/e2e/ansible/openebs-on-premise-deployment-guide.md) to setup Kubernetes cluster with OpenEBS storage on-premise on physical servers OR virtual machines.
+The YAML files can be downloaded from [here](https://github.com/openebs/openebs/tree/master/k8s). If you don’t have an existing Kubernetes cluster, you can easily set it up using our [vagrant box](/blog/multinode-kubernetes-16-cluster-provisioning-made-easy-using-sandbox-vagrant-box). Detailed instructions for running OpenEBS on GKE can be found [here](https://github.com/openebs/openebs/blob/master/k8s/hyperconverged/tutorial-configure-openebs-gke.md). You could also use our [Ansible Playbooks](https://github.com/openebs/openebs/blob/master/e2e/ansible/openebs-on-premise-deployment-guide.md) to setup Kubernetes cluster with OpenEBS storage on-premise on physical servers OR virtual machines.
 
 We also have (with the help of the community) focused efforts in providing [examples](https://github.com/openebs/openebs/tree/master/k8s/demo) of persistence work-loads. In the current release, we are happy to provide the following:
 

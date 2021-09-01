@@ -87,7 +87,7 @@ You’d probably agree that such an approach would have some benefits including:
 
 - This being a storage blog, it is worth reiterating the point that shared storage is inherently less performant these days than direct attached or DAS. That is a fairly new reality. It used to be that DAS was really slow disk and the way to get IOPS was to stripe across a bunch of faster disks. That was a primary driver for shared storage. Imagine that — at one time CEPH would have been faster than the underlying hardware! How times have changed.
 - Our CTO, Jeffry Molanus does a good job walking through how the landscape of performance has changed why this and other changes now favor what we call “container attached storage”:
-- [https://blog.openebs.io/not-yet-another-distributed-storage-system-57ee9220c409](https://blog.openebs.io/not-yet-another-distributed-storage-system-57ee9220c409)
+- [https://openebs.io/blog/not-yet-another-distributed-storage-system](/blog/not-yet-another-distributed-storage-system)
 
 **Natively cross cloud — with the help of metadata and routing services:**
 

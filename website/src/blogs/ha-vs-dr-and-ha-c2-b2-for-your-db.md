@@ -55,7 +55,7 @@ This is where HA is put to use. However, this is not the same as disaster recove
 
 Kubernetes, of course, helps here by ensuring that multiple replicas of the actual workload can be kept alive. However, Kubernetes is not necessarily proactive when it comes to keeping stateful workloads alive. This is where a properly deployed DB layer will be useful and provide a layer of HA for the application. This guarantees that reads and writes of state for the application are never interrupted. Typically, this is done by implementing a quick failover (quicker than Kubernetes might notice, without help) to a destination for writes and multiple read replicas. However, architectures amongst the dozens of DBs vary. You can read more about this subject in a recent blog I wrote on running your own DBaaS that also touches on picking the right DB from the start:
 
-[https://blog.openebs.io/running-your-own-dbaas-based-on-your-preferred-dbs-kubernetes-operators-and-containerized-storage-3cc36ba115b8](https://blog.openebs.io/running-your-own-dbaas-based-on-your-preferred-dbs-kubernetes-operators-and-containerized-storage-3cc36ba115b8)
+[https://openebs.io/blog/running-your-own-dbaas-based-on-your-preferred-dbs-kubernetes-operators-and-containerized-storage](/blog/running-your-own-dbaas-based-on-your-preferred-dbs-kubernetes-operators-and-containerized-storage)
 
 The TL;DR from above includes consideration about which operators you want to use for your DBs. Of course, DBs and other stateful workloads need some imperative flow to recover from failures such as Do X (log failure), Do Y (direct writes and/or reads to the active replicas), Do Z (clean up the old node), etc.
 

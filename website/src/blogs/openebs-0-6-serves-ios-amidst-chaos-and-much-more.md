@@ -21,7 +21,7 @@ Since the OpenEBS 0.5 release we have seen so many ways users have deployed Open
 The timing of OpenEBS 0.5 was perfect in that it coincided with a take-off in interest in stateful workloads on Kubernetes. Some deployment patterns I’ve encountered just in the last few weeks include:
 
 - GitLab for internal IT teams
-- Kube weekly just featured a step by step blog on this subject: [https://blog.openebs.io/git-freedom-on-kubernetes-3a491dd37cdf](https://blog.openebs.io/git-freedom-on-kubernetes-3a491dd37cdf)
+- Kube weekly just featured a step by step blog on this subject: [https://openebs.io/blog/git-freedom-on-kubernetes](/blog/git-freedom-on-kubernetes)
 - Data Science training sessions
 - Here we are seeing hundreds of pods with stateful workloads spun up and destroyed repeatedly — really a great use case for container attached storage
 - Running Minio on OpenEBS which some users have called a happy marriage between OpenEBS block and Minio S3

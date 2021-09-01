@@ -65,7 +65,7 @@ Concerns:
 
 The “tech Enthusiasts” (or the nights watch) have seen the challenges that the massively scaled applications (Winter) can bring and are seeking alternate options.
 
-A handful of vendors like [portworx](https://t.co/Aawo9fr4Dz), [storage_os](https://storageos.com/), [rook](https://rook.io/), [openebs](https://www.openebs.io/) are working on alternate options, what is now being termed as [Cloud Native Storage](https://blog.openebs.io/cloud-native-storage-vs-marketers-doing-cloud-washing-c936089c2b58) or [Container Native Storage](https://storageos.com/storageos-vision-cloud-native-storage-todays-modern/).
+A handful of vendors like [portworx](https://t.co/Aawo9fr4Dz), [storage_os](https://storageos.com/), [rook](https://rook.io/), [openebs](https://www.openebs.io/) are working on alternate options, what is now being termed as [Cloud Native Storage](/blog/cloud-native-storage-vs-marketers-doing-cloud-washing) or [Container Native Storage](https://storageos.com/storageos-vision-cloud-native-storage-todays-modern/).
 
 *While the blogs above (and many others) dwell into what makes a storage container-native, the one that stands out is — ***the flexibility***.*
 
