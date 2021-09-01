@@ -6,7 +6,7 @@
     "docusaurus": "docusaurus",
     "prestart": "yarn run write-translations",
     "start": "docusaurus start",
-    "prebuild": "yarn run write-translations",
+    "prebuild": "yarn run write-translations && yarn run get-contributors-info",
     "build": "docusaurus build",
     "previewBuild": "docusaurus build --out-dir docs",
     "swizzle": "docusaurus swizzle",

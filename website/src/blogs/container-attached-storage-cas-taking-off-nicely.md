@@ -11,7 +11,7 @@ I had the fortune of [presenting](https://www.slideshare.net/OpenEBS/openebs-cas
 
 ## Just a quick recap on CAS:
 
-[Container Attached Storage (CAS)](https://docs.openebs.io/docs/next/conceptscas.html) is a new storage architecture to run the entire storage software in containers and hence in user space. This architecture has many benefits, primary one being “a dedicated storage controller per application” and bring in the possibility of hardening the storage controller for a given application workload. Read more on the benefits at the [CNCF blog](https://www.cncf.io/blog/2018/04/19/container-attached-storage-a-primer/). A typical CAS architecture example is shown below.
+[Container Attached Storage (CAS)](/docs/concepts/cas) is a new storage architecture to run the entire storage software in containers and hence in user space. This architecture has many benefits, primary one being “a dedicated storage controller per application” and bring in the possibility of hardening the storage controller for a given application workload. Read more on the benefits at the [CNCF blog](https://www.cncf.io/blog/2018/04/19/container-attached-storage-a-primer/). A typical CAS architecture example is shown below.
 
 ![CAS architecture with controller and replica pods for each application](https://cdn-images-1.medium.com/max/800/1*4dJDmPbxxrP-fZK7NZZmYg.png)
 

@@ -19,7 +19,7 @@ Pre-requisites:
 
 - Beginner knowledge of Kubernetes
 - Basic knowledge of GO Language
-- Basic understanding of how OpenEBS functions. You can get started with OpenEBS [docs](https://docs.openebs.io/?__hstc=216392137.a9b75e72cb4b227999b631a7d9fb75d2.1579850476359.1579850476359.1579850476359.1&amp;__hssc=216392137.1.1579850476359&amp;__hsfp=3765904294) and the OpenEBS [white paper](https://www.openebs.io/assets/docs/WP-OpenEBS-0_7.pdf?__hstc=216392137.a9b75e72cb4b227999b631a7d9fb75d2.1579850476359.1579850476359.1579850476359.1&amp;__hssc=216392137.1.1579850476359&amp;__hsfp=3765904294)
+- Basic understanding of how OpenEBS functions. You can get started with OpenEBS [docs](/docs?__hstc=216392137.a9b75e72cb4b227999b631a7d9fb75d2.1579850476359.1579850476359.1579850476359.1&amp;__hssc=216392137.1.1579850476359&amp;__hsfp=3765904294) and the OpenEBS white paper
 
 ## Setting up the Development Environment for mayactl
 

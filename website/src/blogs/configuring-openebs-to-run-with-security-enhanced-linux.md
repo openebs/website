@@ -17,7 +17,7 @@ So at a high level, to allow OpenEBS to run in privileged mode in SELinux=on nod
 
 Here are the steps I have followed:
 
-****Step 1: Setup appropriate security context for OpenEBS****
+**Step 1: Setup appropriate security context for OpenEBS**
 
 **On OpenShift Clusters:** Select the right SCC for OpenEBS
 
@@ -67,7 +67,7 @@ Then apply the YAML file
 
     kubectl apply -f openebs-privileged-psp.yaml
 
-****Step 2: Install OpenEBS****
+**Step 2: Install OpenEBS**
 
 Download the latest version of `openebs-operator.yaml` file.
 
@@ -124,22 +124,22 @@ Install OpenEBS
 
 **Note: If you are using helm to install openebs, you will need to apply the above change after it has been installed. In a future release of the helm chart, I will work on making this configurable parameter.**
 
-****Step 3: (Optional) Create a new cStor Pool.****
+**Step 3: (Optional) Create a new cStor Pool.**
 
 You can skip this step if using the default cStor Sparse pool.
 
-****Step 3a****: Verify all pods are working and cStor Pools are running
+**Step 3a**: Verify all pods are working and cStor Pools are running
 
 ![List of all pods in openebs namespace after installation](/images/blog/pod-lists.png)
 
-****Step 3b****: Verify that disks available on the nodes are discovered.
+**Step 3b**: Verify that disks available on the nodes are discovered.
 
     kubectl get disks
 
 
 ![Disks detected by NDM, along with sparse disks](/images/blog/ndm-detected-disks.png)
 
-****Step 3c****: Create a storage pool claim using the instructions at [https://docs.openebs.io/docs/next/configurepools.html](https://docs.openebs.io/docs/next/configurepools.html)
+**Step 3c**: Create a storage pool claim using the instructions at [https://docs.openebs.io/docs/next/configurepools.html](https://docs.openebs.io/docs/next/configurepools.html)
 
 Create a `cstor-pool-config.yaml` as mentioned in the docs.
 
@@ -171,9 +171,9 @@ Apply this file `kubectl apply -f cstor-pool-config.yaml`
 
 ![3 cStor pool pods will be running](/images/blog/cstor-pool.png)
 
-****Step 3d****: Create a new storage class using SPC as `cstor-pool1` or edit the default storage class to use the newly created SPC. I have edited the already available default storage class.
+**Step 3d**: Create a new storage class using SPC as `cstor-pool1` or edit the default storage class to use the newly created SPC. I have edited the already available default storage class.
 
-****Step 4: Running Percona Application****
+**Step 4: Running Percona Application**
 
     wget https://raw.githubusercontent.com/openebs/openebs/master/k8s/demo/percona/percona-openebs-cstor-sparse-deployment.yaml
 

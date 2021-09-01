@@ -31,7 +31,7 @@ An issue where NDM could cause data loss by creating a partition table on an uni
 
 ### **Useful Links and Summary:**
 
-If you are interested in knowing more details regarding the changes that made to this release, please visit the release note [link](https://github.com/openebs/openebs/releases/tag/v2.2.0). To try out OpenEBS, you can visit [https://docs.openebs.io/](https://docs.openebs.io/) and follow the user guides.
+If you are interested in knowing more details regarding the changes that made to this release, please visit the release note [link](https://github.com/openebs/openebs/releases/tag/v2.2.0). To try out OpenEBS, you can visit [https://openebs.io/docs](/docs) and follow the user guides.
 
 You can visit the following link to learn more or experiment with Mayastor
 [https://github.com/openebs/mayastor](https://github.com/openebs/mayastor)

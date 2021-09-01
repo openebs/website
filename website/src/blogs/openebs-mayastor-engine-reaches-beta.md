@@ -7,7 +7,6 @@ date: 19-11-2020
 excerpt: Mayastor, the storage engine by OpenEBS has reached the beta stage. Read the blog to know more.
 ---
 
-title: Mayastor Engine Reaches Beta
 As I write this, it is early November, and the winds of change are blowing. The United States has a new president. Here in the United Kingdom, Keats' days of mists and mellow fruitfulness are departing, replaced by a low sun and the first morning frosts. And at MayaData, we see the Mayastor project carefully but tenaciously emerging from alpha/pre-release into its beta phase. In fact, Mayastor now undergirds MayaData’s commercial offering for performance sensitive containerized workloads, called [Kubera Propel](https://mayadata.io/product).
 
 > ***“Beta Software: Software considered to be feature complete and substantially free of known major defects”***

@@ -84,4 +84,4 @@ NOTE:
 
 ![Output after the BlockDevices get attached for all the nodes](https://lh4.googleusercontent.com/i9KOccFfCGjP-Q3E2KpR0YOV3EXDfTin4RbNZbgo9A0PTSYRUj8E989KqnzHYXMigbfE0FZWK1_V0Jg_lAvZKN9iShkxLIyMFGmO9uVEYWhcosL-xUNc-VnrXpYcbu1VDKE-5zOT)
 
-Next, you have to provision OpenEBS volumes.  Click [here](https://docs.openebs.io/docs/next/ugcstor.html#provisioning-a-cStor-volume) to know more.
+Next, you have to provision OpenEBS volumes. Click [here](/docs/deprecated/spc-based-cstor#provisioning-a-cStor-volume) to know more.

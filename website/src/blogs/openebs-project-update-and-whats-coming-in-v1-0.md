@@ -57,7 +57,7 @@ The administrators can customize the OpenEBS parameters by modifying the YAMLs. 
 - Setting up Taints and Tolerations to decide the nodes where the Storage Pods need to be deployed.
 - Setting up the Node Selectors or Anti-Affinity parameters to select the correct nodes for launching the Volume (Data Engine) pods.
 
-For further details check: [https://docs.openebs.io](https://docs.openebs.io/?__hstc=216392137.f0da50a3ce0cf28f99a3c60d1f6006cf.1580117750726.1580117750726.1580117750726.1&amp;__hssc=216392137.1.1580117750727&amp;__hsfp=3765904294).
+For further details check: [https://openebs.io](/docs?__hstc=216392137.f0da50a3ce0cf28f99a3c60d1f6006cf.1580117750726.1580117750726.1580117750726.1&amp;__hssc=216392137.1.1580117750727&amp;__hsfp=3765904294).
 
 Another cool feature that has become a favorite of advanced OpenEBS users is that, as Kubernetes introduces new features that have to be passed on to the Dynamically generated Volume (Data Engine) Pods, users can directly patch the pods and also update the Volume Template YAMLs at run time. To learn more about this feature, hit us up on slack: [https://slack.openebs.io](https://slack.openebs.io/?__hstc=216392137.f0da50a3ce0cf28f99a3c60d1f6006cf.1580117750726.1580117750726.1580117750726.1&amp;__hssc=216392137.1.1580117750727&amp;__hsfp=3765904294)
 

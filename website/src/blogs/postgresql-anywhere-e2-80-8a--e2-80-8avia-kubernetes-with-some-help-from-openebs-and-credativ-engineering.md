@@ -87,7 +87,7 @@ In addition to the benefits of using OpenEBS, there is also value in using MayaO
 
 **Installing OpenEBS**
 
-1. If OpenEBS is not installed in your K8s cluster, you can do it [here](https://docs.openebs.io/docs/next/installation.html?__hstc=216392137.adc0011a00126e4785bfdeb5ec4f8c03.1580115966430.1580115966430.1580115966430.1&amp;__hssc=216392137.1.1580115966431&amp;__hsfp=818904025). If OpenEBS is already installed, move on to the next step.
+1. If OpenEBS is not installed in your K8s cluster, you can do it [here](/docs/user-guides/installation?__hstc=216392137.adc0011a00126e4785bfdeb5ec4f8c03.1580115966430.1580115966430.1580115966430.1&amp;__hssc=216392137.1.1580115966431&amp;__hsfp=818904025). If OpenEBS is already installed, move on to the next step.
 2. Connect to MayaOnline (Optional). Connecting the Kubernetes cluster to [MayaOnline](https://docs.openebs.io/docs/next/app.mayaonline.io?__hstc=216392137.adc0011a00126e4785bfdeb5ec4f8c03.1580115966430.1580115966430.1580115966430.1&amp;__hssc=216392137.1.1580115966431&amp;__hsfp=818904025) provides enhanced visibility of storage resources. MayaOnline has various support options for enterprise customers.
 
 **Configure cStor Pool**

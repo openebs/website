@@ -13,11 +13,11 @@ excerpt: Learn how to deploy Atlassian Jira on OpenEBS in this short post.
 
 #### Install OpenEBS
 
-If OpenEBS is not installed in your K8s cluster, this can be done from [here](https://docs.openebs.io/docs/next/installation.html). If OpenEBS is already installed, go to the next step.
+If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user-guides/installation). If OpenEBS is already installed, go to the next step.
 
 #### Configure cStor Pool
 
-If cStor Pool is not configured in your OpenEBS cluster, this can be done from [here](https://docs.openebs.io/docs/next/ugcstor.html#creating-cStor-storage-pools). Sample YAML named **openebs-config.yaml** for configuring cStor Pool is provided:
+If cStor Pool is not configured in your OpenEBS cluster, this can be done from [here](/docs/deprecated/spc-based-cstor#creating-cStor-storage-pools). Sample YAML named **openebs-config.yaml** for configuring cStor Pool is provided:
 
 ```
 #Use the following YAMLs to create a cStor Storage Pool.

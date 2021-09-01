@@ -191,11 +191,6 @@
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/user-guides/mayactl",
-          "label": "mayactl"
-        },
-        {
-          "type": "doc",
           "id": "version-2.11.0/user-guides/upgrade",
           "label": "Upgrade"
         },
@@ -393,6 +388,11 @@
           "type": "doc",
           "id": "version-2.11.0/deprecated/spc-based-cstor",
           "label": "SPC based cStor guide"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.11.0/deprecated/mayactl",
+          "label": "mayactl"
         }
       ]
     }
