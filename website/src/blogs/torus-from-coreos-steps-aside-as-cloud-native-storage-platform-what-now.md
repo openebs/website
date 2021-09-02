@@ -14,7 +14,7 @@ Torus attempted to solve one of the core infrastructure problems, and like any p
 
 Harder problems require renewed focus, at least in the initial stages to get the product off the ground for the basic use case. The entry barrier must be minimal, if not totally absent. Once the core value is established, in terms of ease of use or scale and just solving a problem in an intuitive way, it graduates into the adoption phase.
 
-With containers changing the landscape of applications, they pose an additional set of requirements on the storage platform, which are covered in my earlier post — [Emerging Storage Trends for Containers](https://blog.openebs.io/emerging-storage-trends-for-containers-4970e4c51de#.ep5wl2u0z). *Any container-native storage platform developed today should be distributed and natively integrated into container orchestration platforms like Kubernetes*. Torus got these aspects right.
+With containers changing the landscape of applications, they pose an additional set of requirements on the storage platform, which are covered in my earlier post — [Emerging Storage Trends for Containers](/blog/emerging-storage-trends-for-containers). *Any container-native storage platform developed today should be distributed and natively integrated into container orchestration platforms like Kubernetes*. Torus got these aspects right.
 
 While suspending further Torus development, I find it interesting that the committers at CoreOS mentioned Rook.
 
@@ -26,6 +26,6 @@ OpenEBS is a distributed block storage that supports both hyper-converged and de
 
 OpenEBS also inherits the data protection capabilities, pushing backups onto Amazon S3. We are currently working on EBS like API for provisioning the storage from K8s. With its cloud integration capabilities, we envision the capabilities supported by OpenEBS to enable our customers to build On-prem container environments that are compatible to be moved into the Cloud and vice-versa.
 
-OpenEBS Storage is delivered through VSMs which are essentially containers — frontend and backend, that can be scheduled by Kubernetes along with the Application Pods. The storage specific parameters are fed into the scheduling algorithms through our OpenEBS storage orchestration layer — maya. This container mode of deployment also reduces the burden of managing a separate storage network. The building blocks of the OpenEBS were covered in this post — [OpenEBS building blocks](https://blog.openebs.io/openebs-building-blocks-rancher-longhorn-b8928b5921fa#.r7kzqlucd)
+OpenEBS Storage is delivered through VSMs which are essentially containers — frontend and backend, that can be scheduled by Kubernetes along with the Application Pods. The storage specific parameters are fed into the scheduling algorithms through our OpenEBS storage orchestration layer — maya. This container mode of deployment also reduces the burden of managing a separate storage network. The building blocks of the OpenEBS were covered in this post — [OpenEBS building blocks](/blog/openebs-building-blocks-rancher-longhorn)
 
 If you were planning to contribute to Torus or just interested in getting your hands dirty with container-native storage platform, please take a closer look at [OpenEBS](https://github.com/openebs/openebs), which is completely open source.

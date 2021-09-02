@@ -12,7 +12,7 @@ Greetings OpenEBS users!
 The OpenEBS team is happy to announce the release of 0.7, which comes with a new storage engine, known as cStor, for creating storage pools.
 To find out more details on this specific release, please visit the following links:
 [https://github.com/openebs/openebs/releases](https://github.com/openebs/openebs/releases)
-[https://blog.openebs.io/openebs-0-7-release-pushes-cstor-storage-engine-to-field-trials-1c41e6ad8c91](https://blog.openebs.io/openebs-0-7-release-pushes-cstor-storage-engine-to-field-trials-1c41e6ad8c91)
+[https://openebs.io/blog/openebs-07-release-pushes-cstor-storage-engine-to-field-trials](/blog/openebs-07-release-pushes-cstor-storage-engine-to-field-trials)
 
 To keep this story short and concise I will jump directly into how you can provision a storage pool in 0.7 using the cStor engine. Just for your information, storage pools can also be provisioned using the Jiva engine that we used in previous versions of OpenEBS.
 

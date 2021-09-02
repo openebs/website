@@ -13,7 +13,7 @@ excerpt: Overview of how to use Velero Backup/Restore plugin for ZFS-LocalPV to 
 
 ### Pre-requisites
 
-We should have installed the ZFS-LocalPV 1.0.0 or later version for Backup and Restore, see my previous[ blog](https://blog.openebs.io/openebs-dynamic-volume-provisioning-on-zfs-d8670720181d) for the steps to install the ZFS-LocalPV driver.
+We should have installed the ZFS-LocalPV 1.0.0 or later version for Backup and Restore, see my previous[ blog](/blog/openebs-dynamic-volume-provisioning-on-zfs) for the steps to install the ZFS-LocalPV driver.
 
 ### Setup
 

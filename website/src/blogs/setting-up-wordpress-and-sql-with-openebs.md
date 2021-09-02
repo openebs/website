@@ -34,7 +34,7 @@ kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/v0.6/k8s/open
 kubectl apply -f https://raw.githubusercontent.com/openebs/openebs/v0.6/k8s/openebs-storageclasses.yaml
 ```
 
-The first yaml is for the openebs-operator, and the second one is for openebs-storage-classes. For more information look [here](https://docs.openebs.io/?__hstc=216392137.b7acacf689e0cc4579eea008f86d0c72.1579857743065.1579857743065.1579857743065.1&__hssc=216392137.1.1579857743066&__hsfp=3765904294). After applying the above yamls, the output of kubectl get pods — all-namespaces will look like this:
+The first yaml is for the openebs-operator, and the second one is for openebs-storage-classes. For more information look [here](/docs?__hstc=216392137.b7acacf689e0cc4579eea008f86d0c72.1579857743065.1579857743065.1579857743065.1&__hssc=216392137.1.1579857743066&__hsfp=3765904294). After applying the above yamls, the output of kubectl get pods — all-namespaces will look like this:
 
 ```
 $ kubectl get pods --all-namespaces

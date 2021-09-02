@@ -69,6 +69,6 @@ So vendor lock-in remained a problem. And storage far too often remains the bott
 
 [OpenEBS](http://www.openebs.io/) is going to fix all of that and make storage and related storage services something you use to free yourself from lock-in while boosting your operational agility. Game on!
 
-You can learn more about today’s release of OpenEBS 0.3 from our COO and co-founder’s blog [here](https://blog.openebs.io/@uma_mukkara). I think you’ll agree, what’s possible now reinvents storage fundamentally — with your help we’ll turn this project into a company and a complete solution that we can all rely on.
+You can learn more about today’s release of OpenEBS 0.3 from our COO and co-founder’s blog [here](https://openebs.io/blog/author/uma-mukkara). I think you’ll agree, what’s possible now reinvents storage fundamentally — with your help we’ll turn this project into a company and a complete solution that we can all rely on.
 
 Other resources include demos of OpenEBS working seamlessly with Kubernetes and interesting stateful workloads including PostgreSQL and the Spark notebook Jupyter in our demo repo [here](https://github.com/openebs/openebs/tree/master/k8s/demo/crunchy-postgres).

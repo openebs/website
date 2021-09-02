@@ -7,7 +7,7 @@ tags: LocalPV, OpenEBS
 excerpt: In this post, we will focus on how we can resize the volumes provisioned by ZFS-LocalPV without restarting the application.
 ---
 
-Before reading this post, please read my previous [post](https://blog.openebs.io/openebs-dynamic-volume-provisioning-on-zfs-d8670720181d?__hstc=216392137.7dc0753f698b104ea002a16b84268b54.1580207831486.1580207831486.1580207831486.1&amp;__hssc=216392137.1.1580207831487&amp;__hsfp=818904025) for instructions on setting up the ZFS-LocalPV for dynamically provisioning the volumes on the ZFS storage. Here, we will focus on how we can resize the volumes provisioned by ZFS-LocalPV without restarting the application.
+Before reading this post, please read my previous [post](/blog/openebs-dynamic-volume-provisioning-on-zfs?__hstc=216392137.7dc0753f698b104ea002a16b84268b54.1580207831486.1580207831486.1580207831486.1&amp;__hssc=216392137.1.1580207831487&amp;__hsfp=818904025) for instructions on setting up the ZFS-LocalPV for dynamically provisioning the volumes on the ZFS storage. Here, we will focus on how we can resize the volumes provisioned by ZFS-LocalPV without restarting the application.
 
 ### **Prerequisite**
 

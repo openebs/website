@@ -17,11 +17,7 @@ That guide shows you how to cluster multiple instances of the application behind
 
 Deploying Jira on Kubernetes using OpenEBS is as simple as installing OpenEBS on Kubernetes, define a storage pool, define a storage class, define your persistent volume claim, and deploy the Jira container. That’s it… and if you are already using OpenEBS it is even simpler. Now, as for the specifics of how to do those things, see this guide:
 
-[Jira - OpenEBS docs](https://docs.openebs.io/docs/next/jira.html?__hstc=216392137.fb75a0ac1e54cb037dfbafd0edf1ad3f.1579868085240.1579868085240.1579868085240.1&amp;__hssc=216392137.1.1579868085240&amp;__hsfp=3765904294)
-
-Once you have Jira deployed on your cluster, the easiest way to see your storage resources is through MayaOnline (hopefully you connected to MayaOnline while following the guide, if not the [instructions are here](https://docs.openebs.io/docs/next/mayaonline.html?__hstc=216392137.fb75a0ac1e54cb037dfbafd0edf1ad3f.1579868085240.1579868085240.1579868085240.1&amp;__hssc=216392137.1.1579868085240&amp;__hsfp=3765904294). Here is an example of a Jira deployment as visualized through the MayaOnline topology pane:
-
-![topology plane](/images/blog/topology-plane.png)
+[Jira - OpenEBS docs](/docs/stateful-applications/jira?__hstc=216392137.fb75a0ac1e54cb037dfbafd0edf1ad3f.1579868085240.1579868085240.1579868085240.1&amp;__hssc=216392137.1.1579868085240&amp;__hsfp=3765904294)
 
 By leveraging the power of replicas within OpenEBS we have quickly added fault tolerance to the storage attached to our Jira container. It was as simple as defining a replica count in the storage class. Since the replicas are spread across the cluster we no longer have to worry about the storage being a single point of failure. If one disk goes down, the controller will automatically route to one of the replicas with no intervention necessary.
 

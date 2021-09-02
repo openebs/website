@@ -18,7 +18,7 @@ OpenEBS NDM (Node Device Manager) has been declared GA after being deployed in p
 * Local Storage Discovery - detecting partitions, devices used as a LUKS device or LVM device, or if it can be accessed as a raw block device.
 * Cluster-wide storage visibility
 * Detect the movement of storage devices across nodes
-* Book-keeping/storage asset management  - allocating/reserving, which type of storage should be provided to which workloads.
+* Book-keeping/storage asset management - allocating/reserving, which type of storage should be provided to which workloads.
 
 ## Getting Started with NDM
 
@@ -66,7 +66,7 @@ We can see that the device `dm-2`, is the LUKS device, has been claimed and used
 
 * Reserving storage for workloads
 
-  NDM provides a feature to reserve devices for certain workloads. E.g., Users can reserve all SSDs for a performance intensive workload. This reservation is achieved using block-device-tags. More information on using block-device-tags with LocalPV can be found [here](https://docs.openebs.io/docs/next/uglocalpv-device.html#optional-block-device-tagging).
+  NDM provides a feature to reserve devices for certain workloads. E.g., Users can reserve all SSDs for a performance intensive workload. This reservation is achieved using block-device-tags. More information on using block-device-tags with LocalPV can be found [here](/docs/user-guides/localpv-device#optional-block-device-tagging).
 
 ## Future Roadmap
 

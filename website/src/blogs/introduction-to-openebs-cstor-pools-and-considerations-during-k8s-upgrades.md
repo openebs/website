@@ -43,28 +43,14 @@ DevOps architects and Kubernetes administrators need to be watchful of this situ
 
 `Nonetheless, when performing a Kubernetes reboot the question that is often asked is "what is the blast radius right now"? In other words, what volumes will lose quorum if a particular node is rebooted or lost?`
 
-While you can figure this out directly via kubectl, it is not trivial, especially as your environment scales. This is one of the reasons we have enabled the topology view of the storage resources for use in MayaOnline. We contributed those views upstream to the WeaveScope project as well.
-
-With the MayaOnline topology view of cStor Pool custom resources, you can see the status of its hosted volume replicas. Before a node is considered for a planned reboot, it is easy to quickly inspect the pool instance to determine if rebooting the node will cause some volumes to lose quorum.
-
-*If a volume replica is rebuilding on a given node, it is advised that you wait until the rebuild is finished and volume replica data is fully synced.*
-
-Here are some example screenshots where one pool instance’s replicas are healthy and the other pool instance’s replicas are not.
-
-![cstor-disk-standard](/images/blog/cstor-disk-standard.png)
-
-(***cStor pool with all replicas in healthy state***)
-
-![ci-ssd-pool](/images/blog/ci-ssd-pool.png) 
-
-(***cStor pool with some volume replicas in unhealthy state‌‌***)
+You can figure this out via kubectl.
 
 ### Ephemeral Disks Scenario
 
-As hinted at above, node reboots are a distinct worry while using hosted Kubernetes services such as GKE, EKS and AKS. The default behaviour of these solutions upon reboot is that the nodes come back with completely new disks, and the total data written onto the original disks is lost. Perhaps not coincidentally, this behaviour serves as a powerful incentive to pay the cloud provider more money for their persistent storage options, even if doing so may increase your lock-in. On the other hand, if OpenEBS pools are hosted on these local disks, the reboot of a node causes the volume replicas on that pool instance to be completely rebuilt on your other volume replicas. So, your workload continues to easily access data and OpenEBS deals with the clean up behind the scenes; this pattern is fairly common on the OpenEBS community and benefits users by allowing them to use more performant and less-expensive SSDs. Please note that this auto rebuild functionality is currently supported for Jiva Pools but NOT for cStor Pools, which is one reason we have not made cStor the default storage engine for OpenEBS. The ephemeral disk/pool support for rebuilding in cStor [is coming in 0.8.1 release](https://docs.openebs.io/docs/next/cstor.html?__hstc=216392137.b18f31a8a021a7fe3920ac461d353400.1580126597006.1580126597006.1580126597006.1&amp;__hssc=216392137.1.1580126597007&amp;__hsfp=3765904294#cstor-roadmap). Until then, it is advised NOT to use cStor pools on ephemeral disks. And yes, 0.8.1 is almost available. If you have been following along in the community, for example [OpenEBS.ci](http://openebs.ci/), you have seen test results increasingly turning green.
+As hinted at above, node reboots are a distinct worry while using hosted Kubernetes services such as GKE, EKS and AKS. The default behaviour of these solutions upon reboot is that the nodes come back with completely new disks, and the total data written onto the original disks is lost. Perhaps not coincidentally, this behaviour serves as a powerful incentive to pay the cloud provider more money for their persistent storage options, even if doing so may increase your lock-in. On the other hand, if OpenEBS pools are hosted on these local disks, the reboot of a node causes the volume replicas on that pool instance to be completely rebuilt on your other volume replicas. So, your workload continues to easily access data and OpenEBS deals with the clean up behind the scenes; this pattern is fairly common on the OpenEBS community and benefits users by allowing them to use more performant and less-expensive SSDs. Please note that this auto rebuild functionality is currently supported for Jiva Pools but NOT for cStor Pools, which is one reason we have not made cStor the default storage engine for OpenEBS. The ephemeral disk/pool support for rebuilding in cStor [is coming in 0.8.1 release](/docs/concepts/cstor?__hstc=216392137.b18f31a8a021a7fe3920ac461d353400.1580126597006.1580126597006.1580126597006.1&amp;__hssc=216392137.1.1580126597007&amp;__hsfp=3765904294#cstor-roadmap). Until then, it is advised NOT to use cStor pools on ephemeral disks. And yes, 0.8.1 is almost available. If you have been following along in the community, for example [OpenEBS.ci](http://openebs.ci/), you have seen test results increasingly turning green.
 
 ## Conclusion:
 
 The cStor pools feature in OpenEBS is helpful in managing the storage needs of cloud native applications in a Kubernetes native way. You may want to pay attention to planned node reboots to avoid temporary data unavailability during Kubernetes upgrades. Also, DO NOT use cStor pools on ephemeral disks until OpenEBS 0.8.1 release.
 
-Thanks for reading!! If you are new to OpenEBS and need help getting started, engage in our wonderful slack community at [slack.openebs.io](http://slack.openebs.io/?__hstc=216392137.b18f31a8a021a7fe3920ac461d353400.1580126597006.1580126597006.1580126597006.1&amp;__hssc=216392137.1.1580126597007&amp;__hsfp=3765904294). If you are already using OpenEBS, you may wish to connect your cluster to MayaOnline at mayaonline.io and get free visibility, analytics, and Elastic Search based logging for your persistent volumes, storage resources, and increasingly for stateful applications themselves.
+Thanks for reading!! If you are new to OpenEBS and need help getting started, engage in our wonderful slack community at [slack.openebs.io](http://slack.openebs.io/?__hstc=216392137.b18f31a8a021a7fe3920ac461d353400.1580126597006.1580126597006.1580126597006.1&amp;__hssc=216392137.1.1580126597007&amp;__hsfp=3765904294).

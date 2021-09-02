@@ -59,7 +59,7 @@ OpenEBS uses a Declarative Data Plane to manage storage operations which aligns 
 
 ### Configuring a Dynamic localPV for ECK
 
-The StorageClass spec for [OpenEBS LocalPV](https://docs.openebs.io/docs/next/uglocalpv.html) for automatically choosing an available disk on the node and mounting that disk with ext4 volume would look like the following:
+The StorageClass spec for [OpenEBS LocalPV](/docs/concepts/localpv) for automatically choosing an available disk on the node and mounting that disk with ext4 volume would look like the following:
 
     cat <<EOF | kubectl apply -f -
     apiVersion: elasticsearch.k8s.elastic.co/v1alpha1
@@ -86,7 +86,7 @@ The StorageClass spec for [OpenEBS LocalPV](https://docs.openebs.io/docs/next/ug
      storageClassName: OpenEBS-LocalPV
     EOF
 
-The StorageClass spec for [OpenEBS LocalPV](https://docs.openebs.io/docs/next/uglocalpv.html) for automatically choosing an available disk on the node and mounting that disk with ext4 volume would look like the following:
+The StorageClass spec for [OpenEBS LocalPV](/docs/concepts/localpv) for automatically choosing an available disk on the node and mounting that disk with ext4 volume would look like the following:
 
     apiVersion: storage.k8s.io/v1
     kind: StorageClass

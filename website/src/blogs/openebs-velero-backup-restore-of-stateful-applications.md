@@ -74,4 +74,4 @@ To summarize, a new kind of thinking (or) a new kind of approach is required to 
 
 Credits to the Velero team for building a wonderful open-source backup/restore tool.
 
-Please visit [https://docs.openebs.io](https://docs.openebs.io/), [https://velero.io](https://velero.io/) for more details about storage class, backup/restore examples, Velero.
+Please visit [https://openebs.io/docs](/docs), [https://velero.io](https://velero.io/) for more details about storage class, backup/restore examples, Velero.

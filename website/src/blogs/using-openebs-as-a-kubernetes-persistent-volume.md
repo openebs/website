@@ -170,7 +170,7 @@ Start up successful. The Jenkins configuration uses **NodePort** mode access and
 - [Configure iSCSI Initiator](https://www.server-world.info/en/note?os=CentOS_7&p=iscsi&f=2)
 - [https://www.openebs.io/](https://www.openebs.io/)
 - [https://github.com/openebs/openebs](https://github.com/openebs/openebs)
-- [Data Scientists adopting tools and solutions that allow them to focus more on Data Science and less on the infrastructure around them](https://blog.openebs.io/data-scientists-adopting-tools-and-solutions-that-allow-them-to-focus-more-on-data-science-and-less-db9654063bd5)
+- [Data Scientists adopting tools and solutions that allow them to focus more on Data Science and less on the infrastructure around them](/blog/data-scientists-adopting-tools-and-solutions-that-allow-them-to-focus-more-on-data-science-and-less)
 - [RHEL7: Configure a system as either an iSCSI target or initiator that persistently mounts an iSCSI target.](https://www.certdepot.net/rhel7-configure-iscsi-target-initiator-persistently/)
 
 Original page: [https://jimmysong.io/posts/using-openebs-as-kubernetes-persistent-volume/](https://jimmysong.io/posts/using-openebs-as-kubernetes-persistent-volume/)

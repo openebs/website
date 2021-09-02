@@ -8,7 +8,7 @@ excerpt: In the previous blog post, I shared the initial details of OpenEBS. In 
 not_has_feature_image: true
 ---
 
-In the [previous ](https://blog.openebs.io/openebs-the-containerized-storage-f76e394a9543#.vaquo22zw)blog post, I shared the initial details of OpenEBS. In this post, I will continue to discuss the OpenEBS technology building blocks and touch upon the details of Rancher longhorn and why we chose [longhorn ](https://github.com/rancher/longhorn).
+In the [previous](/blog/openebs-the-containerized-storage) blog post, I shared the initial details of OpenEBS. In this post, I will continue to discuss the OpenEBS technology building blocks and touch upon the details of Rancher longhorn and why we chose [longhorn](https://github.com/rancher/longhorn).
 
 OpenEBS platform contains three core building blocks:
 

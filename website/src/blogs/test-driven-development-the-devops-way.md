@@ -24,6 +24,6 @@ It makes sense for us to use these tools that meet our TDD needs.
 
 The question that might be lingering now would be about DevOps vis-a-vis TDD. ***Is TDD not part of DevOps culture***? The answer is an emphatic yes. However, I am trying to pick up one thread at-a-time from the DevOps culture/practice. That thread here is TDD & is the focus area for this article. I would like to emphasize that TDD does not necessarily mean unit testing. It can be thought of as applying test logic, scenarios, etc as the team continues with its development efforts, that in-turn brings in changes, discoveries, ideas in test as well as in development. ***To sum it up, it tries to remove the pain associated with latter stage design changes*** In addition, the team is ***no more afraid*** of new features, bug fixes, requirement changes, etc. due to the presence of test logic that gets triggered due to any of these changes.
 
-Hope to talk again about some tangible implementations we are doing in [OpenEBS](https://blog.openebs.io/). I would end the story here with a tip.
+Hope to talk again about some tangible implementations we are doing in [OpenEBS](https://openebs.io/blog). I would end the story here with a tip.
 
 > *The popular currency of current age DevOps’ tooling is Docker & Kubernetes.*

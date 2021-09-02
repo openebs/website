@@ -57,7 +57,7 @@ The administrators can customize the OpenEBS parameters by modifying the YAMLs. 
 - Setting up Taints and Tolerations to decide the nodes where the Storage Pods need to be deployed.
 - Setting up the Node Selectors or Anti-Affinity parameters to select the correct nodes for launching the Volume (Data Engine) pods.
 
-For further details check: [https://docs.openebs.io](https://docs.openebs.io/?__hstc=216392137.f0da50a3ce0cf28f99a3c60d1f6006cf.1580117750726.1580117750726.1580117750726.1&amp;__hssc=216392137.1.1580117750727&amp;__hsfp=3765904294).
+For further details check: [https://openebs.io](/docs?__hstc=216392137.f0da50a3ce0cf28f99a3c60d1f6006cf.1580117750726.1580117750726.1580117750726.1&amp;__hssc=216392137.1.1580117750727&amp;__hsfp=3765904294).
 
 Another cool feature that has become a favorite of advanced OpenEBS users is that, as Kubernetes introduces new features that have to be passed on to the Dynamically generated Volume (Data Engine) Pods, users can directly patch the pods and also update the Volume Template YAMLs at run time. To learn more about this feature, hit us up on slack: [https://slack.openebs.io](https://slack.openebs.io/?__hstc=216392137.f0da50a3ce0cf28f99a3c60d1f6006cf.1580117750726.1580117750726.1580117750726.1&amp;__hssc=216392137.1.1580117750727&amp;__hsfp=3765904294)
 
@@ -67,7 +67,7 @@ In this regard, as we move towards 1.0, we would like to improve the documentati
 
 OpenEBS can now be configured easily to run in:
 
-- Security Enhanced Linux Platforms (selinux=on) like RHEL, CentOS or OpenShift. We talk in more detail about this [here](https://blog.openebs.io/configuring-openebs-to-run-with-security-enhanced-linux-1e5a90a91da2?__hstc=216392137.f0da50a3ce0cf28f99a3c60d1f6006cf.1580117750726.1580117750726.1580117750726.1&amp;__hssc=216392137.1.1580117750727&amp;__hsfp=3765904294).
+- Security Enhanced Linux Platforms (selinux=on) like RHEL, CentOS or OpenShift. We talk in more detail about this [here](/blog/configuring-openebs-to-run-with-securityenhanced-linux?__hstc=216392137.f0da50a3ce0cf28f99a3c60d1f6006cf.1580117750726.1580117750726.1580117750726.1&amp;__hssc=216392137.1.1580117750727&amp;__hsfp=3765904294).
 - OpenEBS can be used on clusters where the default setting is to not grant access to the hostpaths for Developer namespaces. To support this use case, we now support an option to run the Jiva Volumes Pods (that require access to hostpath) to be deployed in OpenEBS Namespace using a *StoragePolicy**—**DeployInOpenEBSNamespace*. The StoragePolicies in OpenEBS are configured via StorageClasses.
 - OpenEBS can be used on clusters enabled with Pod Security Policies. The PSP for OpenEBS has been contributed by a user and can be found [here](https://github.com/openebs/openebs-docs/issues/484).
 
@@ -85,7 +85,7 @@ We are seeing OpenEBS users progress from running CI/CD workloads in staging to 
 
 While I covered earlier some of the items introduced recently in [0.9](https://github.com/openebs/openebs/releases), here is a summary of some significant changes:
 
-- Introduction of Dynamically provisioned OpenEBS Local PVs for making use of the storage available on the nodes itself for running NewSQL kind workloads. Refer to this [blog](https://blog.openebs.io/preview-dynamic-provisioning-of-kubernetes-local-pvs-using-openebs-a530c25cf13d?__hstc=216392137.f0da50a3ce0cf28f99a3c60d1f6006cf.1580117750726.1580117750726.1580117750726.1&amp;__hssc=216392137.1.1580117750727&amp;__hsfp=3765904294) to get started with OpenEBS Local PVs.
+- Introduction of Dynamically provisioned OpenEBS Local PVs for making use of the storage available on the nodes itself for running NewSQL kind workloads. Refer to this [blog](/blog/dynamic-provisioning-of-kubernetes-local-pvs-using-openebs?__hstc=216392137.f0da50a3ce0cf28f99a3c60d1f6006cf.1580117750726.1580117750726.1580117750726.1&amp;__hssc=216392137.1.1580117750727&amp;__hsfp=3765904294) to get started with OpenEBS Local PVs.
 - Enhanced the cStor Replica distribution logic for MongoDB or Cassandra Statefulsets to provide storage high availability and reducing the performance overhead
 - Backup and Restore processes for cStor Volumes using [OpenEBS Velero Plugin](https://github.com/openebs/velero-plugin) that can perform incremental snapshot backup and restore.
 - Enhance the Deployment and Placement of the Jiva Volume Pods to facilitate working in environments with strict Pod Security Policies and for Kubernetes clusters that tend to see a lot of pod evictions or node drains.

@@ -71,5 +71,3 @@ Now, about that world map that I shared earlier, OpenEBS release v0.8 introduced
 What was most surprising (or not) is that users don’t always wait on releases. They also tend to pick up the master builds, if it contains what they need! The above diagram depicts the Kubernetes clusters that used the OpenEBS master build before its release.
 
 Of course, you can also turn off sending the analytics if you so desire.
-
-And by the way, if you have not yet, claim your free access to [MayaOnline](https://mayaonline.io/). MayaData team has made some significant and useful additions to its `Maya Data Agility Platform (MDAP)`. You will be surprised how easy it can be to visualize and manage your storage needs.

@@ -9,7 +9,7 @@ excerpt: In this blog, I will discuss various storage classes we can use to dyna
 
 In this blog, I will discuss various storage classes we can use to dynamically provision the volumes backed by ZFS Storage Pool.
 
-Please read my previous[ post](https://blog.openebs.io/openebs-dynamic-volume-provisioning-on-zfs-d8670720181d?__hstc=216392137.7dc0753f698b104ea002a16b84268b54.1580207831486.1580207831486.1580207831486.1&amp;__hssc=216392137.1.1580207831487&amp;__hsfp=818904025) for instructions on setting up the *ZFS-LocalPV*. Alternatively, you can also go through the [README](https://github.com/openebs/zfs-localpv/blob/master/README.md) section of the [*ZFS-LocalPV* repository](https://github.com/openebs/zfs-localpv).
+Please read my previous [post](/blog/openebs-dynamic-volume-provisioning-on-zfs?__hstc=216392137.7dc0753f698b104ea002a16b84268b54.1580207831486.1580207831486.1580207831486.1&amp;__hssc=216392137.1.1580207831487&amp;__hsfp=818904025) for instructions on setting up the *ZFS-LocalPV*. Alternatively, you can also go through the [README](https://github.com/openebs/zfs-localpv/blob/master/README.md) section of the [*ZFS-LocalPV* repository](https://github.com/openebs/zfs-localpv).
 
 ### **StorageClass Backed by ZFS Dataset**
 

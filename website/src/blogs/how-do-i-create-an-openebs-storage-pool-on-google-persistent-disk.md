@@ -19,7 +19,7 @@ This blog will focus on the steps to be followed to create the OpenEBS PV on Goo
 
 ## PRE-REQUISITES
 
-- 3-Node GKE cluster with the OpenEBS Operator installed (Refer: [https://docs.openebs.io/docs/cloudsolutions.html](https://docs.openebs.io/docs/cloudsolutions.html))
+- 3-Node GKE cluster with the OpenEBS Operator installed.
 - 3-Google Persistent Disks, one attached to each node of the cluster.This can be done using the **_gcloud compute disks create_** & **_gcloud compute instances attach-disk_** commands (Refer for console steps: [https://cloud.google.com/compute/docs/disks/add-persistent-disk#create_disk](https://cloud.google.com/compute/docs/disks/add-persistent-disk#create_disk))
 
 ### STEP-1: Format the GPDs & Mount into desired path

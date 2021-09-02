@@ -68,7 +68,7 @@ Also included in this release are:
 
 For detailed changes summary, please check the [OpenEBS 1.0 Changelog](https://github.com/openebs/openebs/wiki/Change-Summary----v1.0).
 
-Please refer to the[ OpenEBS Documentation](https://docs.openebs.io/?__hstc=216392137.ed92f0691adfb1cbf08ea329504224a3.1580116629364.1580116629364.1580116629364.1&__hssc=216392137.1.1580116629364&__hsfp=3765904294) to get started.
+Please refer to the [OpenEBS Documentation](https://openebs.io/docs?__hstc=216392137.ed92f0691adfb1cbf08ea329504224a3.1580116629364.1580116629364.1580116629364.1&__hssc=216392137.1.1580116629364&__hsfp=3765904294) to get started.
 
 OpenEBS 1.0 — ships with multiple Data Engines to choose from depending on your application needs:
 

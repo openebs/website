@@ -7,7 +7,7 @@ tags: Chaos Engineering, Continuous Integration, Kubernetes, Litmus, OpenEBS
 excerpt: The objective of the Litmus project is to help evaluate stateful workloads on Kubernetes via storage & infrastructure focused end-to-end (e2e) tests that use chaos engineering tools & principles
 ---
 
-**This article is part of a #ProjectUpdates series on Litmus. In this blog post, we will share the latest developments in the project, which was announced & open-sourced during the [KubeCon Europe 2018](https://blog.openebs.io/litmus-release-a-chaos-monkey-on-your-kubernetes-stateful-workloads-6345e01b637d)**
+**This article is part of a #ProjectUpdates series on Litmus. In this blog post, we will share the latest developments in the project, which was announced & open-sourced during the [KubeCon Europe 2018](/blog/litmus-release-a-chaos-monkey-on-your-kubernetes-stateful-workloads)**
 
 The objective of the Litmus project is to help evaluate stateful workloads on Kubernetes via storage & infrastructure focused end-to-end (e2e) tests that use chaos engineering tools & principles, amongst other aids, with the test cases executed as kubernetes jobs. Over the last 10 months, there have been several improvements to the framework based on community feedback alongside an increase in the test library. The focus areas & improvements through this period, ongoing efforts & upcoming features have been summarised in the subsequent sections.
 
@@ -41,7 +41,7 @@ Another consideration was Litmus tests being used to drive Continuous Integratio
 
 Typically, the lifecycle functionality & chaos litmusbooks include steps for post-test health checks on the application and persistent storage components, including **data integrity** validation. All the above requirements necessitated the creation of multiple “*test facilitator containers*”(maintained [here](https://github.com/openebs/test-tools)) that implement python-based application clients and integrate other popular opensource chaos tools such as **pumba**, **chaostoolkit** & **chaoskube**.
 
-For more details on chaos engineering using Litmus, read this [article](https://blog.openebs.io/storage-chaos-engineering-with-litmus-an-overview-ef6d8f1e89fd?__hstc=216392137.a909c2d2cc44264c6d1aa717b549f14e.1580153178674.1580153178674.1580153178674.1&amp;__hssc=216392137.1.1580153178674&amp;__hsfp=3765904294).
+For more details on chaos engineering using Litmus, read this [article](/blog/storage-chaos-engineering-with-litmus-an-overview?__hstc=216392137.a909c2d2cc44264c6d1aa717b549f14e.1580153178674.1580153178674.1580153178674.1&amp;__hssc=216392137.1.1580153178674&amp;__hsfp=3765904294).
 
 ## Litmus e2e test result visualization
 
@@ -89,7 +89,7 @@ The **gitlab runner** scripts follow a defined pattern that involves the litmusb
 
 [openebs.ci](https://openebs.ci/) *provides a dashboard view of the build status for various commits to the openebs control plane and data plane projects, with detailed visibility into individual stage/job status & respective logs on Kibana. It also provides a real-time view of long-running production workloads using OpenEBS PVs which are maintained over multiple OpenEBS releases, with an option to induce random chaos on application/storage components & view the behavior. Litmus chaos modules are called internally to achieve this.*
 
-More details on the composition & functioning of this CI framework is available in this [blog ](https://blog.openebs.io/a-primer-on-openebs-continuous-integration-b6162243cf86?__hstc=216392137.a909c2d2cc44264c6d1aa717b549f14e.1580153178674.1580153178674.1580153178674.1&amp;__hssc=216392137.1.1580153178674&amp;__hsfp=3765904294)post.
+More details on the composition & functioning of this CI framework is available in this [blog](/blog/a-primer-on-openebs-continuous-integration?__hstc=216392137.a909c2d2cc44264c6d1aa717b549f14e.1580153178674.1580153178674.1580153178674.1&amp;__hssc=216392137.1.1580153178674&amp;__hsfp=3765904294) post.
 
 ## Ongoing Efforts & Upcoming Features In Litmus
 
