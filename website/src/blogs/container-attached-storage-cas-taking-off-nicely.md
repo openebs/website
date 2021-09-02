@@ -33,7 +33,7 @@ In summary, higher performance can only be delivered using CAS architecture, SPD
 
 CAS enables native hyper convergence capability on Kubernetes. You don’t need an external storage array to manage the storage/data needs of applications on K8S, thats a lot of saving of CPU and hardware. With CAS, the overall TCO reduces as the additional storage (local disks), CPU and software (CAS) are provisioned on the same K8S cluster nodes and avoids the need of expensive external storage arrays.
 
-As for the the question of dealing with large number of containers is concerned, there are nice tools like Weave Scope which you can use either on the local K8S or in a free service like MayaOnline. Check out [MayaOnline](https://www.mayaonline.io) where the storage extensions to Scope are put to use.
+As for the the question of dealing with large number of containers is concerned, there are nice tools like Weave Scope which you can use on the local K8S.
 
 ![Application relationship with storage (PVC, PV, SC, and CAS)](https://cdn-images-1.medium.com/max/800/1*RQYjI0MdsXf1kj8AGqLJZA.png)
 

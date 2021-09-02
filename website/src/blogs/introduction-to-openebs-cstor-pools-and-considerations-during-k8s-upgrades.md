@@ -43,21 +43,7 @@ DevOps architects and Kubernetes administrators need to be watchful of this situ
 
 `Nonetheless, when performing a Kubernetes reboot the question that is often asked is "what is the blast radius right now"? In other words, what volumes will lose quorum if a particular node is rebooted or lost?`
 
-While you can figure this out directly via kubectl, it is not trivial, especially as your environment scales. This is one of the reasons we have enabled the topology view of the storage resources for use in MayaOnline. We contributed those views upstream to the WeaveScope project as well.
-
-With the MayaOnline topology view of cStor Pool custom resources, you can see the status of its hosted volume replicas. Before a node is considered for a planned reboot, it is easy to quickly inspect the pool instance to determine if rebooting the node will cause some volumes to lose quorum.
-
-*If a volume replica is rebuilding on a given node, it is advised that you wait until the rebuild is finished and volume replica data is fully synced.*
-
-Here are some example screenshots where one pool instance’s replicas are healthy and the other pool instance’s replicas are not.
-
-![cstor-disk-standard](/images/blog/cstor-disk-standard.png)
-
-(***cStor pool with all replicas in healthy state***)
-
-![ci-ssd-pool](/images/blog/ci-ssd-pool.png) 
-
-(***cStor pool with some volume replicas in unhealthy state‌‌***)
+You can figure this out via kubectl.
 
 ### Ephemeral Disks Scenario
 
@@ -67,4 +53,4 @@ As hinted at above, node reboots are a distinct worry while using hosted Kuberne
 
 The cStor pools feature in OpenEBS is helpful in managing the storage needs of cloud native applications in a Kubernetes native way. You may want to pay attention to planned node reboots to avoid temporary data unavailability during Kubernetes upgrades. Also, DO NOT use cStor pools on ephemeral disks until OpenEBS 0.8.1 release.
 
-Thanks for reading!! If you are new to OpenEBS and need help getting started, engage in our wonderful slack community at [slack.openebs.io](http://slack.openebs.io/?__hstc=216392137.b18f31a8a021a7fe3920ac461d353400.1580126597006.1580126597006.1580126597006.1&amp;__hssc=216392137.1.1580126597007&amp;__hsfp=3765904294). If you are already using OpenEBS, you may wish to connect your cluster to MayaOnline at mayaonline.io and get free visibility, analytics, and Elastic Search based logging for your persistent volumes, storage resources, and increasingly for stateful applications themselves.
+Thanks for reading!! If you are new to OpenEBS and need help getting started, engage in our wonderful slack community at [slack.openebs.io](http://slack.openebs.io/?__hstc=216392137.b18f31a8a021a7fe3920ac461d353400.1580126597006.1580126597006.1580126597006.1&amp;__hssc=216392137.1.1580126597007&amp;__hsfp=3765904294).

@@ -178,8 +178,6 @@ There is a lot that I didn’t cover or address in this blog post, but I hope th
 
 In my opinion, OpenEBS 0.7 decidedly will be remembered as a release that brought the coming of age of several different OpenEBS projects like [Litmus](https://github.com/openebs/litmus), [Node Disk Manager for Kubernetes (NDM)](https://github.com/openebs/node-disk-manager) and [OpenEBS cStor](/docs/concepts/cstor?__hstc=216392137.c9fd9f8df74ffca9b73b72bd793ad982.1580119894211.1580119894211.1580119894211.1&amp;__hssc=216392137.1.1580119894211&amp;__hsfp=3765904294). OpenEBS 0.7 is equipped to successfully deliver a comprehensive storage solution for DevOps persona, providing capabilities for automating Storage management in their Kubernetes Clusters.
 
-By the way, if you have not yet, don’t forget to claim your free access to [MayaOnline](https://mayaonline.io/). You will be surprised by how easy it can be to visualize and manage your storage needs.
-
 We would welcome more contributions to the survey mentioned above, whether you are an OpenEBS user (yet) or not: [https://www.surveymonkey.com/r/BRDCCWY](https://www.surveymonkey.com/r/BRDCCWY)
 
 What makes this project great is your support and feedback! Please reach out to us on Slack or comment below. [https://slack.openebs.io](https://slack.openebs.io/?__hstc=216392137.c9fd9f8df74ffca9b73b72bd793ad982.1580119894211.1580119894211.1580119894211.1&amp;__hssc=216392137.1.1580119894211&amp;__hsfp=3765904294)/

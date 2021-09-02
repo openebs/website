@@ -16,7 +16,7 @@ I won’t talk about our new Storage Engine (cStor) — written in C —�
 
 Before going into specifics, I would like to express my sincerest gratitude to the OpenEBS community users and developers who are helping to make OpenEBS the most simple and easy to setup containerized attached storage (CAS) solution available for Kubernetes today — and the most popular open source one as well.
 
-Since the OpenEBS 0.5 release we have seen so many ways users have deployed OpenEBS many of which we had not envisioned when we started OpenEBS back in 2016. We are working hard to listen to the growing user community — and of course MayaOnline is helping us a bit as well as we learn something from MayaOnline users who are using this free SaaS monitoring and ChatOps integration of their stateful workloads. Along these lines, we have a survey that is running through the end of July that takes 2–3 minutes that has proven helpful; please do fill it out if you have not already and we will even send you some swag: [https://www.surveymonkey.com/r/BRDCCWY](https://www.surveymonkey.com/r/BRDCCWY)
+Since the OpenEBS 0.5 release we have seen so many ways users have deployed OpenEBS many of which we had not envisioned when we started OpenEBS back in 2016. We are working hard to listen to the growing user community. Along these lines, we have a survey that is running through the end of July that takes 2–3 minutes that has proven helpful; please do fill it out if you have not already and we will even send you some swag: [https://www.surveymonkey.com/r/BRDCCWY](https://www.surveymonkey.com/r/BRDCCWY)
 
 The timing of OpenEBS 0.5 was perfect in that it coincided with a take-off in interest in stateful workloads on Kubernetes. Some deployment patterns I’ve encountered just in the last few weeks include:
 
@@ -94,7 +94,5 @@ And, most importantly, product documentation has been overhauled to provide acce
 As mentioned above, our next release also enables users to try out _cStor — a storage engine_ that is more efficient in terms of performance and capacity management. It also reduces the number of containers required to run OpenEBS. If you are interested in taking a look, please get in touch as we have some alpha users of cStor now.
 
 With its strong community of users, developers, and partners building us into their solutions, it feels like OpenEBS is nearly unstoppable. As always, we look forward to your feedback and suggestions on this release and the direction that you want to see OpenEBS move going foward. Please reach out to us on Slack or add comments below. [https://slack.openebs.io](https://slack.openebs.io/?__hstc=216392137.386b1bc3a48de21192b74b07a4e27366.1580120418429.1580120418429.1580120418429.1&__hssc=216392137.1.1580120418429&__hsfp=3765904294)/
-
-Finally, if you have not done so yet, claim your free access to [MayaOnline](https://mayaonline.io/). You will be surprised by how easy it can be to visualize and manage your storage needs.
 
 [Public domain](https://creativecommons.org/publicdomain/mark/1.0/).

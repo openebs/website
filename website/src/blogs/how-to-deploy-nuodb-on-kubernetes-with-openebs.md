@@ -115,22 +115,9 @@ Label at least three servers using the oc label command:
 
     $ oc label node nuodb.com/zone=nuodb
 
-### Connect to MayaOnline
-
-Connecting the Kubernetes cluster to MayaOnline provides enhanced visibility of storage resources. MayaOnline has various support options for enterprise customers.
-
-1. Login to [mayaonline.io.](https://app.mayaonline.io/)
-2. Go to “Clusters” and click on “Connect a new cluster.”
-3. Select “On-Premises K8s” and click on the OpenShift icon.
-4. Give your cluster a name.
-5. Click on the “Connect” button.
-6. Copy the command and run it on your OpenShift cluster.
-
-![Connect to MayaOnline](/images/blog/connect-to-mayaonline.png)
-
 ### Configure cStor Pool
 
-After OpenEBS is installed, cStor pool must be configured. If cStor Pool is not already configured in your OpenEBS cluster, this can be done following the instructions [here](/docs/concepts/cstor#cstor-pools). A sample YAML named openebs-config.yaml used for configuring cStor Pool is provided in the Configuration details below. During cStor Pool creation, make sure that the maxPools parameter is set to >=3.
+After OpenEBS is installed, cStor pool must be configured. If cStor Pool is not already configured in your OpenEBS cluster, this can be done following the instructions [here](/docs/deprecated/spc-based-cstor#creating-cStor-storage-pools). A sample YAML named openebs-config.yaml used for configuring cStor Pool is provided in the Configuration details below. During cStor Pool creation, make sure that the maxPools parameter is set to >=3.
 
     #Use the following YAMLs to create a cStor Storage Pool.
     # and associated storage class.
@@ -193,16 +180,10 @@ Follow the installation prompts and change the “SM persistent storage class na
 
 Click “Create,” and shortly after you will see one pod each for the Administrative Service (Admin), Storage Manager (SM), Transaction Engine (TE) and Insights processes started under the *nuodb* namespace with volumes provided by OpenEBS.
 
-![nuoDB Successfully Deployed](/images/blog/nuodb-successfully-deployed.png) 
+![nuoDB Successfully Deployed](/images/blog/nuodb-successfully-deployed.png)  
 (***NuoDB Successfully Deployed***)
-#### *What’s Next?*
 
-If you would like to read more about the design considerations, running test loads with YCSB, monitoring Insights or volume metrics through MayaOnline, and inserting some chaos engineering with Litmus, you can find a detailed solution doc on MayaData’s website under the Resources section [here](https://mayadata.io/).
-
-![NuoDB and OpenEBS](/images/blog/nuodb-and-openebs.png) 
-(***NuoDB and OpenEBS Solution Guide Available on MayaData.io***)
-
-Next, I plan to cover some 2nd-day operations for NuoDB using OpenEBS snapshots, clones, backup, recovery using MayaOnline functionalities such as topology and access logs. If you’d like to see or discuss anything not covered here, feel free to comment on my blog or contact me via Twitter @muratkarslioglu.
+If you’d like to see or discuss anything not covered here, feel free to comment on my blog or contact me via Twitter @muratkarslioglu.
 
 ---
 

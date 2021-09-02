@@ -94,8 +94,7 @@ You’d probably agree that such an approach would have some benefits including:
 - What is perhaps least well appreciated about the potential of treating storage as a service delivered via microservices is that, correctly engineered, this means that data itself can be served as a service in the background across underlying clouds.
 - The first prerequisite is that the controller itself runs in a container or set of containers.
 - The second prerequisite is that the controller performs its magic in the user space so that the container does not need to be a special build and so that the system can perform.
-- Third, there needs to be the management of metadata to see where the data is versus the workloads. Kubernetes can help here as it expands however in addition a solution such as MayaOnline.io — as it matures — is needed. This service acts as an air traffic controller, helping the data to get to where it is needed. Such a service can also become more intelligent over time, for example suggesting improvements to Kubernetes storage policies based on success in running similar workloads.
-
+- Third, there needs to be the management of metadata to see where the data is versus the workloads. Kubernetes can help here as it expands.
 # **TL;DR:**
 
 So, in short, this time perhaps it really _is_ different.
