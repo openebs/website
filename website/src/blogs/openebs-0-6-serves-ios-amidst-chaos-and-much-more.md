@@ -51,7 +51,7 @@ However, we wanted to solve as many of these issues as possible with the right a
 
 ## Solution : Chaos Engineered OpenEBS, the birth of Litmus.
 
-If you would like an introduction to the Litmus project, which we open sourced at KubeCon in Denmark, visit the following link: [https://openebs.io/litmus](https://openebs.io/litmus?__hstc=216392137.386b1bc3a48de21192b74b07a4e27366.1580120418429.1580120418429.1580120418429.1&__hssc=216392137.1.1580120418429&__hsfp=3765904294) or [https://github.com/openebs/litmus](https://github.com/openebs/litmus)
+If you would like an introduction to the Litmus project, which we open sourced at KubeCon in Denmark, visit the following link:  [https://github.com/openebs/litmus](https://github.com/openebs/litmus)
 
 We are also working on operators to add additional autonomic function into OpenEBS, leveraging improved metrics and advancements in CSI around node daemonsets and the mount-propagation feature. In the meantime, we use Litmus to increase automated real-world scenario testing to ensure improvements in every release. In this regard, a lot of effort has gone towards beefing up the tests that can simulate Chaos at Node, Network, Storage, RAM, and CPU. These typically contribute to Volume Pods switching nodes and, if not careful, interrupted IOs.
 
