@@ -15,6 +15,7 @@ generic:
   next: Next
   prev: Previous
   longhorn: Longhorn
+  clickHere: Click here
 
 header:
   menuAlt: Mobile menu

@@ -61,6 +61,9 @@ const theme = createTheme({
       light: '#D3D7D8',
       dark: '#273239',
     },
+    pattensBlue: {
+      main: '#D7E7F7',
+    },
   },
   overrides: {
     MuiBackdrop: {
