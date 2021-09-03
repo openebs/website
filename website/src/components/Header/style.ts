@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
   },
   scrolledHeader: {
     backgroundColor: theme.palette.background.paper, // This background gets applied to header on scroll
+    '& > div[class*="alertBanner"]': {
+      display: 'none',
+    },
   },
   leftContent: {
     display: 'flex',
