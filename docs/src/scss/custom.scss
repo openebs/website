@@ -60,6 +60,7 @@
   --color-lighter-blue: #{$blue-800};
   --color-tealish-blue: #{$blue-400};
   --ifm-code-background: #{$ifm-code-background};
+  --ifm-toc-link-color: #{$blue-500};
 }
 
 .markdown {
@@ -149,7 +150,10 @@
 }
 
 .docs-wrapper .table-of-contents__link {
-  font-size: 12px;
+  font-size: 13px;
+  &.table-of-contents__link--active{
+    font-weight: bold;
+  }
 }
 
 @media (min-width: 768px) {
