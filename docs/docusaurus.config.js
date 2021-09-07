@@ -46,6 +46,9 @@ module.exports = {
     }
   },
   onBrokenLinks: 'log',
+  clientModules: [
+    require.resolve('./scroll.js')
+  ],
   customFields: {
     openebsLogo: "/docs/img/openebs-logo.svg",
     footbarLinks: {

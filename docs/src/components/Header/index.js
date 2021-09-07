@@ -16,7 +16,7 @@ export const Header = () => {
     const websiteUrl = siteConfig?.url;
     const { width } = useViewport();
     return(
-        <div className={styles.headerOuterWrapper}>
+        <div className={styles.headerOuterWrapper} id="header">
             <div className={styles.headerInnerWrapper}>
                 <div className={styles.header}>
                     <div className={width > 480 ? styles.logoWrapper : styles.logoWrapperSmallView }>
