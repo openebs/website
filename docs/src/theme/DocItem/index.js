@@ -4,7 +4,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React from "react";
+import React, { useEffect } from "react";
 import DocPaginator from "@theme/DocPaginator";
 import Seo from "@theme/Seo";
 import TOC from "@theme/TOC";
@@ -55,6 +55,30 @@ function DocItem(props) {
 
   const showVersionBadge = versions.length > 1; // For meta title, using frontMatter.title in priority over a potential # title found in markdown
   // See https://github.com/facebook/docusaurus/issues/4665#issuecomment-825831367
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      let hash, element;
+
+      function adjustScroll() {
+        hash = window.location.hash.replace("#", "");
+        element = hash && document.getElementById(hash);
+        element &&
+          window.scrollTo({
+            top: element.offsetTop,
+            behavior: "auto",
+          });
+      }
+
+      !hash && adjustScroll();
+
+      window.addEventListener("hashchange", adjustScroll, false);
+
+      return () => {
+        window.removeEventListener("hashchange", adjustScroll, false);
+      };
+    }
+  }, []);
 
   const metaTitle = frontMatter.title || title;
   return (
