@@ -13,15 +13,15 @@ OpenEBS is one of the most popular Storage-related projects in CNCF, and the new
 
 As the lead developers of OpenEBS Mayastor, we want to be sure our message of an extremely high performing CAS is not only exciting, but also honest and easy to check. We want every interested user to be able to quickly and easily bring OpenEBS Mayastor up, properly tuned and ready for testing with whatever workload the user prefers to try.
 
-In order to deliver on that promise, we have started a [“Demo Playground” project, open sourced on Github](https://github.com/mayadata-io/deployment-automation-playground/tree/main/demo-playground).  Contributions and feedback are welcome.
+In order to deliver on that promise, we have started a [“Demo Playground” project, open sourced on Github](https://github.com/mayadata-io/deployment-automation-playground/tree/main/demo-playground). Contributions and feedback are welcome.
 
 
 ## OpenEBS
 
 OpenEBS is a project with multiple storage engines, with each engine providing the user with different feature sets as well as different usage and performance characteristics. The currently available options can roughly be split into two categories:
 
-* LocalPV: Excellent for workloads that deal with storage resilience at the application level, creating and managing their own replicas and capable of sustaining the loss of a single or multiple nodes, such as  Cassandra, and requiring very good storage performance, especially latency-wise.
-* Replicated storage  (cStor, Jiva) - for workloads that are less performance-sensitive and some of the more advanced storage features such as synchronous data replication, snapshots, clones, thin provisioning of data, high resiliency of data, data consistency, and on-demand increase of capacity or performance.
+* LocalPV: Excellent for workloads that deal with storage resilience at the application level, creating and managing their own replicas and capable of sustaining the loss of a single or multiple nodes, such as Cassandra, and requiring very good storage performance, especially latency-wise.
+* Replicated storage (cStor, Jiva) - for workloads that are less performance-sensitive and some of the more advanced storage features such as synchronous data replication, snapshots, clones, thin provisioning of data, high resiliency of data, data consistency, and on-demand increase of capacity or performance.
 
 Advanced features come at the cost of higher latency and lower performance, and yet, technology keeps advancing and trying to get the best of both worlds.
 
@@ -106,7 +106,7 @@ At this point, we should have a working Kubernetes setup, with the different wor
 
 ## Playbooks
 
-Actually, the proper stages end at Node Preparation, and then the playbooks take over.  The vars file contains a PLAYBOOKS variable, which lists all the playbooks the Playground will apply in sequence.
+Actually, the proper stages end at Node Preparation, and then the playbooks take over. The vars file contains a PLAYBOOKS variable, which lists all the playbooks the Playground will apply in sequence.
 
 Currently, there is one playbook relevant to testing Mayastor - mayastor.yml
 

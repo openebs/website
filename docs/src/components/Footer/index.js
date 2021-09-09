@@ -1,9 +1,11 @@
-// [TODO] -- use scss module
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Link from "@docusaurus/Link";
 import { useViewport } from "@site/src/hooks/useViewport";
 import Translate, { translate } from '@docusaurus/Translate';
+import topContributors from '../../data/topContributors.json';
+import newContributors from '../../data/newContributors.json';
+import { githubProfile } from "../../utils/githubProfile";
 
 const FooterLogo = () => {
   const { siteConfig } = useDocusaurusContext();
@@ -108,54 +110,75 @@ const LinksContactUs = () => {
     </div>
   );
 };
-const Contributors = () => {
-  const { siteConfig } = useDocusaurusContext();
-  const githubApiContributors = siteConfig?.customFields?.githubApiContributors;
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
-  //getting the top contributors from github by sending the api order as desc
-  useEffect(() => {
-    fetch(githubApiContributors)
-      .then((res) => res?.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          console.error(error);
-        }
-      );
-    return () => {
-      setItems([]);
-    };
-  }, []);
+const Contributors = ({ isTopContributors }) => {
+  
   return (
     <div className="col">
-      {isLoaded && items.length && (
+      {(
         <>
-          <span className="footer__title">
-            <Translate
-              id="component.Footer.topContributors"
-              description="Top contributors label in footer"
-            >Top contributors</Translate>
-          </span>
-          <ul className="footer__items">
-            {items?.slice(0, 3).map((item) => {
-              return (
-                <li className="footer__item" key={item.login}>
-                  <Link
-                    className="footer__link-item"
-                    to={item.html_url}
-                    target="_blank"
-                  >
-                    {item.login}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          {
+            isTopContributors ? (
+              <>
+              {
+                topContributors.length ? (
+                  <>
+                    <span className="footer__title">
+                      <Translate
+                        id="component.Footer.topContributors"
+                        description="Top contributors label in footer"
+                      >Top contributors</Translate>
+                    </span>
+                    <ul className="footer__items">
+                      {topContributors?.slice(0, 6).map((item) => {
+                        return (
+                          <li className="footer__item" key={item}>
+                            <Link
+                              className="footer__link-item"
+                              to={githubProfile(item).profile}
+                              target="_blank"
+                            >
+                              {githubProfile(item).id}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </>
+                ) : <></>
+              }
+              </>
+            ) : (
+              <>
+              {
+                newContributors.length ? (
+                  <>
+                    <span className="footer__title">
+                      <Translate
+                        id="component.Footer.newContributors"
+                        description="New contributors label in footer"
+                      >New contributors</Translate>
+                    </span>
+                    <ul className="footer__items">
+                      {newContributors?.slice(0, 6).map((item) => {
+                        return (
+                          <li className="footer__item" key={item}>
+                            <Link
+                              className="footer__link-item"
+                              to={githubProfile(item).profile}
+                              target="_blank"
+                            >
+                              {githubProfile(item).id}
+                            </Link>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </>
+                ) : <></>
+              }
+            </>
+            )
+          }
         </>
       )}
     </div>
@@ -278,7 +301,10 @@ const FooterMobileView = () => {
               <LinksGettingStarted />
             </div>
             <div className="col col-6">
-              <Contributors />
+              <Contributors isTopContributors={true} />
+            </div>
+            <div className="col col-6">
+              <Contributors isTopContributors={false} />
             </div>
           </div>
           <div className="margin-vert--md">
@@ -306,7 +332,8 @@ const FooterDesktopView = () => {
               <SocialMedia />
             </div>
             <LinksGettingStarted />
-            <Contributors />
+            <Contributors isTopContributors={true} />
+            <Contributors isTopContributors={false} />
             <FooterBottom />
           </div>
         </div>

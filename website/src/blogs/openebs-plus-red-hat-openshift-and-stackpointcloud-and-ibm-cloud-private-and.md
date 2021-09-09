@@ -23,6 +23,6 @@ So why Red Hat and why StackPointCloud?
 
 In both cases, we see organizations that are doing an incredible job helping their target users adopt Kubernetes based orchestration. With Red Hat, we tend to see especially larger enterprises taking the approach. With StackPointCloud, there is a real mix of departmental level users at large organizations as well as countless start-ups. In both cases, our support of Helm charts for OpenEBS makes it trivial to spin OpenEBS up.
 
-While OpenEBS itself as not achieve 1.0 status, we are working hand in hand w/ partners to make sure users are succeeding in their use of OpenEBS for stateful workloads. There must now be at least hundreds of production proof of concept deployments ongoing. We will be making [MayaOnline](http://www.mayaonline.io/) freely available to help these and other users in the near future via no cost monitoring and control and ChatOps integrations.
+While OpenEBS itself as not achieve 1.0 status, we are working hand in hand w/ partners to make sure users are succeeding in their use of OpenEBS for stateful workloads. There must now be at least hundreds of production proof of concept deployments ongoing.
 
 Please get in touch via [Slack](https://join.slack.com/t/openebs-community/shared_invite/enQtMjQzMTg4NTcyNTY2LTJiMzVjYjA5ZDk3YmI4NjAxY2QyYmI3MTA1MmUxMTAzNTU0NTM5NTViOTIxMjA1NWQ4NzVmMTBiNjk0NDU1YzQ) or otherwise if you would like to spend a little time with us to discuss your use cases and, of course, if you are running OpenEBS and testing it out.

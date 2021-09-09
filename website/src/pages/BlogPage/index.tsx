@@ -18,7 +18,6 @@ import useViewport from '../../hooks/viewportWidth';
 import { SOCIAL_PLATFORMS, VIEW_PORT } from '../../constants';
 import BlogsSlider from '../../components/BlogsSlider';
 import Newsletter from '../../components/Newsletter';
-import SlackShareIcon from './slackShareIcon';
 import BlogImage from '../../components/BlogImage';
 import { useCurrentHost } from '../../hooks/useCurrentHost';
 import { Metadata } from '../../components/Metadata';
@@ -139,10 +138,6 @@ const BlogPage: React.FC = () => {
     {
       label: SOCIAL_PLATFORMS.FACEBOOK,
       imgURL: '../images/logos/facebook_blue.svg',
-    },
-    {
-      label: SOCIAL_PLATFORMS.SLACK,
-      imgURL: '../images/logos/slack_blue.svg',
     },
     {
       label: SOCIAL_PLATFORMS.LINKEDIN,
@@ -292,9 +287,7 @@ const BlogPage: React.FC = () => {
                       {t('blog.share')}
                     </Typography>
                     <div className={classes.socialIconsWrapper}>
-                      {socialLinks.map(({ label, imgURL }) => (label === SOCIAL_PLATFORMS.SLACK ? (
-                        <SlackShareIcon key={label} />
-                      ) : (
+                      {socialLinks.map(({ label, imgURL }) => (
                         <Button
                           className={classes.socialIconButton}
                           key={label}
@@ -302,7 +295,7 @@ const BlogPage: React.FC = () => {
                         >
                           <img loading="lazy" src={imgURL} alt={label} />
                         </Button>
-                      )))}
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -341,9 +334,7 @@ const BlogPage: React.FC = () => {
                   {t('blog.share')}
                 </Typography>
                 <div className={classes.socialIconsWrapper}>
-                  {socialLinks.map(({ label, imgURL }) => (label === SOCIAL_PLATFORMS.SLACK ? (
-                    <SlackShareIcon key={label} />
-                  ) : (
+                  {socialLinks.map(({ label, imgURL }) => (
                     <Button
                       className={classes.socialIconButton}
                       key={label}
@@ -351,7 +342,7 @@ const BlogPage: React.FC = () => {
                     >
                       <img loading="lazy" src={imgURL} alt={label} />
                     </Button>
-                  )))}
+                  ))}
                 </div>
               </div>
             </div>

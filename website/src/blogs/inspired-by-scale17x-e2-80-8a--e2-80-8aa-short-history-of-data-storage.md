@@ -22,7 +22,7 @@ Regarding #1 — *maturity* — I think the growth of references on the 
 
 You can read more about our efforts to mature OpenEBS and its docs and related management software in our founder’s recent blog post on the 0.8.1 release:
 
-[https://blog.openebs.io/openebs-releases-0-8-1-with-stability-fixes-and-improved-documentation-374dd6b7c4a5](https://blog.openebs.io/openebs-releases-0-8-1-with-stability-fixes-and-improved-documentation-374dd6b7c4a5)
+[https://openebs.io/blog/openebs-releases-081-with-stability-fixes-and-improved-documentation](/blog/openebs-releases-081-with-stability-fixes-and-improved-documentation)
 
 Maturity and polishing is our top area of focus, and it is coming along quickly with the help of additional users and our dedicated, well-experienced engineering team. The next time you see them [on slack](https://openebs-community.slack.com/), please say thank you; the effort level by all involved is phenomenal.
 

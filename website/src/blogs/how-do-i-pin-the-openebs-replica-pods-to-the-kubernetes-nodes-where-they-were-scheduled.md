@@ -12,7 +12,7 @@ This article belongs to #HowDoI series on Kubernetes and OpenEBS.
 
 A OpenEBS Volume comprises of a Controller pod and one or more Replica pod(s). Controller pod (also known as a Target pod) is the one to which the application can make an iSCSI connection. The Replica pods are the ones that access the underlying disk resources for storing the data.
 
-**Use Case #1: In my Kubernetes cluster, [_OpenEBS volume pods are scheduled on appropriate nodes_](https://blog.openebs.io/how-do-i-configure-openebs-to-use-storage-on-specific-kubernetes-nodes-361e3e842a78). This is all fine till the cluster experiences a disruption due to network partition. Kubernetes tries to evict & re-schedule these volume pods into newer nodes that does not have the underlying data. This results in volume getting into offline state. I want the OpenEBS volume pods to stick to the nodes they were originally placed.**
+**Use Case #1: In my Kubernetes cluster, [_OpenEBS volume pods are scheduled on appropriate nodes_](/blog/how-do-i-configure-openebs-to-use-storage-on-specific-kubernetes-nodes). This is all fine till the cluster experiences a disruption due to network partition. Kubernetes tries to evict & re-schedule these volume pods into newer nodes that does not have the underlying data. This results in volume getting into offline state. I want the OpenEBS volume pods to stick to the nodes they were originally placed.**
 
 **Solution**: Patch the Replica deployment with **nodeAffinity** property
 

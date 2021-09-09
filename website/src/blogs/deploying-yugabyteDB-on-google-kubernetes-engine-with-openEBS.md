@@ -25,11 +25,11 @@ Here are a few of the advantages of using OpenEBS in conjunction with a Yugabyte
 
 - There’s no need to manage the local disks as OpenEBS manages them.
 - OpenEBS and YugabyteDB can provision large size persistent volumes.
-- With OpenEBS persistent volumes, capacity can be thin provisioned, and disks can be added to OpenEBS on the fly without disruption of service. When this capability is combined with YugabyteDB, which already supports multi-TB data density per node, this can prove to be[ massive cost savings on storage.](https://docs.openebs.io/features.html#reduced-storage-tco-upto-50)
-- Both OpenEBS and YugabyteDB support multi-cloud deployments [helping organizations avoid cloud lock-in.](https://docs.openebs.io/docs/next/features.html#truely-cloud-native-storage-for-kubernetes)
-- Both OpenEBS and YugabyteDB integrate with another CNCF project, [Prometheus](https://prometheus.io/). This makes it easy to [monitor both storage and the database](https://docs.openebs.io/docs/next/features.html#prometheus-metrics-for-workload-tuning) from a single system.
+- With OpenEBS persistent volumes, capacity can be thin provisioned, and disks can be added to OpenEBS on the fly without disruption of service. When this capability is combined with YugabyteDB, which already supports multi-TB data density per node, this can prove to be massive cost savings on storage.
+- Both OpenEBS and YugabyteDB support multi-cloud deployments helping organizations avoid cloud lock-in.
+- Both OpenEBS and YugabyteDB integrate with another CNCF project, [Prometheus](https://prometheus.io/). This makes it easy to [monitor both storage and the database](/docs/introduction/features#prometheus-metrics-for-workload-tuning) from a single system.
 
-Additionally, OpenEBS can do [synchronous replication](https://docs.openebs.io/docs/next/features.html#synchronous-replication) inside a geographic region. In a scenario where YugabyteDB is deployed across regions, and a node in any one region fails, YugaByteDB would have to rebuild this node with data from another region. This would incur cross-region traffic, which is more expensive and lower in performance. But, with OpenEBS, this rebuilding of a node can be done seamlessly because OpenEBS is replicating locally inside the region. This means YugabyteDB does not end up having to copy data from another region, which ends up being less expensive and higher in performance. In this deployment setup, only if the entire region failed, YugabyteDB would need to do a cross-region node rebuild. Additional detailed descriptions of OpenEBS enabled use cases can be found [here.](https://docs.openebs.io/docs/next/usecases.html)
+Additionally, OpenEBS can do [synchronous replication](/docs/introduction/features#synchronous-replication) inside a geographic region. In a scenario where YugabyteDB is deployed across regions, and a node in any one region fails, YugaByteDB would have to rebuild this node with data from another region. This would incur cross-region traffic, which is more expensive and lower in performance. But, with OpenEBS, this rebuilding of a node can be done seamlessly because OpenEBS is replicating locally inside the region. This means YugabyteDB does not end up having to copy data from another region, which ends up being less expensive and higher in performance. In this deployment setup, only if the entire region failed, YugabyteDB would need to do a cross-region node rebuild. Additional detailed descriptions of OpenEBS enabled use cases can be found [here](/docs/introduction/usecases).
 
 Ok, let’s get started!
 
@@ -176,7 +176,7 @@ We can verify our storage pool with the following command:
     cstor-disk-pool-vbz5   68.2M       9.87G   9.94G      Healthy   false      striped
 
 **Step 6: Create a Storage Class**  
-Now that we have a storage pool, let’s configure the YAML file for our storage class.  In this demo, I’ve named it “openebs-sc-rep1.yaml”.
+Now that we have a storage pool, let’s configure the YAML file for our storage class. In this demo, I’ve named it “openebs-sc-rep1.yaml”.
 
     $ vim openebs-sc-rep1.yaml
 
@@ -258,7 +258,7 @@ That’s it! You now have a 3 node YugabyteDB cluster running on GKE with OpenEB
 **Next Steps**  
 As mentioned, MayData is the chief sponsor of the OpenEBS project. It offers an enterprise-grade OpenEBS platform that makes it easier to run stateful applications on Kubernetes by helping get your workloads provisioned, backed-up, monitored, logged, managed, tested, and even migrated across clusters and clouds. You can learn more about MayaData [here.](https://mayadata.io/)
 
-- Learn more about OpenEBS by visiting the [GitHub](https://github.com/openebs/openebs) and [official Docs](https://docs.openebs.io/) pages.
+- Learn more about OpenEBS by visiting the [GitHub](https://github.com/openebs/openebs) and [official Docs](/docs) pages.
 - Learn more about YugabyteDB by visiting the [GitHub](https://github.com/yugabyte/yugabyte-db) and [official Docs](https://docs.yugabyte.com/) pages.
 
 **About the author:**

@@ -55,6 +55,7 @@ declare module '@material-ui/core/styles/createPalette' {
     rawUmber: Palette['primary'],
     brown: Palette['primary'],
     grayishGreen: Palette['primary'],
+    pattensBlue: Palette['primary'],
   }
   interface PaletteOptions {
     blue: PaletteOptions['primary'];
@@ -62,6 +63,7 @@ declare module '@material-ui/core/styles/createPalette' {
     rawUmber: PaletteOptions['primary'];
     brown: PaletteOptions['primary'];
     grayishGreen: PaletteOptions['primary'];
+    pattensBlue: PaletteOptions['primary'];
   }
 }
 

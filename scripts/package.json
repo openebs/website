@@ -1,0 +1,13 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "OpenEBS Authors",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.88.2"
+  },
+  "scripts": {
+    "get-contributors-info": "node contributors"
+  }
+}

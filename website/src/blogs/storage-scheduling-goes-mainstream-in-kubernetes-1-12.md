@@ -58,6 +58,6 @@ It feels great to be associated with Kubernetes and OpenEBS and the incredible t
 
 —
 
-Btw, it is [Hacktoberfest](https://hacktoberfest.digitalocean.com/) This is a great time to become part of the Open Source community. OpenEBS is also participating in this year’s [Hacktoberfest ](https://blog.openebs.io/celebrate-hacktoberfest-2018-with-openebs-206daa1d653c?__hstc=216392137.073930d2db558f65dd6e9df2ff66b40e.1580119414166.1580119414166.1580119414166.1&amp;__hssc=216392137.1.1580119414166&amp;__hsfp=3765904294) with a friendly team that is available to help you get started with your contributions to OpenEBS and other projects.
+Btw, it is [Hacktoberfest](https://hacktoberfest.digitalocean.com/) This is a great time to become part of the Open Source community. OpenEBS is also participating in this year’s [Hacktoberfest](/blog/celebrate-hacktoberfest-2018-with-openebs-?__hstc=216392137.073930d2db558f65dd6e9df2ff66b40e.1580119414166.1580119414166.1580119414166.1&amp;__hssc=216392137.1.1580119414166&amp;__hsfp=3765904294) with a friendly team that is available to help you get started with your contributions to OpenEBS and other projects.
 
 As always, feel free to reach out to us on Slack or add comments below. [https://slack.openebs.io](https://slack.openebs.io/?__hstc=216392137.073930d2db558f65dd6e9df2ff66b40e.1580119414166.1580119414166.1580119414166.1&amp;__hssc=216392137.1.1580119414166&amp;__hsfp=3765904294).

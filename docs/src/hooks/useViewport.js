@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 export const useViewport = () => {
-    const [width, setWidth] = useState(0);
+    const { siteConfig } = useDocusaurusContext();
+    const breakpoints = siteConfig?.customFields?.breakpoints;
+    const [width, setWidth] = useState(breakpoints.lg);
 
     useEffect(() => {
         if(typeof window !== undefined) {

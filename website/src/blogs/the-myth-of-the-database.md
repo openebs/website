@@ -9,7 +9,7 @@ excerpt: In this blog I briefly discuss the disaggregation of the DB at what mig
 
 I feel blessed these days to be on the front lines of Kubernetes becoming the preferred platform for running all workloads, including high value stateful workloads.
 
-One pattern many of my investor friends — and even new MayaData team members not already encamped in the CNCF ecosystem may be overlooking — is the demise of the THE database pattern. Actually looking back at a DBaaS on Kubernetes blog I wrote less than a year ago I think I didn’t emphasize enough that there is rarely one layer, or one DB at the core of it all. (see that blog [here](https://blog.openebs.io/running-your-own-dbaas-based-on-your-preferred-dbs-kubernetes-operators-and-containerized-storage-3cc36ba115b8) if you are curious — it is a popular one :))
+One pattern many of my investor friends — and even new MayaData team members not already encamped in the CNCF ecosystem may be overlooking — is the demise of the THE database pattern. Actually looking back at a DBaaS on Kubernetes blog I wrote less than a year ago I think I didn’t emphasize enough that there is rarely one layer, or one DB at the core of it all. (see that blog [here](/blog/running-your-own-dbaas-based-on-your-preferred-dbs-kubernetes-operators-and-containerized-storage) if you are curious — it is a popular one :))
 
 In *this* blog I briefly discuss the disaggregation of the DB at what might be called the macro or architecture level and then at the micro or intra DB level. I then offer a couple of considerations.
 

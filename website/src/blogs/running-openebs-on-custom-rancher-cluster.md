@@ -244,4 +244,4 @@ Example Scenario 2:
 
 Refer to the persist iscsi_tcp module to load after reboot section in the pre-requisites section.
 
-Hopefully, this will help you to configure OpenEBS on top of Rancher 2.0. Thank you for reading, and please provide any feedback below or on twitter — [@chandan4147](https://twitter.com/chandan4147). For more details on OpenEBS installation and troubleshooting visit [https://docs.openebs.io/](https://docs.openebs.io/).
+Hopefully, this will help you to configure OpenEBS on top of Rancher 2.0. Thank you for reading, and please provide any feedback below or on twitter — [@chandan4147](https://twitter.com/chandan4147). For more details on OpenEBS installation and troubleshooting visit [https://openebs.io/docs](/docs).

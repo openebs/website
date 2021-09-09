@@ -14,6 +14,7 @@ import navbarItems from './navbar';
 import useStyles from './style';
 import { EXTERNAL_LINKS, VIEW_PORT } from '../../constants';
 import useViewport from '../../hooks/viewportWidth';
+import NotificationBanner from '../NotificationBanner';
 
 const Header: React.FC = () => {
   const classes = useStyles();
@@ -23,7 +24,12 @@ const Header: React.FC = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
   const openEBSLogo = (
-    <img loading="lazy" src="/images/logos/logo.svg" className={classes.logo} alt={t('generic.openEBS')} />
+    <img
+      loading="lazy"
+      src="/images/logos/logo.svg"
+      className={classes.logo}
+      alt={t('generic.openEBS')}
+    />
   );
 
   const currentPathName = useLocation().pathname;
@@ -31,11 +37,25 @@ const Header: React.FC = () => {
   // This block of code is used to display social links: GitHub and Slack
   const displaySocialLinks = () => (
     <div className={classes.socialIconsWrapper}>
-      <Link href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO} target="_blank" rel="noopener">
-        <img loading="lazy" src="/images/logos/githubLogo.svg" className={classes.socialIcon} alt={t('generic.github')} />
+      <Link
+        href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO}
+        target="_blank"
+        rel="noopener"
+      >
+        <img
+          loading="lazy"
+          src="/images/logos/githubLogo.svg"
+          className={classes.socialIcon}
+          alt={t('generic.github')}
+        />
       </Link>
       <Link href="/community">
-        <img loading="lazy" src="/images/logos/slackLogo.svg" className={classes.socialIcon} alt={t('generic.slack')} />
+        <img
+          loading="lazy"
+          src="/images/logos/slackLogo.svg"
+          className={classes.socialIcon}
+          alt={t('generic.slack')}
+        />
       </Link>
     </div>
   );
@@ -45,7 +65,7 @@ const Header: React.FC = () => {
   // This function handles adding background color to header on scroll past header height
   const handleScroll = () => {
     const offset = window.scrollY;
-    (offset > 64) ? setScrolled(true) : setScrolled(false);
+    offset > 64 ? setScrolled(true) : setScrolled(false);
   };
 
   useEffect(() => {
@@ -59,11 +79,16 @@ const Header: React.FC = () => {
     return (
       <Toolbar className={classes.toolbar}>
         <div className={classes.leftContent}>
-          <Link href="/">
-            {openEBSLogo}
-          </Link>
+          <Link href="/">{openEBSLogo}</Link>
           <div className={classes.starButton}>
-            <GitHubButton href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO} data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">{t('generic.githubStar')}</GitHubButton>
+            <GitHubButton
+              href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO}
+              data-size="large"
+              data-show-count="true"
+              aria-label="Star ntkme/github-buttons on GitHub"
+            >
+              {t('generic.githubStar')}
+            </GitHubButton>
           </div>
         </div>
         <div className={classes.rightContent}>
@@ -76,7 +101,11 @@ const Header: React.FC = () => {
               onClick: handleDrawerOpen,
             }}
           >
-            <img loading="lazy" src="/images/svg/hamburger.svg" alt={t('header.menuAlt')} />
+            <img
+              loading="lazy"
+              src="/images/svg/hamburger.svg"
+              alt={t('header.menuAlt')}
+            />
           </IconButton>
         </div>
         <Drawer
@@ -89,8 +118,15 @@ const Header: React.FC = () => {
         >
           <div className={classes.drawerPaper}>
             <div className={classes.closeIcon}>
-              <IconButton aria-label="close drawer" onClick={() => handleDrawerClose()}>
-                <img loading="lazy" src="/images/svg/x-circle.svg" alt={t('header.closeMenuAlt')} />
+              <IconButton
+                aria-label="close drawer"
+                onClick={() => handleDrawerClose()}
+              >
+                <img
+                  loading="lazy"
+                  src="/images/svg/x-circle.svg"
+                  alt={t('header.closeMenuAlt')}
+                />
               </IconButton>
             </div>
             <div className={classes.mobileNavWrapper}>
@@ -98,21 +134,26 @@ const Header: React.FC = () => {
                 <Link
                   href={href}
                   key={label}
-                  className={[classes.navbarItem, (href === currentPathName) ? classes.activeNavbarItem : ''].join(' ')}
+                  className={[
+                    classes.navbarItem,
+                    href === currentPathName ? classes.activeNavbarItem : '',
+                  ].join(' ')}
                   onClick={() => handleDrawerClose()}
                 >
-                  <MenuItem className={classes.menuItemMobile}>{label}</MenuItem>
+                  <MenuItem className={classes.menuItemMobile}>
+                    {label}
+                  </MenuItem>
 
                   {/* Hiding divider for last item in the navbar items */}
-                  {(label !== navbarItems[navbarItems.length - 1].label)
-                                        && <hr className={classes.mobileDivider} />}
+                  {label !== navbarItems[navbarItems.length - 1].label && (
+                    <hr className={classes.mobileDivider} />
+                  )}
                 </Link>
               ))}
               <div className={classes.socialIconsMobile}>
                 {displaySocialLinks()}
               </div>
             </div>
-
           </div>
         </Drawer>
       </Toolbar>
@@ -120,31 +161,50 @@ const Header: React.FC = () => {
   };
 
   const displayDesktopHeader = () => (
-    <Toolbar className={classes.toolbar}>
-      <div className={classes.leftContent}>
-        <Link href="/">
-          {openEBSLogo}
-        </Link>
-        <div className={classes.starButton}>
-          <GitHubButton href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO} data-size="large" data-show-count="true" aria-label="Star ntkme/github-buttons on GitHub">{t('generic.githubStar')}</GitHubButton>
+    <>
+      <Toolbar className={classes.toolbar}>
+        <div className={classes.leftContent}>
+          <Link href="/">{openEBSLogo}</Link>
+          <div className={classes.starButton}>
+            <GitHubButton
+              href={EXTERNAL_LINKS.OPENEBS_GITHUB_REPO}
+              data-size="large"
+              data-show-count="true"
+              aria-label="Star ntkme/github-buttons on GitHub"
+            >
+              {t('generic.githubStar')}
+            </GitHubButton>
+          </div>
         </div>
-      </div>
-      <div className={classes.rightContent}>
-        {navbarItems.map(({ label, href }) => (
-          <Link href={href} key={label} className={[classes.navbarItem, (href === currentPathName) ? classes.activeNavbarItem : ''].join(' ')}>
-            {label}
-          </Link>
-        ))}
-        <div>
-          {displaySocialLinks()}
+        <div className={classes.rightContent}>
+          {navbarItems.map(({ label, href }) => (
+            <Link
+              href={href}
+              key={label}
+              className={[
+                classes.navbarItem,
+                href === currentPathName ? classes.activeNavbarItem : '',
+              ].join(' ')}
+            >
+              {label}
+            </Link>
+          ))}
+          <div>{displaySocialLinks()}</div>
         </div>
-      </div>
-    </Toolbar>
+      </Toolbar>
+    </>
   );
 
   return (
-    <AppBar className={[classes.header, scrolled ? classes.scrolledHeader : ''].join(' ')}>
-      {width < mobileBreakpoint ? displayMobileHeader() : displayDesktopHeader()}
+    <AppBar
+      className={[classes.header, scrolled ? classes.scrolledHeader : ''].join(
+        ' ',
+      )}
+    >
+      <NotificationBanner />
+      {width < mobileBreakpoint
+        ? displayMobileHeader()
+        : displayDesktopHeader()}
       {}
     </AppBar>
   );

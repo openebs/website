@@ -25,7 +25,7 @@ Now, let’s take a look at the requirements.
 
 #### **Prerequisites**
 
-Minimum requirements for a  multi-node community edition cluster:
+Minimum requirements for a multi-node community edition cluster:
 
 **Hardware**
 

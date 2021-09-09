@@ -7,7 +7,7 @@ tags: OpenEBS, ZFS, Open Source
 excerpt: In this post, we will focus on how we can create a snapshot and clone for volumes provisioned by ZFS-LocalPV.
 ---
 
-Before reading this post, please read my previous [post](https://blog.openebs.io/openebs-dynamic-volume-provisioning-on-zfs-d8670720181d?__hstc=216392137.2b738ae93497639f7465a332e1aef247.1584602510099.1584602510099.1584602510099.1&amp;__hssc=216392137.1.1584602510100&amp;__hsfp=2870217423) for instructions on setting up the ZFS-LocalPV for dynamically provisioning the volumes on the ZFS storage. Here, we will focus on how we can create a snapshot and clone for volumes provisioned by ZFS-LocalPV.
+Before reading this post, please read my previous [post](/blog/openebs-dynamic-volume-provisioning-on-zfs?__hstc=216392137.2b738ae93497639f7465a332e1aef247.1584602510099.1584602510099.1584602510099.1&amp;__hssc=216392137.1.1584602510100&amp;__hsfp=2870217423) for instructions on setting up the ZFS-LocalPV for dynamically provisioning the volumes on the ZFS storage. Here, we will focus on how we can create a snapshot and clone for volumes provisioned by ZFS-LocalPV.
 
 #### **Prerequisite**
 

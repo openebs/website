@@ -16,12 +16,12 @@ I won’t talk about our new Storage Engine (cStor) — written in C —�
 
 Before going into specifics, I would like to express my sincerest gratitude to the OpenEBS community users and developers who are helping to make OpenEBS the most simple and easy to setup containerized attached storage (CAS) solution available for Kubernetes today — and the most popular open source one as well.
 
-Since the OpenEBS 0.5 release we have seen so many ways users have deployed OpenEBS many of which we had not envisioned when we started OpenEBS back in 2016. We are working hard to listen to the growing user community — and of course MayaOnline is helping us a bit as well as we learn something from MayaOnline users who are using this free SaaS monitoring and ChatOps integration of their stateful workloads. Along these lines, we have a survey that is running through the end of July that takes 2–3 minutes that has proven helpful; please do fill it out if you have not already and we will even send you some swag: [https://www.surveymonkey.com/r/BRDCCWY](https://www.surveymonkey.com/r/BRDCCWY)
+Since the OpenEBS 0.5 release we have seen so many ways users have deployed OpenEBS many of which we had not envisioned when we started OpenEBS back in 2016. We are working hard to listen to the growing user community. Along these lines, we have a survey that is running through the end of July that takes 2–3 minutes that has proven helpful; please do fill it out if you have not already and we will even send you some swag: [https://www.surveymonkey.com/r/BRDCCWY](https://www.surveymonkey.com/r/BRDCCWY)
 
 The timing of OpenEBS 0.5 was perfect in that it coincided with a take-off in interest in stateful workloads on Kubernetes. Some deployment patterns I’ve encountered just in the last few weeks include:
 
 - GitLab for internal IT teams
-- Kube weekly just featured a step by step blog on this subject: [https://blog.openebs.io/git-freedom-on-kubernetes-3a491dd37cdf](https://blog.openebs.io/git-freedom-on-kubernetes-3a491dd37cdf)
+- Kube weekly just featured a step by step blog on this subject: [https://openebs.io/blog/git-freedom-on-kubernetes](/blog/git-freedom-on-kubernetes)
 - Data Science training sessions
 - Here we are seeing hundreds of pods with stateful workloads spun up and destroyed repeatedly — really a great use case for container attached storage
 - Running Minio on OpenEBS which some users have called a happy marriage between OpenEBS block and Minio S3
@@ -45,13 +45,13 @@ Each combination comes with nuances that are unique and sometimes annoying as we
 
 We consciously chose the well-understood and widely used iSCSI protocol as the underlying storage connectivity used by Applications to connect to OpenEBS Volumes. There are many benefits to this architecture, but I will not address those here.
 
-There are some annoying pieces when running iSCSI at scale as well. For example, depending on the response from the iSCSI targets and your operating system, there are some quirky things that can happen with iSCSI. The most notorious of these happens when iSCSI backed volumes move into read-only if you are using ext4 under certain conditions. You must then go through the steps for manually recovering the volumes. To address this, we have put together a troubleshooting guide that you can access [here](https://docs.openebs.io/docs/next/readonlyvolumes.html?__hstc=216392137.386b1bc3a48de21192b74b07a4e27366.1580120418429.1580120418429.1580120418429.1&__hssc=216392137.1.1580120418429&__hsfp=3765904294).
+There are some annoying pieces when running iSCSI at scale as well. For example, depending on the response from the iSCSI targets and your operating system, there are some quirky things that can happen with iSCSI. The most notorious of these happens when iSCSI backed volumes move into read-only if you are using ext4 under certain conditions. You must then go through the steps for manually recovering the volumes. To address this, we have put together a troubleshooting guide that you can access [here](/docs/troubleshooting/volume-provisioning?__hstc=216392137.386b1bc3a48de21192b74b07a4e27366.1580120418429.1580120418429.1580120418429.1&__hssc=216392137.1.1580120418429&__hsfp=3765904294).
 
 However, we wanted to solve as many of these issues as possible with the right approach. We stepped up our use of chaos engineering in our OpenEBS development process. We also extended and open sourced our in-house tooling, and we are starting to see it used more and more by engineers deploying stateful workloads on Kubernetes — whether or not OpenEBS is the underlying storage.
 
 ## Solution : Chaos Engineered OpenEBS, the birth of Litmus.
 
-If you would like an introduction to the Litmus project, which we open sourced at KubeCon in Denmark, visit the following link: [https://openebs.io/litmus](https://openebs.io/litmus?__hstc=216392137.386b1bc3a48de21192b74b07a4e27366.1580120418429.1580120418429.1580120418429.1&__hssc=216392137.1.1580120418429&__hsfp=3765904294) or [https://github.com/openebs/litmus](https://github.com/openebs/litmus)
+If you would like an introduction to the Litmus project, which we open sourced at KubeCon in Denmark, visit the following link:  [https://github.com/openebs/litmus](https://github.com/openebs/litmus)
 
 We are also working on operators to add additional autonomic function into OpenEBS, leveraging improved metrics and advancements in CSI around node daemonsets and the mount-propagation feature. In the meantime, we use Litmus to increase automated real-world scenario testing to ensure improvements in every release. In this regard, a lot of effort has gone towards beefing up the tests that can simulate Chaos at Node, Network, Storage, RAM, and CPU. These typically contribute to Volume Pods switching nodes and, if not careful, interrupted IOs.
 
@@ -77,7 +77,7 @@ Looking at the situation, we decided to step back and think about an architectur
 
 In the OpenEBS 0.6 release, we have utilized the power of Kubernetes CRDs to provide a workable solution to introduce pluggable storage engines. OpenEBS now provides a complete workflow for developers and cluster administrators to choose the right storage software and hardware for their unique requirements. The control of the storage infrastructure stays with the cluster owner, and the ability to address a given need in storage lies with the developer. OpenEBS 0.6 brings the initial version of CAS Templates, which are YAMLs that can be scripted by cluster owners, fit into your GitOps, and are associated with Storage Classes.
 
-We like the way OpenEBS CAS Templates are shaping up, and we can see many of the cluster owners’ needs being met over time, including enforcing of policies using tools like OPA. I will share more on this in upcoming blogs, but you can glance at them by reading this introductory documentation [here](https://docs.openebs.io/docs/next/storageengine.html?__hstc=216392137.386b1bc3a48de21192b74b07a4e27366.1580120418429.1580120418429.1580120418429.1&__hssc=216392137.1.1580120418429&__hsfp=3765904294). We intend to build upon this improved architectural pattern to do even more than the pluggability of storage engines. As always, we would especially welcome your feedback and use cases.
+We like the way OpenEBS CAS Templates are shaping up, and we can see many of the cluster owners’ needs being met over time, including enforcing of policies using tools like OPA. I will share more on this in upcoming blogs, but you can glance at them by reading this introductory documentation [here](/docs/concepts/cstor?__hstc=216392137.386b1bc3a48de21192b74b07a4e27366.1580120418429.1580120418429.1580120418429.1&__hssc=216392137.1.1580120418429&__hsfp=3765904294). We intend to build upon this improved architectural pattern to do even more than the pluggability of storage engines. As always, we would especially welcome your feedback and use cases.
 
 ### And there is more…
 
@@ -94,7 +94,5 @@ And, most importantly, product documentation has been overhauled to provide acce
 As mentioned above, our next release also enables users to try out _cStor — a storage engine_ that is more efficient in terms of performance and capacity management. It also reduces the number of containers required to run OpenEBS. If you are interested in taking a look, please get in touch as we have some alpha users of cStor now.
 
 With its strong community of users, developers, and partners building us into their solutions, it feels like OpenEBS is nearly unstoppable. As always, we look forward to your feedback and suggestions on this release and the direction that you want to see OpenEBS move going foward. Please reach out to us on Slack or add comments below. [https://slack.openebs.io](https://slack.openebs.io/?__hstc=216392137.386b1bc3a48de21192b74b07a4e27366.1580120418429.1580120418429.1580120418429.1&__hssc=216392137.1.1580120418429&__hsfp=3765904294)/
-
-Finally, if you have not done so yet, claim your free access to [MayaOnline](https://mayaonline.io/). You will be surprised by how easy it can be to visualize and manage your storage needs.
 
 [Public domain](https://creativecommons.org/publicdomain/mark/1.0/).

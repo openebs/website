@@ -44,4 +44,4 @@ The benefit of that better team organization in my experience can be massively g
 
 So, in short, here is my request of you. Just as we have been so careful in (not entirely successfully) protecting the term DevOps, let’s try to protect the phrases Cloud Native storage and Container Native storage; or maybe we should start using a yet more specific phrase such as ***Containerized Storage for Containers*** (warning, that’s a term we coined at OpenEBS). Otherwise, we risk polluting everyone’s efforts for a better way to build and run software in a Cloud Native way with marketing BS.
 
-1. (note — as I’ve tried to [explain elsewhere](https://blog.openebs.io/software-defined-storage-finally-37fdffc0e37c), much of what we hoped to achieve with software-defined storage is only now being enabled, largely thanks to Kubernetes and other open orchestrators and containers as well).
+1. (note — as I’ve tried to [explain elsewhere](/blog/software-defined-storage-finally), much of what we hoped to achieve with software-defined storage is only now being enabled, largely thanks to Kubernetes and other open orchestrators and containers as well).
