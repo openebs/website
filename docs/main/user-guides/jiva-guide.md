@@ -10,6 +10,7 @@ keywords:
   - Create of Jiva Pool
   - Create a StorageClass
   - Setting up Jiva Storage Policies
+  - Jiva Alpha Features
 description: The recommended approach to provision Jiva volumes is via CSI Driver. For detailed instructions on how to get started with new Jiva CSI Driver please refer to the Quickstart guide on Github.
 ---
 
@@ -42,6 +43,12 @@ Jiva is a light weight storage engine that is recommended to use for low capacit
 [Create a StorageClass](#create-a-sc)
 
 [Setting up Jiva Storage Policies](#setting-up-jiva-storage-policies)
+
+## Alpha features 
+ 
+[OpenEBS CLI](#openebs-cli)
+
+[OpenEBS Monitoring Add-on](#openebs-monitoring-add-on)
 
 ## User Operations
 
@@ -962,6 +969,23 @@ This StorageClass Policy is for deploying the Jiva pods in OpenEBS Namespace. By
           enabled: "true"
   provisioner: openebs.io/provisioner-iscsi
   ```
+
+## Alpha features 
+
+This page provides an overview of OpenEBS components and features presently in Alpha version and under active development. These features are not recommended to be used in production. We suggest you to familiarize and try these features on test clusters and reach out to [OpenEBS Community](/introduction/community) if you have any queries, feedback or need help on these features.
+
+### OpenEBS CLI
+
+OpenEBS is developing a kubectl plugin for openebs called `openebsctl` that can help perform administrative tasks on OpenEBS volumes and pools. 
+
+For additional details and detailed instructions on how to get started with OpenEBS CLI please refer this [Quickstart guide](https://github.com/openebs/openebsctl).
+
+### OpenEBS Monitoring Add-on
+
+OpenEBS is developing a monitoring add-on package that can be installed via helm or kubectl for setting up a default prometheus, grafana and alert manager stack. The package also will include default service monitors, dashboards and alert rules. 
+
+For additional details and detailed instructions on how to get started with OpenEBS Monitoring Add-on please refer this [Quickstart guide](https://github.com/openebs/monitoring).
+
 
 ## See Also:
 

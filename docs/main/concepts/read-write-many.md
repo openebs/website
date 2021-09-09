@@ -13,9 +13,7 @@ description: In this document, you learn about Provisioning Read-Write-Many (RWX
 NFS server provisioner stable helm chart is widely used for deploying NFS servers on Kubernetes cluster. This server provides PVCs in RWX mode so that multiple web applications can access the data in a shared fashion. OpenEBS cStor volumes are used as persistent backend storage for these nfs servers to provide a scalable and manageable RWX shared storage solution. 
 
 :::note OpenEBS Dynamic NFS Provisioner
-OpenEBS includes an alpha version of OpenEBS Dynamic NFS provisioner that allows users to create an NFS PV that sets up an new Kernel NFS instance for each PV on top of users choice of backend storage. 
-
-This project is currently under active development. For getting started and getting involved in developing this project, check out https://github.com/openebs/dynamic-nfs-provisioner.
+OpenEBS includes an alpha version of OpenEBS Dynamic NFS provisioner, details about which are given at the <a href="#alpha">end of this page</a>.
 
 The rest of this document contains instructions about the NFS server provisioner maintained by the Kubernetes SIGs community.
 :::
@@ -75,6 +73,18 @@ Use the StorageClass which is created in above command and create a new PVC and 
 When multiple NFS shares are needed, use multiple NFS provisioners. Each NFS server manages one NFS server. Same or different OpenEBS StorageClass can be used for multiple NFS provisioners.
 
 ![OpenEBS and NFS provisioner](../assets/rwm-multiple.svg)
+
+<section id="alpha"></section>
+
+## Alpha features
+
+This section provides an overview of OpenEBS components and features presently in Alpha version and under active development. These features are not recommended to be used in production. We suggest you to familiarize and try these features on test clusters and reach out to [OpenEBS Community](/introduction/community) if you have any queries, feedback or need help on these features.
+
+#### Dynamic NFS Provisioner
+OpenEBS includes an alpha version of OpenEBS Dynamic NFS provisioner that allows users to create an NFS PV that sets up an new Kernel NFS instance for each PV on top of users choice of backend storage. 
+
+This project is currently under active development. For getting started and getting involved in developing this project, check out https://github.com/openebs/dynamic-nfs-provisioner.
+ 
 
 ## See Also:
 

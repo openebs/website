@@ -168,7 +168,12 @@ module.exports = {
               type: "doc",
               id: "user-guides/cstor/clean-up",
               label: "Clean up"
-            }
+            },
+            {
+              type: "doc",
+              id: "user-guides/cstor/alpha-features-cstor",
+              label: "Alpha Features"
+            },
           ]
         },
         {
