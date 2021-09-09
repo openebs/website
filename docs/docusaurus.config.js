@@ -1,6 +1,6 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 
-const WEBSITE_URL = `https://gallant-pasteur-5e438c.netlify.app`;
+const WEBSITE_URL = `https://openebs.io`;
 const path = require('path');
 
 const prismCustomColors =  {
@@ -154,7 +154,7 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           routeBasePath: "/",
           editUrl:
-            "https://github.com/openebs/website/edit/revamp-3.0/docs/",
+            "https://github.com/openebs/website/edit/main/docs/",
           includeCurrentVersion: true,
           versions:{
             current:{
