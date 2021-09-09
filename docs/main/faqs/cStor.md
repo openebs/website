@@ -4,6 +4,9 @@ title: cStor FAQs
 keywords: 
  - cStor FAQ
  - FAQs
+ - rancher prerequisites
+ - pool creation
+ - rancherOS
 description: The FAQ section about cStor helps to address common concerns, questions, and objections that users have about cStor.
 ---
 
