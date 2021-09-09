@@ -2,7 +2,7 @@ name: Sanity check
 on:
   pull_request:
     branches:
-      - revamp-3.0
+      - main
 
 jobs:
   commits_check_job:
