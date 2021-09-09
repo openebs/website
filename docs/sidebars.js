@@ -336,6 +336,26 @@ module.exports = {
     {
       collapsed: true,
       type: "category",
+      label: "FAQs",
+      customProps: {
+        icon: "BookOpen"
+      },
+      items: [
+        {
+          type: "doc",
+          id: "faqs/general",
+          label: "General OpenEBS FAQs"
+        },
+        {
+          type: "doc",
+          id: "faqs/cStorFAQ",
+          label: "cStor FAQs"
+        }
+      ]
+    },
+    {
+      collapsed: true,
+      type: "category",
       label: "Additional info",
       customProps: {
         icon: "BookOpen"
@@ -350,11 +370,6 @@ module.exports = {
           type: "doc",
           id: "additional-info/performance-testing",
           label: "Performance testing"
-        },
-        {
-          type: "doc",
-          id: "additional-info/faqs",
-          label: "FAQs"
         },
         {
           type: "doc",
