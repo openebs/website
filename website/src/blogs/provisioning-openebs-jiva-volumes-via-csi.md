@@ -34,17 +34,23 @@ This blog will demonstrate how to configure and consume Jiva volumes using the C
 
 1. Install openebs local PV provisioner to create hostpath based volumes.
 
-    kubectl apply -f https://openebs.github.io/charts/openebs-operator-lite.yaml
+```
+kubectl apply -f https://openebs.github.io/charts/openebs-operator-lite.yaml
+```
 
 2. Install the latest Jiva-operator release.
 
-    $ kubectl apply -f   https://openebs.github.io/charts/jiva-operator.yaml
+```
+$ kubectl apply -f   https://openebs.github.io/charts/jiva-operator.yaml
+```
 
 3. Using Jiva Helm chart:
 
-    $ helm repo add openebs-jiva https://openebs.github.io/jiva-operator
-    $ helm repo update  
-    $ helm install <release-name> openebs-jiva/jiva
+```
+$ helm repo add openebs-jiva https://openebs.github.io/jiva-operator
+$ helm repo update  
+$ helm install <release-name> openebs-jiva/jiva
+```
 
 More info related to Jiva charts, its configurable parameters, and their default values can be found [here](https://github.com/openebs/jiva-operator/tree/master/deploy/helm/charts).
 
