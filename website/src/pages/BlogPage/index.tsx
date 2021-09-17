@@ -105,6 +105,7 @@ const BlogPage: React.FC = () => {
               content: string;
               id: number;
               slug: string;
+              notHasFeatureImage: boolean;
             }[],
             count: number,
           ) => {
