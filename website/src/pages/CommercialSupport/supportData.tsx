@@ -25,8 +25,7 @@ const SupportData = [
   {
     id: 3,
     image: '/images/logos/mayadata.svg',
-    desc:
-      'Primary contributors to OpenEBS and creators of Kubera, the fully featured free toolset to extend OpenEBS to more use cases.',
+    desc: 'MayaData leads the development of OpenEBS & creates simplified K8s storage solutions for Enterprises',
     website: EXTERNAL_LINKS.MAYADATA_WEBSITE,
   },
 ];
