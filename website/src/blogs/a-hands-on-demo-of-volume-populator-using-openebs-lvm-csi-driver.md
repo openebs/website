@@ -1,7 +1,7 @@
 ---
 title: A hands on demo of Volume Populator using OpenEBS LVM CSI driver
 author: Shovan Maity
-author_info: 
+author_info: Shovan works as a Software Engineer at MayaData, who's experienced in Load Balancer, gRPC, WebSocket, REST APIs, and has good hands-on experience on Kubernetes. In his free time, Shovan likes to read blogs on distributed systems. He also likes Travelling and Photography.
 date: 05-07-2021
 tags: OpenEBS, LVM CSI driver
 excerpt: In this blog we will write a volume populator and create a volume with that populator. This is written using lib-volume-populator. This is a control loop on PVC that maintains the lifecycle of the PV and PVC for volume populator.

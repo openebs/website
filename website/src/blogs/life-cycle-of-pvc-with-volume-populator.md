@@ -1,7 +1,7 @@
 ---
 title: Life cycle of PVC with Volume Populator
 author: Shovan Maity
-author_info: 
+author_info: Shovan works as a Software Engineer at MayaData, who's experienced in Load Balancer, gRPC, WebSocket, REST APIs, and has good hands-on experience on Kubernetes. In his free time, Shovan likes to read blogs on distributed systems. He also likes Travelling and Photography.
 date: 05-07-2021
 tags: PVC, Volume Populator
 excerpt: This blog is on the life cycle of pvc with a volume populator. Volume populator feature is in alpha in Kubernetes (v1.21 release). Creating a volume with base or seed data is one of the requirements in storage.
