@@ -158,7 +158,7 @@ module.exports = {
           includeCurrentVersion: true,
           versions:{
             current:{
-              label: 'Main',
+              label: 'main',
               path: 'main'
             }
           }
