@@ -1,5 +1,5 @@
 {
-  "version-2.11.0/docs": [
+  "version-2.11.x/docs": [
     {
       "collapsed": true,
       "type": "category",
@@ -10,37 +10,37 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-2.11.0/introduction/overview",
+          "id": "version-2.11.x/introduction/overview",
           "label": "Overview"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/introduction/features",
+          "id": "version-2.11.x/introduction/features",
           "label": "Features"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/introduction/benefits",
+          "id": "version-2.11.x/introduction/benefits",
           "label": "Benefits"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/introduction/usecases",
+          "id": "version-2.11.x/introduction/usecases",
           "label": "Use cases"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/introduction/releases",
+          "id": "version-2.11.x/introduction/releases",
           "label": "Releases"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/introduction/community",
+          "id": "version-2.11.x/introduction/community",
           "label": "Community"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/introduction/commercial",
+          "id": "version-2.11.x/introduction/commercial",
           "label": "Support"
         }
       ]
@@ -55,52 +55,52 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-2.11.0/concepts/basics",
+          "id": "version-2.11.x/concepts/basics",
           "label": "Basics"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/concepts/cas",
+          "id": "version-2.11.x/concepts/cas",
           "label": "Container Attached Storage"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/concepts/architecture",
+          "id": "version-2.11.x/concepts/architecture",
           "label": "Architecture"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/concepts/casengines",
+          "id": "version-2.11.x/concepts/casengines",
           "label": "Data Engines"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/concepts/ndm",
+          "id": "version-2.11.x/concepts/ndm",
           "label": "NDM"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/concepts/cstor",
+          "id": "version-2.11.x/concepts/cstor",
           "label": "cStor"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/concepts/jiva",
+          "id": "version-2.11.x/concepts/jiva",
           "label": "Jiva"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/concepts/mayastor",
+          "id": "version-2.11.x/concepts/mayastor",
           "label": "Mayastor"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/concepts/localpv",
+          "id": "version-2.11.x/concepts/localpv",
           "label": "LocalPV"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/concepts/rwm",
+          "id": "version-2.11.x/concepts/rwm",
           "label": "Read-write-Many (RWX)"
         }
       ]
@@ -115,22 +115,22 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-2.11.0/user-guides/quickstart",
+          "id": "version-2.11.x/user-guides/quickstart",
           "label": "Quickstart"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/user-guides/prerequisites",
+          "id": "version-2.11.x/user-guides/prerequisites",
           "label": "Prerequisites"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/user-guides/installation",
+          "id": "version-2.11.x/user-guides/installation",
           "label": "Installation"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/user-guides/ndm",
+          "id": "version-2.11.x/user-guides/ndm",
           "label": "NDM"
         },
         {
@@ -144,59 +144,59 @@
           "items": [
             {
               "type": "doc",
-              "id": "version-2.11.0/user-guides/cstor/install-and-setup",
+              "id": "version-2.11.x/user-guides/cstor/install-and-setup",
               "label": "Install and Setup"
             },
             {
               "type": "doc",
-              "id": "version-2.11.0/user-guides/cstor/launch-sample-application",
+              "id": "version-2.11.x/user-guides/cstor/launch-sample-application",
               "label": "Launch"
             },
             {
               "type": "doc",
-              "id": "version-2.11.0/user-guides/cstor/troubleshooting",
+              "id": "version-2.11.x/user-guides/cstor/troubleshooting",
               "label": "Troubleshooting"
             },
             {
               "type": "doc",
-              "id": "version-2.11.0/user-guides/cstor/advanced",
+              "id": "version-2.11.x/user-guides/cstor/advanced",
               "label": "Advanced"
             },
             {
               "type": "doc",
-              "id": "version-2.11.0/user-guides/cstor/clean-up",
+              "id": "version-2.11.x/user-guides/cstor/clean-up",
               "label": "Clean up"
             }
           ]
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/user-guides/jiva-guide",
+          "id": "version-2.11.x/user-guides/jiva-guide",
           "label": "Jiva"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/user-guides/mayastor",
+          "id": "version-2.11.x/user-guides/mayastor",
           "label": "Mayastor"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/user-guides/localpv-hostpath",
+          "id": "version-2.11.x/user-guides/localpv-hostpath",
           "label": "Local PV Hostpath"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/user-guides/localpv-device",
+          "id": "version-2.11.x/user-guides/localpv-device",
           "label": "Local PV Device"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/user-guides/upgrade",
+          "id": "version-2.11.x/user-guides/upgrade",
           "label": "Upgrade"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/user-guides/uninstall",
+          "id": "version-2.11.x/user-guides/uninstall",
           "label": "Uninstall"
         }
       ]
@@ -211,67 +211,67 @@
       "items": [
         {        
           "type": "doc",
-          "id": "version-2.11.0/stateful-applications/mysql",
+          "id": "version-2.11.x/stateful-applications/mysql",
           "label": "RDS like MySQL"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful-applications/prometheus",
+          "id": "version-2.11.x/stateful-applications/prometheus",
           "label": "Prometheus"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful-applications/minio",
+          "id": "version-2.11.x/stateful-applications/minio",
           "label": "MinIO"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful-applications/gitlab",
+          "id": "version-2.11.x/stateful-applications/gitlab",
           "label": "GitLab"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful-applications/percona",
+          "id": "version-2.11.x/stateful-applications/percona",
           "label": "Percona"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful-applications/elasticsearch",
+          "id": "version-2.11.x/stateful-applications/elasticsearch",
           "label": "Elasticsearch"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful-applications/cockroachdb",
+          "id": "version-2.11.x/stateful-applications/cockroachdb",
           "label": "CockroachDB"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful-applications/cassandra",
+          "id": "version-2.11.x/stateful-applications/cassandra",
           "label": "Cassandra"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful-applications/nuodb",
+          "id": "version-2.11.x/stateful-applications/nuodb",
           "label": "NuoDB"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful-applications/postgres",
+          "id": "version-2.11.x/stateful-applications/postgres",
           "label": "PostgreSQL"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful-applications/redis",
+          "id": "version-2.11.x/stateful-applications/redis",
           "label": "Redis"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful-applications/mongodb",
+          "id": "version-2.11.x/stateful-applications/mongodb",
           "label": "MongoDB"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/stateful-applications/jira",
+          "id": "version-2.11.x/stateful-applications/jira",
           "label": "Jira"
         }
       ]
@@ -286,47 +286,47 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-2.11.0/troubleshooting/troubleshooting",
+          "id": "version-2.11.x/troubleshooting/troubleshooting",
           "label": "Overview"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/troubleshooting/install",
+          "id": "version-2.11.x/troubleshooting/install",
           "label": "Install"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/troubleshooting/uninstall",
+          "id": "version-2.11.x/troubleshooting/uninstall",
           "label": "Uninstall"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/troubleshooting/ndm",
+          "id": "version-2.11.x/troubleshooting/ndm",
           "label": "NDM"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/troubleshooting/volume-provisioning",
+          "id": "version-2.11.x/troubleshooting/volume-provisioning",
           "label": "Volume Provisioning"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/troubleshooting/jiva",
+          "id": "version-2.11.x/troubleshooting/jiva",
           "label": "Jiva"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/troubleshooting/cstor",
+          "id": "version-2.11.x/troubleshooting/cstor",
           "label": "cStor"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/troubleshooting/localpv",
+          "id": "version-2.11.x/troubleshooting/localpv",
           "label": "LocalPV"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/troubleshooting/mayastor",
+          "id": "version-2.11.x/troubleshooting/mayastor",
           "label": "Mayastor"
         }
       ]
@@ -341,27 +341,27 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-2.11.0/additional-info/alphafeatures",
+          "id": "version-2.11.x/additional-info/alphafeatures",
           "label": "Alpha Features"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/additional-info/performance-testing",
+          "id": "version-2.11.x/additional-info/performance-testing",
           "label": "Performance testing"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/additional-info/faqs",
+          "id": "version-2.11.x/additional-info/faqs",
           "label": "FAQs"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/additional-info/k8supgrades",
+          "id": "version-2.11.x/additional-info/k8supgrades",
           "label": "Kubernetes upgrades"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/additional-info/kb",
+          "id": "version-2.11.x/additional-info/kb",
           "label": "Knowledge Base"
         }
       ]
@@ -376,22 +376,22 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-2.11.0/deprecated/releases-1x",
+          "id": "version-2.11.x/deprecated/releases-1x",
           "label": "releases-1x"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/deprecated/releases-0x",
+          "id": "version-2.11.x/deprecated/releases-0x",
           "label": "releases-0x"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/deprecated/spc-based-cstor",
+          "id": "version-2.11.x/deprecated/spc-based-cstor",
           "label": "SPC based cStor guide"
         },
         {
           "type": "doc",
-          "id": "version-2.11.0/deprecated/mayactl",
+          "id": "version-2.11.x/deprecated/mayactl",
           "label": "mayactl"
         }
       ]

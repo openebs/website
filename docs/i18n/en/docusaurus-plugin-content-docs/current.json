@@ -116,7 +116,7 @@
     "description": "The label for category Deprecated in sidebar docs"
   },
   "version.label": {
-    "message": "Main",
+    "message": "main",
     "description": "The label for version current"
   }
 }
