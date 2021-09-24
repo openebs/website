@@ -5,6 +5,7 @@ author_info: Founder, Contributor and Maintainer of OpenEBS projects. Chief Arch
 tags: OpenEBS
 date: 24-09-2021
 excerpt: Announcing OpenEBS 3.0 release - with ability to create 9 types of volumes. 
+not_has_feature_image: false
 ---
  
 We released OpenEBS in early 2017 as one of the first solutions to adopt the Container Attached Storage pattern to deliver per workload storage in part by building upon Kubernetes.  OpenEBS is now one of the most popular storage solutions for Kubernetes; our metrics indicate that usage of OpenEBS has increased significantly in the last three years, by approximately 7x, with the most popular workloads being those that are resilient including NoSQL DBs that often do not use shared storage. 
