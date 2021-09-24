@@ -45,37 +45,37 @@ OpenEBS uses LocalPV provisioners to connect applications directly with storage 
 
 OpenEBS 3.0 includes the following enhancement to the LocalPV provisioner:
 * Support for 3 new types of LocalPVs namely LVM LocalPV, Rawfile LocalPV, Partition Local PV in addition to the previously supported Hostpath LocalPV, Device LocalPV and ZFS LocalPV. 
-* OpenEBS Hostpath LocalPV (declared stable), the first and the most widely used LocalPV now supports enforcing XFS quota, ability to use a custom node label for node affinity (instead of the default `kubernetes.io/hostname`) 
-* OpenEBS ZFS LocalPV (declared stable), used widely for production workloads that need direct and resilient storage has added new capabilities like:
+* [OpenEBS Hostpath LocalPV (stable)](https://github.com/openebs/dynamic-localpv-provisioner), the first and the most widely used LocalPV now supports enforcing XFS quota, ability to use a custom node label for node affinity (instead of the default `kubernetes.io/hostname`) 
+* [OpenEBS ZFS LocalPV (stable)](https://github.com/openebs/zfs-localpv), used widely for production workloads that need direct and resilient storage has added new capabilities like:
   * Velero plugin to perform incremental backups that make use of the copy-on-write ZFS snapshots.
   * CSI Capacity based scheduling used with `waitForFirstConsumer` bound Persistent Volumes. 
   * Improvements to inbuilt volume scheduler (used with `immediate` bound Persistent Volumes) that can now take into account the capacity and the count of volumes provisioned per node.
-* OpenEBS LVM LocalPV (declared stable), can be used to provision volume on top of LVM Volume Groups and supports the following features:
+* [OpenEBS LVM LocalPV (stable)](https://github.com/openebs/lvm-localpv), can be used to provision volume on top of LVM Volume Groups and supports the following features:
   * Thick (Default) or Thin Provisioned Volumes 
   * CSI Capacity based scheduling used with `waitForFirstConsumer` bound Persistent Volumes. 
   * Snapshot that translates into LVM Snapshots 
   * Ability to set QoS on the containers using LVM Volumes.
   * Also supports other CSI capabilities like volume expansion, raw or filesystem mode, metrics. 
-* OpenEBS Rawfile LocalPV (declared beta), is a preferred choice for creating local volumes using a sparse file within a sub-directory that supports capacity enforcement, filesystem or block volumes.
-* OpenEBS Device LocalPV (declared beta), is a preferred choice for running workloads that have typically worked well with consuming the full disks in block mode. This provisioner uses NDM to select the block device. 
-* OpenEBS Partition LocalPV (an alpha engine), is under active development and is being deployed in select users for creating volumes by dynamically partitioning a disk with the requested capacity from the PVC. 
+* [OpenEBS Rawfile LocalPV (beta)](https://github.com/openebs/rawfile-localpv), is a preferred choice for creating local volumes using a sparse file within a sub-directory that supports capacity enforcement, filesystem or block volumes.
+* [OpenEBS Device LocalPV (beta)](https://github.com/openebs/dynamic-localpv-provisioner/blob/develop/docs/quickstart.md#provisioning-localpv-device-persistent-volume), is a preferred choice for running workloads that have typically worked well with consuming the full disks in block mode. This provisioner uses NDM to select the block device. 
+* [OpenEBS Partition LocalPV (an alpha engine)](https://github.com/openebs/device-localpv), is under active development and is being deployed in select users for creating volumes by dynamically partitioning a disk with the requested capacity from the PVC. 
 
 ### ReplicatedPV - New Features and Enhancements
 
 OpenEBS uses ReplcatedPV provisioners to connect applications to volumes - whose data is synchronously replicated to multiple storage nodes. This storage object, known as ReplicatedPV, is highly available and can be mounted from multiple nodes in the clusters. OpenEBS supports three types of ReplicatedPVs Jiva (based on Longhorn and iSCSI), CStor (based on ZFS and iSCSI) and Mayastor (based on SPDK and NVMe). 
 
 Some enhancements to replicated storage engines in OpenEBS 3.0 include:
-* OpenEBS Jiva (declared stable), has added support for a CSI Driver and Jiva operator that include features like:
+* [OpenEBS Jiva (stable)](https://github.com/openebs/jiva-operator), has added support for a CSI Driver and Jiva operator that include features like:
   * Enhanced management of the replicas 
   * Ability to auto-remount the volumes marked as read-only due to iSCSI time to read-write. 
   * Faster detection of the node failure and helping Kubernetes to move the application out of the failed node to a new node. 
   * 3.0 also deprecates the older Jiva volume provisioners - that was based on the kubernetes external storage provisioner. There will be no more features added to the older provisioners and users are requested to migrate their Volumes to CSI Drivers as soon as possible. 
-* OpenES CStor (declared stable), has added support for a CSI Driver and also improved customer resources and operators for managing the lifecycle of CStor Pools. This 3.0 version of the CStor includes:
+* [OpenES CStor (stable)](https://github.com/openebs/cstor-operators), has added support for a CSI Driver and also improved customer resources and operators for managing the lifecycle of CStor Pools. This 3.0 version of the CStor includes:
   * The improved schema allows users to declaratively run operations like replacing the disks in mirrored CStor pools, add new disks, scale-up replicas,  or move the CStor Pools to a new node. The new custom resource for configuring CStor is called CStorPoolCluster (CSPC) compared to older StoragePoolCluster(SPC). 
   * Ability to auto-remount the volumes marked as read-only due to iSCSI time to read-write. 
   * Faster detection of the node failure and helping Kubernetes to move the application out of the failed node to a new node. 
   * 3.0 also deprecates the older CStor volume provisioners and pool operators based on SPC - that was based on the kubernetes external storage provisioner. There will be no more features added to the older provisioners and users are requested to migrate their Pools to CSPC and Volumes to CSI Drivers as soon as possible.
-* OpenES Maystor (declared beta), is under active development and currently is building a new and enhanced control plane to manage the mayastor pools and volumes. In the current release, the changes to the Mayastor include:
+* [OpenES Maystor (beta)](https://github.com/openebs/mayastor), is under active development and currently is building a new and enhanced control plane to manage the mayastor pools and volumes. In the current release, the changes to the Mayastor include:
   * Support for deprecating the MOAC based control plane in favor of the new control plane. 
   * Enhanced control plane to handle node failure scenarios and move the volumes to new nodes. 
   * Stabilizing the Mayastor data engine for durability and performance. 
@@ -85,17 +85,17 @@ Some enhancements to replicated storage engines in OpenEBS 3.0 include:
 
 Beyond the improvements to the data engines and their corresponding control plane, there are several new enhancements that will help with ease of use of OpenEBS engines:
 * Several fixes and enhancements to the Node Disk Manager ranging from adding a to automatically adding a reservation tag to devices, detecting filesystem changes and updating the block device CR (without the need for a reboot), metrics exporter and an API service that can be extended in the future to implement storage pooling or cleanup hooks. 
-* Dynamic NFS Provisioner that allows users to launch a new NFS server on any RWO volume (called backend volume) and expose an RWX volume that saves the data to the backend volume. 
+* [Dynamic NFS Provisioner](https://github.com/openebs/dynamic-nfs-provisioner) that allows users to launch a new NFS server on any RWO volume (called backend volume) and expose an RWX volume that saves the data to the backend volume. 
 * Kubernetes Operator for automatically upgrading Jiva and CStor volumes that are driven by a Kubernetes Job 
 * Kubernetes Operator for automatically migrating CStor Pools and Volumes from older pool schema and legacy (external storage based) provisioners to the new Pool Schema and CSI volumes respectively. 
-* OpenEBS CLI (a kubectl plugin) for easily checking the status of the block devices,  pools (storage) and volumes (PVs). 
-* OpenEBS Dashboard (a prometheus and grafana mixin) that can be installed via jsonnet or helm chart with a set of default Grafana Dashboards and AlertManager rules for OpenEBS storage engines. 
+* [OpenEBS CLI (a kubectl plugin)](https://github.com/openebs/openebsctl) for easily checking the status of the block devices,  pools (storage) and volumes (PVs). 
+* [OpenEBS Dashboard](https://github.com/openebs/monitoring) (a prometheus and grafana mixin) that can be installed via jsonnet or helm chart with a set of default Grafana Dashboards and AlertManager rules for OpenEBS storage engines. 
 * Enhanced OpenEBS helm chart that can easily enable or disable a data engine of choice. The 3.0 helm chart stops installing the legacy CStor and Jiva provisioners. If you would like to continue to use them, you have to set the flag “legacy.enabled=true”. 
 * OpenEBS helm chart includes sample kyverno policies that can be used as an option for PodSecurityPolicies(PSP) replacement. 
 * OpenEBS images are delivered as multi-arch images with support for AMD64 and ARM64 and hosted on DockerHub, Quay and GHCR. 
 * Support for installing in air gapped environments. 
 * Enhanced Documentation and Troubleshooting guides for each of the engines located in the respective engine repositories. 
-* A new and improved design for the OpenEBS website. 
+* A new and improved design for the [OpenEBS website](https://openebs.io/). 
 
 ### Deprecated Features
 

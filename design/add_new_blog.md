@@ -1,6 +1,6 @@
 ## Add a new blog post
 
-* Create a new markdown file for your blog under (website/src/blogs)[../website/src/blogs].
+* Create a new markdown file for your blog under [website/src/blogs](../website/src/blogs).
   * Name of the markdown file should be the title of the blog converted to all small letters with hyphen(-) separation between the words. For example, If the title of the blog is: ``Title of the blog``, then file name will be ``title-of-the-blog.md``
   * The main blog image should be named as ``title-of-the-blog.png`` and add this file to ``website/website/public/images/blog``
   * If you are a new author, add your photograph with file name as `author-name.png` to `website/website/public/images/blog/authors`. Make sure the name provided in the author section of the metadata of the blog matches with this filename
