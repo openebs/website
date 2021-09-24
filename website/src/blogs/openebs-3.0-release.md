@@ -2,7 +2,6 @@
 title: OpenEBS 3.0 Release
 author: Kiran Mova
 author_info: Founder, Contributor and Maintainer of OpenEBS projects. Chief Architect MayaData. Kiran leads overall architecture & is responsible for architecting, solution design & customer adoption of OpenEBS.
-author_info: Author information
 tags: OpenEBS
 date: 24-09-2021
 excerpt: Announcing OpenEBS 3.0 release - with ability to create 9 types of volumes. 
