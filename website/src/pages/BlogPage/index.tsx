@@ -33,7 +33,7 @@ const BlogPage: React.FC = () => {
   const [previousBlog, setPreviousBlog] = useState<any>({});
   const [nextBlog, setNextBlog] = useState<any>({});
   const [currentBlogDetails, setCurrentBlogDetails] = useState<any>({});
-  const [recommendedBlogs, setRecommendedBlogs] = useState<any[]>([]);
+  const [recommendedBlogs, setRecommendedBlogs] = useState<Array<any>>([]);
 
   const queryBlogName = useBlogName();
   const { width } = useViewport();
@@ -96,16 +96,16 @@ const BlogPage: React.FC = () => {
         if (recommendedBlogs?.length < minimumRecommededBlogs) {
           const getRandomBlogs = (
             arr: {
+              id: number;
               title: string;
               author: string;
-              excerpt: string;
               author_info: string;
               date: string;
-              tags: Array<string>;
+              tags: string[];
+              excerpt: string;
               content: string;
-              id: number;
-              slug: string;
               notHasFeatureImage: boolean;
+              slug: string;
             }[],
             count: number,
           ) => {
