@@ -64,7 +64,7 @@ const getPosts = () => {
                         tags: metadata.tags.split(',').map(e => e.trim()) || 'No tags available',
                         excerpt: metadata.excerpt || '',
                         content: content || 'No content available', 
-                        notHasFeatureImage: (metadata.not_has_feature?.toLowerCase() === 'true') ? true : false
+                        notHasFeatureImage: (metadata.not_has_feature_image) ? true : false
                     };
                 }
                 
