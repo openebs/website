@@ -11,19 +11,19 @@ We released OpenEBS in early 2017 as one of the first solutions to adopt the Con
 
 A lot of the growth in usage by OpenEBS is due to the overall growth in Kubernetes for stateful workloads.  The [CNCF’s 2020 Survey](https://www.cncf.io/wp-content/uploads/2020/11/CNCF_Survey_Report_2020.pdf) highlighted 55% of surveyed organizations now use stateful applications in production. **The survey also highlighted MayaData / OpenEBS is in the top-5 list of popular storage solutions.**
 
-Over the years, OpenEBS has steadily evolved into a full stack storage software with swappable storage engine, related control plane components, and integrations into other cloud native projects. 
+Over the years, OpenEBS has steadily evolved into a full stack storage software with swappable storage engines, related control plane components, and integrations into other cloud native projects. 
 
 A quick summary:
 - **OpenEBS 1.0** was launched with the goal of simplifying the journey of users, who were  onboarding Stateful workloads into Kubernetes. The initial release included: 
-  * A stable distributed block storage called “Jiva” backed by Longhorn engine. 
+  * A stable distributed block storage called “Jiva” based on the Longhorn engine. 
   * An initial version of the CStor engine based on ZFS that was much more resilient to node failures and optimized for working with Hard Drives and RAID. 
-  * Also included components like Node Disk Manager that helped to manage the local storage on kubernetes nodes and Dynamic LocalPV Provisioners.
+  * Also components like Node Disk Manager that helped to manage local storage on Kubernetes nodes and Dynamic LocalPV Provisioners.
 - **OpenEBS 2.0** focused on the stability of the data plane and building of an automated test framework, and the introduction of additional engines based on user feedback. This release included: 
   * Making OpenEBS a CNCF project - which meant streamlining a lot of project governance, development processes and moving towards CNCF provided tools. 
   * CStor data plane was declared stable, with support for incremental backup/restore support via Velero. 
   * E2e tests for all of the OpenEBS Engines using the Litmus framework, which went on to become a project of its own.
   * ZFS LocalPV provisioners (CSI Driver) was introduced.
-  * Initial release of Mayastor - which was the result of investigations done on top of Jiva and CStor to improve the performance. 
+  * Initial release of Mayastor - which was the result of investigation into inherent performance limitations of earlier approaches including Jiva and CStor.
 - **OpenEBS 3.0** has been about enhancing the usability and stability aspects of all the previously introduced engines as well as support for new engines. The release is also about supporting the newer Kubernetes releases. This release includes:
   * CSI Drivers for CStor and Jiva and tools to migrate volumes to the newer CSI drivers. The legacy provisioners are deprecated with 3.0.0 and users are required to migrate to the corresponding CSI drivers asap. 
   * Several enhancements to existing LocalPV flavors and introduction of new types of LocalPV. 
@@ -32,7 +32,7 @@ A quick summary:
 
 ## What’s new in OpenEBS 3.0?
 
-OpenEBS 3.0 is a culmination of efforts geared towards laying the foundation for making it easier to onboard and accept community contributions, making each of the engine operators  ready for future kubernetes releases, making it easy to manage and troubleshoot various engines. This has been achieved via migration to latest Kubernetes constructs, ease of use improvements, bug fixes and most importantly refactoring the control plane and e2e test suites to independently enhance and release each of the engines. 
+OpenEBS 3.0 is a culmination of efforts geared towards laying the foundation for making it easier to onboard and accept community contributions, making each of the engine operators  ready for future Kubernetes releases, making it easy to manage and troubleshoot various engines. This has been achieved via migration to latest Kubernetes constructs, ease of use improvements, bug fixes and most importantly refactoring the control plane and e2e test suites to independently enhance and release each of the engines. 
 
 I highlight a few of these enhancements below.  
 
@@ -83,7 +83,7 @@ Some enhancements to replicated storage engines in OpenEBS 3.0 include:
 ### Other Notable Features and Enhancements
 
 Beyond the improvements to the data engines and their corresponding control plane, there are several new enhancements that will help with ease of use of OpenEBS engines:
-* Several fixes and enhancements to the Node Disk Manager ranging from adding a to automatically adding a reservation tag to devices, detecting filesystem changes and updating the block device CR (without the need for a reboot), metrics exporter and an API service that can be extended in the future to implement storage pooling or cleanup hooks. 
+* Several fixes and enhancements to the Node Disk Manager like automatically adding a reservation tag to devices, detecting filesystem changes and updating the block device CR (without the need for a reboot), metrics exporter and an API service that can be extended in the future to implement storage pooling or cleanup hooks. 
 * [Dynamic NFS Provisioner](https://github.com/openebs/dynamic-nfs-provisioner) that allows users to launch a new NFS server on any RWO volume (called backend volume) and expose an RWX volume that saves the data to the backend volume. 
 * Kubernetes Operator for automatically upgrading Jiva and CStor volumes that are driven by a Kubernetes Job 
 * Kubernetes Operator for automatically migrating CStor Pools and Volumes from older pool schema and legacy (external storage based) provisioners to the new Pool Schema and CSI volumes respectively. 
@@ -92,7 +92,7 @@ Beyond the improvements to the data engines and their corresponding control plan
 * Enhanced OpenEBS helm chart that can easily enable or disable a data engine of choice. The 3.0 helm chart stops installing the legacy CStor and Jiva provisioners. If you would like to continue to use them, you have to set the flag “legacy.enabled=true”. 
 * OpenEBS helm chart includes sample kyverno policies that can be used as an option for PodSecurityPolicies(PSP) replacement. 
 * OpenEBS images are delivered as multi-arch images with support for AMD64 and ARM64 and hosted on DockerHub, Quay and GHCR. 
-* Support for installing in air gapped environments. 
+* Support for installation in air gapped environments. 
 * Enhanced Documentation and Troubleshooting guides for each of the engines located in the respective engine repositories. 
 * A new and improved design for the [OpenEBS website](https://openebs.io/). 
 
