@@ -5,20 +5,14 @@ slug: /
 keywords:
   - OpenEBS
   - OpenEBS overview
-description: OpenEBS builds on Kubernetes to enable Stateful applications to easily access Dynamic Local PVs or Replicated PVs. By using the Container Attached Storage pattern users report lower costs, easier management, and more control for their teams.
+description: OpenEBS builds on Kubernetes to enable Stateful applications to easily access Dynamic Local or Distributed Container Attached Kubernetes Persistent Volumes. By using the Container Attached Storage pattern users report lower costs, easier management, and more control for their teams.
 ---
 
 ## What is OpenEBS?
 
-![OpenEBS Architecture](../assets/openebs-architecture.svg)
+OpenEBS turns any storage available to the Kubernetes worker nodes into Local or Distributed Kubernetes Persistent Volumes. OpenEBS helps Application and Platform teams easily deploy Kubernetes Stateful Workloads that require fast and highly durable, reliable and scalable [Container Attached Storage](/docs/concepts/cas).
 
-OpenEBS helps Developers and Platform SREs easily deploy Kubernetes Stateful Workloads that require fast and highly reliable [Container Attached Storage](/docs/concepts/cas).
-
-OpenEBS turns any storage available on the Kubernetes worker nodes into local or distributed Kubernetes Persistent Volumes.
-
-OpenEBS [Local](#local-volumes) and [Distributed](#replicated-volumes) volumes are implemented using a collection of OpenEBS Data Engines. OpenEBS Control Plane integrates deeply into Kubernetes and uses Kubernetes to manage the provisioning, scheduling and maintenance of OpenEBS Volumes.
-
-OpenEBS supports hyperconverged and disaggregated deployments. OpenEBS is the leading choice for NVMe based storage deployments.
+OpenEBS is the leading choice for NVMe based storage deployments.
 
 OpenEBS was originally built by [MayaData](https://mayadata.io) and donated to the _Cloud Native Computing Foundation_ and is now a [CNCF sandbox project](https://www.cncf.io/sandbox-projects/).
 
@@ -34,7 +28,7 @@ The [OpenEBS Adoption stories](https://github.com/openebs/openebs/blob/master/AD
 
 ## What does OpenEBS do?
 
-OpenEBS manages the storage available on each of the Kubernetes nodes and uses that storage to provide Local or Distributed Persistent Volumes to Stateful workloads.
+OpenEBS manages the storage available on each of the Kubernetes nodes and uses that storage to provide [Local](#local-volumes) or [Distributed(aka Replicated)](#replicated-volumes) Persistent Volumes to Stateful workloads.
 
 ![data-engines-comparision](../assets/data-engines-comparision.svg)
 
@@ -49,10 +43,15 @@ In case of [Distributed (aka Replicated) Volumes](#replicated-volumes):
 - OpenEBS creates a Micro-service for each Distributed Persistent volume using one of its engines - Mayastor, cStor or Jiva.
 - The Stateful Pod writes the data to the OpenEBS engines that synchronously replicates the data to multiple nodes in the cluster. OpenEBS engine itself is deployed as pod and orchestrated by Kubernetes. When the node running the Stateful pod fails, the pod will be rescheduled to another node in the cluster and OpenEBS provides access to the data using the available data copies on other nodes.
 - The Stateful Pods connect to the OpenEBS Distributed Persistent volume using iSCSI (cStor and Jiva) or NVMeoF (Mayastor).
-- OpenEBS cStor and Jiva focus on ease of use and durability of the storage. They use customized versions of ZFS and Longhorn technology respectively for writing the data onto the storage. OpenEBS Mayastor is the latest engine that has been developed with durability and performance as design goals and efficiently manages the compute (hugepages, cores) and storage (NVMe Drives) for providing fast distributed block storage.
+- OpenEBS cStor and Jiva focus on ease of use and durability of the storage. They use customized versions of ZFS and Longhorn technology respectively for writing the data onto the storage. 
+- OpenEBS Mayastor is the latest engine that has been developed with durability and performance as design goals and efficiently manages the compute (hugepages, cores) and storage (NVMe Drives) for providing fast distributed block storage.
 
 :::tip NOTE
-OpenEBS Distributed Block volumes are called as Replicated Volumes, to avoid confusion with traditional distributed block storages that tend to distribute the data across many nodes in the cluster. Replicated volumes have low blast radius compared to traditional distributed block storages. Replicated volumes are designed for Cloud Native stateful workloads that require large number of volumes with capacity that can typically be served from a single node as apposed to a single large volume with data sharded across multiple nodes in the cluster.
+OpenEBS contributors prefers to call the Distributed Block Storage volumes as **Replicated Volumes**, to avoid confusion with traditional distributed block storages that tend to distribute the data across many nodes in the cluster. Replicated volumes do not spread the data of a single volumes across multiple nodes, thereby avoiding complex metadata lookups to identify the node that owns a block of the volume. Replicated volumes achieve high availability and durability by synchronously replicating the full data of the volumes to another set of nodes in the cluster. 
+
+Replicated volumes have low blast radius compared to traditional distributed block storages. 
+
+Replicated volumes are designed for Cloud Native stateful workloads that require large number of volumes with capacity that can typically be served from a single node as apposed to a single large volume with data sharded across multiple nodes in the cluster.
 :::
 
 OpenEBS Data Engines and Control Plane are implemented as micro-services, deployed as containers and orchestrated by Kubernetes itself. OpenEBS data engines are implemented in user space making OpenEBS run on any Kubernetes Platform and use any type of storage available to the Kubernetes worker nodes. An added advantage of being a completely Kubernetes native solution is that administrators and developers can interact and manage OpenEBS using all the wonderful tooling that is available for Kubernetes like kubectl, Helm, Prometheus, Grafana, etc.
@@ -95,4 +94,9 @@ OpenEBS has a vibrant community that can help you get started. If you have furth
 
 ## See Also:
 
-[Quickstart](/docs/user-guides/quickstart) [Use cases and Examples](/docs/introduction/usecases) [Container Attached Storage (CAS)](/docs/concepts/cas) [OpenEBS Architecture](/docs/concepts/architecture) [OpenEBS Local PV](/docs/concepts/localpv) [OpenEBS Mayastor](/docs/concepts/mayastor)
+- [Quickstart](/docs/user-guides/quickstart) 
+- [Use cases and Examples](/docs/introduction/usecases)
+- [Container Attached Storage (CAS)](/docs/concepts/cas)
+- [OpenEBS Architecture](/docs/concepts/architecture)
+- [OpenEBS Local PV](/docs/concepts/localpv)
+- [OpenEBS Mayastor](/docs/concepts/mayastor)

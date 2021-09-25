@@ -13,15 +13,16 @@ description: OpenEBS features includes containerized storage for containers, syn
 
 import { TwoColumn } from "@site/src/components/TwoColumn";
 
-- [Containerized storage for containers](#containerized-storage-for-containers)
-- [Synchronous replication](#synchronous-replication)
-- [Snapshots and clones](#snapshots-and-clones)
-- [Backup and restore](#backup-and-restore)
-- [Prometheus metrics and Grafana dashboard](#prometheus-metrics-for-workload-tuning)
-
 :::tip
-For information on how OpenEBS is used in production, visit the [use cases](/docs/introduction/usecases) section or see examples of users and their stories on the OpenEBS Adopters section [here](https://github.com/openebs/openebs/blob/master/ADOPTERS.md) where you can also share your experience.
+For information on how OpenEBS is used in production, visit the [use cases](/docs/introduction/usecases) section or read what [OpenEBS Adopters have shared](https://github.com/openebs/openebs/blob/HEAD/ADOPTERS.md).
 :::
+
+OpenEBS Features, like any storage solution, can be broadly classified into following categories:
+- [Declarative Provisioning of Container Attached Storage](#containerized-storage-for-containers)
+- [Durability and High availability using synchronous data replication](#synchronous-replication)
+- [Data Protection via Snapshots and clones](#snapshots-and-clones)
+- [Disaster Recovery via Backup and restore](#backup-and-restore)
+- [Observability using Prometheus metrics and Grafana dashboards](#prometheus-metrics-for-workload-tuning)
 
 ### Containerized Storage for Containers
 
@@ -84,4 +85,8 @@ For information on how OpenEBS is used in production, visit the [use cases](/doc
 
 ## See Also:
 
-[OpenEBS Benefits](/docs/introduction/benefits) [Object Storage with OpenEBS](/docs/stateful-applications/minio) [Read Write Many (RWX) PVs with OpenEBS](/docs/concepts/rwm) [Local storage for Prometheus](/docs/stateful-applications/prometheus)
+- [Use cases and Examples](/docs/introduction/usecases)
+- [OpenEBS Benefits](/docs/introduction/benefits)
+- [OpenEBS Architecture](/docs/concepts/architecture)
+- [OpenEBS Local PV](/docs/concepts/localpv)
+- [OpenEBS Mayastor](/docs/concepts/mayastor)
