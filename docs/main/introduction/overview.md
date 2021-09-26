@@ -47,11 +47,11 @@ In case of [Distributed (aka Replicated) Volumes](#replicated-volumes):
 - OpenEBS Mayastor is the latest engine that has been developed with durability and performance as design goals and efficiently manages the compute (hugepages, cores) and storage (NVMe Drives) for providing fast distributed block storage.
 
 :::tip NOTE
-OpenEBS contributors prefers to call the Distributed Block Storage volumes as **Replicated Volumes**, to avoid confusion with traditional distributed block storages that tend to distribute the data across many nodes in the cluster. Replicated volumes do not spread the data of a single volumes across multiple nodes, thereby avoiding complex metadata lookups to identify the node that owns a block of the volume. Replicated volumes achieve high availability and durability by synchronously replicating the full data of the volumes to another set of nodes in the cluster. 
-
-Replicated volumes have low blast radius compared to traditional distributed block storages. 
-
-Replicated volumes are designed for Cloud Native stateful workloads that require large number of volumes with capacity that can typically be served from a single node as apposed to a single large volume with data sharded across multiple nodes in the cluster.
+OpenEBS contributors prefers to call the Distributed Block Storage volumes as **Replicated Volumes**, to avoid confusion with traditional distributed block storages for following reasons:
+* Distributed block storage that tend to shard the data blocks of a volume across many nodes in the cluster. Replicated volumes persist all the data blocks of a volume on a node and for durability replicate the entire data to other nodes in the cluster.
+* While accessing a volume data, distributed block storage have to depend on the metadata hashing algorithms to locate the node where the block resides, where as replicated volume can access the data from any of the nodes where data is being persisted (aka replica nodes).
+* Replicated volumes have low blast radius compared to traditional distributed block storages. 
+* Replicated volumes are designed for Cloud Native stateful workloads that require large number of volumes with capacity that can typically be served from a single node as apposed to a single large volume with data sharded across multiple nodes in the cluster.
 :::
 
 OpenEBS Data Engines and Control Plane are implemented as micro-services, deployed as containers and orchestrated by Kubernetes itself. OpenEBS data engines are implemented in user space making OpenEBS run on any Kubernetes Platform and use any type of storage available to the Kubernetes worker nodes. An added advantage of being a completely Kubernetes native solution is that administrators and developers can interact and manage OpenEBS using all the wonderful tooling that is available for Kubernetes like kubectl, Helm, Prometheus, Grafana, etc.

@@ -192,7 +192,7 @@
     "description": "The label used to navigate to the next doc"
   },
   "theme.docs.versions.unreleasedVersionLabel": {
-    "message": "This is the documentation for the latest development version of OpenEBS.",
+    "message": "This is the documentation for the development version of OpenEBS.",
     "description": "The label used to tell the user that they are browsing an unreleased doc version"
   },
   "theme.docs.versions.unmaintainedVersionLabel": {
@@ -200,11 +200,11 @@
     "description": "The label used to tell the user that they are browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
-    "message": "See the {latestVersionLink} ({versionLabel}).",
+    "message": "See the documentation for {latestVersionLink} ({versionLabel}).",
     "description": "The label userd to tell the user that they are browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionLinkLabel": {
-    "message": "latest version",
+    "message": "latest released version",
     "description": "The label used for the latest version suggestion link label"
   },
   "theme.common.editThisPage": {

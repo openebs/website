@@ -29,8 +29,6 @@ This page should be used a quick reference to find out the compatability of Open
 |2.2.0   |K8s >1.14 <1.20    | Jiva(w/non-CSI)| cStor(w/CSI), cStor(w/non-CSI), LocalPV(Hostpath, Device, ZFS) | Mayastor, LocalPV(Rawfile), Jiva(w/CSI) | 
 |2.1.0   |K8s >1.14 <1.20    | Jiva(w/non-CSI)| cStor(w/CSI), cStor(w/non-CSI), LocalPV(Hostpath, Device, ZFS) | Mayastor, LocalPV(Rawfile), Jiva(w/CSI) | 
 |2.0.0   |K8s >1.14 <1.20    | Jiva(w/non-CSI)| cStor(w/CSI), cStor(w/non-CSI), LocalPV(Hostpath, Device, ZFS) | Mayastor, LocalPV(Rawfile), Jiva(w/CSI) | 
-
-
 |1.12.0  |K8s >1.14 <1.20    | Jiva(w/non-CSI)| cStor(w/non-CSI), LocalPV(Hostpath, Device, ZFS) | Mayastor, cStor(w/CSI), Jiva(w/CSI) | 
 |1.11.0  |K8s >1.14 <1.20    | Jiva(w/non-CSI)| cStor(w/non-CSI), LocalPV(Hostpath, Device, ZFS) | Mayastor, cStor(w/CSI), Jiva(w/CSI) | 
 |1.10.0  |K8s >1.14 <1.20    | Jiva(w/non-CSI)| cStor(w/non-CSI), LocalPV(Hostpath, Device) | Mayastor, LocalPV(ZFS), cStor(w/CSI), Jiva(w/CSI) | 
