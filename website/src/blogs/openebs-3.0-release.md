@@ -33,7 +33,7 @@ A quick summary:
 
 ## What’s new in OpenEBS 3.0?
 
-OpenEBS 3.0 is a culmination of efforts geared towards laying the foundation for making it easier to onboard and accept community contributions, making each of the engine operators  ready for future Kubernetes releases, making it easy to manage and troubleshoot various engines. This has been achieved via migration to latest Kubernetes constructs, ease of use improvements, bug fixes and most importantly refactoring the control plane and e2e test suites to independently enhance and release each of the engines. 
+OpenEBS 3.0 (See [Release Notes](https://github.com/openebs/openebs/releases/tag/v3.0.0)) is a culmination of efforts geared towards laying the foundation for making it easier to onboard and accept community contributions, making each of the engine operators  ready for future Kubernetes releases, making it easy to manage and troubleshoot various engines. This has been achieved via migration to latest Kubernetes constructs, ease of use improvements, bug fixes and most importantly refactoring the control plane and e2e test suites to independently enhance and release each of the engines. 
 
 I highlight a few of these enhancements below.  
 
@@ -70,12 +70,12 @@ Some enhancements to replicated storage engines in OpenEBS 3.0 include:
   * Ability to auto-remount the volumes marked as read-only due to iSCSI time to read-write. 
   * Faster detection of the node failure and helping Kubernetes to move the application out of the failed node to a new node. 
   * 3.0 also deprecates the older Jiva volume provisioners - that was based on the kubernetes external storage provisioner. There will be no more features added to the older provisioners and users are requested to migrate their Volumes to CSI Drivers as soon as possible. 
-* [OpenES CStor (stable)](https://github.com/openebs/cstor-operators), has added support for a CSI Driver and also improved customer resources and operators for managing the lifecycle of CStor Pools. This 3.0 version of the CStor includes:
+* [OpenEBS CStor (stable)](https://github.com/openebs/cstor-operators), has added support for a CSI Driver and also improved customer resources and operators for managing the lifecycle of CStor Pools. This 3.0 version of the CStor includes:
   * The improved schema allows users to declaratively run operations like replacing the disks in mirrored CStor pools, add new disks, scale-up replicas,  or move the CStor Pools to a new node. The new custom resource for configuring CStor is called CStorPoolCluster (CSPC) compared to older StoragePoolCluster(SPC). 
   * Ability to auto-remount the volumes marked as read-only due to iSCSI time to read-write. 
   * Faster detection of the node failure and helping Kubernetes to move the application out of the failed node to a new node. 
   * 3.0 also deprecates the older CStor volume provisioners and pool operators based on SPC - that was based on the kubernetes external storage provisioner. There will be no more features added to the older provisioners and users are requested to migrate their Pools to CSPC and Volumes to CSI Drivers as soon as possible.
-* [OpenES Maystor (beta)](https://github.com/openebs/mayastor), is under active development and currently is building a new and enhanced control plane to manage the mayastor pools and volumes. In the current release, the changes to the Mayastor include:
+* [OpenEBS Mayastor (beta)](https://github.com/openebs/mayastor), is under active development and currently is building a new and enhanced control plane to manage the mayastor pools and volumes. In the current release, the changes to the Mayastor include:
   * Support for deprecating the MOAC based control plane in favor of the new control plane. 
   * Enhanced control plane to handle node failure scenarios and move the volumes to new nodes. 
   * Stabilizing the Mayastor data engine for durability and performance. 
@@ -106,13 +106,13 @@ As announced in [June earlier this year](https://github.com/openebs/openebs/rele
 We originally developed OpenEBS that focused on solving the core issue of Kubernetes storage - that is the lack of support to manage stateful applications, especially modern resilient workloads that do not use shared storage and prefer the per workload approach of Container Attached Storage.  That remains our focus today - and as mentioned innovation seems to be accelerating as the community of users and contributors grows at an accelerated rate.  
 I am especially thankful to the OpenEBS users and organizations that have taken the time to fill out [Adopters.md](https://github.com/openebs/openebs/blob/master/ADOPTERS.md) to share how they are using OpenEBS, and how it is solving their common problems while leveraging Kubernetes for data.  
 
-I will also be talking about the new features, upgrades & bug fixes and giving glimpses into what is coming in OpenEBS 3.1 and 4.0 at the CNCF On-Demand Webinar: OpenEBS 3.0 : What’s in it on September 30th. Feel free to register & attend: https://community.cncf.io/events/details/cncf-cncf-online-programs-presents-cncf-on-demand-webinar-openebs-30-whats-in-it/
+I will also be talking about the new features, upgrades & bug fixes and giving glimpses into what is coming in OpenEBS 3.1 and 4.0 at the CNCF On-Demand Webinar: OpenEBS 3.0 : What’s in it on September 30th. Feel free to register & attend: [https://community.cncf.io/events/details/cncf-cncf-online-programs-presents-cncf-on-demand-webinar-openebs-30-whats-in-it/](https://community.cncf.io/events/details/cncf-cncf-online-programs-presents-cncf-on-demand-webinar-openebs-30-whats-in-it/)
 
 To learn more about recent updates, developer documentation, and scheduled releases, please feel free to use any of the following resources.
-- https://github.com/openebs/openebs/releases
-- https://github.com/openebs/openebs/blob/master/ADOPTERS.md. 
-- https://openebs.io/docs
-- https://openebs.io/community
+- [https://github.com/openebs/openebs/releases](https://github.com/openebs/openebs/releases)
+- [https://github.com/openebs/openebs/blob/master/ADOPTERS.md](https://github.com/openebs/openebs/blob/master/ADOPTERS.md)
+- [https://openebs.io/docs](https://openebs.io/docs)
+- [https://openebs.io/community](https://openebs.io/community)
 
 
 
