@@ -33,7 +33,7 @@ A quick summary:
 
 ## What’s new in OpenEBS 3.0?
 
-OpenEBS 3.0 is a culmination of efforts geared towards laying the foundation for making it easier to onboard and accept community contributions, making each of the engine operators  ready for future Kubernetes releases, making it easy to manage and troubleshoot various engines. This has been achieved via migration to latest Kubernetes constructs, ease of use improvements, bug fixes and most importantly refactoring the control plane and e2e test suites to independently enhance and release each of the engines. 
+OpenEBS 3.0 (See [Release Notes](https://github.com/openebs/openebs/releases/tag/v3.0.0)) is a culmination of efforts geared towards laying the foundation for making it easier to onboard and accept community contributions, making each of the engine operators  ready for future Kubernetes releases, making it easy to manage and troubleshoot various engines. This has been achieved via migration to latest Kubernetes constructs, ease of use improvements, bug fixes and most importantly refactoring the control plane and e2e test suites to independently enhance and release each of the engines. 
 
 I highlight a few of these enhancements below.  
 
@@ -70,12 +70,12 @@ Some enhancements to replicated storage engines in OpenEBS 3.0 include:
   * Ability to auto-remount the volumes marked as read-only due to iSCSI time to read-write. 
   * Faster detection of the node failure and helping Kubernetes to move the application out of the failed node to a new node. 
   * 3.0 also deprecates the older Jiva volume provisioners - that was based on the kubernetes external storage provisioner. There will be no more features added to the older provisioners and users are requested to migrate their Volumes to CSI Drivers as soon as possible. 
-* [OpenES CStor (stable)](https://github.com/openebs/cstor-operators), has added support for a CSI Driver and also improved customer resources and operators for managing the lifecycle of CStor Pools. This 3.0 version of the CStor includes:
+* [OpenEBS CStor (stable)](https://github.com/openebs/cstor-operators), has added support for a CSI Driver and also improved customer resources and operators for managing the lifecycle of CStor Pools. This 3.0 version of the CStor includes:
   * The improved schema allows users to declaratively run operations like replacing the disks in mirrored CStor pools, add new disks, scale-up replicas,  or move the CStor Pools to a new node. The new custom resource for configuring CStor is called CStorPoolCluster (CSPC) compared to older StoragePoolCluster(SPC). 
   * Ability to auto-remount the volumes marked as read-only due to iSCSI time to read-write. 
   * Faster detection of the node failure and helping Kubernetes to move the application out of the failed node to a new node. 
   * 3.0 also deprecates the older CStor volume provisioners and pool operators based on SPC - that was based on the kubernetes external storage provisioner. There will be no more features added to the older provisioners and users are requested to migrate their Pools to CSPC and Volumes to CSI Drivers as soon as possible.
-* [OpenES Maystor (beta)](https://github.com/openebs/mayastor), is under active development and currently is building a new and enhanced control plane to manage the mayastor pools and volumes. In the current release, the changes to the Mayastor include:
+* [OpenEBS Mayastor (beta)](https://github.com/openebs/mayastor), is under active development and currently is building a new and enhanced control plane to manage the mayastor pools and volumes. In the current release, the changes to the Mayastor include:
   * Support for deprecating the MOAC based control plane in favor of the new control plane. 
   * Enhanced control plane to handle node failure scenarios and move the volumes to new nodes. 
   * Stabilizing the Mayastor data engine for durability and performance. 
