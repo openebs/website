@@ -106,13 +106,13 @@ As announced in [June earlier this year](https://github.com/openebs/openebs/rele
 We originally developed OpenEBS that focused on solving the core issue of Kubernetes storage - that is the lack of support to manage stateful applications, especially modern resilient workloads that do not use shared storage and prefer the per workload approach of Container Attached Storage.  That remains our focus today - and as mentioned innovation seems to be accelerating as the community of users and contributors grows at an accelerated rate.  
 I am especially thankful to the OpenEBS users and organizations that have taken the time to fill out [Adopters.md](https://github.com/openebs/openebs/blob/master/ADOPTERS.md) to share how they are using OpenEBS, and how it is solving their common problems while leveraging Kubernetes for data.  
 
-I will also be talking about the new features, upgrades & bug fixes and giving glimpses into what is coming in OpenEBS 3.1 and 4.0 at the CNCF On-Demand Webinar: OpenEBS 3.0 : What’s in it on September 30th. Feel free to register & attend: https://community.cncf.io/events/details/cncf-cncf-online-programs-presents-cncf-on-demand-webinar-openebs-30-whats-in-it/
+I will also be talking about the new features, upgrades & bug fixes and giving glimpses into what is coming in OpenEBS 3.1 and 4.0 at the CNCF On-Demand Webinar: OpenEBS 3.0 : What’s in it on September 30th. Feel free to register & attend: [https://community.cncf.io/events/details/cncf-cncf-online-programs-presents-cncf-on-demand-webinar-openebs-30-whats-in-it/](https://community.cncf.io/events/details/cncf-cncf-online-programs-presents-cncf-on-demand-webinar-openebs-30-whats-in-it/)
 
 To learn more about recent updates, developer documentation, and scheduled releases, please feel free to use any of the following resources.
-- https://github.com/openebs/openebs/releases
-- https://github.com/openebs/openebs/blob/master/ADOPTERS.md. 
-- https://openebs.io/docs
-- https://openebs.io/community
+- [https://github.com/openebs/openebs/releases](https://github.com/openebs/openebs/releases)
+- [https://github.com/openebs/openebs/blob/master/ADOPTERS.md](https://github.com/openebs/openebs/blob/master/ADOPTERS.md)
+- [https://openebs.io/docs](https://openebs.io/docs)
+- [https://openebs.io/community](https://openebs.io/community)
 
 
 
