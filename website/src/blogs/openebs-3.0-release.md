@@ -62,7 +62,7 @@ OpenEBS 3.0 includes the following enhancement to the LocalPV provisioner:
 
 ### ReplicatedPV - New Features and Enhancements
 
-OpenEBS uses ReplcatedPV provisioners to connect applications to volumes - whose data is synchronously replicated to multiple storage nodes. This storage object, known as ReplicatedPV, is highly available and can be mounted from multiple nodes in the clusters. OpenEBS supports three types of ReplicatedPVs Jiva (based on Longhorn and iSCSI), CStor (based on ZFS and iSCSI) and Mayastor (based on SPDK and NVMe). 
+OpenEBS uses ReplicatedPV provisioners to connect applications to volumes - whose data is synchronously replicated to multiple storage nodes. This storage object, known as ReplicatedPV, is highly available and can be mounted from multiple nodes in the clusters. OpenEBS supports three types of ReplicatedPVs Jiva (based on Longhorn and iSCSI), CStor (based on ZFS and iSCSI) and Mayastor (based on SPDK and NVMe). 
 
 Some enhancements to replicated storage engines in OpenEBS 3.0 include:
 * [OpenEBS Jiva (stable)](https://github.com/openebs/jiva-operator), has added support for a CSI Driver and Jiva operator that include features like:
