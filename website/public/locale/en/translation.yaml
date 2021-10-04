@@ -232,7 +232,7 @@ home:
       description: Storage that follows your workloads, adding agility and flexibility to your k8s apps.
     granularControl:
       title: Granular control
-      description: Every workloads has its own dynamic container based storage with any controls you need.
+      description: Every workload has its own dynamic container based storage with any controls you need.
     noVendorLockIn:
       title: No vendor lock-in
       description: 100% Open Source so you'll never find your critical data locked into expensive contracts.
