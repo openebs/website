@@ -72,7 +72,7 @@
         "organizationName": "Lannister Investments LTD"
     },
     {
-        "message": "The vast majority of applications are able to better handle failover and replication than a block level device. Instead of introducing another distributed system into an already complex environment, OpenEBS's localPVs allow us to leverage fast local storage. Additionly, by leveraging ZFS we are able to have encryption at rest for all of our workloads, compression, and the piece of mind of a COW based filesystem. OpenEBS has allowed us to not introduce a complicated distributed system into our platform. The adoption has been smooth and completely transparent to our end users.",
+        "message": "The vast majority of applications are able to better handle failover and replication than a block level device. Instead of introducing another distributed system into an already complex environment, OpenEBS's localPVs allow us to leverage fast local storage. Additionally, by leveraging ZFS we are able to have encryption at rest for all of our workloads, compression, and the piece of mind of a COW based filesystem. OpenEBS has allowed us to not introduce a complicated distributed system into our platform. The adoption has been smooth and completely transparent to our end users.",
         "organizationName": "Optoro"
     },
     {
@@ -124,7 +124,7 @@
     },
     {
         "githubUsername": "danielsand",
-        "message": "Im running for 3+ Years a Baremetal Kubernetes Cluster at home - 4 Intel Nodes in total - the PVC was done before with rook / NFS / Native Ceph / GlusterFS Most of the time i sticked to 3 Node Rook Ceph setup - which works good but has a lot of Memory usage especially on a long running enviroment. Also i wanted to shift to aarch64 since the RPI4 8GB versions reached the marked out of power consumption reasons.",
+        "message": "I'm running for 3+ Years a Baremetal Kubernetes Cluster at home - 4 Intel Nodes in total - the PVC was done before with rook / NFS / Native Ceph / GlusterFS Most of the time I sticked to 3 Node Rook Ceph setup - which works good but has a lot of Memory usage especially on a long running environment. Also, I wanted to shift to aarch64 since the RPI4 8GB versions reached the marked out of power consumption reasons.",
         "name": "Daniel Sand"
     },
     {
@@ -148,7 +148,7 @@
         "name": "Mark V."
     },
     {
-        "message": "Practicing day 2 management of a vanilla Kubernetes cluster on bare metal. The whole purpose is to build empathy for practioners such as system administrators and DevOps teams who need to keep clusters running. \nThe systems run in the cluster erve as MacGuffins to keep the cluster healthy and suppress the urge to delete the whole thing and start fresh.",
+        "message": "Practicing day 2 management of a vanilla Kubernetes cluster on bare metal. The whole purpose is to build empathy for practitioners such as system administrators and DevOps teams who need to keep clusters running. \nThe systems run in the cluster serve as MacGuffins to keep the cluster healthy and suppress the urge to delete the whole thing and start fresh.",
         "name": "Mike T."
     },
     {
