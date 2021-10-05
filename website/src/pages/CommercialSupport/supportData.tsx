@@ -18,12 +18,6 @@ const SupportData = [
   },
   {
     id: 3,
-    image: '/images/logos/gridworkz.svg',
-    desc: 'DevOps Cloud Services specializing in Kubernetes and ERP systems.',
-    website: EXTERNAL_LINKS.GRIDWORKZ_WEBSITE,
-  },
-  {
-    id: 3,
     image: '/images/logos/mayadata.svg',
     desc: 'MayaData leads the development of OpenEBS & creates simplified K8s storage solutions for Enterprises',
     website: EXTERNAL_LINKS.MAYADATA_WEBSITE,
