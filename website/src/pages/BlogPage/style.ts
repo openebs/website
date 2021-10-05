@@ -160,9 +160,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     '& ul, & ol': {
       '& li': {
-        fontSize: '1rem',
         color: theme.palette.text.secondary,
-        lineHeight: '22px',
         position: 'relative',
       },
       '& li:not(:last-child)': {
@@ -187,6 +185,13 @@ const useStyles = makeStyles((theme: Theme) => ({
           borderRadius: '100%',
           background: theme.palette.info.light,
         },
+      },
+    },
+    '& li': {
+      fontSize: '1rem',
+      lineHeight: '22px',
+      '& ul, & ol': {
+        margin: theme.spacing(1, 0),
       },
     },
     '& h2': {
@@ -242,7 +247,7 @@ const useStyles = makeStyles((theme: Theme) => ({
         fontSize: '0.875rem',
         lineHeight: '20px',
       },
-      '& ul li': {
+      '& li': {
         fontSize: '0.875rem',
         lineHeight: '20px',
       },

@@ -10,13 +10,13 @@ OpenEBS is an Apache 2.0 Licensed project and all your commits should be signed 
 * Claim your issue by commenting your intent to work on it to avoid duplication of efforts.
 * Fork the repository on GitHub.
 * Create a branch from where you want to base your work (usually main). Here are some additional guides to update specific parts of the website.
-  - [Add/Edit a blog post](CONTRIBUTION_GUIDELINES/ADD_NEW_BLOG.md)
-  - [Add/Edit an event](CONTRIBUTION_GUIDELINES/ADD_NEW_COMMUNITY_EVENT.md)
-  - [Add/Edit a testimonial](CONTRIBUTION_GUIDELINES/ADD_NEW_TESTIMONIAL.md)
-  - [Add/Edit a document](CONTRIBUTION_GUIDELINES/ADD_EDIT_DOCS.md)
+  - [update blog post](design/add_new_blog.md)
+  - [update events](design/update_events.md)
+  - [update testimonial](design/add_new_testimonial.md)
+  - [update OpenEBS Documentation](design/updating_docs.md)
 * Commit your changes by making sure the commit messages convey the need and notes about the commit.
 * Push your changes to the branch in your fork of the repository.
-* Submit a pull request to the original repository. See [Pull Request checklist](#pull-request-checklist)
+* Submit a pull request to the original repository.
 
 
 ## Sign your commits
