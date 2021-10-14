@@ -62,7 +62,7 @@ The Storage Class `openebs-device` has been chosen to deploy StackGres PostgreSQ
 In this section, we will install the StackGres operator. We will later deploy the latest available version of PostgreSQL application using StackGres.
 
 ```
-$ kubectl apply -f https://stackgres.io/downloads/stackgres-k8s/stackgres/1.0.0-beta3/stackgres-operator-demo.yml
+$ kubectl apply -f https://stackgres.io/downloads/stackgres-k8s/stackgres/1.0.0/stackgres-operator-demo.yml
 ```
 
 Once it’s ready, you will see that the two pods are `Running` and the other pods are in `Completed` state.
