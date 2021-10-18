@@ -174,9 +174,9 @@ Verify PostgreSQL service status.
 ```
 $ kubectl get services -l cluster=true
 
-NAME               TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)             AGE
-app1-db-primary    ClusterIP   10.8.3.57     <none>        5432/TCP,5433/TCP   2m38s
-app1-db-replicas   ClusterIP   10.8.13.224   <none>        5432/TCP,5433/TCP   2m38s
+NAME               TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)             AGE
+app1-db            ClusterIP   10.3.248.225   <none>        5432/TCP,5433/TCP   8m59s
+app1-db-replicas   ClusterIP   10.3.247.248   <none>        5432/TCP,5433/TCP   8m59s
 ```
 
 Since we have mentioned 2 replicas and capacity with 90G in Postgres cluster spec, any two disks  with capacity more than 90G from the scheduled node will be claimed. In this case, 100G disks are present in all the nodes in the cluster. Verify whether 100G disks are claimed for provisioning PostgreSQL clusters. 
@@ -185,22 +185,22 @@ Since we have mentioned 2 replicas and capacity with 90G in Postgres cluster spe
 $ kubectl get bd -n openebs
 
 NAME                                           NODENAME                                     SIZE           CLAIMSTATE   STATUS   AGE
-blockdevice-1fcc50ef4b3550ada3f82fe90102daca   gke-user-doc-default-pool-41db3a16-t4d0   107373116928   Claimed      Active   17m
-blockdevice-58c88ac19e09084c6f71178130c20ba8   gke-user-doc-default-pool-41db3a16-1122   107373116928   Unclaimed    Active   19m
-blockdevice-8fd1127f57cf19b01e4da75110ae488a   gke-user-doc-default-pool-41db3a16-81tl   107373116928   Claimed      Active   19m
+blockdevice-1fcc50ef4b3550ada3f82fe90102daca   gke-user-doc-default-pool-41db3a16-t4d0      107373116928   Claimed      Active   17m
+blockdevice-58c88ac19e09084c6f71178130c20ba8   gke-user-doc-default-pool-41db3a16-1122      107373116928   Unclaimed    Active   19m
+blockdevice-8fd1127f57cf19b01e4da75110ae488a   gke-user-doc-default-pool-41db3a16-81tl      107373116928   Claimed      Active   19m
 ```
 
-Verify the master and slave configuration.
+Verify the master and replicas configuration.
 
 ```
 $ kubectl exec -ti "$(kubectl get pod --selector app=StackGresCluster,cluster=true -o name | head -n 1)" -c patroni -- patronictl list
 
-+ Cluster: app1-db (6956175936947793994) ------+----+-----------+
-|   Member  |      Host     |  Role  |  State  | TL | Lag in MB |
-+-----------+---------------+--------+---------+----+-----------+
-| app1-db-0 | 10.4.1.9:7433 | Leader | running |  1 |           |
-| app1-db-1 | 10.4.2.8:7433 |        | running |  1 |         0 |
-+-----------+---------------+--------+---------+----+-----------+
++ Cluster: app1-db (7020339627461501083) --------+----+-----------+
+| Member    | Host           | Role    | State   | TL | Lag in MB |
++-----------+----------------+---------+---------+----+-----------+
+| app1-db-0 | 10.0.0.7:7433  | Leader  | running |  1 |           |
+| app1-db-1 | 10.0.1.14:7433 | Replica | running |  1 |         0 |
++-----------+----------------+---------+---------+----+-----------+
 ```
 
 Out of all of the PostgreSQL servers, one will be elected as the master, the rest will remain as read-only replicas.
@@ -212,9 +212,9 @@ Get the details of PostgreSQL database service.
 ```
 $ kubectl get services -l cluster=true
 
-NAME               TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)             AGE
-app1-db-primary    ClusterIP   10.8.3.57     <none>        5432/TCP,5433/TCP   5m47s
-app1-db-replicas   ClusterIP   10.8.13.224   <none>        5432/TCP,5433/TCP   5m47s
+NAME               TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)             AGE
+app1-db            ClusterIP   10.3.248.225   <none>        5432/TCP,5433/TCP   13m
+app1-db-replicas   ClusterIP   10.3.247.248   <none>        5432/TCP,5433/TCP   13m
 ```
 
 Install *postgresql-client* on your master node or a node from where you have access to the Kubernetes cluster.
@@ -228,7 +228,7 @@ Let’s access the database by accessing one of the application pods.
 ```
 $ kubectl exec -ti "$(kubectl get pod --selector app=StackGresCluster,cluster=true,role=master -o name)" -c postgres-util -- psql
 
-psql (13.4 OnGres Inc.)
+psql (14.0 OnGres Inc.)
 Type "help" for help.
 
 postgres=# select current_user;
@@ -269,9 +269,7 @@ $ CREATE TABLE COMPANY(
 );
 CREATE TABLE
 
-app=# INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE) VALUES (1, 'Paul', 32, 'California', 20000.00,'2001-07-13'),
-     (2, 'Allen', 25, 'Texas', '20000.00','2007-12-13'),
-     (3, 'Teddy', 23, 'Norway', 20000.00, DEFAULT );
+app=# INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE) VALUES (1, 'Paul', 32, 'California', 20000.00,'2001-07-13'), (2, 'Allen', 25, 'Texas', '20000.00','2007-12-13'), (3, 'Teddy', 23, 'Norway', 20000.00, DEFAULT );
 
 app=# \d
           List of relations
