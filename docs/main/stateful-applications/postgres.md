@@ -269,7 +269,7 @@ $ CREATE TABLE COMPANY(
 );
 CREATE TABLE
 
-app=# INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE) VALUES (1, 'Paul', 32, 'California', 20000.00,'2001-07-13'), (2, 'Allen', 25, 'Texas', '20000.00','2007-12-13'), (3, 'Teddy', 23, 'Norway', 20000.00, DEFAULT );
+app=# INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE) VALUES (1, 'Paul', 32, 'California', 20000.00,'2001-07-13'), (2, 'Allen', 25, 'Texas', '20000.00','2007-12-13'),(3, 'Teddy', 23, 'Norway', 20000.00, DEFAULT );
 
 app=# \d
           List of relations
