@@ -5,6 +5,7 @@ author_info: A developer who is always eager to learn, loves algorithms, maths, 
 date: 02-11-2021
 tags: OpenEBS NFS, NFS Provisioner, RWX Volume Provisioning, Dynamic NFS Provisioner
 excerpt: Guide to deploy WordPress by using OpenEBS dynamic NFS Provisioner
+not_has_feature_image: true
 ---
 
 ### Introduction
@@ -147,15 +148,15 @@ excerpt: Guide to deploy WordPress by using OpenEBS dynamic NFS Provisioner
 
   Once the installation process is succeeded, follow the steps mentioned in output of _helm install_ command to access WordPress from your browser:
 
-  ![WordPress login page](./install-wordpress-using-dynamic-nfs-provisioner-login-page.png)
+  ![WordPress login page](./../../public/images/blog/install-wordpress-using-dynamic-nfs-provisioner-login-page.png)
 
   Now it's time to hack WordPress:
 
-  ![WordPress landing page](./install-wordpress-using-dynamic-nfs-provisioner-landing-page.png)
+  ![WordPress landing page](./../../public/images/blog/install-wordpress-using-dynamic-nfs-provisioner-landing-page.png)
 
 **Deployment View**:
 
-  ![WordPress Deployment view](./install-wordpress-using-dynamic-nfs-provisioner-deployment-view.jpg)
+  ![WordPress Deployment view](./../../public/images/blog/install-wordpress-using-dynamic-nfs-provisioner-deployment-view.jpg)
 
 
   **Background details on how NFS provisioner on provisioning RWX volume:**
