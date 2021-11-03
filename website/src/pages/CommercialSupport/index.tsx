@@ -104,7 +104,7 @@ const Support: React.FC = () => {
                 container
                 item
                 xs={12}
-                md={3}
+                md={4}
                 sm={6}
                 key={elm.name}
                 direction="row"

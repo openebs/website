@@ -43,15 +43,15 @@ If OpenEBS is not installed in your K8s cluster, this can be done from [here](/d
 
 A storage engine is the data plane component of the IO path of a Persistent Volume. In CAS architecture, users can choose different data planes for different application workloads based on a configuration policy. OpenEBS provides different types of storage engines and chooses the right engine that suits your type of application requirements and storage available on your Kubernetes nodes. More information can be read from [here](/).
 
-In this document, we are deploying StackGres PostgreSQL using OpenEBS Local PV device. 
+In this document, we are deploying StackGres PostgreSQL using OpenEBS Local PV device.
 
 ### Configure OpenEBS Local PV StorageClass
 
 There are 2 ways to use OpenEBS Local PV.
 
-- `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/<"postgresql-pv-name">/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](/docs/user-guides/localpv-hostpath#create-storageclass). 
+- `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/<"postgresql-pv-name">/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](/docs/user-guides/localpv-hostpath#create-storageclass).
 
-- `openebs-device` - Using this option, it will create Kubernetes Local PVs using the block devices attached to the node. Select this option when you want to dedicate a complete block device on a node to a StackGres PostgreSQL application pod. You can customize which devices will be discovered and managed by OpenEBS using the instructions [here](/docs/user-guides/localpv-device#optional-block-device-tagging). 
+- `openebs-device` - Using this option, it will create Kubernetes Local PVs using the block devices attached to the node. Select this option when you want to dedicate a complete block device on a node to a StackGres PostgreSQL application pod. You can customize which devices will be discovered and managed by OpenEBS using the instructions [here](/docs/user-guides/localpv-device#optional-block-device-tagging).
 
 The Storage Class `openebs-device` has been chosen to deploy StackGres PostgreSQL in the Kubernetes cluster.
 
@@ -59,13 +59,13 @@ The Storage Class `openebs-device` has been chosen to deploy StackGres PostgreSQ
 
 ### Installing StackGres PostgreSQL Operator
 
-In this section, we will install the StackGres operator. We will later deploy the latest available version of PostgreSQL application using StackGres. 
+In this section, we will install the StackGres operator. We will later deploy the latest available version of PostgreSQL application using StackGres.
 
 ```
-$ kubectl apply -f https://stackgres.io/downloads/stackgres-k8s/stackgres/1.0.0-alpha1/stackgres-operator-demo.yml
+$ kubectl apply -f https://stackgres.io/downloads/stackgres-k8s/stackgres/1.0.0/stackgres-operator-demo.yml
 ```
 
-Once it’s ready, you will see that the two pods are `Running` and the other pods are in `Completed` state. 
+Once it’s ready, you will see that the two pods are `Running` and the other pods are in `Completed` state.
 
 ```
 $ kubectl get pod -n stackgres
@@ -97,14 +97,14 @@ In this example following is the web address.
 
 https://35.225.210.254/
 
-Default username is **admin** 
+Default username is **admin**
 
 Passwords can be obtained by running the following command.
 
 ```
-$ kubectl get secret -n stackgres stackgres-restapi --template '{{ print (.data.clearPassword | base64decode)}}'
+$ kubectl get secret -n stackgres stackgres-restapi --template '{{ printf "password = %s\n" (.data.clearPassword | base64decode) }}'
 
-AYzpZCPhSJvhEEazHCmMfamtEzL9NFsAOcZQwy06
+password = AYzpZCPhSJvhEEazHCmMfamtEzL9NFsAOcZQwy06
 ```
 
 ### Installing PostgreSQL Database
@@ -117,12 +117,13 @@ kind: SGCluster
 metadata:
   name: app1-db
 spec:
+  postgres:
+    version: 'latest'
   instances: 2
-  postgresVersion: 'latest'
   pods:
     persistentVolume:
       size: '90Gi'
-      storageClass: openebs-device
+      storageClass: 'openebs-device'
   prometheusAutobind: false
 ```
 
@@ -142,8 +143,8 @@ Verify the PostgreSQL cluster creation is successfully running under the default
 $ kubectl get pod -l cluster=true
 
 NAME        READY   STATUS    RESTARTS   AGE
-app1-db-0   5/5     Running   0          2m19s
-app1-db-1   5/5     Running   0          66s
+app1-db-0   6/6     Running   0          2m19s
+app1-db-1   6/6     Running   0          66s
 ```
 
 Verify the PostgreSQL persistent volume details.
@@ -173,9 +174,9 @@ Verify PostgreSQL service status.
 ```
 $ kubectl get services -l cluster=true
 
-NAME               TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)             AGE
-app1-db-primary    ClusterIP   10.8.3.57     <none>        5432/TCP,5433/TCP   2m38s
-app1-db-replicas   ClusterIP   10.8.13.224   <none>        5432/TCP,5433/TCP   2m38s
+NAME               TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)             AGE
+app1-db            ClusterIP   10.3.248.225   <none>        5432/TCP,5433/TCP   8m59s
+app1-db-replicas   ClusterIP   10.3.247.248   <none>        5432/TCP,5433/TCP   8m59s
 ```
 
 Since we have mentioned 2 replicas and capacity with 90G in Postgres cluster spec, any two disks  with capacity more than 90G from the scheduled node will be claimed. In this case, 100G disks are present in all the nodes in the cluster. Verify whether 100G disks are claimed for provisioning PostgreSQL clusters. 
@@ -184,22 +185,22 @@ Since we have mentioned 2 replicas and capacity with 90G in Postgres cluster spe
 $ kubectl get bd -n openebs
 
 NAME                                           NODENAME                                     SIZE           CLAIMSTATE   STATUS   AGE
-blockdevice-1fcc50ef4b3550ada3f82fe90102daca   gke-user-doc-default-pool-41db3a16-t4d0   107373116928   Claimed      Active   17m
-blockdevice-58c88ac19e09084c6f71178130c20ba8   gke-user-doc-default-pool-41db3a16-1122   107373116928   Unclaimed    Active   19m
-blockdevice-8fd1127f57cf19b01e4da75110ae488a   gke-user-doc-default-pool-41db3a16-81tl   107373116928   Claimed      Active   19m
+blockdevice-1fcc50ef4b3550ada3f82fe90102daca   gke-user-doc-default-pool-41db3a16-t4d0      107373116928   Claimed      Active   17m
+blockdevice-58c88ac19e09084c6f71178130c20ba8   gke-user-doc-default-pool-41db3a16-1122      107373116928   Unclaimed    Active   19m
+blockdevice-8fd1127f57cf19b01e4da75110ae488a   gke-user-doc-default-pool-41db3a16-81tl      107373116928   Claimed      Active   19m
 ```
 
-Verify the master and slave configuration.
+Verify the master and replicas configuration.
 
 ```
 $ kubectl exec -ti "$(kubectl get pod --selector app=StackGresCluster,cluster=true -o name | head -n 1)" -c patroni -- patronictl list
 
-+ Cluster: app1-db (6956175936947793994) ------+----+-----------+
-|   Member  |      Host     |  Role  |  State  | TL | Lag in MB |
-+-----------+---------------+--------+---------+----+-----------+
-| app1-db-0 | 10.4.1.9:7433 | Leader | running |  1 |           |
-| app1-db-1 | 10.4.2.8:7433 |        | running |  1 |         0 |
-+-----------+---------------+--------+---------+----+-----------+
++ Cluster: app1-db (7020339627461501083) --------+----+-----------+
+| Member    | Host           | Role    | State   | TL | Lag in MB |
++-----------+----------------+---------+---------+----+-----------+
+| app1-db-0 | 10.0.0.7:7433  | Leader  | running |  1 |           |
+| app1-db-1 | 10.0.1.14:7433 | Replica | running |  1 |         0 |
++-----------+----------------+---------+---------+----+-----------+
 ```
 
 Out of all of the PostgreSQL servers, one will be elected as the master, the rest will remain as read-only replicas.
@@ -211,9 +212,9 @@ Get the details of PostgreSQL database service.
 ```
 $ kubectl get services -l cluster=true
 
-NAME               TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)             AGE
-app1-db-primary    ClusterIP   10.8.3.57     <none>        5432/TCP,5433/TCP   5m47s
-app1-db-replicas   ClusterIP   10.8.13.224   <none>        5432/TCP,5433/TCP   5m47s
+NAME               TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)             AGE
+app1-db            ClusterIP   10.3.248.225   <none>        5432/TCP,5433/TCP   13m
+app1-db-replicas   ClusterIP   10.3.247.248   <none>        5432/TCP,5433/TCP   13m
 ```
 
 Install *postgresql-client* on your master node or a node from where you have access to the Kubernetes cluster.
@@ -227,7 +228,7 @@ Let’s access the database by accessing one of the application pods.
 ```
 $ kubectl exec -ti "$(kubectl get pod --selector app=StackGresCluster,cluster=true,role=master -o name)" -c postgres-util -- psql
 
-psql (12.4 OnGres Inc.)
+psql (14.0 OnGres Inc.)
 Type "help" for help.
 
 postgres=# select current_user;
@@ -268,11 +269,7 @@ $ CREATE TABLE COMPANY(
 );
 CREATE TABLE
 
-app=# INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE) VALUES (1, 'Paul', 32, 'California', 20000.00,'2001-07-13');
-
-app=# INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,JOIN_DATE) VALUES (2, 'Allen', 25, 'Texas', '2007-12-13');
-
-app=# INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE) VALUES (3, 'Teddy', 23, 'Norway', 20000.00, DEFAULT );
+app=# INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE) VALUES (1, 'Paul', 32, 'California', 20000.00,'2001-07-13'), (2, 'Allen', 25, 'Texas', '20000.00','2007-12-13'),(3, 'Teddy', 23, 'Norway', 20000.00, DEFAULT );
 
 app=# \d
           List of relations
@@ -285,7 +282,7 @@ app=# select * from public.company;
  id | name  | age |                      address                       | salary | join_date
 ----+-------+-----+----------------------------------------------------+--------+------------
   1 | Paul  |  32 | California                                         |  20000 | 2001-07-13
-  2 | Allen |  25 | Texas                                              |        | 2007-12-13
+  2 | Allen |  25 | Texas                                              |  20000 | 2007-12-13
   3 | Teddy |  23 | Norway                                             |  20000 |
 (3 rows)
 
