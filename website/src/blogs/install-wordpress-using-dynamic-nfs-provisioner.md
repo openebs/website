@@ -15,16 +15,47 @@ not_has_feature_image: true
   OpenEBS Dynamic NFS Provisioner will enable you to dynamically provision ReadWriteMany(RWX/MultiNode ReaderWriter) volume on any type of Kubernetes Persistent Volumes which supports dynamic provisioning,  RWX is achieved by launching NFS Server on the Persistent Volume. In simple words, dynamic-nfs-provisioner will expose ReadWriteOnce volume as ReadWriteMany volume.
 
 **Terminology:**
+<table>
+  <tr>
+    <th> Terminology </th>
+    <th> Meaning </th>
+  </tr>
 
-| Terminology          | Meaning          |
-| -------------------- | ---------------- |
-| Backend StorageClass | StorageClass used by dynamic-nfs-provisioner to provision ReadWriteOnce volume(i.e Backend Volume) |
-| NFS PVC              | PersistentVolumeClaim requested by the application that requires RWX volume |
-| NFS PV               | PersistentVolume that bounds to NFS PVC |
-| Backend PVC          | PersistentVolumeClaim created by NFS provisioner referring to Backend StorageClass during NFS PVC creation time |
-| Backend PV           | PersistentVolume bounds to Backend PVC |
-| ReadWriteMany(RWX)   | Volume can be accessed from different nodes at any given time |
-| ReadWriteOnce(RWO)   | Volume can be accessed only from one node at any given time |
+  <tr>
+    <td> Backend StorageClass </td>
+    <td> StorageClass used by dynamic-nfs-provisioner to provision ReadWriteOnce volume(i.e Backend Volume) </td>
+  </tr>
+
+  <tr>
+    <td> NFS PVC </td>
+    <td> PersistentVolumeClaim requested by the application that requires RWX volume </td>
+  </tr>
+
+  <tr>
+    <td> NFS PV </td>
+    <td> PersistentVolume that bounds to NFS PVC </td>
+  </tr>
+
+  <tr>
+    <td> Backend PVC </td>
+    <td> PersistentVolumeClaim created by NFS provisioner referring to Backend StorageClass during NFS PVC creation time </td>
+  </tr>
+
+  <tr>
+    <td> Backend PV </td>
+    <td> PersistentVolume bounds to Backend PVC </td>
+  </tr>
+
+  <tr>
+    <td> ReadWriteMany(RWX) </td>
+    <td> Volume can be accessed from different nodes at any given time </td>
+  </tr>
+
+  <tr>
+    <td> ReadWriteOnce(RWO) </td>
+    <td> Volume can be accessed only from one node at any given time </td>
+  </tr>
+</table>
 
   Few workloads in Kubernetes require ReadWriteMany type of volumes, for example, WordPress, Magento, etc. In this blog, I will walk through the steps to configure WordPress with a dynamic-nfs-provisioner.
 
@@ -48,11 +79,13 @@ not_has_feature_image: true
 
     #### Add OpenEBS repo for installation
     - Use the below command to add helm repo for OpenEBS
-
-          $ helm repo add openebs https://openebs.github.io/charts
+        ```sh
+        helm repo add openebs https://openebs.github.io/charts
+        ```
     - Once repo has been added successfully, update helm repo using the following command:
-
-          $ helm repo update
+        ```sh
+        helm repo update
+        ```
 
     #### Installing OpenEBS NFS Provisioner
       Once the helm repo addition is successful, run the `helm install` command as specified below, in this command, we are disabling the local-pv provisioner which doesn’t require for NFS Provisioner to work and configure __.nfsStorageClass.backendStorageClass__ corresponding to backend StorageProvider
@@ -66,35 +99,37 @@ not_has_feature_image: true
         --set nfs-provisioner.enabled=true \
         --set nfs-provisioner.nfsStorageClass.backendStorageClass=<backend_sc_name>
       ```
-      - After successful helm installation, you can view the __openebs-nfs-provisioner__ and __openebs-kernel-nfs__ StorageClass will get deployed.
+      - After successful helm installation, you can view the openebs-nfs-provisioner and openebs-kernel-nfs StorageClass will get deployed.
 
         **Output**:
-        ```sh
-        [develop@develop ~]$ kubectl get po -n openebs
-        NAME                                           READY   STATUS    RESTARTS   AGE
-        openebs-nfs-provisioner-79b6ccd59-v8p6s        1/1     Running   0          4m12s
 
-        [develop@develop~]$ kubectl get sc
-        NAME                 PROVISIONER         RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
-        openebs-kernel-nfs   openebs.io/nfsrwx   Delete          Immediate              false                  67s
-        ```
+          ```sh
+          [develop@develop ~]$ kubectl get po -n openebs
+          NAME                                           READY   STATUS    RESTARTS   AGE
+          openebs-nfs-provisioner-79b6ccd59-v8p6s        1/1     Running   0          4m12s
 
-     **Optional(installation of local-pv-provisioner)**
-        The below command will install OpenEBS local-pv provisioner along with NFS  provisioner, as stated above local-pv is used as backend StorageProvider in this blog
+          [develop@develop~]$ kubectl get sc
+          NAME                 PROVISIONER         RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+          openebs-kernel-nfs   openebs.io/nfsrwx   Delete          Immediate              false                  67s
+          ```
 
-        ```sh
-        helm install openebs openebs/openebs -n openebs --create-namespace \
-          --set legacy.enabled=false \
-          --set ndm.enabled=false \
-          --set ndmOperator.enabled=false \
-          --set localProvisioner.enabled=true \
-          --set localProvisioner.hostpathClass.name=openebs-hostpath \
-          --set localprovisioner.basePath=/var/openebs/hostpath \
-          --set nfs-provisioner.enabled=true  \
-          --set nfs-provisioner.nfsStorageClass.backendStorageClass=openebs-hostpath
-        ```
+        **Optional(installation of local-pv-provisioner)**
 
-        **Note**: `localprovisioner.basePath` defines the custom hostpath directory to provide storage for backend PVCs.
+          The below command will install OpenEBS local-pv provisioner along with NFS  provisioner, as stated above local-pv is used as backend StorageProvider in this blog
+
+          ```sh
+          helm install openebs openebs/openebs -n openebs --create-namespace \
+            --set legacy.enabled=false \
+            --set ndm.enabled=false \
+            --set ndmOperator.enabled=false \
+            --set localProvisioner.enabled=true \
+            --set localProvisioner.hostpathClass.name=openebs-hostpath \
+            --set localprovisioner.basePath=/var/openebs/hostpath \
+            --set nfs-provisioner.enabled=true  \
+            --set nfs-provisioner.nfsStorageClass.backendStorageClass=openebs-hostpath
+          ```
+
+          **Note**: `localprovisioner.basePath` defines the custom hostpath directory to provide storage for backend PVCs.
 
 ### Install WordPress
 
@@ -148,15 +183,15 @@ not_has_feature_image: true
 
   Once the installation process is succeeded, follow the steps mentioned in output of _helm install_ command to access WordPress from your browser:
 
-  ![WordPress login page](./../../public/images/blog/install-wordpress-using-dynamic-nfs-provisioner-login-page.png)
+  [WordPress login page](/images/blog/install-wordpress-using-dynamic-nfs-provisioner-login-page.png)
 
   Now it's time to hack WordPress:
 
-  ![WordPress landing page](./../../public/images/blog/install-wordpress-using-dynamic-nfs-provisioner-landing-page.png)
+  [WordPress landing page](/images/blog/install-wordpress-using-dynamic-nfs-provisioner-landing-page.png)
 
 **Deployment View**:
 
-  ![WordPress Deployment view](./../../public/images/blog/install-wordpress-using-dynamic-nfs-provisioner-deployment-view.jpg)
+  [WordPress Deployment view](/images/blog/install-wordpress-using-dynamic-nfs-provisioner-deployment-view.jpg)
 
 
   **Background details on how NFS provisioner on provisioning RWX volume:**
@@ -193,7 +228,6 @@ not_has_feature_image: true
     - **GraceTime**: Grace time defines the recovery period(in seconds) to reclaim locks.
 
     Recovery options can be configured via StorageClass annotations:
-        
     ```yaml
     apiVersion: storage.k8s.io/v1
     kind: StorageClass
