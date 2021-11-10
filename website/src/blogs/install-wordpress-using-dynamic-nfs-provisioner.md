@@ -15,48 +15,18 @@ not_has_feature_image: true
   OpenEBS Dynamic NFS Provisioner will enable you to dynamically provision ReadWriteMany(RWX/MultiNode ReaderWriter) volume on any type of Kubernetes Persistent Volumes which supports dynamic provisioning,  RWX is achieved by launching NFS Server on the Persistent Volume. In simple words, dynamic-nfs-provisioner will expose ReadWriteOnce volume as ReadWriteMany volume.
 
 **Terminology:**
-<table>
-  <tr>
-    <th> Terminology </th>
-    <th> Meaning </th>
-  </tr>
 
-  <tr>
-    <td> Backend StorageClass </td>
-    <td> StorageClass used by dynamic-nfs-provisioner to provision ReadWriteOnce volume(i.e Backend Volume) </td>
-  </tr>
-
-  <tr>
-    <td> NFS PVC </td>
-    <td> PersistentVolumeClaim requested by the application that requires RWX volume </td>
-  </tr>
-
-  <tr>
-    <td> NFS PV </td>
-    <td> PersistentVolume that bounds to NFS PVC </td>
-  </tr>
-
-  <tr>
-    <td> Backend PVC </td>
-    <td> PersistentVolumeClaim created by NFS provisioner referring to Backend StorageClass during NFS PVC creation time </td>
-  </tr>
-
-  <tr>
-    <td> Backend PV </td>
-    <td> PersistentVolume bounds to Backend PVC </td>
-  </tr>
-
-  <tr>
-    <td> ReadWriteMany(RWX) </td>
-    <td> Volume can be accessed from different nodes at any given time </td>
-  </tr>
-
-  <tr>
-    <td> ReadWriteOnce(RWO) </td>
-    <td> Volume can be accessed only from one node at any given time </td>
-  </tr>
-</table>
-
+```
+| Terminology          | Meaning          |
+| -------------------- | ---------------- |
+| Backend StorageClass | StorageClass used by dynamic-nfs-provisioner to provision ReadWriteOnce volume(i.e Backend Volume) |
+| NFS PVC              | PersistentVolumeClaim requested by the application that requires RWX volume |
+| NFS PV               | PersistentVolume that bounds to NFS PVC |
+| Backend PVC          | PersistentVolumeClaim created by NFS provisioner referring to Backend StorageClass during NFS PVC creation time |
+| Backend PV           | PersistentVolume bounds to Backend PVC |
+| ReadWriteMany(RWX)   | Volume can be accessed from different nodes at any given time |
+| ReadWriteOnce(RWO)   | Volume can be accessed only from one node at any given time |
+```
   Few workloads in Kubernetes require ReadWriteMany type of volumes, for example, WordPress, Magento, etc. In this blog, I will walk through the steps to configure WordPress with a dynamic-nfs-provisioner.
 
 
@@ -183,15 +153,15 @@ not_has_feature_image: true
 
   Once the installation process is succeeded, follow the steps mentioned in output of _helm install_ command to access WordPress from your browser:
 
-  [WordPress login page](/images/blog/install-wordpress-using-dynamic-nfs-provisioner-login-page.png)
+  ![WordPress login page](/images/blog/install-wordpress-using-dynamic-nfs-provisioner-login-page.png)
 
   Now it's time to hack WordPress:
 
-  [WordPress landing page](/images/blog/install-wordpress-using-dynamic-nfs-provisioner-landing-page.png)
+  ![WordPress landing page](/images/blog/install-wordpress-using-dynamic-nfs-provisioner-landing-page.png)
 
 **Deployment View**:
 
-  [WordPress Deployment view](/images/blog/install-wordpress-using-dynamic-nfs-provisioner-deployment-view.jpg)
+  ![WordPress Deployment view](/images/blog/install-wordpress-using-dynamic-nfs-provisioner-deployment-view.jpg)
 
 
   **Background details on how NFS provisioner on provisioning RWX volume:**
