@@ -2,6 +2,14 @@
   base = "website/"
   publish = "build/"
   command = "npm run build"
+
+#https://answers.netlify.com/t/forwarding-subdomain-to-a-path/2988
+  
+[[redirects]]
+  from = "https://docs.openebs.io/*"
+  to = "https://openebs.io/docs/"
+  status = 301
+  force = true
   
 #https://stackoverflow.com/questions/58065603/netlify-renders-404-on-page-refresh-using-react-and-react-router 
 
@@ -11,11 +19,8 @@
   status = 200
   force = true
 
-
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-
   
