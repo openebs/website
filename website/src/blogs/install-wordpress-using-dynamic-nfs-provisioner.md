@@ -16,17 +16,8 @@ not_has_feature_image: true
 
 **Terminology:**
 
-```
-| Terminology          | Meaning          |
-| -------------------- | ---------------- |
-| Backend StorageClass | StorageClass used by dynamic-nfs-provisioner to provision ReadWriteOnce volume(i.e Backend Volume) |
-| NFS PVC              | PersistentVolumeClaim requested by the application that requires RWX volume |
-| NFS PV               | PersistentVolume that bounds to NFS PVC |
-| Backend PVC          | PersistentVolumeClaim created by NFS provisioner referring to Backend StorageClass during NFS PVC creation time |
-| Backend PV           | PersistentVolume bounds to Backend PVC |
-| ReadWriteMany(RWX)   | Volume can be accessed from different nodes at any given time |
-| ReadWriteOnce(RWO)   | Volume can be accessed only from one node at any given time |
-```
+  ![NFS terminology](/images/blog/install-wordpress-using-dynamic-nfs-provisioner-nfs-terminology.png)
+
   Few workloads in Kubernetes require ReadWriteMany type of volumes, for example, WordPress, Magento, etc. In this blog, I will walk through the steps to configure WordPress with a dynamic-nfs-provisioner.
 
 
