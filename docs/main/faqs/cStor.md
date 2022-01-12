@@ -1,5 +1,5 @@
 ---
-id: cStorFAQ
+id: cstor-faq
 title: cStor FAQs
 keywords: 
  - cStor FAQ
