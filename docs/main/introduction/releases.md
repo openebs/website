@@ -11,7 +11,6 @@ OpenEBS is a collection of data engines and operators to create different types 
 - Data Engines
   - [Jiva](https://github.com/openebs/jiva) 3.1.0 (stable)
   - [cStor](https://github.com/openebs/libcstor) 3.1.0 (stable)
-  - [Mayastor](https://github.com/openebs/mayastor) 0.8.1 (beta)
 - CSI Provisioners
   - [cStor](https://github.com/openebs/cstor-operators) 3.1.0 (stable)
   - [Local PV ZFS](https://github.com/openebs/zfs-localpv) 2.0.0 (stable)
