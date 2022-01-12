@@ -211,6 +211,7 @@ It is also possible to customize by adding more disk types associated with your 
 ```
 
 [Go to top](#top)
+
 ### What is the difference between cStor Pool creation using manual method and auto method?
 
 By using manual method, you must give the selected disk name which is listed by NDM. This details has to be entered in the StoragePoolClaim YAML under `diskList` . See [storage pool](/deprecated/spc-based-cstor#creating-cStor-storage-pools) for more info. 

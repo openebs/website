@@ -81,7 +81,7 @@ Use a similar PVC spec or volumeClaimTemplate to use a StorageClass that is poin
 
 The following shows the example PVC configuration for a Deployment and a StatefulSet application which uses a configured StorageClass to provision a cStor Volume. The provided StorageClass should have been configured with StoragePoolClaim property, so the cStor Volume will be provisioned on the StoragePools associated to the StoragePoolClaim.
 
-#### **Example configuration for requesting OpenEBS volume for a Deployment**
+#### Example configuration for requesting OpenEBS volume for a Deployment
 
 ```
 kind: PersistentVolumeClaim
@@ -914,7 +914,7 @@ Example:
 kubectl describe blockdevice blockdevice-1c10eb1bb14c94f02a00373f2fa09b93 -n openebs 
 ```
 
-From the output, you will get the hostname and other blockdevice details such as State,Path,Claim State,Capacity etc.
+From the output, you will get the hostname and other blockdevice details such as State, Path, Claim State, Capacity etc.
 
 **Note:** Identify block devices which are unclaimed, unmounted on node and does not contain any filesystem. The above command will help to find these information. More information about the disk mount status on node can be read from [here](/docs/additional-info/faqs#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume).
 
