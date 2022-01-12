@@ -338,7 +338,7 @@ module.exports = {
       type: "category",
       label: "FAQs",
       customProps: {
-        icon: "BookOpen"
+        icon: "HelpCircle"
       },
       items: [
         {
@@ -348,7 +348,7 @@ module.exports = {
         },
         {
           type: "doc",
-          id: "faqs/cStorFAQ",
+          id: "faqs/cstor-faq",
           label: "cStor FAQs"
         }
       ]

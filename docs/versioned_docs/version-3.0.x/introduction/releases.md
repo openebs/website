@@ -9,26 +9,26 @@ description: This page contains list of supported OpenEBS releases.
 OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners. The status of the various components as of v3.0.0 are as follows:
 
 - Data Engines
-  - [Jiva](https://github.com/openebs/jiva) 3.1.0 (stable)
-  - [cStor](https://github.com/openebs/libcstor) 3.1.0 (stable)
+  - [Jiva](https://github.com/openebs/jiva) 3.0.0 (stable)
+  - [cStor](https://github.com/openebs/libcstor) 3.0.0 (stable)
   - [Mayastor](https://github.com/openebs/mayastor) 0.8.1 (beta)
 - CSI Provisioners
-  - [cStor](https://github.com/openebs/cstor-operators) 3.1.0 (stable)
-  - [Local PV ZFS](https://github.com/openebs/zfs-localpv) 2.0.0 (stable)
-  - [Local PV LVM](https://github.com/openebs/lvm-localpv) 0.8.3 (stable)
-  - [Local PV Rawfile](https://github.com/openebs/rawfile-localpv) 0.6.0 (beta)
-  - [Jiva](https://github.com/openebs/jiva-operator) 3.1.0 (beta) 
+  - [cStor](https://github.com/openebs/cstor-operators) 3.0.0 (stable)
+  - [Local PV ZFS](https://github.com/openebs/zfs-localpv) 1.9.2 (stable)
+  - [Local PV LVM](https://github.com/openebs/lvm-localpv) 0.8.2 (stable)
+  - [Local PV Rawfile](https://github.com/openebs/rawfile-localpv) 0.5.0 (beta)
+  - [Jiva](https://github.com/openebs/jiva-operator) 3.0.0 (beta) 
   - [Mayastor](https://github.com/openebs/mayastor) 0.8.1 (beta)
-  - [Local PV Partitions](https://github.com/openebs/device-localpv) 0.6.0 (alpha)
+  - [Local PV Partitions](https://github.com/openebs/device-localpv) 0.5.1 (alpha)
 - Out-of-tree(external storage) provisioners 
-  - [Local PV hostpath](https://github.com/openebs/dynamic-localpv-provisioner) 3.1.0 (stable)
-  - [Local PV device](https://github.com/openebs/dynamic-localpv-provisioner) 3.1.0 (stable)
-  - [Dynamic NFS Volume](https://github.com/openebs/dynamic-nfs-provisioner) 0.9.0 (beta)
+  - [Local PV hostpath](https://github.com/openebs/dynamic-localpv-provisioner) 3.0.0 (stable)
+  - [Local PV device](https://github.com/openebs/dynamic-localpv-provisioner) 3.0.0 (stable)
+  - [Dynamic NFS Volume](https://github.com/openebs/dynamic-nfs-provisioner) 0.7.1 (beta)
 - Other components
-  - [NDM](https://github.com/openebs/node-disk-manager) 1.8.0 (beta)
-  - [Upgrade and Migration Tools](https://github.com/openebs/upgrade) 3.1.0 (beta)
-  - [CLI](https://github.com/openebs/openebsctl) 0.5.0 (beta)
-  - [Dashboard](https://github.com/openebs/monitoring) 0.4.10 (beta)
+  - [NDM](https://github.com/openebs/node-disk-manager) 1.7.0 (beta)
+  - [Upgrade and Migration Tools](https://github.com/openebs/upgrade) 3.0.0 (beta)
+  - [CLI](https://github.com/openebs/openebsctl) 0.4.0 (beta)
+  - [Dashboard](https://github.com/openebs/monitoring) 0.4.7 (beta)
 - Deprecated components(with last supported release)
   - [Jiva (non-csi)](https://github.com/openebs/maya) 2.12.2 
   - [cStor (non-csi)](https://github.com/openebs/maya) 2.12.2
@@ -40,7 +40,6 @@ Here is a quick reference on status of OpenEBS volumes and compatibility with re
 
 |OpenEBS Release |Kubernetes Versions|Stable Engines| Beta Engines | Alpha Engines | Deprecated Engines
 |:------ |:------------------|:--------     |:------       |:-----         |:-------
-|3.1.0   |K8s >1.18          |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
 |3.0.0   |K8s >1.18          |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
 |2.12.x   |K8s >1.17 <1.22    | Jiva(w/non-CSI), LocalPV(Hostpath, Device, ZFS)| cStor(w/CSI), cStor(w/non-CSI), Jiva(w/CSI), Mayastor, LocalPV(LVM, Rawfile) | LocalPV(Device w/CSI), NFS | 
 |2.11.0   |K8s >1.17 <1.22    | Jiva(w/non-CSI), LocalPV(Hostpath, Device, ZFS)| cStor(w/CSI), cStor(w/non-CSI), Jiva(w/CSI), Mayastor, LocalPV(LVM, Rawfile) | LocalPV(Device w/CSI), NFS | 
