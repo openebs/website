@@ -145,10 +145,6 @@ Mayastor 1.0 is released now with multiple enhancements and stable features that
 
 Details on exactly what’s changed can be found in the release notes here.
 
-## Why Choose Mayastor ? 
-
-The Mayastor data plane leverages the full performance potential of storage systems, delivering high IOPS with less than 10% overhead. The declarative data plane utilizes developments of NVMe and SPDK to enable easy storage management. The following section outlines various features and benefits Mayastor offers.
-
 ## Mayastor Use-Cases 
 
 **Storage unification** 
