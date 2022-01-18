@@ -21,7 +21,7 @@ Built on the Container Attached Storage framework, the storage engine leverages 
 
 The platform is built for cloud-native storage orchestration and is workload-driven to simplify Kubernetes storage for enterprises. Through a declarative data plane, Mayastor abstracts storage resources to enable persistent storage for Kubernetes applications. To do so, Mayastor storage engine components are deployed as containers in Kubernetes, allowing for simple scaling, provisioning and management of storage for clusters.
 
-**Control Plane -**The Mayastor control plane is primarily a single instance Kubernetes controller that implements both the Container Storage Interface (CSI) specification and private interfaces for the storage system. The controller is containerized and runs as deployment in Kubernetes. The control plane also includes CSI plugins deployed on each node to implement CSI protocol services. 
+**Control Plane -** The Mayastor control plane is primarily a single instance Kubernetes controller that implements both the Container Storage Interface (CSI) specification and private interfaces for the storage system. The controller is containerized and runs as deployment in Kubernetes. The control plane also includes CSI plugins deployed on each node to implement CSI protocol services. 
 
 **Data Plane -** The Mayastor data plane creates a Nexus for every Persistent Volume Claim (PVC) loosely coupled to the storage class. Each Nexus instance acts as a virtual storage router, connecting the PVC with a Persistent Volume (PV). The Nexus instance provides an abstraction of the input-output controller while managing all requests for the Persistent Volume attached to the PVC.  
 
