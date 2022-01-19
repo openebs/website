@@ -47,7 +47,7 @@ The Mayastor data plane is implemented in Rust, which includes a safe compiler t
 
 Mayastor storage controllers are orchestrated by Kubernetes, and data is accessed via containers. As the storage engine is deployed using a CSI driver, volumes can be provisioned using any container orchestrator or runtime, eliminating vendor lock-in. This construct allows organizations to use Mayastor to orchestrate any open-source storage service running on different Kubernetes distributions. 
 
-**Felxible Horizontal Scalability** 
+**Flexible Horizontal Scalability** 
 
 Mayastor integrates with OpenEBS Logical Volume Management (LVM), which pools underlying volumes and divides them into immutable logical units. These units can be replicated and distributed across multiple availability zones, enabling flexible horizontal scalability for storage workloads. 
 
@@ -76,7 +76,7 @@ The section below explores Mayastor’s release history, noting the major milest
 
 **V 0.1.0** 
 
-This Alpha release was intended mostly for testing and development purposes and featured persistent volumes that could be exported over iSCI transport. 
+This Alpha release was intended mostly for testing and development purposes and featured persistent volumes that could be exported over ISCSI transport. 
 
 **V 0.2.0** 
 
@@ -143,7 +143,6 @@ Mayastor 1.0 is released now with multiple enhancements and stable features that
 
 - CSI driver for volume management 
 
-Details on exactly what’s changed can be found in the release notes here.
 
 ## Mayastor Use-Cases 
 
@@ -176,4 +175,4 @@ Mayastor volumes can be used to provide storage over vhost users, enabling stora
 OpenEBS Mayastor is the first Container Attached Storage engine developed with the tremendous performance capabilities of the NVMe protocol itself in mind. Written in Rust and open source, Mayastor should be the preferred choice for workloads that need the ease of  use and portability of OpenEBS plus the performance otherwise only delivered by the much harder to manage and to protect direct access to high performing disks and cloud volumes. 
  
 
-To know more on how Mayastor can help provision lightning fast storage solution for your dynamic workloads, drop us a message [here](https://openebs.io/community). Alternatively, you can also visit the official documentation to learn more about Mayastor, its appropriate use-cases, and feature announcements. 
+To know more on how Mayastor can help provision lightning fast storage solution for your dynamic workloads, drop us a message [here](https://openebs.io/community). Alternatively, you can also visit the official [documentation](https://mayastor.gitbook.io/introduction/quickstart/deploy-a-test-application) to learn more about Mayastor, its appropriate use-cases, and feature announcements. 
