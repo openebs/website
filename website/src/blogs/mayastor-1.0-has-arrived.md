@@ -58,7 +58,7 @@ The Mayadata storage controller simplifies the provisioning and replication of s
 
 **Highly Available persistent data storage**  
 
-Mayastor relies on Intel’s industry-leading Storage Performance Development Kit to deliver reliable access to persistent storage services and devices. The storage engine offers resilient volume services through synchronous replication that guarantees availability in case of node failures.  
+Mayastor relies on Intel’s industry-leading Storage Performance Development Kit to deliver reliable access to persistent storage services and devices. The storage engine offers resilient volume services through synchronous replication that guarantees availability.  
  
 
 **Easy deployment and management of storage services** 
