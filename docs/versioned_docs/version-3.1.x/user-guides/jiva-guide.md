@@ -353,13 +353,13 @@ kubectl -n default annotate pod/percona-7b64956695-dk95r backup.velero.io/backup
 Take the backup using the below command. Here you should add the selector for avoiding Jiva controller and replica deployment from taking backup.
 
 ```
-velero backup create <backup_name> --selector '!openebs.io/controller,!openebs.io/replica'
+velero backup create <backup_name> --selector 'openebs.io/component notin (jiva-controller, jiva-replica)'
 ```
 
 Example:
 
 ```
-velero backup create hostpathbkp2 --selector '!openebs.io/controller,!openebs.io/replica'
+velero backup create hostpathbkp2 --selector 'openebs.io/component notin (jiva-controller, jiva-replica)'
 ```
 
 After taking backup, verify if backup is taken successfully by using following command.
