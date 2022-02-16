@@ -39,8 +39,8 @@
     },
     "scripts": {
         "postinstall": "node public/getPosts.js",
-        "start": "react-scripts start",
-        "build": "react-scripts build",
+        "start": "PORT=8080 react-scripts start",
+        "build": "node public/getPosts.js && react-scripts build",
         "test": "react-scripts test",
         "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
         "fixlint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix",
