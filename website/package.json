@@ -1,82 +1,82 @@
 {
-  "name": "openebs-website",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@fontsource/montserrat": "^4.2.2",
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.58",
-    "@testing-library/jest-dom": "^5.11.10",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^26.0.22",
-    "@types/node": "^14.14.37",
-    "@types/react": "^17.0.3",
-    "@types/react-dom": "^17.0.3",
-    "@types/react-router-dom": "^5.1.7",
-    "history": "^4.10.1",
-    "i18next": "^20.1.0",
-    "i18next-browser-languagedetector": "^6.1.0",
-    "i18next-http-backend": "^1.2.1",
-    "js-yaml": "^3.14.1",
-    "mdtable2json": "^0.1.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-github-btn": "^1.2.0",
-    "react-gtm-module": "^2.0.11",
-    "react-helmet": "^6.1.0",
-    "react-i18next": "^11.8.12",
-    "react-lazy-load-image-component": "^1.5.1",
-    "react-markdown": "^6.0.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "react-slick": "^0.28.1",
-    "slick-carousel": "^1.8.1",
-    "styled-components": "^5.2.3",
-    "typescript": "^4.2.3",
-    "web-vitals": "^1.1.1"
-  },
-  "scripts": {
-    "postinstall": "node public/getPosts.js",
-    "start": "react-scripts start",
-    "build": "node public/getPosts.js && react-scripts build",
-    "test": "react-scripts test",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
-    "fixlint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix",
-    "netlify-dev-serve": "netlify dev -c \"npm run start\""
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@types/react-gtm-module": "^2.0.0",
-    "@types/react-helmet": "^6.1.2",
-    "@types/react-lazy-load-image-component": "^1.5.1",
-    "@types/react-slick": "^0.23.4",
-    "@typescript-eslint/eslint-plugin": "^4.4.1",
-    "@typescript-eslint/parser": "^4.4.1",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb": "^18.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.4.1",
-    "eslint-plugin-react": "^7.24.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "netlify-cli": "^8.0.0"
-  }
+    "name": "openebs-website",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@fontsource/montserrat": "^4.2.2",
+        "@material-ui/core": "^4.11.3",
+        "@material-ui/icons": "^4.11.2",
+        "@material-ui/lab": "^4.0.0-alpha.58",
+        "@testing-library/jest-dom": "^5.11.10",
+        "@testing-library/react": "^11.2.5",
+        "@testing-library/user-event": "^12.8.3",
+        "@types/jest": "^26.0.22",
+        "@types/node": "^14.14.37",
+        "@types/react": "^17.0.3",
+        "@types/react-dom": "^17.0.3",
+        "@types/react-router-dom": "^5.1.7",
+        "history": "^4.10.1",
+        "i18next": "^20.1.0",
+        "i18next-browser-languagedetector": "^6.1.0",
+        "i18next-http-backend": "^1.2.1",
+        "js-yaml": "^3.14.1",
+        "mdtable2json": "^0.1.0",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "react-github-btn": "^1.2.0",
+        "react-gtm-module": "^2.0.11",
+        "react-helmet": "^6.1.0",
+        "react-i18next": "^11.8.12",
+        "react-lazy-load-image-component": "^1.5.1",
+        "react-markdown": "^6.0.1",
+        "react-router-dom": "^5.2.0",
+        "react-scripts": "4.0.3",
+        "react-slick": "^0.28.1",
+        "slick-carousel": "^1.8.1",
+        "styled-components": "^5.2.3",
+        "typescript": "^4.2.3",
+        "web-vitals": "^1.1.1"
+    },
+    "scripts": {
+        "postinstall": "node public/getPosts.js",
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+        "fixlint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix",
+        "netlify-dev-serve": "netlify dev -c \"npm run start\""
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@types/react-gtm-module": "^2.0.0",
+        "@types/react-helmet": "^6.1.2",
+        "@types/react-lazy-load-image-component": "^1.5.1",
+        "@types/react-slick": "^0.23.4",
+        "@typescript-eslint/eslint-plugin": "^4.4.1",
+        "@typescript-eslint/parser": "^4.4.1",
+        "eslint": "^7.32.0",
+        "eslint-config-airbnb": "^18.2.1",
+        "eslint-plugin-import": "^2.22.1",
+        "eslint-plugin-jsx-a11y": "^6.4.1",
+        "eslint-plugin-react": "^7.24.0",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "netlify-cli": "^8.0.0"
+    }
 }
