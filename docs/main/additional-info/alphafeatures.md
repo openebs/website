@@ -94,10 +94,6 @@ This section demonstrates the application of data populator. We will be preparin
        requests:
          storage: 2Gi   
   ```
-  
-:::tip NOTE
-
-:::
 
 2. Next, create an application that would consume the above-created volume. 
 
