@@ -64,16 +64,12 @@ The Data populator can be used to load seed data into a Kubernetes persistent vo
 
 ### Setting up the Data Populator
 
-1. To get started, the data populator CRD needs to be installed on the setup. To install, execute:
+To get started, the data populator CRD and controller needs to be installed on the setup. To install, execute:
 
  ```
- kubectl apply -f https://raw.githubusercontent.com/openebs/data-populator/master/deploy/crds/openebs.io_datapopulators.yaml
- ```
-2. Next, to install the data populator controller, execute:
+ kubectl apply -f https://raw.githubusercontent.com/openebs/data-populator/master/deploy/data-populator-operator.yaml
+```
 
- ```
- kubectl apply -f https://raw.githubusercontent.com/openebs/data-populator/master/deploy/yamls/data-populator.yaml
- ```
 :::tip NOTE
   The `openebs-data-population` namespace is reserved for populator and no PVC with `dataSourceRef` should be created in this namespace as the data populator controller ignores the PVCs in its working namespace.
 :::
@@ -98,6 +94,11 @@ This section demonstrates the application of data populator. We will be preparin
        requests:
          storage: 2Gi   
   ```
+  
+:::tip NOTE
+
+:::
+
 2. Next, create an application that would consume the above-created volume. 
 
   Sample application YAML
