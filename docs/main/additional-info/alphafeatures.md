@@ -53,7 +53,7 @@ The Data populator can be used to load seed data into a Kubernetes persistent vo
 
 ### Use cases
 
-1. <b>Decommissioning of a node in the cluster</b>: In scenarios where a Kubernetes node needs to be decommissioned whether for upgrade or maintenance, a data populator can be used to migrate the data saved in the local storage of the node, that has to be decommissioned, to another node in the cluster. 
+1. <b>Decommissioning of a node in the cluster</b>: In scenarios where a Kubernetes node needs to be decommissioned whether for upgrade or maintenance, a data populator can be used to migrate the data saved in the local storage of the node, that has to be decommissioned. 
 2. <b>Loading seed data to Kubernetes volumes</b>: Data populator can be used to scale applications without using read-write many operation. The application can be pre-populated with the static content available in an existing PV.
 
 To get more details about Data Populator, [click here](https://github.com/openebs/data-populator#data-populator).
