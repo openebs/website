@@ -16,6 +16,7 @@ The list of alpha features include:
 - [Dynamic NFS Provisioner](#dynamic-nfs-provisioner)
 - [OpenEBS CLI](#openebs-cli)
 - [OpenEBS Monitoring Add-on](#openebs-monitoring-add-on)
+- [Data Populator](#data-populator)
 
 :::note
 Upgrade is not supported for features in Alpha version.
@@ -45,3 +46,23 @@ For additional details and detailed instructions on how to get started with Open
 OpenEBS is developing a monitoring add-on package that can be installed via helm or kubectl for setting up a default prometheus, grafana and alert manager stack. The package also will include default service monitors, dashboards and alert rules. 
 
 For additional details and detailed instructions on how to get started with OpenEBS Monitoring Add-on please refer this [Quickstart guide](https://github.com/openebs/monitoring).
+
+## Data Populator
+
+The Data populator can be used to load seed data into a Kubernetes persistent volume from another such volume. The data populator internally uses Rsync, which is a volume populator having the ability to create a volume from any rsync source. 
+
+### Use cases
+
+1. <b>Decommissioning of a node in the cluster</b>: In scenarios where a Kubernetes node needs to be decommissioned whether for upgrade or maintenance, a data populator can be used to migrate the data saved in the local storage of the node, that has to be decommissioned. 
+2. <b>Loading seed data to Kubernetes volumes</b>: Data populator can be used to scale applications without using read-write many operation. The application can be pre-populated with the static content available in an existing PV.
+
+To get more details about Data Populator, [click here](https://github.com/openebs/data-populator#data-populator).
+
+For instructions on the installation and usage of Data Populator, please refer to this [Quickstart guide](https://github.com/openebs/data-populator#install). 
+
+
+
+
+
+
+
