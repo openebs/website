@@ -169,11 +169,11 @@ During the installation of OpenEBS, a snapshot-controller and a snapshot-provisi
 
     ```
     kind: VolumeSnapshotClass
-    apiVersion: snapshot.storage.k8s.io/v1
-    metadata:
-    name: csi-cstor-snapshotclass
-    annotations:
-      snapshot.storage.kubernetes.io/is-default-class: "true"
+      apiVersion: snapshot.storage.k8s.io/v1
+      metadata:
+      name: csi-cstor-snapshotclass
+      annotations:
+        snapshot.storage.kubernetes.io/is-default-class: "true"
     driver: cstor.csi.openebs.io
     deletionPolicy: Delete
     ```
@@ -198,12 +198,12 @@ During the installation of OpenEBS, a snapshot-controller and a snapshot-provisi
     ```
     apiVersion: snapshot.storage.k8s.io/v1
     kind: VolumeSnapshot
-    metadata:
-    name: cstor-pvc-snap
+      metadata:
+      name: cstor-pvc-snap
     spec:
-    volumeSnapshotClassName: csi-cstor-snapshotclass
-    source:
-      persistentVolumeClaimName: cstor-pvc
+      volumeSnapshotClassName: csi-cstor-snapshotclass
+      source:
+        persistentVolumeClaimName: cstor-pvc
     ```
 
     Run the following command to create the snapshot,
