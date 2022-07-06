@@ -8,6 +8,8 @@ export enum EXTERNAL_LINKS {
   CODEWAVE_WEBSITE = 'https://codewave.eu/',
   GRIDWORKZ_WEBSITE = 'https://www.gridworkz.com/',
   MAYADATA_WEBSITE = 'https://mayadata.io/',
+  DATACORE_WEBSITE = 'https://www.datacore.com/',
+  DATACORE_OPENEBS_SUPPORT = 'https://www.datacore.com/support/openebs/',
   CNCF_WEBSITE = 'https://www.cncf.io/',
   OPENEBS_BLOGS = 'https://openebs.io/blog',
   OPENEBS_YOUTUBE_INTRO = 'https://www.youtube.com/watch?v=94SFY3xdjXs&t=1s',
