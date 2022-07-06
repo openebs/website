@@ -6,6 +6,7 @@ generic:
   github: GitHub
   slack: Slack
   mayadata: MayaData
+  datacore: DataCore
   rancher: Rancher
   intel: Intel
   gostor: Gostor
@@ -108,7 +109,7 @@ joinCommunity:
   slackIframeTitle: Join Kubernetes on Slack
 
 sponsors:
-  mayadata: Originally created and sponsored by
+  datacore: Originally created and sponsored by
   cncf: OpenEBS is a proud member of
 
 ### Pages ###
