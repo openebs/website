@@ -18,9 +18,9 @@ const SupportData = [
   },
   {
     id: 3,
-    image: '/images/logos/mayadata.svg',
-    desc: 'MayaData leads the development of OpenEBS & creates simplified K8s storage solutions for Enterprises',
-    website: EXTERNAL_LINKS.MAYADATA_WEBSITE,
+    image: '/images/logos/datacore.svg',
+    desc: 'DataCore leads the development of OpenEBS and creates simplified K8s storage solutions for enterprises',
+    website: EXTERNAL_LINKS.DATACORE_OPENEBS_SUPPORT,
   },
 ];
 

@@ -15,8 +15,8 @@ The list is provided in alphabetical order.
 
 - [Clouds Sky GmbH](https://cloudssky.com/en/)
 - [CodeWave](https://codewave.eu/)
+- [DataCore](https://www.datacore.com/support/openebs/)
 - [Gridworkz Cloud Services](https://www.gridworkz.com/)
-- [MayaData](https://mayadata.io/)
 
 ## See Also:
 
