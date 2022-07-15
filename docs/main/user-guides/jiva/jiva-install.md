@@ -43,7 +43,9 @@ openebs-jiva-csi-node-h2unk                    2/2     Running   0          6m20
  spec:
    replicaSC: openebs-hostpath
    target:
-     replicationFactor: 1
+     # This sets the number of replicas for high-availability
+     # replication factor <= no. of (CSI) nodes
+     replicationFactor: 3
      # disableMonitor: false
      # auxResources:
      # tolerations:
