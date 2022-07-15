@@ -172,9 +172,30 @@ module.exports = {
           ]
         },
         {
-          type: "doc",
-          id: "user-guides/jiva-guide",
-          label: "Jiva"
+  
+          collapsed: true,
+          type: "category",
+          label: "Jiva",
+          customProps: {
+            icon: ""
+          },
+          items: [
+            {
+              type: "doc",
+              id: "user-guides/jiva/jiva-prerequisites",
+              label: "Prerequisites"
+            },
+            {
+              type: "doc",
+              id: "user-guides/jiva/jiva-install",
+              label: "Install and Setup"
+            },
+            {
+              type: "doc",
+              id: "user-guides/jiva/jiva-launch",
+              label: "Launch"
+            }
+          ]
         },
         {
           type: "doc",
