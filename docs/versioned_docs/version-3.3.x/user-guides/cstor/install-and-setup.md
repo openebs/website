@@ -263,5 +263,5 @@ Steps to create a cStor StorageClass
 
    ```shell hideCopy
    NAME                        PROVISIONER                                                RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
-   cstor-csi                   cstor.csi.openebs.io                                       Delete          Immediate              true                   4s
+   cstor-csi-disk                   cstor.csi.openebs.io                                       Delete          Immediate              true                   4s
    ```
