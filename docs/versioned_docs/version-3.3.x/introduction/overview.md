@@ -47,7 +47,7 @@ In case of [Distributed (aka Replicated) Volumes](#replicated-volumes):
 - OpenEBS Mayastor is the latest engine and has been developed with durability and performance as design goals; OpenEBS Mayastor efficiently manages the compute (hugepages, cores) and storage (NVMe Drives) to provide fast distributed block storage.
 
 :::tip NOTE
-OpenEBS contributors prefers to call the Distributed Block Storage volumes as **Replicated Volumes**, to avoid confusion with traditional distributed block storage for the following reasons:
+OpenEBS contributors prefer to call the Distributed Block Storage volumes as **Replicated Volumes**, to avoid confusion with traditional distributed block storage for the following reasons:
 * Distributed block storage tends to shard the data blocks of a volume across many nodes in the cluster. Replicated volumes persist all the data blocks of a volume on a node and for durability replicate the entire data to other nodes in the cluster.  
 * While accessing a volume data, distributed block storage depends on metadata hashing algorithms to locate the node where the block resides, whereas replicated volumes can access the data from any of the nodes where data is persisted (aka replica nodes).
 * Replicated volumes have a lower blast radius compared to traditional distributed block storage. 

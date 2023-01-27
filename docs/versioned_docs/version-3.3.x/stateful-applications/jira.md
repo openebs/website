@@ -48,7 +48,7 @@ Following is an example output.
 
 ```
 NAME                    READY   STATUS    RESTARTS   AGE
-jira-5bd96c488d-2gj8p   1/1     Running   0          2d14h
+jira-5bd96c488d-2gj8p   1/1     Running   0          2d15h
 ```
 
 ## Configuration Details

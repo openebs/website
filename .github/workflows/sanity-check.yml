@@ -9,12 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Commits Check
     steps:
-      - name: Get PR Commits
-        id: "get-pr-commits"
-        uses: tim-actions/get-pr-commits@master
+      - name: Use Node.js
+        uses: actions/setup-node@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          node-version: "16"
       - name: DCO Check
-        uses: tim-actions/dco@master
-        with:
-          commits: ${{ steps.get-pr-commits.outputs.commits }}
+        uses: tisonkun/actions-dco@v1.1
