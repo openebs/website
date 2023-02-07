@@ -86,7 +86,7 @@ If `2.` is present, it means the blockdevice was previously being used by localP
 
 1. ssh to the node in which the blockdevice is present
 
-2. If the disk has partitions, run wipefs on all the partitions
+2. If the disk has partitions, run wipefs on all of the partitions
 
 ```
 
