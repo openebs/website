@@ -39,9 +39,9 @@ Here is a quick reference on status of OpenEBS volumes and compatibility with re
 
 |OpenEBS Release |Kubernetes Versions|Stable Engines| Beta Engines | Alpha Engines | Deprecated Engines
 |:------ |:------------------|:--------     |:------       |:-----         |:-------
-|3.4.0   |K8s >1.18          |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
-|3.3.0   |K8s >1.18          |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
-|3.2.0   |K8s >1.18          |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
+|3.4.0 |1.18< K8s <1.25 (Jiva-CSI: K8s >=1.21) |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
+|3.3.0 |1.18< K8s <1.25 (Jiva-CSI: K8s >=1.21) |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
+|3.2.0   |1.18< K8s <1.25 (Jiva-CSI: K8s >=1.21) |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
 |3.1.0   |K8s >1.18          |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
 |3.0.0   |K8s >1.18          |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
 |2.12.x   |K8s >1.17 <1.22    | Jiva(w/non-CSI), LocalPV(Hostpath, Device, ZFS)| cStor(w/CSI), cStor(w/non-CSI), Jiva(w/CSI), Mayastor, LocalPV(LVM, Rawfile) | LocalPV(Device w/CSI), NFS | 

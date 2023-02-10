@@ -5,7 +5,7 @@ keywords:
  - Uninstalling OpenEBS
  - Uninstall OpenEBS
  - Deletion of Jiva Volumes
-description: This section is to describe about the graceful deletion/uninstall of your OpenEBS cluster. OpenEBS cluster has three different storage engine, cStor,Local PV and Jiva. The deletion for the data from the disks after this operation is different for these storage Engines.
+description: This section is to describe about the graceful deletion/uninstall of your OpenEBS cluster. OpenEBS cluster has three different storage engine, cStor, Local PV and Jiva. The deletion for the data from the disks after this operation is different for these storage Engines.
 ---
 
 This section is to describe about the graceful deletion/uninstall of your OpenEBS cluster. OpenEBS cluster has three different storage engine, cStor,Local PV and Jiva. The deletion for the data from the disks after this operation is different for these storage Engines. 
@@ -33,7 +33,7 @@ The recommended steps to uninstall the OpenEBS cluster gracefully is as follows.
 - Ensure that there are no stale BlockDeviceClaims present in the cluster. You can verify the status using the following command. 
   
   ```
-  kubectl get bdc -n <openebs namespace>
+  kubectl get bdc -n <openebs-namespace>
   ```
   
   If present, remove the finalizer entry from the corresponding BDC. To remove the finalizer, use the following command

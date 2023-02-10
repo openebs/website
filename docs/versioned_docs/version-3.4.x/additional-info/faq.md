@@ -105,7 +105,7 @@ OpenEBS stores data in a configurable number of replicas. These are placed to ma
 
 To determine exactly where your data is physically stored, you can run the following kubectl commands.
 
-* Run `kubectl get pvc` to fetch the volume name. The volume name looks like: *pvc-ee171da3-07d5-11e8-a5be-42010a8001be*.
+* Run `kubectl get pvc` to fetch the volume name. The volume name looks something like: *pvc-ee171da3-07d5-11e8-a5be-42010a8001be*.
 
 * For each volume, you will notice one IO controller pod and one or more replicas (as per the storage class configuration). For the above PVC, run the following command to get the IO controller and replica pods. 
 

@@ -7,7 +7,7 @@ keywords:
 description: The FAQ section about cStor helps to address common concerns, questions, and objections that users have about cStor.
 ---
 
-[Prerequisites to run CStor-CSI in rancher based clusters](#prerequisites-for-rancher)
+[Prerequisites to run CStor-CSI in rancher-based clusters](#prerequisites-for-rancher)
 
 [How to verify cStor volume is running fine?](#verify-cstor-volume-running-fine)
 
@@ -26,7 +26,7 @@ description: The FAQ section about cStor helps to address common concerns, quest
 
 ---
 
-### What are the prerequisites to run CStor-CSI in rancher based clusters {#prerequisites-for-rancher}
+### What are the prerequisites to run CStor-CSI in rancher-based clusters {#prerequisites-for-rancher}
 
 For RancherOS, 
 If the operating system used is RancherOS, the iSCSI service needs to be enabled. Once it is enabled it must be started on each of the worker nodes.
