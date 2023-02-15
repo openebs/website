@@ -25,7 +25,7 @@ If this is your first time installing OpenEBS, make sure that your Kubernetes no
 ## Installation through helm
 
 :::note
-With OpenEBS versions >= 3.4.0, Mayastor-2.0 installation can be done directly using the OpenEBS helm chart. To install Mayastor add `--set mayastor.enabled=true` to the install command.
+With OpenEBS v3.4, the OpenEBS helm chart now supports installation of Mayastor v2.0 storage engine.
 :::
 
 Verify helm is installed and helm repo is updated. You need helm 3.2 or more. 
