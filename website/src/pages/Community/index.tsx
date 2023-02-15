@@ -215,9 +215,9 @@ const Community: React.FC = () => {
                   </Typography>
                   <img
                     loading="lazy"
-                    src="../images/logos/mayadata_logo.svg"
-                    alt={t('generic.mayadata')}
-                    className={classes.mayaDataLogo}
+                    src="../images/logos/datacore_logo_blue.svg"
+                    alt={t('generic.datacore')}
+                    className={classes.DataCoreLogo}
                   />
                 </div>
               </Grid>
