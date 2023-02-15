@@ -265,7 +265,7 @@ community:
       message: CNCF hosted OpenEBS community events
 
   sponsor:
-    mainSponsor: Started and majority of its development sponsored by
+    mainSponsor: Majority of Development sponsored by
     dependentProjects: Dependent projects whose work is heavily used in OpenEBS projects
 
 contributing:
