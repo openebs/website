@@ -11,6 +11,10 @@ keywords:
 description: This guide will help you to setup OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with Kubernetes Storage Concepts
 ---
 
+:::note
+With OpenEBS versions >= 3.4.0, Mayastor-2.0 installation can be done directly using the OpenEBS helm chart. To install Mayastor add `--set mayastor.enabled=true` to the install command.
+:::
+
 This guide will help you to setup OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with [Kubernetes Storage Concepts](/concepts/basics).
 
 
