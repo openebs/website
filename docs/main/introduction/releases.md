@@ -6,26 +6,26 @@ keywords:
 description: This page contains list of supported OpenEBS releases.
 ---
 
-OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners. The status of the various components as of v3.0.0 are as follows:
+OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners. The status of the various components as of v3.4.0 are as follows:
 
 - Data Engines
-  - [Jiva](https://github.com/openebs/jiva) 3.3.0 (stable)
-  - [cStor](https://github.com/openebs/libcstor) 3.3.0 (stable)
+  - [Jiva](https://github.com/openebs/jiva) 3.4.0 (stable)
+  - [cStor](https://github.com/openebs/libcstor) 3.4.0 (stable)
 - CSI Provisioners
-  - [cStor](https://github.com/openebs/cstor-operators) 3.3.0 (stable)
+  - [cStor](https://github.com/openebs/cstor-operators) 3.4.0 (stable)
   - [Local PV ZFS](https://github.com/openebs/zfs-localpv) 2.1.0 (stable)
   - [Local PV LVM](https://github.com/openebs/lvm-localpv) 1.0.0 (stable)
   - [Local PV Rawfile](https://github.com/openebs/rawfile-localpv) 0.8.0 (beta)
-  - [Jiva](https://github.com/openebs/jiva-operator) 3.3.0 (beta) 
-  - [Mayastor](https://github.com/openebs/mayastor) 1.0.1 (beta)
+  - [Jiva](https://github.com/openebs/jiva-operator) 3.4.0 (beta) 
+  - [Mayastor](https://github.com/openebs/mayastor) 2.0.0 (beta)
   - [Local PV Partitions](https://github.com/openebs/device-localpv) 0.7.0 (alpha)
 - Out-of-tree(external storage) provisioners 
-  - [Local PV hostpath](https://github.com/openebs/dynamic-localpv-provisioner) 3.3.0 (stable)
-  - [Local PV device](https://github.com/openebs/dynamic-localpv-provisioner) 3.3.0 (stable)
-  - [Dynamic NFS Volume](https://github.com/openebs/dynamic-nfs-provisioner) 0.9.0 (beta)
+  - [Local PV hostpath](https://github.com/openebs/dynamic-localpv-provisioner) 3.4.0 (stable)
+  - [Local PV device](https://github.com/openebs/dynamic-localpv-provisioner) 3.4.0 (stable)
+  - [Dynamic NFS Volume](https://github.com/openebs/dynamic-nfs-provisioner) 0.10.0 (beta)
 - Other components
-  - [NDM](https://github.com/openebs/node-disk-manager) 2.0.0 (stable)
-  - [Upgrade and Migration Tools](https://github.com/openebs/upgrade) 3.3.0 (stable)
+  - [NDM](https://github.com/openebs/node-disk-manager) 2.1.0 (stable)
+  - [Upgrade and Migration Tools](https://github.com/openebs/upgrade) 3.4.0 (stable)
   - [CLI](https://github.com/openebs/openebsctl) 0.5.0 (beta)
   - [Dashboard](https://github.com/openebs/monitoring) 0.4.10 (beta)
 - Deprecated components(with last supported release)
@@ -39,8 +39,9 @@ Here is a quick reference on status of OpenEBS volumes and compatibility with re
 
 |OpenEBS Release |Kubernetes Versions|Stable Engines| Beta Engines | Alpha Engines | Deprecated Engines
 |:------ |:------------------|:--------     |:------       |:-----         |:-------
-|3.3.0   |K8s >1.18          |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
-|3.2.0   |K8s >1.18          |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
+|3.4.0 | K8s >= 1.21 |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
+|3.3.0 |1.18< K8s <1.25 (Jiva-CSI: K8s >=1.21) |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
+|3.2.0   |1.18< K8s <1.25 (Jiva-CSI: K8s >=1.21) |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
 |3.1.0   |K8s >1.18          |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
 |3.0.0   |K8s >1.18          |cStor(w/CSI), LocalPV(Hostpath, Device, ZFS, LVM)| Jiva(w/CSI), Mayastor, NFS, LocalPV(Rawfile) | LocalPV(Device w/CSI) | **cStor and Jiva (w/non-CSI)**
 |2.12.x   |K8s >1.17 <1.22    | Jiva(w/non-CSI), LocalPV(Hostpath, Device, ZFS)| cStor(w/CSI), cStor(w/non-CSI), Jiva(w/CSI), Mayastor, LocalPV(LVM, Rawfile) | LocalPV(Device w/CSI), NFS | 
