@@ -178,7 +178,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       marginBottom: theme.spacing(2),
     },
   },
-  mayaDataLogo: {
+  DataCoreLogo: {
     [theme.breakpoints.down('xs')]: {
       width: '60%',
       margin: theme.spacing(1.5, 0),
