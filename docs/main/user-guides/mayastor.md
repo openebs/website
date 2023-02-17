@@ -14,9 +14,9 @@ Mayastor is incompatible with NDM (openebs-ndm) and cStor (cstor). Installing or
 However, installing Mayastor will not affect any preexisting LocalPV volumes.
 :::
 
-Before deploying and using Mayastor ensure that all the [prerequisites](https://mayastor.gitbook.io/introduction/quickstart/prerequisites) are met.
+Before deploying and using Mayastor ensure that all of the [prerequisites](https://mayastor.gitbook.io/introduction/quickstart/prerequisites) are met.
 
-- To install OpenEBS in a new cluster, use the following steps.
+- To install Mayastor in a new cluster using OpenEBS chart, execute:
   
 ```
 helm repo add openebs https://openebs.github.io/charts
