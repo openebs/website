@@ -8,9 +8,11 @@ keywords:
 description: Upgrade to the latest OpenEBS 2.11.0 version is supported only from v1.0.0 and later.
 ---
 
-Latest stable version of OpenEBS is 3.3.0. Check the release notes [here](https://github.com/openebs/openebs/releases/tag/v3.3.0).  
+Latest stable version of OpenEBS is 3.4.0. Check the release notes [here](https://github.com/openebs/openebs/releases).  
 
-Upgrade to the latest OpenEBS 3.3.0 version is supported only from 1.12.0 and later. The steps for upgrading from can be found [here](https://github.com/openebs/upgrade/blob/develop/docs/upgrade.md).
+To view the steps for upgrading Mayastor to the latest version, checkout the [Mayastor documentation](https://mayastor.gitbook.io/introduction/additional-information/upgrades).
+
+Upgrade to the latest cStor or Jiva version is supported only from 1.12.0 or later. The steps for upgrading can be found [here](https://github.com/openebs/upgrade/blob/develop/docs/upgrade.md).
 
 :::note
 - The community e2e pipelines verify upgrade testing only from non-deprecated releases (1.12 and higher) to 3.3.0. If you are running on release older than 1.12, OpenEBS recommends you upgrade to the latest version as soon as possible. 
