@@ -33,3 +33,4 @@ If you would like to check out the source code or contribute to Mayastor, head o
 ## Community Support via Slack
 
 OpenEBS has a vibrant community that can help you get started. If you have further question and want to learn more about OpenEBS and/or Mayastor, please join [OpenEBS community on Kubernetes Slack](https://kubernetes.slack.com). If you are already signed up, head to our discussions at [#openebs](https://kubernetes.slack.com/messages/openebs/) channel. 
+
