@@ -17,7 +17,7 @@ OpenEBS is a collection of data engines and operators to create different types 
   - [Local PV LVM](https://github.com/openebs/lvm-localpv) 1.0.0 (stable)
   - [Local PV Rawfile](https://github.com/openebs/rawfile-localpv) 0.8.0 (beta)
   - [Jiva](https://github.com/openebs/jiva-operator) 3.4.0 (beta) 
-  - [Mayastor](https://github.com/openebs/mayastor) 2.0.0 (beta)
+  - [Mayastor](https://github.com/openebs/mayastor) 2.0.0 (stable)
   - [Local PV Partitions](https://github.com/openebs/device-localpv) 0.7.0 (alpha)
 - Out-of-tree(external storage) provisioners 
   - [Local PV hostpath](https://github.com/openebs/dynamic-localpv-provisioner) 3.4.0 (stable)

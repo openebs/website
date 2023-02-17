@@ -27,3 +27,7 @@ helm install openebs --namespace openebs openebs/openebs --set mayastor.enabled=
 Once the installation is complete, move to the next step: [configuring Mayastor](https://mayastor.gitbook.io/introduction/quickstart/configure-mayastor).
 
 
+
+_For more information about Mayastor check out the [Mayastor documentation](https://mayastor.gitbook.io/introduction/)._
+
+
