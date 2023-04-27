@@ -8,7 +8,7 @@ keywords:
 description: Upgrade to the latest OpenEBS 2.11.0 version is supported only from v1.0.0 and later.
 ---
 
-Latest stable version of OpenEBS is 3.6.0. Check the release notes [here](https://github.com/openebs/openebs/releases/latest).
+Latest stable version of OpenEBS is 3.6.0. Check the release notes [here](https://github.com/openebs/openebs/releases/tag/v3.6.0).
 
 Upgrade to the latest cStor or Jiva version is supported only from 1.12.0 or later. The steps for upgrading can be found [here](https://github.com/openebs/upgrade/blob/develop/docs/upgrade.md).
 
@@ -55,7 +55,7 @@ Add a custom drain-label to the above drain process in order to ensure no confli
 
 Delete the `io-engine` pod on the above selected node, and wait for the pod to get redeployed. 
 ```
-kubectl get pod -n <mayastor-namespace> -l app=io-engine --field-selector spec.nodeName=<node-name>
+kubectl get pod -n <mayastor-namespace> -l app=io-engine,openebs.io/version!=2.1.0 --field-selector spec.nodeName=<node-name>
 kubectl delete pod <pod-name> -n <mayastor-namespace> 
 ```
 Next, verify if the `io-engine` pod is in `Running` state. 
