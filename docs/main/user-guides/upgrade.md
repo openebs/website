@@ -22,6 +22,7 @@ Upgrade to the latest cStor or Jiva version is supported only from 1.12.0 or lat
 
 :::note
 The below mentioned steps can only be used when Mayastor has been deployed using openebs/openebs helm chart.
+For mayastor/mayastor chart, click [here](https://mayastor.gitbook.io/introduction/additional-information/upgrade).
 ::: 
 1. Before starting the upgrade, ensure the following:
 - All of the mayastor pods must be in `Running` state.
