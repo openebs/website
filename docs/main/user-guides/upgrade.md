@@ -20,57 +20,139 @@ Upgrade to the latest cStor or Jiva version is supported only from 1.12.0 or lat
 
 ## Mayastor upgrade
 
-:::note
-The below mentioned steps can only be used when Mayastor has been deployed using openebs/openebs helm chart.
-For mayastor/mayastor chart, click [here](https://mayastor.gitbook.io/introduction/additional-information/upgrade).
-::: 
-1. Before starting the upgrade, ensure the following:
-- All of the mayastor pods must be in `Running` state.
-  ```
-  kubectl get pods -n <mayastor-namespace>
-  ```
-- There should not be any in-progress volume rebuilds. To verify, execute:
-  ```
-  kubectl mayastor get volume-replica-topologies
-  ```
-  The `CHILD-STATUS` column of the output from the above command should not have the value as `Degraded`.
+Upgrade for Mayastor is supported from v2.0.x to v2.1.0 and above. Before we get into the upgrade documentation for Mayastor, it is important that we understand that there are two ways of deploying Mayastor (since v2.0.0) on to a kubernetes cluster -- the ['mayastor' helm chart](https://github.com/openebs/mayastor-extensions/tree/develop/chart) and the ['openebs' helm chart](https://github.com/openebs/charts/tree/main/charts/openebs). The upgrade instructions differ for these two deployment strategies. The first step of the upgrade is to identify the helm chart that you have used to deploy Mayastor. If you are using the Mayastor with the openebs helm chart, then the instructions for upgrading the mayastor helm chart do not apply to you.
 
-2. Once the above requirements are met, execute the `helm upgrade` command to upgrade the openebs/openebs helm chart to version 3.6.0.
+### Indentifying the helm chart
+
+You'll need the helm v3 binary to be on you $PATH environment variable. Execute the following command to check if you have helm v3:
+```
+$ helm version --short
+v3.9.4+gdbc6d8e
+```
+
+Execute the following command to list the helm releases on the namespace where Mayastor is installed:
+```
+$ helm list -n openebs
+NAME            	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART        	APP VERSION
+openebs-mayastor	openebs  	1       	2023-05-26 22:03:15.473035 +0530 IST	deployed	openebs-3.6.0	3.6.0   
+```
+If the value of the 'CHART' column in the row which contains the helm chart for Mayastor, in the output of the above command, reads 'openebs-...', then your Mayastor deployment uses the openebs helm chart. If the CHART column instead reads 'mayastor-...', then it makes use of the mayastor helm chart.
+[Click here if your Mayastor deployment uses the 'mayastor' helm chart](https://mayastor.gitbook.io/introduction/additional-information/upgrade).
+
+Continue down this page if your Mayastor deployment uses the 'openebs' helm chart.
+
+### Upgrading Mayastor installed from the openebs helm chart
+
+#### 1. Planning the upgrade
+Supported upgrade paths for upgrade for Mayastor, installed with the openebs chart, are...
+Source versions: 3.4.x or above
+Target versions: 3.7.y or above
+All source versions may upgrade to any of the target versions, so long as the release semver of the target version is greater than that of the source version.
+
+To check for the latest released version of Mayastor available with the openebs helm chart, execute the following commands -- `helm repo update`, `helm search repo openebs --version ">a.b.c"`, where a.b.c is your source version, i.e. the version installed on your cluster. E.g.:
+```
+$ helm repo update openebs             
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "openebs" chart repository
+Update Complete. ⎈Happy Helming!⎈
+
+$ helm search repo openebs --version ">3.5.0"
+NAME           	CHART VERSION	APP VERSION	DESCRIPTION                                  
+openebs/openebs	3.7.0        	3.7.0      	Containerized Attached Storage for Kubernetes
+```
+
+If you want to list all of the versions available for upgrade, execute the following commands:
+```
+$ helm repo update openebs             
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "openebs" chart repository
+Update Complete. ⎈Happy Helming!⎈
+
+$ # Assuming source version of 3.5.0
+$ helm search repo openebs --version ">3.5.0,>=3.7.0" -l
+NAME           	CHART VERSION	APP VERSION	DESCRIPTION                                  
+openebs/openebs	3.7.0        	3.7.0      	Containerized Attached Storage for Kubernetes
+```
+Pick one from the listed version(s).
+
+#### 2. Building the `helm upgrade` command
+The openebs helm chart embeds in to itself all of the OpenEBS storage engines. If you are using more than one of the openebs helm chart's storage engines (e.g. using localpv-provisioner alongside mayastor), then you'd have to include the upgrade options for those storage engines as well into the helm upgrade command.
+
+Going forward, this turtorial assumes that your helm chart release-name is  'openebs-mayastor', that it is installed in the 'openebs' namespace of the kubernetes cluster, it has a source version of 3.6.0 and the target version for the upgrade is 3.7.0.
+
+Execute this shell script/command to get the version of mayastor helm subchart that a particular openebs chart uses:
+```
+$ # Using 3.7.0 for the input version of the
+$ IMG_TAG=$(helm show chart openebs/openebs --version 3.5.0 | grep "name: mayastor" -A 2 | tail -n 1 | tr -d " " | sed -e s/version:/v/)
+$ echo $IMG_TAG
+v2.2.0
+```
+The image tag on a released mayastor chart is the value of the chart version, with a 'v' prefix. The above command displays the output after adding the 'v' prefix.
+
+The helm upgrade command with the default options (and using variable from above) should look something like this:
+```
+helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-value
+```
+Refer to the documentation at to see all of the available configuration options:
+- https://github.com/openebs/mayastor-extensions/blob/\<release-tag\>/chart/README.md
+- https://github.com/openebs/mayastor-extensions/blob/\<release-tag\>/chart/values.yaml
+(e.g.: https://github.com/openebs/mayastor-extensions/blob/v2.2.0/chart/README.md, https://github.com/openebs/mayastor-extensions/blob/v2.2.0/chart/values.yaml)
+Prefix any option you'd want to set using the '--set' option, with 'mayastor', like shown in the default command above for the 'image.tag' option. This is due to the mayastor chart being a [subchart of the openebs chart](https://github.com/openebs/charts/blob/openebs-3.7.0/charts/openebs/values.yaml#L400).
+
+Because the mayastor chart is in active development, its helm chart values options may change over time and the convenience of the '--reuse-value' flags may also introduce nil yaml values for values which are required by helm's template engine. The 3.4.0, 3.4.1 and 3.5.0 releases face this issue. These releases require additional options to perform the default upgrade to 3.7.0 or above versions.
+Sample helm upgrade command from 3.4.0 to 3.7.0:
+```
+helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-value \
+        --set mayastor.image.pullPolicy="IfNotPresent" \
+        --set mayastor.image.repoTags.controlPlane="" \
+        --set mayastor.image.repoTags.controlPlane="" \
+        --set mayastor.image.repoTags.controlPlane="" \
+        --set mayastor.agents.core.capacity.thin.poolCommitment="250%" \
+        --set mayastor.agents.core.capacity.thin.volumeCommitment="40%" \
+        --set mayastor.agents.core.capacity.thin.volumeCommitmentInitial="40%" \
+        --set mayastor.io_engine.logLevel="info"
+```
+
+Sample helm upgrade command from 3.4.1 to 3.7.0:
+```
+helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-value \
+        --set mayastor.image.repoTags.controlPlane="" \
+        --set mayastor.image.repoTags.controlPlane="" \
+        --set mayastor.image.repoTags.controlPlane="" \
+        --set mayastor.agents.core.capacity.thin.poolCommitment="250%" \
+        --set mayastor.agents.core.capacity.thin.volumeCommitment="40%" \
+        --set mayastor.agents.core.capacity.thin.volumeCommitmentInitial="40%" \
+        --set mayastor.io_engine.logLevel="info"
+```
+
+Sample helm upgrade command from 3.5.0 to 3.7.0:
+```
+helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-value \
+        --set mayastor.image.repoTags.controlPlane="" \
+        --set mayastor.image.repoTags.controlPlane="" \
+        --set mayastor.image.repoTags.controlPlane="" \
+        --set mayastor.agents.core.capacity.thin.poolCommitment="250%" \
+        --set mayastor.agents.core.capacity.thin.volumeCommitment="40%" \
+        --set mayastor.agents.core.capacity.thin.volumeCommitmentInitial="40%"
+```
+The 3.6.0 release does not require special options to upgrade to 3.7.0 or above versions.
+Visit the mayastor chart configuration for more configuration options.
+Add the options for the other storage engines (if any) to this command.
 
 :::note
-The installation parameters present in [values.yaml](https://github.com/openebs/charts/blob/main/charts/openebs/values.yaml) can be configured based on the requirements. 
+It is a good idea to throw in the `--atomic` helm upgrade flag, so that the cluster may be reinstated to its source version, in case the upgrade to the target version fails. E.g.:
+```
+helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-value --atomic
+```
 :::
 
-3. Next, to upgrade the data plane component, select a node that has an `io-engine` pod deployed on it. To get the list of such nodes, execute
-```
-kubectl get node -l openebs.io/engine=mayastor
-```
+#### 3. Execute the helm upgrade command
 
-From the list of nodes obtained using the above command, select a node and perform the Mayastor node-drain operation on it.
-```
-kubectl mayastor drain node <node-name> <label>
-```
-:::note
-Add a custom drain-label to the above drain process in order to ensure no conflicts with any other node-drain/node-cordon labels. 
-:::
+Execute the helm upgrade command. Proceed if and only if the command succeeds and all of the Mayastor Pods are ready. Check for Pod status using `kubectl get pods -n openebs`
 
-Delete the `io-engine` pod on the above selected node, and wait for the pod to get redeployed. 
-```
-kubectl get pod -n <mayastor-namespace> -l app=io-engine,openebs.io/version!=2.1.0 --field-selector spec.nodeName=<node-name>
-kubectl delete pod <pod-name> -n <mayastor-namespace> 
-```
-Next, verify if the `io-engine` pod is in `Running` state. 
-Once, the `io-engine` pod is `Running`, verify the status of the volume rebuilds. 
+#### 4. Follow the upgrade instructions for the mayastor helm chart
 
-To make the node schedulable again, execute:
-```
-kubectl mayastor uncordon node <node-name> <label>
-```
-Ensure that there are no in-progress rebuilds.
-
-
-4. Now, repeat step 3 for all of the remaining nodes with `io-engine` pods.
-
+Follow the upgrade instruction for the mayastor helm chart -> [https://mayastor.gitbook.io/introduction/additional-information/upgrade](https://mayastor.gitbook.io/introduction/additional-information/upgrade).
 
 ## Supported upgrade paths
 
