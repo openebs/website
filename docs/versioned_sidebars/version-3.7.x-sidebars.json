@@ -1,0 +1,437 @@
+{
+  "version-3.7.x/docs": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Introduction",
+      "customProps": {
+        "icon": "Smile"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-3.7.x/introduction/overview",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/introduction/features",
+          "label": "Features"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/introduction/benefits",
+          "label": "Benefits"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/introduction/usecases",
+          "label": "Use cases"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/introduction/releases",
+          "label": "Releases"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/introduction/community",
+          "label": "Community"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/introduction/commercial",
+          "label": "Support"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Concepts",
+      "customProps": {
+        "icon": "Server"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-3.7.x/concepts/basics",
+          "label": "Basics"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/concepts/cas",
+          "label": "Container Attached Storage"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/concepts/architecture",
+          "label": "Architecture"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/concepts/casengines",
+          "label": "Data Engines"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/concepts/ndm",
+          "label": "NDM"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/concepts/cstor",
+          "label": "cStor"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/concepts/jiva",
+          "label": "Jiva"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/concepts/mayastor",
+          "label": "Mayastor"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/concepts/localpv",
+          "label": "LocalPV"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/concepts/rwm",
+          "label": "Read-write-Many (RWX)"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "User Guides",
+      "customProps": {
+        "icon": "Users"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-3.7.x/user-guides/quickstart",
+          "label": "Quickstart"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/user-guides/prerequisites",
+          "label": "Prerequisites"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/user-guides/installation",
+          "label": "Installation"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/user-guides/ndm",
+          "label": "NDM"
+        },
+        {
+
+          "collapsed": true,
+          "type": "category",
+          "label": "cStor",
+          "customProps": {
+            "icon": ""
+          },
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-3.7.x/user-guides/cstor/install-and-setup",
+              "label": "Install and Setup"
+            },
+            {
+              "type": "doc",
+              "id": "version-3.7.x/user-guides/cstor/launch-sample-application",
+              "label": "Launch"
+            },
+            {
+              "type": "doc",
+              "id": "version-3.7.x/user-guides/cstor/troubleshooting",
+              "label": "Troubleshooting"
+            },
+            {
+              "type": "doc",
+              "id": "version-3.7.x/user-guides/cstor/advanced",
+              "label": "Advanced"
+            },
+            {
+              "type": "doc",
+              "id": "version-3.7.x/user-guides/cstor/clean-up",
+              "label": "Clean up"
+            }
+          ]
+        },
+        {
+
+          "collapsed": true,
+          "type": "category",
+          "label": "Jiva",
+          "customProps": {
+            "icon": ""
+          },
+          "items": [
+            {
+              "type": "doc",
+              "id": "version-3.7.x/user-guides/jiva/jiva-prerequisites",
+              "label": "Prerequisites"
+            },
+            {
+              "type": "doc",
+              "id": "version-3.7.x/user-guides/jiva/jiva-install",
+              "label": "Install and Setup"
+            },
+            {
+              "type": "doc",
+              "id": "version-3.7.x/user-guides/jiva/jiva-launch",
+              "label": "Launch"
+            }
+          ]
+        },
+  
+        {
+          "type": "doc",
+          "id": "version-3.7.x/user-guides/mayastor",
+          "label": "Mayastor"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/user-guides/localpv-hostpath",
+          "label": "Local PV Hostpath"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/user-guides/localpv-device",
+          "label": "Local PV Device"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/user-guides/upgrade",
+          "label": "Upgrade"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/user-guides/uninstall",
+          "label": "Uninstall"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Stateful Applications",
+      "customProps": {
+        "icon": "Layers"
+      },
+      "items": [
+        {        
+          "type": "doc",
+          "id": "version-3.7.x/stateful-applications/mysql",
+          "label": "RDS like MySQL"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/stateful-applications/prometheus",
+          "label": "Prometheus"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/stateful-applications/minio",
+          "label": "MinIO"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/stateful-applications/gitlab",
+          "label": "GitLab"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/stateful-applications/percona",
+          "label": "Percona"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/stateful-applications/elasticsearch",
+          "label": "Elasticsearch"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/stateful-applications/cockroachdb",
+          "label": "CockroachDB"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/stateful-applications/cassandra",
+          "label": "Cassandra"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/stateful-applications/nuodb",
+          "label": "NuoDB"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/stateful-applications/postgres",
+          "label": "PostgreSQL"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/stateful-applications/redis",
+          "label": "Redis"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/stateful-applications/mongodb",
+          "label": "MongoDB"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/stateful-applications/jira",
+          "label": "Jira"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Troubleshooting",
+      "customProps": {
+        "icon": "Crosshair"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-3.7.x/troubleshooting/troubleshooting",
+          "label": "Overview"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/troubleshooting/install",
+          "label": "Install"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/troubleshooting/uninstall",
+          "label": "Uninstall"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/troubleshooting/ndm",
+          "label": "NDM"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/troubleshooting/volume-provisioning",
+          "label": "Volume Provisioning"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/troubleshooting/jiva",
+          "label": "Jiva"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/troubleshooting/cstor",
+          "label": "cStor"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/troubleshooting/localpv",
+          "label": "LocalPV"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/troubleshooting/mayastor",
+          "label": "Mayastor"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "FAQs",
+      "customProps": {
+        "icon": "HelpCircle"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-3.7.x/faqs/general",
+          "label": "General OpenEBS FAQs"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/faqs/cstor-faq",
+          "label": "cStor FAQs"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Additional info",
+      "customProps": {
+        "icon": "BookOpen"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-3.7.x/additional-info/alphafeatures",
+          "label": "Alpha Features"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/additional-info/performance-testing",
+          "label": "Performance testing"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/additional-info/k8supgrades",
+          "label": "Kubernetes upgrades"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/additional-info/kb",
+          "label": "Knowledge Base"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Deprecated",
+      "customProps": {
+        "icon": "File"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-3.7.x/deprecated/releases-1x",
+          "label": "releases-1x"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/deprecated/releases-0x",
+          "label": "releases-0x"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/deprecated/spc-based-cstor",
+          "label": "SPC based cStor guide"
+        },
+        {
+          "type": "doc",
+          "id": "version-3.7.x/deprecated/mayactl",
+          "label": "mayactl"
+        }
+      ]
+    }
+  ]
+}
