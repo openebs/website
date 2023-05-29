@@ -6,7 +6,7 @@ keywords:
 description: This page contains list of supported OpenEBS releases.
 ---
 
-OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners. The status of the various components as of v3.5.0 are as follows:
+OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners. The status of the various components as of v3.7.0 are as follows:
 
 - Data Engines
   - [Jiva](https://github.com/openebs/jiva) 3.4.0 (stable)

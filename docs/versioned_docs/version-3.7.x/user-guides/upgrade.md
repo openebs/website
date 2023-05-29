@@ -22,9 +22,9 @@ Upgrade to the latest cStor or Jiva version is supported only from 1.12.0 or lat
 
 Upgrade for Mayastor is supported from v2.0.x to v2.1.0 and above. Before we get into the upgrade documentation for Mayastor, it is important that we understand that there are two ways of deploying Mayastor (since v2.0.0) on to a kubernetes cluster -- the ['mayastor' helm chart](https://github.com/openebs/mayastor-extensions/tree/develop/chart) and the ['openebs' helm chart](https://github.com/openebs/charts/tree/main/charts/openebs). The upgrade instructions differ for these two deployment strategies. The first step of the upgrade is to identify the helm chart that you have used to deploy Mayastor. If you are using the Mayastor with the openebs helm chart, then the instructions for upgrading the mayastor helm chart do not apply to you.
 
-### Indentifying the helm chart
+### Identifying the helm chart
 
-You'll need the helm v3 binary to be on you $PATH environment variable. Execute the following command to check if you have helm v3:
+You'll need the helm v3 binary to be on your $PATH. Execute the following command to check if you have helm v3:
 ```
 $ helm version --short
 v3.9.4+gdbc6d8e
@@ -44,7 +44,7 @@ Continue down this page if your Mayastor deployment uses the 'openebs' helm char
 ### Upgrading Mayastor installed from the openebs helm chart
 
 #### 1. Planning the upgrade
-Supported upgrade paths for upgrade for Mayastor, installed with the openebs chart, are...
+Supported upgrade paths for Mayastor, installed with the openebs chart, are...
 Source versions: 3.4.x or above
 Target versions: 3.7.y or above
 All source versions may upgrade to any of the target versions, so long as the release semver of the target version is greater than that of the source version.
@@ -135,7 +135,11 @@ helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.i
         --set mayastor.agents.core.capacity.thin.volumeCommitment="40%" \
         --set mayastor.agents.core.capacity.thin.volumeCommitmentInitial="40%"
 ```
-The 3.6.0 release does not require special options to upgrade to 3.7.0 or above versions.
+The 3.6.0 release does not require special options to upgrade to 3.7.0 or above versions. The default upgrade command, should work here:
+```
+helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-value
+```
+
 Visit the mayastor chart configuration for more configuration options.
 Add the options for the other storage engines (if any) to this command.
 
