@@ -139,6 +139,43 @@ The 3.6.0 release does not require special options to upgrade to 3.7.0 or above 
 ```
 helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-value
 ```
+Options required with v3.8.0, in addition to the ones required with v3.7.0 are:
+
+```
+
+--set csi.image.snapshotterTag="v6.2.1" \
+
+--set csi.image.snapshotControllerTag="v6.2.1"
+
+```
+
+This means that you'd have to use the above two set options when upgrading from v3.7.0 to v3.8.0. If you're upgrading from an older version, you'd have to add these two options to the options required for an upgrade to v3.7.0. E.g.: the command for an upgrade from v3.4.0 to v3.7.0 would look like..
+
+```
+
+helm upgrade openebs openebs/openebs -n openebs --version 3.8.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.8.0 --reuse-value \
+
+        --set mayastor.image.pullPolicy="IfNotPresent" \
+
+        --set mayastor.image.repoTags.controlPlane="" \
+
+        --set mayastor.image.repoTags.controlPlane="" \
+
+        --set mayastor.image.repoTags.controlPlane="" \
+
+        --set mayastor.agents.core.capacity.thin.poolCommitment="250%" \
+
+        --set mayastor.agents.core.capacity.thin.volumeCommitment="40%" \
+
+        --set mayastor.agents.core.capacity.thin.volumeCommitmentInitial="40%" \
+
+        --set mayastor.io_engine.logLevel="info" \
+
+        --set csi.image.snapshotterTag="v6.2.1" \
+
+        --set csi.image.snapshotControllerTag="v6.2.1"
+
+```
 
 Visit the mayastor chart configuration for more configuration options.
 Add the options for the other storage engines (if any) to this command.
