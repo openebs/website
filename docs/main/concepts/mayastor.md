@@ -22,8 +22,6 @@ By comparison, most pre-CAS shared everything storage systems are widely thought
 
 While Mayastor utilizes NVMe-oF, it does not require NVMe devices or cloud volumes to operate, as is explained below.  
 
->**Mayastor is beta software** and is under active development. 
-
 To learn more about Mayastor architecture, concepts and get started, please visit the user documentation published here in GitBook format: [mayastor.gitbook.io](https://mayastor.gitbook.io/).
 
 ## Source Code
