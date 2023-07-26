@@ -20,7 +20,7 @@ OpenEBS Mayastor incorporates Intel's [Storage Performance Development Kit](http
 
 By comparison, most pre-CAS shared everything storage systems are widely thought to impart an overhead of at least 40% and sometimes as much as 80% or more than the capabilities of the underlying devices or cloud volumes. Additionally, pre-CAS shared storage scales in an unpredictable manner as I/O from many workloads interact and complete for the capabilities of the shared storage system.  
 
-While Mayastor utilizes NVMe-oF, it does not require NVMe devices or cloud volumes to operate, as is explained below.  
+While Mayastor utilizes NVMe-oF, it does not require NVMe devices or cloud volumes to operate.
 
 To learn more about Mayastor architecture, concepts and get started, please visit the user documentation published here in GitBook format: [mayastor.gitbook.io](https://mayastor.gitbook.io/).
 
