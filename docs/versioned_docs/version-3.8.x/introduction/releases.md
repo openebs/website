@@ -22,7 +22,7 @@ OpenEBS is a collection of data engines and operators to create different types 
 - Out-of-tree(external storage) provisioners 
   - [Local PV hostpath](https://github.com/openebs/dynamic-localpv-provisioner) 3.5.0 (stable)
   - [Local PV device](https://github.com/openebs/dynamic-localpv-provisioner) 3.5.0 (stable)
-  - [Dynamic NFS Volume](https://github.com/openebs/dynamic-nfs-provisioner) 0.11.0 (beta)
+  - [Dynamic NFS Volume](https://github.com/openebs/dynamic-nfs-provisioner) 0.10.0 (beta)
 - Other components
   - [NDM](https://github.com/openebs/node-disk-manager) 2.1.0 (stable)
   - [Upgrade and Migration Tools](https://github.com/openebs/upgrade) 3.5.0 (stable)
