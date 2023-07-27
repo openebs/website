@@ -91,53 +91,44 @@ The image tag on a released mayastor chart is the value of the chart version, wi
 
 The helm upgrade command with the default options (and using variable from above) should look something like this:
 ```
-helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-value
+helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-values
 ```
 Refer to the documentation at to see all of the available configuration options:
-- https://github.com/openebs/mayastor-extensions/blob/\<release-tag\>/chart/README.md
-- https://github.com/openebs/mayastor-extensions/blob/\<release-tag\>/chart/values.yaml
+- https://github.com/openebs/mayastor-extensions/blob/<release-tag\>/chart/README.md
+- https://github.com/openebs/mayastor-extensions/blob/<release-tag\>/chart/values.yaml
 (e.g.: https://github.com/openebs/mayastor-extensions/blob/v2.2.0/chart/README.md, https://github.com/openebs/mayastor-extensions/blob/v2.2.0/chart/values.yaml)
 Prefix any option you'd want to set using the '--set' option, with 'mayastor', like shown in the default command above for the 'image.tag' option. This is due to the mayastor chart being a [subchart of the openebs chart](https://github.com/openebs/charts/blob/openebs-3.7.0/charts/openebs/values.yaml#L400).
 
-Because the mayastor chart is in active development, its helm chart values options may change over time and the convenience of the '--reuse-value' flags may also introduce nil yaml values for values which are required by helm's template engine. The 3.4.0, 3.4.1 and 3.5.0 releases face this issue. These releases require additional options to perform the default upgrade to 3.7.0 or above versions.
+Because the mayastor chart is in active development, its helm chart values options may change over time and the convenience of the '--reuse-values' flags may also introduce nil yaml values for values which are required by helm's template engine. The 3.4.0, 3.4.1 and 3.5.0 releases face this issue. These releases require additional options to perform the default upgrade to 3.7.0 or above versions.
 Sample helm upgrade command from 3.4.0 to 3.7.0:
 ```
-helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-value \
+helm upgrade openebs-mayastor openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-values \
         --set mayastor.image.pullPolicy="IfNotPresent" \
         --set mayastor.image.repoTags.controlPlane="" \
         --set mayastor.image.repoTags.controlPlane="" \
         --set mayastor.image.repoTags.controlPlane="" \
-        --set mayastor.agents.core.capacity.thin.poolCommitment="250%" \
-        --set mayastor.agents.core.capacity.thin.volumeCommitment="40%" \
-        --set mayastor.agents.core.capacity.thin.volumeCommitmentInitial="40%" \
         --set mayastor.io_engine.logLevel="info"
 ```
 
 Sample helm upgrade command from 3.4.1 to 3.7.0:
 ```
-helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-value \
+helm upgrade openebs-mayastor openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-values \
         --set mayastor.image.repoTags.controlPlane="" \
         --set mayastor.image.repoTags.controlPlane="" \
         --set mayastor.image.repoTags.controlPlane="" \
-        --set mayastor.agents.core.capacity.thin.poolCommitment="250%" \
-        --set mayastor.agents.core.capacity.thin.volumeCommitment="40%" \
-        --set mayastor.agents.core.capacity.thin.volumeCommitmentInitial="40%" \
         --set mayastor.io_engine.logLevel="info"
 ```
 
 Sample helm upgrade command from 3.5.0 to 3.7.0:
 ```
-helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-value \
+helm upgrade openebs-mayastor openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-values \
         --set mayastor.image.repoTags.controlPlane="" \
         --set mayastor.image.repoTags.controlPlane="" \
-        --set mayastor.image.repoTags.controlPlane="" \
-        --set mayastor.agents.core.capacity.thin.poolCommitment="250%" \
-        --set mayastor.agents.core.capacity.thin.volumeCommitment="40%" \
-        --set mayastor.agents.core.capacity.thin.volumeCommitmentInitial="40%"
+        --set mayastor.image.repoTags.controlPlane=""
 ```
 The 3.6.0 release does not require special options to upgrade to 3.7.0 or above versions. The default upgrade command, should work here:
 ```
-helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-value
+helm upgrade openebs-mayastor openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-values
 ```
 
 Visit the mayastor chart configuration for more configuration options.
@@ -146,7 +137,7 @@ Add the options for the other storage engines (if any) to this command.
 :::note
 It is a good idea to throw in the `--atomic` helm upgrade flag, so that the cluster may be reinstated to its source version, in case the upgrade to the target version fails. E.g.:
 ```
-helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-value --atomic
+helm upgrade openebs-mayastor openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-values --atomic
 ```
 :::
 

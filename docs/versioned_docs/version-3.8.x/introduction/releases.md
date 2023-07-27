@@ -20,7 +20,7 @@ OpenEBS is a collection of data engines and operators to create different types 
   - [Mayastor](https://github.com/openebs/mayastor) 2.3.0 (stable)
   - [Local PV Partitions](https://github.com/openebs/device-localpv) 0.9.0 (alpha)
 - Out-of-tree(external storage) provisioners 
-  - [Local PV hostpath](https://github.com/openebs/dynamic-localpv-provisioner) 3.4.0 (stable)
+  - [Local PV hostpath](https://github.com/openebs/dynamic-localpv-provisioner) 3.5.0 (stable)
   - [Local PV device](https://github.com/openebs/dynamic-localpv-provisioner) 3.5.0 (stable)
   - [Dynamic NFS Volume](https://github.com/openebs/dynamic-nfs-provisioner) 0.10.0 (beta)
 - Other components
