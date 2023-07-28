@@ -20,13 +20,7 @@ The fundamental design objectives driving Mayastor's development are as follows:
 - **Simplified Deployment and Management**: The project endeavors to achieve seamless deployment and effortless management, empowering autonomous SRE (Site Reliability Engineering) or development teams to handle the storage infrastructure efficiently.
 - **Low Overhead Abstraction**: Mayastor is designed to be a lightweight abstraction, minimizing resource overhead while delivering optimal storage performance for workloads.
 
-<<<<<<< HEAD
-While Mayastor utilizes NVMe-oF, it does not require NVMe devices or cloud volumes to operate, as is explained below.  
-
->**Mayastor is beta software** and is under active development. 
-=======
------
->>>>>>> 2fa26f4 (docs: minor textual changes for clarity)
+----
 
 ## NVMe-oF Semantics and Performance
 
