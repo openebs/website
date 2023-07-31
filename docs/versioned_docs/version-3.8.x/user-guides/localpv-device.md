@@ -154,6 +154,8 @@ You can reserve block devices in the cluster that you would like the *OpenEBS Dy
 kubectl label bd -n openebs blockdevice-0052b132e6c5800139d1a7dfded8b7d7 openebs.io/block-device-tag=mongo
 ```
 
+BlockDeviceSelectors may be used to filter BlockDevices with any label that they may have (e.g. [NDM metaconfigs](https://github.com/openebs/node-disk-manager/pull/618)). [Click here](https://github.com/openebs/dynamic-localpv-provisioner/blob/develop/docs/tutorials/device/blockdeviceselectors.md) for more information.
+
 ## Create StorageClass
 
 You can skip this section if you would like to use default OpenEBS Local PV Device StorageClass created by OpenEBS. 
@@ -174,8 +176,9 @@ The default Storage Class is called `openebs-device`. If the block devices are n
            value: device
          - name: FSType
            value: xfs
-         - name: BlockDeviceTag
-           value: "mongo"
+         - name: BlockDeviceSelectors
+           data:
+             openebs.io/block-device-tag: "mongo"
    provisioner: openebs.io/local
    reclaimPolicy: Delete
    volumeBindingMode: WaitForFirstConsumer
@@ -192,12 +195,12 @@ The default Storage Class is called `openebs-device`. If the block devices are n
 
    - `metadata.name`
    - `cas.openebs.io/config.FSType`
-   - `cas.openebs.io/config.BlockDeviceTag`
+   - `cas.openebs.io/config.BlockDeviceSelectors`
 
    :::note 
-   Block Device Tag support for Local Volumes was introduced in OpenEBS 1.9. 
+   BlockDeviceSelectors support for Local Volumes was introduced in OpenEBS 3.1. The support for BlockDeviceTag was also dropped in v3.1. If you are using BlockDeviceTag with a v3.1 provisioner or newer, you'd need to update your storageClass. Existing volumes will continue to work correctly.
    
-   When specifying the value for BlockDeviceTag, you must already have Block Devices on the nodes labelled with the tag. See [Block Device Tagging](#optional-block-device-tagging)
+   When specifying the value for BlockDeviceSelectors, you must already have Block Devices on the nodes labelled with the tag. See [Block Device Tagging](#optional-block-device-tagging)
    :::
 
 3. Create OpenEBS Local PV Device Storage Class. 
