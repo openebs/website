@@ -8,7 +8,7 @@ description: In this document you will learn about Mayastor and it's design goal
 
 ## Mayastor Overview 
 
-**Mayastor** is a progressive sub-project of the CNCF (Cloud Native Computing Foundation) Open Source initiative [**OpenEBS**](https://openebs.io/). OpenEBS is a powerful "Container Attached Storage" (CAS) solution that extends Kubernetes by providing a declarative data plane, offering resilient and adaptable storage for stateful applications.
+**Mayastor** is a progressive sub-project of the CNCF (Cloud Native Computing Foundation) Open Source initiative [**OpenEBS**](https://openebs.io/). OpenEBS is a "Container Attached Storage" (CAS) solution that extends Kubernetes by providing a declarative data plane, offering resilient and adaptable storage for stateful applications.
 
 ----
 
