@@ -6,31 +6,47 @@ keywords:
 description: In this document you will learn about Mayastor and it's design goals.
 ---
 
-## What is Mayastor?
+## Mayastor Overview 
 
-**Mayastor** is currently under development as a sub-project of the Open Source CNCF project [**OpenEBS**](https://openebs.io/).  OpenEBS is a "Container Attached Storage" or CAS solution which extends Kubernetes with a declarative data plane, providing flexible, persistent storage for stateful applications.
+**Mayastor** is a progressive sub-project of the CNCF (Cloud Native Computing Foundation) Open Source initiative [**OpenEBS**](https://openebs.io/). OpenEBS is a "Container Attached Storage" (CAS) solution that extends Kubernetes by providing a declarative data plane, offering resilient and adaptable storage for stateful applications.
 
-Design goals for Mayastor include:
+----
 
-* Highly available, durable persistence of data.
-* To be readily deployable and easily managed by autonomous SRE or development teams.
-* To be a low-overhead abstraction.
+## Mayastor Design Goals
 
-OpenEBS Mayastor incorporates Intel's [Storage Performance Development Kit](https://spdk.io/).  It has been designed from the ground up to leverage the protocol and compute efficiency of NVMe-oF semantics,  and the performance capabilities of the latest generation of solid-state storage devices, in order to deliver a storage abstraction with performance overhead measured to be within the range of single-digit percentages. 
+The fundamental design objectives driving Mayastor's development are as follows:
 
-By comparison, most pre-CAS shared everything storage systems are widely thought to impart an overhead of at least 40% and sometimes as much as 80% or more than the capabilities of the underlying devices or cloud volumes. Additionally, pre-CAS shared storage scales in an unpredictable manner as I/O from many workloads interact and complete for the capabilities of the shared storage system.  
+- **High Availability and Durability**: Mayastor aims to ensure the persistence of data with high levels of availability and durability, contributing to the reliability of applications in a Kubernetes environment.
+- **Simplified Deployment and Management**: The project endeavors to achieve seamless deployment and effortless management, empowering autonomous SRE (Site Reliability Engineering) or development teams to handle the storage infrastructure efficiently.
+- **Low Overhead Abstraction**: Mayastor is designed to be a lightweight abstraction, minimizing resource overhead while delivering optimal storage performance for workloads.
 
-While Mayastor utilizes NVMe-oF, it does not require NVMe devices or cloud volumes to operate, as is explained below.  
+----
 
->**Mayastor is beta software** and is under active development. 
+## NVMe-oF Semantics and Performance
 
-To learn more about Mayastor architecture, concepts and get started, please visit the user documentation published here in GitBook format: [mayastor.gitbook.io](https://mayastor.gitbook.io/).
+Mayastor is built on the foundation of Intel's cutting-edge [Storage Performance Development Kit (SPDK)](https://spdk.io/). The project fully leverages the protocol and computational efficiency of NVMe-oF (Non-Volatile Memory Express over Fabrics) semantics. This approach harnesses the immense performance capabilities of the latest generation solid-state storage devices, delivering a storage abstraction that incurs performance overhead within single-digit percentages.
 
-## Source Code
+In contrast, traditional pre-CAS shared storage systems are known to introduce overhead, often exceeding 40% and occasionally reaching as high as 80% of the underlying device or cloud volume capabilities. Moreover, pre-CAS shared storage can scale unpredictably as various workloads compete for access to shared storage resources.
 
-If you would like to check out the source code or contribute to Mayastor, head over to GitHub: https://github.com/openebs/mayastor.
+{% hint style=“note” %}
+Although Mayastor utilizes NVMe-oF, it doesn't impose any requirements for the use of NVMe devices or cloud volumes.
+{% endhint %}
+
+---
+
+## Getting Started and User Documentation
+
+For comprehensive insights into Mayastor's architecture, core concepts, and to begin using the platform, refer to the official user documentation available in GitBook format: [mayastor.gitbook.io](https://mayastor.gitbook.io/).
+
+----
+
+## Source Code and Contributions
+
+To access the Mayastor source code or actively contribute to the project, visit the GitHub repository:  https://github.com/openebs/mayastor.
+
+---
 
 ## Community Support via Slack
 
-OpenEBS has a vibrant community that can help you get started. If you have further question and want to learn more about OpenEBS and/or Mayastor, please join [OpenEBS community on Kubernetes Slack](https://kubernetes.slack.com). If you are already signed up, head to our discussions at [#openebs](https://kubernetes.slack.com/messages/openebs/) channel. 
+Join the vibrant[OpenEBS community on Kubernetes Slack](https://kubernetes.slack.com) for assistance and discussions related to OpenEBS and Mayastor. If you have questions or seek further information, visit the [#openebs](https://kubernetes.slack.com/messages/openebs/) channel. If you're not already part of the community, you can sign up on Kubernetes Slack for a collaborative experience.
 
