@@ -212,7 +212,8 @@ The default Storage Class is called `openebs-device`. If the block devices are n
     volumeBindingMode: WaitForFirstConsumer
     ```
   :::note 
-  Using NodeAffinityLabels does not influence scheduling of the application Pod. 
+  Using NodeAffinityLabels does not influence scheduling of the application Pod. Use kubernetes [allowedTopologies](https://github.com/openebs/dynamic-localpv-provisioner/blob/develop/docs/tutorials/device/allowedtopologies.md) to configure scheduling options.
+  
   :::
 
 2. Edit `local-device-sc.yaml` and update with your desired values for:
