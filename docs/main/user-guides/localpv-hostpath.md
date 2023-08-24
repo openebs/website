@@ -158,23 +158,27 @@ The default Storage Class is called `openebs-hostpath` and its `BasePath` is con
    ```
     #### (Optional) Custom Node Labelling
 
-    You can use custom node affinity labels instead of hostname in the hostpath provisioner. This
-    helps in cases where the hostname changes when the node is removed and added back with the disks
-    still intact. 
-    For eg: If the custom node label is `openebs.io/custom-node-unique-id`, it can be added to the storage class config under `metadata.annotations`.
+    In Kubernetes, Device LocalPV identifies nodes using labels such as `kubernetes.io/hostname=<node-name>`. However, these default labels might not ensure each node is distinct across the entire cluster. To solve this, you can make custom labels. As an admin, you can define and set these labels when configuring a **StorageClass**. Here's a sample storage class:
 
     ```
-      metadata:
-        name: local-hostpath
-        annotations:
-          openebs.io/cas-type: local
-          cas.openebs.io/config: |
-            - name: NodeAffinityLabel
-              value: "openebs.io/custom-node-unique-id"
-    ```
+    apiVersion: storage.k8s.io/v1
+    kind: StorageClass
+    metadata:
+      name: local-hostpath
+      annotations:
+        openebs.io/cas-type: local
+        cas.openebs.io/config: |
+          - name: StorageType
+            value: "hostpath"
+          - name: NodeAffinityLabels
+            list:
+              - "openebs.io/custom-node-unique-id"
+    provisioner: openebs.io/local
+    volumeBindingMode: WaitForFirstConsumer
 
+    ```
   :::note 
-  The `volumeBindingMode` MUST ALWAYS be set to `WaitForFirstConsumer`. `volumeBindingMode: WaitForFirstConsumer` instructs Kubernetes to initiate the creation of PV only after Pod using PVC is scheduled to the node.
+  Using NodeAffinityLabels does not influence scheduling of the application Pod. Use kubernetes [allowedTopologies](https://github.com/openebs/dynamic-localpv-provisioner/blob/develop/docs/tutorials/device/allowedtopologies.md) to configure scheduling options.
   :::
 
 2. Edit `local-hostpath-sc.yaml` and update with your desired values for `metadata.name` and `cas.openebs.io/config.BasePath`.
