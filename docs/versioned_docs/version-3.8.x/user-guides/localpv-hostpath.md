@@ -178,7 +178,7 @@ The default Storage Class is called `openebs-hostpath` and its `BasePath` is con
 
     ```
   :::note 
-  Using NodeAffinityLabels does not influence scheduling of the application Pod. 
+  Using NodeAffinityLabels does not influence scheduling of the application Pod. Use kubernetes [allowedTopologies](https://github.com/openebs/dynamic-localpv-provisioner/blob/develop/docs/tutorials/device/allowedtopologies.md) to configure scheduling options.
   :::
 
 2. Edit `local-hostpath-sc.yaml` and update with your desired values for `metadata.name` and `cas.openebs.io/config.BasePath`.
