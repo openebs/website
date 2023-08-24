@@ -169,7 +169,7 @@ The default Storage Class is called `openebs-hostpath` and its `BasePath` is con
         openebs.io/cas-type: local
         cas.openebs.io/config: |
           - name: StorageType
-          - value: "device"
+            value: "hostpath"
           - name: NodeAffinityLabels
             list:
               - "openebs.io/custom-node-unique-id"
