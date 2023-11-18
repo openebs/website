@@ -24,7 +24,7 @@ Jiva is a light weight storage engine that is recommended to use for low capacit
  <th>Verify iSCSI Status</th>
 </tr>
 <tr>
- <td>RHEL/CentOSRHEL/CentOS</td>
+ <td>RHEL/CentOS</td>
  <td>iscsi-initiator-utils</td>
  <td>
  <ul>
@@ -36,7 +36,7 @@ Jiva is a light weight storage engine that is recommended to use for low capacit
  <td>sudo systemctl status iscsid.service</td>
 </tr>
 <tr>
- <td>Ununtu/ Debian</td>
+ <td>Ubuntu/Debian</td>
  <td>open-iscsi</td>
  <td>
  <ul>
