@@ -191,9 +191,9 @@ The default Storage Class is called `openebs-device`. If the block devices are n
    The `FSType` will take effect only if the underlying block device is not formatted. For instance if the block device is formatted with "Ext4", specifying "XFS" in the storage class will not clear Ext4 and format with XFS. If the block devices are already formatted, you can clear the filesystem information using `wipefs -f -a <device-path>`. After the filesystem has been cleared, NDM pod on the node needs to be restarted to update the Block Device.
    :::
 
-  #### (Optional) Custom Node Labelling
+   #### (Optional) Custom Node Labelling
 
-  In Kubernetes, Device LocalPV identifies nodes using labels such as `kubernetes.io/hostname=<node-name>`. However, these default labels might not ensure each node is distinct across the entire cluster. To solve this, you can make custom labels. As an admin, you can define and set these labels when configuring a **StorageClass**. Here's a sample storage class:
+   In Kubernetes, Device LocalPV identifies nodes using labels such as `kubernetes.io/hostname=<node-name>`. However, these default labels might not ensure each node is distinct across the entire cluster. To solve this, you can make custom labels. As an admin, you can define and set these labels when configuring a **StorageClass**. Here's a sample storage class:
     
     ```
     apiVersion: storage.k8s.io/v1
@@ -211,9 +211,9 @@ The default Storage Class is called `openebs-device`. If the block devices are n
     provisioner: openebs.io/local
     volumeBindingMode: WaitForFirstConsumer
     ```
-  :::note 
-  Using NodeAffinityLabels does not influence scheduling of the application Pod. Use kubernetes [allowedTopologies](https://github.com/openebs/dynamic-localpv-provisioner/blob/develop/docs/tutorials/device/allowedtopologies.md) to configure scheduling options.
-  :::
+   :::note 
+   Using NodeAffinityLabels does not influence scheduling of the application Pod. Use kubernetes [allowedTopologies](https://github.com/openebs/dynamic-localpv-provisioner/blob/develop/docs/tutorials/device/allowedtopologies.md) to configure scheduling options.
+   :::
 
 2. Edit `local-device-sc.yaml` and update with your desired values for:
 
