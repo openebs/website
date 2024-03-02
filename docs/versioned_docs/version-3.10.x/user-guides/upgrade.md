@@ -8,7 +8,7 @@ keywords:
 description: Upgrade to the latest OpenEBS 2.11.0 version is supported only from v1.0.0 and later.
 ---
 
-Latest stable version of OpenEBS is 3.6.0. Check the release notes [here](https://github.com/openebs/openebs/releases/tag/v3.6.0).
+Latest stable version of OpenEBS is 3.10.0. Check the release notes [here](https://github.com/openebs/openebs/releases/tag/v3.10.0).
 
 Upgrade to the latest cStor or Jiva version is supported only from 1.12.0 or later. The steps for upgrading can be found [here](https://github.com/openebs/upgrade/blob/develop/docs/upgrade.md).
 

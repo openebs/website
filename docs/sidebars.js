@@ -424,11 +424,6 @@ module.exports = {
         },
         {
           type: "doc",
-          id: "deprecated/spc-based-cstor",
-          label: "SPC based cStor guide"
-        },
-        {
-          type: "doc",
           id: "deprecated/mayactl",
           label: "mayactl"
         },
