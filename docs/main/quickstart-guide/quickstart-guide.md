@@ -1,6 +1,6 @@
 ---
-id: quickstart
-title: OpenEBS Quickstart Guide
+id: quickstart-guide
+title: Quickstart Guide
 keywords:
  - How to setup and use OpenEBS
  - Kubernetes Cluster Design

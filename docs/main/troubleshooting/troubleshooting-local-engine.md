@@ -1,6 +1,6 @@
 ---
-id: troubleshooting
-title: Troubleshooting OpenEBS - Overview
+id: troubleshooting-local-engine
+title: Troubleshooting - Local Engine
 slug: /troubleshooting
 keywords:
   - OpenEBS

@@ -1,6 +1,6 @@
 ---
-id: overview
-title: OpenEBS Documentation
+id: introduction-to-openebs
+title: Introduction to OpenEBS
 slug: /
 keywords:
   - OpenEBS

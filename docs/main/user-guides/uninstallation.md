@@ -1,6 +1,6 @@
 ---
-id: uninstall
-title: Uninstalling OpenEBS
+id: uninstallation
+title: Uninstallation
 keywords:
  - Uninstalling OpenEBS
  - Uninstall OpenEBS

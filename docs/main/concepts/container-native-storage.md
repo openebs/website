@@ -1,10 +1,10 @@
 ---
-id: cas
-title: Container Attached Storage (CAS)
+id: container-native-storage
+title: Container Native Storage
 keywords: 
-  - CAS
-  - Container Attached Storage
-description: Container Attached Storage(CAS) is a software that includes microservice based storage controllers that are orchestrated by Kubernetes.
+  - CNS
+  - Container Native Storage
+description: Container Native Storage (CNS) is a software that includes microservice based storage controllers that are orchestrated by Kubernetes.
 ---
 
 ## What is CAS?

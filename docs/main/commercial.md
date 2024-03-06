@@ -1,6 +1,6 @@
 ---
 id: commercial
-title: OpenEBS Commercial Support
+title: Commercial Support
 keywords:
   - Support
   - OpenEBS commercial support

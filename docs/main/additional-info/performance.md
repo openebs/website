@@ -1,6 +1,6 @@
 ---
 id: performance-testing
-title: Performance testing of OpenEBS
+title: Performance Testing
 keywords: 
  - Performance testing
  - Testing

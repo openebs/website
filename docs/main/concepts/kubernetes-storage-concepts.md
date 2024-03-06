@@ -1,5 +1,5 @@
 ---
-id: basics
+id: kubernetes-storage-concepts
 title: Kubernetes Storage Concepts
 keywords: 
   - Kubernetes Storage Concepts

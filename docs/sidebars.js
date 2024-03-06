@@ -5,30 +5,30 @@ module.exports = {
     {
       collapsed: true,
       type: "category",
-      label: "Introduction",
+      label: "OpenEBS Documentation",
       customProps: {
         icon: "Smile"
       },
       items: [
         {
           type: "doc",
-          id: "introduction/overview",
-          label: "Overview"
+          id: "openebs-documentation/introduction-to-openebs",
+          label: "Introduction to OpenEBS"
         },
         {
           type: "doc",
-          id: "introduction/features",
+          id: "openebs-documentation/introduction-to-openebs/features",
           label: "Features"
         },
         {
           type: "doc",
-          id: "introduction/benefits",
+          id: "openebs-documentation/introduction-to-openebs/benefits",
           label: "Benefits"
         },
         {
           type: "doc",
-          id: "introduction/usecases",
-          label: "Use cases"
+          id: "openebs-documentation/introduction-to-openebs/use-cases-and-examples",
+          label: "Use Cases and Examples"
         },
         {
           type: "doc",
@@ -57,13 +57,13 @@ module.exports = {
       items: [
         {
           type: "doc",
-          id: "concepts/basics",
-          label: "Basics"
+          id: "concepts/kubernetes-storage-concepts",
+          label: "Kubernetes Storage Concepts"
         },
         {
           type: "doc",
-          id: "concepts/cas",
-          label: "Container Attached Storage"
+          id: "concepts/container-native-storage",
+          label: "Container Native Storage"
         },
         {
           type: "doc",
@@ -72,8 +72,18 @@ module.exports = {
         },
         {
           type: "doc",
-          id: "concepts/casengines",
-          label: "Data Engines"
+          id: "concepts/data-engines",
+          label: "Data Engines",
+          {
+            type: "doc",
+            id: "concepts/data-engines/local-engine",
+            label: "Local Engine"
+          }
+          {
+            type: "doc",
+            id: "concepts/data-engines/replicated-engine",
+            label: "Replicated Engine"
+          }
         },
         {
           type: "doc",
@@ -107,6 +117,26 @@ module.exports = {
         }
       ]
     },
+    {
+      collapsed: true,
+      type: "category",
+      label: "Quickstart Guide",
+      customProps: {
+        icon: "Users"
+      },
+      items: [
+        {
+          type: "doc",
+          id: "quickstart-guide/installation",
+          label: "Installation"
+        },
+        {
+          type: "doc",
+          id: "quickstart-guide/deploy-a-test-application",
+          label: "Deploy a Test Application"
+        }
+      ]
+    }
     {
       collapsed: true,
       type: "category",
