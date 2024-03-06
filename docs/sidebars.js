@@ -72,21 +72,21 @@ module.exports = {
         },
         {
           collapsed: true,
-          type: "doc",
+          type: "category",
           id: "concepts/data-engines",
           label: "Data Engines",
           items: [
-          {
-            type: "doc",
-            id: "concepts/data-engines/local-engine",
-            label: "Local Engine"
-          },
-          {
-            type: "doc",
-            id: "concepts/data-engines/replicated-engine",
-            label: "Replicated Engine"
-          }
-        ]
+            {
+              type: "doc",
+              id: "concepts/data-engines/local-engine",
+              label: "Local Engine"
+            },
+            {
+              type: "doc",
+              id: "concepts/data-engines/replicated-engine",
+              label: "Replicated Engine"
+            }
+          ]
         },
         {
           type: "doc",
@@ -169,7 +169,6 @@ module.exports = {
           label: "NDM"
         },
         {
-  
           collapsed: true,
           type: "category",
           label: "cStor",
@@ -205,7 +204,7 @@ module.exports = {
           ]
         },
         {
-  
+
           collapsed: true,
           type: "category",
           label: "Jiva",
@@ -265,7 +264,7 @@ module.exports = {
         icon: "Layers"
       },
       items: [
-        {        
+        {
           type: "doc",
           id: "stateful-applications/mysql",
           label: "RDS like MySQL"
