@@ -73,8 +73,10 @@ module.exports = {
         {
           collapsed: true,
           type: "category",
-          id: "concepts/data-engines",
           label: "Data Engines",
+          customProps: {
+            icon: ""
+          },
           items: [
             {
               type: "doc",
@@ -85,6 +87,41 @@ module.exports = {
               type: "doc",
               id: "concepts/data-engines/replicated-engine",
               label: "Replicated Engine"
+            }
+          ]
+        },
+        {
+          collapsed: true,
+          type: "category",
+          label: "cStor",
+          customProps: {
+            icon: ""
+          },
+          items: [
+            {
+              type: "doc",
+              id: "user-guides/cstor/install-and-setup",
+              label: "Install and Setup"
+            },
+            {
+              type: "doc",
+              id: "user-guides/cstor/launch-sample-application",
+              label: "Launch"
+            },
+            {
+              type: "doc",
+              id: "user-guides/cstor/troubleshooting",
+              label: "Troubleshooting"
+            },
+            {
+              type: "doc",
+              id: "user-guides/cstor/advanced",
+              label: "Advanced"
+            },
+            {
+              type: "doc",
+              id: "user-guides/cstor/clean-up",
+              label: "Clean up"
             }
           ]
         },
