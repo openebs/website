@@ -12,7 +12,7 @@ module.exports = {
       items: [
         {
           type: "doc",
-          id: "openebs-documentation/introduction-to-openebs",
+          id: "openebs-documentation/introduction-to-openebs/introduction-to-openebs",
           label: "Introduction to OpenEBS"
         },
         {
@@ -32,18 +32,18 @@ module.exports = {
         },
         {
           type: "doc",
-          id: "introduction/releases",
+          id: "releases",
           label: "Releases"
         },
         {
           type: "doc",
-          id: "introduction/community",
+          id: "community",
           label: "Community"
         },
         {
           type: "doc",
-          id: "introduction/commercial",
-          label: "Support"
+          id: "commercial",
+          label: "Commercial"
         }
       ]
     },
@@ -185,21 +185,21 @@ module.exports = {
         icon: "Users"
       },
       items: [
-        {
-          type: "doc",
-          id: "user-guides/quickstart",
-          label: "Quickstart"
-        },
-        {
-          type: "doc",
-          id: "user-guides/prerequisites",
-          label: "Prerequisites"
-        },
-        {
-          type: "doc",
-          id: "user-guides/installation",
-          label: "Installation"
-        },
+        // {
+        //   type: "doc",
+        //   id: "user-guides/quickstart",
+        //   label: "Quickstart"
+        // },
+        // {
+        //   type: "doc",
+        //   id: "user-guides/prerequisites",
+        //   label: "Prerequisites"
+        // },
+        // {
+        //   type: "doc",
+        //   id: "user-guides/installation",
+        //   label: "Installation"
+        // },
         {
           type: "doc",
           id: "user-guides/ndm",
@@ -281,16 +281,16 @@ module.exports = {
           id: "user-guides/localpv-device",
           label: "Local PV Device"
         },
-        {
-          type: "doc",
-          id: "user-guides/upgrade",
-          label: "Upgrade"
-        },
-        {
-          type: "doc",
-          id: "user-guides/uninstall",
-          label: "Uninstall"
-        }
+        // {
+        //   type: "doc",
+        //   id: "user-guides/upgrade",
+        //   label: "Upgrade"
+        // },
+        // {
+        //   type: "doc",
+        //   id: "user-guides/uninstall",
+        //   label: "Uninstall"
+        // }
       ]
     },
     {
@@ -376,11 +376,11 @@ module.exports = {
         icon: "Crosshair"
       },
       items: [
-        {
-          type: "doc",
-          id: "troubleshooting/troubleshooting",
-          label: "Overview"
-        },
+        // {
+        //   type: "doc",
+        //   id: "troubleshooting/troubleshooting",
+        //   label: "Overview"
+        // },
         {
           type: "doc",
           id: "troubleshooting/install",
