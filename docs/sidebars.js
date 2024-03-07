@@ -62,22 +62,24 @@ module.exports = {
           customProps: {
             icon: ""
           },
-        },  
-        {
-          type: "doc",
-          id: "concepts/data-engines/casengines",
-          label: "Data Engines"
         },
-        {
-          type: "doc",
-          id: "concepts/data-engines/localpv",
-          label: "Local Engine"
-        },
-        {
-          type: "doc",
-          id: "concepts/data-engines/mayastor",
-          label: "Replicated Engine"
-        }
+        items, [
+          {
+            type: "doc",
+            id: "concepts/data-engines/casengines",
+            label: "Data Engines"
+          },
+          {
+            type: "doc",
+            id: "concepts/data-engines/localpv",
+            label: "Local Engine"
+          },
+          {
+            type: "doc",
+            id: "concepts/data-engines/mayastor",
+            label: "Replicated Engine"
+          }
+        ]  
       ]
     },
     {
@@ -109,7 +111,7 @@ module.exports = {
           label: "NDM"
         },
         {
-  
+
           collapsed: true,
           type: "category",
           label: "cStor",
@@ -145,7 +147,7 @@ module.exports = {
           ]
         },
         {
-  
+
           collapsed: true,
           type: "category",
           label: "Jiva",
@@ -205,7 +207,7 @@ module.exports = {
         icon: "Layers"
       },
       items: [
-        {        
+        {
           type: "doc",
           id: "stateful-applications/mysql",
           label: "RDS like MySQL"
