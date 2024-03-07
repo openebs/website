@@ -5,15 +5,15 @@ module.exports = {
     {
       collapsed: true,
       type: "category",
-      label: "Introduction",
+      label: "Introduction to OpenEBS",
       customProps: {
         icon: "Smile"
       },
       items: [
         {
           type: "doc",
-          id: "introduction/overview",
-          label: "Overview"
+          id: "introduction-to-openebs/overview",
+          label: "Introduction to OpenEBS"
         },
         {
           type: "doc",
