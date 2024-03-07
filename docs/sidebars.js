@@ -17,17 +17,17 @@ module.exports = {
         },
         {
           type: "doc",
-          id: "introduction/features",
+          id: "introduction-to-openebs/features",
           label: "Features"
         },
         {
           type: "doc",
-          id: "introduction/benefits",
+          id: "introduction-to-openebs/benefits",
           label: "Benefits"
         },
         {
           type: "doc",
-          id: "introduction/usecases",
+          id: "introduction-to-openebs/usecases",
           label: "Use cases"
         },
         {
