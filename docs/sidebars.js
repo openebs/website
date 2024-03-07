@@ -29,21 +29,6 @@ module.exports = {
           type: "doc",
           id: "introduction-to-openebs/usecases",
           label: "Use cases"
-        },
-        {
-          type: "doc",
-          id: "introduction/releases",
-          label: "Releases"
-        },
-        {
-          type: "doc",
-          id: "introduction/community",
-          label: "Community"
-        },
-        {
-          type: "doc",
-          id: "introduction/commercial",
-          label: "Support"
         }
       ]
     },
@@ -63,7 +48,7 @@ module.exports = {
         {
           type: "doc",
           id: "concepts/cas",
-          label: "Container Attached Storage"
+          label: "Container Native Storage"
         },
         {
           type: "doc",
@@ -71,39 +56,27 @@ module.exports = {
           label: "Architecture"
         },
         {
+          collapsed: true,
+          type: "category",
+          label: "Data Engines",
+          customProps: {
+            icon: ""
+          },
+        },  
+        {
           type: "doc",
-          id: "concepts/casengines",
+          id: "concepts/data-engines/casengines",
           label: "Data Engines"
         },
         {
           type: "doc",
-          id: "concepts/ndm",
-          label: "NDM"
+          id: "concepts/data-engines/localpv",
+          label: "Local Engine"
         },
         {
           type: "doc",
-          id: "concepts/cstor",
-          label: "cStor"
-        },
-        {
-          type: "doc",
-          id: "concepts/jiva",
-          label: "Jiva"
-        },
-        {
-          type: "doc",
-          id: "concepts/mayastor",
-          label: "Mayastor"
-        },
-        {
-          type: "doc",
-          id: "concepts/localpv",
-          label: "LocalPV"
-        },
-        {
-          type: "doc",
-          id: "concepts/rwm",
-          label: "Read-write-Many (RWX)"
+          id: "concepts/data-engines/mayastor",
+          label: "Replicated Engine"
         }
       ]
     },
