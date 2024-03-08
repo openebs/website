@@ -1,3 +1,12 @@
+---
+id: troubleshooting-re
+title: Troubleshooting - Replicated Engine
+slug: /troubleshooting
+keywords:
+  - OpenEBS
+  - OpenEBS troubleshooting
+description: This page contains a list of OpenEBS related troubleshooting which contains information like troubleshooting installation, troubleshooting uninstallation, and troubleshooting replicated engine.
+---
 # Basic Troubleshooting
 
 ## Logs

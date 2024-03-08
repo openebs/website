@@ -1,6 +1,6 @@
 ---
 id: faqs
-title: OpenEBS FAQ
+title: FAQs
 keywords: 
  - OpenEBS FAQ
  - FAQs
