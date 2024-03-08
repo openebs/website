@@ -1,3 +1,11 @@
+---
+id: monitoring
+title: Monitoring
+keywords:
+ - Monitoring
+ - Pool metrics
+description: This guide explains about the replicated engine pool metrics exporter.
+---
 # Monitoring
 
 ## Pool metrics exporter

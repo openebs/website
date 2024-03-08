@@ -1,3 +1,10 @@
+---
+id: supportability
+title: Supportability
+keywords:
+ - Supportability
+description: This guide explains about the supportability tool that collects Mayastor specific information from the cluster using the kubectl plugin command-line tool.
+---
 ## Supportability
 
 The supportability tool collects Mayastor specific information from the cluster using the [kubectl plugin](https://mayastor.gitbook.io/introduction/reference/kubectl-plugin) command-line tool. It uses the dump command, which interacts with the Mayastor services to build an archive (ZIP) file that acts as a placeholder for the bundled information.

@@ -176,6 +176,61 @@ module.exports = {
             {
               collapsed: true,
               type: "category",
+              label: "Replicated Engine - Advanced Operations",
+              customProps: {
+                icon: "BookOpen"
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/advanced-operations/kubectl-plugin",
+                  label: "Kubectl Plugin"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/advanced-operations/ha",
+                  label: "High Availability"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/advanced-operations/replica-rebuilds",
+                  label: "Replica Rebuilds"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/advanced-operations/supportability",
+                  label: "Supportability"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/advanced-operations/monitoring",
+                  label: "Monitoring"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/advanced-operations/node-cordon",
+                  label: "Node Cordon"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/advanced-operations/node-drain",
+                  label: "Node Drain"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/advanced-operations/volume-snapshots",
+                  label: "Volume Snapshots"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/advanced-operations/snapshot-restore",
+                  label: "Snapshot Restore"
+                }
+              ]
+            }
+            {
+              collapsed: true,
+              type: "category",
               label: "Additional Information",
               customProps: {
                 icon: "BookOpen"
