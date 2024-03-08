@@ -1,3 +1,14 @@
+---
+id: prerequisites-re
+title: Replicated Engine Prerequisites
+keywords:
+ - Replicated Engine Prerequisites
+ - prerequisites
+ - Linux platforms
+ - Managed Kubernetes Services on Public Cloud
+ - Kubernetes On-Prem Solutions
+description: This guide will help you to verify that your Kubernetes worker nodes have the required prerequisites to install OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. In addition, you will learn about how to customize the installer according to your managed Kubernetes provider.
+---
 # Prerequisites
 
 ## **General**
