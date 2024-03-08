@@ -1,6 +1,9 @@
 ---
-description: >-
-  This section provides an overview of the topology and function of the Mayastor
+id: io-path-description
+title: I/O Path Description
+keywords:
+ - I/O Path Description
+description: This section provides an overview of the topology and function of the Mayastor
   data plane.  Developer level documentation is maintained within the project's
   GitHub repository.
 ---

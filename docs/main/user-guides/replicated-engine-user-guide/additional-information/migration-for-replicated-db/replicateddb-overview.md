@@ -1,3 +1,10 @@
+---
+id: replicateddb-overview
+title: Replicated DB Overview
+keywords:
+ - Replicated DB Overview
+description: This section outlines the process of migrating application volumes from CStor to Mayastor for Replicated Databases.
+---
 # Migrating from CStor to Mayastor for Replicated Databases (MongoDB)
 
 

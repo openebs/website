@@ -1,3 +1,10 @@
+---
+id: call-home-metrics 
+title: Call-Home Metrics 
+keywords:
+ - Call-Home Metrics
+description: This section explains about the Call-Home Metrics.
+---
 # Call-home metrics 
 
 ## Mayastor default information collection 

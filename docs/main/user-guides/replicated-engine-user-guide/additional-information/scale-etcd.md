@@ -1,5 +1,10 @@
 ---
-Title: Scaling up etcd members
+id: scale-etcd
+title: Scaling Up etcd Members
+keywords:
+ - Scaling Up etcd Members
+ - Scale etcd
+description: This section explains about the Scaling Up etcd Members.
 ---
 
 By default, Mayastor allows the creation of three etcd members. If you wish to increase the number of etcd replicas, you will encounter an error. However, you can make the necessary configuration changes discussed in this guide to make it work.

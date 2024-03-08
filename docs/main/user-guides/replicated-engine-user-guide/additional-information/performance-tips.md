@@ -1,3 +1,11 @@
+---
+id: performance-tips
+title: Performance Tips
+keywords:
+ - Performance Tips
+ - Tips
+description: This section explains the recommended practices for better performance.
+---
 # Performance Tips
 
 ## CPU isolation

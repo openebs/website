@@ -1,3 +1,10 @@
+---
+id: replicateddb-restore
+title: Restoring Mayastor
+keywords:
+ - Restoring Mayastor
+description: This section explains how to Restore from cStor Backup to Mayastor for Replicated DBs.
+---
 # Steps to Restore from cStor Backup to Mayastor for Replicated DBs (Mongo)
 
 {% hint style=“info” %}
