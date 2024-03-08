@@ -116,6 +116,51 @@ module.exports = {
       },
       items: [
         {
+          collapsed: true,
+          type: "category",
+          label: "Local Engine User Guide",
+          customProps: {
+            icon: ""
+          },
+          items: [
+            {
+              type: "doc",
+              id: "user-guides/local-engine-user-guide/prerequisites",
+              label: "Local Engine Prerequisites"
+            },
+            {
+              collapsed: true,
+              type: "category",
+              label: "Additional info",
+              customProps: {
+                icon: "BookOpen"
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/additional-info/alphafeatures",
+                  label: "Alpha Features"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/additional-info/performance-testing",
+                  label: "Performance testing"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/additional-info/k8supgrades",
+                  label: "Kubernetes Upgrades - Best Practices"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/additional-info/kb",
+                  label: "Knowledge Base"
+                }
+              ]
+            }
+          ] 
+        },
+        {
           type: "doc",
           id: "user-guides/quickstart",
           label: "Quickstart"
@@ -304,36 +349,6 @@ module.exports = {
           type: "doc",
           id: "faqs/cstor-faq",
           label: "cStor FAQs"
-        }
-      ]
-    },
-    {
-      collapsed: true,
-      type: "category",
-      label: "Additional info",
-      customProps: {
-        icon: "BookOpen"
-      },
-      items: [
-        {
-          type: "doc",
-          id: "additional-info/alphafeatures",
-          label: "Alpha Features"
-        },
-        {
-          type: "doc",
-          id: "additional-info/performance-testing",
-          label: "Performance testing"
-        },
-        {
-          type: "doc",
-          id: "additional-info/k8supgrades",
-          label: "Kubernetes upgrades"
-        },
-        {
-          type: "doc",
-          id: "additional-info/kb",
-          label: "Knowledge Base"
         }
       ]
     },
