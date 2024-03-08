@@ -1,6 +1,6 @@
 ---
 id: k8supgrades
-title: Best practices to follow when upgrading Kubernetes
+title: Kubernetes Upgrades - Best Practices
 keywords: 
  - Upgrading Kubernetes
  - K8s Upgrades
