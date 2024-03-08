@@ -1,5 +1,10 @@
 ---
-Title: Etcd Migration Procedure
+id: migrate-etcd
+title: Etcd Migration Procedure
+keywords:
+ - Etcd Migration Procedure
+ - Migrate etcd
+description: This section explains the Etcd Migration Procedure.
 ---
 
 By following the given steps, you can successfully migrate etcd from one node to another during maintenance activities like node drain etc., ensuring the continuity and integrity of the etcd data.

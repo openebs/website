@@ -1,3 +1,11 @@
+---
+id: platform-support
+title: Replicated Engine - Platform Support
+keywords:
+ - Replicated Engine - Platform Support
+ - Platform Support
+description: This section explains about the Platform Support for Replicated Engine.
+---
 # Mayastor Installation on MicroK8s
 
 ## Install Mayastor on MicroK8s

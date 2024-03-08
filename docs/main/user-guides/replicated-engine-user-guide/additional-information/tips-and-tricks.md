@@ -1,3 +1,12 @@
+---
+id: tips
+title: Tips and Tricks
+keywords:
+ - Tips and Tricks
+ - Tips
+ - Tricks
+description: This section explains the recommended practices.
+---
 # Tips and Tricks
 
 ## What if I have no Disk Devices available that I can use for testing?

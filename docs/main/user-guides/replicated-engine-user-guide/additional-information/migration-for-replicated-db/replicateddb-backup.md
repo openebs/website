@@ -1,3 +1,10 @@
+---
+id: replicateddb-backup
+title: Backing up from cStor
+keywords:
+ - Backing up from cStor
+description: This section explains how to backup from cStor for Replicated DBs.
+---
 # Steps to take a Backup from cStor for Replicated DB (Mongo)
 
 {% hint style="note" %}

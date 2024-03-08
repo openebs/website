@@ -1,3 +1,10 @@
+---
+id: distributeddb-backup
+title: Backing up from cStor
+keywords:
+ - Backing up from cStor
+description: This section explains how to backup from cStor for Distributed DBs.
+---
 # Steps to take a Backup from cStor for Distributed DBs (Cassandra)
 
 ## Step 1: Backup from CStor Cluster

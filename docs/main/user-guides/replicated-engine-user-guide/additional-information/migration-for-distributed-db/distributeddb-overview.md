@@ -1,3 +1,10 @@
+---
+id: distributeddb-overview
+title: Distributed DB Overview
+keywords:
+ - Distributed DB Overview
+description: This section outlines the process of migrating application volumes from CStor to Mayastor for Distributed Databases.
+---
 # Migration from CStor to Mayastor for Distributed Databases (Cassandra)
 
 

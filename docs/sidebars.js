@@ -238,25 +238,100 @@ module.exports = {
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/additional-information/alphafeatures",
-                  label: "Alpha Features"
+                  id: "user-guides/replicated-engine-user-guide/additional-information/tips",
+                  label: "Tips and Tricks"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/additional-information/performance-testing",
-                  label: "Performance testing"
+                  id: "user-guides/replicated-engine-user-guide/additional-information/performance-tips",
+                  label: "Performance Tips"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/additional-information/k8supgrades",
-                  label: "Kubernetes Upgrades - Best Practices"
+                  id: "user-guides/replicated-engine-user-guide/additional-information/io-path-description",
+                  label: "I/O Path Description"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/additional-information/kb",
-                  label: "Knowledge Base"
+                  id: "user-guides/replicated-engine-user-guide/additional-information/replica-operations",
+                  label: "Replica Operations"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/additional-information/call-home-metrics",
+                  label: "Call-Home Metrics"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/additional-information/ttps",
+                  label: "Tested Third Party Software"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/additional-information/migrate-etcd",
+                  label: "Etcd Migration Procedure"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/additional-information/scale-etcd",
+                  label: "Scaling Up etcd Members"
+                },
+                {
+                  collapsed: true,
+                  type: "category",
+                  label: "Migration for Distributed DB",
+                  customProps: {
+                    icon: ""
+                  },
+                  items: [
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-engine-user-guide/additional-information/migration-for-distributed-db/distributeddb-overview",
+                      label: "Distributed DB Overview"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-engine-user-guide/additional-information/migration-for-distributed-db/distributeddb-backup",
+                      label: "Backing up from cStor"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-engine-user-guide/additional-information/migration-for-distributed-db/distributeddb-restore",
+                      label: "Restoring Mayastor"
+                    }
+                  ]
+                },
+                {
+                  collapsed: true,
+                  type: "category",
+                  label: "Migration for Replicated DB",
+                  customProps: {
+                    icon: ""
+                  },
+                  items: [
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-engine-user-guide/additional-information/migration-for-replicated-db/replicateddb-overview",
+                      label: "Replicated DB Overview"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-engine-user-guide/additional-information/migration-for-replicated-db/replicateddb-backup",
+                      label: "Backing up from cStor"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-engine-user-guide/additional-information/migration-for-replicated-db/replicateddb-restore",
+                      label: "Restoring Mayastor"
+                    }
+                  ]
                 }
               ]
+            },
+            {
+              type: "doc",
+              id: "user-guides/replicated-engine-user-guide/platform-support",
+              label: "Replicated Engine - Platform Support"
             }
           ] 
         },
