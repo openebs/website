@@ -227,7 +227,7 @@ module.exports = {
                   label: "Snapshot Restore"
                 }
               ]
-            }
+            },
             {
               collapsed: true,
               type: "category",
