@@ -1,4 +1,11 @@
-## Mayastor Node Cordon
+---
+id: node-cordon
+title: Node Cordon
+keywords:
+ - Node Cordon
+description: This guide explains about the Node Cordon feature.
+---
+## Node Cordon
 
 Cordoning a node marks or taints the node as unschedulable. This prevents the scheduler from deploying new resources on that node. However, the resources that were deployed prior to cordoning off the node will remain intact.
 

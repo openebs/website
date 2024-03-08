@@ -1,7 +1,10 @@
 ---
-Title: Volume Restore from a Snapshot
+id: snapshot-restore
+title: Volume Restore from Snapshot
+keywords:
+ - Snapshot Restore
+description: This guide explains about the Snapshot Restore feature.
 ---
-
 Volume restore from an existing snapshot will create an exact replica of a storage volume captured at a specific point in time. They serve as an essential tool for data protection, recovery, and efficient management in Kubernetes environments. This article provides a step-by-step guide on how to create a volume restore.
 
 ## Prerequisites

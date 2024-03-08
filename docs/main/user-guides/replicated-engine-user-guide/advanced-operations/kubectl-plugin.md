@@ -1,3 +1,13 @@
+---
+id: kubectl-plugin
+title: Kubectl Plugin
+keywords:
+ - Kubectl
+ - Plugin
+ - Kubectl Plugin
+ - Mayastor kubectl plugin
+description: This guide will help you to view and manage Mayastor resources such as nodes, pools, and volumes.
+---
 # Mayastor kubectl plugin
 
 The **Mayastor kubectl plugin** can be used to view and manage Mayastor resources such as nodes, pools and volumes. It is also used for operations such as scaling the replica count of volumes. 
