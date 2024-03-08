@@ -85,6 +85,31 @@ module.exports = {
     {
       collapsed: true,
       type: "category",
+      label: "Quickstart Guide",
+      customProps: {
+        icon: "Users"
+      },
+      items: [
+        {
+          type: "doc",
+          id: "quickstart-guide/quickstart",
+          label: "Quickstart"
+        },
+        {
+          type: "doc",
+          id: "quickstart-guide/installation",
+          label: "Installation"
+        },
+        {
+          type: "doc",
+          id: "quickstart-guide/deployment",
+          label: "Deploy a Test Application"
+        }
+      ]
+    },
+    {
+      collapsed: true,
+      type: "category",
       label: "User Guides",
       customProps: {
         icon: "Users"
@@ -104,73 +129,6 @@ module.exports = {
           type: "doc",
           id: "user-guides/installation",
           label: "Installation"
-        },
-        {
-          type: "doc",
-          id: "user-guides/ndm",
-          label: "NDM"
-        },
-        {
-
-          collapsed: true,
-          type: "category",
-          label: "cStor",
-          customProps: {
-            icon: ""
-          },
-          items: [
-            {
-              type: "doc",
-              id: "user-guides/cstor/install-and-setup",
-              label: "Install and Setup"
-            },
-            {
-              type: "doc",
-              id: "user-guides/cstor/launch-sample-application",
-              label: "Launch"
-            },
-            {
-              type: "doc",
-              id: "user-guides/cstor/troubleshooting",
-              label: "Troubleshooting"
-            },
-            {
-              type: "doc",
-              id: "user-guides/cstor/advanced",
-              label: "Advanced"
-            },
-            {
-              type: "doc",
-              id: "user-guides/cstor/clean-up",
-              label: "Clean up"
-            }
-          ]
-        },
-        {
-
-          collapsed: true,
-          type: "category",
-          label: "Jiva",
-          customProps: {
-            icon: ""
-          },
-          items: [
-            {
-              type: "doc",
-              id: "user-guides/jiva/jiva-prerequisites",
-              label: "Prerequisites"
-            },
-            {
-              type: "doc",
-              id: "user-guides/jiva/jiva-install",
-              label: "Install and Setup"
-            },
-            {
-              type: "doc",
-              id: "user-guides/jiva/jiva-launch",
-              label: "Launch"
-            }
-          ]
         },
         {
           type: "doc",
