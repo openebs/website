@@ -373,7 +373,7 @@ module.exports = {
     },
     {
       type: "doc",
-      id: "faqs",
+      id: "faqs/faqs",
       label: "FAQs"
     },
     {
