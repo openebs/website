@@ -131,29 +131,29 @@ module.exports = {
             {
               collapsed: true,
               type: "category",
-              label: "Additional info",
+              label: "Additional Information",
               customProps: {
                 icon: "BookOpen"
               },
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/additional-info/alphafeatures",
+                  id: "user-guides/local-engine-user-guide/additional-information/alphafeatures",
                   label: "Alpha Features"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/additional-info/performance-testing",
+                  id: "user-guides/local-engine-user-guide/additional-information/performance-testing",
                   label: "Performance testing"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/additional-info/k8supgrades",
+                  id: "user-guides/local-engine-user-guide/additional-information/k8supgrades",
                   label: "Kubernetes Upgrades - Best Practices"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/additional-info/kb",
+                  id: "user-guides/local-engine-user-guide/additional-information/kb",
                   label: "Knowledge Base"
                 }
               ]
@@ -161,19 +161,49 @@ module.exports = {
           ] 
         },
         {
-          type: "doc",
-          id: "user-guides/quickstart",
-          label: "Quickstart"
-        },
-        {
-          type: "doc",
-          id: "user-guides/prerequisites",
-          label: "Prerequisites"
-        },
-        {
-          type: "doc",
-          id: "user-guides/installation",
-          label: "Installation"
+          collapsed: true,
+          type: "category",
+          label: "Replicated Engine User Guide",
+          customProps: {
+            icon: ""
+          },
+          items: [
+            {
+              type: "doc",
+              id: "user-guides/replicated-engine-user-guide/prerequisites-re",
+              label: "Replicated Engine Prerequisites"
+            },
+            {
+              collapsed: true,
+              type: "category",
+              label: "Additional Information",
+              customProps: {
+                icon: "BookOpen"
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/additional-information/alphafeatures",
+                  label: "Alpha Features"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/additional-information/performance-testing",
+                  label: "Performance testing"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/additional-information/k8supgrades",
+                  label: "Kubernetes Upgrades - Best Practices"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/additional-information/kb",
+                  label: "Knowledge Base"
+                }
+              ]
+            }
+          ] 
         },
         {
           type: "doc",
