@@ -62,24 +62,24 @@ module.exports = {
           customProps: {
             icon: ""
           },
-        },
-        items, [
-          {
-            type: "doc",
-            id: "concepts/data-engines/casengines",
-            label: "Data Engines"
-          },
-          {
-            type: "doc",
-            id: "concepts/data-engines/localpv",
-            label: "Local Engine"
-          },
-          {
-            type: "doc",
-            id: "concepts/data-engines/mayastor",
-            label: "Replicated Engine"
-          }
-        ]  
+          items: [
+            {
+              type: "doc",
+              id: "concepts/data-engines/casengines",
+              label: "Data Engines"
+            },
+            {
+              type: "doc",
+              id: "concepts/data-engines/localpv",
+              label: "Local Engine"
+            },
+            {
+              type: "doc",
+              id: "concepts/data-engines/mayastor",
+              label: "Replicated Engine"
+            }
+          ] 
+        },  
       ]
     },
     {
