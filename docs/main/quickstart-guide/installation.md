@@ -435,7 +435,7 @@ When using the examples given as guides to creating your own pools, remember to 
 
 {% hint style="note" %}
 
-Existing schemas in Custom Resource (CR) definitions (in older versions) will be updated from v1alpha1 to v1beta1 after upgrading to Mayastor 2.4 and above. To resolve errors encountered pertaining to the upgrade, click [here](quickstart/troubleshooting.md).
+Existing schemas in Custom Resource (CR) definitions (in older versions) will be updated from v1alpha1 to v1beta1 after upgrading to Mayastor 2.4 and above. To resolve errors encountered pertaining to the upgrade, click [here](../troubleshooting/troubleshooting-replicated-engine.md)
 
 {% endhint %}
 
