@@ -335,7 +335,7 @@ The default installation of Mayastor deploys an etcd instance for its exclusive 
     - User applications within the mayastor namespace
 - Block device details (except data content)
 
-{% hint style="info" %}
-<b>Note:</b>The list provided above is frequently reviewed and updated by the Mayastor maintainers. However, it might not be fully exhaustive, given that "sensitive information" is a subjective term.
-{% endhint %}
+:::tip NOTE
+The list provided above is frequently reviewed and updated by the Mayastor maintainers. However, it might not be fully exhaustive, given that "sensitive information" is a subjective term.
+:::
  
