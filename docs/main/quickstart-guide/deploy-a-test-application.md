@@ -15,7 +15,7 @@ If all verification steps in the preceding stages were satisfied, then Mayastor 
 
 ## Define the PVC
 
-Use `kubectl` to create a PVC based on a StorageClass that you created in the [previous stage](configure-mayastor.md#create-mayastor-storageclass-s). In the example shown below, we'll consider that StorageClass to have been named "mayastor-1". Replace the value of the field "storageClassName" with the name of your own Mayastor-based StorageClass.
+Use `kubectl` to create a PVC based on a StorageClass that you created in the [previous stage](installation.md#create-mayastor-storageclass-s). In the example shown below, we'll consider that StorageClass to have been named "mayastor-1". Replace the value of the field "storageClassName" with the name of your own Mayastor-based StorageClass.
 
 For the purposes of this quickstart guide, it is suggested to name the PVC "ms-volume-claim", as this is what will be illustrated in the example steps which follow.
 
