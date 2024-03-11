@@ -239,7 +239,7 @@ kubectl label node <node_name> openebs.io/engine=mayastor
 ## Overview
 
 {% hint style="note" %}
-Before deploying and using Mayastor please consult the [Known Issues](../troubleshooting-replicated-engine.md) section of this guide.
+Before deploying and using Mayastor please consult the [Known Issues](troubleshooting-replicated-engine.md) section of this guide.
 {% endhint %}
 
 The steps and commands which follow are intended only for use in conjunction with Mayastor version(s) 2.1.x and above.
