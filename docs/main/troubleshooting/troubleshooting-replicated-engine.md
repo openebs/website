@@ -321,3 +321,54 @@ When creating a Disk Pool with `kubectl create -f dsp.yaml`, you might encounter
 {% hint style="note" %}
 You can validate the schema changes by executing `kubectl get crd diskpools.openebs.io`.
 {% endhint %}
+
+# Known Limitations
+
+## Volume and Pool Capacity Expansion
+
+Once provisioned, neither Mayastor Disk Pools nor Mayastor Volumes can be re-sized. A Mayastor Pool can have only a single block device as a member. Mayastor Volumes are exclusively thick-provisioned.
+
+## Snapshots and Clones
+
+Mayastor has no snapshot or cloning capabilities.
+
+## Volumes are "Highly Durable" but without multipathing are not "Highly Available"
+
+Mayastor Volumes can be configured \(or subsequently re-configured\) to be composed of 2 or more "children" or "replicas"; causing synchronously mirrored copies of the volumes's data to be maintained on more than one worker node and Disk Pool. This contributes additional "durability" at the persistence layer, ensuring that viable copies of a volume's data remain even if a Disk Pool device is lost.
+
+A Mayastor volume is currently accessible to an application only via a single target instance \(NVMe-oF\) of a single Mayastor pod. However, if that Mayastor pod ceases to run \(through the loss of the worker node on which it's scheduled, execution failure, crashloopbackoff etc.\) the [HA switch-over module](https://mayastor.gitbook.io/introduction/advanced-operations/ha) detects the failure and moves the target to a healthy worker node to ensure I/O continuity.
+
+# Known Issues
+
+## Installation Issues
+
+### A Mayastor pod restarts unexpectedly with exit code 132 whilst mounting a PVC
+
+The Mayastor process has been sent the SIGILL signal as the result of attempting to execute an illegal instruction. This indicates that the host node's CPU does not satisfy the prerequisite instruction set level for Mayastor \(SSE4.2 on x86-64\).
+
+### Deploying Mayastor on RKE & Fedora CoreOS
+
+In addition to ensuring that the general prerequisites for installation are met, it is necessary to add the following directory mapping to the `services_kublet->extra_binds` section of the cluster's`cluster.yml file.`
+
+```text
+/opt/rke/var/lib/kubelet/plugins:/var/lib/kubelet/plugins
+```
+
+If this is not done, CSI socket paths won't match expected values and the Mayastor CSI driver registration process will fail, resulting in the inability to provision Mayastor volumes on the cluster.
+
+## Other Issues
+
+### Mayastor pod may restart if a pool disk is inaccessible
+
+If the disk device used by a Mayastor pool becomes inaccessible or enters the offline state, the hosting Mayastor pod may panic.  A fix for this behaviour is under investigation.
+
+### Lengthy worker node reboot times
+
+When rebooting a node that runs applications mounting Mayastor volumes, this can take tens of minutes. The reason is the long default NVMe controller timeout \(`ctrl_loss_tmo`\). The solution is to follow the best k8s practices and cordon the node ensuring there aren't any application pods running on it before the reboot. Setting `ioTimeout` storage class parameter can be used to fine-tune the timeout.
+
+### Node restarts on scheduling an application 
+
+Deploying an application pod on a worker node which hosts Mayastor and Prometheus exporter causes that node to restart.
+The issue originated because of a kernel bug. Once the nexus disconnects, the entries under `/host/sys/class/hwmon/` should get removed, which does not happen in this case(The issue was fixed via this [kernel patch](https://www.mail-archive.com/linux-kernel@vger.kernel.org/msg2413147.html)).
+
+**Fix:** Use kernel version 5.13 or later if deploying Mayastor in conjunction with the Prometheus metrics exporter.
