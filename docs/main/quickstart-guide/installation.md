@@ -381,7 +381,7 @@ Usage of the device name (for example, /dev/sdx) is not advised, as it may chang
 
 | Type | Format | Example |
 | :--- | :--- | :--- |
-| Disk(non PCI) with disk-by-guid reference <i><b>(Best Practice)</b></i> | Device File | aio:///dev/disk/by-id/<id> OR uring:///dev/disk/by-id/<id> |
+| Disk(non PCI) with disk-by-guid reference <i><b>(Best Practice)</b></i> | Device File | aio:///dev/disk/by-id/<id> OR uring:///dev/disk/by-id/</id> |
 | Asynchronous Disk\(AIO\) | Device File | /dev/sdx |
 | Asynchronous Disk I/O \(AIO\) | Device File | aio:///dev/sdx |
 | io\_uring | Device File | uring:///dev/sdx |
