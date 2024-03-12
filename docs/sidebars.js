@@ -86,7 +86,7 @@ module.exports = {
       type: "category",
       label: "Quickstart Guide",
       customProps: {
-        icon: "Users"
+        icon: "BookOpen"
       },
       items: [
         {
@@ -131,9 +131,6 @@ module.exports = {
               collapsed: true,
               type: "category",
               label: "Additional Information",
-              customProps: {
-                icon: "BookOpen"
-              },
               items: [
                 {
                   type: "doc",
@@ -176,9 +173,6 @@ module.exports = {
               collapsed: true,
               type: "category",
               label: "Replicated Engine - Advanced Operations",
-              customProps: {
-                icon: "BookOpen"
-              },
               items: [
                 {
                   type: "doc",
@@ -231,9 +225,6 @@ module.exports = {
               collapsed: true,
               type: "category",
               label: "Additional Information",
-              customProps: {
-                icon: "BookOpen"
-              },
               items: [
                 {
                   type: "doc",
@@ -349,7 +340,10 @@ module.exports = {
     {
       type: "doc",
       id: "releases",
-      label: "Releases"
+      label: "Releases",
+      "customProps": {
+        "icon": "File"
+      },
     },
     {
       collapsed: true,
@@ -374,12 +368,18 @@ module.exports = {
     {
       type: "doc",
       id: "faqs/faqs",
-      label: "FAQs"
+      label: "FAQs",
+      "customProps": {
+        "icon": "HelpCircle"
+      },
     },
     {
       type: "doc",
       id: "community",
-      label: "Community"
+      label: "Community",
+      "customProps": {
+        "icon": "Conversation"
+      },
     },
     {
       type: "doc",
