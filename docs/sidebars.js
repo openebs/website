@@ -125,7 +125,7 @@ module.exports = {
             {
               type: "doc",
               id: "user-guides/local-engine-user-guide/prerequisites",
-              label: "Local Engine Prerequisites"
+              label: "Prerequisites"
             },
             {
               collapsed: true,
@@ -167,12 +167,12 @@ module.exports = {
             {
               type: "doc",
               id: "user-guides/replicated-engine-user-guide/prerequisites-re",
-              label: "Replicated Engine Prerequisites"
+              label: "Prerequisites"
             },
             {
               collapsed: true,
               type: "category",
-              label: "Replicated Engine - Advanced Operations",
+              label: "Advanced Operations",
               items: [
                 {
                   type: "doc",
@@ -321,7 +321,7 @@ module.exports = {
             {
               type: "doc",
               id: "user-guides/replicated-engine-user-guide/platform-support",
-              label: "Replicated Engine - Platform Support"
+              label: "Platform Support"
             }
           ] 
         },
@@ -338,7 +338,7 @@ module.exports = {
       ]
     },
     {
-      type: "category",
+      type: "doc",
       id: "releases",
       label: "Releases",
       "customProps": {
@@ -366,7 +366,7 @@ module.exports = {
       ]
     },
     {
-      type: "category",
+      type: "doc",
       id: "faqs/faqs",
       label: "FAQs",
       "customProps": {
