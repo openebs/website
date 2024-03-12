@@ -251,12 +251,12 @@ volumes do require privileged Security Context Constraints. This is described be
 
 The easiest way to install OpenEBS is by using the operator in the OperatorHub; 
 
-![OpenShift in OperatorHub](../assets/openshift-operatorhub.png)
+![OpenShift in OperatorHub](../../../assets/openshift-operatorhub.png)
 
 This guide recommends installing the operator into an empty `openebs`
 namespace.
 
-![OpenShift in OperatorHub](../assets/openshift-operator-installnamespace.png)
+![OpenShift in OperatorHub](../../../assets/openshift-operator-installnamespace.png)
 
 #### Installation option: via "manual" install
 
