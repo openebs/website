@@ -11,7 +11,7 @@ Volume restore from an existing snapshot will create an exact replica of a stora
 
 ### Step 1: Create a storage class 
 
-To begin, you'll need to create a StorageClass that defines the properties of the snapshot to be restored. Refer to [Storage Class Parameters](../reference/storage-class-parameters.md) for more details. Use the following command to create the StorageClass:
+To begin, you'll need to create a StorageClass that defines the properties of the snapshot to be restored. Refer to [Storage Class Parameters](../../../quickstart-guide/installation.md#storage-class-parameters) for more details. Use the following command to create the StorageClass:
 
 {% hint style="info" %}
 thin: "true" and repl: "1" is the only supported combination.
@@ -55,7 +55,7 @@ provisioner: io.openebs.csi-mayastor
 
 ### Step 2: Create a snapshot 
 
-You need to create a volume snapshot before proceeding with the restore. Follow the steps outlined in [this guide](../reference/snapshot.md) to create a volume snapshot.
+You need to create a volume snapshot before proceeding with the restore. Follow the steps outlined in [this guide](snapshot.md) to create a volume snapshot.
 
 > Note the snapshot's name, for example, **pvc-snap-1**.
 
