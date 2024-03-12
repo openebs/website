@@ -44,7 +44,7 @@ disk_pool_committed_size_bytes{node="worker-0", name="mayastor-disk-pool"} 96636
 
 ## Stats exporter metrics
 
-When [eventing](reference/call-home.md) is activated, the stats exporter operates within the **obs-callhome-stats** container, located in the **callhome** pod. The statistics are made accessible through an HTTP endpoint at port `9090`, specifically using the `/stats` route.
+When [eventing](../additional-information/call-home.md) is activated, the stats exporter operates within the **obs-callhome-stats** container, located in the **callhome** pod. The statistics are made accessible through an HTTP endpoint at port `9090`, specifically using the `/stats` route.
 
 
 ### Supported stats metrics

@@ -237,8 +237,8 @@ OpenEBS has been tested in the following configurations;
 
 | OpenShift Version | OS                                           | Status |
 |-------------------|----------------------------------------------|--------|
-| 4.2               | [RHEL7.6](prerequisites.md#rhel), CoreOS 4.2 | Tested |
-| 3.10              | [RHEL7.6](prerequisites.md#rhel), CoreOS 4.2 | Tested |
+| 4.2               | [RHEL7.6](../prerequisites.mdx), CoreOS 4.2 | Tested |
+| 3.10              | [RHEL7.6](../prerequisites.mdx), CoreOS 4.2 | Tested |
 
 #### Notes on security
 
