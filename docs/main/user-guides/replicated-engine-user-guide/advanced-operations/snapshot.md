@@ -31,7 +31,7 @@ Currently, Mayastor supports the following operations related to volume snapshot
 ## Prerequisites
 
 
-1. Deploy and configure Mayastor by following the steps given [here](../quickstart/deploy-mayastor.md) and create disk pools.
+1. Deploy and configure Mayastor by following the steps given [here](../../../quickstart-guide/installation.md#deploy-mayastor) and create disk pools.
 2. Create a Mayastor StorageClass with single replica.
 
 {% hint style="note" %}

@@ -74,7 +74,7 @@ pvc-fc1f7ed7-d99e-40c7-a9b7-8d6244403a3e   3Gi        Bound    50m
 ## Step 2: Install Velero
 
 {% hint style="note" %}
-For the prerequisites, refer to the [overview](migration-cstor-mayastor\replicateddb-overview.md) section.
+For the prerequisites, refer to the [overview](replicateddb-overview.md) section.
 {% endhint %}
 
 Run the following command to install Velero:
