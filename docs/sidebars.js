@@ -341,8 +341,8 @@ module.exports = {
       type: "doc",
       id: "releases",
       label: "Releases",
-      "customProps": {
-        "icon": "File"
+      customProps: {
+        icon: "File"
       },
     },
     {
@@ -369,16 +369,16 @@ module.exports = {
       type: "doc",
       id: "faqs/faqs",
       label: "FAQs",
-      "customProps": {
-        "icon": "HelpCircle"
+      customProps: {
+        icon: "HelpCircle"
       },
     },
     {
       type: "doc",
       id: "community",
       label: "Community",
-      "customProps": {
-        "icon": "Conversation"
+      customProps: {
+        icon: "Conversation"
       },
     },
     {
