@@ -338,14 +338,6 @@ module.exports = {
       ]
     },
     {
-      type: "doc",
-      id: "releases",
-      label: "Releases",
-      customProps: {
-        icon: "File"
-      },
-    },
-    {
       collapsed: true,
       type: "category",
       label: "Troubleshooting",
@@ -364,6 +356,14 @@ module.exports = {
           label: "Troubleshooting - Replicated Engine"
         }
       ]
+    },
+    {
+      type: "doc",
+      id: "releases",
+      label: "Releases",
+      customProps: {
+        icon: "File"
+      },
     },
     {
       type: "doc",
