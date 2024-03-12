@@ -338,7 +338,7 @@ module.exports = {
       ]
     },
     {
-      type: "doc",
+      type: "category",
       id: "releases",
       label: "Releases",
       "customProps": {
@@ -366,7 +366,7 @@ module.exports = {
       ]
     },
     {
-      type: "doc",
+      type: "category",
       id: "faqs/faqs",
       label: "FAQs",
       "customProps": {
