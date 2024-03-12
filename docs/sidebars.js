@@ -2,7 +2,7 @@
 module.exports = {
   docs: [
     {
-      collapsed: false,
+      collapsed: true,
       type: "category",
       label: "Introduction to OpenEBS",
       customProps: {
