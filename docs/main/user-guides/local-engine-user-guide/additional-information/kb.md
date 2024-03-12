@@ -237,8 +237,8 @@ OpenEBS has been tested in the following configurations;
 
 | OpenShift Version | OS                                           | Status |
 |-------------------|----------------------------------------------|--------|
-| 4.2               | [RHEL7.6](prerequisites.md#rhel), CoreOS 4.2 | Tested |
-| 3.10              | [RHEL7.6](prerequisites.md#rhel), CoreOS 4.2 | Tested |
+| 4.2               | [RHEL7.6](../prerequisites.mdx), CoreOS 4.2 | Tested |
+| 3.10              | [RHEL7.6](../prerequisites.mdx), CoreOS 4.2 | Tested |
 
 #### Notes on security
 
@@ -251,12 +251,12 @@ volumes do require privileged Security Context Constraints. This is described be
 
 The easiest way to install OpenEBS is by using the operator in the OperatorHub; 
 
-![OpenShift in OperatorHub](../assets/openshift-operatorhub.png)
+![OpenShift in OperatorHub](../../../assets/openshift-operatorhub.png)
 
 This guide recommends installing the operator into an empty `openebs`
 namespace.
 
-![OpenShift in OperatorHub](../assets/openshift-operator-installnamespace.png)
+![OpenShift in OperatorHub](../../../assets/openshift-operator-installnamespace.png)
 
 #### Installation option: via "manual" install
 

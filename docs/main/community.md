@@ -1,6 +1,6 @@
 ---
 id: community
-title: OpenEBS Community
+title: Community
 keywords:
   - Community
   - OpenEBS community
