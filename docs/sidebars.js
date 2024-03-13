@@ -12,7 +12,7 @@ module.exports = {
         {
           type: "doc",
           id: "introduction-to-openebs/overview",
-          label: "Introduction to OpenEBS"
+          label: "Overview"
         },
         {
           type: "doc",
@@ -59,7 +59,7 @@ module.exports = {
           type: "category",
           label: "Data Engines",
           customProps: {
-            icon: ""
+            icon: "Circle"
           },
           items: [
             {
@@ -119,7 +119,7 @@ module.exports = {
           type: "category",
           label: "Local Engine User Guide",
           customProps: {
-            icon: ""
+            icon: "File"
           },
           items: [
             {
@@ -131,6 +131,9 @@ module.exports = {
               collapsed: true,
               type: "category",
               label: "Additional Information",
+              customProps: {
+                icon: "Book"
+              },
               items: [
                 {
                   type: "doc",
@@ -161,7 +164,7 @@ module.exports = {
           type: "category",
           label: "Replicated Engine User Guide",
           customProps: {
-            icon: ""
+            icon: "File"
           },
           items: [
             {

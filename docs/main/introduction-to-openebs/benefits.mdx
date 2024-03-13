@@ -9,7 +9,7 @@ description: Some key aspects that make OpenEBS different compared to other trad
 import { TwoColumn } from "@site/src/components/TwoColumn";
 
 :::tip
-For information on how OpenEBS is used in production, visit the [use cases](/docs/introduction/usecases) section or read what [OpenEBS Adopters have shared](https://github.com/openebs/openebs/blob/HEAD/ADOPTERS.md).
+For information on how OpenEBS is used in production, visit the [use cases](use-cases-and-examples.mdx) section or read what [OpenEBS Adopters have shared](https://github.com/openebs/openebs/blob/HEAD/ADOPTERS.md).
 :::
 
 Containers and Kubernetes have disrupted the way platforms and technology stacks are built; OpenEBS is a result of applying the patterns of containers and container orchestratation to storage software. Therefore the benefits of using OpenEBS are inline with benefits of moving to cloud native architectures. A few benefits worth highlighting include:
@@ -29,7 +29,7 @@ Containers and Kubernetes have disrupted the way platforms and technology stacks
     where "cloud native" means following a loosely coupled architecture. As such
     the normal benefits to cloud native, loosely coupled architectures apply.
     For example, developers and DevOps architects can use standard Kubernetes
-    skills and utilities to configure, use, scale, customize and manage OpenEBS itself.  
+    skills and utilities to configure, use, scale, customize, and manage OpenEBS itself.  
   </p>
 
 ![Cloud Native Storage Icon](../assets/b-cn.svg)
@@ -41,7 +41,7 @@ Some key aspects that make OpenEBS different compared to other traditional stora
 - Built using the _micro-services architecture_ like the applications it serves. OpenEBS is itself deployed as a set of containers on Kubernetes worker nodes. Uses Kubernetes itself to orchestrate and manage OpenEBS components.
 - Built completely in userspace making it highly portable to run across _any OS/platform_.
 - Completely intent-driven, inheriting the same principles that drive the _ease of use_ with Kubernetes.
-- OpenEBS supports a range of storage engines so that developers can deploy the storage technology appropriate to their application design objectives. Distributed applications like Cassandra can use a _LocalPV_ engine for lowest latency writes. Monolithic applications like MySQL and PostgreSQL can use _Mayastor built using NVMe and SPDK_ or _cStor based on ZFS_ for resilience. Streaming applications like Kafka can use the NVMe engine [Mayastor](https://github.com/openebs/Mayastor) for best performance in edge environments or, again, a LocalPV option.
+- OpenEBS supports a range of storage engines so that developers can deploy the storage technology appropriate to their application design objectives. Distributed applications like Cassandra can use a _Local_ engine for lowest latency writes. Monolithic applications like MySQL and PostgreSQL can use _replicated engine_ for resilience. Streaming applications like Kafka can use the replicated engine for best performance in edge environments or, again, a local engine option.
 
 ### Avoid Cloud Lock-in
 
@@ -49,8 +49,8 @@ Some key aspects that make OpenEBS different compared to other traditional stora
   <p>
     Even though Kubernetes provides an increasingly ubiquitous control plane,
     concerns about data gravity resulting in lock-in and other challenges remain. 
-    With OpenEBS, the data can be written to the OpenEBS layer - if cStor, Jiva 
-    or Mayastor are used - and if so OpenEBS acts as a data abstraction layer. 
+    With OpenEBS, the data can be written to the OpenEBS layer - if a replicated engine 
+    is used - and if so OpenEBS acts as a data abstraction layer. 
     Using this data abstraction layer, data can be much more easily moved amongst
     Kubernetes environments, whether they are on premise and attached to traditional
     storage systems or in the cloud and attached to local storage or managed storage services.
@@ -105,8 +105,8 @@ Some key aspects that make OpenEBS different compared to other traditional stora
 
 <TwoColumn left="1fr" right="200px">
   <p>
-    Because OpenEBS follows the CAS architecture, upon node failure the OpenEBS
-    controller will be rescheduled by Kubernetes while the underlying data is
+    Upon node failure, the OpenEBS controller will be rescheduled by Kubernetes 
+    because OpenEBS follows the CNS architecture, while the underlying data is
     protected via the use of one or more replicas. More importantly - because
     each workload can utilize its own OpenEBS - there is no risk of a system
     wide outage due to the loss of storage. For example, metadata of the volume
@@ -124,8 +124,8 @@ Some key aspects that make OpenEBS different compared to other traditional stora
 
 ## See Also:
 
-- [Use cases and Examples](/docs/introduction/usecases)
-- [OpenEBS Features](/docs/introduction/features)
-- [OpenEBS Architecture](/docs/concepts/architecture)
-- [OpenEBS Local PV](/docs/concepts/localpv)
-- [OpenEBS Mayastor](/docs/concepts/mayastor)
+- [Use Cases and Examples](use-cases-and-examples.mdx)
+- [OpenEBS Features](features.mdx)
+- [OpenEBS Architecture](../concepts/architecture.md)
+- [OpenEBS Local Engine](../concepts/data-engines/local-engine.md)
+- [OpenEBS Replicated Engine](../concepts/data-engines/replicated-engine.md)
