@@ -5,12 +5,12 @@ slug: /
 keywords:
   - OpenEBS
   - OpenEBS overview
-description: OpenEBS builds on Kubernetes to enable Stateful applications to easily access Dynamic Local or Distributed Container Attached Kubernetes Persistent Volumes. By using the Container Attached Storage pattern users report lower costs, easier management, and more control for their teams.
+description: OpenEBS builds on Kubernetes to enable Stateful applications to easily access Dynamic Local or Distributed Container Attached Kubernetes Persistent Volumes. By using the Container Native Storage pattern users report lower costs, easier management, and more control for their teams.
 ---
 
 ## What is OpenEBS?
 
-OpenEBS turns any storage available to Kubernetes worker nodes into Local or Distributed Kubernetes Persistent Volumes. OpenEBS helps Application and Platform teams easily deploy Kubernetes Stateful Workloads that require fast and highly durable, reliable and scalable [Container Native Storage](../concepts/container-native-storage.md).
+OpenEBS turns any storage available to Kubernetes worker nodes into Local or Distributed Kubernetes Persistent Volumes. OpenEBS helps application and platform teams easily deploy Kubernetes stateful workloads that require fast and highly durable, reliable, and scalable [Container Native Storage](../concepts/container-native-storage.md).
 
 OpenEBS is also a leading choice for NVMe based storage deployments.
 
@@ -63,7 +63,7 @@ Local Volumes are accessible only from a single node in the cluster. Pods using 
 
 Replicated Volumes, as the name suggests, are those that have their data synchronously replicated to multiple nodes. Volumes can sustain node failures. The replication also can be setup across availability zones helping applications move across availability zones.
 
-Replicated Volumes also are capable of enterprise storage features like snapshots, clone, volume expansion and so forth. Replicated Volumes are a preferred choice for Stateful workloads like Percona/MySQL, Jira, GitLab, etc.
+Replicated Volumes also are capable of enterprise storage features like snapshots, clone, volume expansion and so forth. Replicated Volumes are a preferred choice for Stateful workloads like Percona/MongoDB, Jira, GitLab, etc.
 
 :::tip NOTE
 Depending on the type of storage attached to your Kubernetes worker nodes and the requirements of your workloads, you can select from local engine or replicated engine.

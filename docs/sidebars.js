@@ -46,7 +46,7 @@ module.exports = {
         },
         {
           type: "doc",
-          id: "concepts/cas",
+          id: "concepts/cns",
           label: "Container Native Storage"
         },
         {
@@ -64,17 +64,17 @@ module.exports = {
           items: [
             {
               type: "doc",
-              id: "concepts/data-engines/casengines",
+              id: "concepts/data-engines/dataengines",
               label: "Data Engines"
             },
             {
               type: "doc",
-              id: "concepts/data-engines/localpv",
+              id: "concepts/data-engines/localengine",
               label: "Local Engine"
             },
             {
               type: "doc",
-              id: "concepts/data-engines/mayastor",
+              id: "concepts/data-engines/replicated-engine",
               label: "Replicated Engine"
             }
           ] 
