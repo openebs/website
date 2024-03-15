@@ -355,7 +355,7 @@ module.exports = {
         },
         {
           type: "doc",
-          id: "troubleshooting/troubleshooting-re",
+          id: "troubleshooting/troubleshootingre",
           label: "Troubleshooting - Replicated Engine"
         }
       ]

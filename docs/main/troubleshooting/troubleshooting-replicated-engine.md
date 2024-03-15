@@ -1,5 +1,5 @@
 ---
-id: troubleshooting-re
+id: troubleshootingre
 title: Troubleshooting - Replicated Engine
 slug: /troubleshooting
 keywords:
