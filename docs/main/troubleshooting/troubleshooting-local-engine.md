@@ -8,100 +8,209 @@ keywords:
 description: This page contains a list of OpenEBS related troubleshooting which contains information like troubleshooting installation, troubleshooting uninstallation, and troubleshooting local engines.
 ---
 
-### General guidelines for troubleshooting
+<font size="6" color="orange">Basic Troubleshooting</font>
 
-- Search for similar issues mentioned in this page as well as the following troubleshooting sections.
-  - [Troubleshooting Install](/docs/troubleshooting/install).
-  - [Troubleshooting Uninstall](/docs/troubleshooting/uninstall).
-  - [Troubleshooting NDM](/docs/troubleshooting/ndm).
-  - [Troubleshooting Jiva](/docs/troubleshooting/jiva).
-  - [Troubleshooting cStor](/docs/troubleshooting/cstor).
-  - [Troubleshooting LocalPV](/docs/troubleshooting/localpv).
-- Contact [OpenEBS Community](/docs/introduction/community) for support.
-- Search for similar issues on [OpenEBS GitHub repository](https://github.com/openebs/openebs/issues).
-- Search for any reported issues on [StackOverflow under OpenEBS tag](https://stackoverflow.com/questions/tagged/openebs).
+### PVC in Pending state {#pvc-in-pending-state}
 
-#### Kubernetes related
+Created a PVC using localpv-hostpath storage class. But the PV is not created and PVC in Pending state.
 
-[Kubernetes node reboots because of increase in memory consumed by Kubelet](#node-reboot-when-kubelet-memory-increases)
+**Troubleshooting:**
+The default localpv storage classes from openebs have `volumeBindingMode: WaitForFirstConsumer`. This means that only when the application pod that uses the PVC is scheduled to a node, the provisioner will receive the volume provision request and will create the volume.
 
-[Application and OpenEBS pods terminate/restart under heavy I/O load](#Pods-restart-terminate-when-heavy-load)
+**Resolution:**
+Deploy an application that uses the PVC and the PV will be created and application will start using the PV.
 
-#### Others
+### Stale BDC in pending state after PVC is deleted {#stale-bdc-after-pvc-deletion}
 
-[Nodes in the cluster reboots frequently almost everyday in openSUSE CaaS](#reboot-cluster-nodes)
-
-<font size="6" color="green">Kubernetes related</font>
-
-## Kubernetes node reboots because of increase in memory consumed by Kubelet {#node-reboot-when-kubelet-memory-increases}
-
-Sometime it is observed that iscsiadm is continuously fails and repeats rapidly and for some reason this causes the memory consumption of kubelet to grow until the node goes out-of-memory and needs to be rebooted. Following type of error can be observed in journalctl and cstor-istgt container.
-
-**journalctl logs**
-
-```shell hideCopy
-Feb 06 06:11:38 <hostname> kubelet[1063]: iscsiadm: failed to send SendTargets PDU
-Feb 06 06:11:38 <hostname> kubelet[1063]: iscsiadm: connection login retries (reopen_max) 5 exceeded
-Feb 06 06:11:38 <hostname> kubelet[1063]: iscsiadm: Connection to Discovery Address 10.233.46.76 failed
-Feb 06 06:11:38 <hostname> kubelet[1063]: iscsiadm: failed to send SendTargets PDU
-Feb 06 06:11:38 <hostname> kubelet[1063]: iscsiadm: connection login retries (reopen_max) 5 exceeded
-Feb 06 06:11:38 <hostname> kubelet[1063]: iscsiadm: Connection to Discovery Address 10.233.46.76 failed
-Feb 06 06:11:38 <hostname> kubelet[1063]: iscsiadm: failed to send SendTargets PDU
-Feb 06 06:11:38 <hostname> kubelet[1063]: iscsiadm: connection login retries (reopen_max) 5 exceeded
-Feb 06 06:11:38 <hostname> kubelet[1063]: iscsiadm: Connection to Discovery Address 10.233.46.76 failed
-Feb 06 06:11:38 <hostname> kubelet[1063]: iscsiadm: failed to send SendTargets PDU
+```
+kubectl get bdc -n openebs
 ```
 
-**cstor-istgt container logs**
+shows stale `Pending` BDCs created by localpv provisioner, even after the corresponding PVC has been deleted.
+
+**Resolution:**
+LocalPV provisioner currently does not delete BDCs in Pending state if the corresponding PVCs are deleted. To remove the stale BDC entries,
+
+1. Edit the BDC and remove the `- local.openebs.io/finalizer` finalizer
+
+```
+kubectl edit bdc <bdc-name> -n openebs
+```
+
+2. Delete the BDC
+
+```
+kubectl delete bdc <bdc-name> -n openebs
+```
+
+### BDC created by localPV in pending state {#bdc-by-localpv-pending-state}
+
+The BDC created by localpv provisioner (bdc-pvc-xxxx) remains in pending state and PVC does not get Bound
+
+**Troubleshooting:**
+Describe the BDC to check the events recorded on the resource
+
+```
+kubectl describe bdc bdc-pvc-xxxx -n openebs
+```
+
+The following are different types of messages shown when the node on which localpv application pod is scheduled, does not have a blockdevice available.
+
+1. No blockdevices found
 
 ```shell hideCopy
-2019-02-05/15:43:30.250 worker            :6088: c#0.140005771040512.: iscsi_read_pdu() EOF
+Warning  SelectionFailed  14m (x25 over 16m)    blockdeviceclaim-operator  no blockdevices found
+```
 
-2019-02-05/15:43:30.250 sender            :5852: s#0.140005666154240.: sender loop ended (0:14:43084)
+It means that there were no matching blockdevices after listing based on the labels. Check if there is any `block-device-tag` on the storage class and corresponding tags are available on the blockdevices also
 
-2019-02-05/15:43:30.251 worker            :6292: c#0.140005771040512.: worker 0/-1/43084 end (c#0.140005771040512/s#0.140005666154240)
-2019-02-05/15:43:30.264 worker            :5885: c#1.140005666154240.: con:1/16 [8d614b93:43088->10.233.45.100:3260,1]
-2019-02-05/15:43:30.531 istgt_iscsi_op_log:1923: c#1.140005666154240.: login failed, target not ready
+2. No devices with matching criteria
 
-2019-02-05/15:43:30.782 worker            :6088: c#1.140005666154240.: iscsi_read_pdu() EOF
+```shell hideCopy
+Warning  SelectionFailed  6m25s (x18 over 11m)  blockdeviceclaim-operator  no devices found matching the criteria
+```
 
-2019-02-05/15:43:30.782 sender            :5852: s#1.140005649413888.: sender loop ended (1:16:43088)
+It means that the there are no devices for claiming after filtering based on filesystem type and node name. Make sure the blockdevices on the node
+have the correct filesystem as mentioned in the storage class (default is `ext4`)
 
-2019-02-05/15:43:30.783 worker            :6292: c#1.140005666154240.: worker 1/-1/43088 end (c#1.140005666154240/s#1.140005649413888)
-2019-02-05/15:43:33.285 worker            :5885: c#2.140005649413888.: con:2/18 [8d614b93:43092->10.233.45.100:3260,1]
-2019-02-05/15:43:33.536 istgt_iscsi_op_log:1923: c#2.140005649413888.: login failed, target not ready
+3. No devices with matching resource requirements
 
-2019-02-05/15:43:33.787 worker            :6088: c#2.140005649413888.: iscsi_read_pdu() EOF
+```shell hideCopy
+Warning  SelectionFailed  85s (x74 over 11m)    blockdeviceclaim-operator  could not find a device with matching resource requirements
+```
 
-2019-02-05/15:43:33.787 sender            :5852: s#2.140005632636672.: sender loop ended (2:18:43092)
+It means that there are no devices available on the node with a matching capacity requirement.
 
-2019-02-05/15:43:33.788 worker            :6292: c#2.140005649413888.: worker 2/-1/43092 end (c#2.140005649413888/s#2.140005632636672)
-2019-02-05/15:43:35.251 istgt_remove_conn :7039: c#0.140005771040512.: remove_conn->initiator:147.75.97.141(iqn.2019-02.net.packet:device.7c8ad781) Target: 10.233.109.82(dummy LU0) conn:0x7f55a4c18000:0 tsih:1 connections:0  IOPending=0
-2019-02-05/15:43:36.291 worker            :5885: c#0.140005666154240.: con:0/14 [8d614b93:43094->10.233.45.100:3260,1]
-2019-02-05/15:43:36.540 istgt_iscsi_op_log:1923: c#0.140005666154240.: login failed, target not ready
+**Resolution**
+
+To schedule the application pod to a node, which has the blockdevices available, a node selector can be used on the application pod. Here the node with hostname `svc1` has blockdevices available, so a node selector is used to schedule the pod to that node.
+
+Example:
+
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod1
+spec:
+  volumes:
+    - name: local-storage
+      persistentVolumeClaim:
+        claimName: pvc1
+  containers:
+    - name: hello-container
+      image: busybox
+      command:
+        - sh
+        - -c
+        - 'while true; do echo "`date` [`hostname`] Hello from OpenEBS Local PV." >> /mnt/store/greet.txt; sleep $(($RANDOM % 5 + 300)); done'
+      volumeMounts:
+        - mountPath: /mnt/store
+          name: local-storage
+  nodeSelector:
+    kubernetes.io/hostname: svc1
+```
+
+<font size="6" color="orange">Installation Related</font>
+
+### Installation failed because of insufficient user rights {#install-failed-user-rights}
+
+OpenEBS installation can fail in some cloud platform with the following errors.
+
+```shell hideCopy
+namespace "openebs" created
+serviceaccount "openebs-maya-operator" created
+clusterrolebinding.rbac.authorization.k8s.io "openebs-maya-operator" created
+deployment.apps "maya-apiserver" created
+service "maya-apiserver-service" created
+deployment.apps "openebs-provisioner" created
+deployment.apps "openebs-snapshot-operator" created
+configmap "openebs-ndm-config" created
+daemonset.extensions "openebs-ndm" created
+Error from server (Forbidden): error when creating "https://raw.githubusercontent.com/openebs/openebs/v0.8.x/k8s/openebs-operator.yaml": clusterroles.rbac.authorization.k8s.io "openebs-maya-operator" is forbidden: attempt to grant extra privileges: [{[*] [*] [nodes] [] []} {[*] [*] [nodes/proxy] [] []} {[*] [*] [namespaces] [] []} {[*] [*] [services] [] []} {[*] [*] [pods] [] []} {[*] [*] [deployments] [] []} {[*] [*] [events] [] []} {[*] [*] [endpoints] [] []} {[*] [*] [configmaps] [] []} {[*] [*] [jobs] [] []} {[*] [*] [storageclasses] [] []} {[*] [*] [persistentvolumeclaims] [] []} {[*] [*] [persistentvolumes] [] []} {[get] [volumesnapshot.external-storage.k8s.io] [volumesnapshots] [] []} {[list] [volumesnapshot.external-storage.k8s.io] [volumesnapshots] [] []} {[watch] [volumesnapshot.external-storage.k8s.io] [volumesnapshots] [] []} {[create] [volumesnapshot.external-storage.k8s.io] [volumesnapshots] [] []} {[update] [volumesnapshot.external-storage.k8s.io] [volumesnapshots] [] []} {[patch] [volumesnapshot.external-storage.k8s.io] [volumesnapshots] [] []} {[delete] [volumesnapshot.external-storage.k8s.io] [volumesnapshots] [] []} {[get] [volumesnapshot.external-storage.k8s.io] [volumesnapshotdatas] [] []} {[list] [volumesnapshot.external-storage.k8s.io] [volumesnapshotdatas] [] []} {[watch] [volumesnapshot.external-storage.k8s.io] [volumesnapshotdatas] [] []} {[create] [volumesnapshot.external-storage.k8s.io] [volumesnapshotdatas] [] []} {[update] [volumesnapshot.external-storage.k8s.io] [volumesnapshotdatas] [] []} {[patch] [volumesnapshot.external-storage.k8s.io] [volumesnapshotdatas] [] []} {[delete] [volumesnapshot.external-storage.k8s.io] [volumesnapshotdatas] [] []} {[get] [apiextensions.k8s.io] [customresourcedefinitions] [] []} {[list] [apiextensions.k8s.io] [customresourcedefinitions] [] []} {[create] [apiextensions.k8s.io] [customresourcedefinitions] [] []} {[update] [apiextensions.k8s.io] [customresourcedefinitions] [] []} {[delete] [apiextensions.k8s.io] [customresourcedefinitions] [] []} {[*] [*] [disks] [] []} {[*] [*] [storagepoolclaims] [] []} {[*] [*] [storagepools] [] []} {[*] [*] [castemplates] [] []} {[*] [*] [runtasks] [] []} {[*] [*] [cstorpools] [] []} {[*] [*] [cstorvolumereplicas] [] []} {[*] [*] [cstorvolumes] [] []} {[get] [] [] [] [/metrics]}] user=&{user.name@mayadata.io  [system:authenticated] map[user-assertion.cloud.google.com:[AKUJVpmzjjLCED3Vk2Q7wSjXV1gJs/pA3V9ZW53TOjO5bHOExEps6b2IZRjnru9YBKvaj3pgVu+34A0fKIlmLXLHOQdL/uFA4WbKbKfMdi1XC52CcL8gGTXn0/G509L844+OiM+mDJUftls7uIgOIRFAyk2QBixnYv22ybLtO2n8kcpou+ZcNFEVAD6z8Xy3ZLEp9pMd9WdQuttS506x5HIQSpDggWFf9T96yPc0CYmVEmkJm+O7uw==]]} ownerrules=[{[create] [authorization.k8s.io] [selfsubjectaccessreviews selfsubjectrulesreviews] [] []} {[get] [] [] [] [/api /api/* /apis /apis/* /healthz /openapi /openapi/* /swagger-2.0.0.pb-v1 /swagger.json /swaggerapi /swaggerapi/* /version /version/]}] ruleResolutionErrors=[]
 ```
 
 **Troubleshooting**
 
-The cause of high memory consumption of kubelet is mainly due to the following.
+You must enable RBAC before OpenEBS installation. This can be done from the kubernetes master console by executing the following command.
 
-There are 3 modules are involved - cstor-istgt, kubelet and iscsiInitiator(iscsiadm). kubelet runs iscsiadm command to do discovery on cstor-istgt. If there is any delay in receiving response of discovery opcode (either due to network or delay in processing on target side), iscsiadm retries few times, and, gets into infinite loop dumping error messages as below:
-
-```shell hideCopy
-iscsiadm: Connection to Discovery Address 127.0.0.1 failed
-iscsiadm: failed to send SendTargets PDU
-iscsiadm: connection login retries (reopen_max) 5 exceeded
-iscsiadm: Connection to Discovery Address 127.0.0.1 failed
-iscsiadm: failed to send SendTargets PDU
+```
+kubectl create clusterrolebinding  <cluster_name>-admin-binding --clusterrole=cluster-admin --user=<user-registered-email-with-the-provider>
 ```
 
-kubelet keeps taking this response and accumulates the memory. More details can be seen [here](https://github.com/openebs/openebs/issues/2382).
+### Why does OpenEBS provisioner pod restart continuously?{#openebs-provisioner-restart-continuously}
 
-**Workaround**
+The following output displays the pod status of all namespaces in which the OpenEBS provisioner is restarting continuously.
 
-Restart the corresponding istgt pod to avoid memory consumption.
+```
+NAMESPACE     NAME                                         READY     STATUS             RESTARTS   AGE       IP                NODE
+default       percona                                      0/1       Pending            0          36m       <none>            <none>
+kube-system   calico-etcd-tl4td                            1/1       Running            0          1h        192.168.56.65     master
+kube-system   calico-kube-controllers-84fd4db7cd-jz9wt     1/1       Running            0          1h        192.168.56.65     master
+kube-system   calico-node-node1                            2/2       Running            0          1h        192.168.56.65     master
+kube-system   calico-node-zt95x                            2/2       Running            0          1h        192.168.56.66     node
+kube-system   coredns-78fcdf6894-2test                     1/1       Running            0          1h        192.168.219.65    master
+kube-system   coredns-78fcdf6894-test7                     1/1       Running            0          1h        192.168.219.66    master
+kube-system   etcd-master                                  1/1       Running            0          1h        192.168.56.65     master
+kube-system   kube-apiserver-master                        1/1       Running            0          1h        192.168.56.65     master
+kube-system   kube-controller-manager-master               1/1       Running            0          1h        192.168.56.65     master
+kube-system   kube-proxy-9t98s                             1/1       Running            0          1h        192.168.56.65     master
+kube-system   kube-proxy-mwk9f                             1/1       Running            0          1h        192.168.56.66     node
+kube-system   kube-scheduler-master                        1/1       Running            0          1h        192.168.56.65     master
+openebs       maya-apiserver-5598cf68ff-pod17              1/1       Running            0          1h        192.168.167.131   node
+openebs       openebs-provisioner-776846bbff-pod19         0/1       CrashLoopBackOff   16         1h        192.168.167.129   node
+openebs       openebs-snapshot-operator-5b5f97dd7f-np79k   0/2       CrashLoopBackOff   32         1h        192.168.167.130   node
+```
 
-## Application and OpenEBS pods terminate/restart under heavy I/O load {#Pods-restart-terminate-when-heavy-load}
+**Troubleshooting**
+
+Perform the following steps to verify if the issue is due to misconfiguration while installing the network component.
+
+1. Check if your network related pods are running fine.
+
+2. Check if OpenEBS provisioner HTTPS requests are reaching the apiserver
+
+3. Use the latest version of network provider images.
+
+4. Try other network components such as Calico, kube-router etc. if you are not using any of these.
+
+### OpenEBS installation fails on Azure {#install-failed-azure-no-rbac-set}
+
+On AKS, while installing OpenEBS using Helm, you may see the following error.
+
+```
+$ helm install openebs/openebs --name openebs --namespace openebs
+```
+
+```shell hideCopy
+Error: release openebs failed: clusterroles.rbac.authorization.k8s.io "openebs" isforbidden: attempt to grant extra privileges:[PolicyRule{Resources:["nodes"], APIGroups:["*"],Verbs:["get"]} PolicyRule{Resources:["nodes"],APIGroups:["*"], Verbs:["list"]}PolicyRule{Resources:["nodes"], APIGroups:["*"],Verbs:["watch"]} PolicyRule{Resources:["nodes/proxy"],APIGroups:["*"], Verbs:["get"]}PolicyRule{Resources:["nodes/proxy"], APIGroups:["*"],Verbs:["list"]} PolicyRule{Resources:["nodes/proxy"],APIGroups:["*"], Verbs:["watch"]}PolicyRule{Resources:["namespaces"], APIGroups:["*"],Verbs:["*"]} PolicyRule{Resources:["services"],APIGroups:["*"], Verbs:["*"]} PolicyRule{Resources:["pods"],APIGroups:["*"], Verbs:["*"]}PolicyRule{Resources:["deployments"], APIGroups:["*"],Verbs:["*"]} PolicyRule{Resources:["events"],APIGroups:["*"], Verbs:["*"]}PolicyRule{Resources:["endpoints"], APIGroups:["*"],Verbs:["*"]} PolicyRule{Resources:["persistentvolumes"],APIGroups:["*"], Verbs:["*"]} PolicyRule{Resources:["persistentvolumeclaims"],APIGroups:["*"], Verbs:["*"]}PolicyRule{Resources:["storageclasses"],APIGroups:["storage.k8s.io"], Verbs:["*"]}PolicyRule{Resources:["storagepools"], APIGroups:["*"],Verbs:["get"]} PolicyRule{Resources:["storagepools"], APIGroups:["*"],Verbs:["list"]} PolicyRule{NonResourceURLs:["/metrics"],Verbs:["get"]}] user=&{system:serviceaccount:kube-system:tiller6f3172cc-4a08-11e8-9af5-0a58ac1f1729 [system:serviceaccounts system:serviceaccounts:kube-systemsystem:authenticated] map[]} ownerrules=[]ruleResolutionErrors=[clusterroles.rbac.authorization.k8s.io"cluster-admin" not found]
+```
+
+**Troubleshooting**
+
+You must enable RBAC on Azure before OpenEBS installation. For more details, see [Prerequisites](../user-guides/local-engine-user-guide/prerequisites.mdx).
+
+### A multipath.conf file claims all SCSI devices in OpenShift {#multipath-conf-claims-all-scsi-devices-openshift}
+
+A multipath.conf file without either find_multipaths or a manual blacklist claims all SCSI devices.
+
+#### Workaround
+
+1. Add the find _multipaths line to_ \_/etc/multipath.conf\_ file similar to the following snippet.
+
+   ```
+   defaults {
+       user_friendly_names yes
+       find_multipaths yes
+   }
+   ```
+
+2. Run `multipath -w /dev/sdc` command (replace the devname with your persistent devname).
+
+
+<font size="6" color="orange">Kubernetes Related</font>
+
+### Application and OpenEBS pods terminate/restart under heavy I/O load {#Pods-restart-terminate-when-heavy-load}
 
 This is caused due to lack of resources on the Kubernetes nodes, which causes the pods to evict under loaded conditions as the node becomes _unresponsive_. The pods transition from _Running_ state to _unknown_ state followed by _Terminating_ before restarting again.
 
@@ -115,9 +224,9 @@ You can resolve this issue by upgrading the Kubernetes cluster infrastructure re
 
 <font size="6" color="orange">Others</font>
 
-## Nodes in the cluster reboots frequently almost everyday in openSUSE CaaS {#reboot-cluster-nodes}
+### Nodes in the cluster reboots frequently almost everyday in openSUSE CaaS {#reboot-cluster-nodes}
 
-Setup the cluster using RKE with openSUSE CaaS MicroOS using CNI Plugin Cilium. Install OpenEBS, create a PVC and allocate to a fio job/ busybox. Run FIO test on the same. Observed nodes in the cluster getting restarted on a schedule basis.
+Setup the cluster using RKE with openSUSE CaaS MicroOS using CNI Plugin Cilium. Install OpenEBS, create a PVC and allocate to a fio job/busybox. Run FIO test on the same. Observed nodes in the cluster getting restarted on a schedule basis.
 
 **Troubleshooting**
 
@@ -176,7 +285,7 @@ There are 2 possible solutions.
 
 Approach1:
 
-DO the following on each nodes to stop the transactional update.
+Do the following on each nodes to stop the transactional update.
 
 ```
 systemctl disable --now rebootmgr.service
@@ -191,4 +300,8 @@ Set the reboot timer schedule at different time i.e staggered at various interva
 
 ## See Also:
 
-[Troubleshooting Install](/docs/troubleshooting/install) [Troubleshooting Uninstall](/docs/troubleshooting/uninstall) [Troubleshooting NDM](/docs/troubleshooting/ndm) [Troubleshooting Jiva](/docs/troubleshooting/jiva) [Troubleshooting cStor](/docs/troubleshooting/cstor) [Troubleshooting Local PV](/docs/troubleshooting/localpv) [Troubleshooting Mayastor](/docs/troubleshooting/mayastor) [FAQs](/docs/additional-info/faqs) [Seek support or help](/docs/introduction/community) [Latest release notes](/docs/introduction/releases)
+[FAQs](../faqs/faqs.md)
+[Latest Release Notes](../releases.md)
+[OpenEBS Community](../community.md)
+[OpenEBS GitHub repository](https://github.com/openebs/openebs/issues)
+[StackOverflow under OpenEBS tag](https://stackoverflow.com/questions/tagged/openebs)
