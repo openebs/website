@@ -154,6 +154,11 @@ module.exports = {
                   type: "doc",
                   id: "user-guides/local-engine-user-guide/additional-information/kb",
                   label: "Knowledge Base"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/additional-information/backupandrestore",
+                  label: "Backup and Restore"
                 }
               ]
             }

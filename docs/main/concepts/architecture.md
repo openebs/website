@@ -57,7 +57,7 @@ The OpenEBS volume services layer exposes the volumes as:
 
 ### Volume Data Layer 
 
-OpenEBS Data Engines create a Volume Replica on top of the Storage Layer. Volume Replicas are pinned to a node and are created on top of the Storage Layer. The replica can be any of the following:
+OpenEBS Data Engines create a Volume Replica on top of the storage layer. Volume Replicas are pinned to a node and are created on top of the storage layer. The replica can be any of the following:
 
 - Sub-directory - in case the storage layer used is a filesystem directory
 - Full Device or Partitioned Device - in case the storage layer used is block devices
@@ -76,9 +76,9 @@ OpenEBS Volume Replicas typically go through the following states:
 
 ### Storage Layer 
 
-Storage Layer forms the basic building blocks for persisting the data. The Storage Layer comprise of block devices attached to the node (either locally via PCIe, SAS, NVMe or via remote SAN/Cloud). The Storage Layer could also be a sub-directory on top of a mounted filesystem. 
+Storage layer forms the basic building blocks for persisting the data. The storage layer comprise of block devices attached to the node (either locally via PCIe, SAS, NVMe or via remote SAN/Cloud). The storage layer could also be a sub-directory on top of a mounted filesystem. 
 
-Storage Layer is outside the purview of the OpenEBS Data Engines and are available to the Kubernetes storage constructs using standard operating system or Linux software constructs.  
+Storage layer is outside the purview of the OpenEBS Data Engines and are available to the Kubernetes storage constructs using standard operating system or Linux software constructs.  
 
 The Data Engines consume the storage as a device or a device pool or a filesystem directory. 
 
@@ -148,7 +148,7 @@ OpenEBS focuses on storage operations and provides plugins for other popular too
 
 ### CLI 
 
-All the management functions on OpenEBS can be carried out via `kubectl` as OpenEBS uses custom resources for managing all of its configurations and reporting the status of the components. 
+All the management functions on OpenEBS can be carried out via `kubectl` as OpenEBS uses Custom Resources for managing all of its configurations and reporting the status of the components. 
 
 In addition, OpenEBS also has released as alpha version `kubectl plugin` to help with providing information about the pools and volumes using a single command that aggregates the information obtained via multiple `kubectl` commands.
 

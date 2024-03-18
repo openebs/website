@@ -24,10 +24,10 @@ Examples of good workloads that can benefit from local volumes are:
 OpenEBS helps users to take local volumes into production by providing features that are currently missing in Kubernetes like:
 
 - Dynamic PV provisioners for local volumes.
-- Local volumes backed by hostpath on filesystems like Ext3, XFS.
+- Local volumes backed by hostpath on filesystems like Ext3, XFS, LVM, or ZFS.
 - Monitoring the health of underlying devices or storage used to create local volumes. 
 - Capacity management features like over-provisioning and/or quota enforcement. 
-- Make use of the underlying storage capabilities like snapshot, clone, compression, and so forth when local volumes are backed by advanced filesystem. 
+- Make use of the underlying storage capabilities like snapshot, clone, compression, and so forth when local volumes are backed by advanced filesystem like LVM and ZFS. 
 - Backup and Restore via Velero. 
 - Secure the local volumes via LUKS or by using in-built encryption support of the underlying filesystem.
 
