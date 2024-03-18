@@ -300,6 +300,8 @@ Set the reboot timer schedule at different time i.e staggered at various interva
 
 ### How to fetch the OpenEBS Dynamic Local Provisioner logs?
 
+**Workaround:**
+
 Review the logs of the OpenEBS Local PV provisioner. OpenEBS Dynamic Local Provisioner logs can be fetched using. 
 
 ```
