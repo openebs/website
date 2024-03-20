@@ -505,3 +505,67 @@ instructions [here](#ubuntu).
 ## See Also:
 
 [OpenEBS Installation](/user-guides/installation) [OpenEBS Architecture](/concepts/architecture)
+
+## Local PV Hostpath
+
+### Minimum Supported Versions
+
+- Kubernetes 1.12 or higher is required
+- OpenEBS 1.0 or higher is required. 
+
+### Prerequisites
+
+Setup the directory on the nodes where Local PV Hostpaths will be created. This directory will be referred to as `BasePath`. The default location is `/var/openebs/local`.  
+
+`BasePath` can be any of the following:
+- A directory on root disk (or `os disk`). (Example: `/var/openebs/local`). 
+- In the case of bare-metal Kubernetes nodes, a mounted directory using the additional drive or SSD. (Example: An SSD available at `/dev/sdb`, can be formatted with Ext4 and mounted as `/mnt/openebs-local`) 
+- In the case of cloud or virtual instances, a mounted directory created from attaching an external cloud volume or virtual disk. (Example, in GKE, a Local SSD can be used which will be available at `/mnt/disk/ssd1`.)
+
+:::note air-gapped environment
+If you are running your Kubernetes cluster in an air-gapped environment, make sure the following container images are available in your local repository.
+- openebs/localpv-provisioner
+- openebs/linux-utils
+:::
+
+:::note Rancher RKE cluster
+If you are using the Rancher RKE cluster, you must configure kubelet service with `extra_binds` for `BasePath`. If your `BasePath` is the default directory `/var/openebs/local`, then extra_binds section should have the following details:
+```
+services:
+  kubelet:
+    extra_binds:
+      - /var/openebs/local:/var/openebs/local
+```
+:::
+
+## LVM Local PV
+
+### Minimum Supported Versions
+
+- K8S: 1.20+
+- OS: Ubuntu
+- LVM Version: LVM 2
+
+### Prerequisites
+
+Before installing LVM driver, make sure your Kubernetes Cluster must meet the following prerequisites:
+
+1. All the nodes must have lvm2 utils installed and the dm-snapshot kernel module loaded.
+2. Volume group has been setup for provisioning the volume.
+3. You have access to install RBAC components into kube-system namespace. The OpenEBS LVM driver components are installed in kube-system namespace to allow them to be flagged as system critical components.
+
+## ZFS Local PV
+
+### Minimum Supported Versions
+
+- K8S: 1.20+
+- OS: Ubuntu and CentOS
+- ZFS Version: ZFS 0.7 and ZFS 0.8
+
+### Prerequisites
+
+Before installing ZFS driver, make sure your Kubernetes Cluster must meet the following prerequisites:
+
+1. All the nodes must have zfs utils installed.
+2. ZPOOL has been setup for provisioning the volume.
+3. You have access to install RBAC components into kube-system namespace. The OpenEBS ZFS driver components are installed in kube-system namespace to allow them to be flagged as system critical components.

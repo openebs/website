@@ -128,6 +128,11 @@ module.exports = {
               label: "Prerequisites"
             },
             {
+              type: "doc",
+              id: "user-guides/local-engine-user-guide/local-engine-installation",
+              label: "Local Engine Installation"
+            },
+            {
               collapsed: true,
               type: "category",
               label: "Additional Information",
@@ -176,6 +181,11 @@ module.exports = {
               type: "doc",
               id: "user-guides/replicated-engine-user-guide/prerequisites-re",
               label: "Prerequisites"
+            },
+            {
+              type: "doc",
+              id: "user-guides/replicated-engine-user-guide/replicated-engine-installation",
+              label: "Replicated Engine Installation"
             },
             {
               collapsed: true,
