@@ -385,7 +385,7 @@ For some Kubernetes distributions, the `kubelet` directory must be changed at al
 - For `k0s`, the default directory `(/var/lib/kubelet)` should be changed to `/var/lib/k0s/kubelet`.
 - For `RancherOS`, the default directory `(/var/lib/kubelet)` should be changed to `/opt/rke/var/lib/kubelet`.
 
-Verify that the LVM driver Components are installed and running using below command :
+Verify that the LVM driver Components are installed and running using below command:
 
 ```
 $ kubectl get pods -n kube-system -l role=openebs-lvm
@@ -514,3 +514,145 @@ persistentvolumeclaim "csi-lvmpv" deleted
 ### Limitation
 
 Resize of volumes with snapshot is not supported.
+
+## ZFS Local PV
+
+### Setup
+
+All the node should have zfsutils-linux installed. We should go to the each node of the cluster and install zfs utils:
+
+```
+$ apt-get install zfsutils-linux
+```
+
+Go to each node and create the ZFS Pool, which will be used for provisioning the volumes. You can create the Pool of your choice, it can be striped, mirrored or raidz pool.
+
+If you have the disk(say /dev/sdb) then you can use the below command to create a striped pool:
+
+```
+$ zpool create zfspv-pool /dev/sdb
+```
+
+You can also create mirror or raidz pool as per your need. Check https://github.com/openzfs/zfs for more information.
+
+If you do not have the disk, then you can create the zpool on the loopback device which is backed by a sparse file. Use this for testing purpose only.
+
+```
+$ truncate -s 100G /tmp/disk.img
+$ zpool create zfspv-pool `losetup -f /tmp/disk.img --show`
+```
+
+Once the ZFS Pool is created, verify the pool `via zpool` status command, you should see something like this:
+
+```
+$ zpool status
+  pool: zfspv-pool
+ state: ONLINE
+  scan: none requested
+config:
+
+	NAME        STATE     READ WRITE CKSUM
+	zfspv-pool  ONLINE       0     0     0
+	  sdb       ONLINE       0     0     0
+
+errors: No known data errors
+```
+
+Configure the custom topology keys (if needed). This can be used for many purposes like if we want to create the PV on nodes in a particuler zone or building. We can label the nodes accordingly and use that key in the storageclass for taking the scheduling decesion:
+
+https://github.com/openebs/zfs-localpv/blob/HEAD/docs/faq.md#6-how-to-add-custom-topology-key
+
+### Installation
+
+In order to support moving data to a new node later on, you must label each node with a unique value for `openebs.io/nodeid`. For more information on migrating data, see [here](https://github.com/openebs/zfs-localpv/blob/develop/docs/faq.md#8-how-to-migrate-pvs-to-the-new-node-in-case-old-node-is-not-accessible)
+
+We can install the latest release of OpenEBS ZFS driver by running the following command:
+
+```
+$ kubectl apply -f https://openebs.github.io/charts/zfs-operator.yaml
+```
+
+We can also install it via kustomize using `kubectl apply -k deploy/yamls`, check the kustomize yaml.
+
+:::note
+If you are running a custom Kubelet location, or a Kubernetes distribution that uses a custom Kubelet location, the `kubelet` directory must be changed at all relevant places in the YAML powering the operator (both the `openebs-zfs-controller` and `openebs-zfs-node`).
+:::
+
+- For `microk8s`, we need to change the kubelet directory to `/var/snap/microk8s/common/var/lib/kubelet/`, we need to replace `/var/lib/kubelet/` with `/var/snap/microk8s/common/var/lib/kubelet/` at all the places in the operator yaml and then we can apply it on microk8s.
+- For `k0s`, the default directory `(/var/lib/kubelet)` should be changed to `/var/lib/k0s/kubelet`.
+- For `RancherOS`, the default directory `(/var/lib/kubelet)` should be changed to `/opt/rke/var/lib/kubelet`.
+
+Verify that the ZFS driver Components are installed and running using below command:
+
+```
+$ kubectl get pods -n kube-system -l role=openebs-lvm
+```
+
+Depending on number of nodes, you will see one zfs-controller pod and zfs-node daemonset running on the nodes.
+
+```
+NAME                       READY   STATUS    RESTARTS   AGE
+openebs-zfs-controller-0   5/5     Running   0          5h28m
+openebs-zfs-node-4d94n     2/2     Running   0          5h28m
+openebs-zfs-node-gssh8     2/2     Running   0          5h28m
+openebs-zfs-node-twmx8     2/2     Running   0          5h28m
+```
+
+Once ZFS driver is successfully installed, we can provision volumes.
+
+### Deployment
+
+#### Create StorageClass
+
+```
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: openebs-zfspv
+parameters:
+  recordsize: "128k"
+  compression: "off"
+  dedup: "off"
+  fstype: "zfs"
+  poolname: "zfspv-pool"
+provisioner: zfs.csi.openebs.io
+```
+
+The storage class contains the volume parameters like recordsize(should be power of 2), compression, dedup and fstype. You can select what are all parameters you want. In case, ZFS properties paramenters are not provided, the volume will inherit the properties from the ZFS Pool.
+
+The poolname is the must argument. It should be noted that poolname can either be the root dataset or a child dataset e.g.
+
+```
+poolname: "zfspv-pool"
+poolname: "zfspv-pool/child"
+```
+
+Also the dataset provided under `poolname` must exist on all the nodes with the name given in the storage class. Check the doc on storageclasses to know all the supported parameters for ZFS-LocalPV
+
+**ext2/3/4 or xfs or btrfs as FsType**
+If we provide fstype as one of ext2/3/4 or xfs or btrfs, the driver will create a ZVOL, which is a blockdevice carved out of ZFS Pool. This blockdevice will be formatted with corresponding filesystem before it's used by the driver.
+
+:::note
+There will be a filesystem layer on top of ZFS volume and applications may not get optimal performance.
+:::
+
+A sample storage class for ext4 fstype is provided below:
+
+```
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: openebs-zfspv
+parameters:
+  volblocksize: "4k"
+  compression: "off"
+  dedup: "off"
+  fstype: "ext4"
+  poolname: "zfspv-pool"
+provisioner: zfs.csi.openebs.io
+```
+
+:::note
+We are providing `volblocksize` instead of `recordsize` since we will create a ZVOL, for which we can select the blocksize with which we want to create the block device. Also, note that for ZFS, volblocksize should be power of 2.
+
+**ZFS as FsType**
