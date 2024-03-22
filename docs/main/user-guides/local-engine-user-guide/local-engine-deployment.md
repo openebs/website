@@ -1,10 +1,10 @@
 ---
-id: local-engine-installation
-title: Local Engine Installation
+id: local-engine-deployment
+title: Local Engine Deployment
 keywords: 
-  - Installation
-  - Local Engine Installation
-description: This guide will help you to install OpenEBS Local Engines.
+  - Deployment
+  - Local Engine Deployment
+description: This guide will help you to deploy OpenEBS Local Engines.
 ---
 
 # Local Engine Installation

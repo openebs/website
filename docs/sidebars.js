@@ -129,8 +129,8 @@ module.exports = {
             },
             {
               type: "doc",
-              id: "user-guides/local-engine-user-guide/local-engine-installation",
-              label: "Local Engine Installation"
+              id: "user-guides/local-engine-user-guide/local-engine-deployment",
+              label: "Local Engine Deployment"
             },
             {
               collapsed: true,
@@ -184,8 +184,8 @@ module.exports = {
             },
             {
               type: "doc",
-              id: "user-guides/replicated-engine-user-guide/replicated-engine-installation",
-              label: "Replicated Engine Installation"
+              id: "user-guides/replicated-engine-user-guide/replicated-engine-deployment",
+              label: "Replicated Engine Deployment"
             },
             {
               collapsed: true,
