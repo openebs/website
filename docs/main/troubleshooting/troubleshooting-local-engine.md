@@ -8,7 +8,7 @@ keywords:
 description: This page contains a list of OpenEBS related troubleshooting which contains information like troubleshooting installation, troubleshooting uninstallation, and troubleshooting local engines.
 ---
 
-<font size="6" color="orange">Basic Troubleshooting</font>
+<font size="6" color="orange">General Troubleshooting</font>
 
 ### PVC in Pending state {#pvc-in-pending-state}
 
@@ -207,6 +207,38 @@ A multipath.conf file without either find_multipaths or a manual blacklist claim
 
 2. Run `multipath -w /dev/sdc` command (replace the devname with your persistent devname).
 
+### Set Cluster-admin User Context
+
+For installation of OpenEBS, cluster-admin user context is a must. OpenEBS installs service accounts and custom resource definitions that are only allowed for cluster administrators. 
+
+Use the `kubectl auth can-i` commands to verify that you have the cluster-admin context. You can use the following commands to verify if you have access: 
+
+```
+kubectl auth can-i 'create' 'namespace' -A
+kubectl auth can-i 'create' 'crd' -A
+kubectl auth can-i 'create' 'sa' -A
+kubectl auth can-i 'create' 'clusterrole' -A
+```
+
+If there is no cluster-admin user context already present, create one and use it. Use the following command to create the new context.
+
+```
+kubectl config set-context NAME [--cluster=cluster_nickname] [--user=user_nickname] [--namespace=namespace]
+```
+
+Example:
+
+```
+kubectl config set-context admin-ctx --cluster=gke_strong-eon-153112_us-central1-a_rocket-test2 --user=cluster-admin
+```
+
+Set the existing cluster-admin user context or the newly created context by using the following command.
+
+Example:
+
+```
+kubectl config use-context admin-ctx
+```
 
 <font size="6" color="orange">Kubernetes Related</font>
 
@@ -308,7 +340,7 @@ Review the logs of the OpenEBS Local PV provisioner. OpenEBS Dynamic Local Provi
 kubectl logs -n openebs -l openebs.io/component-name=openebs-localpv-provisioner
 ```
 
-## See Also:
+## See Also
 
 [FAQs](../faqs/faqs.md)
 [Latest Release Notes](../releases.md)

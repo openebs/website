@@ -18,7 +18,7 @@ The list is provided in alphabetical order.
 - [DataCore](https://www.datacore.com/support/openebs/)
 - [Gridworkz Cloud Services](https://www.gridworkz.com/)
 
-## See Also:
+## See Also
 
 - [Community Support](community.md) 
 - [Troubleshooting](../main/troubleshooting/)

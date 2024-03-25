@@ -119,7 +119,7 @@ module.exports = {
           type: "category",
           label: "Local Engine User Guide",
           customProps: {
-            icon: "File"
+            icon: "Book"
           },
           items: [
             {
@@ -137,7 +137,7 @@ module.exports = {
               type: "category",
               label: "Additional Information",
               customProps: {
-                icon: "Book"
+                icon: "File"
               },
               items: [
                 {
@@ -174,7 +174,7 @@ module.exports = {
           type: "category",
           label: "Replicated Engine User Guide",
           customProps: {
-            icon: "File"
+            icon: "Book"
           },
           items: [
             {
@@ -191,6 +191,9 @@ module.exports = {
               collapsed: true,
               type: "category",
               label: "Advanced Operations",
+              customProps: {
+                icon: "Layers"
+              },
               items: [
                 {
                   type: "doc",
@@ -243,6 +246,9 @@ module.exports = {
               collapsed: true,
               type: "category",
               label: "Additional Information",
+              customProps: {
+                icon: "File"
+              },
               items: [
                 {
                   type: "doc",
@@ -289,7 +295,7 @@ module.exports = {
                   type: "category",
                   label: "Migration for Distributed DB",
                   customProps: {
-                    icon: ""
+                    icon: "File"
                   },
                   items: [
                     {
@@ -314,7 +320,7 @@ module.exports = {
                   type: "category",
                   label: "Migration for Replicated DB",
                   customProps: {
-                    icon: ""
+                    icon: "File"
                   },
                   items: [
                     {
@@ -376,6 +382,26 @@ module.exports = {
       ]
     },
     {
+      collapsed: true,
+      type: "category",
+      label: "Support",
+      customProps: {
+        icon: "User"
+      },
+      items: [
+        {
+          type: "doc",
+          id: "community",
+          label: "Community",
+        },
+        {
+          type: "doc",
+          id: "commercial",
+          label: "Commercial Support"
+        }
+      ]
+    },
+    {
       type: "doc",
       id: "releases",
       label: "Releases",
@@ -390,19 +416,6 @@ module.exports = {
       customProps: {
         icon: "HelpCircle"
       },
-    },
-    {
-      type: "doc",
-      id: "community",
-      label: "Community",
-      customProps: {
-        icon: "Conversation"
-      },
-    },
-    {
-      type: "doc",
-      id: "commercial",
-      label: "Commercial Support"
     }
   ]
 }

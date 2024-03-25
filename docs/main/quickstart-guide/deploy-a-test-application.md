@@ -1,20 +1,25 @@
 ---
 id: deployment
-title: Deploy a Test Application
+title: Configuration and Deployment of Test Application
 keywords: 
   - Deploy
   - Deployment
-  - Deploy a Test Application 
+  - Deploy a Test Application
 description: This guide will help you to deploy a test application
 ---
 
-# Deploy a Test Application
+:::info
+- See [Local Engine Deployment](../user-guides/local-engine-user-guide/local-engine-deployment.md) to deploy LVM Local PV and ZFS Local PV.
+- See [Replicated Engine Deployment](../user-guides/replicated-engine-user-guide/replicated-engine-deployment.md) to deploy Replicated Engine.
+:::
 
-This guide will help you to deploy OpenEBS.
+# Configure an Application
+
+This section explains about the configuration process.
 
 ## Create StorageClass
 
-You can skip this section if you would like to use default OpenEBS Local PV Hostpath StorageClass created by OpenEBS. 
+You can skip this section if you want to use default OpenEBS Local PV Hostpath StorageClass created by OpenEBS. 
 
 The default Storage Class is called `openebs-hostpath` and its `BasePath` is configured as `/var/openebs/local`. 
 
@@ -116,7 +121,11 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
    local-hostpath-pvc   Pending                                      openebs-hostpath   3m7s
    ```
 
-## Create Pod to consume OpenEBS Local PV Hostpath Storage
+# Deploy a Test Application
+
+This section explains about the deployment process.
+
+## Create Pod to Consume OpenEBS Local PV Hostpath Storage
 
 1. Here is the configuration file for the Pod that uses Local PV. Save the following Pod definition to `local-hostpath-pod.yaml`.
 
@@ -249,8 +258,4 @@ A few important characteristics of a *OpenEBS Local PV* can be seen from the abo
 - `spec.nodeAffinity` specifies the Kubernetes node where the Pod using the Hostpath volume is scheduled. 
 - `spec.local.path` specifies the unique subdirectory under the `BasePath (/var/local/openebs)` defined in corresponding StorageClass.
 :::
-  
-:::info
-- See [Local Engine Deployment](../user-guides/local-engine-user-guide/local-engine-deployment.md) for LVM Local PV Deployment and ZFS Local PV Deployment.
-- See [Replicated Engine Deployment](../user-guides/replicated-engine-user-guide/replicated-engine-deployment.md) for Replicated Engine Deployment.
-:::
+

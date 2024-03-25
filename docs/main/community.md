@@ -33,7 +33,7 @@ Join our OpenEBS CNCF Mailing lists
 
 Join our weekly or monthly [community meetings](https://github.com/openebs/openebs/tree/master/community#community-meetings).
 
-## See Also:
+## See Also
 
 - [Releases](releases.md)
 - [Community Support](community.md) 
