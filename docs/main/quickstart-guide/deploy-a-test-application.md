@@ -1,86 +1,22 @@
 ---
 id: deployment
-title: Configuration and Deployment of Test Application
+title: Deploy an Application
 keywords: 
   - Deploy
   - Deployment
-  - Deploy a Test Application
-description: This guide will help you to deploy a test application
+  - Deploy an Application
+description: This section will help you to deploy a test application.
 ---
 
 :::info
-- See [Local Engine Deployment](../user-guides/local-engine-user-guide/local-engine-deployment.md) to deploy LVM Local PV and ZFS Local PV.
+- See [LVM Local PV User Guide](../user-guides/local-engine-user-guide/lvm-localpv.md) to deploy LVM Local PV.
+- See [ZFS Local PV User Guide](../user-guides/local-engine-user-guide/zfs-localpv.md) to deploy ZFS Local PV.
 - See [Replicated Engine Deployment](../user-guides/replicated-engine-user-guide/replicated-engine-deployment.md) to deploy Replicated Engine.
 :::
 
-# Configure an Application
+# Deploy an Application
 
-This section explains about the configuration process.
-
-## Create StorageClass
-
-You can skip this section if you want to use default OpenEBS Local PV Hostpath StorageClass created by OpenEBS. 
-
-The default Storage Class is called `openebs-hostpath` and its `BasePath` is configured as `/var/openebs/local`. 
-
-1. To create your own StorageClass with custom `BasePath`, save the following StorageClass definition as `local-hostpath-sc.yaml`
-
-   ```
-   apiVersion: storage.k8s.io/v1
-   kind: StorageClass
-   metadata:
-     name: local-hostpath
-     annotations:
-       openebs.io/cas-type: local
-       cas.openebs.io/config: |
-         - name: StorageType
-           value: hostpath
-         - name: BasePath
-           value: /var/local-hostpath
-   provisioner: openebs.io/local
-   reclaimPolicy: Delete
-   volumeBindingMode: WaitForFirstConsumer
-   ```
-    ### (Optional) Custom Node Labelling
-
-    In Kubernetes, Hostpath LocalPV identifies nodes using labels such as `kubernetes.io/hostname=<node-name>`. However, these default labels might not ensure each node is distinct across the entire cluster. To solve this, you can make custom labels. As an admin, you can define and set these labels when configuring a **StorageClass**. Here's a sample storage class:
-
-    ```
-    apiVersion: storage.k8s.io/v1
-    kind: StorageClass
-    metadata:
-      name: local-hostpath
-      annotations:
-        openebs.io/cas-type: local
-        cas.openebs.io/config: |
-          - name: StorageType
-            value: "hostpath"
-          - name: NodeAffinityLabels
-            list:
-              - "openebs.io/custom-node-unique-id"
-    provisioner: openebs.io/local
-    volumeBindingMode: WaitForFirstConsumer
-
-    ```
-  :::note 
-  Using NodeAffinityLabels does not influence scheduling of the application Pod. Use kubernetes [allowedTopologies](https://github.com/openebs/dynamic-localpv-provisioner/blob/develop/docs/tutorials/hostpath/allowedtopologies.md) to configure scheduling options.
-  :::
-
-2. Edit `local-hostpath-sc.yaml` and update with your desired values for `metadata.name` and `cas.openebs.io/config.BasePath`.
-
-   :::note 
-   If the `BasePath` does not exist on the node, *OpenEBS Dynamic Local PV Provisioner* will attempt to create the directory, when the first Local Volume is scheduled on to that node. You MUST ensure that the value provided for `BasePath` is a valid absolute path. 
-   :::
-
-3. Create OpenEBS Local PV Hostpath Storage Class. 
-   ```
-   kubectl apply -f local-hostpath-sc.yaml
-   ```
-
-4. Verify that the StorageClass is successfully created. 
-   ```
-   kubectl get sc local-hostpath -o yaml
-   ```
+This section will help you to deploy an application.
 
 ## Create a PersistentVolumeClaim
 
@@ -120,10 +56,6 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
    NAME                 STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS       AGE
    local-hostpath-pvc   Pending                                      openebs-hostpath   3m7s
    ```
-
-# Deploy a Test Application
-
-This section explains about the deployment process.
 
 ## Create Pod to Consume OpenEBS Local PV Hostpath Storage
 
@@ -259,3 +191,12 @@ A few important characteristics of a *OpenEBS Local PV* can be seen from the abo
 - `spec.local.path` specifies the unique subdirectory under the `BasePath (/var/local/openebs)` defined in corresponding StorageClass.
 :::
 
+## See Also
+
+[Installation](../../quickstart-guide/installation.md)
+
+[Local PV Hostpath](../user-guides/local-engine-user-guide/localpv-hostpath.md)
+
+[LVM Local PV](../user-guides/local-engine-user-guide/lvm-localpv.md)
+
+[ZFS Local PV](../user-guides/local-engine-user-guide/zfs-localpv.md)

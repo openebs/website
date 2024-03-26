@@ -15,12 +15,6 @@ If this is your first time installing OpenEBS Local Engine, make sure that your 
 
 For OpenEBS Replicated Engine, make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/replicated-engine-user-guide/prerequisites.md).
 
-:::info
-- The assumption is that the target cluster will pull the replicated engine container images directly from OpenEBS public container repositories. Where preferred, it is also possible to [build replicated engine locally from source](https://github.com/openebs/Mayastor/blob/develop/doc/build.md) and deploy the resultant images but this is outside of the scope of this guide.
-- Deploying and operating replicated engine in production contexts requires a foundational knowledge of replicated engine internals and best practices, found elsewhere within this documentation.
-- The sections that follow describing the replicated engine installation steps in this guide provide basic installation instructions of replicated engine on an existing Kubernetes cluster, sufficient for evaluation purposes.
-:::
-
 At a high level OpenEBS requires:
 
 - Verify that you have the admin context. If you do not have admin permissions to your cluster, check with your Kubernetes cluster administrator to help with installing OpenEBS or if you are the owner of the cluster, check out the [steps to create a new admin context](#set-cluster-admin-user-context) and use it for installing OpenEBS.
@@ -44,7 +38,7 @@ OpenEBS provides several options that you can customize during install like:
 - specifying the directory where hostpath volume data is stored or
 - specifying the nodes on which OpenEBS components should be deployed and so forth. 
 
-The default OpenEBS helm chart will only install Local PV hostpath and replicated data engine. Refer to [OpenEBS helm chart documentation](https://github.com/openebs/charts/tree/master/charts/openebs) for full list of customizable options and using other flavors of OpenEBS data engines by setting the correct helm values. 
+The default OpenEBS helm chart will install both local engines and replicated engine. Refer to [OpenEBS helm chart documentation](https://github.com/openebs/charts/tree/master/charts/openebs) for full list of customizable options and using other flavors of OpenEBS data engines by setting the correct helm values. 
 
 Install OpenEBS helm chart with default values. 
 
@@ -149,8 +143,6 @@ openebs-zfs-localpv-node-5mwbz                    2/2     Running   0          3
 openebs-zfs-localpv-node-g45ft                    2/2     Running   0          3m9s
 openebs-zfs-localpv-node-g77g6                    2/2     Running   0          3m9s
 ```
-
-The control plane pods `openebs-provisioner`, `maya-apiserver` and `openebs-snapshot-operator` should be running. If you have configured nodeSelectors, check if they are scheduled on the appropriate nodes by listing the pods through `kubectl get pods -n openebs -o wide`
 
 ### Verify StorageClasses
 

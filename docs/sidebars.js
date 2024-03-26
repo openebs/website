@@ -59,7 +59,7 @@ module.exports = {
           type: "category",
           label: "Data Engines",
           customProps: {
-            icon: "Circle"
+            icon: "Book"
           },
           items: [
             {
@@ -102,7 +102,7 @@ module.exports = {
         {
           type: "doc",
           id: "quickstart-guide/deployment",
-          label: "Deploy a Test Application"
+          label: "Deploy an Application"
         }
       ]
     },
@@ -124,13 +124,18 @@ module.exports = {
           items: [
             {
               type: "doc",
-              id: "user-guides/local-engine-user-guide/prerequisites",
-              label: "Prerequisites"
+              id: "user-guides/local-engine-user-guide/localpv-hostpath",
+              label: "Local PV Hostpath"
             },
             {
               type: "doc",
-              id: "user-guides/local-engine-user-guide/local-engine-deployment",
-              label: "Local Engine Deployment"
+              id: "user-guides/local-engine-user-guide/lvm-localpv",
+              label: "LVM Local PV"
+            },
+            {
+              type: "doc",
+              id: "user-guides/local-engine-user-guide/zfs-localpv",
+              label: "ZFS Local PV"
             },
             {
               collapsed: true,
@@ -144,11 +149,6 @@ module.exports = {
                   type: "doc",
                   id: "user-guides/local-engine-user-guide/additional-information/alphafeatures",
                   label: "Alpha Features"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/local-engine-user-guide/additional-information/performance-testing",
-                  label: "Performance testing"
                 },
                 {
                   type: "doc",

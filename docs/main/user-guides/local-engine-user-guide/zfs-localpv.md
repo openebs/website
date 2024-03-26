@@ -1,137 +1,82 @@
 ---
-id: local-engine-deployment
-title: Local Engine Deployment
-keywords: 
-  - Deployment
-  - Local Engine Deployment
-description: This guide will help you to deploy OpenEBS Local Engines.
+id: zfs-localpv
+title: ZFS Local PV User Guide
+keywords:
+ - OpenEBS ZFS Local PV
+ - ZFS Local PV
+ - Prerequisites
+ - Install
+ - Create StorageClass
+ - Install verification
+ - Create a PersistentVolumeClaim
+description: This guide will help you to set up and use OpenEBS Local Persistent Volumes backed by ZFS Local PV. 
 ---
 
-# Local Engine Deployment
+# ZFS Local PV User Guide
 
-:::info
-Make sure that you have [installed OpenEBS](../../quickstart-guide/installation.md) before proceeding with the deployment.
-:::
+This guide will help you to set up and use OpenEBS Local Persistent Volumes backed by ZFS Local PV. 
 
-This guide will help you to deploy OpenEBS Local Persistent Volumes (PV) backed by LVM and ZFS.
+## Prerequisites
 
-## LVM Local PV Deployment
+Before installing ZFS driver, make sure your Kubernetes Cluster must meet the following prerequisites:
 
-This section will help you to deploy LVM Local PV.
+1. All the nodes must have zfs utils installed.
+2. ZPOOL has been setup for provisioning the volume.
+3. You have access to install RBAC components into kube-system namespace. The OpenEBS ZFS driver components are installed in kube-system namespace to allow them to be flagged as system critical components.
 
-### Create a StorageClass
+## Setup
 
-```
-$ cat sc.yaml
-
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: openebs-lvmpv
-parameters:
-  storage: "lvm"
-  volgroup: "lvmvg"
-provisioner: local.csi.openebs.io
-```
-
-Check the doc on [storageclasses](https://github.com/openebs/lvm-localpv/blob/develop/docs/storageclasses.md) to know all the supported parameters for LVM-LocalPV.
-
-#### VolumeGroup Availability
-
-If LVM volume group is available on certain nodes only, then make use of topology to tell the list of nodes where we have the volgroup available. As shown in the below storage class, we can use allowedTopologies to describe volume group availability on nodes.
+Setup
+All the node should have zfsutils-linux installed. We should go to the each node of the cluster and install zfs utils:
 
 ```
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: openebs-lvmpv
-allowVolumeExpansion: true
-parameters:
-  storage: "lvm"
-  volgroup: "lvmvg"
-provisioner: local.csi.openebs.io
-allowedTopologies:
-- matchLabelExpressions:
-  - key: kubernetes.io/hostname
-    values:
-      - lvmpv-node1
-      - lvmpv-node2
+$ apt-get install zfsutils-linux
 ```
 
-The above storage class tells that volume group "lvmvg" is available on nodes lvmpv-node1 and lvmpv-node2 only. The LVM driver will create volumes on those nodes only.
+Go to each node and create the ZFS Pool, which will be used for provisioning the volumes. You can create the Pool of your choice, it can be striped, mirrored or raidz pool.
 
- :::note
- The provisioner name for LVM driver is "local.csi.openebs.io", we have to use this while creating the storage class so that the volume provisioning/deprovisioning request can come to LVM driver.
- :::
-
- ### Create the PVC
-
- ```
- $ cat pvc.yaml
-
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: csi-lvmpv
-spec:
-  storageClassName: openebs-lvmpv
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 4Gi
- ```
-
- Create a PVC using the storage class created for the LVM driver.
-
- ### Deploy the Application
-
- Create the deployment yaml using the pvc backed by LVM storage.
-
- ```
- $ cat fio.yaml
-
-apiVersion: v1
-kind: Pod
-metadata:
-  name: fio
-spec:
-  restartPolicy: Never
-  containers:
-  - name: perfrunner
-    image: openebs/tests-fio
-    command: ["/bin/bash"]
-    args: ["-c", "while true ;do sleep 50; done"]
-    volumeMounts:
-       - mountPath: /datadir
-         name: fio-vol
-    tty: true
-  volumes:
-  - name: fio-vol
-    persistentVolumeClaim:
-      claimName: csi-lvmpv
- ```
-
- After the deployment of the application, we can go to the node and see that the lvm volume is being used by the application for reading/writting the data and space is consumed from the LVM. Please note that to check the provisioned volumes on the node, we need to run pvscan --cache command to update the lvm cache and then we can use lvdisplay and all other lvm commands on the node.
-
-### Deprovisioning
-
-To deprovision the volume we can delete the application which is using the volume and then we can go ahead and delete the pv, as part of deletion of pv this volume will also be deleted from the volume group and data will be freed.
+If you have the disk(say /dev/sdb) then you can use the below command to create a striped pool :
 
 ```
-$ kubectl delete -f fio.yaml
-pod "fio" deleted
-$ kubectl delete -f pvc.yaml
-persistentvolumeclaim "csi-lvmpv" deleted
+$ zpool create zfspv-pool /dev/sdb
 ```
 
-### Limitation
+You can also create mirror or raidz pool as per your need. Check https://github.com/openzfs/zfs for more information.
 
-Resize of volumes with snapshot is not supported.
+If you do not have the disk, then you can create the zpool on the loopback device which is backed by a sparse file. Use this for testing purpose only.
 
-## ZFS Local PV Deployment
+```
+$ truncate -s 100G /tmp/disk.img
+$ zpool create zfspv-pool `losetup -f /tmp/disk.img --show`
+```
 
-This section will help you to deploy ZFS Local PV.
+Once the ZFS Pool is created, verify the pool via zpool status command, you should see something like this:
+
+```
+$ zpool status
+  pool: zfspv-pool
+ state: ONLINE
+  scan: none requested
+config:
+
+	NAME        STATE     READ WRITE CKSUM
+	zfspv-pool  ONLINE       0     0     0
+	  sdb       ONLINE       0     0     0
+
+errors: No known data errors
+```
+
+Configure the custom topology keys (if needed). This can be used for many purposes like if we want to create the PV on nodes in a particuler zone or building. We can label the nodes accordingly and use that key in the storageclass for taking the scheduling decesion:
+
+https://github.com/openebs/zfs-localpv/blob/HEAD/docs/faq.md#6-how-to-add-custom-topology-key
+
+## Installation
+
+For installation instructions, see [here](../../quickstart-guide/installation.md).
+
+## Configuration
+
+This section will help you to configure ZFS Local PV.
 
 ### Create StorageClass
 
@@ -276,7 +221,7 @@ Once a PV is created for a node, application using that PV will always get sched
 
 The scheduling algorithm by ZFS driver or kubernetes will come into picture only during the deployment time. Once the PV is created, the application can not move anywhere as the data is there on the node where the PV is.
 
-### Create a PVC
+### Create a PersistentVolumeClaim
 
 ```
 kind: PersistentVolumeClaim
@@ -343,7 +288,7 @@ zfspv-pool                                            444K   362G    96K  /zfspv
 zfspv-pool/pvc-34133838-0d0d-11ea-96e3-42010a800114    96K  4.00G    96K  legacy
 ```
 
-### Deploy the Application
+## Deploy the Application
 
 Create the deployment yaml using the pvc backed by ZFS-LocalPV storage.
 
@@ -371,7 +316,7 @@ spec:
 
 After the deployment of the application, we can go to the node and see that the zfs volume is being used by the application for reading/writting the data and space is consumed from the ZFS pool.
 
-### ZFS Property Change
+## ZFS Property Change
 
 ZFS Volume Property can be changed like compression on/off can be done by just simply editing the kubernetes resource for the corresponding zfs volume by using below command:
 
@@ -384,7 +329,7 @@ You can edit the relevant property like make compression on or make dedup on and
 $ zfs get all zfspv-pool/pvc-34133838-0d0d-11ea-96e3-42010a800114
 ```
 
-### Deprovisioning
+## Deprovisioning
 
 To deprovision the volume we can delete the application which is using the volume and then we can go ahead and delete the pv, as part of deletion of pv this volume will also be deleted from the ZFS pool and data will be freed.
 

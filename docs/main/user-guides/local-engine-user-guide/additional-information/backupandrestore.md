@@ -13,14 +13,14 @@ description: This section explains how to backup and restore local engines.
 OpenEBS Local Volumes can be backed up and restored along with the application using [Velero](https://velero.io).
 
 :::note
-The following steps assume that you already have Velero with Restic integration is configured. If not, follow the [Velero Documentation](https://velero.io/docs/) to proceed with install and setup of Velero.  If you encounter any issues or have questions, talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+The following steps assume that you already have Velero with Restic integration is configured. If not, follow the [Velero Documentation](https://velero.io/docs/) to proceed with install and setup of Velero. If you encounter any issues or have questions, talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
 :::
 
 ### Backup
 
 The following steps will help you to prepare and backup the data from the volume created for the example pod (`hello-local-hostpath-pod`), with the volume mount (`local-storage`). 
 
-1. Prepare the application pod for backup. Velero uses Kubernetes labels to select the pods that need to be backed up. Velero uses annotation on the pods to determine which volumes need to be backed up. For the example pod launched in this guide, you can inform Velero to backup by specifying the following label and annotation. 
+1. Prepare the application pod for backup. Velero uses Kubernetes labels to select the pods that need to be backed up. Velero uses annotation on the pods to determine which volumes need to be backed up. For the example pod launched above, you can inform Velero to backup by specifying the following label and annotation. 
    
    ```
    kubectl label pod hello-local-hostpath-pod app=test-velero-backup
@@ -48,7 +48,7 @@ The following steps will help you to prepare and backup the data from the volume
  
 ### Restore
 
-1. Install and Setup Velero, with the same provider where backups were saved. Verify that backups are accessible. 
+1. Install and setup Velero, with the same provider where backups were saved. Verify that backups are accessible. 
    
    ```
    velero backup get
