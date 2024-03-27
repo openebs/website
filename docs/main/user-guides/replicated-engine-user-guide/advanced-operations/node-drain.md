@@ -12,23 +12,19 @@ This feature is in line with the [node drain functionality of Kubernetes](https:
 
 
 To start the drain operation, execute:
-{% tab title="Command" %}
-```text
+**Command**
+```
 kubectl-mayastor drain node <node_name> <label>
 ```
-{% endtab %}
 
 To get the list of nodes on which the drain operation has been performed, execute:
-{% tab title="Command" %}
-```text
+**Command**
+```
 kubectl-mayastor get drain nodes
 ```
-{% endtab %}
 
 To halt the drain operation or to make the node schedulable again, execute:
-
-{% tab title="Command" %}
-```text
+**Command**
+```
 kubectl-mayastor uncordon node <node_name> <label>
 ```
-{% endtab %}

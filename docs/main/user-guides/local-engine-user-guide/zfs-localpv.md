@@ -221,7 +221,7 @@ Once a PV is created for a node, application using that PV will always get sched
 
 The scheduling algorithm by ZFS driver or kubernetes will come into picture only during the deployment time. Once the PV is created, the application can not move anywhere as the data is there on the node where the PV is.
 
-### Create a PersistentVolumeClaim
+### Create PersistentVolumeClaim
 
 ```
 kind: PersistentVolumeClaim
@@ -353,3 +353,12 @@ $ systemctl disable zfs-import-scan.service
 ```
 
 Always maintain upto date /etc/zfs/zpool.cache while performing operations on zfs pools(zpool set cachefile=/etc/zfs/zpool.cache).
+
+## Support
+
+If you encounter issues or have a question, file an [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+
+## See Also
+
+[Installation](../../quickstart-guide/installation.md)
+[Deploy an Application](../../quickstart-guide/deploy-a-test-application.md)

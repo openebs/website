@@ -24,25 +24,6 @@ This guide will help you to set up and use OpenEBS Local Persistent Volumes back
 
 OpenEBS Local PV uses volume topology aware pod scheduling enhancements introduced by [Kubernetes Local Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#local)
 
-:::tip QUICKSTART
-
-OpenEBS Local PV Hostpath volumes will be created under `/var/openebs/local` directory. You can customize the location by [configuring install parameters](#install) or by creating new [StorageClass](#create-storageclass). 
-
-If you have OpenEBS already installed, you can create an example pod that persists data to *OpenEBS Local PV Hostpath* with following kubectl commands. 
-```
-kubectl apply -f https://openebs.github.io/charts/examples/local-hostpath/local-hostpath-pvc.yaml
-kubectl apply -f https://openebs.github.io/charts/examples/local-hostpath/local-hostpath-pod.yaml
-```
-
-Verify using below kubectl commands that example pod is running and is using a OpenEBS Local PV Hostpath.
-```
-kubectl get pod hello-local-hostpath-pod
-kubectl get pvc local-hostpath-pvc
-```
-
-For a more detailed walkthrough of the setup, follow along the rest of this document.
-:::
-
 ## Prerequisites
 
 Setup the directory on the nodes where Local PV Hostpaths will be created. This directory will be referred to as `BasePath`. The default location is `/var/openebs/local`.  
@@ -141,38 +122,9 @@ The default Storage Class is called `openebs-hostpath` and its `BasePath` is con
    kubectl get sc local-hostpath -o yaml
    ```
 
-## Deployment
+## Deploy an Application
 
 For deployment instructions, see [here](../../quickstart-guide/deploy-a-test-application.md).
-
-## Install verification
-
-Once you have installed OpenEBS, verify that *OpenEBS Local PV provisioner* is running and Hostpath StorageClass is created. 
-
-1. To verify *OpenEBS Local PV provisioner* is running, execute the following command. Replace `-n openebs` with the namespace where you installed OpenEBS. 
-
-   ```
-   kubectl get pods -n openebs -l openebs.io/component-name=openebs-localpv-provisioner
-   ```
-
-   The output should indicate `openebs-localpv-provisioner` pod is running. 
-   ```shell hideCopy
-   NAME                                           READY   STATUS    RESTARTS   AGE
-   openebs-localpv-provisioner-5ff697f967-nb7f4   1/1     Running   0          2m49s
-   ```
-
-2. To verify *OpenEBS Local PV Hostpath* StorageClass is created, execute the following command. 
-
-   ```
-   kubectl get sc
-   ```
-
-   The output should indicate either the default StorageClass `openebs-hostpath` and/or custom StorageClass `local-hostpath` are displayed.
-   ```shell hideCopy
-   NAME                        PROVISIONER                                                AGE
-   local-hostpath              openebs.io/local                                           5h26m
-   openebs-hostpath            openebs.io/local                                           6h4m
-   ```
 
 ## Cleanup
 

@@ -5,21 +5,21 @@ keywords:
  - Snapshot Restore
 description: This guide explains about the Snapshot Restore feature.
 ---
+
 Volume restore from an existing snapshot will create an exact replica of a storage volume captured at a specific point in time. They serve as an essential tool for data protection, recovery, and efficient management in Kubernetes environments. This article provides a step-by-step guide on how to create a volume restore.
 
 ## Prerequisites
 
-### Step 1: Create a storage class 
+### Step 1: Create a StorageClass 
 
-To begin, you'll need to create a StorageClass that defines the properties of the snapshot to be restored. Refer to [Storage Class Parameters](../../../quickstart-guide/installation.md#storage-class-parameters) for more details. Use the following command to create the StorageClass:
+To begin, you will need to create a StorageClass that defines the properties of the snapshot to be restored. Refer to [StorageClass Parameters](../../../quickstart-guide/installation.md#storage-class-parameters) for more details. Use the following command to create the StorageClass:
 
-{% hint style="info" %}
+:::info
 thin: "true" and repl: "1" is the only supported combination.
-{% endhint %}
+:::
 
-{% tabs %}
-{% tab title="Command" %}
-```text
+**Command**
+```
 cat <<EOF | kubectl create -f -
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -33,9 +33,8 @@ parameters:
 provisioner: io.openebs.csi-mayastor
 EOF
 ```
-{% endtab %}
-{% tab title="YAML" %}
-```text
+**YAML**
+```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -47,27 +46,25 @@ parameters:
   thin: "true"
 provisioner: io.openebs.csi-mayastor
 ```
-{% endtab %}
-{% endtabs %}
 
-> Note the name of the StorageClass, which, in this example, is **mayastor-1-restore**.
+:::note
+The name of the StorageClass, which, in the example above, is **mayastor-1-restore**.
+:::
 
-
-### Step 2: Create a snapshot 
+### Step 2: Create a Snapshot 
 
 You need to create a volume snapshot before proceeding with the restore. Follow the steps outlined in [this guide](snapshot.md) to create a volume snapshot.
 
-> Note the snapshot's name, for example, **pvc-snap-1**.
+:::note
+Tthe snapshot's name, for example, **pvc-snap-1**.
+:::
 
--------------------
-
-## Create a volume restore of the existing snapshot
+## Create a Volume Restore of the Existing Snapshot
 
 After creating a snapshot, you can create a PersistentVolumeClaim (PVC) from it to generate the volume restore. Use the following command:
 
-{% tabs %}
-{% tab title="Command" %}
-```text
+**Command**
+```
 cat <<EOF | kubectl create -f -
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -86,9 +83,8 @@ spec:
       storage: 10Gi
  EOF     
  ```
-{% endtab %}
-{% tab title="YAML" %}
-```text
+**YAML**
+```
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -104,10 +100,6 @@ spec:
   resources:
     requests:
       storage: 10Gi
-```
-{% endtab %}
-{% endtabs %}
-      
+```   
       
 By running this command, you create a new PVC named `restore-pvc` based on the specified snapshot. The restored volume will have the same data and configuration as the original volume had at the time of the snapshot.
-

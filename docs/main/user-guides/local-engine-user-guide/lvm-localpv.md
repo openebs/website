@@ -47,7 +47,7 @@ For installation instructions, see [here](../../quickstart-guide/installation.md
 
 This section will help you to configure LVM Local PV.
 
-### Create a StorageClass
+### Create StorageClass
 
 ```
 $ cat sc.yaml
@@ -92,7 +92,7 @@ The above storage class tells that volume group "lvmvg" is available on nodes lv
  The provisioner name for LVM driver is "local.csi.openebs.io", we have to use this while creating the storage class so that the volume provisioning/deprovisioning request can come to LVM driver.
  :::
 
- ### Create a PersistentVolumeClaim
+ ### Create PersistentVolumeClaim
 
  ```
  $ cat pvc.yaml
