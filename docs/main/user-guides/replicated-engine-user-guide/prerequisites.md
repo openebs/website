@@ -11,7 +11,7 @@ description: This guide will help you to verify that your Kubernetes worker node
 ---
 # Prerequisites
 
-## **General**
+## General
 
 All worker nodes must satisfy the following requirements:
 
@@ -29,23 +29,18 @@ All worker nodes must satisfy the following requirements:
   * **HugePage support**
     * A minimum of **2GiB of** **2MiB-sized** pages
 
-
-
-## **Networking requirements**
+## Network Requirements
 
 * Ensure that the following ports are **not** in use on the node:
   - **10124**: Mayastor gRPC server will use this port.
   - **8420 / 4421**: NVMf targets will use these ports.
 * The firewall settings should not restrict connection to the node.
 
-## Recommended resource requirements
+## Recommended Resource Requirements
 
+**io-engine DaemonSet**
 
-{% tabs %}
-
-{% tab title="io-engine DaemonSet" %}
-
-```text
+```
 resources:
   limits:
     cpu: "2"
@@ -57,16 +52,9 @@ resources:
     hugepages-2Mi: "2Gi"
 ```
 
-{% endtab %}
+**csi-node DaemonSet**
 
-{% endtabs %}
-
-
-{% tabs %}
-
-{% tab title="csi-node DaemonSet" %}
-
-```text
+```
 resources:
   limits:
     cpu: "100m"
@@ -76,16 +64,9 @@ resources:
     memory: "50Mi"
 ```
 
-{% endtab %}
+**csi-controller Deployment**
 
-{% endtabs %}
-
-
-{% tabs %}
-
-{% tab title="csi-controller Deployment" %}
-
-```text
+```
 resources:
   limits:
     cpu: "32m"
@@ -95,16 +76,9 @@ resources:
     memory: "64Mi"
 ```
 
-{% endtab %}
+**api-rest Deployment**
 
-{% endtabs %}
-
-
-{% tabs %}
-
-{% tab title="api-rest Deployment" %}
-
-```text
+```
 resources:
   limits:
     cpu: "100m"
@@ -114,16 +88,9 @@ resources:
     memory: "32Mi"
 ```
 
-{% endtab %}
+**agent-core**
 
-{% endtabs %}
-
-
-{% tabs %}
-
-{% tab title="agent-core" %}
-
-```text
+```
 resources:
   limits:
     cpu: "1000m"
@@ -133,16 +100,9 @@ resources:
     memory: "16Mi"
 ```
 
-{% endtab %}
+**operator-diskpool**
 
-{% endtabs %}
-
-
-{% tabs %}
-
-{% tab title="operator-diskpool" %}
-
-```text
+```
 resources:
   limits:
     cpu: "100m"
@@ -152,17 +112,12 @@ resources:
     memory: "16Mi"
 ```
 
-{% endtab %}
-
-{% endtabs %}
-
-
-## DiskPool requirements
+## DiskPool Requirements
 
 * Disks must be unpartitioned, unformatted, and used exclusively by the DiskPool.
 * The minimum capacity of the disks should be 10 GB.
 
-## RBAC permission requirements
+## RBAC Permission Requirements
 
 * Kubernetes core v1 API-group resources: Pod, Event, Node, Namespace, ServiceAccount, PersistentVolume, PersistentVolumeClaim, ConfigMap, Secret, Service, Endpoint, Event.
 
@@ -174,7 +129,7 @@ resources:
 
 * Kubernetes `apiextensions.k8s.io` API-group resources: CustomResourceDefinition
 
-* Mayastor Custom Resources that is `openebs.io` API-group resources: DiskPool
+* Replicated Engine Custom Resources that is `openebs.io` API-group resources: DiskPool
 
 * Custom Resources from Helm chart dependencies of Jaeger that is helpful for debugging:
 
@@ -192,12 +147,9 @@ resources:
 
    - All resources from `jaegertracing.io` API group
 
-   
+**Sample `ClusterRole` YAML**
 
-
-{% tab title="Sample `ClusterRole` YAML " %}
-
-```text
+```
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -280,19 +232,53 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-{% endtab %}
-
-   
-
-## Minimum worker node count
+## Minimum Worker Node Count
 
   The minimum supported worker node count is three nodes. When using the synchronous replication feature (N-way mirroring), the number of worker nodes to which Mayastor is deployed should be no less than the desired replication factor.
 
-
-## Transport protocols
+## Transport Protocols
 
   Mayastor supports the export and mounting of volumes over NVMe-oF TCP only. Worker node(s) on which a volume may be scheduled (to be mounted) must have the requisite initiator support installed and configured.
   In order to reliably mount Mayastor volumes over NVMe-oF TCP, a worker node's kernel version must be 5.13 or later and the nvme-tcp kernel module must be loaded.
 
+## Preparing the Cluster
 
+### Verify/Enable Huge Page Support
 
+_2MiB-sized_  Huge Pages must be supported and enabled on the replicated engine storage nodes. A minimum number of 1024 such pages \(i.e. 2GiB total\) must be available _exclusively_ to the replicated engine pod on each node, which should be verified thus:
+
+```text
+grep HugePages /proc/meminfo
+
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+HugePages_Total:    1024
+HugePages_Free:      671
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+
+```
+
+If fewer than 1024 pages are available then the page count should be reconfigured on the worker node as required, accounting for any other workloads which may be scheduled on the same node and which also require them. For example:
+
+```text
+echo 1024 | sudo tee /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages
+```
+
+This change should also be made persistent across reboots by adding the required value to the file`/etc/sysctl.conf` like so:
+
+```text
+echo vm.nr_hugepages = 1024 | sudo tee -a /etc/sysctl.conf
+```
+
+:::warning
+If you modify the Huge Page configuration of a node, you _MUST_ either restart kubelet or reboot the node.  replicated engine will not deploy correctly if the available Huge Page count as reported by the node's kubelet instance does not satisfy the minimum requirements.
+:::
+
+### Label Replicated Engine Node Candidates
+
+All worker nodes which will have replicated engine pods running on them must be labelled with the OpenEBS engine type "replicated engine". This label will be used as a node selector by the Replicated Engine Daemonset, which is deployed as a part of the replicated engine data plane components installation. To add this label to a node, execute:
+
+```
+kubectl label node <node_name> openebs.io/engine=mayastor
+```

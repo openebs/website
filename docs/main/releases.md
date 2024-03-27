@@ -1,6 +1,6 @@
 ---
 id: releases
-title: Releases
+title: OpenEBS Releases
 keywords:
   - OpenEBS releases
 description: This page contains list of supported OpenEBS releases.

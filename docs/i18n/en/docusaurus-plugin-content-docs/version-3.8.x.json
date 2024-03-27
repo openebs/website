@@ -1,7 +1,7 @@
 {
   "version.label": {
-    "message": "2.12.x",
-    "description": "The label for version 2.12.x"
+    "message": "3.8.x",
+    "description": "The label for version 3.8.x"
   },
   "sidebar.docs.category.Introduction": {
     "message": "Introduction",
@@ -15,6 +15,14 @@
     "message": "User Guides",
     "description": "The label for category User Guides in sidebar docs"
   },
+  "sidebar.docs.category.cStor": {
+    "message": "cStor",
+    "description": "The label for category cStor in sidebar docs"
+  },
+  "sidebar.docs.category.Jiva": {
+    "message": "Jiva",
+    "description": "The label for category Jiva in sidebar docs"
+  },
   "sidebar.docs.category.Stateful Applications": {
     "message": "Stateful Applications",
     "description": "The label for category Stateful Applications in sidebar docs"
@@ -23,6 +31,10 @@
     "message": "Troubleshooting",
     "description": "The label for category Troubleshooting in sidebar docs"
   },
+  "sidebar.docs.category.FAQs": {
+    "message": "FAQs",
+    "description": "The label for category FAQs in sidebar docs"
+  },
   "sidebar.docs.category.Additional info": {
     "message": "Additional info",
     "description": "The label for category Additional info in sidebar docs"
@@ -30,9 +42,5 @@
   "sidebar.docs.category.Deprecated": {
     "message": "Deprecated",
     "description": "The label for category Deprecated in sidebar docs"
-  },
-  "sidebar.docs.category.cStor": {
-    "message": "cStor",
-    "description": "The label for category cStor in sidebar docs"
   }
 }

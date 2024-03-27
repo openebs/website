@@ -8,57 +8,6 @@ keywords:
 description: The FAQ section about OpenEBS helps to address common concerns, questions, and objections that users have about OpenEBS.
 ---
 
-[What is most distinctive about the OpenEBS architecture?](#What-is-most-distinctive-about-the-OpenEBS-architecture)
-
-[Why did you choose iSCSI? Does it introduce latency and decrease performance? ](#Why-did-you-choose-iSCSI)
-
-[Where is my data stored and how can I see that?](#where-is-my-data)
-
-[What changes are needed for Kubernetes or other subsystems to leverage OpenEBS?](#changes-on-k8s-for-openebs)
-
-[How do you get started and what is the typical trial deployment?](#get-started)
-
-[What is the default OpenEBS Reclaim policy?](#default-reclaim-policy)
-
-[Why NDM daemon set required privileged mode?](#why-ndm-privileged)
-
-[Is OpenShift supported?](#openebs-in-openshift)
-
-[Can I use replica count as 2 in StorageClass if it is a single node cluster?](#replica-count-2-in-a-single-node-cluster)
-
-[How backup and restore is working with OpenEBS volumes?](#backup-restore-openebs-volumes)
-
-[Why customized parameters set on default OpenEBS StorageClasses are not getting persisted?](#customized-values-not-persisted-after-reboot)
-
-[Why NDM listens on host network?](#why-ndm-listens-on-host-network)
-
-[How is data protected? What happens when a host, client workload, or a data center fails?](#how-is-data-protected-what-happens-when-a-host-client-workload-or-a-data-center-fails)
-
-[How does OpenEBS provide high availability for stateful workloads?](#how-does-openebs-provide-high-availability-for-stateful-workloads)
-
-[What are the recommended iscsi timeout settings on the host?](#what-are-the-recommended-iscsi-timeout-settings-on-the-host)
-
-[What changes must be made to the containers on which OpenEBS runs?](#what-changes-must-be-made-to-the-containers-on-which-openebs-runs)
-
-[What are the minimum requirements and supported container orchestrators?](#what-are-the-minimum-requirements-and-supported-container-orchestrators)
-
-[Why would you use OpenEBS on EBS?](#why-would-you-use-openebs-on-ebs)
-
-[Can I use the same PVC for multiple Pods?](#can-i-use-the-same-pvc-for-multiple-pods)
-
-[Warning Messages while Launching PVC](#warning-messages-while-launching-pvc)
-
-[Why *OpenEBS_logical_size* and *OpenEBS_actual_used* are showing in different size?](#why-openebs-logical-size-and-openebs-actual-used-are-showing-in-different-size)
-
-[What must be the disk mount status on Node for provisioning OpenEBS volume?](#what-must-be-the-disk-mount-status-on-node-for-provisioning-openebs-volume)
-
-[Does OpenEBS support encryption at rest?](#encryption-rest)
-
-[Can the same BDC name be used for claiming a new block device?](#same-bdc-claim-new-bd)
-
------
-
-
 ### What is most distinctive about the OpenEBS architecture? {#What-is-most-distinctive-about-the-OpenEBS-architecture}
 
 The OpenEBS architecture is an example of Container Attached Storage (CAS). These approaches containerize the storage controller, called IO controllers, and underlying storage targets, called “replicas”, allowing an orchestrator such as Kubernetes to automate the management of storage. Benefits include automation of management, a delegation of responsibility to developer teams, and the granularity of the storage policies which in turn can improve performance.
@@ -123,7 +72,6 @@ You can then begin running a workload against OpenEBS. There is a large and grow
  
 [Go to top](#top)
 
-
 ### What is the default OpenEBS Reclaim policy? {#default-reclaim-policy}
 
 The default retention is the same used by K8s. For dynamically provisioned PersistentVolumes, the default reclaim policy is “Delete”. This means that a dynamically provisioned volume is automatically deleted when a user deletes the corresponding PersistentVolumeClaim. 
@@ -150,17 +98,25 @@ Yes. See the [detailed installation instructions for OpenShift](../user-guides/l
 
 While creating a StorageClass, if user mention replica count as 2 in a single node cluster, OpenEBS will not create the volume from 0.9  version onwards. It is required to match the number of replica count and number of nodes available in the cluster for provisioning OpenEBS Jiva and cStor volumes.
 
+[Go to top](#top)
+
 ### How backup and restore is working with OpenEBS volumes? {#backup-restore-openebs-volumes}
 
 OpenEBS cStor volume is working based on cStor/ZFS snapshot using Velero. For OpenEBS Local PV and Jiva volume, it is based on restic using Velero.
+
+[Go to top](#top)
 
 ### Why customized parameters set on default OpenEBS StorageClasses are not getting persisted? {#customized-values-not-persisted-after-reboot}
 
 The customized parameters set on default OpenEBS StorageClasses will not persist after restarting `maya-apiserver` pod or restarting the node where `maya-apiserver` pod is running. StorageClasses created by maya-apiserver are owned by it and it tries to overwrite them upon its creation.
 
+[Go to top](#top)
+
 ### Why NDM listens on host network?
 
 NDM uses `udev` to monitor dynamic disk attach and detach events. `udev` listens on netlink socket of the host system to get those events. A container requires host network access so that it can listen on the socket. Therefore NDM requires host network access for the `udev` running inside the container to listen those disk related events.
+
+[Go to top](#top)
 
 ### How is data protected? What happens when a host, client workload, or a data center fails?
 
@@ -173,6 +129,8 @@ Kubernetes provides many ways to enable resilience. OpenEBS leverages these wher
 An OpenEBS Jiva volume is a controller deployed during OpenEBS installation. Volume replicas are defined by the parameter that you set. The controller is an iSCSI target while the replicas play the role of a disk. The controller exposes the iSCSI target while the actual data is written. The controller and each replica run inside a dedicated container. An OpenEBS Jiva volume controller exists as a single instance, but there can be multiple instances of OpenEBS Jiva volume replicas. Persistent data is synchronized between replicas. OpenEBS Jiva volume high availability is based on various scenarios as explained in the following sections. 
 
 **Note:** Each replica is scheduled in a unique K8s node, and a K8s node never has two replicas of one OpenEBS volume.
+
+[Go to top](#top)
 
 ### What are the recommended iSCSI timeout settings on the host?
 
@@ -191,8 +149,6 @@ Do below configuration settings on the host node to change the default iscsi tim
 1. Edit iscsid.conf file.
 
 2. Modify **node.session.timeo.replacement_timeout** with 300 seconds.
-
-   
 
 **For those sessions already logged in to iSCSI target:**
 
@@ -266,7 +222,6 @@ In case you need to use Local SSDs as block devices for provisioning cStor volum
 
 [Go to top](#top)
 
-
 ### Does OpenEBS support encryption at rest? {#encryption-rest}
 
 OpenEBS recommends LUKS encrypted drives with dm-crypt to achieve block-device encryption at rest. 
@@ -290,5 +245,3 @@ Although block-level encryption is faster than filesystem encryption such as eCr
 No. It is recommended to create different BDC name for claiming an unclaimed disk manually.
 
 [Go to top](#top)
-
------
