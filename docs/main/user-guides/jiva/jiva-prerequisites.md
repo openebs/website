@@ -93,7 +93,9 @@ volumeBindingMode: WaitForFirstConsumer
 reclaimPolicy: Delete
    ```
 
-
+:::note
+Jiva currently does **not run on IPv6-only Clusters**, your pods will still need an IPv4 address. For details, have a look on the [issue](https://github.com/openebs/jiva/issues/373).
+:::
 
 ## See Also:
 
