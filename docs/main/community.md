@@ -9,7 +9,7 @@ description: You can reach out to OpenEBS contributors and maintainers through S
 
 ## GitHub
 
-Raise an [GitHub issue](https://github.com/openebs/openebs/issues/new)
+Raise a [GitHub issue](https://github.com/openebs/openebs/issues/new)
 
 ## Slack
 
@@ -33,9 +33,10 @@ Join our OpenEBS CNCF Mailing lists
 
 Join our weekly or monthly [community meetings](https://github.com/openebs/openebs/tree/master/community#community-meetings).
 
-## See Also:
+## See Also
 
-- [Commercial Support](/docs/introduction/commercial)
-- [Troubleshooting](/docs/troubleshooting)
-- [FAQs](/docs/additional-info/faqs)
-- [Release details](/docs/introduction/releases)
+- [Releases](releases.md)
+- [Community Support](community.md) 
+- [Troubleshooting](../main/troubleshooting/)
+- [FAQs](../main/faqs/faqs.md)
+
