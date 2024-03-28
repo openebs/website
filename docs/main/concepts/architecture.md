@@ -96,13 +96,13 @@ OpenEBS Control Plane comprises of a set of micro-services that are themselves m
 
 ![openebs control plane](../assets/openebs-control-plane.svg)
 
-### YAML or Helm chart
+### YAML or Helm Chart
 
 OpenEBS components can be installed by the administrator using a highly configurable Helm chart or kubectl/YAML. OpenEBS installation is also supported via the Management Kubernetes offerings such as OpenShift, EKS, DO, Rancher as marketplace applications or as add-on or plugins tightly integrated into Kubernetes distributions such as MicroK8s, Kinvolk, Kubesphere. 
 
 As part of the OpenEBS install, the control plane components for the selected data engines will be installed as cluster and/or node components using standard Kubernetes primitives like Deployments, DaemonSets, Statefulsets, and such. The OpenEBS installation also takes care of loading the OpenEBS custom resource definitions into the Kubernetes. 
 
-OpenEBS control plane components are all stateless and depend on the Kubernetes etcd server (custom resources) to managing their internal configuration state and reporting the status of the various components.
+OpenEBS control plane components are all stateless. It depends on the custom resources and etcd server for managing their internal configuration state and reporting the status of the various components.
 
 ### Declarative API 
 
@@ -111,9 +111,9 @@ OpenEBS supports Declarative API for managing all of its operations and the APIs
 The Declarative API is a natural extension to what Kubernetes administrators and user are accustomed to, where they can define the intent via a YAML and then Kubernetes and associated OpenEBS Operators will reconcile the state with the user's intent. 
 
 The Declarative API can be used to configure the Data Engines and setup volume profiles/policies. Even upgrades of the data engines are performed using this API. The API can be used to: 
-- Manage the configuration for each of the Data Engine
+- Manage the configuration for each Data Engine
 - Manage the way the storage needs to be managed or storage pools 
-- Manage the volumes and its services - creation, snapshots, clones, backup, restore, deletion
+- Manage the volumes and its services - creation, snapshots, clones, backup, restore, and deletion
 - Manage upgrades of pools and volumes
 
 ### Data Engine Operators 
