@@ -1,6 +1,6 @@
 ---
 id: upgrade
-title: Upgrades
+title: OpenEBS Upgrades
 keywords:
  - Upgrading OpenEBS
  - OpenEBS upgrade

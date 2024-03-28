@@ -118,5 +118,45 @@
   "version.label": {
     "message": "main",
     "description": "The label for version current"
+  },
+  "sidebar.docs.category.Introduction to OpenEBS": {
+    "message": "Introduction to OpenEBS",
+    "description": "The label for category Introduction to OpenEBS in sidebar docs"
+  },
+  "sidebar.docs.category.Data Engines": {
+    "message": "Data Engines",
+    "description": "The label for category Data Engines in sidebar docs"
+  },
+  "sidebar.docs.category.Quickstart Guide": {
+    "message": "Quickstart Guide",
+    "description": "The label for category Quickstart Guide in sidebar docs"
+  },
+  "sidebar.docs.category.Local Engine User Guide": {
+    "message": "Local Engine User Guide",
+    "description": "The label for category Local Engine User Guide in sidebar docs"
+  },
+  "sidebar.docs.category.Additional Information": {
+    "message": "Additional Information",
+    "description": "The label for category Additional Information in sidebar docs"
+  },
+  "sidebar.docs.category.Replicated Engine User Guide": {
+    "message": "Replicated Engine User Guide",
+    "description": "The label for category Replicated Engine User Guide in sidebar docs"
+  },
+  "sidebar.docs.category.Advanced Operations": {
+    "message": "Advanced Operations",
+    "description": "The label for category Advanced Operations in sidebar docs"
+  },
+  "sidebar.docs.category.Migration for Distributed DB": {
+    "message": "Migration for Distributed DB",
+    "description": "The label for category Migration for Distributed DB in sidebar docs"
+  },
+  "sidebar.docs.category.Migration for Replicated DB": {
+    "message": "Migration for Replicated DB",
+    "description": "The label for category Migration for Replicated DB in sidebar docs"
+  },
+  "sidebar.docs.category.Support": {
+    "message": "Support",
+    "description": "The label for category Support in sidebar docs"
   }
 }

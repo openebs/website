@@ -12,7 +12,7 @@ module.exports = {
         {
           type: "doc",
           id: "introduction-to-openebs/overview",
-          label: "Introduction to OpenEBS"
+          label: "Overview"
         },
         {
           type: "doc",
@@ -46,7 +46,7 @@ module.exports = {
         },
         {
           type: "doc",
-          id: "concepts/cas",
+          id: "concepts/cns",
           label: "Container Native Storage"
         },
         {
@@ -59,22 +59,22 @@ module.exports = {
           type: "category",
           label: "Data Engines",
           customProps: {
-            icon: ""
+            icon: "Book"
           },
           items: [
             {
               type: "doc",
-              id: "concepts/data-engines/casengines",
-              label: "Data Engines"
+              id: "concepts/data-engines/dataengines",
+              label: "Overview"
             },
             {
               type: "doc",
-              id: "concepts/data-engines/localpv",
+              id: "concepts/data-engines/localengine",
               label: "Local Engine"
             },
             {
               type: "doc",
-              id: "concepts/data-engines/mayastor",
+              id: "concepts/data-engines/replicated-engine",
               label: "Replicated Engine"
             }
           ] 
@@ -86,7 +86,7 @@ module.exports = {
       type: "category",
       label: "Quickstart Guide",
       customProps: {
-        icon: "Users"
+        icon: "BookOpen"
       },
       items: [
         {
@@ -102,7 +102,7 @@ module.exports = {
         {
           type: "doc",
           id: "quickstart-guide/deployment",
-          label: "Deploy a Test Application"
+          label: "Deploy an Application"
         }
       ]
     },
@@ -119,31 +119,36 @@ module.exports = {
           type: "category",
           label: "Local Engine User Guide",
           customProps: {
-            icon: ""
+            icon: "Book"
           },
           items: [
             {
               type: "doc",
-              id: "user-guides/local-engine-user-guide/prerequisites",
-              label: "Local Engine Prerequisites"
+              id: "user-guides/local-engine-user-guide/localpv-hostpath",
+              label: "Local PV Hostpath"
+            },
+            {
+              type: "doc",
+              id: "user-guides/local-engine-user-guide/lvm-localpv",
+              label: "LVM Local PV"
+            },
+            {
+              type: "doc",
+              id: "user-guides/local-engine-user-guide/zfs-localpv",
+              label: "ZFS Local PV"
             },
             {
               collapsed: true,
               type: "category",
               label: "Additional Information",
               customProps: {
-                icon: "BookOpen"
+                icon: "File"
               },
               items: [
                 {
                   type: "doc",
                   id: "user-guides/local-engine-user-guide/additional-information/alphafeatures",
                   label: "Alpha Features"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/local-engine-user-guide/additional-information/performance-testing",
-                  label: "Performance testing"
                 },
                 {
                   type: "doc",
@@ -154,6 +159,11 @@ module.exports = {
                   type: "doc",
                   id: "user-guides/local-engine-user-guide/additional-information/kb",
                   label: "Knowledge Base"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/additional-information/backupandrestore",
+                  label: "Backup and Restore"
                 }
               ]
             }
@@ -164,20 +174,25 @@ module.exports = {
           type: "category",
           label: "Replicated Engine User Guide",
           customProps: {
-            icon: ""
+            icon: "Book"
           },
           items: [
             {
               type: "doc",
               id: "user-guides/replicated-engine-user-guide/prerequisites-re",
-              label: "Replicated Engine Prerequisites"
+              label: "Prerequisites"
+            },
+            {
+              type: "doc",
+              id: "user-guides/replicated-engine-user-guide/replicated-engine-deployment",
+              label: "Replicated Engine Deployment"
             },
             {
               collapsed: true,
               type: "category",
-              label: "Replicated Engine - Advanced Operations",
+              label: "Advanced Operations",
               customProps: {
-                icon: "BookOpen"
+                icon: "Layers"
               },
               items: [
                 {
@@ -232,7 +247,7 @@ module.exports = {
               type: "category",
               label: "Additional Information",
               customProps: {
-                icon: "BookOpen"
+                icon: "File"
               },
               items: [
                 {
@@ -280,7 +295,7 @@ module.exports = {
                   type: "category",
                   label: "Migration for Distributed DB",
                   customProps: {
-                    icon: ""
+                    icon: "File"
                   },
                   items: [
                     {
@@ -305,7 +320,7 @@ module.exports = {
                   type: "category",
                   label: "Migration for Replicated DB",
                   customProps: {
-                    icon: ""
+                    icon: "File"
                   },
                   items: [
                     {
@@ -330,7 +345,7 @@ module.exports = {
             {
               type: "doc",
               id: "user-guides/replicated-engine-user-guide/platform-support",
-              label: "Replicated Engine - Platform Support"
+              label: "Platform Support"
             }
           ] 
         },
@@ -347,11 +362,6 @@ module.exports = {
       ]
     },
     {
-      type: "doc",
-      id: "releases",
-      label: "Releases"
-    },
-    {
       collapsed: true,
       type: "category",
       label: "Troubleshooting",
@@ -366,25 +376,46 @@ module.exports = {
         },
         {
           type: "doc",
-          id: "troubleshooting/troubleshooting-re",
+          id: "troubleshooting/troubleshootingre",
           label: "Troubleshooting - Replicated Engine"
         }
       ]
     },
     {
+      collapsed: true,
+      type: "category",
+      label: "Support",
+      customProps: {
+        icon: "User"
+      },
+      items: [
+        {
+          type: "doc",
+          id: "community",
+          label: "Community",
+        },
+        {
+          type: "doc",
+          id: "commercial",
+          label: "Commercial Support"
+        }
+      ]
+    },
+    {
+      type: "doc",
+      id: "releases",
+      label: "Releases",
+      customProps: {
+        icon: "File"
+      },
+    },
+    {
       type: "doc",
       id: "faqs/faqs",
-      label: "FAQs"
-    },
-    {
-      type: "doc",
-      id: "community",
-      label: "Community"
-    },
-    {
-      type: "doc",
-      id: "commercial",
-      label: "Commercial Support"
+      label: "FAQs",
+      customProps: {
+        icon: "HelpCircle"
+      },
     }
   ]
 }

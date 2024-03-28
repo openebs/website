@@ -1,256 +1,202 @@
 ---
 id: deployment
-title: Deploy a Test Application
+title: Deploy an Application
 keywords: 
   - Deploy
   - Deployment
-  - Deploy a Test Application 
-description: This guide will help you to deploy a test application
+  - Deploy an Application
+description: This section will help you to deploy a test application.
 ---
-# Deploy a Test Application
 
-## Objective
+:::info
+- See [LVM Local PV User Guide](../user-guides/local-engine-user-guide/lvm-localpv.md) to deploy LVM Local PV.
+- See [ZFS Local PV User Guide](../user-guides/local-engine-user-guide/zfs-localpv.md) to deploy ZFS Local PV.
+- See [Replicated Engine Deployment](../user-guides/replicated-engine-user-guide/replicated-engine-deployment.md) to deploy Replicated Engine.
+:::
 
-If all verification steps in the preceding stages were satisfied, then Mayastor has been successfully deployed within the cluster. In order to verify basic functionality, we will now dynamically provision a Persistent Volume based on a Mayastor StorageClass, mount that volume within a small test pod which we'll create, and use the [**Flexible I/O Tester**](https://github.com/axboe/fio) utility within that pod to check that I/O to the volume is processed correctly.
+# Deploy an Application
 
-## Define the PVC
+This section will help you to deploy an application.
 
-Use `kubectl` to create a PVC based on a StorageClass that you created in the [previous stage](installation.md#create-mayastor-storageclass-s). In the example shown below, we'll consider that StorageClass to have been named "mayastor-1". Replace the value of the field "storageClassName" with the name of your own Mayastor-based StorageClass.
+## Create a PersistentVolumeClaim
 
-For the purposes of this quickstart guide, it is suggested to name the PVC "ms-volume-claim", as this is what will be illustrated in the example steps which follow.
+The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolumeClaims to request Hostpath Local PV from *OpenEBS Dynamic Local PV provisioner*.
 
-{% tabs %}
-{% tab title="Command" %}
-```text
-cat <<EOF | kubectl create -f -
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: ms-volume-claim
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-  storageClassName: mayastor-1
-EOF
-```
-{% endtab %}
+1. Here is the configuration file for the PersistentVolumeClaim. Save the following PersistentVolumeClaim definition as `local-hostpath-pvc.yaml`
 
-{% tab title="YAML" %}
-```text
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: ms-volume-claim
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-  storageClassName: INSERT_YOUR_STORAGECLASS_NAME_HERE
-```
-{% endtab %}
-{% endtabs %}
+   ```
+   kind: PersistentVolumeClaim
+   apiVersion: v1
+   metadata:
+     name: local-hostpath-pvc
+   spec:
+     storageClassName: openebs-hostpath
+     accessModes:
+       - ReadWriteOnce
+     resources:
+       requests:
+         storage: 5G
+   ```
 
-If you used the storage class example from previous stage, then volume binding mode is set to `WaitForFirstConsumer`. That means, that the volume won't be created until there is an application using the volume. We will go ahead and create the application pod and then check all resources that should have been created as part of that in kubernetes.
+2. Create the PersistentVolumeClaim
 
-## Deploy the FIO Test Pod
+   ```
+   kubectl apply -f local-hostpath-pvc.yaml
+   ```
 
-The Mayastor CSI driver will cause the application pod and the corresponding Mayastor volume's NVMe target/controller ("Nexus") to be scheduled on the _same_ Mayastor Node, in order to assist with restoration of volume and application availabilty in the event of a storage node failure.
+3. Look at the PersistentVolumeClaim:
+   
+   ```
+   kubectl get pvc local-hostpath-pvc
+   ```
 
-{% hint style="warning" %}
-In this version, applications using PVs provisioned by Mayastor can only be successfully scheduled on Mayastor Nodes.  This behaviour is controlled by the `local:` parameter of the corresponding StorageClass, which by default is set to a value of `true`.  Therefore, this is the only supported value for this release - setting a non-local configuration may cause scheduling of the application pod to fail, as the PV cannot be mounted to a worker node other than a MSN.  This behaviour will change in a future release.
-{% endhint %}
+   The output shows that the `STATUS` is `Pending`. This means PVC has not yet been used by an application pod. The next step is to create a Pod that uses your PersistentVolumeClaim as a volume.
 
-{% tabs %}
-{% tab title="Command \(GitHub Latest\)" %}
-```text
-kubectl apply -f https://raw.githubusercontent.com/openebs/Mayastor/v1.0.2/deploy/fio.yaml
-```
-{% endtab %}
+   ```shell hideCopy
+   NAME                 STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS       AGE
+   local-hostpath-pvc   Pending                                      openebs-hostpath   3m7s
+   ```
 
-{% tab title="YAML" %}
-```text
-kind: Pod
-apiVersion: v1
-metadata:
-  name: fio
-spec:
-  nodeSelector:
-    openebs.io/engine: mayastor
-  volumes:
-    - name: ms-volume
-      persistentVolumeClaim:
-        claimName: ms-volume-claim
-  containers:
-    - name: fio
-      image: nixery.dev/shell/fio
-      args:
-        - sleep
-        - "1000000"
-      volumeMounts:
-        - mountPath: "/volume"
-          name: ms-volume
-```
-{% endtab %}
-{% endtabs %}
+## Create Pod to Consume OpenEBS Local PV Hostpath Storage
 
-## Verify the Volume and the Deployment
+1. Here is the configuration file for the Pod that uses Local PV. Save the following Pod definition to `local-hostpath-pod.yaml`.
 
-We will now verify the Volume Claim and that the corresponding Volume and Mayastor Volume resources have been created and are healthy.
+   ```
+   apiVersion: v1
+   kind: Pod
+   metadata:
+     name: hello-local-hostpath-pod
+   spec:
+     volumes:
+     - name: local-storage
+       persistentVolumeClaim:
+         claimName: local-hostpath-pvc
+     containers:
+     - name: hello-container
+       image: busybox
+       command:
+          - sh
+          - -c
+          - 'while true; do echo "`date` [`hostname`] Hello from OpenEBS Local PV." >> /mnt/store/greet.txt; sleep $(($RANDOM % 5 + 300)); done'
+       volumeMounts:
+       - mountPath: /mnt/store
+         name: local-storage
+   ```
 
-### Verify the Volume Claim
+   :::note
+   As the Local PV storage classes use `waitForFirstConsumer`, do not use `nodeName` in the Pod spec to specify node affinity. If `nodeName` is used in the Pod spec, then PVC will remain in `pending` state. For more details refer https://github.com/openebs/openebs/issues/2915.
+   :::
 
-The status of the PVC should be "Bound".
+2. Create the Pod:
 
-{% tabs %}
-{% tab title="Command" %}
-```text
-kubectl get pvc ms-volume-claim
-```
-{% endtab %}
+   ```
+   kubectl apply -f local-hostpath-pod.yaml
+   ```
 
-{% tab title="Example Output" %}
-```text
-NAME                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS     AGE
-ms-volume-claim     Bound    pvc-fe1a5a16-ef70-4775-9eac-2f9c67b3cd5b   1Gi        RWO            mayastor-1       15s
-```
-{% endtab %}
-{% endtabs %}
+3. Verify that the container in the Pod is running.
 
-### Verify the Persistent Volume
+   ```
+   kubectl get pod hello-local-hostpath-pod
+   ```
+4. Verify that the data is being written to the volume.
 
-{% tabs %}
-{% tab title="Command" %}
-{% hint style="info" %}
-Substitute the example volume name with that shown under the "VOLUME" heading of the output returned by the preceding "get pvc" command, as executed in your own cluster
-{% endhint %}
+   ```
+   kubectl exec hello-local-hostpath-pod -- cat /mnt/store/greet.txt
+   ```
+   
+5. Verify that the container is using the Local PV Hostpath.
+   ```
+   kubectl describe pod hello-local-hostpath-pod
+   ```
 
-```text
-kubectl get pv pvc-fe1a5a16-ef70-4775-9eac-2f9c67b3cd5b
-```
-{% endtab %}
+   The output shows that the Pod is running on `Node: gke-user-helm-default-pool-3a63aff5-1tmf` and using the persistent volume provided by `local-hostpath-pvc`.
 
-{% tab title="Example Output" %}
-```text
-NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                       STORAGECLASS     REASON   AGE
-pvc-fe1a5a16-ef70-4775-9eac-2f9c67b3cd5b   1Gi        RWO            Delete           Bound    default/ms-volume-claim     mayastor-1       16m
-```
-{% endtab %}
-{% endtabs %}
+   ```shell hideCopy
+   Name:         hello-local-hostpath-pod
+   Namespace:    default
+   Priority:     0
+   Node:         gke-user-helm-default-pool-3a63aff5-1tmf/10.128.0.28
+   Start Time:   Thu, 16 Apr 2020 17:56:04 +0000  
+   ...  
+   Volumes:
+     local-storage:
+       Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+       ClaimName:  local-hostpath-pvc
+       ReadOnly:   false
+   ...
+   ```
 
-### Verify the Mayastor Volume 
+6. Look at the PersistentVolumeClaim again to see the details about the dynamically provisioned Local PersistentVolume
+   ```
+   kubectl get pvc local-hostpath-pvc
+   ```
 
-The status of the volume should be "online".
+   The output shows that the `STATUS` is `Bound`. A new Persistent Volume `pvc-864a5ac8-dd3f-416b-9f4b-ffd7d285b425` has been created. 
 
-{% hint style="info" %}
-To verify the status of volume [Mayastor Kubectl plugin](https://mayastor.gitbook.io/introduction/reference/kubectl-plugin) is used.
-{% endhint %}
+   ```shell hideCopy
+   NAME                 STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS       AGE
+   local-hostpath-pvc   Bound    pvc-864a5ac8-dd3f-416b-9f4b-ffd7d285b425   5G         RWO            openebs-hostpath   28m
+   ```
 
-{% tabs %}
-{% tab title="Command" %}
-```text
-kubectl mayastor get volumes
-```
-{% endtab %}
+7. Look at the PersistentVolume details to see where the data is stored. Replace the PVC name with the one that was displayed in the previous step. 
+   ```
+   kubectl get pv pvc-864a5ac8-dd3f-416b-9f4b-ffd7d285b425 -o yaml
+   ```
+   The output shows that the PV was provisioned in response to PVC request  `spec.claimRef.name: local-hostpath-pvc`. 
 
-{% tab title="Example Output" %}
-```text
-ID                                    REPLICAS  TARGET-NODE                ACCESSIBILITY STATUS  SIZE
+   ```shell hideCopy
+   apiVersion: v1
+   kind: PersistentVolume
+   metadata:
+     name: pvc-864a5ac8-dd3f-416b-9f4b-ffd7d285b425
+     annotations:
+       pv.kubernetes.io/provisioned-by: openebs.io/local
+     ...
+   spec:
+     accessModes:
+       - ReadWriteOnce
+     capacity:
+       storage: 5G
+     claimRef:
+       apiVersion: v1
+       kind: PersistentVolumeClaim
+       name: local-hostpath-pvc
+       namespace: default
+       resourceVersion: "291148"
+       uid: 864a5ac8-dd3f-416b-9f4b-ffd7d285b425  
+     ...
+     ...
+     local:
+       fsType: ""
+       path: /var/openebs/local/pvc-864a5ac8-dd3f-416b-9f4b-ffd7d285b425
+     nodeAffinity:
+       required:
+         nodeSelectorTerms:
+         - matchExpressions:
+           - key: kubernetes.io/hostname
+             operator: In
+             values:
+             - gke-user-helm-default-pool-3a63aff5-1tmf
+     persistentVolumeReclaimPolicy: Delete
+     storageClassName: openebs-hostpath
+     volumeMode: Filesystem
+   status:
+     phase: Bound
+   ```
+   <br/>
 
-18e30e83-b106-4e0d-9fb6-2b04e761e18a  3         aks-agentpool-12194210-0   nvmf           Online  1073741824 
-```
-{% endtab %}
-{% endtabs %}
+:::note 
+A few important characteristics of a *OpenEBS Local PV* can be seen from the above output: 
+- `spec.nodeAffinity` specifies the Kubernetes node where the Pod using the Hostpath volume is scheduled. 
+- `spec.local.path` specifies the unique subdirectory under the `BasePath (/var/local/openebs)` defined in corresponding StorageClass.
+:::
 
-### Verify the application
+## See Also
 
-Verify that the pod has been deployed successfully, having the status "Running". It may take a few seconds after creating the pod before it reaches that status, proceeding via the "ContainerCreating" state.
+[Installation](../../quickstart-guide/installation.md)
 
-{% hint style="info" %}
-Note: The example FIO pod resource declaration included with this release references a PVC named `ms-volume-claim`, consistent with the example PVC created in this section of the quickstart. If you have elected to name your PVC differently, deploy the Pod using the example YAML, modifying the `claimName` field appropriately.
-{% endhint %}
+[Local PV Hostpath](../user-guides/local-engine-user-guide/localpv-hostpath.md)
 
-{% tabs %}
-{% tab title="Command" %}
-```text
-kubectl get pod fio
-```
-{% endtab %}
+[LVM Local PV](../user-guides/local-engine-user-guide/lvm-localpv.md)
 
-{% tab title="Example Output" %}
-```text
-NAME   READY   STATUS    RESTARTS   AGE
-fio    1/1     Running   0          34s
-```
-{% endtab %}
-{% endtabs %}
-
-## Run the FIO Tester Application
-
-We now execute the FIO Test utility against the Mayastor PV for 60 seconds, checking that I/O is handled as expected and without errors. In this quickstart example, we use a pattern of random reads and writes, with a block size of 4k and a queue depth of 16.
-
-{% tabs %}
-{% tab title="Command" %}
-```text
-kubectl exec -it fio -- fio --name=benchtest --size=800m --filename=/volume/test --direct=1 --rw=randrw --ioengine=libaio --bs=4k --iodepth=16 --numjobs=8 --time_based --runtime=60
-```
-{% endtab %}
-
-{% tab title="Example Output" %}
-```text
-benchtest: (g=0): rw=randrw, bs=(R) 4096B-4096B, (W) 4096B-4096B, (T) 4096B-4096B, ioengine=libaio, iodepth=16
-fio-3.20
-Starting 1 process
-benchtest: Laying out IO file (1 file / 800MiB)
-Jobs: 1 (f=1): [m(1)][100.0%][r=376KiB/s,w=340KiB/s][r=94,w=85 IOPS][eta 00m:00s]
-benchtest: (groupid=0, jobs=1): err= 0: pid=19: Thu Aug 27 20:31:49 2020
-  read: IOPS=679, BW=2720KiB/s (2785kB/s)(159MiB/60011msec)
-    slat (usec): min=6, max=19379, avg=33.91, stdev=270.47
-    clat (usec): min=2, max=270840, avg=9328.57, stdev=23276.01
-     lat (msec): min=2, max=270, avg= 9.37, stdev=23.29
-    clat percentiles (msec):
-     |  1.00th=[    3],  5.00th=[    3], 10.00th=[    4], 20.00th=[    4],
-     | 30.00th=[    4], 40.00th=[    4], 50.00th=[    4], 60.00th=[    4],
-     | 70.00th=[    4], 80.00th=[    4], 90.00th=[    7], 95.00th=[   45],
-     | 99.00th=[  136], 99.50th=[  153], 99.90th=[  165], 99.95th=[  178],
-     | 99.99th=[  213]
-   bw (  KiB/s): min=  184, max= 9968, per=100.00%, avg=2735.00, stdev=3795.59, samples=119
-   iops        : min=   46, max= 2492, avg=683.60, stdev=948.92, samples=119
-  write: IOPS=678, BW=2713KiB/s (2778kB/s)(159MiB/60011msec); 0 zone resets
-    slat (usec): min=6, max=22191, avg=45.90, stdev=271.52
-    clat (usec): min=454, max=241225, avg=14143.39, stdev=34629.43
-     lat (msec): min=2, max=241, avg=14.19, stdev=34.65
-    clat percentiles (msec):
-     |  1.00th=[    3],  5.00th=[    3], 10.00th=[    3], 20.00th=[    3],
-     | 30.00th=[    3], 40.00th=[    3], 50.00th=[    3], 60.00th=[    3],
-     | 70.00th=[    3], 80.00th=[    4], 90.00th=[   22], 95.00th=[  110],
-     | 99.00th=[  155], 99.50th=[  157], 99.90th=[  169], 99.95th=[  197],
-     | 99.99th=[  228]
-   bw (  KiB/s): min=  303, max= 9904, per=100.00%, avg=2727.41, stdev=3808.95, samples=119
-   iops        : min=   75, max= 2476, avg=681.69, stdev=952.25, samples=119
-  lat (usec)   : 4=0.01%, 250=0.01%, 500=0.01%, 750=0.01%, 1000=0.01%
-  lat (msec)   : 2=0.02%, 4=82.46%, 10=7.20%, 20=1.62%, 50=1.50%
-  lat (msec)   : 100=2.58%, 250=4.60%, 500=0.01%
-  cpu          : usr=1.19%, sys=3.28%, ctx=134029, majf=0, minf=17
-  IO depths    : 1=0.1%, 2=0.1%, 4=0.1%, 8=0.1%, 16=100.0%, 32=0.0%, >=64=0.0%
-     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
-     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.1%, 32=0.0%, 64=0.0%, >=64=0.0%
-     issued rwts: total=40801,40696,0,0 short=0,0,0,0 dropped=0,0,0,0
-     latency   : target=0, window=0, percentile=100.00%, depth=16
-
-Run status group 0 (all jobs):
-   READ: bw=2720KiB/s (2785kB/s), 2720KiB/s-2720KiB/s (2785kB/s-2785kB/s), io=159MiB (167MB), run=60011-60011msec
-  WRITE: bw=2713KiB/s (2778kB/s), 2713KiB/s-2713KiB/s (2778kB/s-2778kB/s), io=159MiB (167MB), run=60011-60011msec
-
-Disk stats (read/write):
-  sdd: ios=40795/40692, merge=0/9, ticks=375308/568708, in_queue=891648, util=99.53%
-```
-{% endtab %}
-{% endtabs %}
-
-If no errors are reported in the output then Mayastor has been correctly configured and is operating as expected. You may create and consume additional Persistent Volumes with your own test applications.
-
+[ZFS Local PV](../user-guides/local-engine-user-guide/zfs-localpv.md)

@@ -10,7 +10,7 @@ keywords:
 description: This document contains detailed description of OpenEBS Architecture
 ---
 
-OpenEBS is the leading Open Source implementation of the [Container Attached Storage(CAS)](/docs/concepts/cas) pattern. As a part of this approach, OpenEBS uses containers to dynamically provision volumes and provide data services like high availability. OpenEBS relies on and extends [Kubernetes](/docs/concepts/basics) itself to orchestrate its volume services. 
+OpenEBS is the leading Open Source implementation of the [Container Native Storage (CNS)](container-native-storage.md) pattern. As a part of this approach, OpenEBS uses containers to dynamically provision volumes and provide data services like high availability. OpenEBS relies on and extends [Kubernetes](basics.md) itself to orchestrate its volume services. 
 
 ![openebs hld](../assets/openebs-hld.svg)
 
@@ -25,7 +25,7 @@ The data engines are at the core of OpenEBS and are responsible for performing t
 
 The data engines are responsible for:
 - Aggregating the capacity available in the block devices allocated to them and then carving out volumes for applications. 
-- Provide standard system or network transport interfaces(NVMe/iSCSI) for connecting to local or remote volumes
+- Provide standard system or network transport interfaces(NVMe) for connecting to local or remote volumes
 - Provide volume services like - synchronous replication, compression, encryption, maintain snapshots, access to the incremental or full snapshots of data and so forth
 - Provide strong consistency while persisting the data to the underlying storage devices
 
@@ -37,11 +37,11 @@ The OpenEBS Data Engines comprise of the following layers:
 
 ### Volume Access Layer
 
-Stateful Workloads use standard POSIX compliant mechanisms to perform read and write operations. Depending on the type of workloads, the application can prefer to perform the reads and writes either directly to the raw block device or using standard filesystems like XFS, Ext4. 
+Stateful workloads use standard POSIX compliant mechanisms to perform read and write operations. Depending on the type of workloads, the application can prefer to perform the reads and writes either directly to the raw block device or using standard filesystems like XFS, Ext4. 
 
 The CSI node driver or the Kubelet will take care of attaching the volume to the required node where pod is running, formatting if necessary and mounting the filesystem to be accessible by the pod. Users have the option of setting the mount options and filesystem permissions at this layer which will be carried out by the CSI node driver or kubelet. 
 
-The details required for attaching the volumes (using local, iSCSI or NVMe) and mounting (Ext4, XFS, etc) are available through the Persistent Volume Spec. 
+The details required for attaching the volumes (using local or NVMe) and mounting (Ext4, XFS, etc) are available through the Persistent Volume Spec. 
 
 ### Volume Services Layer 
 
@@ -52,21 +52,20 @@ The implementation pattern used by data engines to provide high availability is 
 Using a single controller to implement synchronous replication of data to fixed set of nodes (instead of distribution via multiple metadata controller), reduces the overhead in managing the metadata and also reduces the blast radius related to a node failure and other nodes participating in the rebuild of the failed node. 
 
 The OpenEBS volume services layer exposes the volumes as:
-- Device or Directory paths in case of Local PV, 
-- iSCSI Target in case of cStor and Jiva
-- NVMe Target in case of Mayastor.
+- Device or Directory paths in case of Local Engine
+- NVMe Target in case of Replicated Engine
 
 ### Volume Data Layer 
 
-OpenEBS Data engines create a Volume Replica on top of the Storage Layer. Volume Replicas are pinned to a node and are created on top of the storage layer. The replica can be any of the following:
+OpenEBS Data Engines create a Volume Replica on top of the storage layer. Volume Replicas are pinned to a node and are created on top of the storage layer. The replica can be any of the following:
 
 - Sub-directory - in case the storage layer used is a filesystem directory
 - Full Device or Partitioned Device - in case the storage layer used is block devices
-- Logical Volume - in case the storage layer used is a device pool coming from LVM or ZFS. 
+- Logical Volume - in case the storage layer used is a device pool coming from local engine
 
-In case the applications require only local storage, then the Persistent Volume will be created using one of the above directories, device (or partition) or logical volume. OpenEBS [control plane](#control-plane) will be used to provision one of the above replicas. 
+In case the applications require only local storage, then the persistent volume will be created using one of the above directories, device (or partition) or logical volume. OpenEBS [control plane](#control-plane) will be used to provision one of the above replicas. 
 
-OpenEBS can add the layer of high availability on top of the local storage using one of its replicated engines - Jiva, cStor and Mayastor. In this case, OpenEBS uses a light-weight storage defined storage controller software that can receive the read/write operations over a network end-point and then be passed on to the underlying storage layer. OpenEBS then uses this Replica network end-points to maintain a synchronous copy of the volume across nodes. 
+OpenEBS can add the layer of high availability on top of the local storage using the replicated engine. In this case, OpenEBS uses a light-weight storage defined storage controller software that can receive the read/write operations over a network end-point and then be passed on to the underlying storage layer. OpenEBS then uses this Replica network end-points to maintain a synchronous copy of the volume across nodes. 
 
 OpenEBS Volume Replicas typically go through the following states:
 - Initializing, during initial provisioning and is being registered to its volume
@@ -77,9 +76,9 @@ OpenEBS Volume Replicas typically go through the following states:
 
 ### Storage Layer 
 
-Storage Layer forms the basic building blocks for persisting the data. The Storage Layer comprise of block devices attached to the node (either locally via PCIe, SAS, NVMe or via remote SAN/Cloud). The Storage Layer could also be a sub-directory on top of a mounted filesystem. 
+Storage layer forms the basic building blocks for persisting the data. The storage layer comprise of block devices attached to the node (either locally via PCIe, SAS, NVMe or via remote SAN/Cloud). The storage layer could also be a sub-directory on top of a mounted filesystem. 
 
-Storage Layer is outside the purview of the OpenEBS Data Engines and are available to the Kubernetes storage constructs using standard operating system or Linux software constructs.  
+Storage layer is outside the purview of the OpenEBS Data Engines and are available to the Kubernetes storage constructs using standard operating system or Linux software constructs.  
 
 The Data Engines consume the storage as a device or a device pool or a filesystem directory. 
 
@@ -91,39 +90,39 @@ The control plane in the context of OpenEBS refers to a set of tools or componen
 - Interfacing with CSI to manage the lifecycle of volumes 
 - Interfacing with CSI and other tools carrying out operations like - snapshots, clones, resize, backup, restore, etc. 
 - Integrating into other tools like Prometheus/Grafana for telemetry and monitoring 
-- Integrating into other tools for debugging, troubleshooting or log management
+- Integrating into other tools for debugging, troubleshooting, or log management
 
 OpenEBS Control Plane comprises of a set of micro-services that are themselves managed by Kubernetes, making OpenEBS truly Kubernetes native. The configuration managed by the OpenEBS Control Plane is saved as Kubernetes custom resources. The functionality of the control plane can be decomposed into the various stages as follows:
 
 ![openebs control plane](../assets/openebs-control-plane.svg)
 
-### YAML or Helm chart
+### Helm Chart
 
-OpenEBS components can be installed by the administrator using a highly configurable Helm chart or kubectl/YAML. OpenEBS installation is also supported via the Management Kubernetes offerings such as OpenShift, EKS, DO, Rancher as marketplace applications or as add-on or plugins tightly integrated into Kubernetes distributions such as MicroK8s, Kinvolk, Kubesphere. 
+OpenEBS components can be installed by the administrator using a highly configurable Helm chart. OpenEBS installation is also supported via the Management Kubernetes offerings such as OpenShift, EKS, DO, Rancher as marketplace applications or as add-on or plugins tightly integrated into Kubernetes distributions such as MicroK8s, Kinvolk, Kubesphere. 
 
-As part of the OpenEBS install, the control plane components for the selected data engines will be installed as cluster and/or node components using standard Kubernetes primitives like Deployments, DaemonSets, Statefulsets and such. The OpenEBS installation also takes care of loading the OpenEBS custom resource definitions into the Kubernetes. 
+As part of the OpenEBS install, the control plane components for the selected data engines will be installed as cluster and/or node components using standard Kubernetes primitives like Deployments, DaemonSets, Statefulsets, and such. The OpenEBS installation also takes care of loading the OpenEBS custom resource definitions into the Kubernetes. 
 
-OpenEBS control plane components are all stateless and depend on the Kubernetes etcd server (custom resources) to managing their internal configuration state and reporting the status of the various components.  
+OpenEBS control plane components are all stateless. It depends on the custom resources and etcd server for managing their internal configuration state and reporting the status of the various components.
 
 ### Declarative API 
 
 OpenEBS supports Declarative API for managing all of its operations and the APIs are exposed as Kubernetes custom resources. Kubernetes CRD validators and admission webhooks are used to validate the inputs provided by the users and to validate if the operations are allowed.  
 
-The Declarative API is a natural extension to what Kubernetes administrators and user are accustomed to, where they can define the intent via a YAML and then Kubernetes and associated OpenEBS Operators will reconcile the state with the user's intent. 
+The Declarative API is a natural extension to what Kubernetes administrators and user are accustomed to, where they can define the intent via a Helm chart and then Kubernetes and associated OpenEBS Operators will reconcile the state with the user's intent. 
 
-The Declarative API can be used to configure the Data Engines and setup volume profiles/policies.  Even upgrades of the data engines are performed using this API. The API can be used to: 
-- Manage the configuration for each of the Data engine
+The Declarative API can be used to configure the Data Engines and setup volume profiles/policies. Even upgrades of the data engines are performed using this API. The API can be used to: 
+- Manage the configuration for each Data Engine
 - Manage the way the storage needs to be managed or storage pools 
-- Manage the volumes and its services - creation, snapshots, clones, backup, restore, deletion
+- Manage the volumes and its services - creation, snapshots, clones, backup, restore, and deletion
 - Manage upgrades of pools and volumes
 
 ### Data Engine Operators 
 
 All of the Data Engine operations from discovering the underlying storage to creation of pools and volumes is packaged as Kubernetes Operators. Each of the Data Engine either operates on top of a configuration provided during the installation or controlled via the corresponding Kubernetes custom resources. 
 
-The Data engine operators can either be at the cluster scope or operating on a specific node. The cluster scope operators are usually involved in operations where interactions with the Kubernetes components are involved - in orchestrating the scheduling or migration of pools and volumes on various nodes. The node level operators operate on the local operations like creating volumes, replicas, snapshots and such on the storage or pools available on the node. 
+The Data Engine operators can either be at the cluster scope or operating on a specific node. The cluster scope operators are usually involved in operations where interactions with the Kubernetes components are involved - in orchestrating the scheduling or migration of pools and volumes on various nodes. The node level operators operate on the local operations like creating volumes, replicas, snapshots, and such on the storage or pools available on the node. 
 
-Data Engine Operators are often also called as control plane of the Data engines as they facilitate in managing the volumes and the data services offered by the corresponding data engines. Depending on the features provided or needed, some data engines like cstor, jiva and mayastor can have multiple operators, where as Local Volume operations can be embedded directly into the corresponding CSI controller / provisioner.
+Data Engine Operators are often also called as control plane of the Data Engines as they facilitate in managing the volumes and the data services offered by the corresponding Data Engines. Depending on the features provided or needed, some Data Engines can have multiple operators, where as local volume operations can be embedded directly into the corresponding CSI controller / provisioner.
 
 ### CSI Driver (Dynamic Volume Provisioner) 
 
@@ -133,25 +132,26 @@ CSI Drivers act as the facilitators for managing the life-cycle of volumes withi
 - Storage Drivers - which are CSI complaint and work very closely with the Kubernetes CSI layer to receive the requests and process them. 
 
 The Storage Drivers are responsible for:
-- Exposing the capabilities of the Data engines
+- Exposing the capabilities of the Data Engines
 - Either directly interacting with the Data Engine or the Data Engine Operators to perform volume creation and deletion operations
-- Interface with the Data engines to attach/detach the volumes to the nodes where containers consuming the volumes are running
+- Interface with the Data Engines to attach/detach the volumes to the nodes where containers consuming the volumes are running
 - Interface with standard linux utilities to format, mount/unmount the volumes to the containers
 
 ### Plugins
 
 OpenEBS focuses on storage operations and provides plugins for other popular tools for performing the operations that fall outside of the core storage functionality but are very important for running OpenEBS in production. Examples of such operations are:
 - Application Consistent Backup and Recovery (provided via integrations into Velero) 
-- Monitoring and Alerting ( provided via integrations into Prometheus, Grafana, Alert manager) 
-- Enforcing Security Policies ( provided via integrations with PodSecurityPolicies or Kyerno) 
-- Logging ( provide via integration to any standard Logging stack setup by administrators like ELK, Loki, Logstash) 
-- Visualizations  (provided via standard Kubernetes Dashboards or custom Grafana dashboards)
+- Monitoring and Alerting (provided via integrations into Prometheus, Grafana, and Alert manager) 
+- Enforcing Security Policies (provided via integrations with PodSecurityPolicies or Kyerno) 
+- Logging (provide via integration to any standard Logging stack setup by administrators like ELK, Loki, and Logstash) 
+- Visualizations (provided via standard Kubernetes Dashboards or custom Grafana dashboards)
+
 ### CLI 
 
 All the management functions on OpenEBS can be carried out via `kubectl` as OpenEBS uses Custom Resources for managing all of its configurations and reporting the status of the components. 
 
 In addition, OpenEBS also has released as alpha version `kubectl plugin` to help with providing information about the pools and volumes using a single command that aggregates the information obtained via multiple `kubectl` commands.
 
- ## See Also:
+ ## See Also
 
-[Understanding Data Engines](/docs/concepts/casengines) [Understanding Mayastor](https://mayastor.gitbook.io/introduction/) [Understanding Local PV](/docs/concepts/localpv) [Understanding cStor](/docs/concepts/cstor) [Understanding Jiva](/docs/concepts/jiva)
+[Understanding Data Engines](../concepts/data-engines/data-engines.md)
