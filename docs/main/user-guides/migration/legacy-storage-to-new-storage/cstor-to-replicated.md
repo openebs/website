@@ -5,6 +5,8 @@ keywords:
  - Migration from OpenEBS cStor to OpenEBS Replicated
  - cStor to Replicated
  - cStor to Mayastor
+ - Jiva to Replicated
+ - Jiva to Mayastor
 description: This section outlines the process of migrating OpenEBS cStor to OpenEBS Replicated.
 ---
 
@@ -15,7 +17,7 @@ You can also migrate OpenEBS Jiva to OpenEBS Replicated using the steps below.
 
 ## Assumptions
 
-- It is an assumption that cStor is already deployed.
+- cStor is already deployed.
 - MongoDB Standalone is deployed as below using the cStor PVC. (Here, MongoDB Standalone is an example.)
 
 ```
@@ -31,6 +33,7 @@ spec:
     requests:
       storage: 5Gi
 ```
+
 - For validation, some data has been inserted in the MongoDB as an example below:
 
 ```
@@ -41,6 +44,7 @@ db.admin.insertMany([{name: "Max"}, {name:"Alex"}])
   { _id: ObjectId('65eaafa01cd2b6de45285d87'), name: 'Alex' }
 ]
 ```
+## Steps to migrate cStor to Replicated
 
 Follow the steps below to migrate OpenEBS cStor to OpenEBS Replicated (fka Mayastor).
 
@@ -64,11 +68,13 @@ spec:
 
 3. Scale down the MongoDB pod.
 
-4. Start the migration and let it complete. See the example below:
+4. Start the migration and let it complete. 
 
-:::note
-Make sure you use the correct cStor pvc name that your application has.
+:::info
+Use the correct cStor PVC name that your application has.
 :::
+
+See the example below:
 
 ```
 pv-migrate migrate \
@@ -79,14 +85,15 @@ pv-migrate migrate \
 🚀 Starting migration
 💭 Will attempt 3 strategies: mnt2, svc, lbsvc
 🚁 Attempting strategy: mnt2
-📂 Copying data... 100% |███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| (2.8 GB/s)        
-📂 Copying data...   0% |                                                                                                                                                             |  [0s:0s]🧹 Cleaning up
-📂 Copying data... 100% |█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████|         
+📂 Copying data... 100% |██████████████████████████████| (2.8 GB/s)
+📂 Copying data...   0% |                              |  [0s:0s]🧹 Cleaning up
+📂 Copying data... 100% |██████████████████████████████|         
 ✨ Cleanup done
 ✅ Migration succeeded
 ```
 
-5. Deploy the MongoDB application using the Repliated PVC.
+5. Deploy the MongoDB application using the Replicated PVC.
+
 6. Once the MongoDB pod is created, check the data.
 
 ```
@@ -113,6 +120,4 @@ test> db.admin.find().pretty()
 
 The migration is successful.
 
-:::note
 The cStor volume and pools can now be removed and cStor can be uninstalled.
-:::

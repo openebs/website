@@ -6,7 +6,7 @@ keywords:
 description: This section outlines the process of migrating the legacy storage to new storage.
 ---
 
-# Overview
+# Migration Overview
 
 In this migration process, we are using [pv-migrate](https://github.com/utkuozdemir/pv-migrate) that is a CLI tool/kubectl plugin to easily migrate the contents of one Kubernetes `PersistentVolumeClaim` to another.
 
