@@ -12,7 +12,7 @@ description: This section outlines the process of migrating OpenEBS Local PV Dev
 
 :::info
 The following steps are an example about migrating from legacy storage to new storage.
-You can also migrate OpenEBS Local PV Device to OpenEBS Local PV ZFS & OpenEBS Local PV Rawfile to OpenEBS Local PV LVM or Local PV ZFS using the steps below.
+You can also migrate OpenEBS Local PV Device to OpenEBS Local PV ZFS. Similarly, you can migrate OpenEBS Local PV Rawfile to OpenEBS Local PV LVM or Local PV ZFS using the steps below.
 :::
 
 ## Assumptions
@@ -89,6 +89,10 @@ spec:
 
 3. Scale down the MongoDB pod.
 
+:::note
+In your case, scale down or delete the concerned application pod.
+:::
+
 4. Start the migration and let it complete.
 
 :::info
@@ -115,7 +119,7 @@ pv-migrate migrate \
 
 5. Deploy the MongoDB application using the LVM PVC.
 
-6. Once the MongoDB pod is created, check the data.
+6. Once the MongoDB pod is created, check the data that was persisted previously.
 
 ```
 root@mongo-lvm-556f58cd7d-rws6l:/# mongosh -u admin -p admin123

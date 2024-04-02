@@ -68,6 +68,10 @@ spec:
 
 3. Scale down the MongoDB pod.
 
+:::note
+In your case, scale down or delete the concerned application pod.
+:::
+
 4. Start the migration and let it complete. 
 
 :::info
@@ -94,7 +98,7 @@ pv-migrate migrate \
 
 5. Deploy the MongoDB application using the Replicated PVC.
 
-6. Once the MongoDB pod is created, check the data.
+6. Once the MongoDB pod is created, check the data that was persisted previously.
 
 ```
 root@mongo-mayastor-c7d645666-b98pc:/# mongosh -u admin -p admin123
