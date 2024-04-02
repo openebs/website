@@ -66,10 +66,13 @@ helm install openebs --namespace openebs openebs/openebs --set mayastor.enabled=
 To view the chart and get the output, use the following commands:
 
 **Command**
+
 ```
 helm ls -n openebs
 ```
+
 **Output**
+
 ```
 NAME     NAMESPACE   REVISION  UPDATED                                   STATUS     CHART           APP VERSION
 openebs  openebs     1         2024-03-25 09:13:00.903321318 +0000 UTC   deployed   openebs-4.0.0   4.0.0
@@ -180,8 +183,7 @@ You can follow through the below user guides for each of the engines to use stor
 
 ## See Also
 
-[OpenEBS Architecture](../concepts/architecture.md)
-
-[OpenEBS Use Cases and Examples](../introduction-to-openebs/use-cases-and-examples.mdx)
-
-[Troubleshooting](../troubleshooting/)
+- [Deployment](../quickstart-guide/deploy-a-test-application.md)
+- [OpenEBS Architecture](../concepts/architecture.md)
+- [OpenEBS Use Cases and Examples](../introduction-to-openebs/use-cases-and-examples.mdx)
+- [Troubleshooting](../troubleshooting/)

@@ -12,7 +12,7 @@ description: This guide will help you to setup OpenEBS and use OpenEBS Volumes t
 ---
 
 :::note
-With OpenEBS v3.4, the OpenEBS helm chart now supports installation of Mayastor v2.0 storage engine.
+With OpenEBS v3.4, the OpenEBS helm chart now supports installation of replicated engine v2.0 storage engine.
 ::: 
 
 This guide will help you to setup OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with [Kubernetes Storage Concepts](../concepts/basics.md).
@@ -49,20 +49,6 @@ For installing OpenEBS, you Kubernetes cluster should meet the following:
   - Installing the ext4, xfs, nfs, lvm, zfs, nvme packages.
   - Prepare the devices for use by data engines like - making sure there are no the filesystem installed or by creating an LVM volume group or ZFS Pool or partition the drives if required. 
 - Based on whether you are using a upstream Kubernetes cluster or using a managed Kubernetes cluster like AKS, Rancher, OpenShift, GKE, there may be additional steps required. 
-
-Read through the relevant section of the [pre-requisites](../user-guides/local-engine-user-guide/prerequisites.mdx) for your Kubernetes platform, Operating System of the worker nodes.
-
-- [Ubuntu](../user-guides/local-engine-user-guide/prerequisites.mdx)
-- [RHEL](../user-guides/local-engine-user-guide/prerequisites.mdx)
-- [CentOS](../user-guides/local-engine-user-guide/prerequisites.mdx)
-- [OpenShift](../user-guides/local-engine-user-guide/prerequisites.mdx)
-- [Rancher](../user-guides/local-engine-user-guide/prerequisites.mdx)
-- [ICP](../user-guides/local-engine-user-guide/prerequisites.mdx)
-- [EKS](../user-guides/local-engine-user-guide/prerequisites.mdx)
-- [GKE](../user-guides/local-engine-user-guide/prerequisites.mdx)
-- [AKS](../user-guides/local-engine-user-guide/prerequisites.mdx)
-- [Digital Ocean](../user-guides/local-engine-user-guide/prerequisites.mdx)
-- [Konvoy](../user-guides/local-engine-user-guide/prerequisites.mdx)
 
 If your platform is missing in the above list, [raise an issue on the docs](https://github.com/openebs/openebs/issues/new/choose) or reach us on the [community slack](../community.md) to let us know. 
 
@@ -118,3 +104,8 @@ Once the workloads are up and running, the platform or the operations team can o
 * Application teams can watch out for the capacity and performance and tune the PVCs accordingly. 
 * Platform or Cluster teams can check for the utilization and performance of the storage per node and decide on expansion and spreading out of the Data Engines. 
 * Infrastructure team will be responsible for planning the expansion or optimizations based on the utilization of the resources.
+
+## See Also
+
+- [Installation](../quickstart-guide/installation.md)
+- [Deployment](../quickstart-guide/deploy-a-test-application.md)

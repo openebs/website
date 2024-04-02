@@ -9,9 +9,9 @@ description: This section will help you to deploy a test application.
 ---
 
 :::info
-- See [LVM Local PV User Guide](../user-guides/local-engine-user-guide/lvm-localpv.md) to deploy LVM Local PV.
-- See [ZFS Local PV User Guide](../user-guides/local-engine-user-guide/zfs-localpv.md) to deploy ZFS Local PV.
-- See [Replicated Engine Deployment](../user-guides/replicated-engine-user-guide/replicated-engine-deployment.md) to deploy Replicated Engine.
+- See [Local PV LVM User Guide](../user-guides/local-engine-user-guide/lvm-localpv.md) to deploy Local PV LVM.
+- See [Local PV ZFS User Guide](../user-guides/local-engine-user-guide/zfs-localpv.md) to deploy Local PV ZFS.
+- See [Replicated Engine Deployment](../user-guides/replicated-engine-user-guide/replicated-engine-deployment.md) to deploy Replicated Engine (fka Mayastor).
 :::
 
 # Deploy an Application
@@ -193,10 +193,8 @@ A few important characteristics of a *OpenEBS Local PV* can be seen from the abo
 
 ## See Also
 
-[Installation](../../quickstart-guide/installation.md)
-
-[Local PV Hostpath](../user-guides/local-engine-user-guide/localpv-hostpath.md)
-
-[LVM Local PV](../user-guides/local-engine-user-guide/lvm-localpv.md)
-
-[ZFS Local PV](../user-guides/local-engine-user-guide/zfs-localpv.md)
+- [Installation](../../quickstart-guide/installation.md)
+- [Local PV Hostpath](../user-guides/local-engine-user-guide/localpv-hostpath.md)
+- [Local PV LVM](../user-guides/local-engine-user-guide/lvm-localpv.md)
+- [Local PV ZFS](../user-guides/local-engine-user-guide/zfs-localpv.md)
+- [Replicated Engine](../user-guides/replicated-engine-user-guide/)

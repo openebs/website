@@ -119,21 +119,16 @@ The recommended steps to uninstall the OpenEBS cluster gracefully is as follows.
 - After removing a PVC, you may find a directory `/var/openebs/` on the nodes where the replica was created having some of the volume sub-directory to store metadata info related to the volume, for example `shared-pvc-69adec76-665e-46bc-b957-2b2f58338429-target` with no content. This can be removed manually using the `rm -rf` command once you successfully uninstall the OpenEBS cluster.
 
 
-:::tip NOTE 
+:::info 
 An uninstall script is available [here](https://github.com/openebs/charts/blob/gh-pages/scripts/uninstall/uninstall.sh) to perform all the above steps.
 :::
 
-## Deletion of Jiva Volumes
 
-As part of deleting the Jiva Volumes - OpenEBS launches scrub jobs for clearing the data from the nodes.  This job will be running in OpenEBS installed namespace. The completed jobs need to be cleared using the following command.
+## See Also
 
-```
-kubectl delete jobs -l openebs.io/cas-type=jiva -n <openebs_namespace>
-```
+[FAQs](../faqs/faqs.md)
 
-In addition, the job is set with a TTL to get cleaned up, if the Kubernetes version is greater than 1.12. However, for the feature to work, the Kubernetes alpha flag needs to be enabled in the cluster. More information can be read from [here](https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/#clean-up-finished-jobs-automatically).
+[Troubleshooting - Local Engine](../troubleshooting/troubleshooting-local-engine.md)
 
+[Troubleshooting - Replicated Engine](../troubleshooting/troubleshooting-replicated-engine.md)
 
-## See Also:
-
-[FAQ](/additional-info/faqs) [Troubleshooting](/troubleshooting)
