@@ -252,6 +252,16 @@ module.exports = {
               items: [
                 {
                   type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/additional-information/upgrade-re",
+                  label: "Upgrades"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/additional-information/legacy-upgrade",
+                  label: "Legacy Upgrades"
+                },
+                {
+                  type: "doc",
                   id: "user-guides/replicated-engine-user-guide/additional-information/tips",
                   label: "Tips and Tricks"
                 },

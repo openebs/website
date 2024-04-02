@@ -15,7 +15,7 @@ description: This section explains about the Tested Third Party Software.
 
 ## **Cluster Orchestration**
 
-#### Kubernetes versions:
+### Kubernetes Versions
 
  * v1.25.10
  * v1.23.7 

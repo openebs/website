@@ -18,17 +18,25 @@ For OpenEBS Replicated Engine, make sure that your Kubernetes nodes meet the [re
 At a high level OpenEBS requires:
 
 - Verify that you have the admin context. If you do not have admin permissions to your cluster, check with your Kubernetes cluster administrator to help with installing OpenEBS or if you are the owner of the cluster, check out the [steps to create a new admin context](#set-cluster-admin-user-context) and use it for installing OpenEBS.
-- You have Kubernetes 1.18 version or higher.
 - Each storage engine may have few additional requirements like having:
   - Depending on the managed Kubernetes platform like Rancher or MicroK8s - set up the right bind mounts
   - Decide which of the devices on the nodes should be used by OpenEBS or if you need to create LVM Volume Groups or ZFS Pools
 - Join [OpenEBS community on Kubernetes slack](../community.md).
+
+## Supported Versions
+
+- Kubernetes 1.23 or higher is required
+- Linux Kernel 5.15 or higher is required
+-	OS: Ubuntu and RHEL 8.8
+-	LVM Version: LVM 2
+-	ZFS Version: ZFS 0.8
 
 ## Installation via Helm
 
 Verify helm is installed and helm repo is updated. You need helm 3.2 or more. 
 
 Setup helm repository
+
 ```
 helm repo add openebs https://openebs.github.io/openebs
 helm repo update
