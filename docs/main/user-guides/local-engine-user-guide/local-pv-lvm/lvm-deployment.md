@@ -1,6 +1,6 @@
 ---
 id: lvm-deployment
-title: Local PV LVM Deployment
+title: Deployment
 keywords:
  - OpenEBS LVM Local PV
  - Local PV LVM

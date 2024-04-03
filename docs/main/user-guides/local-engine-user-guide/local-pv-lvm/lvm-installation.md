@@ -1,6 +1,6 @@
 ---
 id: lvm-installation
-title: Local PV LVM Installation
+title: Installation
 keywords:
  - OpenEBS Local PV LVM
  - Local PV LVM

@@ -1,0 +1,78 @@
+---
+id: zfs-installation
+title: Installation
+keywords:
+ - OpenEBS ZFS Local PV
+ - ZFS Local PV
+ - Prerequisites
+ - Installation
+description: This section explains the prerequisites and installation requirements to set up OpenEBS Local Persistent Volumes (PV) backed by the ZFS Storage. 
+---
+
+This section explains the prerequisites and installation requirements to set up OpenEBS Local Persistent Volumes (PV) backed by the ZFS Storage. 
+
+## Prerequisites
+
+Before installing ZFS driver, make sure your Kubernetes Cluster must meet the following prerequisites:
+
+1. All the nodes must have zfs utils installed.
+2. ZPOOL has been setup for provisioning the volume.
+3. You have access to install RBAC components into kube-system namespace. The OpenEBS ZFS driver components are installed in kube-system namespace to allow them to be flagged as system critical components.
+
+## Setup
+
+All the node should have zfsutils-linux installed. We should go to the each node of the cluster and install zfs utils:
+
+```
+$ apt-get install zfsutils-linux
+```
+
+Go to each node and create the ZFS Pool, which will be used for provisioning the volumes. You can create the Pool of your choice, it can be striped, mirrored or raidz pool.
+
+If you have the disk(say /dev/sdb) then you can use the below command to create a striped pool :
+
+```
+$ zpool create zfspv-pool /dev/sdb
+```
+
+You can also create mirror or raidz pool as per your need. Check https://github.com/openzfs/zfs for more information.
+
+If you do not have the disk, then you can create the zpool on the loopback device which is backed by a sparse file. Use this for testing purpose only.
+
+```
+$ truncate -s 100G /tmp/disk.img
+$ zpool create zfspv-pool `losetup -f /tmp/disk.img --show`
+```
+
+Once the ZFS Pool is created, verify the pool via zpool status command, you should see something like this:
+
+```
+$ zpool status
+  pool: zfspv-pool
+ state: ONLINE
+  scan: none requested
+config:
+
+	NAME        STATE     READ WRITE CKSUM
+	zfspv-pool  ONLINE       0     0     0
+	  sdb       ONLINE       0     0     0
+
+errors: No known data errors
+```
+
+Configure the custom topology keys (if needed). This can be used for many purposes like if we want to create the PV on nodes in a particuler zone or building. We can label the nodes accordingly and use that key in the storageclass for taking the scheduling decesion:
+
+https://github.com/openebs/zfs-localpv/blob/HEAD/docs/faq.md#6-how-to-add-custom-topology-key
+
+## Installation
+
+For installation instructions, see [here](../../quickstart-guide/installation.md).
+
+## Support
+
+If you encounter issues or have a question, file an [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+
+## See Also
+
+- [Installation](../../quickstart-guide/installation.md)
+- [Deploy an Application](../../quickstart-guide/deploy-a-test-application.md)

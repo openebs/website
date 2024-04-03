@@ -1,32 +1,31 @@
 ---
-id: lvm-raw-block-volume
+id: zfs-raw-block-volume
 title: Raw Block Volume
 keywords:
- - OpenEBS Local PV LVM
- - Local PV LVM
+ - OpenEBS ZFS Local PV
+ - ZFS Local PV
  - Raw Block Volume
- - Advanced Operations
-description: This section talks about the advanced operations that can be performed in the OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage. 
+description: This section talks about the advanced operations that can be performed in the OpenEBS Local Persistent Volumes (PV) backed by the ZFS Storage. 
 ---
 
 There are some specialized applications that require direct access to a block device because, for example, the file system layer introduces unneeded overhead. The most common case is databases, which prefer to organize their data directly on the underlying storage. Raw block devices are also commonly used by any software which itself implements some kind of storage service (software defined storage systems).
 
 As it becomes more common to run database software and storage infrastructure software inside of Kubernetes, the need for raw block device support in Kubernetes becomes more important.
 
-To provisione the raw block volume, we should create a storageclass without any fstype as Raw block volume does not have any fstype.
+To provisione the Raw Block volume, we should create a storageclass without any fstype as Raw block volume does not have any fstype.
 
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: lvmpv-block
-  allowVolumeExpansion: true
-  parameters:
-    volgroup: "lvmpv-vg"
-    provisioner: local.csi.openebs.io
+  name: zfspv-block
+provisioner: zfs.csi.openebs.io
+allowVolumeExpansion: true
+parameters:
+    poolname: "zfspv-pool"
 ```
 
-Now we can create a pvc with volumeMode as Block to request for a Raw Block Volume:-
+Now we can create a pvc with volumeMode as Block to request for a Raw Block Volume :-
 
 ```yaml
 kind: PersistentVolumeClaim
@@ -35,7 +34,7 @@ metadata:
   name: block-claim
 spec:
   volumeMode: Block
-  storageClassName: lvmpv-block
+  storageClassName: zfspv-block
   accessModes:
     - ReadWriteOnce
   resources:
@@ -43,7 +42,7 @@ spec:
       storage: 5Gi
 ```
 
-Now we can deploy the application using the above PVC, the LVM-LocalPV driver will attach a Raw block device at the given mount path. We can provide the device path using volumeDevices in the application yaml:-
+Now we can deploy the application using the above PVC, the ZFS-LocalPV driver will attach a Raw block device at the given mount path. We can provide the device path using volumeDevices in the application yaml :-
 
 ```yaml
 apiVersion: apps/v1

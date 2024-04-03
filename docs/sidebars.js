@@ -201,6 +201,66 @@ module.exports = {
                   ]
                 }
               ] 
+            },
+            {
+              collapsed: true,
+              type: "category",
+              label: "Local PV ZFS",
+              customProps: {
+                icon: "Book"
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/local-pv-zfs/zfs-installation",
+                  label: "Installation"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/local-pv-zfs/zfs-configuration",
+                  label: "Configuration"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/local-pv-zfs/zfs-deployment",
+                  label: "Deployment"
+                },
+                {
+                  collapsed: true,
+                  type: "category",
+                  label: "Advanced Operations",
+                  customProps: {
+                    icon: "Layers"
+                  },
+                  items: [
+                    {
+                      type: "doc",
+                      id: "user-guides/local-engine-user-guide/local-pv-zfs/advanced-operations/zfs-backup-restore",
+                      label: "Backup and Restore"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-engine-user-guide/local-pv-zfs/advanced-operations/zfs-clone",
+                      label: "Clone Volume"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-engine-user-guide/local-pv-zfs/advanced-operations/zfs-resize",
+                      label: "Volume Resize"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-engine-user-guide/local-pv-zfs/advanced-operations/zfs-snapshot",
+                      label: "Snapshot Volume"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-engine-user-guide/local-pv-zfs/advanced-operations/zfs-raw-block-volume",
+                      label: "Raw Block Volume"
+                    }
+                  ]
+                }
+              ] 
             },   
             {
               collapsed: true,

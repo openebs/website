@@ -182,5 +182,9 @@
   "sidebar.docs.category.Local PV LVM": {
     "message": "Local PV LVM",
     "description": "The label for category Local PV LVM in sidebar docs"
+  },
+  "sidebar.docs.category.Local PV ZFS": {
+    "message": "Local PV ZFS",
+    "description": "The label for category Local PV ZFS in sidebar docs"
   }
 }
