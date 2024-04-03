@@ -91,11 +91,6 @@ module.exports = {
       items: [
         {
           type: "doc",
-          id: "quickstart-guide/quickstart",
-          label: "Quickstart"
-        },
-        {
-          type: "doc",
           id: "quickstart-guide/installation",
           label: "Installation"
         },
