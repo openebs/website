@@ -201,7 +201,7 @@
   },
   "theme.docs.versions.latestVersionSuggestionLabel": {
     "message": "See the documentation for {latestVersionLink} ({versionLabel}).",
-    "description": "The label userd to tell the user that they are browsing an unmaintained doc version"
+    "description": "The label used to tell the user that they are browsing an unmaintained doc version"
   },
   "theme.docs.versions.latestVersionLinkLabel": {
     "message": "latest released version",

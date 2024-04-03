@@ -95,6 +95,10 @@ cat /sys/devices/system/cpu/isolated
 
 ### Update Replicated Engine Helm Chart for CPU Core Specification
 
+:::info
+Update the [Helm value](https://github.com/openebs/mayastor-extensions/blob/6df062eb5a0864b82dcc709ab4d84a135252fe45/chart/values.yaml#L407) in the replicated engine Helm chart to specify the CPU core.
+:::
+
 To allot specific CPU cores for replicated engine's reactors, follow these steps:
 
 1. Ensure that you have the replicated engine kubectl plugin installed, matching the version of your replicated engine Helm chart deployment ([releases](https://github.com/openebs/mayastor/releases)). You can find installation instructions in the [kubectl plugin documentation](../advanced-operations/kubectl-plugin.md).

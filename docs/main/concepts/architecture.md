@@ -152,6 +152,16 @@ All the management functions on OpenEBS can be carried out via `kubectl` as Open
 
 In addition, OpenEBS also has released as alpha version `kubectl plugin` to help with providing information about the pools and volumes using a single command that aggregates the information obtained via multiple `kubectl` commands.
 
+## Dynamic Persistent Volume Provisioning
+
+The Kubernetes CSI (provisioning layer) will intercept the requests for the Persistent Volumes and forward the requests to the OpenEBS Control Plane components to service the requests. The information provided in the StorageClass combined with requests from PVCs will determine the right OpenEBS control component to receive the request. 
+
+OpenEBS control plane will then process the request and create the Persistent Volumes using the specified local or replicated engines. The data engine services like target and replica are deployed as Kubernetes applications as well. The containers provide storage for the containers. The new containers launched for serving the applications will be available in the `openebs` namespace. 
+
+With the magic of OpenEBS and Kubernetes, the volumes should be provisioned, pods scheduled and application ready to serve. For this magic to happen, the prerequisites should be met.
+
+Check out our [troubleshooting section](../troubleshooting/) for some of the common errors that users run into due to setup issues.
+
  ## See Also
 
 - [Data Engines](../concepts/data-engines/data-engines.md)

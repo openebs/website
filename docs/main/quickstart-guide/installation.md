@@ -7,7 +7,15 @@ keywords:
 description: This guide will help you to customize and install OpenEBS
 ---
 
-This guide will help you to customize and install OpenEBS. 
+This guide will help you to setup, customize, and install OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with [Kubernetes Storage Concepts](../concepts/basics.md).
+
+## How to setup and use OpenEBS?
+
+OpenEBS seamlessly integrates into the overall workflow tooling that Kubernetes administrators and users have around Kubernetes. 
+
+The OpenEBS workflow fits nicely into the reconcilation pattern introduced by Kubernetes, paving the way for a Declarative Storage Control Plane as shown below: 
+
+![control plane overview](../assets/control-plane-overview.svg)
 
 ## Prerequisites
 

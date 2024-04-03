@@ -62,19 +62,16 @@ OpenEBS (provide snapshots and restore links to all 3 engines - Internal referen
 
 [Go to top](#top)
 
-### How is data protected? What happens when a host, client workload, or a data center fails?
+### How is data protected in replicated storage? What happens when a host, client workload, or a data center fails?
 
-Kubernetes provides many ways to enable resilience. OpenEBS leverages these wherever possible. For example, say the IO container that has the iSCSI target fails. Well, it is spun back up by Kubernetes. The same applies to the underlying replica containers, where the data is actually stored. They are spun back up by Kubernetes. Now, the point of replicas is to ensure that when one or more of these replicas are being respond and then repopulated in the background by OpenEBS, the client applications still run. OpenEBS takes a simple approach to ensuring that multiple replicas can be accessed by an IO controller using a configurable quorum or the minimum number of replica requirements. In addition, our new cStor checks for silent data corruption and in some cases can fix it in the background. Silent data corruption, unfortunately, can occur from poorly engineered hardware and from other underlying conditions including those that your cloud provider is unlikely to report or identify.
+The OpenEBS replicated storage ensures resilience with built-in highly available architecture. It supports on-demand switch over of the NVMe controller to ensure IO continuity in case of host failure. The data is synchronously replicated as per the congigured replication factor to ensure no single point of failure.
+Faulted replicas are automatically rebuilt in the background without IO disruption to maintain the replication factor.
 
 [Go to top](#top)
 
 ### How does OpenEBS provide high availability for stateful workloads?
 
-An OpenEBS Jiva volume is a controller deployed during OpenEBS installation. Volume replicas are defined by the parameter that you set. The controller is an iSCSI target while the replicas play the role of a disk. The controller exposes the iSCSI target while the actual data is written. The controller and each replica run inside a dedicated container. An OpenEBS Jiva volume controller exists as a single instance, but there can be multiple instances of OpenEBS Jiva volume replicas. Persistent data is synchronized between replicas. OpenEBS Jiva volume high availability is based on various scenarios as explained in the following sections. 
-
-:::note
-Each replica is scheduled in a unique K8s node, and a K8s node never has two replicas of one OpenEBS volume.
-:::
+See https://mayastor.gitbook.io/introduction/quickstart/configure-mayastor/storage-class-parameters#stsaffinitygroup (Internal Reference)
 
 [Go to top](#top)
 
@@ -106,15 +103,9 @@ Other enterprise capabilities: OpenEBS adds other capabilities such as extremely
 
 [Go to top](#top)
 
-### Why OpenEBS_logical_size and OpenEBS_actual_used are showing in different size?
-
-The `OpenEBS_logical_size` and `OpenEBS_actual_used` parameters will start showing different sizes when there are replica node restarts and internal snapshots are created for synchronizing replicas.
-
-[Go to top](#top)
-
 ### What must be the disk mount status on Node for provisioning OpenEBS volume?
 
-OpenEBS have three local storage engines and one replicated storage engine which can be used to provision OpenEBS volumes.
+It is recommended to use unpartitioned raw block devices for best results.
 
 [Go to top](#top)
 
