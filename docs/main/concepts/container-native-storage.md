@@ -45,7 +45,7 @@ As the CNS architecture is per workload and components are loosely coupled, CNS 
 
 CNS can deliver high availability through synchronous replication from storage controllers to storage replicas. The metadata required to maintain the replicas is simplified to saving the information of the nodes that have replicas and information about the status of replicas to help with quorum. If a node fails, the storage controller, which is a stateless container in this case, is spun on a node where second or third replica is running and data continues to be available. Hence, with CNS the blast radius is much lower and also localized to the volumes that have replicas on that node. 
 
-## See Also:
+## See Also
 
-[OpenEBS Architecture](architecture.md)
-[Connect with Community](../community.md)
+- [OpenEBS Architecture](architecture.md)
+- [Connect with Community](../community.md)

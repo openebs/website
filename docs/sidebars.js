@@ -91,11 +91,6 @@ module.exports = {
       items: [
         {
           type: "doc",
-          id: "quickstart-guide/quickstart",
-          label: "Quickstart"
-        },
-        {
-          type: "doc",
           id: "quickstart-guide/installation",
           label: "Installation"
         },
@@ -250,6 +245,16 @@ module.exports = {
                 icon: "File"
               },
               items: [
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/additional-information/upgrade-re",
+                  label: "Upgrades"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-engine-user-guide/additional-information/legacy-upgrade",
+                  label: "Legacy Upgrades"
+                },
                 {
                   type: "doc",
                   id: "user-guides/replicated-engine-user-guide/additional-information/tips",

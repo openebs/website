@@ -8,15 +8,9 @@ keywords:
 description: The FAQ section about OpenEBS helps to address common concerns, questions, and objections that users have about OpenEBS.
 ---
 
-### What is most distinctive about the OpenEBS architecture? {#What-is-most-distinctive-about-the-OpenEBS-architecture}
+### What is most distinctive about the OpenEBS architecture?{#What-is-most-distinctive-about-the-OpenEBS-architecture}
 
-The OpenEBS architecture is an example of Container Attached Storage (CAS). These approaches containerize the storage controller, called IO controllers, and underlying storage targets, called “replicas”, allowing an orchestrator such as Kubernetes to automate the management of storage. Benefits include automation of management, a delegation of responsibility to developer teams, and the granularity of the storage policies which in turn can improve performance.
-
-[Go to top](#top)
-
-### Why did you choose iSCSI? Does it introduce latency and decrease performance? {#Why-did-you-choose-iSCSI}
-
-We at OpenEBS strive to make OpenEBS simple to use using Kubernetes as much as possible to manage OpenEBS itself. iSCSI allows you to be more resilient in cases where the workload and the controller are not on the same host. In other words, the OpenEBS user or architect will not suffer an outage when the storage IO controller is not scheduled locally to the workload in need of storage. OpenEBS does a variety of things to improve performance elsewhere in the stack. More is to come via the cStor storage engine in order to have this level of flexibility.
+The OpenEBS architecture is an example of Container Native Storage (CNS). These approaches containerize the storage controller, called I/O controllers, and underlying storage targets, called “replicas”, allowing an orchestrator such as Kubernetes to automate the management of storage. Benefits include automation of management, a delegation of responsibility to developer teams, and the granularity of the storage policies which in turn can improve performance.
 
 [Go to top](#top)
 
@@ -28,63 +22,25 @@ To determine exactly where your data is physically stored, you can run the follo
 
 * Run `kubectl get pvc` to fetch the volume name. The volume name looks like: *pvc-ee171da3-07d5-11e8-a5be-42010a8001be*.
 
-* For each volume, you will notice one IO controller pod and one or more replicas (as per the storage class configuration). For the above PVC, run the following command to get the IO controller and replica pods. 
-
-  ```
-  kubectl get pods --all-namespaces | grep pvc-ee171da3-07d5-11e8-a5be-42010a8001be
-  ```
-
-  The output displays the following pods.
-
-  ```
-  IO Controller: pvc-ee171da3-07d5-11e8-a5be-42010a8001be-ctrl-6798475d8c-7node
-  Replica 1: pvc-ee171da3-07d5-11e8-a5be-42010a8001be-rep-86f8b8c758-hls6s     
-  Replica 2: pvc-ee171da3-07d5-11e8-a5be-42010a8001be-rep-86f8b8c758-tr28f  
-  ```
-
-* To check the location where the data is stored, get the details of the replica pod. For getting the details of Replica 1 above, use the `kubectl get pod -o yaml pvc-ee171da3-07d5-11e8-a5be-42010a8001be-rep-86f8b8c758-hls6s` command. Check the volumes section. 
-
-  ```
-  volumes:
-        - hostPath:
-        path: /var/openebs/pvc-ee171da3-07d5-11e8-a5be-42010a8001be
-            type: ""
-        - name: openebs
-  ```
+* For each volume, you will notice one I/O controller pod and one or more replicas (as per the storage class configuration). You can use the volume ID (ee171da3-07d5-11e8-a5be-42010a8001be) to view information about the volume and replicas using the replicated engine [kubectl plugin](../../../docs/main/user-guides/replicated-engine-user-guide/advanced-operations/kubectl-plugin.md)
 
 [Go to top](#top)
 
 ### What changes are needed for Kubernetes or other subsystems to leverage OpenEBS? {#changes-on-k8s-for-openebs}
 
-One of the major differences of OpenEBS versus other similar approaches is that no changes are required to run OpenEBS on Kubernetes. However, OpenEBS itself is a workload and the easy management of it is crucial especially as the Container Attached Storage (CAS) approach entails putting containers that are IO controller and replica controllers.
-
-You can access the OpenEBS IO controller via iSCSI, exposed as a service. The nodes require iSCSI initiator to be installed. In case the kubelet is running in a container for example, as in the case of Rancher and so on, the iSCSI initiator should be installed within the kubelet container.
+One of the major differences of OpenEBS versus other similar approaches is that no changes are required to run OpenEBS on Kubernetes. However, OpenEBS itself is a workload and the easy management of it is crucial especially as the CNS approach entails putting containers that are I/O controller and replica controllers.
 
 [Go to top](#top)
 
 ### How do you get started and what is the typical trial deployment? {#get-started}
 
-If you have a Kubernetes environment, you can deploy OpenEBS using the following command.
-
- `kubectl apply -f https://openebs.github.io/charts/openebs-operator.yaml`
-
-You can then begin running a workload against OpenEBS. There is a large and growing number of workload that have storage classes that use OpenEBS. You need not use these specific storage classes. However, they may be helpful as they save time and allow for per workload customization. If you need additional help, get in touch with [OpenEBS Community](/introduction/community).
+To get started, you can follow the steps in the [quickstart guide](../quickstart-guide/quickstart.md)
  
 [Go to top](#top)
 
 ### What is the default OpenEBS Reclaim policy? {#default-reclaim-policy}
 
-The default retention is the same used by K8s. For dynamically provisioned PersistentVolumes, the default reclaim policy is “Delete”. This means that a dynamically provisioned volume is automatically deleted when a user deletes the corresponding PersistentVolumeClaim. 
-
-In case of cStor volumes, data was being deleted as well. 
-
-For jiva, from 0.8.0 version, the data is deleted via scrub jobs. The completed job can be deleted using `kubectl delete job <job_name> -n <namespace>`
-
-[Go to top](#top)
-
-### Why NDM Daemon set required privileged mode? {#why-ndm-privileged}
-
-Currently, NDM Daemon set runs in the privileged mode. NDM requires privileged mode because it requires access to `/dev` and `/sys` directories for monitoring the devices attached and also to fetch the details of the attached device using various probes. 
+The default retention is the same used by K8s. For dynamically provisioned PersistentVolumes, the default reclaim policy is “Delete”. This means that a dynamically provisioned volume is automatically deleted when a user deletes the corresponding PersistentVolumeClaim.
 
 [Go to top](#top)
 
@@ -96,89 +52,40 @@ Yes. See the [detailed installation instructions for OpenShift](../user-guides/l
 
 ### Can I use replica count as 2 in StorageClass if it is a single node cluster? {#replica-count-2-in-a-single-node-cluster}
 
-While creating a StorageClass, if user mention replica count as 2 in a single node cluster, OpenEBS will not create the volume from 0.9  version onwards. It is required to match the number of replica count and number of nodes available in the cluster for provisioning OpenEBS Jiva and cStor volumes.
+While creating a StorageClass, if user mention replica count as 2 in a single node cluster, OpenEBS will not create the volume. It is required to match the number of replica count and number of nodes available in the cluster for provisioning OpenEBS replicated volumes.
 
 [Go to top](#top)
 
 ### How backup and restore is working with OpenEBS volumes? {#backup-restore-openebs-volumes}
 
-OpenEBS cStor volume is working based on cStor/ZFS snapshot using Velero. For OpenEBS Local PV and Jiva volume, it is based on restic using Velero.
+OpenEBS (provide snapshots and restore links to all 3 engines - Internal reference)
 
 [Go to top](#top)
 
-### Why customized parameters set on default OpenEBS StorageClasses are not getting persisted? {#customized-values-not-persisted-after-reboot}
+### How is data protected in replicated storage? What happens when a host, client workload, or a data center fails?
 
-The customized parameters set on default OpenEBS StorageClasses will not persist after restarting `maya-apiserver` pod or restarting the node where `maya-apiserver` pod is running. StorageClasses created by maya-apiserver are owned by it and it tries to overwrite them upon its creation.
-
-[Go to top](#top)
-
-### Why NDM listens on host network?
-
-NDM uses `udev` to monitor dynamic disk attach and detach events. `udev` listens on netlink socket of the host system to get those events. A container requires host network access so that it can listen on the socket. Therefore NDM requires host network access for the `udev` running inside the container to listen those disk related events.
-
-[Go to top](#top)
-
-### How is data protected? What happens when a host, client workload, or a data center fails?
-
-Kubernetes provides many ways to enable resilience. OpenEBS leverages these wherever possible.  For example, say the IO container that has the iSCSI target fails. Well, it is spun back up by Kubernetes. The same applies to the underlying replica containers, where the data is actually stored. They are spun back up by Kubernetes. Now, the point of replicas is to ensure that when one or more of these replicas are being respond and then repopulated in the background by OpenEBS, the client applications still run.  OpenEBS takes a simple approach to ensuring that multiple replicas can be accessed by an IO controller using a configurable quorum or the minimum number of replica requirements. In addition, our new cStor checks for silent data corruption and in some cases can fix it in the background.  Silent data corruption, unfortunately, can occur from poorly engineered hardware and from other underlying conditions including those that your cloud provider is unlikely to report or identify.  
+The OpenEBS replicated storage ensures resilience with built-in highly available architecture. It supports on-demand switch over of the NVMe controller to ensure IO continuity in case of host failure. The data is synchronously replicated as per the congigured replication factor to ensure no single point of failure.
+Faulted replicas are automatically rebuilt in the background without IO disruption to maintain the replication factor.
 
 [Go to top](#top)
 
 ### How does OpenEBS provide high availability for stateful workloads?
 
-An OpenEBS Jiva volume is a controller deployed during OpenEBS installation. Volume replicas are defined by the parameter that you set. The controller is an iSCSI target while the replicas play the role of a disk. The controller exposes the iSCSI target while the actual data is written. The controller and each replica run inside a dedicated container. An OpenEBS Jiva volume controller exists as a single instance, but there can be multiple instances of OpenEBS Jiva volume replicas. Persistent data is synchronized between replicas. OpenEBS Jiva volume high availability is based on various scenarios as explained in the following sections. 
-
-**Note:** Each replica is scheduled in a unique K8s node, and a K8s node never has two replicas of one OpenEBS volume.
+See https://mayastor.gitbook.io/introduction/quickstart/configure-mayastor/storage-class-parameters#stsaffinitygroup (Internal Reference)
 
 [Go to top](#top)
 
-### What are the recommended iSCSI timeout settings on the host?
+### What changes must be made to the nodes on which OpenEBS runs?
 
-There are cases when application pod and OpenEBS cStor target pod are running on different nodes. In such cases, there may be chances that application can go to read only when K8s takes around 5 mins to re-schedule OpenEBS target pod to a new Node. To avoid such scenarios, default iscsi timeout values can be configured to the recommended one. 
-
-#### Configure the iSCSI timeout value
-The following explains the configuration change for 2 different scenarios.
-
-1. For New iSCSI sessions
-2. For those sessions already logged in to iSCSI target.
-
-**For new iSCSI sessions**:
-
-Do below configuration settings on the host node to change the default iscsi timeout value.
-
-1. Edit iscsid.conf file.
-
-2. Modify **node.session.timeo.replacement_timeout** with 300 seconds.
-
-**For those sessions already logged in to iSCSI target:**
-
-Below command can be used to change the setting for logged in sessions:
-
-```
-iscsiadm -m node -T <target> -p ip:port -o update -n node.session.timeo.replacement_timeout -v 300
-```
-
-#### Verify the iscsi timeout settings {#verify-iscsi-timeout}
-
-Verify the configured value by running “iscsiadm -m session -P 3”  and check "Recovery Timeout" value under "Timeouts". It should be configured as 300.
-
-You may notice the change in the “Attached scsi disk” value. This causes volume to get unmounted and thus volume need to be remounted. Detailed steps for remounting volume are mentioned [here](https://openebs.io/blog/keeping-openebs-volumes-in-rw-state-during-node-down-scenarios/).
-
-### What changes must be made to the containers on which OpenEBS runs?
-
-OpenEBS has been engineered so that it does not require any changes to the containers on which it runs. Similarly, Kubernetes itself does not require to be altered and no additional external orchestrator is required. However, the workloads that need storage must be running on hosts that have iSCSI initiators, which is a default configuration in almost all operating systems.
+OpenEBS has been engineered so that it does not require any changes to the nodes on which it runs. Similarly, Kubernetes itself does not require to be altered and no additional external orchestrator is required. However, the workloads that need storage must be running on hosts that have nvme-tcp kernel module.
 
 [Go to top](#top)
 
 ### What are the minimum requirements and supported container orchestrators?
 
-OpenEBS is currently tightly integrated into Kubernetes. Support for Docker Swarm is something OpenEBS is looking at in future releases.
+OpenEBS is currently tightly integrated into Kubernetes.
 
-The system requirements depend on the number of volumes being provisioned and can horizontally scale with the number of nodes in the Kubernetes cluster. The OpenEBS control plane comprises of minimum two pods i.e. apiserver and dynamic provisioner. You can run these using 2GB RAM and 2 CPUs.
-
-Each volume will spin up IO controller and replica pods. Each of these will require 1GB RAM and 0.5 CPU by default.
-
-For enabling high availability, OpenEBS recommends having a minimum of 3 nodes in the Kubernetes cluster.
+The system requirements depend on the number of volumes being provisioned and can horizontally scale with the number of nodes in the Kubernetes cluster.(Link the prerequsistes - Internal reference)
 
 [Go to top](#top)
 
@@ -192,56 +99,137 @@ No volume management needed: OpenEBS removes the need for volume management, ena
 
 Expansion and inclusion of NVMe: OpenEBS allows users to add additional capacity without experiencing downtime. This online addition of capacity can include NVMe and SSD instances from cloud providers or deployed in physical servers. This means that as performance requirements increase, or decrease, you can use Kubernetes via storage policies to instruct OpenEBS to change capacity accordingly.
 
-Other enterprise capabilities: OpenEBS adds other capabilities such as extremely efficient snapshots and clones as well as forthcoming capabilities such as encryption. Snapshots and clones facilitate much more efficient CI/CD workflows as zero space copies of databases and other stateful workloads can be used in these and other workflows, improving these without incurring additional storage space or administrative effort. The snapshot capabilities can also be used for replication. As of February 2018 these replication capabilities are under development.
-
-[Go to top](#top)
-
-### Can I use the same PVC for multiple Pods?
-
-Jiva and cStor volumes are exposed via block storage using iSCSI. Currently, only RWO is supported.
-
-[Go to top](#top)
-
-### Why OpenEBS_logical_size and OpenEBS_actual_used are showing in different size?
-
-The `OpenEBS_logical_size` and `OpenEBS_actual_used` parameters will start showing different sizes when there are replica node restarts and internal snapshots are created for synchronizing replicas.
+Other enterprise capabilities: OpenEBS adds other capabilities such as extremely efficient snapshots and clones as well as forthcoming capabilities such as encryption. Snapshots and clones facilitate much more efficient CI/CD workflows as zero space copies of databases and other stateful workloads can be used in these and other workflows, improving these without incurring additional storage space or administrative effort. The snapshot capabilities can also be used for replication.
 
 [Go to top](#top)
 
 ### What must be the disk mount status on Node for provisioning OpenEBS volume?
 
-OpenEBS have three storage Engines, Jiva, cStor and LocalPV which can be used to provision OpenEBS volumes. 
-
-Jiva requires the disk to be mounted (i.e., attached, formatted with a filesystem and mounted). 
-
-For LocalPV based on device, details of disk mount status can be obtained [here](/user-guides/ndm).
-
-cStor can consume disks that are attached (are visible to OS as SCSI devices) to the Nodes which does not have any filesystem and it should be unmounted on the Node. It is recommended to wipe out the disk if it was previously used. 
-
-In case you need to use Local SSDs as block devices for provisioning cStor volume, you will have to first unmount them and remove any the filesystem if it has. On GKE, the Local SSDs are formatted with ext4 and mounted under "/mnt/disks/". If local SSDs are mounted and contains any file system, then cStor pool creation will fail.
+It is recommended to use unpartitioned raw block devices for best results.
 
 [Go to top](#top)
 
-### Does OpenEBS support encryption at rest? {#encryption-rest}
+### How does it help to keep my data safe?
 
-OpenEBS recommends LUKS encrypted drives with dm-crypt to achieve block-device encryption at rest. 
-
-OpenEBS team is working on introducing native encryption capabilities with the release of the Mayastor storage engine.
-
-Currently, device encryption is a manual operation, and the steps for encrypting the devices consumed by OpenEBS storage engines are explained separately for cStor and LocalPV below:
-
-[How to use encryption with cStor](https://github.com/openebs/openebs-docs/blob/day_2_ops/docs/cstor_volume_encrypt.md)
-
-[How to use encryption with LocalPV](https://github.com/openebs/openebs-docs/blob/day_2_ops/docs/uglocalpv_volume_encrypt.md)
-
-It is recommended to store encryption keys in a secure secret store. Kubernetes Secrets or Vault can be used as a secret provider. 
-
-Although block-level encryption is faster than filesystem encryption such as eCryptfs you should be aware that encryption overall increases CPU utilization and will have a small performance overhead on the LUKS encrypted devices.
+Replicated storage engine supports synchronous mirroring to enhance the durability of data at rest within whatever physical persistence layer is in use. When volumes are provisioned which are configured for replication \(a user can control the count of active replicas which should be maintained, on a per StorageClass basis\), write I/O operations issued by an application to that volume are amplified by its controller ("nexus") and dispatched to all its active replicas. Only if every replica completes the write successfully on its own underlying block device will the I/O completion be acknowledged to the controller. Otherwise, the I/O is failed and the caller must make its own decision as to whether it should be retried. If a replica is determined to have faulted \(I/O cannot be serviced within the configured timeout period, or not without error\), the control plane will automatically take corrective action and remove it from the volume. If spare capacity is available within a replicated engine pool, a new replica will be created as a replacement and automatically brought into synchronisation with the existing replicas. The data path for a replicated volume is described in more detail [here](../user-guides/replicated-engine-user-guide/additional-information/i-o-path-description.md#replicated-volume-io-path)
 
 [Go to top](#top)
 
-### Can the same BDC name be used for claiming a new block device? {#same-bdc-claim-new-bd}
+### How is it configured?
 
-No. It is recommended to create different BDC name for claiming an unclaimed disk manually.
+This documentation contains sections which are focused on initial quickstart deployment scenarios, including the correct configuration of underlying hardware and software, and of replicated engine features such as "Storage Nodes" \(MSNs\) and "Disk Pools" \(MSPs\). Information describing tuning for the optimization of performance is also provided.
+
+* [Quickstart Guide](../quickstart-guide/)
+* [Performance Tips](../user-guides/replicated-engine-user-guide/additional-information/performance-tips.md)
+
+[Go to top](#top)
+
+### What is the basis for its performance claims? Has it been benchmarked?
+
+Replicated engine has been built to leverage the performance potential of contemporary, high-end, solid state storage devices as a foremost design consideration. For this reason, the I/O path is predicated on NVMe, a transport which is both highly CPU efficient and which demonstrates highly linear resource scaling. The data path runs entirely within user space, also contributing efficiency gains as syscalls are avoided, and is both interrupt and lock free.
+
+MayaData has performed its own benchmarking tests in collaboration with Intel, using latest generation Intel P5800X Optane devices "The World's Fastest Data Centre SSD". In those tests it was determined that, on average, across a range of read/write ratios and both with and without synchronous mirroring enabled, the overhead imposed by the replicated engine's I/O path was well under 10% \(in fact, much closer to 6%\).
+
+Further information regarding the testing performed may be found [here](https://openebs.io/blog/mayastor-nvme-of-tcp-performance)
+
+[Go to top](#top)
+
+### What is the on-disk format used by Disk Pools? Is it also open source?
+
+Replicated engine makes use of parts of the open source [Storage Performance Development Kit \(SPDK\)](https://spdk.io/) project, contributed by Intel. Replicated engine's Storage Pools use the SPDK's Blobstore structure as their on-disk persistence layer. Blobstore structures and layout are [documented](https://github.com/spdk/spdk/blob/master/doc/blob.md).
+
+Since the replicas \(data copies\) of replicated volumes are held entirely within Blobstores, it is not possible to directly access the data held on pool's block devices from outside of replicated engine. Equally, replicated engine cannot directly 'import' and use existing volumes which are not of replicated engine's origin. The project's maintainers are considering alternative options for the persistence layer which may support such data migration goals.
+
+[Go to top](#top)
+
+### Can the size / capacity of a Disk Pool be changed?
+
+The size of a replicated storage pool is fixed at the time of creation and is immutable. A single pool may have only one block device as a member. These constraints may be removed in later versions.
+
+### How can I ensure that replicas aren't scheduled onto the same node? How about onto nodes in the same rack / availability zone?
+
+The replica placement logic of replicated engine's control plane doesn't permit replicas of the same volume to be placed onto the same node, even if it were to be within different Disk Pools. For example, if a volume with replication factor 3 is to be provisioned, then there must be three healthy Disk Pools available, each with sufficient free capacity and each located on its own replicated node. Further enhancements to topology awareness are under consideration by the maintainers.
+
+[Go to top](#top)
+
+### How can I see the node on which the active nexus for a particular volume resides?
+
+The kubectl plugin is used to obtain this information.
+
+[Go to top](#top)
+
+### Is there a way to automatically rebalance data across available nodes? Can data be manually re-distributed?
+
+No. This may be a feature of future releases.
+
+[Go to top](#top)
+
+### Can replicated engine do async replication to a node in the same cluster? How about a different cluster?
+
+Replicated engine does not peform asynchronous replication.
+
+[Go to top](#top)
+
+### Does replicated engine support RAID?
+
+Replicated storage pools do not implement any form of RAID, erasure coding or striping. If higher levels of data redundancy are required, replicated volumes can be provisioned with a replication factor of greater than one, which will result in synchronously mirrored copies of their data being stored in multiple Disk Pools across multiple Storage Nodes. If the block device on which a Disk Pool is created is actually a logical unit backed by its own RAID implementation \(e.g. a Fibre Channel attached LUN from an external SAN\) it can still be used within a replicated disk pool whilst providing protection against physical disk device failures.
+
+[Go to top](#top)
+
+### Does replicated engine perform compression and/or deduplication?
+
+No.
+
+[Go to top](#top)
+
+### Does replicated engine support snapshots? Clones?
+
+No but these may be features of future releases.
+
+[Go to top](#top)
+
+### Which CPU architectures are supported? What are the minimum hardware requirements?
+
+The replicated engine nightly builds and releases are compiled and tested on x86-64, under Ubuntu 20.04 LTS with a 5.13 kernel. Some effort has been made to allow compilation on ARM platforms but this is currently considered experimental and is not subject to integration or end-to-end testing by replicated engine's maintainers.
+
+Minimum hardware requirements are discussed in the [quickstart section](../quickstart-guide/) of this documentation.
+
+Replicated engine does not run on Raspbery Pi as the version of the SPDK. Replicated engine requires ARMv8 Crypto extensions which are not currently available for Pi.
+
+[Go to top](#top)
+
+### Does replicated engine suffer from TCP congestion when using NVME-TCP?
+
+Replicated engine, as any other solution leveraging TCP for network transport, may suffer from network congestion as TCP will try to slow down transfer speeds. It is important to keep an eye on networking and fine-tune TCP/IP stack as appropriate. This tuning can include \(but is not limited to\) send and receive buffers, MSS, congestion control algorithms \(e.g. you may try DCTCP\) etc.
+
+[Go to top](#top)
+
+### Why do replicated engine pods show high levels of CPU utilization when there is little or no I/O being processed?
+
+Replicated engine has been designed so as to be able to leverage the peformance capabilities of contemporary high-end solid-state storage devices. A significant aspect of this is the selection of a polling based I/O service queue, rather than an interrupt driven one. This minimises the latency introduced into the data path but at the cost of additional CPU utilization by the "reactor" - the poller operating at the heart of the replicated engine pod. When replicated engine pods have been deployed to a cluster, it is expected that these daemonset instances will make full utilization of their CPU allocation, even when there is no I/O load on the cluster. This is simply the poller continuing to operate at full speed, waiting for I/O. For the same reason, it is recommended that when configuring the CPU resource limits for the replicated engine daemonset, only full, not fractional, CPU limits are set; fractional allocations will also incur additional latency, resulting in a reduction in overall performance potential. The extent to which this performance degradation is noticeable in practice will depend on the performance of the underlying storage in use, as well as whatvever other bottlenecks/constraints may be present in the system as cofigured.
+
+[Go to top](#top)
+
+### Does the supportability tool expose sensitive data?
+
+The supportability tool generates support bundles, which are used for debugging purposes. These bundles are created in response to the user's invocation of the tool and can be transmitted only by the user. To view the list of collected information, visit the [supportability section](../user-guides/replicated-engine-user-guide/advanced-operations/supportability.md#does-the-supportability-tool-expose-sensitive-data).
+
+[Go to top](#top)
+
+### What happens when a PV with reclaim policy set to retain is deleted?
+
+In Kubernetes, when a PVC is created with the reclaim policy set to 'Retain', the PV bound to this PVC is not deleted even if the PVC is deleted. One can manually delete the PV by issuing the command "kubectl delete pv ", however the underlying storage resources could be left behind as the CSI volume provisioner (external provisioner) is not aware of this. To resolve this issue of dangling storage objects, replicated engine  has introduced a PV garbage collector. This PV garbage collector is deployed as a part of the replicated engine CSI controller-plugin.
+
+[Go to top](#top)
+
+### How does the PV garbage collector work?
+
+The PV garbage collector deploys a watcher component, which subscribes to the Kubernetes Persistent Volume deletion events. When a PV is deleted, an event is generated by the Kubernetes API server and is received by this component. Upon a successful validation of this event, the garbage collector deletes the corresponding replicated volume resources.
+
+[Go to top](#top)
+
+### How to disable cow for btrfs filesystem?
+
+To disbale cow for `btrfs` filesystem, use `nodatacow` as a mountOption in the storage class which would be used to provision the volume.
 
 [Go to top](#top)

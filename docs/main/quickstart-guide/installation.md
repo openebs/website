@@ -7,7 +7,15 @@ keywords:
 description: This guide will help you to customize and install OpenEBS
 ---
 
-This guide will help you to customize and install OpenEBS. 
+This guide will help you to setup, customize, and install OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with [Kubernetes Storage Concepts](../concepts/basics.md).
+
+## How to setup and use OpenEBS?
+
+OpenEBS seamlessly integrates into the overall workflow tooling that Kubernetes administrators and users have around Kubernetes. 
+
+The OpenEBS workflow fits nicely into the reconcilation pattern introduced by Kubernetes, paving the way for a Declarative Storage Control Plane as shown below: 
+
+![control plane overview](../assets/control-plane-overview.svg)
 
 ## Prerequisites
 
@@ -18,17 +26,25 @@ For OpenEBS Replicated Engine, make sure that your Kubernetes nodes meet the [re
 At a high level OpenEBS requires:
 
 - Verify that you have the admin context. If you do not have admin permissions to your cluster, check with your Kubernetes cluster administrator to help with installing OpenEBS or if you are the owner of the cluster, check out the [steps to create a new admin context](#set-cluster-admin-user-context) and use it for installing OpenEBS.
-- You have Kubernetes 1.18 version or higher.
 - Each storage engine may have few additional requirements like having:
   - Depending on the managed Kubernetes platform like Rancher or MicroK8s - set up the right bind mounts
   - Decide which of the devices on the nodes should be used by OpenEBS or if you need to create LVM Volume Groups or ZFS Pools
 - Join [OpenEBS community on Kubernetes slack](../community.md).
+
+## Supported Versions
+
+- Kubernetes 1.23 or higher is required
+- Linux Kernel 5.15 or higher is required
+-	OS: Ubuntu and RHEL 8.8
+-	LVM Version: LVM 2
+-	ZFS Version: ZFS 0.8
 
 ## Installation via Helm
 
 Verify helm is installed and helm repo is updated. You need helm 3.2 or more. 
 
 Setup helm repository
+
 ```
 helm repo add openebs https://openebs.github.io/openebs
 helm repo update
@@ -58,10 +74,13 @@ helm install openebs --namespace openebs openebs/openebs --set mayastor.enabled=
 To view the chart and get the output, use the following commands:
 
 **Command**
+
 ```
 helm ls -n openebs
 ```
+
 **Output**
+
 ```
 NAME     NAMESPACE   REVISION  UPDATED                                   STATUS     CHART           APP VERSION
 openebs  openebs     1         2024-03-25 09:13:00.903321318 +0000 UTC   deployed   openebs-4.0.0   4.0.0
@@ -172,8 +191,7 @@ You can follow through the below user guides for each of the engines to use stor
 
 ## See Also
 
-[OpenEBS Architecture](../concepts/architecture.md)
-
-[OpenEBS Use Cases and Examples](../introduction-to-openebs/use-cases-and-examples.mdx)
-
-[Troubleshooting](../troubleshooting/)
+- [Deployment](../quickstart-guide/deploy-a-test-application.md)
+- [OpenEBS Architecture](../concepts/architecture.md)
+- [OpenEBS Use Cases and Examples](../introduction-to-openebs/use-cases-and-examples.mdx)
+- [Troubleshooting](../troubleshooting/)

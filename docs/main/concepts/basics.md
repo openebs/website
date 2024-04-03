@@ -81,3 +81,24 @@ These users are responsible for managing the life-cycle of the application and a
 These users usually have full access to application abstractions within their namespace. Some examples of application abstractions are `Deployment`, `StatefulSet`, `ConfigMaps`, `PVC`.
 
 Administrators can further define other roles for users with further granular access or restrictions using the Kubernetes RBAC.
+
+## Kubernetes Cluster Design
+
+As a Kubernetes cluster administrator, you will have to work with your Platform or Infrastructure teams on the composition of the Kubernetes worker nodes like - RAM, CPU, Network, and the storage devices attached to the worker nodes. The [resources available to the Kubernetes nodes](../concepts/data-engines/data-engines.md#node-capabilities) determine what OpenEBS engines to use for your stateful workloads. 
+
+As a Kubernetes cluster administrator or Platform SREs, you will have to decide which deployment strategy works best for you - either use an hyperconverged mode where Stateful applications and storage volumes are co-located or run Stateful applications and storage on different pools of nodes. 
+
+For installing OpenEBS, you Kubernetes cluster should meet the following:
+- Kubernetes 1.18 or newer is recommended. 
+- Based on the selected data engine, the nodes should be prepared with additional packages like:
+  - Installing the ext4, xfs, nfs, lvm, zfs, nvme packages.
+  - Prepare the devices for use by data engines like - making sure there are no the filesystem installed or by creating an LVM volume group or ZFS Pool or partition the drives if required. 
+- Based on whether you are using a upstream Kubernetes cluster or using a managed Kubernetes cluster like AKS, Rancher, OpenShift, GKE, there may be additional steps required. 
+
+If your platform is missing in the above list, [raise an issue on the docs](https://github.com/openebs/openebs/issues/new/choose) or reach us on the [community slack](../community.md) to let us know. 
+
+## See Also
+
+- [Container Native Storage](../concepts/container-native-storage.md)
+- [OpenEBS Architecture](architecture.md)
+- [Connect with Community](../community.md)

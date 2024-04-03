@@ -31,7 +31,7 @@ OpenEBS helps users to take local volumes into production by providing features 
 - Backup and Restore via Velero. 
 - Secure the local volumes via LUKS or by using in-built encryption support of the underlying filesystem.
 
-## Quick Start Guides
+## Quickstart Guides
 
 OpenEBS provides Local Volume that can be used to provide locally mounted storage to Kubernetes Stateful workloads. Refer to the [Quickstart Guide](../../quickstart-guide/) for more information.
 
@@ -92,10 +92,10 @@ A quick summary of the steps to restore include:
 - Enforce capacity and PVC resource quotas on the local disks or host paths.
 - SMART statistics of the managed disks is also a potential feature in the roadmap.
 
-## See Also:
+## See Also
 
-[OpenEBS Architecture](../architecture.md)
-[Local Engine Prerequisites](../../user-guides/local-engine-user-guide/prerequisites.mdx)
-[Installation](../../quickstart-guide/installation.md)
-[Local Engine User Guide](../../user-guides/local-engine-user-guide/)
+- [OpenEBS Architecture](../architecture.md)
+- [Local Engine Prerequisites](../../user-guides/local-engine-user-guide/prerequisites.mdx)
+- [Installation](../../quickstart-guide/installation.md)
+- [Local Engine User Guide](../../user-guides/local-engine-user-guide/)
 

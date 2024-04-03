@@ -154,13 +154,13 @@ Below table identifies few differences among the different OpenEBS Replicated en
 | Suitable for high capacity (>50GB) workloads |  No     |   Yes    | Yes        |
 | Near disk performance                        |  No     |   No     | Yes        |
 
-### Ideal Conditions for selecting OpenEBS Local Engine:
+### Ideal Conditions for selecting OpenEBS Local Engine
 
 - When applications are managing replication and availability themselves and there is no need of replication at storage layer. In most such situations, the applications are deployed as `statefulset`.
 - Local Engine is recommended when dedicated local disks are not available for a given application or dedicated storage is not needed for a given application.
 - When near disk performance is a need along with features like snapshots, volume expansion, pooling of storage from multiple storage devices. 
 
-### Ideal Conditions for selecting OpenEBS Replicated Engine:
+### Ideal Conditions for selecting OpenEBS Replicated Engine
 
 - When you need high performance storage using NVMe SSDs and the cluster is capable of NVMeoF. 
 - When you need replication or availability features to protected against node failures.  
@@ -176,8 +176,8 @@ A short summary is provided below.
 - Replicated Engine is preferred if your application needs low latency and near disk throughput, requires storage level replication and your nodes have high CPU, RAM, and NVMe capabilities. 
 
 
-## See Also:
+## See Also
 
-[User Guides](../../user-guides/)
-[Local Engine User Guide](../../user-guides/local-engine-user-guide/)
-[Replicated Engine User Guide](../../user-guides/replicated-engine-user-guide/)
+- [User Guides](../../user-guides/)
+- [Local Engine User Guide](../../user-guides/local-engine-user-guide/)
+- [Replicated Engine User Guide](../../user-guides/replicated-engine-user-guide/)

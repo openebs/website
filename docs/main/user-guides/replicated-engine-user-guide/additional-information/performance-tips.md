@@ -8,40 +8,42 @@ description: This section explains the recommended practices for better performa
 ---
 # Performance Tips
 
-## CPU isolation
+## CPU Isolation
 
-Mayastor will fully utilize each CPU core that it was configured to run on. It will spawn a thread on each and the thread will run in an endless loop serving tasks dispatched to it without sleeping or blocking. There are also other Mayastor threads that are not bound to the CPU and those are allowed to block and sleep. However, the bound threads \(also called reactors\) rely on being interrupted by the kernel and other userspace processes as little as possible. Otherwise, the latency of IO may suffer.
+The replicated engine will fully utilize each CPU core that it was configured to run on. It will spawn a thread on each and the thread will run in an endless loop serving tasks dispatched to it without sleeping or blocking. There are also other replicated engine threads that are not bound to the CPU and those are allowed to block and sleep. However, the bound threads \(also called reactors\) rely on being interrupted by the kernel and other userspace processes as little as possible. Otherwise, the latency of I/O may suffer.
 
-Ideally, the only thing that interrupts Mayastor's reactor would be only kernel time-based interrupts responsible for CPU accounting. However, that is far from trivial. `isolcpus` option that we will be using does not prevent:
+Ideally, the only thing that interrupts replicated engine's reactor would be only kernel time-based interrupts responsible for CPU accounting. However, that is far from trivial. `isolcpus` option that we will be using does not prevent:
 
 * kernel threads and
 * other k8s pods to run on the isolated CPU
 
-However, it prevents system services including kubelet from interfering with Mayastor.
+However, it prevents system services including kubelet from interfering with replicated engine.
 
-### Set Linux kernel boot parameter
+### Set Linux kernel Boot Parameter
 
-Note that the best way to accomplish this step may differ, based on the Linux distro that you are using.
+:::info
+The best way to accomplish this step may differ, based on the Linux distro that you are using.
+:::
 
 Add the `isolcpus` kernel boot parameter to `GRUB_CMDLINE_LINUX_DEFAULT` in the grub configuration file, with a value which identifies the CPUs to be isolated \(indexing starts from zero here\). The location of the configuration file to change is typically `/etc/default/grub` but may vary. For example when running Ubuntu 20.04 in AWS EC2 Cloud boot parameters are in `/etc/default/grub.d/50-cloudimg-settings.cfg`.
 
-In the following example we assume a system with 4 CPU cores in total, and that the third and the fourth CPU cores are to be dedicated to Mayastor.
+In the following example we assume a system with 4 CPU cores in total, and that the third and the fourth CPU cores are to be dedicated to replicated engine.
 
-```text
+```
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash isolcpus=2,3"
 ```
 
-### Update grub
+### Update Grub
 
-{% tabs %}
-{% tab title="Command" %}
-```bash
+**Command**
+
+```
 sudo update-grub
 ```
-{% endtab %}
 
-{% tab title="Output example" %}
-```text
+**Example Output**
+
+```
 Sourcing file `/etc/default/grub'
 Sourcing file `/etc/default/grub.d/40-force-partuuid.cfg'
 Sourcing file `/etc/default/grub.d/50-cloudimg-settings.cfg'
@@ -54,63 +56,57 @@ Found initrd image: /boot/microcode.cpio /boot/initrd.img-5.4.0-1037-aws
 Found Ubuntu 20.04.2 LTS (20.04) on /dev/xvda1
 done
 ```
-{% endtab %}
-{% endtabs %}
 
-### Reboot the system
+### Reboot the System
 
-{% tabs %}
-{% tab title="Command" %}
-```bash
+**Command**
+
+```
 sudo reboot
 ```
-{% endtab %}
-{% endtabs %}
 
-### Verify isolcpus
+### Verify Isolcpus
 
 Basic verification is by outputting the boot parameters of the currently running kernel:
 
-{% tabs %}
-{% tab title="Command" %}
-```bash
+**Command**
+
+```
 cat /proc/cmdline
 ```
-{% endtab %}
 
-{% tab title="Example output" %}
-```text
+**Example Output**
+```
 BOOT_IMAGE=/boot/vmlinuz-5.8.0-29-generic root=PARTUUID=7213a253-01 ro console=tty1 console=ttyS0 nvme_core.io_timeout=4294967295 isolcpus=2,3 panic=-1
 ```
-{% endtab %}
-{% endtabs %}
 
 You can also print a list of isolated CPUs:
 
-{% tabs %}
-{% tab title="Command" %}
-```bash
+**Command**
+
+```
 cat /sys/devices/system/cpu/isolated
 ```
-{% endtab %}
 
-{% tab title="Example output" %}
-```text
+**Example Output**
+```
 2-3
 ```
-{% endtab %}
-{% endtabs %}
 
-### Update mayastor helm chart for CPU core specification
+### Update Replicated Engine Helm Chart for CPU Core Specification
 
-To allot specific CPU cores for Mayastor's reactors, follow these steps:
+:::info
+Update the [Helm value](https://github.com/openebs/mayastor-extensions/blob/6df062eb5a0864b82dcc709ab4d84a135252fe45/chart/values.yaml#L407) in the replicated engine Helm chart to specify the CPU core.
+:::
 
-1. Ensure that you have the Mayastor kubectl plugin installed, matching the version of your Mayastor Helm chart deployment ([releases](https://github.com/openebs/mayastor/releases)). You can find installation instructions in the [Mayastor kubectl plugin documentation]( https://mayastor.gitbook.io/introduction/advanced-operations/kubectl-plugin).
+To allot specific CPU cores for replicated engine's reactors, follow these steps:
 
-2. Execute the following command to update Mayastor's configuration. Replace `<namespace>` with the appropriate Kubernetes namespace where Mayastor is deployed.
+1. Ensure that you have the replicated engine kubectl plugin installed, matching the version of your replicated engine Helm chart deployment ([releases](https://github.com/openebs/mayastor/releases)). You can find installation instructions in the [kubectl plugin documentation](../advanced-operations/kubectl-plugin.md).
+
+2. Execute the following command to update replicated engine's configuration. Replace `<namespace>` with the appropriate Kubernetes namespace where replicated engine is deployed.
 
 ```
 kubectl mayastor upgrade -n <namespace> --set-args 'io_engine.coreList={3,4}'
 ```
 
-In the above command, `io_engine.coreList={3,4}` specifies that Mayastor's reactors should operate on the third and fourth CPU cores.
+In the above command, `io_engine.coreList={3,4}` specifies that replicated engine's reactors should operate on the third and fourth CPU cores.

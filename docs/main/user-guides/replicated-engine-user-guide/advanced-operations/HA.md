@@ -13,7 +13,7 @@ The HA feature consists of two components:
 - HA node agent (which runs in each csi- node) and
 - Cluster agent (which runs alongside the agent-core).
 
-The HA node agent looks for I/O-path failures from applications to their corresponding targets. If any such broken path is encountered, the HA node agent informs the cluster agent. The cluster-agent then creates a new target on a different (live) node. Once the target is created, the `node-agent` establishes a new path between the application and its corresponding target. The HA feature restores the broken path within seconds, ensuring negligible downtime. 
+The HA node agent looks for I/O path failures from applications to their corresponding targets. If any such broken path is encountered, the HA node agent informs the cluster agent. The cluster-agent then creates a new target on a different (live) node. Once the target is created, the `node-agent` establishes a new path between the application and its corresponding target. The HA feature restores the broken path within seconds, ensuring negligible downtime. 
 
 :::warning
 The volume's replica count must be higher than one for a new target to be established as part of switch-over.
