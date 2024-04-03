@@ -7,12 +7,12 @@ keywords:
  - Local PV Device to Local PV ZFS
  - Local PV Rawfile to Local PV LVM
  - Local PV Rawfile to Local PV ZFS
-description: This section outlines the process of migrating OpenEBS Local PV Device to OpenEBS LVM Local PV.
+description: This section outlines the process of migrating OpenEBS Local PV Device to OpenEBS Local PV LVM.
 ---
 
 :::info
 The following steps are an example about migrating from legacy storage to new storage.
-You can also migrate OpenEBS Local PV Device to OpenEBS Local PV ZFS. Similarly, you can migrate OpenEBS Local PV Rawfile to OpenEBS Local PV LVM or Local PV ZFS using the steps below.
+You can also migrate OpenEBS Local PV Device to OpenEBS Local PV ZFS.
 :::
 
 ## Assumptions
