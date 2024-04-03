@@ -11,7 +11,7 @@ description: This section outlines the process of migrating OpenEBS Local PV Dev
 ---
 
 :::info
-The following steps are an example about migrating from legacy storage to new storage.
+The following steps are an example about migrating from legacy storage to latest storage solution.
 You can also migrate OpenEBS Local PV Device to OpenEBS Local PV ZFS.
 :::
 

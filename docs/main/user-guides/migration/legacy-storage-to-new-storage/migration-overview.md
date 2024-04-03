@@ -1,12 +1,16 @@
 ---
 id: migration-overview
-title: Migration from Legacy Storage to New Storage
+title: Migration from Legacy Storage to Latest Storage Solution
 keywords:
- - Migration Overview
-description: This section outlines the process of migrating the legacy storage to new storage.
+ - Migration
+ - Data Migration
+description: This section outlines the process of migrating the legacy storage to latest storage solution.
 ---
 
-# Migration Overview
+# Data Migration
+
+Data migration is the process of transferring data from the legacy storage to the latest storage solution.
+Also, the data can be migrated from any non-OpenEBS storage to OpenEBS storage.
 
 In this migration process, we are using [pv-migrate](https://github.com/utkuozdemir/pv-migrate) that is a CLI tool/kubectl plugin to easily migrate the contents of one Kubernetes `PersistentVolumeClaim` to another.
 

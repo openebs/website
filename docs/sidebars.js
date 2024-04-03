@@ -318,7 +318,7 @@ module.exports = {
                 {
                   type: "doc",
                   id: "user-guides/migration/legacy-storage-to-new-storage/migration-overview",
-                  label: "Overview"
+                  label: "Data Migration"
                 },
                 {
                   type: "doc",
