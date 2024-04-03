@@ -45,7 +45,7 @@ In case of [Distributed (aka Replicated) Volumes](#replicated-volumes):
 - The Stateful Pods connect to the OpenEBS distributed persistent volume using the NVMeoF (replicated engine).
 - OpenEBS replicated engine is developed with durability and performance as design goals. It efficiently manages the compute (hugepages and cores) and storage (NVMe Drives) to provide fast distributed block storage.
 
-:::tip NOTE
+:::note
 OpenEBS contributors prefer to call the Distributed Block Storage volumes as **Replicated Volumes**, to avoid confusion with traditional distributed block storage for the following reasons:
 * Distributed block storage tends to shard the data blocks of a volume across many nodes in the cluster. Replicated volumes persist all the data blocks of a volume on a node and for durability replicate the entire data to other nodes in the cluster.  
 * While accessing a volume data, distributed block storage depends on metadata hashing algorithms to locate the node where the block resides, whereas replicated volumes can access the data from any of the nodes where data is persisted (aka replica nodes).
@@ -65,7 +65,7 @@ Replicated Volumes, as the name suggests, are those that have their data synchro
 
 Replicated Volumes also are capable of enterprise storage features like snapshots, clone, volume expansion and so forth. Replicated Volumes are a preferred choice for Stateful workloads like Percona/MongoDB, Jira, GitLab, etc.
 
-:::tip NOTE
+:::info
 Depending on the type of storage attached to your Kubernetes worker nodes and the requirements of your workloads, you can select from local engine or replicated engine.
 :::
 
@@ -77,9 +77,11 @@ Installing OpenEBS in your cluster is as simple as running a few `kubectl` or `h
 
 OpenEBS has a vibrant community that can help you get started. If you have further questions and want to learn more about OpenEBS, join [OpenEBS community on Kubernetes Slack](https://kubernetes.slack.com). If you are already signed up, head to our discussions at[#openebs](https://kubernetes.slack.com/messages/openebs/) channel.
 
-## See Also:
+## See Also
 
-- [Quickstart](../quickstart-guide/quickstart.md) 
+- [Quickstart](../quickstart-guide/quickstart.md)
+- [Installation](../quickstart-guide/installation.md)
+- [Deployment](../quickstart-guide/deploy-a-test-application.md)
 - [Use Cases and Examples](use-cases-and-examples.mdx)
 - [Container Native Storage (CNS)](../concepts/container-native-storage.md)
 - [OpenEBS Architecture](../concepts/architecture.md)

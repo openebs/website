@@ -24,11 +24,11 @@ Replicated Engine is built on the foundation of Intel's cutting-edge [Storage Pe
 
 In contrast, traditional pre-CNS shared storage systems are known to introduce overhead, often exceeding 40% and occasionally reaching as high as 80% of the underlying device or cloud volume capabilities. Moreover, pre-CNS shared storage can scale unpredictably as various workloads compete for access to shared storage resources.
 
-{% hint style=“note” %}
+:::note
 Although Replicated Engine utilizes NVMe-oF, it does not impose any requirements for the use of NVMe devices or cloud volumes.
-{% endhint %}
+:::
 
-## Quick Start Guides
+## Quickstart Guides
 
 OpenEBS provides Local Volume that can be used to provide locally mounted storage to Kubernetes Stateful workloads. Refer to the [Quickstart Guide](../../quickstart-guide/) for more information.
 
@@ -41,9 +41,9 @@ To access the Replicated Engine source code or actively contribute to the projec
 
 Join the vibrant [OpenEBS community on Kubernetes Slack](https://kubernetes.slack.com) for assistance and discussions related to OpenEBS and Replicated Engine. If you have questions or seek further information, visit the[#openebs](https://kubernetes.slack.com/messages/openebs/) channel. If you are not already part of the community, you can sign up on Kubernetes Slack for a collaborative experience.
 
-## See Also:
+## See Also
 
-[OpenEBS Architecture](../architecture.md)
-[Replicated Engine Prerequisites](../../user-guides/replicated-engine-user-guide/prerequisites.md)
-[Installation](../../quickstart-guide/installation.md)
-[Replicated Engine User Guide](../../user-guides/replicated-engine-user-guide/)
+- [OpenEBS Architecture](../architecture.md)
+- [Replicated Engine Prerequisites](../../user-guides/replicated-engine-user-guide/prerequisites.md)
+- [Installation](../../quickstart-guide/installation.md)
+- [Replicated Engine User Guide](../../user-guides/replicated-engine-user-guide/)
