@@ -118,20 +118,90 @@ module.exports = {
           },
           items: [
             {
-              type: "doc",
-              id: "user-guides/local-engine-user-guide/localpv-hostpath",
-              label: "Local PV Hostpath"
+              collapsed: true,
+              type: "category",
+              label: "Local PV Hostpath",
+              customProps: {
+                icon: "Book"
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/local-pv-hostpath/hostpath-installation",
+                  label: "Installation"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/local-pv-hostpath/hostpath-configuration",
+                  label: "Configuration"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/local-pv-hostpath/hostpath-deployment",
+                  label: "Deployment"
+                }
+              ] 
             },
             {
-              type: "doc",
-              id: "user-guides/local-engine-user-guide/lvm-localpv",
-              label: "LVM Local PV"
-            },
-            {
-              type: "doc",
-              id: "user-guides/local-engine-user-guide/zfs-localpv",
-              label: "ZFS Local PV"
-            },
+              collapsed: true,
+              type: "category",
+              label: "Local PV LVM",
+              customProps: {
+                icon: "Book"
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/local-pv-lvm/lvm-installation",
+                  label: "Installation"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/local-pv-lvm/lvm-configuration",
+                  label: "Configuration"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-engine-user-guide/local-pv-lvm/lvm-deployment",
+                  label: "Deployment"
+                },
+                {
+                  collapsed: true,
+                  type: "category",
+                  label: "Advanced Operations",
+                  customProps: {
+                    icon: "Layers"
+                  },
+                  items: [
+                    {
+                      type: "doc",
+                      id: "user-guides/local-engine-user-guide/local-pv-lvm/advanced-operations/lvm-fs-group",
+                      label: "FSGroup"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-engine-user-guide/local-pv-lvm/advanced-operations/lvm-raw-block-volume",
+                      label: "Raw Block Volume"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-engine-user-guide/local-pv-lvm/advanced-operations/lvm-resize",
+                      label: "Resize"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-engine-user-guide/local-pv-lvm/advanced-operations/lvm-snapshot",
+                      label: "Snapshot"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-engine-user-guide/local-pv-lvm/advanced-operations/lvm-thin-provisioning",
+                      label: "Thin Provisioning"
+                    }
+                  ]
+                }
+              ] 
+            },   
             {
               collapsed: true,
               type: "category",

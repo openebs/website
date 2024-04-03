@@ -174,5 +174,13 @@
   "sidebar.docs.category.Migration using Velero": {
     "message": "Migration using Velero",
     "description": "The label for category Migration using Velero in sidebar docs"
+  },
+  "sidebar.docs.category.Local PV Hostpath": {
+    "message": "Local PV Hostpath",
+    "description": "The label for category Local PV Hostpath in sidebar docs"
+  },
+  "sidebar.docs.category.Local PV LVM": {
+    "message": "Local PV LVM",
+    "description": "The label for category Local PV LVM in sidebar docs"
   }
 }
