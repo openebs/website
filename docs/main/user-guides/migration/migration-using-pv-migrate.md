@@ -7,8 +7,6 @@ keywords:
  - Migration from OpenEBS Local PV Device to OpenEBS LVM Local PV
  - Local PV Device to Local PV LVM
  - Local PV Device to Local PV ZFS
- - Local PV Rawfile to Local PV LVM
- - Local PV Rawfile to Local PV ZFS
  - Migration from OpenEBS cStor to OpenEBS Replicated
  - cStor to Replicated
  - cStor to Mayastor
