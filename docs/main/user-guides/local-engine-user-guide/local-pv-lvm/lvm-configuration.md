@@ -40,7 +40,7 @@ Following matrix shows standard storageclass parameters for Local PV LVM.
 <table>
   <tr>
     <th> Parameter </th>
-    <th colspan=2> Values </th>
+    <th colspan=5> Values </th>
     <th> Development Status </th>
     <th> E2E Coverage </th>
   </tr>
