@@ -110,4 +110,7 @@ Check the backup status, run the following command:
 velero get backup | grep cassandra-backup-19-09-23
 ```
 
+## See Also
 
+- [Migration from Legacy Storage to Latest Storage Solution](../data-migration/migration-using-pv-migrate.md)
+- [Migration for Replicated DB](../data-migration/migration-using-velero/migration-for-replicated-db/replicateddb-backup.md)

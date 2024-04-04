@@ -17,7 +17,8 @@ This documentation outlines the process of migrating application volumes from CS
 - **Object Storage Requirement**: To store backups, Velero necessitates an object storage bucket. In our case, we utilize a Google Cloud Storage (GCS) bucket. Configuration details and setup can be found on the GitHub [here](https://github.com/vmware-tanzu/velero-plugin-for-gcp#setup). 
 - **Velero Basic Installation**: For a step-by-step guide on the basic installation of Velero, see the [Velero Docs - Basic Install section](https://velero.io/docs/v1.11/basic-install/).
 
+## See Also
 
-
-
-
+- [Migration from Legacy Storage to Latest Storage Solution](../data-migration/migration-using-pv-migrate.md)
+- [Migration for Distrubuted DB](../data-migration/migration-using-velero/migration-for-distributed-db/distributeddb-backup.md)
+- [Migration for Replicated DB](../data-migration/migration-using-velero/migration-for-replicated-db/replicateddb-backup.md)
