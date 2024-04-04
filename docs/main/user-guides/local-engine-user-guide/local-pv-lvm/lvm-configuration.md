@@ -38,26 +38,25 @@ Following matrix shows standard storageclass parameters for Local PV LVM.
 #### Standard StorageClass Parameters
 
 <table>
+<tbody>
   <tr>
     <th> Parameter </th>
-    <th colspan=2> Values </th>
+    <th colSpan={2}> Values </th>
     <th> Development Status </th>
     <th> E2E Coverage </th>
   </tr>
-  
   <tr>
-    <td rowspan=2> <a href="#allowvolumeexpansion-optional"> allowVolumeExpansion </a> </td>
+    <td rowSpan={2}> <a href="#allowvolumeexpansion-optional"> allowVolumeExpansion </a> </td>
     <td> true </td>
     <td></td>
     <td> Supported </td>
-    <td rowspan=2> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvm-volume-resize#about-this-experiment"> Yes </a> <br><i> (Test coverage exist for ext4 & xfs) </i></br> </td>
+    <td rowSpan={2}> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvm-volume-resize#about-this-experiment"> Yes </a> <br></br><i> (Test coverage exist for ext4 & xfs) </i> </td>
   </tr>
   <tr>
     <td> false </td>
     <td></td>
     <td> Supported </td>
   </tr>
-
   <tr>
     <td> <a href="#mountoptions-optional"> MountOptions </a> </td>
     <td> Options supported by filesystem </td>
@@ -65,33 +64,30 @@ Following matrix shows standard storageclass parameters for Local PV LVM.
     <td> Supported </td>
     <td> Pending </td>
   </tr>
-
   <tr>
-    <td rowspan=2> <a href="#volumebindingmode-optional"> VolumeBindingMode </a> </td>
+    <td rowSpan={2}> <a href="#volumebindingmode-optional"> VolumeBindingMode </a> </td>
     <td> Immediate </td>
     <td></td>
     <td> Supported </td>
-    <td rowspan=2> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvmpv-custom-topology#readme"> Yes  </a> </td>
+    <td rowSpan={2}> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvmpv-custom-topology#readme"> Yes  </a> </td>
   </tr>
   <tr>
     <td> WaitForFirstConsumer </td>
     <td></td>
     <td> Supported </td>
   </tr>
-
   <tr>
-    <td rowspan=2> <a href="#reclaim-policy-optional"> Reclaim Policy </a> </td>
+    <td rowSpan={2}> <a href="#reclaim-policy-optional"> Reclaim Policy </a> </td>
     <td>  Retain </td>
     <td></td>
     <td> Supported </td>
-    <td rowspan=2> <a href="https://github.com/openebs/lvm-localpv/blob/HEAD/e2e-tests/apps/percona/deployers/run_e2e_test.yml"> Yes </a> <br> <i> (Test coverage exist for Delete reclaim policy) </i> </br> </td>
+    <td rowSpan={2}> <a href="https://github.com/openebs/lvm-localpv/blob/HEAD/e2e-tests/apps/percona/deployers/run_e2e_test.yml"> Yes </a> <br></br> <i> (Test coverage exist for Delete reclaim policy) </i> </td>
   </tr>
   <tr>
     <td> Delete </td>
     <td></td>
     <td> Supported </td>
   </tr>
-
   <tr>
     <td> <a href="#storageclass-with-custom-node-labels"> allowedTopologies </a> </td>
     <td> - </td>
@@ -99,65 +95,62 @@ Following matrix shows standard storageclass parameters for Local PV LVM.
     <td> Supported </td>
     <td> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvmpv-custom-topology#readme"> Yes </a> </td>
   </tr>
-
   <tr>
-    <td rowspan=6> Parameters </td>
-    <td> <a href="https://kubernetes-csi.github.io/docs/secrets-and-credentials-storage-class.html#examples"> Passing Secrets </td>
+    <td rowSpan={6}> Parameters </td>
+    <td> <a href="https://kubernetes-csi.github.io/docs/secrets-and-credentials-storage-class.html#examples"> Passing Secrets </a></td>
     <td></td>
     <td> No Use Case </td>
     <td> NA </td>
   </tr>
   <tr>
-    <td rowspan=5> <a href="#fstype-optional"> fsType </a> </td>
+    <td rowSpan={5}> <a href="#fstype-optional"> fsType </a> </td>
     <td>ext2</td>
-    <td rowspan=5> Supported </td>
-    <td rowspan=5> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvm-controller-high-availability#readme"> Yes </a> <br> <i> (Test coverage exist for ext4 & xfs) </i></br> </td>
+    <td rowSpan={5}> Supported </td>
+    <td rowSpan={5}> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvm-controller-high-availability#readme"> Yes </a> <br></br> <i> (Test coverage exist for ext4 & xfs) </i> </td>
   </tr>
-  <tr> <td> ext3 </td> </tr>
-  <tr> <td> ext4 </td> </tr>
-  <tr> <td> xfs </td> </tr>
-  <tr> <td> btrfs </td> </tr>
+  <tr><td> ext3 </td></tr>
+  <tr><td> ext4 </td></tr>
+  <tr><td> xfs </td></tr>
+  <tr><td> btrfs </td></tr>
+</tbody>
 </table>
 
 #### LVM Supported StorageClass Parameters
 
 <table>
+<tbody>
   <tr>
     <th> Parameter </th>
-    <th colspan=2> Values </th>
+    <th colSpan={2}> Values </th>
     <th> Development Status </th>
     <th> E2E Coverage </th>
   </tr>
-
   <tr>
-    <td rowspan=6> Parameters </td>
-    <td> <a href="#shared-optional"> shared </td>
+    <td rowSpan={6}> Parameters </td>
+    <td> <a href="#shared-optional"> shared </a></td>
     <td> yes </td>
     <td> Supported </td>
     <td> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvmpv-shared-mount#readme"> Yes </a> </td>
   </tr>
-
   <tr>
-    <td> <a href="#vgpattern-must-parameter-if-volgroup-is-not-provided-otherwise-optional"> vgpattern </td>
+    <td> <a href="#vgpattern-must-parameter-if-volgroup-is-not-provided-otherwise-optional"> vgpattern </a></td>
     <td> Regular expression of volume group name </td>
     <td> Supported </td>
     <td> Pending </td>
   </tr>
-
   <tr>
-    <td> <a href="#volgroup-must-parameter-if-vgpattern-is-not-provided-otherwise-optional"> volgroup </td>
+    <td> <a href="#volgroup-must-parameter-if-vgpattern-is-not-provided-otherwise-optional"> volgroup </a></td>
     <td> Name of volume group </td>
     <td> Supported </td>
     <td> <a href="https://github.com/openebs/lvm-localpv/blob/HEAD/e2e-tests/experiments/lvm-localpv-provisioner/openebs-lvmsc.j2"> Yes </a> </td>
   </tr>
-
   <tr>
-    <td> <a href="#thinprovision-optional"> thinProvision </td>
+    <td> <a href="#thinprovision-optional"> thinProvision </a></td>
     <td> yes </td>
     <td> Supported </td>
     <td> Pending </td>
   </tr>
-
+</tbody>
 </table>
 
 ### StorageClass Options
