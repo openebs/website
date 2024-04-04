@@ -166,5 +166,13 @@
   "sidebar.docs.category.Legacy Storage to New Storage": {
     "message": "Legacy Storage to New Storage",
     "description": "The label for category Legacy Storage to New Storage in sidebar docs"
+  },
+  "sidebar.docs.category.Data Migration": {
+    "message": "Data Migration",
+    "description": "The label for category Data Migration in sidebar docs"
+  },
+  "sidebar.docs.category.Migration using Velero": {
+    "message": "Migration using Velero",
+    "description": "The label for category Migration using Velero in sidebar docs"
   }
 }

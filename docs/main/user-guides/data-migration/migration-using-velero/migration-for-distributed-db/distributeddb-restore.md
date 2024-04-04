@@ -1,21 +1,21 @@
 ---
 id: distributeddb-restore
-title: Restoring Mayastor
+title: Restoring to Replicated Storage
 keywords:
- - Restoring Mayastor
-description: This section explains how to Restore from cStor Backup to Mayastor for Distributed DBs.
+ - Restoring to Mayastor
+ - Restoring to Replicated Storage
+description: This section explains how to Restore from cStor Backup to Replicated Storage for Distributed DBs.
 ---
-# Steps to Restore from cStor Backup to Mayastor for Distributed DBs (Cassandra)
+# Steps to Restore from cStor Backup to Replicated Storage for Distributed DBs (Cassandra)
 
-Cassandra is a popular NoSQL database used for handling large amounts of data with high availability and scalability. In Kubernetes environments, managing and restoring Cassandra backups efficiently is crucial. In this article, we'll walk you through the process of restoring a Cassandra database in a Kubernetes cluster using Velero, and we'll change the storage class to Mayastor for improved performance.
+Cassandra is a popular NoSQL database used for handling large amounts of data with high availability and scalability. In Kubernetes environments, managing and restoring Cassandra backups efficiently is crucial. In this article, we will walk you through the process of restoring a Cassandra database in a Kubernetes cluster using Velero, and we will change the storage class to Replicated Storage (f.k.a Mayastor) for improved performance.
 
-
-{% hint style="info" %}
+:::info
 Before you begin, make sure you have the following:
 - Access to a Kubernetes cluster with Velero installed.
 - A backup of your Cassandra database created using Velero.
-- Mayastor configured in your Kubernetes environment.
-{% endhint %}
+- Replicated Storage configured in your Kubernetes environment.
+:::
 
 ## Step 1: Set Up Kubernetes Credentials and Install Velero
 
@@ -29,7 +29,6 @@ gcloud container clusters get-credentials CLUSTER_NAME --zone ZONE --project PRO
 
 Install Velero with the necessary plugins, specifying your backup bucket, secret file, and uploader type. Make sure to replace the placeholders with your specific values:
 
-
 ```
 velero get backup | grep YOUR_BACKUP_NAME
 ```
@@ -42,7 +41,7 @@ Confirm that your Cassandra backup is available in Velero. This step ensures tha
 velero get backup | grep YOUR_BACKUP_NAME
 ```
 
-Check the status of the BackupStorageLocation to ensure it's available:
+Check the status of the BackupStorageLocation to ensure it is available:
 
 ```
 kubectl get backupstoragelocation -n velero
@@ -58,38 +57,37 @@ velero restore create RESTORE_NAME --from-backup YOUR_BACKUP_NAME
 
 ## Step 4: Monitor Restore Progress
 
-Monitor the progress of the restore operation using the below commands.
+Monitor the progress of the restore operation using the below commands:
+
 Velero initiates the restore process by creating an initialization container within the application pod. This container is responsible for restoring the volumes from the backup. As the restore operation proceeds, you can track its status, which typically transitions from **in progress** to **Completed**. 
-
-
 
 In this scenario, the storage class for the PVCs remains as `cstor-csi-disk` since these PVCs were originally imported from a cStor volume.
 
-{% hint style="note" %}    
+:::note
 Your storage class was originally set to `cstor-csi-disk` because you imported this PVC from a cStor volume, the status might temporarily stay as **In Progress** and your PVC will be in **Pending** status.
-{% endhint %}
-
+:::
 
 ```
 velero get restore | grep RESTORE_NAME
 ```
+
 Inspect the status of the PVCs in the cassandra namespace:
 
 ```
 kubectl get pvc -n cassandra
 ```
+
 ```
 kubectl get pods -n cassandra
 ```
 
-
-## Step 5:  Back Up PVC YAML
+## Step 5: Back Up PVC YAML
 
 Create a backup of the Persistent Volume Claims (PVCs) and then modify their storage class to `mayastor-single-replica`. 
 
-{% hint style="note" %}    
+:::note    
 The statefulset for Cassandra will still have the `cstor-csi-disk` storage class at this point. This will be addressed in the further steps. 
-{% endhint %}
+:::
 
 ```
 kubectl get pvc -n cassandra -o yaml > cassandra_pvc_19-09.yaml
@@ -216,16 +214,16 @@ Run this command to check if all the pods are running:
 kubectl get pods -n cassandra
 ```
 
-## Step 8:  Verify Cassandra Data and StatefulSet
+## Step 8: Verify Cassandra Data and StatefulSet
 
-### Access a Cassandra pod using cqlsh and check the data
+### Access a Cassandra Pod using cqlsh and Check the Data
 
 - You can use the following command to access the Cassandra pods. This command establishes a connection to the Cassandra database running on pod `cassandra-1`:
 
 ```
 cqlsh -u <enter-your-user-name> -p <enter-your-password> cassandra-1.cassandra-headless.cassandra.svc.cluster.local 9042
 ```
-- The query results should display the data you backed up from cStor. In your output, you're expecting to see the data you backed up.
+- The query results should display the data you backed up from cStor. In your output, youare expecting to see the data you backed up.
 
 ```
 cassandra@cqlsh> USE openebs;
@@ -245,13 +243,7 @@ cassandra@cqlsh:openebs> select * from openebs.data;
 
 - After verifying the data, you can exit the Cassandra shell by typing `exit`.
 
-
-
-
-
-
-
-### Modify your Cassandra StatefulSet YAML to use the mayastor-single-replica storage class
+### Modify your Cassandra StatefulSet YAML to use the Replicated Storage-Single-Replica Storage Class
 
 - Before making changes to the Cassandra StatefulSet YAML, create a backup to preserve the existing configuration by running the following command:
 
@@ -259,7 +251,8 @@ cassandra@cqlsh:openebs> select * from openebs.data;
 kubectl get sts cassandra -n cassandra -o yaml > cassandra_sts_backup.yaml
 ```
 
-- You can modify the Cassandra StatefulSet YAML to change the storage class to `mayastor-single-replica`. Here's the updated YAML:
+- You can modify the Cassandra StatefulSet YAML to change the storage class to `mayastor-single-replica`. Here is the updated YAML:
+
 ```
 apiVersion: apps/v1
 kind: StatefulSet
@@ -314,9 +307,7 @@ spec:
 kubectl apply -f cassandra_sts_modified.yaml
 ```
 
-
-
-### Delete the Cassandra StatefulSet with the --cascade=orphan flag
+### Delete the Cassandra StatefulSet with the --cascade=orphan Flag
 
 Delete the Cassandra StatefulSet while keeping the pods running without controller management:
 
@@ -324,9 +315,7 @@ Delete the Cassandra StatefulSet while keeping the pods running without controll
 kubectl delete sts cassandra -n cassandra --cascade=orphan
 ```
 
-
-
-### Recreate the Cassandra StatefulSet using the updated YAML
+### Recreate the Cassandra StatefulSet using the Updated YAML
 
 - Use the kubectl apply command to apply the modified StatefulSet YAML configuration file, ensuring you are in the correct namespace where your Cassandra deployment resides. Replace <path_to_your_yaml> with the actual path to your YAML file.
 
@@ -346,7 +335,7 @@ kubectl get sts -n cassandra
 kubectl get pods -n cassandra
 ```
 
+## See Also
 
-
-
-
+- [Migration from Legacy Storage to Latest Storage Solution](../data-migration/migration-using-pv-migrate.md)
+- [Migration for Replicated DB](../data-migration/migration-using-velero/migration-for-replicated-db/replicateddb-backup.md)
