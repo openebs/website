@@ -138,7 +138,7 @@ module.exports = {
                 {
                   type: "doc",
                   id: "user-guides/local-engine-user-guide/local-pv-hostpath/hostpath-deployment",
-                  label: "Deployment"
+                  label: "Deploy an Application"
                 }
               ] 
             },
@@ -163,7 +163,7 @@ module.exports = {
                 {
                   type: "doc",
                   id: "user-guides/local-engine-user-guide/local-pv-lvm/lvm-deployment",
-                  label: "Deployment"
+                  label: "Deploy an Application"
                 },
                 {
                   collapsed: true,
@@ -223,7 +223,7 @@ module.exports = {
                 {
                   type: "doc",
                   id: "user-guides/local-engine-user-guide/local-pv-zfs/zfs-deployment",
-                  label: "Deployment"
+                  label: "Deploy an Application"
                 },
                 {
                   collapsed: true,

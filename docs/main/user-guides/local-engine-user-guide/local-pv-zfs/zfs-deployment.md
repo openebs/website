@@ -1,16 +1,14 @@
 ---
 id: zfs-deployment
-title: Deployment
+title: Deploy an Application
 keywords:
  - OpenEBS ZFS Local PV
  - ZFS Local PV
- - Deployment
-description: This section explains the deployment instructions for the OpenEBS Local Persistent Volumes (PV) backed by the ZFS Storage.
+ - Deploy an Application
+description: This section explains the instructions to deploy an application the OpenEBS Local Persistent Volumes (PV) backed by the ZFS Storage.
 ---
 
-This section explains the deployment instructions for the OpenEBS Local Persistent Volumes (PV) backed by the ZFS Storage.
-
-## Deploy the Application
+This section explains the instructions to deploy an application the OpenEBS Local Persistent Volumes (PV) backed by the ZFS Storage.
 
 Create the deployment yaml using the pvc backed by Local PV ZFS storage.
 

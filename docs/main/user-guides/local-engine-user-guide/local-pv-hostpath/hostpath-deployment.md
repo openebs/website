@@ -1,16 +1,14 @@
 ---
 id: hostpath-deployment
-title: Deployment
+title: Deploy an Application
 keywords:
  - OpenEBS Local PV Hostpath
  - Local PV Hostpath Deployment
- - Deployment
-description: This section explains the deployment instructions for the OpenEBS Local Persistent Volumes (PV) backed by Hostpath. 
+ - Deploy an Application
+description: This section explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by Hostpath. 
 ---
 
-This section explains the deployment instructions for the OpenEBS Local Persistent Volumes (PV) backed by Hostpath.
-
-## Deploy an Application
+This section explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by Hostpath.
 
 For deployment instructions, see [here](../../quickstart-guide/deploy-a-test-application.md).
 

@@ -1,16 +1,14 @@
 ---
 id: lvm-deployment
-title: Deployment
+title: Deploy an Application
 keywords:
  - OpenEBS LVM Local PV
  - Local PV LVM
- - Deployment
-description: This section explains the deployment instructions for the OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage. 
+ - Deploy an Application
+description: This section explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage. 
 ---
 
-This section explains the deployment instructions for the OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage. 
-
-## Deploy the Application
+This section explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage. 
 
  Create the deployment yaml using the pvc backed by LVM storage.
 
