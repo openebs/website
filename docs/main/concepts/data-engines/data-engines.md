@@ -154,13 +154,13 @@ Below table identifies few differences among the different OpenEBS Replicated St
 | Suitable for high capacity (>50GB) workloads |  No     |   Yes    | Yes        |
 | Near disk performance                        |  No     |   No     | Yes        |
 
-### Ideal Conditions for selecting OpenEBS Local Storage:
+### Ideal Conditions for selecting OpenEBS Local Storage
 
 - When applications are managing replication and availability themselves and there is no need of replication at storage layer. In most such situations, the applications are deployed as `statefulset`.
 - Local Storage is recommended when dedicated local disks are not available for a given application or dedicated storage is not needed for a given application.
 - When near disk performance is a need along with features like snapshots, volume expansion, pooling of storage from multiple storage devices. 
 
-### Ideal Conditions for selecting OpenEBS Replicated Storage:
+### Ideal Conditions for selecting OpenEBS Replicated Storage
 
 - When you need high performance storage using NVMe SSDs and the cluster is capable of NVMeoF. 
 - When you need replication or availability features to protected against node failures.  
