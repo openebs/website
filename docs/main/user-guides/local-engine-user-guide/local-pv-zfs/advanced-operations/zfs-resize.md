@@ -10,9 +10,11 @@ description: This section talks about the advanced operations that can be perfor
 
 We can resize the volume by updating the PVC yaml to the desired size and apply it. The ZFS Driver will take care of updating the quota in case of dataset. If we are using a Zvol and have mounted it as ext2/3/4 or xfs file system, the driver will take care of expanding the volume via reize2fs/xfs_growfs binaries.
 
-For resize, storageclass that provisions the pvc must support resize. We should have allowVolumeExpansion as true in storageclass
+For resize, storageclass that provisions the pvc must support resize. We should have allowVolumeExpansion as true in storageclass.
 
-Note: btrfs does not support online volume resize, so we can not resize the btrfs volumes.
+:::note
+btrfs does not support online volume resize, so we can not resize the btrfs volumes.
+:::
 
 ```
 $ cat sc.yaml
@@ -53,9 +55,13 @@ $ kubectl apply -f pvc.yaml
 persistentvolumeclaim/csi-zfspv created
 ```
 
-OpenEBS ZFS driver supports Online Volume expansion, which means that we can expand the volume even if volume is being used by the application and we also don't need to restart the application to use the expanded volume, the ZFS Driver will take care of making the space availbale to it. Please note that file system expansion does not happen until a Application pod references the resized volume, so if no pods referencing the volume are running, file system expansion will not happen.
+OpenEBS ZFS driver supports Online Volume expansion, which means that we can expand the volume even if volume is being used by the application and we also do not need to restart the application to use the expanded volume, the ZFS Driver will take care of making the space availbale to it. 
 
-Deploy the application using the PVC. Here is sample yaml for the application :
+:::note
+File system expansion does not happen until a Application pod references the resized volume, so if no pods referencing the volume are running, file system expansion will not happen.
+:::
+
+Deploy the application using the PVC. Here is sample yaml for the application:
 
 ```
 $ cat fio.yaml
@@ -116,7 +122,7 @@ Filesystem                Size      Used Available Use% Mounted on
 /dev/zd0                  3.9G     16.0M      3.8G   0% /datadir
 ```
 
-Deploy the application using the PVC which supports volume expansion. Once the application pod is deployed, we will expand the PVC to 5Gi from 4Gi. Just edit the PVC yaml and update the size to 5Gi and apply it :-
+Deploy the application using the PVC which supports volume expansion. Once the application pod is deployed, we will expand the PVC to 5Gi from 4Gi. Edit the PVC yaml and update the size to 5Gi and apply it:
 
 ```
 $ cat pvc.yaml
@@ -134,7 +140,7 @@ spec:
       storage: 5Gi
 ```
 
-Apply the above yaml which will resize the volume
+Apply the above yaml which will resize the volume.
 
 ```
 $ kubectl apply -f pvc.yaml
@@ -142,7 +148,7 @@ persistentvolumeclaim/csi-zfspv configured
 
 ```
 
-Check the PVC yaml
+Check the PVC yaml.
 
 ```yaml
 $ kubectl get pvc csi-zfspv -oyaml
@@ -189,7 +195,7 @@ status:
 
 ```
 
-Here you see in the message that it is waiting on FileSystemResizePending. The resize request will go to the node where appliccation pod is running. The ZFS driver node agent will resize the filesytem for the application. Keep checking the PVC yaml for FileSystemResizePending to go away, once PVC is resized, the yaml will look like this :-
+Here you see in the message that it is waiting on FileSystemResizePending. The resize request will go to the node where appliccation pod is running. The ZFS driver node agent will resize the filesytem for the application. Keep checking the PVC yaml for FileSystemResizePending to go away, once PVC is resized, the yaml will look like this:
 
 ```yaml
 $ kubectl get pvc csi-zfspv -oyaml
@@ -233,11 +239,11 @@ NAME        STATUS   VOLUME                                     CAPACITY   ACCES
 csi-zfspv   Bound    pvc-675bf643-c744-4a30-984c-5b2c53c51f14   5Gi        RWO            openebs-zfspv   28m
 ```
 
-Also, we can exec into the application pod and verify the same :-
+Also, we can exec into the application pod and verify the same:
 
 ```
 # df -h /datadir/
 Filesystem                Size      Used Available Use% Mounted on
 /dev/zd0                  4.9G     16.0M      4.8G   0% /datadir
 ```
-As we can see the volume mount point /datadir is showing that it has been resized.
+As we can see the volume mount point `/datadir` is showing that it has been resized.

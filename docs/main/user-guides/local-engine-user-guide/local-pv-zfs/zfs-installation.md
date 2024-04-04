@@ -29,13 +29,13 @@ $ apt-get install zfsutils-linux
 
 Go to each node and create the ZFS Pool, which will be used for provisioning the volumes. You can create the Pool of your choice, it can be striped, mirrored or raidz pool.
 
-If you have the disk(say /dev/sdb) then you can use the below command to create a striped pool :
+If you have the disk (say /dev/sdb), then you can use the below command to create a striped pool:
 
 ```
 $ zpool create zfspv-pool /dev/sdb
 ```
 
-You can also create mirror or raidz pool as per your need. Check https://github.com/openzfs/zfs for more information.
+You can also create mirror or raidz pool as per your need. See [here](https://github.com/openzfs/zfs for more information).
 
 If you do not have the disk, then you can create the zpool on the loopback device which is backed by a sparse file. Use this for testing purpose only.
 
@@ -44,7 +44,7 @@ $ truncate -s 100G /tmp/disk.img
 $ zpool create zfspv-pool `losetup -f /tmp/disk.img --show`
 ```
 
-Once the ZFS Pool is created, verify the pool via zpool status command, you should see something like this:
+Once the ZFS Pool is created, verify the pool via zpool status command, you should see the command similar as below:
 
 ```
 $ zpool status
@@ -60,7 +60,7 @@ config:
 errors: No known data errors
 ```
 
-Configure the custom topology keys (if needed). This can be used for many purposes like if we want to create the PV on nodes in a particuler zone or building. We can label the nodes accordingly and use that key in the storageclass for taking the scheduling decesion:
+Configure the custom topology keys (if needed). This can be used for many purposes like if we want to create the PV on nodes in a particular zone or building. We can label the nodes accordingly and use that key in the storageclass for taking the scheduling decision:
 
 https://github.com/openebs/zfs-localpv/blob/HEAD/docs/faq.md#6-how-to-add-custom-topology-key
 

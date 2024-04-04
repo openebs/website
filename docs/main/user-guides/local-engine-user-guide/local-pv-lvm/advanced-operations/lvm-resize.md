@@ -57,9 +57,13 @@ $ kubectl apply -f pvc.yaml
 persistentvolumeclaim/csi-lvmpv created
 ```
 
-OpenEBS LVM driver supports Online Volume expansion, which means that we can expand the volume even if volume is being used by the application and we also don't need to restart the application to use the expanded volume, the LVM Driver will take care of making the space availbale to it. Please note that file system expansion does not happen until a Application pod references the resized volume, so if no pods referencing the volume are running, file system expansion will not happen.
+OpenEBS LVM driver supports Online Volume expansion, which means that we can expand the volume even if volume is being used by the application and we also do not need to restart the application to use the expanded volume, the LVM Driver will take care of making the space availbale to it. 
 
-Deploy the application using the PVC. Here is sample yaml for the application :
+:::note
+File system expansion does not happen until an application pod references the resized volume, so if no pods referencing the volume are running, file system expansion will not happen.
+:::
+
+Deploy the application using the PVC. Here is sample yaml for the application:
 
 ```
 $ cat fio.yaml
@@ -120,7 +124,7 @@ Filesystem                                                       Size  Used Avai
 /dev/mapper/lvmvg-pvc--966b0749--5dea--442f--a584--013cf5d25201  3.9G   16M  3.9G   1% /datadir
 ```
 
-Deploy the application using the PVC which supports volume expansion. Once the application pod is deployed, we will expand the PVC to 5Gi from 4Gi. Just edit the PVC yaml and update the size to 5Gi and apply it:-
+Deploy the application using the PVC which supports volume expansion. Once the application pod is deployed, we will expand the PVC to 5Gi from 4Gi. Edit the PVC yaml and update the size to 5Gi and apply it:
 
 ```
 $ cat pvc.yaml
@@ -193,7 +197,7 @@ status:
 
 ```
 
-Here you see in the message that it is waiting on FileSystemResizePending. The resize request will go to the node where appliccation pod is running. The LVM driver node agent will resize the filesytem for the application. Keep checking the PVC yaml for FileSystemResizePending to go away, once PVC is resized, the yaml will look like this:-
+See in the message that it is waiting on FileSystemResizePending. The resize request will go to the node where appliccation pod is running. The LVM driver node agent will resize the filesytem for the application. Keep checking the PVC yaml for FileSystemResizePending to go away, once PVC is resized, the yaml will look like this:
 
 ```yaml
 $ kubectl get pvc csi-lvmpv -oyaml
@@ -237,7 +241,7 @@ NAME        STATUS   VOLUME                                     CAPACITY   ACCES
 csi-lvmpv   Bound    pvc-966b0749-5dea-442f-a584-013cf5d25201   5Gi        RWO            openebs-lvmpv   28m
 ```
 
-Also, we can exec into the application pod and verify the same:-
+Also, we can exec into the application pod and verify the same:
 
 ```
 # df -h /datadir/
@@ -245,4 +249,4 @@ Filesystem                                                       Size  Used Avai
 /dev/mapper/lvmvg-pvc--966b0749--5dea--442f--a584--013cf5d25201  4.9G   16M  4.9G   1% /datadir
 
 ```
-As we can see the volume mount point /datadir is showing that it has been resized.
+As we can see the volume mount point `/datadir` is showing that it has been resized.

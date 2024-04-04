@@ -35,7 +35,7 @@ spec:
       storage: 4Gi
 ```
 
-The above yaml says that create a volume from the snapshot zfspv-snap. Applying the above yaml will create a clone volume on the same node where the original volume is present. The newly created clone PV will also be there on the same node where the original PV is there. Apply the clone yaml
+The above yaml says that create a volume from the snapshot zfspv-snap. Applying the above yaml will create a clone volume on the same node where the original volume is present. The newly created clone PV will also be there on the same node where the original PV is there. Apply the clone yaml.
 
 ```
 $ kubectl apply -f clone.yaml 
@@ -43,7 +43,7 @@ persistentvolumeclaim/zfspv-clone created
 ```
 
 :::note
-The clone PVC should also be of the same size as that of the original volume. Currently resize is not supported. Also, note that the poolname should also be same, as across the ZPOOL clone is not supported. So, if you are using a separate storageclass for the clone PVC, please make sure it refers to the same ZPOOL.
+The clone PVC should also be of the same size as that of the original volume. Currently resize is not supported. Also, note that the poolname should also be same, as across the ZPOOL clone is not supported. So, if you are using a separate storageclass for the clone PVC, make sure it refers to the same ZPOOL.
 :::
 
 ```
@@ -116,7 +116,7 @@ spec:
       storage: 4Gi
 ```
 
-The above yaml says that create a clone from the pvc zfspv-pvc as source. Applying the above yaml will create a clone volume on the same node where the original volume is present. The newly created clone PV will also be there on the same node where the original PV is there. Apply the clone yaml
+The above yaml says that create a clone from the pvc zfspv-pvc as source. Applying the above yaml will create a clone volume on the same node where the original volume is present. The newly created clone PV will also be there on the same node where the original PV is there. Apply the clone yaml.
 
 ```
 $ kubectl apply -f clone.yaml 
@@ -124,7 +124,7 @@ persistentvolumeclaim/zfspv-clone created
 ```
 
 :::note
-The clone PVC should also be of the same size as that of the original volume. Also, note that the poolname should also be same, as across the ZPOOL clone is not supported. So, if you are using a separate storageclass for the clone PVC, please make sure it refers to the same ZPOOL.
+The clone PVC should also be of the same size as that of the original volume. Also, note that the poolname should also be same, as across the ZPOOL clone is not supported. So, if you are using a separate storageclass for the clone PVC, make sure it refers to the same ZPOOL.
 :::
 
 ```

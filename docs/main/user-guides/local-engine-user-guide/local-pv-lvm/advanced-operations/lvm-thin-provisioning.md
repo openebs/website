@@ -14,7 +14,7 @@ LVM thin provisioning allows you to over-provision the physical storage. You can
 
 ## Configuring ThinProvision Volume
 
-For creating thin-provisioned volume, use thinProvision parameter in storage class. It's allowed values are: "yes" and "no". If we don't use this parameter by default it's value will be "no" and it will work as thick provisioned volumes.
+For creating thin-provisioned volume, use thinProvision parameter in storage class. Its allowed values are: "yes" and "no". If we do not use this parameter by default its value will be "no" and it will work as thick provisioned volumes.
 
 ```
 apiVersion: storage.k8s.io/v1

@@ -29,7 +29,7 @@ $ kubectl apply -f snapshotclass.yaml
 volumesnapshotclass.snapshot.storage.k8s.io/zfspv-snapclass created
 ```
 
-Find a PVC for which snapshot has to be created
+Find a PVC for which snapshot has to be created.
 
 ```
 $ kubectl get pvc
@@ -37,7 +37,7 @@ NAME        STATUS   VOLUME                                     CAPACITY   ACCES
 csi-zfspv   Bound    pvc-73402f6e-d054-4ec2-95a4-eb8452724afb   4Gi        RWO            openebs-zfspv   2m35s
 ```
 
-Create the snapshot using the created SnapshotClass for the selected PVC
+Create the snapshot using the created SnapshotClass for the selected PVC.
 
 ```
 $ cat snapshot.yaml
@@ -51,14 +51,16 @@ spec:
     persistentVolumeClaimName: csi-zfspv
 ```
 
-Apply the snapshot.yaml
+Apply the snapshot.yaml.
 
 ```
 $ kubectl apply -f snapshot.yaml
 volumesnapshot.snapshot.storage.k8s.io/zfspv-snap created
 ```
 
-Please note that you have to create the snapshot in the same namespace where the PVC is created. Check the created snapshot resource, make sure readyToUsefield is true, before using this snapshot for any purpose.
+:::note
+Create the snapshot in the same namespace where the PVC is created. Check the created snapshot resource, make sure readyToUsefield is true, before using this snapshot for any purpose.
+:::
 
 ```
 $ kubectl get volumesnapshot.snapshot
@@ -96,7 +98,7 @@ status:
   restoreSize: "0"
 ```
 
-Check the OpenEBS resource for the created snapshot. Check, status should be Ready.
+Check the OpenEBS resource for the created snapshot. The status should be "Ready".
 
 ```
 $ kubectl get zfssnap -n openebs

@@ -60,7 +60,7 @@ $ kubectl delete -f pvc.yaml
 persistentvolumeclaim "csi-zfspv" deleted
 ```
 
-:::warning
+:::info
 If you are running kernel ZFS on the same set of nodes, the following two points are recommended:
 
 - Disable zfs-import-scan.service service that will avoid importing all pools by scanning all the available devices in the system, disabling scan service will avoid importing pools that are not created by kernel.
@@ -72,7 +72,7 @@ $ systemctl stop zfs-import-scan.service
 $ systemctl disable zfs-import-scan.service
 ```
 
-Always maintain upto date /etc/zfs/zpool.cache while performing operations on zfs pools(zpool set cachefile=/etc/zfs/zpool.cache).
+Always maintain upto date /etc/zfs/zpool.cache while performing operations on zfs pools (zpool set cachefile=/etc/zfs/zpool.cache).
 :::
 
 ## Support
