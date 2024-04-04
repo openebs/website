@@ -1,32 +1,33 @@
 ---
 id: replicateddb-restore
-title: Restoring Mayastor
+title: Restoring to Replicated Storage
 keywords:
- - Restoring Mayastor
-description: This section explains how to Restore from cStor Backup to Mayastor for Replicated DBs.
+ - Restoring to Mayastor
+ - Restoring to Replicated Storage
+description: This section explains how to Restore from cStor Backup to Replicated Storage for Replicated DBs.
 ---
-# Steps to Restore from cStor Backup to Mayastor for Replicated DBs (Mongo)
+# Steps to Restore from cStor Backup to Replicated Storage for Replicated DBs (Mongo)
 
-{% hint style=“info” %}
+:::info
 Before you begin, make sure you have the following:
 - Access to a Kubernetes cluster with Velero installed.
 - A backup of your Mongo database created using Velero.
-- Mayastor configured in your Kubernetes environment.
-{% endhint %}
+- Replicated Storage (f.k.a Mayastor) configured in your Kubernetes environment.
+:::
 
-## Step 1: Install Velero with GCP Provider on Destination (Mayastor Cluster)
+## Step 1: Install Velero with GCP Provider on Destination (Replicated Storage Cluster)
 
 Install Velero with the GCP provider, ensuring you use the same values for the `BUCKET-NAME` and `SECRET-FILENAME` placeholders that you used originally. These placeholders should be replaced with your specific values:
 
-{% tabs %}
-{% tab title="Command" %}
-```text
+**Command**
+
+```
 velero install --use-node-agent --provider gcp --plugins velero/velero-plugin-for-gcp:v1.6.0 --bucket BUCKET-NAME --secret-file SECRET-FILENAME --uploader-type restic
 ```
-{% endtab %}
 
-{% tab title="Output" %}
-```text  
+**Output**
+
+```  
 CustomResourceDefinition/backuprepositories.velero.io: attempting to create resource
 CustomResourceDefinition/backuprepositories.velero.io: attempting to create resource client
 CustomResourceDefinition/backuprepositories.velero.io: created
@@ -88,68 +89,51 @@ DaemonSet/node-agent: created
 Velero is installed! ⛵ Use 'kubectl logs deployment/velero -n velero' to view the status.
 thulasiraman_ilangovan@cloudshell:~$ 
 ```
-{% endtab %}
-{% endtabs %}
-
-
 
 ## Step 2: Verify Backup Availability
 
-Check the availability of your previously-saved backups. If the credentials or bucket information doesn't match, you won't be able to see the backups:
+Check the availability of your previously-saved backups. If the credentials or bucket information does not match, the backups cannot be seen:
 
+**Command**
 
-{% tabs %}
-{% tab title="Command" %}
-```text
+```
 velero get backup | grep 13-09-23
 ```
-{% endtab %}
 
-{% tab title="Output" %}
-```text
+**Output**
+
+```
 mongo-backup-13-09-23     Completed   0        0          2023-09-13 13:15:32 +0000 UTC   29d       default            <none>
 ```
-{% endtab %}
-{% endtabs %}
 
-{% tabs %}
-{% tab title="Command" %}
-```text
+**Command**
+
+```
 kubectl get backupstoragelocation -n velero
 ```
-{% endtab %}
+**Output**
 
-{% tab title="Output" %}
-```text
+```
 NAME      PHASE       LAST VALIDATED   AGE     DEFAULT
 default   Available   23s              3m32s   true
 ```
-{% endtab %}
-{% endtabs %}
-
-
 
 ## Step 3: Restore Using Velero CLI
 
 Initiate the restore process using Velero CLI with the following command:
 
-{% tabs %}
-{% tab title="Command" %}
-```text
+**Command**
+
+```
 velero restore create mongo-restore-13-09-23 --from-backup mongo-backup-13-09-23
 ```
-{% endtab %}
 
-{% tab title="Output" %}
-```text
+**Output**
+
+```
 Restore request "mongo-restore-13-09-23" submitted successfully.
 Run `velero restore describe mongo-restore-13-09-23` or `velero restore logs mongo-restore-13-09-23` for more details.
 ```
-{% endtab %}
-{% endtabs %}
-
-
-
 
 ## Step 4: Check Restore Status
 
@@ -161,11 +145,9 @@ velero get restore
 
 When Velero performs a restore, it deploys an init container within the application pod, responsible for restoring the volume. Initially, the restore status will be `InProgress`. 
 
-{% hint style="note" %}    
+:::note    
 Your storage class was originally set to `cstor-csi-disk` because you imported this PVC from a cStor volume, the status might temporarily stay as **In Progress** and your PVC will be in **Pending** status.
-{% endhint %}
-
-
+:::
 
 ## Step 5: Backup PVC and Change Storage Class
 
@@ -183,10 +165,9 @@ ls -lrt | grep pvc-mongo.yaml
 
 - Edit the `pvc-mongo.yaml` file to update its storage class. Below is the modified PVC configuration with `mayastor-single-replica` set as the new storage class:
 
-{% hint style="note" %}    
+:::note   
 The statefulset for Mongo will still have the `cstor-csi-disk` storage class at this point. This will be addressed in the further steps. 
-{% endhint %}
-
+:::
 
 ```
 apiVersion: v1
@@ -210,7 +191,7 @@ spec:
   volumeMode: Filesystem
 ```
 
-## Step 6: Resolve issue where PVC is in a Pending
+## Step 6: Resolve Issue where PVC is Pending
 
 - Begin by deleting the problematic PVC with the following command:
 
@@ -224,7 +205,7 @@ kubectl delete pvc mongodb-persistent-storage-claim-mongod-0
 kubectl apply -f pvc-mongo.yaml
 ```
 
-## Step 7: Check Velero init container
+## Step 7: Check Velero Init Container
 
 After recreating the PVC with Mayastor storageClass, you will observe the presence of a Velero initialization container within the application pod. This container is responsible for restoring the required volumes.
 
@@ -241,20 +222,18 @@ The output will display the pods' status, including the Velero initialization co
 
 You can track the progress of the restore by running:
 
-{% tabs %}
-{% tab title="Command" %}
-```text
+**Command**
+
+```
 velero get restore
 ```
-{% endtab %}
 
-{% tab title="Output" %}
-```text
+**Output**
+
+```
 NAME                     BACKUP                  STATUS      STARTED                         COMPLETED                       ERRORS   WARNINGS   CREATED                         SELECTOR
 mongo-restore-13-09-23   mongo-backup-13-09-23   Completed   2023-09-13 13:56:19 +0000 UTC   2023-09-13 14:06:09 +0000 UTC   0        4          2023-09-13 13:56:19 +0000 UTC   <none>
 ```
-{% endtab %}
-{% endtabs %}
 
 You can then verify the data restoration by accessing your MongoDB instance. In the provided example, we used the "mongosh" shell to connect to the MongoDB instance and check the databases and their content. The data should reflect what was previously backed up from the cStor storage.
 
@@ -267,7 +246,6 @@ mongosh mongodb://admin:admin@mongod-0.mongodb-service.default.svc.cluster.local
 Due to the statefulset's configuration with three replicas, you will notice that the `mongo-1` pod is created but remains in a `Pending` status. This behavior is expected as we have the storage class set to cStor in statefulset configuration.
 
 ## Step 9: Capture the StatefulSet Configuration and Modify Storage Class
-
 
 Capture the current configuration of the StatefulSet for MongoDB by running the following command:
 
@@ -377,10 +355,6 @@ spec:
       
 ```
 
-
-
-
-
 ## Step 10: Delete StatefulSet (Cascade=False)
 
 Delete the StatefulSet while preserving the pods with the following command:
@@ -421,29 +395,27 @@ kubectl delete pvc mongodb-persistent-storage-claim-mongod-1
 
 Recreate the StatefulSet with the Yaml file. 
 
-{% tabs %}
-{% tab title="Command" %}
-```text
+**Command**
+
+```
 kubectl apply -f sts-mongo-mayastor.yaml
 ```
-{% endtab %}
 
-{% tab title="Output" %}
-```text
+**Output**
+
+```
 statefulset.apps/mongod created
 ```
-{% endtab %}
-{% endtabs %}
 
-{% tabs %}
-{% tab title="Command" %}
-```text
+**Command**
+
+```
 kubectl get pods
 ```
-{% endtab %}
 
-{% tab title="Output" %}
-```text
+**Output**
+
+```
 NAME                            READY   STATUS    RESTARTS   AGE
 mongo-client-758ddd54cc-h2gwl   1/1     Running   0          31m
 mongod-0                        1/1     Running   0          31m
@@ -451,27 +423,21 @@ mongod-1                        1/1     Running   0          7m54s
 mongod-2                        1/1     Running   0          6m13s
 ycsb-775fc86c4b-kj5vv           1/1     Running   0          31m
 ```
-{% endtab %}
-{% endtabs %}
 
-{% tabs %}
-{% tab title="Command" %}
-```text
+**Command**
+
+```
 kubectl mayastor get volumes
 ```
-{% endtab %}
 
-{% tab title="Output" %}
-```text
+**Output**
+
+```
 ID                                    REPLICAS  TARGET-NODE                      ACCESSIBILITY  STATUS  SIZE  THIN-PROVISIONED  ALLOCATED 
  f41c2cdc-5611-471e-b5eb-1cfb571b1b87  1         gke-mayastor-pool-2acd09ca-ppxw  nvmf           Online  3GiB  false             3GiB 
  113882e1-c270-4c72-9c1f-d9e09bfd66ad  1         gke-mayastor-pool-2acd09ca-4v3z  nvmf           Online  3GiB  false             3GiB 
  fb4d6a4f-5982-4049-977b-9ae20b8162ad  1         gke-mayastor-pool-2acd09ca-q30r  nvmf           Online  3GiB  false             3GiB
 ```
-{% endtab %}
-{% endtabs %}
-
-
 
 ## Step 13: Verify Data Replication on Secondary DB
 
@@ -518,3 +484,8 @@ rs0 [direct: secondary] mydb> db.accounts.find()
 ]
 rs0 [direct: secondary] mydb> 
 ```
+
+## See Also
+
+- [Migration from Legacy Storage to Latest Storage Solution](../data-migration/migration-using-pv-migrate.md)
+- [Migration for Distrubuted DB](../data-migration/migration-using-velero/migration-for-distributed-db/distributeddb-backup.md)
