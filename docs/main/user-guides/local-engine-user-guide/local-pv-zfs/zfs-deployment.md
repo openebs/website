@@ -75,6 +75,7 @@ $ systemctl disable zfs-import-scan.service
 ```
 
 Always maintain upto date /etc/zfs/zpool.cache while performing operations on zfs pools(zpool set cachefile=/etc/zfs/zpool.cache).
+:::
 
 ## Support
 
