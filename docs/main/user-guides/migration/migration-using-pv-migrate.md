@@ -15,17 +15,21 @@ keywords:
 description: This section outlines the process of migrating the legacy storage to latest storage solution.
 ---
 
-# Migration using pv-migrate
-
 This section describes the process of migrating the legacy storage to latest storage solution.
 
 ## Overview
 
-OpenEBS data migration is the process of transferring data from the legacy storage to the latest storage solution. The data can be migrated from any non-OpenEBS storage to OpenEBS storage and this section provides detailed description about the migration process for legacy storage users.
+Data migration is the process of moving data from a source storage to a destination storage. In OpenEBS context, the users can migrate the data from legacy OpenEBS storage to the latest OpenEBS storage.
 
-The data migration of migrating the legacy storage to latest storage solution can be done in two ways:
-- [Migration using pv-migrate](#migration-using-pv-migrate)
-- [Migration using velero](../migration/migration-using-velero/)
+There are different techniques/methodologies for performing data migration. Users can perform data migration within the same Kubernetes cluster or across Kubernetes clusters. The following guides outline several methodologies for migrating from legacy OpenEBS storage to latest OpenEBS storage:
+- [Migration using pv-migrate Utility](#migration-using-pv-migrate)
+- [Migration using velero Utility](../migration/migration-using-velero/)
+
+:::info
+Users of non-OpenEBS storage solutions can also use these approaches described below to migrate their data to OpenEBS storage.
+:::
+
+## Migration using pv-migrate
 
 In this migration process, we are using [pv-migrate](https://github.com/utkuozdemir/pv-migrate) that is a CLI tool/kubectl plugin to easily migrate the contents of one Kubernetes `PersistentVolumeClaim` to another.
 
@@ -48,8 +52,7 @@ The binary can be used as specified in the migrate flows.
 ## Migration from Local PV Device to Local PV LVM
 
 :::info
-The following steps are an example about migrating from legacy storage to latest storage solution.
-You can also migrate OpenEBS Local PV Device to OpenEBS Local PV ZFS.
+.The following example describes the steps to migrate data from legacy OpenEBS Local PV Device storage to OpenEBS Local PV LVM storage. Legacy OpenEBS Local PV ZFS storage users can also use the below steps to migrate to OpenEBS Local PV LVM storage.
 :::
 
 ### Assumptions
@@ -187,8 +190,7 @@ The Local PV Device volumes and pools can now be removed and Local PV Device can
 ## Migration from cStor to Replicated
 
 :::info
-The following steps are an example about migrating from legacy storage to latest storage solution.
-You can also migrate OpenEBS Jiva to OpenEBS Replicated using the steps below.
+The following example describes the steps to migrate data from legacy OpenEBS CStor storage to OpenEBS Replicated (f.k.a Mayastor) storage. Legacy OpenEBS Jiva storage users can also use the below steps to migrate to OpenEBS Replicated.
 :::
 
 ### Assumptions

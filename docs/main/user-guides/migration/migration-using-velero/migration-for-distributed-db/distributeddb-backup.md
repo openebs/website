@@ -11,57 +11,50 @@ description: This section explains how to backup from cStor for Distributed DBs.
 
 In the current setup, we have a CStor cluster serving as the source, with Cassandra running as a StatefulSet, utilizing CStor volumes.
 
-{% tabs %}
-{% tab title="Command" %}
-```text
+**Command**
+
+```
 kubectl get pods -n cassandra 
 ```
-{% endtab %}
 
-{% tab title="Example Output" %}
-```text
+**Example Output**
+
+```
 NAME          READY   STATUS    RESTARTS   AGE
 cassandra-0   1/1     Running   0          6m22s
 cassandra-1   1/1     Running   0          4m23s
 cassandra-2   1/1     Running   0          2m15s
 ```
-{% endtab %}
-{% endtabs %}
 
-{% tabs %}
-{% tab title="Command" %}
-```text
+**Command**
+
+```
 kubectl get pvc -n cassandra 
 ```
-{% endtab %}
 
-{% tab title="Example Output" %}
-```text
+**Example Output**
+
+```
 NAME               STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS     AGE
 data-cassandra-0   Bound    pvc-05c464de-f273-4d04-b915-600bc434d762   3Gi        RWO            cstor-csi-disk   6m37s
 data-cassandra-1   Bound    pvc-a7ac4af9-6cc9-4722-aee1-b8c9e1c1f8c8   3Gi        RWO            cstor-csi-disk   4m38s
 data-cassandra-2   Bound    pvc-0980ea22-0b4b-4f02-bc57-81c4089cf55a   3Gi        RWO            cstor-csi-disk   2m30s
 ```
-{% endtab %}
-{% endtabs %}
 
-{% tabs %}
-{% tab title="Command" %}
-```text
+**Command**
+
+```
 kubectl get cvc -n openebs 
 ```
-{% endtab %}
 
-{% tab title="Example Output" %}
-```text
+**Example Output**
+
+```
 NAME                                       CAPACITY   STATUS   AGE
 pvc-05c464de-f273-4d04-b915-600bc434d762   3Gi        Bound    6m47s
 pvc-0980ea22-0b4b-4f02-bc57-81c4089cf55a   3Gi        Bound    2m40s
 pvc-a7ac4af9-6cc9-4722-aee1-b8c9e1c1f8c8   3Gi        Bound    4m48s
 ```
-{% endtab %}
-{% endtabs %}
-
 
 ## Step 2: Velero Installation
 
@@ -73,7 +66,6 @@ velero install --use-node-agent --provider gcp --plugins velero/velero-plugin-fo
 
 Verify the Velero namespace for Node Agent and Velero pods:
 
-
 ```
 kubectl get pods -n velero
 ```
@@ -83,7 +75,6 @@ kubectl get pods -n velero
 In this example, we create a new database with sample data in Cassandra, a distributed database. 
 
 ![](https://hackmd.io/_uploads/ryvcoj-l6.png)
-
 
 The data is distributed across all replication instances.
 

@@ -309,6 +309,11 @@ module.exports = {
           items: [
             {
               type: "doc",
+              id: "user-guides/migration/migration-overview",
+              label: "Migration Overview"
+            },
+            {
+              type: "doc",
               id: "user-guides/migration/migration-using-pv-migrate",
               label: "Migration using pv-migrate"
             },
@@ -321,6 +326,11 @@ module.exports = {
               },
               items: [
                 {
+                  type: "doc",
+                  id: "user-guides/migration/migration-using-velero/overview",
+                  label: "Overview"
+                },
+                {
                   collapsed: true,
                   type: "category",
                   label: "Migration for Distributed DB",
@@ -330,18 +340,13 @@ module.exports = {
                   items: [
                     {
                       type: "doc",
-                      id: "user-guides/migration/migration-using-velero/migration-for-distributed-db/distributeddb-overview",
-                      label: "Distributed DB Overview"
-                    },
-                    {
-                      type: "doc",
                       id: "user-guides/migration/migration-using-velero/migration-for-distributed-db/distributeddb-backup",
                       label: "Backing up from cStor"
                     },
                     {
                       type: "doc",
                       id: "user-guides/migration/migration-using-velero/migration-for-distributed-db/distributeddb-restore",
-                      label: "Restoring Mayastor"
+                      label: "Restoring to Replicated Storage"
                     }
                   ]
                 },
@@ -355,18 +360,13 @@ module.exports = {
                   items: [
                     {
                       type: "doc",
-                      id: "user-guides/migration/migration-using-velero/migration-for-replicated-db/replicateddb-overview",
-                      label: "Replicated DB Overview"
-                    },
-                    {
-                      type: "doc",
                       id: "user-guides/migration/migration-using-velero/migration-for-replicated-db/replicateddb-backup",
                       label: "Backing up from cStor"
                     },
                     {
                       type: "doc",
                       id: "user-guides/migration/migration-using-velero/migration-for-replicated-db/replicateddb-restore",
-                      label: "Restoring Mayastor"
+                      label: "Restoring to Replicated Storage"
                     }
                   ]
                 },
