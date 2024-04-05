@@ -46,7 +46,7 @@ The default retention is the same used by K8s. For dynamically provisioned Persi
 
 ### Is OpenShift supported? {#openebs-in-openshift}
 
-Yes. See the [detailed installation instructions for OpenShift](../user-guides/local-engine-user-guide/additional-information/kb.md#how-to-install-openebs-in-openshift-4x-openshift-install) for more information.
+Yes. See the [detailed installation instructions for OpenShift](../user-guides/local-storage-user-guide/additional-information/kb.md#how-to-install-openebs-in-openshift-4x-openshift-install) for more information.
 
 [Go to top](#top)
 
@@ -59,9 +59,9 @@ While creating a StorageClass, if user mention replica count as 2 in a single no
 ### How backup and restore is working with OpenEBS volumes? {#backup-restore-openebs-volumes}
 
 Refer to the following links for more information on the backup and restore functionality with the OpenEBS volumes:
-- [Backup and Restore](../user-guides/local-engine-user-guide/additional-information/backupandrestore.md)
-- [Snapshot](../user-guides/local-engine-user-guide/local-pv-lvm/advanced-operations/lvm-snapshot.md)
-- [Backup and Restore for Local PV ZFS Volumes](../user-guides/local-engine-user-guide/local-pv-zfs/advanced-operations/zfs-backup-restore.md)
+- [Backup and Restore](../user-guides/local-storage-user-guide/additional-information/backupandrestore.md)
+- [Snapshot](../user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-snapshot.md)
+- [Backup and Restore for Local PV ZFS Volumes](../user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-backup-restore.md)
 
 [Go to top](#top)
 

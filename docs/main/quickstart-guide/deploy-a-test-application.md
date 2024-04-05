@@ -9,8 +9,8 @@ description: This section will help you to deploy a test application.
 ---
 
 :::info
-- See [Local PV LVM User Guide](../user-guides/local-engine-user-guide/lvm-localpv.md) to deploy Local PV LVM.
-- See [Local PV ZFS User Guide](../user-guides/local-engine-user-guide/zfs-localpv.md) to deploy Local PV ZFS.
+- See [Local PV LVM User Guide](../user-guides/local-storage-user-guide/lvm-localpv.md) to deploy Local PV LVM.
+- See [Local PV ZFS User Guide](../user-guides/local-storage-user-guide/zfs-localpv.md) to deploy Local PV ZFS.
 - See [Replicated Storage Deployment](../user-guides/replicated-engine-user-guide/replicated-engine-deployment.md) to deploy Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor).
 :::
 
@@ -217,8 +217,8 @@ Once the workloads are up and running, the platform or the operations team can o
 
 ## See Also
 
-- [Installation](../../quickstart-guide/installation.md)
-- [Local PV Hostpath](../user-guides/local-engine-user-guide/localpv-hostpath.md)
-- [Local PV LVM](../user-guides/local-engine-user-guide/lvm-localpv.md)
-- [Local PV ZFS](../user-guides/local-engine-user-guide/zfs-localpv.md)
+- [Installation](installation.md)
+- [Local PV Hostpath](../user-guides/local-storage-user-guide/localpv-hostpath.md)
+- [Local PV LVM](../user-guides/local-storage-user-guide/lvm-localpv.md)
+- [Local PV ZFS](../user-guides/local-storage-user-guide/zfs-localpv.md)
 - [Replicated Storage](../user-guides/replicated-engine-user-guide/)

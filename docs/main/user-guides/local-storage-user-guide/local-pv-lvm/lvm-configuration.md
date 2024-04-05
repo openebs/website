@@ -493,5 +493,5 @@ If you encounter issues or have a question, file an [Github issue](https://githu
 
 ## See Also
 
-- [Installation](../../quickstart-guide/installation.md)
-- [Deploy an Application](../../quickstart-guide/deploy-a-test-application.md)
+- [Installation](../../../quickstart-guide/installation.md)
+- [Deploy an Application](../../../quickstart-guide/deploy-a-test-application.md)

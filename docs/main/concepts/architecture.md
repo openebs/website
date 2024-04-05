@@ -165,5 +165,5 @@ Check out our [troubleshooting section](../troubleshooting/) for some of the com
  ## See Also
 
 - [Data Engines](../concepts/data-engines/data-engines.md)
-- [OpenEBS Local Storage](../concepts/data-engines/local-engine.md)
+- [OpenEBS Local Storage](../concepts/data-engines/local-storage.md)
 - [OpenEBS Replicated Storage](../concepts/data-engines/replicated-engine.md)
