@@ -15,13 +15,13 @@ keywords:
 description: This section outlines the process of migrating the legacy storage to latest storage solution.
 ---
 
-## Migration Overview
+# Migration Overview
 
 Data migration is the process of moving data from a source storage to a destination storage. In OpenEBS context, the users can migrate the data from legacy OpenEBS storage to the latest OpenEBS storage.
 
 There are different techniques/methodologies for performing data migration. Users can perform data migration within the same Kubernetes cluster or across Kubernetes clusters. The following guides outline several methodologies for migrating from legacy OpenEBS storage to latest OpenEBS storage:
-- [Migration using pv-migrate Utility](../migration/migration-using-pv-migrate.md)
-- [Migration using velero Utility](../migration/migration-using-velero/)
+- [Migration using pv-migrate](../migration/migration-using-pv-migrate.md)
+- [Migration using Velero](../migration/migration-using-velero/)
 
 :::info
 Users of non-OpenEBS storage solutions can also use these approaches described below to migrate their data to OpenEBS storage.
