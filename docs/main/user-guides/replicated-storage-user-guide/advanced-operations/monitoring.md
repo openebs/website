@@ -4,13 +4,13 @@ title: Monitoring
 keywords:
  - Monitoring
  - Pool metrics
-description: This guide explains about the replicated engine pool metrics exporter.
+description: This guide explains about the Replicated Storage pool metrics exporter.
 ---
 # Monitoring
 
 ## Pool Metrics Exporter
 
-The Replicated Engine pool metrics exporter runs as a sidecar container within every I/O-engine pod and exposes pool usage metrics in Prometheus format. These metrics are exposed on port 9502 using an HTTP endpoint/metrics and are refreshed every five minutes.
+The Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) pool metrics exporter runs as a sidecar container within every I/O-engine pod and exposes pool usage metrics in Prometheus format. These metrics are exposed on port 9502 using an HTTP endpoint/metrics and are refreshed every five minutes.
 
 ### Supported Pool Metrics
 
@@ -60,7 +60,7 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo update
 ```
 
-Then, install the Prometheus monitoring stack and set prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues to false. This enables Prometheus to discover custom ServiceMonitor for Replicated Engine.
+Then, install the Prometheus monitoring stack and set prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues to false. This enables Prometheus to discover custom ServiceMonitor for Replicated Storage.
 
 **Command**
 ```

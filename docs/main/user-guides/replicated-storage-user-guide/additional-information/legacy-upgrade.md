@@ -1,6 +1,6 @@
 ---
 id: legacy-upgrade
-title: OpenEBS Replicated Engine Legacy Upgrades
+title: OpenEBS Replicated Storage Legacy Upgrades
 keywords:
  - Upgrading OpenEBS
  - OpenEBS upgrade
@@ -10,13 +10,13 @@ description: Upgrade to the latest OpenEBS 2.6.0 version is supported only from 
 
 ## Legacy Upgrade Support
 
-A legacy installation of replicated engine (1.0.x and below) cannot be seamlessly upgraded and needs manual intervention.
+A legacy installation of Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) (1.0.x and below) cannot be seamlessly upgraded and needs manual intervention.
 
-Follow the below steps if you wish to upgrade from replicated engine 1.0.x to replicated engine 2.x and above.
-The replicated engine uses etcd as a persistent datastore for its configuration. As a first step, take a snapshot of the etcd. The detailed steps for taking a snapshot can be found in the etcd [documentation](https://etcd.io/docs/v3.3/op-guide/recovery/).
+Follow the below steps if you wish to upgrade from Replicated Storage 1.0.x to Replicated Storage 2.x and above.
+The Replicated Storage uses etcd as a persistent datastore for its configuration. As a first step, take a snapshot of the etcd. The detailed steps for taking a snapshot can be found in the etcd [documentation](https://etcd.io/docs/v3.3/op-guide/recovery/).
 
 :::warning
-As compared to replicated engine 1.0, the replicated engine 2.x feature-set introduces breaking changes in some of the components, due to which the upgrade process from 1.0 to 2.x is not seamless. The list of such changes are given below:
+As compared to Replicated Storage 1.0, the Replicated Storage 2.x feature-set introduces breaking changes in some of the components, due to which the upgrade process from 1.0 to 2.x is not seamless. The list of such changes are given below:
 
 **ETCD:**
   - Control Plane: The prefixes for control plane have changed from `/namespace/$NAMESPACE/control-plane/` to `/openebs.io/mayastor/apis/v0/clusters/$KUBE_SYSTEM_UID/namespaces/$NAMESPACE/`
@@ -27,7 +27,7 @@ As compared to replicated engine 1.0, the replicated engine 2.x feature-set intr
   - Data Plane: The registration heartbeat has been changed from NATS to gRPC. 
 
 **Pool CRDs:**
-  - The pool CRDs have been renamed `DiskPools` (previously, MayastorPools).
+  - The pool CRDs have been renamed `DiskPools` (previously, Replicated Storage Pools).
   :::
 
 1. To start the upgrade process, the following previously deployed components have to be deleted. 
@@ -53,7 +53,7 @@ kubectl delete -f https://raw.githubusercontent.com/openebs/mayastor-control-pla
 ```
 
 :::info
-In the above command, add the previously installed replicated engine's version in the format v1.x.x
+In the above command, add the previously installed Replicated Storage's version in the format v1.x.x
 :::
 
 2. Once all the above components have been successfully removed, fetch the latest helm chart from [Mayastor-extension repo](https://github.com/openebs/mayastor-extensions) and save it to a file, say `helm_templates.yaml`. To do so, execute:
@@ -205,9 +205,9 @@ ID                                    REPLICAS  TARGET-NODE  ACCESSIBILITY  STAT
 bf207797-b23d-447a-8d3f-98d378acfa8a  3         worker-0     nvmf           Online  1073741824  false
 ``` 
 
-4. After upgrading control-plane components, the data-plane pods have to be upgraded. To do so, deploy the `io-engine` DaemonSet from replicated engine's new version. 
+4. After upgrading control-plane components, the data-plane pods have to be upgraded. To do so, deploy the `io-engine` DaemonSet from Replicated Storage's new version. 
 
-_Using the command given below, the data-plane pods (now io-engine pods) will be upgraded to replicated engine v2.0._
+_Using the command given below, the data-plane pods (now io-engine pods) will be upgraded to Replicated Storage v2.0._
 
 **Command**
 
@@ -217,7 +217,7 @@ kubectl apply -f mayastor_io_v2.0.yaml -n mayastor
 
 - Delete the previously deployed data-plane pods (`mayastor-xxxxx`). The data-plane pods need to be manually deleted as their update-strategy is set to `delete`. Upon successful deletion, the new `io-engine` pods will be up and running.   
 
-- NATS has been replaced by gRPC for replicated engine versions 2.0 or later. Hence, the NATS components (StatefulSets and services) have to be removed from the cluster.
+- NATS has been replaced by gRPC for Replicated Storage versions 2.0 or later. Hence, the NATS components (StatefulSets and services) have to be removed from the cluster.
 
 **Command**
 ```text
@@ -308,7 +308,7 @@ uuid=8929e13f-99c0-4830-bcc2-d4b12a541b97"}},{"Replica":{"uuid":"9455811d-480e-4
 
 6. Once all the components have been upgraded, the HA module can now be enabled via the helm upgrade command.  
 
-**Command to check the helm list**
+**Command to check the Helm List**
 
 ```
 helm upgrade --install mayastor . -n mayastor --set etcd.persistence.storageClass="manual" --set loki-stack.loki.persistence.storageClassName="manual" --set agents.ha.enabled="true"
@@ -379,7 +379,7 @@ nats-1                                       2/2     Running   0          45m
 nats-2                                       2/2     Running   0          45m
 ```
 
-**Command to check the status of Mayastor volumes**
+**Command to check the Status of Replicated Storage Volumes**
 
 ```
 kubectl mayastor get volumes
