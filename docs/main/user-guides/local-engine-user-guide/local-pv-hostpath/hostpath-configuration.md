@@ -8,7 +8,7 @@ keywords:
 description: This section explains the configuration requirements to set up OpenEBS Local Persistent Volumes (PV) backed by Hostpath. 
 ---
 
-## Configuration
+# Configuration
 
 This section will help you to configure Local PV Hostpath.
 
@@ -36,9 +36,9 @@ The default Storage Class is called `openebs-hostpath` and its `BasePath` is con
    reclaimPolicy: Delete
    volumeBindingMode: WaitForFirstConsumer
    ```
-    #### (Optional) Custom Node Labelling
+    #### (Optional) Custom Node Labeling
 
-    In Kubernetes, Hostpath LocalPV identifies nodes using labels such as `kubernetes.io/hostname=<node-name>`. However, these default labels might not ensure each node is distinct across the entire cluster. To solve this, you can make custom labels. As an admin, you can define and set these labels when configuring a **StorageClass**. Here's a sample storage class:
+    In Kubernetes, Local PV Hostpath identifies nodes using labels such as `kubernetes.io/hostname=<node-name>`. However, these default labels might not ensure each node is distinct across the entire cluster. To solve this, you can make custom labels. As an admin, you can define and set these labels when configuring a **StorageClass**. Here's a sample storage class:
 
     ```
     apiVersion: storage.k8s.io/v1

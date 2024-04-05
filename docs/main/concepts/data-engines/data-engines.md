@@ -4,6 +4,10 @@ title: Overview of OpenEBS Data Engines
 keywords: 
   - Data Engines
   - OpenEBS Data Engines
+  - Local Storage
+  - Local Engines
+  - Replicated Storage 
+  - Replicated Engine
 description: OpenEBS Data Engine is the core component that acts as an end-point for serving the IO to the applications. OpenEBS Data engines are akin to Storage controllers or sometimes also know for implementing the software defined storage capabilities.
 ---
 
@@ -96,15 +100,15 @@ All OpenEBS Data Engines support:
 
 OpenEBS Data Engines can be classified into two categories.
 
-### Local Storages
+### Local Storage
 
-OpenEBS Local Storages can create Persistent Volumes (PVs) out of local disks or hostpaths or using the volume managers on the Kubernetes worker nodes. Local Storages are well suited for cloud native applications that have the availability, scalability features built into them. Local Storages are also well suited for stateful workloads that are short lived like Machine Learning (ML) jobs or edge cases where there is a single node Kubernetes cluster. 
+OpenEBS Local Storage or Local Engines can create Persistent Volumes (PVs) out of local disks or hostpaths or use the volume managers on the Kubernetes worker nodes. Local Storage are well suited for cloud native applications that have the availability, scalability features built into them. Local Storage are also well suited for stateful workloads that are short lived like Machine Learning (ML) jobs or edge cases where there is a single node Kubernetes cluster. 
 
 :::note
-Local volumes are only available from the the node on which the persistent volume is created. If that node fails, the application pod will not be re-scheduled to another node.
+Local Storage are only available from the the node on which the persistent volume is created. If that node fails, the application pod will not be re-scheduled to another node.
 :::
 
-The below table identifies few differences among the different OpenEBS Local Storages. 
+The below table identifies few differences among the different OpenEBS Local Storage. 
 
 | Feature                                      | Hostpath  |  Rawfile  |  Device    | ZFS      | LVM      | 
 | -------------------------------------------- | :---:     | :------:  | :--------: | :------: | :------: |
@@ -120,9 +124,9 @@ The below table identifies few differences among the different OpenEBS Local Sto
 | Works on OS Mounted storage                  |  Yes      |   Yes     | No         | No       | No       |
 
 
-### Replicated Storages
+### Replicated Storage
 
-Replicated Storages (aka Replicated Volumes) are those that can synchronously replicate the data to multiple nodes. These engines provide protection against node failures, by allowing the volume to be accessible from one of the other nodes where the data was replicated to. The replication can also be setup across availability zones helping applications move across availability zones. Replicated Volumes are also capable of enterprise storage features like snapshots, clone, volume expansion, and so forth. 
+Replicated Storage or Replicated Engine (f.k.a Mayastor) are those that can synchronously replicate the data to multiple nodes. These engines provide protection against node failures, by allowing the volume to be accessible from one of the other nodes where the data was replicated to. The replication can also be setup across availability zones helping applications move across availability zones. Replicated Volumes are also capable of enterprise storage features like snapshots, clone, volume expansion, and so forth. 
 
 :::tip
 Depending on the type of storage attached to your Kubernetes worker nodes and application performance requirements, you can select from [Local Storage](local-engine.md) or[Replicated Storage](replicated-engine.md).
@@ -136,37 +140,19 @@ An important aspect of the OpenEBS Data Layer is that each volume replica is a f
 - When Volume Snapshots is taken, the snapshot is taken on all its healthy volume replicas.
 :::
 
-Below table identifies few differences among the different OpenEBS Replicated Storages. 
-
-| Feature                                      | Jiva    |  cStor   |  Mayastor  | 
-| -------------------------------------------- | :---:   | :------: | :--------: |
-| Full Backup and Restore using Velero         |  Yes    |   Yes    | Yes        |
-| Synchronous replication                      |  Yes    |   Yes    | Yes        |
-| Protect against node failures (replace node) |  Yes    |   Yes    | Yes        |
-| Use with ephemeral storage on nodes          |  Yes    |   Yes    | Yes        |
-| Thin Provisioning                            |  Yes    |   Yes    | Yes        |
-| Disk pool or aggregate support               |  Yes    |   Yes    | Planned    |
-| Disk resiliency (RAID support )              |  Yes    |   Yes    | Planned    |
-| On demand capacity expansion                 |  No     |   Yes    | Planned    |
-| Snapshots                                    |  No     |   Yes    | Planned    |
-| Clones                                       |  No     |   Yes    | Planned    |
-| Incremental Backups                          |  No     |   Yes    | Planned    |
-| Suitable for high capacity (>50GB) workloads |  No     |   Yes    | Yes        |
-| Near disk performance                        |  No     |   No     | Yes        |
-
-### Ideal Conditions for selecting OpenEBS Local Storage
+### Use-cases for OpenEBS Local Storage
 
 - When applications are managing replication and availability themselves and there is no need of replication at storage layer. In most such situations, the applications are deployed as `statefulset`.
 - Local Storage is recommended when dedicated local disks are not available for a given application or dedicated storage is not needed for a given application.
 - When near disk performance is a need along with features like snapshots, volume expansion, pooling of storage from multiple storage devices. 
 
-### Ideal Conditions for selecting OpenEBS Replicated Storage
+### Use-cases for OpenEBS Replicated Storage
 
 - When you need high performance storage using NVMe SSDs and the cluster is capable of NVMeoF. 
 - When you need replication or availability features to protected against node failures.  
 - Replicated Storage is designed for the next gen compute and storage technology and is under active development. 
 
-As Replicated Storage is under active development, you can also influence the features that are being built by joining [OpenEBS community on Kubernetes Slack](https://kubernetes.slack.com). If you are already signed up, head to our discussions at [#openebs](https://kubernetes.slack.com/messages/openebs/) channel. 
+For latest updates and discussions, community users are invited to join [OpenEBS community on Kubernetes Slack](https://kubernetes.slack.com). If you are already signed up, head to our discussions at [#openebs](https://kubernetes.slack.com/messages/openebs/) channel.
 
 ### Summary
 
