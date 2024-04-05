@@ -75,7 +75,7 @@ A quick summary of the steps to restore include:
 
 1. Install and Setup Velero, with the same provider where backups were saved. 
 
-2. Storage Volumes are created with node affinity. As the node names will change when a new cluster is created, create the required PVC(s) prior to proceeding with restore. 
+2. Local Storage Volumes are created with node affinity. As the node names will change when a new cluster is created, create the required PVC(s) prior to proceeding with restore. 
    ```
    kubectl apply -f https://openebs.github.io/charts/examples/local-hostpath/local-hostpath-pvc.yaml
    ```
