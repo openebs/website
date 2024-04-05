@@ -10,7 +10,7 @@ keywords:
 description: This section explains the configuration requirements to set up OpenEBS Local Persistent Volumes (PV) backed by the ZFS Storage. 
 ---
 
-## Configuration
+# Configuration
 
 This section will help you to configure Local PV ZFS.
 
@@ -39,7 +39,7 @@ poolname: "zfspv-pool"
 poolname: "zfspv-pool/child"
 ```
 
-Also the dataset provided under `poolname` must exist on all the nodes with the name given in the storage class. Check the doc on storageclasses to know all the supported parameters for ZFS-LocalPV
+Also the dataset provided under `poolname` must exist on all the nodes with the name given in the storage class. Check the doc on storageclasses to know all the supported parameters for Local PV ZFS.
 
 **ext2/3/4 or xfs or btrfs as FsType**
 If we provide fstype as one of ext2/3/4 or xfs or btrfs, the driver will create a ZVOL, which is a blockdevice carved out of ZFS Pool. This blockdevice will be formatted with corresponding filesystem before it's used by the driver.

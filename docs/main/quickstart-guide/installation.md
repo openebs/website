@@ -19,9 +19,9 @@ The OpenEBS workflow fits nicely into the reconcilation pattern introduced by Ku
 
 ## Prerequisites
 
-If this is your first time installing OpenEBS Local Engine, make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/local-engine-user-guide/prerequisites.mdx).
+If this is your first time installing OpenEBS Local Storage (a.k.a Local Engines), make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/local-engine-user-guide/prerequisites.mdx).
 
-For OpenEBS Replicated Engine, make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/replicated-engine-user-guide/prerequisites.md).
+For OpenEBS Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor), make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/replicated-engine-user-guide/prerequisites.md).
 
 At a high level OpenEBS requires:
 
@@ -54,7 +54,7 @@ OpenEBS provides several options that you can customize during install like:
 - specifying the directory where hostpath volume data is stored or
 - specifying the nodes on which OpenEBS components should be deployed and so forth. 
 
-The default OpenEBS helm chart will install both local engines and replicated engine. Refer to [OpenEBS helm chart documentation](https://github.com/openebs/charts/tree/master/charts/openebs) for full list of customizable options and using other flavors of OpenEBS data engines by setting the correct helm values. 
+The default OpenEBS helm chart will install both Local Storage and Replicated Storage. Refer to [OpenEBS helm chart documentation](https://github.com/openebs/charts/tree/master/charts/openebs) for full list of customizable options and using other flavors of OpenEBS data engines by setting the correct helm values. 
 
 Install OpenEBS helm chart with default values. 
 
@@ -62,10 +62,10 @@ Install OpenEBS helm chart with default values.
 helm install openebs --namespace openebs openebs/openebs --create-namespace
 ```
 
-The above commands will install OpenEBS LocalPV Hostpath, OpenEBS LocalPV LVM, OpenEBS LocalPV ZFS, and OpenEBS Replicated Engine components in `openebs` namespace and chart name as `openebs`.
+The above commands will install OpenEBS LocalPV Hostpath, OpenEBS LocalPV LVM, OpenEBS LocalPV ZFS, and OpenEBS Replicated Storage components in `openebs` namespace and chart name as `openebs`.
 
 :::note
-If you do not want to install OpenEBS Replicated Engine, use the following command:
+If you do not want to install OpenEBS Replicated Storage, use the following command:
 
 ```
 helm install openebs --namespace openebs openebs/openebs --set mayastor.enabled=false --create-namespace
@@ -140,7 +140,7 @@ openebs-zfs-localpv-node-svfgq                    2/2     Running   0          1
 openebs-zfs-localpv-node-wm9ks                    2/2     Running   0          11m
 ```
 
-#### Installation with Replicated Engine Disabled
+#### Installation with Replicated Storage Disabled
 
 List the pods in `<openebs>` namespace 
 
@@ -183,11 +183,11 @@ openebs-single-replica     io.openebs.csi-mayastor   Delete          Immediate  
 
 ## Post-Installation Considerations
 
-For testing your OpenEBS installation, you can use the `openebs-hostpath` mentioned in the [Local Engine User Guide](../user-guides/local-engine-user-guide/) for provisioning Local PV on hostpath.
+For testing your OpenEBS installation, you can use the `openebs-hostpath` mentioned in the [Local Storage User Guide](../user-guides/local-engine-user-guide/) for provisioning Local PV on hostpath.
 
 You can follow through the below user guides for each of the engines to use storage devices available on the nodes instead of the `/var/openebs` directory to save the data.  
-- [Local Engine User Guide](../user-guides/local-engine-user-guide/)
-- [Replicated Engine User Guide](../user-guides/replicated-engine-user-guide/)
+- [Local Storage User Guide](../user-guides/local-engine-user-guide/)
+- [Replicated Storage User Guide](../user-guides/replicated-engine-user-guide/)
 
 ## See Also
 

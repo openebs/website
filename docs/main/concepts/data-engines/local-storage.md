@@ -1,5 +1,5 @@
 ---
-id: localengine
+id: localstorage
 title: OpenEBS Local Storage
 keywords: 
   - Local Storage
@@ -9,7 +9,7 @@ description: This document provides you with a brief explanation of OpenEBS Loca
 
 ## Local Storage Overview
 
-OpenEBS provides Dynamic PV provisioners for [Kubernetes Local Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#local). A Local Storage (aka Local Volume) implies that storage is available only from a single node. A local volume represents a mounted local storage device such as a disk, partition, or directory. 
+OpenEBS provides Dynamic PV provisioners for [Kubernetes Local Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#local). A Local Storage (a.k.a Local Engine or Local Volume) implies that storage is available only from a single node. A local volume represents a mounted Local Storage device such as a disk, partition, or directory. 
 
 As the local volume is accessible only from a single node, local volumes are subject to the availability of the underlying node and are not suitable for all applications. If a node becomes unhealthy, then the local volume will also become inaccessible and a Pod using it will not be able to run. Applications using local volumes must be able to tolerate this reduced availability, as well as potential data loss, depending on the durability characteristics of the underlying disk.
 
@@ -85,12 +85,9 @@ A quick summary of the steps to restore include:
    velero restore create rbb-01 --from-backup bbb-01 -l app=test-velero-backup
    ```
 
-## Limitations (or Roadmap items) of OpenEBS Local Storage
+## Limitations of OpenEBS Local Storage
 
 - Size of the Local Storage cannot be increased dynamically.
-- Disk quotas are not enforced by Local Storage. An underlying device or hostpath can have more data than requested by a PVC or storage class. Enforcing the capacity is a roadmap feature.
-- Enforce capacity and PVC resource quotas on the local disks or host paths.
-- SMART statistics of the managed disks is also a potential feature in the roadmap.
 
 ## See Also
 

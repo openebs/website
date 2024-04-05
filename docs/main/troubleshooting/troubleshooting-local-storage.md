@@ -1,11 +1,11 @@
 ---
 id: troubleshooting
-title: Troubleshooting - Local Engine
+title: Troubleshooting - Local Storage
 slug: /troubleshooting
 keywords:
   - OpenEBS
   - OpenEBS troubleshooting
-description: This page contains a list of OpenEBS related troubleshooting which contains information like troubleshooting installation, troubleshooting uninstallation, and troubleshooting local engines.
+description: This page contains a list of OpenEBS related troubleshooting which contains information like troubleshooting installation, troubleshooting uninstallation, and troubleshooting local storage.
 ---
 
 <font size="6" color="orange">General Troubleshooting</font>

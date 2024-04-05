@@ -207,8 +207,7 @@ the serviceAccount for that container has not been added to the `privileged` SCC
 **Next Steps:** 
 
 * You may want to fully [verifying the OpenEBS installation](/user-guides/installation#verifying-openebs-installation) in more detail.
-* After verification, you probably want to [select a CAS
-  Engine](/concepts/casengines).
+* After verification, you probably want to [select a CNS Engine](/concepts/casengines).
 
 #### Adding `privileged` SCC to projects that use OpenEBS volumes
 

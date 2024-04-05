@@ -52,7 +52,7 @@ The binary can be used as specified in the migrate flows.
 ## Migration from Local PV Device to Local PV LVM
 
 :::info
-.The following example describes the steps to migrate data from legacy OpenEBS Local PV Device storage to OpenEBS Local PV LVM storage. Legacy OpenEBS Local PV ZFS storage users can also use the below steps to migrate to OpenEBS Local PV LVM storage.
+The following example describes the steps to migrate data from legacy OpenEBS Local PV Device storage to OpenEBS Local PV LVM storage. Legacy OpenEBS Local PV ZFS storage users can also use the below steps to migrate to OpenEBS Local PV LVM storage.
 :::
 
 ### Assumptions
@@ -88,7 +88,7 @@ db.admin.insertMany([{name: "Max"}, {name:"Alex"}])
 
 Follow the steps below to migrate OpenEBS Local PV Device to OpenEBS Local PV LVM.
 
-1. [Install Local Engine](../../../quickstart-guide/installation.md) on your cluster.
+1. [Install Local Storage](../../../quickstart-guide/installation.md) on your cluster.
 
 2. Create a LVM PVC of the same [configuration](../../../user-guides/local-engine-user-guide/lvm-localpv.md#configuration).
 
@@ -190,7 +190,7 @@ The Local PV Device volumes and pools can now be removed and Local PV Device can
 ## Migration from cStor to Replicated
 
 :::info
-The following example describes the steps to migrate data from legacy OpenEBS CStor storage to OpenEBS Replicated (f.k.a Mayastor) storage. Legacy OpenEBS Jiva storage users can also use the below steps to migrate to OpenEBS Replicated.
+The following example describes the steps to migrate data from legacy OpenEBS CStor storage to OpenEBS Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor). Legacy OpenEBS Jiva storage users can also use the below steps to migrate to OpenEBS Replicated.
 :::
 
 ### Assumptions
@@ -226,7 +226,7 @@ db.admin.insertMany([{name: "Max"}, {name:"Alex"}])
 
 Follow the steps below to migrate OpenEBS cStor to OpenEBS Replicated (fka Mayastor).
 
-1. [Install Replicated Engine](../../../quickstart-guide/installation.md) on your cluster.
+1. [Install Replicated Storage](../../../quickstart-guide/installation.md) on your cluster.
 
 2. Create a replicated PVC of the same [configuration](../../../user-guides/replicated-engine-user-guide/replicated-engine-deployment.md). See the example below:
 

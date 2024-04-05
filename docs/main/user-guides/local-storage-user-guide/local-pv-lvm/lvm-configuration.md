@@ -10,7 +10,7 @@ keywords:
 description: This section explains the configuration requirements to set up OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage. 
 ---
 
-## Configuration
+# Configuration
 
 This section will help you to configure Local PV LVM.
 

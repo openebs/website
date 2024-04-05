@@ -43,7 +43,7 @@ OpenEBS Features, like any storage solution, can be broadly classified into foll
 
 <TwoColumn left="1fr" right="200px">
   <p>
-    Synchronous Replication is an optional and popular feature of OpenEBS. When used with the replicated engine, OpenEBS can synchronously replicate the data volumes for high availability. The replication happens across Kubernetes zones resulting in high availability for cross AZ setups. This feature is especially useful to build highly available stateful applications using local disks on cloud providers services such as GKE, EKS and AKS.
+    Synchronous Replication is an optional and popular feature of OpenEBS. When used with the Replicated Storage, OpenEBS can synchronously replicate the data volumes for high availability. The replication happens across Kubernetes zones resulting in high availability for cross AZ setups. This feature is especially useful to build highly available stateful applications using local disks on cloud providers services such as GKE, EKS and AKS.
   </p>
 
 ![Synchronous Replication Icon](../assets/f-replication.svg)
@@ -54,7 +54,7 @@ OpenEBS Features, like any storage solution, can be broadly classified into foll
 
 <TwoColumn left="1fr" right="200px">
   <p>
-    Copy-on-write snapshots are another optional and popular feature of OpenEBS. When using the replicated engine, snapshots are created instantaneously and there is no limit on the number of snapshots. The incremental snapshot capability enhances data migration and portability across Kubernetes clusters and across different cloud providers or data centers. Operations on snapshots and clones are performed in completely Kubernetes native method using the standard kubectl commands. Common use cases include efficient replication for back-ups and the use of clones for troubleshooting or development against a read only copy of data.
+    Copy-on-write snapshots are another optional and popular feature of OpenEBS. When using the Replicated Storage, snapshots are created instantaneously and there is no limit on the number of snapshots. The incremental snapshot capability enhances data migration and portability across Kubernetes clusters and across different cloud providers or data centers. Operations on snapshots and clones are performed in completely Kubernetes native method using the standard kubectl commands. Common use cases include efficient replication for back-ups and the use of clones for troubleshooting or development against a read only copy of data.
   </p>
 
 ![Snapshots and Clones Icon](../assets/f-snapshots.svg)
@@ -88,5 +88,5 @@ OpenEBS Features, like any storage solution, can be broadly classified into foll
 - [Use Cases and Examples](use-cases-and-examples.mdx)
 - [OpenEBS Benefits](benefits.mdx)
 - [OpenEBS Architecture](../concepts/architecture.md)
-- [OpenEBS Local Engine](../concepts/data-engines/local-engine.md)
-- [OpenEBS Replicated Engine](../concepts/data-engines/replicated-engine.md)
+- [OpenEBS Local Storage](../concepts/data-engines/local-engine.md)
+- [OpenEBS Replicated Storage](../concepts/data-engines/replicated-engine.md)

@@ -34,16 +34,16 @@ OpenEBS manages the storage available on each of the Kubernetes nodes and uses t
 
 In case of [Local Volumes](#local-volumes):
 
-- OpenEBS can create persistent volumes using raw block devices or partitions, or using sub-directories on Hostpaths or by using local engine or sparse files.
+- OpenEBS can create persistent volumes using raw block devices or partitions, or using sub-directories on Hostpaths or by using Local Storage or sparse files.
 - The local volumes are directly mounted into the Stateful Pod, without any added overhead from OpenEBS in the data path, decreasing latency.
-- OpenEBS provides additional tooling for local volumes for monitoring, backup/restore, disaster recovery, snapshots when backed by local engine, capacity based scheduling, and more.
+- OpenEBS provides additional tooling for local volumes for monitoring, backup/restore, disaster recovery, snapshots when backed by Local Storage, capacity based scheduling, and more.
 
 In case of [Distributed (aka Replicated) Volumes](#replicated-volumes):
 
-- OpenEBS creates a Micro-service for each Distributed Persistent Volume using the replicated engine.
+- OpenEBS creates a Micro-service for each Distributed Persistent Volume using the Replicated Storage.
 - The Stateful Pod writes the data to the OpenEBS engine that synchronously replicates the data to multiple nodes in the cluster. The OpenEBS engine itself is deployed as a pod and orchestrated by Kubernetes. When the node running the Stateful pod fails, the pod will be rescheduled to another node in the cluster and OpenEBS provides access to the data using the available data copies on other nodes.
-- The Stateful Pods connect to the OpenEBS distributed persistent volume using the NVMeoF (replicated engine).
-- OpenEBS replicated engine is developed with durability and performance as design goals. It efficiently manages the compute (hugepages and cores) and storage (NVMe Drives) to provide fast distributed block storage.
+- The Stateful Pods connect to the OpenEBS distributed persistent volume using the NVMeoF (Replicated Storage).
+- OpenEBS Replicated Storage is developed with durability and performance as design goals. It efficiently manages the compute (hugepages and cores) and storage (NVMe Drives) to provide fast distributed block storage.
 
 :::note
 OpenEBS contributors prefer to call the Distributed Block Storage volumes as **Replicated Volumes**, to avoid confusion with traditional distributed block storage for the following reasons:
@@ -66,7 +66,7 @@ Replicated Volumes, as the name suggests, are those that have their data synchro
 Replicated Volumes also are capable of enterprise storage features like snapshots, clone, volume expansion and so forth. Replicated Volumes are a preferred choice for Stateful workloads like Percona/MongoDB, Jira, GitLab, etc.
 
 :::info
-Depending on the type of storage attached to your Kubernetes worker nodes and the requirements of your workloads, you can select from local engine or replicated engine.
+Depending on the type of storage attached to your Kubernetes worker nodes and the requirements of your workloads, you can select from Local Storage or Replicated Storage.
 :::
 
 ## Quickstart Guides
@@ -85,5 +85,5 @@ OpenEBS has a vibrant community that can help you get started. If you have furth
 - [Use Cases and Examples](use-cases-and-examples.mdx)
 - [Container Native Storage (CNS)](../concepts/container-native-storage.md)
 - [OpenEBS Architecture](../concepts/architecture.md)
-- [OpenEBS Local Engine](../concepts/data-engines/local-engine.md)
-- [OpenEBS Replicated Engine](../concepts/data-engines/replicated-engine.md)
+- [OpenEBS Local Storage](../concepts/data-engines/local-engine.md)
+- [OpenEBS Replicated Storage](../concepts/data-engines/replicated-engine.md)

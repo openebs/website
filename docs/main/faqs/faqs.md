@@ -58,13 +58,16 @@ While creating a StorageClass, if user mention replica count as 2 in a single no
 
 ### How backup and restore is working with OpenEBS volumes? {#backup-restore-openebs-volumes}
 
-OpenEBS (provide snapshots and restore links to all 3 engines - Internal reference)
+Refer to the following links for more information on the backup and restore functionality with the OpenEBS volumes:
+- [Backup and Restore](../user-guides/local-engine-user-guide/additional-information/backupandrestore.md)
+- [Snapshot](../user-guides/local-engine-user-guide/local-pv-lvm/advanced-operations/lvm-snapshot.md)
+- [Backup and Restore for Local PV ZFS Volumes](../user-guides/local-engine-user-guide/local-pv-zfs/advanced-operations/zfs-backup-restore.md)
 
 [Go to top](#top)
 
-### How is data protected in replicated storage? What happens when a host, client workload, or a data center fails?
+### How is data protected in Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor)? What happens when a host, client workload, or a data center fails?
 
-The OpenEBS replicated storage ensures resilience with built-in highly available architecture. It supports on-demand switch over of the NVMe controller to ensure IO continuity in case of host failure. The data is synchronously replicated as per the congigured replication factor to ensure no single point of failure.
+The OpenEBS Replicated Storage ensures resilience with built-in highly available architecture. It supports on-demand switch over of the NVMe controller to ensure IO continuity in case of host failure. The data is synchronously replicated as per the congigured replication factor to ensure no single point of failure.
 Faulted replicas are automatically rebuilt in the background without IO disruption to maintain the replication factor.
 
 [Go to top](#top)
@@ -111,7 +114,7 @@ It is recommended to use unpartitioned raw block devices for best results.
 
 ### How does it help to keep my data safe?
 
-Replicated storage engine supports synchronous mirroring to enhance the durability of data at rest within whatever physical persistence layer is in use. When volumes are provisioned which are configured for replication \(a user can control the count of active replicas which should be maintained, on a per StorageClass basis\), write I/O operations issued by an application to that volume are amplified by its controller ("nexus") and dispatched to all its active replicas. Only if every replica completes the write successfully on its own underlying block device will the I/O completion be acknowledged to the controller. Otherwise, the I/O is failed and the caller must make its own decision as to whether it should be retried. If a replica is determined to have faulted \(I/O cannot be serviced within the configured timeout period, or not without error\), the control plane will automatically take corrective action and remove it from the volume. If spare capacity is available within a replicated engine pool, a new replica will be created as a replacement and automatically brought into synchronisation with the existing replicas. The data path for a replicated volume is described in more detail [here](../user-guides/replicated-engine-user-guide/additional-information/i-o-path-description.md#replicated-volume-io-path)
+Replicated Storage engine supports synchronous mirroring to enhance the durability of data at rest within whatever physical persistence layer is in use. When volumes are provisioned which are configured for replication \(a user can control the count of active replicas which should be maintained, on a per StorageClass basis\), write I/O operations issued by an application to that volume are amplified by its controller ("nexus") and dispatched to all its active replicas. Only if every replica completes the write successfully on its own underlying block device will the I/O completion be acknowledged to the controller. Otherwise, the I/O is failed and the caller must make its own decision as to whether it should be retried. If a replica is determined to have faulted \(I/O cannot be serviced within the configured timeout period, or not without error\), the control plane will automatically take corrective action and remove it from the volume. If spare capacity is available within a replicated engine pool, a new replica will be created as a replacement and automatically brought into synchronisation with the existing replicas. The data path for a replicated volume is described in more detail [here](../user-guides/replicated-engine-user-guide/additional-information/i-o-path-description.md#replicated-volume-io-path)
 
 [Go to top](#top)
 
@@ -144,7 +147,7 @@ Since the replicas \(data copies\) of replicated volumes are held entirely withi
 
 ### Can the size / capacity of a Disk Pool be changed?
 
-The size of a replicated storage pool is fixed at the time of creation and is immutable. A single pool may have only one block device as a member. These constraints may be removed in later versions.
+The size of a Replicated Storage pool is fixed at the time of creation and is immutable. A single pool may have only one block device as a member. These constraints may be removed in later versions.
 
 ### How can I ensure that replicas aren't scheduled onto the same node? How about onto nodes in the same rack / availability zone?
 
@@ -172,7 +175,7 @@ Replicated engine does not peform asynchronous replication.
 
 ### Does replicated engine support RAID?
 
-Replicated storage pools do not implement any form of RAID, erasure coding or striping. If higher levels of data redundancy are required, replicated volumes can be provisioned with a replication factor of greater than one, which will result in synchronously mirrored copies of their data being stored in multiple Disk Pools across multiple Storage Nodes. If the block device on which a Disk Pool is created is actually a logical unit backed by its own RAID implementation \(e.g. a Fibre Channel attached LUN from an external SAN\) it can still be used within a replicated disk pool whilst providing protection against physical disk device failures.
+Replicated Storage pools do not implement any form of RAID, erasure coding or striping. If higher levels of data redundancy are required, replicated volumes can be provisioned with a replication factor of greater than one, which will result in synchronously mirrored copies of their data being stored in multiple Disk Pools across multiple Storage Nodes. If the block device on which a Disk Pool is created is actually a logical unit backed by its own RAID implementation \(e.g. a Fibre Channel attached LUN from an external SAN\) it can still be used within a replicated disk pool whilst providing protection against physical disk device failures.
 
 [Go to top](#top)
 

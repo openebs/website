@@ -102,7 +102,7 @@ OpenEBS Data Engines can be classified into two categories.
 
 ### Local Storage
 
-OpenEBS Local Storage or Local Engines can create Persistent Volumes (PVs) out of local disks or hostpaths or use the volume managers on the Kubernetes worker nodes. Local Storage are well suited for cloud native applications that have the availability, scalability features built into them. Local Storage are also well suited for stateful workloads that are short lived like Machine Learning (ML) jobs or edge cases where there is a single node Kubernetes cluster. 
+OpenEBS Local Storage (a.k.a Local Engines) can create Persistent Volumes (PVs) out of local disks or hostpaths or use the volume managers on the Kubernetes worker nodes. Local Storage are well suited for cloud native applications that have the availability, scalability features built into them. Local Storage are also well suited for stateful workloads that are short lived like Machine Learning (ML) jobs or edge cases where there is a single node Kubernetes cluster. 
 
 :::note
 Local Storage are only available from the the node on which the persistent volume is created. If that node fails, the application pod will not be re-scheduled to another node.
@@ -126,7 +126,7 @@ The below table identifies few differences among the different OpenEBS Local Sto
 
 ### Replicated Storage
 
-Replicated Storage or Replicated Engine (f.k.a Mayastor) are those that can synchronously replicate the data to multiple nodes. These engines provide protection against node failures, by allowing the volume to be accessible from one of the other nodes where the data was replicated to. The replication can also be setup across availability zones helping applications move across availability zones. Replicated Volumes are also capable of enterprise storage features like snapshots, clone, volume expansion, and so forth. 
+Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) are those that can synchronously replicate the data to multiple nodes. These engines provide protection against node failures, by allowing the volume to be accessible from one of the other nodes where the data was replicated to. The replication can also be setup across availability zones helping applications move across availability zones. Replicated Volumes are also capable of enterprise storage features like snapshots, clone, volume expansion, and so forth. 
 
 :::tip
 Depending on the type of storage attached to your Kubernetes worker nodes and application performance requirements, you can select from [Local Storage](local-engine.md) or[Replicated Storage](replicated-engine.md).
