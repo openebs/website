@@ -5,12 +5,12 @@ slug: /
 keywords:
   - OpenEBS
   - OpenEBS overview
-description: OpenEBS builds on Kubernetes to enable Stateful applications to easily access Dynamic Local or Distributed Container Attached Kubernetes Persistent Volumes. By using the Container Native Storage pattern users report lower costs, easier management, and more control for their teams.
+description: OpenEBS builds on Kubernetes to enable Stateful applications to easily access Dynamic Local or Replicated Container Attached Kubernetes Persistent Volumes. By using the Container Native Storage pattern users report lower costs, easier management, and more control for their teams.
 ---
 
 ## What is OpenEBS?
 
-OpenEBS turns any storage available to Kubernetes worker nodes into Local or Distributed Kubernetes Persistent Volumes. OpenEBS helps application and platform teams easily deploy Kubernetes stateful workloads that require fast and highly durable, reliable, and scalable [Container Native Storage](../concepts/container-native-storage.md).
+OpenEBS turns any storage available to Kubernetes worker nodes into Local or Replicated Kubernetes Persistent Volumes. OpenEBS helps application and platform teams easily deploy Kubernetes stateful workloads that require fast and highly durable, reliable, and scalable [Container Native Storage](../concepts/container-native-storage.md).
 
 OpenEBS is also a leading choice for NVMe based storage deployments.
 
@@ -28,28 +28,27 @@ The [OpenEBS Adoption stories](https://github.com/openebs/openebs/blob/master/AD
 
 ## What does OpenEBS do?
 
-OpenEBS manages the storage available on each of the Kubernetes nodes and uses that storage to provide [Local](#local-volumes) or [Distributed(aka Replicated)](#replicated-volumes) Persistent Volumes to Stateful workloads.
+OpenEBS manages the storage available on each of the Kubernetes nodes and uses that storage to provide [Local](#local-volumes) or [Replicated](#replicated-volumes) Persistent Volumes to Stateful workloads.
 
 ![data-engines-comparision](../assets/data-engines-comparision.svg)
 
 In case of [Local Volumes](#local-volumes):
 
-- OpenEBS can create persistent volumes using raw block devices or partitions, or using sub-directories on Hostpaths or by using Local Storage or sparse files.
+- OpenEBS can create persistent volumes, or using sub-directories on Hostpaths or by using locally attached storage or sparse files or over existing LVM or ZFS stack.
 - The local volumes are directly mounted into the Stateful Pod, without any added overhead from OpenEBS in the data path, decreasing latency.
-- OpenEBS provides additional tooling for local volumes for monitoring, backup/restore, disaster recovery, snapshots when backed by Local Storage, capacity based scheduling, and more.
+- OpenEBS provides additional tooling for local volumes for monitoring, backup/restore, disaster recovery, snapshots when backed by LVM or ZFS stack, capacity based scheduling, and more.
 
-In case of [Distributed (aka Replicated) Volumes](#replicated-volumes):
+In case of [Replicated) Volumes](#replicated-volumes):
 
-- OpenEBS creates a Micro-service for each Distributed Persistent Volume using the Replicated Storage.
-- The Stateful Pod writes the data to the OpenEBS engine that synchronously replicates the data to multiple nodes in the cluster. The OpenEBS engine itself is deployed as a pod and orchestrated by Kubernetes. When the node running the Stateful pod fails, the pod will be rescheduled to another node in the cluster and OpenEBS provides access to the data using the available data copies on other nodes.
-- The Stateful Pods connect to the OpenEBS distributed persistent volume using the NVMeoF (Replicated Storage).
-- OpenEBS Replicated Storage is developed with durability and performance as design goals. It efficiently manages the compute (hugepages and cores) and storage (NVMe Drives) to provide fast distributed block storage.
+- OpenEBS Replicated Storage creates an NVMe target accessible over TCP, for each persistent volume.
+- The Stateful Pod writes the data to the NVMe-TCP target that synchronously replicates the data to multiple nodes in the cluster. The OpenEBS engine itself is deployed as a pod and orchestrated by Kubernetes. When the node running the Stateful pod fails, the pod will be rescheduled to another node in the cluster and OpenEBS provides access to the data using the available data copies on other nodes.
+- OpenEBS Replicated Storage is developed with durability and performance as design goals. It efficiently manages the compute (hugepages and cores) and storage (NVMe Drives) to provide fast block storage.
 
 :::note
-OpenEBS contributors prefer to call the Distributed Block Storage volumes as **Replicated Volumes**, to avoid confusion with traditional distributed block storage for the following reasons:
-* Distributed block storage tends to shard the data blocks of a volume across many nodes in the cluster. Replicated volumes persist all the data blocks of a volume on a node and for durability replicate the entire data to other nodes in the cluster.  
-* While accessing a volume data, distributed block storage depends on metadata hashing algorithms to locate the node where the block resides, whereas replicated volumes can access the data from any of the nodes where data is persisted (aka replica nodes).
-* Replicated volumes have a lower blast radius compared to traditional distributed block storage. 
+OpenEBS contributors prefer to call the Replicated Block Storage volumes as **Replicated Volumes**, to avoid confusion with traditional block storage for the following reasons:
+* Replicated block storage tends to shard the data blocks of a volume across many nodes in the cluster. Replicated volumes persist all the data blocks of a volume on a node and for durability replicate the entire data to other nodes in the cluster.  
+* While accessing a volume data, replicated block storage depends on metadata hashing algorithms to locate the node where the block resides, whereas replicated volumes can access the data from any of the nodes where data is persisted (aka replica nodes).
+* Replicated volumes have a lower blast radius compared to traditional block storage. 
 * Replicated volumes are designed for Cloud Native stateful workloads that require a large number of volumes with capacity that can typically be served from a single node as apposed to a single large volume with data sharded across multiple nodes in the cluster.
 :::
 

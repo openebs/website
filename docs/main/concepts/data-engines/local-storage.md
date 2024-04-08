@@ -9,7 +9,7 @@ description: This document provides you with a brief explanation of OpenEBS Loca
 
 ## Local Storage Overview
 
-OpenEBS provides Dynamic PV provisioners for [Kubernetes Local Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#local). A Local Storage (a.k.a Local Engine or Local Volume) implies that storage is available only from a single node. A local volume represents a mounted Local Storage device such as a disk, partition, or directory. 
+OpenEBS provides Dynamic PV provisioners for [Kubernetes Local Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#local). A Local Storage (a.k.a Local Engine) implies that storage is available only from a single node. A local volume represents a locally mounted storage device such as a disk, partition, or directory. 
 
 As the local volume is accessible only from a single node, local volumes are subject to the availability of the underlying node and are not suitable for all applications. If a node becomes unhealthy, then the local volume will also become inaccessible and a Pod using it will not be able to run. Applications using local volumes must be able to tolerate this reduced availability, as well as potential data loss, depending on the durability characteristics of the underlying disk.
 
@@ -88,6 +88,8 @@ A quick summary of the steps to restore include:
 ## Limitations of OpenEBS Local Storage
 
 - Size of the Local Storage cannot be increased dynamically.
+- OpenEBS Local Storage is not highly available and cannot sustain node failure.
+- OpenEBS Local PV Hostpath does not support snapshots and clones.
 
 ## See Also
 

@@ -65,7 +65,7 @@ OpenEBS Data Engines create a Volume Replica on top of the storage layer. Volume
 
 In case the applications require only local storage, then the persistent volume will be created using one of the above directories, device (or partition) or logical volume. OpenEBS [control plane](#control-plane) will be used to provision one of the above replicas. 
 
-OpenEBS can add the layer of high availability on top of the local storage using the Replicated Storage. In this case, OpenEBS uses a light-weight storage defined storage controller software that can receive the read/write operations over a network end-point and then be passed on to the underlying storage layer. OpenEBS then uses this Replica network end-points to maintain a synchronous copy of the volume across nodes. 
+OpenEBS can add the layer of high availability on top of the locally attached storage using the Replicated Storage. In this case, OpenEBS uses a light-weight storage controller software that can receive the read/write operations over a network end-point and then be passed on to the underlying storage layer. OpenEBS then uses this Replica network end-points to maintain a synchronous copy of the volume across nodes. 
 
 OpenEBS Volume Replicas typically go through the following states:
 - Initializing, during initial provisioning and is being registered to its volume
@@ -156,7 +156,7 @@ In addition, OpenEBS also has released as alpha version `kubectl plugin` to help
 
 The Kubernetes CSI (provisioning layer) will intercept the requests for the Persistent Volumes and forward the requests to the OpenEBS Control Plane components to service the requests. The information provided in the StorageClass combined with requests from PVCs will determine the right OpenEBS control component to receive the request. 
 
-OpenEBS control plane will then process the request and create the Persistent Volumes using the specified local or Replicated Storage. The data engine services like target and replica are deployed as Kubernetes applications as well. The containers provide storage for the containers. The new containers launched for serving the applications will be available in the `openebs` namespace. 
+OpenEBS control plane will then process the request and create the Persistent Volumes using the specified Local or Replicated Storage. The data engine services like target and replica are deployed as Kubernetes applications as well. The containers provide storage for the containers. The new containers launched for serving the applications will be available in the `openebs` namespace. 
 
 With the magic of OpenEBS and Kubernetes, the volumes should be provisioned, pods scheduled and application ready to serve. For this magic to happen, the prerequisites should be met.
 
