@@ -129,5 +129,3 @@ openebs-upgrade-v2-6-0-s58xl                   0/1     Completed   0          7m
 - [Release Notes](../releases.md)
 - [Troubleshooting](../troubleshooting/troubleshooting-local-engine.md)
 - [Join our Community](../community.md)
-
-
