@@ -19,9 +19,9 @@ The OpenEBS workflow fits nicely into the reconcilation pattern introduced by Ku
 
 ## Prerequisites
 
-If this is your first time installing OpenEBS Local Storage (a.k.a Local Engines), make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/local-storage-user-guide).
+If this is your first time installing OpenEBS Local Storage (a.k.a Local Engines), make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/local-storage-user-guide/).
 
-For OpenEBS Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor), make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/replicated-engine-user-guide/prerequisites.md).
+For OpenEBS Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor), make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/replicated-storage-user-guide/rs-installation.md#prerequisites).
 
 At a high level OpenEBS requires:
 
