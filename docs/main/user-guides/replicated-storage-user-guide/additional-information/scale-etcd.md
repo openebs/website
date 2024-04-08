@@ -7,7 +7,7 @@ keywords:
 description: This section explains about the Scaling Up etcd Members.
 ---
 
-By default, replicated engine allows the creation of three etcd members. If you wish to increase the number of etcd replicas, you will encounter an error. However, you can make the necessary configuration changes discussed in this guide to make it work.
+By default, Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) allows the creation of three etcd members. If you wish to increase the number of etcd replicas, you will encounter an error. However, you can make the necessary configuration changes discussed in this guide to make it work.
 
 ## Overview of StatefulSets
 
@@ -16,7 +16,7 @@ StatefulSets are Kubernetes resources designed for managing stateful application
 * When pods are deleted, they are terminated in reverse order from {N-1..0}.
 * Before a scaling operation is applied to a pod, all of its predecessors must be running and ready.
 * Before a pod is terminated, all of its successors must be completely shut down.
-* Replicated engine uses etcd database for persisting configuration and state information. Etcd is setup as a Kubernetes StatefulSet when replicated engine is installed.
+* Replicated Storage uses etcd database for persisting configuration and state information. Etcd is setup as a Kubernetes StatefulSet when Replicated Storage is installed.
 
 **Command**
 
