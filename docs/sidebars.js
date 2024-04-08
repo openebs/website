@@ -74,8 +74,8 @@ module.exports = {
             },
             {
               type: "doc",
-              id: "concepts/data-engines/replicated-engine",
-              label: "Replicated Engine"
+              id: "concepts/data-engines/replicated-storage",
+              label: "Replicated Storage"
             }
           ] 
         },  

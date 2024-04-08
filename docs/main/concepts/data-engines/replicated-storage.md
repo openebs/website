@@ -1,5 +1,5 @@
 ---
-id: replicated-engine
+id: replicated-storage
 title: Replicated Storage
 keywords: 
   - Replicated Storage
