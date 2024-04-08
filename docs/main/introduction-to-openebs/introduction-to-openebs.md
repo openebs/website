@@ -5,7 +5,7 @@ slug: /
 keywords:
   - OpenEBS
   - OpenEBS overview
-description: OpenEBS builds on Kubernetes to enable Stateful applications to easily access Dynamic Local or Replicated Container Attached Kubernetes Persistent Volumes. By using the Container Native Storage pattern users report lower costs, easier management, and more control for their teams.
+description: OpenEBS builds on Kubernetes to enable Stateful applications to easily access Dynamic Local or Distributed Container Attached Kubernetes Persistent Volumes. By using the Container Native Storage pattern users report lower costs, easier management, and more control for their teams.
 ---
 
 ## What is OpenEBS?
@@ -45,10 +45,10 @@ In case of [Replicated) Volumes](#replicated-volumes):
 - OpenEBS Replicated Storage is developed with durability and performance as design goals. It efficiently manages the compute (hugepages and cores) and storage (NVMe Drives) to provide fast block storage.
 
 :::note
-OpenEBS contributors prefer to call the Replicated Block Storage volumes as **Replicated Volumes**, to avoid confusion with traditional block storage for the following reasons:
-* Replicated block storage tends to shard the data blocks of a volume across many nodes in the cluster. Replicated volumes persist all the data blocks of a volume on a node and for durability replicate the entire data to other nodes in the cluster.  
-* While accessing a volume data, replicated block storage depends on metadata hashing algorithms to locate the node where the block resides, whereas replicated volumes can access the data from any of the nodes where data is persisted (aka replica nodes).
-* Replicated volumes have a lower blast radius compared to traditional block storage. 
+OpenEBS contributors prefer to call the Distributed Block Storage volumes as **Replicated Volumes**, to avoid confusion with traditional block storage for the following reasons:
+* Distributed block storage tends to shard the data blocks of a volume across many nodes in the cluster. Replicated volumes persist all the data blocks of a volume on a node and for durability replicate the entire data to other nodes in the cluster.  
+* While accessing a volume data, distributed block storage depends on metadata hashing algorithms to locate the node where the block resides, whereas replicated volumes can access the data from any of the nodes where data is persisted (aka replica nodes).
+* Replicated volumes have a lower blast radius compared to traditional distributed block storage. 
 * Replicated volumes are designed for Cloud Native stateful workloads that require a large number of volumes with capacity that can typically be served from a single node as apposed to a single large volume with data sharded across multiple nodes in the cluster.
 :::
 
