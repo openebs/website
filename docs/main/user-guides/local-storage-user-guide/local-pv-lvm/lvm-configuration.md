@@ -10,7 +10,7 @@ keywords:
 description: This section explains the configuration requirements to set up OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage. 
 ---
 
-## Configuration
+# Configuration
 
 This section will help you to configure Local PV LVM.
 
@@ -493,5 +493,5 @@ If you encounter issues or have a question, file an [Github issue](https://githu
 
 ## See Also
 
-- [Installation](../../quickstart-guide/installation.md)
-- [Deploy an Application](../../quickstart-guide/deploy-a-test-application.md)
+- [Installation](../../../quickstart-guide/installation.md)
+- [Deploy an Application](../../../quickstart-guide/deploy-a-test-application.md)

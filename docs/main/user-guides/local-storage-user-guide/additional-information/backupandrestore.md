@@ -8,9 +8,9 @@ keywords:
 description: This section explains how to backup and restore local engines.
 ---
 
-## Backup and Restore
+# Backup and Restore
 
-OpenEBS Local Volumes can be backed up and restored along with the application using [Velero](https://velero.io).
+OpenEBS Local Storage (a.k.a Local Engines or Local Volumes) can be backed up and restored along with the application using [Velero](https://velero.io).
 
 :::note
 The following steps assume that you already have Velero with Restic integration is configured. If not, follow the [Velero Documentation](https://velero.io/docs/) to proceed with install and setup of Velero. If you encounter any issues or have questions, talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).

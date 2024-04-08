@@ -1,11 +1,11 @@
 ---
 id: troubleshooting
-title: Troubleshooting - Local Engine
+title: Troubleshooting - Local Storage
 slug: /troubleshooting
 keywords:
   - OpenEBS
   - OpenEBS troubleshooting
-description: This page contains a list of OpenEBS related troubleshooting which contains information like troubleshooting installation, troubleshooting uninstallation, and troubleshooting local engines.
+description: This page contains a list of OpenEBS related troubleshooting which contains information like troubleshooting installation, troubleshooting uninstallation, and troubleshooting local storage.
 ---
 
 <font size="6" color="orange">General Troubleshooting</font>
@@ -188,7 +188,7 @@ Error: release openebs failed: clusterroles.rbac.authorization.k8s.io "openebs" 
 
 **Troubleshooting**
 
-You must enable RBAC on Azure before OpenEBS installation. For more details, see [Prerequisites](../user-guides/local-engine-user-guide/prerequisites.mdx).
+You must enable RBAC on Azure before OpenEBS installation. For more details, see [Prerequisites](../quickstart-guide/installation.md).
 
 ### A multipath.conf file claims all SCSI devices in OpenShift {#multipath-conf-claims-all-scsi-devices-openshift}
 
