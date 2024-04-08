@@ -57,14 +57,10 @@ If you used the storage class example from previous stage, then volume binding m
 
 The Replicated Storage CSI driver will cause the application pod and the corresponding Replicated Storage volume's NVMe target/controller ("Nexus") to be scheduled on the same Replicated Storage Node, in order to assist with restoration of volume and application availabilty in the event of a storage node failure.
 
-:::warning
-In this version, applications using PVs provisioned by Replicated Storage can only be successfully scheduled on Replicated Storage Nodes. This behaviour is controlled by the `local:` parameter of the corresponding StorageClass, which by default is set to a value of `true`. Therefore, this is the only supported value for this release - setting a non-local configuration may cause scheduling of the application pod to fail, as the PV cannot be mounted to a worker node other than a MSN. This behaviour will change in a future release.
-:::
-
 **Command \(GitHub Latest\)**
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/openebs/Mayastor/v1.0.2/deploy/fio.yaml
+kubectl apply -f https://raw.githubusercontent.com/openebs/mayastor/v1.0.9/deploy/fio.yaml
 ```
 
 **YAML**
