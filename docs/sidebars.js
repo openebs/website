@@ -200,11 +200,6 @@ module.exports = {
                     }
                   ]
                 },
-                {
-                  type: "doc",
-                  id: "user-guides/local-storage-user-guide/local-pv-lvm/lvm-faq",
-                  label: "FAQs"
-                }
               ] 
             },
             {
@@ -265,11 +260,6 @@ module.exports = {
                     }
                   ]
                 },
-                {
-                  type: "doc",
-                  id: "user-guides/local-storage-user-guide/local-pv-zfs/zfs-faq",
-                  label: "FAQs"
-                }
               ] 
             },   
             {
