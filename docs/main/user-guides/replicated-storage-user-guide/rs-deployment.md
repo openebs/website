@@ -9,7 +9,7 @@ description: This guide will help you to deploy OpenEBS Replicated Storage.
 
 # Deploy an Application
 
-If all verification steps in the preceding stages were satisfied, then Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) has been successfully deployed within the cluster. In order to verify basic functionality, we will now dynamically provision a Persistent Volume based on a Replicated StorageClass, mount that volume within a small test pod which we'll create, and use the [**Flexible I/O Tester**](https://github.com/axboe/fio) utility within that pod to check that I/O to the volume is processed correctly.
+If all verification steps in the preceding stages were satisfied, then Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) has been successfully deployed within the cluster. In order to verify basic functionality, we will now dynamically provision a Persistent Volume based on a Replicated Storage StorageClass, mount that volume within a small test pod which we'll create, and use the [**Flexible I/O Tester**](https://github.com/axboe/fio) utility within that pod to check that I/O to the volume is processed correctly.
 
 ## Define the PVC
 
@@ -55,7 +55,7 @@ If you used the storage class example from previous stage, then volume binding m
 
 ## Deploy the FIO Test Pod
 
-The Replicated Storage CSI driver will cause the application pod and the corresponding Replicated Storage volume's NVMe target/controller ("Nexus") to be scheduled on the _same_ Replicated Storage Node, in order to assist with restoration of volume and application availabilty in the event of a storage node failure.
+The Replicated Storage CSI driver will cause the application pod and the corresponding Replicated Storage volume's NVMe target/controller ("Nexus") to be scheduled on the same Replicated Storage Node, in order to assist with restoration of volume and application availabilty in the event of a storage node failure.
 
 :::warning
 In this version, applications using PVs provisioned by Replicated Storage can only be successfully scheduled on Replicated Storage Nodes. This behaviour is controlled by the `local:` parameter of the corresponding StorageClass, which by default is set to a value of `true`. Therefore, this is the only supported value for this release - setting a non-local configuration may cause scheduling of the application pod to fail, as the PV cannot be mounted to a worker node other than a MSN. This behaviour will change in a future release.
@@ -236,7 +236,7 @@ Disk stats (read/write):
   sdd: ios=40795/40692, merge=0/9, ticks=375308/568708, in_queue=891648, util=99.53%
 ```
 
-If no errors are reported in the output then Replicated Storage has been correctly configured and is operating as expected. You may create and consume additional Persistent Volumes with your own test applications.
+If no errors are reported in the output then PV has been correctly configured and is operating as expected.
 
 ## See Also
 

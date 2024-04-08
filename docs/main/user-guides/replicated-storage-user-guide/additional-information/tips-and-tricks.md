@@ -16,9 +16,9 @@ For basic test and evaluation purposes it may not always be practical or possibl
 * Memory-Backed Disks \("RAM drive"\)
 * File-Backed Disks
 
-Memory-backed Disks are the most readily provisioned if node resources permit, since Replicated Storage will automatically create and configure them as it creates the corresponding pool. However they are the least durable option - since the data is held entirely within memory allocated to a Replicated Storage pod, should that pod be terminated and rescheduled by Kubernetes, that data will be lost. Therefore it is strongly recommended that this type of disk emulation be used only for short duration, simple testing. It must not be considered for production use.
+Memory-backed Disks are the most readily provisioned if node resources permit, since Replicated Storage will automatically create and configure them as it creates the corresponding pool. However they are the least durable option - since the data is held entirely within memory allocated to an IO engine pod, should that pod be terminated and rescheduled by Kubernetes, that data will be lost. Therefore it is strongly recommended that this type of disk emulation be used only for short duration, simple testing. It must not be considered for production use.
 
-File-backed disks, as their name suggests, store pool data within a file held on a file system which is accessible to the Replicated Storage pod hosting that pool. Their durability depends on how they are configured; specifically on which type of volume mount they are located. If located on a path which uses Kubernetes ephemeral storage \(eg. EmptyDir\), they may be no more persistent than a RAM drive would be. However, if placed on their own Persistent Volume \(eg. a Kubernetes Host Path volume\) then they may considered 'stable'. They are slightly less convenient to use than memory-backed disks, in that the backing files must be created by the user as a separate step preceding pool creation. However, file-backed disks can be significantly larger than RAM disks as they consume considerably less memory resource within the hosting Replicated Storage pod.
+File-backed disks, as their name suggests, store pool data within a file held on a file system which is accessible to the IO engine pod hosting that pool. Their durability depends on how they are configured; specifically on which type of volume mount they are located. If located on a path which uses Kubernetes ephemeral storage \(eg. EmptyDir\), they may be no more persistent than a RAM drive would be. However, if placed on their own Persistent Volume \(eg. a Kubernetes Host Path volume\) then they may considered 'stable'. They are slightly less convenient to use than memory-backed disks, in that the backing files must be created by the user as a separate step preceding pool creation. However, file-backed disks can be significantly larger than RAM disks as they consume considerably less memory resource within the hosting IO engine pod.
 
 ### Using Memory-backed Disks
 
@@ -52,7 +52,7 @@ Where &lt;DeviceId&gt; is an integer value which uniquely identifies the device 
 | blk\_size | Specifies the block size to be reported by the device in bytes | Integer \(512 or 4096\) | Optional. If not used, block size defaults to 512 bytes |
 
 :::warning
-Memory-based disk devices are not over-provisioned and the memory allocated to them is so from the 2MiB-sized Huge Page resources available to the Replicated Storage pod. That is to say, to create a 64MiB device requires that at least 33 \(32+1\) 2MiB-sized pages are free for that Replicated Storage container instance to use. Satisfying the memory requirements of this disk type may require additional configuration on the worker node and changes to the resource request and limit spec of the Replicated Storage daemonset, in order to ensure that sufficient resource is available.
+Memory-based disk devices are not over-provisioned and the memory allocated to them is so from the 2MiB-sized Huge Page resources available to the IO engine pod. That is to say, to create a 64MiB device requires that at least 33 \(32+1\) 2MiB-sized pages are free for that IO engine container instance to use. Satisfying the memory requirements of this disk type may require additional configuration on the worker node and changes to the resource request and limit spec of the IO engine daemonset, in order to ensure that sufficient resource is available.
 :::
 
 ### Using File-backed Disks
@@ -85,7 +85,7 @@ spec:
   disks: ["aio:///tmp/disk1.img?blk_size=4096"]
 ```
 
-The examples shown seek to create a pool using a file named "disk1.img", located in the /var/tmp directory of the Replicated Storage container's file system, as its member disk device. For this operation to succeed, the file must already exist on the specified path \(which should be FULL path to the file\) and this path must be accessible by the Replicated Storage pod instance running on the corresponding node.
+The examples shown seek to create a pool using a file named "disk1.img", located in the /var/tmp directory of the IO engine container's file system, as its member disk device. For this operation to succeed, the file must already exist on the specified path \(which should be FULL path to the file\) and this path must be accessible by the IO engine pod instance running on the corresponding node.
 
 The aio:/// schema requires no other parameters but optionally, "blk\_size" may be specified. Block size accepts a value of either 512 or 4096, corresponding to the emulation of either a 512-byte or 4kB sector size device. If this parameter is omitted the device defaults to using a 512-byte sector size.
 

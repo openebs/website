@@ -24,7 +24,7 @@ A summary of the information collected is given below:
 |**Product name**: This field displays the name Replicated Storage.| 
 |**Product version**: This is the deployed version of Replicated Storage.| 
 |**Deploy namespace**: This is a SHA-256 hashed value of the  name of the  Kubernetes namespace where Replicated Storage Helm chart is deployed.| 
-|**Storage node count**: This is the number of nodes on which the Replicated I/O Storage is scheduled.| 
+|**Storage node count**: This is the number of nodes on which the IO engine pods are scheduled and running.| 
 
 |**Pool information**| 
 | :--- | 

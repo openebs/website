@@ -289,6 +289,9 @@ When creating a Disk Pool with `kubectl create -f dsp.yaml`, you might encounter
 You can validate the schema changes by executing `kubectl get crd diskpools.openebs.io`.
 :::
 
+
+[Go to top](#top)
+
 # Known Limitations
 
 ## Volume and Pool Capacity Expansion
@@ -297,7 +300,7 @@ Once provisioned, neither Replicated Storage Disk Pools nor Replicated Storage V
 
 ## Snapshots and Clones
 
-Replicated Storage has no snapshot or cloning capabilities.
+Replicated Storage currently supports provisioning snapshots and clones on volumes with only one replica.
 
 ## Volumes are "Highly Durable" but without multipathing are not "Highly Available"
 
@@ -305,13 +308,15 @@ Replicated Storage Volumes can be configured \(or subsequently re-configured\) t
 
 A Replicated Storage volume is currently accessible to an application only via a single target instance \(NVMe-oF\) of a single Replicated Storage pod. However, if that Replicated Storage pod ceases to run \(through the loss of the worker node on which it's scheduled, execution failure, crashloopbackoff etc.\) the [HA switch-over module](../user-guides/replicated-storage-user-guide/advanced-operations/HA.md) detects the failure and moves the target to a healthy worker node to ensure I/O continuity.
 
+[Go to top](#top)
+
 # Known Issues
 
 ## Installation Issues
 
-### A Replicated Storage pod restarts unexpectedly with exit code 132 whilst mounting a PVC
+### An IO engine pod restarts unexpectedly with exit code 132 whilst mounting a PVC
 
-The Replicated Storage process has been sent the SIGILL signal as the result of attempting to execute an illegal instruction. This indicates that the host node's CPU does not satisfy the prerequisite instruction set level for Replicated Storage \(SSE4.2 on x86-64\).
+The Mayastor process has been sent the SIGILL signal as the result of attempting to execute an illegal instruction. This indicates that the host node's CPU does not satisfy the prerequisite instruction set level for Replicated Storage \(SSE4.2 on x86-64\).
 
 ### Deploying Replicated Storage on RKE and Fedora CoreOS
 
@@ -339,3 +344,5 @@ Deploying an application pod on a worker node which hosts Replicated Storage and
 The issue originated because of a kernel bug. Once the nexus disconnects, the entries under `/host/sys/class/hwmon/` should get removed, which does not happen in this case(The issue was fixed via this [kernel patch](https://www.mail-archive.com/linux-kernel@vger.kernel.org/msg2413147.html)).
 
 **Fix:** Use kernel version 5.13 or later if deploying Replicated Storage in conjunction with the Prometheus metrics exporter.
+
+[Go to top](#top)

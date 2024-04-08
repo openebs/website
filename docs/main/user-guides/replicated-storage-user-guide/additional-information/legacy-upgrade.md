@@ -27,7 +27,7 @@ As compared to Replicated Storage 1.0, the Replicated Storage 2.x feature-set in
   - Data Plane: The registration heartbeat has been changed from NATS to gRPC. 
 
 **Pool CRDs:**
-  - The pool CRDs have been renamed `DiskPools` (previously, Replicated Storage Pools).
+  - The pool CRDs have been renamed `DiskPools` (previously, MayastorPools).
   :::
 
 1. To start the upgrade process, the following previously deployed components have to be deleted. 
@@ -207,7 +207,7 @@ bf207797-b23d-447a-8d3f-98d378acfa8a  3         worker-0     nvmf           Onli
 
 4. After upgrading control-plane components, the data-plane pods have to be upgraded. To do so, deploy the `io-engine` DaemonSet from Replicated Storage's new version. 
 
-_Using the command given below, the data-plane pods (now io-engine pods) will be upgraded to Replicated Storage v2.0._
+Using the command given below, the data-plane pods (now io-engine pods) will be upgraded to Replicated Storage v2.0.
 
 **Command**
 

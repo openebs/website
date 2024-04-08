@@ -236,18 +236,18 @@ roleRef:
 
 ### Minimum Worker Node Count
 
-  The minimum supported worker node count is three nodes. When using the synchronous replication feature (N-way mirroring), the number of worker nodes to which Replicated Storage is deployed should be no less than the desired replication factor.
+  The minimum supported worker node count is three nodes. When using the synchronous replication feature (N-way mirroring), the number of worker nodes on which IO engine pods are deployed should be no less than the desired replication factor.
 
 ### Transport Protocols
 
-  Replicated Storage supports the export and mounting of volumes over NVMe-oF TCP only. Worker node(s) on which a volume may be scheduled (to be mounted) must have the requisite initiator support installed and configured.
+  Replicated Storage supports the export and mounting of volumes over NVMe-oF TCP only. Worker node(s) on which a volume may be scheduled (to be mounted) must have the requisite initiator software installed and configured.
   In order to reliably mount Replicated Storage volumes over NVMe-oF TCP, a worker node's kernel version must be 5.13 or later and the nvme-tcp kernel module must be loaded.
 
 ### Preparing the Cluster
 
 #### Verify/Enable Huge Page Support
 
-_2MiB-sized_  Huge Pages must be supported and enabled on the Replicated Storage nodes. A minimum number of 1024 such pages \(i.e. 2GiB total\) must be available _exclusively_ to the Replicated Storage pod on each node, which should be verified thus:
+2MiB-sized Huge Pages must be supported and enabled on the storage nodes i.e. nodes where IO engine pods are deployed. A minimum number of 1024 such pages \(i.e. 2GiB total\) must be available exclusively to the Io engine pod on each node, which should be verified thus:
 
 ```text
 grep HugePages /proc/meminfo
@@ -277,9 +277,9 @@ echo vm.nr_hugepages = 1024 | sudo tee -a /etc/sysctl.conf
 If you modify the huge page configuration of a node, you _MUST_ either restart kubelet or reboot the node.  Replicated Storage will not deploy correctly if the available huge page count as reported by the node's kubelet instance does not satisfy the minimum requirements.
 :::
 
-#### Label Replicated Storage Node Candidates
+#### Label IO Node Candidates
 
-All worker nodes which will have Replicated Storage pods running on them must be labelled with the OpenEBS storage type "Replicated Storage". This label will be used as a node selector by the Replicated Storage Daemonset, which is deployed as a part of the Replicated Storage data plane components installation. To add this label to a node, execute:
+All worker nodes which will have Io engine pods running on them must be labelled with the OpenEBS storage type "Replicated Engine". This label will be used as a node selector by the IO engine Daemonset, which is deployed as a part of the Replicated Storage data plane components installation. To add this label to a node, execute:
 
 ```
 kubectl label node <node_name> openebs.io/engine=mayastor

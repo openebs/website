@@ -302,7 +302,7 @@ The default installation of Replicated Storage includes the deployment of a log 
 - IP addresses
     - container addresses
 - API endpoints
-    - Replicated Storage
+    - Mayastor
     - K8s
 - Container names
 - K8s Persistent Volume names (provisioned by Replicated Storage)
@@ -325,8 +325,8 @@ The default installation of Replicated Storage deploys an etcd instance for its 
 - IP addresses
 - PVC/PV names
 - Container names
-    - Replicated Storage
-    - User applications within the Replicated Storage namespace
+    - Mayastor
+    - User applications within the namespace where Replicated Storage is installed
 - Block device details (except data content)
 
 :::note

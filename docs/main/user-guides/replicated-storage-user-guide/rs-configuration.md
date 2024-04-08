@@ -150,7 +150,7 @@ The default installation of Replicated Storage includes the creation of a Storag
 
 ## Storage Class Parameters
 
-Storage Class resource in Kubernetes is used to supply parameters to volumes when they are created. It is a convenient way of grouping volumes with common characteristics. All parameters take a string value. Brief explanation of each supported Replicated Storage parameter follows.
+Storage Class resource in Kubernetes is used to supply parameters to volumes when they are created. It is a convenient way of grouping volumes with common characteristics. All parameters take a string value. Brief explanation of each parameter is as follows.
 
 
 :::info
