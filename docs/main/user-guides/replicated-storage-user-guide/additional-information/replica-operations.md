@@ -25,7 +25,7 @@ Once provisioned, the replica count of a volume can be changed using the kubectl
 Accurate predictions of the behaviour of Replicated Storage with respect to replica placement and management of replica faults can be made by reference to these 'rules', which are a simplified representation of the actual logic:
 
 * "Rule 1": A volume can only be provisioned if the replica count \(and capacity\) of its StorageClass can be satisfied at the time of creation.
-* "Rule 2": Every replica of a volume must be placed on a different Replicated Storage Node.
+* "Rule 2": Every replica of a volume must be placed on a different IO engine node.
 * "Rule 3": Children with the state `Faulted` are always selected for retirement in preference to those with state `Online`.
 
 N.B.: By application of the 2nd rule, replicas of the same volume cannot exist within different pools on the same IO engine node. 

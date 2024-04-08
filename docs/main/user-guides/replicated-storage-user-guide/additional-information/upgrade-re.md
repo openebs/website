@@ -94,7 +94,7 @@ kubectl logs <upgrade-job-pod-name> -n <mayastor-namespace>
 ```
 
 :::info
-1. The time taken to upgrade is directly proportional to the number of Replicated Storage nodes and Replicated Storage volumes.
+1. The time taken to upgrade is directly proportional to the number of IO engine nodes and storage volumes.
 2. To upgrade to a particular Replicated Storage version, ensure you are using the same version of kubectl plugin.
 3. The above process of upgrade creates one Job in the namespace where Replicated Storage is installed, one ClusterRole, one ClusterRoleBinding and one ServiceAccount.
 :::

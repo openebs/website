@@ -247,7 +247,7 @@ roleRef:
 
 #### Verify/Enable Huge Page Support
 
-2MiB-sized Huge Pages must be supported and enabled on the storage nodes i.e. nodes where IO engine pods are deployed. A minimum number of 1024 such pages \(i.e. 2GiB total\) must be available exclusively to the Io engine pod on each node, which should be verified thus:
+2MiB-sized Huge Pages must be supported and enabled on the storage nodes i.e. nodes where IO engine pods are deployed. A minimum number of 1024 such pages \(i.e. 2GiB total\) must be available exclusively to the IO engine pod on each node, which should be verified thus:
 
 ```text
 grep HugePages /proc/meminfo
@@ -279,7 +279,7 @@ If you modify the huge page configuration of a node, you _MUST_ either restart k
 
 #### Label IO Node Candidates
 
-All worker nodes which will have Io engine pods running on them must be labelled with the OpenEBS storage type "Replicated Engine". This label will be used as a node selector by the IO engine Daemonset, which is deployed as a part of the Replicated Storage data plane components installation. To add this label to a node, execute:
+All worker nodes which will have IO engine pods running on them must be labelled with the OpenEBS storage type "Replicated Engine". This label will be used as a node selector by the IO engine Daemonset, which is deployed as a part of the Replicated Storage data plane components installation. To add this label to a node, execute:
 
 ```
 kubectl label node <node_name> openebs.io/engine=mayastor

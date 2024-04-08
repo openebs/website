@@ -12,7 +12,7 @@ description: This section provides an overview of the topology and function of t
 
 ### Replicated Storage Instance
 
-An instance of the `mayastor` binary running inside an IO engine pod, which is encapsulated by an IO engine pod.
+An instance of the `mayastor` binary running inside an IO engine container, which is encapsulated by an IO engine pod.
 
 ### Nexus
 

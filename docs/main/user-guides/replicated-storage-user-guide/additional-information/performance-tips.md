@@ -99,7 +99,7 @@ cat /sys/devices/system/cpu/isolated
 Update the [Helm value](https://github.com/openebs/mayastor-extensions/blob/6df062eb5a0864b82dcc709ab4d84a135252fe45/chart/values.yaml#L407) in the Replicated Storage Helm chart to specify the CPU core.
 :::
 
-To allot specific CPU cores for Replicated Storage's reactors, follow these steps:
+To allot specific CPU cores for IO engine's reactors, follow these steps:
 
 1. Ensure that you have the Replicated Storage kubectl plugin installed, matching the version of your Replicated Storage Helm chart deployment ([releases](https://github.com/openebs/mayastor/releases)). You can find installation instructions in the [kubectl plugin documentation](../advanced-operations/kubectl-plugin.md).
 

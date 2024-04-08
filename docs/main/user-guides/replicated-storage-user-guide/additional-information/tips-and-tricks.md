@@ -35,7 +35,7 @@ spec:
   disks: ["malloc:///malloc0?size_mb=64"]
 ```
 
-The example shown defines a pool named "mempool-1". The Replicated Storage pod hosted on "worker-node-1" automatically creates a 64MiB emulated disk for it to use, with the device identifier "malloc0" - _provided that at least 64MiB of 2MiB-sized Huge Pages are available to that pod after the Replicated Storage container's own requirements have been satisfied_.
+The example shown defines a pool named "mempool-1". The IO engine pod hosted on "worker-node-1" automatically creates a 64MiB emulated disk for it to use, with the device identifier "malloc0" - provided that at least 64MiB of 2MiB-sized Huge Pages are available to that pod after the IO engine container's own requirements have been satisfied.
 
 #### The malloc:/// URI Schema
 
