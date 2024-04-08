@@ -199,6 +199,11 @@ module.exports = {
                       label: "Thin Provisioning"
                     }
                   ]
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-storage-user-guide/local-pv-lvm/lvm-faq",
+                  label: "FAQs"
                 }
               ] 
             },
@@ -259,6 +264,11 @@ module.exports = {
                       label: "Raw Block Volume"
                     }
                   ]
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/local-storage-user-guide/local-pv-zfs/zfs-faq",
+                  label: "FAQs"
                 }
               ] 
             },   
