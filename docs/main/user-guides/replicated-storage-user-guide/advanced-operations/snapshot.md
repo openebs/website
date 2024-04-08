@@ -5,8 +5,8 @@ keywords:
  - Volume snapshots
 description: This guide explains about the Volume snapshots feature.
 ---
-**Volume snapshots** are copies of a persistent volume at a specific point in time. They can be used to restore a volume to a previous state or create a new volume. Replicated Engine provides support for industry standard copy-on-write (COW) snapshots, which is a popular methodology for taking snapshots by keeping track of only those blocks that have changed.
-Replicated Engine incremental snapshot capability enhances data migration and portability in Kubernetes clusters across different cloud providers or data centers. Using standard kubectl commands, you can seamlessly perform operations on snapshots and clones in a fully Kubernetes-native manner.
+**Volume snapshots** are copies of a persistent volume at a specific point in time. They can be used to restore a volume to a previous state or create a new volume. Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) provides support for industry standard copy-on-write (COW) snapshots, which is a popular methodology for taking snapshots by keeping track of only those blocks that have changed.
+Replicated Storage incremental snapshot capability enhances data migration and portability in Kubernetes clusters across different cloud providers or data centers. Using standard kubectl commands, you can seamlessly perform operations on snapshots and clones in a fully Kubernetes-native manner.
 
 Use cases for volume snapshots include:
 
@@ -18,7 +18,7 @@ Volume snapshots allow the creation of read-only incremental copies of volumes, 
 - **Consistency**: The data stored within a snapshot remains consistent across all replicas of the volume, whether local or remote.
 - **Immutability**: Once a snapshot is successfully created, the data contained within it cannot be modified.
 
-Currently, Replicated Engine supports the following operations related to volume snapshots:
+Currently, Replicated Storage supports the following operations related to volume snapshots:
 
 1. Creating a snapshot for a PVC
 2. Listing available snapshots for a PVC
@@ -26,11 +26,11 @@ Currently, Replicated Engine supports the following operations related to volume
 
 ## Prerequisites
 
-1. Deploy and configure Replicated Engine by following the steps given [here](../../../quickstart-guide/installation.md#deploy-mayastor) and create disk pools.
-2. Create a Replicated Engine StorageClass with single replica.
+1. Install and configure Replicated Storage by following the steps given [here](../../../quickstart-guide/installation.md#deploy-mayastor) and create disk pools.
+2. Create a Replicated Storage StorageClass with single replica.
 
 :::note
-Currently, Replicated Engine only supports snapshots for volumes with a single replica. Snapshot support for volumes with more than one replica will be available in the future versions.
+Currently, Replicated Storage only supports snapshots for volumes with a single replica. Snapshot support for volumes with more than one replica will be available in the future versions.
 :::
 
 **Command**

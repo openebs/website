@@ -74,8 +74,8 @@ module.exports = {
             },
             {
               type: "doc",
-              id: "concepts/data-engines/replicated-engine",
-              label: "Replicated Engine"
+              id: "concepts/data-engines/replicated-storage",
+              label: "Replicated Storage"
             }
           ] 
         },  
@@ -86,7 +86,7 @@ module.exports = {
       type: "category",
       label: "Quickstart Guide",
       customProps: {
-        icon: "BookOpen"
+        icon: "Clock"
       },
       items: [
         {
@@ -122,7 +122,7 @@ module.exports = {
               type: "category",
               label: "Local PV Hostpath",
               customProps: {
-                icon: "Book"
+                icon: "BookOpen"
               },
               items: [
                 {
@@ -147,7 +147,7 @@ module.exports = {
               type: "category",
               label: "Local PV LVM",
               customProps: {
-                icon: "Book"
+                icon: "BookOpen"
               },
               items: [
                 {
@@ -207,7 +207,7 @@ module.exports = {
               type: "category",
               label: "Local PV ZFS",
               customProps: {
-                icon: "Book"
+                icon: "BookOpen"
               },
               items: [
                 {
@@ -297,20 +297,25 @@ module.exports = {
         {
           collapsed: true,
           type: "category",
-          label: "Replicated Engine User Guide",
+          label: "Replicated Storage User Guide",
           customProps: {
             icon: "Book"
           },
           items: [
             {
               type: "doc",
-              id: "user-guides/replicated-engine-user-guide/prerequisites-re",
-              label: "Prerequisites"
+              id: "user-guides/replicated-storage-user-guide/rs-installation",
+              label: "Installation"
             },
             {
               type: "doc",
-              id: "user-guides/replicated-engine-user-guide/replicated-engine-deployment",
-              label: "Replicated Engine Deployment"
+              id: "user-guides/replicated-storage-user-guide/rs-configuration",
+              label: "Configuration"
+            },
+            {
+              type: "doc",
+              id: "user-guides/replicated-storage-user-guide/rs-deployment",
+              label: "Deploy an Application"
             },
             {
               collapsed: true,
@@ -322,47 +327,47 @@ module.exports = {
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/advanced-operations/kubectl-plugin",
+                  id: "user-guides/replicated-storage-user-guide/advanced-operations/kubectl-plugin",
                   label: "Kubectl Plugin"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/advanced-operations/ha",
+                  id: "user-guides/replicated-storage-user-guide/advanced-operations/ha",
                   label: "High Availability"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/advanced-operations/replica-rebuilds",
+                  id: "user-guides/replicated-storage-user-guide/advanced-operations/replica-rebuilds",
                   label: "Replica Rebuilds"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/advanced-operations/supportability",
+                  id: "user-guides/replicated-storage-user-guide/advanced-operations/supportability",
                   label: "Supportability"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/advanced-operations/monitoring",
+                  id: "user-guides/replicated-storage-user-guide/advanced-operations/monitoring",
                   label: "Monitoring"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/advanced-operations/node-cordon",
+                  id: "user-guides/replicated-storage-user-guide/advanced-operations/node-cordon",
                   label: "Node Cordon"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/advanced-operations/node-drain",
+                  id: "user-guides/replicated-storage-user-guide/advanced-operations/node-drain",
                   label: "Node Drain"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/advanced-operations/volume-snapshots",
+                  id: "user-guides/replicated-storage-user-guide/advanced-operations/volume-snapshots",
                   label: "Volume Snapshots"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/advanced-operations/snapshot-restore",
+                  id: "user-guides/replicated-storage-user-guide/advanced-operations/snapshot-restore",
                   label: "Snapshot Restore"
                 }
               ]
@@ -377,59 +382,59 @@ module.exports = {
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/additional-information/upgrade-re",
+                  id: "user-guides/replicated-storage-user-guide/additional-information/upgrade-re",
                   label: "Upgrades"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/additional-information/legacy-upgrade",
+                  id: "user-guides/replicated-storage-user-guide/additional-information/legacy-upgrade",
                   label: "Legacy Upgrades"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/additional-information/tips",
+                  id: "user-guides/replicated-storage-user-guide/additional-information/tips",
                   label: "Tips and Tricks"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/additional-information/performance-tips",
+                  id: "user-guides/replicated-storage-user-guide/additional-information/performance-tips",
                   label: "Performance Tips"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/additional-information/io-path-description",
+                  id: "user-guides/replicated-storage-user-guide/additional-information/io-path-description",
                   label: "I/O Path Description"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/additional-information/replica-operations",
+                  id: "user-guides/replicated-storage-user-guide/additional-information/replica-operations",
                   label: "Replica Operations"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/additional-information/call-home-metrics",
+                  id: "user-guides/replicated-storage-user-guide/additional-information/call-home-metrics",
                   label: "Call-Home Metrics"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/additional-information/ttps",
+                  id: "user-guides/replicated-storage-user-guide/additional-information/ttps",
                   label: "Tested Third Party Software"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/additional-information/migrate-etcd",
+                  id: "user-guides/replicated-storage-user-guide/additional-information/migrate-etcd",
                   label: "Etcd Migration Procedure"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-engine-user-guide/additional-information/scale-etcd",
+                  id: "user-guides/replicated-storage-user-guide/additional-information/scale-etcd",
                   label: "Scaling Up etcd Members"
                 }
               ]
             },
             {
               type: "doc",
-              id: "user-guides/replicated-engine-user-guide/platform-support",
+              id: "user-guides/replicated-storage-user-guide/platform-support",
               label: "Platform Support"
             }
           ] 
@@ -536,8 +541,8 @@ module.exports = {
         },
         {
           type: "doc",
-          id: "troubleshooting/troubleshootingre",
-          label: "Troubleshooting - Replicated Engine"
+          id: "troubleshooting/troubleshootingrs",
+          label: "Troubleshooting - Replicated Storage"
         }
       ]
     },

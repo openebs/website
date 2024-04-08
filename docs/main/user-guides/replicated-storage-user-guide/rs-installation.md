@@ -1,17 +1,19 @@
 ---
-id: prerequisites-re
-title: Replicated Engine Prerequisites
+id: rs-installation
+title: Replicated Storage Installation
 keywords:
- - Replicated Engine Prerequisites
- - prerequisites
+ - Replicated Storage Prerequisites
+ - Prerequisites
+ - Replicated Storage Installation
  - Linux platforms
  - Managed Kubernetes Services on Public Cloud
  - Kubernetes On-Prem Solutions
 description: This guide will help you to verify that your Kubernetes worker nodes have the required prerequisites to install OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. In addition, you will learn about how to customize the installer according to your managed Kubernetes provider.
 ---
-# Prerequisites
 
-## General
+## Prerequisites
+
+### General
 
 All worker nodes must satisfy the following requirements:
 
@@ -29,14 +31,14 @@ All worker nodes must satisfy the following requirements:
   * **HugePage support**
     * A minimum of **2GiB of** **2MiB-sized** pages
 
-## Network Requirements
+### Network Requirements
 
 * Ensure that the following ports are **not** in use on the node:
   - **10124**: Mayastor gRPC server will use this port.
   - **8420 / 4421**: NVMf targets will use these ports.
 * The firewall settings should not restrict connection to the node.
 
-## Recommended Resource Requirements
+### Recommended Resource Requirements
 
 **io-engine DaemonSet**
 
@@ -112,12 +114,12 @@ resources:
     memory: "16Mi"
 ```
 
-## DiskPool Requirements
+### DiskPool Requirements
 
 * Disks must be unpartitioned, unformatted, and used exclusively by the DiskPool.
 * The minimum capacity of the disks should be 10 GB.
 
-## RBAC Permission Requirements
+### RBAC Permission Requirements
 
 * Kubernetes core v1 API-group resources: Pod, Event, Node, Namespace, ServiceAccount, PersistentVolume, PersistentVolumeClaim, ConfigMap, Secret, Service, Endpoint, Event.
 
@@ -129,7 +131,7 @@ resources:
 
 * Kubernetes `apiextensions.k8s.io` API-group resources: CustomResourceDefinition
 
-* Replicated Engine Custom Resources that is `openebs.io` API-group resources: DiskPool
+* Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) Custom Resources that is `openebs.io` API-group resources: DiskPool
 
 * Custom Resources from Helm chart dependencies of Jaeger that is helpful for debugging:
 
@@ -232,20 +234,20 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ```
 
-## Minimum Worker Node Count
+### Minimum Worker Node Count
 
-  The minimum supported worker node count is three nodes. When using the synchronous replication feature (N-way mirroring), the number of worker nodes to which Mayastor is deployed should be no less than the desired replication factor.
+  The minimum supported worker node count is three nodes. When using the synchronous replication feature (N-way mirroring), the number of worker nodes on which IO engine pods are deployed should be no less than the desired replication factor.
 
-## Transport Protocols
+### Transport Protocols
 
-  Mayastor supports the export and mounting of volumes over NVMe-oF TCP only. Worker node(s) on which a volume may be scheduled (to be mounted) must have the requisite initiator support installed and configured.
-  In order to reliably mount Mayastor volumes over NVMe-oF TCP, a worker node's kernel version must be 5.13 or later and the nvme-tcp kernel module must be loaded.
+  Replicated Storage supports the export and mounting of volumes over NVMe-oF TCP only. Worker node(s) on which a volume may be scheduled (to be mounted) must have the requisite initiator software installed and configured.
+  In order to reliably mount Replicated Storage volumes over NVMe-oF TCP, a worker node's kernel version must be 5.13 or later and the nvme-tcp kernel module must be loaded.
 
-## Preparing the Cluster
+### Preparing the Cluster
 
-### Verify/Enable Huge Page Support
+#### Verify/Enable Huge Page Support
 
-_2MiB-sized_  Huge Pages must be supported and enabled on the replicated engine storage nodes. A minimum number of 1024 such pages \(i.e. 2GiB total\) must be available _exclusively_ to the replicated engine pod on each node, which should be verified thus:
+2MiB-sized Huge Pages must be supported and enabled on the storage nodes i.e. nodes where IO engine pods are deployed. A minimum number of 1024 such pages \(i.e. 2GiB total\) must be available exclusively to the IO engine pod on each node, which should be verified thus:
 
 ```text
 grep HugePages /proc/meminfo
@@ -272,13 +274,27 @@ echo vm.nr_hugepages = 1024 | sudo tee -a /etc/sysctl.conf
 ```
 
 :::warning
-If you modify the Huge Page configuration of a node, you _MUST_ either restart kubelet or reboot the node.  replicated engine will not deploy correctly if the available Huge Page count as reported by the node's kubelet instance does not satisfy the minimum requirements.
+If you modify the huge page configuration of a node, you _MUST_ either restart kubelet or reboot the node.  Replicated Storage will not deploy correctly if the available huge page count as reported by the node's kubelet instance does not satisfy the minimum requirements.
 :::
 
-### Label Replicated Engine Node Candidates
+#### Label IO Node Candidates
 
-All worker nodes which will have replicated engine pods running on them must be labelled with the OpenEBS engine type "replicated engine". This label will be used as a node selector by the Replicated Engine Daemonset, which is deployed as a part of the replicated engine data plane components installation. To add this label to a node, execute:
+All worker nodes which will have IO engine pods running on them must be labelled with the OpenEBS storage type "Replicated Engine". This label will be used as a node selector by the IO engine Daemonset, which is deployed as a part of the Replicated Storage data plane components installation. To add this label to a node, execute:
 
 ```
 kubectl label node <node_name> openebs.io/engine=mayastor
 ```
+
+## Installation 
+
+For installation instructions, see [here](../../quickstart-guide/installation.md).
+
+## Support
+
+If you encounter issues or have a question, file an [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+
+## See Also
+
+- [Installation](../../quickstart-guide/installation.md)
+- [Configuration](../replicated-storage-user-guide/rs-configuration.md)
+- [Deploy an Application](../replicated-storage-user-guide/rs-deployment.md)
