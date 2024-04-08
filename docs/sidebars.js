@@ -69,8 +69,8 @@ module.exports = {
             },
             {
               type: "doc",
-              id: "concepts/data-engines/localengine",
-              label: "Local Engine"
+              id: "concepts/data-engines/localstorage",
+              label: "Local Storage"
             },
             {
               type: "doc",
@@ -112,7 +112,7 @@ module.exports = {
         {
           collapsed: true,
           type: "category",
-          label: "Local Engine User Guide",
+          label: "Local Storage User Guide",
           customProps: {
             icon: "Book"
           },
@@ -127,17 +127,17 @@ module.exports = {
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/local-pv-hostpath/hostpath-installation",
+                  id: "user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation",
                   label: "Installation"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/local-pv-hostpath/hostpath-configuration",
+                  id: "user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-configuration",
                   label: "Configuration"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/local-pv-hostpath/hostpath-deployment",
+                  id: "user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-deployment",
                   label: "Deploy an Application"
                 }
               ] 
@@ -152,17 +152,17 @@ module.exports = {
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/local-pv-lvm/lvm-installation",
+                  id: "user-guides/local-storage-user-guide/local-pv-lvm/lvm-installation",
                   label: "Installation"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/local-pv-lvm/lvm-configuration",
+                  id: "user-guides/local-storage-user-guide/local-pv-lvm/lvm-configuration",
                   label: "Configuration"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/local-pv-lvm/lvm-deployment",
+                  id: "user-guides/local-storage-user-guide/local-pv-lvm/lvm-deployment",
                   label: "Deploy an Application"
                 },
                 {
@@ -175,27 +175,27 @@ module.exports = {
                   items: [
                     {
                       type: "doc",
-                      id: "user-guides/local-engine-user-guide/local-pv-lvm/advanced-operations/lvm-fs-group",
+                      id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-fs-group",
                       label: "FSGroup"
                     },
                     {
                       type: "doc",
-                      id: "user-guides/local-engine-user-guide/local-pv-lvm/advanced-operations/lvm-raw-block-volume",
+                      id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-raw-block-volume",
                       label: "Raw Block Volume"
                     },
                     {
                       type: "doc",
-                      id: "user-guides/local-engine-user-guide/local-pv-lvm/advanced-operations/lvm-resize",
+                      id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-resize",
                       label: "Resize"
                     },
                     {
                       type: "doc",
-                      id: "user-guides/local-engine-user-guide/local-pv-lvm/advanced-operations/lvm-snapshot",
+                      id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-snapshot",
                       label: "Snapshot"
                     },
                     {
                       type: "doc",
-                      id: "user-guides/local-engine-user-guide/local-pv-lvm/advanced-operations/lvm-thin-provisioning",
+                      id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-thin-provisioning",
                       label: "Thin Provisioning"
                     }
                   ]
@@ -212,17 +212,17 @@ module.exports = {
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/local-pv-zfs/zfs-installation",
+                  id: "user-guides/local-storage-user-guide/local-pv-zfs/zfs-installation",
                   label: "Installation"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/local-pv-zfs/zfs-configuration",
+                  id: "user-guides/local-storage-user-guide/local-pv-zfs/zfs-configuration",
                   label: "Configuration"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/local-pv-zfs/zfs-deployment",
+                  id: "user-guides/local-storage-user-guide/local-pv-zfs/zfs-deployment",
                   label: "Deploy an Application"
                 },
                 {
@@ -235,27 +235,27 @@ module.exports = {
                   items: [
                     {
                       type: "doc",
-                      id: "user-guides/local-engine-user-guide/local-pv-zfs/advanced-operations/zfs-backup-restore",
+                      id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-backup-restore",
                       label: "Backup and Restore"
                     },
                     {
                       type: "doc",
-                      id: "user-guides/local-engine-user-guide/local-pv-zfs/advanced-operations/zfs-clone",
+                      id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-clone",
                       label: "Clone Volume"
                     },
                     {
                       type: "doc",
-                      id: "user-guides/local-engine-user-guide/local-pv-zfs/advanced-operations/zfs-resize",
+                      id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-resize",
                       label: "Volume Resize"
                     },
                     {
                       type: "doc",
-                      id: "user-guides/local-engine-user-guide/local-pv-zfs/advanced-operations/zfs-snapshot",
+                      id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-snapshot",
                       label: "Snapshot Volume"
                     },
                     {
                       type: "doc",
-                      id: "user-guides/local-engine-user-guide/local-pv-zfs/advanced-operations/zfs-raw-block-volume",
+                      id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-raw-block-volume",
                       label: "Raw Block Volume"
                     }
                   ]
@@ -272,22 +272,22 @@ module.exports = {
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/additional-information/alphafeatures",
+                  id: "user-guides/local-storage-user-guide/additional-information/alphafeatures",
                   label: "Alpha Features"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/additional-information/k8supgrades",
+                  id: "user-guides/local-storage-user-guide/additional-information/k8supgrades",
                   label: "Kubernetes Upgrades - Best Practices"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/additional-information/kb",
+                  id: "user-guides/local-storage-user-guide/additional-information/kb",
                   label: "Knowledge Base"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/local-engine-user-guide/additional-information/backupandrestore",
+                  id: "user-guides/local-storage-user-guide/additional-information/backupandrestore",
                   label: "Backup and Restore"
                 }
               ]
@@ -532,7 +532,7 @@ module.exports = {
         {
           type: "doc",
           id: "troubleshooting/troubleshooting",
-          label: "Troubleshooting - Local Engine"
+          label: "Troubleshooting - Local Storage"
         },
         {
           type: "doc",

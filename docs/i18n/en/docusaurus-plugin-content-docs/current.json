@@ -186,5 +186,9 @@
   "sidebar.docs.category.Local PV ZFS": {
     "message": "Local PV ZFS",
     "description": "The label for category Local PV ZFS in sidebar docs"
+  },
+  "sidebar.docs.category.Local Storage User Guide": {
+    "message": "Local Storage User Guide",
+    "description": "The label for category Local Storage User Guide in sidebar docs"
   }
 }
