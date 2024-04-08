@@ -5,7 +5,7 @@ slug: /
 keywords:
   - OpenEBS
   - OpenEBS overview
-description: OpenEBS builds on Kubernetes to enable Stateful applications to easily access Dynamic Local or Distributed Container Attached Kubernetes Persistent Volumes. By using the Container Native Storage pattern users report lower costs, easier management, and more control for their teams.
+description: OpenEBS builds on Kubernetes to enable Stateful applications to easily access Dynamic Local or Replicated Container Attached Kubernetes Persistent Volumes. By using the Container Native Storage pattern users report lower costs, easier management, and more control for their teams.
 ---
 
 ## What is OpenEBS?
@@ -38,7 +38,7 @@ In case of [Local Volumes](#local-volumes):
 - The local volumes are directly mounted into the Stateful Pod, without any added overhead from OpenEBS in the data path, decreasing latency.
 - OpenEBS provides additional tooling for local volumes for monitoring, backup/restore, disaster recovery, snapshots when backed by LVM or ZFS stack, capacity based scheduling, and more.
 
-In case of [Replicated) Volumes](#replicated-volumes):
+In case of [Replicated Volumes](#replicated-volumes):
 
 - OpenEBS Replicated Storage creates an NVMe target accessible over TCP, for each persistent volume.
 - The Stateful Pod writes the data to the NVMe-TCP target that synchronously replicates the data to multiple nodes in the cluster. The OpenEBS engine itself is deployed as a pod and orchestrated by Kubernetes. When the node running the Stateful pod fails, the pod will be rescheduled to another node in the cluster and OpenEBS provides access to the data using the available data copies on other nodes.
