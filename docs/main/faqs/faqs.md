@@ -56,6 +56,7 @@ Refer to the following links for more information on the backup and restore func
 - [Backup and Restore](../user-guides/local-storage-user-guide/additional-information/backupandrestore.md)
 - [Snapshot](../user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-snapshot.md)
 - [Backup and Restore for Local PV ZFS Volumes](../user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-backup-restore.md)
+- [Snapshot Restore for Replicated Storage](../user-guides/replicated-storage-user-guide/advanced-operations/snapshot-restore.md)
 
 [Go to top](#top)
 

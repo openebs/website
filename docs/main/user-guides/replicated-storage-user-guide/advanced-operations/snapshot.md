@@ -26,7 +26,7 @@ Currently, Replicated Storage supports the following operations related to volum
 
 ## Prerequisites
 
-1. Install and configure Replicated Storage by following the steps given [here](../../../quickstart-guide/installation.md#deploy-mayastor) and create disk pools.
+1. Install and configure Replicated Storage by following the steps given [here](../rs-installation.md) and create disk pools.
 2. Create a Replicated Storage StorageClass with single replica.
 
 :::note
