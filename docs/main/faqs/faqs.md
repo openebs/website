@@ -22,7 +22,7 @@ To determine exactly where your data is physically stored, you can run the follo
 
 * Run `kubectl get pvc` to fetch the volume name. The volume name looks like: *pvc-ee171da3-07d5-11e8-a5be-42010a8001be*.
 
-* For each volume, you will notice one I/O controller pod and one or more replicas (as per the storage class configuration). You can use the volume ID (ee171da3-07d5-11e8-a5be-42010a8001be) to view information about the volume and replicas using the replicated engine [kubectl plugin](../../../docs/main/user-guides/replicated-engine-user-guide/advanced-operations/kubectl-plugin.md)
+* For each volume, you will notice one I/O controller pod and one or more replicas (as per the storage class configuration). You can use the volume ID (ee171da3-07d5-11e8-a5be-42010a8001be) to view information about the volume and replicas using the Replicated Storage [kubectl plugin](../../../docs/main/user-guides/replicated-storage-user-guide/advanced-operations/kubectl-plugin.md)
 
 [Go to top](#top)
 
@@ -208,7 +208,7 @@ Follow the instructions [here](https://github.com/openebs/zfs-localpv/tree/devel
 
 [Go to top](#top)
 
-### ZFS Pools are there on certain nodes only, how can I create the storage class.
+### ZFS Pools are there on certain nodes only, how can I create the storage class?
 
 If ZFS pool is available on certain nodes only, then make use of topology to tell the list of nodes where we have the ZFS pool available.
 As shown in the below storage class, we can use allowedTopologies to describe ZFS pool availability on nodes.
@@ -267,7 +267,7 @@ spec:
 
 [Go to top](#top)
 
-### How to add custom topology key?
+### How to add custom topology key to Local PV ZFS driver?
 
 To add custom topology key:
 * Label the nodes with the required key and value.
@@ -458,7 +458,7 @@ Once the above steps are done, the pod should be able to run on this new node wi
 
 [Go to top](#top)
 
-### How is data protected in Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor)? What happens when a host, client workload, or a data center fails?
+### How is data protected in Replicated Storage (a.k.a Replicated Storage and f.k.a Mayastor)? What happens when a host, client workload, or a data center fails?
 
 The OpenEBS Replicated Storage ensures resilience with built-in highly available architecture. It supports on-demand switch over of the NVMe controller to ensure IO continuity in case of host failure. The data is synchronously replicated as per the congigured replication factor to ensure no single point of failure.
 Faulted replicas are automatically rebuilt in the background without IO disruption to maintain the replication factor.
@@ -467,7 +467,7 @@ Faulted replicas are automatically rebuilt in the background without IO disrupti
 
 ### How does OpenEBS provide high availability for stateful workloads?
 
-See https://mayastor.gitbook.io/introduction/quickstart/configure-mayastor/storage-class-parameters#stsaffinitygroup (Internal Reference)
+See [here](../user-guides/replicated-storage-user-guide/rs-configuration.md#stsaffinitygroup) for more information.
 
 [Go to top](#top)
 
@@ -507,7 +507,7 @@ It is recommended to use unpartitioned raw block devices for best results.
 
 ### How does it help to keep my data safe?
 
-Replicated Storage engine supports synchronous mirroring to enhance the durability of data at rest within whatever physical persistence layer is in use. When volumes are provisioned which are configured for replication \(a user can control the count of active replicas which should be maintained, on a per StorageClass basis\), write I/O operations issued by an application to that volume are amplified by its controller ("nexus") and dispatched to all its active replicas. Only if every replica completes the write successfully on its own underlying block device will the I/O completion be acknowledged to the controller. Otherwise, the I/O is failed and the caller must make its own decision as to whether it should be retried. If a replica is determined to have faulted \(I/O cannot be serviced within the configured timeout period, or not without error\), the control plane will automatically take corrective action and remove it from the volume. If spare capacity is available within a replicated engine pool, a new replica will be created as a replacement and automatically brought into synchronisation with the existing replicas. The data path for a replicated volume is described in more detail [here](../user-guides/replicated-storage-user-guide/additional-information/i-o-path-description.md#replicated-volume-io-path)
+Replicated Storage engine supports synchronous mirroring to enhance the durability of data at rest within whatever physical persistence layer is in use. When volumes are provisioned which are configured for replication \(a user can control the count of active replicas which should be maintained, on a per StorageClass basis\), write I/O operations issued by an application to that volume are amplified by its controller ("nexus") and dispatched to all its active replicas. Only if every replica completes the write successfully on its own underlying block device will the I/O completion be acknowledged to the controller. Otherwise, the I/O is failed and the caller must make its own decision as to whether it should be retried. If a replica is determined to have faulted \(I/O cannot be serviced within the configured timeout period, or not without error\), the control plane will automatically take corrective action and remove it from the volume. If spare capacity is available within a Replicated Storage pool, a new replica will be created as a replacement and automatically brought into synchronisation with the existing replicas. The data path for a replicated volume is described in more detail [here](../user-guides/replicated-storage-user-guide/additional-information/i-o-path-description.md#replicated-volume-io-path).
 
 [Go to top](#top)
 
@@ -522,19 +522,19 @@ This documentation contains sections which are focused on initial quickstart dep
 
 ### What is the basis for its performance claims? Has it been benchmarked?
 
-Replicated engine has been built to leverage the performance potential of contemporary, high-end, solid state storage devices as a foremost design consideration. For this reason, the I/O path is predicated on NVMe, a transport which is both highly CPU efficient and which demonstrates highly linear resource scaling. The data path runs entirely within user space, also contributing efficiency gains as syscalls are avoided, and is both interrupt and lock free.
+Replicated Storage has been built to leverage the performance potential of contemporary, high-end, solid state storage devices as a foremost design consideration. For this reason, the I/O path is predicated on NVMe, a transport which is both highly CPU efficient and which demonstrates highly linear resource scaling. The data path runs entirely within user space, also contributing efficiency gains as syscalls are avoided, and is both interrupt and lock free.
 
-MayaData has performed its own benchmarking tests in collaboration with Intel, using latest generation Intel P5800X Optane devices "The World's Fastest Data Centre SSD". In those tests it was determined that, on average, across a range of read/write ratios and both with and without synchronous mirroring enabled, the overhead imposed by the replicated engine's I/O path was well under 10% \(in fact, much closer to 6%\).
+MayaData has performed its own benchmarking tests in collaboration with Intel, using latest generation Intel P5800X Optane devices "The World's Fastest Data Centre SSD". In those tests it was determined that, on average, across a range of read/write ratios and both with and without synchronous mirroring enabled, the overhead imposed by the Replicated Storage's I/O path was well under 10% \(in fact, much closer to 6%\).
 
-Further information regarding the testing performed may be found [here](https://openebs.io/blog/mayastor-nvme-of-tcp-performance)
+Further information regarding the testing performed may be found [here](https://openebs.io/blog/mayastor-nvme-of-tcp-performance).
 
 [Go to top](#top)
 
 ### What is the on-disk format used by Disk Pools? Is it also open source?
 
-Replicated engine makes use of parts of the open source [Storage Performance Development Kit \(SPDK\)](https://spdk.io/) project, contributed by Intel. Replicated engine's Storage Pools use the SPDK's Blobstore structure as their on-disk persistence layer. Blobstore structures and layout are [documented](https://github.com/spdk/spdk/blob/master/doc/blob.md).
+Replicated Storage makes use of parts of the open source [Storage Performance Development Kit \(SPDK\)](https://spdk.io/) project, contributed by Intel. Replicated Storage's Storage Pools use the SPDK's Blobstore structure as their on-disk persistence layer. Blobstore structures and layout are [documented](https://github.com/spdk/spdk/blob/master/doc/blob.md).
 
-Since the replicas \(data copies\) of replicated volumes are held entirely within Blobstores, it is not possible to directly access the data held on pool's block devices from outside of replicated engine. Equally, replicated engine cannot directly 'import' and use existing volumes which are not of replicated engine's origin. The project's maintainers are considering alternative options for the persistence layer which may support such data migration goals.
+Since the replicas \(data copies\) of replicated volumes are held entirely within Blobstores, it is not possible to directly access the data held on pool's block devices from outside of Replicated Storage. Equally, Replicated Storage cannot directly 'import' and use existing volumes which are not of Replicated Storage's origin. The project's maintainers are considering alternative options for the persistence layer which may support such data migration goals.
 
 [Go to top](#top)
 
@@ -544,7 +544,7 @@ The size of a Replicated Storage pool is fixed at the time of creation and is im
 
 ### How can I ensure that replicas aren't scheduled onto the same node? How about onto nodes in the same rack/availability zone?
 
-The replica placement logic of replicated engine's control plane doesn't permit replicas of the same volume to be placed onto the same node, even if it were to be within different Disk Pools. For example, if a volume with replication factor 3 is to be provisioned, then there must be three healthy Disk Pools available, each with sufficient free capacity and each located on its own replicated node. Further enhancements to topology awareness are under consideration by the maintainers.
+The replica placement logic of Replicated Storage's control plane doesn't permit replicas of the same volume to be placed onto the same node, even if it were to be within different Disk Pools. For example, if a volume with replication factor 3 is to be provisioned, then there must be three healthy Disk Pools available, each with sufficient free capacity and each located on its own replicated node. Further enhancements to topology awareness are under consideration by the maintainers.
 
 [Go to top](#top)
 
@@ -596,13 +596,13 @@ Replicated Storage does not run on Raspbery Pi as the version of the SPDK. Repli
 
 ### Does Replicated Storage suffer from TCP congestion when using NVME-TCP?
 
-Replicated engine, as any other solution leveraging TCP for network transport, may suffer from network congestion as TCP will try to slow down transfer speeds. It is important to keep an eye on networking and fine-tune TCP/IP stack as appropriate. This tuning can include \(but is not limited to\) send and receive buffers, MSS, congestion control algorithms \(e.g. you may try DCTCP\) etc.
+Replicated Storage, as any other solution leveraging TCP for network transport, may suffer from network congestion as TCP will try to slow down transfer speeds. It is important to keep an eye on networking and fine-tune TCP/IP stack as appropriate. This tuning can include \(but is not limited to\) send and receive buffers, MSS, congestion control algorithms \(e.g. you may try DCTCP\) etc.
 
 [Go to top](#top)
 
 ### Why do Replicated Storage pods show high levels of CPU utilization when there is little or no I/O being processed?
 
-Replicated engine has been designed so as to be able to leverage the peformance capabilities of contemporary high-end solid-state storage devices. A significant aspect of this is the selection of a polling based I/O service queue, rather than an interrupt driven one. This minimises the latency introduced into the data path but at the cost of additional CPU utilization by the "reactor" - the poller operating at the heart of the replicated engine pod. When replicated engine pods have been deployed to a cluster, it is expected that these daemonset instances will make full utilization of their CPU allocation, even when there is no I/O load on the cluster. This is simply the poller continuing to operate at full speed, waiting for I/O. For the same reason, it is recommended that when configuring the CPU resource limits for the replicated engine daemonset, only full, not fractional, CPU limits are set; fractional allocations will also incur additional latency, resulting in a reduction in overall performance potential. The extent to which this performance degradation is noticeable in practice will depend on the performance of the underlying storage in use, as well as whatvever other bottlenecks/constraints may be present in the system as cofigured.
+Replicated Storage has been designed so as to be able to leverage the peformance capabilities of contemporary high-end solid-state storage devices. A significant aspect of this is the selection of a polling based I/O service queue, rather than an interrupt driven one. This minimises the latency introduced into the data path but at the cost of additional CPU utilization by the "reactor" - the poller operating at the heart of the Replicated Storage pod. When Replicated Storage pods have been deployed to a cluster, it is expected that these daemonset instances will make full utilization of their CPU allocation, even when there is no I/O load on the cluster. This is simply the poller continuing to operate at full speed, waiting for I/O. For the same reason, it is recommended that when configuring the CPU resource limits for the Replicated Storage daemonset, only full, not fractional, CPU limits are set; fractional allocations will also incur additional latency, resulting in a reduction in overall performance potential. The extent to which this performance degradation is noticeable in practice will depend on the performance of the underlying storage in use, as well as whatvever other bottlenecks/constraints may be present in the system as cofigured.
 
 [Go to top](#top)
 
@@ -614,7 +614,7 @@ The supportability tool generates support bundles, which are used for debugging 
 
 ### What happens when a PV with reclaim policy set to retain is deleted?
 
-In Kubernetes, when a PVC is created with the reclaim policy set to 'Retain', the PV bound to this PVC is not deleted even if the PVC is deleted. One can manually delete the PV by issuing the command "kubectl delete pv ", however the underlying storage resources could be left behind as the CSI volume provisioner (external provisioner) is not aware of this. To resolve this issue of dangling storage objects, replicated engine  has introduced a PV garbage collector. This PV garbage collector is deployed as a part of the replicated engine CSI controller-plugin.
+In Kubernetes, when a PVC is created with the reclaim policy set to 'Retain', the PV bound to this PVC is not deleted even if the PVC is deleted. One can manually delete the PV by issuing the command "kubectl delete pv ", however the underlying storage resources could be left behind as the CSI volume provisioner (external provisioner) is not aware of this. To resolve this issue of dangling storage objects, Replicated Storage  has introduced a PV garbage collector. This PV garbage collector is deployed as a part of the Replicated Storage CSI controller-plugin.
 
 [Go to top](#top)
 

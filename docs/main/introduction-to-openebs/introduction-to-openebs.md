@@ -68,9 +68,9 @@ Replicated Volumes also are capable of enterprise storage features like snapshot
 Depending on the type of storage attached to your Kubernetes worker nodes and the requirements of your workloads, you can select from Local Storage or Replicated Storage.
 :::
 
-## Quickstart Guides
+## Quickstart Guide
 
-Installing OpenEBS in your cluster is as simple as running a few `kubectl` or `helm` commands. Refer to our [Quickstart guide](../quickstart-guide) for more information.
+Installing OpenEBS in your cluster is as simple as running a few `kubectl` or `helm` commands. Refer to our [Quickstart guide](../quickstart-guide/installation.md) for more information.
 
 ## Community Support via Slack
 
@@ -78,11 +78,11 @@ OpenEBS has a vibrant community that can help you get started. If you have furth
 
 ## See Also
 
-- [Quickstart](../quickstart-guide)
+- [Quickstart](../../main/quickstart-guide/)
 - [Installation](../quickstart-guide/installation.md)
 - [Deployment](../quickstart-guide/deploy-a-test-application.md)
 - [Use Cases and Examples](use-cases-and-examples.mdx)
 - [Container Native Storage (CNS)](../concepts/container-native-storage.md)
 - [OpenEBS Architecture](../concepts/architecture.md)
 - [OpenEBS Local Storage](../concepts/data-engines/local-storage.md)
-- [OpenEBS Replicated Storage](../concepts/data-engines/replicated-engine.md)
+- [OpenEBS Replicated Storage](../concepts/data-engines/replicated-storage.md)

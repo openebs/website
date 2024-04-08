@@ -3,14 +3,14 @@ id: replicated-storage
 title: Replicated Storage
 keywords: 
   - Replicated Storage
-description: In this document you will learn about Replicated Storage and it's design goals.
+description: In this document you will learn about Replicated Storage and its design goals.
 ---
 
-## Replicated Storage Overview 
+## Overview 
 
 **Replicated Storage** is a progressive sub-project of the CNCF (Cloud Native Computing Foundation) Open Source initiative [**OpenEBS**](https://openebs.io/). OpenEBS is a Container Native Storage (CNS) solution that extends Kubernetes by providing a declarative data plane, offering resilient and adaptable storage for stateful applications.
 
-## Replicated Storage Design Goals
+## Design Goals
 
 The fundamental design objectives driving Replicated Storage's development are as follows:
 
@@ -28,9 +28,9 @@ In contrast, traditional pre-CNS shared storage systems are known to introduce o
 Although Replicated Storage utilizes NVMe-oF, it does not impose any requirements for the use of NVMe devices or cloud volumes.
 :::
 
-## Quickstart Guides
+## Quickstart Guide
 
-OpenEBS provides Local Volume that can be used to provide locally mounted storage to Kubernetes Stateful workloads. Refer to the [Quickstart Guide](../../quickstart-guide/) for more information.
+OpenEBS provides Local Volume that can be used to provide locally mounted storage to Kubernetes Stateful workloads. Refer to the [Quickstart Guide](../../quickstart-guide/installation.md) for more information.
 
 ## Source Code and Contributions
 
@@ -43,7 +43,7 @@ Join the vibrant [OpenEBS community on Kubernetes Slack](https://kubernetes.slac
 
 ## See Also
 
-[OpenEBS Architecture](../architecture.md)
-[Replicated Storage Prerequisites](../../user-guides/replicated-engine-user-guide/prerequisites.md)
-[Installation](../../quickstart-guide/installation.md)
-[Replicated Storage User Guide](../../user-guides/replicated-engine-user-guide/)
+- [OpenEBS Architecture](../architecture.md)
+- [Replicated Storage Prerequisites](../../user-guides/replicated-storage-user-guide/prerequisites.md)
+- [Installation](../../quickstart-guide/installation.md)
+- [Replicated Storage User Guide](../../../main/user-guides/replicated-storage-user-guide/)
