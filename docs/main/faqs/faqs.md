@@ -615,7 +615,7 @@ The supportability tool generates support bundles, which are used for debugging 
 
 ### What happens when a PV with reclaim policy set to retain is deleted?
 
-In Kubernetes, when a PVC is created with the reclaim policy set to 'Retain', the PV bound to this PVC is not deleted even if the PVC is deleted. One can manually delete the PV by issuing the command "kubectl delete pv ", however the underlying storage resources could be left behind as the CSI volume provisioner (external provisioner) is not aware of this. To resolve this issue of dangling storage objects, Replicated Storage has introduced a PV garbage collector. This PV garbage collector is deployed as a part of the Replicated Storage CSI controller-plugin.
+In Kubernetes, when a PVC is created with the reclaim policy set to 'Retain', the PV bound to this PVC is not deleted even if the PVC is deleted. One can manually delete the PV by issuing the command "kubectl delete pv", however the underlying storage resources could be left behind as the CSI volume provisioner (external provisioner) is not aware of this. To resolve this issue of dangling storage objects, Replicated Storage has introduced a PV garbage collector. This PV garbage collector is deployed as a part of the Replicated Storage CSI controller-plugin.
 
 [Go to top](#top)
 
