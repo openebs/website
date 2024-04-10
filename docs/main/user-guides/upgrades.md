@@ -24,11 +24,13 @@ See the [migration documentation](../user-guides/data-migration/migration-overvi
 This upgrade flow would allow users to upgrade to the latest OpenEBS version 4.0.0 which is a unified installer for three Local Storages (a.k.a Local Engines) Local PV HostPath, Local PV LVM, Local PV ZFS, and one Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor). 
 As a part of upgrade to OpenEBS 4.0.0, the helm chart would install all four engines irrespective of the engine the user was using prior to the upgrade. 
 
+:::info
 During the upgrade, advanced users who are only interested in Local PV Storage, can disable the Replicated Storage by setting the below option:
 
 ```
 --set mayastor.enabled=false
 ```
+:::
 
 ## Local Storage
 
