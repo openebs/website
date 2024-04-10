@@ -522,7 +522,7 @@ kubectl get pv
 OpenEBS Local Volumes can be backed up and restored along with the application using [Velero](https://velero.io).
 
 :::note
-The following steps assume that you already have Velero with Restic integration is configured. If not, please follow the [Velero Documentation](https://velero.io/docs/) to proceed with install and setup of Velero.  If you encounter any issues or have questions, talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+The following steps assume that you already have Velero with [Node Agent](https://velero.io/docs/v1.13/file-system-backup/) integration is configured. If not, please follow the [Velero Documentation](https://velero.io/docs/) to proceed with install and setup of Velero.  If you encounter any issues or have questions, talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
 :::
 
 ### Backup
