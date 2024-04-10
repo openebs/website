@@ -342,8 +342,8 @@ kubectl logs -n openebs -l openebs.io/component-name=openebs-localpv-provisioner
 
 ## See Also
 
-[FAQs](../faqs/faqs.md)
-[Latest Release Notes](../releases.md)
-[OpenEBS Community](../community.md)
-[OpenEBS GitHub repository](https://github.com/openebs/openebs/issues)
-[StackOverflow under OpenEBS tag](https://stackoverflow.com/questions/tagged/openebs)
+- [FAQs](../faqs/faqs.md)
+- [Latest Release Notes](../releases.md)
+- [OpenEBS Community](../community.md)
+- [OpenEBS GitHub repository](https://github.com/openebs/openebs/issues)
+- [StackOverflow under OpenEBS tag](https://stackoverflow.com/questions/tagged/openebs)
