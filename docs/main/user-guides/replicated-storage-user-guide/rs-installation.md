@@ -279,7 +279,7 @@ If you modify the huge page configuration of a node, you _MUST_ either restart k
 
 #### Label IO Node Candidates
 
-All worker nodes which will have IO engine pods running on them must be labelled with the OpenEBS storage type "Replicated Engine". This label will be used as a node selector by the IO engine Daemonset, which is deployed as a part of the Replicated Storage data plane components installation. To add this label to a node, execute:
+All worker nodes which will have IO engine pods running on them must be labeled with the OpenEBS storage type "Replicated Engine". This label will be used as a node selector by the IO engine Daemonset, which is deployed as a part of the Replicated Storage data plane components installation. To add this label to a node, execute:
 
 ```
 kubectl label node <node_name> openebs.io/engine=mayastor

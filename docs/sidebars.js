@@ -199,7 +199,7 @@ module.exports = {
                       label: "Thin Provisioning"
                     }
                   ]
-                }
+                },
               ] 
             },
             {
@@ -259,7 +259,7 @@ module.exports = {
                       label: "Raw Block Volume"
                     }
                   ]
-                }
+                },
               ] 
             },   
             {

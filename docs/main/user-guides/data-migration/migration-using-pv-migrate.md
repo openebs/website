@@ -228,7 +228,7 @@ Follow the steps below to migrate OpenEBS cStor to OpenEBS Replicated (fka Mayas
 
 1. [Install Replicated Storage](../../quickstart-guide/installation.md) on your cluster.
 
-2. Create a replicated PVC of the same [configuration](../../user-guides/replicated-engine-user-guide/replicated-engine-deployment.md). See the example below:
+2. Create a replicated PVC of the same [configuration](../replicated-storage-user-guide/rs-configuration.md). See the example below:
 
 ```
 apiVersion: v1

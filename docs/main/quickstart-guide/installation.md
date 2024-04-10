@@ -19,7 +19,10 @@ The OpenEBS workflow fits nicely into the reconcilation pattern introduced by Ku
 
 ## Prerequisites
 
-If this is your first time installing OpenEBS Local Storage (a.k.a Local Engines), make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/local-storage-user-guide/).
+If this is your first time installing OpenEBS Local Storage (a.k.a Local Engines), make sure that your Kubernetes nodes meet the required prerequisites for the following local storages:
+- [Local PV Hostpath](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md#prerequisites)
+- [Local PV LVM](../user-guides/local-storage-user-guide/local-pv-lvm/lvm-installation.md#prerequisites)
+- [Local PV ZFS](../user-guides/local-storage-user-guide/local-pv-zfs/zfs-installation.md#prerequisites)
 
 For OpenEBS Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor), make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/replicated-storage-user-guide/rs-installation.md#prerequisites).
 
@@ -183,11 +186,11 @@ openebs-single-replica     io.openebs.csi-mayastor   Delete          Immediate  
 
 ## Post-Installation Considerations
 
-For testing your OpenEBS installation, you can use the `openebs-hostpath` mentioned in the [Local Storage User Guide](../user-guides/local-storage-user-guide/) for provisioning Local PV on hostpath.
+For testing your OpenEBS installation, you can use the `openebs-hostpath` mentioned in the [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md) for provisioning Local PV on hostpath.
 
 You can follow through the below user guides for each of the engines to use storage devices available on the nodes instead of the `/var/openebs` directory to save the data.  
-- [Local Storage User Guide](../user-guides/local-storage-user-guide/)
-- [Replicated Storage User Guide](../user-guides/replicated-engine-user-guide/)
+- [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
+- [Replicated Storage User Guide](../user-guides/replicated-storage-user-guide/rs-installation.md)
 
 ## See Also
 

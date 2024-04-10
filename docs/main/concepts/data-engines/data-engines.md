@@ -129,7 +129,7 @@ The below table identifies few differences among the different OpenEBS Local Sto
 Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) can synchronously replicate the data to multiple nodes. These engines provide protection against node failures, by allowing the volume to be accessible from one of the other nodes where the data was replicated to. The replication can also be setup across availability zones helping applications move across availability zones. Replicated Volumes are also capable of enterprise storage features like snapshots, clone, volume expansion, and so forth. 
 
 :::tip
-Depending on the type of storage attached to your Kubernetes worker nodes and application performance requirements, you can select from [Local Storage](local-storage.md) or [Replicated Storage](replicated-engine.md).
+Depending on the type of storage attached to your Kubernetes worker nodes and application performance requirements, you can select from [Local Storage](local-storage.md) or [Replicated Storage](replicated-storage.md).
 :::
 
 :::note
@@ -164,6 +164,5 @@ A short summary is provided below.
 
 ## See Also
 
-[User Guides](../../user-guides/)
-[Local Storage User Guide](../../user-guides/local-storage-user-guide/)
-[Replicated Storage User Guide](../../user-guides/replicated-engine-user-guide/)
+- [Local Storage User Guide](../../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
+- [Replicated Storage User Guide](../../user-guides/replicated-storage-user-guide/rs-installation.md)

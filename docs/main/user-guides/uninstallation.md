@@ -11,10 +11,10 @@ This section describes about the graceful deletion/uninstallation of your OpenEB
 
 ## Prerequisites
 
-It is expected that the prerequisites are met before uninstalling OpenEBS
+It is expected that the following prerequisites are met before uninstalling OpenEBS:
 
-1. Volumes are cleaned up.
-2. Pools are cleaned up.
+1. Volumes are cleaned up
+2. Pools are cleaned up
 
 :::warning
 If the prerequisites are not met, there might be some troubles/errors while uninstalling OpenEBS as the finalizers and other protection rules are imposed by the engine.
@@ -22,7 +22,7 @@ If the prerequisites are not met, there might be some troubles/errors while unin
 
 ## Uninstalling OpenEBS using Helm
 
-Run the below command to uninstall the OpenEBS:
+Run the following command to uninstall OpenEBS:
 
 ```
 helm uninstall openebs -n <OPENEBS_NAMESPACE>
