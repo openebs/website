@@ -168,41 +168,6 @@ Local PV ZFS is a CSI driver for dynamically provisioning a volume in ZFS storag
 
 [Go to top](#top)
 
-### How to install Local PV ZFS?
-
-Make sure that all the nodes have zfsutils-linux installed. We should go to the each node of the cluster and install zfs utils
-
-```
-$ apt-get install zfsutils-linux
-```
-Go to each node and create the ZFS Pool, which will be used for provisioning the volumes. You can create the Pool of your choice, it can be striped, mirrored or raidz pool.
-
-Once ZFS POOL is created we can install OpenEBS ZFS driver by running the following command.
-
-```
-kubectl apply -f https://raw.githubusercontent.com/openebs/zfs-localpv/develop/deploy/zfs-operator.yaml
-```
-
-Verify that the ZFS driver Components are installed and running using below command :
-
-```
-$ kubectl get pods -n kube-system -l role=openebs-zfs
-```
-
-Depending on number of nodes, you will see one zfs-controller pod and zfs-node daemonset running
-on the nodes.
-
-```
-NAME                       READY   STATUS    RESTARTS   AGE
-openebs-zfs-controller-0   4/4     Running   0          5h28m
-openebs-zfs-node-4d94n     2/2     Running   0          5h28m
-openebs-zfs-node-gssh8     2/2     Running   0          5h28m
-openebs-zfs-node-twmx8     2/2     Running   0          5h28m
-
-```
-
-[Go to top](#top)
-
 ### How to upgrade the driver to newer version?
 
 Follow the instructions [here](https://github.com/openebs/zfs-localpv/tree/develop/upgrade).
@@ -591,7 +556,7 @@ The Replicated Storage nightly builds and releases are compiled and tested on x8
 
 Minimum hardware requirements are discussed in the [quickstart section](../quickstart-guide/installation.md) of this documentation.
 
-Replicated Storage does not run on Raspbery Pi as the current version of SPDK requires ARMv8 Crypto extensions. Replicated Storage requires ARMv8 Crypto extensions which are not currently available for Pi.
+Replicated Storage does not run on Raspberry Pi as the current version of SPDK requires ARMv8 Crypto extensions which are not currently available for Pi.
 
 [Go to top](#top)
 
@@ -601,9 +566,9 @@ Replicated Storage, as any other solution leveraging TCP for network transport, 
 
 [Go to top](#top)
 
-### Why do Replicated Storage pods show high levels of CPU utilization when there is little or no I/O being processed?
+### Why do Replicated Storage's IO engine pods show high levels of CPU utilization when there is little or no I/O being processed?
 
-Replicated Storage has been designed so as to be able to leverage the peformance capabilities of contemporary high-end solid-state storage devices. A significant aspect of this is the selection of a polling based I/O service queue, rather than an interrupt driven one. This minimises the latency introduced into the data path but at the cost of additional CPU utilization by the "reactor" - the poller operating at the heart of the Replicated Storage pod. When Replicated Storage pods have been deployed to a cluster, it is expected that these daemonset instances will make full utilization of their CPU allocation, even when there is no I/O load on the cluster. This is simply the poller continuing to operate at full speed, waiting for I/O. For the same reason, it is recommended that when configuring the CPU resource limits for the Replicated Storage daemonset, only full, not fractional, CPU limits are set; fractional allocations will also incur additional latency, resulting in a reduction in overall performance potential. The extent to which this performance degradation is noticeable in practice will depend on the performance of the underlying storage in use, as well as whatvever other bottlenecks/constraints may be present in the system as cofigured.
+Replicated Storage has been designed so as to be able to leverage the peformance capabilities of contemporary high-end solid-state storage devices. A significant aspect of this is the selection of a polling based I/O service queue, rather than an interrupt driven one. This minimizes the latency introduced into the data path but at the cost of additional CPU utilization by the "reactor" - the poller operating at the heart of the Replicated Storage's IO engine pod. When the IO engine pod is deployed on a cluster, it is expected that these daemonset instances will make full utilization of their CPU allocation, even when there is no I/O load on the cluster. This is simply the poller continuing to operate at full speed, waiting for I/O. For the same reason, it is recommended that when configuring the CPU resource limits for the IO engine daemonset, only full, not fractional, CPU limits are set; fractional allocations will also incur additional latency, resulting in a reduction in overall performance potential. The extent to which this performance degradation is noticeable in practice will depend on the performance of the underlying storage in use, as well as whatvever other bottlenecks/constraints may be present in the system as cofigured.
 
 [Go to top](#top)
 
