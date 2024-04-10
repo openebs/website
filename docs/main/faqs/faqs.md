@@ -22,7 +22,7 @@ To determine exactly where your data is physically stored, you can run the follo
 
 * Run `kubectl get pvc` to fetch the volume name. The volume name looks like: *pvc-ee171da3-07d5-11e8-a5be-42010a8001be*.
 
-* For each volume, you will notice one I/O controller pod and one or more replicas (as per the storage class configuration). You can use the volume ID (ee171da3-07d5-11e8-a5be-42010a8001be) to view information about the volume and replicas using the Replicated Storage [kubectl plugin](../../../docs/main/user-guides/replicated-storage-user-guide/advanced-operations/kubectl-plugin.md)
+* For each volume, you will notice one I/O controller pod and one or more replicas (as per the storage class configuration). You can use the volume ID (ee171da3-07d5-11e8-a5be-42010a8001be) to view information about the volume and replicas using the Replicated Storage [kubectl plugin](../user-guides/replicated-storage-user-guide/advanced-operations/kubectl-plugin.md)
 
 [Go to top](#top)
 
@@ -459,7 +459,7 @@ Once the above steps are done, the pod should be able to run on this new node wi
 
 [Go to top](#top)
 
-### How is data protected in Replicated Storage (a.k.a Replicated Storage and f.k.a Mayastor)? What happens when a host, client workload, or a data center fails?
+### How is data protected in Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor)? What happens when a host, client workload, or a data center fails?
 
 The OpenEBS Replicated Storage ensures resilience with built-in highly available architecture. It supports on-demand switch over of the NVMe controller to ensure IO continuity in case of host failure. The data is synchronously replicated as per the congigured replication factor to ensure no single point of failure.
 Faulted replicas are automatically rebuilt in the background without IO disruption to maintain the replication factor.
@@ -525,7 +525,7 @@ This documentation contains sections which are focused on initial quickstart dep
 
 Replicated Storage has been built to leverage the performance potential of contemporary, high-end, solid state storage devices as a foremost design consideration. For this reason, the I/O path is predicated on NVMe, a transport which is both highly CPU efficient and which demonstrates highly linear resource scaling. The data path runs entirely within user space, also contributing efficiency gains as syscalls are avoided, and is both interrupt and lock free.
 
-MayaData has performed its own benchmarking tests in collaboration with Intel, using latest generation Intel P5800X Optane devices "The World's Fastest Data Centre SSD". In those tests it was determined that, on average, across a range of read/write ratios and both with and without synchronous mirroring enabled, the overhead imposed by the Replicated Storage's I/O path was well under 10% \(in fact, much closer to 6%\).
+MayaData performance benchmarking was done in collaboration with Intel, using latest generation Intel P5800X Optane devices "The World's Fastest Data Centre SSD". In those tests it was determined that, on average, across a range of read/write ratios and both with and without synchronous mirroring enabled, the overhead imposed by the Replicated Storage's I/O path was well under 10% \(in fact, much closer to 6%\).
 
 Further information regarding the testing performed may be found [here](https://openebs.io/blog/mayastor-nvme-of-tcp-performance).
 
@@ -581,7 +581,7 @@ No.
 
 ### Does Replicated Storage support snapshots? Clones?
 
-No, but these may be features of future releases.
+Yes, snapshots and clones support is presently limited to volumes with only one replica. Snapshot and clone support for multi-replica volumes is planned in the upcoming release.
 
 [Go to top](#top)
 
@@ -591,7 +591,7 @@ The Replicated Storage nightly builds and releases are compiled and tested on x8
 
 Minimum hardware requirements are discussed in the [quickstart section](../quickstart-guide/installation.md) of this documentation.
 
-Replicated Storage does not run on Raspbery Pi as the version of the SPDK. Replicated Storage requires ARMv8 Crypto extensions which are not currently available for Pi.
+Replicated Storage does not run on Raspbery Pi as the current version of SPDK requires ARMv8 Crypto extensions. Replicated Storage requires ARMv8 Crypto extensions which are not currently available for Pi.
 
 [Go to top](#top)
 
@@ -615,7 +615,7 @@ The supportability tool generates support bundles, which are used for debugging 
 
 ### What happens when a PV with reclaim policy set to retain is deleted?
 
-In Kubernetes, when a PVC is created with the reclaim policy set to 'Retain', the PV bound to this PVC is not deleted even if the PVC is deleted. One can manually delete the PV by issuing the command "kubectl delete pv ", however the underlying storage resources could be left behind as the CSI volume provisioner (external provisioner) is not aware of this. To resolve this issue of dangling storage objects, Replicated Storage  has introduced a PV garbage collector. This PV garbage collector is deployed as a part of the Replicated Storage CSI controller-plugin.
+In Kubernetes, when a PVC is created with the reclaim policy set to 'Retain', the PV bound to this PVC is not deleted even if the PVC is deleted. One can manually delete the PV by issuing the command "kubectl delete pv ", however the underlying storage resources could be left behind as the CSI volume provisioner (external provisioner) is not aware of this. To resolve this issue of dangling storage objects, Replicated Storage has introduced a PV garbage collector. This PV garbage collector is deployed as a part of the Replicated Storage CSI controller-plugin.
 
 [Go to top](#top)
 

@@ -223,5 +223,5 @@ Once the workloads are up and running, the platform or the operations team can o
 - [Local PV ZFS](../user-guides/local-storage-user-guide/zfs-localpv.md)
 - [Local Storage](../concepts/data-engines/local-storage.md)
 - [Replicated Storage](../concepts/data-engines/replicated-storage.md)
-- [Local Storage User Guide](../../main/user-guides/local-storage-user-guide/)
-- [Replicated Storage User Guide](../../main/user-guides/replicated-storage-user-guide/)
+- [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
+- [Replicated Storage User Guide](../user-guides/replicated-storage-user-guide/rs-installation.md)

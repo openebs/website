@@ -78,7 +78,7 @@ OpenEBS has a vibrant community that can help you get started. If you have furth
 
 ## See Also
 
-- [Quickstart](../../main/quickstart-guide/)
+- [Quickstart](../quickstart-guide/installation.md)
 - [Installation](../quickstart-guide/installation.md)
 - [Deployment](../quickstart-guide/deploy-a-test-application.md)
 - [Use Cases and Examples](use-cases-and-examples.mdx)

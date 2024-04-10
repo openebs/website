@@ -30,7 +30,7 @@ Although Replicated Storage utilizes NVMe-oF, it does not impose any requirement
 
 ## Quickstart Guide
 
-OpenEBS provides Local Volume that can be used to provide locally mounted storage to Kubernetes Stateful workloads. Refer to the [Quickstart Guide](../../quickstart-guide/installation.md) for more information.
+Refer to the [Quickstart Guide](../../quickstart-guide/installation.md) for more information.
 
 ## Source Code and Contributions
 
@@ -46,4 +46,4 @@ Join the vibrant [OpenEBS community on Kubernetes Slack](https://kubernetes.slac
 - [OpenEBS Architecture](../architecture.md)
 - [Replicated Storage Prerequisites](../../user-guides/replicated-storage-user-guide/prerequisites.md)
 - [Installation](../../quickstart-guide/installation.md)
-- [Replicated Storage User Guide](../../../main/user-guides/replicated-storage-user-guide/)
+- [Replicated Storage User Guide](../../user-guides/replicated-storage-user-guide/rs-installation.md)

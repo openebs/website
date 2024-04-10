@@ -98,5 +98,5 @@ A quick summary of the steps to restore include:
 - [Local PV LVM Prerequisites](../../user-guides/local-storage-user-guide/local-pv-lvm/lvm-installation.md)
 - [Local PV ZFS Prerquisites](../../user-guides/local-storage-user-guide/local-pv-zfs/zfs-installation.md)
 - [Installation](../../quickstart-guide/installation.md)
-- [Local Storage User Guide](../../../main/user-guides/local-storage-user-guide/)
+- [Local Storage User Guide](../../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
 

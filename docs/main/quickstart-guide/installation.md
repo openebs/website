@@ -186,11 +186,11 @@ openebs-single-replica     io.openebs.csi-mayastor   Delete          Immediate  
 
 ## Post-Installation Considerations
 
-For testing your OpenEBS installation, you can use the `openebs-hostpath` mentioned in the [Local Storage User Guide](../../main/user-guides/local-storage-user-guide/) for provisioning Local PV on hostpath.
+For testing your OpenEBS installation, you can use the `openebs-hostpath` mentioned in the [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md) for provisioning Local PV on hostpath.
 
 You can follow through the below user guides for each of the engines to use storage devices available on the nodes instead of the `/var/openebs` directory to save the data.  
-- [Local Storage User Guide](../../main/user-guides/local-storage-user-guide/)
-- [Replicated Storage User Guide](../../main/user-guides/replicated-storage-user-guide/)
+- [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
+- [Replicated Storage User Guide](../user-guides/replicated-storage-user-guide/rs-installation.md)
 
 ## See Also
 
