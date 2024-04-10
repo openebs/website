@@ -20,7 +20,7 @@ This section will help you to deploy an application.
 
 ## Create a PersistentVolumeClaim
 
-The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolumeClaims to request Hostpath Local PV from *OpenEBS Dynamic Local PV provisioner*.
+The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolumeClaims to request Hostpath Local PV from the *OpenEBS Dynamic Local PV provisioner*.
 
 1. Here is the configuration file for the PersistentVolumeClaim. Save the following PersistentVolumeClaim definition as `local-hostpath-pvc.yaml`
 
@@ -84,7 +84,7 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
    ```
 
    :::note
-   As the Local PV storage classes use `waitForFirstConsumer`, do not use `nodeName` in the Pod spec to specify node affinity. If `nodeName` is used in the Pod spec, then PVC will remain in `pending` state. For more details refer https://github.com/openebs/openebs/issues/2915.
+   As the Local PV storage classes use `waitForFirstConsumer`, do not use `nodeName` in the Pod spec to specify node affinity. If `nodeName` is used in the Pod spec, then PVC will remain in `pending` state. See [here](https://github.com/openebs/openebs/issues/2915) for more details.
    :::
 
 2. Create the Pod:
@@ -195,7 +195,7 @@ A few important characteristics of a *OpenEBS Local PV* can be seen from the abo
 
 The application developers will launch their application (stateful workloads) that will in turn create Persistent Volume Claims for requesting the Storage or Volumes for their pods. The Platform teams can provide templates for the applications with associated PVCs or application developers can select from the list of Storage Classes available for them. 
 
-As an application developer all you have to do is substitute the `StorageClass` in your PVCs with the OpenEBS Storage Classes available in your Kubernetes cluster. 
+As an application developer, all you have to do is substitute the `StorageClass` in your PVCs with the OpenEBS Storage Classes available in your Kubernetes cluster. 
 
 **Here are examples of some applications using OpenEBS:**
 

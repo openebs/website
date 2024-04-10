@@ -10,7 +10,7 @@ description: This section talks about the advanced operations that can be perfor
 
 ## Prerequisites
 
-For clone, we need to have `VolumeSnapshotDataSource` support, which is in beta in Kubernetes 1.17. If you are using the Kubernetes version less than 1.17, you have to enable the `VolumeSnapshotDataSource` feature gate at kubelet and kube-apiserver.
+For clone, we need to have `VolumeSnapshotDataSource` support, which is in beta in Kubernetes 1.23. If you are using the Kubernetes version less than 1.23, you have to enable the `VolumeSnapshotDataSource` feature gate at kubelet and kube-apiserver.
 
 ## Create Clone from Snapshot
 

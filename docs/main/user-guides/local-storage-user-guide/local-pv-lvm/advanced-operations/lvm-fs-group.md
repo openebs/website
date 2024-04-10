@@ -14,14 +14,14 @@ We can manage permission change of volume using fsGroup. This helps non root pro
 
 ## External Links Describing this Feature
 
-- https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/1682-csi-driver-skip-permission
-- https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/695-skip-permission-change
-- https://github.com/kubernetes/kubernetes/blob/master/pkg/volume/csi/csi_mounter.go
-- https://github.com/kubernetes/kubernetes/blob/master/pkg/volume/volume.go
+- [CSI Driver Skip Permission](https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/1682-csi-driver-skip-permission)
+- [Skip Permission Change](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/695-skip-permission-change)
+- [CSI Mounter](https://github.com/kubernetes/kubernetes/blob/master/pkg/volume/csi/csi_mounter.go)
+- [Volume](https://github.com/kubernetes/kubernetes/blob/master/pkg/volume/volume.go)
 
 ## Implementation Details
 
-Volume ownership and permission is managed by kubelet. To mount CSI volume kubelet calls `NodePublishVolume` implemented by `SP`, after successful mount it tries to apply ownership and permission if required. Every volume in kubernetes like configmap, secret, csi volume implements `Mounter` and `Unmounter` interface. Volume ownership and permission is part of `SetUp` method of CSI Mounter.
+Volume ownership and permission is managed by kubelet. To mount CSI volume kubelet calls `NodePublishVolume` implemented by `SP`, after successful mount it tries to apply ownership and permission if required. Every volume in kubernetes like configmap, secret, CSI volume implements `Mounter` and `Unmounter` interface. Volume ownership and permission is part of `SetUp` method of CSI Mounter.
 
 ```bash
  _________________________ Kubernetes Node _________________________________

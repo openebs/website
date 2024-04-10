@@ -12,7 +12,7 @@ description: This section explains the configuration requirements to set up Open
 
 This section will help you to configure Local PV Hostpath.
 
-### Create StorageClass
+## Create StorageClass
 
 You can skip this section if you would like to use default OpenEBS Local PV Hostpath StorageClass created by OpenEBS. 
 
@@ -36,7 +36,7 @@ The default Storage Class is called `openebs-hostpath` and its `BasePath` is con
    reclaimPolicy: Delete
    volumeBindingMode: WaitForFirstConsumer
    ```
-    #### (Optional) Custom Node Labeling
+    ### (Optional) Custom Node Labeling
 
     In Kubernetes, Local PV Hostpath identifies nodes using labels such as `kubernetes.io/hostname=<node-name>`. However, these default labels might not ensure each node is distinct across the entire cluster. To solve this, you can make custom labels. As an admin, you can define and set these labels when configuring a **StorageClass**. Here's a sample storage class:
 

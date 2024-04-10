@@ -14,7 +14,7 @@ description: This section explains the configuration requirements to set up Open
 
 This section will help you to configure Local PV ZFS.
 
-### Create StorageClass
+## Create StorageClass
 
 ```
 apiVersion: storage.k8s.io/v1
@@ -65,7 +65,7 @@ provisioner: zfs.csi.openebs.io
 ```
 
 :::note
-We are providing `volblocksize` instead of `recordsize` since we will create a ZVOL, for which we can select the blocksize with which we want to create the block device. Also, note that for ZFS, volblocksize should be power of 2.
+We are providing `volblocksize` instead of `recordsize` since we will create a ZVOL, for which we can select the blocksize with which we want to create the block device. The volblocksize should be power of 2.
 :::
 
 **ZFS as FsType**
@@ -94,7 +94,7 @@ We are providing `recordsize` which will be used to create the ZFS datasets, whi
 
 **ZPOOL Availability**
 
-If ZFS pool is available on certain nodes only, then make use of topology to tell the list of nodes where we have the ZFS pool available. As shown in the below storage class, we can use allowedTopologies to describe ZFS pool availability on nodes.
+If ZFS pool is available on certain nodes only, then make use of topology to tell the list of nodes where we have the ZFS pool available. As shown in the below storage class, we can use allowed Topologies to describe ZFS pool availability on nodes.
 
 ```
 apiVersion: storage.k8s.io/v1
@@ -125,7 +125,7 @@ The provisioner name for ZFS driver is "zfs.csi.openebs.io", we have to use this
 
 **Scheduler**
 
-The ZFS driver has its own scheduler which will try to distribute the PV across the nodes so that one node should not be loaded with all the volumes. Currently the driver supports two scheduling algorithms: VolumeWeighted and CapacityWeighted, in which it will try to find a ZFS pool which has less number of volumes provisioned in it or less capacity of volume provisioned out of a pool respectively, from all the nodes where the ZFS pools are available. To know about how to select scheduler via storage-class See [this](https://github.com/openebs/zfs-localpv/blob/HEAD/docs/storageclasses.md#storageclass-with-k8s-scheduler). Once it is able to find the node, it will create a PV for that node and also create a ZFSVolume custom resource for the volume with the NODE information. The watcher for this ZFSVolume CR will get all the information for this object and creates a ZFS dataset(zvol) with the given ZFS property on the mentioned node.
+The ZFS driver has its own scheduler which will try to distribute the PV across the nodes so that one node should not be loaded with all the volumes. Currently the driver supports two scheduling algorithms: VolumeWeighted and CapacityWeighted, in which it will try to find a ZFS pool which has less number of volumes provisioned in it or less capacity of volume provisioned out of a pool respectively, from all the nodes where the ZFS pools are available. To know about how to select scheduler via storage-class See [here](https://github.com/openebs/zfs-localpv/blob/HEAD/docs/storageclasses.md#storageclass-with-k8s-scheduler). Once it is able to find the node, it will create a PV for that node and also create a ZFSVolume custom resource for the volume with the NODE information. The watcher for this ZFSVolume CR will get all the information for this object and creates a ZFS dataset(zvol) with the given ZFS property on the mentioned node.
 
 The scheduling algorithm currently only accounts for either the number of ZFS volumes or total capacity occupied from a zpool and does not account for other factors like available cpu or memory while making scheduling decisions.
 
@@ -157,7 +157,7 @@ Once a PV is created for a node, application using that PV will always get sched
 
 The scheduling algorithm by ZFS driver or kubernetes will come into picture only during the deployment time. Once the PV is created, the application can not move anywhere as the data is there on the node where the PV is.
 
-### Create PersistentVolumeClaim
+## Create PersistentVolumeClaim
 
 ```
 kind: PersistentVolumeClaim
@@ -226,16 +226,16 @@ zfspv-pool/pvc-34133838-0d0d-11ea-96e3-42010a800114    96K  4.00G    96K  legacy
 
 ## Parameters
 
-### poolname (*must* parameter)
+### Poolname (Must Parameter)
 
 poolname specifies the name of the pool where the volume has been created. The *poolname* is the must argument. It should be noted that *poolname* can either be the root dataset or a child dataset e.g.
 ```
 poolname: "zfspv-pool"
 poolname: "zfspv-pool/child"
 ```
-Also the dataset provided under `poolname` must exist on *all the nodes* with the name given in the storage class.
+Also, the dataset provided under `poolname` must exist on *all the nodes* with the name given in the storage class.
 
-### fstype (*optional* parameter)
+### FSType (Optional Parameter)
 
 FsType specifies filesystem type for the zfs volume/dataset. If FsType is provided as "zfs", then the driver will create a ZFS dataset, formatting is
 not required as underlying filesystem is ZFS anyway. If FsType is ext2, ext3, ext4 btrfs or xfs, then the driver will create a ZVOL and format the volume
@@ -243,37 +243,37 @@ accordingly. FsType can not be modified once volume has been provisioned. If fst
 
 allowed values: "zfs", "ext2", "ext3", "ext4", "xfs", "btrfs"
 
-### recordsize (*optional* parameter)
+### Recordsize (Optional Parameter)
 
 This parameter is applicable if fstype provided is "zfs" otherwise it will be ignored. It specifies a suggested block size for files in the file system.
 
 allowed values: Any power of 2 from 512 bytes to 128 Kbytes
 
-### volblocksize (*optional* parameter)
+### Volblocksize (Optional Parameter)
 
 This parameter is applicable if fstype is anything but "zfs" where we create a ZVOL a raw block device carved out of ZFS Pool. It specifies the block size to use for the zvol. The volume size can only be set to a multiple of volblocksize, and cannot be zero.
 
 allowed values: Any power of 2 from 512 bytes to 128 Kbytes
 
-### compression (*optional* parameter)
+### Compression (Optional Parameter)
 
 Compression specifies the block-level compression algorithm to be applied to the ZFS Volume and datasets. The value "on" indicates ZFS to use the default compression algorithm.
 
 allowed values: "on", "off", "lzjb", "zstd", "zstd-1", "zstd-2", "zstd-3", "zstd-4", "zstd-5", "zstd-6", "zstd-7", "zstd-8", "zstd-9", "zstd-10", "zstd-11", "zstd-12", "zstd-13", "zstd-14", "zstd-15", "zstd-16", "zstd-17", "zstd-18", "zstd-19", "gzip", "gzip-1", "gzip-2", "gzip-3", "gzip-4", "gzip-5", "gzip-6", "gzip-7", "gzip-8", "gzip-9", "zle", "lz4"
 
-### dedup (*optional* parameter)
+### Dedup (Optional Parameter)
 
 Deduplication is the process for removing redundant data at the block level, reducing the total amount of data stored.
 
 allowed values: "on", "off"
 
-### thinprovision (*optional* parameter)
+### Thinprovision (Optional Parameter)
 
 ThinProvision describes whether space reservation for the source volume is required or not. The value "yes" indicates that volume should be thin provisioned and "no" means thick provisioning of the volume. If thinProvision is set to "yes" then volume can be provisioned even if the ZPOOL does not have the enough capacity. If thinProvision is set to "no" then volume can be provisioned only if the ZPOOL has enough capacity and capacity required by volume can be reserved.
 
 allowed values: "yes", "no"
 
-### shared (*optional* parameter)
+### Shared (Optional Parameter)
 
 Shared specifies whether the volume can be shared among multiple pods. If it is not set to "yes", then the ZFS-LocalPV Driver will not allow the volumes to be mounted by more than one pods. The default value is "no" if shared is not provided in the storageclass.
 
@@ -301,7 +301,7 @@ parameters:
 provisioner: zfs.csi.openebs.io
 ```
 
-We have the thinprovision option as “no” in the StorageClass, which means that do reserve the space for all the volumes provisioned using this StorageClass. We can set it to “yes” if we don’t want to reserve the space for the provisioned volumes.
+We have the thinprovision option as “no” in the StorageClass, which means that do reserve the space for all the volumes provisioned using this StorageClass. We can set it to “yes” if we do not want to reserve the space for the provisioned volumes.
 
 The allowVolumeExpansion is needed if we want to resize the volumes provisioned by the StorageClass. ZFS-LocalPV supports online volume resize, which means we don’t need to scale down the application. The new size will be visible to the application automatically.
 
@@ -309,7 +309,7 @@ Once the storageClass is created, we can go ahead and create the PVC and deploy 
 
 ### StorageClass Backed by ZFS Volume
 
-There are a few applications that need to have different filesystems to work optimally. For example, Concourse performs best using the “btrfs” filesystem (https://github.com/openebs/zfs-localpv/issues/169). Here we can create a StorageClass with the desired fstype we want. The ZFS-LocalPV driver will create a ZVOL, which is a raw block device carved out from the mentioned ZPOOL and format it to the desired filesystem for the applications to use as persistence storage backed by ZFS Storage Pool:
+There are a few applications that need to have different filesystems to work optimally. For example, Concourse performs best using the [“btrfs” filesystem](https://github.com/openebs/zfs-localpv/issues/169). Here we can create a StorageClass with the desired fstype we want. The ZFS-LocalPV driver will create a ZVOL, which is a raw block device carved out from the mentioned ZPOOL and format it to the desired filesystem for the applications to use as persistence storage backed by ZFS Storage Pool:
 
 ```yaml
 apiVersion: storage.k8s.io/v1
@@ -332,7 +332,7 @@ We have the thinprovision option as “yes” in the StorageClass, which means t
 
 By default, the ZFS-LocalPV driver does not allow Volumes to be mounted by more than one pod. Even if we try to do that, only one Pod will come into the running state, and the other Pod will be in ContainerCreating state, and it will be failing on the mount.
 
-If we want to share a volume among multiple pods, we can create a StorageClass with the “shared” option as “yes”. For this, we can create a StorageClass backed by ZFS dataset as below :
+If we want to share a volume among multiple pods, we can create a StorageClass with the “shared” option as “yes”. For this, we can create a StorageClass backed by ZFS dataset as below:
 
 ```yaml
 apiVersion: storage.k8s.io/v1
@@ -460,7 +460,7 @@ spec:
     - test2
 ```
 
-If you want to change topology keys, just set new env(ALLOWED_TOPOLOGIES) .Check [faq](./faq.md#6-how-to-add-custom-topology-key) for more details.
+If you want to change topology keys, just set new env(ALLOWED_TOPOLOGIES). See [faq](./faq.md#6-how-to-add-custom-topology-key) for more details.
 
 ```
 $ kubectl edit ds -n kube-system openebs-zfs-node

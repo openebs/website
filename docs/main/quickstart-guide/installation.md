@@ -7,13 +7,13 @@ keywords:
 description: This guide will help you to customize and install OpenEBS
 ---
 
-This guide will help you to setup, customize, and install OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with [Kubernetes Storage Concepts](../concepts/basics.md).
+This guide will help you to set up, customize, and install OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with [Kubernetes Storage Concepts](../concepts/basics.md).
 
-## How to setup and use OpenEBS?
+## How to set up and use OpenEBS?
 
 OpenEBS seamlessly integrates into the overall workflow tooling that Kubernetes administrators and users have around Kubernetes. 
 
-The OpenEBS workflow fits nicely into the reconcilation pattern introduced by Kubernetes, paving the way for a Declarative Storage Control Plane as shown below: 
+The OpenEBS workflow fits nicely into the reconciliation pattern introduced by Kubernetes, paving the way for a Declarative Storage Control Plane as shown below: 
 
 ![control plane overview](../assets/control-plane-overview.svg)
 
@@ -26,13 +26,12 @@ If this is your first time installing OpenEBS Local Storage (a.k.a Local Engines
 
 For OpenEBS Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor), make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/replicated-storage-user-guide/rs-installation.md#prerequisites).
 
-At a high level OpenEBS requires:
+At a high-level, OpenEBS requires:
 
 - Verify that you have the admin context. If you do not have admin permissions to your cluster, check with your Kubernetes cluster administrator to help with installing OpenEBS or if you are the owner of the cluster, check out the [steps to create a new admin context](#set-cluster-admin-user-context) and use it for installing OpenEBS.
-- Each storage engine may have few additional requirements like having:
+- Each storage engine may have a few additional requirements like having:
   - Depending on the managed Kubernetes platform like Rancher or MicroK8s - set up the right bind mounts
   - Decide which of the devices on the nodes should be used by OpenEBS or if you need to create LVM Volume Groups or ZFS Pools
-- Join [OpenEBS community on Kubernetes slack](../community.md).
 
 ## Supported Versions
 
@@ -53,19 +52,19 @@ helm repo add openebs https://openebs.github.io/openebs
 helm repo update
 ```
 
-OpenEBS provides several options that you can customize during install like:
+OpenEBS provides several options that you can customize during installation like:
 - specifying the directory where hostpath volume data is stored or
 - specifying the nodes on which OpenEBS components should be deployed and so forth. 
 
-The default OpenEBS helm chart will install both Local Storage and Replicated Storage. Refer to [OpenEBS helm chart documentation](https://github.com/openebs/charts/tree/master/charts/openebs) for full list of customizable options and using other flavors of OpenEBS data engines by setting the correct helm values. 
+The default OpenEBS helm chart will install both Local Storage and Replicated Storage. Refer to [OpenEBS helm chart documentation](https://github.com/openebs/charts/tree/master/charts/openebs) for a full list of customizable options and use other flavors of OpenEBS Data Engines by setting the correct helm values. 
 
-Install OpenEBS helm chart with default values. 
+Install the OpenEBS helm chart with default values. 
 
 ```
 helm install openebs --namespace openebs openebs/openebs --create-namespace
 ```
 
-The above commands will install OpenEBS LocalPV Hostpath, OpenEBS LocalPV LVM, OpenEBS LocalPV ZFS, and OpenEBS Replicated Storage components in `openebs` namespace and chart name as `openebs`.
+The above commands will install OpenEBS Local PV Hostpath, OpenEBS Local PV LVM, OpenEBS Local PV ZFS, and OpenEBS Replicated Storage components in `openebs` namespace and chart name as `openebs`.
 
 :::note
 If you do not want to install OpenEBS Replicated Storage, use the following command:
@@ -168,13 +167,13 @@ openebs-zfs-localpv-node-g77g6                    2/2     Running   0          3
 
 ### Verify StorageClasses
 
-List the storage classes to check if OpenEBS has installed with default StorageClasses.  
+List the storage classes to check if OpenEBS has been installed with default StorageClasses.  
 
 ```
 kubectl get sc
 ```
 
-In the successful installation, you should have the following StorageClasses are created:
+In the successful installation, you should have the following StorageClasses created:
 
 ```
 NAME                       PROVISIONER               RECLAIMPOLICY   VOLUMEBINDINGMODE    ALLOWVOLUMEEXPANSION 

@@ -36,10 +36,10 @@ spec:
       claimName: csi-lvmpv
  ```
 
- After the deployment of the application, we can go to the node and see that the lvm volume is being used by the application for reading/writting the data and space is consumed from the LVM. 
+ After the deployment of the application, we can go to the node and see that the LVM volume is being used by the application for reading/writting the data and space is consumed from the LVM. 
  
  :::note
- Check the provisioned volumes on the node, we need to run pvscan --cache command to update the lvm cache and then we can use lvdisplay and all other lvm commands on the node.
+ Check the provisioned volumes on the node, we need to run pvscan --cache command to update the LVM cache and then we can use lvdisplay and all other LVM commands on the node.
 :::
  ## PersistentVolumeClaim Conformance Matrix
 
@@ -80,7 +80,7 @@ spec:
 
 **StorageClassName**
 
-LVM CSI-Driver supports dynamic provision of volume for the PVCs referred to lvm storageclass. StorageClassName is a required field, if field is unspecified then it will lead to a provision errors. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/storage_class.md) for more information about the dynamic provisioning workflow.
+LVM CSI-Driver supports dynamic provision of volume for the PVCs referred to LVM storageclass. StorageClassName is a required field, if field is unspecified then it will lead to a provision errors. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/storage_class.md) for more information about the dynamic provisioning workflow.
 
 ```
 kind: PersistentVolumeClaim
@@ -98,7 +98,7 @@ spec:
 
 **Capacity Resource**
 
-Admin/User can specify the desired capacity for lvm volume. CSI-Driver will provision a volume if the underlying volume group has requested capacity available else provisioning volume will be errored. StorageClassName is a required field, if field is unspecified then it will lead to a provision errors. See [here]https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/capacity_resource.md for more information about the workflows.
+Admin/User can specify the desired capacity for LVM volume. CSI-Driver will provision a volume if the underlying volume group has requested capacity available else provisioning volume will be errored. StorageClassName is a required field, if field is unspecified then it will lead to a provision errors. See [here]https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/capacity_resource.md for more information about the workflows.
 
 ```
 kind: PersistentVolumeClaim
@@ -116,7 +116,7 @@ spec:
 
 **VolumeMode (Optional)**
 
-LVM-LocalPV supports two kind of volume modes(Defaults to Filesystem mode):
+Local PV LVM supports two kind of volume modes(Defaults to Filesystem mode):
 
 Block (Block mode can be used in a case where application itself maintains filesystem)
 Filesystem (Application which requires filesystem as a prerequisite) 
@@ -142,9 +142,9 @@ spec:
 
 **Selectors (Optional)**
 
-Users can bind any of retained lvm volumes to new PersistentVolumeClaim object via selector field. If selector and [volumeName](https://github.com/openebs/lvm-localpv/blob/develop/docs/persistentvolumeclaim.md#volumename-optional) fields are unspecified then LVM CSI driver will provision new volume. If volume selector is specified then request will not reach to localpv driver. This is a use case of pre-provisioned volume. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/selector.md) for more information about the workflows.
+Users can bind any of retained LVM volumes to new PersistentVolumeClaim object via selector field. If selector and [volumeName](https://github.com/openebs/lvm-localpv/blob/develop/docs/persistentvolumeclaim.md#volumename-optional) fields are unspecified then LVM CSI driver will provision new volume. If volume selector is specified then request will not reach to localpv driver. This is a use case of pre-provisioned volume. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/selector.md) for more information about the workflows.
 
-Follow below steps to specify selector on PersistentVolumeClaim:
+Follow the below steps to specify selector on PersistentVolumeClaim:
 
 - List the PersistentVolumes(PVs) which has status Released.
 ```
