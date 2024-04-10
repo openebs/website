@@ -107,7 +107,7 @@ helm upgrade openebs openebs/openebs -n openebs --reuse-values \
 kubectl mayastor upgrade -n openebs
 ```
 
-- The upgrade should be deployed. 
+- This deploys an upgrade process of K8s resource type Job.
 
 ```
 kubectl get jobs -n openebs 
@@ -116,7 +116,7 @@ NAME                     COMPLETIONS   DURATION   AGE
 openebs-upgrade-v2-6-0   1/1           4m49s      6m11s
 ```
 
-- Wait for the upgrade to get complete.
+- Wait for the upgrade job to complete.
 
 ```
 kubectl get pods -n openebs
