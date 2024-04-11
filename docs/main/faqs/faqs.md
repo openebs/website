@@ -424,7 +424,7 @@ Once the above steps are done, the pod should be able to run on this new node wi
 
 [Go to top](#top)
 
-### How is data protected in Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor)? What happens when a host, client workload, or a data center fails?
+### How is data protected in Replicated Storage (a.k.a Replicated Engine or Mayastor)? What happens when a host, client workload, or a data center fails?
 
 The OpenEBS Replicated Storage ensures resilience with built-in highly available architecture. It supports on-demand switch over of the NVMe controller to ensure IO continuity in case of host failure. The data is synchronously replicated as per the congigured replication factor to ensure no single point of failure.
 Faulted replicas are automatically rebuilt in the background without IO disruption to maintain the replication factor.

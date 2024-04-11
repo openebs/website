@@ -53,7 +53,7 @@ Using a single controller to implement synchronous replication of data to a fixe
 
 The OpenEBS volume services layer exposes the volumes as:
 - Device or Directory paths in case of Local Storage (a.k.a Local Engine)
-- NVMe Target in case of Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor)
+- NVMe Target in case of Replicated Storage (a.k.a Replicated Engine or Mayastor)
 
 ### Volume Data Layer 
 

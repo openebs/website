@@ -131,7 +131,7 @@ resources:
 
 * Kubernetes `apiextensions.k8s.io` API-group resources: CustomResourceDefinition
 
-* Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) Custom Resources that is `openebs.io` API-group resources: DiskPool
+* Replicated Storage (a.k.a Replicated Engine or Mayastor) Custom Resources that is `openebs.io` API-group resources: DiskPool
 
 * Custom Resources from Helm chart dependencies of Jaeger that is helpful for debugging:
 

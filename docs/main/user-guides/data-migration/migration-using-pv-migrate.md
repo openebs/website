@@ -190,7 +190,7 @@ The Local PV Device volumes and pools can now be removed and Local PV Device can
 ## Migration from cStor to Replicated
 
 :::info
-The following example describes the steps to migrate data from legacy OpenEBS CStor storage to OpenEBS Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor). Legacy OpenEBS Jiva storage users can also use the below steps to migrate to OpenEBS Replicated.
+The following example describes the steps to migrate data from legacy OpenEBS CStor storage to OpenEBS Replicated Storage (a.k.a Replicated Engine or Mayastor). Legacy OpenEBS Jiva storage users can also use the below steps to migrate to OpenEBS Replicated.
 :::
 
 ### Assumptions

@@ -9,7 +9,7 @@ description: This section explains about the Call-Home Metrics.
 
 ## Replicated Storage Default Information Collection 
 
-By default, Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) collects basic information related to the number and scale of user-deployed instances. The collected data is anonymous and is encrypted at rest. This data is used to understand storage usage trends, which in turn helps maintainers prioritize their contributions to maximize the benefit to the community as a whole. 
+By default, Replicated Storage (a.k.a Replicated Engine or Mayastor) collects basic information related to the number and scale of user-deployed instances. The collected data is anonymous and is encrypted at rest. This data is used to understand storage usage trends, which in turn helps maintainers prioritize their contributions to maximize the benefit to the community as a whole. 
 
 :::info
 No user-identifiable information, hostnames, passwords, or volume data are collected. **ONLY** the below-mentioned information is collected from the cluster. 

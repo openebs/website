@@ -10,7 +10,7 @@ description: This section explains the recommended practices for better performa
 
 ## CPU Isolation
 
-The Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) will fully utilize each CPU core that it was configured to run on. It will spawn a thread on each and the thread will run in an endless loop serving tasks dispatched to it without sleeping or blocking. There are also other IO engine threads that are not bound to the CPU and those are allowed to block and sleep. However, the bound threads \(also called reactors\) rely on being interrupted by the kernel and other userspace processes as little as possible. Otherwise, the latency of I/O may suffer.
+The Replicated Storage (a.k.a Replicated Engine or Mayastor) will fully utilize each CPU core that it was configured to run on. It will spawn a thread on each and the thread will run in an endless loop serving tasks dispatched to it without sleeping or blocking. There are also other IO engine threads that are not bound to the CPU and those are allowed to block and sleep. However, the bound threads \(also called reactors\) rely on being interrupted by the kernel and other userspace processes as little as possible. Otherwise, the latency of I/O may suffer.
 
 Ideally, the only thing that interrupts IO engine's reactor would be only kernel time-based interrupts responsible for CPU accounting. However, that is far from trivial. `isolcpus` option that we will be using does not prevent:
 

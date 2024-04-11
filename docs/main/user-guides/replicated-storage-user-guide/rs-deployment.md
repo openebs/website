@@ -9,7 +9,7 @@ description: This guide will help you to deploy OpenEBS Replicated Storage.
 
 # Deploy an Application
 
-If all verification steps in the preceding stages were satisfied, then Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) has been successfully deployed within the cluster. In order to verify basic functionality, we will now dynamically provision a Persistent Volume based on a Replicated Storage StorageClass, mount that volume within a small test pod which we'll create, and use the [**Flexible I/O Tester**](https://github.com/axboe/fio) utility within that pod to check that I/O to the volume is processed correctly.
+If all verification steps in the preceding stages were satisfied, then Replicated Storage (a.k.a Replicated Engine or Mayastor) has been successfully deployed within the cluster. In order to verify basic functionality, we will now dynamically provision a Persistent Volume based on a Replicated Storage StorageClass, mount that volume within a small test pod which we'll create, and use the [**Flexible I/O Tester**](https://github.com/axboe/fio) utility within that pod to check that I/O to the volume is processed correctly.
 
 ## Define the PVC
 
