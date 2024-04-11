@@ -34,6 +34,8 @@ OpenEBS is a collection of data engines and operators to create different types 
 
 OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For summary of what changes across all components in each release, checkout [here](https://github.com/openebs/openebs/releases).
 
+See [here](../versioned_docs/version-3.10.x/introduction/releases.md) for legacy OpenEBS Releases.
+
 ## See Also
 
 - [Quickstart](../quickstart-guide/installation.md)
