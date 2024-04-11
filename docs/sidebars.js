@@ -412,8 +412,18 @@ module.exports = {
                 },
                 {
                   type: "doc",
+                  id: "user-guides/replicated-storage-user-guide/additional-information/eventing",
+                  label: "Eventing"
+                },
+                {
+                  type: "doc",
                   id: "user-guides/replicated-storage-user-guide/additional-information/call-home-metrics",
                   label: "Call-Home Metrics"
+                },
+                {
+                  type: "doc",
+                  id: "user-guides/replicated-storage-user-guide/additional-information/re-resize",
+                  label: "Resize"
                 },
                 {
                   type: "doc",
