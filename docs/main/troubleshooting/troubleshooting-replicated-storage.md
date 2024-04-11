@@ -7,7 +7,7 @@ keywords:
   - OpenEBS troubleshooting
 description: This page contains a list of OpenEBS related troubleshooting which contains information like troubleshooting installation, troubleshooting uninstallation, and troubleshooting replicated storage.
 ---
-# Troubleshooting - Replicated Storage
+# Troubleshooting - Replicated Storage (a.k.a Replicated Engine or Mayastor)
 
 ## Logs
 
@@ -40,7 +40,7 @@ mayastor-xhmj5          1/1     Running   0          14m   10.0.84.131    worker
 
 ### Replicated Storage Pod Log File
 
-Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) containers form the data plane of a Replicated Storage deployment. A cluster should schedule as many Replicated Storage container instances as required storage nodes have been defined. This log file is most useful when troubleshooting I/O errors however, provisioning and management operations might also fail because of a problem on a storage node.
+Replicated Storage containers form the data plane of a Replicated Storage deployment. A cluster should schedule as many Replicated Storage container instances as required storage nodes have been defined. This log file is most useful when troubleshooting I/O errors however, provisioning and management operations might also fail because of a problem on a storage node.
 
 **Example obtaining Replicated Storage\'s Log**
 

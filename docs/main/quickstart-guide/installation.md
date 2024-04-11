@@ -24,7 +24,7 @@ If this is your first time installing OpenEBS Local Storage (a.k.a Local Engines
 - [Local PV LVM](../user-guides/local-storage-user-guide/local-pv-lvm/lvm-installation.md#prerequisites)
 - [Local PV ZFS](../user-guides/local-storage-user-guide/local-pv-zfs/zfs-installation.md#prerequisites)
 
-For OpenEBS Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor), make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/replicated-storage-user-guide/rs-installation.md#prerequisites).
+For OpenEBS Replicated Storage (a.k.a Replicated Engine or Mayastor), make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/replicated-storage-user-guide/rs-installation.md#prerequisites).
 
 At a high-level, OpenEBS requires:
 

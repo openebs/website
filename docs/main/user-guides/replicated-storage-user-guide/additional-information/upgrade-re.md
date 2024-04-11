@@ -10,7 +10,7 @@ description: Upgrade to the latest OpenEBS 2.6.0 version is supported only from 
 
 ## Upgrading Replicated Storage
 
-Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) supports seamless upgrades starting with target version 2.1.0 and later, and source versions 2.0.0 and later. To upgrade from a previous version (1.0.5 or prior) to 2.1.0 or later, visit [Legacy Upgrade Support](../advanced-operations/legacy-upgrade.md). 
+Replicated Storage (a.k.a Replicated Engine or Mayastor) supports seamless upgrades starting with target version 2.1.0 and later, and source versions 2.0.0 and later. To upgrade from a previous version (1.0.5 or prior) to 2.1.0 or later, visit [Legacy Upgrade Support](../advanced-operations/legacy-upgrade.md). 
 
 ### Supported Upgrade Paths
 

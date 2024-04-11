@@ -5,7 +5,7 @@ keywords:
  - Volume snapshots
 description: This guide explains about the Volume snapshots feature.
 ---
-**Volume snapshots** are copies of a persistent volume at a specific point in time. They can be used to restore a volume to a previous state or create a new volume. Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) provides support for industry standard copy-on-write (COW) snapshots, which is a popular methodology for taking snapshots by keeping track of only those blocks that have changed.
+**Volume snapshots** are copies of a persistent volume at a specific point in time. They can be used to restore a volume to a previous state or create a new volume. Replicated Storage (a.k.a Replicated Engine or Mayastor) provides support for industry standard copy-on-write (COW) snapshots, which is a popular methodology for taking snapshots by keeping track of only those blocks that have changed.
 Replicated Storage incremental snapshot capability enhances data migration and portability in Kubernetes clusters across different cloud providers or data centers. Using standard kubectl commands, you can seamlessly perform operations on snapshots and clones in a fully Kubernetes-native manner.
 
 Use cases for volume snapshots include:

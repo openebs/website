@@ -8,7 +8,7 @@ description: This section provides an overview on velero.
 ---
 # Overview
 
-This documentation outlines the process of migrating application volumes from CStor to Replicated Storage (f.k.a Mayastor). We will leverage Velero for backup and restoration, facilitating the transition from a CStor cluster to a Replicated Storage cluster. This example specifically focuses on a Google Kubernetes Engine (GKE) cluster.
+This documentation outlines the process of migrating application volumes from CStor to Replicated Storage (a.k.a Replicated Engine or Mayastor). We will leverage Velero for backup and restoration, facilitating the transition from a CStor cluster to a Replicated Storage cluster. This example specifically focuses on a Google Kubernetes Engine (GKE) cluster.
 
 **Velero Support**: Velero supports the backup and restoration of Kubernetes volumes attached to pods through File System Backup (FSB) or Pod Volume Backup. This process involves using modules from popular open-source backup tools like Restic (which we will utilize).
 

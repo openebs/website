@@ -1,6 +1,6 @@
 ---
 id: zfs-snapshot
-title: Snapshot Volume
+title: Snapshot
 keywords:
  - OpenEBS ZFS Local PV
  - ZFS Local PV

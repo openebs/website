@@ -12,7 +12,7 @@ description: This section explains how to Restore from cStor Backup to Replicate
 Before you begin, make sure you have the following:
 - Access to a Kubernetes cluster with Velero installed.
 - A backup of your Mongo database created using Velero.
-- Replicated Storage (f.k.a Mayastor) configured in your Kubernetes environment.
+- Replicated Storage (a.k.a Replicated Engine or Mayastor) configured in your Kubernetes environment.
 :::
 
 ## Step 1: Install Velero with GCP Provider on Destination (Replicated Storage Cluster)

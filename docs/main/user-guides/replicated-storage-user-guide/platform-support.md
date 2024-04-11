@@ -14,7 +14,7 @@ description: This section explains about the Platform Support for Replicated Sto
 **Prerequisite**: Prepare a cluster by following the steps outlined in this [guide](../replicated-storage-user-guide/rs-installation.md#preparing-the-cluster).
 :::
 
-To install Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) using Helm on MicroK8s, execute the following command:
+To install Replicated Storage (a.k.a Replicated Engine or Mayastor) using Helm on MicroK8s, execute the following command:
 
 **Command**
 

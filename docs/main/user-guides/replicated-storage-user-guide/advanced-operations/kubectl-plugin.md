@@ -10,7 +10,7 @@ description: This guide will help you to view and manage Replicated Storage reso
 ---
 # Mayastor kubectl plugin
 
-The **Mayastor kubectl plugin** can be used to view and manage Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) resources such as nodes, pools and volumes. It is also used for operations such as scaling the replica count of volumes. 
+The **Mayastor kubectl plugin** can be used to view and manage Replicated Storage (a.k.a Replicated Engine or Mayastor) resources such as nodes, pools and volumes. It is also used for operations such as scaling the replica count of volumes. 
 
 ## Install kubectl plugin
 
