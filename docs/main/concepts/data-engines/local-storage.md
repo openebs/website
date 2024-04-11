@@ -43,7 +43,7 @@ OpenEBS provides Local Volume that can be used to provide locally mounted storag
 ## When not to use OpenEBS Local Storage?
 
 - When applications expect replication from storage.
-- When the volume size may need to be changed dynamically the underlying disk is not resizable. 
+- When the volume size needs to be changed dynamically and the underlying disk is not resizable. 
 
 ## Backup and Restore 
 

@@ -186,9 +186,9 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
    <br/>
 
 :::note 
-A few important characteristics of a *OpenEBS Local PV* can be seen from the above output: 
+A few important characteristics of an *OpenEBS Local PV* can be seen from the above output: 
 - `spec.nodeAffinity` specifies the Kubernetes node where the Pod using the Hostpath volume is scheduled. 
-- `spec.local.path` specifies the unique subdirectory under the `BasePath (/var/local/openebs)` defined in corresponding StorageClass.
+- `spec.local.path` specifies the unique subdirectory under the `BasePath (/var/local/openebs)` defined in the corresponding StorageClass.
 :::
 
 ## Deploy Stateful Workloads

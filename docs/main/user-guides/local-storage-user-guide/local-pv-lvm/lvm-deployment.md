@@ -8,9 +8,9 @@ keywords:
 description: This section explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage. 
 ---
 
-This section explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage. 
+This section explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by LVM Storage. 
 
- Create the deployment yaml using the pvc backed by LVM storage.
+ Create the deployment yaml using the PVC backed by LVM storage.
 
  ```
  $ cat fio.yaml
@@ -36,14 +36,14 @@ spec:
       claimName: csi-lvmpv
  ```
 
- After the deployment of the application, we can go to the node and see that the LVM volume is being used by the application for reading/writting the data and space is consumed from the LVM. 
+ After the deployment of the application, we can go to the node and see that the LVM volume is being used by the application for reading/writing the data and space is consumed from the LVM. 
  
  :::note
  Check the provisioned volumes on the node, we need to run pvscan --cache command to update the LVM cache and then we can use lvdisplay and all other LVM commands on the node.
 :::
  ## PersistentVolumeClaim Conformance Matrix
 
- Following matrix shows supported PersistentVolumeClaim parameters for localpv-lvm.
+ The following matrix shows supported PersistentVolumeClaim parameters for localpv-lvm.
 
  Parameter            Values                            Development Status    E2E Coverage Status
  AccessMode           ReadWriteOnce                     Supported             Yes
@@ -62,7 +62,7 @@ spec:
 
  **AccessMode**
 
-LVM-LocalPV supports only ReadWriteOnce access mode i.e volume can be mounted as read-write by a single node. AccessMode is a required field, if the field is unspecified then it will lead to a creation error. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/access_mode.md) for more information about the access modes workflow.
+LVM-LocalPV supports only ReadWriteOnce access mode i.e. volume can be mounted as read-write by a single node. AccessMode is a required field, if the field is unspecified then it will lead to a creation error. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/access_mode.md) for more information about the access modes workflow.
 
 ```
 kind: PersistentVolumeClaim
@@ -80,7 +80,7 @@ spec:
 
 **StorageClassName**
 
-LVM CSI-Driver supports dynamic provision of volume for the PVCs referred to LVM storageclass. StorageClassName is a required field, if field is unspecified then it will lead to a provision errors. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/storage_class.md) for more information about the dynamic provisioning workflow.
+LVM CSI-Driver supports dynamic provision of volume for the PVCs referred to as LVM storageclass. StorageClassName is a required field, if the field is unspecified then it will lead to provision errors. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/storage_class.md) for more information about the dynamic provisioning workflow.
 
 ```
 kind: PersistentVolumeClaim
@@ -98,7 +98,7 @@ spec:
 
 **Capacity Resource**
 
-Admin/User can specify the desired capacity for LVM volume. CSI-Driver will provision a volume if the underlying volume group has requested capacity available else provisioning volume will be errored. StorageClassName is a required field, if field is unspecified then it will lead to a provision errors. See [here]https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/capacity_resource.md for more information about the workflows.
+Admin/User can specify the desired capacity for LVM volume. CSI-Driver will provision a volume if the underlying volume group has requested capacity available else provisioning volume will be errored. StorageClassName is a required field, if the field is unspecified then it will lead to provision errors. See [here]https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/capacity_resource.md for more information about the workflows.
 
 ```
 kind: PersistentVolumeClaim
@@ -116,9 +116,9 @@ spec:
 
 **VolumeMode (Optional)**
 
-Local PV LVM supports two kind of volume modes(Defaults to Filesystem mode):
+Local PV LVM supports two kinds of volume modes (Defaults to Filesystem mode):
 
-Block (Block mode can be used in a case where application itself maintains filesystem)
+Block (Block mode can be used in a case where the application itself maintains filesystem)
 Filesystem (Application which requires filesystem as a prerequisite) 
 
 :::note
@@ -142,7 +142,7 @@ spec:
 
 **Selectors (Optional)**
 
-Users can bind any of retained LVM volumes to new PersistentVolumeClaim object via selector field. If selector and [volumeName](https://github.com/openebs/lvm-localpv/blob/develop/docs/persistentvolumeclaim.md#volumename-optional) fields are unspecified then LVM CSI driver will provision new volume. If volume selector is specified then request will not reach to localpv driver. This is a use case of pre-provisioned volume. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/selector.md) for more information about the workflows.
+Users can bind any of the retained LVM volumes to the new PersistentVolumeClaim object via the selector field. If the selector and [volumeName](https://github.com/openebs/lvm-localpv/blob/develop/docs/persistentvolumeclaim.md#volumename-optional) fields are unspecified then the LVM CSI driver will provision new volume. If the volume selector is specified then request will not reach to local pv driver. This is a use case of pre-provisioned volume. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/selector.md) for more information about the workflows.
 
 Follow the below steps to specify selector on PersistentVolumeClaim:
 
@@ -152,7 +152,7 @@ $ kubectl get pv -ojsonpath='{range .items[?(@.status.phase=="Released")]}{.meta
 pvc-8376b776-75f9-4786-8311-f8780adfabdb {"openebs.io/lvm-volume":"reuse"}
 ```
 :::note 
-If labels does not exist for persistent volume then it is required to add labels to PV.
+If labels do not exist for persistent volume then it is required to add labels to PV.
 :::
 
 ```
@@ -175,7 +175,7 @@ metadata:
   name: csi-lvmpv
 spec:
   storageClassName: openebs-lvmpv
-  ## Specify selector matching to available PVs label, K8s will bound to any of available PV matches to specified labels
+  ## Specify selector matching to available PVs label, K8s will be bound to any of the available PV matches to specified labels
   selector:
     matchLabels:
       openebs.io/lvm-volume: reuse
@@ -219,7 +219,7 @@ spec:
  
  ## Deprovisioning
 
-To deprovision the volume we can delete the application which is using the volume and then we can go ahead and delete the pv, as part of deletion of pv this volume will also be deleted from the volume group and data will be freed.
+To deprovision the volume we can delete the application that is using the volume and then we can go ahead and delete the PV, as part of the deletion of PV this volume will also be deleted from the volume group and data will be freed.
 
 ```
 $ kubectl delete -f fio.yaml
@@ -234,7 +234,7 @@ Resize of volumes with snapshot is not supported.
 
 ## Support
 
-If you encounter issues or have a question, file an [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
 
 ## See Also
 

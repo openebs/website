@@ -12,7 +12,7 @@ keywords:
 description: This document provides you with a quick overview of the Kubernetes concepts you need to know for running Stateful Workloads.
 ---
 
-This page provides you with a quick overview of the [Kubernetes concepts](https://kubernetes.io/docs/concepts/storage/) you need to know for running Stateful Workloads. If you are already familiar with running Stateful workloads in Kubernetes, head over to the next section on [Container Native Storage](container-native-storage.md).
+This page provides you with a quick overview of the [Kubernetes Storage Concepts](https://kubernetes.io/docs/concepts/storage/) you need to know for running Stateful Workloads. If you are already familiar with running Stateful workloads in Kubernetes, head over to the next section on [Container Native Storage](container-native-storage.md).
 
 Kubernetes has made several enhancements to support running Stateful workloads by providing the required abstractions for platform (or Cluster Administrators) and application developers. The abstractions ensure that different types of file and block storage (whether ephemeral or persistent, local or remote) are available wherever a container is scheduled (including provisioning/creating, attaching, mounting, unmounting, detaching, and deleting of volumes), storage capacity management (container ephemeral storage usage, volume resizing, etc.), influencing scheduling of containers based on storage (data gravity, availability, etc.), and generic operations on storage (snapshotting, etc.).
 
@@ -76,7 +76,7 @@ Cluster administrators are responsible for installing OpenEBS and configuring th
 
 These users are responsible for managing the life cycle of the application and are often referred to as users or developers. Typically these users have restricted access to one or more `namespaces` in the Kubernetes clusters. These users can have view access to the object that can be used like `StorageClasses` but will not be able to edit or delete them. 
 
-These users usually have full access to application abstractions within their namespace. Some examples of application abstractions are `Deployment`, `StatefulSet`, `ConfigMaps`, and `PVC`.
+These users usually have full access to application abstractions within their namespace. Some examples of application abstractions are `Deployment`, `StatefulSet`, `ConfigMap`, and `PVC`.
 
 Administrators can further define other roles for users with further granular access or restrictions using the Kubernetes RBAC.
 
@@ -89,8 +89,8 @@ As a Kubernetes cluster administrator or Platform SREs, you will have to decide 
 For installing OpenEBS, your Kubernetes cluster should meet the following:
 - Kubernetes 1.23 or higher is recommended. 
 - Based on the selected data engine, the nodes should be prepared with additional packages like:
-  - Installing the ext4, xfs, nfs, lvm, zfs, nvme packages.
-  - Prepare the devices for use by data engines by - making sure there are no filesystems installed or by creating an LVM volume group or ZFS Pool or partitioning the drives if required. 
+- Installing the ext4, xfs, nfs, lvm, zfs, nvme packages.
+- Prepare the devices for use by data engines by making sure there are no filesystems installed or by creating an LVM volume group or ZFS Pool or partitioning the drives if required. 
 - Based on whether you are using an upstream Kubernetes cluster or a managed Kubernetes cluster like AKS, Rancher, OpenShift, or GKE, there may be additional steps required. 
 
 If your platform is missing from the above list, [raise an issue on the docs](https://github.com/openebs/openebs/issues/new/choose) or reach us on the [community slack](../community.md) to let us know. 

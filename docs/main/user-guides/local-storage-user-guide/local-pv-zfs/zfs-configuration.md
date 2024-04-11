@@ -30,7 +30,7 @@ parameters:
 provisioner: zfs.csi.openebs.io
 ```
 
-The storage class contains the volume parameters like recordsize(should be power of 2), compression, dedup and fstype. You can select what are all parameters you want. In case ZFS properties paramenters are not provided, the volume will inherit the properties from the ZFS Pool.
+The storage class contains the volume parameters like recordsize (should be power of 2), compression, dedup, and fstype. You can select what are all parameters you want. In case ZFS property parameters are not provided, the volume will inherit the properties from the ZFS Pool.
 
 The poolname is the must argument. It should be noted that poolname can either be the root dataset or a child dataset e.g.
 
@@ -39,7 +39,7 @@ poolname: "zfspv-pool"
 poolname: "zfspv-pool/child"
 ```
 
-Also the dataset provided under `poolname` must exist on all the nodes with the name given in the storage class. Check the doc on storageclasses to know all the supported parameters for Local PV ZFS.
+Also, the dataset provided under `poolname` must exist on all the nodes with the name given in the storage class. Check the doc on storageclasses to know all the supported parameters for Local PV ZFS.
 
 **ext2/3/4 or xfs or btrfs as FsType**
 If we provide fstype as one of ext2/3/4 or xfs or btrfs, the driver will create a ZVOL, which is a blockdevice carved out of ZFS Pool. This blockdevice will be formatted with corresponding filesystem before it's used by the driver.
@@ -94,7 +94,7 @@ We are providing `recordsize` which will be used to create the ZFS datasets, whi
 
 **ZPOOL Availability**
 
-If ZFS pool is available on certain nodes only, then make use of topology to tell the list of nodes where we have the ZFS pool available. As shown in the below storage class, we can use allowed Topologies to describe ZFS pool availability on nodes.
+If ZFS pool is available on certain nodes only, then make use of topology to tell the list of nodes where we have the ZFS pool available. As shown in the below storage class, we can use allowedTopologies to describe ZFS pool availability on nodes.
 
 ```
 apiVersion: storage.k8s.io/v1
@@ -125,13 +125,13 @@ The provisioner name for ZFS driver is "zfs.csi.openebs.io", we have to use this
 
 **Scheduler**
 
-The ZFS driver has its own scheduler which will try to distribute the PV across the nodes so that one node should not be loaded with all the volumes. Currently the driver supports two scheduling algorithms: VolumeWeighted and CapacityWeighted, in which it will try to find a ZFS pool which has less number of volumes provisioned in it or less capacity of volume provisioned out of a pool respectively, from all the nodes where the ZFS pools are available. To know about how to select scheduler via storage-class See [here](https://github.com/openebs/zfs-localpv/blob/HEAD/docs/storageclasses.md#storageclass-with-k8s-scheduler). Once it is able to find the node, it will create a PV for that node and also create a ZFSVolume custom resource for the volume with the NODE information. The watcher for this ZFSVolume CR will get all the information for this object and creates a ZFS dataset(zvol) with the given ZFS property on the mentioned node.
+The ZFS driver has its own scheduler which will try to distribute the PV across the nodes so that one node should not be loaded with all the volumes. Currently the driver supports two scheduling algorithms: VolumeWeighted and CapacityWeighted, in which it will try to find a ZFS pool which has less number of volumes provisioned in it or less capacity of volume provisioned out of a pool respectively, from all the nodes where the ZFS pools are available. To know about how to select scheduler via storage-class See [here](https://github.com/openebs/zfs-localpv/blob/HEAD/docs/storageclasses.md#storageclass-with-k8s-scheduler). Once it can find the node, it will create a PV for that node and also create a ZFSVolume custom resource for the volume with the NODE information. The watcher for this ZFSVolume CR will get all the information for this object and creates a ZFS dataset(zvol) with the given ZFS property on the mentioned node.
 
 The scheduling algorithm currently only accounts for either the number of ZFS volumes or total capacity occupied from a zpool and does not account for other factors like available cpu or memory while making scheduling decisions.
 
-So if you want to use node selector/affinity rules on the application pod, or have cpu/memory constraints, kubernetes scheduler should be used. To make use of kubernetes scheduler, you can set the `volumeBindingMode` as `WaitForFirstConsumer` in the storage class.
+So if you want to use node selector/affinity rules on the application pod, or have cpu/memory constraints, Kubernetes scheduler should be used. To make use of Kubernetes scheduler, you can set the `volumeBindingMode` as `WaitForFirstConsumer` in the storage class.
 
-This will cause a delayed binding, i.e kubernetes scheduler will schedule the application pod first and then it will ask the ZFS driver to create the PV.
+This will cause a delayed binding, i.e. Kubernetes scheduler will schedule the application pod first and then it will ask the ZFS driver to create the PV.
 
 The driver will then create the PV on the node where the pod is scheduled:
 
@@ -155,7 +155,7 @@ volumeBindingMode: WaitForFirstConsumer
 Once a PV is created for a node, application using that PV will always get scheduled to that particular node only, as PV will be sticky to that node.
 :::
 
-The scheduling algorithm by ZFS driver or kubernetes will come into picture only during the deployment time. Once the PV is created, the application can not move anywhere as the data is there on the node where the PV is.
+The scheduling algorithm by ZFS driver or Kubernetes will come into picture only during the deployment time. Once the PV is created, the application can not move anywhere as the data is there on the node where the PV is.
 
 ## Create PersistentVolumeClaim
 
@@ -173,9 +173,9 @@ spec:
       storage: 4Gi
 ```
 
-Create a PVC using the storage class created for the ZFS driver. Here, the allocated volume size will be rounded off to the nearest Mi or Gi notation, see [FAQ](../../faqs/faqs.md) for more details.
+Create a PVC using the storage class created for the ZFS driver. Here, the allocated volume size will be rounded off to the nearest Mi or Gi notation, see [FAQs](../../faqs/faqs.md) for more details.
 
-If we are using the immediate binding in the storageclass then we can check the kubernetes resource for the corresponding ZFS volume, otherwise in late binding case, we can check the same after pod has been scheduled:
+If we are using the immediate binding in the storageclass then we can check the Kubernetes resource for the corresponding ZFS volume, otherwise in late binding case, we can check the same after pod has been scheduled:
 
 ```
 $ kubectl get zv -n openebs
@@ -269,7 +269,7 @@ allowed values: "on", "off"
 
 ### Thinprovision (Optional Parameter)
 
-ThinProvision describes whether space reservation for the source volume is required or not. The value "yes" indicates that volume should be thin provisioned and "no" means thick provisioning of the volume. If thinProvision is set to "yes" then volume can be provisioned even if the ZPOOL does not have the enough capacity. If thinProvision is set to "no" then volume can be provisioned only if the ZPOOL has enough capacity and capacity required by volume can be reserved.
+ThinProvision describes whether space reservation for the source volume is required or not. The value "yes" indicates that volume should be thin provisioned and "no" means thick provisioning of the volume. If thinProvision is set to "yes" then volume can be provisioned even if the ZPOOL does not have enough capacity. If thinProvision is set to "no" then volume can be provisioned only if the ZPOOL has enough capacity and capacity required by volume can be reserved.
 
 allowed values: "yes", "no"
 
@@ -505,7 +505,7 @@ We can set up different kinds of StorageClasses as per our need, and then we can
 
 ## Support
 
-If you encounter issues or have a question, file an [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
 
 ## See Also
 

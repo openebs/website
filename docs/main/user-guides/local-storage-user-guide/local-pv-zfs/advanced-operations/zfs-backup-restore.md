@@ -81,7 +81,7 @@ restic-k7k4s              1/1     Running     0          69s
 velero-7d9c448bc5-j424s   1/1     Running     3          69s
 ```
 
-### Setup Local PV ZFS Plugin
+### Setup Local PV ZFS Velero Plugin
 
 Install the Velero Plugin for Local PV ZFS using the command below:
 

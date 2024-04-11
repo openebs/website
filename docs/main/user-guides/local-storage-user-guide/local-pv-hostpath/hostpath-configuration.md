@@ -10,11 +10,11 @@ description: This section explains the configuration requirements to set up Open
 
 # Configuration
 
-This section will help you to configure Local PV Hostpath.
+This section will help you to configure the Local PV Hostpath.
 
 ## Create StorageClass
 
-You can skip this section if you would like to use default OpenEBS Local PV Hostpath StorageClass created by OpenEBS. 
+You can skip this section if you would like to use the default OpenEBS Local PV Hostpath StorageClass created by OpenEBS. 
 
 The default Storage Class is called `openebs-hostpath` and its `BasePath` is configured as `/var/openebs/local`. 
 
@@ -58,7 +58,7 @@ The default Storage Class is called `openebs-hostpath` and its `BasePath` is con
 
     ```
   :::note 
-  Using NodeAffinityLabels does not influence scheduling of the application Pod. Use kubernetes [allowedTopologies](https://github.com/openebs/dynamic-localpv-provisioner/blob/develop/docs/tutorials/hostpath/allowedtopologies.md) to configure scheduling options.
+  Using NodeAffinityLabels does not influence the scheduling of the application Pod. Use Kubernetes [Allowed Topologies](https://github.com/openebs/dynamic-localpv-provisioner/blob/develop/docs/tutorials/hostpath/allowedtopologies.md) to configure scheduling options.
   :::
 
 2. Edit `local-hostpath-sc.yaml` and update with your desired values for `metadata.name` and `cas.openebs.io/config.BasePath`.

@@ -29,7 +29,7 @@ For OpenEBS Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor), mak
 At a high-level, OpenEBS requires:
 
 - Verify that you have the admin context. If you do not have admin permissions to your cluster, check with your Kubernetes cluster administrator to help with installing OpenEBS or if you are the owner of the cluster, check out the [steps to create a new admin context](#set-cluster-admin-user-context) and use it for installing OpenEBS.
-- Each storage engine may have a few additional requirements like having:
+- Each storage engine may have a few additional requirements as follows:
   - Depending on the managed Kubernetes platform like Rancher or MicroK8s - set up the right bind mounts
   - Decide which of the devices on the nodes should be used by OpenEBS or if you need to create LVM Volume Groups or ZFS Pools
 

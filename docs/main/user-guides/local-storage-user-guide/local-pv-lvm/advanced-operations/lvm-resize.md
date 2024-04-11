@@ -9,13 +9,13 @@ keywords:
 description: This section talks about the advanced operations that can be performed in the OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage.  
 ---
 
-We can resize the volume by updating the PVC yaml to the desired size and apply it. The LVM Driver will take care of expanding the volume via lvextend command using "-r" option which will resize the filesystem.
+We can resize the volume by updating the PVC yaml to the desired size and applying it. The LVM Driver will take care of expanding the volume via lvextend command using "-r" option which will resize the filesystem.
 
 :::note
 Online Volume Expansion for `Block` mode and `btrfs` Filesystem mode is supported only from **K8s 1.19+** version
 :::
 
-For resize, storageclass that provisions the pvc must support resize. We should have allowVolumeExpansion as true in storageclass
+For resize, storageclass that provisions the PVC must support resize. We should have allowVolumeExpansion as true in storageclass
 
 ```
 $ cat sc.yaml
@@ -57,13 +57,13 @@ $ kubectl apply -f pvc.yaml
 persistentvolumeclaim/csi-lvmpv created
 ```
 
-OpenEBS LVM driver supports Online Volume expansion, which means that we can expand the volume even if volume is being used by the application and we also do not need to restart the application to use the expanded volume, the LVM Driver will take care of making the space availbale to it. 
+OpenEBS LVM driver supports Online Volume expansion, which means that we can expand the volume even if volume is being used by the application and we also do not need to restart the application to use the expanded volume, the LVM Driver will take care of making the space available to it. 
 
 :::note
 File system expansion does not happen until an application pod references the resized volume, so if no pods referencing the volume are running, file system expansion will not happen.
 :::
 
-Deploy the application using the PVC. Here is sample yaml for the application:
+Deploy the application using the PVC. Here is a sample yaml for the application:
 
 ```
 $ cat fio.yaml
@@ -197,7 +197,7 @@ status:
 
 ```
 
-See in the message that it is waiting on FileSystemResizePending. The resize request will go to the node where appliccation pod is running. The LVM driver node agent will resize the filesytem for the application. Keep checking the PVC yaml for FileSystemResizePending to go away, once PVC is resized, the yaml will look like this:
+See in the message that it is waiting on FileSystemResizePending. The resize request will go to the node where the application pod is running. The LVM driver node agent will resize the filesytem for the application. Keep checking the PVC yaml for FileSystemResizePending to go away, once PVC is resized, the yaml will look like this:
 
 ```yaml
 $ kubectl get pvc csi-lvmpv -oyaml

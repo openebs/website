@@ -10,7 +10,7 @@ description: This section talks about the advanced operations that can be perfor
 
 ## Manage FSGroup Using Pod Security Context and CSI Driver Spec
 	
-We can manage permission change of volume using fsGroup. This helps non root process to access the volume. CSI driver spec and Pod security context helps us on when to apply permission change using fsGroup.
+We can manage permission change of volume using fsGroup. This helps non-root process to access the volume. CSI driver spec and Pod security context help us on when to apply permission change using fsGroup.
 
 ## External Links Describing this Feature
 
@@ -21,7 +21,7 @@ We can manage permission change of volume using fsGroup. This helps non root pro
 
 ## Implementation Details
 
-Volume ownership and permission is managed by kubelet. To mount CSI volume kubelet calls `NodePublishVolume` implemented by `SP`, after successful mount it tries to apply ownership and permission if required. Every volume in kubernetes like configmap, secret, CSI volume implements `Mounter` and `Unmounter` interface. Volume ownership and permission is part of `SetUp` method of CSI Mounter.
+Volume ownership and permission are managed by kubelet. To mount CSI volume kubelet calls `NodePublishVolume` implemented by `SP`, after successful mount it tries to apply ownership and permission if required. Every volume in Kubernetes like configmap, secret, CSI volume implements `Mounter` and `Unmounter` interface. Volume ownership and permission are part of the `SetUp` method of CSI Mounter.
 
 ```bash
  _________________________ Kubernetes Node _________________________________
@@ -60,8 +60,8 @@ spec:
   volumeLifecycleModes:
   - Persistent
 ```
-Application devloper can set `PodFSGroupChangePolicy` in Pod spec with 2 values.
-- **OnRootMismatch** - Only perform permission and ownership change if permissions of top level directory does not match with expected permissions and ownership.
+Application developer can set `PodFSGroupChangePolicy` in Pod spec with 2 values.
+- **OnRootMismatch** - Only perform permission and ownership change if permissions of top-level directory do not match with expected permissions and ownership.
 - **Always** - Always change the permissions and ownership to match `fsGroup`.
 
 Sample Pod
@@ -93,7 +93,7 @@ spec:
 
 ## Test Plans
 
-Test plans are combination of:
+Test plans are a combination of:
 - CSIDriver.Spec.FSGroupPolicy 
   - File
   - None
@@ -114,8 +114,8 @@ LVM CSI driver supports only ReadWriteOnly access mode so updated combination:
 `FSGroupPolicy` `File` and `ReadWriteOnceWithFSType` are equal for accesstype `ReadWriteOnce`.
 
 Here are the test cases -
-1. Deploy CSI Driver with `FSGroupPolicy` `ReadWriteOnceWithFSType` initial and updated non root process should be able to access the volume.
-2. Deploy CSI Driver with `FSGroupPolicy` `File` initial and updated non root process should be able to access the volume.
-3. Deploy CSI Driver with `FSGroupPolicy` `None` initial and updated non root process should not be able to access the volume.
+1. Deploy CSI Driver with `FSGroupPolicy` `ReadWriteOnceWithFSType` initial and updated non-root process should be able to access the volume.
+2. Deploy CSI Driver with `FSGroupPolicy` `File` initial and updated non-root process should be able to access the volume.
+3. Deploy CSI Driver with `FSGroupPolicy` `None` initial and updated non-root process should not be able to access the volume.
 4. For all `FSGroupPolicy` root process should be able to access volume.
-5. If `fsGroup` is missing from Pod spec then non root process should not be able to access the volume.
+5. If `fsGroup` is missing from the Pod spec then non-root process should not be able to access the volume.
