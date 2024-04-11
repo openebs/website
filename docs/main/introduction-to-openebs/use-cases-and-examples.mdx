@@ -24,9 +24,9 @@ Following are a few examples of how OpenEBS is being used:
 
 ### Self Managed Database Service like RDS
 
-As per the [CNCF Database Technology Radar report](https://radar.cncf.io/2020-11-database-storage), many companies working with sensitive data are more likely to host databases in-house and may even be required to. Also, if a company has a large amount of data, for instance, there can be significant cost overhead to using a managed database solution available from cloud providers. Additionally the data mesh pattern is leading to a proliferation of small self managed DBs.  
+As per the [CNCF Database Technology Radar report](https://radar.cncf.io/2020-11-database-storage), many companies working with sensitive data are more likely to host databases in-house and may even be required to. Also, if a company has a large amount of data, for instance, there can be significant cost overhead to using a managed database solution available from cloud providers. Additionally, the data mesh pattern is leading to a proliferation of small self managed DBs.  
 
-OpenEBS through its simplicity in setup and configuration and built on the resilience of Kubernetes orchestration can be used to easily setup a managed database service. Using OpenEBS you get the benefits of:
+OpenEBS through its simplicity in set up and configuration and built on the resilience of Kubernetes orchestration can be used to easily set up a managed database service. Using OpenEBS you get the benefits of:
 
 - Fast local storage for cloud native databases
 - Synchronously replicated storage for protecting against node or AZ failures if needed
@@ -76,7 +76,7 @@ Examples:
 
 ### Open Source Durable Storage for Observability Stack
 
-Open standards such as OpenMetrics and OpenTelemetry and open source tools like Prometheus, Grafana, Elastic have become widely adopted projects to run the [Cloud Native Observability Stack](https://radar.cncf.io/2020-09-observability). It should not come as any surprise that OpenEBS, being a prominent cloud native open source technology, is often the choice for running these open source observability stacks.
+Open standards such as OpenMetrics and OpenTelemetry and open source tools like Prometheus, Grafana, and Elastic have become widely adopted projects to run the [Cloud Native Observability Stack](https://radar.cncf.io/2020-09-observability). It should not come as any surprise that OpenEBS, being a prominent cloud native open source technology, is often the choice for running these open source observability stacks.
 
 Examples:
 
@@ -97,7 +97,7 @@ Examples:
 
 ### Running CI/CD on Kubernetes
 
-Jenkins, Gitlab, Gerrit, Sonarqube, and many of the tools built in-house are moving towards Kubernetes for better DevOps experience and agility. With Kubernetes becoming a standard to run the applications, the CI/CD tools that manage them are following suite, with many provides now providing Kubernetes Operators.
+Jenkins, Gitlab, Gerrit, Sonarqube, and many of the tools built in-house are moving towards Kubernetes for better DevOps experience and agility. With Kubernetes becoming a standard to run the applications, the CI/CD tools that manage them are following suite, with many providers now providing Kubernetes Operators.
 
 Examples:
 
@@ -113,7 +113,7 @@ Examples:
 
 ### Self-managed Object Storage Service
 
-Use OpenEBS and MinIO on Kubernetes to build cross AZ cloud native object storage solution. Kubernetes PVCs are used by MinIO to seamlessly scale MinIO nodes. OpenEBS provides easily scalable and manageable storage pools including Local Storage. Scalability of MinIO is directly complimented by OpenEBS's feature of cloud-native scalable architecture.
+Use OpenEBS and MinIO on Kubernetes to build cross AZ cloud native object storage solution. Kubernetes PVCs are used by MinIO to seamlessly scale MinIO nodes. OpenEBS provides easily scalable and manageable storage pools including Local Storage. The scalability of MinIO is directly complimented by OpenEBS's feature of cloud-native scalable architecture.
 
 Examples:
 

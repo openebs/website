@@ -9,18 +9,18 @@ keywords:
 description: This section explains the prerequisites and installation requirements to set up OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage. 
 ---
 
-This section explains the prerequisites and installation requirements to set up OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage.
+This section explains the prerequisites and installation requirements to set up OpenEBS Local Persistent Volumes (PV) backed by LVM Storage.
 
 ## Prerequisites
 
-Before installing LVM driver, make sure your Kubernetes Cluster must meet the following prerequisites:
+Before installing the LVM driver, make sure your Kubernetes Cluster must meet the following prerequisites:
 
 1. All the nodes must have lvm2 utils installed and the dm-snapshot kernel module loaded.
-2. You have access to install RBAC components into kube-system namespace. The OpenEBS LVM driver components are installed in kube-system namespace to allow them to be flagged as system critical components.
+2. You have access to install RBAC components into the kube-system namespace. The OpenEBS LVM driver components are installed in the kube-system namespace to allow them to be flagged as system critical components.
 
 ## Setup Volume Group
 
-Find the disk which you want to use for the LVM, for testing you can use the loopback device
+Find the disk that you want to use for the LVM, for testing you can use the loopback device
 
 ```
 truncate -s 1024G /tmp/disk.img

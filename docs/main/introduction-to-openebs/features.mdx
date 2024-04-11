@@ -17,7 +17,7 @@ import { TwoColumn } from "@site/src/components/TwoColumn";
 For information on how OpenEBS is used in production, visit the [use cases](use-cases-and-examples.mdx) section or read what [OpenEBS Adopters have shared](https://github.com/openebs/openebs/blob/HEAD/ADOPTERS.md).
 :::
 
-OpenEBS Features, like any storage solution, can be broadly classified into following categories:
+OpenEBS Features, like any storage solution, can be broadly classified into the following categories:
 - [Declarative Provisioning of Container Attached Storage](#containerized-storage-for-containers)
 - [Durability and High availability using synchronous data replication](#synchronous-replication)
 - [Data Protection via Snapshots and clones](#snapshots-and-clones)
@@ -54,7 +54,7 @@ OpenEBS Features, like any storage solution, can be broadly classified into foll
 
 <TwoColumn left="1fr" right="200px">
   <p>
-    Copy-on-write snapshots are another optional and popular feature of OpenEBS. When using the Replicated Storage, snapshots are created instantaneously. The incremental snapshot capability enhances data migration and portability across Kubernetes clusters and across different cloud providers or data centers. Operations on snapshots and clones are performed in completely Kubernetes native method using the standard kubectl commands. Common use cases include efficient replication for backups and the use of clones for troubleshooting or development against a read-only copy of data.
+    Copy-on-write snapshots are another optional and popular feature of OpenEBS. When using the Replicated Storage, snapshots are created instantaneously. The incremental snapshot capability enhances data migration and portability across Kubernetes clusters and different cloud providers or data centers. Operations on snapshots and clones are performed in completely Kubernetes native method using the standard kubectl commands. Common use cases include efficient replication for backups and the use of clones for troubleshooting or development against a read-only copy of data.
   </p>
 
 ![Snapshots and Clones Icon](../assets/f-snapshots.svg)

@@ -13,15 +13,15 @@ This section explains the prerequisites and installation requirements to set up 
 
 ## Prerequisites
 
-Before installing ZFS driver, make sure your Kubernetes Cluster must meet the following prerequisites:
+Before installing the ZFS driver, make sure your Kubernetes Cluster must meet the following prerequisites:
 
 1. All the nodes must have zfs utils installed.
-2. ZPOOL has been setup for provisioning the volume.
+2. ZPOOL has been set up for provisioning the volume.
 3. You have access to install RBAC components into kube-system namespace. The OpenEBS ZFS driver components are installed in kube-system namespace to allow them to be flagged as system critical components.
 
 ## Setup
 
-All the node should have zfsutils-linux installed. We should go to the each node of the cluster and install zfs utils:
+All the nodes should have zfsutils-linux installed. We should go to each node of the cluster and install zfs utils:
 
 ```
 $ apt-get install zfsutils-linux
@@ -35,7 +35,7 @@ If you have the disk (say /dev/sdb), then you can use the below command to creat
 $ zpool create zfspv-pool /dev/sdb
 ```
 
-You can also create mirror or raidz pool as per your need. See [here](https://github.com/openzfs/zfs for more information).
+You can also create mirror or raidz pool as per your need. See [here](https://github.com/openzfs/zfs) for more information.
 
 If you do not have the disk, then you can create the zpool on the loopback device which is backed by a sparse file. Use this for testing purpose only.
 
@@ -60,9 +60,7 @@ config:
 errors: No known data errors
 ```
 
-Configure the custom topology keys (if needed). This can be used for many purposes like if we want to create the PV on nodes in a particular zone or building. We can label the nodes accordingly and use that key in the storageclass for taking the scheduling decision:
-
-https://github.com/openebs/zfs-localpv/blob/HEAD/docs/faq.md#6-how-to-add-custom-topology-key
+Configure the [custom topology keys](../../../faqs/faqs.md#how-to-add-custom-topology-key-to-local-pv-zfs-driver) (if needed). This can be used for many purposes like if we want to create the PV on nodes in a particular zone or building. We can label the nodes accordingly and use that key in the storageclass for making the scheduling decision.
 
 ## Installation
 
@@ -70,7 +68,7 @@ For installation instructions, see [here](../../quickstart-guide/installation.md
 
 ## Support
 
-If you encounter issues or have a question, file an [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
 
 ## See Also
 

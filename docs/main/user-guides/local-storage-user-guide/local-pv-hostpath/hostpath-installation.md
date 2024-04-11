@@ -14,7 +14,7 @@ This section explains the prerequisites and installation requirements to set up 
 *OpenEBS Dynamic Local PV provisioner* can create Kubernetes Local Persistent Volumes using a unique Hostpath (directory) on the node to persist data, hereafter referred to as *OpenEBS Local PV Hostpath* volumes. 
 
 *OpenEBS Local PV Hostpath* volumes have the following advantages compared to native Kubernetes hostpath volumes. 
-- OpenEBS Local PV Hostpath allows your applications to access hostpath via StorageClass, PVC, and PV. This provides you the flexibility to change the PV providers without having to redesign your Application YAML. 
+- OpenEBS Local PV Hostpath allows your applications to access hostpath via StorageClass, PVC, and PV. This provides you with the flexibility to change the PV providers without having to redesign your Application YAML. 
 - Data protection using the Velero Backup and Restore.
 - Protect against hostpath security vulnerabilities by masking the hostpath completely from the application YAML and pod.
 
@@ -22,12 +22,12 @@ OpenEBS Local PV uses volume topology aware pod scheduling enhancements introduc
 
 ## Prerequisites
 
-Setup the directory on the nodes where Local PV Hostpaths will be created. This directory will be referred to as `BasePath`. The default location is `/var/openebs/local`.  
+Set up the directory on the nodes where Local PV Hostpaths will be created. This directory will be referred to as `BasePath`. The default location is `/var/openebs/local`.  
 
 `BasePath` can be any of the following:
-- A directory on root disk (or `os disk`). (Example: `/var/openebs/local`). 
+- A directory on the root disk (or `os disk`). (Example: `/var/openebs/local`). 
 - In the case of bare-metal Kubernetes nodes, a mounted directory using the additional drive or SSD. (Example: An SSD available at `/dev/sdb`, can be formatted with Ext4 and mounted as `/mnt/openebs-local`) 
-- In the case of cloud or virtual instances, a mounted directory created from attaching an external cloud volume or virtual disk. (Example, in GKE, a Local SSD can be used which will be available at `/mnt/disk/ssd1`.)
+- In the case of cloud or virtual instances, a mounted directory is created by attaching an external cloud volume or virtual disk. (Example, in GKE, a Local SSD can be used which will be available at `/mnt/disk/ssd1`.)
 
 :::note
 **air-gapped environment**
@@ -38,7 +38,7 @@ If you are running your Kubernetes cluster in an air-gapped environment, make su
 
 :::note
 **Rancher RKE cluster**
-If you are using the Rancher RKE cluster, you must configure kubelet service with `extra_binds` for `BasePath`. If your `BasePath` is the default directory `/var/openebs/local`, then extra_binds section should have the following details:
+If you are using the Rancher RKE cluster, you must configure the kubelet service with `extra_binds` for `BasePath`. If your `BasePath` is the default directory `/var/openebs/local`, then extra_binds section should have the following details:
 ```
 services:
   kubelet:

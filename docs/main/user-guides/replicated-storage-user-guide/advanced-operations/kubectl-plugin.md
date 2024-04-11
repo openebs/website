@@ -123,11 +123,12 @@ mayastor-1  10.1.0.6:10124  Online
 mayastor-3  10.1.0.8:10124  Online
 ```
 
-:::warning
- All the above resource information can be retrieved for a particular resource using its ID. The command to do so is as follows:
- kubectl mayastor get &lt;resource_name&gt; &lt;resource_id&gt;
- :::
-
+:::note
+All the above resource information can be retrieved for a particular resource using its ID. The command to do so is as follows:
+```
+kubectl mayastor get &lt;resource_name&gt; &lt;resource_id&gt;
+```
+:::
 
 ### Scale the Replica Count of a Volume
 

@@ -12,13 +12,13 @@ description: OpenEBS builds on Kubernetes to enable Stateful applications to eas
 
 OpenEBS turns any storage available to Kubernetes worker nodes into Local or Replicated Kubernetes Persistent Volumes. OpenEBS helps application and platform teams easily deploy Kubernetes stateful workloads that require fast and highly durable, reliable, and scalable [Container Native Storage](../concepts/container-native-storage.md).
 
-OpenEBS is also a leading choice for NVMe based storage deployments.
+OpenEBS is also a leading choice for NVMe-based storage deployments.
 
 OpenEBS was originally built by MayaData and donated to the _Cloud Native Computing Foundation_ and is now a [CNCF sandbox project](https://www.cncf.io/sandbox-projects/).
 
 ## Why do users prefer OpenEBS?
 
-The [OpenEBS Adoption stories](https://github.com/openebs/openebs/blob/master/ADOPTERS.md), mention the top reasons driving users towards OpenEBS as:
+The [OpenEBS Adoption stories](https://github.com/openebs/openebs/blob/master/ADOPTERS.md) mention the top reasons driving users towards OpenEBS as:
 
 - OpenEBS provides consistency across all Kubernetes distributions - On-premise and Cloud.
 - OpenEBS with Kubernetes increases Developer and Platform SRE Productivity.
@@ -32,13 +32,13 @@ OpenEBS manages the storage available on each of the Kubernetes nodes and uses t
 
 ![data-engines-comparision](../assets/data-engines-comparision.svg)
 
-In case of [Local Volumes](#local-volumes):
+In the case of [Local Volumes](#local-volumes):
 
-- OpenEBS can create persistent volumes, or using sub-directories on Hostpaths or by using locally attached storage or sparse files or over existing LVM or ZFS stack.
+- OpenEBS can create persistent volumes or use sub-directories on Hostpaths or use locally attached storage or sparse files or over existing LVM or ZFS stack.
 - The local volumes are directly mounted into the Stateful Pod, without any added overhead from OpenEBS in the data path, decreasing latency.
-- OpenEBS provides additional tooling for local volumes for monitoring, backup/restore, disaster recovery, snapshots when backed by LVM or ZFS stack, capacity based scheduling, and more.
+- OpenEBS provides additional tooling for local volumes for monitoring, backup/restore, disaster recovery, snapshots when backed by LVM or ZFS stack, capacity-based scheduling, and more.
 
-In case of [Replicated Volumes](#replicated-volumes):
+In the case of [Replicated Volumes](#replicated-volumes):
 
 - OpenEBS Replicated Storage creates an NVMe target accessible over TCP, for each persistent volume.
 - The Stateful Pod writes the data to the NVMe-TCP target that synchronously replicates the data to multiple nodes in the cluster. The OpenEBS engine itself is deployed as a pod and orchestrated by Kubernetes. When the node running the Stateful pod fails, the pod will be rescheduled to another node in the cluster and OpenEBS provides access to the data using the available data copies on other nodes.
@@ -47,9 +47,9 @@ In case of [Replicated Volumes](#replicated-volumes):
 :::note
 OpenEBS contributors prefer to call the Distributed Block Storage volumes as **Replicated Volumes**, to avoid confusion with traditional block storage for the following reasons:
 * Distributed block storage tends to shard the data blocks of a volume across many nodes in the cluster. Replicated volumes persist all the data blocks of a volume on a node and for durability replicate the entire data to other nodes in the cluster.  
-* While accessing a volume data, distributed block storage depends on metadata hashing algorithms to locate the node where the block resides, whereas replicated volumes can access the data from any of the nodes where data is persisted (aka replica nodes).
+* While accessing volume data, distributed block storage depends on metadata hashing algorithms to locate the node where the block resides, whereas replicated volumes can access the data from any of the nodes where data is persisted (aka replica nodes).
 * Replicated volumes have a lower blast radius compared to traditional distributed block storage. 
-* Replicated volumes are designed for Cloud Native stateful workloads that require a large number of volumes with capacity that can typically be served from a single node as apposed to a single large volume with data sharded across multiple nodes in the cluster.
+* Replicated volumes are designed for Cloud Native stateful workloads that require a large number of volumes with capacity that can typically be served from a single node as opposed to a single large volume with data sharded across multiple nodes in the cluster.
 :::
 
 OpenEBS Data Engines and Control Plane are implemented as micro-services, deployed as containers and orchestrated by Kubernetes itself. Importantly, OpenEBS data engines are implemented in user space, allowing OpenEBS to run on any Kubernetes Platform and to use any type of storage available to Kubernetes worker nodes. An added advantage of being a completely Kubernetes native solution is that administrators and developers can interact and manage OpenEBS using all the wonderful tooling that is available for Kubernetes like kubectl, Helm, Prometheus, Grafana, etc.
@@ -60,7 +60,7 @@ Local Volumes are accessible only from a single node in the cluster. Pods using 
 
 ## Replicated Volumes
 
-Replicated Volumes, as the name suggests, are those that have their data synchronously replicated to multiple nodes. Volumes can sustain node failures. The replication also can be setup across availability zones helping applications move across availability zones.
+Replicated Volumes, as the name suggests, are those that have their data synchronously replicated to multiple nodes. Volumes can sustain node failures. The replication also can be set up across availability zones helping applications move across availability zones.
 
 Replicated Volumes also are capable of enterprise storage features like snapshots, clone, volume expansion and so forth. Replicated Volumes are a preferred choice for Stateful workloads like Percona/MongoDB, Jira, GitLab, etc.
 
@@ -74,7 +74,7 @@ Installing OpenEBS in your cluster is as simple as running a few `kubectl` or `h
 
 ## Community Support via Slack
 
-OpenEBS has a vibrant community that can help you get started. If you have further questions and want to learn more about OpenEBS, join [OpenEBS community on Kubernetes Slack](https://kubernetes.slack.com). If you are already signed up, head to our discussions at[#openebs](https://kubernetes.slack.com/messages/openebs/) channel.
+OpenEBS has a vibrant community that can help you get started. If you have further questions and want to learn more about OpenEBS, join the [OpenEBS community on Kubernetes Slack](https://kubernetes.slack.com). If you are already signed up, head to our discussions at[#openebs](https://kubernetes.slack.com/messages/openebs/) channel.
 
 ## See Also
 

@@ -5,7 +5,6 @@ keywords:
  - Node Drain
 description: This guide explains about the Node Drain feature.
 ---
-## Node Drain
 
 The node drain functionality marks the node as unschedulable and then gracefully moves all the volume targets off the drained node. 
 This feature is in line with the [node drain functionality of Kubernetes](https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/).
