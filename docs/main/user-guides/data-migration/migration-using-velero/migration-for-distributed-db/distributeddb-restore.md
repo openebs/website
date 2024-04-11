@@ -6,7 +6,7 @@ keywords:
  - Restoring to Replicated Storage
 description: This section explains how to Restore from cStor Backup to Replicated Storage for Distributed DBs.
 ---
-## Steps to Restore from cStor Backup to Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) for Distributed DBs (Cassandra)
+## Steps to Restore from cStor Backup to Replicated Storage (a.k.a Replicated Engine or Mayastor) for Distributed DBs (Cassandra)
 
 Cassandra is a popular NoSQL database used for handling large amounts of data with high availability and scalability. In Kubernetes environments, managing and restoring Cassandra backups efficiently is crucial. In this article, we will walk you through the process of restoring a Cassandra database in a Kubernetes cluster using Velero, and we will change the storage class to Replicated Storage for improved performance.
 

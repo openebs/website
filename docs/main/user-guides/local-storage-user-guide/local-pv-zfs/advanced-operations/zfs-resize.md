@@ -1,6 +1,6 @@
 ---
 id: zfs-resize
-title: Volume Resize
+title: Resize
 keywords:
  - OpenEBS ZFS Local PV
  - ZFS Local PV

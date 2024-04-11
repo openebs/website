@@ -14,14 +14,14 @@ Upgrade from OpenEBS 3.x to OpenEBS 4.0.0 is only supported for the below storag
 - Local PV Hostpath
 - Local PV LVM
 - Local PV ZFS
-- Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor)
+- Replicated Storage (a.k.a Replicated Engine or Mayastor)
 
 See the [migration documentation](../user-guides/data-migration/migration-overview.md) for other storages.
 :::
 
 ## Overview
 
-This upgrade flow would allow users to upgrade to the latest OpenEBS version 4.0.0 which is a unified installer for three Local Storages (a.k.a Local Engines) Local PV HostPath, Local PV LVM, Local PV ZFS, and one Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor). 
+This upgrade flow would allow users to upgrade to the latest OpenEBS version 4.0.0 which is a unified installer for three Local Storages (a.k.a Local Engines) Local PV HostPath, Local PV LVM, Local PV ZFS, and one Replicated Storage (a.k.a Replicated Engine or Mayastor). 
 As a part of upgrade to OpenEBS 4.0.0, the helm chart would install all four engines irrespective of the engine the user was using prior to the upgrade. 
 
 :::info

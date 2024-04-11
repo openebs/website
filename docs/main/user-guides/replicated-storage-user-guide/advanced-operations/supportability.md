@@ -7,7 +7,7 @@ description: This guide explains about the supportability tool that collects Rep
 ---
 ## Supportability
 
-The supportability tool collects Replicated Storage's (a.k.a Replicated Engine and f.k.a Mayastor) specific information from the cluster using the [kubectl plugin](kubectl-plugin.md) command-line tool. It uses the dump command, which interacts with the Replicated Storage services to build an archive (ZIP) file that acts as a placeholder for the bundled information.
+The supportability tool collects Replicated Storage's (a.k.a Replicated Engine or Mayastor) specific information from the cluster using the [kubectl plugin](kubectl-plugin.md) command-line tool. It uses the dump command, which interacts with the Replicated Storage services to build an archive (ZIP) file that acts as a placeholder for the bundled information.
 
 ### Using the Supportability Tool
 

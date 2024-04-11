@@ -11,7 +11,7 @@ description: This section explains the recommended practices.
 
 ## What if I have no Disk Devices available that I can use for testing?
 
-For basic test and evaluation purposes it may not always be practical or possible to allocate physical disk devices on a cluster to Replicated Storage (a.k.a Replicated Engine and f.k.a Mayastor) for use within its pools. As a convenience, Replicated Storage supports two disk device type emulations for this purpose:
+For basic test and evaluation purposes it may not always be practical or possible to allocate physical disk devices on a cluster to Replicated Storage (a.k.a Replicated Engine or Mayastor) for use within its pools. As a convenience, Replicated Storage supports two disk device type emulations for this purpose:
 
 * Memory-Backed Disks \("RAM drive"\)
 * File-Backed Disks

@@ -235,28 +235,28 @@ module.exports = {
                   items: [
                     {
                       type: "doc",
-                      id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-backup-restore",
-                      label: "Backup and Restore"
-                    },
-                    {
-                      type: "doc",
-                      id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-clone",
-                      label: "Clone Volume"
+                      id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-raw-block-volume",
+                      label: "Raw Block Volume"
                     },
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-resize",
-                      label: "Volume Resize"
+                      label: "Resize"
                     },
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-snapshot",
-                      label: "Snapshot Volume"
+                      label: "Snapshot"
                     },
                     {
                       type: "doc",
-                      id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-raw-block-volume",
-                      label: "Raw Block Volume"
+                      id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-clone",
+                      label: "Clone"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-backup-restore",
+                      label: "Backup and Restore"
                     }
                   ]
                 },

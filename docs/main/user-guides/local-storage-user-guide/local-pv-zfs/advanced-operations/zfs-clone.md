@@ -1,6 +1,6 @@
 ---
 id: zfs-clone
-title: Clone Volume
+title: Clone
 keywords:
  - OpenEBS ZFS Local PV
  - ZFS Local PV
