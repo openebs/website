@@ -192,11 +192,11 @@ parameters:
 
 ### Parameters
 
-Local PV LVM storageclass supports various parameters for different use cases. The following are the supported parameters
+Local PV LVM storageclass supports various parameters for different use cases. The following are the supported parameters:
 
 - #### FsType (Optional)
 
-  Admin can specify filesystem in storageclass. Local PV LVM CSI-Driver will format block device with specified filesystem and mount an application pod. If fsType is not specified defaults to `ext4` filesystem. See [here](../design/lvm/storageclass-parameters/fs_type.md) for more information about filesystem type workflow.
+  Admin can specify filesystem in storageclass. Local PV LVM CSI-Driver will format block device with specified filesystem and mount in the application pod. If fsType is not specified defaults to `ext4` filesystem. See [here](../design/lvm/storageclass-parameters/fs_type.md) for more information about filesystem type workflow.
   ```yaml
   apiVersion: storage.k8s.io/v1
   kind: StorageClass
@@ -212,7 +212,7 @@ Local PV LVM storageclass supports various parameters for different use cases. T
 
 - #### Shared (Optional)
 
-  Local PV LVM volume mount points can be shared among the multiple pods on the same node. Applications that can share the volume can set the value of `shared` parameter to yes defaults to no. See [here](../design/lvm/storageclass-parameters/shared.md) for more information about workflow of share volume.
+  Local PV LVM volume mount points can be shared among the multiple pods on the same node. Applications that can share the volume can set the value of `shared` parameter to yes. See [here](../design/lvm/storageclass-parameters/shared.md) for more information about workflow of share volume.
   ```yaml
   apiVersion: storage.k8s.io/v1
   kind: StorageClass
@@ -401,7 +401,7 @@ If you want to change topology keys, just a set new env(ALLOWED_TOPOLOGIES). See
 $ kubectl edit ds -n kube-system openebs-lvm-node
 ```
 
-Here we can have a volume group name “lvmvg” created on the nvme disks and want to use this high performing LVM volume group for the applications that need higher IOPS. We can use the above SorageClass to create the PVC and deploy the application using that.
+Here, we can have a volume group named “lvmvg” created on the nvme disks and want to use this high performing LVM volume group for the applications that need higher IOPS. We can use the above SorageClass to create the PVC and deploy the application using that.
 
 The Local PV LVM driver will create the Volume in the volume group “lvmvg” present on the node with fewer volumes provisioned among the given node list. In the above StorageClass, if there provisioned volumes on node-1 are less, it will create the volume on node-1 only. Alternatively, we can use `volumeBindingMode: WaitForFirstConsumer` to let the k8s select the node where the volume should be provisioned.
 

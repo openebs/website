@@ -80,7 +80,7 @@ spec:
 
 **StorageClassName**
 
-LVM CSI-Driver supports dynamic provision of volume for the PVCs referred to as LVM storageclass. StorageClassName is a required field, if the field is unspecified then it will lead to provision errors. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/storage_class.md) for more information about the dynamic provisioning workflow.
+LVM CSI-Driver supports dynamic provision of volume for the PVCs referred to as LVM storageclass. StorageClassName is a required field, if the field is unspecified then it will lead to provision error. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/storage_class.md) for more information about the dynamic provisioning workflow.
 
 ```
 kind: PersistentVolumeClaim
@@ -175,7 +175,7 @@ metadata:
   name: csi-lvmpv
 spec:
   storageClassName: openebs-lvmpv
-  ## Specify selector matching to available PVs label, K8s will be bound to any of the available PV matches to specified labels
+  ## Specify selector matching to available PVs label, K8s will be bound to any of the available PVs matching to specified labels
   selector:
     matchLabels:
       openebs.io/lvm-volume: reuse
