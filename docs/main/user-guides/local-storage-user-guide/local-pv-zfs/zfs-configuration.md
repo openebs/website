@@ -94,7 +94,7 @@ We are providing `recordsize` which will be used to create the ZFS datasets, whi
 
 **ZPOOL Availability**
 
-If ZFS pool is available on certain nodes only, then make use of topology to tell the list of nodes where we have the ZFS pool available. As shown in the below storage class, we can use allowedTopologies to use the ZFS pools only from the specified nodes..
+If ZFS pool is available on certain nodes only, then make use of topology to tell the list of nodes where we have the ZFS pool available. As shown in the below storage class, we can use allowedTopologies to use the ZFS pools only from the specified nodes.
 
 ```
 apiVersion: storage.k8s.io/v1
