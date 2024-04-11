@@ -10,11 +10,11 @@ description: This section talks about the advanced operations that can be perfor
 ---
 
 
-LVM thin provisioning allows you to over-provision the physical storage. You can create file systems which are larger than the vailable physical storage. LVM thin provisioning allows you to create virtual disks inside a thin pool. The size of the virtual disk can be greater than the available space in the thin pool. It is important that you monitor the thin pool and add more capacity when it starts to become full.
+LVM thin provisioning allows you to over-provision the physical storage. You can create file systems that are larger than the available physical storage. LVM thin provisioning allows you to create virtual disks inside a thin pool. The size of the virtual disk can be greater than the available space in the thin pool. You must monitor the thin pool and add more capacity when it starts to become full.
 
 ## Configuring ThinProvision Volume
 
-For creating thin-provisioned volume, use thinProvision parameter in storage class. Its allowed values are: "yes" and "no". If we do not use this parameter by default its value will be "no" and it will work as thick provisioned volumes.
+For creating a thin-provisioned volume, use the thinProvision parameter in storage class. Its allowed values are: "yes" and "no". If we do not use this parameter by default its value will be "no" and it will work as thick provisioned volumes.
 
 ```
 apiVersion: storage.k8s.io/v1
@@ -28,7 +28,7 @@ parameters:
   thinProvision: "yes"
 ```
 
-Before creating thin provision volume, make ensure that required thin provisioning kernel module `dm_thin_pool` is loaded on all the nodes.
+Before creating a thin provision volume, make sure that the required thin provisioning kernel module `dm_thin_pool` is loaded on all the nodes.
 
 To verify if the modules are loaded, run:
 ```
@@ -42,9 +42,9 @@ modprobe dm_thin_pool
 
 ## Extend the Thin Pool Size
 
-Thin-pools are just a logical volume, so if we need to extend the size of thin-pool
+Thin pools are just logical volumes, so if we need to extend the size of thin-pool
 we can use the same command like, we have used for logical volumes extend, but we 
-can not reduce the size of thin-pool.
+can not reduce the size of thin pool.
 
 ```
 $ lvextend -L +15G lvmvg/thin_pool
@@ -54,8 +54,8 @@ $ lvextend -L +15G lvmvg/thin_pool
 
 ## Configure Auto Extending of the Thin Pool (Configure Over-Provisioning protection)
 
-1. Since we automatically create thin pool as part of first thin volume provisioning,
-we need to enable the monitoring using `lvchange` command on the all thin pools
+1. Since we automatically create a thin pool as part of first the thin volume provisioning,
+we need to enable the monitoring using `lvchange` command on all thin pools
 across the nodes to use the auto extend threshold feature.
 
    To Ensure monitoring of the logical volume is enabled.
@@ -68,7 +68,7 @@ across the nodes to use the auto extend threshold feature.
 
 
    If the output in the Monitor column reports, as above, that the volume is not monitored,
-   then monitoring needs to be explicitly enabled. Without this step, automatic extension of
+   then monitoring needs to be explicitly enabled. Without this step, an automatic extension of
    the logical thin pool will not occur, regardless of any settings in the `lvm.conf`.
 
    ```
@@ -84,7 +84,7 @@ across the nodes to use the auto extend threshold feature.
    lvmvg_thinpool lvmvg twi-aotz-- 2.07g                       0.00   11.52                            monitored
    ```
 
-2. Editing the settings in the `/etc/lvm/lvm.conf` can allow auto growth of the thin 
+2. Editing the settings in the `/etc/lvm/lvm.conf` can allow auto-growth of the thin 
 pool when required. By default, the threshold is 100% which means that the pool
 will not grow. If we set this to, 75%, the Thin Pool will autoextend when the 
 pool is 75% full. It will increase by the default percentage of 20% if the value

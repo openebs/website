@@ -10,11 +10,9 @@ keywords:
 description: This section talks about the advanced operations that can be performed in the OpenEBS Local Persistent Volumes (PV) backed by the ZFS Storage. 
 ---
 
-## Backup and Restore for Local PV ZFS Volumes
+## Prerequisites
 
-### Prerequisites
-
-We should have installed the ZFS-LocalPV 1.0.0 or later version for the Backup and Restore, see [readme](../README.md) for the steps to install the ZFS-LocalPV driver.
+You should have installed the ZFS-LocalPV 1.0.0 or later version for the Backup and Restore, see [readme](../README.md) for the steps to install the ZFS-LocalPV driver.
 
 | Project | Minimum Version |
 | :--- | :--- |
@@ -27,13 +25,13 @@ We should have installed the ZFS-LocalPV 1.0.0 or later version for the Backup a
 - With velero version v1.5.2 and v1.5.3, there is an [issue](https://github.com/vmware-tanzu/velero/issues/3470) where PVs are not getting cleaned up for restored volume.
 :::
 
-### Setup
+## Setup
 
-#### a. Install Velero Binary
+### Install Velero Binary
 
 Follow the steps mentioned [here](https://velero.io/docs/v1.5/basic-install/) to install velero CLI.
 
-#### b. Install Velero
+### Install Velero
 
 Setup the credential file.
 
@@ -60,7 +58,7 @@ velero install --provider aws --bucket <bucket_name> --secret-file <./aws-iam-cr
 
 Install the velero 1.5 or later version for ZFS-LocalPV.
 
-#### c. Deploy MinIO
+### Deploy MinIO
 
 Deploy the minIO to store the backup:
 
@@ -83,7 +81,7 @@ restic-k7k4s              1/1     Running     0          69s
 velero-7d9c448bc5-j424s   1/1     Running     3          69s
 ```
 
-#### d. Setup ZFS-LocalPV Plugin
+### Setup Local PV ZFS Velero Plugin
 
 Install the Velero Plugin for Local PV ZFS using the command below:
 
@@ -93,11 +91,11 @@ velero plugin add openebs/velero-plugin:2.2.0
 
 Install the velero-plugin 2.2.0 or later version which has the support for ZFS-LocalPV. Once the setup is done, create the backup/restore.
 
-### Create Backup
+## Create Backup
 
 Three kinds of backups for Local PV ZFS can be created. Let us go through them one by one:
 
-#### 1. Create the *Full* Backup
+### Create the Full Backup
 
 To take the full backup, create the Volume Snapshot Location as below:
 
@@ -141,7 +139,7 @@ my-backup   InProgress   2020-09-14 21:09:06 +0530 IST   29d       default      
 
 Once Status is `Completed`, the backup has been taken successfully.
 
-#### 2. Create the scheduled *Full* Backup
+### Create the scheduled Full Backup
 
 To create the scheduled full backup, we can create the Volume Snapshot Location same as above to create the full backup:
 
@@ -188,7 +186,7 @@ schd-20201012122706    InProgress   2020-10-12 17:57:06 +0530 IST   29d       de
 
 The scheduled backup will have `<schedule name>-<timestamp>` format. Once Status is `Completed`, the backup has been taken successfully and then velero will take the next backup after 5 min and periodically keep doing that.
 
-#### 3. Create the scheduled *Incremental* Backup
+### Create the scheduled Incremental Backup
 
 Incremental backup works for scheduled backup only. We can create the VolumeSnapshotLocation as below to create the incremental backup schedule :-
 
@@ -244,7 +242,7 @@ schd-20201012132516   Completed   2020-10-12 18:55:18 +0530 IST   29d       defa
 schd-20201012132115   Completed   2020-10-12 18:51:15 +0530 IST   29d       default            <none>
 ```
 
-##### Explanation:
+#### Explanation
 
 Since we have used incrBackupCount as 3 in the volume snapshot location and created the backup. So first backup will be full backup and next 3 backup will be incremental
 
@@ -268,7 +266,7 @@ It will stop at 3rd as we want to restore till schd-20201012133010. For us, it w
 
 Suppose we want to restore schd-20201012134010(5th backup), the plugin will restore schd-20201012134010 only as it is full backup and we want to restore till that point only.
 
-### Restore
+## Restore
 
 We can restore the backup using below command, we can provide the namespace mapping if we want to restore in different namespace. If namespace mapping is not provided, then it will restore in the source namespace in which the backup was present.
 
@@ -285,7 +283,7 @@ my-backup-20200914211331   my-backup   InProgress   0          0        2020-09-
 
 Once the Status is `Completed` we can check the pods in the destination namespace and verify that everything is up and running. We can also verify the data has been restored.
 
-#### Restore on a Different Node
+### Restore on a Different Node
 
 We have the node affinity set on the PV and the ZFSVolume object has the original node name as the owner of the Volume. While doing the restore if original node is not present, the Pod will not come into running state.
 We can use velero [RestoreItemAction](https://velero.io/docs/v1.5/restore-reference/#changing-pvc-selected-node) for this and create a config map which will have the node mapping like below:
@@ -317,13 +315,13 @@ data:
 
 While doing the restore the ZFS-LocalPV plugin will set the affinity on the PV as per the node mapping provided in the config map. Here in the above case the PV created on nodes `pawan-old-node1` and `pawan-old-node2` will be moved to `pawan-new-node1` and `pawan-new-node2` respectively.
 
-### Things to Consider
+## Things to Consider
 
 - Once VolumeSnapshotLocation has been created, we should never modify it, we should always create a new VolumeSnapshotLocation and use that. If we want to modify it, we should cleanup old backups/schedule first and then modify it and then create the backup/schedule. Also we should not switch the volumesnapshot location for the given scheduled backup, we should always create a new schedule if backups for the old schedule is present.
 
 - For the incremental backup, the higher the value of `incrBackupCount` the more time it will take to restore the volumes. So, we should not have very high number of incremental backup.
 
-### Uninstall Velero
+## Uninstall Velero
 
 We can delete the velero installation by using this command
 
@@ -332,6 +330,6 @@ $ kubectl delete namespace/velero clusterrolebinding/velero
 $ kubectl delete crds -l component=velero
 ```
 
-### Reference
+## Reference
 
-Check the [velero doc](https://velero.io/docs/) to find all the supported commands and options for the backup and restore.
+See the [velero documentation](https://velero.io/docs/) to find all the supported commands and options for the backup and restore.

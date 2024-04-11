@@ -9,17 +9,17 @@ keywords:
 description: This section talks about the advanced operations that can be performed in the OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage. 
 ---
 
-The LVM driver supports creating snapshots of the LVM volumes. This requires the `dm-snapshot` kernel module to be loaded. Certain settings are applied by the LVM driver which modifies the default behaviour of LVM snapshot:
+The LVM driver supports creating snapshots of the LVM volumes. This requires the `dm-snapshot` kernel module to be loaded. Certain settings are applied by the LVM driver which modifies the default behaviour of the LVM snapshot:
 
-- Snapshots created by LVM driver are ReadOnly by default as opposed to the ReadWrite snapshots created by default by `lvcreate` command
+- Snapshots created by the LVM driver are ReadOnly by default as opposed to the ReadWrite snapshots created by default by `lvcreate` command
 - The size of snapshot will be set to the size of the origin volume
 
 
 ## Default SnapshotClass without SnapSize Parameter
 
-In default snapshotclass case, for thin volumes, a thin snapshot will be created. Similarly, for thick volume, a thick snapshot will be created.
+In the default snapshotclass case, for thin volumes, a thin snapshot will be created. Similarly, for thick volume, a thick snapshot will be created.
 
-While creating the thick snapshot for thick volumes, since snapsize parameter is not provided, driver will reserve size equal to the volume for snapshots.
+While creating the thick snapshot for thick volumes, since the snapsize parameter is not provided, the driver will reserve a size equal to the volume for snapshots.
 
 ```yaml
 kind: VolumeSnapshotClass
@@ -34,9 +34,9 @@ deletionPolicy: Delete
 
 ## SnapshotClass with Snapsize Parameter
 
-Using SnapshotClass `snapSize` parameter we can configure the snapshot size for persistent volumes where `snapSize` can be configure as a percentage or a absolute value.
+Using the SnapshotClass `snapSize` parameter we can configure the snapshot size for persistent volumes where `snapSize` can be configured as a percentage or an absolute value.
 
-In this case whether volume is thin provisioned or thick provisioned, driver will create a thick snapshot with size as `snapSize` mentioned in the `SnapshotClass`.
+In this case, whether the volume is thin provisioned or thick provisioned, the driver will create a thick snapshot with size as `snapSize` mentioned in the `SnapshotClass`.
 
 - SnapshotClass with `snapSize` parameter as a percentage(%) value:
 
@@ -104,7 +104,7 @@ volumesnapshot.snapshot.storage.k8s.io/lvm-localpv-snap created
 ```
 
 :::note
-You have to create the snapshot in the same namespace where the PVC is created. Check the created snapshot resource, make sure readyToUsefield is true, before using this snapshot for any purpose. 
+You have to create the snapshot in the same namespace where the PVC is created. Check the created snapshot resource and make sure readyToUsefield is true, before using this snapshot for any purpose. 
 ```bash
 $ kubectl get volumesnapshot
 NAME               READYTOUSE   SOURCEPVC    SOURCESNAPSHOTCONTENT   RESTORESIZE   SNAPSHOTCLASS     SNAPSHOTCONTENT                                    CREATIONTIME   AGE
@@ -155,4 +155,4 @@ $ lvs
 
 ## Limitations
 
-Resize is not supported for volumes that have a snapshot. This is not an LVM limitation, but is intentionally done from the LVM driver, since LVM does not automatically resize the snapshots when origin volume is resized.
+Resize is not supported for volumes that have a snapshot. This is not an LVM limitation but is intentionally done from the LVM driver since LVM does not automatically resize the snapshots when the origin volume is resized.

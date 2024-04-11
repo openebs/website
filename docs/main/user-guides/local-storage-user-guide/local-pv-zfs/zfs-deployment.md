@@ -34,11 +34,11 @@ spec:
       claimName: csi-zfspv
 ```
 
-After the deployment of the application, we can go to the node and see that the zfs volume is being used by the application for reading/writting the data and space is consumed from the ZFS pool.
+After the deployment of the application, we can go to the node and see that the ZFS volume is being used by the application for reading/writing the data and space is consumed from the ZFS pool.
 
 ## ZFS Property Change
 
-ZFS Volume Property can be changed like compression on/off can be done by just simply editing the kubernetes resource for the corresponding zfs volume by using below command:
+ZFS Volume Property can be changed like compression on/off can be done by just simply editing the kubernetes resource for the corresponding ZFS volume by using below command:
 
 ```
 $ kubectl edit zv pvc-34133838-0d0d-11ea-96e3-42010a800114 -n openebs
@@ -51,7 +51,7 @@ $ zfs get all zfspv-pool/pvc-34133838-0d0d-11ea-96e3-42010a800114
 
 ## Deprovisioning
 
-To deprovision the volume we can delete the application which is using the volume and then we can go ahead and delete the pv, as part of deletion of pv this volume will also be deleted from the ZFS pool and data will be freed.
+To deprovision the volume we can delete the application which is using the volume and then we can go ahead and delete the PV, as part of deletion of PV this volume will also be deleted from the ZFS pool and data will be freed.
 
 ```
 $ kubectl delete -f fio.yaml
@@ -72,7 +72,7 @@ $ systemctl stop zfs-import-scan.service
 $ systemctl disable zfs-import-scan.service
 ```
 
-Always maintain upto date /etc/zfs/zpool.cache while performing operations on zfs pools (zpool set cachefile=/etc/zfs/zpool.cache).
+Always maintain upto date /etc/zfs/zpool.cache while performing operations on ZFS pools (zpool set cachefile=/etc/zfs/zpool.cache).
 :::
 
 ## Support
