@@ -74,7 +74,7 @@ This section describes the Replicated Storage upgrade from OpenEBS Umbrella char
 1. Start the helm upgrade process with the new chart, i.e. 4.0.0 by using the below command:
 
 :::caution
-For users who needs hot upgrade, `--set mayastor.agents.core.rebuild.partial.enabled=false` is mandatory while upgrading to OpenEBS 4.0.0 to ensure there are no issues in the upgrade process. For users who can scale down the applications in the upgrade process can skip using this flag. 
+It is highly recommended to disable the partial rebuild during the upgrade from specific versions of OpenEBS (3.7.0, 3.8.0, 3.9.0 and 3.10.0) to OpenEBS 4.0.0 to ensure data consistency during upgrade. Input the value `--set mayastor.agents.core.rebuild.partial.enabled=false` in the upgrade command.
 :::
 
 ```
@@ -131,10 +131,10 @@ openebs-upgrade-v2-6-0-s58xl                   0/1     Completed   0          7m
 
 4. Once the upgrade process completes, all the volumes and pools should be online.
 
-5. Users who had opted for hot upgrade and disabled the partial rebuild using `--set mayastor.agents.core.rebuild.partial.enabled=true`, can enable it back with the below command.
+5. If you have disabled the partial rebuild during the upgrade, re-enable it by adding the value `--set mayastor.agents.core.rebuild.partial.enabled=true` in the upgrade command.
 
 :::info
-This step is not applicable (or can be skipped) if you have not opted for hot upgrade.
+This step is not applicable (or can be skipped) if you have not disabled the partial rebuild during the upgrade from specific versions of OpenEBS (3.7.0, 3.8.0, 3.9.0 and 3.10.0) to OpenEBS 4.0.0.
 :::
 
 ```
