@@ -28,10 +28,10 @@ For OpenEBS Replicated Storage (a.k.a Replicated Engine or Mayastor), make sure 
 
 At a high-level, OpenEBS requires:
 
-- Verify that you have the admin context. If you do not have admin permissions to your cluster, check with your Kubernetes cluster administrator to help with installing OpenEBS or if you are the owner of the cluster, check out the [steps to create a new admin context](#set-cluster-admin-user-context) and use it for installing OpenEBS.
+- Verify that you have the admin context. If you do not have admin permissions to your cluster, check with your Kubernetes cluster administrator to help with installing OpenEBS or if you are the owner of the cluster, check out the [steps to create a new admin context](../troubleshooting/troubleshooting-local-storage.md#set-cluster-admin-user-context) and use it for installing OpenEBS.
 - Each storage engine may have a few additional requirements as follows:
-  - Depending on the managed Kubernetes platform like Rancher or MicroK8s - set up the right bind mounts
-  - Decide which of the devices on the nodes should be used by OpenEBS or if you need to create LVM Volume Groups or ZFS Pools
+  - Depending on the managed Kubernetes platform like Rancher or MicroK8s - set up the right bind mounts.
+  - Decide which of the devices on the nodes should be used by OpenEBS or if you need to create LVM Volume Groups or ZFS Pools.
 
 ## Supported Versions
 
@@ -45,20 +45,20 @@ At a high-level, OpenEBS requires:
 
 Verify helm is installed and helm repo is updated. You need helm 3.2 or more. 
 
-Setup helm repository
+1. Setup helm repository.
 
 ```
 helm repo add openebs https://openebs.github.io/openebs
 helm repo update
 ```
 
-OpenEBS provides several options that you can customize during installation like:
-- specifying the directory where hostpath volume data is stored or
-- specifying the nodes on which OpenEBS components should be deployed and so forth. 
+OpenEBS provides several options to customize during installation such as:
+- Specifying the directory where hostpath volume data is stored or
+- Specifying the nodes on which OpenEBS components should be deployed and so forth. 
 
 The default OpenEBS helm chart will install both Local Storage and Replicated Storage. Refer to [OpenEBS helm chart documentation](https://github.com/openebs/charts/tree/master/charts/openebs) for a full list of customizable options and use other flavors of OpenEBS Data Engines by setting the correct helm values. 
 
-Install the OpenEBS helm chart with default values. 
+2. Install the OpenEBS helm chart with default values. 
 
 ```
 helm install openebs --namespace openebs openebs/openebs --create-namespace
@@ -73,7 +73,7 @@ If you do not want to install OpenEBS Replicated Storage, use the following comm
 helm install openebs --namespace openebs openebs/openebs --set mayastor.enabled=false --create-namespace
 ```
 
-To view the chart and get the output, use the following commands:
+3. To view the chart and get the output, use the following commands:
 
 **Command**
 
@@ -89,7 +89,7 @@ openebs  openebs     1         2024-03-25 09:13:00.903321318 +0000 UTC   deploye
 ```
 :::
 
-As a next step [verify](#verifying-openebs-installation) your installation and do the[post installation](#post-installation-considerations) steps.
+As a next step [verify](#verifying-openebs-installation) your installation and do the [post installation](#post-installation-considerations) steps.
 
 ## Verifying OpenEBS Installation
 

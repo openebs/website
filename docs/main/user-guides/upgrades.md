@@ -21,7 +21,7 @@ See the [migration documentation](../user-guides/data-migration/migration-overvi
 
 ## Overview
 
-This upgrade flow would allow users to upgrade to the latest OpenEBS version 4.0.0 which is a unified installer for three Local Storages (a.k.a Local Engines) Local PV HostPath, Local PV LVM, Local PV ZFS, and one Replicated Storage (a.k.a Replicated Engine or Mayastor). 
+This upgrade flow allows the users to upgrade to the latest OpenEBS version 4.0.0 which is a unified installer for three Local Storages (a.k.a Local Engines) Local PV HostPath, Local PV LVM, Local PV ZFS, and one Replicated Storage (a.k.a Replicated Engine or Mayastor). 
 As a part of upgrade to OpenEBS 4.0.0, the helm chart would install all four engines irrespective of the engine the user was using prior to the upgrade. 
 
 :::info
@@ -73,6 +73,10 @@ This section describes the Replicated Storage upgrade from OpenEBS Umbrella char
 
 1. Start the helm upgrade process with the new chart, i.e. 4.0.0 by using the below command:
 
+:::caution
+For users who needs hot upgrade, `--set mayastor.agents.core.rebuild.partial.enabled=false` is mandatory while upgrading to OpenEBS 4.0.0 to ensure there are no issues in the upgrade process. For users who can scale down the applications in the upgrade process can skip using this flag. 
+:::
+
 ```
 helm upgrade openebs openebs/openebs -n openebs --reuse-values \
   --set localpv-provisioner.release.version=4.0.0 \
@@ -96,7 +100,8 @@ helm upgrade openebs openebs/openebs -n openebs --reuse-values \
   --set mayastor.csi.image.snapshotControllerTag=v6.3.3 \
   --set mayastor.csi.image.registrarTag=v2.10.0 \
   --set mayastor.crds.enabled=false \
-  --set-json 'mayastor.loki-stack.promtail.initContainer=[]'
+  --set-json 'mayastor.loki-stack.promtail.initContainer=[]' \
+  --set mayastor.agents.core.rebuild.partial.enabled=false
 ```
 
 2. Verify that the CRDs, Volumes, Snapshots and StoragePools are unaffected by the upgrade process.
@@ -104,7 +109,7 @@ helm upgrade openebs openebs/openebs -n openebs --reuse-values \
 3. Start the Replicated Storage upgrade process by using the kubectl mayastor plugin v2.6.0.
 
 ```
-kubectl mayastor upgrade -n openebs
+kubectl mayastor upgrade -n openebs --set 'mayastor.agents.core.rebuild.partial.enabled=false'
 ```
 
 - This deploys an upgrade process of K8s resource type Job.
@@ -126,8 +131,19 @@ openebs-upgrade-v2-6-0-s58xl                   0/1     Completed   0          7m
 
 4. Once the upgrade process completes, all the volumes and pools should be online.
 
+5. Users who had opted for hot upgrade and disabled the partial rebuild using `--set mayastor.agents.core.rebuild.partial.enabled=true`, can enable it back with the below command.
+
+:::info
+This step is not applicable (or can be skipped) if you have not opted for hot upgrade.
+:::
+
+```
+helm upgrade openebs openebs/openebs -n openebs --reuse-values \
+  --set mayastor.agents.core.rebuild.partial.enabled=true
+```
+
 ## See Also
 
 - [Release Notes](../releases.md)
-- [Troubleshooting](../troubleshooting/troubleshooting-local-engine.md)
+- [Troubleshooting](../troubleshooting/troubleshooting-local-storage.md)
 - [Join our Community](../community.md)

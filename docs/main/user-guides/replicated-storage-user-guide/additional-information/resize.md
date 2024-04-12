@@ -10,7 +10,7 @@ description: This guide explains about the volume resize feature.
 
 The Volume Resize feature allows Kubernetes (or any other CO) end-users to expand a persistent volume (PV) after creation by resizing a dynamically provisioned persistent volume claim (PVC). This is allowed only if the `StorageClass` has `allowVolumeExpansion` boolean flag set to _true_. The end-users can edit the `allowVolumeExpansion` boolean flag in Kubernetes `StorageClass` to toggle the permission for PVC resizing. This is useful for users to optimise their provisioned space and not have to worry about pre-planning the future capacity requirements. The users can provision a volume with just about right size based on current usage and trends, and in the future if the need arises to have more capacity in the same volume, the volume can be easily expanded.
 
-Replicated Storage (a.k.a Replicated Enfine or Mayastor) CSI plugin provides the ability to expand volume in the _ONLINE_ and _OFFLINE_ states.
+Replicated Storage (a.k.a Replicated Engine or Mayastor) CSI plugin provides the ability to expand volume in the _ONLINE_ and _OFFLINE_ states.
 
 ## Prerequisites
 

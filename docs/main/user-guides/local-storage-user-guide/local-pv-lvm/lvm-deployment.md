@@ -98,7 +98,7 @@ spec:
 
 **Capacity Resource**
 
-Admin/User can specify the desired capacity for LVM volume. CSI-Driver will provision a volume if the underlying volume group has requested capacity available else provisioning volume will be errored. StorageClassName is a required field, if the field is unspecified then it will lead to provisioning errors. See [here]https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/capacity_resource.md for more information about the workflows.
+Admin/User can specify the desired capacity for LVM volume. CSI-Driver will provision a volume if the underlying volume group has requested capacity available else provisioning volume will be errored. StorageClassName is a required field, if the field is unspecified then it will lead to provisioning errors. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/capacity_resource.md) for more information about the workflows.
 
 ```
 kind: PersistentVolumeClaim

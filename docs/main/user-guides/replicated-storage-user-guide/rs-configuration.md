@@ -107,7 +107,8 @@ pool-on-node-3   node-3-14944  Created   Online        10724835328   0      1072
 
 ## Create Replicated StorageClass\(s\)
 
-Replicated Storage dynamically provisions PersistentVolumes \(PVs\) based on StorageClass definitions created by the user. Parameters of the definition are used to set the characteristics and behaviour of its associated PVs. For a detailed description of these parameters see [storage class parameter description](#storage-class-parameters). Most importantly StorageClass definition is used to control the level of data protection afforded to it \(that is, the number of synchronous data replicas which are maintained, for purposes of redundancy\). It is possible to create any number of StorageClass definitions, spanning all permitted parameter permutations.
+Replicated Storage dynamically provisions PersistentVolumes \(PVs\) based on StorageClass definitions created by the user. Parameters of the definition are used to set the characteristics and behaviour of its associated PVs. See [storage class parameter description](#storage-class-parameters) for a detailed description of these parameters.
+Most importantly StorageClass definition is used to control the level of data protection afforded to it (i.e.the number of synchronous data replicas which are maintained, for purposes of redundancy). It is possible to create any number of StorageClass definitions, spanning all permitted parameter permutations.
 
 We illustrate this quickstart guide with two examples of possible use cases; one which offers no data redundancy \(i.e. a single data replica\), and another having three data replicas. 
 :::info

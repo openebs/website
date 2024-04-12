@@ -64,7 +64,7 @@ Configure the [custom topology keys](../../../faqs/faqs.md#how-to-add-custom-top
 
 ## Installation
 
-For installation instructions, see [here](../../quickstart-guide/installation.md).
+For installation instructions, see [here](../../../quickstart-guide/installation.md).
 
 ## Support
 

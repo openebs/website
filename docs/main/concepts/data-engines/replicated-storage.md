@@ -3,6 +3,7 @@ id: replicated-storage
 title: Replicated Storage
 keywords: 
   - Replicated Storage
+  - OpenEBS Replicated Storage
 description: In this document you will learn about Replicated Storage and its design goals.
 ---
 

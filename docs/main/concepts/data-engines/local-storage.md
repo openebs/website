@@ -1,6 +1,6 @@
 ---
 id: localstorage
-title: OpenEBS Local Storage
+title: Local Storage
 keywords: 
   - Local Storage
   - OpenEBS Local Storage
@@ -33,7 +33,7 @@ OpenEBS helps users to take local volumes into production by providing features 
 
 ## Quickstart Guides
 
-OpenEBS provides Local Volume that can be used to provide locally mounted storage to Kubernetes Stateful workloads. Refer to the [Quickstart Guide](../../quickstart-guide/) for more information.
+OpenEBS provides Local Volume that can be used to provide locally mounted storage to Kubernetes Stateful workloads. Refer to the [Quickstart Guide](../../quickstart-guide/installation.md) for more information.
 
 ## When to use OpenEBS Local Storage?
 

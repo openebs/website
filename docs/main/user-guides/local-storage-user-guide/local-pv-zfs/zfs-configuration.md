@@ -173,7 +173,7 @@ spec:
       storage: 4Gi
 ```
 
-Create a PVC using the storage class created for the ZFS driver. Here, the allocated volume size will be rounded off to the nearest Mi or Gi notation, see [FAQs](../../faqs/faqs.md) for more details.
+Create a PVC using the storage class created for the ZFS driver. Here, the allocated volume size will be rounded off to the nearest Mi or Gi notation, see [FAQs](../../../faqs/faqs.md) for more details.
 
 If we are using the immediate binding in the storageclass then we can check the Kubernetes resource for the corresponding ZFS volume, otherwise in late binding case, we can check the same after pod has been scheduled:
 
@@ -460,7 +460,7 @@ spec:
     - test2
 ```
 
-If you want to change topology keys, just set new env(ALLOWED_TOPOLOGIES). See [faq](./faq.md#6-how-to-add-custom-topology-key) for more details.
+If you want to change topology keys, just set new env(ALLOWED_TOPOLOGIES). See [FAQs](../../../faqs/faqs.md#how-to-add-custom-topology-key-to-local-pv-zfs-driver) for more details.
 
 ```
 $ kubectl edit ds -n kube-system openebs-zfs-node

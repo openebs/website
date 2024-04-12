@@ -15,6 +15,7 @@ table {
     border-right: $table-border-width solid $table-border-color;
     border-left: $table-border-width solid $table-border-color;
     border-bottom: $table-border-width solid $table-border-color;
+    border-top: $table-border-width solid $table-border-color;
     vertical-align: middle;
     // &:last-child {
     //   border: none;

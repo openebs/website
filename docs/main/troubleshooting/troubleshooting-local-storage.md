@@ -29,15 +29,15 @@ kubectl get bdc -n openebs
 shows stale `Pending` BDCs created by localpv provisioner, even after the corresponding PVC has been deleted.
 
 **Resolution:**
-LocalPV provisioner currently does not delete BDCs in Pending state if the corresponding PVCs are deleted. To remove the stale BDC entries,
+LocalPV provisioner currently does not delete BDCs in Pending state if the corresponding PVCs are deleted. To remove the stale BDC entries:
 
-1. Edit the BDC and remove the `- local.openebs.io/finalizer` finalizer
+1. Edit the BDC and remove the `- local.openebs.io/finalizer` finalizer.
 
 ```
 kubectl edit bdc <bdc-name> -n openebs
 ```
 
-2. Delete the BDC
+2. Delete the BDC.
 
 ```
 kubectl delete bdc <bdc-name> -n openebs
@@ -45,10 +45,10 @@ kubectl delete bdc <bdc-name> -n openebs
 
 ### BDC created by localPV in pending state {#bdc-by-localpv-pending-state}
 
-The BDC created by localpv provisioner (bdc-pvc-xxxx) remains in pending state and PVC does not get Bound
+The BDC created by localpv provisioner (bdc-pvc-xxxx) remains in pending state and PVC does not get Bound.
 
 **Troubleshooting:**
-Describe the BDC to check the events recorded on the resource
+Describe the BDC to check the events recorded on the resource.
 
 ```
 kubectl describe bdc bdc-pvc-xxxx -n openebs
@@ -62,7 +62,7 @@ The following are different types of messages shown when the node on which local
 Warning  SelectionFailed  14m (x25 over 16m)    blockdeviceclaim-operator  no blockdevices found
 ```
 
-It means that there were no matching blockdevices after listing based on the labels. Check if there is any `block-device-tag` on the storage class and corresponding tags are available on the blockdevices also
+It means that there were no matching blockdevices after listing based on the labels. Check if there is any `block-device-tag` on the storage class and corresponding tags are available on the blockdevices.
 
 2. No devices with matching criteria
 
@@ -70,8 +70,7 @@ It means that there were no matching blockdevices after listing based on the lab
 Warning  SelectionFailed  6m25s (x18 over 11m)  blockdeviceclaim-operator  no devices found matching the criteria
 ```
 
-It means that the there are no devices for claiming after filtering based on filesystem type and node name. Make sure the blockdevices on the node
-have the correct filesystem as mentioned in the storage class (default is `ext4`)
+It means that the there are no devices for claiming after filtering based on filesystem type and node name. Make sure the blockdevices on the node have the correct filesystem as mentioned in the storage class (default is `ext4`).
 
 3. No devices with matching resource requirements
 
