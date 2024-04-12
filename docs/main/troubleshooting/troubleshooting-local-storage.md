@@ -327,13 +327,13 @@ This is the preferred approach.
 
 Approach2:
 
-Set the reboot timer schedule at different time i.e staggered at various interval of the day, so that only one nodes get rebooted at a time.
+Set the reboot timer schedule at different time i.e. staggered at various interval of the day, so that only one nodes get rebooted at a time.
 
 ### How to fetch the OpenEBS Dynamic Local Provisioner logs?
 
 **Workaround:**
 
-Review the logs of the OpenEBS Local PV provisioner. OpenEBS Dynamic Local Provisioner logs can be fetched using. 
+Review the logs of the OpenEBS Local PV provisioner. OpenEBS Dynamic Local Provisioner logs can be fetched using:
 
 ```
 kubectl logs -n openebs -l openebs.io/component-name=openebs-localpv-provisioner

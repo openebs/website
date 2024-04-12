@@ -40,9 +40,9 @@ For installation instructions, see [here](../../../quickstart-guide/installation
 
 ## Support
 
-If you encounter issues or have a question, file an [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
 
 ## See Also
 
-- [Installation](../../quickstart-guide/installation.md)
-- [Deploy an Application](../../quickstart-guide/deploy-a-test-application.md)
+- [Installation](../../../quickstart-guide/installation.md)
+- [Deploy an Application](../../../quickstart-guide/deploy-a-test-application.md)

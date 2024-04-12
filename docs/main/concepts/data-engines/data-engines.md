@@ -148,7 +148,7 @@ An important aspect of the OpenEBS Data Layer is that each volume replica is a f
 
 ### Use-cases for OpenEBS Replicated Storage
 
-- When you need high performance storage using NVMe SSDs the cluster is capable of NVMeoF. 
+- When you need high performance storage using NVMe SSDs the cluster is capable of NVMe-oF. 
 - When you need replication or availability features to protect against node failures.  
 - Replicated Storage is designed for the next-gen compute and storage technology and is under active development. 
 

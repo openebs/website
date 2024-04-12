@@ -125,7 +125,7 @@ The provisioner name for ZFS driver is "zfs.csi.openebs.io", we have to use this
 
 **Scheduler**
 
-The ZFS driver has its own scheduler which will try to distribute the PV across the nodes so that one node should not be loaded with all the volumes. Currently the driver supports two scheduling algorithms: VolumeWeighted and CapacityWeighted, in which it will try to find a ZFS pool which has less number of volumes provisioned in it or less capacity of volume provisioned out of a pool respectively, from all the nodes where the ZFS pools are available. To know about how to select scheduler via storage-class See [here](https://github.com/openebs/zfs-localpv/blob/HEAD/docs/storageclasses.md#storageclass-with-k8s-scheduler). Once it can find the node, it will create a PV for that node and also create a ZFSVolume custom resource for the volume with the NODE information. The watcher for this ZFSVolume CR will get all the information for this object and creates a ZFS dataset(zvol) with the given ZFS property on the mentioned node.
+The ZFS driver has its own scheduler which will try to distribute the PV across the nodes so that one node should not be loaded with all the volumes. Currently the driver supports two scheduling algorithms: VolumeWeighted and CapacityWeighted, in which it will try to find a ZFS pool which has less number of volumes provisioned in it or less capacity of volume provisioned out of a pool respectively, from all the nodes where the ZFS pools are available. See [here](https://github.com/openebs/zfs-localpv/blob/HEAD/docs/storageclasses.md#storageclass-with-k8s-scheduler) to know about how to select scheduler via storage-class . Once it can find the node, it will create a PV for that node and also create a ZFSVolume custom resource for the volume with the NODE information. The watcher for this ZFSVolume CR will get all the information for this object and creates a ZFS dataset (zvol) with the given ZFS property on the mentioned node.
 
 The scheduling algorithm currently only accounts for either the number of ZFS volumes or total capacity occupied from a zpool and does not account for other factors like available cpu or memory while making scheduling decisions.
 
@@ -366,7 +366,7 @@ Here, we have to note that all the Pods using that volume will come to the same 
 
 ### StorageClass with k8s Scheduler
 
-The ZFS-LocalPV Driver has two types of its own scheduling logic, VolumeWeighted and CapacityWeighted (Supported from zfs-driver:1.3.0+). To choose any one of the scheduler add scheduler parameter in storage class and give its value accordingly.
+The ZFS-LocalPV Driver has two types of its own scheduling logic, VolumeWeighted and CapacityWeighted (Supported from zfs-driver: 1.3.0+). To choose any one of the scheduler add scheduler parameter in storage class and give its value accordingly.
 ```
 parameters:
  scheduler: "VolumeWeighted"
@@ -415,7 +415,7 @@ allowedTopologies:
      - node-2
 ```
 
-At the same time, you must set env variables in the ZFS-LocalPV CSI driver daemon sets (openebs-zfs-node) so that it can pick the node label as the supported topology. It adds "openebs.io/nodename" as default topology key. If the key doesn't exist in the node labels when the CSI ZFS driver register, the key will not add to the topologyKeys. Set more than one keys separated by commas.
+At the same time, you must set env variables in the ZFS-LocalPV CSI driver daemon sets (openebs-zfs-node) so that it can pick the node label as the supported topology. It adds "openebs.io/nodename" as default topology key. If the key does not exist in the node labels when the CSI ZFS driver register, the key will not add to the topologyKeys. Set more than one keys separated by commas.
 
 ```yaml
 env:
@@ -433,7 +433,7 @@ env:
     value: "test1,test2"
 ```
 
-We can verify that key has been registered successfully with the ZFS LocalPV CSI Driver by checking the CSI node object yaml :-
+We can verify that key has been registered successfully with the ZFS LocalPV CSI Driver by checking the CSI node object yaml:
 
 ```yaml
 $ kubectl get csinodes pawan-node-1 -oyaml

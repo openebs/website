@@ -38,25 +38,80 @@ spec:
 
  After the deployment of the application, we can go to the node and see that the LVM volume is being used by the application for reading/writing the data and space is consumed from the LVM. 
  
- :::note
- Check the provisioned volumes on the node, we need to run pvscan --cache command to update the LVM cache and then we can use lvdisplay and all other LVM commands on the node.
+:::note
+Check the provisioned volumes on the node, we need to run pvscan --cache command to update the LVM cache and then we can use lvdisplay and all other LVM commands on the node.
 :::
+
  ## PersistentVolumeClaim Conformance Matrix
 
  The following matrix shows supported PersistentVolumeClaim parameters for localpv-lvm.
 
- Parameter            Values                            Development Status    E2E Coverage Status
- AccessMode           ReadWriteOnce                     Supported             Yes
-                      ReadWriteMany                     Not Supported
-                      ReadOnlyMany                      Not Supported
- Storageclass	        StorageClassName                  Supported	            Yes
- Capacity Resource	  Number along with size unit	      Supported	            Yes
- VolumeMode	          Block	                            Supported	            Yes 
-                                                                              *Test cases available for Filesystem mode*
-                      Filesystem                        Supported  
- Selectors	          Equality & Set based selections   Supported             Pending
- VolumeName	          Available PV name	                Supported	            Pending
- DataSource	          -	                                Not Supported	        Pending
+<table>
+  <thead>
+    <tr>
+      <th> Parameter </th>
+      <th> Values </th>
+      <th> Development Status </th>
+      <th> E2E Coverage Status </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan={3}> <a href="#accessmode"> AccessMode </a> </td>
+      <td> ReadWriteOnce </td>
+      <td> Supported </td>
+      <td rowspan={3}> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/lvm-localpv-provisioner#readme"> Yes </a> </td>
+    </tr>
+    <tr>
+      <td> <strike> ReadWriteMany </strike> </td>
+      <td> Not Supported </td>
+    </tr>
+    <tr>
+      <td> <strike> ReadOnlyMany </strike> </td>
+      <td> Not Supported </td>
+    </tr>
+    <tr>
+      <td> <a href="#storageclassname"> Storageclass </a> </td>
+      <td> StorageClassName </td>
+      <td> Supported </td>
+      <td> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/lvm-localpv-provisioner#readme"> Yes </a> </td>
+    </tr>
+    <tr>
+      <td> <a href="#capacity-resource"> Capacity Resource </a> </td>
+      <td> Number along with size unit </td>
+      <td> Supported </td>
+      <td> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvm-volume-resize#readme"> Yes </a> </td>
+    </tr>
+    <tr>
+      <td rowspan={2}> <a href="#volumemode-optional"> VolumeMode </a> </td>
+      <td> Block </td>
+      <td> Supported </td>
+      <td rowspan={2}> <a href="https://github.com/openebs/lvm-localpv/blob/HEAD/e2e-tests/apps/percona/deployers/run_e2e_test.yml"> Yes </a> <br> <i> Test cases available for Filesystem mode </i> </br> </td>
+    </tr>
+    <tr>
+      <td> Filesystem </td>
+      <td> Supported </td>
+    </tr>
+    <tr>
+      <td> <a href="#selectors-optional"> Selectors </a> </td>
+      <td> Equality & Set based selections </td>
+      <td> Supported </td>
+      <td> Pending </td>
+    </tr>
+    <tr>
+      <td> <a href="#volumename-optional"> VolumeName </a> </td>
+      <td> Available PV name </td>
+      <td> Supported </td>
+      <td> Pending </td>
+    </tr>
+    <tr>
+      <td> DataSource </td>
+      <td> - </td>
+      <td> Not Supported </td>
+      <td> Pending </td>
+    </tr>
+  </tbody>
+</table>
 
  ## PersistentVolumeClaim Parameters
 
