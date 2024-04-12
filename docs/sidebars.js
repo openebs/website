@@ -591,6 +591,14 @@ module.exports = {
       customProps: {
         icon: "HelpCircle"
       },
+    },
+    {
+      type: "doc",
+      id: "glossary",
+      label: "Glossary",
+      customProps: {
+        icon: "HelpCircle"
+      },
     }
   ]
 }

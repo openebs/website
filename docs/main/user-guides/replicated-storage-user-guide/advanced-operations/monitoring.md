@@ -109,6 +109,8 @@ This feature exports performace stats for Volume, Replica and DiskPool resource.
 
 With this change, the exporter calls to the IO engine for stats tied to the frequency of Prometheus poll cycle.
 
+With this change, the exporter will query the IO engine for stats related to the frequency of Prometheus poll cycle.
+
 :::important
 Users are recommended to have Prometheus poll interval not less then 5 minutes.
 :::
