@@ -9,7 +9,6 @@ description: This section lists the abbreviations used thorughout the OpenEBS do
 
 | Abbreviations | Definition | 
 | :--- | :--- | 
-
 | AKS |	Azure Kubernetes Service |
 | CLI |	Command Line Interface |
 | CNCF | Cloud Native Computing Foundation |
