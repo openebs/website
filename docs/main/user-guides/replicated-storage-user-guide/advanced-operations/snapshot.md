@@ -220,3 +220,24 @@ kubectl delete volumesnapshot mayastor-pvc-snap-1
 ```
 volumesnapshot.snapshot.storage.k8s.io "mayastor-pvc-snap-1" deleted
 ```
+
+## Filesystem Consistent Snapshot
+
+The filesystem consistent snapshot ensures that the snapshot filesystem remains consistent while taking a volume snapshot. Before taking the volume snapshot, the csi-node plugin runs the FIFREEZE and FITHAW ioctls on the underlying filesystem to flush and quiesce any active IOs. After the snapshot creation process, the IOs are resumed.
+
+By default, mayastor volume snapshots are fs consistent. This means that if any part of creating a snapshot or an ioctl fails, the whole process will fail and be tried again by the mayastor CSI-controller without any user intervention.
+
+You can disable the fs consistency feature using the VolumeSnapshotClass parameter `quiesceFS`. See the below example to disable the feature:
+
+```
+kind: VolumeSnapshotClass
+apiVersion: snapshot.storage.k8s.io/v1
+metadata:
+  name: csi-mayastor-snapshotclass
+  annotations:
+    snapshot.storage.kubernetes.io/is-default-class: "true"
+parameters:
+  quiesceFs: none
+driver: io.openebs.csi-mayastor
+deletionPolicy: Delete
+```
