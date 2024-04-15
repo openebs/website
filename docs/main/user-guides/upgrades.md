@@ -133,10 +133,6 @@ openebs-upgrade-v2-6-0-s58xl                   0/1     Completed   0          7m
 
 5. If you have disabled the partial rebuild during the upgrade, re-enable it by adding the value `--set mayastor.agents.core.rebuild.partial.enabled=true` in the upgrade command.
 
-:::info
-This step is not applicable (or can be skipped) if you have not disabled the partial rebuild during the upgrade from specific versions of OpenEBS (3.7.0, 3.8.0, 3.9.0 and 3.10.0) to OpenEBS 4.0.0.
-:::
-
 ```
 helm upgrade openebs openebs/openebs -n openebs --reuse-values \
   --set mayastor.agents.core.rebuild.partial.enabled=true

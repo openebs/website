@@ -105,11 +105,7 @@ Upon successful integration of the exporter with the Prometheus stack, the metri
 
 Earlier, the pool capacity/state stats were exported, and the exporter used to cache the metrics and return when Prometheus client queried. This was not ensuring the latest data retuns during the Prometheus poll cycle.
 
-This feature exports performace stats for Volume, Replica and DiskPool resource. Mayastor Prometheus exporter runs along with IO engine container and exposes Prometheus counters. In addition to that, exporter does not pre-populate the metrics. It queries the IO engine, updates cache, and returns the latest metrics when the Prometheus client queries the exporter.
-
-With this change, the exporter calls to the IO engine for stats tied to the frequency of Prometheus poll cycle.
-
-With this change, the exporter will query the IO engine for stats related to the frequency of Prometheus poll cycle.
+In addition to the capacity and state metrics, the metrics exporter also exports performance statistics for pools, volumes, and replicas as Prometheus counters. The exporter does not pre-fetch or cache the metrics, it polls the IO engine inline with the Prometheus client pooling cycle.
 
 :::important
 Users are recommended to have Prometheus poll interval not less then 5 minutes.
@@ -192,7 +188,7 @@ write_throughput = bytes_written (current poll) - bytes_written (previous_poll) 
 
 ### Handling Counter Reset
 
-If a particular IO engine restarts and when the IO engine comes back online, all the bdev stats will be reset. Users will receive lesser values for all the resources residing on that particular IO engine due to reset. So using the above logic would yield negative values. Hence, the counter current poll is less than the counter previous poll. In this case, do the following:
+The performance stats are not persistent across IO engine restart, this means the counters will be reset upon IO engine restart. Users will receive lesser values for all the resources residing on that particular IO engine due to reset. So using the above logic would yield negative values. Hence, the counter current poll is less than the counter previous poll. In this case, do the following:
 
 ```
 iops (r/w) = num_ops (r/w) / poll cycle
