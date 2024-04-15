@@ -121,19 +121,19 @@ resources:
 
 ### RBAC Permission Requirements
 
-* Kubernetes core v1 API-group resources: Pod, Event, Node, Namespace, ServiceAccount, PersistentVolume, PersistentVolumeClaim, ConfigMap, Secret, Service, Endpoint, Event.
+* **Kubernetes core v1 API-group resources:** Pod, Event, Node, Namespace, ServiceAccount, PersistentVolume, PersistentVolumeClaim, ConfigMap, Secret, Service, Endpoint, and Event.
 
-* Kubernetes batch API-group resources: CronJob, Job
+* **Kubernetes batch API-group resources:** CronJob and Job
 
-* Kubernetes apps API-group resources: Deployment, ReplicaSet, StatefulSet, DaemonSet
+* **Kubernetes apps API-group resources:** Deployment, ReplicaSet, StatefulSet, and DaemonSet
 
-* Kubernetes `storage.k8s.io` API-group resources: StorageClass, VolumeSnapshot, VolumeSnapshotContent, VolumeAttachment, CSI-Node
+* **Kubernetes `storage.k8s.io` API-group resources:** StorageClass, VolumeSnapshot, VolumeSnapshotContent, VolumeAttachment, and CSI-Node
 
-* Kubernetes `apiextensions.k8s.io` API-group resources: CustomResourceDefinition
+* **Kubernetes `apiextensions.k8s.io` API-group resources:** CustomResourceDefinition
 
-* Replicated Storage (a.k.a Replicated Engine or Mayastor) Custom Resources that is `openebs.io` API-group resources: DiskPool
+* **Replicated Storage (a.k.a Replicated Engine or Mayastor) Custom Resources that is `openebs.io` API-group resources:** DiskPool
 
-* Custom Resources from Helm chart dependencies of Jaeger that is helpful for debugging:
+* **Custom Resources from Helm chart dependencies of Jaeger that is helpful for debugging:**
 
    - ConsoleLink Resource from `console.openshift.io` API group
 
@@ -291,7 +291,7 @@ For installation instructions, see [here](../../quickstart-guide/installation.md
 
 ## Support
 
-If you encounter issues or have a question, file an [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
 
 ## See Also
 

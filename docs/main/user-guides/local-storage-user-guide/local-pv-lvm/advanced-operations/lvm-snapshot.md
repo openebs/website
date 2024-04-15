@@ -11,8 +11,8 @@ description: This section talks about the advanced operations that can be perfor
 
 The LVM driver supports creating snapshots of the LVM volumes. This requires the `dm-snapshot` kernel module to be loaded. Certain settings are applied by the LVM driver which modifies the default behaviour of the LVM snapshot:
 
-- Snapshots created by the LVM driver are ReadOnly by default as opposed to the ReadWrite snapshots created by default by `lvcreate` command
-- The size of snapshot will be set to the size of the origin volume
+- Snapshots created by the LVM driver are ReadOnly by default as opposed to the ReadWrite snapshots created by default by `lvcreate` command.
+- The size of snapshot will be set to the size of the origin volume.
 
 
 ## Default SnapshotClass without SnapSize Parameter
@@ -72,20 +72,23 @@ parameters:
 
 A SnapshotClass needs to be created. A sample SnapshotClass can be found [here](https://github.com/openebs/lvm-localpv/blob/HEAD/deploy/sample/lvmsnapclass.yaml).
 
-1. Apply the SnapshotClass YAML:
+1. Apply the SnapshotClass YAML.
+
 ```bash
 $ kubectl apply -f snapshotclass.yaml
 volumesnapshotclass.snapshot.storage.k8s.io/lvmpv-snapclass created
 ```
 
 2. Find a PVC for which snapshot has to be created.
+
 ```bash
 $ kubectl get pvc
 NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS    AGE
 csi-lvmpvc   Bound    pvc-c7f42430-f2bb-4459-9182-f76b8896c532   4Gi        RWO            openebs-lvmsc   53s
 ```
 
-3. Create the snapshot using the created SnapshotClass for the selected PVC
+3. Create the snapshot using the created SnapshotClass for the selected PVC.
+
 ```yaml
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshot
@@ -98,6 +101,7 @@ spec:
 ```
 
 4. Apply the Snapshot YAML.
+
 ```bash
 $ kubectl apply -f lvmsnapshot.yaml
 volumesnapshot.snapshot.storage.k8s.io/lvm-localpv-snap created
@@ -113,6 +117,7 @@ lvm-localpv-snap   true         csi-lvmpvc                           0          
 :::
 
 5. Check the OpenEBS resource for the created snapshot and make sure the status is `Ready`.
+
 ```bash
 $ kubectl get lvmsnapshot -n openebs
 NAME                                            AGE
@@ -145,7 +150,8 @@ status:
   state: Ready
 ```
 
-6. To confirm that snapshot has been created, ssh into the node and check for lvm volumes.
+6. To confirm that snapshot has been created, ssh into the node and check for LVM volumes.
+
 ```bash
 $ lvs
   LV                                       VG    Attr       LSize Pool Origin                                   Data%  Meta%  Move Log Cpy%Sync Convert

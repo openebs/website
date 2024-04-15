@@ -18,7 +18,7 @@ This section explains the prerequisites and installation requirements to set up 
 - Data protection using the Velero Backup and Restore.
 - Protect against hostpath security vulnerabilities by masking the hostpath completely from the application YAML and pod.
 
-OpenEBS Local PV uses volume topology aware pod scheduling enhancements introduced by [Kubernetes Local Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#local)
+OpenEBS Local PV uses volume topology aware pod scheduling enhancements introduced by [Kubernetes Local Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#local).
 
 ## Prerequisites
 
@@ -49,11 +49,11 @@ services:
 
 ## Installation 
 
-For installation instructions, see [here](../../quickstart-guide/installation.md).
+For installation instructions, see [here](../../../quickstart-guide/installation.md).
 
 ## Support
 
-If you encounter issues or have a question, file an [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
 
 ## See Also
 

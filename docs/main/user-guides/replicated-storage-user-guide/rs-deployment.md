@@ -118,7 +118,7 @@ ms-volume-claim     Bound    pvc-fe1a5a16-ef70-4775-9eac-2f9c67b3cd5b   1Gi     
 ### Verify the Persistent Volume
 
 :::info
-Substitute the example volume name with that shown under the "VOLUME" heading of the output returned by the preceding "get pvc" command, as executed in your own cluster
+Substitute the example volume name with that shown under the "VOLUME" heading of the output returned by the preceding "get pvc" command, as executed in your own cluster.
 :::
 
 **Command**
@@ -139,7 +139,7 @@ pvc-fe1a5a16-ef70-4775-9eac-2f9c67b3cd5b   1Gi        RWO            Delete     
 The status of the volume should be "online".
 
 :::info
-To verify the status of volume [Replicated Storage Kubectl plugin](../replicated-storage-user-guide/advanced-operations/kubectl-plugin.md) is used.
+To verify the status of volume [Kubectl plugin](../replicated-storage-user-guide/advanced-operations/kubectl-plugin.md) is used.
 :::
 
 **Command**

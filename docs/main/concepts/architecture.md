@@ -25,7 +25,7 @@ The data engines are at the core of OpenEBS and are responsible for performing t
 
 The data engines are responsible for:
 - Aggregating the capacity available in the block devices allocated to them and then carving out volumes for applications. 
-- Provide standard system or network transport interfaces(NVMe) for connecting to local or remote volumes
+- Provide standard system or network transport interfaces (NVMe) for connecting to local or remote volumes
 - Provide volume services like - synchronous replication, compression, encryption, maintaining snapshots, access to the incremental or full snapshots of data and so forth
 - Provide strong consistency while persisting the data to the underlying storage devices
 

@@ -64,7 +64,7 @@ The default Storage Class is called `openebs-hostpath` and its `BasePath` is con
 2. Edit `local-hostpath-sc.yaml` and update with your desired values for `metadata.name` and `cas.openebs.io/config.BasePath`.
 
    :::note 
-   If the `BasePath` does not exist on the node, *OpenEBS Dynamic Local PV Provisioner* will attempt to create the directory, when the first Local Volume is scheduled on to that node. You MUST ensure that the value provided for `BasePath` is a valid absolute path. 
+   If the `BasePath` does not exist on the node, *OpenEBS Dynamic Local PV Provisioner* will attempt to create the directory, when the first Local Volume is scheduled on to that node. You must ensure that the value provided for `BasePath` is a valid absolute path. 
    :::
 
 3. Create OpenEBS Local PV Hostpath Storage Class. 
@@ -79,7 +79,7 @@ The default Storage Class is called `openebs-hostpath` and its `BasePath` is con
    
 ## Support
 
-If you encounter issues or have a question, file an [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
 
 ## See Also
 

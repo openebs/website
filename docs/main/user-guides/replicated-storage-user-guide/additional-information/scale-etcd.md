@@ -83,7 +83,7 @@ mayastor-etcd-3   0/1     Pending   0          2m34s
 
 ## Step 2: Add a New Peer URL
 
-Before creating a PV, we need to add the new peer URL (mayastor-etcd-3=http://mayastor-etcd-3.mayastor-etcd-headless.mayastor.svc.cluster.local:2380) and change the cluster's initial state from "new" to "existing" so that the new member will be added to the existing cluster when the pod comes up after creating the PV. Since the new pod is still in a pending state, the changes will not be applied to the other pods as they will be restarted in reverse order from {N-1..0}. It is expected that all of its predecessors must be running and ready.
+Before creating a PV, we need to add the new peer URL [mayastor-etcd-3=](http://mayastor-etcd-3.mayastor-etcd-headless.mayastor.svc.cluster.local:2380) and change the cluster's initial state from "new" to "existing" so that the new member will be added to the existing cluster when the pod comes up after creating the PV. Since the new pod is still in a pending state, the changes will not be applied to the other pods as they will be restarted in reverse order from {N-1..0}. It is expected that all of its predecessors must be running and ready.
 
 **Command**
 
