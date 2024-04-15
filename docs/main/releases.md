@@ -14,7 +14,7 @@ OpenEBS is a collection of data engines and operators to create different types 
   - [Local PV ZFS 2.5.0](https://github.com/openebs/zfs-localpv) (stable)
 
 - Replicated Storage (a.k.a Replicated Engine)
-  - [Replicated PV Mayastor](https://github.com/openebs/mayastor) 2.6.0 (stable)
+  - [Replicated PV Mayastor 2.6.0](https://github.com/openebs/mayastor) (stable)
 
 - Out-of-tree (External Storage) Provisioners 
   - [Local PV Hostpath](https://github.com/openebs/dynamic-localpv-provisioner) 4.0.0 (stable)
