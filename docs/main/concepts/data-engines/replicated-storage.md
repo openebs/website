@@ -9,7 +9,7 @@ description: In this document you will learn about Replicated Storage and its de
 
 ## Replicated Storage Overview 
 
-**Replicated Storage** (a.k.a Replicated Engine or Mayastor) is a progressive sub-project of the CNCF (Cloud Native Computing Foundation) Open Source initiative [**OpenEBS**](https://openebs.io/). OpenEBS is a Container Native Storage (CNS) solution that extends Kubernetes by providing a declarative data plane, offering resilient and adaptable storage for stateful applications.
+**Replicated Storage** (a.k.a Replicated Engine) is a progressive sub-project of the CNCF (Cloud Native Computing Foundation) Open Source initiative **OpenEBS**. OpenEBS is a Container Native Storage (CNS) solution that extends Kubernetes by providing a declarative data plane, offering resilient and adaptable storage for stateful applications.
 
 ## Design Goals
 
@@ -45,6 +45,6 @@ Join the vibrant [OpenEBS community on Kubernetes Slack](https://kubernetes.slac
 ## See Also
 
 - [OpenEBS Architecture](../architecture.md)
-- [Replicated Storage Prerequisites](../../user-guides/replicated-storage-user-guide/rs-installation.md#prerequisites)
-- [Installation](../../quickstart-guide/installation.md)
-- [Replicated Storage User Guide](../../user-guides/replicated-storage-user-guide/rs-installation.md)
+- [Quickstart](../quickstart-guide/installation.md)
+- [Deployment](../quickstart-guide/deploy-a-test-application.md)
+- [Replicated Storage User Guide](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md)

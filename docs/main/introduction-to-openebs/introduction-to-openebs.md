@@ -47,7 +47,7 @@ In the case of [Replicated Volumes](#replicated-volumes):
 :::note
 OpenEBS contributors prefer to call the Distributed Block Storage volumes as **Replicated Volumes**, to avoid confusion with traditional block storage for the following reasons:
 * Distributed block storage tends to shard the data blocks of a volume across many nodes in the cluster. Replicated volumes persist all the data blocks of a volume on a node and for durability replicate the entire data to other nodes in the cluster.  
-* While accessing volume data, distributed block storage depends on metadata hashing algorithms to locate the node where the block resides, whereas replicated volumes can access the data from any of the nodes where data is persisted (aka replica nodes).
+* While accessing volume data, distributed block storage depends on metadata hashing algorithms to locate the node where the block resides, whereas replicated volumes can access the data from any of the nodes where data is persisted (a.k.a replica nodes).
 * Replicated volumes have a lower blast radius compared to traditional distributed block storage. 
 * Replicated volumes are designed for Cloud Native stateful workloads that require a large number of volumes with capacity that can typically be served from a single node as opposed to a single large volume with data sharded across multiple nodes in the cluster.
 :::
@@ -79,7 +79,6 @@ OpenEBS has a vibrant community that can help you get started. If you have furth
 ## See Also
 
 - [Quickstart](../quickstart-guide/installation.md)
-- [Installation](../quickstart-guide/installation.md)
 - [Deployment](../quickstart-guide/deploy-a-test-application.md)
 - [Use Cases and Examples](use-cases-and-examples.mdx)
 - [Container Native Storage (CNS)](../concepts/container-native-storage.md)

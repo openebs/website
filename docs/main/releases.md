@@ -8,13 +8,13 @@ description: This page contains list of supported OpenEBS releases.
 
 OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners. The status of the various components as of v4.0.0 are as follows:
 
-- Local Storage
+- Local Storage (a.k.a Local Engine)
   - [Local PV Hostpath 4.0.0](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
   - [Local PV LVM 1.5.0](https://github.com/openebs/lvm-localpv) (stable)
   - [Local PV ZFS 2.5.0](https://github.com/openebs/zfs-localpv) (stable)
 
-- Replicated Storage (a.k.a Replicated Engine or Mayastor)
-  - [Mayastor](https://github.com/openebs/mayastor) 2.6.0 (stable)
+- Replicated Storage (a.k.a Replicated Engine)
+  - [Replicated PV Mayastor](https://github.com/openebs/mayastor) 2.6.0 (stable)
 
 - Out-of-tree (External Storage) Provisioners 
   - [Local PV Hostpath](https://github.com/openebs/dynamic-localpv-provisioner) 4.0.0 (stable)

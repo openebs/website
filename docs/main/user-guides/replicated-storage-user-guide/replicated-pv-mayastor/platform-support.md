@@ -2,19 +2,19 @@
 id: platform-support
 title: Platform Support
 keywords:
- - Replicated Storage - Platform Support
+ - Replicated PV Mayastor - Platform Support
  - Platform Support
-description: This section explains about the Platform Support for Replicated Storage.
+description: This section explains about the Platform Support for Replicated PV Mayastor.
 ---
-# Replicated Storage Installation on MicroK8s
+# Replicated PV Mayastor Installation on MicroK8s
 
-## Install Replicated Storage on MicroK8s
+## Install Replicated PV Mayastor on MicroK8s
 
 :::info
-**Prerequisite**: Prepare a cluster by following the steps outlined in this [guide](../replicated-storage-user-guide/rs-installation.md#preparing-the-cluster).
+**Prerequisite**: Prepare a cluster by following the steps outlined in this [guide](../replicated-pv-mayastor/rs-installation.md#preparing-the-cluster).
 :::
 
-To install Replicated Storage (a.k.a Replicated Engine or Mayastor) using Helm on MicroK8s, execute the following command:
+To install Replicated PV Mayastor using Helm on MicroK8s, execute the following command:
 
 **Command**
 
@@ -38,7 +38,7 @@ For more information or to view the documentation, visit our website at https://
 
 ## Resolve Known Issue (Calico Vxlan)
 
-During the installation of Replicated Storage in MicroK8s, Pods with hostnetwork might encounter a known issue where they get stuck in the init state due to the Calico Vxlan bug.
+During the installation of Replicated PV Mayastor in MicroK8s, Pods with hostnetwork might encounter a known issue where they get stuck in the init state due to the Calico Vxlan bug.
 
 **Expected Error:**
 
@@ -57,5 +57,5 @@ microk8s kubectl patch felixconfigurations default --patch '{"spec":{"featureDet
 > For more details about this issue, refer to the [GitHub issue](https://github.com/canonical/microk8s/issues/3695).
 
 :::info
-For further **Configuration of Replicated Storage** including storage pools, storage class, persistent volume claims, and application setup, refer to the [offical documentation](../replicated-storage-user-guide/rs-configuration.md). 
+For further **Configuration of Replicated PV Mayastor** including storage pools, storage class, persistent volume claims, and application setup, refer to the [offical documentation](../replicated-pv-mayastor/rs-configuration.md).
 :::

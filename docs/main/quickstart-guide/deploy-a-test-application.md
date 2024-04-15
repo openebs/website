@@ -11,7 +11,7 @@ description: This section will help you to deploy a test application.
 :::info
 - See [Local PV LVM Deployment](../user-guides/local-storage-user-guide/local-pv-lvm/lvm-deployment.md) to deploy Local PV LVM.
 - See [Local PV ZFS Deployment](../user-guides/local-storage-user-guide/local-pv-zfs/zfs-deployment.md) to deploy Local PV ZFS.
-- See [Replicated Storage Deployment](../user-guides/replicated-storage-user-guide/rs-deployment.md) to deploy Replicated Storage (a.k.a Replicated Engine or Mayastor).
+- See [Replicated PV Mayastor Deployment](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-deployment.md) to deploy Replicated PV Mayastor.
 :::
 
 # Deploy an Application
@@ -224,4 +224,4 @@ Once the workloads are up and running, the platform or the operations team can o
 - [Local Storage](../concepts/data-engines/local-storage.md)
 - [Replicated Storage](../concepts/data-engines/replicated-storage.md)
 - [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
-- [Replicated Storage User Guide](../user-guides/replicated-storage-user-guide/rs-installation.md)
+- [Replicated Storage User Guide](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md)

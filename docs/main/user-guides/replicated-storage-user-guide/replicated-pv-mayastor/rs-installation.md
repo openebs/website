@@ -1,6 +1,6 @@
 ---
 id: rs-installation
-title: Replicated Storage Installation
+title: Installation
 keywords:
  - Replicated Storage Prerequisites
  - Prerequisites
@@ -131,7 +131,7 @@ resources:
 
 * **Kubernetes `apiextensions.k8s.io` API-group resources:** CustomResourceDefinition
 
-* **Replicated Storage (a.k.a Replicated Engine or Mayastor) Custom Resources that is `openebs.io` API-group resources:** DiskPool
+* **Replicated PV Mayastor Custom Resources that is `openebs.io` API-group resources:** DiskPool
 
 * **Custom Resources from Helm chart dependencies of Jaeger that is helpful for debugging:**
 
@@ -240,8 +240,8 @@ roleRef:
 
 ### Transport Protocols
 
-  Replicated Storage supports the export and mounting of volumes over NVMe-oF TCP only. Worker node(s) on which a volume may be scheduled (to be mounted) must have the requisite initiator software installed and configured.
-  In order to reliably mount Replicated Storage volumes over NVMe-oF TCP, a worker node's kernel version must be 5.13 or later and the nvme-tcp kernel module must be loaded.
+  Replicated PV Mayastor supports the export and mounting of volumes over NVMe-oF TCP only. Worker node(s) on which a volume may be scheduled (to be mounted) must have the requisite initiator software installed and configured.
+  In order to reliably mount Replicated PV Mayastor volumes over NVMe-oF TCP, a worker node's kernel version must be 5.13 or later and the nvme-tcp kernel module must be loaded.
 
 ### Preparing the Cluster
 
@@ -274,12 +274,12 @@ echo vm.nr_hugepages = 1024 | sudo tee -a /etc/sysctl.conf
 ```
 
 :::warning
-If you modify the huge page configuration of a node, you _MUST_ either restart kubelet or reboot the node.  Replicated Storage will not deploy correctly if the available huge page count as reported by the node's kubelet instance does not satisfy the minimum requirements.
+If you modify the huge page configuration of a node, you _MUST_ either restart kubelet or reboot the node.  Replicated PV Mayastor will not deploy correctly if the available huge page count as reported by the node's kubelet instance does not satisfy the minimum requirements.
 :::
 
 #### Label IO Node Candidates
 
-All worker nodes which will have IO engine pods running on them must be labeled with the OpenEBS storage type "Replicated Engine". This label will be used as a node selector by the IO engine Daemonset, which is deployed as a part of the Replicated Storage data plane components installation. To add this label to a node, execute:
+All worker nodes which will have IO engine pods running on them must be labeled with the OpenEBS storage type "Replicated PV Mayastor". This label will be used as a node selector by the IO engine Daemonset, which is deployed as a part of the Replicated PV Mayastor data plane components installation. To add this label to a node, execute:
 
 ```
 kubectl label node <node_name> openebs.io/engine=mayastor
@@ -296,5 +296,5 @@ If you encounter issues or have a question, file a [Github issue](https://github
 ## See Also
 
 - [Installation](../../quickstart-guide/installation.md)
-- [Configuration](../replicated-storage-user-guide/rs-configuration.md)
-- [Deploy an Application](../replicated-storage-user-guide/rs-deployment.md)
+- [Configuration](../replicated-pv-mayastor/rs-configuration.md)
+- [Deploy an Application](../replicated-pv-mayastor/rs-deployment.md)
