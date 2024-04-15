@@ -194,5 +194,9 @@
   "sidebar.docs.category.Replicated Storage User Guide": {
     "message": "Replicated Storage User Guide",
     "description": "The label for category Replicated Storage User Guide in sidebar docs"
+  },
+  "sidebar.docs.category.Replicated PV Mayastor": {
+    "message": "Replicated PV Mayastor",
+    "description": "The label for category Replicated PV Mayastor in sidebar docs"
   }
 }
