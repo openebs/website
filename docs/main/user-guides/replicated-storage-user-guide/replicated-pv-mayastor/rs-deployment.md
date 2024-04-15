@@ -4,16 +4,16 @@ title: Deploy an Application
 keywords: 
   - Deployment
   - Deploy an Application
-description: This guide will help you to deploy OpenEBS Replicated Storage.
+description: This guide will help you to deploy OpenEBS Replicated PV Mayastor.
 ---
 
 # Deploy an Application
 
-If all verification steps in the preceding stages were satisfied, then Replicated Storage (a.k.a Replicated Engine or Mayastor) has been successfully deployed within the cluster. In order to verify basic functionality, we will now dynamically provision a Persistent Volume based on a Replicated Storage StorageClass, mount that volume within a small test pod which we'll create, and use the [**Flexible I/O Tester**](https://github.com/axboe/fio) utility within that pod to check that I/O to the volume is processed correctly.
+If all verification steps in the preceding stages were satisfied, then Replicated PV Mayastor has been successfully deployed within the cluster. In order to verify basic functionality, we will now dynamically provision a Persistent Volume based on a Replicated PV Mayastor StorageClass, mount that volume within a small test pod which we'll create, and use the [**Flexible I/O Tester**](https://github.com/axboe/fio) utility within that pod to check that I/O to the volume is processed correctly.
 
 ## Define the PVC
 
-Use `kubectl` to create a PVC based on a StorageClass that you created in the [previous stage](../replicated-storage-user-guide/rs-configuration.md#create-replicated-storageclasss). In the example shown below, we will consider that StorageClass to have been named "mayastor-1". Replace the value of the field "storageClassName" with the name of your own Replicated Storage-based StorageClass.
+Use `kubectl` to create a PVC based on a StorageClass that you created in the [previous stage](../replicated-pv-mayastor/rs-configuration.md#create-replicated-storageclasss). In the example shown below, we will consider that StorageClass to have been named "mayastor-1". Replace the value of the field "storageClassName" with the name of your own Replicated PV Mayastor-based StorageClass.
 
 For the purposes of this quickstart guide, it is suggested to name the PVC "ms-volume-claim", as this is what will be illustrated in the example steps which follow.
 
@@ -55,10 +55,10 @@ If you used the storage class example from previous stage, then volume binding m
 
 ## Deploy the FIO Test Pod
 
-The Replicated Storage CSI driver will cause the application pod and the corresponding Replicated Storage volume's NVMe target/controller ("Nexus") to be scheduled on the same Replicated Storage Node, in order to assist with restoration of volume and application availabilty in the event of a storage node failure.
+The Replicated PV Mayastor CSI driver will cause the application pod and the corresponding Replicated PV Mayastor volume's NVMe target/controller ("Nexus") to be scheduled on the same Replicated PV Mayastor Node, in order to assist with restoration of volume and application availabilty in the event of a storage node failure.
 
 <!-- Fixme: :::warning
-In this version, applications using PVs provisioned by Replicated Storage can only be successfully scheduled on Replicated Storage Nodes. This behaviour is controlled by the `local:` parameter of the corresponding StorageClass, which by default is set to a value of `true`. Therefore, this is the only supported value for this release - setting a non-local configuration may cause scheduling of the application pod to fail, as the PV cannot be mounted to a worker node other than a MSN. This behaviour will change in a future release.
+In this version, applications using PVs provisioned by Replicated PV Mayastor can only be successfully scheduled on Replicated PV Mayastor Nodes. This behaviour is controlled by the `local:` parameter of the corresponding StorageClass, which by default is set to a value of `true`. Therefore, this is the only supported value for this release - setting a non-local configuration may cause scheduling of the application pod to fail, as the PV cannot be mounted to a worker node other than a MSN. This behaviour will change in a future release.
 ::: -->
 
 <!-- Fixme: Fix the YAML -->
@@ -96,7 +96,7 @@ spec:
 
 ## Verify the Volume and the Deployment
 
-We will now verify the Volume Claim and that the corresponding Volume and Replicated Storage Volume resources have been created and are healthy.
+We will now verify the Volume Claim and that the corresponding Volume and Replicated PV Mayastor Volume resources have been created and are healthy.
 
 ### Verify the Volume Claim
 
@@ -134,12 +134,12 @@ NAME                                       CAPACITY   ACCESS MODES   RECLAIM POL
 pvc-fe1a5a16-ef70-4775-9eac-2f9c67b3cd5b   1Gi        RWO            Delete           Bound    default/ms-volume-claim     mayastor-1       16m
 ```
 
-### Verify the Replicated Storage Volume 
+### Verify the Replicated PV Mayastor Volume 
 
 The status of the volume should be "online".
 
 :::info
-To verify the status of volume [Kubectl plugin](../replicated-storage-user-guide/advanced-operations/kubectl-plugin.md) is used.
+To verify the status of volume [Kubectl plugin](../replicated-pv-mayastor/advanced-operations/kubectl-plugin.md) is used.
 :::
 
 **Command**
@@ -179,7 +179,7 @@ fio    1/1     Running   0          34s
 
 ## Run the FIO Tester Application
 
-We now execute the FIO Test utility against the Replicated Storage PV for 60 seconds, checking that I/O is handled as expected and without errors. In this quickstart example, we use a pattern of random reads and writes, with a block size of 4k and a queue depth of 16.
+We now execute the FIO Test utility against the Replicated PV Mayastor for 60 seconds, checking that I/O is handled as expected and without errors. In this quickstart example, we use a pattern of random reads and writes, with a block size of 4k and a queue depth of 16.
 
 **Command**
 
@@ -243,4 +243,4 @@ If no errors are reported in the output then PV has been correctly configured an
 ## See Also
 
 - [Installation](../../quickstart-guide/installation.md)
-- [Configuration](../replicated-storage-user-guide/rs-configuration.md)
+- [Configuration](../replicated-pv-mayastor/rs-configuration.md)

@@ -7,9 +7,9 @@ description: This section explains about the Call-Home Metrics.
 ---
 # Call-home Metrics 
 
-## Replicated Storage Default Information Collection 
+## Replicated PV Mayastor Default Information Collection 
 
-By default, Replicated Storage (a.k.a Replicated Engine or Mayastor) collects basic information related to the number and scale of user-deployed instances. The collected data is anonymous and is encrypted at rest. This data is used to understand storage usage trends, which in turn helps maintainers prioritize their contributions to maximize the benefit to the community as a whole. 
+By default, Replicated PV Mayastor collects basic information related to the number and scale of user-deployed instances. The collected data is anonymous and is encrypted at rest. This data is used to understand storage usage trends, which in turn helps maintainers prioritize their contributions to maximize the benefit to the community as a whole. 
 
 :::info
 No user-identifiable information, hostnames, passwords, or volume data are collected. **ONLY** the below-mentioned information is collected from the cluster. 
@@ -21,34 +21,34 @@ A summary of the information collected is given below:
 | :--- | 
 |**K8s cluster ID**: This is a SHA-256 hashed value of the UID of your Kubernetes cluster's `kube-system` namespace.| 
 |**K8s node count**: This is the number of nodes in your Kubernetes cluster.| 
-|**Product name**: This field displays the name Replicated Storage.| 
-|**Product version**: This is the deployed version of Replicated Storage.| 
-|**Deploy namespace**: This is a SHA-256 hashed value of the  name of the  Kubernetes namespace where Replicated Storage Helm chart is deployed.| 
+|**Product name**: This field displays the name Replicated PV Mayastor.| 
+|**Product version**: This is the deployed version of Replicated PV Mayastor.| 
+|**Deploy namespace**: This is a SHA-256 hashed value of the  name of the  Kubernetes namespace where Replicated PV Mayastor Helm chart is deployed.| 
 |**Storage node count**: This is the number of nodes on which the IO engine pods are scheduled and running.| 
 
 |**Pool information**| 
 | :--- | 
-|**Pool count**: This is the number of Replicated Storage DiskPools in your cluster.| 
-|**Pool maximum size**: This is the capacity of the Replicated Storage DiskPool with the highest capacity.| 
-|**Pool minimum size**: This is the capacity of the Replicated Storage DiskPool with the lowest capacity.| 
-|**Pool mean size**: This is the average capacity of the Replicated Storage DiskPools in your cluster.| 
-|**Pool capacity percentiles**: This calculates and returns the capacity distribution of Replicated Storage DiskPools for the 50th, 75th and the 90th percentiles.| 
+|**Pool count**: This is the number of Replicated PV Mayastor DiskPools in your cluster.| 
+|**Pool maximum size**: This is the capacity of the Replicated PV Mayastor DiskPool with the highest capacity.| 
+|**Pool minimum size**: This is the capacity of the Replicated PV Mayastor DiskPool with the lowest capacity.| 
+|**Pool mean size**: This is the average capacity of the Replicated PV Mayastor DiskPools in your cluster.| 
+|**Pool capacity percentiles**: This calculates and returns the capacity distribution of Replicated PV Mayastor DiskPools for the 50th, 75th and the 90th percentiles.| 
 | **Pools created**: This is the number of successful pool creation attempts.|
 | **Pools deleted**: This is the number of successful pool deletion attempts.|
 
 |**Volume information**| 
 | :--- | 
-|**Volume count**: This is the number of Replicated Storage Volumes in your cluster.| 
-|**Volume minimum size**: This is the capacity of the Replicated Storage Volume with the lowest capacity.| 
-|**Volume mean size**: This is the average capacity of the Replicated Storage Volumes in your cluster.| 
-|**Volume capacity percentiles**: This calculates and returns the capacity distribution of Replicated Storage Volumes for the 50th, 75th and the 90th percentiles.| 
+|**Volume count**: This is the number of Replicated PV Mayastor Volumes in your cluster.| 
+|**Volume minimum size**: This is the capacity of the Replicated PV Mayastor Volume with the lowest capacity.| 
+|**Volume mean size**: This is the average capacity of the Replicated PV Mayastor Volumes in your cluster.| 
+|**Volume capacity percentiles**: This calculates and returns the capacity distribution of Replicated PV Mayastor Volumes for the 50th, 75th and the 90th percentiles.| 
 | **Volumes created**: This is the number of successful volume creation attempts.|
 | **Volumes deleted**: This is the number of successful volume deletion attempts. |
 
 |**Replica Information**| 
 | :--- | 
-|**Replica count**: This is the number of Replicated Storage Volume replicas in your cluster.| 
-|**Average replica count per volume**: This is the average number of replicas each Replicated Storage Volume has in your cluster.| 
+|**Replica count**: This is the number of Replicated PV Mayastor Volume replicas in your cluster.| 
+|**Average replica count per volume**: This is the average number of replicas each Replicated PV Mayastor Volume has in your cluster.| 
 
 ### Storage Location of Collected Data 
 

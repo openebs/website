@@ -12,7 +12,7 @@ Volume restore from an existing snapshot will create an exact replica of a stora
 
 ### Step 1: Create a StorageClass 
 
-To begin, you will need to create a StorageClass that defines the properties of the snapshot to be restored. Refer to [StorageClass Parameters](../../replicated-storage-user-guide/rs-configuration.md#storage-class-parameters) for more details. Use the following command to create the StorageClass:
+To begin, you will need to create a StorageClass that defines the properties of the snapshot to be restored. Refer to [StorageClass Parameters](../../replicated-pv-mayastor/rs-configuration.md#storage-class-parameters) for more details. Use the following command to create the StorageClass:
 
 :::info
 thin: "true" and repl: "1" is the only supported combination.
