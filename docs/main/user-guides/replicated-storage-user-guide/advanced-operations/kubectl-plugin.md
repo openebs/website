@@ -5,10 +5,11 @@ keywords:
  - Kubectl
  - Plugin
  - Kubectl Plugin
+ - Mayastor Kubectl Plugin
  - Replicated Storage kubectl plugin
 description: This guide will help you to view and manage Replicated Storage resources such as nodes, pools, and volumes.
 ---
-# Mayastor kubectl plugin
+# Kubectl Plugin
 
 The **Mayastor kubectl plugin** can be used to view and manage Replicated Storage (a.k.a Replicated Engine or Mayastor) resources such as nodes, pools and volumes. It is also used for operations such as scaling the replica count of volumes. 
 
@@ -144,7 +145,7 @@ kubectl mayastor scale volume <volume_id> <size>
 Volume 0c08667c-8b59-4d11-9192-b54e27e0ce0f Scaled Successfully 🚀
 ```
 
-### Retrieve Resource in any of the Output Formats (Table, JSON or YAML)
+### Retrieve Resource in any of the Output Formats (Table, JSON, or YAML)
 
 > Table is the default output format. 
 

@@ -12,10 +12,10 @@ description: This section talks about the advanced operations that can be perfor
 We can resize the volume by updating the PVC yaml to the desired size and applying it. The LVM Driver will take care of expanding the volume via lvextend command using "-r" option which will resize the filesystem.
 
 :::note
-Online Volume Expansion for `Block` mode and `btrfs` Filesystem mode is supported only from **K8s 1.19+** version
+Online Volume Expansion for `Block` mode and `btrfs` Filesystem mode is supported only from **K8s 1.23+** version.
 :::
 
-For resize, storageclass that provisions the PVC must support resize. We should have allowVolumeExpansion as true in storageclass
+For resize, storageclass that provisions the PVC must support resize. We should have allowVolumeExpansion as true in storageclass.
 
 ```
 $ cat sc.yaml
@@ -35,7 +35,7 @@ $ kubectl apply -f sc.yaml
 storageclass.storage.k8s.io/openebs-lvmpv created
 ```
 
-Create the PVC using the above storage class
+Create the PVC using the above storage class.
 
 ```
 $ cat pvc.yaml

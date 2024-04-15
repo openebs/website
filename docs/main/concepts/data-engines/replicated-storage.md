@@ -3,6 +3,7 @@ id: replicated-storage
 title: Replicated Storage
 keywords: 
   - Replicated Storage
+  - OpenEBS Replicated Storage
 description: In this document you will learn about Replicated Storage and its design goals.
 ---
 
@@ -44,6 +45,6 @@ Join the vibrant [OpenEBS community on Kubernetes Slack](https://kubernetes.slac
 ## See Also
 
 - [OpenEBS Architecture](../architecture.md)
-- [Replicated Storage Prerequisites](../../user-guides/replicated-storage-user-guide/prerequisites.md)
+- [Replicated Storage Prerequisites](../../user-guides/replicated-storage-user-guide/rs-installation.md#prerequisites)
 - [Installation](../../quickstart-guide/installation.md)
 - [Replicated Storage User Guide](../../user-guides/replicated-storage-user-guide/rs-installation.md)

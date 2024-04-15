@@ -22,7 +22,7 @@ The [OpenEBS Adoption stories](https://github.com/openebs/openebs/blob/master/AD
 
 - OpenEBS provides consistency across all Kubernetes distributions - On-premise and Cloud.
 - OpenEBS with Kubernetes increases Developer and Platform SRE Productivity.
-- OpenEBS is Easy to use compared to other solutions, for eg trivial to install & enabling entirely dynamic provisioning.
+- OpenEBS scores in its ease of use over other solutions. It is trivial to setup, install and configure.
 - OpenEBS has Excellent Community Support.
 - OpenEBS is completely Open Source and Free.
 

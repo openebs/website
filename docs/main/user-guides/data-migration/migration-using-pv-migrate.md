@@ -224,7 +224,7 @@ db.admin.insertMany([{name: "Max"}, {name:"Alex"}])
 ```
 ### Steps to migrate cStor to Replicated
 
-Follow the steps below to migrate OpenEBS cStor to OpenEBS Replicated (fka Mayastor).
+Follow the steps below to migrate OpenEBS cStor to OpenEBS Replicated (a.k.a Replicated Engine or Mayastor).
 
 1. [Install Replicated Storage](../../quickstart-guide/installation.md) on your cluster.
 

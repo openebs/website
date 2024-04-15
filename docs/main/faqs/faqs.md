@@ -22,7 +22,7 @@ To determine exactly where your data is physically stored, you can run the follo
 
 * Run `kubectl get pvc` to fetch the volume name. The volume name looks like: *pvc-ee171da3-07d5-11e8-a5be-42010a8001be*.
 
-* For each volume, you will notice one I/O controller pod and one or more replicas (as per the storage class configuration). You can use the volume ID (ee171da3-07d5-11e8-a5be-42010a8001be) to view information about the volume and replicas using the Replicated Storage [kubectl plugin](../user-guides/replicated-storage-user-guide/advanced-operations/kubectl-plugin.md)
+* For each volume, you will notice one I/O controller pod and one or more replicas (as per the storage class configuration). You can use the volume ID (ee171da3-07d5-11e8-a5be-42010a8001be) to view information about the volume and replicas using the [kubectl plugin](../user-guides/replicated-storage-user-guide/advanced-operations/kubectl-plugin.md)
 
 [Go to top](#top)
 
@@ -34,7 +34,7 @@ One of the major differences of OpenEBS versus other similar approaches is that 
 
 ### How do you get started and what is the typical trial deployment? {#get-started}
 
-To get started, you can follow the steps in the [quickstart guide](../quickstart-guide/installation.md)
+To get started, you can follow the steps in the [quickstart guide](../quickstart-guide/installation.md).
  
 [Go to top](#top)
 
@@ -97,7 +97,7 @@ env:
 ```
 It is recommended is to label all the nodes with the same key, they can have different values for the given keys, but all keys should be present on all the worker node.
 
-Once we have labeled the node, we can install the lvm driver. The driver will pick the keys from env "ALLOWED_TOPOLOGIES" and add that as the supported topology key. If the driver is already installed and you want to add a new topology information, you can edit the LVM-LocalPV CSI driver daemon sets (openebs-lvm-node).
+Once we have labeled the node, we can install the lvm driver. The driver will pick the keys from env "ALLOWED_TOPOLOGIES" and add that as the supported topology key. If the driver is already installed and you want to add a new topology information, you can edit the Local PV LVM CSI driver daemon sets (openebs-lvm-node).
 
 
 ```sh
@@ -110,7 +110,7 @@ openebs-lvm-node-gssh8     2/2     Running   0          5h28m
 openebs-lvm-node-twmx8     2/2     Running   0          5h28m
 ```
 
-We can verify that key has been registered successfully with the LVM LocalPV CSI Driver by checking the CSI node object yaml :-
+We can verify that key has been registered successfully with the Local PV LVM CSI Driver by checking the CSI node object yaml:
 
 ```yaml
 $ kubectl get csinodes pawan-node-1 -oyaml
@@ -136,7 +136,7 @@ spec:
     - openebs.io/rack
 ```
 
-We can see that "openebs.io/rack" is listed as topology key. Now we can create a storageclass with the topology key created :
+We can see that "openebs.io/rack" is listed as topology key. Now we can create a storageclass with the topology key created:
 
 ```yaml
 apiVersion: storage.k8s.io/v1
@@ -237,7 +237,7 @@ spec:
 
 To add custom topology key:
 * Label the nodes with the required key and value.
-* Set env variables in the ZFS driver daemonset yaml(openebs-zfs-node), if already deployed, you can edit the daemonSet directly. By default the env is set to `All` which will take the node label keys as allowed topologies.
+* Set env variables in the ZFS driver daemonset yaml (openebs-zfs-node), if already deployed, you can edit the daemonSet directly. By default the env is set to `All` which will take the node label keys as allowed topologies.
 * "openebs.io/nodename" and "openebs.io/nodeid" are added as default topology key. 
 * Create storageclass with above specific labels keys.
 
@@ -268,7 +268,7 @@ env:
 ```
 It is recommended is to label all the nodes with the same key, they can have different values for the given keys, but all keys should be present on all the worker node.
 
-Once we have labeled the node, we can install the zfs driver. The driver will pick the keys from env "ALLOWED_TOPOLOGIES" and add that as the supported topology key. If the driver is already installed and you want to add a new topology information, you can edit the ZFS-LocalPV CSI driver daemon sets (openebs-zfs-node).
+Once we have labeled the node, we can install the zfs driver. The driver will pick the keys from env "ALLOWED_TOPOLOGIES" and add that as the supported topology key. If the driver is already installed and you want to add a new topology information, you can edit the LocalPV ZFS CSI driver daemon sets (openebs-zfs-node).
 
 ```sh
 $ kubectl get pods -n kube-system -l role=openebs-zfs
@@ -346,7 +346,7 @@ The driver uses below logic to roundoff the capacity:
 
 allocated = ((size + 1Gi - 1) / Gi) * Gi
 
-For example if the PVC is requesting 4G storage space :-
+For example if the PVC is requesting 4G storage space:
 
 ```
 kind: PersistentVolumeClaim
@@ -368,7 +368,7 @@ Then driver will find the nearest size in Gi, the size allocated will be ((4G + 
 
 allocated = ((size + 1Mi - 1) / Mi) * Mi
 
-For example if the PVC is requesting 1G (1000 * 1000 * 1000) storage space which is less than 1Gi (1024 * 1024 * 1024):-
+For example if the PVC is requesting 1G (1000 * 1000 * 1000) storage space which is less than 1Gi (1024 * 1024 * 1024):
 
 ```
 kind: PersistentVolumeClaim
@@ -386,7 +386,7 @@ spec:
 
 Then driver will find the nearest size in Mi, the size allocated will be ((1G + 1Mi - 1) / Mi) * Mi, which will be 954Mi.
 
-PVC size as zero in not a valid capacity. The minimum allocatable size for the ZFS-LocalPV driver is 1Mi, which means that if we are requesting 1 byte of storage space then 1Mi will be allocated for the volume.
+PVC size as zero in not a valid capacity. The minimum allocatable size for the Local PV ZFS driver is 1Mi, which means that if we are requesting 1 byte of storage space then 1Mi will be allocated for the volume.
 
 [Go to top](#top)
 
@@ -394,12 +394,12 @@ PVC size as zero in not a valid capacity. The minimum allocatable size for the Z
 
 The Local PV ZFS driver will set affinity on the PV to make the volume stick to the node so that pod gets scheduled to that node only where the volume is present. Now, the problem here is, when that node is not accesible due to some reason and we move the disks to a new node and import the pool there, the pods will not be scheduled to this node as k8s scheduler will be looking for that node only to schedule the pod.
 
-From release 1.7.0 of the Local PV ZFS, the driver has the ability to use the user defined affinity for creating the PV. While deploying the ZFS-LocalPV driver, first we should label all the nodes using the key `openebs.io/nodeid` with some unique value.
+From release 1.7.0 of the Local PV ZFS, the driver has the ability to use the user defined affinity for creating the PV. While deploying the Local PV ZFS driver, first we should label all the nodes using the key `openebs.io/nodeid` with some unique value.
 ```
 $ kubectl label node node-1 openebs.io/nodeid=custom-value-1
 ```
 
-In the above command, we have labelled the node `node-1` using the key `openebs.io/nodeid` and the value we have used here is `custom-value-1`. You can pick your own value, just make sure that the value is unique for all the nodes. We have to label all the nodes in the cluster with the unique value. For example, `node-2` and `node-3` can be labelled as below:
+In the above command, we have labeled the node `node-1` using the key `openebs.io/nodeid` and the value we have used here is `custom-value-1`. You can pick your own value, just make sure that the value is unique for all the nodes. We have to label all the nodes in the cluster with the unique value. For example, `node-2` and `node-3` can be labeled as below:
 
 ```
 $ kubectl label node node-2 openebs.io/nodeid=custom-value-2
@@ -408,13 +408,13 @@ $ kubectl label node node-3 openebs.io/nodeid=custom-value-3
 
 Now, the Driver will use `openebs.io/nodeid` as the key and the corresponding value to set the affinity on the PV and k8s scheduler will consider this affinity label while scheduling the pods.
 
-Now, when a node is not accesible, we need to do below steps
+When a node is not accesible, follow the steps below:
 
-1. remove the old node from the cluster or we can just remove the above node label from the node which we want to remove.
-2. add a new node in the cluster
-3. move the disks to this new node
-4. import the zfs pools on the new nodes
-5. label the new node with same key and value. For example, if we have removed the node-3 from the cluster and added node-4 as new node, we have to label the node `node-4` and set the value to `custom-value-3` as shown below:
+1. Remove the old node from the cluster or we can just remove the above node label from the node which we want to remove.
+2. Add a new node in the cluster
+3. Move the disks to this new node
+4. Import the zfs pools on the new nodes
+5. Label the new node with same key and value. For example, if we have removed the node-3 from the cluster and added node-4 as new node, we have to label the node `node-4` and set the value to `custom-value-3` as shown below:
 
 ```
 $ kubectl label node node-4 openebs.io/nodeid=custom-value-3
@@ -424,9 +424,9 @@ Once the above steps are done, the pod should be able to run on this new node wi
 
 [Go to top](#top)
 
-### How is data protected in Replicated Storage (a.k.a Replicated Engine or Mayastor)? What happens when a host, client workload, or a data center fails?
+### How is data protected in Replicated Storage? What happens when a host, client workload, or a data center fails?
 
-The OpenEBS Replicated Storage ensures resilience with built-in highly available architecture. It supports on-demand switch over of the NVMe controller to ensure IO continuity in case of host failure. The data is synchronously replicated as per the congigured replication factor to ensure no single point of failure.
+The OpenEBS Replicated Storage (a.k.a Replicated Engine or Mayastor) ensures resilience with built-in highly available architecture. It supports on-demand switch over of the NVMe controller to ensure IO continuity in case of host failure. The data is synchronously replicated as per the congigured replication factor to ensure no single point of failure.
 Faulted replicas are automatically rebuilt in the background without IO disruption to maintain the replication factor.
 
 [Go to top](#top)
@@ -508,9 +508,9 @@ Since the replicas \(data copies\) of replicated volumes are held entirely withi
 
 The size of a Replicated Storage pool is fixed at the time of creation and is immutable. A single pool may have only one block device as a member. These constraints may be removed in later versions.
 
-### How can I ensure that replicas aren't scheduled onto the same node? How about onto nodes in the same rack/availability zone?
+### How can I ensure that replicas are not scheduled onto the same node? How about onto nodes in the same rack/availability zone?
 
-The replica placement logic of Replicated Storage's control plane doesn't permit replicas of the same volume to be placed onto the same node, even if it were to be within different Disk Pools. For example, if a volume with replication factor 3 is to be provisioned, then there must be three healthy Disk Pools available, each with sufficient free capacity and each located on its own replicated node. Further enhancements to topology awareness are under consideration by the maintainers.
+The replica placement logic of Replicated Storage's control plane does not permit replicas of the same volume to be placed onto the same node, even if it were to be within different Disk Pools. For example, if a volume with replication factor 3 is to be provisioned, then there must be three healthy Disk Pools available, each with sufficient free capacity and each located on its own replicated node. Further enhancements to topology awareness are under consideration by the maintainers.
 
 [Go to top](#top)
 

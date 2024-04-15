@@ -9,7 +9,7 @@ description: You can reach out to OpenEBS contributors and maintainers through S
 
 ## GitHub
 
-Raise a [GitHub issue](https://github.com/openebs/openebs/issues/new)
+Raise a [GitHub issue](https://github.com/openebs/openebs/issues/new).
 
 ## Slack
 
@@ -26,8 +26,8 @@ Community blogs are available at [https://openebs.io/blog/](https://openebs.io/b
 
 Join our OpenEBS CNCF Mailing lists
 
-- For OpenEBS project updates, subscribe to [OpenEBS Announcements](https://lists.cncf.io/g/cncf-openebs-announcements)
-- For interacting with other OpenEBS users, subscribe to [OpenEBS Users](https://lists.cncf.io/g/cncf-openebs-users)
+- For OpenEBS project updates, subscribe to [OpenEBS Announcements](https://lists.cncf.io/g/cncf-openebs-announcements).
+- For interacting with other OpenEBS users, subscribe to [OpenEBS Users](https://lists.cncf.io/g/cncf-openebs-users).
 
 ## Community Meetings
 

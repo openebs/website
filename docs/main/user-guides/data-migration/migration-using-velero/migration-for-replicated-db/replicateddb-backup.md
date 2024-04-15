@@ -65,7 +65,7 @@ pvc-fc1f7ed7-d99e-40c7-a9b7-8d6244403a3e   3Gi        Bound    50m
 ## Step 2: Install Velero
 
 :::info
-For the prerequisites, see to the [overview](replicateddb-overview.md) section.
+For the prerequisites, see to the [overview](../overview.md) section.
 :::
 
 Run the following command to install Velero:
