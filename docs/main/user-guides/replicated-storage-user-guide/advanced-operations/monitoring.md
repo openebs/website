@@ -105,7 +105,7 @@ Upon successful integration of the exporter with the Prometheus stack, the metri
 
 Earlier, the pool capacity/state stats were exported, and the exporter used to cache the metrics and return when Prometheus client queried. This was not ensuring the latest data retuns during the Prometheus poll cycle.
 
-In addition to the capacity and state metrics, the metrics exporter also exports performance statistics for pools, volumes, and replicas as Prometheus counters. The exporter does not pre-fetch or cache the metrics, it polls the IO engine inline with the Prometheus client pooling cycle.
+In addition to the capacity and state metrics, the metrics exporter also exports performance statistics for pools, volumes, and replicas as Prometheus counters. The exporter does not pre-fetch or cache the metrics, it polls the IO engine inline with the Prometheus client polling cycle.
 
 :::important
 Users are recommended to have Prometheus poll interval not less then 5 minutes.
