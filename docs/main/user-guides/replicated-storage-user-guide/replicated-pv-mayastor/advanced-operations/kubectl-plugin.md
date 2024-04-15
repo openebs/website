@@ -6,12 +6,12 @@ keywords:
  - Plugin
  - Kubectl Plugin
  - Mayastor Kubectl Plugin
- - Replicated Storage kubectl plugin
-description: This guide will help you to view and manage Replicated Storage resources such as nodes, pools, and volumes.
+ - Replicated PV Mayastor kubectl plugin
+description: This guide will help you to view and manage Replicated PV Mayastor resources such as nodes, pools, and volumes.
 ---
 # Kubectl Plugin
 
-The **Mayastor kubectl plugin** can be used to view and manage Replicated Storage (a.k.a Replicated Engine or Mayastor) resources such as nodes, pools and volumes. It is also used for operations such as scaling the replica count of volumes. 
+The **Mayastor kubectl plugin** can be used to view and manage Replicated PV Mayastor resources such as nodes, pools and volumes. It is also used for operations such as scaling the replica count of volumes. 
 
 ## Install kubectl plugin
 
@@ -70,7 +70,7 @@ SUBCOMMANDS:
 
 You can use the plugin with the following options:
 
-### Get Replicated Storage Volumes
+### Get Replicated PV Mayastor Volumes
 
 **Command**
 
@@ -87,7 +87,7 @@ ID                                    REPLICAS  TARGET-NODE  ACCESSIBILITY STATU
 0c08667c-8b59-4d11-9192-b54e27e0ce0f  4         mayastor-2   <none>        Online  10485761
 ```
 
-### Get Replicated Storage Pools
+### Get Replicated PV Mayastor Pools
 
 **Command**
 
@@ -106,7 +106,7 @@ mayastor-pool-3  5360320512      3258974208     aio:///dev/vdb?uuid=f324edb7-1ac
     
 ```
 
-### Get Replicated Storage Nodes
+### Get Replicated PV Mayastor Nodes
 
 **Command**
 

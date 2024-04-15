@@ -1,6 +1,6 @@
 ---
 id: legacy-upgrade
-title: OpenEBS Replicated Storage Legacy Upgrades
+title: OpenEBS Replicated PV Mayastor Legacy Upgrades
 keywords:
  - Upgrading OpenEBS
  - OpenEBS upgrade
@@ -8,13 +8,13 @@ keywords:
 description: Upgrade to the latest OpenEBS 2.6.0 version is supported only from v1.0.0 and later.
 ---
 
-A legacy installation of Replicated Storage (a.k.a Replicated Engine or Mayastor) (1.0.x and below) cannot be seamlessly upgraded and needs manual intervention.
+A legacy installation of Replicated PV Mayastor (1.0.x and below) cannot be seamlessly upgraded and needs manual intervention.
 
-Follow the below steps if you wish to upgrade from Replicated Storage 1.0.x to Replicated Storage 2.x and above.
-The Replicated Storage uses etcd as a persistent datastore for its configuration. As a first step, take a snapshot of the etcd. The detailed steps for taking a snapshot can be found in the etcd [documentation](https://etcd.io/docs/v3.3/op-guide/recovery/).
+Follow the below steps if you wish to upgrade from Replicated PV Mayastor 1.0.x to Replicated PV Mayastor 2.x and above.
+The Replicated PV Mayastor uses etcd as a persistent datastore for its configuration. As a first step, take a snapshot of the etcd. The detailed steps for taking a snapshot can be found in the etcd [documentation](https://etcd.io/docs/v3.3/op-guide/recovery/).
 
 :::warning
-As compared to Replicated Storage 1.0, the Replicated Storage 2.x feature-set introduces breaking changes in some of the components, due to which the upgrade process from 1.0 to 2.x is not seamless. The list of such changes are given below:
+As compared to Replicated PV Mayastor 1.0, the Replicated PV Mayastor 2.x feature-set introduces breaking changes in some of the components, due to which the upgrade process from 1.0 to 2.x is not seamless. The list of such changes are given below:
 
 **ETCD:**
   - Control Plane: The prefixes for control plane have changed from `/namespace/$NAMESPACE/control-plane/` to `/openebs.io/mayastor/apis/v0/clusters/$KUBE_SYSTEM_UID/namespaces/$NAMESPACE/`
@@ -203,9 +203,9 @@ ID                                    REPLICAS  TARGET-NODE  ACCESSIBILITY  STAT
 bf207797-b23d-447a-8d3f-98d378acfa8a  3         worker-0     nvmf           Online  1073741824  false
 ``` 
 
-4. After upgrading control-plane components, the data-plane pods have to be upgraded. To do so, deploy the `io-engine` DaemonSet from Replicated Storage's new version. 
+4. After upgrading control-plane components, the data-plane pods have to be upgraded. To do so, deploy the `io-engine` DaemonSet from Replicated PV Mayastor's new version. 
 
-Using the command given below, the data-plane pods (now io-engine pods) will be upgraded to Replicated Storage v2.0.
+Using the command given below, the data-plane pods (now io-engine pods) will be upgraded to Replicated PV Mayastor v2.0.
 
 **Command**
 
@@ -215,7 +215,7 @@ kubectl apply -f mayastor_io_v2.0.yaml -n mayastor
 
 - Delete the previously deployed data-plane pods (`mayastor-xxxxx`). The data-plane pods need to be manually deleted as their update-strategy is set to `delete`. Upon successful deletion, the new `io-engine` pods will be up and running.   
 
-- NATS has been replaced by gRPC for Replicated Storage versions 2.0 or later. Hence, the NATS components (StatefulSets and services) have to be removed from the cluster.
+- NATS has been replaced by gRPC for Replicated PV Mayastor versions 2.0 or later. Hence, the NATS components (StatefulSets and services) have to be removed from the cluster.
 
 **Command**
 ```text
@@ -377,7 +377,7 @@ nats-1                                       2/2     Running   0          45m
 nats-2                                       2/2     Running   0          45m
 ```
 
-**Command to check the Status of Replicated Storage Volumes**
+**Command to check the Status of Replicated PV Mayastor Volumes**
 
 ```
 kubectl mayastor get volumes

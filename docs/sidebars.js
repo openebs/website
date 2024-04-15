@@ -303,149 +303,159 @@ module.exports = {
           },
           items: [
             {
-              type: "doc",
-              id: "user-guides/replicated-storage-user-guide/rs-installation",
-              label: "Installation"
-            },
-            {
-              type: "doc",
-              id: "user-guides/replicated-storage-user-guide/rs-configuration",
-              label: "Configuration"
-            },
-            {
-              type: "doc",
-              id: "user-guides/replicated-storage-user-guide/rs-deployment",
-              label: "Deploy an Application"
-            },
-            {
               collapsed: true,
               type: "category",
-              label: "Advanced Operations",
+              label: "Replicated PV Mayastor",
               customProps: {
-                icon: "Layers"
+                icon: "BookOpen"
               },
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/advanced-operations/kubectl-plugin",
-                  label: "Kubectl Plugin"
+                  id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation",
+                  label: "Installation"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/advanced-operations/ha",
-                  label: "High Availability"
+                  id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration",
+                  label: "Configuration"
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/advanced-operations/replica-rebuilds",
-                  label: "Replica Rebuilds"
+                  id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-deployment",
+                  label: "Deploy an Application"
+                },
+                {
+                  collapsed: true,
+                  type: "category",
+                  label: "Advanced Operations",
+                  customProps: {
+                    icon: "Layers"
+                  },
+                  items: [
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/kubectl-plugin",
+                      label: "Kubectl Plugin"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/ha",
+                      label: "High Availability"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/replica-rebuilds",
+                      label: "Replica Rebuilds"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/supportability",
+                      label: "Supportability"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/monitoring",
+                      label: "Monitoring"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/node-cordon",
+                      label: "Node Cordon"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/node-drain",
+                      label: "Node Drain"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/volume-snapshots",
+                      label: "Volume Snapshots"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot-restore",
+                      label: "Snapshot Restore"
+                    }
+                  ]
+                },
+                {
+                  collapsed: true,
+                  type: "category",
+                  label: "Additional Information",
+                  customProps: {
+                    icon: "File"
+                  },
+                  items: [
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/upgrade-re",
+                      label: "Upgrades"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/legacy-upgrade",
+                      label: "Legacy Upgrades"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/tips",
+                      label: "Tips and Tricks"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/performance-tips",
+                      label: "Performance Tips"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/io-path-description",
+                      label: "I/O Path Description"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/replica-operations",
+                      label: "Replica Operations"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/eventing",
+                      label: "Eventing"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/call-home-metrics",
+                      label: "Call-Home Metrics"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/re-resize",
+                      label: "Resize"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/ttps",
+                      label: "Tested Third Party Software"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/migrate-etcd",
+                      label: "Etcd Migration Procedure"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/scale-etcd",
+                      label: "Scaling Up etcd Members"
+                    }
+                  ]
                 },
                 {
                   type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/advanced-operations/supportability",
-                  label: "Supportability"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/advanced-operations/monitoring",
-                  label: "Monitoring"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/advanced-operations/node-cordon",
-                  label: "Node Cordon"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/advanced-operations/node-drain",
-                  label: "Node Drain"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/advanced-operations/volume-snapshots",
-                  label: "Volume Snapshots"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/advanced-operations/snapshot-restore",
-                  label: "Snapshot Restore"
+                  id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/platform-support",
+                  label: "Platform Support"
                 }
-              ]
-            },
-            {
-              collapsed: true,
-              type: "category",
-              label: "Additional Information",
-              customProps: {
-                icon: "File"
-              },
-              items: [
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/additional-information/upgrade-re",
-                  label: "Upgrades"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/additional-information/legacy-upgrade",
-                  label: "Legacy Upgrades"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/additional-information/tips",
-                  label: "Tips and Tricks"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/additional-information/performance-tips",
-                  label: "Performance Tips"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/additional-information/io-path-description",
-                  label: "I/O Path Description"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/additional-information/replica-operations",
-                  label: "Replica Operations"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/additional-information/eventing",
-                  label: "Eventing"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/additional-information/call-home-metrics",
-                  label: "Call-Home Metrics"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/additional-information/re-resize",
-                  label: "Resize"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/additional-information/ttps",
-                  label: "Tested Third Party Software"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/additional-information/migrate-etcd",
-                  label: "Etcd Migration Procedure"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/additional-information/scale-etcd",
-                  label: "Scaling Up etcd Members"
-                }
-              ]
-            },
-            {
-              type: "doc",
-              id: "user-guides/replicated-storage-user-guide/platform-support",
-              label: "Platform Support"
+              ] 
             }
           ] 
         },

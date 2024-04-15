@@ -94,9 +94,7 @@ A quick summary of the steps to restore include:
 ## See Also
 
 - [OpenEBS Architecture](../architecture.md)
-- [Local PV Hostpath Prerequisites](../../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
-- [Local PV LVM Prerequisites](../../user-guides/local-storage-user-guide/local-pv-lvm/lvm-installation.md)
-- [Local PV ZFS Prerquisites](../../user-guides/local-storage-user-guide/local-pv-zfs/zfs-installation.md)
-- [Installation](../../quickstart-guide/installation.md)
+- [Quickstart](../quickstart-guide/installation.md)
+- [Deployment](../quickstart-guide/deploy-a-test-application.md)
 - [Local Storage User Guide](../../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
 

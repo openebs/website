@@ -53,7 +53,7 @@ Using a single controller to implement synchronous replication of data to a fixe
 
 The OpenEBS volume services layer exposes the volumes as:
 - Device or Directory paths in case of Local Storage (a.k.a Local Engine)
-- NVMe Target in case of Replicated Storage (a.k.a Replicated Engine or Mayastor)
+- NVMe Target in case of Replicated Storage (a.k.a Replicated Engine)
 
 ### Volume Data Layer 
 
@@ -80,7 +80,7 @@ The storage layer forms the basic building blocks for persisting the data. The s
 
 The storage layer is outside the purview of the OpenEBS Data Engines and is available to the Kubernetes storage constructs using standard operating system or Linux software constructs.  
 
-The Data Engines consume the storage as a device, a device pool or a filesystem directory. 
+The Data Engines consume the storage as a device, a device pool, or a filesystem directory. 
 
 ## Control Plane
 
