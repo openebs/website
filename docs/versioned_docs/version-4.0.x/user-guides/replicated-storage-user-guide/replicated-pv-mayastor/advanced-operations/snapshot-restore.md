@@ -26,7 +26,6 @@ kind: StorageClass
 metadata:
   name: mayastor-1-restore
 parameters:
-  ioTimeout: "30"
   protocol: nvmf
   repl: "1"
   thin: "true"
@@ -40,7 +39,6 @@ kind: StorageClass
 metadata:
   name: mayastor-1-restore
 parameters:
-  ioTimeout: "30"
   protocol: nvmf
   repl: "1"
   thin: "true"
