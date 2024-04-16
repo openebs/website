@@ -14,7 +14,7 @@ OpenEBS turns any storage available to Kubernetes worker nodes into Local or Rep
 
 OpenEBS is also a leading choice for NVMe-based storage deployments.
 
-OpenEBS was originally built by MayaData and donated to the _Cloud Native Computing Foundation_ and is now a [CNCF sandbox project](https://www.cncf.io/sandbox-projects/).
+OpenEBS was originally built by MayaData and donated to the _Cloud Native Computing Foundation_.
 
 ## Why do users prefer OpenEBS?
 
