@@ -104,28 +104,7 @@ This applies to the **kubectl mayastor upgrade** command as well `kubectl mayast
 
 ```
 helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.0.0 \
-  --set localpv-provisioner.release.version=4.0.0 \
-  --set localpv-provisioner.localpv.image.tag=4.0.0 \
-  --set localpv-provisioner.helperPod.image.tag=4.0.0 \
-  --set mayastor.loki-stack.loki.image.tag=2.6.1 \
-  --set mayastor.loki-stack.filebeat.imageTag=7.17.3 \
-  --set mayastor.loki-stack.logstash.imageTag=1.0.1 \
-  --set mayastor.loki-stack.grafana.downloadDashboardsImage.tag=7.85.0 \
-  --set mayastor.loki-stack.grafana.image.tag=8.3.5 \
-  --set mayastor.loki-stack.grafana.sidecar.image.tag=1.19.2 \
-  --set mayastor.loki-stack.prometheus.alertmanager.image.tag=v0.23.0 \
-  --set mayastor.loki-stack.prometheus.nodeExporter.image.tag=v1.3.0 \
-  --set mayastor.loki-stack.prometheus.pushgateway.image.tag=v1.4.2 \
-  --set mayastor.loki-stack.prometheus.server.image.tag=v2.34.0 \
-  --set-json 'mayastor.loki-stack.promtail.config.clients[0]={"url": "http://{{ .Release.Name }}-loki:3100/loki/api/v1/push"}' \
-  --set mayastor.image.tag="v2.6.0" \
-  --set mayastor.csi.image.provisionerTag=v3.5.0 \
-  --set mayastor.csi.image.attacherTag=v4.3.0 \
-  --set mayastor.csi.image.snapshotterTag=v6.3.3 \
-  --set mayastor.csi.image.snapshotControllerTag=v6.3.3 \
-  --set mayastor.csi.image.registrarTag=v2.10.0 \
   --set mayastor.crds.enabled=false \
-  --set-json 'mayastor.loki-stack.promtail.initContainer=[]' \
   --set mayastor.agents.core.rebuild.partial.enabled=false
 ```
 
