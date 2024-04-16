@@ -314,7 +314,6 @@ const Footer: React.FC = () => {
         <Link href="https://www.linuxfoundation.org/legal/trademark-usage" className={[classes.copyrights, classes.privacyPolicyLink].join(' ')}>
           {t('footer.cncfTrademark')}
         </Link>
-        </p>
       </div>
     </div>
   );
