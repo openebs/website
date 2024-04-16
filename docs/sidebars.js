@@ -350,6 +350,11 @@ module.exports = {
                     },
                     {
                       type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/re-resize",
+                      label: "Resize"
+                    },
+                    {
+                      type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/supportability",
                       label: "Supportability"
                     },
@@ -427,11 +432,6 @@ module.exports = {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/call-home-metrics",
                       label: "Call-Home Metrics"
-                    },
-                    {
-                      type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/re-resize",
-                      label: "Resize"
                     },
                     {
                       type: "doc",
