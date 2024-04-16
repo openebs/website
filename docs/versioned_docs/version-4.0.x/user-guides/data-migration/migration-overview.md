@@ -21,7 +21,7 @@ Data migration is the process of moving data from a source storage to a destinat
 
 There are different techniques/methodologies for performing data migration. Users can perform data migration within the same Kubernetes cluster or across Kubernetes clusters. The following guides outline several methodologies for migrating from legacy OpenEBS storage to latest OpenEBS storage:
 - [Migration using pv-migrate](migration-using-pv-migrate.md)
-- [Migration using Velero](../data-migration/migration-using-velero/overview.md)
+- [Migration using Velero](migration-using-velero/overview.md)
 
 :::info
 Users of non-OpenEBS storage solutions can also use these approaches described below to migrate their data to OpenEBS storage.
