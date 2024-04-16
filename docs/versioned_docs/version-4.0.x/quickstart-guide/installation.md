@@ -70,7 +70,7 @@ The above commands will install OpenEBS Local PV Hostpath, OpenEBS Local PV LVM,
 If you do not want to install OpenEBS Replicated Storage, use the following command:
 
 ```
-helm install openebs --namespace openebs openebs/openebs --set mayastor.enabled=false --create-namespace
+helm install openebs --namespace openebs openebs/openebs --set engines.replicated.mayastor.enabled=false --create-namespace
 ```
 
 3. To view the chart and get the output, use the following commands:
