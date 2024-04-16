@@ -282,6 +282,24 @@ const FooterBottom = () => {
           </Link>
         )
       }
+      {
+        (
+          <div className="margin-right--lg">
+            <span>© 2024 The Linux Foundation. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our</span>
+          </div>
+        )
+      }
+      {
+        (
+          <Link
+          to="https://www.linuxfoundation.org/legal/trademark-usage"
+          className="footer__link-item"
+          target="_blank"
+          >
+            Trademark Usage page.
+          </Link>
+        )
+      }
     </div>
   );
 };
