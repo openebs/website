@@ -57,7 +57,7 @@ Using one or more the following examples as templates, create the required type 
 **Example DiskPool Definition**
 ```text
 cat <<EOF | kubectl create -f -
-apiVersion: "openebs.io/v1beta1"
+apiVersion: "openebs.io/v1beta2"
 kind: DiskPool
 metadata:
   name: pool-on-node-1
@@ -70,7 +70,7 @@ EOF
 
 **YAML**
 ```text
-apiVersion: "openebs.io/v1beta1"
+apiVersion: "openebs.io/v1beta2"
 kind: DiskPool
 metadata:
   name: INSERT_POOL_NAME_HERE
