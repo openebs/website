@@ -263,25 +263,46 @@ const FooterBottom = () => {
   const privacyPolicy = siteConfig?.customFields?.footbarLinks?.privacyPolicy;
 
   return (
-    <div className="footer__bottom row col col--12">
+    <div>
+      <div className="footer__bottom row col col--12">
+        {
+          copyRight && (
+            <div className="margin-right--lg">
+              <span>{copyRight}</span>
+            </div>
+          )
+        }
+        {
+          privacyPolicy && (
+            <Link
+            to={privacyPolicy?.link}
+            className="footer__link-item"
+            target="_blank"
+            >
+              {privacyPolicy?.label}
+            </Link>
+          )
+        }
+      </div>
+      <div className="footer__bottom row col col--12">
       {
-        copyRight && (
+        (
           <div className="margin-right--lg">
-            <span>{copyRight}</span>
+            <span>The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our</span>
           </div>
         )
       }
       {
-        privacyPolicy && (
+        (
           <Link
-          to={privacyPolicy?.link}
+          to="https://www.linuxfoundation.org/legal/trademark-usage"
           className="footer__link-item"
           target="_blank"
-          >
-            {privacyPolicy?.label}
+          >Trademark Usage page
           </Link>
         )
       }
+      </div>
     </div>
   );
 };
