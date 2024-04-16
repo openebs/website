@@ -35,24 +35,35 @@ As a part of upgrade to OpenEBS 4.0.0, the helm chart would install all four eng
 During the upgrade, advanced users who are only interested in Local PV Storage, can disable the Replicated PV Mayastor by setting the below option:
 
 ```
---set mayastor.enabled=false
+--set engines.replicated.mayastor.enabled=false
 ```
 :::
+
+## Update Helm Repository
+
+The OpenEBS helm chart repository is available from a different URL than before. The repository target URL needs to be updated.
+
+```
+helm repo remove openebs
+helm repo add openebs https://openebs.github.io/openebs
+helm repo update
+```
 
 ## Local Storage
 
 This section describes the Local Storage upgrade from OpenEBS chart 3.x to OpenEBS 4.0.0. The upgrade process for Local PV Hostpath, Local PV LVM and Local PV ZFS are largely identical, with a few changes in helm values depending on the Local PV Storage variant we are upgrading from.
 
-1. Before upgrading to OpenEBS 4.0.0, the localpv-provisioner deployment needs to be removed to prevent label-selector patch issue while upgrading.
+1. Before upgrading to OpenEBS 4.0.0, write the existing helm values from your OpenEBS helm release to a local YAML file.
 
 ```
-kubectl -n openebs delete deploy -l openebs.io/component-name=openebs-localpv-provisioner --ignore-not-found
+helm get values openebs -n openebs -a -o yaml > old-values.yaml 
 ```
 
 2. Execute the 4.0.0 upgrade command. 
 
 ```
-helm repo update helm upgrade openebs openebs/openebs -n openebs --create-namespace --reuse-values --version 4.0.0
+helm repo update
+helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.0.0
 ```
 
 :::note
@@ -78,7 +89,13 @@ If the upgrade is from Local PV LVM or Local PV ZFS storage solution, additional
 
 This section describes the Replicated Storage upgrade from OpenEBS Umbrella chart 3.x to OpenEBS 4.0.0.
 
-1. Start the helm upgrade process with the new chart, i.e. 4.0.0 by using the below command:
+1. Before upgrading to OpenEBS 4.0.0, write the existing helm values from your OpenEBS helm release to a local YAML file.
+
+```
+helm get values openebs -n openebs -a -o yaml > old-values.yaml 
+```
+
+2. Start the helm upgrade process with the new chart, i.e. 4.0.0 by using the below command:
 
 :::caution
 Disable the partial rebuild during the upgrade from specific versions of OpenEBS (3.7.0, 3.8.0, 3.9.0 and 3.10.0) to OpenEBS 4.0.0 to ensure data consistency during upgrade. Input the value `--set mayastor.agents.core.rebuild.partial.enabled=false` in the **helm upgrade** command.
@@ -86,7 +103,7 @@ This applies to the **kubectl mayastor upgrade** command as well `kubectl mayast
 :::
 
 ```
-helm upgrade openebs openebs/openebs -n openebs --reuse-values \
+helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.0.0 \
   --set localpv-provisioner.release.version=4.0.0 \
   --set localpv-provisioner.localpv.image.tag=4.0.0 \
   --set localpv-provisioner.helperPod.image.tag=4.0.0 \
@@ -112,9 +129,9 @@ helm upgrade openebs openebs/openebs -n openebs --reuse-values \
   --set mayastor.agents.core.rebuild.partial.enabled=false
 ```
 
-2. Verify that the CRDs, Volumes, Snapshots and StoragePools are unaffected by the upgrade process.
+3. Verify that the CRDs, Volumes, Snapshots and StoragePools are unaffected by the upgrade process.
 
-3. Start the Replicated Storage upgrade process by using the kubectl mayastor plugin v2.6.0.
+4. Start the Replicated Storage upgrade process by using the kubectl mayastor plugin v2.6.0.
 
 ```
 kubectl mayastor upgrade -n openebs --set 'mayastor.agents.core.rebuild.partial.enabled=false'
@@ -137,12 +154,12 @@ kubectl get pods -n openebs
 openebs-upgrade-v2-6-0-s58xl                   0/1     Completed   0          7m4s
 ```
 
-4. Once the upgrade process completes, all the volumes and pools should be online.
+5. Once the upgrade process completes, all the volumes and pools should be online.
 
-5. If you have disabled the partial rebuild during the upgrade, re-enable it by adding the value `--set mayastor.agents.core.rebuild.partial.enabled=true` in the upgrade command.
+6. If you have disabled the partial rebuild during the upgrade, re-enable it by adding the value `--set mayastor.agents.core.rebuild.partial.enabled=true` in the upgrade command.
 
 ```
-helm upgrade openebs openebs/openebs -n openebs --reuse-values \
+helm upgrade openebs openebs/openebs -n openebs --reuse-values --version 4.0.0 \
   --set mayastor.agents.core.rebuild.partial.enabled=true
 ```
 
