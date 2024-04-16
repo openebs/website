@@ -32,6 +32,8 @@ footer:
   newContributors: New contributors
   contribute: Contribute
   copyrights: Copyright © 2018-2021 The OpenEBS Authors | All rights reserved
+  cncfCopyrights: The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our
+  cncfTrademark: Trademark Usage page
   privacyPolicy: Privacy policy
 
 errorPage:

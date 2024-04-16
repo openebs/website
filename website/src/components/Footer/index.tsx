@@ -308,6 +308,13 @@ const Footer: React.FC = () => {
         <Link href="/privacy-policy" className={[classes.copyrights, classes.privacyPolicyLink].join(' ')}>
           {t('footer.privacyPolicy')}
         </Link>
+        <Typography className={classes.copyrights}>
+          {t('footer.cncfCopyrights')}
+        </Typography>
+        <Link href="https://www.linuxfoundation.org/legal/trademark-usage" className={[classes.copyrights, classes.privacyPolicyLink].join(' ')}>
+          {t('footer.cncfTrademark')}
+        </Link>
+        </p>
       </div>
     </div>
   );
