@@ -123,7 +123,6 @@ kind: StorageClass
 metadata:
   name: mayastor-1
 parameters:
-  ioTimeout: "30"
   protocol: nvmf
   repl: "1"
 provisioner: io.openebs.csi-mayastor
@@ -138,7 +137,6 @@ kind: StorageClass
 metadata:
   name: mayastor-3
 parameters:
-  ioTimeout: "30"
   protocol: nvmf
   repl: "3"
 provisioner: io.openebs.csi-mayastor
