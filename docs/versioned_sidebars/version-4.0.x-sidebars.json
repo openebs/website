@@ -349,6 +349,11 @@
                       },
                       {
                         "type": "doc",
+                        "id": "version-4.0.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/re-resize",
+                        "label": "Resize"
+                      },
+                      {
+                        "type": "doc",
                         "id": "version-4.0.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/supportability",
                         "label": "Supportability"
                       },
@@ -426,11 +431,6 @@
                         "type": "doc",
                         "id": "version-4.0.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/call-home-metrics",
                         "label": "Call-Home Metrics"
-                      },
-                      {
-                        "type": "doc",
-                        "id": "version-4.0.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/re-resize",
-                        "label": "Resize"
                       },
                       {
                         "type": "doc",
