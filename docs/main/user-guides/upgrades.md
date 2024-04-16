@@ -81,7 +81,8 @@ This section describes the Replicated Storage upgrade from OpenEBS Umbrella char
 1. Start the helm upgrade process with the new chart, i.e. 4.0.0 by using the below command:
 
 :::caution
-It is highly recommended to disable the partial rebuild during the upgrade from specific versions of OpenEBS (3.7.0, 3.8.0, 3.9.0 and 3.10.0) to OpenEBS 4.0.0 to ensure data consistency during upgrade. Input the value `--set mayastor.agents.core.rebuild.partial.enabled=false` in the upgrade command.
+Disable the partial rebuild during the upgrade from specific versions of OpenEBS (3.7.0, 3.8.0, 3.9.0 and 3.10.0) to OpenEBS 4.0.0 to ensure data consistency during upgrade. Input the value `--set mayastor.agents.core.rebuild.partial.enabled=false` in the **helm upgrade** command.
+This applies to the **kubectl mayastor upgrade** command as well `kubectl mayastor upgrade --set agents.core.rebuild.partial.enabled=false`.
 :::
 
 ```
