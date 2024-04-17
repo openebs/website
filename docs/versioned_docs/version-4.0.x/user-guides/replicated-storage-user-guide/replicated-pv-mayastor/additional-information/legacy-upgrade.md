@@ -231,7 +231,7 @@ kubectl delete svc nats -n mayastor
 metadata:
   annotations:
     meta.helm.sh/release-name: mayastor
-    meta.helm.sh/release-namespace: openebs
+    meta.helm.sh/release-namespace: mayastor
   labels:
     app.kubernetes.io/managed-by: Helm
 ```
@@ -318,7 +318,7 @@ helm upgrade --install mayastor . -n mayastor --set etcd.persistence.storageClas
 Release "mayastor" does not exist. Installing it now.
 NAME: mayastor
 LAST DEPLOYED: Tue Apr 25 19:20:53 2023
-NAMESPACE: openebs
+NAMESPACE: mayastor
 STATUS: deployed
 REVISION: 1
 NOTES:
