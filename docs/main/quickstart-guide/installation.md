@@ -56,8 +56,6 @@ OpenEBS provides several options to customize during installation such as:
 - Specifying the directory where hostpath volume data is stored or
 - Specifying the nodes on which OpenEBS components should be deployed and so forth. 
 
-The default OpenEBS helm chart will install both Local Storage and Replicated Storage. Refer to [OpenEBS helm chart documentation](https://github.com/openebs/charts/tree/master/charts/openebs) for a full list of customizable options and use other flavors of OpenEBS Data Engines by setting the correct helm values. 
-
 2. Install the OpenEBS helm chart with default values. 
 
 ```
@@ -67,7 +65,7 @@ helm install openebs --namespace openebs openebs/openebs --create-namespace
 The above commands will install OpenEBS Local PV Hostpath, OpenEBS Local PV LVM, OpenEBS Local PV ZFS, and OpenEBS Replicated Storage components in `openebs` namespace and chart name as `openebs`.
 
 :::note
-If you do not want to install OpenEBS Replicated Storage, use the following command:
+The default OpenEBS helm chart will install both Local Storage and Replicated Storage. If you do not want to install OpenEBS Replicated Storage, use the following command:
 
 ```
 helm install openebs --namespace openebs openebs/openebs --set engines.replicated.mayastor.enabled=false --create-namespace
