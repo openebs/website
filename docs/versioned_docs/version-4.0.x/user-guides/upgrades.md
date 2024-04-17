@@ -60,7 +60,7 @@ helm get values openebs -n openebs -o yaml > old-values.yaml
 :::note
 If you're using a custom helm chart to use OpenEBS, you'd want to compare your set of helm values against the new helm values and the values of the dependency helm charts, [here](https://github.com/openebs/openebs/blob/HEAD/charts/values.yaml).
 
-For users who've used helm v3.13 or above to install their chart, and not used helm's `--set` and/or `-f` options to configure their chart values, using the `-a` option with your `helm get values` command will let capture your configuration values.
+For users who've used helm v3.13 or above to install their chart, and not used helm's `--set` and/or `-f` options to configure their chart values, using the `-a` option with your `helm get values` command will let you capture your configuration values.
  
 Feel free to reach out via our communication channels.
 :::

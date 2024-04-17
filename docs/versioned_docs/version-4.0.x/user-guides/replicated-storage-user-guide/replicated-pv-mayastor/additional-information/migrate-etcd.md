@@ -20,7 +20,7 @@ Take a snapshot of the etcd. Click [here](https://etcd.io/docs/v3.5/op-guide/rec
 **Command to Verify Pods**
 
 ```
-kubectl get pods -n mayastor -l app=etcd -o wide
+kubectl get pods -n openebs -l app=etcd -o wide
 ```
 
 **Output**
@@ -37,7 +37,7 @@ mayastor-etcd-2   1/1     Running   0          6m28s   10.244.3.203   worker-0  
 **Commands to get etcd data**
 
 ```
-kubectl exec -it mayastor-etcd-0 -n mayastor -- bash
+kubectl exec -it mayastor-etcd-0 -n openebs -- bash
 #ETCDCTL_API=3
 #etcdctl get --prefix ""
 ```
@@ -77,7 +77,7 @@ node/worker-0 drained
 **Command to Check new etcd Pod Status**
 
 ```
-kubectl get pods -n mayastor -l app=etcd -o wide
+kubectl get pods -n openebs -l app=etcd -o wide
 ```
 
 **Output**
@@ -93,7 +93,7 @@ mayastor-etcd-2   0/1     CrashLoopBackOff   5 (44s ago)   10m   10.244.0.121   
 **Command to edit the StatefulSet**
 
 ```
-kubectl edit sts mayastor-etcd -n mayastor
+kubectl edit sts mayastor-etcd -n openebs
 ```
 
 **Output**
@@ -114,7 +114,7 @@ This step is crucial to avoid any data loss during the migration process.
 **Command**
 
 ```
-kubectl exec -it mayastor-etcd-0 -n mayastor -- bash
+kubectl exec -it mayastor-etcd-0 -n openebs -- bash
 #ETCDCTL_API=3
 #etcdctl get --prefix ""
 ```

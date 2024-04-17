@@ -21,7 +21,7 @@ The correct set of log file to collect depends on the nature of the problem. If 
 **List all Replicated Storage Pods**
 
 ```
-kubectl -n mayastor get pods -o wide
+kubectl -n openebs get pods -o wide
 ```
 
 **Example Output**
@@ -45,7 +45,7 @@ Replicated Storage containers form the data plane of a Replicated Storage deploy
 **Example obtaining Replicated Storage\'s Log**
 
 ```
-kubectl -n mayastor logs mayastor-qgpw6 mayastor
+kubectl -n openebs logs mayastor-qgpw6 mayastor
 ```
 
 ### CSI Agent Pod Log File
@@ -55,7 +55,7 @@ If experiencing problems with \(un\)mounting a volume on an application node, th
 **Example obtaining Replicated Storage CSI driver\'s Log**
 
 ```
-kubectl -n mayastor logs mayastor-csi-7pg82 mayastor-csi
+kubectl -n openebs logs mayastor-csi-7pg82 mayastor-csi
 ```
 
 ### CSI Sidecars
@@ -65,14 +65,14 @@ These containers implement the CSI spec for Kubernetes and run within the same p
 **Obtaining CSI Control Containers Logs**
 
 ```
-kubectl -n mayastor logs $(kubectl -n mayastor get pod -l app=moac -o jsonpath="{.items[0].metadata.name}") csi-attacher
-kubectl -n mayastor logs $(kubectl -n mayastor get pod -l app=moac -o jsonpath="{.items[0].metadata.name}") csi-provisioner
+kubectl -n openebs logs $(kubectl -n openebs get pod -l app=moac -o jsonpath="{.items[0].metadata.name}") csi-attacher
+kubectl -n openebs logs $(kubectl -n openebs get pod -l app=moac -o jsonpath="{.items[0].metadata.name}") csi-provisioner
 ```
 
 **Example obtaining CSI Node Container Log**
 
 ```
-kubectl -n mayastor logs mayastor-csi-7pg82 csi-driver-registrar
+kubectl -n openebs logs mayastor-csi-7pg82 csi-driver-registrar
 ```
 
 ## Coredumps
@@ -279,7 +279,7 @@ The below behaviour may be encountered while uprading from older releases to Rep
 
 ### Get Dsp
 
-Running `kubectl get dsp -n mayastor` could result in the error due to the `v1alpha1` or `v1beta1` schema in the discovery cache. To resolve this, run the command `kubectl get diskpools.openebs.io -n mayastor`. After this kubectl discovery cache will be updated with `v1beta2` object for dsp. 
+Running `kubectl get dsp -n openebs` could result in the error due to the `v1alpha1` or `v1beta1` schema in the discovery cache. To resolve this, run the command `kubectl get diskpools.openebs.io -n openebs`. After this kubectl discovery cache will be updated with `v1beta2` object for dsp. 
  
 ### Create API
 

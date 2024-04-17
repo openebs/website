@@ -64,7 +64,7 @@ Then, install the Prometheus monitoring stack and set prometheus.prometheusSpec.
 
 **Command**
 ```
-helm install mayastor prometheus-community/kube-prometheus-stack -n mayastor --set prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues=false
+helm install mayastor prometheus-community/kube-prometheus-stack -n openebs --set prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues=false
 ```
 
 2. Install the ServiceMonitor resource to select services and specify their underlying endpoint objects.
