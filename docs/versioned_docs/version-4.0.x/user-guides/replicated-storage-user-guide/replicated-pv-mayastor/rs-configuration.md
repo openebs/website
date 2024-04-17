@@ -61,7 +61,7 @@ apiVersion: "openebs.io/v1beta2"
 kind: DiskPool
 metadata:
   name: pool-on-node-1
-  namespace: mayastor
+  namespace: openebs
 spec:
   node: workernode-1-hostname
   disks: ["/dev/disk/by-id/<id>"]
@@ -74,7 +74,7 @@ apiVersion: "openebs.io/v1beta2"
 kind: DiskPool
 metadata:
   name: INSERT_POOL_NAME_HERE
-  namespace: mayastor
+  namespace: openebs
 spec:
   node: INSERT_WORKERNODE_HOSTNAME_HERE
   disks: ["INSERT_DEVICE_URI_HERE"]
@@ -94,7 +94,7 @@ The status of DiskPools may be determined by reference to their cluster CRs. Ava
 
 **Command**
 ```text
-kubectl get dsp -n mayastor
+kubectl get dsp -n openebs
 ```
 
 **Example Output**

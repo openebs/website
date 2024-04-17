@@ -29,7 +29,7 @@ apiVersion: "openebs.io/v1alpha1"
 kind: DiskPool
 metadata:
   name: mempool-1
-  namespace: mayastor
+  namespace: openebs
 spec:
   node: worker-node-1
   disks: ["malloc:///malloc0?size_mb=64"]
@@ -66,7 +66,7 @@ apiVersion: "openebs.io/v1alpha1"
 kind: DiskPool
 metadata:
   name: filepool-1
-  namespace: mayastor
+  namespace: openebs
 spec:
   node: worker-node-1
   disks: ["aio:///var/tmp/disk1.img"]
@@ -79,7 +79,7 @@ apiVersion: "openebs.io/v1alpha1"
 kind: DiskPool
 metadata:
   name: filepool-1
-  namespace: mayastor
+  namespace: openebs
 spec:
   node: worker-node-1
   disks: ["aio:///tmp/disk1.img?blk_size=4096"]

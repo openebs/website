@@ -17,7 +17,6 @@ Before installing the ZFS driver, make sure your Kubernetes Cluster must meet th
 
 1. All the nodes must have zfs utils installed.
 2. ZPOOL has been set up for provisioning the volume.
-3. You have access to install RBAC components into kube-system namespace. The OpenEBS ZFS driver components are installed in kube-system namespace to allow them to be flagged as system critical components.
 
 ## Setup
 

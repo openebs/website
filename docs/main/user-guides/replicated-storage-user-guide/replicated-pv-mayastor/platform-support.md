@@ -19,21 +19,36 @@ To install Replicated PV Mayastor using Helm on MicroK8s, execute the following 
 **Command**
 
 ```
-helm install mayastor mayastor/mayastor -n mayastor --create-namespace  --set csi.node.kubeletDir="/var/snap/microk8s/common/var/lib/kubelet"
+helm install openebs openebs/openebs -n openebs --create-namespace \ 
+  --set mayastor.csi.node.kubeletDir="/var/snap/microk8s/common/var/lib/kubelet" \
+  --set lvm-localpv.lvmNode.kubeletDir="/var/snap/microk8s/common/var/lib/kubelet" \
+  --set zfs-localpv.zfsNode.kubeletDir="/var/snap/microk8s/common/var/lib/kubelet"
 ```
 
 ***Output**
 
 ```
-NAME: mayastor
-LAST DEPLOYED: Thu Sep 22 18:59:56 2022
-NAMESPACE: mayastor
+NAME: openebs
+LAST DEPLOYED: Wed Apr 17 14:35:22 2024
+NAMESPACE: openebs
 STATUS: deployed
 REVISION: 1
 NOTES:
-OpenEBS Mayastor has been installed. Check its status by running:
-$ kubectl get pods -n mayastor
-For more information or to view the documentation, visit our website at https://openebs.io.
+Successfully installed OpenEBS.
+
+Check the status by running: kubectl get pods -n openebs
+
+The default values will install both Local PV and Replicated PV. However,
+the Replicated PV will require additional configuration to be fuctional.
+The Local PV offers non-replicated local storage using 3 different storage
+backends i.e HostPath, LVM and ZFS, while the Replicated PV provides one replicated highly-available
+storage backend i.e Mayastor.
+
+For more information,
+- view the online documentation at https://openebs.io/docs
+- connect with an active community on our Kubernetes slack channel.
+        - Sign up to Kubernetes slack: https://slack.k8s.io
+        - #openebs channel: https://kubernetes.slack.com/messages/openebs
 ```
 
 ## Resolve Known Issue (Calico Vxlan)
