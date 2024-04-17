@@ -115,7 +115,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   annotations:
-    meta.helm.sh/release-name: mayastor
+    meta.helm.sh/release-name: openebs
     meta.helm.sh/release-namespace: openebs
     pv.kubernetes.io/bound-by-controller: "yes"
   finalizers:
