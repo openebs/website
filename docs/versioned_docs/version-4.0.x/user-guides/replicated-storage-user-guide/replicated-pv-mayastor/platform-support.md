@@ -27,7 +27,7 @@ helm install mayastor mayastor/mayastor -n openebs --create-namespace  --set csi
 ```
 NAME: mayastor
 LAST DEPLOYED: Thu Sep 22 18:59:56 2022
-namespace: openebs
+NAMESPACE: openebs
 STATUS: deployed
 REVISION: 1
 NOTES:

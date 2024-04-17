@@ -318,7 +318,7 @@ helm upgrade --install mayastor . -n openebs --set etcd.persistence.storageClass
 Release "mayastor" does not exist. Installing it now.
 NAME: mayastor
 LAST DEPLOYED: Tue Apr 25 19:20:53 2023
-namespace: openebs
+NAMESPACE: openebs
 STATUS: deployed
 REVISION: 1
 NOTES:
