@@ -19,7 +19,7 @@ To install Replicated PV Mayastor using Helm on MicroK8s, execute the following 
 **Command**
 
 ```
-helm install mayastor mayastor/mayastor -n mayastor --create-namespace  --set csi.node.kubeletDir="/var/snap/microk8s/common/var/lib/kubelet"
+helm install mayastor mayastor/mayastor -n openebs --create-namespace  --set csi.node.kubeletDir="/var/snap/microk8s/common/var/lib/kubelet"
 ```
 
 ***Output**
@@ -27,12 +27,12 @@ helm install mayastor mayastor/mayastor -n mayastor --create-namespace  --set cs
 ```
 NAME: mayastor
 LAST DEPLOYED: Thu Sep 22 18:59:56 2022
-NAMESPACE: mayastor
+namespace: openebs
 STATUS: deployed
 REVISION: 1
 NOTES:
 OpenEBS Mayastor has been installed. Check its status by running:
-$ kubectl get pods -n mayastor
+$ kubectl get pods -n openebs
 For more information or to view the documentation, visit our website at https://openebs.io.
 ```
 

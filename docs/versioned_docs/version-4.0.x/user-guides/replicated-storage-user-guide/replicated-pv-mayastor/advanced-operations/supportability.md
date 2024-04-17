@@ -16,7 +16,7 @@ To bundle Replicated PV Mayastor's complete system information, execute:
 **Command**
 
 ```
-kubectl mayastor dump system -n mayastor -d <output_directory_path>
+kubectl mayastor dump system -n openebs -d <output_directory_path>
 ```
 
 To view all the available options and sub-commands that can be used with the dump command, execute:

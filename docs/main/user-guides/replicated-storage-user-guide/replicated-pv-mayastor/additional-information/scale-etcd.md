@@ -21,7 +21,7 @@ StatefulSets are Kubernetes resources designed for managing stateful application
 **Command**
 
 ``` 
-kubectl get dsp -n mayastor
+kubectl get dsp -n openebs
 ```
 
 **Output**
@@ -54,7 +54,7 @@ To increase the number of replicas to 4, use the following `kubectl scale` comma
 **Command**
 
 ``` 
-kubectl scale sts mayastor-etcd -n mayastor --replicas=4
+kubectl scale sts mayastor-etcd -n openebs --replicas=4
 ```
 
 **Output**
@@ -68,7 +68,7 @@ statefulset.apps/mayastor-etcd scaled
 **Command**
 
 ``` 
-kubectl get pods -n mayastor -l app=etcd
+kubectl get pods -n openebs -l app=etcd
 ```
 
 **Output**
@@ -88,7 +88,7 @@ Before creating a PV, we need to add the new peer URL [mayastor-etcd-3=](http://
 **Command**
 
 ```text 
-kubectl edit sts mayastor-etcd -n mayastor 
+kubectl edit sts mayastor-etcd -n openebs 
 ```
 
 **Output**
@@ -116,7 +116,7 @@ kind: PersistentVolume
 metadata:
   annotations:
     meta.helm.sh/release-name: mayastor
-    meta.helm.sh/release-namespace: mayastor
+    meta.helm.sh/release-namespace: openebs
     pv.kubernetes.io/bound-by-controller: "yes"
   finalizers:
   - kubernetes.io/pv-protection
@@ -133,7 +133,7 @@ spec:
     apiVersion: v1
     kind: PersistentVolumeClaim
     name: data-mayastor-etcd-3
-    namespace: mayastor
+    namespace: openebs
   hostPath:
     path: /var/local/mayastor/etcd/pod-3
     type: ""
@@ -145,7 +145,7 @@ spec:
 **Output**
 
 ``` 
-kubectl apply -f pv-etcd.yaml -n mayastor
+kubectl apply -f pv-etcd.yaml -n openebs
 persistentvolume/etcd-volume-3 created
 ```
 
@@ -156,7 +156,7 @@ Run the following command from the new etcd pod and ensure that the values are t
 **Command**
 
 ``` 
-kubectl exec -it mayastor-etcd-3 -n mayastor -- bash
+kubectl exec -it mayastor-etcd-3 -n openebs -- bash
 #ETCDCTL_API=3
 #etcdctl get --prefix ""
 ```
