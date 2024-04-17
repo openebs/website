@@ -70,6 +70,7 @@ The default OpenEBS helm chart will install both Local Storage and Replicated St
 ```
 helm install openebs --namespace openebs openebs/openebs --set engines.replicated.mayastor.enabled=false --create-namespace
 ```
+:::
 
 3. To view the chart and get the output, use the following commands:
 
@@ -85,7 +86,6 @@ helm ls -n openebs
 NAME     NAMESPACE   REVISION  UPDATED                                   STATUS     CHART           APP VERSION
 openebs  openebs     1         2024-03-25 09:13:00.903321318 +0000 UTC   deployed   openebs-4.0.0   4.0.0
 ```
-:::
 
 As a next step [verify](#verifying-openebs-installation) your installation and do the [post installation](#post-installation-considerations) steps.
 
