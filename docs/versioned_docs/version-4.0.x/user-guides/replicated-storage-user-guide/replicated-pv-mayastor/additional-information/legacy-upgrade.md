@@ -35,11 +35,11 @@ As compared to Replicated PV Mayastor 1.0, the Replicated PV Mayastor 2.x featur
 **Commands**
 
 ```
-kubectl delete deploy core-agents -n openebs
-kubectl delete deploy csi-controller -n openebs
-kubectl delete deploy msp-operator -n openebs
-kubectl delete deploy rest -n openebs
-kubectl delete ds mayastor-csi -n openebs
+kubectl delete deploy core-agents -n mayastor
+kubectl delete deploy csi-controller -n mayastor
+kubectl delete deploy msp-operator -n mayastor
+kubectl delete deploy rest -n mayastor
+kubectl delete ds mayastor-csi -n mayastor
 ```
  
 - Next, delete the associated RBAC operator. To do so, execute:
@@ -59,7 +59,7 @@ In the above command, add the previously installed Replicated Storage's version 
 **Command**
 
 ```
-helm template mayastor . -n openebs --set etcd.persistence.storageClass="manual" --set loki-stack.loki.persistence.storageClassName="manual" --set etcd.initialClusterState=existing > helm_templates.yaml
+helm template mayastor . -n mayastor --set etcd.persistence.storageClass="manual" --set loki-stack.loki.persistence.storageClassName="manual" --set etcd.initialClusterState=existing > helm_templates.yaml
 ```
 
 - Next, update the `helm_template.yaml` file, add the following helm label to all the resources that are being created.
@@ -82,7 +82,7 @@ metadata:
 **Command**
 
 ```
-kubectl apply -f helm_templates.yaml -n openebs
+kubectl apply -f helm_templates.yaml -n mayastor
 ```
 
 :::info
@@ -94,7 +94,7 @@ In the above method of installation, the nexus (target) High Availability (HA) i
 **Command**
 
 ```
-kubectl get pods -n openebs
+kubectl get pods -n mayastor
 ```
 
 **Sample Output**
@@ -128,7 +128,7 @@ nats-2                                       2/2     Running   0          12m
 **Command**
 
 ```
-kubectl exec -it mayastor-etcd-0 -n openebs -- bash
+kubectl exec -it mayastor-etcd-0 -n mayastor -- bash
 Defaulted container "etcd" out of: etcd, volume-permissions (init)
 I have no name!@mayastor-etcd-0:/opt/bitnami/etcd$ export ETCDCTL_API=3
 I have no name!@mayastor-etcd-0:/opt/bitnami/etcd$ etcdctl get --prefix ""
@@ -176,7 +176,7 @@ I have no name!@mayastor-etcd-0:/opt/bitnami/etcd$
 **Command**
 
 ```
-kubectl get dsp -n openebs
+kubectl get dsp -n mayastor
 ```
 
 **Sample Output**
@@ -210,7 +210,7 @@ Using the command given below, the data-plane pods (now io-engine pods) will be 
 **Command**
 
 ```
-kubectl apply -f mayastor_io_v2.0.yaml -n openebs
+kubectl apply -f mayastor_io_v2.0.yaml -n mayastor
 ```
 
 - Delete the previously deployed data-plane pods (`mayastor-xxxxx`). The data-plane pods need to be manually deleted as their update-strategy is set to `delete`. Upon successful deletion, the new `io-engine` pods will be up and running.   
@@ -219,8 +219,8 @@ kubectl apply -f mayastor_io_v2.0.yaml -n openebs
 
 **Command**
 ```text
-kubectl delete sts nats -n openebs
-kubectl delete svc nats -n openebs
+kubectl delete sts nats -n mayastor
+kubectl delete svc nats -n mayastor
 ```
 
 5. After `control-plane` and `io-engine`, the etcd has to be upgraded. Before starting the etcd upgrade, label the etcd PV and PVCs with helm. Use the below example to create a `labels.yaml` file. This will be needed to make them helm compatible.
@@ -245,7 +245,7 @@ kubectl patch pvc <data-mayastor-etcd-x> --patch-file labels.yaml n mayastor
 **Command to patch etcd PV**
 
 ```
-kubectl patch pv <etcd-volume-x> --patch-file labels.yaml -n openebs
+kubectl patch pv <etcd-volume-x> --patch-file labels.yaml -n mayastor
 ```
 
 - Next, deploy the etcd YAML. To deploy, execute:
@@ -253,7 +253,7 @@ kubectl patch pv <etcd-volume-x> --patch-file labels.yaml -n openebs
 **Command**
 
 ```
-kubectl apply -f mayastor_2.0_etcd.yaml -n openebs
+kubectl apply -f mayastor_2.0_etcd.yaml -n mayastor
 ```
 
 Now, verify the etcd space and compat mode, execute:
@@ -261,7 +261,7 @@ Now, verify the etcd space and compat mode, execute:
 **Command**
 
 ```
-kubectl exec -it mayastor-etcd-0 -n openebs -- bash
+kubectl exec -it mayastor-etcd-0 -n mayastor -- bash
 Defaulted container "etcd" out of: etcd, volume-permissions (init)
 I have no name!@mayastor-etcd-0:/opt/bitnami/etcd$ export ETCDCTL_API=3
 I have no name!@mayastor-etcd-0:/opt/bitnami/etcd$ etcdctl get --prefix ""
@@ -309,7 +309,7 @@ uuid=8929e13f-99c0-4830-bcc2-d4b12a541b97"}},{"Replica":{"uuid":"9455811d-480e-4
 **Command to check the Helm List**
 
 ```
-helm upgrade --install mayastor . -n openebs --set etcd.persistence.storageClass="manual" --set loki-stack.loki.persistence.storageClassName="manual" --set agents.ha.enabled="true"
+helm upgrade --install mayastor . -n mayastor --set etcd.persistence.storageClass="manual" --set loki-stack.loki.persistence.storageClassName="manual" --set agents.ha.enabled="true"
 ```
 
 **Sample Output**
@@ -323,7 +323,7 @@ STATUS: deployed
 REVISION: 1
 NOTES:
 OpenEBS Mayastor has been installed. Check its status by running:
-$ kubectl get pods -n openebs
+$ kubectl get pods -n mayastor
 ```
 
 7. This concludes the process of legacy upgrade. Run the below commands to verify the upgrade,
@@ -331,7 +331,7 @@ $ kubectl get pods -n openebs
 **Command to check the helm list**
 
 ```
-helm list -n openebs
+helm list -n mayastor
 ```
 
 **Sample Output**
@@ -344,7 +344,7 @@ mayastor        mayastor        1               2023-04-25 19:20:53.43928058 +00
 **Command to check the status of pods**
 
 ```
-kubectl get pods -n openebs
+kubectl get pods -n mayastor
 ```
 
 **Sample Output**
