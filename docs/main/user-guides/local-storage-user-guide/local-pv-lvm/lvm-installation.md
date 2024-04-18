@@ -13,9 +13,9 @@ This section explains the prerequisites and installation requirements to set up 
 
 ## Prerequisites
 
-Before installing the LVM driver, make sure your Kubernetes Cluster must meet the following prerequisites:
+Before installing the LVM driver, make sure your Kubernetes Cluster must meet the below prerequisite:
 
-1. All the nodes must have lvm2 utils installed and the dm-snapshot kernel module loaded.
+- All the nodes must have lvm2 utils installed and the dm-snapshot kernel module loaded.
 
 ## Setup Volume Group
 

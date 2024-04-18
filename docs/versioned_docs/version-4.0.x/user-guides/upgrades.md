@@ -58,9 +58,9 @@ helm get values openebs -n openebs -o yaml > old-values.yaml
 ```
 
 :::note
-If you're using a custom helm chart to use OpenEBS, you'd want to compare your set of helm values against the new helm values and the values of the dependency helm charts, [here](https://github.com/openebs/openebs/blob/HEAD/charts/values.yaml).
+If you are using a custom helm chart to use OpenEBS, compare your set of helm values against the new helm values and the values of the dependency helm charts, [here](https://github.com/openebs/openebs/blob/HEAD/charts/values.yaml).
 
-For users who've used helm v3.13 or above to install their chart, and not used helm's `--set` and/or `-f` options to configure their chart values, using the `-a` option with your `helm get values` command will let you capture your configuration values.
+For users who have used helm v3.13 or above to install their chart, and not used helm's `--set` and/or `-f` options to configure their chart values, using the `-a` option with your `helm get values` command will let you capture your configuration values.
  
 Feel free to reach out via our communication channels.
 :::
@@ -68,7 +68,7 @@ Feel free to reach out via our communication channels.
 
 ## Local Storage
 
-This section describes the Local Storage upgrade from OpenEBS chart 3.x to OpenEBS 4.0.0. The upgrade process for Local PV Hostpath, Local PV LVM and Local PV ZFS are largely identical, with a few changes in helm values depending on the Local PV Storage variant we are upgrading from.
+This section describes the Local Storage upgrade from OpenEBS chart 3.x to OpenEBS 4.0.0. The upgrade process for Local PV Hostpath, Local PV LVM, and Local PV ZFS are largely identical, with a few changes in helm values depending on the Local PV Storage variant we are upgrading from.
 
 1. Execute the 4.0.0 upgrade command. 
 
