@@ -49,6 +49,7 @@ List of events being collected:
 | Nexus | RemoveChild | Data plane | Created when a child is removed from nexus |
 | Nexus | OnlineChild | Data plane | Created when a nexus child becomes online |
 | Nexus | SubsystemPause | Data plane | Created when an I/O subsystem is paused |
+| Nexus | SubsystemResume | Data plane | Created when an I/O subsystem is resumed |
 | Nexus | Init | Data plane | Created when nexus enters into init state |
 | Nexus | Reconfiguring | Data plane | Created when nexus enters into reconfiguring state |
 | Nexus | Shutdown | Data plane | Created when a nexus is destroyed |
@@ -85,6 +86,7 @@ List of events being collected:
 
 | Category | Action | Source | Description |
 | :--- | :--- | :--- | :--- |
+| IoEngineCategory | Start | Data plane | Created when io-engine is initializes |
 | IoEngineCategory | Shutdown | Data plane | Created when io-engine shutdown starts |
 | IoEngineCategory | Stop | Data plane | Created when an io-engine is stopped |
 | IoEngineCategory | ReactorUnfreeze | Data plane | Created when an io-engine reactor is healthy again |
