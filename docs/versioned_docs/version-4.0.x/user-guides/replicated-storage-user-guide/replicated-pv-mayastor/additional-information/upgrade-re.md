@@ -5,7 +5,7 @@ keywords:
  - Upgrading OpenEBS
  - OpenEBS upgrade
  - Supported upgrade paths
-description: Upgrade to the latest OpenEBS 2.6.1 version is supported only from v1.0.0 and later.
+description: Upgrade to the latest OpenEBS 2.6.0 version is supported only from v1.0.0 and later.
 ---
 
 ## Upgrading Replicated PV Mayastor
