@@ -5,7 +5,7 @@ keywords:
  - Upgrading OpenEBS
  - OpenEBS upgrade
  - Supported upgrade paths
-description: Upgrade to the latest OpenEBS 2.6.0 version is supported only from v1.0.0 and later.
+description: Upgrade to the latest OpenEBS 2.6.1 version is supported only from v1.0.0 and later.
 ---
 
 ## Upgrading Replicated PV Mayastor
@@ -14,7 +14,7 @@ Replicated PV Mayastor supports seamless upgrades starting with target version 2
 
 ### Supported Upgrade Paths
 
-- From 2.0.x to 2.6.0
+- From 2.0.x to 2.6.1
 
 :::info
 - The upgrade operation utilises the [Kubectl Plugin](../advanced-operations/kubectl-plugin.md).
@@ -81,7 +81,7 @@ kubectl mayastor get upgrade-status
 
 ```
 Upgrade From: 2.0.0
-Upgrade To: 2.6.0
+Upgrade To: 2.6.1
 Upgrade Status: Successfully upgraded Mayastor
 ```
 
