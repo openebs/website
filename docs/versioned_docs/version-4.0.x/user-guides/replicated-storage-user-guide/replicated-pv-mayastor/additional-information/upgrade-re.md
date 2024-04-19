@@ -14,7 +14,7 @@ Replicated PV Mayastor supports seamless upgrades starting with target version 2
 
 ### Supported Upgrade Paths
 
-- From 2.0.x to 2.6.0
+- From 2.0.x to 2.6.1
 
 :::info
 - The upgrade operation utilises the [Kubectl Plugin](../advanced-operations/kubectl-plugin.md).
@@ -81,7 +81,7 @@ kubectl mayastor get upgrade-status
 
 ```
 Upgrade From: 2.0.0
-Upgrade To: 2.6.0
+Upgrade To: 2.6.1
 Upgrade Status: Successfully upgraded Mayastor
 ```
 
