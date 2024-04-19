@@ -5,11 +5,11 @@ keywords:
  - Upgrading OpenEBS
  - OpenEBS upgrade
  - Supported upgrade paths
-description: Upgrade to the latest OpenEBS 4.0.0 version.
+description: Upgrade to the latest OpenEBS 4.0.1 version.
 ---
 
 :::important
-Upgrade from OpenEBS 3.x to OpenEBS 4.0.0 is only supported for the below storages installed from OpenEBS 3.x.
+Upgrade from OpenEBS 3.x to OpenEBS 4.0.1 is only supported for the below storages installed from OpenEBS 3.x.
 
 - Local PV Hostpath
 - Local PV LVM
@@ -21,7 +21,7 @@ See the [migration documentation](../user-guides/data-migration/migration-overvi
 
 ## Overview
 
-This upgrade flow allows the users to upgrade to the latest OpenEBS version 4.0.0 which is a unified installer for three Local Storages (a.k.a Local Engines):
+This upgrade flow allows the users to upgrade to the latest OpenEBS version 4.0.1 which is a unified installer for three Local Storages (a.k.a Local Engines):
 - Local PV HostPath
 - Local PV LVM 
 - Local PV ZFS 
@@ -29,7 +29,7 @@ This upgrade flow allows the users to upgrade to the latest OpenEBS version 4.0.
 and one Replicated Storage (a.k.a Replicated Engine):
 - Replicated PV Mayastor
 
-As a part of upgrade to OpenEBS 4.0.0, the helm chart would install all four engines irrespective of the engine the user was using prior to the upgrade. 
+As a part of upgrade to OpenEBS 4.0.1, the helm chart would install all four engines irrespective of the engine the user was using prior to the upgrade. 
 
 :::info
 During the upgrade, advanced users who are only interested in Local PV Storage, can disable the Replicated PV Mayastor by setting the below option:
@@ -68,16 +68,16 @@ Feel free to reach out via our communication channels.
 
 ## Local Storage
 
-This section describes the Local Storage upgrade from OpenEBS chart 3.x to OpenEBS 4.0.0. The upgrade process for Local PV Hostpath, Local PV LVM, and Local PV ZFS are largely identical, with a few changes in helm values depending on the Local PV Storage variant we are upgrading from.
+This section describes the Local Storage upgrade from OpenEBS chart 3.x to OpenEBS 4.0.1. The upgrade process for Local PV Hostpath, Local PV LVM, and Local PV ZFS are largely identical, with a few changes in helm values depending on the Local PV Storage variant we are upgrading from.
 
-1. Execute the 4.0.0 upgrade command. 
+1. Execute the 4.0.1 upgrade command. 
 
 ```
-helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.0.0
+helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.0.1
 ```
 
 :::note
-If the upgrade is from Local PV LVM or Local PV ZFS storage solution, additional helm values must be specified with the above command to prevent upgrade process conflicts. The installed CRDs in 3.x would be in conflict with the CRDs in 4.0.0 as the chart structure has changed. Hence, they must be disabled.
+If the upgrade is from Local PV LVM or Local PV ZFS storage solution, additional helm values must be specified with the above command to prevent upgrade process conflicts. The installed CRDs in 3.x would be in conflict with the CRDs in 4.0.1 as the chart structure has changed. Hence, they must be disabled.
 
 
 - For Upgrade from Local PV LVM, use
@@ -99,12 +99,12 @@ Add both of these options, if your chart has both of these enabled.
 
 ## Replicated Storage
 
-This section describes the Replicated Storage upgrade from OpenEBS Umbrella chart 3.x to OpenEBS 4.0.0.
+This section describes the Replicated Storage upgrade from OpenEBS Umbrella chart 3.x to OpenEBS 4.0.1.
 
-1. Start the helm upgrade process with the new chart, i.e. 4.0.0 by using the below command:
+1. Start the helm upgrade process with the new chart, i.e. 4.0.1 by using the below command:
 
 :::caution
-Disable the partial rebuild during the upgrade from specific versions of OpenEBS (3.7.0, 3.8.0, 3.9.0 and 3.10.0) to OpenEBS 4.0.0 to ensure data consistency during upgrade. Input the value `--set mayastor.agents.core.rebuild.partial.enabled=false` in the **helm upgrade** command.
+Disable the partial rebuild during the upgrade from specific versions of OpenEBS (3.7.0, 3.8.0, 3.9.0 and 3.10.0) to OpenEBS 4.0.1 to ensure data consistency during upgrade. Input the value `--set mayastor.agents.core.rebuild.partial.enabled=false` in the **helm upgrade** command.
 
 This applies to the **kubectl mayastor upgrade** command as well, if you're using the `mayastor/mayastor` chart and not the `openebs/openebs` chart: `kubectl mayastor upgrade --set agents.core.rebuild.partial.enabled=false`
 :::
@@ -117,7 +117,7 @@ helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.0
 
 2. Verify that the CRDs, Volumes, Snapshots and StoragePools are unaffected by the upgrade process.
 
-3. Start the Replicated Storage upgrade process by using the kubectl mayastor plugin v2.6.0.
+3. Start the Replicated Storage upgrade process by using the kubectl mayastor plugin v2.6.1.
 
 ```
 kubectl mayastor upgrade -n openebs --set 'mayastor.agents.core.rebuild.partial.enabled=false'
@@ -145,7 +145,7 @@ openebs-upgrade-v2-6-0-s58xl                   0/1     Completed   0          7m
 5. If you have disabled the partial rebuild during the upgrade, re-enable it by adding the value `--set mayastor.agents.core.rebuild.partial.enabled=true` in the upgrade command.
 
 ```
-helm upgrade openebs openebs/openebs -n openebs --reuse-values --version 4.0.0 \
+helm upgrade openebs openebs/openebs -n openebs --reuse-values --version 4.0.1 \
   --set mayastor.agents.core.rebuild.partial.enabled=true
 ```
 
