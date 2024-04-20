@@ -185,8 +185,8 @@ provisioner: local.csi.openebs.io
 parameters:
   storage: "lvm"
   vgpattern: "lvmvg.*"
-  mountOptions:    ## Various mount options of volume can be specified here
-    - debug
+mountOptions:    ## Various mount options of volume can be specified here
+  - debug
 ```
 :::
 
