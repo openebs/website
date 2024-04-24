@@ -45,22 +45,6 @@ const AdopterSlider: React.FC = () => {
       name: t('home.usedInProductionBy.comcast'),
     },
     {
-      logo: '../images/logos/bloomberg_blue.png',
-      name: t('home.usedInProductionBy.bloomberg'),
-    },
-    {
-      logo: '../images/logos/orange_blue.png',
-      name: t('home.usedInProductionBy.orange'),
-    },
-    {
-      logo: '../images/logos/optoro_blue.png',
-      name: t('home.usedInProductionBy.optoro'),
-    },
-    {
-      logo: '../images/logos/comcast_blue.png',
-      name: t('home.usedInProductionBy.comcast'),
-    },
-    {
       logo: '../images/logos/agnes.png',
       name: t('home.usedInProductionBy.agnes'),
     },
