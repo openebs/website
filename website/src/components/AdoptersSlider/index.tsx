@@ -33,10 +33,6 @@ const AdopterSlider: React.FC = () => {
       name: t('home.usedInProductionBy.bloomberg'),
     },
     {
-      logo: '../images/logos/arista_blue.png',
-      name: t('home.usedInProductionBy.arista'),
-    },
-    {
       logo: '../images/logos/orange_blue.png',
       name: t('home.usedInProductionBy.orange'),
     },
@@ -51,10 +47,6 @@ const AdopterSlider: React.FC = () => {
     {
       logo: '../images/logos/bloomberg_blue.png',
       name: t('home.usedInProductionBy.bloomberg'),
-    },
-    {
-      logo: '../images/logos/arista_blue.png',
-      name: t('home.usedInProductionBy.arista'),
     },
     {
       logo: '../images/logos/orange_blue.png',
