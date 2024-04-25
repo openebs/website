@@ -133,7 +133,7 @@ docker logging driver on the individual cluster nodes. Follow the steps below to
 
 1. Configure the docker configuration file /etc/docker/daemon.json (create one if not already found) with the
 log-options similar to ones shown below (with desired driver, size at which logs are rotated, maximum logfile
-retention count & compression respectively):
+retention count and compression respectively):
 
    ```
    {
@@ -146,7 +146,7 @@ retention count & compression respectively):
    }
    ```
 
-2. Restart the docker daemon on the nodes. This may cause a temporary disruption of the running containers & cause
+2. Restart the docker daemon on the nodes. This may cause a temporary disruption of the running containers and cause
 the node to show up as `Not Ready` until the daemon has restarted successfully.
 
    ```
@@ -189,28 +189,25 @@ the node to show up as `Not Ready` until the daemon has restarted successfully.
       }      
      ```
 
-4. To view the current & compressed files, check the contents of the `/var/lib/docker/containers/<container-id>/` directory. The symlinks at `/var/log/containers/<container-name>` refer to the above.
+4. To view the current and compressed files, check the contents of the `/var/lib/docker/containers/<container-id>/` directory. The symlinks at `/var/log/containers/<container-name>` refer to the above.
 
-**NOTES:**
+:::note
 
-- The steps are common for Linux distributions (tested on CentOS, RHEL, Ubuntu)
+- The steps are common for Linux distributions (tested on CentOS, RHEL, Ubuntu).
 
-- Log rotation via the specified procedure is supported by docker logging driver types: `json-file (default), local`
+- Log rotation via the specified procedure is supported by docker logging driver types: `json-file (default), local`.
 
 - Ensure there are no dockerd cli flags specifying the `--log-opts` (verify via `ps -aux` or service definition
   files in `/etc/init.d` or `/etc/systemd/system/docker.service.d`). The docker daemon fails to start if an option
   is duplicated between the file and the flags, regardless their value.
 
 - These log-options are applicable only to the containers created after the dockerd restart (which is automatically
-  taken care by the kubelet)
+  taken care by the kubelet).
 
-- The `kubectl log` reads the uncompressed files/symlinks at `/var/log/containers` and thereby show rotated/rolled-over
-  logs. If you would like to read the retained/compressed log content as well use `docker log` command on the nodes.
-  Note that reading from compressed logs can cause temporary increase in CPU utilization (on account of decompression
-  actions performed internally)
+- The `kubectl log` reads the uncompressed files/symlinks at `/var/log/containers` and thereby show rotated/rolled-over logs. If you would like to read the retained/compressed log content as well use `docker log` command on the nodes. Note that reading from compressed logs can cause temporary increase in CPU utilization (on account of decompression actions performed internally).
 
-- The log-opt `compress: true:` is supported from Docker version: 18.04.0. The `max-file` & `max-size` opts are supported
-  on earlier releases as well.
+- The log-opt `compress: true:` is supported from Docker version: 18.04.0. The `max-file` and `max-size` opts are supported on earlier releases as well.
+:::
 
 [Go to top](#top)
 
@@ -231,7 +228,10 @@ There are certain use cases where the user does not need some of the BlockDevice
    ```
    kubectl apply -f openebs_v1alpha1_blockdeviceclaim_cr.yaml -n <openebs_installed_namespace>
    ```
-   **Note:** The blockdeviceclaim CR should be created on the same namespace where openebs is installed.
+   
+   :::note
+   The blockdeviceclaim CR should be created on the same namespace where openebs is installed.
+   :::
 
 4. Verify if particular BDC is created for the given BD cr using the following command:
 
@@ -328,7 +328,9 @@ The detailed information of each steps are provided below.
     openebs-snapshot-operator-79f7d56c7d-tk24k     2/2     Running             0          101s
     ```
 
-    Note that `openebs-ndm` pods are in not created successfully. This is due to the lack of udev support in K3OS. More details can be found [here](https://github.com/openebs/openebs/issues/2686).
+    :::note
+    `openebs-ndm` pods are in not created successfully. This is due to the lack of udev support in K3OS. More details can be found [here](https://github.com/openebs/openebs/issues/2686).
+    :::
 
   - Now user can install Local PV on this cluster. Check the StorageClasses created as part of OpenEBS deployment by running the following command.
 
@@ -344,8 +346,10 @@ The detailed information of each steps are provided below.
     openebs-snapshot-promoter   volumesnapshot.external-storage.k8s.io/snapshot-promoter   57m
     ```
 
-  - The default StorageClass `openebs-hostpath` can be used to create local PV on the path `/var/openebs/local` in your Kubernetes node. You can either use `openebs-hostpath` storage class to create volumes or create new storage class by following the steps mentioned [here](/user-guides/localpv-hostpath).
+  - The default StorageClass `openebs-hostpath` can be used to create local PV on the path `/var/openebs/local` in your Kubernetes node. You can either use `openebs-hostpath` storage class to create volumes or create new storage class by following the steps mentioned [here](../local-pv-hostpath/hostpath-installation.md).
 
-    **Note:** OpenEBS local PV will not be bound until the application pod is scheduled as its **volumeBindingMode** is set to **WaitForFirstConsumer.** Once the application pod is scheduled on a certain node, OpenEBS Local PV will be bound on that node.
+    :::note
+    OpenEBS local PV will not be bound until the application pod is scheduled as its **volumeBindingMode** is set to **WaitForFirstConsumer.** Once the application pod is scheduled on a certain node, OpenEBS Local PV will be bound on that node.
+    :::
 
 [Go to top](#top)

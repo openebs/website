@@ -20,7 +20,7 @@ The list is provided in alphabetical order.
 
 ## See Also
 
-- [Community Support](community.md) 
+- [Community](community.md) 
 - [Troubleshooting](../main/troubleshooting/)
 - [FAQs](../main/faqs/faqs.md)
 

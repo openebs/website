@@ -1,6 +1,6 @@
 ---
 id: volume-snapshots
-title: Volume snapshots
+title: Volume Snapshots
 keywords:
  - Volume snapshots
 description: This guide explains about the Volume snapshots feature.
@@ -76,7 +76,7 @@ ms-volume-claim     Bound    pvc-fe1a5a16-ef70-4775-9eac-2f9c67b3cd5b   1Gi     
 Copy the PVC name, for example, `ms-volume-claim`.
 :::
 
-4. (Optional) Create an application by following [these](../../../quickstart-guide/deploy-a-test-application.md) steps.
+4. (Optional) Create an application by following [these](../rs-deployment.md) steps.
  
 ## Create a Snapshot
 

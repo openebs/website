@@ -38,10 +38,10 @@ See [here](../versioned_docs/version-3.10.x/introduction/releases.md) for legacy
 
 ## See Also
 
-- [Quickstart](../main/quickstart-guide/installation.md)
-- [Deployment](../main/quickstart-guide/deploy-a-test-application.md)
-- [OpenEBS Architecture](../main/concepts/architecture.md)
-- [OpenEBS Local Storage](../main/concepts/data-engines/local-storage.md)
-- [OpenEBS Replicated Storage](../main/concepts/data-engines/replicated-storage.md)
+- [Quickstart](../version-4.0.x/quickstart-guide/installation.md)
+- [Deployment](../version-4.0.x/quickstart-guide/deploy-a-test-application.md)
+- [OpenEBS Architecture](../version-4.0.x/concepts/architecture.md)
+- [OpenEBS Local Storage](../version-4.0.x/concepts/data-engines/local-storage.md)
+- [OpenEBS Replicated Storage](../version-4.0.x/concepts/data-engines/replicated-storage.md)
 - [Community](community.md)
 - [Commercial Support](commercial-support.md)
