@@ -287,7 +287,7 @@ kubectl label node <node_name> openebs.io/engine=mayastor
 
 ## Installation 
 
-For installation instructions, see [here](../../../quickstart-guide/installation.md)
+For installation instructions, see [here](../../../quickstart-guide/installation.md).
 
 ## Support
 
