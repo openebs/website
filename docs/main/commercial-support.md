@@ -21,6 +21,6 @@ The list is provided in alphabetical order.
 ## See Also
 
 - [Community](community.md) 
-- [Troubleshooting](../main/troubleshooting/)
-- [FAQs](../main/faqs/faqs.md)
+- [Troubleshooting](./troubleshooting/troubleshooting-local-storage.md)
+- [FAQs](./faqs/faqs.md)
 

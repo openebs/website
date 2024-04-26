@@ -37,6 +37,6 @@ Join our weekly or monthly [community meetings](https://github.com/openebs/opene
 
 - [Releases](releases.md)
 - [Commercial Support](commercial-support.md) 
-- [Troubleshooting](../main/troubleshooting/)
-- [FAQs](../main/faqs/faqs.md)
+- [Troubleshooting](./troubleshooting/troubleshooting-local-storage.md)
+- [FAQs](./faqs/faqs.md)
 

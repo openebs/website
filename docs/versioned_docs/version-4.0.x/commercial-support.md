@@ -20,7 +20,7 @@ The list is provided in alphabetical order.
 
 ## See Also
 
-- [Community](community.md) 
-- [Troubleshooting](../version-4.0.x/troubleshooting/troubleshooting-local-storage.md)
-- [FAQs](../version-4.0.x/faqs/faqs.md)
+- [Community](community.md)
+- [Troubleshooting](./troubleshooting/troubleshooting-local-storage.md)
+- [FAQs](./faqs/faqs.md)
 

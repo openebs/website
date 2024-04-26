@@ -350,7 +350,7 @@ The issue originated because of a kernel bug. Once the nexus disconnects, the en
 ## See Also
 
 - [FAQs](../faqs/faqs.md)
-- [Latest Release Notes](../releases.md)
+- [Release Notes](../releases.md)
 - [OpenEBS Community](../community.md)
 - [OpenEBS GitHub Repository](https://github.com/openebs/openebs/issues)
 - [StackOverflow under OpenEBS Tag](https://stackoverflow.com/questions/tagged/openebs)
