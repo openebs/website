@@ -242,5 +242,5 @@ If no errors are reported in the output then PV has been correctly configured an
 
 ## See Also
 
-- [Installation](../../quickstart-guide/installation.md)
+- [Installation](../../../quickstart-guide/installation.md)
 - [Configuration](../replicated-pv-mayastor/rs-configuration.md)

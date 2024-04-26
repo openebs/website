@@ -45,6 +45,6 @@ Join the vibrant [OpenEBS community on Kubernetes Slack](https://kubernetes.slac
 ## See Also
 
 - [OpenEBS Architecture](../architecture.md)
-- [Quickstart](../quickstart-guide/installation.md)
-- [Deployment](../quickstart-guide/deploy-a-test-application.md)
+- [Quickstart](../../quickstart-guide/installation.md)
+- [Deployment](../../quickstart-guide/deploy-a-test-application.md)
 - [Replicated Storage User Guide](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md)

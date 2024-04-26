@@ -2,8 +2,9 @@
 id: glossary
 title: Glossary of Terms
 keywords:
-  - Community
-  - OpenEBS community
+  - Glossary
+  - Glossary of Terms
+  - Abbreviations
 description: This section lists the abbreviations used thorughout the OpenEBS documentation
 ---
 
