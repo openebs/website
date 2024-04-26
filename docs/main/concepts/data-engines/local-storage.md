@@ -94,7 +94,7 @@ A quick summary of the steps to restore include:
 ## See Also
 
 - [OpenEBS Architecture](../architecture.md)
-- [Quickstart](../quickstart-guide/installation.md)
-- [Deployment](../quickstart-guide/deploy-a-test-application.md)
+- [Quickstart](../../quickstart-guide/installation.md)
+- [Deployment](../../quickstart-guide/deploy-a-test-application.md)
 - [Local Storage User Guide](../../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
 

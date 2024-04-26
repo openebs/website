@@ -22,4 +22,4 @@ It is recommended that before a Kubernetes node is rebooted, make sure all the r
 
 ## See Also
 
-[Seeking help](../../../community.md)
+- [Connect with Community](../../../community.md)

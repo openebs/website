@@ -85,7 +85,7 @@ When using the examples given as guides to creating your own pools, remember to 
 :::
 
 :::note
-Existing schemas in CR definitions (in older versions) will be updated from v1alpha1 to v1beta1 after upgrading to Replicated PV Mayastor 2.4 and above. To resolve errors encountered pertaining to the upgrade, click [here](../../troubleshooting/troubleshooting-replicated-storage.md).
+Existing schemas in CR definitions (in older versions) will be updated from v1alpha1 to v1beta1 after upgrading to Replicated PV Mayastor 2.4 and above. To resolve errors encountered pertaining to the upgrade, click [here](../../../troubleshooting/troubleshooting-replicated-storage.md).
 :::
 
 ### Verify Pool Creation and Status
@@ -224,5 +224,5 @@ This option needs to be set to true when using a `btrfs` filesystem, if the appl
 
 ## See Also
 
-- [Installation](../../quickstart-guide/installation.md)
+- [Installation](../../../quickstart-guide/installation.md)
 - [Deploy an Application](../replicated-pv-mayastor/rs-deployment.md)
