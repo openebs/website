@@ -43,6 +43,21 @@ At a high-level, OpenEBS requires:
 
 ## Installation via Helm
 
+:::warning
+**Deprecation Notice: Helm Chart Registry Migration**
+
+The Helm chart registry at "https://openebs.github.io/charts" is deprecated and will be moved to a new location soon.
+
+**Old Registry URL:** https://openebs.github.io/charts  
+**New Registry URL:** https://openebs.github.io/openebs  
+
+To ensure seamless access to OpenEBS Helm charts, update your configurations to use the new registry URL.
+
+Additionally, the older registry will be relocated to the [openebs-archive](https://github.com/openebs-archive) GitHub organization.
+
+**Relocation Deadline:** October 30th, 2024
+:::
+
 Verify helm is installed and helm repo is updated. You need helm 3.2 or more. 
 
 1. Setup helm repository.
@@ -51,6 +66,10 @@ Verify helm is installed and helm repo is updated. You need helm 3.2 or more.
 helm repo add openebs https://openebs.github.io/openebs
 helm repo update
 ```
+
+:::important
+`helm repo add openebs https://openebs.github.io/charts` is changed to `helm repo add openebs https://openebs.github.io/openebs`.
+:::
 
 OpenEBS provides several options to customize during installation such as:
 - Specifying the directory where hostpath volume data is stored or
