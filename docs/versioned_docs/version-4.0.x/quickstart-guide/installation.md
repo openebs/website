@@ -59,7 +59,7 @@ helm repo update
 ```
 
 :::important
-`helm repo add openebs https://openebs.github.io/charts` is changed to `helm repo add openebs https://openebs.github.io/openebs`.
+`helm repo add openebs https://openebs.github.io/charts` has changed to `helm repo add openebs https://openebs.github.io/openebs`.
 :::
 
 OpenEBS provides several options to customize during installation such as:
