@@ -285,6 +285,10 @@ All worker nodes which will have IO engine pods running on them must be labeled 
 kubectl label node <node_name> openebs.io/engine=mayastor
 ```
 
+:::warning
+If you set `csi.node.topology.nodeSelector: true`, then you will need to label the worker nodes accordingly to `csi.node.topology.segments`. Both csi-node and agent-ha-node Daemonsets will include the topology segments into the node selector.
+:::
+
 ## Installation 
 
 For installation instructions, see [here](../../../quickstart-guide/installation.md).
