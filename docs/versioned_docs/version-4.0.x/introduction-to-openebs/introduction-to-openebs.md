@@ -18,7 +18,7 @@ OpenEBS was originally built by MayaData and donated to the _Cloud Native Comput
 
 ## Why do users prefer OpenEBS?
 
-The [OpenEBS Adoption stories](https://github.com/openebs/openebs/blob/master/ADOPTERS.md) mention the top reasons driving users towards OpenEBS as:
+The [OpenEBS Adoption stories](https://github.com/openebs/community/blob/develop/ADOPTERS.md) mention the top reasons driving users towards OpenEBS as:
 
 - OpenEBS provides consistency across all Kubernetes distributions - On-premise and Cloud.
 - OpenEBS with Kubernetes increases Developer and Platform SRE Productivity.

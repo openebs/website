@@ -13,7 +13,7 @@ We have recently seen a massive increase in the usage of different flavors of Op
 
 ![LocalPv Deployment](/images/blog/local-pv-deployment.png)
 
-Some of the prominent users of OpenEBS Local PV include the CNCF, Optoro, ByteDance / TikTok, Flipkart, and many more. You can always read more about OpenEBS users on the OpenEBS.io website and on the GitHub project page here: [https://github.com/openebs/openebs/blob/master/ADOPTERS.md](https://github.com/openebs/openebs/blob/master/ADOPTERS.md).
+Some of the prominent users of OpenEBS Local PV include the CNCF, Optoro, ByteDance / TikTok, Flipkart, and many more. You can always read more about OpenEBS users on the [OpenEBS website](https://openebs.io/docs/) and on the GitHub project page [here](https://github.com/openebs/community/blob/develop/ADOPTERS.md).
 
 While Kubernetes provides native support or interfaces for consuming Local Volumes, the adoption of OpenEBS for LocalPV management suggests that some capabilities are missing that are desired by users. At a high level, dynamic provisioning and the simplicity of deleting Local Volumes are two reasons often given for the preference of some users for the use of OpenEBS LocalPV.
 
@@ -77,4 +77,4 @@ Or read more on what our OpenEBS users and partners have to say about Local PV. 
 
 And from one of the most broadly deployed Kubernetes distributions, Kubesphere: [OpenEBS Local PV is default Storage Class in Kubesphere](https://github.com/openebs/openebs/tree/master/adopters/kubesphere)
 
-Or, again, you can find more stories and can add your own to Adopters.MD on the OpenEBS GitHub: [https://github.com/openebs/openebs/blob/master/ADOPTERS.md](https://github.com/openebs/openebs/blob/master/ADOPTERS.md)
+Or, again, you can find more stories and can add your own to Adopters.MD on the OpenEBS GitHub: [https://github.com/openebs/community/blob/develop/ADOPTERS.md](https://github.com/openebs/community/blob/develop/ADOPTERS.md)
