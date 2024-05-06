@@ -202,7 +202,7 @@ home:
       description: OpenEBS operates exclusively in userspace, eliminating the need for Linux kernel-dependent software and simplifying the processes of deployment and maintenance.
     openSourceLeader:
       title: Open Source Leader
-      description: The largest, most active Kubernetes storage project with the biggest user base and community, OpenEBS is built by K8s SREs, and experts just like you, tailored to their needs.
+      description: The largest, most active Kubernetes storage project with the biggest user base and community.
   installation:
     title: Installation is as easy as …
     or: Or
@@ -281,8 +281,9 @@ contributing:
 
 adoptersTestimonials:
   rejectDataInfo: Unable to fetch data correctly
-  becomeAdopter: Become an Adopter
+  becomeAdopter: Become an adopter
 
+<!--
 # Blog
 
 blog:
@@ -304,3 +305,4 @@ blog:
   recommendationsTitle: Based on your reading story
   blog: Blog
   readTime: read time
+-->
