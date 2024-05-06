@@ -281,9 +281,8 @@ contributing:
 
 adoptersTestimonials:
   rejectDataInfo: Unable to fetch data correctly
-  becomeAdopter: Become an adopter
+  becomeAdopter: Become an Adopter
 
-<!--
 # Blog
 
 blog:
@@ -305,4 +304,3 @@ blog:
   recommendationsTitle: Based on your reading story
   blog: Blog
   readTime: read time
--->
