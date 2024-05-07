@@ -256,15 +256,15 @@ community:
   newsletter: Subscribe to OpenEBS newsletter
   contributeBtnLabel: Contribute
   checkItOutBtnLabel: Check it out
-  communityEvents:
-    title: Welcome to our community events
-    communityImageAlt: Community
-    linkImageAlt: Arrow
-    clickHere: Click here
-    nextArrowAlt: Next event
-    previousArrowAlt: Previous event
-    noEvent:
-      message: CNCF hosted OpenEBS community events
+  # communityEvents:
+    # title: Welcome to our community events
+    # communityImageAlt: Community
+    # linkImageAlt: Arrow
+    # clickHere: Click here
+    # nextArrowAlt: Next event
+    # previousArrowAlt: Previous event
+    # noEvent:
+      # message: CNCF hosted OpenEBS community events
 
   sponsor:
     mainSponsor: Majority of Development sponsored by
@@ -283,24 +283,25 @@ adoptersTestimonials:
   rejectDataInfo: Unable to fetch data correctly
   becomeAdopter: Become an Adopter
 
+
 # Blog
 
-blog:
-  title: Community contributed guides and blogs
-  readMore: Read more
-  read: Read
-  articles: All articles
-  all: All
-  chaosengineering: chaosengineering
-  devops: devops
-  openebs: openebs
-  solutions: solutions
-  tutorials: tutorials
-  minToRead: min to read
-  share: Share
-  greetings: Great news! You’re 1 article smarter!
-  previousArticle: Previous article
-  nextArticle: Next article
-  recommendationsTitle: Based on your reading story
-  blog: Blog
-  readTime: read time
+# blog:
+  # title: Community contributed guides and blogs
+  # readMore: Read more
+  # read: Read
+  # articles: All articles
+  # all: All
+  # chaosengineering: chaosengineering
+  # devops: devops
+  # openebs: openebs
+  # solutions: solutions
+  # tutorials: tutorials
+  # minToRead: min to read
+  # share: Share
+  # greetings: Great news! You’re 1 article smarter!
+  # previousArticle: Previous article
+  # nextArticle: Next article
+  # recommendationsTitle: Based on your reading story
+  # blog: Blog
+  # readTime: read time
