@@ -13,10 +13,10 @@ export enum EXTERNAL_LINKS {
   CNCF_WEBSITE = 'https://www.cncf.io/',
   OPENEBS_BLOGS = 'https://openebs.io/blog',
   OPENEBS_YOUTUBE_INTRO = 'https://www.youtube.com/watch?v=94SFY3xdjXs&t=1s',
-  CONTRIBUTE_LINK = 'https://github.com/openebs/openebs/blob/master/CONTRIBUTING.md',
-  GOVERNANCE_LINK = 'https://github.com/openebs/openebs/blob/master/GOVERNANCE.md',
+  CONTRIBUTE_LINK = 'https://github.com/openebs/community/blob/develop/CONTRIBUTING.md',
+  GOVERNANCE_LINK = 'https://github.com/openebs/community/blob/develop/GOVERNANCE.md',
   SUBSCRIBE_NEWSLETTER = 'https://lists.cncf.io/g/cncf-openebs-announcements',
-  BECOME_ADOPTER = 'https://github.com/openebs/openebs/blob/master/ADOPTERS.md',
+  BECOME_ADOPTER = 'https://github.com/openebs/community/blob/develop/ADOPTERS.md',
   CNCF_EVENTS = 'https://community.cncf.io/openebs-community',
   TOP_GITHUB_CONTRIBUTORS_URL = 'https://openebs.devstats.cncf.io/d/22/prs-authors-table?orgId=1&var-period_name=Last%20month&var-repogroup_name=All',
   NEW_GITHUB_CONTRIBUTORS_URL = 'https://openebs.devstats.cncf.io/d/52/new-contributors-table?orgId=1'
