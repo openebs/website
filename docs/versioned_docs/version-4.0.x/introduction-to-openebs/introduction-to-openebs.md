@@ -28,7 +28,7 @@ The [OpenEBS Adoption stories](https://github.com/openebs/openebs/blob/master/AD
 
 ## What does OpenEBS do?
 
-OpenEBS manages the storage available on each of the Kubernetes nodes and uses that storage to provide [Local](#local-volumes) or [Replicated](#replicated-volumes) Persistent Volumes to Stateful workloads.
+OpenEBS manages the storage available on each of the Kubernetes nodes and uses that storage to provide [Local](#local-volumes) or[Replicated](#replicated-volumes) Persistent Volumes to Stateful workloads.
 
 ![data-engines-comparision](../assets/data-engines-comparision.svg)
 
@@ -62,7 +62,7 @@ Local Volumes are accessible only from a single node in the cluster. Pods using 
 
 Replicated Volumes, as the name suggests, are those that have their data synchronously replicated to multiple nodes. Volumes can sustain node failures. The replication also can be set up across availability zones helping applications move across availability zones.
 
-Replicated Volumes also are capable of enterprise storage features like snapshots, clone, volume expansion and so forth. Replicated Volumes are a preferred choice for Stateful workloads like Percona/MongoDB, Jira, GitLab, etc.
+Replicated Volumes are also capable of enterprise storage features like snapshots, clone, volume expansion and so forth. Replicated Volumes are a preferred choice for Stateful workloads like Percona/MongoDB, Jira, GitLab, etc.
 
 :::info
 Depending on the type of storage attached to your Kubernetes worker nodes and the requirements of your workloads, you can select from Local Storage or Replicated Storage.
