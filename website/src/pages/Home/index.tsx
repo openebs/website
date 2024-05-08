@@ -13,7 +13,7 @@ import JoinCommunity from '../../components/JoinCommunity';
 import Newsletter from '../../components/Newsletter';
 import Sponsor from '../../components/Sponsor';
 import { EXTERNAL_LINKS, VIEW_PORT } from '../../constants';
-import MiniBlog from '../../components/MiniBlog';
+// import MiniBlog from '../../components/MiniBlog';
 import EventSlider from '../../components/EventSlider';
 import adopters from '../../resources/adopters.json';
 import events from '../../resources/events.json';
