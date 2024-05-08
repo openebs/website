@@ -473,9 +473,9 @@ const Home: React.FC = () => {
         </section>
 
         {/* Section: Blogs  */}
-        <section>
+        {/* <section>
           <MiniBlog />
-        </section>
+        </section> */}
 
         <div className={classes.footerBackground}>
           {/* Section: You are ready to start */}
