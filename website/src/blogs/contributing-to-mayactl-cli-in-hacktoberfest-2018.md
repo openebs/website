@@ -165,7 +165,7 @@ Running the above command will build the mayactl binary and copy to the maya-api
 
 ## Raising a PR
 
-Once finished with the hacking, you can raise the PR to the maya repo. Before raising, however, it’s a good idea to have a look at the [contributer’s guideline](https://github.com/openebs/community/blob/develop/CONTRIBUTING.md). Also, don’t forget to [sign](https://github.com/probot/dco/blob/master/README.md) your commit.
+Once finished with the hacking, you can raise the PR to the maya repo. Before raising, however, it’s a good idea to have a look at the [contributer’s guideline](https://github.com/openebs/openebs/blob/master/CONTRIBUTING.md). Also, don’t forget to [sign](https://github.com/probot/dco/blob/master/README.md) your commit.
 
 ## Joining the Slack Channel
 

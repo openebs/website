@@ -55,6 +55,6 @@ Happy hacking!
 
 1. [https://hacktoberfest.digitalocean.com/](https://hacktoberfest.digitalocean.com/)
 2. Join [OpenEBS Community on Kubernetes Slack](https://kubernetes.slack.com/?redir=%2Fmessages%2Fopenebs%2F)
-3. Checkout the [OpenEBS Contributing guide](https://github.com/openebs/community/blob/develop/CONTRIBUTING.md)
+3. Checkout the [OpenEBS Contributing guide](https://github.com/openebs/openebs/blob/master/CONTRIBUTING.md)
 4. Learn about the [architecture and components](https://github.com/openebs/openebs/blob/master/contribute/design/README.md) of OpenEBS
 5. Create new issues for your contribution or pick one of the existing issues from [https://github.com/openebs/openebs/issues](https://github.com/openebs/openebs/issues)
