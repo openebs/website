@@ -111,7 +111,7 @@ joinCommunity:
   slackIframeTitle: Join Kubernetes on Slack
 
 sponsors:
-  datacore: Originally created and sponsored by
+  datacore: Sponsored and maintained by
   cncf: OpenEBS is a proud member of
 
 ### Pages ###
@@ -150,15 +150,15 @@ commercialSupport:
   visitWebsite: Visit site
   newsletter: Subscribe to OpenEBS newsletter
 home:
-  landingScreenTitle: Kubernetes storage simplified
+  landingScreenTitle: Kubernetes Storage Simplified
   openebs:
     label: OpenEBS
-    description: OpenEBS helps Developers and Platform SREs easily deploy Kubernetes Stateful Workloads that require fast and highly reliable <1>container attached storage</1>. OpenEBS turns any storage available on the Kubernetes worker nodes into local or distributed Kubernetes Persistent Volumes.
+    description: OpenEBS helps Developers and Platform SREs easily deploy Kubernetes Stateful Workloads that require fast and highly reliable <1>Container Native Storage</1>. OpenEBS turns any storage available on the Kubernetes worker nodes into local or distributed Kubernetes Persistent Volumes.
     runOpenEBS: Get Started
     watchDemo: Watch Demo
   concepts:
     label: Concepts
-    description: OpenEBS is Kubernetes native Container Attached Storage solution that makes it possible for Stateful applications to easily access Dynamic Local PVs or Replicated PVs. By using the Container Attached Storage pattern users report lower costs, easier management, and more control for their teams.
+    description: OpenEBS is Kubernetes native Container Native Storage solution that makes it possible for Stateful applications to easily access Dynamic Local PVs or Replicated PVs. By using the Container Native Storage pattern users report lower costs, easier management, and more control for their teams.
     checkConcepts: Documentation
   community:
     label: Community
@@ -195,20 +195,20 @@ home:
   whyOpenEBS:
     title: Why should you use OpenEBS?
     multiCloudStorage:
-      title: Multi cloud storage
+      title: Multi Cloud Storage
       description: Automated provisioning and storage replication across pods is challenging. OpenEBS makes complex cross-cloud stateful application storage easy.
     builtInKubernetes:
-      title: Kubernetes native storage
-      description: Unlike CSI plugins or Linux kernel dependent software, OpenEBS runs entirely in userspace, making deployment and maintenance a snap.
+      title: Kubernetes Native Storage
+      description: OpenEBS operates exclusively in userspace, eliminating the need for Linux kernel-dependent software and simplifying the processes of deployment and maintenance.
     openSourceLeader:
-      title: Open source leader
-      description: The largest, most active Kubernetes storage project with the biggest user base and community, OpenEBS is built by K8s SREs, and experts just like you, tailored to their needs.
+      title: Open Source Leader
+      description: The largest, most active Kubernetes storage project with the biggest user base and community.
   installation:
     title: Installation is as easy as …
     or: Or
     readTheGuide:
       button: Read the Guide
-      readInstallUserGuide: Read our Install User Guide
+      readInstallUserGuide: Read our Quickstart Guide
     redis: Redis
     minio: MinIo
     percona: Percona
@@ -231,23 +231,23 @@ home:
   keyFeatures:
     title: Key features
     containerStorage:
-      title: Container storage
-      description: Storage that follows your workloads, adding agility and flexibility to your k8s apps.
+      title: Container Storage
+      description: Storage that follows your workloads, adding agility and flexibility to your K8s apps.
     granularControl:
-      title: Granular control
+      title: Granular Control
       description: Every workload has its own dynamic container based storage with any controls you need.
     noVendorLockIn:
-      title: No vendor lock-in
-      description: 100% Open Source so you'll never find your critical data locked into expensive contracts.
+      title: No Vendor Lock-in
+      description: 100% Open Source so you will never find your critical data locked into expensive contracts.
     saveMoneyOnStorage:
-      title: Save money on storage
+      title: Save Money on Storage
       description: Thin provisioning and ephemeral storage let you allocate storage on demand and spend less on cloud storage.
     backupsAndMore:
       title: Backups and more
-      description: Move your workloads & storage from dev to production, all powered by OpenEBS
+      description: Move your workloads and storage from dev to production, all powered by OpenEBS.
     runAnywhere:
-      title: Run anywhere
-      description: Your K8s app can run on any cloud & improve resilience across many availability zones.
+      title: Run Anywhere
+      description: Your K8s app can run on any Cloud or On-premise and improve resilience across many availability zones.
 community:
   title: We are the community
   description: OpenEBS is built by community users like you and me. OpenEBS community is known to be responsive and friendly. Interact with our vibrant community to quickly and easily learn, build, and deploy your Stateful workloads on any Kubernetes deployment.
@@ -272,7 +272,7 @@ community:
 
 contributing:
   title: Contributing
-  openEBSHackerTitle: Become an OpenEBS hacker
+  openEBSHackerTitle: Become an OpenEBS Hacker
   openEBSHackerDescription: If you are unsure or afraid of anything, just ask or submit the issue or pull request anyways. You won't be yelled at for giving your best effort.
   openEBSHackerButtonLabel: Contribute
   governanceTitle: Project Governance
@@ -281,7 +281,8 @@ contributing:
 
 adoptersTestimonials:
   rejectDataInfo: Unable to fetch data correctly
-  becomeAdopter: Become an adopter
+  becomeAdopter: Become an Adopter
+
 
 # Blog
 

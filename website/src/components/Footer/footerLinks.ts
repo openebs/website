@@ -17,10 +17,10 @@ export const getStarted = [
     label: 'FAQ',
     href: '/faq',
   },
-  {
-    label: 'Blog',
-    href: '/blog',
-  },
+  // {
+  //   label: 'Blog',
+  //   href: '/blog',
+  // },
   {
     label: 'Commercial support',
     href: '/commercial-support',
