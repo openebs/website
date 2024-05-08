@@ -133,7 +133,7 @@ const Blog: React.FC = () => {
             </div>
           </Container>
         </div>
-<!--      <div className={classes.sectionDiv}>
+      <div className={classes.sectionDiv}>
           {authorBlogsData.length
             ? (
               <>
@@ -162,7 +162,7 @@ const Blog: React.FC = () => {
               </>
             )
             : <ErrorPage blogStatus />}
-        </div> -->
+          </div>
       </>
       )}
       <div className={classes.blogFooter}>
