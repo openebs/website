@@ -1,5 +1,5 @@
 import {
-  Button, Grid, Link, Paper, Typography,
+  Button, Grid, Paper, Typography,
 } from '@material-ui/core';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
