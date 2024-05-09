@@ -14,9 +14,9 @@ import Newsletter from '../../components/Newsletter';
 import Sponsor from '../../components/Sponsor';
 import { EXTERNAL_LINKS, VIEW_PORT } from '../../constants';
 // import MiniBlog from '../../components/MiniBlog';
-import EventSlider from '../../components/EventSlider';
+// import EventSlider from '../../components/EventSlider';
 import adopters from '../../resources/adopters.json';
-import events from '../../resources/events.json';
+// import events from '../../resources/events.json';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import useViewport from '../../hooks/viewportWidth';
 import Workloads from './workloads';
@@ -362,7 +362,7 @@ const Home: React.FC = () => {
         </section>
 
         {/* Section: Community events */}
-        <section>
+        {/* <section>
           {!isMobileView
                     && (
                     <Typography variant="h2" className={classes.sectionTitle}>
@@ -371,8 +371,8 @@ const Home: React.FC = () => {
                     )}
           <Grid container spacing={3} className={events.length ? '' : classes.noEvents}>
             <Grid item xs={12} sm={!isMobileView ? 3 : 12} xl={3} className={`${classes.imageFluid}`}>
-              {/* Kept commented  for future reference in case we need the image again */}
-              {/* <LazyLoadImage effect="blur" loading="lazy" src="../images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} /> */}
+              Kept commented  for future reference in case we need the image again
+              <LazyLoadImage effect="blur" loading="lazy" src="../images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} />
               {isMobileView
                             && (
                             <Typography variant="h2" className={classes.sectionTitle}>
@@ -390,7 +390,7 @@ const Home: React.FC = () => {
               </Typography>
             )}
           </Grid>
-        </section>
+        </section> */}
 
         {/* Section: Key features */}
         <section className={classes.section}>
