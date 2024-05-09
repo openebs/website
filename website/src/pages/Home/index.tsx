@@ -9,14 +9,14 @@ import {
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import useStyles from './styles';
 import Footer from '../../components/Footer';
-// import JoinCommunity from '../../components/JoinCommunity';
+import JoinCommunity from '../../components/JoinCommunity';
 import Newsletter from '../../components/Newsletter';
 import Sponsor from '../../components/Sponsor';
 import { EXTERNAL_LINKS, VIEW_PORT } from '../../constants';
 // import MiniBlog from '../../components/MiniBlog';
 import EventSlider from '../../components/EventSlider';
 import adopters from '../../resources/adopters.json';
-import events from '../../resources/events.json';
+// import events from '../../resources/events.json';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import useViewport from '../../hooks/viewportWidth';
 import Workloads from './workloads';
@@ -357,12 +357,12 @@ const Home: React.FC = () => {
         </section>
 
         {/* Section: Join our community */}
-        {/* <section>
+        <section>
           <JoinCommunity />
-        </section> */}
+        </section>
 
         {/* Section: Community events */}
-        <section>
+        {/* <section>
           {!isMobileView
                     && (
                     <Typography variant="h2" className={classes.sectionTitle}>
@@ -390,7 +390,7 @@ const Home: React.FC = () => {
               </Typography>
             )}
           </Grid>
-        </section>
+        </section> */}
 
         {/* Section: Key features */}
         <section className={classes.section}>
