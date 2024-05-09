@@ -9,7 +9,7 @@ import {
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import useStyles from './styles';
 import Footer from '../../components/Footer';
-import JoinCommunity from '../../components/JoinCommunity';
+// import JoinCommunity from '../../components/JoinCommunity';
 import Newsletter from '../../components/Newsletter';
 import Sponsor from '../../components/Sponsor';
 import { EXTERNAL_LINKS, VIEW_PORT } from '../../constants';
@@ -357,9 +357,9 @@ const Home: React.FC = () => {
         </section>
 
         {/* Section: Join our community */}
-        <section>
+        {/* <section>
           <JoinCommunity />
-        </section>
+        </section> */}
 
         {/* Section: Community events */}
         <section>
