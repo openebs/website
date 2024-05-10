@@ -145,7 +145,7 @@ faqDetails:
 
 commercialSupport:
   title: Need commercial support?
-  description: Third-party companies and individuals who provide products or services related to OpenEBS. OpenEBS is an independent open source project which does not endorse any company. The list is provided in alphabetical order.
+  description: Third-party companies and individuals who provide products or services related to OpenEBS. OpenEBS is an independent open-source project which does not endorse any company. The list is provided in alphabetical order.
   mule: Support mule
   visitWebsite: Visit site
   newsletter: Subscribe to OpenEBS newsletter
@@ -158,11 +158,11 @@ home:
     watchDemo: Watch Demo
   concepts:
     label: Concepts
-    description: OpenEBS is Kubernetes native Container Native Storage solution that makes it possible for Stateful applications to easily access Dynamic Local PVs or Replicated PVs. By using the Container Native Storage pattern users report lower costs, easier management, and more control for their teams.
+    description: OpenEBS is a Kubernetes native Container Native Storage solution that makes it possible for Stateful applications to easily access Dynamic Local PVs or Replicated PVs. By using the Container Native Storage pattern users report lower costs, easier management, and more control for their teams.
     checkConcepts: Documentation
   community:
     label: Community
-    description: OpenEBS is built by a community of experts. Join our vibrant comunity to quickly learn, build, and deploy your stateful workloads on any Kubernetes platform.
+    description: OpenEBS is built by a community of experts. Join our vibrant community to quickly learn, build, and deploy your stateful workloads on any Kubernetes platform.
     joinOnSlack: Join on Slack
     joinOnGitHub: Join on GitHub
   landingScreenImageAlt: Solution to manage your Kubernetes Stateful Workloads
@@ -250,7 +250,7 @@ home:
       description: Your K8s app can run on any Cloud or On-premise and improve resilience across many availability zones.
 community:
   title: We are the community
-  description: OpenEBS is built by community users like you and me. OpenEBS community is known to be responsive and friendly. Interact with our vibrant community to quickly and easily learn, build, and deploy your Stateful workloads on any Kubernetes deployment.
+  description: OpenEBS is built by community users like you and me. The OpenEBS community is known to be responsive and friendly. Interact with our vibrant community to quickly and easily learn, build, and deploy your Stateful workloads on any Kubernetes deployment.
   mule: Support mule
   visitWebsite: Visit site
   newsletter: Subscribe to OpenEBS newsletter
