@@ -7,7 +7,7 @@ import './i18n';
 import Loader from './components/Loader';
 
 const tagManagerArgs = {
-  gtmId: 'GTM-KD8TCG4',
+  gtmId: 'GTM-WKVV7F3N',
 };
 
 window.onload = () => {
