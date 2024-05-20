@@ -120,7 +120,7 @@
     "description": "The first paragraph of the 404 page"
   },
   "theme.NotFound.p2": {
-    "message": "See <a href='https://openebs.io/docs'>OpenEBS Docs</a> to view the latest version of OpenEBS documentation.",
+    "message": "Visit openebs.io/docs to view the latest version of OpenEBS documentation.",
     "description": "The 2nd paragraph of the 404 page"
   },
   "theme.AnnouncementBar.closeButtonAriaLabel": {
