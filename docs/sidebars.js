@@ -451,9 +451,24 @@ module.exports = {
                   ]
                 },
                 {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/platform-support",
-                  label: "Platform Support"
+                  collapsed: true,
+                  type: "category",
+                  label: "OpenEBS on K8s Platforms",
+                  customProps: {
+                    icon: "User"
+                  },
+                  items: [
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/openebs-on-kubernetes-platforms/microkubernetes",
+                      label: "MicroK8s"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/openebs-on-kubernetes-platforms/talos",
+                      label: "Talos"
+                    }
+                  ]
                 }
               ] 
             }

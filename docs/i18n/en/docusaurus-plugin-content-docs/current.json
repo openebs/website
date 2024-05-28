@@ -198,5 +198,9 @@
   "sidebar.docs.category.Replicated PV Mayastor": {
     "message": "Replicated PV Mayastor",
     "description": "The label for category Replicated PV Mayastor in sidebar docs"
+  },
+  "sidebar.docs.category.OpenEBS on Kubernetes Platforms": {
+    "message": "OpenEBS on Kubernetes Platforms",
+    "description": "The label for category OpenEBS on Kubernetes Platforms in sidebar docs"
   }
 }

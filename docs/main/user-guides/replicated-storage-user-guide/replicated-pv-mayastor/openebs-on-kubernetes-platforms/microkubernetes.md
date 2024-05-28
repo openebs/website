@@ -1,18 +1,20 @@
 ---
-id: platform-support
-title: Platform Support
+id: microkubernetes
+title: Replicated PV Mayastor Installation on MicroK8s
 keywords:
+ - Replicated PV Mayastor Installation on MicroK8s
  - Replicated PV Mayastor - Platform Support
  - Platform Support
+ - MicroK8s
 description: This section explains about the Platform Support for Replicated PV Mayastor.
 ---
 # Replicated PV Mayastor Installation on MicroK8s
 
-## Install Replicated PV Mayastor on MicroK8s
+## Prerequisites
 
-:::info
-**Prerequisite**: Prepare a cluster by following the steps outlined in this [guide](../replicated-pv-mayastor/rs-installation.md#preparing-the-cluster).
-:::
+Prepare a cluster by following the steps outlined in this [guide](../replicated-pv-mayastor/rs-installation.md#preparing-the-cluster).
+
+## Install Replicated PV Mayastor on MicroK8s
 
 To install Replicated PV Mayastor using Helm on MicroK8s, execute the following command:
 
@@ -25,7 +27,7 @@ helm install openebs openebs/openebs -n openebs --create-namespace \
   --set zfs-localpv.zfsNode.kubeletDir="/var/snap/microk8s/common/var/lib/kubelet"
 ```
 
-***Output**
+**Output**
 
 ```
 NAME: openebs
@@ -45,21 +47,20 @@ backends i.e HostPath, LVM and ZFS, while the Replicated PV provides one replica
 storage backend i.e Mayastor.
 
 For more information,
-- view the online documentation at https://openebs.io/docs
-- connect with an active community on our Kubernetes slack channel.
-        - Sign up to Kubernetes slack: https://slack.k8s.io
-        - #openebs channel: https://kubernetes.slack.com/messages/openebs
+- Connect with an active community on our Kubernetes slack channel.
+- Sign up to Kubernetes slack: https://slack.k8s.io
+- #openebs channel: https://kubernetes.slack.com/messages/openebs
 ```
 
 ## Resolve Known Issue (Calico Vxlan)
 
 During the installation of Replicated PV Mayastor in MicroK8s, Pods with hostnetwork might encounter a known issue where they get stuck in the init state due to the Calico Vxlan bug.
 
-**Expected Error:**
+**Expected Error**
 
 ![](https://hackmd.io/_uploads/Syigxz7u3.png)
 
-**Resolution:**
+**Resolution**
 
 To resolve this error, execute the following command:
 
