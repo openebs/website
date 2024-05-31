@@ -43,7 +43,7 @@ HugePages and node labels can be configured either during initial cluster creati
     talosctl gen config my-cluster https://mycluster.local:6443 --config-patch @mayastor-patch.yaml
     ```
 
-2. By patching an running node with config file:
+2. By patching a running node with config file:
 
     - Run the following command to patch an existing node with config file. 
 
