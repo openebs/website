@@ -10,37 +10,76 @@ description: This section explains about the Platform Support for Replicated PV 
 ---
 # Replicated PV Mayastor Installation on Talos
 
-## Preparing the Nodes
-
-1. 2MiB-sized Huge Pages must be supported and enabled on the mayastor storage nodes. A minimum number of 1024 such pages (i.e. 2GiB total) must be available exclusively to the Mayastor pod on each node.
-
 :::info
-HugePages and node labels can be configured either during initial cluster creation or on running worker nodes.
+All the below configurations can be configured either during initial cluster creation or on running worker nodes.
 :::
 
-2. Set the `vm.nr_hugepages` sysctl and add `openebs.io/engine=mayastor` labels to the nodes which are meant to be storage nodes. This can be done with `talosctl edit/patch machineconfig` or via config patches during `talosctl gen config`.
+## Talos Control Plane Changes
 
-**Example**
+### Pod Security
+
+By default, Talos Linux applies a baseline pod security profile across namespaces except for the kube-system namespace. This default setting restricts Replicated PV Mayastors’s ability to manage and access system resources. You need to add the exemptions for Replicated PV Mayastor namespace. See the [Talos Documentation](https://www.talos.dev/v1.6/kubernetes-guides/configuration/pod-security/) for detailed instructions on Pod Security.
+
+**Create a file cp.yaml**
+
+```
+- op: add
+  path: /cluster/apiServer/admissionControl
+  value:
+    - name: PodSecurity
+      configuration:
+        exemptions: null
+        namespaces:
+          - mayastor
+```
+
+## Talos Worker Node Changes
+
+### Huge Pages
+
+2MiB-sized Huge Pages must be supported and enabled on the Replicated PV Mayastor storage nodes. A minimum number of 1024 such pages (i.e. 2GiB total) must be available exclusively to the  Replicated PV Mayastor pod on each node.
+
+### Labels
+
+The OpenEBS storage type "Replicated PV Mayastor" must be labeled to all worker nodes that will have IO engine pods running on them. This label will be used as a node selector by the IO engine Daemonset that is deployed as a part of the Replicated PV Mayastor data plane components installation.
+
+### Data Mount Paths
+
+Provide additional data path mounts to be accessible to the Kubernetes Kubelet container. These mounts are necessary to provide access to the host directories and attach volumes required by the Replicated PV Mayastor components.
+
+**Create a file wp.yaml**
+
+```
+- op: add
+  path: /machine/sysctls
+  value:
+    vm.nr_hugepages: "1024"
+
+- op: add
+  path: /machine/nodeLabels
+  value:
+    openebs.io/engine: "mayastor"
+
+- op: add
+  path: /machine/kubelet/extraMounts
+  value:
+    - destination: /var/local
+      type: bind
+      source: /var/lib/local
+      options:
+        - bind
+        - rshared
+        - rw
+```
+
+**Examples**
 
 1. By using talosctl gen config:
-
-    - Create a config patch file `mayastor-patch.yaml`.
-
-    ```
-    - op: add
-    path: /machine/sysctls
-    value:
-        vm.nr_hugepages: "1024"
-    - op: add
-    path: /machine/nodeLabels
-    value:
-        openebs.io/engine: mayastor
-    ```
 
     - Run talosctl gen config with the above file.
 
     ```
-    talosctl gen config my-cluster https://mycluster.local:6443 --config-patch @mayastor-patch.yaml
+    talosctl gen config talos-k8s-gcp-tutorial https://mytaloscluster:443 --config-patch-control-plane @cp.yaml --config-patch-worker @wp.yaml
     ```
 
 2. By patching a running node with config file:
@@ -48,7 +87,8 @@ HugePages and node labels can be configured either during initial cluster creati
     - Run the following command to patch an existing node with config file. 
 
     ```
-    talosctl patch --mode=no-reboot machineconfig -n <node ip> --patch @mayastor-patch.yaml
+    talosctl patch --mode=no-reboot machineconfig -n <control plane node ip> --patch @cp.yaml
+    talosctl patch --mode=no-reboot machineconfig -n <worker node ip> --patch @wp.yaml
     ```
 
 3. By editing machineconfig on running node:
@@ -57,20 +97,11 @@ HugePages and node labels can be configured either during initial cluster creati
 
     ```
     talosctl edit -n <node ip> machineconfig --talosconfig <path to talosconfig file>
-
-    #enable hugepages from sysctl configs on the editor
-    sysctl:
-    vm.nr_hugepages: "1024"
-    ```
-    
-    - Add the labels by using the kubectl commands. 
-
-    ```
-    kubectl label node <node_name> openebs.io/engine=mayastor
     ```
 
 :::important
 Restart kubelet or reboot the node if you modify the `vm.nr_hugepages` configuration of a node. Replicated PV Mayastor will not deploy correctly if the available Huge Page count as reported by the node's kubelet instance does not meet the minimum requirements.
+
 ```
 talosctl -n <node ip> service kubelet restart
 ```
