@@ -41,7 +41,7 @@ By default, Talos Linux applies a baseline pod security profile across namespace
 
 ### Labels
 
-All worker nodes which will have Mayastor pods running on them must be labelled with the OpenEBS engine type "mayastor". This label will be used as a node selector by the IO engine Daemonset that is deployed as a part of the Replicated PV Mayastor data plane components installation.
+All worker nodes which will have IO engine pods running on them must be labelled with the OpenEBS engine type "mayastor". This label will be used as a node selector by the IO engine Daemonset that is deployed as a part of the Replicated PV Mayastor data plane components installation.
 
 ### Data Mount Paths
 
