@@ -37,11 +37,11 @@ By default, Talos Linux applies a baseline pod security profile across namespace
 
 ### Huge Pages
 
-2MiB-sized Huge Pages must be supported and enabled on the Replicated PV Mayastor storage nodes. A minimum number of 1024 such pages (i.e. 2GiB total) must be available exclusively to the  Replicated PV Mayastor pod on each node.
+2MiB-sized Huge Pages must be supported and enabled on the Replicated PV Mayastor storage nodes. A minimum number of 1024 such pages (i.e. 2GiB total) must be available exclusively to the Replicated PV Mayastor pod on each node.
 
 ### Labels
 
-All worker nodes which will have IO engine pods running on them must be labelled with the OpenEBS engine type "mayastor". This label will be used as a node selector by the IO engine Daemonset that is deployed as a part of the Replicated PV Mayastor data plane components installation.
+All Replicated PV Mayastor storage nodes must be labelled with the OpenEBS engine type "mayastor". This label will be used as a node selector by the IO engine Daemonset that is deployed as a part of the Replicated PV Mayastor data plane components installation.
 
 ### Data Mount Paths
 
