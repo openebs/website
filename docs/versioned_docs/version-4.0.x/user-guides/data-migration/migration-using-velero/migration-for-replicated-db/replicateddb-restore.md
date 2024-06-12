@@ -488,4 +488,4 @@ rs0 [direct: secondary] mydb>
 ## See Also
 
 - [Migration from Legacy Storage to Latest Storage Solution](../../migration-using-pv-migrate.md)
-- [Migration for Distrubuted DB](../migration-for-distributed-db/distributeddb-backup.md)
+- [Migration for Distributed DB](../migration-for-distributed-db/distributeddb-backup.md)
