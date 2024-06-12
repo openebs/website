@@ -487,5 +487,5 @@ rs0 [direct: secondary] mydb>
 
 ## See Also
 
-- [Migration from Legacy Storage to Latest Storage Solution](../data-migration/migration-using-pv-migrate.md)
-- [Migration for Distrubuted DB](../data-migration/migration-using-velero/migration-for-distributed-db/distributeddb-backup.md)
+- [Migration from Legacy Storage to Latest Storage Solution](../../migration-using-pv-migrate.md)
+- [Migration for Distrubuted DB](../migration-for-distributed-db/distributeddb-backup.md)
