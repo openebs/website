@@ -19,6 +19,6 @@ This documentation outlines the process of migrating application volumes from CS
 
 ## See Also
 
-- [Migration from Legacy Storage to Latest Storage Solution](../data-migration/migration-using-pv-migrate.md)
-- [Migration for Distrubuted DB](../data-migration/migration-using-velero/migration-for-distributed-db/distributeddb-backup.md)
-- [Migration for Replicated DB](../data-migration/migration-using-velero/migration-for-replicated-db/replicateddb-backup.md)
+- [Migration from Legacy Storage to Latest Storage Solution](../migration-using-pv-migrate.md)
+- [Migration for Distributed DB](../migration-using-velero/migration-for-distributed-db/distributeddb-backup.md)
+- [Migration for Replicated DB](../migration-using-velero/migration-for-replicated-db/replicateddb-backup.md)
