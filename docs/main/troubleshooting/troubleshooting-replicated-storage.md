@@ -343,8 +343,17 @@ When rebooting a node that runs applications mounting Replicated Storage volumes
 Deploying an application pod on a worker node which hosts Replicated Storage and Prometheus exporter causes that node to restart.
 The issue originated because of a kernel bug. Once the nexus disconnects, the entries under `/host/sys/class/hwmon/` should get removed, which does not happen in this case(The issue was fixed via this [kernel patch](https://www.mail-archive.com/linux-kernel@vger.kernel.org/msg2413147.html)).
 
-**Fix:** Use kernel version 5.13 or later if deploying Replicated Storage in conjunction with the Prometheus metrics exporter.
+**Workaround** 
 
+Use kernel version 5.13 or later if deploying Replicated Storage in conjunction with the Prometheus metrics exporter.
+
+### Unable to mount `xfs` File System
+
+The volume is created, but `xfs` is failing to mount.
+
+**Workaround**
+
+If you are trying to use `xfs` volumes and the cluster node hosts are running a kernel version less than 5.10, you may encounter a mount failure of the filesystem. This is due to the incompatibility of newer `xfsprogs` options. In order to alleviate this issue, it is recommended to upgrade the host node kernel version to 5.10 or higher.
 [Go to top](#top)
 
 ## See Also
