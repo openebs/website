@@ -30,5 +30,5 @@ Users of non-OpenEBS storage solutions can also use these approaches described b
 ## See Also
 
 - [Migration from Legacy Storage to Latest Storage Solution](../data-migration/migration-using-pv-migrate.md)
-- [Migration for Distrubuted DB](../data-migration/migration-using-velero/migration-for-distributed-db/distributeddb-backup.md)
+- [Migration for Distributed DB](../data-migration/migration-using-velero/migration-for-distributed-db/distributeddb-backup.md)
 - [Migration for Replicated DB](../data-migration/migration-using-velero/migration-for-replicated-db/replicateddb-backup.md)
