@@ -8,20 +8,22 @@ keywords:
 description: This page contains a list of OpenEBS related troubleshooting which contains information like troubleshooting installation, troubleshooting uninstallation, and troubleshooting local storage.
 ---
 
-<font size="6" color="orange">General Troubleshooting</font>
+<font size="7" color="orange">General Troubleshooting</font>
 
 ### PVC in Pending state {#pvc-in-pending-state}
 
 Created a PVC using localpv-hostpath storage class. But the PV is not created and PVC in Pending state.
 
-**Troubleshooting:**
+**Troubleshooting**
+
 The default localpv storage classes from openebs have `volumeBindingMode: WaitForFirstConsumer`. This means that only when the application pod that uses the PVC is scheduled to a node, the provisioner will receive the volume provision request and will create the volume.
 
-**Resolution:**
+**Resolution**
+
 Deploy an application that uses the PVC and the PV will be created and application will start using the PV.
 
 
-<font size="6" color="orange">Installation Related</font>
+<font size="7" color="orange">Installation Related</font>
 
 ### Installation failed because of insufficient user rights {#install-failed-user-rights}
 
@@ -104,7 +106,7 @@ You must enable RBAC on Azure before OpenEBS installation. For more details, see
 
 A multipath.conf file without either find_multipaths or a manual blacklist claims all SCSI devices.
 
-#### Workaround
+**Workaround**
 
 1. Add the find _multipaths line to_ \_/etc/multipath.conf\_ file similar to the following snippet.
 
@@ -150,7 +152,7 @@ Example:
 kubectl config use-context admin-ctx
 ```
 
-<font size="6" color="orange">Kubernetes Related</font>
+<font size="7" color="orange">Kubernetes Related</font>
 
 ### Application and OpenEBS pods terminate/restart under heavy I/O load {#Pods-restart-terminate-when-heavy-load}
 
@@ -160,11 +162,11 @@ This is caused due to lack of resources on the Kubernetes nodes, which causes th
 
 The above cause can be confirmed from the `kubectl describe pod` which displays the termination reason as _NodeControllerEviction_. You can get more information from the kube-controller-manager.log on the Kubernetes master.
 
-**Workaround:**
+**Workaround**
 
 You can resolve this issue by upgrading the Kubernetes cluster infrastructure resources (Memory, CPU).
 
-<font size="6" color="orange">Others</font>
+<font size="7" color="orange">Others</font>
 
 ### Nodes in the cluster reboots frequently almost everyday in openSUSE CaaS {#reboot-cluster-nodes}
 
@@ -221,7 +223,7 @@ cat /usr/lib/systemd/system/transactional-update.timer
 cat /usr/etc/transactional-update.conf
 ```
 
-**Workaround:**
+**Workaround**
 
 There are 2 possible solutions.
 
@@ -242,13 +244,21 @@ Set the reboot timer schedule at different time i.e. staggered at various interv
 
 ### How to fetch the OpenEBS Dynamic Local Provisioner logs?
 
-**Workaround:**
+**Workaround**
 
 Review the logs of the OpenEBS Local PV provisioner. OpenEBS Dynamic Local Provisioner logs can be fetched using:
 
 ```
 kubectl logs -n openebs -l openebs.io/component-name=openebs-localpv-provisioner
 ```
+
+### Unable to mount `xfs` File System
+
+The volume is created, but `xfs` is failing to mount.
+
+**Workaround**
+
+If you are trying to use `xfs` volumes and the cluster node hosts are running a kernel version less than 5.10, you may encounter a mount failure of the filesystem. This is due to the incompatibility of newer `xfsprogs` options. In order to alleviate this issue, it is recommended to upgrade the host node kernel version to 5.10 or higher.
 
 ## See Also
 
