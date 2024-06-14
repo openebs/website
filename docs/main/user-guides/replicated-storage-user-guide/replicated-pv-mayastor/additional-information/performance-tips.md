@@ -106,7 +106,11 @@ To allot specific CPU cores for IO engine's reactors, follow these steps:
 2. Execute the following command to update Replicated PV Mayastor's configuration. Replace `<namespace>` with the appropriate Kubernetes namespace where Replicated PV Mayastor is deployed.
 
 ```
-kubectl mayastor upgrade -n <namespace> --set-args 'io_engine.coreList={3,4}'
+kubectl mayastor upgrade -n <namespace> --set-args 'io_engine.coreList={2,3}'
 ```
 
-In the above command, `io_engine.coreList={3,4}` specifies that IO engine's reactors should operate on the third and fourth CPU cores.
+In the above command, `io_engine.coreList={2,3}` specifies that IO engine's reactors should operate on the third and fourth CPU cores.
+
+:::info
+The cores are numbered from 0.
+:::
