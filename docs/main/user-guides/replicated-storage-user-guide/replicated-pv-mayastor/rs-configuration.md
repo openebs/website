@@ -192,6 +192,238 @@ The `agents.core.capacity.thin` spec present in the Replicated PV Mayastor helm 
 - The replicas for a given volume can be either all thick or all thin. Same volume cannot have a combination of thick and thin replicas.
 :::
 
+
+### "nodeAffinityTopologyLabel"
+
+This will allow placement of replicas on the node which exactly matches the labels defined in storage class.
+For the case shown below the replica of the volume will be placed on `worker-node-1` and `worker-node-3` only as they matches to the
+labels specified under noolAffinityTopologyLabel in storage class which is equal to zone=us-west-1.
+
+```text
+cat <<EOF | kubectl create -f -
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: mayastor-1
+parameters:
+  ioTimeout: "30"
+  protocol: nvmf
+  repl: "2"
+  nodeAffinityTopologyLabel: |
+    zone: us-west-1
+provisioner: io.openebs.csi-mayastor
+volumeBindingMode: Immediate
+```
+
+Apply the labels to the nodes using the below command
+```text
+kubectl mayastor label node worker-node-1 zone=us-west-1
+kubectl mayastor label node worker-node-2 zone=eu-east-1
+kubectl mayastor label node worker-node-3 zone=us-west-1
+ ```
+
+Get nodes
+ ```text
+kubectl mayastor get nodes -n openebs --show-labels
+ID             GRPC ENDPOINT        STATUS  LABELS
+worker-node-1  65.108.91.181:10124  Online  zone=eu-west-1
+worker-node-3  65.21.4.103:10124    Online  zone=eu-east-1
+worker-node-3  37.27.13.10:10124    Online  zone=us-west-1
+```
+
+
+### "NodeHasTopologyKey" : This will allow placement of replicas on the node which has label keys same as the keys passed in storage class.
+ 
+```text
+cat <<EOF | kubectl create -f -
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: mayastor-1
+parameters:
+  ioTimeout: "30"
+  protocol: nvmf
+  repl: "2"
+  nodeHasTopologykey: |
+    rack
+provisioner: io.openebs.csi-mayastor
+volumeBindingMode: Immediate
+```
+
+Apply the labels on the node using the command 
+ # kubectl mayastor label node worker-node-1 rack=1
+ # kubectl mayastor label node worker-node-2 rack=2
+ # kubectl mayastor label node worker-node-3 rack=2
+
+# kubectl mayastor get nodes -n openebs --show-labels
+ID             GRPC ENDPOINT        STATUS  LABELS
+worker-node-1  65.108.91.181:10124  Online  rack=1
+worker-node-3  65.21.4.103:10124    Online  rack=2
+worker-node-3  37.27.13.10:10124    Online  rack=2
+
+In this case the replica of the volume will be placed on any of the two nodes i.e. `worker-node-1` and `worker-node-2` or `worker-node-1` and `worker-node-3` 
+or `worker-node-2` and `worker-node-3`. as the storage class has `rack` as   the value for `nodeHasTopoogyKey` which mathes with the label key of the node.
+
+
+
+### "NodeSpreadTopologyKey" : This will allow placement of replicas on the node which has same label keys as the keys passed in storage class, but different value.
+ 
+```text
+cat <<EOF | kubectl create -f -
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: mayastor-1
+parameters:
+  ioTimeout: "30"
+  protocol: nvmf
+  repl: "2"
+  nodeSpreadTopologyKey: |
+    zone
+provisioner: io.openebs.csi-mayastor
+volumeBindingMode: Immediate
+```
+
+Apply the labels to the nodes using the below command
+```text
+kubectl mayastor label node worker-node-1 zone=us-west-1
+kubectl mayastor label node worker-node-2 zone=eu-east-1
+kubectl mayastor label node worker-node-3 zone=us-north-1
+ ```
+
+Get nodes
+ ```text
+kubectl mayastor get nodes -n openebs --show-labels
+ID             GRPC ENDPOINT        STATUS  LABELS
+worker-node-1  65.108.91.181:10124  Online  zone=eu-west-1
+worker-node-3  65.21.4.103:10124    Online  zone=eu-east-1
+worker-node-3  37.27.13.10:10124    Online  zone=us-west-1
+```
+
+In this case the replica of the volume will be placed on any nodes i.e. `worker-node-1` and `worker-node-2` or  `worker-node-2` and  `worker-node-3` as the storage class has `zone` as the value for `nodeSpreadTopologyKey` which matches with the label key of the node but has different value.
+
+
+
+### "poolAffinityTopologyLabel"
+
+This will allow placement of replicas on the pool which exactly matches the labels defined in storage class.
+For the case shown below the replica of the volume will be placed on `pool-on-node-0` and `pool-on-node-3` only as they matches to the
+labels specified under poolAffinityTopologyLabel in storage class which is equal to zone=us-west-1.
+
+```text
+cat <<EOF | kubectl create -f -
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: mayastor-1
+parameters:
+  ioTimeout: "30"
+  protocol: nvmf
+  repl: "2"
+  poolAffinityTopologyLabel: |
+    zone: us-west-1
+provisioner: io.openebs.csi-mayastor
+volumeBindingMode: Immediate
+```
+
+Apply the labels to the nodes using the below command
+```text
+cat <<EOF | kubectl create -f -
+apiVersion: "openebs.io/v1beta2"
+kind: DiskPool
+metadata:
+  name: pool-on-node-0
+  namespace: mayastor
+spec:
+  node: worker-node-0
+  disks: ["/dev/sdb"]
+  topology:
+    labelled:
+        zone: us-west-1
+
+---
+apiVersion: "openebs.io/v1beta2"
+kind: DiskPool
+metadata:
+  name: pool-on-node-1
+  namespace: mayastor
+spec:
+  node: worker-node-1
+  disks: ["/dev/sdb"]
+  topology:
+    labelled:
+        zone: us-east-1
+
+---
+
+apiVersion: "openebs.io/v1beta2"
+kind: DiskPool
+metadata:
+  name: pool-on-node-2
+  namespace: mayastor
+spec:
+  node: worker-node-2
+  disks: ["/dev/sdb"]
+  topology:
+    labelled:
+        zone: us-west-1
+
+ ```
+
+Get filtered pools based on labels
+ ```text
+kubectl mayastor get pools -n openebs --selector zone=eu-west-1
+ID             GRPC ENDPOINT        STATUS  LABELS
+ID              DISKS                                                     MANAGED  NODE           STATUS  CAPACITY  ALLOCATED  AVAILABLE  COMMITTED
+pool-on-node-0  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-0  Online  10GiB     0 B        10GiB      0 B
+pool-on-node-2  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-2  Online  10GiB     0 B        10GiB      0 B
+
+kubectl mayastor get pools -n openebs --selector zone=eu-east-1
+ID             GRPC ENDPOINT        STATUS  LABELS
+ID              DISKS                                                     MANAGED  NODE           STATUS  CAPACITY  ALLOCATED  AVAILABLE  COMMITTED
+pool-on-node-1  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-1  Online  10GiB     0 B        10GiB      0 B
+
+```
+
+
+### "PoolHasTopologyKey" : This will allow placement of replicas on the pool which has label keys same as the keys passed in storage class.
+ 
+```text
+cat <<EOF | kubectl create -f -
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: mayastor-1
+parameters:
+  ioTimeout: "30"
+  protocol: nvmf
+  repl: "2"
+  poolHasTopologykey: |
+    rack
+provisioner: io.openebs.csi-mayastor
+volumeBindingMode: Immediate
+```
+
+
+Get filtered pools based on labels
+ ```text
+kubectl mayastor get pools -n openebs --selector zone=eu-west-1
+ID             GRPC ENDPOINT        STATUS  LABELS
+ID              DISKS                                                     MANAGED  NODE           STATUS  CAPACITY  ALLOCATED  AVAILABLE  COMMITTED
+pool-on-node-0  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-0  Online  10GiB     0 B        10GiB      0 B
+pool-on-node-2  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-2  Online  10GiB     0 B        10GiB      0 B
+
+kubectl mayastor get pools -n openebs --selector zone=eu-east-1
+ID             GRPC ENDPOINT        STATUS  LABELS
+ID              DISKS                                                     MANAGED  NODE           STATUS  CAPACITY  ALLOCATED  AVAILABLE  COMMITTED
+pool-on-node-1  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-1  Online  10GiB     0 B        10GiB      0 B
+
+```
+
+In this case the replica of the volume will be placed on any of the two nodes i.e. `pool-on-node-1` and `pool-on-node-2` or `pool-on-node-1` and `pool-on-node-3` 
+or `pool-on-node-2` and `pool-on-node-3`. as the storage class has `rack` as   the value for `nodeHasTopoogyKey` which mathes with the label key of the node.
+
+
 ### "stsAffinityGroup" 
 
  `stsAffinityGroup` represents a collection of volumes that belong to instances of Kubernetes StatefulSet. When a StatefulSet is deployed, each instance within the StatefulSet creates its own individual volume, which collectively forms the `stsAffinityGroup`. Each volume within the `stsAffinityGroup` corresponds to a pod of the StatefulSet.
