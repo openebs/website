@@ -32,7 +32,7 @@ Set up the directory on the nodes where Local PV Hostpaths will be created. This
 :::note
 **air-gapped environment**
 If you are running your Kubernetes cluster in an air-gapped environment, make sure the following container images are available in your local repository.
-- openebs/localpv-provisioner
+- openebs/provisioner-localpv
 - openebs/linux-utils
 :::
 
