@@ -54,6 +54,11 @@ $ lvextend -L +15G lvmvg/thin_pool
 
 ## Configure Auto Extending of the Thin Pool (Configure Over-Provisioning protection)
 
+:::important
+The provisioner does not automatically enable monitoring (auto-extend) on the thin pool, as not all use cases necessitate auto-extension. In certain configurations, a thin pool may be necessary to extend, but it must not exceed a certain limit. However, the lvm configuration does not offer a method to restrict the extension limit.
+Hence, it is left to the user to configure thin pool auto-extend as needed.
+:::
+
 1. Since we automatically create a thin pool as part of first the thin volume provisioning,
 we need to enable the monitoring using `lvchange` command on all thin pools
 across the nodes to use the auto extend threshold feature.
