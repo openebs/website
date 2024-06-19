@@ -94,6 +94,4 @@ pvc-e6aa58e7-84e9-457a-ba21-9819558cf360   2Gi       RWO            Delete
 
 ## Current Limitations and Known Behavior
 
-Currently, a volume that has a snapshot present on the system, or the volume is a restore volume (i.e. created from a snapshot), the resize is disallowed.
-
 For _OFFLINE_ volume expansion of filesystem-mode volumes, the filesystem is expanded when the application pod starts up and publishes the volume again. In the sequence of events, the CSI request to expand the filesystem on node (NodeExpandVolume) arrives about a second after the CSI request to publish the volume on node (NodePublishVolume). If within that small window application tries to fetch/check the filesystem size, it’ll see the old size of volume because filesystem isn’t yet expanded. Depending on the application behaviour, If at all this happens, restarting the application pod should mitigate this.
