@@ -595,3 +595,65 @@ The PV garbage collector deploys a watcher component, which subscribes to the Ku
 To disbale cow for `btrfs` filesystem, use `nodatacow` as a mountOption in the storage class which would be used to provision the volume.
 
 [Go to top](#top)
+
+### How to access NVMe Disk using SPDK when creating a DiskPool?
+
+The following methods can be used to access NVMe Disk using SPDK:
+
+1. Via Kernel BDev
+    - URING: `uring:///dev/nvmexn1`
+    - AIO: `uring:///dev/nvmexn1` or `/dev/nvmexn1`
+
+2. Direct PCIe access: `pcie:///0000:01:00.0`
+
+For Direct PCIe access to bypass the kernel, the NVME device must be detached from the kernel.
+
+:::info
+We intend to automate this process in the future.
+:::
+
+Use this [setup](https://github.com/spdk/spdk/blob/master/scripts/setup.sh) and clone the `spdk` repo.
+
+```
+❯ sudo ./scripts/setup.sh status
+Hugepages
+node     hugesize     free /  total
+node0   1048576kB        0 /      0
+node0      2048kB     4096 /   4096
+
+Type                      BDF             Vendor Device NUMA    Driver           Device     Block devices
+NVMe                      0000:01:00.0    144d   a80c   unknown nvme             nvme0      nvme0n1
+NVMe                      0000:22:00.0    8086   f1a8   unknown nvme             nvme1      nvme1n1
+NVMe                      0000:23:00.0    144d   a808   unknown nvme             nvme2      nvme2n1
+```
+
+For example, use pcie for `nvme0n1` that has BDF of `0000:01:00.0`.
+
+```
+❯ sudo PCI_ALLOWED=0000:01:00.0 ./scripts/setup.sh
+....
+❯ sudo ./scripts/setup.sh status
+Hugepages
+node     hugesize     free /  total
+node0   1048576kB        0 /      0
+node0      2048kB     4096 /   4096
+
+Type                      BDF             Vendor Device NUMA    Driver           Device     Block devices
+NVMe                      0000:01:00.0    144d   a80c   unknown vfio-pci         -          -
+NVMe                      0000:22:00.0    8086   f1a8   unknown nvme             nvme1      nvme1n1
+NVMe                      0000:23:00.0    144d   a808   unknown nvme             nvme2      nvme2n1
+```
+
+Now that `0000:01:00.0` is bound to `vfio-pcie`, you can create your pools with `pcie:///0000:01:00.0`.
+
+[Go to top](#top)
+
+## See Also
+
+- [Quickstart](../quickstart-guide/installation.md)
+- [Deployment](../quickstart-guide/deploy-a-test-application.md)
+- [OpenEBS Architecture](../concepts/architecture.md)
+- [OpenEBS Local Storage](../concepts/data-engines/local-storage.md)
+- [OpenEBS Replicated Storage](../concepts/data-engines/replicated-storage.md)
+- [Community](../community.md)
+- [Commercial Support](../commercial-support.md)
