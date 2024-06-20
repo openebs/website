@@ -195,7 +195,7 @@ The `agents.core.capacity.thin` spec present in the Replicated PV Mayastor helm 
 ### "nodeAffinityTopologyLabel"
 
 The parameter 'nodeAffinityTopologyLabel' will allow the placement of replicas on the node that exactly matches the labels defined in the storage class.
-For the case shown below, the replica of the volume will be placed on `worker-node-1` and `worker-node-3` only as they match the labels specified under `noolAffinityTopologyLabel` in storage class which is equal to zone=us-west-1.
+For the case shown below, the volume replicas will be provisioned on `worker-node-1` and `worker-node-3` only as they match the labels specified under `nodeAffinityTopologyLabel` in storage class which is equal to zone=us-west-1.
 
 **Command**
 ```text
@@ -234,7 +234,7 @@ worker-node-3  37.27.13.10:10124    Online  zone=us-west-1
 
 ### "NodeHasTopologyKey"
 
-The parameter 'NodeHasTopologyKey' will allow the placement of replicas on the node that has label keys that are identical to the keys specified in the storage class.
+The parameter 'NodeHasTopologyKey' will allow the placement of replicas on the nodes having a label whose key matches the key specified in the storage class.
 
 **Command**
 ```text
@@ -268,11 +268,11 @@ Apply the labels on the node using the below command:
  worker-node-3  37.27.13.10:10124    Online  rack=2
 ```
 
-In this case, the replica of the volume will be placed on any of the two nodes i.e. 
+In this case, the replica of the volume will be placed on any two of the three nodes i.e. 
 - `worker-node-1` and `worker-node-2` or 
 - `worker-node-1` and `worker-node-3` or
 - `worker-node-2` and `worker-node-3`
-as the storage class has `rack` as the value for `nodeHasTopoogyKey` that matches the label key of the node.
+as the storage class has `rack` as the value for `nodeHasTopologyKey` that matches the label key of the node.
 
 ### "NodeSpreadTopologyKey"
 
@@ -341,7 +341,7 @@ provisioner: io.openebs.csi-mayastor
 volumeBindingMode: Immediate
 ```
 
-Apply the labels to the nodes using the below command:
+Apply the labels to the pools using the below command:
 
 **Command**
 ```text
@@ -390,6 +390,7 @@ ID             GRPC ENDPOINT        STATUS  LABELS
 ID              DISKS                                                     MANAGED  NODE           STATUS  CAPACITY  ALLOCATED  AVAILABLE  COMMITTED
 pool-on-node-0  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-0  Online  10GiB     0 B        10GiB      0 B
 pool-on-node-2  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-2  Online  10GiB     0 B        10GiB      0 B
+
 kubectl mayastor get pools -n openebs --selector zone=eu-east-1
 ID             GRPC ENDPOINT        STATUS  LABELS
 ID              DISKS                                                     MANAGED  NODE           STATUS  CAPACITY  ALLOCATED  AVAILABLE  COMMITTED
@@ -423,17 +424,18 @@ ID             GRPC ENDPOINT        STATUS  LABELS
 ID              DISKS                                                     MANAGED  NODE           STATUS  CAPACITY  ALLOCATED  AVAILABLE  COMMITTED
 pool-on-node-0  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-0  Online  10GiB     0 B        10GiB      0 B
 pool-on-node-2  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-2  Online  10GiB     0 B        10GiB      0 B
+
 kubectl mayastor get pools -n openebs --selector zone=eu-east-1
 ID             GRPC ENDPOINT        STATUS  LABELS
 ID              DISKS                                                     MANAGED  NODE           STATUS  CAPACITY  ALLOCATED  AVAILABLE  COMMITTED
 pool-on-node-1  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-1  Online  10GiB     0 B        10GiB      0 B
 ```
 
-In this case, the replica of the volume will be placed on any of the two nodes i.e.
+In this case, the replica of the volume will be placed on any of the two pools i.e.
 - `pool-on-node-1` and `pool-on-node-2` or
 - `pool-on-node-1` and `pool-on-node-3` or
 - `pool-on-node-2` and `pool-on-node-3`
-as the storage class has `rack` as the value for `nodeHasTopoogyKey` that matches with the label key of the node.
+as the storage class has `rack` as the value for `nodeHasTopoogyKey` that matches with the label key of the pool.
 
 ### "stsAffinityGroup" 
 
