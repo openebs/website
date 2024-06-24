@@ -152,8 +152,8 @@ The default installation of Replicated PV Mayastor includes the creation of a St
 Storage Class resource in Kubernetes is used to supply parameters to volumes when they are created. It is a convenient way of grouping volumes with common characteristics. All parameters take a string value. A brief explanation of each parameter is as follows.
 
 
-:::info
-The Storage Class parameter `local` has been deprecated and is a breaking change in Replicated PV Mayastor version 2.0. Ensure that this parameter is not used.
+:::warning
+The Storage Class parameter `local` has been deprecated and is a breaking change in Replicated PV Mayastor version 2.0. Make sure that this parameter is not used.
 :::
 
 ### "fsType"
@@ -190,6 +190,14 @@ The `agents.core.capacity.thin` spec present in the Replicated PV Mayastor helm 
 - By default, the volumes are provisioned as `thick`. 
 - For a pool of a particular size, say 10 Gigabytes, a volume > 10 Gigabytes cannot be created, as Replicated PV Mayastor currently does not support pool expansion.
 - The replicas for a given volume can be either all thick or all thin. The same volume cannot have a combination of thick and thin replicas.
+:::
+
+## Topology Parameters
+
+The topology parameters defined in storage class helps in deciding the placement of volume replicas across  different nodes/pools of the cluster. A brief explanation of each parameter is as follows.
+
+:::note
+We support only one type of topology parameter per storage class.
 :::
 
 ### "nodeAffinityTopologyLabel"
@@ -301,7 +309,7 @@ Apply the labels to the nodes using the below command:
 ```text
 kubectl mayastor label node worker-node-1 zone=us-west-1
 kubectl mayastor label node worker-node-2 zone=eu-east-1
-kubectl mayastor label node worker-node-3 zone=us-north-1
+kubectl mayastor label node worker-node-3 zone=us-west-1
  ```
 
 **Command (Get nodes)**
@@ -321,8 +329,6 @@ as the storage class has `zone` as the value for `nodeSpreadTopologyKey` that ma
 ### "poolAffinityTopologyLabel"
 
 The parameter 'poolAffinityTopologyLabel' will allow the placement of replicas on the pool that exactly match the labels defined in the storage class.
-
-For the case shown below, the replica of the volume will be placed on `pool-on-node-0` and `pool-on-node-3` only as they match the labels specified under `poolAffinityTopologyLabel` in the storage class that is equal to zone=us-west-1.
 
 **Command**
 ```text
@@ -396,6 +402,9 @@ ID             GRPC ENDPOINT        STATUS  LABELS
 ID              DISKS                                                     MANAGED  NODE           STATUS  CAPACITY  ALLOCATED  AVAILABLE  COMMITTED
 pool-on-node-1  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-1  Online  10GiB     0 B        10GiB      0 B
 ```
+
+For the case shown above, the replica of the volume will be placed on `pool-on-node-0` and `pool-on-node-3` only as they match the labels specified under `poolAffinityTopologyLabel` in the storage class that is equal to zone=us-west-1.
+
 ### "PoolHasTopologyKey"
 
 The parameter 'PoolHasTopologyKey' will allow the placement of replicas on the pool that has label keys same as the keys passed in the storage class.
@@ -412,7 +421,7 @@ parameters:
   protocol: nvmf
   repl: "2"
   poolHasTopologykey: |
-    rack
+    zone
 provisioner: io.openebs.csi-mayastor
 volumeBindingMode: Immediate
 ```
