@@ -194,7 +194,7 @@ The `agents.core.capacity.thin` spec present in the Replicated PV Mayastor helm 
 
 ## Topology Parameters
 
-The topology parameters defined in storage class helps in deciding the placement of volume replicas across  different nodes/pools of the cluster. A brief explanation of each parameter is as follows.
+The topology parameters defined in storage class helps in determining the placement of volume replicas across different nodes/pools of the cluster. A brief explanation of each parameter is as follows.
 
 :::note
 We support only one type of topology parameter per storage class.
@@ -276,7 +276,7 @@ Apply the labels on the node using the below command:
  worker-node-3  37.27.13.10:10124    Online  rack=2
 ```
 
-In this case, the replica of the volume will be placed on any two of the three nodes i.e. 
+In this case, the volume replicas will be provisioned on any two of the three nodes i.e. 
 - `worker-node-1` and `worker-node-2` or 
 - `worker-node-1` and `worker-node-3` or
 - `worker-node-2` and `worker-node-3`
@@ -321,7 +321,7 @@ worker-node-3  65.21.4.103:10124    Online  zone=eu-east-1
 worker-node-3  37.27.13.10:10124    Online  zone=us-west-1
 ```
 
-In this case, the replica of the volume will be placed on any nodes i.e.
+In this case, the volume replicas will be provisioned on any nodes i.e.
 - `worker-node-1` and `worker-node-2` or
 - `worker-node-2` and `worker-node-3`
 as the storage class has `zone` as the value for `nodeSpreadTopologyKey` that matches the label key of the node but has a different value.
@@ -403,7 +403,7 @@ ID              DISKS                                                     MANAGE
 pool-on-node-1  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-1  Online  10GiB     0 B        10GiB      0 B
 ```
 
-For the case shown above, the replica of the volume will be placed on `pool-on-node-0` and `pool-on-node-3` only as they match the labels specified under `poolAffinityTopologyLabel` in the storage class that is equal to zone=us-west-1.
+For the case shown above, the volume replicas will be provisioned on `pool-on-node-0` and `pool-on-node-3` only as they match the labels specified under `poolAffinityTopologyLabel` in the storage class that is equal to zone=us-west-1.
 
 ### "PoolHasTopologyKey"
 
@@ -440,7 +440,7 @@ ID              DISKS                                                     MANAGE
 pool-on-node-1  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-1  Online  10GiB     0 B        10GiB      0 B
 ```
 
-In this case, the replica of the volume will be placed on any of the two pools i.e.
+In this case, the volume replicas will be provisioned on any two of the three pools i.e.
 - `pool-on-node-1` and `pool-on-node-2` or
 - `pool-on-node-1` and `pool-on-node-3` or
 - `pool-on-node-2` and `pool-on-node-3`
