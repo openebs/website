@@ -321,7 +321,7 @@ worker-node-3  65.21.4.103:10124    Online  zone=eu-east-1
 worker-node-3  37.27.13.10:10124    Online  zone=us-west-1
 ```
 
-In this case, the volume replicas will be provisioned on any nodes i.e.
+In this case, the volume replicas will be provisioned on the below given nodes i.e.
 - `worker-node-1` and `worker-node-2` or
 - `worker-node-2` and `worker-node-3`
 as the storage class has `zone` as the value for `nodeSpreadTopologyKey` that matches the label key of the node but has a different value.
@@ -444,7 +444,7 @@ In this case, the volume replicas will be provisioned on any two of the three po
 - `pool-on-node-1` and `pool-on-node-2` or
 - `pool-on-node-1` and `pool-on-node-3` or
 - `pool-on-node-2` and `pool-on-node-3`
-as the storage class has `rack` as the value for `nodeHasTopoogyKey` that matches with the label key of the pool.
+as the storage class has `pool` as the value for `poolHasTopologyKey` that matches with the label key of the pool.
 
 ### "stsAffinityGroup" 
 
