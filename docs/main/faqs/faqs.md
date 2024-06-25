@@ -596,9 +596,9 @@ To disbale cow for `btrfs` filesystem, use `nodatacow` as a mountOption in the s
 
 [Go to top](#top)
 
-### How to access NVMe Disk using SPDK when creating a DiskPool?
+### How to access NVMe Disk directly from userspace via PCIe when creating a DiskPool?
 
-The following methods can be used to access NVMe Disk using SPDK:
+The following methods can be used to access NVMe Disk directly from userspace via PCIe:
 
 1. Via Kernel BDev
     - URING: `uring:///dev/nvmexn1`
