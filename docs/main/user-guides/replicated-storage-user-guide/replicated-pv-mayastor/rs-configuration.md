@@ -444,7 +444,7 @@ In this case, the volume replicas will be provisioned on any two of the three po
 - `pool-on-node-1` and `pool-on-node-2` or
 - `pool-on-node-1` and `pool-on-node-3` or
 - `pool-on-node-2` and `pool-on-node-3`
-as the storage class has `pool` as the value for `poolHasTopologyKey` that matches with the label key of the pool.
+as the storage class has `zone` as the value for `poolHasTopologyKey` that matches with the label key of the pool.
 
 ### "stsAffinityGroup" 
 
