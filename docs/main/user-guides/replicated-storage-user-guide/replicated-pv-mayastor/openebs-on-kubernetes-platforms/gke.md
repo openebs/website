@@ -30,7 +30,230 @@ Before installing Replicated PV Mayastor, make sure that you meets the following
 
     The minimum number of worker nodes that can be supported is three. The number of worker nodes on which IO engine pods are deployed should not be less than the desired replication factor when using the synchronous replication feature (N-way mirroring).
 
+- **Additional Disks**
 
+    Additional storage disks for nodes can be added as [local SSDs](https://cloud.google.com/kubernetes-engine/docs/concepts/local-ssd#block) during the cluster creation based on the machine types. These local SSDs should be created as a Block device storage by using the `--local-nvme-ssd-block` option and not as a ephemeral storage.
+
+    ```
+    gcloud container clusters create <CLUSTER_NAME> --machine-type <MACHINE_TYPE> --num-nodes <NUMBER_OF_NODES> --zone <ZONE> --local-nvme-ssd-block count=1 --image-type ubuntu_containerd
+    ```
+
+- **Enable Huge Pages**
+    
+    2MiB-sized Huge Pages must be supported and enabled on the storage nodes i.e. nodes where IO engine pods are deployed. A minimum number of 1024 such pages (i.e. 2GiB total) must be available exclusively to the IO engine pod on each node.
+    Secure Socket Shell (SSH) to the GKE worker node to enable huge pages. See [here](https://cloud.google.com/kubernetes-engine/distributed-cloud/vmware/docs/how-to/ssh-cluster-node) for more details.
+
+- **Kernel Modules**
+
+    SSH to the GKE worker nodes to load nvme_tcp modules.
+
+    ```
+    modprobe nvme_tcp
+    ```
+
+- **Preparing the Cluster**
+
+    See [here](../rs-installation.md#preparing-the-cluster) for instructions on preparing the cluster.
+
+- **ETCD and LOKI Storage Class**
+
+    GKE storage class - standard (rwo) should be used for ETCD and LOKI.
 
 ## Install Replicated PV Mayastor on GKE
 
+To install Replicated PV Mayastor using Helm, refer to the [installation steps](../../../../quickstart-guide/installation.md#installation-via-helm) in the Quickstart Guide.
+
+As a next step verify your installation and do the post installation steps as follows:
+
+```
+$ kubectl get pods -n mayastor
+NAME                                            READY   STATUS    RESTARTS   AGE
+mayastor-agent-core-86c85f657b-h46nq            2/2     Running   0          3m55s
+mayastor-agent-ha-node-7cbsl                    1/1     Running   0          3m56s
+mayastor-agent-ha-node-8m9t5                    1/1     Running   0          3m56s
+mayastor-agent-ha-node-sh6f9                    1/1     Running   0          3m56s
+mayastor-api-rest-5b5bbb6d7c-bx887              1/1     Running   0          3m55s
+mayastor-csi-controller-54668f8d65-8kp9r        6/6     Running   0          3m56s
+mayastor-csi-node-2ftk9                         2/2     Running   0          3m57s
+mayastor-csi-node-9nq96                         2/2     Running   0          3m57s
+mayastor-csi-node-x67j8                         2/2     Running   0          3m57s
+mayastor-etcd-0                                 1/1     Running   0          3m56s
+mayastor-etcd-1                                 1/1     Running   0          3m55s
+mayastor-etcd-2                                 1/1     Running   0          3m55s
+mayastor-io-engine-6hv77                        2/2     Running   0          34s
+mayastor-io-engine-h96xf                        2/2     Running   0          14s
+mayastor-io-engine-ndstm                        2/2     Running   0          24s
+mayastor-localpv-provisioner-54c8bc9f94-khxgp   1/1     Running   0          3m56s
+mayastor-loki-0                                 1/1     Running   0          3m55s
+mayastor-nats-0                                 3/3     Running   0          3m56s
+mayastor-nats-1                                 3/3     Running   0          3m55s
+mayastor-nats-2                                 3/3     Running   0          3m55s
+mayastor-obs-callhome-57d977df6f-hnzn9          2/2     Running   0          3m56s
+mayastor-operator-diskpool-5b7df8f8cb-c559h     1/1     Running   0          3m56s
+mayastor-promtail-2srpn                         1/1     Running   0          3m57s
+mayastor-promtail-5qv27                         1/1     Running   0          3m57s
+mayastor-promtail-vvdpl                         1/1     Running   0          3m57s
+```
+
+## Pools
+
+The available GKE local SSD disks on worker nodes can be viewed by using the `kubectl-mayastor` plugin.
+
+```
+$ kubectl mayastor get block-devices gke-gke-ssd-default-pool-2a0f964a-hv99
+ DEVNAME       DEVTYPE  SIZE    AVAILABLE  MODEL       DEVPATH                                              MAJOR  MINOR  DEVLINKS 
+ /dev/nvme1n1  disk     375GiB  yes        nvme_card0  /devices/pci0000:00/0000:00:04.0/nvme/nvme1/nvme1n1  259    0      "/dev/disk/by-id/google-local-nvme-ssd-0", "/dev/disk/by-id/nvme-nvme.1ae0-6e766d655f6361726430-6e766d655f6361726430-00000001", "/dev/disk/by-id/nvme-nvme_card0_nvme_card0", "/dev/disk/by-id/nvme-nvme_card0_nvme_card0_1", "/dev/disk/by-path/pci-0000:00:04.0-nvme-1" 
+```
+
+:::important
+It is highly recommended to specify the disk using a unique device link that remains unaltered across node reboots. Examples of such device links are: by-path or by-id.
+:::
+
+The block size of the disks should be specified in accordance with the block size of the local SSD in your GKE. Run the following commands from the worker node to find the SSD block size:
+
+**Command**
+
+```
+fdisk -l /dev/nvme1n1
+```
+
+**Output**
+
+```
+root@gke-gke-ssd-default-pool-2a0f964a-980h:~# fdisk -l /dev/nvme1n1
+Disk /dev/nvme1n1: 375 GiB, 402653184000 bytes, 98304000 sectors
+Disk model: nvme_card0
+Units: sectors of 1 * 4096 = 4096 bytes
+Sector size (logical/physical): 4096 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+```
+
+**Command**
+
+```
+lsblk -o NAME,PHY-SeC
+```
+
+**Output**
+
+```
+root@gke-gke-ssd-default-pool-2a0f964a-980h:~# lsblk -o NAME,PHY-SeC
+NAME         PHY-SEC
+nvme0n1          512
+├─nvme0n1p1      512
+├─nvme0n1p14     512
+└─nvme0n1p15     512
+nvme1n1         4096
+root@gke-gke-ssd-default-pool-2a0f964a-980h:~# 
+```
+
+### Pool.yaml
+
+```
+apiVersion: "openebs.io/v1beta2"
+kind: DiskPool
+metadata:
+  name: POOL_NAME
+  namespace: mayastor
+spec:
+  node: NODENAME
+  disks: ["aio:////dev/disk/by-id/google-local-nvme-ssd-0?blk_size=4096"]
+```
+
+## Configuration
+
+- See [here](../rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for instructions regarding StorageClass creation.
+
+- See [here](../rs-deployment.md) for instructions regarding PVC creation and deploying an application.
+
+## Node Failure Scenario
+
+The GKE worker nodes are a part of managed instance group. A new node is created with a new local SSD if a node fails for any reason during a reboot. In such cases, recreate the pool with a new name. Once the new pool is created, the OpenEBS Replicated PV Mayastor will rebuild the volume with the replicated data.
+
+:::note
+When a node gets replaced with a new node, all the node labels and huge pages configurations will be lost. You must reconfigure these [prerequisites](#prerequisites) on the new node. 
+:::
+
+**Example**
+
+When the node `gke-gke-local-ssd-default-pool-dd2b0b02-8twd` is rebooted, it fails. Subsequently, a new node/disk is acquired, resulting in the pool-4 being classified as unknown and the Replicated PV Mayastor volume being classified as degraded due to the failure of one of the replicas.
+
+```
+$ kubectl get dsp -n mayastor 
+NAME     NODE                                           STATE     POOL_STATUS   CAPACITY       USED         AVAILABLE
+pool-1   gke-gke-local-ssd-default-pool-dd2b0b02-08cs   Created   Online        402258919424   5368709120   396890210304
+pool-3   gke-gke-local-ssd-default-pool-dd2b0b02-n6wq   Created   Online        402258919424   5368709120   396890210304
+pool-4   gke-gke-local-ssd-default-pool-dd2b0b02-8twd   Created   Unknown       0              0            0
+```
+
+```
+$ kubectl mayastor get volumes 
+ ID                                    REPLICAS  TARGET-NODE                                   ACCESSIBILITY  STATUS    SIZE  THIN-PROVISIONED  ALLOCATED  SNAPSHOTS  SOURCE 
+ fa486a03-d806-4b5c-a534-5666900853a2  3         gke-gke-local-ssd-default-pool-dd2b0b02-08cs  nvmf           Degraded  5GiB  false             5GiB       0          <none>
+```
+
+Re-configure the node labels/hugepages and loaded nvme_tcp modules on the node again. Recreate the pool with a new name `pool-5`.
+
+```
+$ kubectl apply -f pool-5.yaml 
+diskpool.openebs.io/pool-5 created
+$ kubectl get dsp -n mayastor 
+NAME     NODE                                           STATE     POOL_STATUS   CAPACITY       USED         AVAILABLE
+pool-1   gke-gke-local-ssd-default-pool-dd2b0b02-08cs   Created   Online        402258919424   5368709120   396890210304
+pool-3   gke-gke-local-ssd-default-pool-dd2b0b02-n6wq   Created   Online        402258919424   5368709120   396890210304
+pool-4   gke-gke-local-ssd-default-pool-dd2b0b02-8twd   Created   Unknown       0              0            0
+pool-5   gke-gke-local-ssd-default-pool-dd2b0b02-8twd   Created   Online        402258919424   5368709120   396890210304
+```
+
+Once the pool got created, the degraded volume is back online after the rebuild.
+
+```
+$ kubectl mayastor get volumes 
+ ID                                    REPLICAS  TARGET-NODE                                   ACCESSIBILITY  STATUS  SIZE  THIN-PROVISIONED  ALLOCATED  SNAPSHOTS  SOURCE 
+ fa486a03-d806-4b5c-a534-5666900853a2  3         gke-gke-local-ssd-default-pool-dd2b0b02-08cs  nvmf           Online  5GiB  false             5GiB       0          <none> 
+$ kubectl mayastor get volume-replica-topologies
+ VOLUME-ID                             ID                                    NODE                                          POOL    STATUS  CAPACITY  ALLOCATED  SNAPSHOTS  CHILD-STATUS  REASON  REBUILD 
+ fa486a03-d806-4b5c-a534-5666900853a2  772af79e-f277-4ce3-a336-3a2b12a07a02  gke-gke-local-ssd-default-pool-dd2b0b02-n6wq  pool-3  Online  5GiB      5GiB       0 B        Online        <none>  <none> 
+ ├─                                    cb6293b8-2121-44b7-b329-606bc9972342  gke-gke-local-ssd-default-pool-dd2b0b02-8twd  pool-5  Online  5GiB      5GiB       0 B        Online        <none>  <none> 
+ └─                                    6c21e941-8b41-4b52-8c0d-90ea317f0008  gke-gke-local-ssd-default-pool-dd2b0b02-08cs  pool-1  Online  5GiB      5GiB       0 B        Online        <none>  <none> 
+```
+
+**Replicated PV Mayastor Rebuild History** 
+
+```
+$ kubectl mayastor get volumes 
+ ID                                    REPLICAS  TARGET-NODE                                   ACCESSIBILITY  STATUS  SIZE  THIN-PROVISIONED  ALLOCATED  SNAPSHOTS  SOURCE 
+ fa486a03-d806-4b5c-a534-5666900853a2  3         gke-gke-local-ssd-default-pool-dd2b0b02-08cs  nvmf           Online  5GiB  false             5GiB       0          <none> 
+$ kubectl mayastor get rebuild-history fa486a03-d806-4b5c-a534-5666900853a2 
+ DST                                   SRC                                   STATE      TOTAL  RECOVERED  TRANSFERRED  IS-PARTIAL  START-TIME            END-TIME 
+ cb6293b8-2121-44b7-b329-606bc9972342  6c21e941-8b41-4b52-8c0d-90ea317f0008  Completed  5GiB   5GiB       5GiB         false       2024-06-24T07:19:04Z  2024-06-24T07:19:17Z 
+$ kubectl mayastor get rebuild-history fa486a03-d806-4b5c-a534-5666900853a2 -o yaml 
+targetUuid: 7a8e24bf-4033-4d69-9228-09b6dcc93b25
+records:
+- childUri: nvmf://10.128.15.222:8420/nqn.2019-05.io.openebs:cb6293b8-2121-44b7-b329-606bc9972342?uuid=cb6293b8-2121-44b7-b329-606bc9972342
+  srcUri: bdev:///6c21e941-8b41-4b52-8c0d-90ea317f0008?uuid=6c21e941-8b41-4b52-8c0d-90ea317f0008
+  rebuildJobState: Completed
+  blocksTotal: 1309434
+  blocksRecovered: 1309434
+  blocksTransferred: 1309434
+  blocksRemaining: 0
+  blockSize: 4096
+  isPartial: false
+  startTime: 2024-06-24T07:19:04.389230666Z
+  endTime: 2024-06-24T07:19:17.488855597Z
+```
+
+The application data is available without any errors.
+
+```
+root@nginx-deployment-7bf66b59f5-mxcdp:/# cd volume
+root@nginx-deployment-7bf66b59f5-mxcdp:/volume# ls -lrt
+total 16
+drwx------ 2 root root 16384 Jun 21 08:15 lost+found
+-rw-r--r-- 1 root root     0 Jun 21 08:16 test
+-rw-r--r-- 1 root root     0 Jun 21 08:16 testopenebs
+-rw-r--r-- 1 root root     0 Jun 21 08:16 testopenebs-1
+-rw-r--r-- 1 root root     0 Jun 21 08:16 testopenebs-2
+-rw-r--r-- 1 root root     0 Jun 21 08:16 testopenebs-3
+root@nginx-deployment-7bf66b59f5-mxcdp:/volume# 
+```
