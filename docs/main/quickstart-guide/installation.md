@@ -44,9 +44,9 @@ At a high-level, OpenEBS requires:
 ## Installation via Helm
 
 :::warning
-The Helm chart registry at "https://openebs.github.io/charts" has now been deprecated as those charts are used to install legacy OpenEBS (v3.10 and below) releases. This registry will be migrated to a different registry location "https://openebs-archive.github.io/charts" by Oct 30, 2024.
+The Helm chart registry at https://openebs.github.io/charts has now been deprecated as those charts are used to install legacy OpenEBS (v3.10 and below) releases. This registry will be migrated to a different registry location https://openebs-archive.github.io/charts by Oct 30, 2024.
 
-The Helm charts for the latest OpenEBS (v4.0 and above) are hosted in a new registry location "https://openebs.github.io/openebs". To ensure seamless access to OpenEBS Helm charts, update your configurations to use the new registry URL.
+The Helm charts for the latest OpenEBS (v4.0 and above) are hosted in a new registry location https://openebs.github.io/openebs. To ensure seamless access to OpenEBS Helm charts, update your configurations to use the new registry URL.
 :::
 
 Verify helm is installed and helm repo is updated. You need helm 3.2 or more. 
@@ -65,6 +65,10 @@ helm repo update
 OpenEBS provides several options to customize during installation such as:
 - Specifying the directory where hostpath volume data is stored or
 - Specifying the nodes on which OpenEBS components should be deployed and so forth. 
+
+:::info
+See [here](https://github.com/openebs/openebs/blob/main/charts/README.md#values) for more configurations.
+:::
 
 2. Install the OpenEBS helm chart with default values. 
 
@@ -97,7 +101,7 @@ NAME     NAMESPACE   REVISION  UPDATED                                   STATUS 
 openebs  openebs     1         2024-03-25 09:13:00.903321318 +0000 UTC   deployed   openebs-4.0.1   4.0.1
 ```
 
-As a next step [verify](#verifying-openebs-installation) your installation and do the [post installation](#post-installation-considerations) steps.
+As a next step [verify](#verifying-openebs-installation) your installation and do the [post-installation](#post-installation-considerations) steps.
 
 ## Verifying OpenEBS Installation
 
