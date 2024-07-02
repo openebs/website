@@ -15,38 +15,41 @@ Volume restore from an existing snapshot will create an exact replica of a stora
 To begin, you will need to create a StorageClass that defines the properties of the snapshot to be restored. Refer to [StorageClass Parameters](../../replicated-pv-mayastor/rs-configuration.md#storage-class-parameters) for more details. Use the following command to create the StorageClass:
 
 :::info
-thin: "true" and repl: "1" is the only supported combination.
+If you want to create a volume restore from snapshots, thin: "true" is required.
 :::
 
 **Command**
+
 ```
 cat <<EOF | kubectl create -f -
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: mayastor-1-restore
+  name: mayastor-3-restore
 parameters:
   protocol: nvmf
-  repl: "1"
+  repl: "3"
   thin: "true"
 provisioner: io.openebs.csi-mayastor
 EOF
 ```
+
 **YAML**
+
 ```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: mayastor-1-restore
+  name: mayastor-3-restore
 parameters:
   protocol: nvmf
-  repl: "1"
+  repl: "3"
   thin: "true"
 provisioner: io.openebs.csi-mayastor
 ```
 
 :::note
-The name of the StorageClass, which, in the example above, is **mayastor-1-restore**.
+The name of the StorageClass, which, in the example above, is **mayastor-3-restore**.
 :::
 
 ### Step 2: Create a Snapshot 
@@ -54,7 +57,7 @@ The name of the StorageClass, which, in the example above, is **mayastor-1-resto
 You need to create a volume snapshot before proceeding with the restore. Follow the steps outlined in [this guide](snapshot.md) to create a volume snapshot.
 
 :::note
-Tthe snapshot's name, for example, **pvc-snap-1**.
+The snapshot's name, for example, **mayastor-pvc-snap**.
 :::
 
 ## Create a Volume Restore of the Existing Snapshot
@@ -62,6 +65,7 @@ Tthe snapshot's name, for example, **pvc-snap-1**.
 After creating a snapshot, you can create a PersistentVolumeClaim (PVC) from it to generate the volume restore. Use the following command:
 
 **Command**
+
 ```
 cat <<EOF | kubectl create -f -
 apiVersion: v1
@@ -69,9 +73,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: restore-pvc //add a name for your new volume
 spec:
-  storageClassName: mayastor-1-restore //add your storage class name 
+  storageClassName: mayastor-3-restore //add your storage class name 
   dataSource:
-    name: pvc-snap-1 //add your volumeSnapshot name
+    name: mayastor-pvc-snap //add your volumeSnapshot name
     kind: VolumeSnapshot
     apiGroup: snapshot.storage.k8s.io
   accessModes:
@@ -81,16 +85,18 @@ spec:
       storage: 10Gi
  EOF     
  ```
+
 **YAML**
+
 ```
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: restore-pvc //add a name for your new volume
 spec:
-  storageClassName: mayastor-1-restore //add your storage class name 
+  storageClassName: mayastor-3-restore //add your storage class name 
   dataSource:
-    name: pvc-snap-1 //add your volumeSnapshot name
+    name: mayastor-pvc-snap //add your volumeSnapshot name
     kind: VolumeSnapshot
     apiGroup: snapshot.storage.k8s.io
   accessModes:
