@@ -16,7 +16,7 @@ This document provides instructions for installing Replicated PV Mayastor on Goo
 
 ## Prerequisites
 
-Before installing Replicated PV Mayastor, make sure that you meets the following requirements:
+Before installing Replicated PV Mayastor, make sure that you meet the following requirements:
 
 - **Image**
 
@@ -24,7 +24,7 @@ Before installing Replicated PV Mayastor, make sure that you meets the following
 
 - **Hardware Requirements**
 
-    Your machine-type must meet the requirements defined in the [prerequisites](../rs-installation.md#prerequisites).
+    Your machine type must meet the requirements defined in the [prerequisites](../rs-installation.md#prerequisites).
 
 - **GKE Nodes**
 
@@ -32,7 +32,7 @@ Before installing Replicated PV Mayastor, make sure that you meets the following
 
 - **Additional Disks**
 
-    Additional storage disks for nodes can be added as [local SSDs](https://cloud.google.com/kubernetes-engine/docs/concepts/local-ssd#block) during the cluster creation based on the machine types. These local SSDs should be created as a Block device storage by using the `--local-nvme-ssd-block` option and not as a ephemeral storage.
+    Additional node storage disks can be added as [local SSDs](https://cloud.google.com/kubernetes-engine/docs/concepts/local-ssd#block) during the cluster creation based on the machine types. These local SSDs should be created as a Block device storage using the `--local-nvme-ssd-block` option and not as ephemeral storage.
 
     ```
     gcloud container clusters create <CLUSTER_NAME> --machine-type <MACHINE_TYPE> --num-nodes <NUMBER_OF_NODES> --zone <ZONE> --local-nvme-ssd-block count=1 --image-type ubuntu_containerd
@@ -63,7 +63,7 @@ Before installing Replicated PV Mayastor, make sure that you meets the following
 
 To install Replicated PV Mayastor using Helm, refer to the [installation steps](../../../../quickstart-guide/installation.md#installation-via-helm) in the Quickstart Guide.
 
-As a next step verify your installation and do the post installation steps as follows:
+As a next step verify your installation and do the post-installation steps as follows:
 
 ```
 $ kubectl get pods -n mayastor
@@ -105,11 +105,7 @@ $ kubectl mayastor get block-devices gke-gke-ssd-default-pool-2a0f964a-hv99
  /dev/nvme1n1  disk     375GiB  yes        nvme_card0  /devices/pci0000:00/0000:00:04.0/nvme/nvme1/nvme1n1  259    0      "/dev/disk/by-id/google-local-nvme-ssd-0", "/dev/disk/by-id/nvme-nvme.1ae0-6e766d655f6361726430-6e766d655f6361726430-00000001", "/dev/disk/by-id/nvme-nvme_card0_nvme_card0", "/dev/disk/by-id/nvme-nvme_card0_nvme_card0_1", "/dev/disk/by-path/pci-0000:00:04.0-nvme-1" 
 ```
 
-:::important
-It is highly recommended to specify the disk using a unique device link that remains unaltered across node reboots. Examples of such device links are: by-path or by-id.
-:::
-
-The block size of the disks should be specified in accordance with the block size of the local SSD in your GKE. Run the following commands from the worker node to find the SSD block size:
+The block size of the disks should be specified by the block size of the local SSD in your GKE. Run the following commands from the worker node to find the SSD block size:
 
 **Command**
 
@@ -149,6 +145,8 @@ root@gke-gke-ssd-default-pool-2a0f964a-980h:~#
 
 ### Pool.yaml
 
+Create a pool with the following pool.yaml:
+
 ```
 apiVersion: "openebs.io/v1beta2"
 kind: DiskPool
@@ -160,6 +158,18 @@ spec:
   disks: ["aio:////dev/disk/by-id/google-local-nvme-ssd-0?blk_size=4096"]
 ```
 
+**Command**
+
+```
+kubectl apply -f pool.yaml
+```
+
+**Output**
+
+```
+diskpool.openebs.io/pool-1 created
+```
+
 ## Configuration
 
 - See [here](../rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for instructions regarding StorageClass creation.
@@ -168,7 +178,7 @@ spec:
 
 ## Node Failure Scenario
 
-The GKE worker nodes are a part of managed instance group. A new node is created with a new local SSD if a node fails for any reason during a reboot. In such cases, recreate the pool with a new name. Once the new pool is created, the OpenEBS Replicated PV Mayastor will rebuild the volume with the replicated data.
+The GKE worker nodes are a part of a managed instance group. A new node is created with a new local SSD if a node becomes unreachable or faulty. In such cases, recreate the pool with a new name. Once the new pool is created, the OpenEBS Replicated PV Mayastor will rebuild the volume with the replicated data.
 
 :::note
 When a node gets replaced with a new node, all the node labels and huge pages configurations will be lost. You must reconfigure these [prerequisites](#prerequisites) on the new node. 
@@ -182,8 +192,8 @@ When the node `gke-gke-local-ssd-default-pool-dd2b0b02-8twd` is rebooted, it fai
 $ kubectl get dsp -n mayastor 
 NAME     NODE                                           STATE     POOL_STATUS   CAPACITY       USED         AVAILABLE
 pool-1   gke-gke-local-ssd-default-pool-dd2b0b02-08cs   Created   Online        402258919424   5368709120   396890210304
-pool-3   gke-gke-local-ssd-default-pool-dd2b0b02-n6wq   Created   Online        402258919424   5368709120   396890210304
-pool-4   gke-gke-local-ssd-default-pool-dd2b0b02-8twd   Created   Unknown       0              0            0
+pool-2   gke-gke-local-ssd-default-pool-dd2b0b02-n6wq   Created   Online        402258919424   5368709120   396890210304
+pool-3   gke-gke-local-ssd-default-pool-dd2b0b02-8twd   Created   Unknown       0              0            0
 ```
 
 ```
@@ -192,20 +202,20 @@ $ kubectl mayastor get volumes
  fa486a03-d806-4b5c-a534-5666900853a2  3         gke-gke-local-ssd-default-pool-dd2b0b02-08cs  nvmf           Degraded  5GiB  false             5GiB       0          <none>
 ```
 
-Re-configure the node labels/hugepages and loaded nvme_tcp modules on the node again. Recreate the pool with a new name `pool-5`.
+Re-configure the node labels/hugepages and load nvme_tcp modules on the node again. Recreate the pool with a new name `pool-4`.
 
 ```
-$ kubectl apply -f pool-5.yaml 
-diskpool.openebs.io/pool-5 created
+$ kubectl apply -f pool-4.yaml 
+diskpool.openebs.io/pool-4 created
 $ kubectl get dsp -n mayastor 
 NAME     NODE                                           STATE     POOL_STATUS   CAPACITY       USED         AVAILABLE
 pool-1   gke-gke-local-ssd-default-pool-dd2b0b02-08cs   Created   Online        402258919424   5368709120   396890210304
-pool-3   gke-gke-local-ssd-default-pool-dd2b0b02-n6wq   Created   Online        402258919424   5368709120   396890210304
-pool-4   gke-gke-local-ssd-default-pool-dd2b0b02-8twd   Created   Unknown       0              0            0
-pool-5   gke-gke-local-ssd-default-pool-dd2b0b02-8twd   Created   Online        402258919424   5368709120   396890210304
+pool-2   gke-gke-local-ssd-default-pool-dd2b0b02-n6wq   Created   Online        402258919424   5368709120   396890210304
+pool-3   gke-gke-local-ssd-default-pool-dd2b0b02-8twd   Created   Unknown       0              0            0
+pool-4   gke-gke-local-ssd-default-pool-dd2b0b02-8twd   Created   Online        402258919424   5368709120   396890210304
 ```
 
-Once the pool got created, the degraded volume is back online after the rebuild.
+Once the pool is created, the degraded volume is back online after the rebuild.
 
 ```
 $ kubectl mayastor get volumes 
