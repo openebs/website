@@ -5,7 +5,7 @@ keywords:
  - Volume snapshots
 description: This guide explains about the Volume snapshots feature.
 ---
-**Volume snapshots** are copies of a persistent volume at a specific point in time. They can restore a volume to a previous state or create a new volume. Replicated PV Mayastor provides support for industry-standard copy-on-write (COW) snapshots, which is a popular methodology for taking snapshots by keeping track of only those blocks that have changed.
+**Volume Snapshots** are copies of a persistent volume at a specific point in time. They can restore a volume to a previous state or create a new volume. Replicated PV Mayastor provides support for industry-standard copy-on-write (COW) snapshots, which is a popular methodology for taking snapshots by keeping track of changed blocks.
 Replicated PV Mayastor incremental snapshot capability enhances data migration and portability in Kubernetes clusters across different cloud providers or data centers. Using standard kubectl commands, you can seamlessly perform operations on snapshots and clones in a fully Kubernetes-native manner.
 
 Use cases for volume snapshots include:
@@ -26,7 +26,7 @@ Currently, Replicated PV Mayastor supports the following operations related to v
 
 ## Prerequisites
 
-Install and configure Replicated PV Mayastor by following the steps given [here](../rs-installation.md) and create disk pools.
+Install and configure Replicated PV Mayastor by following the steps given in the [Installing OpenEBS documentation](../rs-installation.md) and create disk pools.
 
 **Command**
 
@@ -56,7 +56,7 @@ parameters:
 provisioner: io.openebs.csi-mayastor
 ```
 
-3. Create a PVC using [these](../../../quickstart-guide/deploy-a-test-application.md#create-a-persistentvolumeclaim) steps and check if the status of the PVC is **Bound**.
+3. Create a PVC by following the steps given in the [Deploy a test Application documentation](../../../../quickstart-guide/deploy-a-test-application.md#create-a-persistentvolumeclaim) and check if the status of the PVC is **Bound**.
 
 **Command**
 ```
@@ -73,11 +73,7 @@ ms-volume-claim     Bound    pvc-fe1a5a16-ef70-4775-9eac-2f9c67b3cd5b   1Gi     
 Copy the PVC name, for example, `ms-volume-claim`.
 :::
 
-4. Create an application by following [these](../rs-deployment.md) steps.
-
-:::tip
-This step is optional.
-:::
+4. Create an application by following the instructions provided in the [Deploy an Application documentation](../rs-deployment.md).
  
 ## Create a Snapshot
 

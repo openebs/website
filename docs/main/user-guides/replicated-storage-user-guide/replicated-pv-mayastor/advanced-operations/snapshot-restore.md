@@ -15,7 +15,7 @@ Volume restore from an existing snapshot will create an exact replica of a stora
 To begin, you will need to create a StorageClass that defines the properties of the snapshot to be restored. Refer to [StorageClass Parameters](../../replicated-pv-mayastor/rs-configuration.md#storage-class-parameters) for more details. Use the following command to create the StorageClass:
 
 :::info
-If you want to create a volume restore from snapshots, thin: "true" is required.
+Currently, restores are thin-provisioned volumes created from a snapshot, Therefore, the storage class for the restored volume must also specify `thin: "true"`.
 :::
 
 **Command**
