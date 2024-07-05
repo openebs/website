@@ -152,7 +152,7 @@ The following matrix shows standard StorageClass parameters for Local PV LVM.
   </tr>
   <tr>
     <td> <a href="#scheduler"> scheduler </a></td>
-    <td> CapacityWeighted or VolumeWeighted </td>
+    <td> CapacityWeighted or VolumeWeighted or SpaceWeighted </td>
     <td> Supported </td>
     <td> Pending </td>
   </tr>
@@ -161,7 +161,7 @@ The following matrix shows standard StorageClass parameters for Local PV LVM.
 
 ### StorageClass with Scheduler Parameters
 
-The Local PV LVM Driver supports 3 types of scheduling logic: SpaceWeighted, VolumeWeighted, and CapacityWeighted (Supported from lvm-driver: v0.9.0).
+The Local PV LVM Driver supports three types of scheduling logic: SpaceWeighted, VolumeWeighted, and CapacityWeighted (Supported from lvm-driver: v0.9.0).
 
 Add the scheduler parameter in storage class and give its value accordingly.
 
@@ -174,9 +174,9 @@ parameters:
 
 SpaceWeighted is the default scheduler in the Local PV LVM driver, so even if we do not use the scheduler parameter in storageclass, the driver will pick the node where there is a vg with the highest free space adhering to the volgroup/vgpattern parameter.
 
-For using CapacityWeighted or VolumeWeighted, logic has to be specified in the storage class explicitly.
+If CapacityWeighted scheduler is used, then the driver will pick the node where there is vg that has the least allocated storage in terms of capacity.
 
-If CapacityWeighted is used, then the driver will pick the node where there is vg that has the least allocated storage in terms of capacity. If the VolumeWeighted scheduler is used, then the driver will pick the node containing vg (adhering to vgpattern/volgroup parameter) that has the least number of volumes provisioned on it. No algorithm accounts for other factors like available CPU or memory.
+If the VolumeWeighted scheduler is used, then the driver will pick the node containing vg (adhering to vgpattern/volgroup parameter) that has the least number of volumes provisioned on it.
 
 ## StorageClass Options
 
