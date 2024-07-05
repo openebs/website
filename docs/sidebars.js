@@ -559,17 +559,17 @@ module.exports = {
           items: [
             {
               type: "doc",
-              id: "solutioning/openebs-on-kubernetes-platforms/microkubernetes",
+              id: "Solutioning/openebs-on-kubernetes-platforms/microkubernetes",
               label: "MicroK8s"
             },
             {
               type: "doc",
-              id: "solutioning/openebs-on-kubernetes-platforms/talos",
+              id: "Solutioning/openebs-on-kubernetes-platforms/talos",
               label: "Talos"
             },
             {
               type: "doc",
-              id: "solutioning/openebs-on-kubernetes-platforms/gke",
+              id: "Solutioning/openebs-on-kubernetes-platforms/gke",
               label: "Google Kubernetes Engine"
             }
           ]
