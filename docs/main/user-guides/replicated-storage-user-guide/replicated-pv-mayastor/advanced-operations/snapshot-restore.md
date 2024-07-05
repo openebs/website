@@ -8,6 +8,48 @@ description: This guide explains about the Snapshot Restore feature.
 
 Volume restore from an existing snapshot will create an exact replica of a storage volume captured at a specific point in time. They serve as an essential tool for data protection, recovery, and efficient management in Kubernetes environments. This article provides a step-by-step guide on how to create a volume restore.
 
+:::info
+Snapshots can be restored if the number of available snapshots is less than or equal to the replicas.
+
+- Do the following command to find the number of available replicas of a volume:
+
+**Command**
+
+```
+kubectl mayastor get volume-replica-topology ec4e66fd-3b33-4439-b504-d49aba53da26         
+```
+
+**Output**
+
+```
+ID                                    NODE         POOL    STATUS  CAPACITY  ALLOCATED  SNAPSHOTS  CHILD-STATUS  REASON  REBUILD 
+5de77b1e-56cf-47c9-8fca-e6a5f316684b  io-engine-1  pool-1  Online  12MiB     0 B        12MiB      <none>        <none>  <none> 
+78fa3173-175b-4339-9250-47ddccb79201  io-engine-2  pool-2  Online  12MiB     0 B        12MiB      <none>        <none>  <none> 
+7b4e678a-e607-40e3-afce-b3b7e99e511a  io-engine-3  pool-3  Online  12MiB     8MiB       0 B        <none>        <none>  <none> 
+```
+
+- Do the following command to check the replica snapshot information for volume snapshots:
+
+**Command**
+
+```
+kubectl mayastor get volume-snapshot-topology --volume ec4e66fd-3b33-4439-b504-d49aba53da26
+```
+
+**Output**
+
+```
+SNAPSHOT-ID                           ID                                    POOL    SNAPSHOT_STATUS  SIZE      ALLOCATED_SIZE  SOURCE 
+25823425-41fa-434a-9efd-a356b70b5d7c  cb8d200b-c7d8-4ccd-bb62-78f903e444e4  pool-2  Online           12582912  12582912        78fa3173-175b-4339-9250-47ddccb79201 
+└─                                    b09f4097-85fa-41c9-a2f8-56198641258d  pool-1  Online           12582912  12582912        5de77b1e-56cf-47c9-8fca-e6a5f316684b 
+ 
+
+25823425-41fa-434a-9efd-a356b70b5d7d  1b69b3ca-8f08-4889-8f90-1a428e088c46  pool-2  Online           12582912  0               78fa3173-175b-4339-9250-47ddccb79201 
+├─                                    1837b17a-9773-437c-b926-dda3272e3c60  pool-1  Online           12582912  0               5de77b1e-56cf-47c9-8fca-e6a5f316684b 
+└─                                    1f8827e7-9674-4879-8f29-b15752aef902  pool-3  Online           12582912  8388608         7b4e678a-e607-40e3-afce-b3b7e99e511a 
+```
+:::
+
 ## Prerequisites
 
 ### Step 1: Create a StorageClass 

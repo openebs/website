@@ -24,6 +24,10 @@ Currently, Replicated PV Mayastor supports the following operations related to v
 2. Listing available snapshots for a PVC
 3. Deleting a snapshot for a PVC
 
+:::info
+Unlike volume replicas, snapshots cannot be rebuild on an event of a node failure.
+:::
+
 ## Prerequisites
 
 Install and configure Replicated PV Mayastor by following the steps given in the [Installing OpenEBS documentation](../rs-installation.md) and create disk pools.
