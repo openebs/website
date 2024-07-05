@@ -8,9 +8,9 @@ keywords:
 description: This guide explains about the volume resize feature.
 ---
 
-The Volume Resize feature allows Kubernetes (or any other CO) end-users to expand a persistent volume (PV) after creation by resizing a dynamically provisioned persistent volume claim (PVC). This is allowed only if the `StorageClass` has `allowVolumeExpansion` boolean flag set to _true_. The end-users can edit the `allowVolumeExpansion` boolean flag in Kubernetes `StorageClass` to toggle the permission for PVC resizing. This is useful for users to optimise their provisioned space and not have to worry about pre-planning the future capacity requirements. The users can provision a volume with just about right size based on current usage and trends, and in the future if the need arises to have more capacity in the same volume, the volume can be easily expanded.
+The Volume Resize feature allows Kubernetes (or any other CO) end-users to expand a persistent volume (PV) after creation by resizing a dynamically provisioned persistent volume claim (PVC). This is allowed only if the `StorageClass` has `allowVolumeExpansion` boolean flag set to _true_. The end-users can edit the `allowVolumeExpansion` boolean flag in Kubernetes `StorageClass` to toggle the permission for PVC resizing. This is useful for users to optimise their provisioned space and not have to worry about pre-planning the future capacity requirements. The users can provision a volume with just about the right size based on current usage and trends, and in the future, if the need arises to have more capacity in the same volume, the volume can be easily expanded.
 
-Replicated PV Mayastor CSI plugin provides the ability to expand volume in the _ONLINE_ and _OFFLINE_ states.
+The Replicated PV Mayastor CSI plugin provides the ability to expand volume in the _ONLINE_ and _OFFLINE_ states.
 
 ## Prerequisites
 
@@ -81,7 +81,7 @@ storageClassName: mayastor-1
 EOF
 ```
 
-5. The PV should get resized and reflecting the new capacity.
+5. The PV should get resized and reflect the new capacity.
 
 ```
 # kubectl get pvc ms-volume-claim
@@ -94,4 +94,8 @@ pvc-e6aa58e7-84e9-457a-ba21-9819558cf360   2Gi       RWO            Delete
 
 ## Current Limitations and Known Behavior
 
-For _OFFLINE_ volume expansion of filesystem-mode volumes, the filesystem is expanded when the application pod starts up and publishes the volume again. In the sequence of events, the CSI request to expand the filesystem on node (NodeExpandVolume) arrives about a second after the CSI request to publish the volume on node (NodePublishVolume). If within that small window application tries to fetch/check the filesystem size, it’ll see the old size of volume because filesystem isn’t yet expanded. Depending on the application behaviour, If at all this happens, restarting the application pod should mitigate this.
+For _OFFLINE_ volume expansion of filesystem-mode volumes, the filesystem is expanded when the application pod starts up and publishes the volume again. In the sequence of events, the CSI request to expand the filesystem on node (NodeExpandVolume) arrives about a second after the CSI request to publish the volume on node (NodePublishVolume). If within that small window application tries to fetch/check the filesystem size, it’ll see the old size of volume because the filesystem is not yet expanded. Depending on the application behaviour, If at all this happens, restarting the application pod should mitigate this.
+
+:::important
+If a volume is expanded during an upgrade and the IO engine is still outdated and lacks the necessary fix to handle IO on an expanded volume, the IO on the expanded range may fail. To prevent this scenario, it is recommended to wait until the upgrade is complete before attempting to expand the volumes.
+:::
