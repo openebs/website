@@ -25,7 +25,7 @@ Currently, Replicated PV Mayastor supports the following operations related to v
 3. Deleting a snapshot for a PVC
 
 :::info
-Unlike volume replicas, snapshots cannot be rebuild on an event of a node failure.
+Unlike volume replicas, snapshots cannot be rebuilt on an event of a node failure.
 :::
 
 ## Prerequisites

@@ -9,7 +9,8 @@ description: This guide explains about the Snapshot Restore feature.
 Volume restore from an existing snapshot will create an exact replica of a storage volume captured at a specific point in time. They serve as an essential tool for data protection, recovery, and efficient management in Kubernetes environments. This article provides a step-by-step guide on how to create a volume restore.
 
 :::info
-Snapshots can be restored if the number of available snapshots is less than or equal to the replicas.
+A volume snapshot transcends into taking snapshots on each of the volume's replicas for consistency. For instance, a snapshot on a source volume with three replicas (repl=3) results in snapshot-ting all three replicas of the source volume.
+Similarly, the replica count of the new volume must be less than or equal to the available replica snapshot count of the corresponding source volume when a restore is initiated, or a new volume is provisioned by specifying the source volume's snapshot as the source.
 
 - Do the following command to find the number of available replicas of a volume:
 
