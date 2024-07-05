@@ -82,11 +82,16 @@ helm install openebs --namespace openebs openebs/openebs --set engines.replicate
 ```
 :::
 
-- By default, Monitoring via Grafana dashboards is disabled. Use the following helm command to enable monitoring:
+- OpenEBS also provides a basic cloud-native monitoring stack built using Prometheus and Grafana, as an add-on Helm sub-chart. This has pre-configured dashboards for visualization of metrics from the various OpenEBS storages.
+You can install this stack by following the below steps:
 
-```
-helm install openebs --namespace openebs openebs/openebs --set monitoring.enabled=true --create-namespace
-```
+  - **Enable monitoring:**
+
+  To enable monitoring, use the following command:
+
+  ```
+  helm install openebs --namespace openebs openebs/openebs --set monitoring.enabled=true --create-namespace
+  ```
 
   - **Accessing Grafana Dashboard:**
   
