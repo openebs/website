@@ -14,6 +14,24 @@ description: This section explains about the Platform Support for Replicated PV 
 
 This document provides instructions for installing Replicated PV Mayastor on Google Kubernetes Engine (GKE).
 
+- GKE with local SSDs (Solid State Drive) are ephemeral because local SSDs are physically attached to the node’s host virtual machine instance, any data stored in them only exists on that node. Since the data stored on the disks is local, your application must be resilient to unavailable data.
+
+- A Pod that writes to a local SSD might lose access to the data stored on the disk if the Pod is rescheduled away from that node. Additionally, if the node is terminated, upgraded, or repaired the data will be erased.
+
+- Local SSDs cannot be added to an existing node pool.
+
+Using OpenEBS for GKE with Local SSDs offers several benefits, particularly in managing storage in a cloud-native way. 
+
+**Replication and Resilience:** OpenEBS can manage data replication across multiple nodes, enhancing data availability and resilience. Even though Local SSDs provide high performance, they are ephemeral by nature. OpenEBS can help mitigate the risk of data loss by replicating data to other nodes.
+
+**Performance:** Local SSDs provide high IOPS and low latency compared to other storage options. OpenEBS can leverage these performance characteristics for applications that require fast storage access.
+
+## GKE with Local SSD's
+
+1. GKE supports adding additional disks with local SSD.
+
+2. Each Local SSD disk comes in a fixed size and you can attach multiple Local SSD disks to a single VM when you create it. The number of Local SSD disks that you can attach to a VM depends on the VM's machine type. See the [Local SSD Disks documentation](https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds) for more information.
+
 ## Prerequisites
 
 Before installing Replicated PV Mayastor, make sure that you meet the following requirements:
@@ -61,7 +79,19 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 
 ## Install Replicated PV Mayastor on GKE
 
-To install Replicated PV Mayastor using Helm, refer to the [installation steps](../../../../quickstart-guide/installation.md#installation-via-helm) in the Quickstart Guide.
+To install Replicated PV Mayastor using Helm, refer to the steps provided in the [Installing OpenEBS documentation](../../../../quickstart-guide/installation.md#installation-via-helm).
+
+- **Helm Install Command**
+
+```
+helm install openebs --namespace openebs openebs/openebs --create-namespace --set openebs-crds.csi.volumeSnapshots.enabled=false --set mayastor.etcd.localpvScConfig.enabled=false --set mayastor.etcd.persistence.enabled=true --set mayastor.etcd.persistence.storageClass=standard-rwo --set mayastor.loki-stack.localpvScConfig.enabled=false --set mayastor.loki-stack.loki.persistence.enabled=true --set mayastor.loki-stack.loki.persistence.storageClassName=standard-rwo
+```
+
+:::info
+- GKE storage class - standard (rwo) should be used for ETCD and LOKI.
+
+- GKE comes with Volumesnapshot CRD’s. Disable it from the OpenEBS chart as you might face issues with installation as these resources already exist. 
+:::
 
 As a next step verify your installation and do the post-installation steps as follows:
 
