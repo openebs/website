@@ -75,3 +75,8 @@ microk8s kubectl patch felixconfigurations default --patch '{"spec":{"featureDet
 :::info
 Refer to the [Replicated PV Mayastor Configuration](../replicated-pv-mayastor/rs-configuration.md) for further **Configuration of Replicated PV Mayastor** including storage pools, storage class, persistent volume claims, and application setup.
 :::
+
+## See Also
+
+- [Replicated PV Mayastor Installation on Talos](talos.md)
+- [Replicated PV Mayastor Installation on Google Kubernetes Engine](gke.md)
