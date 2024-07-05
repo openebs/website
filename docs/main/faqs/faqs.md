@@ -648,6 +648,18 @@ Now that `0000:01:00.0` is bound to `vfio-pcie`, you can create your pools with 
 
 [Go to top](#top)
 
+### How do I install Replicated PV Mayastor on a Kubernetes cluster with a custom domain?
+
+You must configure etcd for Replicated PV Mayastor during installation if the domain name of your Kubernetes cluster is not 'cluster.local'.
+ 
+Execute the following command to install Replicated PV Mayastor with a custom Kubernetes cluster domain:
+ 
+```
+helm install openebs openebs/openebs -n openebs --create-namespace --set mayastor.etcd.clusterDomain="<your-custom-cluster-domain>"
+```
+
+[Go to top](#top)
+
 ## See Also
 
 - [Quickstart](../quickstart-guide/installation.md)
