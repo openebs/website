@@ -136,7 +136,7 @@ The following matrix shows standard StorageClass parameters for Local PV LVM.
     <td> <a href="#vgpattern-must-parameter-if-volgroup-is-not-provided-otherwise-optional"> vgpattern </a></td>
     <td> Regular expression of volume group name </td>
     <td> Supported </td>
-    <td> Pending </td>
+    <td> Yes </td>
   </tr>
   <tr>
     <td> <a href="#volgroup-must-parameter-if-vgpattern-is-not-provided-otherwise-optional"> volgroup </a></td>
@@ -148,10 +148,35 @@ The following matrix shows standard StorageClass parameters for Local PV LVM.
     <td> <a href="#thinprovision-optional"> thinProvision </a></td>
     <td> yes </td>
     <td> Supported </td>
+    <td> Yes </td>
+  </tr>
+  <tr>
+    <td> <a href="#scheduler"> scheduler </a></td>
+    <td> CapacityWeighted or VolumeWeighted </td>
+    <td> Supported </td>
     <td> Pending </td>
   </tr>
 </tbody>
 </table>
+
+### StorageClass with Scheduler Parameters
+
+The Local PV LVM Driver supports 3 types of scheduling logic: SpaceWeighted, VolumeWeighted, and CapacityWeighted (Supported from lvm-driver: v0.9.0).
+
+To select any one of the scheduler, add scheduler parameter in storage class and give its value accordingly.
+
+```
+parameters:
+  storage: "lvm"
+  volgroup: "lvmvg" 
+  scheduler: "CapacityWeighted" ## or "VolumeWeighted"
+```
+
+SpaceWeighted is the default scheduler in the Local PV LVM driver, so even if we do not use the scheduler parameter in storageclass, the driver will pick the node where there is a vg with the highest free space adhering to the volgroup/vgpattern parameter.
+
+For using CapacityWeighted or VolumeWeighted, logic has to be specified in the storage class explicitly.
+
+If CapacityWeighted is used, then the driver will pick the node where there is vg that has the least allocated storage in terms of capacity. If the VolumeWeighted scheduler is used, then the driver will pick the node containing vg (adhering to vgpattern/volgroup parameter) that has the least number of volumes provisioned on it. No algorithm accounts for other factors like available CPU or memory.
 
 ## StorageClass Options
 
