@@ -152,7 +152,7 @@ The following matrix shows standard StorageClass parameters for Local PV LVM.
   </tr>
   <tr>
     <td> <a href="#scheduler"> scheduler </a></td>
-    <td> CapacityWeighted or VolumeWeighted or SpaceWeighted </td>
+    <td> SpaceWeighted or CapacityWeighted or VolumeWeighted </td>
     <td> Supported </td>
     <td> Pending </td>
   </tr>
@@ -174,9 +174,9 @@ parameters:
 
 SpaceWeighted is the default scheduler in the Local PV LVM driver, so even if we do not use the scheduler parameter in storageclass, the driver will pick the node where there is a vg with the highest free space adhering to the volgroup/vgpattern parameter.
 
-If CapacityWeighted scheduler is used, then the driver will pick the node where there is vg that has the least allocated storage in terms of capacity.
+If CapacityWeighted scheduler is used, then the driver will pick the node containing vg that has the least allocated storage in terms of capacity.
 
-If the VolumeWeighted scheduler is used, then the driver will pick the node containing vg (adhering to vgpattern/volgroup parameter) that has the least number of volumes provisioned on it.
+If VolumeWeighted scheduler is used, then the driver will pick the node containing vg (adhering to vgpattern/volgroup parameter) that has the least number of volumes provisioned on it.
 
 ## StorageClass Options
 
