@@ -67,7 +67,7 @@ OpenEBS provides several options to customize during installation such as:
 - Specifying the nodes on which OpenEBS components should be deployed and so forth. 
 
 :::info
-See [here](https://github.com/openebs/openebs/blob/main/charts/README.md#values) for more configurations.
+See [here](https://github.com/openebs/openebs/blob/main/charts/README.md#values) for configurable options.
 :::
 
 2. Install the OpenEBS helm chart with default values. 
