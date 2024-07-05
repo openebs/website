@@ -546,7 +546,7 @@ module.exports = {
       type: "category",
       label: "Solutioning",
       customProps: {
-        icon: "Server"
+        icon: "File"
       },
       items: [
         {

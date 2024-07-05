@@ -202,5 +202,9 @@
   "sidebar.docs.category.OpenEBS on Kubernetes Platforms": {
     "message": "OpenEBS on Kubernetes Platforms",
     "description": "The label for category OpenEBS on Kubernetes Platforms in sidebar docs"
+  },
+  "sidebar.docs.category.Solutioning": {
+    "message": "Solutioning",
+    "description": "The label for category Solutioning in sidebar docs"
   }
 }

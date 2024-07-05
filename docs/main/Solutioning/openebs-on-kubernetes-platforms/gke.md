@@ -14,6 +14,8 @@ description: This section explains about the Platform Support for Replicated PV 
 
 This document provides instructions for installing Replicated PV Mayastor on Google Kubernetes Engine (GKE).
 
+## GKE with Local SSDs
+
 - GKE with local SSDs (Solid State Drive) are ephemeral because local SSDs are physically attached to the node’s host virtual machine instance, any data stored in them only exists on that node. Since the data stored on the disks is local, your application must be resilient to unavailable data.
 
 - A Pod that writes to a local SSD might lose access to the data stored on the disk if the Pod is rescheduled away from that node. Additionally, if the node is terminated, upgraded, or repaired the data will be erased.
@@ -26,11 +28,14 @@ Using OpenEBS for GKE with Local SSDs offers several benefits, particularly in m
 
 **Performance:** Local SSDs provide high IOPS and low latency compared to other storage options. OpenEBS can leverage these performance characteristics for applications that require fast storage access.
 
-## GKE with Local SSD's
 
-1. GKE supports adding additional disks with local SSD.
+:::info
+- GKE supports adding additional disks with local SSD while creating the cluster. 
 
-2. Each Local SSD disk comes in a fixed size and you can attach multiple Local SSD disks to a single VM when you create it. The number of Local SSD disks that you can attach to a VM depends on the VM's machine type. See the [Local SSD Disks documentation](https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds) for more information.
+- Adding additional disks to existing node pool is not supported.
+
+- Each Local SSD disk comes in a fixed size and you can attach multiple Local SSD disks to a single VM when you create it. The number of Local SSD disks that you can attach to a VM depends on the VM's machine type. See the [Local SSD Disks documentation](https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds) for more information.
+:::
 
 ## Prerequisites
 
@@ -71,7 +76,7 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 
 - **Preparing the Cluster**
 
-    See [here](../rs-installation.md#preparing-the-cluster) for instructions on preparing the cluster.
+    See the [Replicated PV Mayastor Installation documentation](../rs-installation.md#preparing-the-cluster) for instructions on preparing the cluster.
 
 - **ETCD and LOKI Storage Class**
 
@@ -79,7 +84,7 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 
 ## Install Replicated PV Mayastor on GKE
 
-To install Replicated PV Mayastor using Helm, refer to the steps provided in the [Installing OpenEBS documentation](../../../../quickstart-guide/installation.md#installation-via-helm).
+See the [Installing OpenEBS documentation](../../../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.
 
 - **Helm Install Command**
 
@@ -90,39 +95,46 @@ helm install openebs --namespace openebs openebs/openebs --create-namespace --se
 :::info
 - GKE storage class - standard (rwo) should be used for ETCD and LOKI.
 
-- GKE comes with Volumesnapshot CRD’s. Disable it from the OpenEBS chart as you might face issues with installation as these resources already exist. 
+- GKE comes with Volume snapshot CRD’s. Disable it from the OpenEBS chart as you might face issues with installation as these resources already exist. 
 :::
 
 As a next step verify your installation and do the post-installation steps as follows:
 
 ```
-$ kubectl get pods -n mayastor
-NAME                                            READY   STATUS    RESTARTS   AGE
-mayastor-agent-core-86c85f657b-h46nq            2/2     Running   0          3m55s
-mayastor-agent-ha-node-7cbsl                    1/1     Running   0          3m56s
-mayastor-agent-ha-node-8m9t5                    1/1     Running   0          3m56s
-mayastor-agent-ha-node-sh6f9                    1/1     Running   0          3m56s
-mayastor-api-rest-5b5bbb6d7c-bx887              1/1     Running   0          3m55s
-mayastor-csi-controller-54668f8d65-8kp9r        6/6     Running   0          3m56s
-mayastor-csi-node-2ftk9                         2/2     Running   0          3m57s
-mayastor-csi-node-9nq96                         2/2     Running   0          3m57s
-mayastor-csi-node-x67j8                         2/2     Running   0          3m57s
-mayastor-etcd-0                                 1/1     Running   0          3m56s
-mayastor-etcd-1                                 1/1     Running   0          3m55s
-mayastor-etcd-2                                 1/1     Running   0          3m55s
-mayastor-io-engine-6hv77                        2/2     Running   0          34s
-mayastor-io-engine-h96xf                        2/2     Running   0          14s
-mayastor-io-engine-ndstm                        2/2     Running   0          24s
-mayastor-localpv-provisioner-54c8bc9f94-khxgp   1/1     Running   0          3m56s
-mayastor-loki-0                                 1/1     Running   0          3m55s
-mayastor-nats-0                                 3/3     Running   0          3m56s
-mayastor-nats-1                                 3/3     Running   0          3m55s
-mayastor-nats-2                                 3/3     Running   0          3m55s
-mayastor-obs-callhome-57d977df6f-hnzn9          2/2     Running   0          3m56s
-mayastor-operator-diskpool-5b7df8f8cb-c559h     1/1     Running   0          3m56s
-mayastor-promtail-2srpn                         1/1     Running   0          3m57s
-mayastor-promtail-5qv27                         1/1     Running   0          3m57s
-mayastor-promtail-vvdpl                         1/1     Running   0          3m57s
+NAME                                              READY   STATUS    RESTARTS   AGE
+openebs-agent-core-674f784df5-7szbm               2/2     Running   0          11m
+openebs-agent-ha-node-nnkmv                       1/1     Running   0          11m
+openebs-agent-ha-node-pvcrr                       1/1     Running   0          11m
+openebs-agent-ha-node-rqkkk                       1/1     Running   0          11m
+openebs-api-rest-79556897c8-b824j                 1/1     Running   0          11m
+openebs-csi-controller-b5c47d49-5t5zd             6/6     Running   0          11m
+openebs-csi-node-flq49                            2/2     Running   0          11m
+openebs-csi-node-k8d7h                            2/2     Running   0          11m
+openebs-csi-node-v7jfh                            2/2     Running   0          11m
+openebs-etcd-0                                    1/1     Running   0          11m
+openebs-etcd-1                                    1/1     Running   0          11m
+openebs-etcd-2                                    1/1     Running   0          11m
+openebs-io-engine-7t6tf                           2/2     Running   0          11m
+openebs-io-engine-9df6r                           2/2     Running   0          11m
+openebs-io-engine-rqph4                           2/2     Running   0          11m
+openebs-localpv-provisioner-6ddf7c7978-4fkvs      1/1     Running   0          11m
+openebs-loki-0                                    1/1     Running   0          11m
+openebs-lvm-localpv-controller-7b6d6b4665-fk78q   5/5     Running   0          11m
+openebs-lvm-localpv-node-mcch4                    2/2     Running   0          11m
+openebs-lvm-localpv-node-pdt88                    2/2     Running   0          11m
+openebs-lvm-localpv-node-r9jn2                    2/2     Running   0          11m
+openebs-nats-0                                    3/3     Running   0          11m
+openebs-nats-1                                    3/3     Running   0          11m
+openebs-nats-2                                    3/3     Running   0          11m
+openebs-obs-callhome-854bc967-5f879               2/2     Running   0          11m
+openebs-operator-diskpool-5586b65c-cwpr8          1/1     Running   0          11m
+openebs-promtail-2vrzk                            1/1     Running   0          11m
+openebs-promtail-mwxk8                            1/1     Running   0          11m
+openebs-promtail-w7b8k                            1/1     Running   0          11m
+openebs-zfs-localpv-controller-f78f7467c-blr7q    5/5     Running   0          11m
+openebs-zfs-localpv-node-h46m5                    2/2     Running   0          11m
+openebs-zfs-localpv-node-svfgq                    2/2     Running   0          11m
+openebs-zfs-localpv-node-wm9ks                    2/2     Running   0          11m
 ```
 
 ## Pools
@@ -202,9 +214,9 @@ diskpool.openebs.io/pool-1 created
 
 ## Configuration
 
-- See [here](../rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for instructions regarding StorageClass creation.
+- See the [Replicated PV Mayastor Configuration documentation](../rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for instructions regarding StorageClass creation.
 
-- See [here](../rs-deployment.md) for instructions regarding PVC creation and deploying an application.
+- See [Deploy an Application documentation](../rs-deployment.md) for instructions regarding PVC creation and deploying an application.
 
 ## Node Failure Scenario
 
@@ -216,7 +228,7 @@ When a node gets replaced with a new node, all the node labels and huge pages co
 
 **Example**
 
-When the node `gke-gke-local-ssd-default-pool-dd2b0b02-8twd` is rebooted, it fails. Subsequently, a new node/disk is acquired, resulting in the pool-4 being classified as unknown and the Replicated PV Mayastor volume being classified as degraded due to the failure of one of the replicas.
+When the node `gke-gke-local-ssd-default-pool-dd2b0b02-8twd` is failed, a new node/disk is acquired, resulting in the pool-3 being classified as unknown and the Replicated PV Mayastor volume being classified as degraded due to the failure of one of the replicas.
 
 ```
 $ kubectl get dsp -n mayastor 
@@ -297,3 +309,8 @@ drwx------ 2 root root 16384 Jun 21 08:15 lost+found
 -rw-r--r-- 1 root root     0 Jun 21 08:16 testopenebs-3
 root@nginx-deployment-7bf66b59f5-mxcdp:/volume# 
 ```
+
+## See Also
+
+- [Replicated PV Mayastor Installation on MicroK8s](microkubernetes.md)
+- [Replicated PV Mayastor Installation on Talos](talos.md)
