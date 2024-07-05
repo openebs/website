@@ -72,15 +72,60 @@ OpenEBS provides several options to customize during installation such as:
 helm install openebs --namespace openebs openebs/openebs --create-namespace
 ```
 
-The above commands will install OpenEBS Local PV Hostpath, OpenEBS Local PV LVM, OpenEBS Local PV ZFS, and OpenEBS Replicated Storage components in `openebs` namespace and chart name as `openebs`.
+- The above command will install OpenEBS Local PV Hostpath, OpenEBS Local PV LVM, OpenEBS Local PV ZFS, and OpenEBS Replicated Storage components in `openebs` namespace and chart name as `openebs`.
 
-:::note
+:::important
 The default OpenEBS helm chart will install both Local Storage and Replicated Storage. If you do not want to install OpenEBS Replicated Storage, use the following command:
 
 ```
 helm install openebs --namespace openebs openebs/openebs --set engines.replicated.mayastor.enabled=false --create-namespace
 ```
 :::
+
+- OpenEBS also provides a basic cloud-native monitoring stack built using Prometheus and Grafana, as an add-on Helm sub-chart. This has pre-configured dashboards for visualization of metrics from the various OpenEBS storages.
+You can install this stack by following the below steps:
+
+  - **Enable monitoring:**
+
+  To enable monitoring, use the following command:
+
+  ```
+  helm install openebs --namespace openebs openebs/openebs --set monitoring.enabled=true --create-namespace
+  ```
+
+  - **Accessing Grafana Dashboard:**
+  
+  **A.** You can view the Grafana Pod by using the following command:
+    
+  ```
+  kubectl get pods -n [NAMESPACE] | grep -i grafana
+  ```
+
+  **B.** You can access the Grafana dashboard using the NodeIP (Public IP) and NodePort (Grafana service port) of your Kubernetes cluster.
+
+  ```
+  kubectl get nodes -o wide
+  ```
+
+  ```
+  kubectl get svc -n [NAMESPACE] | grep -i grafana
+  ```
+
+  **C.** Visit http://`NodeIp`:`NodePort`. For example, if your Node IP address is node-ip and the NodePort assigned is 12345, you would access Grafana using http://node-ip:12345.
+  
+  The default Grafana login credentials are:
+    - **username:** admin
+    - **password:** admin
+
+  :::info
+  If public IP is not available, then you can access it via port-forwarding by using the following command and then visit http://127.0.0.1:[grafana-forward-port].
+
+  ```
+  kubectl port-forward --namespace [NAMESPACE] pods/[grafana-pod-name] [grafrana-foward-port]:[grafana-cluster-port]
+  ```
+  :::
+
+
 
 3. To view the chart and get the output, use the following commands:
 
