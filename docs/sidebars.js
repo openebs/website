@@ -449,26 +449,6 @@ module.exports = {
                       label: "Scaling Up etcd Members"
                     }
                   ]
-                },
-                {
-                  collapsed: true,
-                  type: "category",
-                  label: "OpenEBS on K8s Platforms",
-                  customProps: {
-                    icon: "User"
-                  },
-                  items: [
-                    {
-                      type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/openebs-on-kubernetes-platforms/microkubernetes",
-                      label: "MicroK8s"
-                    },
-                    {
-                      type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/openebs-on-kubernetes-platforms/talos",
-                      label: "Talos"
-                    }
-                  ]
                 }
               ] 
             }
@@ -559,6 +539,41 @@ module.exports = {
           id: "user-guides/uninstall",
           label: "Uninstallation"
         }
+      ]
+    },
+    {
+      collapsed: true,
+      type: "category",
+      label: "Solutioning",
+      customProps: {
+        icon: "File"
+      },
+      items: [
+        {
+          collapsed: true,
+          type: "category",
+          label: "OpenEBS on K8s Platforms",
+          customProps: {
+            icon: "User"
+          },
+          items: [
+            {
+              type: "doc",
+              id: "Solutioning/openebs-on-kubernetes-platforms/microkubernetes",
+              label: "MicroK8s"
+            },
+            {
+              type: "doc",
+              id: "Solutioning/openebs-on-kubernetes-platforms/talos",
+              label: "Talos"
+            },
+            {
+              type: "doc",
+              id: "Solutioning/openebs-on-kubernetes-platforms/gke",
+              label: "Google Kubernetes Engine"
+            }
+          ]
+        },  
       ]
     },
     {
