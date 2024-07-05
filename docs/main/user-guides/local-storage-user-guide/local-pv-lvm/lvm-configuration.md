@@ -163,7 +163,7 @@ The following matrix shows standard StorageClass parameters for Local PV LVM.
 
 The Local PV LVM Driver supports 3 types of scheduling logic: SpaceWeighted, VolumeWeighted, and CapacityWeighted (Supported from lvm-driver: v0.9.0).
 
-To select any one of the scheduler, add scheduler parameter in storage class and give its value accordingly.
+Add the scheduler parameter in storage class and give its value accordingly.
 
 ```
 parameters:
