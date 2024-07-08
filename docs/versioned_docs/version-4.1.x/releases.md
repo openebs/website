@@ -50,6 +50,10 @@ This release includes support for volume expansion even when snapshots are prese
 
 Replicated PV Mayastor now uses topology parameters defined in the storage class to determine the placement of volume replicas. This allows replicas to be controlled via labels from the storage class.
 
+- **Grafana Dashboards**
+
+Grafana Dashboards for Replicated PV Mayastor has been added in this releases.
+
 ## Fixes
 
 ### Fixed Issues - Local Storage
