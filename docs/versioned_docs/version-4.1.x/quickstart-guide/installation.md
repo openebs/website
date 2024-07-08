@@ -44,9 +44,9 @@ At a high-level, OpenEBS requires:
 ## Installation via Helm
 
 :::warning
-The Helm chart registry at "https://openebs.github.io/charts" has now been deprecated as those charts are used to install legacy OpenEBS (v3.10 and below) releases. This registry will be migrated to a different registry location "https://openebs-archive.github.io/charts" by Oct 30, 2024.
+The Helm chart registry at https://openebs.github.io/charts has now been deprecated as those charts are used to install legacy OpenEBS (v3.10 and below) releases. This registry will be migrated to a different registry location https://openebs-archive.github.io/charts by Oct 30, 2024.
 
-The Helm charts for the latest OpenEBS (v4.0 and above) are hosted in a new registry location "https://openebs.github.io/openebs". To ensure seamless access to OpenEBS Helm charts, update your configurations to use the new registry URL.
+The Helm charts for the latest OpenEBS (v4.0 and above) are hosted in a new registry location https://openebs.github.io/openebs. To ensure seamless access to OpenEBS Helm charts, update your configurations to use the new registry URL.
 :::
 
 Verify helm is installed and helm repo is updated. You need helm 3.2 or more. 
