@@ -8,12 +8,6 @@ description: This guide explains about the IO engine pool metrics exporter.
 ---
 # Monitoring
 
-:::info
-A set of Grafana dashboards for Monitoring and visualization of exported metrics via various OpenEBS Storage are bundled with OpenEBS installation which is by default disabled.
-
-To enable the Grafana dashboards, see the instructions given in the [Installing OpenEBS documentation](../../../../quickstart-guide/installation.md#installation-via-helm).
-:::
-
 ## Pool Metrics Exporter
 
 The IO engine pool metrics exporter runs as a sidecar container within every I/O-engine pod and exposes pool usage metrics in Prometheus format. These metrics are exposed on port 9502 using an HTTP endpoint/metrics and are refreshed every five minutes.
