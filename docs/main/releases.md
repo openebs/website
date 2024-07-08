@@ -85,7 +85,7 @@ The workaround is to delete the old pod so the new pod can get scheduled. See th
 
 ### Watch Items and Known Issues - Replicated Storage
 
-- Replicated PV Mayastor does not support the capacity expansion of DiskPools as of v2.6.0.
+- Replicated PV Mayastor does not support the capacity expansion of DiskPools as of v2.7.0.
 
 - The IO engine pod has been observed to restart occasionally in response to heavy IO and the constant scaling up and down of volume replicas.
 
