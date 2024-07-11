@@ -571,6 +571,11 @@ module.exports = {
               type: "doc",
               id: "Solutioning/openebs-on-kubernetes-platforms/gke",
               label: "Google Kubernetes Engine"
+            },
+            {
+              type: "doc",
+              id: "Solutioning/openebs-on-kubernetes-platforms/rwx",
+              label: "Read-Write-Many"
             }
           ]
         },  
