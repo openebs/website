@@ -113,7 +113,6 @@ Make sure you have installed Replicated PV Mayastor before proceeding to the nex
   **Output**
   
   ```
-  $ kubectl create ns nfs-server
   namespace/nfs-server created
   ```
 
@@ -123,11 +122,6 @@ Make sure you have installed Replicated PV Mayastor before proceeding to the nex
 
   ```
   $ cat <<EOF | kubectl create -f -
-  ```
-
-  **Output**
-
-  ```
   apiVersion: v1
   kind: PersistentVolumeClaim
   metadata:
@@ -141,6 +135,11 @@ Make sure you have installed Replicated PV Mayastor before proceeding to the nex
         storage: 5Gi
     storageClassName: mayastor-3
   EOF
+  ```
+
+  **Output**
+
+  ```
   persistentvolumeclaim/nfs-server-claim created
   ```
 
@@ -292,11 +291,6 @@ Make sure you have installed Replicated PV Mayastor before proceeding to the nex
     parameters:
       server: nfs-server.nfs-server.svc.cluster.local
       share: /
-  #     subDir:
-  #     mountPermissions: "0"
-  #     csi.storage.k8s.io/provisioner-secret is only needed for providing mountOptions in DeleteVolume
-  #     csi.storage.k8s.io/provisioner-secret-name: "mount-options"
-  #     csi.storage.k8s.io/provisioner-secret-namespace: "default"
     reclaimPolicy: Delete
     volumeBindingMode: Immediate
     mountOptions:
