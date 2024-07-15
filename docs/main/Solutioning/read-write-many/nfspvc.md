@@ -1,41 +1,25 @@
 ---
-id: rwx
-title: Provisioning Read-Write-Many (RWX) PVCs
+id: nfspvc
+title: Provisioning NFS PVCs
 keywords: 
   - Read-Write-Many
   - RWX
   - NFS server
-  - Provisioning Read-Write-Many (RWX) PVCs
-description: In this document, you learn about Provisioning Read-Write-Many (RWX) PVCs.
+  - Provisioning NFS PVCs
+description: In this document, you learn about Provisioning NFS PVCs.
 ---
 
-# Provisioning Read-Write-Many (RWX) PVCs
+# Provisioning NFS PVCs
 
-Provisioning Read-Write-Many (RWX) Persistent Volume Claims (PVCs) involves setting up storage that can be simultaneously accessed in read-write mode by multiple nodes or pods within a Kubernetes cluster.
+Provisioning Network File System (NFS) Persistent Volume Claims (PVCs) involves setting up storage that can be simultaneously accessed in read-write mode by multiple nodes or pods within a Kubernetes cluster.
 
-Block storage, such as Persistent Volumes (PVs) in Kubernetes, is generally not designed to be mounted to multiple pods simultaneously due to several technical limitations and potential issues:
-
-- **File System Consistency**
-
-  Block storage devices are designed for exclusive access. Mounting the same block device to multiple pods can lead to file system corruption due to concurrent writes and uncoordinated access. Traditional file systems like ext4 or XFS are not designed to handle multiple writers, leading to inconsistencies and corruption.
-
-- **Read/Write Conflicts**
-
-  When multiple pods attempt to read from and write to the same block storage simultaneously, it can cause conflicts and data corruption. Block storage lacks the necessary coordination mechanisms to manage concurrent access, which is why shared access is problematic.
-
-- **Lack of Coordinated Locking**
-
-  File systems on block storage rely on locking mechanisms to ensure data integrity during concurrent access. These locks are not shared across different instances of the file system, leading to the risk of data corruption when the same block storage is mounted to multiple pods.
-
-- **Performance Issues**
-
-  Concurrent access by multiple pods can lead to performance degradation. The storage system might not be optimized for handling simultaneous I/O operations from multiple sources, causing bottlenecks and reduced performance.
+Block storage, such as Persistent Volumes (PVs) in Kubernetes, is generally not designed to be mounted to multiple pods simultaneously. Block storage devices are designed for exclusive access. When multiple pods attempt to read from and write to the same block storage simultaneously, it can cause conflicts.
 
 OpenEBS Replicated PV Mayastor supports ReadWriteMany (RWX) volumes by exposing regular Replicated PV Mayastor volumes via NFSv4 servers as a pod.
 
 ## Concept
 
-Replicated PV Mayastor uses the NFS (Network File System) server as a deployment with the NFS CSI driver. This provides PVCs in RWX mode so that multiple web applications can access the data in a shared fashion. Replicated PV Mayastor volumes are used as persistent backend storage for these NFS servers to provide a scalable and manageable RWX shared storage solution.
+Replicated PV Mayastor uses the NFS server as a deployment with the NFS CSI driver. This provides PVCs in RWX mode so that multiple applications can access the data in a shared fashion. Replicated PV Mayastor volumes are used as persistent backend storage for these NFS servers to provide a scalable and manageable RWX shared storage solution.
 
 ## Requirements
 
@@ -45,7 +29,7 @@ NFS volumes can be mounted as a `PersistentVolume` in Kubernetes pods. It is als
 
 ### NFS CSI Driver
 
-An NFS CSI driver is a specific type of Container Storage Interface (CSI) driver that enables container orchestration systems, like Kubernetes, to manage storage using the Network File System (NFS). NFS (A distributed file system protocol) allows multiple machines to share directories over a network. The NFS CSI driver facilitates the use of NFS storage by providing the necessary interface for creating, mounting, and managing NFS volumes within a containerized environment, ensuring that applications running in containers can easily access and use NFS-based storage.
+An NFS CSI driver is a specific type of Container Storage Interface (CSI) driver that enables container orchestration systems, like Kubernetes, to manage storage using the NFS. NFS (A distributed file system protocol) allows multiple machines to share directories over a network. The NFS CSI driver facilitates the use of NFS storage by providing the necessary interface for creating, mounting, and managing NFS volumes within a containerized environment, ensuring that applications running in containers can easily access and use NFS-based storage.
 
 CSI plugin name: `nfs.csi.k8s.io`. This driver requires existing and already configured NFSv3 or NFSv4 server. It supports dynamic provisioning of Persistent Volumes via PVCs by creating a new sub directory under NFS server. This can be deployed using Helm. See [NFS CSI driver for Kubernetes](https://github.com/kubernetes-csi/csi-driver-nfs?tab=readme-ov-file#install-driver-on-a-kubernetes-cluster) to install NFS CSI driver on a Kubernetes cluster.
 
@@ -392,7 +376,7 @@ Make sure you have installed Replicated PV Mayastor before proceeding to the nex
   Events:             <none>
   ```
 
-### Provisioning RWX PVCs
+### NFS PVC Creation
 
 1. Create PVC with NFS CSI Driver Storage Class `nfs-csi` (that was created in last step).
 

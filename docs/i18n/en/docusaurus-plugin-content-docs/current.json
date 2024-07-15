@@ -207,8 +207,8 @@
     "message": "Solutioning",
     "description": "The label for category Solutioning in sidebar docs"
   },
-  "sidebar.docs.category.OpenEBS on K8s Platforms": {
-    "message": "OpenEBS on K8s Platforms",
-    "description": "The label for category OpenEBS on K8s Platforms in sidebar docs"
+  "sidebar.docs.category.Read-Write-Many": {
+    "message": "Read-Write-Many",
+    "description": "The label for category Read-Write-Many in sidebar docs"
   }
 }
