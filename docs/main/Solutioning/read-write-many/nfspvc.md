@@ -31,11 +31,11 @@ NFS volumes can be mounted as a `PersistentVolume` in Kubernetes pods. It is als
 
 An NFS CSI driver is a specific type of Container Storage Interface (CSI) driver that enables container orchestration systems, like Kubernetes, to manage storage using the NFS. NFS (A distributed file system protocol) allows multiple machines to share directories over a network. The NFS CSI driver facilitates the use of NFS storage by providing the necessary interface for creating, mounting, and managing NFS volumes within a containerized environment, ensuring that applications running in containers can easily access and use NFS-based storage.
 
-CSI plugin name: `nfs.csi.k8s.io`. This driver requires existing and already configured NFSv3 or NFSv4 server. It supports dynamic provisioning of Persistent Volumes via PVCs by creating a new sub directory under NFS server. This can be deployed using Helm. See [NFS CSI driver for Kubernetes](https://github.com/kubernetes-csi/csi-driver-nfs?tab=readme-ov-file#install-driver-on-a-kubernetes-cluster) to install NFS CSI driver on a Kubernetes cluster.
+CSI plugin name: `nfs.csi.k8s.io`. This driver requires an existing and already configured NFSv3 or NFSv4 server. It supports dynamic provisioning of Persistent Volumes via PVCs by creating a new sub-directory under the NFS server. This can be deployed using Helm. See [NFS CSI driver for Kubernetes](https://github.com/kubernetes-csi/csi-driver-nfs?tab=readme-ov-file#install-driver-on-a-kubernetes-cluster) to install NFS CSI driver on a Kubernetes cluster.
 
 ### Replicated PV Mayastor
 
-Replicated PV Mayastor is a performance optimised Container Native Storage (CNS) solution. The goal of OpenEBS is to extend Kubernetes with a declarative data plane, providing flexible persistent storage for stateful applications.
+Replicated PV Mayastor is a performance-optimised Container Native Storage (CNS) solution. The goal of OpenEBS is to extend Kubernetes with a declarative data plane, providing flexible persistent storage for stateful applications.
 
 Make sure you have installed Replicated PV Mayastor before proceeding to the next step. See the [Installing OpenEBS documentation](../../../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.
 
@@ -45,7 +45,7 @@ Make sure you have installed Replicated PV Mayastor before proceeding to the nex
 
 1. Create a Replicated PV Mayastor Pool.
 
-  Create a Replicated PV Mayastor pool that satisfies the performance and the availability requirements. See [Replicated PV Mayastor Configuration documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-diskpools) for more details.
+  Create a Replicated PV Mayastor pool that satisfies the performance and availability requirements. See [Replicated PV Mayastor Configuration documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-diskpools) for more details.
 
   **Example of a Replicated PV Mayastor Pool**
 
@@ -100,7 +100,7 @@ Make sure you have installed Replicated PV Mayastor before proceeding to the nex
   namespace/nfs-server created
   ```
 
-4. Create a PVC with a desired storage for the NFS server using the Replicated PV Mayastor storage class.
+4. Create a PVC with the desired storage for the NFS server using the Replicated PV Mayastor storage class.
 
   **Command**
 
@@ -378,7 +378,7 @@ Make sure you have installed Replicated PV Mayastor before proceeding to the nex
 
 ### NFS PVC Creation
 
-1. Create PVC with NFS CSI Driver Storage Class `nfs-csi` (that was created in last step).
+1. Create PVC with NFS CSI Driver Storage Class `nfs-csi` (that was created in the last step).
 
 **YAML**
 
@@ -475,6 +475,6 @@ nginx-deployment-6c664cc4c-z64h4   1/1     Running   0          22s   10.32.0.14
 
 ## See Also
 
-- [Replicated PV Mayastor Installation on MicroK8s](microkubernetes.md)
-- [Replicated PV Mayastor Installation on Talos](talos.md)
-- [Replicated PV Mayastor Installation on Google Kubernetes Engine](gke.md)
+- [Replicated PV Mayastor Installation on MicroK8s](../openebs-on-kubernetes-platforms/microkubernetes.md)
+- [Replicated PV Mayastor Installation on Talos](../openebs-on-kubernetes-platforms/talos.md)
+- [Replicated PV Mayastor Installation on Google Kubernetes Engine](../openebs-on-kubernetes-platforms/gke.md)

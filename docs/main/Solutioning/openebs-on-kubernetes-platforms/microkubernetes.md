@@ -80,4 +80,4 @@ Refer to the [Replicated PV Mayastor Configuration](../replicated-pv-mayastor/rs
 
 - [Replicated PV Mayastor Installation on Talos](talos.md)
 - [Replicated PV Mayastor Installation on Google Kubernetes Engine](gke.md)
-- [Provisioning Read-Write-Many (RWX) PVCs](rwx.md)
+- [Provisioning NFS PVCs](../read-write-many/nfspvc.md)

@@ -314,4 +314,4 @@ root@nginx-deployment-7bf66b59f5-mxcdp:/volume#
 
 - [Replicated PV Mayastor Installation on MicroK8s](microkubernetes.md)
 - [Replicated PV Mayastor Installation on Talos](talos.md)
-- [Provisioning Read-Write-Many (RWX) PVCs](rwx.md)
+- [Provisioning NFS PVCs](../read-write-many/nfspvc.md)

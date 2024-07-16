@@ -115,4 +115,4 @@ To install Replicated PV Mayastor using Helm on Talos, refer to the [installatio
 
 - [Replicated PV Mayastor Installation on MicroK8s](microkubernetes.md)
 - [Replicated PV Mayastor Installation on Google Kubernetes Engine](gke.md)
-- [Provisioning Read-Write-Many (RWX) PVCs](rwx.md)
+- [Provisioning NFS PVCs](../read-write-many/nfspvc.md)
