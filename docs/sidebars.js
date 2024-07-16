@@ -546,7 +546,7 @@ module.exports = {
       type: "category",
       label: "Solutioning",
       customProps: {
-        icon: "File"
+        icon: "Search"
       },
       items: [
         {
@@ -571,6 +571,21 @@ module.exports = {
               type: "doc",
               id: "Solutioning/openebs-on-kubernetes-platforms/gke",
               label: "Google Kubernetes Engine"
+            }
+          ]
+        },
+        {
+          collapsed: true,
+          type: "category",
+          label: "Read-Write-Many",
+          customProps: {
+            icon: "Edit"
+          },
+          items: [
+            {
+              type: "doc",
+              id: "Solutioning/read-write-many/nfspvc",
+              label: "Provisioning NFS PVCs"
             }
           ]
         },  

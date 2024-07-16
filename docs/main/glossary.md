@@ -33,6 +33,7 @@ description: This section lists the abbreviations used thorughout the OpenEBS do
 | PV | Persistent Volume |
 | PVC |	Persistent Volume Claim |
 | RBAC | Role-Based Access Control |
+| RWX | Read-Write-Many |
 | SSD | Solid State Drive |
 | SSH | Secure Socket Shell |
 | SPDK | Storage Performance Development Kit |
