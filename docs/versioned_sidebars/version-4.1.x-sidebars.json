@@ -545,7 +545,7 @@
             "type": "category",
             "label": "Solutioning",
             "customProps": {
-              "icon": "File"
+              "icon": "Search"
             },
             "items": [
               {
@@ -570,6 +570,21 @@
                     "type": "doc",
                     "id": "version-4.1.x/Solutioning/openebs-on-kubernetes-platforms/gke",
                     "label": "Google Kubernetes Engine"
+                  }
+                ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Read-Write-Many",
+                "customProps": {
+                  "icon": "Edit"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "version-4.1.x/Solutioning/read-write-many/nfspvc",
+                    "label": "Provisioning NFS PVCs"
                   }
                 ]
               }  
