@@ -10,7 +10,7 @@ description: This guide will help you to configure OpenEBS Replicated PV Mayasto
 
 ## Create DiskPool\(s\)
 
-When a node allocates storage capacity for a replica of a persistent volume (PV) it does so from a DiskPool. Each node may create and manage zero, one, or more such pools. The ownership of a pool by a node is exclusive. A pool can manage only one block device, which constitutes the entire data persistence layer for that pool and thus defines its maximum storage capacity.
+When a node allocates storage capacity for a replica of a Persistent Volume (PV) it does so from a DiskPool. Each node may create and manage zero, one, or more such pools. The ownership of a pool by a node is exclusive. A pool can manage only one block device, which constitutes the entire data persistence layer for that pool and thus defines its maximum storage capacity.
 
 A pool is defined declaratively, through the creation of a corresponding `DiskPool` Custom Resource (CR) on the cluster. The DiskPool must be created in the same namespace where the Replicated PV Mayastor has been deployed. User configurable parameters of this resource type include a unique name for the pool, the node name on which it will be hosted and a reference to a disk device that is accessible from that node. The pool definition requires the reference to its member block device to adhere to a discrete range of schemas, each associated with a specific access mechanism/transport/ or device type.
 
@@ -85,7 +85,7 @@ When using the examples given as guides to creating your own pools, remember to 
 :::
 
 :::note
-Existing schemas in CR definitions (in older versions) will be updated from v1alpha1 to v1beta1 after upgrading to Replicated PV Mayastor 2.4 and above. To resolve errors encountered about the upgrade, see [here](../../../troubleshooting/troubleshooting-replicated-storage.md).
+Existing schemas in CR definitions (in older versions) will be updated from v1alpha1 to v1beta1 after upgrading to Replicated PV Mayastor 2.4 and above. To resolve errors encountered about the upgrade, see the [Troubleshooting - Replicated Storage documentation](../../../troubleshooting/troubleshooting-replicated-storage.md).
 :::
 
 ### Verify Pool Creation and Status
@@ -111,6 +111,7 @@ Replicated PV Mayastor dynamically provisions PersistentVolumes \(PVs\) based on
 Most importantly StorageClass definition is used to control the level of data protection afforded to it (i.e. the number of synchronous data replicas that are maintained for purposes of redundancy). It is possible to create any number of StorageClass definitions, spanning all permitted parameter permutations.
 
 We illustrate this quickstart guide with two examples of possible use cases; one which offers no data redundancy \(i.e. a single data replica\), and another having three data replicas. 
+
 :::info
 Both the example YAMLs given below have [thin provisioning](#thin) enabled. You can modify these as required to match your own desired test cases, within the limitations of the cluster under test.
 :::
@@ -144,7 +145,7 @@ EOF
 ```
 
 :::info
-The default installation of Replicated PV Mayastor includes the creation of a StorageClass with the name `mayastor-single-replica`. The replication factor is set to 1. Users may either use this StorageClass or create their own.
+The default installation of Replicated PV Mayastor includes the creation of a StorageClass with the name `mayastor-single-replica`. The replication factor is set to 1. You may either use this StorageClass or create your own.
 :::
 
 ## Storage Class Parameters
@@ -191,6 +192,10 @@ The `agents.core.capacity.thin` spec present in the Replicated PV Mayastor helm 
 - For a pool of a particular size, say 10 Gigabytes, a volume > 10 Gigabytes cannot be created, as Replicated PV Mayastor currently does not support pool expansion.
 - The replicas for a given volume can be either all thick or all thin. The same volume cannot have a combination of thick and thin replicas.
 :::
+
+### "allowVolumeExpansion"
+
+The `allowVolumeExpansion` parameter enables the expansion of PVs when using Persistent Volume Claims (PVCs). You must set the `allowVolumeExpansion` parameter to `true` in the StorageClass to enable the expansion of a volume. In order to expand volumes where volume expansion is enabled, edit the size of the PVC. See the [Resize documentation](../replicated-pv-mayastor/advanced-operations/resize.md) for more details.
 
 ## Topology Parameters
 
