@@ -1,0 +1,94 @@
+{
+  "version.label": {
+    "message": "4.1.x",
+    "description": "The label for version 4.1.x"
+  },
+  "sidebar.docs.category.Introduction to OpenEBS": {
+    "message": "Introduction to OpenEBS",
+    "description": "The label for category Introduction to OpenEBS in sidebar docs"
+  },
+  "sidebar.docs.category.Concepts": {
+    "message": "Concepts",
+    "description": "The label for category Concepts in sidebar docs"
+  },
+  "sidebar.docs.category.Data Engines": {
+    "message": "Data Engines",
+    "description": "The label for category Data Engines in sidebar docs"
+  },
+  "sidebar.docs.category.Quickstart Guide": {
+    "message": "Quickstart Guide",
+    "description": "The label for category Quickstart Guide in sidebar docs"
+  },
+  "sidebar.docs.category.User Guides": {
+    "message": "User Guides",
+    "description": "The label for category User Guides in sidebar docs"
+  },
+  "sidebar.docs.category.Local Storage User Guide": {
+    "message": "Local Storage User Guide",
+    "description": "The label for category Local Storage User Guide in sidebar docs"
+  },
+  "sidebar.docs.category.Local PV Hostpath": {
+    "message": "Local PV Hostpath",
+    "description": "The label for category Local PV Hostpath in sidebar docs"
+  },
+  "sidebar.docs.category.Local PV LVM": {
+    "message": "Local PV LVM",
+    "description": "The label for category Local PV LVM in sidebar docs"
+  },
+  "sidebar.docs.category.Advanced Operations": {
+    "message": "Advanced Operations",
+    "description": "The label for category Advanced Operations in sidebar docs"
+  },
+  "sidebar.docs.category.Local PV ZFS": {
+    "message": "Local PV ZFS",
+    "description": "The label for category Local PV ZFS in sidebar docs"
+  },
+  "sidebar.docs.category.Additional Information": {
+    "message": "Additional Information",
+    "description": "The label for category Additional Information in sidebar docs"
+  },
+  "sidebar.docs.category.Replicated Storage User Guide": {
+    "message": "Replicated Storage User Guide",
+    "description": "The label for category Replicated Storage User Guide in sidebar docs"
+  },
+  "sidebar.docs.category.Replicated PV Mayastor": {
+    "message": "Replicated PV Mayastor",
+    "description": "The label for category Replicated PV Mayastor in sidebar docs"
+  },
+  "sidebar.docs.category.Data Migration": {
+    "message": "Data Migration",
+    "description": "The label for category Data Migration in sidebar docs"
+  },
+  "sidebar.docs.category.Migration using Velero": {
+    "message": "Migration using Velero",
+    "description": "The label for category Migration using Velero in sidebar docs"
+  },
+  "sidebar.docs.category.Migration for Distributed DB": {
+    "message": "Migration for Distributed DB",
+    "description": "The label for category Migration for Distributed DB in sidebar docs"
+  },
+  "sidebar.docs.category.Migration for Replicated DB": {
+    "message": "Migration for Replicated DB",
+    "description": "The label for category Migration for Replicated DB in sidebar docs"
+  },
+  "sidebar.docs.category.Solutioning": {
+    "message": "Solutioning",
+    "description": "The label for category Solutioning in sidebar docs"
+  },
+  "sidebar.docs.category.OpenEBS on K8s Platforms": {
+    "message": "OpenEBS on K8s Platforms",
+    "description": "The label for category OpenEBS on K8s Platforms in sidebar docs"
+  },
+  "sidebar.docs.category.Read-Write-Many": {
+    "message": "Read-Write-Many",
+    "description": "The label for category Read-Write-Many in sidebar docs"
+  },
+  "sidebar.docs.category.Troubleshooting": {
+    "message": "Troubleshooting",
+    "description": "The label for category Troubleshooting in sidebar docs"
+  },
+  "sidebar.docs.category.Support": {
+    "message": "Support",
+    "description": "The label for category Support in sidebar docs"
+  }
+}
