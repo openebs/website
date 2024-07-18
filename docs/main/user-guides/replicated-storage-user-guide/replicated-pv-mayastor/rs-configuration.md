@@ -68,6 +68,25 @@ spec:
 EOF
 ```
 
+The diskpool is created with labels to satisfy `PoolHasTopologyKey` and `poolAffinityTopologyLabel` parameters of the storage class. This helps place the replicas of volume based on the pool labels.
+
+**Example DiskPool Definition with Labels**
+```
+cat <<EOF | kubectl create -f -
+apiVersion: "openebs.io/v1beta2"
+kind: DiskPool
+metadata:
+  name: pool-on-node-1
+  namespace: openebs
+spec:
+  node: workernode-1-hostname
+  disks: ["/dev/disk/by-id/<id>"]
+  topology:
+    labelled:
+      topology-key:topology-value
+EOF
+```
+
 **YAML**
 ```text
 apiVersion: "openebs.io/v1beta2"
