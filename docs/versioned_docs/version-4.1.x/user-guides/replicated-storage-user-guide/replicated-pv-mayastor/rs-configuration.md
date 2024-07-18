@@ -68,6 +68,25 @@ spec:
 EOF
 ```
 
+The diskpool is created with labels to satisfy `poolHasTopologyKey` and `poolAffinityTopologyLabel` parameters of the storage class. This helps place the replicas of volume based on the pool labels.
+
+**Example DiskPool Definition with Labels**
+```
+cat <<EOF | kubectl create -f -
+apiVersion: "openebs.io/v1beta2"
+kind: DiskPool
+metadata:
+  name: pool-on-node-1
+  namespace: openebs
+spec:
+  node: workernode-1-hostname
+  disks: ["/dev/disk/by-id/<id>"]
+  topology:
+    labelled:
+      topology-key: topology-value
+EOF
+```
+
 **YAML**
 ```text
 apiVersion: "openebs.io/v1beta2"
@@ -165,7 +184,7 @@ Make sure the requested filesystem driver is installed on all worker nodes in th
 
 ### "protocol"
 
-The parameter 'protocol' takes the value `nvmf`(NVMe over TCP protocol). It is used to mount the volume (target) on the application node.
+The parameter `protocol` takes the value `nvmf`(NVMe over TCP protocol). It is used to mount the volume (target) on the application node.
 
 ### "repl"
 
@@ -195,7 +214,7 @@ The `agents.core.capacity.thin` spec present in the Replicated PV Mayastor helm 
 
 ### "allowVolumeExpansion"
 
-The `allowVolumeExpansion` parameter enables the expansion of PVs when using Persistent Volume Claims (PVCs). You must set the `allowVolumeExpansion` parameter to `true` in the StorageClass to enable the expansion of a volume. In order to expand volumes where volume expansion is enabled, edit the size of the PVC. See the [Resize documentation](../replicated-pv-mayastor/advanced-operations/resize.md) for more details.
+The parameter `allowVolumeExpansion` enables the expansion of PVs when using Persistent Volume Claims (PVCs). You must set the `allowVolumeExpansion` parameter to `true` in the StorageClass to enable the expansion of a volume. In order to expand volumes where volume expansion is enabled, edit the size of the PVC. See the [Resize documentation](../replicated-pv-mayastor/advanced-operations/resize.md) for more details.
 
 ## Topology Parameters
 
@@ -245,9 +264,9 @@ worker-node-3  65.21.4.103:10124    Online  zone=eu-east-1
 worker-node-3  37.27.13.10:10124    Online  zone=us-west-1
 ```
 
-### "NodeHasTopologyKey"
+### "nodeHasTopologyKey"
 
-The parameter 'NodeHasTopologyKey' will allow the placement of replicas on the nodes having a label whose key matches the key specified in the storage class.
+The parameter `nodeHasTopologyKey` will allow the placement of replicas on the nodes having a label whose key matches the key specified in the storage class.
 
 **Command**
 ```text
@@ -287,9 +306,9 @@ In this case, the volume replicas will be provisioned on any two of the three no
 - `worker-node-2` and `worker-node-3`
 as the storage class has `rack` as the value for `nodeHasTopologyKey` that matches the label key of the node.
 
-### "NodeSpreadTopologyKey"
+### "nodeSpreadTopologyKey"
 
-The parameter 'NodeSpreadTopologyKey' will allow the placement of replicas on the node that has label keys that are identical to the keys specified in the storage class but have different values.
+The parameter `nodeSpreadTopologyKey` will allow the placement of replicas on the node that has label keys that are identical to the keys specified in the storage class but have different values.
 
 **Command**
 ```text
@@ -333,7 +352,7 @@ as the storage class has `zone` as the value for `nodeSpreadTopologyKey` that ma
 
 ### "poolAffinityTopologyLabel"
 
-The parameter 'poolAffinityTopologyLabel' will allow the placement of replicas on the pool that exactly match the labels defined in the storage class.
+The parameter `poolAffinityTopologyLabel` will allow the placement of replicas on the pool that exactly match the labels defined in the storage class.
 
 **Command**
 ```text
@@ -410,9 +429,9 @@ pool-on-node-1  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true  
 
 For the case shown above, the volume replicas will be provisioned on `pool-on-node-0` and `pool-on-node-3` only as they match the labels specified under `poolAffinityTopologyLabel` in the storage class that is equal to zone=us-west-1.
 
-### "PoolHasTopologyKey"
+### "poolHasTopologyKey"
 
-The parameter 'PoolHasTopologyKey' will allow the placement of replicas on the pool that has label keys same as the keys passed in the storage class.
+The parameter `poolHasTopologyKey` will allow the placement of replicas on the pool that has label keys same as the keys passed in the storage class.
 
 **Command**
 ```text
