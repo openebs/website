@@ -20,11 +20,7 @@ Prometheus and Grafana, together provide a robust solution for collecting metric
 
 ## Monitoring Setup
 
-OpenEBS provides a basic cloud-native monitoring stack built using Prometheus and Grafana, as an add-on Helm chart. This has pre-configured dashboards for visualization of metrics from the various OpenEBS storages.
-
-:::info
-A set of Grafana dashboards for monitoring and visualization of exported metrics via various OpenEBS storage are bundled with OpenEBS installation which is by default **disabled**. Grafana will be using Prometheus as a data source.
-:::
+OpenEBS provides a basic cloud-native monitoring stack built using Prometheus and Grafana, as an add-on Helm chart. This has pre-configured dashboards for visualization of metrics from the various OpenEBS storages. Grafana will be using Prometheus as a data source.
 
 ### Setup the Monitoring Helm Repository
 
