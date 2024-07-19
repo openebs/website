@@ -1,92 +1,4 @@
 {
-  "sidebar.tutorialSidebar.category.Introduction": {
-    "message": "Introduction",
-    "description": "The label for category Introduction in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.Concepts": {
-    "message": "Concepts",
-    "description": "The label for category Concepts in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.User guides": {
-    "message": "User guides",
-    "description": "The label for category User guides in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.Stateful applications": {
-    "message": "Stateful applications",
-    "description": "The label for category Stateful applications in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.Troubleshooting": {
-    "message": "Troubleshooting",
-    "description": "The label for category Troubleshooting in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.Additional info": {
-    "message": "Additional info",
-    "description": "The label for category Additional info in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.Deprecated releases": {
-    "message": "Deprecated releases",
-    "description": "The label for category Deprecated releases in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.Stateful Applications": {
-    "message": "Stateful Applications",
-    "description": "The label for category Stateful Applications in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.additional-info": {
-    "message": "additional-info",
-    "description": "The label for category additional-info in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.concepts": {
-    "message": "concepts",
-    "description": "The label for category concepts in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.deprecated": {
-    "message": "deprecated",
-    "description": "The label for category deprecated in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.user-guides": {
-    "message": "user-guides",
-    "description": "The label for category user-guides in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.cstor": {
-    "message": "cstor",
-    "description": "The label for category cstor in sidebar tutorialSidebar"
-  },
-  "sidebar.sidebar.category.Introduction": {
-    "message": "Introduction",
-    "description": "The label for category Introduction in sidebar sidebar"
-  },
-  "sidebar.sidebar.category.Concepts": {
-    "message": "Concepts",
-    "description": "The label for category Concepts in sidebar sidebar"
-  },
-  "sidebar.sidebar.category.User Guides": {
-    "message": "User Guides",
-    "description": "The label for category User Guides in sidebar sidebar"
-  },
-  "sidebar.sidebar.category.cStor": {
-    "message": "cStor",
-    "description": "The label for category cStor in sidebar sidebar"
-  },
-  "sidebar.sidebar.category.Stateful Applications": {
-    "message": "Stateful Applications",
-    "description": "The label for category Stateful Applications in sidebar sidebar"
-  },
-  "sidebar.sidebar.category.Troubleshooting": {
-    "message": "Troubleshooting",
-    "description": "The label for category Troubleshooting in sidebar sidebar"
-  },
-  "sidebar.sidebar.category.Additional info": {
-    "message": "Additional info",
-    "description": "The label for category Additional info in sidebar sidebar"
-  },
-  "sidebar.sidebar.category.Deprecated": {
-    "message": "Deprecated",
-    "description": "The label for category Deprecated in sidebar sidebar"
-  },
-  "sidebar.docs.category.Introduction": {
-    "message": "Introduction",
-    "description": "The label for category Introduction in sidebar docs"
-  },
   "sidebar.docs.category.Concepts": {
     "message": "Concepts",
     "description": "The label for category Concepts in sidebar docs"
@@ -95,25 +7,9 @@
     "message": "User Guides",
     "description": "The label for category User Guides in sidebar docs"
   },
-  "sidebar.docs.category.cStor": {
-    "message": "cStor",
-    "description": "The label for category cStor in sidebar docs"
-  },
-  "sidebar.docs.category.Stateful Applications": {
-    "message": "Stateful Applications",
-    "description": "The label for category Stateful Applications in sidebar docs"
-  },
   "sidebar.docs.category.Troubleshooting": {
     "message": "Troubleshooting",
     "description": "The label for category Troubleshooting in sidebar docs"
-  },
-  "sidebar.docs.category.Additional info": {
-    "message": "Additional info",
-    "description": "The label for category Additional info in sidebar docs"
-  },
-  "sidebar.docs.category.Deprecated": {
-    "message": "Deprecated",
-    "description": "The label for category Deprecated in sidebar docs"
   },
   "version.label": {
     "message": "main",
@@ -131,17 +27,9 @@
     "message": "Quickstart Guide",
     "description": "The label for category Quickstart Guide in sidebar docs"
   },
-  "sidebar.docs.category.Local Engine User Guide": {
-    "message": "Local Engine User Guide",
-    "description": "The label for category Local Engine User Guide in sidebar docs"
-  },
   "sidebar.docs.category.Additional Information": {
     "message": "Additional Information",
     "description": "The label for category Additional Information in sidebar docs"
-  },
-  "sidebar.docs.category.Replicated Engine User Guide": {
-    "message": "Replicated Engine User Guide",
-    "description": "The label for category Replicated Engine User Guide in sidebar docs"
   },
   "sidebar.docs.category.Advanced Operations": {
     "message": "Advanced Operations",
@@ -158,14 +46,6 @@
   "sidebar.docs.category.Support": {
     "message": "Support",
     "description": "The label for category Support in sidebar docs"
-  },
-  "sidebar.docs.category.Migration": {
-    "message": "Migration",
-    "description": "The label for category Migration in sidebar docs"
-  },
-  "sidebar.docs.category.Legacy Storage to New Storage": {
-    "message": "Legacy Storage to New Storage",
-    "description": "The label for category Legacy Storage to New Storage in sidebar docs"
   },
   "sidebar.docs.category.Data Migration": {
     "message": "Data Migration",
@@ -199,10 +79,6 @@
     "message": "Replicated PV Mayastor",
     "description": "The label for category Replicated PV Mayastor in sidebar docs"
   },
-  "sidebar.docs.category.OpenEBS on Kubernetes Platforms": {
-    "message": "OpenEBS on Kubernetes Platforms",
-    "description": "The label for category OpenEBS on Kubernetes Platforms in sidebar docs"
-  },
   "sidebar.docs.category.Solutioning": {
     "message": "Solutioning",
     "description": "The label for category Solutioning in sidebar docs"
@@ -210,5 +86,9 @@
   "sidebar.docs.category.Read-Write-Many": {
     "message": "Read-Write-Many",
     "description": "The label for category Read-Write-Many in sidebar docs"
+  },
+  "sidebar.docs.category.OpenEBS on K8s Platforms": {
+    "message": "OpenEBS on K8s Platforms",
+    "description": "The label for category OpenEBS on K8s Platforms in sidebar docs"
   }
 }
