@@ -81,7 +81,7 @@ Earlier, the scale of volume was not allowed when the volume already has a snaps
 ### Watch Items and Known Issues - Local Storage
 
 Local PV ZFS / Local PV LVM on a single worker node encounters issues after upgrading to the latest versions. The issue is specifically associated with the change of the controller manifest to a Deployment type, which results in the failure of new controller pods to join the Running state. The issue appears to be due to the affinity rules set in the old pod, which are not present in the new pods. As a result, since both the old and new pods have relevant labels, the scheduler cannot place the new pod on the same node, leading to scheduling failures when there's only a single node.
-The workaround is to delete the old pod so the new pod can get scheduled. See the issue [#3741](https://github.com/openebs/openebs/issues/3751) for more details.
+The workaround is to delete the old pod so the new pod can get scheduled. Refer the issue [#3741](https://github.com/openebs/openebs/issues/3751) for more details.
 
 ### Watch Items and Known Issues - Replicated Storage
 

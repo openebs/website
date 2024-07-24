@@ -173,7 +173,7 @@ There is NO WARRANTY, to the extent permitted by law.
 Type "show copying" and "show warranty" for details.
 This GDB was configured as "x86_64-linux-gnu".
 Type "show configuration" for configuration details.
-For bug reporting instructions, please see:
+For bug reporting instructions, see:
 <http://www.gnu.org/software/gdb/bugs/>.
 Find the GDB manual and other documentation resources online at:
     <http://www.gnu.org/software/gdb/documentation/>.

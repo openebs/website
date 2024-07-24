@@ -117,7 +117,7 @@ Check the provisioned volumes on the node, we need to run pvscan --cache command
 
  **AccessMode**
 
-LVM-LocalPV supports only ReadWriteOnce access mode i.e. volume can be mounted as read-write by a single node. AccessMode is a required field, if the field is unspecified then it will lead to a creation error. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/access_mode.md) for more information about the access modes workflow.
+LVM-LocalPV supports only ReadWriteOnce access mode i.e. volume can be mounted as read-write by a single node. AccessMode is a required field, if the field is unspecified then it will lead to a creation error. Refer [Access Modes](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/access_mode.md) for more information about the access modes workflow.
 
 ```
 kind: PersistentVolumeClaim
@@ -135,7 +135,7 @@ spec:
 
 **StorageClassName**
 
-LVM CSI-Driver supports dynamic provision of volume for the PVCs referred to as LVM storageclass. StorageClassName is a required field, if the field is unspecified then it will lead to provision error. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/storage_class.md) for more information about the dynamic provisioning workflow.
+LVM CSI-Driver supports dynamic provision of volume for the PVCs referred to as LVM storageclass. StorageClassName is a required field, if the field is unspecified then it will lead to provision error. Refer [StorageClass Reference](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/storage_class.md) for more information about the dynamic provisioning workflow.
 
 ```
 kind: PersistentVolumeClaim
@@ -153,7 +153,7 @@ spec:
 
 **Capacity Resource**
 
-Admin/User can specify the desired capacity for LVM volume. CSI-Driver will provision a volume if the underlying volume group has requested capacity available else provisioning volume will be errored. StorageClassName is a required field, if the field is unspecified then it will lead to provisioning errors. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/capacity_resource.md) for more information about the workflows.
+Admin/User can specify the desired capacity for LVM volume. CSI-Driver will provision a volume if the underlying volume group has requested capacity available else provisioning volume will be errored. StorageClassName is a required field, if the field is unspecified then it will lead to provisioning errors. Refer [Resource Request](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/capacity_resource.md) for more information about the workflows.
 
 ```
 kind: PersistentVolumeClaim
@@ -177,7 +177,7 @@ Block (Block mode can be used in a case where the application itself maintains f
 Filesystem (Application which requires filesystem as a prerequisite) 
 
 :::note
-If unspecified defaults to Filesystem mode. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/volume_mode.md) for more information about workflows.
+If unspecified defaults to Filesystem mode. Refer [Volume Mode](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/volume_mode.md) for more information about workflows.
 :::
 
 ```
@@ -197,7 +197,7 @@ spec:
 
 **Selectors (Optional)**
 
-Users can bind any of the retained LVM volumes to the new PersistentVolumeClaim object via the selector field. If the selector and [volumeName](https://github.com/openebs/lvm-localpv/blob/develop/docs/persistentvolumeclaim.md#volumename-optional) fields are unspecified then the LVM CSI driver will provision new volume. If the volume selector is specified then request will not reach to local pv driver. This is a use case of pre-provisioned volume. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/selector.md) for more information about the workflows.
+Users can bind any of the retained LVM volumes to the new PersistentVolumeClaim object via the selector field. If the selector and [volumeName](https://github.com/openebs/lvm-localpv/blob/develop/docs/persistentvolumeclaim.md#volumename-optional) fields are unspecified then the LVM CSI driver will provision new volume. If the volume selector is specified then request will not reach to local pv driver. This is a use case of pre-provisioned volume. Refer [Volume Selector](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/selector.md) for more information about the workflows.
 
 Follow the below steps to specify selector on PersistentVolumeClaim:
 
@@ -251,7 +251,7 @@ pvc-8376b776-75f9-4786-8311-f8780adfabdb   6Gi        RWO            Retain     
 
 **VolumeName (Optional)**
 
-VolumeName can be used to bind PersistentVolumeClaim(PVC) to retained PersistentVolume(PV). When VolumeName is specified K8s will ignore [selector field](https://github.com/openebs/lvm-localpv/blob/develop/docs/persistentvolumeclaim.md#selectors-optional). If volumeName field is specified Kubernetes will try to bind to specified volume(It will help to create claims for pre provisioned volume). If volumeName is unspecified then CSI driver will try to provision new volume. See [here](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/volume_name.md) for more information about the workflows.
+VolumeName can be used to bind PersistentVolumeClaim(PVC) to retained PersistentVolume(PV). When VolumeName is specified K8s will ignore [selector field](https://github.com/openebs/lvm-localpv/blob/develop/docs/persistentvolumeclaim.md#selectors-optional). If volumeName field is specified Kubernetes will try to bind to specified volume(It will help to create claims for pre provisioned volume). If volumeName is unspecified then CSI driver will try to provision new volume. Refer [Volume Name](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/volume_name.md) for more information about the workflows.
 
 :::note
 Before creating PVC make retained/preprovisioned PersistentVolume Available by removing claimRef on PersistentVolume.

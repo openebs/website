@@ -9,9 +9,9 @@ description: This section will help you to deploy a test application.
 ---
 
 :::info
-- See [Local PV LVM Deployment](../user-guides/local-storage-user-guide/local-pv-lvm/lvm-deployment.md) to deploy Local PV LVM.
-- See [Local PV ZFS Deployment](../user-guides/local-storage-user-guide/local-pv-zfs/zfs-deployment.md) to deploy Local PV ZFS.
-- See [Replicated PV Mayastor Deployment](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-deployment.md) to deploy Replicated PV Mayastor.
+- Refer to the [Local PV LVM Deployment documentation](../user-guides/local-storage-user-guide/local-pv-lvm/lvm-deployment.md) to deploy Local PV LVM.
+- Refer to the [Local PV ZFS Deployment documentation](../user-guides/local-storage-user-guide/local-pv-zfs/zfs-deployment.md) to deploy Local PV ZFS.
+- Refer to the [Replicated PV Mayastor Deployment documentation](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-deployment.md) to deploy Replicated PV Mayastor.
 :::
 
 # Deploy an Application
@@ -84,7 +84,7 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
    ```
 
    :::note
-   As the Local PV storage classes use `waitForFirstConsumer`, do not use `nodeName` in the Pod spec to specify node affinity. If `nodeName` is used in the Pod spec, then PVC will remain in `pending` state. See [here](https://github.com/openebs/openebs/issues/2915) for more details.
+   As the Local PV storage classes use `waitForFirstConsumer`, do not use `nodeName` in the Pod spec to specify node affinity. If `nodeName` is used in the Pod spec, then PVC will remain in `pending` state. Refer the issue [#2915](https://github.com/openebs/openebs/issues/2915) for more details.
    :::
 
 2. Create the Pod:

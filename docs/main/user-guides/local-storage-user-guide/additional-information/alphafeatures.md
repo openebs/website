@@ -26,13 +26,13 @@ Upgrade is not supported for features in Alpha version.
 
 OpenEBS is developing a kubectl plugin for openebs called `openebsctl` that can help perform administrative tasks on OpenEBS volumes and pools. 
 
-For additional details and detailed instructions on how to get started with OpenEBS CLI, see [here](https://github.com/openebs/openebsctl).
+Refer [openebsctl](https://github.com/openebs/openebsctl) for more information and detailed instructions on how to get started with OpenEBS CLI.
 
 ## OpenEBS Monitoring Add-on
 
 OpenEBS is developing a monitoring add-on package that can be installed via helm for setting up a default prometheus, grafana, and alert manager stack. The package also will include default service monitors, dashboards, and alert rules. 
 
-For additional details and detailed instructions on how to get started with OpenEBS Monitoring Add-on, see [here](https://github.com/openebs/monitoring).
+Refer [Monitoring](https://github.com/openebs/monitoring) for more information and detailed instructions on how to get started with OpenEBS Monitoring Add-on.
 
 ## Data Populator
 
@@ -43,6 +43,4 @@ The Data populator can be used to load seed data into a Kubernetes persistent vo
 1. <b>Decommissioning of a node in the cluster</b>: In scenarios where a Kubernetes node needs to be decommissioned whether for upgrade or maintenance, a data populator can be used to migrate the data saved in the Local Storage (a.k.a Local Engine) of the node, that has to be decommissioned. 
 2. <b>Loading seed data to Kubernetes volumes</b>: Data populator can be used to scale applications without using read-write many operation. The application can be pre-populated with the static content available in an existing PV.
 
-To get more details about Data Populator, see [here](https://github.com/openebs/data-populator#data-populator).
-
-For instructions on the installation and usage of Data Populator, see [here](https://github.com/openebs/data-populator#install). 
+Refer [Data Populator](https://github.com/openebs/data-populator#data-populator) for instructions on the installation and usage of Data Populator. 

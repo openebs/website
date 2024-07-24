@@ -125,7 +125,7 @@ The provisioner name for ZFS driver is "zfs.csi.openebs.io", we have to use this
 
 **Scheduler**
 
-The ZFS driver has its own scheduler which will try to distribute the PV across the nodes so that one node should not be loaded with all the volumes. Currently the driver supports two scheduling algorithms: VolumeWeighted and CapacityWeighted, in which it will try to find a ZFS pool which has less number of volumes provisioned in it or less capacity of volume provisioned out of a pool respectively, from all the nodes where the ZFS pools are available. See [here](https://github.com/openebs/zfs-localpv/blob/HEAD/docs/storageclasses.md#storageclass-with-k8s-scheduler) to know about how to select scheduler via storage-class.
+The ZFS driver has its own scheduler which will try to distribute the PV across the nodes so that one node should not be loaded with all the volumes. Currently the driver supports two scheduling algorithms: VolumeWeighted and CapacityWeighted, in which it will try to find a ZFS pool which has less number of volumes provisioned in it or less capacity of volume provisioned out of a pool respectively, from all the nodes where the ZFS pools are available. Refer [StorageClass With k8s Scheduler](https://github.com/openebs/zfs-localpv/blob/HEAD/docs/storageclasses.md#storageclass-with-k8s-scheduler) to know about how to select scheduler via storage-class.
 
 Once it can find the node, it will create a PV for that node and also create a ZFSVolume custom resource for the volume with the NODE information. The watcher for this ZFSVolume CR will get all the information for this object and creates a ZFS dataset (zvol) with the given ZFS property on the mentioned node.
 
@@ -326,7 +326,11 @@ parameters:
 provisioner: zfs.csi.openebs.io
 ```
 
-Here, we can mention any fstype we want. As of 0.9 release, the driver supports ext2/3/4, xfs, and btrfs fstypes for which it will create a ZFS Volume. Please note here, if fstype is not provided in the StorageClass, the k8s takes “ext4" as the default fstype. Here also we can provide volblocksize, compression, and dedup properties to create the volume, and the driver will create the volume with all the properties provided in the StorageClass.
+Here, we can mention any fstype we want. As of 0.9 release, the driver supports ext2/3/4, xfs, and btrfs fstypes for which it will create a ZFS Volume.
+
+:::note
+If `fstype` is not provided in the StorageClass, the k8s takes “ext4" as the default fstype. Here also we can provide volblocksize, compression, and dedup properties to create the volume, and the driver will create the volume with all the properties provided in the StorageClass.
+:::
 
 We have the thinprovision option as “yes” in the StorageClass, which means that it does not reserve the space for all the volumes provisioned using this StorageClass. We can set it to “no” if we want to reserve the space for the provisioned volumes.
 
@@ -462,7 +466,7 @@ spec:
     - test2
 ```
 
-If you want to change topology keys, just set new env(ALLOWED_TOPOLOGIES). See [FAQs](../../../faqs/faqs.md#how-to-add-custom-topology-key-to-local-pv-zfs-driver) for more details.
+If you want to change topology keys, just set new env(ALLOWED_TOPOLOGIES). Refer [FAQs](../../../faqs/faqs.md#how-to-add-custom-topology-key-to-local-pv-zfs-driver) for more details.
 
 ```
 $ kubectl edit ds -n kube-system openebs-zfs-node

@@ -49,7 +49,7 @@ services:
 
 ## Installation 
 
-For installation instructions, see [here](../../../quickstart-guide/installation.md).
+Refer to the [OpenEBS Installation documentation](../../../quickstart-guide/installation.md) to install Local PV Hostpath.
 
 ## Support
 
