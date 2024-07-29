@@ -531,6 +531,11 @@ module.exports = {
         },
         {
           type: "doc",
+          id: "user-guides/observability",
+          label: "Observability"
+        },
+        {
+          type: "doc",
           id: "user-guides/upgrade",
           label: "Upgrades"
         },
