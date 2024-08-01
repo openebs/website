@@ -14,7 +14,7 @@ This documentation outlines the process of migrating application volumes from CS
 
 - For **cloud provider plugins**, see the [Velero Docs - Providers section](https://velero.io/docs/main/supported-providers/).
 - **Velero GKE Configuration (Prerequisites)**: Refer [Velero plugin for Google Cloud Platform (GCP)](https://github.com/vmware-tanzu/velero-plugin-for-gcp#setup) to view the prerequisites and configuration details for Velero in a Google Kubernetes Engine (GKE) environment.
-- **Object Storage Requirement**: To store backups, Velero necessitates an object storage bucket. In our case, we utilize a Google Cloud Storage (GCS) bucket. Refer [Velero plugin for GCP](https://github.com/vmware-tanzu/velero-plugin-for-gcp#setup) to view the setup and configuration details.
+- **Object Storage Requirement**: Velero necessitates an object storage bucket to store backups. In this case, we are using a Google Cloud Storage (GCS) bucket. Refer [Velero plugin for GCP](https://github.com/vmware-tanzu/velero-plugin-for-gcp#setup) to view the setup and configuration details.
 - **Velero Basic Installation**: Refer to the [Velero Documentation - Basic Install section](https://velero.io/docs/v1.11/basic-install/) for a step-by-step guide on the basic installation of Velero.
 
 ## See Also
