@@ -34,7 +34,7 @@ If you have the disk (say /dev/sdb), then you can use the below command to creat
 $ zpool create zfspv-pool /dev/sdb
 ```
 
-You can also create mirror or raidz pool as per your need. Refer [Local PV ZFS](https://github.com/openzfs/zfs) for more information.
+You can also create mirror or raidz pool as per your need. Refer to the [OpenZFS Documentation](https://openzfs.github.io/openzfs-docs/) for more details.
 
 If you do not have the disk, then you can create the zpool on the loopback device which is backed by a sparse file. Use this for testing purpose only.
 
