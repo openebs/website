@@ -21,6 +21,7 @@ description: This section lists the abbreviations used thorughout the OpenEBS do
 | EKS |	Elastic Kubernetes Service |
 | FIO |	Flexible IO Tester |
 | FSB |	File System Backup |
+| GCP |	Google Cloud Platform |
 | GCS |	Google Cloud Storage |
 | GKE |	Google Kubernetes Engine |
 | HA | High Availability |

@@ -161,7 +161,7 @@ ID                                    REPLICAS  TARGET-NODE                ACCES
 Verify that the pod has been deployed successfully, having the status "Running". It may take a few seconds after creating the pod before it reaches that status, proceeding via the "ContainerCreating" state.
 
 :::info
-Note: The example FIO pod resource declaration included with this release references a PVC named `ms-volume-claim`, consistent with the example PVC created in this section of the quickstart. If you have elected to name your PVC differently, deploy the Pod using the example YAML, modifying the `claimName` field appropriately.
+The example FIO pod resource declaration included with this release references a PVC named `ms-volume-claim`, consistent with the example PVC created in this section of the quickstart. If you have elected to name your PVC differently, deploy the Pod using the example YAML, modifying the `claimName` field appropriately.
 :::
 
 **Command**

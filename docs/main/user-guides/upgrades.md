@@ -16,7 +16,7 @@ Upgrade from OpenEBS 3.x to OpenEBS 4.1.0 is only supported for the below storag
 - Local PV ZFS
 - Replicated PV Mayastor
 
-See the [migration documentation](../user-guides/data-migration/migration-overview.md) for other storages.
+Refer to the [Migration documentation](../user-guides/data-migration/migration-overview.md) for other storages.
 :::
 
 ## Overview

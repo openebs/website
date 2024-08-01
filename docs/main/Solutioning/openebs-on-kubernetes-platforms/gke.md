@@ -34,7 +34,7 @@ Using OpenEBS for GKE with Local SSDs offers several benefits, particularly in m
 
 - Adding additional disks to existing node pool is not supported.
 
-- Each Local SSD disk comes in a fixed size and you can attach multiple Local SSD disks to a single VM when you create it. The number of Local SSD disks that you can attach to a VM depends on the VM's machine type. See the [Local SSD Disks documentation](https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds) for more information.
+- Each Local SSD disk comes in a fixed size and you can attach multiple Local SSD disks to a single VM when you create it. The number of Local SSD disks that you can attach to a VM depends on the VM's machine type. Refer to the [Local SSD Disks documentation](https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds) for more information.
 :::
 
 ## Prerequisites
@@ -64,7 +64,7 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 - **Enable Huge Pages**
     
     2MiB-sized Huge Pages must be supported and enabled on the storage nodes i.e. nodes where IO engine pods are deployed. A minimum number of 1024 such pages (i.e. 2GiB total) must be available exclusively to the IO engine pod on each node.
-    Secure Socket Shell (SSH) to the GKE worker node to enable huge pages. See [here](https://cloud.google.com/kubernetes-engine/distributed-cloud/vmware/docs/how-to/ssh-cluster-node) for more details.
+    Secure Socket Shell (SSH) to the GKE worker node to enable huge pages. Refer to the [Manage Cluster Nodes documentation](https://cloud.google.com/kubernetes-engine/distributed-cloud/vmware/docs/how-to/ssh-cluster-node) for more details.
 
 - **Kernel Modules**
 
@@ -76,7 +76,7 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 
 - **Preparing the Cluster**
 
-    See the [Replicated PV Mayastor Installation documentation](../rs-installation.md#preparing-the-cluster) for instructions on preparing the cluster.
+    Refer to the [Replicated PV Mayastor Installation documentation](../rs-installation.md#preparing-the-cluster) for instructions on preparing the cluster.
 
 - **ETCD and LOKI Storage Class**
 
@@ -84,7 +84,7 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 
 ## Install Replicated PV Mayastor on GKE
 
-See the [Installing OpenEBS documentation](../../../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.
+Refer to the [OpenEBS Installation documentation](../../../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.
 
 - **Helm Install Command**
 
@@ -214,9 +214,9 @@ diskpool.openebs.io/pool-1 created
 
 ## Configuration
 
-- See the [Replicated PV Mayastor Configuration documentation](../rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for instructions regarding StorageClass creation.
+- Refer to the [Replicated PV Mayastor Configuration documentation](../rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for instructions regarding StorageClass creation.
 
-- See [Deploy an Application documentation](../rs-deployment.md) for instructions regarding PVC creation and deploying an application.
+- Refer to the [Deploy an Application documentation](../rs-deployment.md) for instructions regarding PVC creation and deploying an application.
 
 ## Node Failure Scenario
 

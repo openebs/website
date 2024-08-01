@@ -30,7 +30,7 @@ Unlike volume replicas, snapshots cannot be rebuilt on an event of a node failur
 
 ## Prerequisites
 
-Install and configure Replicated PV Mayastor by following the steps given in the [Installing OpenEBS documentation](../rs-installation.md) and create disk pools.
+Install and configure Replicated PV Mayastor by following the steps given in the [OpenEBS Installation documentation](../rs-installation.md) and create disk pools.
 
 **Command**
 
@@ -201,8 +201,8 @@ kubectl get volumesnapshot
 **Example Output**
 
 ```
-NAME                  READYTOUSE   SOURCEPVC         SOURCESNAPSHOTCONTENT   RESTORESIZE   SNAPSHOTCLASS                SNAPSHOTCONTENT                                    CREATIONTIME   AGE
-mayastor-pvc-snap   true         ms-volume-claim                           1Gi           csi-mayastor-snapshotclass   snapcontent-174d9cd9-dfb2-4e53-9b56-0f3f783518df   57s            57s
+NAME              READYTOUSE   SOURCEPVC         SOURCESNAPSHOTCONTENT   RESTORESIZE   SNAPSHOTCLASS                SNAPSHOTCONTENT      				                CREATIONTIME   	  AGE
+mayastor-pvc-snap true         ms-volume-claim                           1Gi           csi-mayastor-snapshotclass   snapcontent-174d9cd9-dfb2-4e53-9b56-0f3f783518df    57s               57s
 ```
 
 **Command**
@@ -214,7 +214,7 @@ kubectl get volumesnapshotcontent
 **Example Output**
 
 ```
-NAME                                               READYTOUSE   RESTORESIZE   DELETIONPOLICY   DRIVER                    VOLUMESNAPSHOTCLASS          VOLUMESNAPSHOT        VOLUMESNAPSHOTNAMESPACE   AGE
+NAME                                               READYTOUSE   RESTORESIZE   DELETIONPOLICY   DRIVER                    VOLUMESNAPSHOTCLASS          VOLUMESNAPSHOT      VOLUMESNAPSHOTNAMESPACE   AGE
 snapcontent-174d9cd9-dfb2-4e53-9b56-0f3f783518df   true         1073741824    Delete           io.openebs.csi-mayastor   csi-mayastor-snapshotclass   mayastor-pvc-snap   default                   87s
 ```
 

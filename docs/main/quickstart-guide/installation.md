@@ -1,9 +1,11 @@
 ---
 id: installation
-title: Installing OpenEBS
+title: OpenEBS Installation
 keywords: 
+  - OpenEBS Installation
   - Installing OpenEBS
   - Installing OpenEBS through helm
+  - Installation
 description: This guide will help you to customize and install OpenEBS
 ---
 
@@ -67,7 +69,7 @@ OpenEBS provides several options to customize during installation such as:
 - Specifying the nodes on which OpenEBS components should be deployed and so forth. 
 
 :::info
-See [here](https://github.com/openebs/openebs/blob/main/charts/README.md#values) for configurable options.
+Refer to the [OpenEBS helm chart](https://github.com/openebs/openebs/blob/main/charts/README.md#values) for configurable options.
 :::
 
 2. Install the OpenEBS helm chart with default values. 

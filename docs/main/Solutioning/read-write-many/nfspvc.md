@@ -31,13 +31,13 @@ NFS volumes can be mounted as a `PersistentVolume` in Kubernetes pods. It is als
 
 An NFS CSI driver is a specific type of Container Storage Interface (CSI) driver that enables container orchestration systems, like Kubernetes, to manage storage using the NFS. NFS (A distributed file system protocol) allows multiple machines to share directories over a network. The NFS CSI driver facilitates the use of NFS storage by providing the necessary interface for creating, mounting, and managing NFS volumes within a containerized environment, ensuring that applications running in containers can easily access and use NFS-based storage.
 
-CSI plugin name: `nfs.csi.k8s.io`. This driver requires an existing and already configured NFSv3 or NFSv4 server. It supports dynamic provisioning of Persistent Volumes via PVCs by creating a new sub-directory under the NFS server. This can be deployed using Helm. See [NFS CSI driver for Kubernetes](https://github.com/kubernetes-csi/csi-driver-nfs?tab=readme-ov-file#install-driver-on-a-kubernetes-cluster) to install NFS CSI driver on a Kubernetes cluster.
+CSI plugin name: `nfs.csi.k8s.io`. This driver requires an existing and already configured NFSv3 or NFSv4 server. It supports dynamic provisioning of Persistent Volumes via PVCs by creating a new sub-directory under the NFS server. This can be deployed using Helm. Refer [NFS CSI driver for Kubernetes](https://github.com/kubernetes-csi/csi-driver-nfs?tab=readme-ov-file#install-driver-on-a-kubernetes-cluster) to install NFS CSI driver on a Kubernetes cluster.
 
 ### Replicated PV Mayastor
 
 Replicated PV Mayastor is a performance-optimised Container Native Storage (CNS) solution. The goal of OpenEBS is to extend Kubernetes with a declarative data plane, providing flexible persistent storage for stateful applications.
 
-Make sure you have installed Replicated PV Mayastor before proceeding to the next step. See the [Installing OpenEBS documentation](../../../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.
+Make sure you have installed Replicated PV Mayastor before proceeding to the next step. Refer to the [OpenEBS Installation documentation](../../../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.
 
 ## Details of Setup
 
@@ -45,7 +45,7 @@ Make sure you have installed Replicated PV Mayastor before proceeding to the nex
 
 1. Create a Replicated PV Mayastor Pool.
 
-  Create a Replicated PV Mayastor pool that satisfies the performance and availability requirements. See [Replicated PV Mayastor Configuration documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-diskpools) for more details.
+  Create a Replicated PV Mayastor pool that satisfies the performance and availability requirements. Refer to the [Replicated PV Mayastor Configuration documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-diskpools) for more details.
 
   **Example of a Replicated PV Mayastor Pool**
 
@@ -66,7 +66,7 @@ Make sure you have installed Replicated PV Mayastor before proceeding to the nex
 
 2. Create a Replicated PV Mayastor Storage Class.
 
-  Create a storage class to point to the above created pool. Also, select the number of replicas and the default size of the volume. See [Replicated PV Mayastor Configuration documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for more details.
+  Create a storage class to point to the above created pool. Also, select the number of replicas and the default size of the volume. Refer to the [Replicated PV Mayastor Configuration documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for more details.
 
   **Example of a Replicated PV Mayastor Storage Class**
 

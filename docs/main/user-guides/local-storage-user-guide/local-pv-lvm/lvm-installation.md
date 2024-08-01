@@ -30,12 +30,14 @@ Create the Volume group on all the nodes, which will be used by the LVM Driver f
 
 ```
 sudo pvcreate /dev/loop0
-sudo vgcreate lvmvg /dev/loop0       ## here lvmvg is the volume group name to be created
+sudo vgcreate lvmvg /dev/loop0
 ```
+
+In the above command, `lvmvg` is the volume group name to be created.
 
 ## Installation
 
-For installation instructions, see [here](../../../quickstart-guide/installation.md).
+Refer to the [OpenEBS Installation documentation](../../../quickstart-guide/installation.md) to install Local PV LVM.
 
 ## Support
 
