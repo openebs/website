@@ -18,7 +18,7 @@ All the below configurations can be configured either during initial cluster cre
 
 ### Pod Security
 
-By default, Talos Linux applies a baseline pod security profile across namespaces except for the kube-system namespace. This default setting restricts Replicated PV Mayastors’s ability to manage and access system resources. You need to add the exemptions for Replicated PV Mayastor namespace. See the [Talos Documentation](https://www.talos.dev/v1.6/kubernetes-guides/configuration/pod-security/) for detailed instructions on Pod Security.
+By default, Talos Linux applies a baseline pod security profile across namespaces except for the kube-system namespace. This default setting restricts Replicated PV Mayastors’s ability to manage and access system resources. You need to add the exemptions for Replicated PV Mayastor namespace. Refer to the [Talos Documentation](https://www.talos.dev/v1.6/kubernetes-guides/configuration/pod-security/) for detailed instructions on Pod Security.
 
 **Create a file cp.yaml**
 
@@ -109,7 +109,7 @@ talosctl -n <node ip> service kubelet restart
 
 ## Install Replicated PV Mayastor on Talos
 
-To install Replicated PV Mayastor using Helm on Talos, refer to the [installation steps](../../../../quickstart-guide/installation.md#installation-via-helm) in the Quickstart Guide.
+Refer to the [OpenEBS Installation documentation](../../../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm on Talos.
 
 ## See Also
 

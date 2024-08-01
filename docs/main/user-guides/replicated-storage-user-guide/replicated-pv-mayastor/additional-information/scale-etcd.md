@@ -34,7 +34,7 @@ pool-2   worker-2   Online   Online        374710730752   21793603584   35291712
 ```
 
 :::note
-Take a snapshot of the etcd. Click [here](https://etcd.io/docs/v3.5/op-guide/recovery/) for the detailed documentation.
+Take a snapshot of the etcd. Refer to the [Disaster Recovery documentation](https://etcd.io/docs/v3.5/op-guide/recovery/) for more details.
 :::
 
 * From etcd-0/1/2, we can see that all the values are registered in the database. Once we scale up etcd with "n" replicas, all the key-value pairs should be available across all the pods.

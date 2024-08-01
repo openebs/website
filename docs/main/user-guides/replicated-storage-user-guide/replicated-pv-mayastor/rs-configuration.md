@@ -126,7 +126,7 @@ pool-on-node-3   node-3-14944  Created   Online        10724835328   0      1072
 
 ## Create Replicated PV Mayastor StorageClass\(s\)
 
-Replicated PV Mayastor dynamically provisions PersistentVolumes \(PVs\) based on StorageClass definitions created by the user. Parameters of the definition are used to set the characteristics and behaviour of its associated PVs. See [storage class parameter description](#storage-class-parameters) for a detailed description of these parameters.
+Replicated PV Mayastor dynamically provisions PersistentVolumes \(PVs\) based on StorageClass definitions created by the user. Parameters of the definition are used to set the characteristics and behaviour of its associated PVs. Refer [Storage Class parameters](#storage-class-parameters) for a detailed description of these parameters.
 Most importantly StorageClass definition is used to control the level of data protection afforded to it (i.e. the number of synchronous data replicas that are maintained for purposes of redundancy). It is possible to create any number of StorageClass definitions, spanning all permitted parameter permutations.
 
 We illustrate this quickstart guide with two examples of possible use cases; one which offers no data redundancy \(i.e. a single data replica\), and another having three data replicas.
@@ -214,7 +214,7 @@ The `agents.core.capacity.thin` spec present in the Replicated PV Mayastor helm 
 
 ### "allowVolumeExpansion"
 
-The parameter `allowVolumeExpansion` enables the expansion of PVs when using Persistent Volume Claims (PVCs). You must set the `allowVolumeExpansion` parameter to `true` in the StorageClass to enable the expansion of a volume. In order to expand volumes where volume expansion is enabled, edit the size of the PVC. See the [Resize documentation](../replicated-pv-mayastor/advanced-operations/resize.md) for more details.
+The parameter `allowVolumeExpansion` enables the expansion of PVs when using Persistent Volume Claims (PVCs). You must set the `allowVolumeExpansion` parameter to `true` in the StorageClass to enable the expansion of a volume. In order to expand volumes where volume expansion is enabled, edit the size of the PVC. Refer to the [Resize documentation](../replicated-pv-mayastor/advanced-operations/resize.md) for more details.
 
 ## Topology Parameters
 

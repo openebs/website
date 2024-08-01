@@ -1,9 +1,11 @@
 ---
 id: uninstall
-title: Uninstalling OpenEBS
+title: OpenEBS Uninstallation
 keywords:
+ - OpenEBS Uninstallation
  - Uninstalling OpenEBS
  - Uninstall OpenEBS
+ - Uninstallation
 description: This section is to describe about the graceful deletion/uninstallation of your OpenEBS cluster.
 ---
 

@@ -291,7 +291,7 @@ If you set `csi.node.topology.nodeSelector: true`, then you will need to label t
 
 ## Installation 
 
-For installation instructions, see [here](../../../quickstart-guide/installation.md).
+Refer to the [OpenEBS Installation documentation](../../../quickstart-guide/installation.md) to install Replicated PV Mayastor.
 
 ## Support
 
