@@ -81,3 +81,4 @@ Refer to the [Replicated PV Mayastor Configuration documentation](../replicated-
 - [Replicated PV Mayastor Installation on Talos](talos.md)
 - [Replicated PV Mayastor Installation on Google Kubernetes Engine](gke.md)
 - [Provisioning NFS PVCs](../read-write-many/nfspvc.md)
+- [Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem](../backup-and-restore/velero-br-fs.md)
