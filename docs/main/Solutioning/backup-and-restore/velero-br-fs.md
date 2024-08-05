@@ -34,7 +34,7 @@ When CSI snapshots are enabled, Velero leverages the Kubernetes CSI driver to cr
 
 Install Velero (V1.13.2) with the `velero-plugin-for-csi` and with any S3 object storage. In this example, we are using the Google cloud bucket as our BackupStorageLocation. Refer to [Velero Documentation](https://velero.io/plugins/) for instructions on setting up the BackupStorageLocation.
 
-As an example we will be using Google Cloud Platform (GCP) and OpenEBS Plugin.
+As an example we will be using Google Cloud Platform (GCP) and OpenEBS.
 
 1. Install Velero.
 
@@ -166,9 +166,8 @@ velero backup create my-fs-backup --snapshot-volumes --include-namespaces=mayast
 
 ```
 Backup request "my-fs-backup" submitted successfully.
-```
-
 Run `velero backup describe my-fs-backup` or `velero backup logs my-fs-backup` for more details.
+```
 
 - Use the following command to verify the backup status:
 
@@ -229,9 +228,8 @@ velero restore create my-fs-restore --from-backup my-fs-backup --restore-volumes
 
 ```
 Restore request "my-fs-restore" submitted successfully.
-```
-
 Run `velero restore describe my-fs-restore` or `velero restore logs my-fs-restore` for more details.
+```
 
 :::note
 This is being restored on the target cluster in the namespace: `mayastor-app-restore`.
