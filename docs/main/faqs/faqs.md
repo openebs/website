@@ -660,7 +660,7 @@ helm install openebs openebs/openebs -n openebs --create-namespace --set mayasto
 
 ### What happens when a single replica node fails?
 
-When the application node fails and the pod gets rescheduled on a different node, the I/O operations are impacted until the rescheduling process is completed. In case of Replicated PV Mayastor with single replica volumes, if the node hosting the Replicated PV Mayastor storage pool or volume (the Nexus target node) fails, I/O operations fail as the storage becomes unreachable.
+In the case of Replicated PV Mayastor with single replica volumes, if the node hosting the Replicated PV Mayastor storage pool or volume (the Nexus target node) fails, I/O operations fail completely because the storage becomes unreachable.
 
 [Go to top](#top)
 
