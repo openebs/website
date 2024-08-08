@@ -660,7 +660,7 @@ helm install openebs openebs/openebs -n openebs --create-namespace --set mayasto
 
 ### What happens when a single replica node fails?
 
-In the case of Replicated PV Mayastor with single replica volumes, if the node hosting the Replicated PV Mayastor storage pool or volume (the Nexus target node) fails, I/O operations fail completely because the storage becomes unreachable.
+It is recommended that Replicated PV Mayastor volumes be provisioned with a minimum of 2 replicas for higher storage availability. If a volume is provisioned with a single replica and the node where that replica is present, becomes unavailable, then the entire volume will become unavailable for access and I/O operations will fail as there will be no more healthy replicas.
 
 [Go to top](#top)
 
