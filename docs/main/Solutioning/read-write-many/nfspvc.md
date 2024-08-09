@@ -37,7 +37,7 @@ CSI plugin name: `nfs.csi.k8s.io`. This driver requires an existing and already 
 
 Replicated PV Mayastor is a performance-optimised Container Native Storage (CNS) solution. The goal of OpenEBS is to extend Kubernetes with a declarative data plane, providing flexible persistent storage for stateful applications.
 
-Make sure you have installed Replicated PV Mayastor before proceeding to the next step. Refer to the [OpenEBS Installation documentation](../../../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.
+Make sure you have installed Replicated PV Mayastor before proceeding to the next step. Refer to the [OpenEBS Installation documentation](../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.
 
 ## Details of Setup
 
@@ -478,3 +478,4 @@ nginx-deployment-6c664cc4c-z64h4   1/1     Running   0          22s   10.32.0.14
 - [Replicated PV Mayastor Installation on MicroK8s](../openebs-on-kubernetes-platforms/microkubernetes.md)
 - [Replicated PV Mayastor Installation on Talos](../openebs-on-kubernetes-platforms/talos.md)
 - [Replicated PV Mayastor Installation on Google Kubernetes Engine](../openebs-on-kubernetes-platforms/gke.md)
+- [Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem](../backup-and-restore/velero-br-fs.md)

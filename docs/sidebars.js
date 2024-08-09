@@ -593,6 +593,21 @@ module.exports = {
               label: "Provisioning NFS PVCs"
             }
           ]
+        },
+        {
+          collapsed: true,
+          type: "category",
+          label: "Backup and Restore",
+          customProps: {
+            icon: "Repeat"
+          },
+          items: [
+            {
+              type: "doc",
+              id: "Solutioning/backup-and-restore/velerobrfs",
+              label: "Replicated PV Mayastor Snapshots - FileSystem"
+            }
+          ]
         },  
       ]
     },
