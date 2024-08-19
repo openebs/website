@@ -47,7 +47,7 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 
 - **Hardware Requirements**
 
-    Your machine type must meet the requirements defined in the [prerequisites](../rs-installation.md#prerequisites).
+    Your machine type must meet the requirements defined in the [prerequisites](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md#prerequisites).
 
 - **GKE Nodes**
 
@@ -64,7 +64,7 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 - **Enable Huge Pages**
     
     2MiB-sized Huge Pages must be supported and enabled on the storage nodes i.e. nodes where IO engine pods are deployed. A minimum number of 1024 such pages (i.e. 2GiB total) must be available exclusively to the IO engine pod on each node.
-    Secure Socket Shell (SSH) to the GKE worker node to enable huge pages. See [here](https://cloud.google.com/kubernetes-engine/distributed-cloud/vmware/docs/how-to/ssh-cluster-node) for more details.
+    Secure Socket Shell (SSH) to the GKE worker node to enable huge pages. See [SSH Cluster Node Documentation](https://cloud.google.com/kubernetes-engine/distributed-cloud/vmware/docs/how-to/ssh-cluster-node) for more details.
 
 - **Kernel Modules**
 
@@ -76,7 +76,7 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 
 - **Preparing the Cluster**
 
-    See the [Replicated PV Mayastor Installation documentation](../rs-installation.md#preparing-the-cluster) for instructions on preparing the cluster.
+    See the [Replicated PV Mayastor Installation documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md#preparing-the-cluster) for instructions on preparing the cluster.
 
 - **ETCD and LOKI Storage Class**
 
@@ -84,7 +84,7 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 
 ## Install Replicated PV Mayastor on GKE
 
-See the [Installing OpenEBS documentation](../../../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.
+See the [Installing OpenEBS documentation](../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.
 
 - **Helm Install Command**
 
@@ -214,9 +214,9 @@ diskpool.openebs.io/pool-1 created
 
 ## Configuration
 
-- See the [Replicated PV Mayastor Configuration documentation](../rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for instructions regarding StorageClass creation.
+- See the [Replicated PV Mayastor Configuration Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for instructions regarding StorageClass creation.
 
-- See [Deploy an Application documentation](../rs-deployment.md) for instructions regarding PVC creation and deploying an application.
+- See [Deploy an Application Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-deployment.md) for instructions regarding PVC creation and deploying an application.
 
 ## Node Failure Scenario
 
