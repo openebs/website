@@ -22,7 +22,7 @@ In this guide, we will utilize Velero to capture a backup of a sample Nginx appl
 
 Replicated PV Mayastor CSI supports volume snapshots, which are essential for backup and recovery operations. By using Velero with Replicated PV Mayastor CSI, you can take advantage of Velero's robust backup and restore capabilities to create point-in-time snapshots of your volumes. This is critical for disaster recovery and data protection strategies.
 
-Make sure you have installed Replicated PV Mayastor before proceeding to the next step. Refer to the [OpenEBS Installation documentation](../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.
+Make sure that Replicated PV Mayastor has been installed, pools have been configured, and applications have been deployed before proceeding to the next step. Refer to the [OpenEBS Installation Documentation](../../quickstart-guide/installation.md#installation-via-helm) for more details.
 
 ### Velero with CSI Snapshot Support
 
@@ -96,7 +96,7 @@ velero-6b9b99494b-rkppw   1/1     Running   0          20h
 
 ### Deploy the Application with CSI Backed Volumes
 
-Before installing the application with CSI backed volumes, install the storage class and the volume snapshot class for the OpenEBS CSI driver by applying the below yaml to your cluster. Refer to the [Replicated PV Mayastor Configuration documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for more details.
+Before installing the application with CSI backed volumes, install the storage class and the volume snapshot class for the OpenEBS CSI driver by applying the below yaml to your cluster. Refer to the [Replicated PV Mayastor Configuration Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for more details.
 
 :::info
 Volume snapshots for multi-replicas volume is supported only from OpenEBS v4.1. The annotation `velero.io/csi-volumesnapshot-class: "true"` must be added to the volume snapshot class or the Velero backup will fail.
@@ -200,7 +200,7 @@ velero     my-fs-backup-z9vrj  Completed  2m10s    35          35           defa
 ```
 
 :::important
-In order to ensure that Velero can access the previously saved backups, it is recommended that you install Velero on the target cluster with the same values for the BUCKET-NAME and SECRET-FILENAME placeholders as you did originally. 
+In order to ensure that Velero can access the previously saved backups, it is recommended that you install Velero on the target cluster with the same values for the BUCKET-NAME and SECRET-FILENAME placeholders as you did originally. Also, make sure you have Replicated PV Mayastor already installed and that pools and storageclass have been configured.
 :::
 
 - Use the following command to verify the backup on target cluster:
