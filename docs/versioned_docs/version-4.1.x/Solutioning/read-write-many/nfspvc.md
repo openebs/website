@@ -37,7 +37,7 @@ CSI plugin name: `nfs.csi.k8s.io`. This driver requires an existing and already 
 
 Replicated PV Mayastor is a performance-optimised Container Native Storage (CNS) solution. The goal of OpenEBS is to extend Kubernetes with a declarative data plane, providing flexible persistent storage for stateful applications.
 
-Make sure you have installed Replicated PV Mayastor before proceeding to the next step. See the [Installing OpenEBS documentation](../../../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.
+Make sure you have installed Replicated PV Mayastor before proceeding to the next step. See the [Installing OpenEBS Documentation](../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.
 
 ## Details of Setup
 
@@ -45,7 +45,7 @@ Make sure you have installed Replicated PV Mayastor before proceeding to the nex
 
 1. Create a Replicated PV Mayastor Pool.
 
-  Create a Replicated PV Mayastor pool that satisfies the performance and availability requirements. See [Replicated PV Mayastor Configuration documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-diskpools) for more details.
+  Create a Replicated PV Mayastor pool that satisfies the performance and availability requirements. See [Replicated PV Mayastor Configuration Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-diskpools) for more details.
 
   **Example of a Replicated PV Mayastor Pool**
 
@@ -66,7 +66,7 @@ Make sure you have installed Replicated PV Mayastor before proceeding to the nex
 
 2. Create a Replicated PV Mayastor Storage Class.
 
-  Create a storage class to point to the above created pool. Also, select the number of replicas and the default size of the volume. See [Replicated PV Mayastor Configuration documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for more details.
+  Create a storage class to point to the above created pool. Also, select the number of replicas and the default size of the volume. See [Replicated PV Mayastor Configuration Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for more details.
 
   **Example of a Replicated PV Mayastor Storage Class**
 
