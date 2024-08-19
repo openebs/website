@@ -73,7 +73,7 @@ microk8s kubectl patch felixconfigurations default --patch '{"spec":{"featureDet
 > For more details about this issue, refer to the [GitHub issue](https://github.com/canonical/microk8s/issues/3695).
 
 :::info
-Refer to the [Replicated PV Mayastor Configuration](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md) for further **Configuration of Replicated PV Mayastor** including storage pools, storage class, persistent volume claims, and application setup.
+Refer to the [Replicated PV Mayastor Configuration Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md) for further **Configuration of Replicated PV Mayastor** including storage pools, storage class, persistent volume claims, and application setup.
 :::
 
 ## See Also
