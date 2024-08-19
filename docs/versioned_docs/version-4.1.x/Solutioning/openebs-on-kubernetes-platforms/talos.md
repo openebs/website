@@ -109,7 +109,7 @@ talosctl -n <node ip> service kubelet restart
 
 ## Install Replicated PV Mayastor on Talos
 
-To install Replicated PV Mayastor using Helm on Talos, refer to the [installation steps](../../../../quickstart-guide/installation.md#installation-via-helm) in the Quickstart Guide.
+To install Replicated PV Mayastor using Helm on Talos, refer to the [installation steps](../../quickstart-guide/installation.md#installation-via-helm) in the Quickstart Guide.
 
 ## See Also
 
