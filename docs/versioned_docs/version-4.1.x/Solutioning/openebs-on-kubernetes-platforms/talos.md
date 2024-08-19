@@ -65,7 +65,7 @@ Provide additional data path mounts to be accessible to the Kubernetes Kubelet c
   value:
     - destination: /var/local
       type: bind
-      source: /var/lib/local
+      source: /var/local
       options:
         - bind
         - rshared
@@ -109,7 +109,7 @@ talosctl -n <node ip> service kubelet restart
 
 ## Install Replicated PV Mayastor on Talos
 
-To install Replicated PV Mayastor using Helm on Talos, refer to the [installation steps](../../quickstart-guide/installation.md#installation-via-helm) in the Quickstart Guide.
+Refer to the [OpenEBS Installation Documentation](../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm on Talos.
 
 ## See Also
 

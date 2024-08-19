@@ -12,7 +12,7 @@ description: This section explains about the Platform Support for Replicated PV 
 
 ## Prerequisites
 
-Prepare a cluster by following the steps outlined in this [guide](../replicated-pv-mayastor/rs-installation.md#preparing-the-cluster).
+Prepare a cluster by following the steps outlined in this [guide](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md#preparing-the-cluster).
 
 ## Install Replicated PV Mayastor on MicroK8s
 
@@ -73,7 +73,7 @@ microk8s kubectl patch felixconfigurations default --patch '{"spec":{"featureDet
 > For more details about this issue, refer to the [GitHub issue](https://github.com/canonical/microk8s/issues/3695).
 
 :::info
-Refer to the [Replicated PV Mayastor Configuration documentation](../replicated-pv-mayastor/rs-configuration.md) for further **Configuration of Replicated PV Mayastor** including storage pools, storage class, persistent volume claims, and application setup.
+Refer to the [Replicated PV Mayastor Configuration Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md) for further **Configuration of Replicated PV Mayastor** including storage pools, storage class, persistent volume claims, and application setup.
 :::
 
 ## See Also
