@@ -1,14 +1,14 @@
 ---
-id: velerobrfs
-title: Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem
+id: velerobrrbv
+title: Velero Backup and Restore using Replicated PV Mayastor Snapshots - Raw Block Volumes
 keywords: 
-  - Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem
+  - Velero Backup and Restore using Replicated PV Mayastor Snapshots - Raw Block Volumes
   - Velero Backup and Restore
-  - FileSystem
-description: In this document, you learn about Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem.
+  - Raw Block Volumes
+description: In this document, you learn about Velero Backup and Restore using Replicated PV Mayastor Snapshots - Raw Block Volumes.
 ---
 
-# Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem
+# Velero Backup and Restore using Replicated PV Mayastor Snapshots - Raw Block Volumes
 
 Using Velero for backup and restore operations with Replicated PV Mayastor snapshots combines the strengths of both tools, providing a robust, efficient, and easy-to-manage solution for protecting your Kubernetes applications and data. The integration leverages the high performance and efficiency of Replicated PV Mayastor snapshots with the comprehensive backup capabilities of Velero, ensuring your data is always protected and recoverable.
 
@@ -38,10 +38,10 @@ Install Velero (V1.13.2) with the `velero-plugin-for-csi` and with any S3 object
 
 As an example we will be using Google Cloud Platform (GCP) and OpenEBS.
 
-1. Install Velero.
+1. Install Velero with a privileged node agent by utilizing the `--privileged-node-agent` to take raw block volume backups. 
 
 ```
-velero install --provider gcp --plugins velero/velero-plugin-for-gcp:v1.10.0,velero/velero-plugin-for-csi:v0.7.0  --use-node-agent --bucket velero-openebs --secret-file ./credentials-velero --use-volume-snapshots=true --features=EnableCSI
+velero install --provider gcp --plugins velero/velero-plugin-for-gcp:v1.10.0,velero/velero-plugin-for-csi:v0.7.0  --use-node-agent --bucket velero-openebs --secret-file ./credentials-velero --use-volume-snapshots=true --features=EnableCSI --privileged-node-agent
 ```
 
 2. Once you have installed Velero, verify that Velero has installed correctly.
@@ -56,10 +56,10 @@ kubectl get pods -n velero
 
 ```
 NAME                      READY   STATUS    RESTARTS   AGE
-node-agent-9b9gz          1/1     Running   0          175m
-node-agent-dlrzt          1/1     Running   0          175m
-node-agent-q47cq          1/1     Running   0          175m
-velero-6b9b99494b-rkppw   1/1     Running   0          20h
+node-agent-5pfg6          1/1     Running   0          58s
+node-agent-5q5mg          1/1     Running   0          58s
+node-agent-mxfwr          1/1     Running   0          58s
+velero-6b9b99494b-kgvpk   1/1     Running   0          58s
 ```
 
 3. Verify the backup and snapshot storage location.
@@ -76,7 +76,7 @@ velero-6b9b99494b-rkppw   1/1     Running   0          20h
 
   ```
   NAME      PHASE       LAST VALIDATED   AGE   DEFAULT
-  default   Available   34s              20h   true
+  default   Available   8s               90s   true
   ```
 
   - Use the following command to verify the snapshot storage location:
@@ -128,30 +128,87 @@ reclaimPolicy: Delete
 volumeBindingMode: Immediate
 ```
 
-In this example, We have deployed a sample Nginx test application (with volume mode as file-system) for backup and restore.
+In this example, We have deployed a sample Nginx test application (with volume mode as block) for backup and restore.
+
+**PVC with Volume Mode as Block**
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ms-volume-claim-block
+  namespace: mayastor-app-block
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: mayastor-3-thin
+  volumeMode: Block
+```
+
+**Mounting Raw Block Volumes to Pod**
+
+```
+kind: Pod
+apiVersion: v1
+metadata:
+  namespace: mayastor-app-block
+  name: test-block
+spec:
+  nodeSelector:
+    kubernetes.io/os: linux
+  containers:
+    - image: nginx
+      name: nginx
+      command: [ "sleep", "1000000" ]
+      volumeDevices:
+        - name: claim
+          devicePath: "/dev/sdm"
+  volumes:
+    - name: claim
+      persistentVolumeClaim:
+        claimName: ms-volume-claim-block
+```
 
 **Command**
 
 ```
-kubectl get pods -n mayastor-app
+kubectl get pods -n mayastor-app-block
 ```
 
 **Output**
 
 ```
-NAME   READY   STATUS    RESTARTS   AGE
-test   1/1     Running   0          63m
+NAME         READY   STATUS    RESTARTS   AGE
+test-block   1/1     Running   0          10s
+```
+
+**Command**
+
+```
+kubectl get pvc -n mayastor-app-block
+```
+
+**Output**
+
+```
+NAME                    STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
+ms-volume-claim-block   Bound    pvc-c9b2160a-6b26-4176-8478-f616267204aa   1Gi        RWO            mayastor-3-thin   5m34s
 ```
 
 **Sample Data**
 
 ```
-kubectl exec -it  test -n mayastor-app -- bash
-root@test:/# cd /volume
-root@test:/volume# cat abc
-Mayastor velero Backup and restore
-root@test:/volume# exit
-exit
+root@master-velero:~# kubectl exec -it test-block -n mayastor-app-block -- bash
+root@test-block:/# cd /dev
+root@test-block:/dev# echo Mayastor  >/dev/sdm
+root@test-block:/dev# dd if=/dev/sdm bs=1 count=8
+Mayastor8+0 records in
+8+0 records out
+8 bytes copied, 5.3903e-05 s, 148 kB/s
+root@test-block:/dev#
 ```
 
 ### Backup using Velero
@@ -161,14 +218,14 @@ exit
 **Command**
 
 ```
-velero backup create my-fs-backup --snapshot-volumes --include-namespaces=mayastor-app --volume-snapshot-locations=default --storage-location=default --snapshot-move-data
+velero backup create my-backup-raw-block --snapshot-volumes --include-namespaces=mayastor-app-block --volume-snapshot-locations=default --storage-location=default --snapshot-move-data
 ```
 
 **Output**
 
 ```
-Backup request "my-fs-backup" submitted successfully.
-Run `velero backup describe my-fs-backup` or `velero backup logs my-fs-backup` for more details.
+Backup request "my-backup-raw-block" submitted successfully.
+Run `velero backup describe my-backup-raw-block` or `velero backup logs my-backup-raw-block` for more details.
 ```
 
 - Use the following command to verify the backup status:
@@ -182,8 +239,8 @@ velero backup get
 **Output**
 
 ```
-NAME         STATUS     ERRORS  WARNINGS  CREATED                        EXPIRES  STORAGE LOCATION   SELECTOR
-my-fs-backup Completed  0       0         2024-07-30 08:48:12 +0000 UTC  29d      default            <none>
+NAME                  STATUS      ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
+my-backup-raw-block   Completed   0        0          2024-07-30 10:07:33 +0000 UTC   29d       default            <none>
 ```
 
 **Command**
@@ -195,8 +252,8 @@ kubectl get datauploads.velero.io -A
 **Output**
 
 ```
-NAMESPACE  NAME                STATUS     STARTED  BYTES DONE  TOTAL BYTES  STORAGE LOCATION  AGE    NODE
-velero     my-fs-backup-z9vrj  Completed  2m10s    35          35           default           2m10s  worker-velero-1
+NAMESPACE   NAME                        STATUS      STARTED   BYTES DONE   TOTAL BYTES   STORAGE LOCATION   AGE     NODE
+velero      my-backup-raw-block-chjz2   Completed   2m20s     1068481536   1068481536    default            2m20s   worker-velero-1
 ```
 
 - Use the following command to verify the backup on target cluster:
@@ -210,8 +267,8 @@ velero backup get
 **Output**
 
 ```
-NAME          STATUS      ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
-my-fs-backup  Completed   0        0          2024-07-30 08:48:12 +0000 UTC   29d       default            <none>
+NAME                  STATUS      ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
+my-backup-raw-block   Completed   0        0          2024-07-30 10:07:33 +0000 UTC   29d       default            <none>
 ```
 
 ### Restore using Velero
@@ -225,18 +282,18 @@ In order to ensure that Velero can access the previously saved backups, it is re
 **Command**
 
 ```
-velero restore create my-fs-restore --from-backup my-fs-backup --restore-volumes=true --namespace-mappings mayastor-app:mayastor-app-restore
+velero restore create my-raw-block-restore --from-backup my-backup-raw-block --restore-volumes=true --namespace-mappings mayastor-app-block:mayastor-app-restore-block
 ```
 
 **Output**
 
 ```
-Restore request "my-fs-restore" submitted successfully.
-Run `velero restore describe my-fs-restore` or `velero restore logs my-fs-restore` for more details.
+Restore request "my-raw-block-restore" submitted successfully.
+Run `velero restore describe my-raw-block-restore` or `velero restore logs my-raw-block-restore` for more details.
 ```
 
 :::note
-This is being restored on the target cluster in the namespace: `mayastor-app-restore`.
+This is being restored on the target cluster in the namespace: `mayastor-app-restore-block`.
 :::
 
 - Use the following command to verify the restore status:
@@ -250,8 +307,8 @@ velero restore get
 **Ouput**
 
 ```
-NAME           BACKUP        STATUS     STARTED                        COMPLETED                      ERRORS  WARNINGS   CREATED    SELECTOR
-my-fs-restore  my-fs-backup  Completed  2024-07-30 08:56:25 +0000 UTC  2024-07-30 08:57:11 +0000 UTC  0       1          2024-07-30 08:56:25 +0000 UTC   <none>
+AME                   BACKUP                STATUS      STARTED                         COMPLETED                       ERRORS   WARNINGS   CREATED                         SELECTOR
+my-raw-block-restore   my-backup-raw-block   Completed   2024-07-30 10:11:53 +0000 UTC   2024-07-30 10:13:14 +0000 UTC   0        1          2024-07-30 10:11:53 +0000 UTC   <none>
 ```
 
 **Command**
@@ -263,8 +320,8 @@ kubectl get datadownloads.velero.io -A
 **Output**
 
 ```
-NAMESPACE   NAME                   STATUS      STARTED   BYTES DONE   TOTAL BYTES   STORAGE LOCATION   AGE   NODE
-velero      my-fs-restore-2s4w5    Completed   56s       35           35            default            56s   worker-restore-1
+NAMESPACE   NAME                         STATUS      STARTED   BYTES DONE   TOTAL BYTES   STORAGE LOCATION   AGE   NODE
+velero      my-raw-block-restore-h8rlw   Completed   84s       1068481536   1068481536    default            84s   worker-restore-1
 ```
 
 - Use the following command to validate Nginx Application restored on target cluster:
@@ -272,27 +329,27 @@ velero      my-fs-restore-2s4w5    Completed   56s       35           35        
 **Command**
 
 ```
-kubectl get pods -n mayastor-app-restore
+kubectl get pods -n mayastor-app-restore-block
 ```
 
 **Output**
 
 ```
-NAME   READY   STATUS    RESTARTS   AGE
-test   1/1     Running   0          2m20s
+NAME         READY   STATUS    RESTARTS   AGE
+test-block   1/1     Running   0          107s
 ```
 
 **Command**
 
 ```
-kubectl get pvc -n mayastor-app-restore
+kubectl get pvc -n mayastor-app-restore-block
 ```
 
 **Output**
 
 ```
-NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
-ms-volume-claim   Bound    pvc-d1f5eddc-289b-4b7e-a61e-eaccce0f0d71   1Gi        RWO            mayastor-3-thin   2m25s
+NAME                    STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
+ms-volume-claim-block   Bound    pvc-8e030156-ed8b-46ba-9df4-629cda2ef697   1Gi        RWO            mayastor-3-thin   2m20s
 ```
 
 - Validate the data on target.
@@ -300,19 +357,22 @@ ms-volume-claim   Bound    pvc-d1f5eddc-289b-4b7e-a61e-eaccce0f0d71   1Gi       
 **Sample Data**
 
 ```
-kubectl exec -it test -n mayastor-app-restore -- bash
-root@test:/# cd volume/
-root@test:/volume# cat abc
-Mayastor velero Backup and restore
-root@test:/volume# exit
-exit
+kubectl exec -it test-block -n mayastor-app-restore-block -- bash
+root@test-block:/# dd if=/dev/sdm bs=1 count=8
+Mayastor8+0 records in
+8+0 records out
+8 bytes copied, 0.000104084 s, 76.9 kB/s
+root@test-block:/# cd /dev
+root@test-block:/dev# ls -lrt sdm
+brw-rw---- 1 root disk 259, 1 Jul 30 10:13 sdm
+root@test-block:/dev#
 ```
 
-The `fs data` has been restored to the target cluster.
+The `raw block data` has been restored to the target cluster.
 
 ## See Also
 
-- [Velero Backup and Restore using Replicated PV Mayastor Snapshots - Raw Block Volumes](velero-br-rbv.md)
+- [Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem](velero-br-fs.md)
 - [Replicated PV Mayastor Installation on MicroK8s](../openebs-on-kubernetes-platforms/microkubernetes.md)
 - [Replicated PV Mayastor Installation on Talos](../openebs-on-kubernetes-platforms/talos.md)
 - [Replicated PV Mayastor Installation on Google Kubernetes Engine](../openebs-on-kubernetes-platforms/gke.md)
