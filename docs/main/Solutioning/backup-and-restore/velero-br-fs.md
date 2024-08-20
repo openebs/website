@@ -14,7 +14,7 @@ Using Velero for backup and restore operations with Replicated PV Mayastor snaps
 
 Velero can support any volume provider that has a Container Storage Interface (CSI) driver with snapshotting capability.
 
-In this guide, we will utilize Velero to capture a backup of a sample Nginx application with a Replicated PV Mayastor from a cluster, transfer the backup to an object store, and restore it on a different cluster.
+In this guide, we will utilize Velero to create a backup of a sample Nginx application with a Replicated PV Mayastor from a cluster, transfer the backup to an object store, and restore it on a different cluster.
 
 ## Requirements
 
