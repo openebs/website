@@ -315,3 +315,4 @@ root@nginx-deployment-7bf66b59f5-mxcdp:/volume#
 - [Replicated PV Mayastor Installation on MicroK8s](microkubernetes.md)
 - [Replicated PV Mayastor Installation on Talos](talos.md)
 - [Provisioning NFS PVCs](../read-write-many/nfspvc.md)
+- [Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem](../backup-and-restore/velero-br-fs.md)
