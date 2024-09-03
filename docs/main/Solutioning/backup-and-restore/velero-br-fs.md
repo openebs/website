@@ -199,10 +199,6 @@ NAMESPACE  NAME                STATUS     STARTED  BYTES DONE  TOTAL BYTES  STOR
 velero     my-fs-backup-z9vrj  Completed  2m10s    35          35           default           2m10s  worker-velero-1
 ```
 
-:::important
-In order to ensure that Velero can access the previously saved backups, it is recommended that you install Velero on the target cluster with the same values for the BUCKET-NAME and SECRET-FILENAME placeholders as you did originally. Also, make sure you have Replicated PV Mayastor already installed and that pools and storageclass have been configured.
-:::
-
 - Use the following command to verify the backup on target cluster:
 
 **Command**
@@ -219,6 +215,10 @@ my-fs-backup  Completed   0        0          2024-07-30 08:48:12 +0000 UTC   29
 ```
 
 ### Restore using Velero
+
+:::important
+In order to ensure that Velero can access the previously saved backups, it is recommended that you install Velero on the target cluster with the same values for the BUCKET-NAME and SECRET-FILENAME placeholders as you did originally. Also, make sure you have Replicated PV Mayastor already installed and that pools and storageclass have been configured.
+:::
 
 - Use the following command to restore on target cluster:
 
@@ -312,6 +312,7 @@ The `fs data` has been restored to the target cluster.
 
 ## See Also
 
+- [Velero Backup and Restore using Replicated PV Mayastor Snapshots - Raw Block Volumes](velero-br-rbv.md)
 - [Replicated PV Mayastor Installation on MicroK8s](../openebs-on-kubernetes-platforms/microkubernetes.md)
 - [Replicated PV Mayastor Installation on Talos](../openebs-on-kubernetes-platforms/talos.md)
 - [Replicated PV Mayastor Installation on Google Kubernetes Engine](../openebs-on-kubernetes-platforms/gke.md)
