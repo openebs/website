@@ -606,6 +606,11 @@ module.exports = {
               type: "doc",
               id: "Solutioning/backup-and-restore/velerobrfs",
               label: "Replicated PV Mayastor Snapshots - FileSystem"
+            },
+            {
+              type: "doc",
+              id: "Solutioning/backup-and-restore/velerobrrbv",
+              label: "Replicated PV Mayastor Snapshots - Raw Block Volumes"
             }
           ]
         },  
