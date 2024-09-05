@@ -28,9 +28,9 @@ By default, Talos Linux applies a baseline pod security profile across namespace
   value:
     - name: PodSecurity
       configuration:
-        exemptions: null
-        namespaces:
-          - mayastor
+        exemptions:
+          namespaces:
+            - mayastor # or whatever namespace you install OpenEBS under
 ```
 
 ## Talos Worker Node Changes
