@@ -69,6 +69,11 @@ EOF
 ```
 
 The diskpool is created with labels to satisfy `poolHasTopologyKey` and `poolAffinityTopologyLabel` parameters of the storage class. This helps place the replicas of volume based on the pool labels.
+You can use the plugin to add labels to pools that do not have topology labels:
+
+```
+kubectl mayastor label pool pool-on-node-1 topology-key=topology-value -n openebs
+```
 
 **Example DiskPool Definition with Labels**
 ```
@@ -244,6 +249,7 @@ parameters:
     zone: us-west-1
 provisioner: io.openebs.csi-mayastor
 volumeBindingMode: Immediate
+EOF
 ```
 
 Apply the labels to the nodes using the below command:
@@ -283,6 +289,7 @@ parameters:
     rack
 provisioner: io.openebs.csi-mayastor
 volumeBindingMode: Immediate
+EOF
 ```
 
 Apply the labels on the node using the below command:
@@ -325,6 +332,7 @@ parameters:
     zone
 provisioner: io.openebs.csi-mayastor
 volumeBindingMode: Immediate
+EOF
 ```
 
 Apply the labels to the nodes using the below command:
@@ -369,6 +377,7 @@ parameters:
     zone: us-west-1
 provisioner: io.openebs.csi-mayastor
 volumeBindingMode: Immediate
+EOF
 ```
 
 Apply the labels to the pools using the below command:
@@ -411,6 +420,7 @@ spec:
   topology:
     labelled:
         zone: us-west-1
+EOF
  ```
 
  **Command (Get filtered pools based on labels)**
@@ -448,6 +458,7 @@ parameters:
     zone
 provisioner: io.openebs.csi-mayastor
 volumeBindingMode: Immediate
+EOF
 ```
 
 **Command (Get filtered pools based on labels)**
