@@ -12,18 +12,18 @@ description: This page contains list of supported OpenEBS releases.
 **Release Date: 08 July 2024**
 
 OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners.
-The status of the various components as of v4.1.0 are as follows:
+The status of the various components as of v4.1.1 are as follows:
 
 - Local Storage (a.k.a Local Engine)
-  - [Local PV Hostpath 4.1.0](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
-  - [Local PV LVM 1.6.0](https://github.com/openebs/lvm-localpv) (stable)
-  - [Local PV ZFS 2.6.0](https://github.com/openebs/zfs-localpv) (stable)
+  - [Local PV Hostpath 4.1.1](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
+  - [Local PV LVM 1.6.1](https://github.com/openebs/lvm-localpv) (stable)
+  - [Local PV ZFS 2.6.2](https://github.com/openebs/zfs-localpv) (stable)
 
 - Replicated Storage (a.k.a Replicated Engine)
-  - [Replicated PV Mayastor 2.7.0](https://github.com/openebs/mayastor) (stable)
+  - [Replicated PV Mayastor 2.7.1](https://github.com/openebs/mayastor) (stable)
 
 - Out-of-tree (External Storage) Provisioners 
-  - [Local PV Hostpath 4.1.0](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
+  - [Local PV Hostpath 4.1.1](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
 
 - Other Components
   - [CLI 0.6.0](https://github.com/openebs/openebsctl) (beta)
@@ -99,7 +99,7 @@ The workaround is to delete the old pod so the new pod can get scheduled. See th
 
 ## Related Information
 
-OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For summary of what changes across all components in each release and to view the full Release Notes, see [OpenEBS Release 4.1](https://github.com/openebs/openebs/releases/tag/v4.1.0).
+OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For summary of what changes across all components in each release and to view the full Release Notes, see [OpenEBS Release 4.1](https://github.com/openebs/openebs/releases/tag/v4.1.1).
 
 See version specific Releases to view the legacy OpenEBS Releases.
 
