@@ -68,12 +68,10 @@ spec:
 EOF
 ```
 
-The diskpool is created with labels to satisfy `poolHasTopologyKey` and `poolAffinityTopologyLabel` parameters of the storage class. This helps place the replicas of volume based on the pool labels.
-You can use the plugin to add labels to pools that do not have topology labels:
+Inorder to place the volume replicas based on the pool labels i.e. to satisfy `poolHasTopologyKey` and `poolAffinityTopologyLabel` parameters of the storage class, the pools must be labelled with the topology field.
+This can be achieved in two ways:
 
-```
-kubectl mayastor label pool pool-on-node-1 topology-key=topology-value -n openebs
-```
+1. Create a new pool with the labels.
 
 **Example DiskPool Definition with Labels**
 ```
@@ -90,6 +88,12 @@ spec:
     labelled:
       topology-key: topology-value
 EOF
+```
+
+2. The existing pools can be labelled using the plugin. This will not affect any of the pre-existing volumes.
+
+```
+kubectl mayastor label pool pool-on-node-1 topology-key=topology-value -n openebs
 ```
 
 **YAML**
