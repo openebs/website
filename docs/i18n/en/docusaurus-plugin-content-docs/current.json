@@ -90,5 +90,9 @@
   "sidebar.docs.category.OpenEBS on K8s Platforms": {
     "message": "OpenEBS on K8s Platforms",
     "description": "The label for category OpenEBS on K8s Platforms in sidebar docs"
+  },
+  "sidebar.docs.category.Backup and Restore": {
+    "message": "Backup and Restore",
+    "description": "The label for category Backup and Restore in sidebar docs"
   }
 }

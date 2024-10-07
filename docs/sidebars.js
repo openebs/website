@@ -605,12 +605,17 @@ module.exports = {
             {
               type: "doc",
               id: "Solutioning/backup-and-restore/velerobrfs",
-              label: "Replicated PV Mayastor Snapshots - FileSystem"
+              label: "Velero - FileSystem"
             },
             {
               type: "doc",
               id: "Solutioning/backup-and-restore/velerobrrbv",
-              label: "Replicated PV Mayastor Snapshots - Raw Block Volumes"
+              label: "Velero - Raw Block Volumes"
+            },
+            {
+              type: "doc",
+              id: "Solutioning/backup-and-restore/kastenbrfs",
+              label: "Kasten - FileSystem"
             }
           ]
         },  
