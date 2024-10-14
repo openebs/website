@@ -119,6 +119,7 @@ resources:
 * Disks must be unpartitioned, unformatted, and used exclusively by the DiskPool.
 * The minimum capacity of the disks should be 10 GB.
 
+<!--
 ### RBAC Permission Requirements
 
 * **Kubernetes core v1 API-group resources:** Pod, Event, Node, Namespace, ServiceAccount, PersistentVolume, PersistentVolumeClaim, ConfigMap, Secret, Service, Endpoint, and Event.
@@ -233,7 +234,7 @@ roleRef:
   name: mayastor-cluster-role
   apiGroup: rbac.authorization.k8s.io
 ```
-
+-->
 ### Minimum Worker Node Count
 
   The minimum supported worker node count is three nodes. When using the synchronous replication feature (N-way mirroring), the number of worker nodes on which IO engine pods are deployed should be no less than the desired replication factor.
