@@ -120,7 +120,6 @@ resources:
 * The minimum capacity of the disks should be 10 GB.
 
 <!--
-
 ### RBAC Permission Requirements
 
 * **Kubernetes core v1 API-group resources:** Pod, Event, Node, Namespace, ServiceAccount, PersistentVolume, PersistentVolumeClaim, ConfigMap, Secret, Service, Endpoint, and Event.
