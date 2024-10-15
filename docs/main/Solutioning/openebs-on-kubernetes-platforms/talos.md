@@ -113,6 +113,38 @@ talosctl -n <node ip> service kubelet restart
 
 Refer to the [OpenEBS Installation Documentation](../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm on Talos.
 
+## Talos Upgrade
+
+The Talos operating system provides a streamlined upgrade process for maintaining and enhancing system performance. It is crucial to follow the appropriate steps based on the version of Talos you are using to ensure data integrity and system stability during upgrades.
+
+### Version 1.7 or Lower
+
+Follow the below steps to perform an upgrade for version 1.7 or lower:
+
+1. Upgrade a node using the `--preserve` flag.
+
+```
+talosctl -n <node-ip> upgrade --preserve --image $IMAGE_URL
+```
+
+:::note
+The `--preserve` flag explicitly instructs Talos to retain ephemeral data. Upgrading without this flag will compel Talos to reset node configurations and data, resulting in a more intrusive process that will erase the existing etcd state and other stored data.
+:::
+
+2. Verify that the node is operating on the new version.
+
+```
+talosctl -n <node-ip> version
+```
+
+3. Repeat this process for all nodes in the cluster.
+
+### Version 1.8 or Above
+
+In the Talos Linux installer, the system disk is never wiped during upgrades. Consequently, the `--preserve` flag is automatically applied to the talosctl upgrade command, ensuring a seamless upgrade experience while preserving existing data.
+
+Refer [Upgrades](https://www.talos.dev/v1.8/introduction/what-is-new/#upgrades) for more details.
+
 ## See Also
 
 - [Replicated PV Mayastor Installation on MicroK8s](microkubernetes.md)
