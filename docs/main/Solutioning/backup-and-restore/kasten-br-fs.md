@@ -5,6 +5,7 @@ keywords:
   - Kasten Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem
   - Kasten Backup and Restore
   - FileSystem
+  - OpenEBS
 description: In this document, you learn about Kasten Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem.
 ---
 
@@ -99,13 +100,15 @@ By default, the Kasten dashboard is not exposed externally.
 
 In this example we have changed the 'svc' type to **NodePort**:
 
-1. Forward a local port to the Kasten ingress port.
+- Forward a local port to the Kasten ingress port.
 
 ```
 kubectl --namespace kasten-io port-forward service/gateway 8080:80
 ```
 
-2. Change the 'svc' type as **NodePort**.
+or
+
+- Change the 'svc' type as **NodePort**.
 
 **Command**
 
@@ -170,6 +173,57 @@ Make sure the service account has necessary permissions.
 ### From Source Cluster
 
 In this example, We have deployed a sample Nginx test application for backup and restore.
+
+**Application yaml**
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test
+  namespace: test
+spec:
+  replicas: 1  # You can increase this number if you want more replicas.
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      nodeSelector:
+        kubernetes.io/os: linux
+      containers:
+        - image: nginx
+          name: nginx
+          command: [ "sleep", "1000000" ]
+          volumeMounts:
+            - name: claim
+              mountPath: "/volume"
+      volumes:
+        - name: claim
+          persistentVolumeClaim:
+            claimName: mayastor-pvc
+```
+
+**PVC yaml**
+
+```
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mayastor-pvc
+  namespace: test
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: mayastor-thin-multi-replica 
+  volumeMode: Filesystem
+```
 
 **Command**
 
@@ -245,7 +299,7 @@ Once the policies have been created, it is possible to run the backup. In this s
 
 ![run-once](../../assets/run-once.png)
 
-The snapshots status can be monitored and exported from the Dashboard. The backup had been successfully completed and exported to the storage location. 
+You can monitor the status of the snapshots and export from Dashboard. The backup had been successfully completed and exported to the storage location.
 
 ### From Target Cluster
 
@@ -257,7 +311,7 @@ Make sure that Kasten has been installed, volumesnapshotclass are created, and t
 The Location profile must be located in the exact same location as our backup, otherwise the restore would be unsuccessful. 
 :::
 
-The dashboard for the target cluster is now accessible since the backup was taken and as the above mentioned configurations were implemented on the restore cluster. 
+We have completed the backup process and followed the above configurations on the restore cluster. Therefore, the dashboard is now available for the target cluster.
 
 ![dashboard](../../assets/dashboard.png)
 
@@ -281,7 +335,7 @@ Once the policies are created, the import and restore processes can be initiated
 
 ![run-once-restore](../../assets/run-once-restore.png)
 
-The backup had been successfully completed.
+Restore has been successfully completed.
 
 ![restore](../../assets/restore.png)
 
