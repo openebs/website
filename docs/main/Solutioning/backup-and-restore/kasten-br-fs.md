@@ -33,7 +33,7 @@ Kasten K10, a Kubernetes-native data management platform that offers backup, dis
 
 Install Kasten (V7.0.5) using `helm`. Refer to the [Kasten Documentation](https://docs.kasten.io/7.0.5/install/requirements.html#prerequisites) to view the prerequisites and pre-flight checks.
 
-As an example, we will be using `openebs-hostpath` storageclass as a global persistence storageclass for kasten installation. 
+As an example, we will be using `openebs-hostpath` storageclass as a global persistence storageclass for the Kasten installation. 
 
 1. Install Kasten.
 
@@ -41,7 +41,7 @@ As an example, we will be using `openebs-hostpath` storageclass as a global pers
 helm install k10 kasten/k10 --namespace=kasten-io --set global.persistence.storageClass=openebs-hostpath
 ```
 
-2. Once you have installed Kasten, verify that Kasten has installed correctly.
+2. Once you have installed Kasten, verify that Kasten has been installed correctly.
 
 **Command**
 
@@ -92,7 +92,7 @@ driver: io.openebs.csi-mayastor
 
 ### Validate Dashboard Access
 
-Use the following `kubectl` command to forward a local port to Kasten ingress port or change the 'svc' type from **ClusterIP** to **NodePort** to establish a connection to it.
+Use the following `kubectl` command to forward a local port to the Kasten ingress port or change the 'svc' type from **ClusterIP** to **NodePort** to establish a connection to it.
 
 :::note
 By default, the Kasten dashboard is not exposed externally.
@@ -162,10 +162,10 @@ Location profiles help with managing backups and moving applications and their d
 
 ![location-profiles](../../assets/location-profiles.png)
 
-The `GCP Project ID` and `GCP Service Key` fields are mandatory. The `GCP Service Key` takes the complete content of the service account json file when creating a new service account. As an example, we will be using Google Cloud Bucket from Google Cloud Platform (GCP). Refer to the [Kasten Documentation](https://docs.kasten.io/latest/install/storage.html) for more information of profiles for various cloud environments.
+The `GCP Project ID` and `GCP Service Key` fields are mandatory. The `GCP Service Key` takes the complete content of the service account JSON file when creating a new service account. As an example, we will be using Google Cloud Bucket from Google Cloud Platform (GCP). Refer to the [Kasten Documentation](https://docs.kasten.io/latest/install/storage.html) for more information on profiles for various cloud environments.
 
 :::important
-Make sure the service account has necessary permissions.
+Make sure the service account has the necessary permissions.
 :::
 
 ## Application Snapshot - Backup and Restore
@@ -299,13 +299,13 @@ Once the policies have been created, it is possible to run the backup. In this s
 
 ![run-once](../../assets/run-once.png)
 
-You can monitor the status of the snapshots and export from Dashboard. The backup had been successfully completed and exported to the storage location.
+You can monitor the status of the snapshots and export them from the Dashboard. The backup had been successfully completed and exported to the storage location.
 
 ### From Target Cluster
 
-Make sure that Replicated PV Mayastor has been installed, pools have been configured, and storageclasses are created (same as backup cluster) before restoring the target cluster. Refer to the [OpenEBS Installation Documentation](../../quickstart-guide/installation.md#installation-via-helm) for more details.
+Make sure that Replicated PV Mayastor has been installed, pools have been configured, and storageclasses are created (same as a backup cluster) before restoring the target cluster. Refer to the [OpenEBS Installation Documentation](../../quickstart-guide/installation.md#installation-via-helm) for more details.
 
-Make sure that Kasten has been installed, volumesnapshotclass are created, and the dashboard is accessible before restoring the target cluster. Refer to the [Install Kasten section](#install-kasten) for more details.
+Make sure that Kasten has been installed, volumesnapshotclass is created, and the dashboard is accessible before restoring the target cluster. Refer to the [Install Kasten section](#install-kasten) for more details.
 
 :::note
 The Location profile must be located in the exact same location as our backup, otherwise the restore would be unsuccessful. 
