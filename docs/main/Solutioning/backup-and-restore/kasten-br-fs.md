@@ -98,7 +98,7 @@ Use the following `kubectl` command to forward a local port to the Kasten ingres
 By default, the Kasten dashboard is not exposed externally.
 :::
 
-In this example we have changed the 'service type' type to **NodePort**:
+In this example we have changed the 'svc' type to **NodePort**:
 
 - Forward a local port to the Kasten ingress port.
 
@@ -108,7 +108,7 @@ kubectl --namespace kasten-io port-forward service/gateway 8080:80
 
 or
 
-- Change the 'svc' type as **NodePort**.
+- Change the 'service type' type as **NodePort**.
 
 **Command**
 
