@@ -41,7 +41,7 @@ As an example, we will be using `openebs-hostpath` storageclass as a global pers
 helm install k10 kasten/k10 --namespace=kasten-io --set global.persistence.storageClass=openebs-hostpath
 ```
 
-2. Once you have installed Kasten, verify that Kasten has been installed correctly.
+2. Verify that Kasten has been installed correctly.
 
 **Command**
 
@@ -98,7 +98,7 @@ Use the following `kubectl` command to forward a local port to the Kasten ingres
 By default, the Kasten dashboard is not exposed externally.
 :::
 
-In this example we have changed the 'svc' type to **NodePort**:
+In this example we have changed the 'service type' type to **NodePort**:
 
 - Forward a local port to the Kasten ingress port.
 
@@ -172,7 +172,7 @@ Make sure the service account has the necessary permissions.
 
 ### From Source Cluster
 
-In this example, We have deployed a sample Nginx test application for backup and restore.
+In this example, We have deployed a sample Nginx test application with a Replicated PV Mayastor PVC where volume mode is Filesystem.
 
 **Application yaml**
 
