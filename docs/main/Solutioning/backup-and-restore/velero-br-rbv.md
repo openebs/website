@@ -5,6 +5,7 @@ keywords:
   - Velero Backup and Restore using Replicated PV Mayastor Snapshots - Raw Block Volumes
   - Velero Backup and Restore
   - Raw Block Volumes
+  - OpenEBS
 description: In this document, you learn about Velero Backup and Restore using Replicated PV Mayastor Snapshots - Raw Block Volumes.
 ---
 

@@ -5,6 +5,7 @@ keywords:
   - Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem
   - Velero Backup and Restore
   - FileSystem
+  - OpenEBS
 description: In this document, you learn about Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem.
 ---
 
