@@ -587,6 +587,31 @@
                     "label": "Provisioning NFS PVCs"
                   }
                 ]
+              },
+              {
+                "collapsed": true,
+                "type": "category",
+                "label": "Backup and Restore",
+                "customProps": {
+                  "icon": "Repeat"
+                },
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "version-4.1.x/Solutioning/backup-and-restore/velerobrfs",
+                    "label": "Velero - FileSystem"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "version-4.1.x/Solutioning/backup-and-restore/velerobrrbv",
+                    "label": "Velero - Raw Block Volumes"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "version-4.1.x/Solutioning/backup-and-restore/kastenbrfs",
+                    "label": "Kasten - FileSystem"
+                  }
+                ]
               }  
             ]
           },
