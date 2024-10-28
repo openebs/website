@@ -22,21 +22,21 @@ Using OpenEBS Replicated PV Mayastor in EKS with Instance store volumes addresse
 
 - For instance, using OpenEBS with replication (e.g., 2 or 3 replicas), ensures that even if one node fails or is terminated, the data exists on other nodes, avoiding data loss.
 
-- How it fixes the limitation: Without OpenEBS, if a node with  Instance store volumes is terminated, all the data is lost. OpenEBS ensures the data is replicated to other nodes, so even if the original node is lost, the data persists elsewhere.
+- Without OpenEBS, if a node with Instance store volumes is terminated, all the data is lost. OpenEBS ensures the data is replicated to other nodes, so even if the original node is lost, the data persists elsewhere.
 
-In AWS Elastic Kubernetes Service (EKS), if you provision worker nodes with instance store volumes, the storage provided by these SSDs is ephemeral due to the following reasons
+In AWS Elastic Kubernetes Service (EKS), when provisioning worker nodes with instance store volumes, the storage provided by these SSDs is ephemeral due to the following reasons:
 
-1. Instance Store Nature
+1. Instance Store Characteristics
 
-  - In AWS EC2 instances, instance store volumes are physically attached to the underlying hardware (the host machine running the instance). This makes them very fast but also non-persistent
+  - **Physical Attachment to Hardware:** In AWS EC2 instances, instance store volumes are physically attached to the underlying hardware (i.e., the host machine running the instance). This configuration provides high-speed access but is inherently non-persistent.
   
-  - Data loss on instance stop/termination: When an EC2 instance is stopped, terminated, or fails, the instance store is automatically wiped, resulting in the loss of any data on those volumes. This is the design of instance store volumes and applies across all AWS services, including EKS.
+  - **Data Loss on Instance Stop or Termination:** When an EC2 instance is stopped, terminated, or fails, the instance store is automatically wiped, resulting in the loss of any data on those volumes. This is a design of instance store volumes and applicable across all AWS services, including EKS.
 
 2. Ephemeral Storage by Design
 
   - Local SSDs in EC2 instances are designed for temporary storage of data that does not need to persist beyond the instance's lifecycle, such as caches, scratch data, or intermediary results.
 
-  - In a Kubernetes context, this storage is used for tasks like temporary logs, caches, or processing data that can be recreated. However, it's not suitable for long-term or critical data storage since the data will be lost if the node is replaced or terminated.
+  - In a Kubernetes environment, this storage type is typically used for temporary logs, caches, or data that can be readily recreated. However, instance store volumes are unsuitable for long-term or critical data storage because the data will be lost if the node is replaced or terminated.
 
 3. Kubernetes Dynamic Scheduling
 
@@ -48,7 +48,7 @@ In AWS Elastic Kubernetes Service (EKS), if you provision worker nodes with inst
 
 5. Use Case Limitations in EKS
 
-  While local SSDs are ideal for high-performance, low-latency temporary storage (such as logs or caching), they are not suited for persistent storage needs in EKS.
+  Although local SSDs offer high performance and low-latency storage suitable for temporary data such as logs or caching, they are not designed for persistent storage needs within EKS.
 
 
 ## Prerequisites
