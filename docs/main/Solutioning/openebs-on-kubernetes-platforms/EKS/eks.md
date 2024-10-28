@@ -75,7 +75,7 @@ helm install openebs --namespace openebs openebs/openebs --create-namespace
 
 ## Pools
 
-The available GKE local SSD disks on worker nodes can be viewed by using the `kubectl-mayastor` plugin.
+The available local SSD disks on worker nodes can be viewed by using the `kubectl-mayastor` plugin.
 
 ```
 kubectl mayastor get block-devices NODE_ID -n openebs 
@@ -127,11 +127,13 @@ EOF
 storageclass.storage.k8s.io/mayastor-3 created
 ```
 
+## Deployment
+
 - Refer to the [Deploy an Application Documentation](../../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-deployment.md) for instructions regarding PVC creation and deploying an application.
 
-If all verification steps in the preceding stages were satisfied, then Replicated PV Mayastor has been successfully deployed within the cluster. In order to verify basic functionality, we will now dynamically provision a Persistent Volume based on a Replicated PV Mayastor StorageClass, mount that volume within a small test pod which we'll create, and use the [Flexible I/O Tester](https://github.com/axboe/fio) utility within that pod to check that I/O to the volume is processed correctly.
+- If all verification steps in the preceding stages were satisfied, then Replicated PV Mayastor has been successfully deployed within the cluster. In order to verify basic functionality, we will now dynamically provision a Persistent Volume based on a Replicated PV Mayastor StorageClass, mount that volume within a small test pod which we'll create, and use the [Flexible I/O Tester](https://github.com/axboe/fio) utility within that pod to check that I/O to the volume is processed correctly.
 
-Use `kubectl` to create a PVC based on a StorageClass that you created. In the example shown below, we will consider that StorageClass to have been named "mayastor-3". Replace the value of the field "storageClassName" with the name of your own Replicated PV Mayastor-based StorageClass.
+- Use `kubectl` to create a PVC based on a StorageClass that you created. In the example shown below, we will consider that StorageClass to have been named "mayastor-3". Replace the value of the field "storageClassName" with the name of your own Replicated PV Mayastor-based StorageClass.
 
 **Command**
 
