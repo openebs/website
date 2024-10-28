@@ -58,7 +58,23 @@ During the installation of Replicated PV Mayastor in MicroK8s, Pods with hostnet
 
 **Expected Error**
 
-![](https://hackmd.io/_uploads/Syigxz7u3.png)
+```
+root@master:~# kubectl logs -f mayastor-agent-ha-node-ljxdt -n mayastor -c agent-cluster-grpc-probe
+nc: bad address 'mayastor-agent-core'
+Fri Feb 10 08:18:41 UTC 2023
+Waiting for agent-cluster-grpc services...
+nc: bad address 'mayastor-agent-core'
+Fri Feb 10 08:19:02 UTC 2023
+Waiting for agent-cluster-grpc services...
+nc: bad address 'mayastor-agent-core'
+Fri Feb 10 08:19:23 UTC 2023
+Waiting for agent-cluster-grpc services...
+nc: bad address 'mayastor-agent-core'
+Fri Feb 10 08:19:44 UTC 2023
+Waiting for agent-cluster-grpc services...
+nc: bad address 'mayastor-agent-core'
+Fri Feb 10 08:20:05 UTC 2023
+```
 
 **Resolution**
 
