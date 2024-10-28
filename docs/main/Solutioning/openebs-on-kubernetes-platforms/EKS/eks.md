@@ -167,7 +167,7 @@ kubectl get pvc
 
 **Output**
 NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
-ms-volume-claim   Bound    pvc-143581bb-76f9-4abe-a4f9-9ae5099c286d   1Gi        RWO            mayastor-3     <unset>                 2m42s
+ms-volume-claim   Bound    pvc-143581bb-76f9-4abe-a4f9-9ae5099c286d   1Gi        RWO            mayastor-3     unset                   2m42s
 
 **Command**
 
@@ -179,11 +179,11 @@ kubectl get pv
 
 ```
 NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                            STORAGECLASS            VOLUMEATTRIBUTESCLASS   REASON   AGE
-pvc-143581bb-76f9-4abe-a4f9-9ae5099c286d   1Gi        RWO            Delete           Bound    default/ms-volume-claim          mayastor-3              <unset>                          2m46s
-pvc-6064b04a-ceb4-4b46-b44b-eb15f77ecf41   2Gi        RWO            Delete           Bound    openebs/data-openebs-etcd-0      mayastor-etcd-localpv   <unset>                          119m
-pvc-94b34749-c33a-42d2-85fb-c8935f0a6b25   2Gi        RWO            Delete           Bound    openebs/data-openebs-etcd-2      mayastor-etcd-localpv   <unset>                          119m
-pvc-9ff4ae1b-f6f9-4e4d-a616-d1e40c17effc   2Gi        RWO            Delete           Bound    openebs/data-openebs-etcd-1      mayastor-etcd-localpv   <unset>                          119m
-pvc-fdd82823-7f3b-4f19-8346-0d037ebb61d8   10Gi       RWO            Delete           Bound    openebs/storage-openebs-loki-0   mayastor-loki-localpv   <unset>                          119m
+pvc-143581bb-76f9-4abe-a4f9-9ae5099c286d   1Gi        RWO            Delete           Bound    default/ms-volume-claim          mayastor-3              unset                            2m46s
+pvc-6064b04a-ceb4-4b46-b44b-eb15f77ecf41   2Gi        RWO            Delete           Bound    openebs/data-openebs-etcd-0      mayastor-etcd-localpv   unset                            119m
+pvc-94b34749-c33a-42d2-85fb-c8935f0a6b25   2Gi        RWO            Delete           Bound    openebs/data-openebs-etcd-2      mayastor-etcd-localpv   unset                            119m
+pvc-9ff4ae1b-f6f9-4e4d-a616-d1e40c17effc   2Gi        RWO            Delete           Bound    openebs/data-openebs-etcd-1      mayastor-etcd-localpv   unset                            119m
+pvc-fdd82823-7f3b-4f19-8346-0d037ebb61d8   10Gi       RWO            Delete           Bound    openebs/storage-openebs-loki-0   mayastor-loki-localpv   unset                            119m
 ```
 
 **Command**
