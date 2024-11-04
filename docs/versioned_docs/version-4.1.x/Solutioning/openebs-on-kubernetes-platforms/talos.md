@@ -28,9 +28,11 @@ By default, Talos Linux applies a baseline pod security profile across namespace
   value:
     - name: PodSecurity
       configuration:
-        exemptions: null
-        namespaces:
-          - mayastor
+        apiVersion: pod-security.admission.config.k8s.io/v1beta1
+        kind: PodSecurityConfiguration
+        exemptions:
+          namespaces:
+            - mayastor
 ```
 
 ## Talos Worker Node Changes
