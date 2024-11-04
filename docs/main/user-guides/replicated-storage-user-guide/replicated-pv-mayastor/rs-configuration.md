@@ -64,7 +64,7 @@ metadata:
   namespace: openebs
 spec:
   node: workernode-1-hostname
-  disks: ["/dev/disk/by-id/<id>"]
+  disks: ["aio:///dev/disk/by-id/<id>"]
 EOF
 ```
 
@@ -83,7 +83,7 @@ metadata:
   namespace: openebs
 spec:
   node: workernode-1-hostname
-  disks: ["/dev/disk/by-id/<id>"]
+  disks: ["aio:///dev/disk/by-id/<id>"]
   topology:
     labelled:
       topology-key: topology-value
