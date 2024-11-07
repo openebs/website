@@ -60,7 +60,7 @@ helm repo add openebs https://openebs.github.io/openebs
 helm repo update
 ```
 
-:::important
+:::note
 `helm repo add openebs https://openebs.github.io/charts` has changed to `helm repo add openebs https://openebs.github.io/openebs`.
 :::
 
@@ -88,7 +88,29 @@ helm install openebs --namespace openebs openebs/openebs --set engines.replicate
 ```
 :::
 
-3. To view the chart and get the output, use the following commands:
+If you are utilizing a custom Kubelet location or a Kubernetes distribution that uses a custom Kubelet location, it is necessary to modify the Kubelet directory in the Helm values at installation time. This can be accomplished by using the `--set` flag option in the Helm install command, as follows:
+
+- For Local PV LVM
+
+```
+--set lvm-localpv.lvmNode.kubeletDir=<your-directory-path>
+```
+
+- For Local PV ZFS
+
+```
+--set zfs-localpv.zfsNode.kubeletDir=<your-directory-path>
+```
+
+Specifically:
+
+- For **MicroK8s**, the Kubelet directory must be updated to `/var/snap/microk8s/common/var/lib/kubelet/` by replacing the default `/var/lib/kubelet/` with `/var/snap/microk8s/common/var/lib/kubelet/`.
+  
+- For **k0s**, the default Kubelet directory (`/var/lib/kubelet`) must be changed to `/var/lib/k0s/kubelet/`.
+
+- For **RancherOS**, the default Kubelet directory (`/var/lib/kubelet`) must be changed to `/opt/rke/var/lib/kubelet/`.
+
+3. To view the chart and get the output, use the following command:
 
 **Command**
 
