@@ -175,15 +175,15 @@ The latest release versions of each of the engine are as follows:
 - Kubernetes 1.18 or higher release is recommended as this release contains the following updates that will not be compatible with older Kubernetes releases.
 
   - The CSI components have been upgraded to:
-    - k8s.gcr.io/sig-storage/csi-attacher:v3.1.0
-    - k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.1.0
-    - k8s.gcr.io/sig-storage/csi-provisioner:v2.1.0
-    - k8s.gcr.io/sig-storage/csi-provisioner:v2.1.1 (for Mayastor CSI volumes)
-    - k8s.gcr.io/sig-storage/csi-resizer:v1.1.0
-    - k8s.gcr.io/sig-storage/csi-snapshotter:v4.0.0
-    - k8s.gcr.io/sig-storage/snapshot-controller:v4.0.0
-    - k8s.gcr.io/sig-storage/csi-snapshotter:v3.0.3 (for cStor CSI volumes)
-    - k8s.gcr.io/sig-storage/snapshot-controller:v3.0.3 (for cStor CSI volumes)
+    - registry.k8s.io/sig-storage/csi-attacher:v3.1.0
+    - registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.1.0
+    - registry.k8s.io/sig-storage/csi-provisioner:v2.1.0
+    - registry.k8s.io/sig-storage/csi-provisioner:v2.1.1 (for Mayastor CSI volumes)
+    - registry.k8s.io/sig-storage/csi-resizer:v1.1.0
+    - registry.k8s.io/sig-storage/csi-snapshotter:v4.0.0
+    - registry.k8s.io/sig-storage/snapshot-controller:v4.0.0
+    - registry.k8s.io/sig-storage/csi-snapshotter:v3.0.3 (for cStor CSI volumes)
+    - registry.k8s.io/sig-storage/snapshot-controller:v3.0.3 (for cStor CSI volumes)
 
 - If you are upgrading from a version of cStor operators older than 2.6 to this version, you will need to manually delete the cStor CSI driver object prior to upgrading. `kubectl delete csidriver cstor.csi.openebs.io`. For complete details on how to upgrade your cStor operators, see https://github.com/openebs/upgrade/blob/master/docs/upgrade.md#cspc-pools.
 
@@ -235,15 +235,15 @@ Here are some of the key highlights in this release.
 
 - Kubernetes 1.17 or higher release is recommended as this release contains the following updates that will not be compatible with older Kubernetes releases.
   - The CSI components have been upgraded to:
-    - k8s.gcr.io/sig-storage/csi-attacher:v3.1.0
-    - k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.1.0
-    - k8s.gcr.io/sig-storage/csi-provisioner:v2.1.0
-    - k8s.gcr.io/sig-storage/csi-provisioner:v2.1.1 (for Mayastor CSI volumes)
-    - k8s.gcr.io/sig-storage/csi-resizer:v1.1.0
-    - k8s.gcr.io/sig-storage/csi-snapshotter:v4.0.0
-    - k8s.gcr.io/sig-storage/snapshot-controller:v4.0.0
-    - k8s.gcr.io/sig-storage/csi-snapshotter:v3.0.3 (for cStor CSI volumes)
-    - k8s.gcr.io/sig-storage/snapshot-controller:v3.0.3 (for cStor CSI volumes)
+    - registry.k8s.io/sig-storage/csi-attacher:v3.1.0
+    - registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.1.0
+    - registry.k8s.io/sig-storage/csi-provisioner:v2.1.0
+    - registry.k8s.io/sig-storage/csi-provisioner:v2.1.1 (for Mayastor CSI volumes)
+    - registry.k8s.io/sig-storage/csi-resizer:v1.1.0
+    - registry.k8s.io/sig-storage/csi-snapshotter:v4.0.0
+    - registry.k8s.io/sig-storage/snapshot-controller:v4.0.0
+    - registry.k8s.io/sig-storage/csi-snapshotter:v3.0.3 (for cStor CSI volumes)
+    - registry.k8s.io/sig-storage/snapshot-controller:v3.0.3 (for cStor CSI volumes)
 - If you are upgrading from a version of cStor operators older than 2.6 to this version, you will need to manually delete the cStor CSI driver object prior to upgrading. `kubectl delete csidriver cstor.csi.openebs.io`. For complete details on how to upgrade your cStor operators, see https://github.com/openebs/upgrade/blob/master/docs/upgrade.md#cspc-pools.
 - The CRD API version has been updated for the cStor custom resources to v1. If you are upgrading via the helm chart, you might have to make sure that the new CRDs are updated. https://github.com/openebs/cstor-operators/tree/master/deploy/helm/charts/crds
 - The e2e pipelines include upgrade testing only from 1.6 and higher releases to 2.7. If you are running on release older than 1.6, OpenEBS recommends you upgrade to the latest version as soon as possible.
@@ -301,14 +301,14 @@ Here are some of the key highlights in this release.
 - Kubernetes 1.17 or higher release is recommended as this release contains the following updates that will not be compatible with older Kubernetes releases.
 
   - The CSI components have been upgraded to:
-    - k8s.gcr.io/sig-storage/csi-attacher:v3.1.0
-    - k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.1.0
-    - k8s.gcr.io/sig-storage/csi-provisioner:v2.1.0
-    - k8s.gcr.io/sig-storage/csi-resizer:v1.1.0
-    - k8s.gcr.io/sig-storage/csi-snapshotter:v4.0.0
-    - k8s.gcr.io/sig-storage/snapshot-controller:v4.0.0
-    - k8s.gcr.io/sig-storage/csi-snapshotter:v3.0.3 (for cStor CSI volumes)
-    - k8s.gcr.io/sig-storage/snapshot-controller:v3.0.3 (for cStor CSI volumes)
+    - registry.k8s.io/sig-storage/csi-attacher:v3.1.0
+    - registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.1.0
+    - registry.k8s.io/sig-storage/csi-provisioner:v2.1.0
+    - registry.k8s.io/sig-storage/csi-resizer:v1.1.0
+    - registry.k8s.io/sig-storage/csi-snapshotter:v4.0.0
+    - registry.k8s.io/sig-storage/snapshot-controller:v4.0.0
+    - registry.k8s.io/sig-storage/csi-snapshotter:v3.0.3 (for cStor CSI volumes)
+    - registry.k8s.io/sig-storage/snapshot-controller:v3.0.3 (for cStor CSI volumes)
 
 - If you are upgrading from an older version of cStor operators to this version, you will need to manually delete the cStor CSI driver object prior to upgrading. `kubectl delete csidriver cstor.csi.openebs.io`. For complete details on how to upgrade your cStor operators, see https://github.com/openebs/upgrade/blob/master/docs/upgrade.md#cspc-pools.
 
@@ -370,8 +370,8 @@ Here are some of the key highlights in this release.
     - quay.io/k8scsi/csi-snapshotter:v4.0.0
     - quay.io/k8scsi/csi-resizer:v1.1.0
     - quay.io/k8scsi/csi-attacher:v3.1.0
-    - k8s.gcr.io/sig-storage/csi-snapshotter:v3.0.3 (for cStor CSI volumes)
-    - k8s.gcr.io/sig-storage/snapshot-controller:v3.0.3 (for cStor CSI volumes)
+    - registry.k8s.io/sig-storage/csi-snapshotter:v3.0.3 (for cStor CSI volumes)
+    - registry.k8s.io/sig-storage/snapshot-controller:v3.0.3 (for cStor CSI volumes)
 
 - If you are upgrading from an older version of cStor operators to this version, you will need to manually delete the cstor CSI driver object prior to upgrade. `kubectl delete csidriver cstor.csi.openebs.io`. For complete details on how to upgrade your cStor operators, see https://github.com/openebs/upgrade/blob/master/docs/upgrade.md#cspc-pools.
 
@@ -498,8 +498,8 @@ Here are some of the key highlights in this release.
     - quay.io/k8scsi/csi-snapshotter:v4.0.0
     - quay.io/k8scsi/csi-resizer:v1.1.0
     - quay.io/k8scsi/csi-attacher:v3.1.0
-    - k8s.gcr.io/sig-storage/csi-snapshotter:v3.0.3 (for cStor CSI volumes)
-    - k8s.gcr.io/sig-storage/snapshot-controller:v3.0.3 (for cStor CSI volumes)
+    - registry.k8s.io/sig-storage/csi-snapshotter:v3.0.3 (for cStor CSI volumes)
+    - registry.k8s.io/sig-storage/snapshot-controller:v3.0.3 (for cStor CSI volumes)
 
 - If you are upgrading from an older version of cStor Operators to this version, you will need to manually delete the cstor CSI driver object prior to upgrade. `kubectl delete csidriver cstor.csi.openebs.io`. For complete details on how to upgrade your cStor Operators, see https://github.com/openebs/upgrade/blob/master/docs/upgrade.md#cspc-pools.
 
