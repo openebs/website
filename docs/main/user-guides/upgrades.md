@@ -171,7 +171,7 @@ helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.1
 ```
 
 :::important
-The `--reuse-values` option should not be used during the Helm upgrade, as it may cause the pre-upgrade images to be used instead of the new images.
+The `--reuse-values` option should not be used with `helm upgrade`, as it may cause the pre-upgrade images to be used instead of the new images. Instead the `--reset-then-reuse-values` option is recommended.
 :::
 
 2. Verify that the CRDs, Volumes, Snapshots, and StoragePools are not affected by the upgrade process.
