@@ -664,6 +664,12 @@ It is recommended that Replicated PV Mayastor volumes be provisioned with a mini
 
 [Go to top](#top)
 
+### Should I install the mayastor/mayastor Helm chart alongside the openebs/openebs Helm release?
+
+The `mayastor/mayastor` Helm chart, along with other stable OpenEBS storage plugins, is included as a dependency within the `openebs/openebs` Helm chart. The `openebs/openebs` chart can be configured to deploy the Replicated PV Mayastor storage engine. It is not recommended to deploy the Helm chart dependencies independently alongside the umbrella chart (openebs/openebs). This may lead to configuration conflicts and operational issues.
+
+[Go to top](#top)
+
 ## See Also
 
 - [Quickstart](../quickstart-guide/installation.md)
