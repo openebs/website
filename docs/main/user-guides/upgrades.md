@@ -65,35 +65,26 @@ If you have used helm v3.13 or above to install their chart, and not used helm's
 Feel free to reach out via our [communication channels](../community.md).
 :::
 
-
 ## Local Storage Upgrade
 
 The upgrade process for Local PV Hostpath, Local PV LVM, and Local PV ZFS are largely identical, with a few changes in helm values depending on the Local PV Storage variant we are upgrading from.
 
-### From 4.x to 4.1.1 or Higher
+:::note
+Downgrades are not supported.
+:::
 
-This section describes the Local Storage upgrade from OpenEBS chart 4.x to OpenEBS 4.1.1 or higher.
+### From 3.x to 4.2
 
-1. Execute the 4.1.1 upgrade command. 
+This section describes the Local Storage upgrade from OpenEBS chart 3.x to OpenEBS 4.2.
 
-```
-helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.1.1
-```
-
-2. Verify that the CRDs, Volumes, Snapshots, and StoragePools are not affected by the upgrade process.
-
-### From 3.x to 4.1.1
-
-This section describes the Local Storage upgrade from OpenEBS chart 3.x to OpenEBS 4.1.1.
-
-1. Execute the 4.1.1 upgrade command. 
+1. Execute the 4.2 upgrade command. 
 
 ```
-helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.1.1
+helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.2
 ```
 
 :::note
-If upgrading from Local PV LVM or Local PV ZFS storage solution, additional helm values must be specified with the above command to prevent upgrade process conflicts. The installed CRDs in 3.x would conflict with the CRDs in 4.1.1 as the chart structure has changed. Hence, they must be disabled.
+If upgrading from Local PV LVM or Local PV ZFS storage solution, additional helm values must be specified with the above command to prevent upgrade process conflicts. The installed CRDs in 3.x would conflict with the CRDs in 4.2 as the chart structure has changed. Hence, they must be disabled.
 
 - For Upgrade from Local PV LVM, use
 
@@ -112,50 +103,29 @@ Add both of these options, if your chart has both of these enabled.
 
 2. Verify that the CRDs, Volumes, Snapshots, and StoragePools are not affected by the upgrade process.
 
+### From 4.x to 4.2
+
+This section describes the Local Storage upgrade from OpenEBS chart 4.x to OpenEBS 4.2.
+
+1. Execute the 4.2 upgrade command. 
+
+```
+helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.2
+```
+
+2. Verify that the CRDs, Volumes, Snapshots, and StoragePools are not affected by the upgrade process.
+
 ## Replicated Storage Upgrade
 
-### From 4.x to 4.1.1 or Higher
+:::note
+Downgrades are not supported.
+:::
 
-This section describes the Replicated Storage upgrade from OpenEBS Umbrella chart 4.x to OpenEBS 4.1.1 or higher.
+### From 3.x to 4.2
 
-1. Start the helm upgrade process with the new chart, i.e. 4.1.1 by using the below command:
+This section describes the Replicated Storage upgrade from OpenEBS Umbrella chart 3.x to OpenEBS 4.2.
 
-```
-helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.1.1
-```
-
-2. Verify that the CRDs, Volumes, Snapshots and StoragePools are unaffected by the upgrade process.
-
-3. Start the Replicated Storage upgrade process by using the kubectl mayastor plugin v2.7.1.
-
-```
-kubectl mayastor upgrade -n openebs
-```
-
-- This deploys an upgrade process of K8s resource type Job.
-
-```
-kubectl get jobs -n openebs 
-
-NAME                     COMPLETIONS   DURATION   AGE 
-openebs-upgrade-v2-7-1   1/1           4m49s      6m11s
-```
-
-- Wait for the upgrade job to complete.
-
-```
-kubectl get pods -n openebs
-
-openebs-upgrade-v2-7-1-s58xl                   0/1     Completed   0          7m4s
-```
-
-4. Once the upgrade process is completed, all the volumes and pools should be online.
-
-### From 3.x to 4.1.1
-
-This section describes the Replicated Storage upgrade from OpenEBS Umbrella chart 3.x to OpenEBS 4.1.1.
-
-1. Start the helm upgrade process with the new chart, i.e. 4.1.1 by using the below command:
+1. Start the helm upgrade process with the new chart, i.e. 4.2 by using the below command:
 
 :::caution
 Upgrades from 3.x to 4.x require the option `--set mayastor.agents.core.rebuild.partial.enabled=false` in the **helm upgrade** command to ensure data consistency during the upgrade. Upgrades from 4.x onwards to newer versions do not require it.
@@ -166,7 +136,7 @@ This applies to the **kubectl mayastor upgrade** command as well, if you're usin
 ```
 # Add the option --set mayastor.agents.core.rebuild.partial.enabled=false if
 # the source version is a 3.x release.
-helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.1.1 \
+helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.2 \
   --set openebs-crds.csi.volumeSnapshots.enabled=false
 ```
 
@@ -204,9 +174,46 @@ openebs-upgrade-v2-7-1-s58xl                   0/1     Completed   0          7m
 5. If you have disabled the partial rebuild during the upgrade, re-enable it by adding the value `--set mayastor.agents.core.rebuild.partial.enabled=true` in the upgrade command.
 
 ```
-helm upgrade openebs openebs/openebs -n openebs --reuse-values --version 4.1.1 \
+helm upgrade openebs openebs/openebs -n openebs --reuse-values --version 4.2 \
   --set mayastor.agents.core.rebuild.partial.enabled=true
 ```
+
+### From 4.x to 4.2
+
+This section describes the Replicated Storage upgrade from OpenEBS Umbrella chart 4.x to OpenEBS 4.2.
+
+1. Start the helm upgrade process with the new chart, i.e. 4.2 by using the below command:
+
+```
+helm upgrade openebs openebs/openebs -n openebs -f old-values.yaml --version 4.2
+```
+
+2. Verify that the CRDs, Volumes, Snapshots and StoragePools are unaffected by the upgrade process.
+
+3. Start the Replicated Storage upgrade process by using the kubectl mayastor plugin v2.7.1.
+
+```
+kubectl mayastor upgrade -n openebs
+```
+
+- This deploys an upgrade process of K8s resource type Job.
+
+```
+kubectl get jobs -n openebs 
+
+NAME                     COMPLETIONS   DURATION   AGE 
+openebs-upgrade-v2-7-1   1/1           4m49s      6m11s
+```
+
+- Wait for the upgrade job to complete.
+
+```
+kubectl get pods -n openebs
+
+openebs-upgrade-v2-7-1-s58xl                   0/1     Completed   0          7m4s
+```
+
+4. Once the upgrade process is completed, all the volumes and pools should be online.
 
 ## See Also
 
