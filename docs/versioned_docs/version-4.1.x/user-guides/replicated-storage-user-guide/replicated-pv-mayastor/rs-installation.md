@@ -300,6 +300,6 @@ If you encounter issues or have a question, file a [Github issue](https://github
 
 ## See Also
 
-- [Installation](../../quickstart-guide/installation.md)
+- [Installation](../../../quickstart-guide/installation.md)
 - [Configuration](../replicated-pv-mayastor/rs-configuration.md)
 - [Deploy an Application](../replicated-pv-mayastor/rs-deployment.md)
