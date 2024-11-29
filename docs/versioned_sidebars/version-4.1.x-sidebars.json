@@ -558,18 +558,23 @@
                 "items": [
                   {
                     "type": "doc",
+                    "id": "version-4.1.x/Solutioning/openebs-on-kubernetes-platforms/gke",
+                    "label": "Google Kubernetes Engine"
+                  },
+                  {
+                    "type": "doc",
                     "id": "version-4.1.x/Solutioning/openebs-on-kubernetes-platforms/microkubernetes",
                     "label": "MicroK8s"
                   },
                   {
                     "type": "doc",
-                    "id": "version-4.1.x/Solutioning/openebs-on-kubernetes-platforms/talos",
-                    "label": "Talos"
+                    "id": "version-4.1.x/Solutioning/openebs-on-kubernetes-platforms/openshift",
+                    "label": "OpenShift"
                   },
                   {
                     "type": "doc",
-                    "id": "version-4.1.x/Solutioning/openebs-on-kubernetes-platforms/gke",
-                    "label": "Google Kubernetes Engine"
+                    "id": "version-4.1.x/Solutioning/openebs-on-kubernetes-platforms/talos",
+                    "label": "Talos"
                   }
                 ]
               },
