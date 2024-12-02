@@ -20,7 +20,7 @@ Using OpenEBS Replicated PV Mayastor in EKS with Instance store volumes addresse
 
 - OpenEBS abstracts the underlying storage (Instance store volumes) into a set of persistent volumes. Even if local SSDs are inherently ephemeral, OpenEBS can ensure data persistence by replicating the data across multiple worker nodes.
 
-- For instance, using OpenEBS with replication (e.g., 2 or 3 replicas), ensures that even if one node fails or is terminated, the data exists on other nodes, avoiding data loss.
+- For instance, using OpenEBS with replication (Example: 2 or 3 replicas), ensures that even if one node fails or is terminated, the data exists on other nodes, avoiding data loss.
 
 - Without OpenEBS, if a node with Instance store volumes is terminated, all the data is lost. OpenEBS ensures the data is replicated to other nodes, so even if the original node is lost, the data persists elsewhere.
 
