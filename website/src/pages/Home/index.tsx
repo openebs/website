@@ -13,10 +13,10 @@ import JoinCommunity from '../../components/JoinCommunity';
 import Newsletter from '../../components/Newsletter';
 import Sponsor from '../../components/Sponsor';
 import { EXTERNAL_LINKS, VIEW_PORT } from '../../constants';
-import MiniBlog from '../../components/MiniBlog';
-import EventSlider from '../../components/EventSlider';
+// import MiniBlog from '../../components/MiniBlog';
+// import EventSlider from '../../components/EventSlider';
 import adopters from '../../resources/adopters.json';
-import events from '../../resources/events.json';
+// import events from '../../resources/events.json';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import useViewport from '../../hooks/viewportWidth';
 import Workloads from './workloads';
@@ -191,7 +191,7 @@ const Home: React.FC = () => {
                       <Typography className={classes.tabBodyText}>
                         {t('home.openebs.description')}
                       </Typography>
-                      <Button variant="contained" color="secondary" className={classes.solidButton} href="/docs/user-guides/quickstart">
+                      <Button variant="contained" color="secondary" className={classes.solidButton} href="/docs/quickstart-guide/installation">
                         {t('home.openebs.runOpenEBS')}
                       </Button>
                       <Button
@@ -259,7 +259,7 @@ const Home: React.FC = () => {
                       <Typography className={classes.tabBodyText}>
                         <Trans i18nKey="home.openebs.description">
                           OpenEBS helps Developers and Platform SREs easily deploy Kubernetes Stateful Workloads that require fast and highly reliable
-                          <Link href="/docs/concepts/cas" className={classes.link}>Container attached storage</Link>
+                          <Link href="/docs/concepts/cns" className={classes.link}>Container Native Storage</Link>
                           {' '}
                           OpenEBS turns any storage available on the Kubernetes worker nodes into local or distributed Kubernetes Persistent Volumes.
                         </Trans>
@@ -362,7 +362,7 @@ const Home: React.FC = () => {
         </section>
 
         {/* Section: Community events */}
-        <section>
+        {/* <section>
           {!isMobileView
                     && (
                     <Typography variant="h2" className={classes.sectionTitle}>
@@ -371,8 +371,8 @@ const Home: React.FC = () => {
                     )}
           <Grid container spacing={3} className={events.length ? '' : classes.noEvents}>
             <Grid item xs={12} sm={!isMobileView ? 3 : 12} xl={3} className={`${classes.imageFluid}`}>
-              {/* Kept commented  for future reference in case we need the image again */}
-              {/* <LazyLoadImage effect="blur" loading="lazy" src="../images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} /> */}
+              Kept commented  for future reference in case we need the image again
+              <LazyLoadImage effect="blur" loading="lazy" src="../images/svg/community.svg" alt={t("community.communityEvents.communityImageAlt")} />
               {isMobileView
                             && (
                             <Typography variant="h2" className={classes.sectionTitle}>
@@ -390,7 +390,7 @@ const Home: React.FC = () => {
               </Typography>
             )}
           </Grid>
-        </section>
+        </section> */}
 
         {/* Section: Key features */}
         <section className={classes.section}>
@@ -473,9 +473,9 @@ const Home: React.FC = () => {
         </section>
 
         {/* Section: Blogs  */}
-        <section>
+        {/* <section>
           <MiniBlog />
-        </section>
+        </section> */}
 
         <div className={classes.footerBackground}>
           {/* Section: You are ready to start */}

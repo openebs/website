@@ -23,10 +23,6 @@ module.exports = {
   },
   themeConfig: {
     image: 'img/card-openebs.png',
-    gtag: {
-      trackingID: 'UA-92076314-12',
-      anonymizeIP: true,
-    },
     colorMode: {
       defaultMode: "light",
       disableSwitch: true,
@@ -43,7 +39,11 @@ module.exports = {
     },
     prism: {
       theme: Object.assign(require('prism-react-renderer/themes/github'), prismCustomColors)
-    }
+    },
+    gtag: {
+      trackingID: 'G-BNB79447GR',
+      anonymizeIP: true,
+    },
   },
   onBrokenLinks: 'log',
   customFields: {
@@ -167,6 +167,13 @@ module.exports = {
           customCss: require.resolve("./src/scss/custom.scss"),
         },
         include: ["**/*.md", "**/*.mdx"], // Extensions to include.
+      },
+    ],
+    [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-BNB79447GR',
+        anonymizeIP: true,
       },
     ],
   ],
