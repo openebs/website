@@ -129,8 +129,6 @@ This section describes the Replicated Storage upgrade from OpenEBS Umbrella char
 
 :::caution
 Upgrades from 3.x to 4.x require the option `--set mayastor.agents.core.rebuild.partial.enabled=false` in the **helm upgrade** command to ensure data consistency during the upgrade. Upgrades from 4.x onwards to newer versions do not require it.
-
-This applies to the **kubectl mayastor upgrade** command as well, if you're using the `mayastor/mayastor` chart and not the `openebs/openebs` chart: `kubectl mayastor upgrade --set agents.core.rebuild.partial.enabled=false`
 :::
 
 ```
