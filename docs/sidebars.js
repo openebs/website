@@ -139,6 +139,46 @@ module.exports = {
                   type: "doc",
                   id: "user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-deployment",
                   label: "Deploy an Application"
+                },
+                {
+                  collapsed: true,
+                  type: "category",
+                  label: "Advanced Operations",
+                  customProps: {
+                    icon: "Layers"
+                  },
+                  items: [
+                    {
+                      collapsed: true,
+                      type: "category",
+                      label: "XFS Quota",
+                      customProps: {
+                        icon: "Book"
+                      },
+                      items: [
+                        {
+                          type: "doc",
+                          id: "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/xfs-quota-pre",
+                          label: "Prerequisites"
+                        },
+                        {
+                          type: "doc",
+                          id: "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/enable-xfs-quota",
+                          label: "Enable XFS Quota"
+                        },
+                        {
+                          type: "doc",
+                          id: "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/modify-xfs-quota",
+                          label: "Modify XFS Quota"
+                        },
+                        {
+                          type: "doc",
+                          id: "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/loop-device-xfs-quota",
+                          label: "XFS Quota with Loop Device"
+                        }
+                      ] 
+                    }
+                  ]
                 }
               ] 
             },
