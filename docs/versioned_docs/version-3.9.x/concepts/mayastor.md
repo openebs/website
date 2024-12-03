@@ -28,9 +28,11 @@ Mayastor is built on the foundation of Intel's cutting-edge [Storage Performance
 
 In contrast, traditional pre-CAS shared storage systems are known to introduce overhead, often exceeding 40% and occasionally reaching as high as 80% of the underlying device or cloud volume capabilities. Moreover, pre-CAS shared storage can scale unpredictably as various workloads compete for access to shared storage resources.
 
-{% hint style=“note” %}
+:::note
+
 Although Mayastor utilizes NVMe-oF, it doesn't impose any requirements for the use of NVMe devices or cloud volumes.
-{% endhint %}
+
+:::
 
 ---
 
