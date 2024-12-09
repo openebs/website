@@ -61,10 +61,6 @@ const AdopterSlider: React.FC = () => {
       name: t('home.usedInProductionBy.cloudNative'),
     },
     {
-      logo: '../images/logos/codewave.png',
-      name: t('home.usedInProductionBy.codewave'),
-    },
-    {
       logo: '../images/logos/cort.png',
       name: t('home.usedInProductionBy.cort'),
     },
