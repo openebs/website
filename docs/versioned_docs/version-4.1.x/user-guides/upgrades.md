@@ -83,13 +83,13 @@ If the upgrade is from Local PV LVM or Local PV ZFS storage solution, additional
 - For Upgrade from Local PV LVM, use
 
 ```
---set lvm-localpv.crds.lvmLocalPv.enabled=false
+--set lvm-localpv.crds.lvmLocalPv.enabled=false,openebs-crds.csi.volumeSnapshots.enabled=false
 ```
 
 - For Upgrade from Local PV ZFS, use
 
 ```
---set zfs-localpv.crds.zfsLocalPv.enabled=false
+--set zfs-localpv.crds.zfsLocalPv.enabled=false,openebs-crds.csi.volumeSnapshots.enabled=false
 ```
 
 Add both of these options, if your chart has both of these enabled.
