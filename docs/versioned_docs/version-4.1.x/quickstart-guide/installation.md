@@ -74,12 +74,18 @@ helm install openebs --namespace openebs openebs/openebs --create-namespace
 
 The above commands will install OpenEBS Local PV Hostpath, OpenEBS Local PV LVM, OpenEBS Local PV ZFS, and OpenEBS Replicated Storage components in `openebs` namespace and chart name as `openebs`.
 
-:::note
-The default OpenEBS helm chart will install both Local Storage and Replicated Storage. If you do not want to install OpenEBS Replicated Storage, use the following command:
+:::important
+- The default OpenEBS helm chart will install both Local Storage and Replicated Storage. If you do not want to install OpenEBS Replicated Storage, use the following command:
 
-```
-helm install openebs --namespace openebs openebs/openebs --set engines.replicated.mayastor.enabled=false --create-namespace
-```
+  ```
+  helm install openebs --namespace openebs openebs/openebs --set engines.replicated.mayastor.enabled=false --create-namespace
+  ```
+
+- If the CustomResourceDefinitions for CSI VolumeSnapshots are already present in your cluster, you may skip their creation by using the following command:
+
+  ```
+  --set openebs-crds.csi.volumeSnapshots.enabled=false
+  ```
 :::
 
 3. To view the chart and get the output, use the following commands:
