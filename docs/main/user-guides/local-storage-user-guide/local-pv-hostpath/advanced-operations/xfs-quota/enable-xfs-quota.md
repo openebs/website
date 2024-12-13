@@ -6,7 +6,7 @@ keywords:
  - XFS Quota
  - Enable XFS Quota
  - Advanced Operations
-description: This section talks about enabling XFS quotas for OpenEBS LocalPV Hostpath. 
+description: This section describes about enabling XFS quotas for OpenEBS LocalPV Hostpath. 
 ---
 
 # Enable XFS Quota on LocalPV Hostpath
