@@ -15,24 +15,7 @@ This document provides the necessary steps to enable and configure XFS Quota on 
 
 ## Install the OpenEBS Dynamic LocalPV Provisioner
 
-1. To install the OpenEBS LocalPV Hostpath Provisioner, execute the following command:
-
-```
-kubectl apply -f https://openebs.github.io/charts/openebs-operator-lite.yaml
-```
-
-2. Verify the pods in the `openebs` namespace are running.
-
-```
-kubectl get pods -n openebs
-```
-
-**Example Output**
-
-```
-NAME                                           READY   STATUS    RESTARTS       AGE
-openebs-localpv-provisioner-6ddbd95d4d-htp7g   1/1     Running       0          7m12s
-```
+Refer to the [OpenEBS Installation documentation](../../../../../quickstart-guide/installation.md) to install the OpenEBS LocalPV Hostpath Provisioner.
 
 ## Create StorageClass
 
