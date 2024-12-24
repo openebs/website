@@ -87,7 +87,7 @@ The above command will install OpenEBS Local PV Hostpath, OpenEBS Local PV LVM, 
   helm install openebs --namespace openebs openebs/openebs --set engines.replicated.mayastor.enabled=false --create-namespace
   ```
 
-- If the CustomResourceDefinitions for CSI VolumeSnapshots are already present in your cluster, you may skip their creation by using the following command:
+- If the CustomResourceDefinitions for CSI VolumeSnapshots are already present in your cluster, you may skip their creation by using the following option:
 
   ```
   --set openebs-crds.csi.volumeSnapshots.enabled=false
@@ -106,6 +106,12 @@ If you are utilizing a custom Kubelet location or a Kubernetes distribution that
 
 ```
 --set zfs-localpv.zfsNode.kubeletDir=<your-directory-path>
+```
+
+- For Replicated PV Mayastor
+
+```
+--set mayastor.csi.node.kubeletDir=<your-directory-path>
 ```
 
 Specifically:
