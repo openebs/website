@@ -81,11 +81,17 @@ helm install openebs --namespace openebs openebs/openebs --create-namespace
 The above command will install OpenEBS Local PV Hostpath, OpenEBS Local PV LVM, OpenEBS Local PV ZFS, and OpenEBS Replicated Storage components in `openebs` namespace and chart name as `openebs`.
 
 :::important
-The default OpenEBS helm chart will install both Local Storage and Replicated Storage. If you do not want to install OpenEBS Replicated Storage, use the following command:
+- The default OpenEBS helm chart will install both Local Storage and Replicated Storage. If you do not want to install OpenEBS Replicated Storage, use the following command:
 
-```
-helm install openebs --namespace openebs openebs/openebs --set engines.replicated.mayastor.enabled=false --create-namespace
-```
+  ```
+  helm install openebs --namespace openebs openebs/openebs --set engines.replicated.mayastor.enabled=false --create-namespace
+  ```
+
+- If the CustomResourceDefinitions for CSI VolumeSnapshots are already present in your cluster, you may skip their creation by using the following option:
+
+  ```
+  --set openebs-crds.csi.volumeSnapshots.enabled=false
+  ```
 :::
 
 If you are utilizing a custom Kubelet location or a Kubernetes distribution that uses a custom Kubelet location, it is necessary to modify the Kubelet directory in the Helm values at installation time. This can be accomplished by using the `--set` flag option in the Helm install command, as follows:
@@ -100,6 +106,12 @@ If you are utilizing a custom Kubelet location or a Kubernetes distribution that
 
 ```
 --set zfs-localpv.zfsNode.kubeletDir=<your-directory-path>
+```
+
+- For Replicated PV Mayastor
+
+```
+--set mayastor.csi.node.kubeletDir=<your-directory-path>
 ```
 
 Specifically:
