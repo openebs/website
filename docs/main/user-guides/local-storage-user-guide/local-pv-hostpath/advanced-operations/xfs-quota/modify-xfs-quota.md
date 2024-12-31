@@ -18,7 +18,7 @@ This document provides the necessary steps to modify or remove the XFS project q
 Make a note of the BasePath directory used for the hostpath volume. The default BasePath is `/var/openebs/local`. You can retrieve the BasePath from the StorageClass by executing the following command:
 
 ```
-$ kubectl describe sc <storageclass-name>
+$ kubectl describe sc <storageclass-name> -o yaml
 ```
 
 ## Locate the Node
