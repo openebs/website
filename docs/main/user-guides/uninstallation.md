@@ -30,6 +30,10 @@ Run the following command to uninstall OpenEBS:
 helm uninstall openebs -n <OPENEBS_NAMESPACE>
 ```
 
+:::note
+Uninstalling the Helm chart does not remove/uninstall the CustomResourceDefinitions (CRDs).
+:::
+
 ## See Also
 
 - [Installation](../quickstart-guide/installation.md)
