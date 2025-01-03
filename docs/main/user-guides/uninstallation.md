@@ -32,6 +32,13 @@ helm uninstall openebs -n <OPENEBS_NAMESPACE>
 
 :::note
 Uninstalling the Helm chart does not remove/uninstall the CustomResourceDefinitions (CRDs).
+
+```
+diskpools.openebs.io
+volumesnapshotclasses.snapshot.storage.k8s.io
+volumesnapshotcontents.snapshot.storage.k8s.io
+volumesnapshots.snapshot.storage.k8s.io
+```
 :::
 
 ## See Also
