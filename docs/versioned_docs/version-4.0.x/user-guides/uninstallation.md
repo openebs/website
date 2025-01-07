@@ -2,8 +2,10 @@
 id: uninstall
 title: Uninstalling OpenEBS
 keywords:
+ - OpenEBS Uninstallation
  - Uninstalling OpenEBS
  - Uninstall OpenEBS
+ - Uninstallation
 description: This section is to describe about the graceful deletion/uninstallation of your OpenEBS cluster.
 ---
 
@@ -27,6 +29,25 @@ Run the following command to uninstall OpenEBS:
 ```
 helm uninstall openebs -n <OPENEBS_NAMESPACE>
 ```
+
+:::note
+Uninstalling the Helm chart does not remove/uninstall the CustomResourceDefinitions (CRDs).
+
+```
+diskpools.openebs.io
+lvmnodes.local.openebs.io
+lvmsnapshots.local.openebs.io
+lvmvolumes.local.openebs.io
+volumesnapshotclasses.snapshot.storage.k8s.io
+volumesnapshotcontents.snapshot.storage.k8s.io
+volumesnapshots.snapshot.storage.k8s.io
+zfsbackups.zfs.openebs.io
+zfsnodes.zfs.openebs.io
+zfsrestores.zfs.openebs.io
+zfssnapshots.zfs.openebs.io
+zfsvolumes.zfs.openebs.io
+```
+:::
 
 ## See Also
 
