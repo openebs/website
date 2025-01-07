@@ -35,9 +35,17 @@ Uninstalling the Helm chart does not remove/uninstall the CustomResourceDefiniti
 
 ```
 diskpools.openebs.io
+lvmnodes.local.openebs.io
+lvmsnapshots.local.openebs.io
+lvmvolumes.local.openebs.io
 volumesnapshotclasses.snapshot.storage.k8s.io
 volumesnapshotcontents.snapshot.storage.k8s.io
 volumesnapshots.snapshot.storage.k8s.io
+zfsbackups.zfs.openebs.io
+zfsnodes.zfs.openebs.io
+zfsrestores.zfs.openebs.io
+zfssnapshots.zfs.openebs.io
+zfsvolumes.zfs.openebs.io
 ```
 :::
 
