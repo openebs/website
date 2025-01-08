@@ -152,7 +152,7 @@ In this exercise we will use the OpenEBS LVM CSI driver though it will work with
         spec:
           containers:
           - name: nginx
-            image: k8s.gcr.io/nginx-slim:0.8
+            image: registry.k8s.io/nginx-slim:0.8
             ports:
             - containerPort: 80
               name: web
