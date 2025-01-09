@@ -95,7 +95,7 @@ If the upgrade is from Local PV LVM or Local PV ZFS storage solution, additional
 Add both of these options, if your chart has both of these enabled.
 :::
 
-3. Verify that the CRDs, Volumes, Snapshots and StoragePools are unaffected by the upgrade process.
+2. Verify that the CRDs, Volumes, Snapshots and StoragePools are unaffected by the upgrade process.
 
 ## Replicated Storage
 
