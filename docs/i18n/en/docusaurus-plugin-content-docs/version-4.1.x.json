@@ -90,5 +90,9 @@
   "sidebar.docs.category.Support": {
     "message": "Support",
     "description": "The label for category Support in sidebar docs"
+  },
+  "sidebar.docs.category.Backup and Restore": {
+    "message": "Backup and Restore",
+    "description": "The label for category Backup and Restore in sidebar docs"
   }
 }
