@@ -16,25 +16,25 @@ The IO engine pool metrics exporter runs as a sidecar container within every I/O
 
 | Name | Type | Unit | Description |
 | :--- | :--- | :--- | :--- |
-| disk_pool_total_size_bytes | Gauge | Integer | Total size of the pool |
-| disk_pool_used_size_bytes | Gauge | Integer | Used size of the pool |
-| disk_pool_status | Gauge | Integer | Status of the pool (0, 1, 2, 3) = {"Unknown", "Online", "Degraded", "Faulted"} |
-| disk_pool_committed_size | Gauge | Integer | Committed size of the pool in bytes |
+| diskpool_total_size_bytes | Gauge | Integer | Total size of the pool |
+| diskpool_used_size_bytes | Gauge | Integer | Used size of the pool |
+| diskpool_status | Gauge | Integer | Status of the pool (0, 1, 2, 3) = {"Unknown", "Online", "Degraded", "Faulted"} |
+| diskpool_committed_size_bytes | Gauge | Integer | Committed size of the pool in bytes |
 
 **Example Metrics**
 ```
-# HELP disk_pool_status disk-pool status
-# TYPE disk_pool_status gauge
-disk_pool_status{node="worker-0",name="mayastor-disk-pool"} 1
-# HELP disk_pool_total_size_bytes total size of the disk-pool in bytes
-# TYPE disk_pool_total_size_bytes gauge
-disk_pool_total_size_bytes{node="worker-0",name="mayastor-disk-pool"} 5.360320512e+09
-# HELP disk_pool_used_size_bytes used disk-pool size in bytes
-# TYPE disk_pool_used_size_bytes gauge
-disk_pool_used_size_bytes{node="worker-0",name="mayastor-disk-pool"} 2.147483648e+09
-# HELP disk_pool_committed_size_bytes Committed size of the pool in bytes
-# TYPE disk_pool_committed_size_bytes gauge
-disk_pool_committed_size_bytes{node="worker-0", name="mayastor-disk-pool"} 9663676416
+# HELP diskpool_status Status of the pool
+# TYPE diskpool_status gauge
+diskpool_status{node="worker-0",name="mayastor-disk-pool"} 1
+# HELP diskpool_total_size_bytes Total size of the pool in bytes
+# TYPE diskpool_total_size_bytes gauge
+diskpool_total_size_bytes{node="worker-0",name="mayastor-disk-pool"} 5.360320512e+09
+# HELP diskpool_used_size_bytes Used disk-pool size in bytes
+# TYPE diskpool_used_size_bytes gauge
+diskpool_used_size_bytes{node="worker-0",name="mayastor-disk-pool"} 2.147483648e+09
+# HELP diskpool_committed_size_bytes Committed size of the pool in bytes
+# TYPE diskpool_committed_size_bytes gauge
+diskpool_committed_size_bytes{node="worker-0", name="mayastor-disk-pool"} 9663676416
 ```
 
 ## Stats Exporter Metrics
