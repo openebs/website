@@ -12,18 +12,24 @@ description: A comprehensive guide to the kubectl-openebs plugin, enabling unifi
 
 ## Overview
 
-The Kubectl OpenEBS Plugin is an OSS plugin that allows you to interact with all OpenEBS storages through a unified interface. This is especially beneficial if you have installed a cluster using the OpenEBS umbrella chart. The supported storages include:
+The Kubectl OpenEBS Plugin is an OSS plugin that allows you to interact with all OpenEBS storages through a unified interface. This unified plugin is especially beneficial if you have installed a cluster using the OpenEBS umbrella chart. The supported storages include:
 
 - Local PV HostPath
 - Local PV LVM
 - Local PV ZFS
 - Replicated PV Mayastor
 
-This plugin integrates the current `kubectl-mayastor` codebase for Replicated PV Mayastor specific commands while introducing newly developed functionality for other storages, inspired by the existing `kubectl-openebs` plugin.
+This plugin integrates the current `kubectl-mayastor` functionality for Replicated PV Mayastor specific commands while introducing newly developed functionality for other storages, inspired by the existing `kubectl-openebs` plugin. The previous `kubectl-openebs` supported only Local PV storages whereas now it extends its capabilities to include Replicated PV Mayastor commands. Also, the plugin supports multiple output formats, such as YAML and JSON.
 
-The previous `kubectl-openebs` supported only Local PV storages whereas now it extends its capabilities to include Replicated PV Mayastor commands. Also, the plugin supports multiple output formats, such as YAML and JSON.
+By using this plugin, you can gain a simplified and consistent interface to manage multiple storages, with improved output formats, flexible namespace configurations, and robust command options tailored to meet diverse storage needs.
 
-## Namespace Assumption
+## Features
+
+### Unified Plugin for All Storages
+
+The plugin consolidates functionality for all OpenEBS storages under a single interface. You can manage Local PV Hostpath, Local PV LVM, Local PV ZFS, and Replicated PV Mayastor resources without switching between multiple tools or plugins.
+
+### Namespace Assumption
 
 The `kubectl-mayastor` plugin previously assumed the namespace to be `mayastor` if unspecified. Now, if the namespace is not explicitly defined, the plugin reads it from the kubeconfig context's namespace (It is set to `default` by default).
 
@@ -44,6 +50,8 @@ kubectl config set-context --namespace=storage --current
 ```
 
 ## Command Overview
+
+This section provides a detailed breakdown of the primary `kubectl-openebs` commands. This plugin serves as the central CLI for managing OpenEBS storage resources.
 
 **Command**
 
@@ -75,7 +83,7 @@ Options:
 
 ### Local PV HostPath
 
-Local PV Hostpath supports volume management commands.
+The Local PV Hostpath command supports resource retrieval for Hostpath storage volumes.
 
 **Command**
 
@@ -96,7 +104,7 @@ pvc-4b07a2a9-b7e9-4173-a094-14ab2ca7eb62  node-3                Ready   4.00 GiB
 
 ### Local PV LVM
 
-Local PV LVM supports resource retrieval commands.
+The Local PV LVM command supports operations like retrieving information about volumes, volume groups, and node-specific resources.
 
 **Command**
 
@@ -117,7 +125,7 @@ pvc-c7688f88-a379-4e22-985c-02d1908e5c9a  node-1                Ready   4.00 GiB
 
 ### Local PV ZFS
 
-Local PV ZFS supports commands for managing volumes and pools.
+The Local PV ZFS command provides options for managing ZFS volumes and pools.
 
 **Command**
 
@@ -138,7 +146,7 @@ pvc-4b07a2a9-b7e9-4173-a094-14ab2ca7eb62  node-2                Ready   4.00 GiB
 
 ### Replicated PV Mayastor
 
-Replicated PV Mayastor commands support operations like resource management, scaling, and upgrading.
+The Replicated PV Mayastor command enables you to perform advanced operations on Replicated PV Mayastor resources, such as scaling, resource management, and upgrades.
 
 **Command**
 
