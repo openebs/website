@@ -34,7 +34,7 @@ All worker nodes must satisfy the following requirements:
 * Enabling `nvme_core.multipath` is required for High Availability (HA) functionality in Replicated PV Mayastor. Ensure the kernel parameter `nvme_core.multipath=Y` is set during the installation. (This prerequisite is optional.)
 
 :::note
-If the application is constrained to nodes with the `io-engine label` (`openebs.io/engine=mayastor`), the Nexus is preferably placed on the same node where the application is scheduled.
+If the application is scheduled to nodes with the `io-engine label` (`openebs.io/engine=mayastor`), the volume target is preferably placed on the same node where the application is scheduled.
 :::
 
 ### Network Requirements
