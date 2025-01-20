@@ -19,6 +19,12 @@ The HA node agent looks for I/O path failures from applications to their corresp
 The volume's replica count must be higher than one for a new target to be established as part of switch-over.
 :::
 
+To ensure optimal HA in Replicated PV Mayastor clusters:
+
+- Applications constrained to nodes with the `io-engine label` (`openebs.io/engine=mayastor`) will have the Nexus preferably placed on the same node where the application is scheduled. If the `io-engine` pod on a node is in a bad state, the Nexus may be placed on a different node.
+
+- The kernel parameter `nvme_core.multipath=Y` is mandatory to enable HA functionality. Without this configuration, failover to a new Nexus cannot be achieved effectively.
+
 ### How do I disable this feature? 
 
 :::info
