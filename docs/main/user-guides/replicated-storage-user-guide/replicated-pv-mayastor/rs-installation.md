@@ -31,6 +31,12 @@ All worker nodes must satisfy the following requirements:
   * **HugePage support**
     * A minimum of **2GiB of** **2MiB-sized** pages
 
+* Enabling `nvme_core.multipath` is required for High Availability (HA) functionality in Replicated PV Mayastor. Ensure the kernel parameter `nvme_core.multipath=Y` is set during the installation. (This prerequisite is optional.)
+
+:::note
+If the application is scheduled to nodes with the `io-engine label` (`openebs.io/engine=mayastor`), the volume target is preferably placed on the same node where the application is scheduled.
+:::
+
 ### Network Requirements
 
 * Ensure that the following ports are **not** in use on the node:
