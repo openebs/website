@@ -18,21 +18,21 @@ All the below configurations can be configured either during initial cluster cre
 
 ### Pod Security
 
-By default, Talos Linux applies a baseline pod security profile across namespaces except for the kube-system namespace. This default setting restricts Replicated PV Mayastors’s ability to manage and access system resources. You need to add the exemptions for Replicated PV Mayastor namespace. See the [Talos Documentation](https://www.talos.dev/v1.6/kubernetes-guides/configuration/pod-security/) for detailed instructions on Pod Security.
+By default, Talos Linux applies a baseline pod security profile across namespaces except for the kube-system namespace. This default setting restricts Replicated PV Mayastors’s ability to manage and access system resources. You need to add the exemptions for Replicated PV Mayastor namespace. See the [Talos Documentation](https://www.talos.dev/latest/kubernetes-guides/configuration/pod-security/) for detailed instructions on Pod Security.
 
 **Create a file cp.yaml**
 
 ```
-- op: add
-  path: /cluster/apiServer/admissionControl
-  value:
-    - name: PodSecurity
-      configuration:
-        apiVersion: pod-security.admission.config.k8s.io/v1beta1
-        kind: PodSecurityConfiguration
-        exemptions:
-          namespaces:
-            - mayastor
+cluster:
+  apiServer:
+    admissionControl:
+      - name: PodSecurity
+        configuration:
+          apiVersion: pod-security.admission.config.k8s.io/v1beta1
+          kind: PodSecurityConfiguration
+          exemptions:
+            namespaces:
+              - openebs
 ```
 
 ## Talos Worker Node Changes
@@ -52,26 +52,20 @@ Provide additional data path mounts to be accessible to the Kubernetes Kubelet c
 **Create a file wp.yaml**
 
 ```
-- op: add
-  path: /machine/sysctls
-  value:
+machine:
+  sysctls:
     vm.nr_hugepages: "1024"
-
-- op: add
-  path: /machine/nodeLabels
-  value:
+  nodeLabels:
     openebs.io/engine: "mayastor"
-
-- op: add
-  path: /machine/kubelet/extraMounts
-  value:
-    - destination: /var/local
-      type: bind
-      source: /var/local
-      options:
-        - bind
-        - rshared
-        - rw
+  kubelet:
+    extraMounts:
+      - destination: /var/local
+        type: bind
+        source: /var/local
+        options:
+          - bind
+          - rshared
+          - rw
 ```
 
 **Examples**
