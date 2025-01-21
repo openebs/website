@@ -44,6 +44,7 @@ If the application is scheduled to nodes with the `io-engine label` (`openebs.io
   - **8420 / 4421**: NVMf targets will use these ports.
 * The firewall settings should not restrict connection to the node.
 
+<!--
 ### Recommended Resource Requirements
 
 **io-engine DaemonSet**
@@ -125,7 +126,6 @@ resources:
 * Disks must be unpartitioned, unformatted, and used exclusively by the DiskPool.
 * The minimum capacity of the disks should be 10 GB.
 
-<!--
 ### RBAC Permission Requirements
 
 * **Kubernetes core v1 API-group resources:** Pod, Event, Node, Namespace, ServiceAccount, PersistentVolume, PersistentVolumeClaim, ConfigMap, Secret, Service, Endpoint, and Event.
