@@ -136,7 +136,7 @@ pool-on-worker   worker   Created   Online        32178700288   0      321787002
 
 ## Configuration
 
-- Refer to the [Replicated PV Mayastor Configuration Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for instructions regarding StorageClass creation.
+- Refer to the [Replicated PV Mayastor Configuration Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-storageclass.md#create-storageclasss) for instructions regarding StorageClass creation.
 
 Replicated PV Mayastor dynamically provisions Persistent Volumes (PVs) based on StorageClass definitions that you create. Parameters of the definition are used to set the characteristics and behaviour of its associated PVs. Most importantly StorageClass definition is used to control the level of data protection afforded to it (i.e. the number of synchronous data replicas that are maintained for purposes of redundancy). It is possible to create any number of StorageClass definitions, spanning all permitted parameter permutations. An example is given below:
 
@@ -154,7 +154,7 @@ EOF
 storageclass.storage.k8s.io/mayastor-3 created
 ```
 
-- Refer to the [Deploy an Application Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-deployment.md) for instructions regarding PVC creation and deploying an application.
+- Refer to the [Deploy an Application Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-deployment.md) for instructions regarding PVC creation and deploying an application.
 
 If all verification steps in the preceding stages were satisfied, then the Replicated PV Mayastor has been successfully deployed within the cluster. To verify basic functionality, we will now dynamically provision a Persistent Volume based on a Replicated PV Mayastor StorageClass, mount that volume within a small test pod which we'll create, and use the Flexible I/O Tester utility within that pod to check that I/O to the volume is processed correctly.
 

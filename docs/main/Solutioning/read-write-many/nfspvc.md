@@ -45,7 +45,7 @@ Make sure you have installed Replicated PV Mayastor before proceeding to the nex
 
 1. Create a Replicated PV Mayastor Pool.
 
-  Create a Replicated PV Mayastor pool that satisfies the performance and availability requirements. Refer to the [Replicated PV Mayastor Configuration documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-diskpools) for more details.
+  Create a Replicated PV Mayastor pool that satisfies the performance and availability requirements. Refer to the [Replicated PV Mayastor Configuration documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-diskpool.md) for more details.
 
   **Example of a Replicated PV Mayastor Pool**
 
@@ -66,7 +66,7 @@ Make sure you have installed Replicated PV Mayastor before proceeding to the nex
 
 2. Create a Replicated PV Mayastor Storage Class.
 
-  Create a storage class to point to the above created pool. Also, select the number of replicas and the default size of the volume. Refer to the [Replicated PV Mayastor Configuration documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for more details.
+  Create a storage class to point to the above created pool. Also, select the number of replicas and the default size of the volume. Refer to the [Replicated PV Mayastor Configuration documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-storageclass.md) for more details.
 
   **Example of a Replicated PV Mayastor Storage Class**
 
