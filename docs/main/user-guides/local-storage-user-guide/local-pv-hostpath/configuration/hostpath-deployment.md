@@ -10,7 +10,7 @@ description: This section explains the instructions to deploy an application for
 
 This section explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by Hostpath.
 
-Refer to the [Deploy an Application documentation](../../../quickstart-guide/installation.md) for deployment instructions.
+Refer to the [Deploy an Application documentation](../../../../quickstart-guide/installation.md) for deployment instructions.
 
 ## Cleanup
 
@@ -33,5 +33,5 @@ If you encounter issues or have a question, file a [Github issue](https://github
 
 ## See Also
 
-- [Installation](hostpath-installation.md)
-- [Configuration](hostpath-configuration.md)
+- [Installation](../hostpath-installation.md)
+- [Create StorageClass(s)](hostpath-create-storageclass.md)
