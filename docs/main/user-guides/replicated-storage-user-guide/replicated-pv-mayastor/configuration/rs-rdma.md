@@ -15,10 +15,6 @@ description: This guide will help you to enable RDMA for OpenEBS Replicated PV M
 
 The RDMA feature in Replicated PV Mayastor enables you to achieve better throughput and latency outcomes for the applications using Replicated PV Mayastor Volumes. This feature provides a significant performance boost by leveraging RDMA technology. A kubernetes cluster consisting of nodes that have RNIC (RDMA Network Interface Card) can make use of this feature.
 
-:::info
-**Default Behaviour:** Once enabled, all Mayastor volumes will connect over RDMA.
-:::
-
 ## Prerequisites
 
 Before enabling and using RDMA in Replicated PV Mayastor, ensure the following prerequisites are met:
@@ -34,7 +30,7 @@ Before enabling and using RDMA in Replicated PV Mayastor, ensure the following p
 
 3. **TCP Fallback Behavior**
 
-  If an application is hosted on a non-RDMA-capable node, connections to RDMA-enabled volume targets will default to TCP. To prevent this fallback behavior, set the Helm chart value `csi.node.nvme.tcpFallback` to `false`. In this configuration, the initiator (application) node will continuously attempt RDMA connections, resulting in connection failures. To mitigate this, you can either enable the fallback option or relocate the application pod to an RDMA-capable node, provided the pod's resource type allows for such movement.
+  If an application is hosted on a non-RDMA-capable node, connections to RDMA-enabled volume targets will default to TCP. To prevent this fallback behavior, set the Helm chart value `csi.node.nvme.tcpFallback` to `false`. In this configuration, the initiator (application) node will continuously attempt RDMA connections, resulting in connection failures. To mitigate this, you can either keep the fallback option enabled or relocate the application pod to an RDMA-capable node, provided the pod's resource type allows for such movement.
 
 4. **Soft-RoCEv2 Support**
 
@@ -47,7 +43,7 @@ Before enabling and using RDMA in Replicated PV Mayastor, ensure the following p
   Once created, `rxe0` can be utilized as outlined in the Enablement section.
   
   :::note
-  The IP address assignments to RDMA GIDs on these devices depends on the cluster's networking and CNI configurations. Variations in Soft-RoCEv2 devices are not fully understood and have not been extensively tested.
+  The IP address assignments to RDMA GIDs on these devices depends on the cluster's networking and CNI configurations. Variations in Soft-RoCEv2 device gid IP assignments are not fully known and have not been extensively tested.
   :::
 
 ## Enable RDMA
@@ -59,6 +55,10 @@ To enable the RDMA feature via Helm:
 2. Set `io-engine.target.nvmf.iface` to a valid network interface name that exists on an RNIC.
 
 3. Verify that all nodes are properly configured with RDMA-capable hardware and that network interfaces are correctly identified and accessible.
+
+:::info
+Once enabled, all Replicated PV Mayastor volumes will connect over RDMA.
+:::
 
 ## Performance Indications
 
