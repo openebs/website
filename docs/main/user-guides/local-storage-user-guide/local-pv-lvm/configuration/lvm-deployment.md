@@ -115,7 +115,7 @@ Check the provisioned volumes on the node, we need to run pvscan --cache command
 
  ## PersistentVolumeClaim Parameters
 
- **AccessMode**
+ ### AccessMode
 
 LVM-LocalPV supports only ReadWriteOnce access mode i.e. volume can be mounted as read-write by a single node. AccessMode is a required field, if the field is unspecified then it will lead to a creation error. Refer [Access Modes](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/access_mode.md) for more information about the access modes workflow.
 
@@ -133,7 +133,7 @@ spec:
       storage: 4Gi
 ```
 
-**StorageClassName**
+### StorageClassName
 
 LVM CSI-Driver supports dynamic provision of volume for the PVCs referred to as LVM storageclass. StorageClassName is a required field, if the field is unspecified then it will lead to provision error. Refer [StorageClass Reference](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/storage_class.md) for more information about the dynamic provisioning workflow.
 
@@ -151,7 +151,7 @@ spec:
       storage: 4Gi
 ```
 
-**Capacity Resource**
+### Capacity Resource
 
 Admin/User can specify the desired capacity for LVM volume. CSI-Driver will provision a volume if the underlying volume group has requested capacity available else provisioning volume will be errored. StorageClassName is a required field, if the field is unspecified then it will lead to provisioning errors. Refer [Resource Request](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/capacity_resource.md) for more information about the workflows.
 
@@ -169,7 +169,7 @@ spec:
       storage: 4Gi       ## Specify required storage for an application
 ```
 
-**VolumeMode (Optional)**
+### VolumeMode (Optional)
 
 Local PV LVM supports two kinds of volume modes (Defaults to Filesystem mode):
 
@@ -195,7 +195,7 @@ spec:
       storage: 4Gi
 ```
 
-**Selectors (Optional)**
+### Selectors (Optional)
 
 Users can bind any of the retained LVM volumes to the new PersistentVolumeClaim object via the selector field. If the selector and [volumeName](https://github.com/openebs/lvm-localpv/blob/develop/docs/persistentvolumeclaim.md#volumename-optional) fields are unspecified then the LVM CSI driver will provision new volume. If the volume selector is specified then request will not reach to local pv driver. This is a use case of pre-provisioned volume. Refer [Volume Selector](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/selector.md) for more information about the workflows.
 
@@ -249,7 +249,7 @@ NAME                                       CAPACITY   ACCESS MODES   RECLAIM POL
 pvc-8376b776-75f9-4786-8311-f8780adfabdb   6Gi        RWO            Retain           Bound    default/csi-lvmpv   openebs-lvmpv   9h
 ```
 
-**VolumeName (Optional)**
+### VolumeName (Optional)
 
 VolumeName can be used to bind PersistentVolumeClaim(PVC) to retained PersistentVolume(PV). When VolumeName is specified K8s will ignore [selector field](https://github.com/openebs/lvm-localpv/blob/develop/docs/persistentvolumeclaim.md#selectors-optional). If volumeName field is specified Kubernetes will try to bind to specified volume(It will help to create claims for pre provisioned volume). If volumeName is unspecified then CSI driver will try to provision new volume. Refer [Volume Name](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/persistent-volume-claim/volume_name.md) for more information about the workflows.
 
@@ -272,7 +272,7 @@ spec:
       storage: 4Gi  ## Capacity should be less than or equal to available PV capacities
 ```
  
- ## Deprovisioning
+## Deprovisioning
 
 To deprovision the volume we can delete the application that is using the volume and then we can go ahead and delete the PV, as part of the deletion of PV this volume will also be deleted from the volume group and data will be freed.
 
@@ -293,5 +293,7 @@ If you encounter issues or have a question, file a [Github issue](https://github
 
 ## See Also
 
-- [Installation](../../../quickstart-guide/installation.md)
-- [Deploy an Application](../../../quickstart-guide/deploy-a-test-application.md)
+- [Installation](../lvm-installation.md)
+- [Create StorageClass(s)](lvm-create-storageclass.md)
+- [StorageClass Options](lvm-storageClass-options.md)
+- [Create PersistentVolumeClaim](lvm-create-pvc.md)

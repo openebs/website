@@ -90,7 +90,7 @@ Follow the steps below to migrate OpenEBS Local PV Device to OpenEBS Local PV LV
 
 1. [Install Local Storage](../../quickstart-guide/installation.md) on your cluster.
 
-2. Create a LVM PVC of the same [configuration](../../user-guides/local-storage-user-guide/local-pv-lvm/lvm-configuration.md).
+2. Create a LVM PVC of the same [configuration](../../user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-create-pvc.md).
 
 :::info
 For the LVM volume to be created, the node (where the application was deployed) needs to be same as that of where Volume Group (VG) is created.

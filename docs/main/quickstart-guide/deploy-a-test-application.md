@@ -9,8 +9,8 @@ description: This section will help you to deploy a test application.
 ---
 
 :::info
-- Refer to the [Local PV LVM Deployment documentation](../user-guides/local-storage-user-guide/local-pv-lvm/lvm-deployment.md) to deploy Local PV LVM.
-- Refer to the [Local PV ZFS Deployment documentation](../user-guides/local-storage-user-guide/local-pv-zfs/zfs-deployment.md) to deploy Local PV ZFS.
+- Refer to the [Local PV LVM Deployment documentation](../user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-deployment.md) to deploy Local PV LVM.
+- Refer to the [Local PV ZFS Deployment documentation](../user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-deployment.md) to deploy Local PV ZFS.
 - Refer to the [Replicated PV Mayastor Deployment documentation](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-deployment.md) to deploy Replicated PV Mayastor.
 :::
 

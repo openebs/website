@@ -1,186 +1,21 @@
 ---
-id: lvm-configuration
-title: Configuration
+id: lvm-storageclass-options
+title: StorageClass Options
 keywords:
  - OpenEBS Local PV LVM
  - Local PV LVM
  - Configuration
  - Create StorageClass
- - Create a PersistentVolumeClaim
-description: This section explains the configuration requirements to set up OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage. 
+ - StorageClass Options
+description: This guide will help you to create Local PV LVM StorageClass. 
 ---
 
-# Configuration
+# StorageClass Options
 
-This section will help you to configure Local PV LVM.
+This document provides step-by-step instructions to the configurable options available for StorageClass when working with Local PV LVM.
+Each StorageClass option helps you configure features such as volume expansion, mount options, file systems, volume sharing, topology-aware provisioning, and more.
 
-## Create StorageClass
-
-```
-$ cat sc.yaml
-
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: openebs-lvmpv
-parameters:
-  storage: "lvm"
-  volgroup: "lvmvg"
-provisioner: local.csi.openebs.io
-```
-
-Refer [Storage Classes](https://github.com/openebs/lvm-localpv/blob/develop/docs/storageclasses.md) to know all the supported parameters for Local PV LVM.
-
-## StorageClass Parameters Conformance Matrix
-
-The following matrix shows standard StorageClass parameters for Local PV LVM.
-
-### Standard StorageClass Parameters
-
-<table>
-<tbody>
-  <tr>
-    <th> Parameter </th>
-    <th colSpan={2}> Values </th>
-    <th> Development Status </th>
-    <th> E2E Coverage </th>
-  </tr>
-  <tr>
-    <td rowSpan={2}> <a href="#allowvolumeexpansion-optional"> allowVolumeExpansion </a> </td>
-    <td> true </td>
-    <td></td>
-    <td> Supported </td>
-    <td rowSpan={2}> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvm-volume-resize#about-this-experiment"> Yes </a> <br></br><i> (Test coverage exist for ext4 & xfs) </i> </td>
-  </tr>
-  <tr>
-    <td> false </td>
-    <td></td>
-    <td> Supported </td>
-  </tr>
-  <tr>
-    <td> <a href="#mountoptions-optional"> MountOptions </a> </td>
-    <td> Options supported by filesystem </td>
-    <td></td>
-    <td> Supported </td>
-    <td> Pending </td>
-  </tr>
-  <tr>
-    <td rowSpan={2}> <a href="#volumebindingmode-optional"> VolumeBindingMode </a> </td>
-    <td> Immediate </td>
-    <td></td>
-    <td> Supported </td>
-    <td rowSpan={2}> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvmpv-custom-topology#readme"> Yes  </a> </td>
-  </tr>
-  <tr>
-    <td> WaitForFirstConsumer </td>
-    <td></td>
-    <td> Supported </td>
-  </tr>
-  <tr>
-    <td rowSpan={2}> <a href="#reclaim-policy-optional"> Reclaim Policy </a> </td>
-    <td>  Retain </td>
-    <td></td>
-    <td> Supported </td>
-    <td rowSpan={2}> <a href="https://github.com/openebs/lvm-localpv/blob/HEAD/e2e-tests/apps/percona/deployers/run_e2e_test.yml"> Yes </a> <br></br> <i> (Test coverage exist for Delete reclaim policy) </i> </td>
-  </tr>
-  <tr>
-    <td> Delete </td>
-    <td></td>
-    <td> Supported </td>
-  </tr>
-  <tr>
-    <td> <a href="#storageclass-with-custom-node-labels"> allowedTopologies </a> </td>
-    <td> - </td>
-    <td></td>
-    <td> Supported </td>
-    <td> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvmpv-custom-topology#readme"> Yes </a> </td>
-  </tr>
-  <tr>
-    <td rowSpan={6}> Parameters </td>
-    <td> <a href="https://kubernetes-csi.github.io/docs/secrets-and-credentials-storage-class.html#examples"> Passing Secrets </a></td>
-    <td></td>
-    <td> No Use Case </td>
-    <td> NA </td>
-  </tr>
-  <tr>
-    <td rowSpan={5}> <a href="#fstype-optional"> fsType </a> </td>
-    <td>ext2</td>
-    <td rowSpan={5}> Supported </td>
-    <td rowSpan={5}> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvm-controller-high-availability#readme"> Yes </a> <br></br> <i> (Test coverage exist for ext4 & xfs) </i> </td>
-  </tr>
-  <tr><td> ext3 </td></tr>
-  <tr><td> ext4 </td></tr>
-  <tr><td> xfs </td></tr>
-  <tr><td> btrfs </td></tr>
-</tbody>
-</table>
-
-### LVM Supported StorageClass Parameters
-
-<table>
-<tbody>
-  <tr>
-    <th> Parameter </th>
-    <th colSpan={2}> Values </th>
-    <th> Development Status </th>
-    <th> E2E Coverage </th>
-  </tr>
-  <tr>
-    <td rowSpan={6}> Parameters </td>
-    <td> <a href="#shared-optional"> shared </a></td>
-    <td> yes </td>
-    <td> Supported </td>
-    <td> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvmpv-shared-mount#readme"> Yes </a> </td>
-  </tr>
-  <tr>
-    <td> <a href="#vgpattern-must-parameter-if-volgroup-is-not-provided-otherwise-optional"> vgpattern </a></td>
-    <td> Regular expression of volume group name </td>
-    <td> Supported </td>
-    <td> Yes </td>
-  </tr>
-  <tr>
-    <td> <a href="#volgroup-must-parameter-if-vgpattern-is-not-provided-otherwise-optional"> volgroup </a></td>
-    <td> Name of volume group </td>
-    <td> Supported </td>
-    <td> <a href="https://github.com/openebs/lvm-localpv/blob/HEAD/e2e-tests/experiments/lvm-localpv-provisioner/openebs-lvmsc.j2"> Yes </a> </td>
-  </tr>
-  <tr>
-    <td> <a href="#thinprovision-optional"> thinProvision </a></td>
-    <td> yes </td>
-    <td> Supported </td>
-    <td> Yes </td>
-  </tr>
-  <tr>
-    <td> <a href="#scheduler"> scheduler </a></td>
-    <td> SpaceWeighted or CapacityWeighted or VolumeWeighted </td>
-    <td> Supported </td>
-    <td> Pending </td>
-  </tr>
-</tbody>
-</table>
-
-### StorageClass with Scheduler Parameters
-
-The Local PV LVM Driver supports three types of scheduling logic: SpaceWeighted, VolumeWeighted, and CapacityWeighted (Supported from lvm-driver: v0.9.0).
-
-Add the scheduler parameter in storage class and give its value accordingly.
-
-```
-parameters:
-  storage: "lvm"
-  volgroup: "lvmvg" 
-  scheduler: "CapacityWeighted" ## or "VolumeWeighted"
-```
-
-SpaceWeighted is the default scheduler in the Local PV LVM driver, so even if we do not use the scheduler parameter in storageclass, the driver will pick the node where there is a vg with the highest free space adhering to the volgroup/vgpattern parameter.
-
-If CapacityWeighted scheduler is used, then the driver will pick the node containing vg that has the least allocated storage in terms of capacity.
-
-If VolumeWeighted scheduler is used, then the driver will pick the node containing vg (adhering to vgpattern/volgroup parameter) that has the least number of volumes provisioned on it.
-
-## StorageClass Options
-
-### AllowVolumeExpansion (Optional)
+## AllowVolumeExpansion (Optional)
 
 Users can expand the volumes only when the `allowVolumeExpansion` field is set to true in storageclass. If a field is unspecified, then volume expansion is not supported. Refer [Volume Expansion](https://github.com/openebs/lvm-localpv/blob/HEAD/design/lvm/resize_workflow.md#lvm-localpv-volume-expansion) for more information about expansion workflow.
 ```yaml
@@ -195,7 +30,7 @@ parameters:
   vgpattern: "lvmvg.*"
 ```
 
-### MountOptions (Optional)
+## MountOptions (Optional)
 
 Volumes that are provisioned via Local PV LVM will use the mount options specified in storageclass during volume mounting time inside an application. If a field is unspecified/specified, `-o default` option will be added to mount the volume. Refer [Mount Options](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/storageclass-parameters/mount_options.md) for more information about mount options workflow.
 
@@ -215,13 +50,14 @@ mountOptions:    ## Various mount options of volume can be specified here
 ```
 :::
 
-### Parameters
+## Parameters
 
 Local PV LVM storageclass supports various parameters for different use cases. The following are the supported parameters:
 
-- #### FsType (Optional)
+### FsType (Optional)
 
   Admin can specify filesystem in storageclass. Local PV LVM CSI-Driver will format block device with specified filesystem and mount in the application pod. If fsType is not specified defaults to `ext4` filesystem. Refer [FsType](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/storageclass-parameters/fs_type.md) for more information about filesystem type workflow.
+
   ```yaml
   apiVersion: storage.k8s.io/v1
   kind: StorageClass
@@ -235,9 +71,10 @@ Local PV LVM storageclass supports various parameters for different use cases. T
     fsType: xfs               ## Supported filesystems are ext2, ext3, ext4, xfs & btrfs
   ```
 
-- #### Shared (Optional)
+### Shared (Optional)
 
   Local PV LVM volume mount points can be shared among the multiple pods on the same node. Applications that can share the volume can set the value of `shared` parameter to yes. Refer [Shared Volume](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/storageclass-parameters/shared.md) for more information about workflow of shared volume.
+
   ```yaml
   apiVersion: storage.k8s.io/v1
   kind: StorageClass
@@ -250,7 +87,7 @@ Local PV LVM storageclass supports various parameters for different use cases. T
     shared: "yes"             ## Parameter that states volume can be shared among multiple pods
   ```
 
-- #### vgpattern (Must parameter if volgroup is not provided, otherwise this is optional)
+### vgpattern (Mandatory if `volgroup` is not provided; otherwise optional)
 
   vgpattern specifies the regular expression for the volume groups on node from which the volumes can be created. The *vgpattern* is the must argument if `volgroup` parameter is not provided in the storageclass. Here, in this case, the driver will pick the volume groups matching the vgpattern with enough free capacity to accommodate the volume and will use the one which has the largest capacity available for provisioning the volume. Refer [VG Pattern](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/storageclass-parameters/vg_pattern.md) for more information about vgpattern workflow. 
 
@@ -271,7 +108,7 @@ Local PV LVM storageclass supports various parameters for different use cases. T
   Either `volgroup` or `vgpattern` should be present in the storageclass parameters to make the provisioning successful.
   :::
 
-- #### Volgroup (Must parameter if vgpattern is not provided, otherwise this is optional)
+### Volgroup (Mandatory if `vgpattern` is not provided; otherwise optional)
 
   volgroup specifies the name of the volume group on the nodes from which the volumes will be created. The *volgroup* is the must argument if the `vgpattern` is not provided in the storageclass.
 
@@ -290,7 +127,7 @@ Local PV LVM storageclass supports various parameters for different use cases. T
     volgroup: "lvmvg"       ## volgroup specifies name of lvm volume group
   ```
 
-- #### ThinProvision (Optional)
+### ThinProvision (Optional)
 
   For creating a thin-provisioned volume, use the thinProvision parameter in the storage class. Its allowed values are: "yes" and "no". If we do not set the thinProvision parameter by default its value will be `no` and it will work as thick provisioned volumes. Refer [Thin Provisioning](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/storageclass-parameters/thin_provision.md) for more details about thinProvisioned workflow.
 
@@ -317,7 +154,7 @@ Local PV LVM storageclass supports various parameters for different use cases. T
   $ modprobe dm_thin_pool
   ```
 
-#### VolumeBindingMode (Optional)
+### VolumeBindingMode (Optional)
 
 Local PV LVM supports two types of volume binding modes that are `Immediate` and `late binding`.
 - Immediate: Indicates that volume binding and dynamic provisioning occur once the PersistentVolumeClaim is created.
@@ -336,7 +173,7 @@ volumeBindingMode: WaitForFirstConsumer     ## It can also replaced by Immediate
 
  Refer [StorageClass VolumeBindingMode](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/storageclass-parameters/volume_binding_mode.md) for more details about VolumeBindingMode.
 
-#### Reclaim Policy (Optional)
+### Reclaim Policy (Optional)
 
 Local PV LVM supports both types of reclaim policy which are `Delete` and `Retain`. If not specified defaults to `Delete`.
 - Delete: Indicates that backend volume resources (PV, LVMVolume) will be deleted as soon as after deleting PVC.
@@ -355,7 +192,7 @@ reclaimPolicy: Delete          ## Reclaim policy can be specified here. It also 
 
 Refer [StorageClass Volume Reclaim Policy](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/storageclass-parameters/reclaim_policy.md) for more details about the reclaim policy.
 
-### StorageClass with Custom Node Labels
+## StorageClass with Custom Node Labels
 
 There can be a use case where we have certain kinds of Volume Groups present on certain nodes only, and we want a particular type of application to use that VG. We can create a storage class with `allowedTopologies` and mention all the nodes there where that vg is present:
 
@@ -462,7 +299,7 @@ Here, the volumes will be provisioned on the nodes that have label “openebs.io
 
  Refer [Allowed Topologies](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/storageclass-parameters/allowed_topologies.md) for more details about topology.
 
-#### VolumeGroup Availability
+### VolumeGroup Availability
 
 If the LVM volume group is available on certain nodes only, then make use of topology to tell the list of nodes where we have the volgroup available. As shown in the below storage class, we can use allowedTopologies to describe volume group availability on nodes.
 
@@ -490,31 +327,13 @@ The above storage class tells that volume group "lvmvg" is available on nodes lv
  The provisioner name for the LVM driver is "local.csi.openebs.io", we have to use this while creating the storage class so that the volume provisioning/deprovisioning request can come to the LVM driver.
  :::
 
- ## Create PersistentVolumeClaim
-
- ```
- $ cat pvc.yaml
-
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: csi-lvmpv
-spec:
-  storageClassName: openebs-lvmpv
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 4Gi
- ```
-
- Create a PVC using the storage class created for the LVM driver.
-
  ## Support
 
 If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
 
 ## See Also
 
-- [Installation](../../../quickstart-guide/installation.md)
-- [Deploy an Application](../../../quickstart-guide/deploy-a-test-application.md)
+- [Installation](../lvm-installation.md)
+- [Create StorageClass(s)](lvm-create-storageclass.md)
+- [Create PersistentVolumeClaim](lvm-create-pvc.md)
+- [Deploy an Application](lvm-deployment.md)
