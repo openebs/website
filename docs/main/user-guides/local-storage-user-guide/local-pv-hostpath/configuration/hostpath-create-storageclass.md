@@ -1,20 +1,22 @@
 ---
-id: hostpath-configuration
-title: Configuration
+id: hostpath-create-storageclass
+title: Create StorageClass(s)
 keywords:
  - OpenEBS Local PV Hostpath
  - Local PV Hostpath Configuration
  - Configuration
-description: This section explains the configuration requirements to set up OpenEBS Local Persistent Volumes (PV) backed by Hostpath. 
+ - Create StorageClass(s)
+ - Create Local PV Hostpath StorageClass(s)
+description: This guide will help you to create Local PV Hostpath StorageClass.
 ---
 
-# Configuration
+# Create StorageClass(s)
 
-This section will help you to configure the Local PV Hostpath.
+This document provides step-by-step instructions for creating a custom StorageClass for OpenEBS Local PV Hostpath. It explains how to create the StorageClass using a YAML definition and highlights the use of the default `openebs-hostpath` StorageClass.
 
-## Create StorageClass
-
-You can skip this section if you would like to use the default OpenEBS Local PV Hostpath StorageClass created by OpenEBS. 
+:::important
+You can skip this section if you would like to use the default OpenEBS Local PV Hostpath StorageClass created by OpenEBS.
+:::
 
 The default Storage Class is called `openebs-hostpath` and its `BasePath` is configured as `/var/openebs/local`. 
 
@@ -36,7 +38,7 @@ The default Storage Class is called `openebs-hostpath` and its `BasePath` is con
    reclaimPolicy: Delete
    volumeBindingMode: WaitForFirstConsumer
    ```
-    ### (Optional) Custom Node Labeling
+    ## (Optional) Custom Node Labeling
 
     In Kubernetes, Local PV Hostpath identifies nodes using labels such as `kubernetes.io/hostname=<node-name>`. However, these default labels might not ensure each node is distinct across the entire cluster. To solve this, you can make custom labels. As an admin, you can define and set these labels when configuring a **StorageClass**. Here's a sample storage class:
 
@@ -83,5 +85,5 @@ If you encounter issues or have a question, file a [Github issue](https://github
 
 ## See Also
 
-- [Installation](../../../quickstart-guide/installation.md)
-- [Deploy an Application](../../../quickstart-guide/deploy-a-test-application.md)
+- [Installation](../hostpath-installation.md)
+- [Deploy an Application](hostpath-deployment.md)

@@ -131,14 +131,24 @@ module.exports = {
                   label: "Installation"
                 },
                 {
-                  type: "doc",
-                  id: "user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-configuration",
-                  label: "Configuration"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-deployment",
-                  label: "Deploy an Application"
+                  collapsed: true,
+                  type: "category",
+                  label: "Configuration",
+                  customProps: {
+                    icon: "Settings"
+                  },
+                  items: [
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-hostpath/configuration/hostpath-create-storageclass",
+                      label: "Create StorageClass(s)"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-hostpath/configuration/hostpath-deployment",
+                      label: "Deploy an Application"
+                    }
+                  ]
                 },
                 {
                   collapsed: true,
@@ -196,14 +206,34 @@ module.exports = {
                   label: "Installation"
                 },
                 {
-                  type: "doc",
-                  id: "user-guides/local-storage-user-guide/local-pv-lvm/lvm-configuration",
-                  label: "Configuration"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/local-storage-user-guide/local-pv-lvm/lvm-deployment",
-                  label: "Deploy an Application"
+                  collapsed: true,
+                  type: "category",
+                  label: "Configuration",
+                  customProps: {
+                    icon: "Settings"
+                  },
+                  items: [
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-create-storageclass",
+                      label: "Create StorageClass(s)"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-storageclass-options",
+                      label: "StorageClass Options"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-create-pvc",
+                      label: "Create PVC"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-deployment",
+                      label: "Deploy an Application"
+                    }
+                  ]
                 },
                 {
                   collapsed: true,
@@ -256,14 +286,39 @@ module.exports = {
                   label: "Installation"
                 },
                 {
-                  type: "doc",
-                  id: "user-guides/local-storage-user-guide/local-pv-zfs/zfs-configuration",
-                  label: "Configuration"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/local-storage-user-guide/local-pv-zfs/zfs-deployment",
-                  label: "Deploy an Application"
+                  collapsed: true,
+                  type: "category",
+                  label: "Configuration",
+                  customProps: {
+                    icon: "Settings"
+                  },
+                  items: [
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-create-storageclass",
+                      label: "Create StorageClass(s)"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-storageclass-parameters",
+                      label: "StorageClass Parameters"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-create-pvc",
+                      label: "Create PVC"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-usage",
+                      label: "Usage"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-deployment",
+                      label: "Deploy an Application"
+                    }
+                  ]
                 },
                 {
                   collapsed: true,

@@ -94,5 +94,13 @@
   "sidebar.docs.category.Backup and Restore": {
     "message": "Backup and Restore",
     "description": "The label for category Backup and Restore in sidebar docs"
+  },
+  "sidebar.docs.category.XFS Quota": {
+    "message": "XFS Quota",
+    "description": "The label for category XFS Quota in sidebar docs"
+  },
+  "sidebar.docs.category.Configuration": {
+    "message": "Configuration",
+    "description": "The label for category Configuration in sidebar docs"
   }
 }
