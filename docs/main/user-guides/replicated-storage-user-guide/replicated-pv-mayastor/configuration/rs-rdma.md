@@ -13,7 +13,7 @@ description: This guide will help you to enable RDMA for OpenEBS Replicated PV M
 
 # Enable RDMA for Volume Targets
 
-The RDMA feature in Replicated PV Mayastor enables you to achieve better throughput and latency outcomes for the applications using Replicated PV Mayastor Volumes. This feature provides a significant performance boost by leveraging RDMA technology. A kubernetes cluster consisting of nodes that have RNIC (RDMA Network Interface Card) can make use of this feature.
+The RDMA feature in Replicated PV Mayastor enables you to achieve better throughput and latency outcomes for the applications using Replicated PV Mayastor Volumes. This feature provides a significant performance boost by leveraging RDMA technology. A Kubernetes cluster consisting of nodes that have RNIC (RDMA Network Interface Card) can make use of this feature.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ Before enabling and using RDMA in Replicated PV Mayastor, ensure the following p
 1. **Interface Validation**
 
   Ensure that the interface name specified in `io-engine.target.nvmf.iface` exists on all io-engine nodes. Misconfiguration of this parameter can lead to unexpected behavior.
-  If the interface name is invalid or not RDMA-capable on a node, Replicated PV Mayastor will run with only default tcp support for such nodes.
+  If the interface name is invalid or not RDMA-capable on a node, Replicated PV Mayastor volume targets on such nodes will support only TCP connections.
 
 2. **Application Node Requirements**
 
@@ -30,11 +30,11 @@ Before enabling and using RDMA in Replicated PV Mayastor, ensure the following p
 
 3. **TCP Fallback Behavior**
 
-  If an application is hosted on a non-RDMA-capable node, connections to RDMA-enabled volume targets will default to TCP. To prevent this fallback behavior, set the Helm chart value `csi.node.nvme.tcpFallback` to `false`. In this configuration, the initiator (application) node will continuously attempt RDMA connections, resulting in connection failures. To mitigate this, you can either keep the fallback option enabled or relocate the application pod to an RDMA-capable node, provided the pod's resource type allows for such movement.
+  If an application is hosted on a non-RDMA-capable node, connections to RDMA-enabled volume targets will default to TCP. The TCP fallback behaviour can be disabled by setting the Helm chart value `csi.node.nvme.tcpFallback` to `false`. In this configuration, the initiator (application) node will continuously attempt RDMA connections, resulting in connection failures. To mitigate this, you can either keep the fallback option enabled or relocate the application pod to an RDMA-capable node, provided the pod's resource type allows for such movement.
 
 4. **Soft-RoCEv2 Support**
 
-  RDMA devices can be manually created using `ibverbs` utilities. For example, to create an RDMA device named `rxe0` on an Ethernet interface `eth0`, run:
+  Replicated PV Mayastor also supports software RDMA (Soft-RoCEv2) for nodes that do not have RDMA-capable hardware network interface cards. RDMA devices can be manually created using `ibverbs` utilities. For example, to create an RDMA device named `rxe0` on an Ethernet interface `eth0`, run:
 
   ```
   rdma link add rxe0 type rxe netdev eth0
@@ -60,7 +60,7 @@ To enable the RDMA feature via Helm:
 Once enabled, all Replicated PV Mayastor volumes will connect over RDMA.
 :::
 
-## Performance Indications
+## Performance Results
 
 ### Setup Details
 
