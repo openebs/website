@@ -22,7 +22,7 @@ Before enabling and using RDMA in Replicated PV Mayastor, ensure the following p
 1. **Interface Validation**
 
   Ensure that the interface name specified in `io-engine.target.nvmf.iface` exists on all io-engine nodes. Misconfiguration of this parameter can lead to unexpected behavior.
-  If the interface name is invalid or not RDMA-capable on a node, Replicated PV Mayastor volume targets on such nodes will support only TCP connections.
+  If the interface name is not RDMA-capable on a node, Replicated PV Mayastor volume targets on such nodes will support only TCP connections.
 
 2. **Application Node Requirements**
 
