@@ -433,7 +433,7 @@ Faulted replicas are automatically rebuilt in the background without IO disrupti
 
 ### How does OpenEBS provide high availability for stateful workloads?
 
-Refer to the [Replicated PV Mayastor Configuration documentation](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#stsaffinitygroup) for more information.
+Refer to the [Replicated PV Mayastor Configuration documentation](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-storage-class-parameters.md#stsaffinitygroup) for more information.
 
 [Go to top](#top)
 

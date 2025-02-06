@@ -229,7 +229,7 @@ pool-on-node-3   ip-10-0-1-222.ec2.internal   Created   Online        2997039923
 
 ## Configuration
 
-- Refer to the [Replicated PV Mayastor Configuration Documentation](../../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for instructions regarding StorageClass creation.
+- Refer to the [Replicated PV Mayastor Configuration Documentation](../../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-storageclass.md) for instructions regarding StorageClass creation.
 
 Replicated PV Mayastor dynamically provisions PersistentVolumes (PVs) based on StorageClass definitions created. Parameters of the definition are used to set the characteristics and behaviour of its associated PVs. We have created a storage class with three replication as below. 
 
@@ -256,7 +256,7 @@ storageclass.storage.k8s.io/mayastor-3 created
 
 ## Deployment
 
-- Refer to the [Deploy an Application Documentation](../../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-deployment.md) for instructions regarding PVC creation and deploying an application.
+- Refer to the [Deploy an Application Documentation](../../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-deployment.md) for instructions regarding PVC creation and deploying an application.
 
 - If all verification steps in the preceding stages were satisfied, then Replicated PV Mayastor has been successfully deployed within the cluster. In order to verify basic functionality, we will now dynamically provision a Persistent Volume based on a Replicated PV Mayastor StorageClass.
 

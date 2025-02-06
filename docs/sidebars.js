@@ -411,14 +411,44 @@ module.exports = {
                   label: "Installation"
                 },
                 {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration",
-                  label: "Configuration"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-deployment",
-                  label: "Deploy an Application"
+                  collapsed: true,
+                  type: "category",
+                  label: "Configuration",
+                  customProps: {
+                    icon: "Settings"
+                  },
+                  items: [
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-diskpool",
+                      label: "Create DiskPool(s)"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-storageclass",
+                      label: "Create StorageClass(s)"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-storage-class-parameters",
+                      label: "Storage Class Parameters"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-topology-parameters",
+                      label: "Topology Parameters"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-rdma",
+                      label: "Enable RDMA"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-deployment",
+                      label: "Deploy an Application"
+                    }
+                  ]
                 },
                 {
                   collapsed: true,
