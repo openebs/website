@@ -55,7 +55,7 @@ SNAPSHOT-ID                           ID       
 
 ### Step 1: Create a StorageClass 
 
-To begin, you will need to create a StorageClass that defines the properties of the snapshot to be restored. Refer to [StorageClass Parameters](../../replicated-pv-mayastor/rs-configuration.md#storage-class-parameters) for more details. Use the following command to create the StorageClass:
+To begin, you will need to create a StorageClass that defines the properties of the snapshot to be restored. Refer to [Storage Class Parameters](../../replicated-pv-mayastor/configuration/rs-storage-class-parameters.md) for more details. Use the following command to create the StorageClass:
 
 :::info
 Currently, restores are thin-provisioned volumes created from a snapshot, Therefore, the storage class for the restored volume must also specify `thin: "true"`.

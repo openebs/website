@@ -97,7 +97,7 @@ velero-6b9b99494b-rkppw   1/1     Running   0          20h
 
 ### Deploy the Application with CSI Backed Volumes
 
-Before installing the application with CSI backed volumes, install the storage class and the volume snapshot class for the OpenEBS CSI driver by applying the below yaml to your cluster. Refer to the [Replicated PV Mayastor Configuration Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-configuration.md#create-replicated-pv-mayastor-storageclasss) for more details.
+Before installing the application with CSI backed volumes, install the storage class and the volume snapshot class for the OpenEBS CSI driver by applying the below yaml to your cluster. Refer to the [Replicated PV Mayastor Configuration Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-storageclass.md#create-storageclasss) for more details.
 
 :::info
 Volume snapshots for multi-replicas volume is supported only from OpenEBS v4.1. The annotation `velero.io/csi-volumesnapshot-class: "true"` must be added to the volume snapshot class or the Velero backup will fail.

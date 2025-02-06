@@ -13,7 +13,7 @@ If all verification steps in the preceding stages were satisfied, then Replicate
 
 ## Define the PVC
 
-Use `kubectl` to create a PVC based on a StorageClass that you created in the [previous stage](../replicated-pv-mayastor/rs-configuration.md#create-replicated-storageclasss). In the example shown below, we will consider that StorageClass to have been named "mayastor-1". Replace the value of the field "storageClassName" with the name of your own Replicated PV Mayastor-based StorageClass.
+Use `kubectl` to create a PVC based on a StorageClass that you created in the [previous stage](rs-create-storageclass.md). In the example shown below, we will consider that StorageClass to have been named "mayastor-1". Replace the value of the field "storageClassName" with the name of your own Replicated PV Mayastor-based StorageClass.
 
 For the purposes of this quickstart guide, it is suggested to name the PVC "ms-volume-claim", as this is what will be illustrated in the example steps which follow.
 
@@ -243,4 +243,8 @@ If no errors are reported in the output then PV has been correctly configured an
 ## See Also
 
 - [Installation](../../../quickstart-guide/installation.md)
-- [Configuration](../replicated-pv-mayastor/rs-configuration.md)
+- [Create DiskPool(s)](../configuration/rs-create-diskpool.md)
+- [Create StorageClass(s)](../configuration/rs-create-storageclass.md)
+- [Storage Class Parameters](../configuration/rs-storage-class-parameters.md)
+- [Topology Parameters](../configuration/rs-topology-parameters.md)
+- [Enable RDMA for Volume Targets](../configuration/rs-rdma.md)
