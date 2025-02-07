@@ -76,10 +76,6 @@ Grafana Dashboards for Replicated PV Mayastor has been added in this releases.
 
 Ensures that the environment variable to disable event analytics reporting is properly honored. ([#211](https://github.com/openebs/dynamic-localpv-provisioner/pull/211))
 
-- **Prevent Race Condition**
-
-Adds `priorityClassName` to pods to prevent race conditions caused by pod eviction. ([#182](https://github.com/openebs/dynamic-localpv-provisioner/pull/182))
-
 - **Metrics Collection Loop**
 
 Adds an anonymous metrics collection loop which periodically pushes OpenEBS usage metrics. ([#188](https://github.com/openebs/dynamic-localpv-provisioner/pull/188),[#318](https://github.com/openebs/lvm-localpv/pull/318), and[#548](https://github.com/openebs/zfs-localpv/pull/548))
@@ -92,7 +88,7 @@ Ensures the readiness check API performs atomic operations to prevent multiple c
 
 - **Prevent volume Unpublish from Non-frontend Nodes**
 
-Restricts volume unpublish operations to only frontend nodes to ensure proper handling.
+Restricts volume unpublish operations to only frontend nodes.
 
 - **Increase Maximum Connection Attempts to IO-Engine**
 
