@@ -9,21 +9,21 @@ keywords:
 description: This page contains list of supported OpenEBS releases.
 ---
 
-**Release Date: 08 July 2024**
+**Release Date: 30 January 2025**
 
 OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners.
-The status of the various components as of v4.1.1 are as follows:
+The status of the various components as of v4.1.3 are as follows:
 
 - Local Storage (a.k.a Local Engine)
-  - [Local PV Hostpath 4.1.1](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
+  - [Local PV Hostpath 4.1.4](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
   - [Local PV LVM 1.6.1](https://github.com/openebs/lvm-localpv) (stable)
   - [Local PV ZFS 2.6.2](https://github.com/openebs/zfs-localpv) (stable)
 
 - Replicated Storage (a.k.a Replicated Engine)
-  - [Replicated PV Mayastor 2.7.1](https://github.com/openebs/mayastor) (stable)
+  - [Replicated PV Mayastor 2.7.3](https://github.com/openebs/mayastor) (stable)
 
 - Out-of-tree (External Storage) Provisioners 
-  - [Local PV Hostpath 4.1.1](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
+  - [Local PV Hostpath 4.1.4](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
 
 - Other Components
   - [CLI 0.6.0](https://github.com/openebs/openebsctl) (beta)
@@ -32,7 +32,21 @@ The status of the various components as of v4.1.1 are as follows:
 
 OpenEBS is delighted to introduce the following new features:
 
+### What’s New - Local Storage
+
+- **Specify Additional Labels**
+
+Enables specifying additional labels to be applied to all Helm chart resources.
+
 ### What’s New - Replicated Storage
+
+- **Pre-publish Hook in CSI Driver**
+
+Introduces a pre-publish hook to clean up stale entries before publishing a volume.
+
+- **Use `tokio_stream::UnixListenerStream` in CSI Driver**
+
+Switches to `tokio_stream::UnixListenerStream` for improved async handling.
 
 - **Snapshot across Multiple Replicas**
 
@@ -58,11 +72,31 @@ Grafana Dashboards for Replicated PV Mayastor has been added in this releases.
 
 ### Fixed Issues - Local Storage
 
+- **Environment Variable**
+
+Ensures that the environment variable to disable event analytics reporting is properly honored. ([#211](https://github.com/openebs/dynamic-localpv-provisioner/pull/211))
+
 - **Metrics Collection Loop**
 
 Adds an anonymous metrics collection loop which periodically pushes OpenEBS usage metrics. ([#188](https://github.com/openebs/dynamic-localpv-provisioner/pull/188),[#318](https://github.com/openebs/lvm-localpv/pull/318), and[#548](https://github.com/openebs/zfs-localpv/pull/548))
 
 ### Fixed Issues - Replicated Storage
+
+- **Make Readiness Check Atomic in REST API**
+
+Ensures the readiness check API performs atomic operations to prevent multiple concurrent probes of the agent-core service.
+
+- **Prevent volume Unpublish from Non-frontend Nodes**
+
+Restricts volume unpublish operations to only frontend nodes.
+
+- **Increase Maximum Connection Attempts to IO-Engine**
+
+Raises the maximum number of allowed connection attempts to improve reliability.
+
+- **Fix Topology Key Overwriting Affinity Labels**
+
+Resolves issue where `hasTopologyKey` was overwriting `affinityTopologyLabels`.
 
 - **Plugin changes for Snapshot Operation**
 
