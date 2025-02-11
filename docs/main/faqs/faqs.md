@@ -670,6 +670,14 @@ The `mayastor/mayastor` Helm chart, along with other stable OpenEBS storage plug
 
 [Go to top](#top)
 
+### What can cause a snapshot operation to fail sometimes after a node reboot?
+
+If a pod-based workload is scheduled on a node that reboots and the pod does not have a controller (such as a Deployment or StatefulSet), the volume unpublish operation is not triggered. This causes the control plane to incorrectly assume that the volume is still published, even though it is not mounted. As a result, the FIFREEZE operation fails during the snapshot process, preventing the snapshot from being taken.
+
+To resolve this issue, reinstate or recreate the pod to ensure that the volume is properly mounted and recognized by the control plane.
+
+[Go to top](#top)
+
 ## See Also
 
 - [Quickstart](../quickstart-guide/installation.md)
