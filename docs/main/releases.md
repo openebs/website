@@ -85,6 +85,8 @@ The workaround is to delete the old pod so the new pod can get scheduled. Refer 
 
 ### Watch Items and Known Issues - Replicated Storage
 
+- When a pod-based workload is scheduled on a node that reboots, and the pod lacks a controller, the volume unpublish operation is not triggered. This causes the control plane to incorrectly assume the volume is published, even though it is not mounted. As a result, FIFREEZE fails during a snapshot operation, preventing the snapshot from being taken. To resolve this, reinstate or recreate the pod to ensure the volume is properly mounted.
+
 - Replicated PV Mayastor does not support the capacity expansion of DiskPools as of v2.7.0.
 
 - The IO engine pod has been observed to restart occasionally in response to heavy IO and the constant scaling up and down of volume replicas.
