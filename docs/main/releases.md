@@ -142,14 +142,14 @@ This fix ensures proper handling of devices when dealing with existing subsystem
 
 Automatically detects and applies the correct sector size for block devices, improving compatibility and performance.
 
-## Watch Items and Known Issues
+## Known Issues
 
-### Watch Items and Known Issues - Local Storage
+### Known Issues - Local Storage
 
 Local PV ZFS / Local PV LVM on a single worker node encounters issues after upgrading to the latest versions. The issue is specifically associated with the change of the controller manifest to a Deployment type, which results in the failure of new controller pods to join the Running state. The issue appears to be due to the affinity rules set in the old pod, which are not present in the new pods. As a result, since both the old and new pods have relevant labels, the scheduler cannot place the new pod on the same node, leading to scheduling failures when there's only a single node.
 The workaround is to delete the old pod so the new pod can get scheduled. Refer to the issue [#3741](https://github.com/openebs/openebs/issues/3751) for more details.
 
-### Watch Items and Known Issues - Replicated Storage
+### Known Issues - Replicated Storage
 
 - When a pod-based workload is scheduled on a node that reboots, and the pod lacks a controller, the volume unpublish operation is not triggered. This causes the control plane to incorrectly assume the volume is published, even though it is not mounted. As a result, FIFREEZE fails during a snapshot operation, preventing the snapshot from being taken. To resolve this, reinstate or recreate the pod to ensure the volume is properly mounted.
 
