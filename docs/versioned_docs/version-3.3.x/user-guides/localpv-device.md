@@ -174,8 +174,9 @@ The default Storage Class is called `openebs-device`. If the block devices are n
            value: device
          - name: FSType
            value: xfs
-         - name: BlockDeviceTag
-           value: "mongo"
+         - name: BlockDeviceSelectors
+           data:
+             openebs.io/block-device-tag: mongo
    provisioner: openebs.io/local
    reclaimPolicy: Delete
    volumeBindingMode: WaitForFirstConsumer
