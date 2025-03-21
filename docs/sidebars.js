@@ -656,6 +656,11 @@ module.exports = {
         },
         {
           type: "doc",
+          id: "user-guides/kubectl-openebs",
+          label: "Kubectl OpenEBS Plugin"
+        },
+        {
+          type: "doc",
           id: "user-guides/observability",
           label: "Observability"
         },
