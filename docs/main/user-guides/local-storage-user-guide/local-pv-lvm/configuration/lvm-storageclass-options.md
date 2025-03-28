@@ -104,17 +104,17 @@ Local PV LVM storageclass supports various parameters for different use cases. T
 
   If `volgroup` and `vgpattern` both the parameters are defined in the storageclass then `volgroup` will get higher priority and the driver will use that to provision to the volume.
 
-  :::note
-  Either `volgroup` or `vgpattern` should be present in the storageclass parameters to make the provisioning successful.
-  :::
+:::note
+Either `volgroup` or `vgpattern` should be present in the storageclass parameters to make the provisioning successful.
+:::
 
 ### Volgroup (Mandatory if `vgpattern` is not provided; otherwise optional)
 
   volgroup specifies the name of the volume group on the nodes from which the volumes will be created. The *volgroup* is the must argument if the `vgpattern` is not provided in the storageclass.
 
-  :::info
-  It is recommended to use vgpattern since volumegroup will be deprecated in future.
-  :::
+:::info
+It is recommended to use vgpattern since volumegroup will be deprecated in future.
+:::
 
   ```yaml
   apiVersion: storage.k8s.io/v1
@@ -323,11 +323,11 @@ allowedTopologies:
 
 The above storage class tells that volume group "lvmvg" is available on nodes lvmpv-node1 and lvmpv-node2 only. The LVM driver will create volumes on those nodes only.
 
- :::note
- The provisioner name for the LVM driver is "local.csi.openebs.io", we have to use this while creating the storage class so that the volume provisioning/deprovisioning request can come to the LVM driver.
- :::
+:::note
+The provisioner name for the LVM driver is "local.csi.openebs.io", we have to use this while creating the storage class so that the volume provisioning/deprovisioning request can come to the LVM driver.
+:::
 
- ## Support
+## Support
 
 If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
 

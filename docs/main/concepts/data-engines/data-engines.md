@@ -110,18 +110,18 @@ Local Storage is only available from the node on which the persistent volume is 
 
 The below table identifies a few differences among the different OpenEBS Local Storage. 
 
-| Feature                                      | Hostpath  |  Rawfile  |  Device    | ZFS      | LVM      | 
-| -------------------------------------------- | :---:     | :------:  | :--------: | :------: | :------: |
-| Near Disk Performance                        |  Yes      |   Yes     | Yes        | No       | Yes      |
-| Full Backup and Restore using Velero         |  Yes      |   Yes     | Yes        | Yes      | Yes      |
-| Thin Provisioning                            |  Yes      |   Yes     | No         | Yes      | Yes      |
-| On-demand Capacity Expansion                 |  Yes      |   Yes     | No         | Yes      | Yes      |
-| Disk Pool or Aggregate Support               |  Yes      |   Yes     | No         | Yes      | Yes      |
-| Disk Resiliency (RAID Support)               |  Yes      |   Yes     | No         | Yes      | Yes      |
-| Snapshots                                    |  No       |   No      | No         | Yes      | Yes      |
-| Incremental Backups                          |  No       |   No      | No         | Yes      | Yes      |
-| Clones                                       |  No       |   No      | No         | Yes      | No       |
-| Works on OS Mounted storage                  |  Yes      |   Yes     | No         | No       | No       |
+| Feature                                      | Hostpath  | ZFS      | LVM      | 
+| -------------------------------------------- | :---:     | :------: | :------: |
+| Near Disk Performance                        |  Yes      | No       | Yes      |
+| Full Backup and Restore using Velero         |  Yes      | Yes      | Yes      |
+| Thin Provisioning                            |  Yes      | Yes      | Yes      |
+| On-demand Capacity Expansion                 |  Yes      | Yes      | Yes      |
+| Disk Pool or Aggregate Support               |  Yes      | Yes      | Yes      |
+| Disk Resiliency (RAID Support)               |  Yes      | Yes      | Yes      |
+| Snapshots                                    |  No       | Yes      | Yes      |
+| Incremental Backups                          |  No       | Yes      | Yes      |
+| Clones                                       |  No       | Yes      | No       |
+
 
 
 ### Replicated Storage
