@@ -46,57 +46,48 @@ The following matrix shows standard StorageClass parameters for Local PV LVM.
   <tr>
     <td rowSpan={2}> <a href="#allowvolumeexpansion-optional"> allowVolumeExpansion </a> </td>
     <td> true </td>
-    <td></td>
     <td> Supported </td>
     <td rowSpan={2}> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvm-volume-resize#about-this-experiment"> Yes </a> <br></br><i> (Test coverage exist for ext4 & xfs) </i> </td>
   </tr>
   <tr>
     <td> false </td>
-    <td></td>
     <td> Supported </td>
   </tr>
   <tr>
     <td> <a href="#mountoptions-optional"> MountOptions </a> </td>
     <td> Options supported by filesystem </td>
-    <td></td>
     <td> Supported </td>
     <td> Pending </td>
   </tr>
   <tr>
     <td rowSpan={2}> <a href="#volumebindingmode-optional"> VolumeBindingMode </a> </td>
     <td> Immediate </td>
-    <td></td>
     <td> Supported </td>
     <td rowSpan={2}> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvmpv-custom-topology#readme"> Yes  </a> </td>
   </tr>
   <tr>
     <td> WaitForFirstConsumer </td>
-    <td></td>
     <td> Supported </td>
   </tr>
   <tr>
     <td rowSpan={2}> <a href="#reclaim-policy-optional"> Reclaim Policy </a> </td>
     <td>  Retain </td>
-    <td></td>
     <td> Supported </td>
     <td rowSpan={2}> <a href="https://github.com/openebs/lvm-localpv/blob/HEAD/e2e-tests/apps/percona/deployers/run_e2e_test.yml"> Yes </a> <br></br> <i> (Test coverage exist for Delete reclaim policy) </i> </td>
   </tr>
   <tr>
     <td> Delete </td>
-    <td></td>
     <td> Supported </td>
   </tr>
   <tr>
     <td> <a href="#storageclass-with-custom-node-labels"> allowedTopologies </a> </td>
     <td> - </td>
-    <td></td>
     <td> Supported </td>
     <td> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvmpv-custom-topology#readme"> Yes </a> </td>
   </tr>
   <tr>
     <td rowSpan={6}> Parameters </td>
     <td> <a href="https://kubernetes-csi.github.io/docs/secrets-and-credentials-storage-class.html#examples"> Passing Secrets </a></td>
-    <td></td>
     <td> No Use Case </td>
     <td> NA </td>
   </tr>
