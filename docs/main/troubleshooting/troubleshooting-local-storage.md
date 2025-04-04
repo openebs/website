@@ -10,13 +10,17 @@ description: This page contains a list of OpenEBS related troubleshooting which 
 
 <font size="7" color="orange">General Troubleshooting</font>
 
-### PVC in Pending state {#pvc-in-pending-state}
+### Persistent Volume Claim (PVC) in Pending state {#pvc-in-pending-state}
 
 Created a PVC using localpv-hostpath storage class. But the PV is not created and PVC in Pending state.
 
 **Troubleshooting**
 
 The default localpv storage classes from openebs have `volumeBindingMode: WaitForFirstConsumer`. This means that only when the application pod that uses the PVC is scheduled to a node, the provisioner will receive the volume provision request and will create the volume.
+
+:::note
+When utilizing the `WaitForFirstConsumer` in Kubernetes, it is imperative not to set the `nodeName` in the Pod specification to specify node affinity. Assigning `nodeName` in such scenarios bypasses the scheduler, leading to PVCs remaining in a Pending state.
+:::
 
 **Resolution**
 
