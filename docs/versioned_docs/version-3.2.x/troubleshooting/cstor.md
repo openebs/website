@@ -110,7 +110,7 @@ If cStor volume exists in `Healthy` or `Degraded` state then restarting of the a
 The cStor pools and volumes are offline, the pool manager pods are stuck in a `pending` state, as shown below:
 
 ```
-$ kubectl get po -n openebs -l app=cstor-pool
+kubectl get po -n openebs -l app=cstor-pool
 ```
 
 Sample Output:
@@ -132,7 +132,7 @@ To bring cStor pool back to online state carry out the below mentioned steps,
    To edit, execute:
 
    ```
-   $ kubectl edit validatingwebhookconfiguration openebs-cstor-validation-webhook
+   kubectl edit validatingwebhookconfiguration openebs-cstor-validation-webhook
    ```
 
    Sample Output with updated `failurePolicy`
@@ -158,7 +158,7 @@ To bring cStor pool back to online state carry out the below mentioned steps,
    The openEBS admission server needs to be scaled down as this would skip the validations performed by cStor admission server when CSPC spec is updated with new node details.
 
    ```
-   $ kubectl scale deploy openebs-cstor-admission-server -n openebs --replicas=0
+   kubectl scale deploy openebs-cstor-admission-server -n openebs --replicas=0
    ```
 
    Sample Output:
@@ -208,7 +208,7 @@ To bring cStor pool back to online state carry out the below mentioned steps,
 4. To apply the above configuration, execute:
 
    ```
-   $ kubectl apply -f cspc.yaml
+   kubectl apply -f cspc.yaml
    ```
 
 5. **Update nodeSelectors, labels and NodeName**:
@@ -243,7 +243,7 @@ To bring cStor pool back to online state carry out the below mentioned steps,
 
 7. **Scale-up the cStor admission server and update validatingwebhookconfiguration**:
    This brings back the cStor admission server to running state. As well as admission server is required to validate the modifications made to CSPC API in future.
-   `$ kubectl scale deploy openebs-cstor-admission-server -n openebs --replicas=1`
+   `kubectl scale deploy openebs-cstor-admission-server -n openebs --replicas=1`
 
    Sample Output:
 
@@ -254,7 +254,7 @@ To bring cStor pool back to online state carry out the below mentioned steps,
    Now, update the `failurePolicy` back to `Fail` under validatingwebhookconfiguration. To edit, execute:
 
    ```
-   $ kubectl edit validatingwebhookconfiguration openebs-cstor-validation-webhook
+   kubectl edit validatingwebhookconfiguration openebs-cstor-validation-webhook
    ```
 
    Sample Output:
@@ -324,7 +324,7 @@ A sample CVC resource(corresponding to the volume) that has 3 pools.
 Now edit the CVC and remove the desired poolName.
 
 ```
-$ kubectl edit cvc pvc-81746e7a-a29d-423b-a048-76edab0b0826 -n openebs
+kubectl edit cvc pvc-81746e7a-a29d-423b-a048-76edab0b0826 -n openebs
 ```
 
 ```shell hideCopy
@@ -344,7 +344,7 @@ $ kubectl edit cvc pvc-81746e7a-a29d-423b-a048-76edab0b0826 -n openebs
 From the above spec, `cstor-cspc-4tr5` CSPI entry is removed. This needs to be repeated for all the volumes which have cStor volume replicas on the lost pool. To get the list of volume replicas in lost pool, execute:
 
 ```
-$ kubectl get cvr -n openebs -l cstorpoolinstance.openebs.io/name=<CSPI_name>
+kubectl get cvr -n openebs -l cstorpoolinstance.openebs.io/name=<CSPI_name>
 ```
 
 ```
@@ -363,7 +363,7 @@ Usually, the finalizer is removed by pool-manager pod but as in this case the po
 To get the list of CVRs, execute:
 
 ```
-$ kubectl get cvr -n openebs
+kubectl get cvr -n openebs
 ```
 
 Sample Output:
@@ -377,7 +377,7 @@ pvc-81746e7a-a29d-423b-a048-76edab0b0826-cstor-cspc-zdvk   6K     6K          He
 After this step, CStorVolume will scale down. To verify, execute:
 
 ```
-$ kubectl describe cvc <pv_name> -n openebs
+kubectl describe cvc <pv_name> -n openebs
 ```
 
 Sample Output:
@@ -404,7 +404,7 @@ This updates the number of desired instances.
 To verify, execute:
 
 ```
-$ kubectl get cspc -n openebs
+kubectl get cspc -n openebs
 ```
 
 Sample Output:
@@ -427,7 +427,7 @@ kubectl edit cspi  <cspi_name>
 After the finalizer is removed the CSPI count goes to the desired number.
 
 ```shell hideCopy
-$ kubectl get cspc -n openebs
+kubectl get cspc -n openebs
 NAME         HEALTHYINSTANCES   PROVISIONEDINSTANCES   DESIREDINSTANCES   AGE
 cstor-cspc   2                  2                      2                  68m
 ```
@@ -443,7 +443,7 @@ NOTE: A CStorVolume is a collection of 1 or more volume replicas and no two repl
 To get the list of cspi execute:
 
 ```
-$ kubectl get cspi -n openebs
+kubectl get cspi -n openebs
 ```
 
 Sample Output:
@@ -459,7 +459,7 @@ In this example we are adding, `cstor-cspc-bf9h `
 To edit, execute:
 
 ```
-$ kubectl edit cvc pvc-81746e7a-a29d-423b-a048-76edab0b0826 -n openebs
+kubectl edit cvc pvc-81746e7a-a29d-423b-a048-76edab0b0826 -n openebs
 ```
 
 Sample YAML:
@@ -487,7 +487,7 @@ Next, verify the status of the new CStorVolumeReplica(CVR) that are provisioned.
 To get the list of CVR, execute:
 
 ```
-$ kubectl get cvr -n openebs
+kubectl get cvr -n openebs
 ```
 
 Sample Output:
@@ -503,7 +503,7 @@ pvc-81746e7a-a29d-423b-a048-76edab0b0826-cstor-cspc-zdvk   6K     6K          He
 To get the list of cspi, execute:
 
 ```
-$ kubectl get cspi -n openebs
+kubectl get cspi -n openebs
 ```
 
 Sample Output:
