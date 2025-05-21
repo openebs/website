@@ -19,7 +19,8 @@ Created a PVC using localpv-hostpath storage class. But the PV is not created an
 The default localpv storage classes from openebs have `volumeBindingMode: WaitForFirstConsumer`. This means that only when the application pod that uses the PVC is scheduled to a node, the provisioner will receive the volume provision request and will create the volume.
 
 :::note
-When utilizing the `WaitForFirstConsumer` in Kubernetes, it is imperative not to set the `nodeName` in the Pod specification to specify node affinity. Assigning `nodeName` in such scenarios bypasses the scheduler, leading to PVCs remaining in a Pending state.
+If you select to use `WaitForFirstConsumer`, do not use nodeName in the Pod spec to specify node affinity. If `nodeName` is used in this case, the scheduler will be bypassed and PVC will remain in pending state.
+Instead, you can use node selector for kubernetes.io/hostname.
 :::
 
 **Resolution**
