@@ -335,7 +335,7 @@ This feature enforces the following rules to ensure the proper placement and dis
     By default, the `stsAffinityGroup` feature is disabled. To enable it, modify the storage class YAML by setting the `parameters.stsAffinityGroup` parameter to true.
 
 #### Known Limitation
-For multi-replica volumes that are part of an `stsAffinityGroup`, scaling down is permitted only up to two replicas. Reducing the replica count below two is not supported.
+For multi-replica volumes that are part of a `stsAffinityGroup`, scaling down is permitted only up to two replicas. Reducing the replica count below two is not supported.
 
 ### "cloneFsIdAsVolumeId"
 

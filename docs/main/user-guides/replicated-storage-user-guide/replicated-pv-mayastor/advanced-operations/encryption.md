@@ -12,7 +12,7 @@ description: This guide explains about the Encryption feature.
 
 OpenEBS supports data-at-rest encryption to ensure the confidentiality of persistent disk data. By configuring disk pools with user-defined encryption keys, encrypted volume replicas can be created—particularly valuable in environments requiring security or regulatory compliance.
 
-This guide outlines how to enable and use encryption with Replicated Persistent Volumes (PVs) in Mayastor.
+This guide outlines how to enable encryption in Mayastor DiskPools and use them for volume replica placement.
 
 ## Prerequisites
 
@@ -68,7 +68,7 @@ spec:
 
 ### Define StorageClass for Encrypted Volumes
 
-To provision encrypted volumes, set `encrypted: "true"` in the `StorageClass`.
+To place volume replicas on encrypted pools, set `encrypted: "true"` in the `StorageClass`.
 
 **Example: StorageClass**
 
@@ -94,8 +94,8 @@ Currently, there is no automatic support for migrating existing unencrypted volu
 1. Identify Target Pool: Select a non-encrypted pool (Example: P1) to migrate.
 2. List Volumes on P1: Identify all volumes with replicas on P1.
 3. (Optional) Scale Up Volumes: Increase replica count (Example: from 2 to 3) to maintain availability.
-4. Cordon Node: Cordon the node hosting P1 to stop new replicas from being scheduled.
-5. Update Volume Config: Set encrypted: true using the Mayastor plugin.
+4. Mayastor Cordon Node: Cordon the mayastor node hosting P1 to stop new replicas from being scheduled using the plugin command `kubectl mayastor cordon node N1 key=value`.
+5. Update Volume Config: Set encrypted: true using the Mayastor plugin command `kubectl mayastor set volume <volume-id> encryption true`.
 6. Scale Down Volumes: Reduce replica count to remove replicas from P1.
 7. Recreate Encrypted Pool:
     - Delete the non-encrypted pool.
