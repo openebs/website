@@ -10,7 +10,7 @@ description: This guide explains about the Encryption feature.
 
 ## Overview
 
-OpenEBS supports data-at-rest encryption to ensure the confidentiality of persistent disk data. By configuring disk pools with user-defined encryption keys, encrypted volume replicas can be created—particularly valuable in environments requiring security or regulatory compliance.
+OpenEBS supports data-at-rest encryption to ensure the confidentiality of persistent disk data. By configuring disk pools with user-defined encryption keys, the pools themselves are encrypted, and volume replicas placed on these pools are automatically encrypted. This approach is especially beneficial for meeting security and regulatory compliance requirements.
 
 This guide outlines how to enable encryption in Mayastor DiskPools and use them for volume replica placement.
 
@@ -115,4 +115,6 @@ Monitor disk space and health throughout the migration to avoid service disrupti
 ```
 kubectl mayastor get block-devices <node-id>
 ```
-- Pool and volume migration is manual and requires careful planning.
+:::note
+Pool and volume migration is manual and requires careful planning.
+:::
