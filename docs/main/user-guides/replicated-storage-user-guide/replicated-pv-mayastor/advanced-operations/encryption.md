@@ -5,7 +5,7 @@ keywords:
  - Encryption
  - Data Encryption
  - Encrypted Volumes
-description: This guide explains about the Encryption feature.
+description: This guide explains about the Data Encryption At-Rest feature.
 ---
 
 ## Overview
@@ -43,7 +43,7 @@ stringData:
 ```
 
 :::note
-Use Kubernetes built-in secret encryption to secure this data. Refer to the [Encrypting Confidential Data at Rest Documentation](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) for more information.
+You can additionally use Kubernetes built-in resource encryption to secure this Secret resource. Refer to the [Encrypting Confidential Data at Rest Documentation](https://kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) for more information.
 :::
 
 ### Configure DiskPool to Use the Encryption Secret
@@ -100,7 +100,7 @@ Currently, there is no automatic support for migrating existing unencrypted volu
 7. Recreate Encrypted Pool:
     - Delete the non-encrypted pool.
     - Recreate it with encryption using the previously defined secret.
-8. Rescale Volumes: Increase replica count to allow new encrypted replicas to be created on the new pool.
+8. Scale-up Volumes: Increase replica count to allow new encrypted replicas to be created on the new pool.
 9. Optional Replica Adjustment: After migration, optionally reduce replica count back to the original.
 
 :::note
