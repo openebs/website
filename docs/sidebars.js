@@ -485,6 +485,21 @@ module.exports = {
                     },
                     {
                       type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/replica-operations",
+                      label: "Replica Operations"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/eventing",
+                      label: "Eventing"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/call-home-metrics",
+                      label: "Call-Home Metrics"
+                    },
+                    {
+                      type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/monitoring",
                       label: "Monitoring"
                     },
@@ -542,21 +557,6 @@ module.exports = {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/io-path-description",
                       label: "I/O Path Description"
-                    },
-                    {
-                      type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/replica-operations",
-                      label: "Replica Operations"
-                    },
-                    {
-                      type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/eventing",
-                      label: "Eventing"
-                    },
-                    {
-                      type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/call-home-metrics",
-                      label: "Call-Home Metrics"
                     },
                     {
                       type: "doc",

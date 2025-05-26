@@ -59,7 +59,7 @@ helm repo update
 
 3. Execute `kubectl openebs upgrade -n <namespace>` to upgrade OpenEBS.
 
-4. Monitor the upgrade status using `kubectl openebs get upgrade-status -n <namespace>`.
+4. Monitor the upgrade status using `kubectl openebs get upgrade status -n <namespace>`.
 
 5. Verify that the CRDs, Volumes, Snapshots, and StoragePools are not affected by the upgrade process.
 
@@ -92,7 +92,7 @@ Follow these steps to upgrade OpenEBS from version 4.x to 4.3:
 
 2. Execute `kubectl openebs upgrade -n <namespace>` to upgrade OpenEBS.
 
-3. Monitor the upgrade status using `kubectl openebs get upgrade-status -n <namespace>`.
+3. Monitor the upgrade status using `kubectl openebs get upgrade status -n <namespace>`.
 
 4. Verify that the CRDs, Volumes, Snapshots, and StoragePools are not affected by the upgrade process.
 
