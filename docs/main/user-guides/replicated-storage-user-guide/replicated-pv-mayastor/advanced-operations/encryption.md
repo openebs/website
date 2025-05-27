@@ -91,20 +91,26 @@ Currently, there is no automatic support for migrating existing unencrypted volu
 
 **Migration Steps**
 
-1. Identify Target Pool: Select a non-encrypted pool (Example: P1) to migrate.
-2. List Volumes on P1: Identify all volumes with replicas on P1.
-3. (Optional) Scale Up Volumes: Increase replica count (Example: from 2 to 3) to maintain availability.
-4. Mayastor Cordon Node: Cordon the mayastor node hosting P1 to stop new replicas from being scheduled using the plugin command `kubectl mayastor cordon node N1 key=value`.
-5. Update Volume Config: Set encrypted: true using the Mayastor plugin command `kubectl mayastor set volume <volume-id> encryption true`.
-6. Scale Down Volumes: Reduce replica count to remove replicas from P1.
-7. Recreate Encrypted Pool:
+1. Identify all the volumes to be converted to encrypted, and change their spec to encrypted via plugin.
+    ```
+    kubectl mayastor set volume <volume_uuid> encryption true
+    ```
+2. Identify Target Pool: Select a non-encrypted pool (Example: P1) to migrate.
+3. Identify all volumes with replicas on P1.
+4. (Optional) Scale Up Volumes: Increase replica count (Example: from 2 to 3) to maintain availability.
+5. Mayastor Cordon Node: Cordon the mayastor node hosting P1 to stop new replicas from being scheduled using the plugin command `kubectl mayastor cordon node N1 <cordon_label>`.
+6. Scale Down Volumes: Reduce replica count to remove replicas from P1. In effect, this is like draining the pool.
+7. Recreating as Encrypted Pool:
     - Delete the non-encrypted pool.
+    - Uncordon the node.
     - Recreate it with encryption using the previously defined secret.
 8. Scale-up Volumes: Increase replica count to allow new encrypted replicas to be created on the new pool.
 9. Optional Replica Adjustment: After migration, optionally reduce replica count back to the original.
 
 :::note
-Monitor disk space and health throughout the migration to avoid service disruption.
+- Monitor disk space and health throughout the migration to avoid service disruption.
+- If there are snapshots on the pool being migrated, then delete the volume snapshot objects before doing migration, otherwise they might just lying around unusably. Since pool is being recreated as part of this procedure, the underlying snapshot blobs are anyway going to be deleted.
+- If a snapshot is needed to be kept around, consider creating a restore volume from it, then scale it up to multiple replicas. After this, you can either use restore volume, or take a snapshot again, so it'll be preserved.
 :::
 
 ## Validation and Tips
