@@ -8,10 +8,12 @@ keywords:
 description: This section will help you to deploy a test application.
 ---
 
-:::info
-- Refer to the [Local PV LVM Deployment documentation](../user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-deployment.md) to deploy Local PV LVM.
-- Refer to the [Local PV ZFS Deployment documentation](../user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-deployment.md) to deploy Local PV ZFS.
-- Refer to the [Replicated PV Mayastor Deployment documentation](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-deployment.md) to deploy Replicated PV Mayastor.
+:::important
+This document demonstrates how to deploy an application using OpenEBS Local PV Hostpath.
+If you want to use other OpenEBS storages, refer to the following:
+- [Local PV LVM Deployment documentation](../user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-deployment.md)
+- [Local PV ZFS Deployment documentation](../user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-deployment.md)
+- [Replicated PV Mayastor Deployment documentation](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-deployment.md)
 :::
 
 # Deploy an Application
@@ -223,5 +225,5 @@ Once the workloads are up and running, the platform or the operations team can o
 - [Local PV ZFS](../user-guides/local-storage-user-guide/zfs-localpv.md)
 - [Local Storage](../concepts/data-engines/local-storage.md)
 - [Replicated Storage](../concepts/data-engines/replicated-storage.md)
-- [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
-- [Replicated Storage User Guide](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md)
+- [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview.md)
+- [Replicated Storage User Guide](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-overview.md)
