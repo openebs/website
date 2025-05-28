@@ -9,7 +9,7 @@ description: In this document you will learn about Replicated Storage and its de
 
 ## Replicated Storage Overview 
 
-**Replicated Storage** (a.k.a Replicated Engine) is a progressive sub-project of the CNCF (Cloud Native Computing Foundation) Open Source initiative **OpenEBS**. OpenEBS is a Container Native Storage (CNS) solution that extends Kubernetes by providing a declarative data plane, offering resilient and adaptable storage for stateful applications.
+**Replicated Storage** (a.k.a Replicated Engine) refers to a storage engine provided by OpenEBS, a cloud-native storage solution for Kubernetes. In replicated storage, data is stored across multiple replicas (copies) to ensure high availability, durability, and fault tolerance. Replicated storage uses Mayastor engines to maintain multiple replicas of each volume across different Kubernetes nodes.
 
 ## Design Goals
 
@@ -31,20 +31,15 @@ Although Replicated Storage utilizes NVMe-oF, it does not impose any requirement
 
 ## Quickstart Guide
 
-Refer to the [Quickstart Guide](../../quickstart-guide/installation.md) for more information.
+OpenEBS provides Replicated Storage that can be used to deliver highly available storage for Kubernetes Stateful workloads. Refer to the [Quickstart Guide](../../quickstart-guide/prerequisites.md) for more information.
 
 ## Source Code and Contributions
 
 To access the Replicated Storage source code or actively contribute to the project, visit the [GitHub repository](https://github.com/openebs/mayastor).
 
-
-## Community Support via Slack
-
-Join the vibrant [OpenEBS community on Kubernetes Slack](https://kubernetes.slack.com) for assistance and discussions related to OpenEBS and Replicated Storage. If you have questions or seek further information, visit the[#openebs](https://kubernetes.slack.com/messages/openebs/) channel. If you are not already part of the community, you can sign up on Kubernetes Slack for a collaborative experience.
-
 ## See Also
 
 - [OpenEBS Architecture](../architecture.md)
-- [Quickstart](../../quickstart-guide/installation.md)
+- [Quickstart](../../quickstart-guide/prerequisites.md)
 - [Deployment](../../quickstart-guide/deploy-a-test-application.md)
-- [Replicated Storage User Guide](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md)
+- [Replicated Storage User Guide](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-overview.md)

@@ -105,7 +105,7 @@ Error: release openebs failed: clusterroles.rbac.authorization.k8s.io "openebs" 
 
 **Troubleshooting**
 
-You must enable RBAC on Azure before OpenEBS installation. For more details, see [Prerequisites](../quickstart-guide/installation.md).
+You must enable RBAC on Azure before OpenEBS installation. For more details, see [Prerequisites](../quickstart-guide/prerequisites.md).
 
 ### A multipath.conf file claims all SCSI devices in OpenShift {#multipath-conf-claims-all-scsi-devices-openshift}
 

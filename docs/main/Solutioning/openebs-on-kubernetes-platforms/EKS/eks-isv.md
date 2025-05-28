@@ -57,7 +57,7 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 
 - **Hardware Requirements**
 
-    Your machine type must meet the requirements defined in the [prerequisites](../../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md#prerequisites).
+    Your machine type must meet the requirements defined in the [prerequisites](../../../quickstart-guide/prerequisites.md).
 
 - **EKS Nodes**
 
@@ -69,7 +69,7 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 
 - **Ports**
 
-    Ensure security groups are having the OpenEBS ports allowed. Refer to the [Replicated PV Mayastor Installation Documentation](../../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md#network-requirements) for more details.
+    Ensure security groups are having the OpenEBS ports allowed. Refer to the [Replicated PV Mayastor Installation Documentation](../../../quickstart-guide/prerequisites.md#network-requirements) for more details.
 
 - **Enable Huge Pages**
     
@@ -86,7 +86,7 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 
 - **Preparing the Cluster**
 
-    Refer to the [Replicated PV Mayastor Installation Documentation](../../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md#preparing-the-cluster) for instructions on preparing the cluster.
+    Refer to the [Replicated PV Mayastor Installation Documentation](../../../quickstart-guide/prerequisites.md#preparing-the-cluster) for instructions on preparing the cluster.
 
 ## Install Replicated PV Mayastor on Amazon EKS
 
