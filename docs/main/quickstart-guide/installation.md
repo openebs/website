@@ -49,6 +49,10 @@ OpenEBS provides several options to customize during installation such as:
 - Specifying the nodes on which OpenEBS components should be deployed and so forth. 
 
 :::info
+The complete list of Helm chart images is available in the Helm chart annotations. You can view them using the command:
+```
+helm show chart openebs/openebs | yq '.annotations."helm.sh/images"'
+```
 Refer to the [OpenEBS helm chart](https://github.com/openebs/openebs/blob/main/charts/README.md#values) for configurable options.
 :::
 

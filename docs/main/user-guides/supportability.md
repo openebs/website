@@ -3,11 +3,10 @@ id: supportability
 title: Supportability
 keywords:
  - Supportability
-description: This guide explains about the supportability tool that collects Replicated PV Mayastor specific information from the cluster using the kubectl plugin command-line tool.
+description: This guide explains about the supportability tool that collects OpenEBS specific information from the cluster using the kubectl plugin command-line tool.
 ---
-## Supportability
 
-The supportability tool collects Replicated PV Mayastor's specific information from the cluster using the [kubectl plugin](kubectl-plugin.md) command-line tool. It uses the dump command, which interacts with the Replicated PV Mayastor services to build an archive (ZIP) file that acts as a placeholder for the bundled information.
+The supportability tool collects OpenEBS specific information from the cluster using the [kubectl plugin](kubectl-plugin.md) command-line tool. It uses the dump command, which interacts with the OpenEBS services to build an archive (ZIP) file that acts as a placeholder for the bundled information.
 
 ### Using the Supportability Tool
 
@@ -16,7 +15,7 @@ To bundle Replicated PV Mayastor's complete system information, execute:
 **Command**
 
 ```
-kubectl mayastor dump system -n openebs -d <output_directory_path>
+kubectl openebs dump system -n openebs -d <output_directory_path>
 ```
 
 To view all the available options and sub-commands that can be used with the dump command, execute:
@@ -24,53 +23,56 @@ To view all the available options and sub-commands that can be used with the dum
 **Command**
 
 ```
-kubectl mayastor dump --help
+kubectl openebs dump --help
 ```
 
 **Sample Output**
 
 ```
-`Dump` resources
+Supportability related operations
 
-Usage: kubectl-mayastor dump [OPTIONS] <COMMAND>
+Usage: kubectl-puls8 dump [OPTIONS] [LICENSE_AGENT_URI] <COMMAND>
 
 Commands:
   system  Collects entire system information
-  etcd    Collects information from etcd
-  help    Print this message or the help for the given subcommand(s)
+  help    Print this message or the help of the given subcommand(s)
+
+Arguments:
+  [LICENSE_AGENT_URI]  Override the URI to the license agent endpoint
 
 Options:
-  -r, --rest <REST>
-          The rest endpoint to connect to
   -t, --timeout <TIMEOUT>
           Specifies the timeout value to interact with other modules of system [default: 10s]
-  -k, --kube-config-path <KUBE_CONFIG_PATH>
-          Path to kubeconfig file
   -s, --since <SINCE>
           Period states to collect all logs from last specified duration [default: 24h]
   -l, --loki-endpoint <LOKI_ENDPOINT>
-          LOKI endpoint, if left empty then it will try to parse endpoint from Loki service(K8s service resource), if the tool is unable to parse from service then logs will be collected using Kube-apiserver
+          Endpoint of LOKI service, if left empty then it will try to parse endpoint from Loki service(K8s service resource), if the tool is unable to parse from service then logs will be collected using Kube-apiserver
   -e, --etcd-endpoint <ETCD_ENDPOINT>
           Endpoint of ETCD service, if left empty then will be parsed from the internal service name
   -d, --output-directory-path <OUTPUT_DIRECTORY_PATH>
           Output directory path to store archive file [default: ./]
+      --tenant-id <TENANT_ID>
+          The tenant id to be used to query loki logs [default: puls8]
+      --logging-label-selectors <LOGGING_LABEL_SELECTORS>
+          Logging label selectors [default: openebs.io/logging=true,datacore.com/logging=true]
   -n, --namespace <NAMESPACE>
-          Kubernetes namespace of mayastor service [default: mayastor]
-  -o, --output <OUTPUT>
-          The Output, viz yaml, json [default: none]
-  -j, --jaeger <JAEGER>
-          Trace rest requests to the Jaeger endpoint agent
+          Namespace where Puls8 is installed. If unset, defaults to the default namespace in the current context
+  -k, --kube-config-path <KUBE_CONFIG_PATH>
+          Path to kubeconfig file
+      --agent-uri <AGENT_URI>
+          Override the URI to the license agent endpoint
   -h, --help
           Print help
-          
-Supportability - collects state & log information of services and dumps it to a tar file. 
+
+Supportability - collects state & log information of services and dumps it to a tar file.
 ```
 
 :::note
 The information collected by the supportability tool is solely used for debugging purposes. The content of these files is human-readable and can be reviewed, deleted, or redacted as necessary to adhere to the organization's data protection/privacy commitments and security policies before transmitting the bundles.
-
-Refer the section [Does the supportability tool expose sensitive data?](#does-the-supportability-tool-expose-sensitive-data) for more details.
 :::
+
+<!--
+Refer the section [Does the supportability tool expose sensitive data?](#does-the-supportability-tool-expose-sensitive-data) for more details.
 
 The archive files generated by the dump command are stored in the specified output directories. The tables below specify the path and the content that will be stored in each archive file.
 
@@ -291,13 +293,15 @@ The archive files generated by the dump command are stored in the specified outp
 </tr>
 </table>
 
+-->
+
 ## Does the supportability tool expose sensitive data?
 
 The supportability tool generates support bundles, which are used for debugging purposes. These bundles are created in response to the user's invocation of the tool and can be transmitted only by the user.
 Below is the information collected by the supportability tool that might be identified as 'sensitive' based on the organization's data protection/privacy commitments and security policies.
 
 **Logs:**
-The default installation of Replicated PV Mayastor includes the deployment of a log aggregation subsystem based on Grafana Loki. All the pods deployed in the same namespace as Replicated PV Mayastor and labelled with `openebs.io/logging=true` will have their logs incorporated within this centralized collector. These logs may include the following information:
+The default installation includes the deployment of a log aggregation subsystem based on Grafana Loki. All the pods deployed in the same namespace as OpenEBS and labelled with `openebs.io/logging=true` will have their logs incorporated within this centralized collector. These logs may include the following information:
 - Kubernetes (K8s) node hostnames
 - IP addresses
     - container addresses
@@ -305,11 +309,12 @@ The default installation of Replicated PV Mayastor includes the deployment of a 
     - Mayastor
     - K8s
 - Container names
-- K8s Persistent Volume names (provisioned by Replicated PV Mayastor)
+- K8s Persistent Volume names
 - DiskPool names
 - Block device details (except the content)
+
  **K8s Definition Files:**
- The support bundle includes definition files for all the Replicated PV Mayastor components. Some of these are listed below:
+ The support bundle includes definition files for all the OpenEBS components. Some of these are listed below:
 - Deployments
 - DaemonSets
 - StatefulSets
@@ -317,19 +322,19 @@ The default installation of Replicated PV Mayastor includes the deployment of a 
 - VolumeSnapshotContent
 
 **K8s Events:**
-The archive files generated by the supportability tool contain information on all the events of the Kubernetes cluster present in the same namespace as Replicated PV Mayastor.
+The archive files generated by the supportability tool contain information on all the events of the Kubernetes cluster present in the same namespace as OpenEBS.
 
 **etcd Dump:**
-The default installation of Replicated PV Mayastor deploys an etcd instance for its exclusive use. This key-value pair is used to persist state information for Replicated PV Mayastor-managed objects. These key-value pairs are required for diagnostic and troubleshooting purposes. The etcd dump archive file consists of the following information:
+The default installation deploys an etcd instance for its exclusive use. This key-value pair is used to persist state information. It is required for diagnostic and troubleshooting purposes. The etcd dump archive file consists of the following information:
 - Kubernetes node hostnames
 - IP addresses
 - PVC/PV names
 - Container names
-    - Mayastor
-    - User applications within the namespace where Replicated PV Mayastor is installed
+    - Openebs
+    - User applications within the namespace where OpenEBS is installed
 - Block device details (except data content)
 
-:::note
-The list provided above is frequently reviewed and updated by the Replicated PV Mayastor maintainers. However, it might not be fully exhaustive, given that "sensitive information" is a subjective term.
+:::info
+The list provided above is frequently reviewed and updated by the OpenEBS maintainers. However, it might not be fully exhaustive, given that "sensitive information" is a subjective term.
 :::
  
