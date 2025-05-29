@@ -12,7 +12,7 @@ description: This section explains about the Platform Support for Replicated PV 
 
 ## Prerequisites
 
-Prepare a cluster by following the steps outlined in this [guide](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md#preparing-the-cluster).
+Prepare a cluster by following the steps outlined in the [Prerequsites Documentation](../../quickstart-guide/prerequisites.md#preparing-the-cluster).
 
 ## Install Replicated PV Mayastor on MicroK8s
 

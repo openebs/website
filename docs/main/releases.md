@@ -173,7 +173,7 @@ See version specific Releases to view the legacy OpenEBS Releases.
 
 ## See Also
 
-- [Quickstart](./quickstart-guide/installation.md)
+- [Quickstart](./quickstart-guide/prerequisites.md)
 - [Deployment](./deploy-a-test-application.md)
 - [OpenEBS Architecture](./concepts/architecture.md)
 - [OpenEBS Local Storage](./concepts/data-engines/local-storage.md)

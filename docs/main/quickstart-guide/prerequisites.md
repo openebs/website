@@ -1,17 +1,123 @@
 ---
-id: rs-installation
-title: Installation
-keywords:
- - Replicated Storage Prerequisites
- - Prerequisites
- - Replicated Storage Installation
- - Linux platforms
- - Managed Kubernetes Services on Public Cloud
- - Kubernetes On-Prem Solutions
-description: This guide will help you to verify that your Kubernetes worker nodes have the required prerequisites to install OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. In addition, you will learn about how to customize the installer according to your managed Kubernetes provider.
+id: prerequisites
+title: OpenEBS Prerequisites
+keywords: 
+  - OpenEBS Prerequisites
+  - Prerequisites
+description: This document outlines the prerequisites for installing OpenEBS.
 ---
 
-## Prerequisites
+If you are installing OpenEBS, make sure that your Kubernetes nodes meet the required prerequisites for the following storages:
+- [Local PV Hostpath Prerequisites](#local-pv-hostpath-prerequisites)
+- [Local PV LVM Prerequisites](#local-pv-lvm-prerequisites)
+- [Local PV ZFS Prerequisites](#local-pv-zfs-prerequisites)
+- [Replicated PV Mayastor Prerequisites](#replicated-pv-mayastor-prerequisites).
+
+At a high-level, OpenEBS requires:
+
+- Verify that you have the admin context. If you do not have admin permissions to your cluster, check with your Kubernetes cluster administrator to help with installing OpenEBS or if you are the owner of the cluster, check out the [steps to create a new admin context](../troubleshooting/troubleshooting-local-storage.md#set-cluster-admin-user-context) and use it for installing OpenEBS.
+- Each storage engine may have a few additional requirements as follows:
+  - Depending on the managed Kubernetes platform like Rancher or MicroK8s - set up the right bind mounts.
+  - Decide which of the devices on the nodes should be used by OpenEBS or if you need to create LVM Volume Groups or ZFS Pools.
+
+## Local PV Hostpath Prerequisites
+
+Set up the directory on the nodes where Local PV Hostpaths will be created. This directory will be referred to as `BasePath`. The default location is `/var/openebs/local`.  
+
+`BasePath` can be any of the following:
+- A directory on the root disk (or `os disk`). (Example: `/var/openebs/local`). 
+- In the case of bare-metal Kubernetes nodes, a mounted directory using the additional drive or SSD. (Example: An SSD available at `/dev/sdb`, can be formatted with Ext4 and mounted as `/mnt/openebs-local`) 
+- In the case of cloud or virtual instances, a mounted directory is created by attaching an external cloud volume or virtual disk. (Example, in GKE, a Local SSD can be used which will be available at `/mnt/disk/ssd1`.)
+
+:::note
+**Air-gapped environment:**
+If you are running your Kubernetes cluster in an air-gapped environment, make sure the following container images are available in your local repository.
+- openebs/provisioner-localpv
+- openebs/linux-utils
+
+**Rancher RKE cluster:**
+If you are using the Rancher RKE cluster, you must configure the kubelet service with `extra_binds` for `BasePath`. If your `BasePath` is the default directory `/var/openebs/local`, then extra_binds section should have the following details:
+```
+services:
+  kubelet:
+    extra_binds:
+      - /var/openebs/local:/var/openebs/local
+```
+:::
+
+## Local PV LVM Prerequisites
+
+Before installing the LVM driver, make sure your Kubernetes Cluster must meet the below prerequisite:
+
+- All the nodes must have lvm2 utils installed and the dm-snapshot kernel module loaded.
+- Setup Volume Group:
+  Find the disk that you want to use for the LVM, for testing you can use the loopback device.
+
+  ```
+  truncate -s 1024G /tmp/disk.img
+  sudo losetup -f /tmp/disk.img --show
+  ```
+
+  Create the Volume group on all the nodes, which will be used by the LVM Driver for provisioning the volumes.
+
+  ```
+  sudo pvcreate /dev/loop0
+  sudo vgcreate lvmvg /dev/loop0
+  ```
+
+  In the above command, `lvmvg` is the volume group name to be created.
+
+## Local PV ZFS Prerequisites
+
+Before installing the ZFS driver, make sure your Kubernetes Cluster must meet the following prerequisites:
+
+1. All the nodes must have zfs utils installed.
+2. ZPOOL has been set up for provisioning the volume.
+
+**Setup:**
+
+All the nodes should have zfsutils-linux installed. We should go to each node of the cluster and install zfs utils:
+
+```
+$ apt-get install zfsutils-linux
+```
+
+Go to each node and create the ZFS Pool, which will be used for provisioning the volumes. You can create the Pool of your choice, it can be striped, mirrored or raidz pool.
+
+If you have the disk (say /dev/sdb), then you can use the below command to create a striped pool:
+
+```
+$ zpool create zfspv-pool /dev/sdb
+```
+
+You can also create mirror or raidz pool as per your need. Refer to the [OpenZFS Documentation](https://openzfs.github.io/openzfs-docs/) for more details.
+
+If you do not have the disk, then you can create the zpool on the loopback device which is backed by a sparse file. Use this for testing purpose only.
+
+```
+$ truncate -s 100G /tmp/disk.img
+$ zpool create zfspv-pool `losetup -f /tmp/disk.img --show`
+```
+
+Once the ZFS Pool is created, verify the pool via zpool status command, you should see the command similar as below:
+
+```
+$ zpool status
+  pool: zfspv-pool
+ state: ONLINE
+  scan: none requested
+config:
+
+  NAME        STATE     READ WRITE CKSUM
+  zfspv-pool  ONLINE       0     0     0
+    sdb       ONLINE       0     0     0
+
+errors: No known data errors
+```
+
+Configure the [custom topology keys](../../../faqs/faqs.md#how-to-add-custom-topology-key-to-local-pv-zfs-driver) (if needed). This can be used for many purposes like if we want to create the PV on nodes in a particular zone or building. We can label the nodes accordingly and use that key in the storageclass for making the scheduling decision.
+
+## Replicated PV Mayastor Prerequisites
 
 ### General
 
@@ -296,16 +402,17 @@ kubectl label node <node_name> openebs.io/engine=mayastor
 If you set `csi.node.topology.nodeSelector: true`, then you will need to label the worker nodes accordingly to `csi.node.topology.segments`. Both csi-node and agent-ha-node Daemonsets will include the topology segments into the node selector.
 :::
 
-## Installation 
+## Supported Versions
 
-Refer to the [OpenEBS Installation documentation](../../../quickstart-guide/installation.md) to install Replicated PV Mayastor.
-
-## Support
-
-If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+- Kubernetes 1.23 or higher is required
+- Linux Kernel 5.15 or higher is required
+-	OS: Ubuntu and RHEL 8.8
+-	LVM Version: LVM 2
+-	ZFS Version: ZFS 0.8
 
 ## See Also
 
-- [Installation](../../../quickstart-guide/installation.md)
-- [Configuration](../replicated-pv-mayastor/configuration/rs-create-diskpool.md)
-- [Deploy an Application](../replicated-pv-mayastor/configuration/rs-deployment.md)
+- [Deployment](../quickstart-guide/deploy-a-test-application.md)
+- [OpenEBS Architecture](../concepts/architecture.md)
+- [OpenEBS Use Cases and Examples](../introduction-to-openebs/use-cases-and-examples.mdx)
+- [Troubleshooting](../troubleshooting/)
