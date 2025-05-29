@@ -485,11 +485,6 @@ module.exports = {
                     },
                     {
                       type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/supportability",
-                      label: "Supportability"
-                    },
-                    {
-                      type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/replica-operations",
                       label: "Replica Operations"
                     },
@@ -668,6 +663,11 @@ module.exports = {
           type: "doc",
           id: "user-guides/kubectl-openebs",
           label: "Kubectl OpenEBS Plugin"
+        },
+        {
+          type: "doc",
+          id: "user-guides/supportability",
+          label: "Supportability"
         },
         {
           type: "doc",
