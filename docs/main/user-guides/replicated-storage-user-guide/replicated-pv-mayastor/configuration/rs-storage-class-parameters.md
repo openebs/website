@@ -56,6 +56,24 @@ The `agents.core.capacity.thin` spec present in the Replicated PV Mayastor helm 
 
 The parameter `allowVolumeExpansion` enables the expansion of PVs when using Persistent Volume Claims (PVCs). You must set the `allowVolumeExpansion` parameter to `true` in the StorageClass to enable the expansion of a volume. In order to expand volumes where volume expansion is enabled, edit the size of the PVC. Refer to the [Resize documentation](../replicated-pv-mayastor/advanced-operations/resize.md) for more details.
 
+## "formatOptions"
+
+The parameter  `formatOptions` allows you to specify additional formatting options to be used when formatting a device with a filesystem. By default, Replicated PV Mayastor uses the `ext4` filesystem to format devices. Depending on the `fsType` parameter, refer to the [Linux FS Documentation](https://man7.org/linux/man-pages/man8/mkfs.8.html) for supported formatting options.
+
+## "overrideGlobalFormatOpts"
+
+Replicated PV Mayastor provides a Helm key to define global `xfs` formatting options. These global options are applied to all volumes formatted with `xfs`. To override the global formatting options for a specific volume, set `overrideGlobalFormatOpts` to `true`. If both `formatOptions` and global Helm-defined options are specified for `xfs` volume, they will be concatenated. The `formatOptions` parameter can be used to add extra flags alongside the defaults.
+
+For editing global options, set `overrideGlobalFormatOpts: true` and pass the edit flags in formatOptions.
+ 
+For example:
+If global options are `-m bigtime=0 -m inobtcount=0` and if you want to use different options for a specific volume, such as `-m bigtime=1 -m inobtcount=1` then configure the volume with:
+
+```
+overrideGlobalFormatOpts: true
+formatOptions: "-m bigtime=1 -m inobtcount=1"
+```
+
 ## See Also
 
 - [Installation](../../../quickstart-guide/installation.md)

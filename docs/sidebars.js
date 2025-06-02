@@ -372,11 +372,6 @@ module.exports = {
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/local-storage-user-guide/additional-information/alphafeatures",
-                  label: "Alpha Features"
-                },
-                {
-                  type: "doc",
                   id: "user-guides/local-storage-user-guide/additional-information/k8supgrades",
                   label: "Kubernetes Upgrades - Best Practices"
                 },
@@ -541,12 +536,7 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/upgrade-re",
-                      label: "Upgrades"
-                    },
-                    {
-                      type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/legacy-upgrade",
-                      label: "Legacy Upgrades"
+                      label: "Mayastor Upgrades"
                     },
                     {
                       type: "doc",
