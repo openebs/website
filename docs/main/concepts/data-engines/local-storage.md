@@ -13,15 +13,17 @@ OpenEBS provides Dynamic PV provisioners for [Kubernetes Local Volumes](https://
 
 As the local volume is accessible only from a single node, local volumes are subject to the availability of the underlying node and are not suitable for all applications. If a node becomes unhealthy, then the local volume will also become inaccessible and a Pod using it will not be able to run. Applications using local volumes must be able to tolerate this reduced availability, as well as potential data loss, depending on the durability characteristics of the underlying disk.
 
-## When Should You Use or Avoid OpenEBS Local Storage?
+## When Should You Use OpenEBS Local Storage?
 
-- Use when:
-      - High performance is needed by those applications that manage their own replication, data protection, and other features such as snapshots and clones.
-      - When local disks need to be managed dynamically and monitored for impending notice of them going bad.
+Use when:
+   - High performance is needed by those applications that manage their own replication, data protection, and other features such as snapshots and clones.
+   - When local disks need to be managed dynamically and monitored for impending notice of them going bad.
 
-- Avoid when:
-      - When applications expect replication from storage.
-      - When the volume size needs to be changed dynamically and the underlying disk is not resizable. 
+## When Should You Avoid OpenEBS Local Storage?
+
+Avoid when:
+  - When applications expect replication from storage.
+  - When the volume size needs to be changed dynamically and the underlying disk is not resizable. 
 
 ## Use Cases
 
