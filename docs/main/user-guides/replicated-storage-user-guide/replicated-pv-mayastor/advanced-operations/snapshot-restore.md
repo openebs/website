@@ -53,55 +53,11 @@ SNAPSHOT-ID                           ID       
 
 ## Prerequisites
 
-### Step 1: Create a StorageClass 
+Before proceeding, ensure the following Prerequisites are met:
 
-To begin, you will need to create a StorageClass that defines the properties of the snapshot to be restored. Refer to [Storage Class Parameters](../../replicated-pv-mayastor/configuration/rs-storage-class-parameters.md) for more details. Use the following command to create the StorageClass:
-
-:::info
-Currently, restores are thin-provisioned volumes created from a snapshot, Therefore, the storage class for the restored volume must also specify `thin: "true"`.
-:::
-
-**Command**
-
-```
-cat <<EOF | kubectl create -f -
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: mayastor-3-restore
-parameters:
-  protocol: nvmf
-  repl: "3"
-  thin: "true"
-provisioner: io.openebs.csi-mayastor
-EOF
-```
-
-**YAML**
-
-```
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: mayastor-3-restore
-parameters:
-  protocol: nvmf
-  repl: "3"
-  thin: "true"
-provisioner: io.openebs.csi-mayastor
-```
-
-:::note
-The name of the StorageClass, which, in the example above, is **mayastor-3-restore**.
-:::
-
-### Step 2: Create a Snapshot 
-
-You need to create a volume snapshot before proceeding with the restore. Follow the steps outlined in [this guide](snapshot.md) to create a volume snapshot.
-
-:::note
-The snapshot's name, for example, **mayastor-pvc-snap**.
-:::
+- A volume snapshot has already been created.
+- A compatible StorageClass is available for the restore operation.
+- A snapshot has been created for the source volume. Follow the steps outlined in the [Volume Snapshots Documentation](snapshot.md) to create a volume snapshot.
 
 ## Create a Volume Restore of the Existing Snapshot
 

@@ -30,7 +30,6 @@ apiVersion: storage.k8s.io/v1
 metadata:
   name: mayastor-1
 parameters:
-  ioTimeout: "30"
   protocol: nvmf
   repl: "2"
   nodeAffinityTopologyLabel: |
@@ -70,7 +69,6 @@ apiVersion: storage.k8s.io/v1
 metadata:
   name: mayastor-1
 parameters:
-  ioTimeout: "30"
   protocol: nvmf
   repl: "2"
   nodeHasTopologykey: |
@@ -113,7 +111,6 @@ apiVersion: storage.k8s.io/v1
 metadata:
   name: mayastor-1
 parameters:
-  ioTimeout: "30"
   protocol: nvmf
   repl: "2"
   nodeSpreadTopologyKey: |
@@ -158,7 +155,6 @@ apiVersion: storage.k8s.io/v1
 metadata:
   name: mayastor-1
 parameters:
-  ioTimeout: "30"
   protocol: nvmf
   repl: "2"
   poolAffinityTopologyLabel: |
@@ -239,7 +235,6 @@ apiVersion: storage.k8s.io/v1
 metadata:
   name: mayastor-1
 parameters:
-  ioTimeout: "30"
   protocol: nvmf
   repl: "2"
   poolHasTopologykey: |

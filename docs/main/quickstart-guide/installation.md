@@ -11,6 +11,10 @@ description: This guide will help you to customize and install OpenEBS
 
 This guide will help you to set up, customize, and install OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with [Kubernetes Storage Concepts](../concepts/basics.md).
 
+:::note
+Before you begin the installation, make sure all [prerequisites](prerequisites.md) are met.
+:::
+
 ## How to set up and use OpenEBS?
 
 OpenEBS seamlessly integrates into the overall workflow tooling that Kubernetes administrators and users have around Kubernetes. 
@@ -18,30 +22,6 @@ OpenEBS seamlessly integrates into the overall workflow tooling that Kubernetes 
 The OpenEBS workflow fits nicely into the reconciliation pattern introduced by Kubernetes, paving the way for a Declarative Storage Control Plane as shown below: 
 
 ![control plane overview](../assets/control-plane-overview.svg)
-
-## Prerequisites
-
-If this is your first time installing OpenEBS Local Storage (a.k.a Local Engines), make sure that your Kubernetes nodes meet the required prerequisites for the following local storages:
-- [Local PV Hostpath](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md#prerequisites)
-- [Local PV LVM](../user-guides/local-storage-user-guide/local-pv-lvm/lvm-installation.md#prerequisites)
-- [Local PV ZFS](../user-guides/local-storage-user-guide/local-pv-zfs/zfs-installation.md#prerequisites)
-
-For OpenEBS Replicated Storage (a.k.a Replicated Engine), make sure that your Kubernetes nodes meet the [required prerequisites](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md#prerequisites).
-
-At a high-level, OpenEBS requires:
-
-- Verify that you have the admin context. If you do not have admin permissions to your cluster, check with your Kubernetes cluster administrator to help with installing OpenEBS or if you are the owner of the cluster, check out the [steps to create a new admin context](../troubleshooting/troubleshooting-local-storage.md#set-cluster-admin-user-context) and use it for installing OpenEBS.
-- Each storage engine may have a few additional requirements as follows:
-  - Depending on the managed Kubernetes platform like Rancher or MicroK8s - set up the right bind mounts.
-  - Decide which of the devices on the nodes should be used by OpenEBS or if you need to create LVM Volume Groups or ZFS Pools.
-
-## Supported Versions
-
-- Kubernetes 1.23 or higher is required
-- Linux Kernel 5.15 or higher is required
--	OS: Ubuntu and RHEL 8.8
--	LVM Version: LVM 2
--	ZFS Version: ZFS 0.8
 
 ## Installation via Helm
 
@@ -69,6 +49,10 @@ OpenEBS provides several options to customize during installation such as:
 - Specifying the nodes on which OpenEBS components should be deployed and so forth. 
 
 :::info
+The complete list of Helm chart images is available in the Helm chart annotations. You can view them using the command:
+```
+helm show chart openebs/openebs | yq '.annotations."helm.sh/images"'
+```
 Refer to the [OpenEBS helm chart](https://github.com/openebs/openebs/blob/main/charts/README.md#values) for configurable options.
 :::
 
@@ -136,8 +120,6 @@ helm ls -n openebs
 NAME     NAMESPACE   REVISION  UPDATED                                   STATUS     CHART           APP VERSION
 openebs  openebs     1         2024-03-25 09:13:00.903321318 +0000 UTC   deployed   openebs-4.2.0   4.2.0
 ```
-
-As a next step [verify](#verifying-openebs-installation) your installation and do the [post-installation](#post-installation-considerations) steps.
 
 ## Verifying OpenEBS Installation
 
@@ -233,11 +215,15 @@ openebs-single-replica     io.openebs.csi-mayastor   Delete          Immediate  
 
 ## Post-Installation Considerations
 
-For testing your OpenEBS installation, you can use the `openebs-hostpath` mentioned in the [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md) for provisioning Local PV on hostpath.
+For testing your OpenEBS installation, you can use the `openebs-hostpath` mentioned in the [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview.md) for provisioning Local PV on hostpath.
 
 You can follow through the below user guides for each of the engines to use storage devices available on the nodes instead of the `/var/openebs` directory to save the data.  
-- [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
-- [Replicated Storage User Guide](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md)
+- [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview.md)
+- [Replicated Storage User Guide](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-overview.md)
+
+## Support
+
+If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
 
 ## See Also
 

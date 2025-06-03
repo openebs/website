@@ -34,7 +34,7 @@ One of the major differences of OpenEBS versus other similar approaches is that 
 
 ### How do you get started and what is the typical trial deployment? {#get-started}
 
-To get started, you can follow the steps in the [quickstart guide](../quickstart-guide/installation.md).
+To get started, you can follow the steps in the [quickstart guide](../quickstart-guide/prerequisites.md).
  
 [Go to top](#top)
 
@@ -447,7 +447,7 @@ OpenEBS has been engineered so that it does not require any changes to the nodes
 
 OpenEBS is currently tightly integrated into Kubernetes.
 
-The [system requirements](../quickstart-guide/installation.md#prerequisites) depend on the number of volumes being provisioned and can horizontally scale with the number of nodes in the Kubernetes cluster.
+The [system requirements](../quickstart-guide/prerequisites.md) depend on the number of volumes being provisioned and can horizontally scale with the number of nodes in the Kubernetes cluster.
 
 [Go to top](#top)
 
@@ -481,7 +481,7 @@ Replicated Storage engine supports synchronous mirroring to enhance the durabili
 
 This documentation contains sections which are focused on initial quickstart deployment scenarios, including the correct configuration of underlying hardware and software, and of Replicated Storage features such as "Storage Nodes" \(MSNs\) and "Disk Pools" \(MSPs\). Information describing tuning for the optimization of performance is also provided.
 
-* [Quickstart Guide](../quickstart-guide/installation.md)
+* [Quickstart Guide](../quickstart-guide/prerequisites.md)
 * [Performance Tips](../user-guides/replicated-storage-user-guide/additional-information/performance-tips.md)
 
 [Go to top](#top)
@@ -554,7 +554,7 @@ Yes, snapshots and clones support is presently limited to volumes with only one 
 
 The Replicated Storage nightly builds and releases are compiled and tested on x86-64, under Ubuntu 20.04 LTS with a 5.13 kernel. Some effort has been made to allow compilation on ARM platforms but this is currently considered experimental and is not subject to integration or end-to-end testing by Replicated Storage's maintainers.
 
-Minimum hardware requirements are discussed in the [quickstart section](../quickstart-guide/installation.md) of this documentation.
+Minimum hardware requirements are discussed in the [quickstart section](../quickstart-guide/prerequisites.md) of this documentation.
 
 Replicated Storage does not run on Raspberry Pi as the current version of SPDK requires ARMv8 Crypto extensions which are not currently available for Pi.
 
@@ -680,7 +680,7 @@ To resolve this issue, reinstate or recreate the pod to ensure that the volume i
 
 ## See Also
 
-- [Quickstart](../quickstart-guide/installation.md)
+- [Quickstart](../quickstart-guide/prerequisites.md)
 - [Deployment](../quickstart-guide/deploy-a-test-application.md)
 - [OpenEBS Architecture](../concepts/architecture.md)
 - [OpenEBS Local Storage](../concepts/data-engines/local-storage.md)

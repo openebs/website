@@ -159,8 +159,11 @@ For the latest updates and discussions, community users are invited to join the 
 - Local Storage is preferred if your application is in production and does not need storage level replication.
 - Replicated Storage is preferred if your application needs low latency and near disk throughput, requires storage level replication and your nodes have high CPU, RAM, and NVMe capabilities. 
 
+## Community Support via Slack
+
+Join the vibrant [OpenEBS community on Kubernetes Slack](https://kubernetes.slack.com) for assistance and discussions related to OpenEBS and Replicated Storage. If you have questions or seek further information, visit the[#openebs](https://kubernetes.slack.com/messages/openebs/) channel. If you are not already part of the community, you can sign up on Kubernetes Slack for a collaborative experience.
 
 ## See Also
 
-- [Local Storage User Guide](../../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
-- [Replicated Storage User Guide](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md)
+- [Local Storage User Guide](../../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview.md)
+- [Replicated Storage User Guide](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-overview.md)

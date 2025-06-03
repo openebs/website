@@ -9,14 +9,17 @@ description: Upgrade to the latest OpenEBS version.
 ---
 
 :::important
-The upgrade from OpenEBS 3.x to OpenEBS 4.x is supported only for the following storages installed from OpenEBS 3.x.
+- The upgrade from OpenEBS 3.x to OpenEBS 4.x is supported only for the following storages installed from OpenEBS 3.x.
 
-- Local PV Hostpath
-- Local PV LVM
-- Local PV ZFS
-- Replicated PV Mayastor
+    - Local PV Hostpath
+    - Local PV LVM
+    - Local PV ZFS
+    - Replicated PV Mayastor
 
 Refer to the [Migration documentation](../user-guides/data-migration/migration-overview.md) for other storages.
+
+- When deploying with the OpenEBS Helm chart, use the `kubectl openebs upgrade` command to upgrade all storages.
+
 :::
 
 ## Overview
@@ -72,16 +75,12 @@ helm repo update
 
   This option is not required for upgrades from 4.x to newer versions.
 
-- Add the option `--set mayastor.agents.core.rebuild.partial.enabled=false` if the source version is a 3.x release.
-
-3. Start the Replicated Storage upgrade process by using the kubectl mayastor plugin v2.8.0.
-
-- Re-enable the partial-rebuild feature after upgrade completes.
-
+- If you have disabled the partial rebuild during the upgrade, re-enable it by using the below command after a successful upgrade.
+  
   ```
-  helm upgrade openebs openebs/openebs -n <namespace> --reuse-values --version 4.3 \
-  --set mayastor.agents.core.rebuild.partial.enabled=true
+  kubectl openebs upgrade -n <namespace> --set mayastor.agents.core.rebuild.partial.enabled=true
   ```
+
 :::
 
 ## Upgrade from 4.x to 4.3
@@ -92,7 +91,7 @@ Follow these steps to upgrade OpenEBS from version 4.x to 4.3:
 
 2. Execute `kubectl openebs upgrade -n <namespace>` to upgrade OpenEBS.
 
-3. Monitor the upgrade status using `kubectl openebs get upgrade status -n <namespace>`.
+3. Monitor the upgrade status using `kubectl openebs upgrade status -n <namespace>`.
 
 4. Verify that the CRDs, Volumes, Snapshots, and StoragePools are not affected by the upgrade process.
 
