@@ -47,7 +47,7 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 
 - **Hardware Requirements**
 
-    Your machine type must meet the requirements defined in the [prerequisites](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md#prerequisites).
+    Your machine type must meet the requirements defined in the [prerequisites](../../quickstart-guide/prerequisites.md).
 
 - **GKE Nodes**
 
@@ -76,7 +76,7 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
 
 - **Preparing the Cluster**
 
-    Refer to the [Replicated PV Mayastor Installation Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation.md#preparing-the-cluster) for instructions on preparing the cluster.
+    Refer to the [Replicated PV Mayastor Installation Documentation](../../quickstart-guide/prerequisites.md#preparing-the-cluster) for instructions on preparing the cluster.
 
 - **ETCD and LOKI Storage Class**
 

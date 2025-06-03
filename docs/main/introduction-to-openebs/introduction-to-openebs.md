@@ -70,7 +70,7 @@ Depending on the type of storage attached to your Kubernetes worker nodes and th
 
 ## Quickstart Guide
 
-Installing OpenEBS in your cluster is as simple as running a few `kubectl` or `helm` commands. Refer to our [Quickstart guide](../quickstart-guide/installation.md) for more information.
+Installing OpenEBS in your cluster is as simple as running a few `kubectl` or `helm` commands. Refer to our [Quickstart guide](../quickstart-guide/prerequisites.md) for more information.
 
 ## Community Support via Slack
 
@@ -78,7 +78,7 @@ OpenEBS has a vibrant community that can help you get started. If you have furth
 
 ## See Also
 
-- [Quickstart](../quickstart-guide/installation.md)
+- [Quickstart](../quickstart-guide/prerequisites.md)
 - [Deployment](../quickstart-guide/deploy-a-test-application.md)
 - [Use Cases and Examples](use-cases-and-examples.mdx)
 - [Container Native Storage (CNS)](../concepts/container-native-storage.md)

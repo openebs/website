@@ -13,6 +13,18 @@ OpenEBS provides Dynamic PV provisioners for [Kubernetes Local Volumes](https://
 
 As the local volume is accessible only from a single node, local volumes are subject to the availability of the underlying node and are not suitable for all applications. If a node becomes unhealthy, then the local volume will also become inaccessible and a Pod using it will not be able to run. Applications using local volumes must be able to tolerate this reduced availability, as well as potential data loss, depending on the durability characteristics of the underlying disk.
 
+## When Should You Use OpenEBS Local Storage?
+
+Use when:
+   - High performance is needed by those applications that manage their own replication, data protection, and other features such as snapshots and clones.
+   - When local disks need to be managed dynamically and monitored for impending notice of them going bad.
+
+## When Should You Avoid OpenEBS Local Storage?
+
+Avoid when:
+  - When applications expect replication from storage.
+  - When the volume size needs to be changed dynamically and the underlying disk is not resizable. 
+
 ## Use Cases
 
 Examples of good workloads that can benefit from local volumes are: 
@@ -20,6 +32,8 @@ Examples of good workloads that can benefit from local volumes are:
 - Replicated databases like MongoDB and Cassandra
 - Stateful workloads that can be configured with their own high-availability configuration like Elastic, MinIO 
 - Edge workloads that typically run on a single node or in single node Kubernetes Clusters.
+
+## Key Features
 
 OpenEBS helps users to take local volumes into production by providing features that are currently missing in Kubernetes like:
 
@@ -30,20 +44,6 @@ OpenEBS helps users to take local volumes into production by providing features 
 - Make use of the underlying storage capabilities like snapshot, clone, compression, and so forth when local volumes are backed by advanced filesystem like LVM and ZFS. 
 - Backup and Restore via Velero. 
 - Secure the local volumes via LUKS or by using in-built encryption support of the underlying filesystem.
-
-## Quickstart Guides
-
-OpenEBS provides Local Volume that can be used to provide locally mounted storage to Kubernetes Stateful workloads. Refer to the [Quickstart Guide](../../quickstart-guide/installation.md) for more information.
-
-## When to use OpenEBS Local Storage?
-
-- High performance is needed by those applications that manage their own replication, data protection, and other features such as snapshots and clones.
-- When local disks need to be managed dynamically and monitored for impending notice of them going bad.
-
-## When not to use OpenEBS Local Storage?
-
-- When applications expect replication from storage.
-- When the volume size needs to be changed dynamically and the underlying disk is not resizable. 
 
 ## Backup and Restore 
 
@@ -85,6 +85,10 @@ A quick summary of the steps to restore include:
    velero restore create rbb-01 --from-backup bbb-01 -l app=test-velero-backup
    ```
 
+## Quickstart Guides
+
+OpenEBS provides Local Volume that can be used to provide locally mounted storage to Kubernetes Stateful workloads. Refer to the [Quickstart Guide](../../quickstart-guide/prerequisites.md) for more information.
+
 ## Limitations of OpenEBS Local Storage
 
 - Size of the Local Storage cannot be increased dynamically.
@@ -94,7 +98,7 @@ A quick summary of the steps to restore include:
 ## See Also
 
 - [OpenEBS Architecture](../architecture.md)
-- [Quickstart](../../quickstart-guide/installation.md)
+- [Quickstart](../../quickstart-guide/prerequisites.md)
 - [Deployment](../../quickstart-guide/deploy-a-test-application.md)
-- [Local Storage User Guide](../../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
+- [Local Storage User Guide](../../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview.md)
 
