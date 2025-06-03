@@ -74,6 +74,10 @@ overrideGlobalFormatOpts: true
 formatOptions: "-m bigtime=1 -m inobtcount=1"
 ```
 
+## "encrypted"
+
+Enables volume encryption when set to `true`. The volume will be provisioned only if the number of available encrypted pools meets or exceeds the `repl` defined in the StorageClass.
+
 ## See Also
 
 - [Installation](../../../quickstart-guide/installation.md)
