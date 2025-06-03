@@ -522,6 +522,11 @@ module.exports = {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot-restore",
                       label: "Snapshot Restore"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/encryption",
+                      label: "Encryption"
                     }
                   ]
                 },
