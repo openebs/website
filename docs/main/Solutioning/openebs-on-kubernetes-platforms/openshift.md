@@ -76,7 +76,10 @@ Refer to the [OpenEBS Installation Documentation](../../quickstart-guide/install
 - **Helm Install Command**
 
 ```
-helm install openebs --namespace openebs openebs/openebs --create-namespace --set openebs-crds.csi.volumeSnapshots.enabled=false 
+helm install openebs --namespace openebs openebs/openebs \
+  --create-namespace \
+  --set openebs-crds.csi.volumeSnapshots.enabled=false \
+  --set engines.local.zfs.enabled=false
 ```
 
 :::info
