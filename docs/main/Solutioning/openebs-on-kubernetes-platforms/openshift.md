@@ -83,7 +83,8 @@ helm install openebs --namespace openebs openebs/openebs \
 ```
 
 :::info
-OCP includes VolumeSnapshot CRDs by default. To avoid potential installation issues, it is recommended to disable these CRDs in the OpenEBS Helm chart, as these resources already exist in the OCP environment.
+- Note: The --set engines.local.zfs.enabled=false flag is included because the ZFS kernel driver is not shipped by default with Red Hat-based platforms. This avoids deploying unnecessary or unsupported components.
+- OCP includes VolumeSnapshot CRDs by default. To avoid potential installation issues, it is recommended to disable these CRDs in the OpenEBS Helm chart, as these resources already exist in the OCP environment.
 :::
 
 ## Pools

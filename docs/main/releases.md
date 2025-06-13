@@ -26,7 +26,7 @@ The status of the various components as of v4.3.0 are as follows:
   - [Local PV Hostpath 4.3.0](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
 
 - Other Components
-  - [CLI 0.6.0](https://github.com/openebs/openebsctl) (beta)
+  - [CLI 4.3.0](https://github.com/openebs/openebs/tree/release/4.3/plugin)
 
 ## What’s New
 
@@ -59,7 +59,7 @@ OpenEBS is delighted to introduce the following new features with OpenEBS 4.3.0:
 - Restricted pool creation using non-persistent devlinks like `/dev/sdX`.
 - You no longer need to recreate the StorageClass when restoring volumes from thick snapshots.
 - New volume health information is available to better represent volume state.
-- A plugin command is available to delete volumes with `RETAIN` policy - useful when a volume remains after its PVC is deleted.
+- A plugin command is available to delete volumes with `RETAIN` policy - useful when a volume remains after its PV is deleted.
 - Full volume rebuilds are now avoided if a partial rebuild fails due to reaching the max rebuild limit.
 
 ## Fixes
@@ -85,7 +85,7 @@ OpenEBS is delighted to introduce the following new features with OpenEBS 4.3.0:
 
 ### Known Issues - Replicated Storage
 
-- DiskPool capacity expansion is not supported as of v2.8.0.
+- DiskPool capacity expansion is not supported as of v2.9.0.
 - if a node hosting a pod reboots and the pod lacks a controller (like a Deployment), the volume unpublish operation may not trigger. This causes the control plane to assume the volume is still in use, which leads to `fsfreeze` operation failure during snapshots.
 **Workaround:** Recreate or rebind the pod to ensure proper volume mounting.
 - If a disk backing a DiskPool fails or is removed (Example: A cloud disk detaches), the failure is not clearly reflected in the system. As a result, the volume may remain in a degraded state for an extended period.
