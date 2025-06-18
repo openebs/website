@@ -62,7 +62,7 @@ helm repo update
 
 3. Execute `kubectl openebs upgrade -n <namespace>` to upgrade OpenEBS.
 
-4. Monitor the upgrade status using `kubectl openebs get upgrade status -n <namespace>`.
+4. Monitor the upgrade status using `kubectl openebs upgrade status -n <namespace>`.
 
 5. Verify that the CRDs, Volumes, Snapshots, and StoragePools are not affected by the upgrade process.
 

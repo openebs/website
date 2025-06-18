@@ -356,6 +356,19 @@ The volume is created, but `xfs` is failing to mount.
 If you are trying to use `xfs` volumes and the cluster node hosts are running a kernel version less than 5.10, you may encounter a mount failure of the filesystem. This is due to the incompatibility of newer `xfsprogs` options. In order to alleviate this issue, it is recommended to upgrade the host node kernel version to 5.10 or higher.
 [Go to top](#top)
 
+### io-engine Fails to Start Due to IOVA Allocation Error
+
+When the io-engine fails to start with the error message `couldn't allocate memory due to IOVA exceeding limits of current DMA mask` it is likely that the host node has IOMMU enabled.
+
+**Workaround**
+
+Configure the io-engine to use physical address (PA) mode for DMA by setting the following Helm parameter during Replicated PV Mayastor installation:
+
+```
+--set openebs.mayastor.io_engine.envcontext=iova-mode=pa
+```
+[Go to top](#top)
+
 ## See Also
 
 - [FAQs](../faqs/faqs.md)
