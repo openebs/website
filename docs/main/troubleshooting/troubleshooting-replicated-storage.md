@@ -358,11 +358,11 @@ If you are trying to use `xfs` volumes and the cluster node hosts are running a 
 
 ### io-engine Fails to Start Due to IOVA Allocation Error
 
-When the io-engine fails to start with the error message `couldn't allocate memory due to IOVA exceeding limits of current DMA mask` it typically indicates that IOMMU is enabled on the host system.
+When the io-engine fails to start with the error message `couldn't allocate memory due to IOVA exceeding limits of current DMA mask` it is likely that the host node has IOMMU enabled.
 
 **Workaround**
 
-Configure the io-engine to use physical address (PA) mode by setting the following Helm parameter during Replicated PV Mayastor installation:
+Configure the io-engine to use physical address (PA) mode for DMA by setting the following Helm parameter during Replicated PV Mayastor installation:
 
 ```
 --set openebs.mayastor.io_engine.envcontext=iova-mode=pa
