@@ -9,10 +9,10 @@ keywords:
 description: This page contains list of supported OpenEBS releases.
 ---
 
-**Release Date: 13 June 2025**
+**Release Date: 23 June 2025**
 
 OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners.
-The status of the various components as of v4.3.0 are as follows:
+The status of the various components as of v4.3.2 are as follows:
 
 - Local Storage (a.k.a Local Engine)
   - [Local PV Hostpath 4.3.0](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
@@ -30,7 +30,7 @@ The status of the various components as of v4.3.0 are as follows:
 
 ## What’s New
 
-OpenEBS is delighted to introduce the following new features with OpenEBS 4.3.0:
+OpenEBS is delighted to introduce the following new features with OpenEBS 4.3.2:
 
 ### General
 
@@ -109,7 +109,7 @@ OpenEBS is delighted to introduce the following new features with OpenEBS 4.3.0:
 
 ## Related Information
 
-OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For summary of what changes across all components in each release and to view the full Release Notes, see [OpenEBS Release 4.3.0](https://github.com/openebs/openebs/releases/tag/v4.3.0).
+OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For summary of what changes across all components in each release and to view the full Release Notes, see [OpenEBS Release 4.3.2](https://github.com/openebs/openebs/releases/tag/v4.3.2).
 
 See version specific Releases to view the legacy OpenEBS Releases.
 

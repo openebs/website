@@ -23,6 +23,25 @@ This plugin integrates the current `kubectl-mayastor` functionality for Replicat
 
 By using this plugin, you get a simplified and consistent interface to manage multiple storages, with improved output formats, flexible namespace configurations, and robust command options tailored to meet diverse storage needs.
 
+## Install Kubectl Plugin
+
+- The OpenEBS kubectl plugin is available for the Linux platform. You can download the binary from the [OpenEBS Releases](https://github.com/openebs/mayastor-control-plane/releases).
+- After downloading, add the binary to your system’s $PATH.
+
+To verify the installation, run:
+
+**Command**
+
+```
+kubectl openebs -V
+```
+
+**Sample Output**
+
+```
+Kubectl Plugin (kubectl-openebs) revision 6d8d5c42e3b8 (v4.3.2+0)
+```
+
 ## Features
 
 ### Unified Plugin for All Storages
