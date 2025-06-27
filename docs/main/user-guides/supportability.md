@@ -29,16 +29,13 @@ kubectl openebs dump --help
 **Sample Output**
 
 ```
-Supportability related operations
+Supportability - collects state & log information of services and dumps it to a tar file
 
-Usage: kubectl-puls8 dump [OPTIONS] [LICENSE_AGENT_URI] <COMMAND>
+Usage: kubectl-openebs dump [OPTIONS] <COMMAND>
 
 Commands:
   system  Collects entire system information
   help    Print this message or the help of the given subcommand(s)
-
-Arguments:
-  [LICENSE_AGENT_URI]  Override the URI to the license agent endpoint
 
 Options:
   -t, --timeout <TIMEOUT>
@@ -49,12 +46,16 @@ Options:
           Endpoint of LOKI service, if left empty then it will try to parse endpoint from Loki service(K8s service resource), if the tool is unable to parse from service then logs will be collected using Kube-apiserver
   -e, --etcd-endpoint <ETCD_ENDPOINT>
           Endpoint of ETCD service, if left empty then will be parsed from the internal service name
+  -d, --output-directory-path <OUTPUT_DIRECTORY_PATH>
+          Output directory path to store archive file [default: ./]
+      --tenant-id <TENANT_ID>
+          The tenant id to be used to query loki logs [default: openebs]
+      --logging-label-selectors <LOGGING_LABEL_SELECTORS>
+          Logging label selectors [default: openebs.io/logging=true]
   -n, --namespace <NAMESPACE>
-          Namespace where Puls8 is installed. If unset, defaults to the default namespace in the current context
-  -k, --kube-config-path <KUBE_CONFIG_PATH>
+          Namespace where openebs is installed. If unset, defaults to the default namespace in the current context
+  -k, --kubeconfig <KUBECONFIG>
           Path to kubeconfig file
-      --agent-uri <AGENT_URI>
-          Override the URI to the license agent endpoint
   -h, --help
           Print help
 

@@ -99,6 +99,7 @@ In this case, the volume replicas will be provisioned on any two of the three no
 - `worker-node-2` and `worker-node-3`
 as the storage class has `rack` as the value for `nodeHasTopologyKey` that matches the label key of the node.
 
+<!--
 ## "nodeSpreadTopologyKey"
 
 The parameter `nodeSpreadTopologyKey` will allow the placement of replicas on the node that has label keys that are identical to the keys specified in the storage class but have different values.
@@ -142,6 +143,8 @@ In this case, the volume replicas will be provisioned on the below given nodes i
 - `worker-node-1` and `worker-node-2` or
 - `worker-node-2` and `worker-node-3`
 as the storage class has `zone` as the value for `nodeSpreadTopologyKey` that matches the label key of the node but has a different value.
+
+-->
 
 ## "poolAffinityTopologyLabel"
 
