@@ -58,7 +58,7 @@ Create the required type and number of pools by using one or more of the followi
 **Example DiskPool Definition**
 ```text
 cat <<EOF | kubectl create -f -
-apiVersion: "openebs.io/v1beta2"
+apiVersion: "openebs.io/v1beta3"
 kind: DiskPool
 metadata:
   name: pool-on-node-1
@@ -77,7 +77,7 @@ This can be achieved in two ways:
 **Example DiskPool Definition with Labels**
 ```
 cat <<EOF | kubectl create -f -
-apiVersion: "openebs.io/v1beta2"
+apiVersion: "openebs.io/v1beta3"
 kind: DiskPool
 metadata:
   name: pool-on-node-1
@@ -99,7 +99,7 @@ kubectl mayastor label pool pool-on-node-1 topology-key=topology-value -n openeb
 
 **YAML**
 ```text
-apiVersion: "openebs.io/v1beta2"
+apiVersion: "openebs.io/v1beta3"
 kind: DiskPool
 metadata:
   name: INSERT_POOL_NAME_HERE
@@ -114,7 +114,7 @@ When using the examples given as guides to creating your own pools, remember to 
 :::
 
 :::note
-Existing schemas in CR definitions (in older versions) will be updated from v1alpha1 to v1beta1 after upgrading to Replicated PV Mayastor 2.4 and above. To resolve errors encountered about the upgrade, see the [Troubleshooting - Replicated Storage documentation](../../../troubleshooting/troubleshooting-replicated-storage.md).
+After upgrading to Replicated PV Mayastor 2.4 and above, existing schemas in CR definitions from earlier versions (including `v1alpha1`, `v1beta1`, etc.) will be updated to `v1beta3`. If you encounter errors during the upgrade, refer to the [Troubleshooting - Replicated Storage documentation](../../../troubleshooting/troubleshooting-replicated-storage.md) for resolution steps.
 :::
 
 ## Verify Pool Creation and Status
