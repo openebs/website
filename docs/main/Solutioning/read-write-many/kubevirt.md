@@ -1,6 +1,6 @@
 ---
 id: kubevirt
-title: KubeVirt VM Live Migration with NFS and OpenEBS Replicated PV Mayastor
+title: KubeVirt VM Live Migration with Replicated PV Mayastor and NFS
 keywords: 
   - KubeVirt
   - KubeVirt VM Live Migration
@@ -606,7 +606,7 @@ Ensure the VM is running on a new node and that all previously created data rema
 
 ## See Also
 
-- [Replicated PV Mayastor Installation on MicroK8s](../openebs-on-kubernetes-platforms/microkubernetes.md)
+- [Replicated PV Mayastor Installation on OpenShift](../openebs-on-kubernetes-platforms/openshift.md)
 - [Replicated PV Mayastor Installation on Talos](../openebs-on-kubernetes-platforms/talos.md)
-- [Replicated PV Mayastor Installation on Google Kubernetes Engine](../openebs-on-kubernetes-platforms/gke.md)
-- [Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem](../backup-and-restore/velero-br-fs.md) 
+- [Kasten Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem](../backup-and-restore/kasten-br-fs.md)
+- [Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem](../backup-and-restore/velero-br-fs.md)
