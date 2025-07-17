@@ -4,16 +4,15 @@ title: KubeVirt VM Live Migration with Replicated PV Mayastor and NFS
 keywords: 
   - KubeVirt
   - KubeVirt VM Live Migration
-  - NFS server
-  - Provisioning NFS PVCs
+  - KubeVirt VM Live Migration with Replicated PV Mayastor and NFS
 description: In this document, you learn about KubeVirt VM Live Migration with NFS and OpenEBS Replicated PV Mayastor.
 ---
 
 ## Overview
 
-KubeVirt extends Kubernetes with virtual machine (VM) management capabilities, enabling a unified platform for both containerized and virtualized workloads. Live migration of VMs is a critical feature for achieving high availability, zero-downtime maintenance, and workload mobility. However, live migration in KubeVirt requires shared ReadWriteMany (RWX) storage that can be accessed across multiple nodes.
+As Kubernetes continues to gain traction in enterprise environments, there is a growing need to support traditional workloads like virtual machines (VMs) alongside containerized applications. KubeVirt extends Kubernetes by enabling the deployment and management of VMs within a Kubernetes-native ecosystem.
 
-OpenEBS Replicated PV Mayastor is a high-performance, container-native block storage engine that provides persistent storage for Kubernetes. While Replicated PV Mayastor does not natively support RWX volumes, it can be integrated with an NFS server pod and the NFS CSI driver to provide shared access to storage volumes. This document guides you through the setup and validation of a KubeVirt live migration environment using OpenEBS Replicated PV Mayastor and NFS.
+To protect KubeVirt-based VMs, a robust backup strategy is essential. This document outlines a step-by-step method to back up KubeVirt virtual machines using Velero, a popular backup and disaster recovery tool for Kubernetes, in combination with Replicated PV Mayastor VolumeSnapshots. This approach provides consistent, point-in-time VM backups that are fully integrated with Kubernetes storage primitives and cloud-native workflows.
 
 ## Environment
 
@@ -22,7 +21,7 @@ OpenEBS Replicated PV Mayastor is a high-performance, container-native block sto
 | KubeVirt | v1.5.0 |
 | Kubernetes (3 nodes) | v1.29.6 |
 | OpenEBS | v4.2.0 |
-| NFS CSI Driver | v4.11.0 |
+| Velero | v1.15.2 |
 | Containerized Data Importer (CDI) | v1.62.0 |
 | kubectl-mayastor Plugin | v2.7.4+0 |
 | virtctl | v1.5.0 |
@@ -39,11 +38,11 @@ OpenEBS Replicated PV Mayastor is a high-performance, container-native block sto
   
   Ensure that `kubectl-mayastor` plugin is installed. Refer to the [Mayastor Kubectl Plugin Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/kubectl-plugin.md) to install the plugin.
 
-- **Create StorageClass for NFS Pod (3 Replicas):**
+- **Create StorageClass for NFS Pod (3 Replicas)**
 
-1. Create a file named `StorageClass1.yaml`.
+1. Create a file named `StorageClass.yaml`.
   
-**StorageClass1.yaml**
+**StorageClass.yaml**
 ```
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -444,7 +443,7 @@ You will see two Scratch PVC being created as NFS Provisioner also creates a scr
 
 - **Create a Virtual Machine**
 
-1. Create a file named vm1_pvc.yaml to use the PVC prepared by DataVolume as a root disk.
+1. Create a file named `vm1_pvc.yaml` to use the PVC prepared by DataVolume as a root disk.
 
 **vm1_pvc.yaml**
 ```
