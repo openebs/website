@@ -726,6 +726,11 @@ module.exports = {
               type: "doc",
               id: "Solutioning/read-write-many/nfspvc",
               label: "Provisioning NFS PVCs"
+            },
+            {
+              type: "doc",
+              id: "Solutioning/read-write-many/kubevirt",
+              label: "KubeVirt VM Live Migration"
             }
           ]
         },
