@@ -224,7 +224,7 @@ ID              DISKS                                                     MANAGE
 pool-on-node-1  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-1  Online  10GiB     0 B        10GiB      0 B
 ```
 
-For the case shown above, the volume replicas will be provisioned on `pool-on-node-0` and `pool-on-node-3` only as they match the labels specified under `poolAffinityTopologyLabel` in the storage class that is equal to zone=us-west-1.
+For the case shown above, the volume replicas will be provisioned on `pool-on-node-0` and `pool-on-node-2` only as they match the labels specified under `poolAffinityTopologyLabel` in the storage class that is equal to zone=us-west-1.
 
 ## "poolHasTopologyKey"
 

@@ -756,6 +756,11 @@ module.exports = {
               type: "doc",
               id: "Solutioning/backup-and-restore/kastenbrfs",
               label: "Kasten - FileSystem"
+            },
+            {
+              type: "doc",
+              id: "Solutioning/backup-and-restore/kubevirt-backup",
+              label: "KubeVirt VM Backup and Restore"
             }
           ]
         },  
