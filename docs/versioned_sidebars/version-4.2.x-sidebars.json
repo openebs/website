@@ -720,6 +720,11 @@
               "type": "doc",
               "id": "version-4.2.x/Solutioning/read-write-many/nfspvc",
               "label": "Provisioning NFS PVCs"
+            },
+            {
+              "type": "doc",
+              "id": "version-4.2.x/Solutioning/read-write-many/kubevirt",
+              "label": "KubeVirt VM Live Migration"
             }
           ]
         },
@@ -745,6 +750,11 @@
               "type": "doc",
               "id": "version-4.2.x/Solutioning/backup-and-restore/kastenbrfs",
               "label": "Kasten - FileSystem"
+            },
+            {
+              "type": "doc",
+              "id": "version-4.2.x/Solutioning/backup-and-restore/kubevirt-backup",
+              "label": "KubeVirt VM Backup and Restore"
             }
           ]
         }  
@@ -815,4 +825,3 @@
       }
     }
   ]
-}
