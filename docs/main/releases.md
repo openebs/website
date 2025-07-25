@@ -9,171 +9,113 @@ keywords:
 description: This page contains list of supported OpenEBS releases.
 ---
 
-**Release Date: 13 February 2025**
+**Release Date: 13 June 2025**
 
 OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners.
-The status of the various components as of v4.2.0 are as follows:
+The status of the various components as of v4.3.2 are as follows:
 
 - Local Storage (a.k.a Local Engine)
-  - [Local PV Hostpath 4.2.0](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
-  - [Local PV LVM 1.6.2](https://github.com/openebs/lvm-localpv) (stable)
-  - [Local PV ZFS 2.7.1](https://github.com/openebs/zfs-localpv) (stable)
+  - [Local PV Hostpath 4.3.0](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
+  - [Local PV LVM 1.7.0](https://github.com/openebs/lvm-localpv) (stable)
+  - [Local PV ZFS 2.8.0](https://github.com/openebs/zfs-localpv) (stable)
 
 - Replicated Storage (a.k.a Replicated Engine)
-  - [Replicated PV Mayastor 2.8.0](https://github.com/openebs/mayastor) (stable)
+  - [Replicated PV Mayastor 2.9.0](https://github.com/openebs/mayastor) (stable)
 
 - Out-of-tree (External Storage) Provisioners 
-  - [Local PV Hostpath 4.2.0](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
+  - [Local PV Hostpath 4.3.0](https://github.com/openebs/dynamic-localpv-provisioner) (stable)
 
 - Other Components
-  - [CLI 0.6.0](https://github.com/openebs/openebsctl) (beta)
+  - [CLI 4.3.0](https://github.com/openebs/openebs/tree/release/4.3/plugin)
 
 ## What’s New
 
-OpenEBS is delighted to introduce the following new features:
+OpenEBS is delighted to introduce the following new features with OpenEBS 4.3.2:
 
-### What’s New - Local Storage
+### General
 
-- **Configurable Quota Options for ZFS Volumes**
+- **Kubectl OpenEBS Plugin**
+  A new unified CLI plugin has been introduced. If you have deployed your cluster using the OpenEBS umbrella chart, you can now manage all supported storages - Local PV Hostpath, Local PV LVM, Local PV ZFS, and Replicated PV Mayastor using a single plugin.
 
-You can now select between using `refquota` and `quota` for ZFS volumes, providing greater flexibility in managing resource limits.
+- **One-Step Upgrade**
+  OpenEBS now supports a unified, one-step upgrade process for all its storages. This umbrella upgrade mechanism simplifies and streamlines the upgrade procedure across the OpenEBS ecosystem.
 
-- **Enhanced Compression Support with `zstd-fast` Algorithm**
+- **Enhanced Supportability**
+  - Support bundle collection is now available for all stable OpenEBS storages — Replicated PV Mayastor, Local PV Hostpath, Local PV LVM and Local PV ZFS using the `kubectl openebs dump system` command.
+  - This unified supportability approach enables consistent and comprehensive system state capture, significantly improving the efficiency of debugging and troubleshooting. Previously, this capability was limited to Replicated PV Mayastor via the `kubectl-mayastor` plugin.
 
-Support for the `zstd-fast` compression algorithm has been introduced, offering improved performance when compression is enabled on ZFS volumes.
+### Replicated Storage
 
-- **Merged CAS Config from PVC in Local PV Provisioner**
+**At-Rest Encryption**
+  You can now configure disk pools with your own encryption key, allowing volume replicas to be encrypted at rest. This is useful if you are working in environments with compliance or security requirements.
 
-Enables merging CAS configuration from PersistentVolumeClaim to improve flexibility in volume provisioning.
+## Enhancements
 
-- **Analytics ID and KEY Environment Variables**
+### Replicated Storage
 
-Introduces support for specifying analytics ID and KEY as environment variables in the provisioner deployment.
+- Added `formatOptions` support via storage class.
+- Cordoned nodes are now preferred when removing volume replicas (Example: Scale down).
+- Restricted pool creation using non-persistent devlinks like `/dev/sdX`.
+- You no longer need to recreate the StorageClass when restoring volumes from thick snapshots.
+- New volume health information is available to better represent volume state.
+- A plugin command is available to delete volumes with `RETAIN` policy - useful when a volume remains after its PV is deleted.
+- Full volume rebuilds are now avoided if a partial rebuild fails due to reaching the max rebuild limit.
 
-- **Eviction Tolerations to the Provisioner Deployment**
+### Local Storage
 
-Allows the provisioner deployment to tolerate eviction conditions, enhancing stability in resource-constrained environments.
-
-- **Support for Incremental Builds and Helm charts in CI**
-
-Added support for incremental builds and added Helm chart.
-
-### What’s New - Replicated Storage
-
-- **NVMeoF-RDMA Support for Replicated PV Mayastor Volume Targets**
-
-Replicated PV Mayastor volume targets can now be shared over RDMA transport, allowing application hosts to achieve high throughput and reduced latency. This feature is enabled via a Helm chart option, which must be used alongside the existing network interface name to provide an RDMA-capable interface name. This enables NVMe hosts to leverage high-performance RDMA network infrastructure when communicating with storage targets.
-
-- **CSAL FTL bdev Support**
-
-SPDK FTL bdev (Cloud Storage Acceleration Layer - CSAL) support is now available, enabling the creation of layered devices with a fast cache device for buffering writes, which are eventually flushed sequentially to a base device. This allows the use of emerging storage interfaces such as Zoned Namespace (ZNS) and Flexible Data Placement (FDP)-capable NVMe devices.
-
-- **Persistent Store Transaction API in IO-Engine**
-
-Introduces a persistent store transaction API to improve data consistency and reliability.
-
-- **Allowed HA Node to Listen on IPv6 Pod IPs**
-
-Adds support for HA nodes to listen on IPv6 Pod IPs.
-
-- **Made CSI Driver Operations Asynchronous**
-
-Converts mount, unmount, and NVMe operations to use spawn_blocking. It also removes `async_stream` for gRPC over UDS in controller and node.
-
-- **Eviction Tolerations**
-
-Added eviction tolerations to the DSP operator deployment and CSI controller, updated LocalPV provisioner chart to 4.2, and renamed `tolerations_with_early_eviction` to `_tolerations_with_early_eviction_two` to avoid conflicts with the `LocalPV-provisioner _helpers.tpl` function.
+- For Local PV Hostpath, support has been added to specify file permissions for PVC hostpaths.
+- For Local PV LVM, support for `formatOptions` has been added via the storage class, allowing you to format devices with custom `mkfs` options.
+- For Local PV LVM, cordoned Kubernetes nodes are now excluded while provisioning volumes.
+- For Local PV ZFS, a backup garbage collector has been added to automatically clean up stale or orphaned backup resources.
+- For Local PV ZFS, labeling has been improved across all components, including logging-related labels, to help you maintain and observe Helm charts more effectively.
 
 ## Fixes
 
-### Fixed Issues - Local Storage
+### Local Storage
 
-- **Environment Variable Handling**
-
-This fix ensures the environment variable setting to disable event analytics reporting is properly honored.
-
-- **Volume Provisioning Error for Existing ZFS volumes**
-
-This fix ensures that if a ZFS volume already exists, the controller will provision the volume without error.
-
-- **Indentation Issues in VolumeSnapshot CRDs**
-
-VolumeSnapshot CRDs now have proper indentation formatting.
-
-- **Introduced Per-Volume Mutex**
-
-A per-volume mutex was introduced to prevent simultaneous CSI controller calls that might cause the volume CR to be inadvertently deleted.
-
-- **Reservation Logic Bug during Volume Expansion**
-
-A bug in the reservation logic during volume expansion (with refquota settings) has been resolved.
-
-- **Removed Caching**
-
-Removed caching for the openebs-ndm dependency to ensure fresh builds.
-
-- **Fixed Trigger for `build_and_push` Workflow in CI**
-
-Corrected the trigger configuration for the `build_and_push` workflow to ensure proper execution.
-
-### Fixed Issues - Replicated Storage
-
-- **Prevent Persistence of Faulty Child during Nexus Creation**
-
-Fixed an issue where a child faulting before the nexus is open would be persisted as unhealthy, preventing future volume attachment.
-
-- **Propagate Child I/O Error for Split I/O in SPDK**
-
-Ensures proper error propagation when a child encounters an I/O error during split I/O operations.
-
-- **Use Transport Info from NVMe Connect Response**
-
-Fixed an issue where transport information from the NVMe connect response was not being used correctly.
-
-- **Fixed Regression Causing Pool Creation Timeout Retry Issues**
-
-Fixed a regression where pool creation retries were not handled properly due to timeout issues.
-
-- **Handle Devices for Existing Subsystems in CSI Node**
-
-This fix ensures proper handling of devices when dealing with existing subsystems.
-
-- **Use Auto-Detected Sector Size for Block Devices**
-
-Automatically detects and applies the correct sector size for block devices, improving compatibility and performance.
+**For Local PV ZFS**
+- The quota property is now correctly retained during upgrades.
+- Volume restores now maintain backward compatibility for `quotatype` values.
+- Fixed a crash in the controller caused by unhandled errors in the `CSI NodeGetInfo` call.
+- The gRPC server now exits cleanly when receiving SIGTERM or SIGINT signals.
+- The agent now uses the OpenEBS `lib-csi` Kubernetes client to load `kubeconfig` more reliably.
+- The `--plugin` CLI flag now only accepts valid values: `controller` and `agent`.
 
 ## Known Issues
 
-### Known Issues - Local Storage
-
-Local PV ZFS / Local PV LVM on a single worker node encounters issues after upgrading to the latest versions. The issue is specifically associated with the change of the controller manifest to a Deployment type, which results in the failure of new controller pods to join the Running state. The issue appears to be due to the affinity rules set in the old pod, which are not present in the new pods. As a result, since both the old and new pods have relevant labels, the scheduler cannot place the new pod on the same node, leading to scheduling failures when there's only a single node.
-The workaround is to delete the old pod so the new pod can get scheduled. Refer to the issue [#3741](https://github.com/openebs/openebs/issues/3751) for more details.
-
 ### Known Issues - Replicated Storage
 
-- When a pod-based workload is scheduled on a node that reboots, and the pod lacks a controller, the volume unpublish operation is not triggered. This causes the control plane to incorrectly assume the volume is published, even though it is not mounted. As a result, FIFREEZE fails during a snapshot operation, preventing the snapshot from being taken. To resolve this, reinstate or recreate the pod to ensure the volume is properly mounted.
+- DiskPool capacity expansion is not supported as of v2.9.0.
+- If a node hosting a pod reboots and the pod lacks a controller (like a Deployment), the volume unpublish operation may not trigger. This causes the control plane to assume the volume is still in use, which leads to `fsfreeze` operation failure during snapshots.
+**Workaround:** Recreate or rebind the pod to ensure proper volume mounting.
+- If a disk backing a DiskPool fails or is removed (Example: A cloud disk detaches), the failure is not clearly reflected in the system. As a result, the volume may remain in a degraded state for an extended period.
+- Large pools (Example: 10–20TiB) may hang during recovery after a dirty shutdown of the node hosting the io-engine.
+- Provisioning very large filesystem volumes (Example: More than 15TiB) may fail due to filesystem formatting timeouts or hangs.
 
-- Replicated PV Mayastor does not support the capacity expansion of DiskPools as of v2.8.0.
+### Known Issues - Local Storage
 
-- The IO engine pod has been observed to restart occasionally in response to heavy IO and the constant scaling up and down of volume replicas.
+- For Local PV LVM and Local PV ZFS, you may face issues on single-node setups post-upgrade where the controller pod does not enter the `Running` state due to changes in the manifest and missing affinity rules.
+**Workaround:** Delete the old controller pod to allow scheduling of the new one. This does not occur when upgrading from the previous release.
+
+- For Local PV LVM, thin pool capacity is not unmapped or reclaimed and is also not tracked in the `lvmnode` custom resource. This may result in unexpected behavior.
 
 ## Limitations (If any)
 
 ### Limitations - Replicated Storage
 
-- As with the previous versions, the Replicated PV Mayastor IO engine makes full utilization of the allocated CPU cores regardless of IO load. This is the poller operating at full speed, waiting for IO.
-
-- As with the previous versions, a Replicated PV Mayastor DiskPool is limited to a single block device and cannot span across more than one block device.
+- The IO engine fully utilizes all allocated CPU cores regardless of the actual I/O load, as it runs a poller at full speed.
+- Each DiskPool is limited to a single block device and cannot span across multiple devices.
+- The data-at-rest encryption feature does not support rotation of Data Encryption Keys (DEKs).
 
 ## Related Information
 
-OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For summary of what changes across all components in each release and to view the full Release Notes, see [OpenEBS Release 4.2.0](https://github.com/openebs/openebs/releases/tag/v4.2.0).
+OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For summary of what changes across all components in each release and to view the full Release Notes, see [OpenEBS Release 4.3.2](https://github.com/openebs/openebs/releases/tag/v4.3.2).
 
 See version specific Releases to view the legacy OpenEBS Releases.
 
 ## See Also
 
-- [Quickstart](./quickstart-guide/installation.md)
+- [Quickstart](./quickstart-guide/prerequisites.md)
 - [Deployment](./deploy-a-test-application.md)
 - [OpenEBS Architecture](./concepts/architecture.md)
 - [OpenEBS Local Storage](./concepts/data-engines/local-storage.md)

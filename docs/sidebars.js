@@ -4,7 +4,7 @@ module.exports = {
     {
       collapsed: true,
       type: "category",
-      label: "Introduction to OpenEBS",
+      label: "OpenEBS Documentation",
       customProps: {
         icon: "Smile"
       },
@@ -12,7 +12,7 @@ module.exports = {
         {
           type: "doc",
           id: "introduction-to-openebs/overview",
-          label: "Overview"
+          label: "Introduction to OpenEBS"
         },
         {
           type: "doc",
@@ -91,6 +91,11 @@ module.exports = {
       items: [
         {
           type: "doc",
+          id: "quickstart-guide/prerequisites",
+          label: "Prerequisites"
+        },
+        {
+          type: "doc",
           id: "quickstart-guide/installation",
           label: "Installation"
         },
@@ -112,9 +117,9 @@ module.exports = {
         {
           collapsed: true,
           type: "category",
-          label: "Local Storage User Guide",
+          label: "Local Storage",
           customProps: {
-            icon: "Book"
+            icon: "Play"
           },
           items: [
             {
@@ -122,13 +127,13 @@ module.exports = {
               type: "category",
               label: "Local PV Hostpath",
               customProps: {
-                icon: "BookOpen"
+                icon: "Book"
               },
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation",
-                  label: "Installation"
+                  id: "user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview",
+                  label: "Overview"
                 },
                 {
                   collapsed: true,
@@ -197,13 +202,13 @@ module.exports = {
               type: "category",
               label: "Local PV LVM",
               customProps: {
-                icon: "BookOpen"
+                icon: "Book"
               },
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/local-storage-user-guide/local-pv-lvm/lvm-installation",
-                  label: "Installation"
+                  id: "user-guides/local-storage-user-guide/local-pv-lvm/lvm-overview",
+                  label: "Overview"
                 },
                 {
                   collapsed: true,
@@ -277,13 +282,13 @@ module.exports = {
               type: "category",
               label: "Local PV ZFS",
               customProps: {
-                icon: "BookOpen"
+                icon: "Book"
               },
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/local-storage-user-guide/local-pv-zfs/zfs-installation",
-                  label: "Installation"
+                  id: "user-guides/local-storage-user-guide/local-pv-zfs/zfs-overview",
+                  label: "Overview"
                 },
                 {
                   collapsed: true,
@@ -362,14 +367,9 @@ module.exports = {
               type: "category",
               label: "Additional Information",
               customProps: {
-                icon: "File"
+                icon: "List"
               },
               items: [
-                {
-                  type: "doc",
-                  id: "user-guides/local-storage-user-guide/additional-information/alphafeatures",
-                  label: "Alpha Features"
-                },
                 {
                   type: "doc",
                   id: "user-guides/local-storage-user-guide/additional-information/k8supgrades",
@@ -392,9 +392,9 @@ module.exports = {
         {
           collapsed: true,
           type: "category",
-          label: "Replicated Storage User Guide",
+          label: "Replicated Storage",
           customProps: {
-            icon: "Book"
+            icon: "Play"
           },
           items: [
             {
@@ -402,13 +402,13 @@ module.exports = {
               type: "category",
               label: "Replicated PV Mayastor",
               customProps: {
-                icon: "BookOpen"
+                icon: "Book"
               },
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-installation",
-                  label: "Installation"
+                  id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-overview",
+                  label: "Overview"
                 },
                 {
                   collapsed: true,
@@ -480,8 +480,18 @@ module.exports = {
                     },
                     {
                       type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/supportability",
-                      label: "Supportability"
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/replica-operations",
+                      label: "Replica Operations"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/eventing",
+                      label: "Eventing"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/call-home-metrics",
+                      label: "Call-Home Metrics"
                     },
                     {
                       type: "doc",
@@ -507,6 +517,11 @@ module.exports = {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot-restore",
                       label: "Snapshot Restore"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/encryption",
+                      label: "Encryption"
                     }
                   ]
                 },
@@ -515,18 +530,13 @@ module.exports = {
                   type: "category",
                   label: "Additional Information",
                   customProps: {
-                    icon: "File"
+                    icon: "List"
                   },
                   items: [
                     {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/upgrade-re",
-                      label: "Upgrades"
-                    },
-                    {
-                      type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/legacy-upgrade",
-                      label: "Legacy Upgrades"
+                      label: "Mayastor Upgrades"
                     },
                     {
                       type: "doc",
@@ -542,21 +552,6 @@ module.exports = {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/io-path-description",
                       label: "I/O Path Description"
-                    },
-                    {
-                      type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/replica-operations",
-                      label: "Replica Operations"
-                    },
-                    {
-                      type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/eventing",
-                      label: "Eventing"
-                    },
-                    {
-                      type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/call-home-metrics",
-                      label: "Call-Home Metrics"
                     },
                     {
                       type: "doc",
@@ -584,7 +579,7 @@ module.exports = {
           type: "category",
           label: "Data Migration",
           customProps: {
-            icon: "Repeat"
+            icon: "Grid"
           },
           items: [
             {
@@ -615,7 +610,7 @@ module.exports = {
                   type: "category",
                   label: "Migration for Distributed DB",
                   customProps: {
-                    icon: "File"
+                    icon: "BookOpen"
                   },
                   items: [
                     {
@@ -635,7 +630,7 @@ module.exports = {
                   type: "category",
                   label: "Migration for Replicated DB",
                   customProps: {
-                    icon: "File"
+                    icon: "BookOpen"
                   },
                   items: [
                     {
@@ -658,6 +653,11 @@ module.exports = {
           type: "doc",
           id: "user-guides/kubectl-openebs",
           label: "Kubectl OpenEBS Plugin"
+        },
+        {
+          type: "doc",
+          id: "user-guides/supportability",
+          label: "Supportability"
         },
         {
           type: "doc",
@@ -689,7 +689,7 @@ module.exports = {
           type: "category",
           label: "OpenEBS on K8s Platforms",
           customProps: {
-            icon: "User"
+            icon: "Link"
           },
           items: [
             {
@@ -726,6 +726,11 @@ module.exports = {
               type: "doc",
               id: "Solutioning/read-write-many/nfspvc",
               label: "Provisioning NFS PVCs"
+            },
+            {
+              type: "doc",
+              id: "Solutioning/read-write-many/kubevirt",
+              label: "KubeVirt VM Live Migration"
             }
           ]
         },
@@ -751,6 +756,11 @@ module.exports = {
               type: "doc",
               id: "Solutioning/backup-and-restore/kastenbrfs",
               label: "Kasten - FileSystem"
+            },
+            {
+              type: "doc",
+              id: "Solutioning/backup-and-restore/kubevirt-backup",
+              label: "KubeVirt VM Backup and Restore"
             }
           ]
         },  

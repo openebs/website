@@ -102,5 +102,17 @@
   "sidebar.docs.category.Configuration": {
     "message": "Configuration",
     "description": "The label for category Configuration in sidebar docs"
+  },
+  "sidebar.docs.category.OpenEBS Documentation": {
+    "message": "OpenEBS Documentation",
+    "description": "The label for category OpenEBS Documentation in sidebar docs"
+  },
+  "sidebar.docs.category.Local Storage": {
+    "message": "Local Storage",
+    "description": "The label for category Local Storage in sidebar docs"
+  },
+  "sidebar.docs.category.Replicated Storage": {
+    "message": "Replicated Storage",
+    "description": "The label for category Replicated Storage in sidebar docs"
   }
 }
