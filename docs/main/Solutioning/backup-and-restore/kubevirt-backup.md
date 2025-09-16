@@ -11,9 +11,9 @@ description: In this document, you learn about KubeVirt VM Backup and Restore us
 
 ## Overview
 
-KubeVirt extends Kubernetes with virtual machine (VM) management capabilities, enabling a unified platform for both containerized and virtualized workloads. Live migration of VMs is a critical feature for achieving high availability, zero-downtime maintenance, and workload mobility. However, live migration in KubeVirt requires shared ReadWriteMany (RWX) storage that can be accessed across multiple nodes.
+As Kubernetes continues to gain traction in enterprise environments, there is a growing need to support traditional workloads like virtual machines (VMs) alongside containerized applications. KubeVirt extends Kubernetes by enabling the deployment and management of VMs within a Kubernetes-native ecosystem.
 
-OpenEBS Replicated PV Mayastor is a high-performance, container-native block storage engine that provides persistent storage for Kubernetes. While Replicated PV Mayastor does not natively support RWX volumes, it can be integrated with an NFS server pod and the NFS CSI driver to provide shared access to storage volumes. This document guides you through the setup and validation of a KubeVirt live migration environment using OpenEBS Replicated PV Mayastor and NFS.
+To protect KubeVirt-based VMs, a robust backup strategy is essential. This document outlines a step-by-step method to back up KubeVirt virtual machines using Velero, a popular backup and disaster recovery tool for Kubernetes, in combination with Replicated PV Mayastor VolumeSnapshots. This approach provides consistent, point-in-time VM backups that are fully integrated with Kubernetes storage primitives and cloud-native workflows.
 
 ## Environment
 

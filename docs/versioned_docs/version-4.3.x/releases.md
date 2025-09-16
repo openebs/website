@@ -35,18 +35,22 @@ OpenEBS is delighted to introduce the following new features with OpenEBS 4.3.2:
 ### General
 
 - **Kubectl OpenEBS Plugin**
+
   A new unified CLI plugin has been introduced. If you have deployed your cluster using the OpenEBS umbrella chart, you can now manage all supported storages - Local PV Hostpath, Local PV LVM, Local PV ZFS, and Replicated PV Mayastor using a single plugin.
 
 - **One-Step Upgrade**
+
   OpenEBS now supports a unified, one-step upgrade process for all its storages. This umbrella upgrade mechanism simplifies and streamlines the upgrade procedure across the OpenEBS ecosystem.
 
 - **Enhanced Supportability**
+
   - Support bundle collection is now available for all stable OpenEBS storages — Replicated PV Mayastor, Local PV Hostpath, Local PV LVM and Local PV ZFS using the `kubectl openebs dump system` command.
   - This unified supportability approach enables consistent and comprehensive system state capture, significantly improving the efficiency of debugging and troubleshooting. Previously, this capability was limited to Replicated PV Mayastor via the `kubectl-mayastor` plugin.
 
 ### Replicated Storage
 
 **At-Rest Encryption**
+
   You can now configure disk pools with your own encryption key, allowing volume replicas to be encrypted at rest. This is useful if you are working in environments with compliance or security requirements.
 
 ## Enhancements
@@ -74,6 +78,7 @@ OpenEBS is delighted to introduce the following new features with OpenEBS 4.3.2:
 ### Local Storage
 
 **For Local PV ZFS**
+
 - The quota property is now correctly retained during upgrades.
 - Volume restores now maintain backward compatibility for `quotatype` values.
 - Fixed a crash in the controller caused by unhandled errors in the `CSI NodeGetInfo` call.
