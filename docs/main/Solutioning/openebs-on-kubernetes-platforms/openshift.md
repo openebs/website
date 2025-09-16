@@ -69,6 +69,10 @@ Before installing Replicated PV Mayastor, make sure that you meet the following 
     oc adm policy -n openebs add-scc-to-user privileged -z default
     ```
 
+:::note
+It is strongly recommended to use the `-z` (service account) flag as described above, as it helps prevent typographical errors and ensures that access is granted exclusively to the specified service account. If the service account is not in the current project, use the `-n` (namespace) option to specify the applicable project namespace.
+:::
+
 ## Install Replicated PV Mayastor on OpenShift
 
 Refer to the [OpenEBS Installation Documentation](../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.

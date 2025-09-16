@@ -21,12 +21,12 @@ Before enabling and using RDMA in Replicated PV Mayastor, ensure the following p
 
 1. **Interface Validation**
 
-  Ensure that the interface name specified in `io-engine.target.nvmf.iface` exists on all io-engine nodes. Misconfiguration of this parameter can lead to unexpected behavior.
+  Ensure that the interface name specified in `io_engine.target.nvmf.iface` exists on all io-engine nodes. Misconfiguration of this parameter can lead to unexpected behavior.
   If the interface name is not RDMA-capable on a node, Replicated PV Mayastor volume targets on such nodes will support only TCP connections.
 
 2. **Application Node Requirements**
 
-  Application nodes must also be RDMA-capable to connect to RDMA-enabled volume targets. This capability is independent of the Helm-provided interface name for `io-engine.target.nvmf.iface`. RDMA connections will work as long as the application node has an RDMA-capable device.
+  Application nodes must also be RDMA-capable to connect to RDMA-enabled volume targets. This capability is independent of the Helm-provided interface name for `io_engine.target.nvmf.iface`. RDMA connections will work as long as the application node has an RDMA-capable device.
 
 3. **TCP Fallback Behavior**
 
@@ -50,9 +50,9 @@ Before enabling and using RDMA in Replicated PV Mayastor, ensure the following p
 
 To enable the RDMA feature via Helm:
 
-1. Set `io-engine.target.nvmf.rdma.enabled` to `true`.
+1. Set `io_engine.target.nvmf.rdma.enabled` to `true`.
 
-2. Set `io-engine.target.nvmf.iface` to a valid network interface name that exists on an RNIC.
+2. Set `io_engine.target.nvmf.iface` to a valid network interface name that exists on an RNIC.
 
 3. Verify that all nodes are properly configured with RDMA-capable hardware and that network interfaces are correctly identified and accessible.
 
