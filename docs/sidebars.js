@@ -550,6 +550,11 @@ module.exports = {
                     },
                     {
                       type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/spdk-blobstore",
+                      label: "SPDK Blobstore Cluster Size"
+                    },
+                    {
+                      type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/io-path-description",
                       label: "I/O Path Description"
                     },
