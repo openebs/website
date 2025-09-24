@@ -522,6 +522,11 @@ module.exports = {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/encryption",
                       label: "Encryption"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/diskpool-expansion",
+                      label: "DiskPool Expansion"
                     }
                   ]
                 },
