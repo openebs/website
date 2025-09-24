@@ -21,7 +21,7 @@ You can configure the Storage Performance Development Kit (SPDK) blobstore clust
 Before modifying the default setting, carefully evaluate application I/O patterns and device size. For example: Smaller cluster size provides better storage efficiency and less internal fragmentation, but more metadata overhead. Larger cluster size will provide better performance for large sequential IOs, and low metadata overhead.
 :::
 
-### Configuration
+## Configuration
 
 1. Per-Pool Configuration (DiskPool CR)
 
@@ -52,7 +52,7 @@ Set a global cluster size for all new pools that do not specify it in their cust
 
 A new storageclass parameter named `poolClusterSize` is provided. With this option, only the pools that match requested blobstore cluster size will be used for that volume’s replicas. If enough such pools are not found, to satisfy the volume’s replication factor, the provisioning will fail or in case of an existing volume the rebuilds might not be able to start.
 
-### Recommendations
+## Recommendations
 
 - This is an advanced user configuration. Proceed with caution and ensure that you fully understand the implications before modifying the default value of `4 MiB`.
 
@@ -60,7 +60,7 @@ A new storageclass parameter named `poolClusterSize` is provided. With this opti
 
 - For simpler management and more predictable replica scheduling, we recommend minimizing the number of different cluster sizes used in deployment environment. As a general guideline for node clusters utilizing large storage devices, configuring a global blobstore cluster size of `16 MiB` or `32 MiB` provides a strong balance of performance and efficiency.
 
-### Benefits
+## Benefits
 
 Choosing a larger cluster size (Example: `16 MiB` or `32 MiB)` significantly reduces the amount of metadata that SPDK needs to manage.
 
