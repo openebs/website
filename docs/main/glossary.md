@@ -4,7 +4,7 @@ title: Glossary of Terms
 keywords:
   - Community
   - OpenEBS community
-description: This section lists the abbreviations used thorughout the OpenEBS documentation
+description: This section lists the abbreviations used throughout the OpenEBS documentation
 ---
 
 | Abbreviations | Definition | 
