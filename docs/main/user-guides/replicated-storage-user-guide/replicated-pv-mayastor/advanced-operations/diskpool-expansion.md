@@ -38,7 +38,7 @@ metadata:
 spec:
   node: <node-name>
   disks: ["/dev/disk/by-id/<id>"]
-  max_expansion: "20x"
+  maxExpansion: "20x"
 ```
 
 **Example: Absolute Size Expansion**
@@ -52,24 +52,24 @@ metadata:
 spec:
   node: <node-name>
   disks: ["/dev/disk/by-id/<id>"]
-  max_expansion: "6TiB"
+  maxExpansion: "6TiB"
 ```
 
 Two new fields are available in the DiskPool CR state to track pool expansion:
 
-- `max_expandable_size` - The absolute maximum size to which the pool can grow. Expansion beyond this limit fails. This does not affect existing volumes or data but makes any extra capacity unusable.
+- `maxExpandableSize` - The absolute maximum size to which the pool can grow. Expansion beyond this limit fails. This does not affect existing volumes or data but makes any extra capacity unusable.
 
-- `disk_capacity` – The size of the underlying disk. Note that `capacity` represents usable space after metadata reservation.
+- `diskCapacity` – The size of the underlying disk. Note that `capacity` represents usable space after metadata reservation.
 
 :::important
-For any pool, the underlying disk can only be expanded up to (`max_expandable_size - disk_capacity`). If the disk is grown beyond this value, the expansion request fails.
+For any pool, the underlying disk can only be expanded up to (`maxExpandableSize - diskCapacity`). If the disk is grown beyond this value, the expansion request fails.
 :::
 
 ## Expanding the DiskPool
 
 To expand a pool:
 
-1. Expand the backing disk (must not exceed max_expandable_size).
+1. Expand the backing disk (must not exceed `maxExpandableSize`).
 
 2. Trigger the Replicated PV Mayastor pool expansion using one of the following methods:
 
@@ -82,8 +82,8 @@ To expand a pool:
 
     Run the command `kubectl openebs mayastor expand pool <pool-id>` to invoke the pool expansion API.
 
-3. Verify the expansion. Once successful, both `capacity` and `disk_capacity` values in the CR will reflect the updated size.
+3. Verify the expansion. Once successful, both `capacity` and `diskCapacity` values in the CR will reflect the updated size.
 
 :::Important
-We recommend using multiple DiskPools instead of over-expanding a single DiskPool (for example, setting `max_expansion` of 100 GiB to grow up to 50-60 TiB). Increasing the `max_expansion` value reserves more metadata pages in the pool, which can lengthen pool creation and import times. However, larger pools may be appropriate if the volumes are relatively large.
+We recommend using multiple DiskPools instead of over-expanding a single DiskPool (for example, setting `maxExpansion` of 100 GiB to grow up to 50-60 TiB). Increasing the `maxExpansion` value reserves more metadata pages in the pool, which can lengthen pool creation and import times. However, larger pools may be appropriate if the volumes are relatively large.
 :::
