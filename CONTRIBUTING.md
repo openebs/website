@@ -34,7 +34,7 @@ OpenEBS is an Apache 2.0 Licensed project and all your commits should be signed 
 
 We use the Developer Certificate of Origin (DCO) as an additional safeguard for the OpenEBS project. This is a well established and widely used mechanism to assure contributors have confirmed their right to license their contribution under the project's license. Please read [developer-certificate-of-origin](https://github.com/openebs/openebs/blob/HEAD/contribute/developer-certificate-of-origin).
 
-Please certify it by just adding a line to every git commit message. Any PR with commits that do not have DCO Signoff will not be accepted:
+Please certify it by just adding a line to every git commit message. Any PR with Commits which does not have DCO Signoff will not be accepted:
 
 ```
   Signed-off-by: Random J Developer <random@developer.example.org>
