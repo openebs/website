@@ -76,11 +76,16 @@ To expand a pool:
     - Annotate the DSP CR
 
     Add the annotation `openebs.io/expand: true` to the CR to trigger reconciliation.
+
+    ```
+    kubectl annotate dsp <name> openebs.io/expand=true -n <ns>
+    ```
+    
     The Operator removes the annotation once expansion succeeds or when it encounters an unrecoverable error.
 
     - Use the OpenEBS plugin
 
-    Run the command `kubectl openebs mayastor expand pool <pool-id>` to invoke the pool expansion API.
+    Run the command `kubectl openebs mayastor expand pool <pool-id> -n openebs` to invoke the pool expansion API.
 
 3. Once successful, both `capacity` and `diskCapacity` values in the CR will reflect the updated size.
 
