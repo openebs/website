@@ -11,7 +11,7 @@ description: This guide explains how to configure, monitor, and perform DiskPool
 
 ## Overview
 
-The DiskPool Expansion feature in Replicated PV Mayastor helps prevent storage outages when a pool approaches capacity. By allowing controlled growth of an existing DiskPool, you can avoid replica failures caused by “no space” (ENOSPC) conditions and maintain uninterrupted application operations.
+The DiskPool Expansion feature in Replicated PV Mayastor helps prevent storage outages when a pool allocation approaches capacity. By allowing controlled growth of an existing DiskPool, you can avoid replica failures caused by “no space” (ENOSPC) conditions and maintain uninterrupted application operations.
 
 This document describes how to configure, and perform a DiskPool expansion, including the required CR settings, status fields, and supported expansion methods.
 
@@ -23,9 +23,9 @@ DiskPools cannot be expanded indefinitely. Each pool has a maximum expansion lim
 
 You can configure the maximum pool size using the `maxExpansion` field in the DiskPool CR.
 
-- **Absolute Size:** Specify a fixed value in MiB, GiB, or TiB (for example: `800GiB`, `3.5TiB`, `1,073,741,824B`). Binary units must be used to avoid ambiguity.
+- **Absolute Size:** Specify a fixed value in MiB, GiB, or TiB (for example: `800GiB`, `3.5TiB`, or `1073741824B`). Binary units must be used to avoid ambiguity.
 
-- **Factor:** Specify a multiplier of the initial capacity (for example: `1x`, `5x`, `20x`). A value of `5x` allows the pool to grow up to five times its original size. If not specified, the default is `1x`.
+- **Factor:** Specify a multiplier of the initial capacity (for example: `1x`, `5x`, `20x`). A value of `5x` allows the pool to grow up to five times its initial size. If not specified, the default is `1x`.
 
 **Example: Factor-Based Expansion**
 
@@ -82,7 +82,7 @@ To expand a pool:
 
     Run the command `kubectl openebs mayastor expand pool <pool-id>` to invoke the pool expansion API.
 
-3. Verify the expansion. Once successful, both `capacity` and `diskCapacity` values in the CR will reflect the updated size.
+3. Once successful, both `capacity` and `diskCapacity` values in the CR will reflect the updated size.
 
 :::Important
 We recommend using multiple DiskPools instead of over-expanding a single DiskPool (for example, setting `maxExpansion` of 100 GiB to grow up to 50-60 TiB). Increasing the `maxExpansion` value reserves more metadata pages in the pool, which can lengthen pool creation and import times. However, larger pools may be appropriate if the volumes are relatively large.
