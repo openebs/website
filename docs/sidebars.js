@@ -461,7 +461,7 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/kubectl-plugin",
-                      label: "Kubectl Plugin"
+                      label: "Kubectl Mayastor Plugin"
                     },
                     {
                       type: "doc",
@@ -498,15 +498,21 @@ module.exports = {
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/monitoring",
                       label: "Monitoring"
                     },
+
                     {
                       type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/node-cordon",
-                      label: "Node Cordon"
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/cordon-node",
+                      label: "Cordon Node"
                     },
                     {
                       type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/node-drain",
-                      label: "Node Drain"
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/drain-node",
+                      label: "Drain Node"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/cordon-pools",
+                      label: "Cordon Pools"
                     },
                     {
                       type: "doc",
