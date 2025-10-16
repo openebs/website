@@ -9,15 +9,15 @@ keywords:
  - Replicated PV Mayastor kubectl plugin
 description: This guide will help you to view and manage Replicated PV Mayastor resources such as nodes, pools, and volumes.
 ---
-# Kubectl Plugin
+# Kubectl Mayastor Plugin
 
 The **Mayastor kubectl plugin** can be used to view and manage Replicated PV Mayastor resources such as nodes, pools and volumes. It is also used for operations such as scaling the replica count of volumes. 
 
-## Install kubectl plugin
+## Install `kubectl Mayastor plugin`
 
-- The Mayastor kubectl plugin is available for the Linux platform. The binary for the plugin can be found [here](https://github.com/mayadata-io/mayastor-control-plane/releases). 
+- The Mayastor kubectl plugin is available for the Linux platform. You can download the binary for the plugin from the [releases page](https://github.com/mayadata-io/mayastor-control-plane/releases). 
 
-- Add the downloaded Mayastor kubectl plugin under $PATH.
+- After downloading, add the downloaded Mayastor kubectl plugin under $PATH.
 
 To verify the installation, execute:
 
