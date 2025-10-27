@@ -580,7 +580,41 @@ The supportability tool generates support bundles, which are used for debugging 
 
 ### What happens when a PV with reclaim policy set to retain is deleted?
 
-In Kubernetes, when a PVC is created with the reclaim policy set to 'Retain', the PV bound to this PVC is not deleted even if the PVC is deleted. One can manually delete the PV by issuing the command "kubectl delete pv", however the underlying storage resources could be left behind as the CSI volume provisioner (external provisioner) is not aware of this. To resolve this issue of dangling storage objects, Replicated Storage has introduced a PV garbage collector. This PV garbage collector is deployed as a part of the Replicated Storage CSI controller-plugin.
+In Kubernetes, when a PVC that is bound to a PV with the reclaim policy set to Retain is deleted, the corresponding PV is not automatically removed. You can delete the PV manually by running the following command:
+
+```
+kubectl delete pv <pv-name>
+```
+
+However, deleting the PV manually may leave the underlying storage resources orphaned because the CSI external provisioner is not notified of the PV deletion.
+
+Earlier, Replicated Storage automatically handled such orphaned storage objects through a PV Garbage Collector (GC) that was deployed as part of the Replicated Storage CSI controller plugin.
+
+Starting with the latest update, the orphaned PV Garbage Collector is disabled by default. Instead, Replicated Storage provides a mechanism to manually identify and delete unbound volumes using the `kubectl-openebs` plugin. This approach allows administrators to control when and how orphaned volumes are removed, ensuring safer and more predictable cleanup of unused storage resources.
+
+#### Identifying Orphaned Volumes
+
+You can use a shell command to compare existing PVs with volumes reported by Mayastor and detect potential orphaned volumes:
+
+```
+kubectl openebs -n openebs mayastor get volumes -o json | \
+jq -r --argjson pvs "$(kubectl get pv -o json)" \
+'.[] | select(.spec.uuid as $uuid | all($pvs.items[]; .metadata.name != ("pvc-" + $uuid))) | "Volume \(.spec.uuid) may be orphan"'
+```
+
+**Sample Output**
+
+```
+Volume 4bfe4c23-b32b-4e59-ac39-148646e4f844 may be orphan
+```
+
+#### Deleting a Specific Volume
+
+Once an orphaned volume is identified, it can be deleted by its UUID using:
+
+```
+kubectl openebs -n openebs mayastor volume delete <volume-uuid>
+```
 
 [Go to top](#top)
 
