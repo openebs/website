@@ -7,7 +7,7 @@ keywords:
  - OpenShift
 description: This section explains about the OpenEBS Installation on OpenShift.
 ---
-# Replicated PV Mayastor Installation on OpenShift
+# OpenEBS Installation on OpenShift
 
 ## Overview
 
@@ -38,6 +38,12 @@ Huge pages in the OpenShift Container Platform (OCP) can be enabled during the i
   --set openebs-crds.csi.volumeSnapshots.enabled=false \
   --set engines.local.zfs.enabled=false
   ```
+
+  :::important
+  - **Local PV ZFS Disabled:** The ZFS package is not supported on Red Hat Enterprise Linux CoreOS (RHCOS). As a result, Local PV ZFS is disabled by default for OpenShift installations.
+  - **VolumeSnapshot CRDs Disabled in Helm:** VolumeSnapshot CustomResourceDefinitions (CRDs) are preinstalled in OpenShift. The Helm chart is configured to skip their installation to avoid redundancy.
+  :::
+
 
 3. In a separate client session, add the required service accounts to the privileged Security Context Constraints (SCC).
 
@@ -113,9 +119,13 @@ Huge pages in the OpenShift Container Platform (OCP) can be enabled during the i
     /dev/sdb  disk     10 GiB  yes        Virtual_disk  /devices/pci0000:02/0000:02:00.0/host0/target0:0:1/0:0:1:0/block/sdb
     ```
 
+    :::note
+    Modify the name, node, and disks fields in the configuration file to match your environment settings before applying it.
+    :::
+
   - Apply the following configuration to create a DiskPool.
 
-    ```
+    ```yaml
     cat <<EOF | kubectl create -f -
     apiVersion: "openebs.io/v1beta3"
     kind: DiskPool
@@ -130,7 +140,7 @@ Huge pages in the OpenShift Container Platform (OCP) can be enabled during the i
 
     **Sample Output**
 
-    ```
+    ```yaml
     cat <<EOF | kubectl create -f -
     apiVersion: "openebs.io/v1beta3"
     kind: DiskPool
@@ -159,7 +169,9 @@ Huge pages in the OpenShift Container Platform (OCP) can be enabled during the i
 
 7. Create a StorageClass.
 
-  ```
+  Create a file named `storageclass.yaml` with the following configuration:
+
+  ```yaml
   apiVersion: storage.k8s.io/v1
   kind: StorageClass
   metadata:
@@ -170,9 +182,19 @@ Huge pages in the OpenShift Container Platform (OCP) can be enabled during the i
   provisioner: io.openebs.csi-mayastor
   ```
 
-8. Create a Persistent Volume Claim (PVC).
+  Apply the configuration:
 
   ```
+  kubectl apply -f storageclass.yaml
+  ```
+
+  :::note
+  Refer to the [Replicated PV Mayastor StorageClass Parameters documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-storage-class-parameters.md) for detailed information about supported parameters and configuration options.
+  :::
+
+8. Create a Persistent Volume Claim (PVC).
+
+  ```yaml
   apiVersion: v1
   kind: PersistentVolumeClaim
   metadata:
@@ -233,6 +255,11 @@ Huge pages in the OpenShift Container Platform (OCP) can be enabled during the i
   --set engines.local.zfs.enabled=false
   ```
 
+  :::important
+  - **Local PV ZFS Disabled:** The ZFS package is not supported on Red Hat Enterprise Linux CoreOS (RHCOS). As a result, Local PV ZFS is disabled by default for OpenShift installations.
+  - **VolumeSnapshot CRDs Disabled in Helm:** VolumeSnapshot CustomResourceDefinitions (CRDs) are preinstalled in OpenShift. The Helm chart is configured to skip their installation to avoid redundancy.
+  :::  
+
 3. In a separate client session, add the required service accounts to the privileged SCC.
 
   ```
@@ -271,7 +298,9 @@ Huge pages in the OpenShift Container Platform (OCP) can be enabled during the i
 
 5. Create a StorageClass.
 
-  ```
+  Create a file named `storageclass.yaml` with the following configuration:
+
+  ```yaml
   kind: StorageClass
   apiVersion: storage.k8s.io/v1
   metadata:
@@ -279,19 +308,29 @@ Huge pages in the OpenShift Container Platform (OCP) can be enabled during the i
   provisioner: local.csi.openebs.io
   parameters:
     storage: lvm
-    volgroup: storage-vg
+    volgroup: <YOUR-VOLGROUP>
   reclaimPolicy: Delete
   volumeBindingMode: Immediate
   allowedTopologies:
     - matchLabelExpressions:
         - key: kubernetes.io/hostname
           values:
-            - ocp-cp-1.lab.ocp.lan
+            - <YOUR-NODENAME>
   ```
+
+  Apply the configuration:
+
+  ```
+  kubectl apply -f storageclass.yaml
+  ```
+
+  :::note
+  Refer to the [Local PV LVM StorageClass Parameters documentation](../../user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-storageclass-options.md) for detailed information about supported parameters and configuration options.
+  :::  
 
 8. Create a PVC.
 
-  ```
+  ```yaml
   kind: PersistentVolumeClaim
   apiVersion: v1
   metadata:
