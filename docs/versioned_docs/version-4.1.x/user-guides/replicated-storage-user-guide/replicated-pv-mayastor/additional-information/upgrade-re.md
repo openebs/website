@@ -10,36 +10,44 @@ description: Upgrade to the latest OpenEBS 2.6.0 version is supported only from 
 
 ## Upgrading Replicated PV Mayastor
 
-Replicated PV Mayastor supports seamless upgrades starting with target version 2.1.0 and later, and source versions 2.0.0 and later. To upgrade from a previous version (1.0.5 or prior) to 2.1.0 or later, visit [Legacy Upgrade Support](legacy-upgrade.md). 
+Replicated PV Mayastor supports seamless upgrades starting with target version 2.1.0 and later, and source versions 2.0.0 and later. To upgrade from a previous version (1.0.5 or prior) to 2.1.0 or later, visit [Legacy Upgrade Support](legacy-upgrade.md).
 
 ### Supported Upgrade Paths
 
-- From 2.0.x to 2.6.1
+- From 2.0.x and newer (2.0.x, 2.1.x, 2.2.x, etc.)
+- To 2.1.0 and newer (2.1.x, 2.2.x, 2.3.x, etc.)
+- It is possible to upgrade to the same version with different configuration (using `--set` options, etc.) in 2.7.2 and newer versions.
 
 :::info
-- The upgrade operation utilises the [Kubectl Plugin](../advanced-operations/kubectl-plugin.md).
-- The upgrade process is generally non-disruptive for volumes with a replication factor greater than one and all replicas being healthy, prior to starting the upgrade.
+
+- Only upgrades are supported.Downgrading to earlier versions is not supported.
+- The upgrade operation utilises the [Kubectl mayastor Plugin](../advanced-operations/kubectl-plugin.md). Ensure you have the appropriate Kubectl Plugin installed, Use the kubectl plugin version that matches your target Mayastor version.
+- If Replicated PV Mayastor was installed using the `mayastor/mayastor` Helm chart, use the `kubectl mayastor` plugin for upgrades.
+- If Replicated PV Mayastor was installed using the `openebs/openebs` Helm chart, refer to the [OpenEBS upgrade documentation](https://openebs.io/docs/4.1.x/user-guides/upgrade).
+- Volumes with single replica will be unavailable temporarily during upgrade.
+- The upgrade process is generally non-disruptive for volumes with a replication factor greater than one however verify that all replicas are healthy prior to upgrade
+
 :::
 
 To upgrade Replicated PV Mayastor deployment on the Kubernetes cluster, execute:
 
 **Command**
 
-```
-kubectl mayastor upgrade
+```bash
+kubectl mayastor upgrade -n <mayastor-namespace>
 ```
 
 To view all the available options and sub-commands that can be used with the upgrade command, execute:
 
 **Command**
 
-```
+```bash
 kubectl mayastor upgrade -h
 ```
 
 **Expected Output**
 
-```
+```text
 `Upgrade` the deployment
 
 Usage: kubectl-mayastor upgrade [OPTIONS]
@@ -73,13 +81,13 @@ To view the status of upgrade, execute:
 
 **Command**
 
-```
-kubectl mayastor get upgrade-status
+```bash
+kubectl mayastor get upgrade-status -n <mayastor-namespace>
 ```
 
 **Expected Output**
 
-```
+```bash
 Upgrade From: 2.0.0
 Upgrade To: 2.6.1
 Upgrade Status: Successfully upgraded Mayastor
@@ -89,12 +97,14 @@ To view the logs of upgrade job, execute:
 
 **Command**
 
-```
+```bash
 kubectl logs <upgrade-job-pod-name> -n <mayastor-namespace>
 ```
 
 :::info
+
 1. The time taken to upgrade is directly proportional to the number of IO engine nodes and storage volumes.
 2. To upgrade to a particular Replicated PV Mayastor version, ensure you are using the same version of kubectl plugin.
 3. The above process of upgrade creates one Job in the namespace where Replicated PV Mayastor is installed, one ClusterRole, one ClusterRoleBinding and one ServiceAccount.
+
 :::
