@@ -21,15 +21,15 @@ Use OpenEBS and MySQL containers to quickly launch an RDS like service, where da
 
 [![OpenEBS and Percona](../assets/mysql-deployment.svg)](../assets/mysql-deployment.svg)
 
-As shown above, OpenEBS volumes need to be configured with three replicas for high availability. This configuration work fine when the nodes (hence the cStor pool) is deployed across Kubernetes zones.
+As shown above, OpenEBS volumes need to be configured with three replicas for high availability. This configuration works fine when the nodes (hence the cStor pool) are deployed across Kubernetes zones.
 
 ## Configuration workflow
 
 1. **Install OpenEBS**
 
-    If OpenEBS is not installed in your K8s cluster, this can done from [here](/docs/user-guides/installation). If OpenEBS is already installed, go to the next step. 
+    If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user-guides/installation). If OpenEBS is already installed, go to the next step. 
 
-2. **Configure cStor Pool** : After OpenEBS installation, cStor pool has to be configured. As MySQL is a deployment, it need high availability at storage level. OpenEBS cStor volume has to be configured with 3 replica. During cStor Pool creation, make sure that the maxPools parameter is set to >=3. If cStor Pool is already configured as required go to Step 4 to create MySQL StorageClass. 
+2. **Configure cStor Pool** : After OpenEBS installation, cStor pool has to be configured. As MySQL is a deployment, it needs high availability at storage level. OpenEBS cStor volume has to be configured with 3 replica. During cStor Pool creation, make sure that the maxPools parameter is set to >=3. If cStor Pool is already configured as required go to Step 4 to create MySQL StorageClass. 
 
 4. **Create Storage Class**
 

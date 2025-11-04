@@ -95,9 +95,9 @@ env:
     value: "openebs.io/rack"
 
 ```
-It is recommended is to label all the nodes with the same key, they can have different values for the given keys, but all keys should be present on all the worker node.
+It is recommended to label all the nodes with the same key; they can have different values for the given keys, but all keys should be present on all the worker nodes.
 
-Once we have labeled the node, we can install the lvm driver. The driver will pick the keys from env "ALLOWED_TOPOLOGIES" and add that as the supported topology key. If the driver is already installed and you want to add a new topology information, you can edit the Local PV LVM CSI driver daemon sets (openebs-lvm-node).
+Once we have labeled the node, we can install the LVM driver. The driver will pick the keys from env "ALLOWED_TOPOLOGIES" and add that as the supported topology key. If the driver is already installed and you want to add a new topology information, you can edit the Local PV LVM CSI driver daemon sets (openebs-lvm-node).
 
 
 ```sh
@@ -266,9 +266,9 @@ env:
   - name: ALLOWED_TOPOLOGIES
     value: "openebs.io/rack"
 ```
-It is recommended is to label all the nodes with the same key, they can have different values for the given keys, but all keys should be present on all the worker node.
+It is recommended to label all the nodes with the same key; they can have different values for the given keys, but all keys should be present on all the worker nodes.
 
-Once we have labeled the node, we can install the zfs driver. The driver will pick the keys from env "ALLOWED_TOPOLOGIES" and add that as the supported topology key. If the driver is already installed and you want to add a new topology information, you can edit the LocalPV ZFS CSI driver daemon sets (openebs-zfs-node).
+Once we have labeled the node, we can install the ZFS driver. The driver will pick the keys from env "ALLOWED_TOPOLOGIES" and add that as the supported topology key. If the driver is already installed and you want to add a new topology information, you can edit the LocalPV ZFS CSI driver daemon sets (openebs-zfs-node).
 
 ```sh
 $ kubectl get pods -n kube-system -l role=openebs-zfs
@@ -334,7 +334,7 @@ If storageclass is using immediate binding mode and storageclass `allowedTopolog
 
 [Go to top](#top)
 
-### Why the ZFS volume size is different than the reqeusted size in PVC?
+### Why is the ZFS volume size different than the requested size in PVC?
 
 :::note
 The size will be rounded off to the nearest Mi or Gi unit. M/G notation uses 1000 base and Mi/Gi notation uses 1024 base, so 1M will be 1000 * 1000 byte and 1Mi will be 1024 * 1024.
@@ -392,7 +392,7 @@ PVC size as zero in not a valid capacity. The minimum allocatable size for the L
 
 ### How to migrate PVs to the new node in case old node is not accessible?
 
-The Local PV ZFS driver will set affinity on the PV to make the volume stick to the node so that pod gets scheduled to that node only where the volume is present. Now, the problem here is, when that node is not accesible due to some reason and we move the disks to a new node and import the pool there, the pods will not be scheduled to this node as k8s scheduler will be looking for that node only to schedule the pod.
+The Local PV ZFS driver will set affinity on the PV to make the volume stick to the node so that the pod gets scheduled to that node only where the volume is present. Now, the problem here is when that node is not accessible due to some reason and we move the disks to a new node and import the pool there, the pods will not be scheduled to this node as the K8s scheduler will be looking for that node only to schedule the pod.
 
 From release 1.7.0 of the Local PV ZFS, the driver has the ability to use the user defined affinity for creating the PV. While deploying the Local PV ZFS driver, first we should label all the nodes using the key `openebs.io/nodeid` with some unique value.
 ```
@@ -408,7 +408,7 @@ $ kubectl label node node-3 openebs.io/nodeid=custom-value-3
 
 Now, the Driver will use `openebs.io/nodeid` as the key and the corresponding value to set the affinity on the PV and k8s scheduler will consider this affinity label while scheduling the pods.
 
-When a node is not accesible, follow the steps below:
+When a node is not accessible, follow the steps below:
 
 1. Remove the old node from the cluster or we can just remove the above node label from the node which we want to remove.
 2. Add a new node in the cluster
@@ -426,7 +426,7 @@ Once the above steps are done, the pod should be able to run on this new node wi
 
 ### How is data protected in Replicated Storage? What happens when a host, client workload, or a data center fails?
 
-The OpenEBS Replicated Storage (a.k.a Replicated Engine or Mayastor) ensures resilience with built-in highly available architecture. It supports on-demand switch over of the NVMe controller to ensure IO continuity in case of host failure. The data is synchronously replicated as per the congigured replication factor to ensure no single point of failure.
+The OpenEBS Replicated Storage (a.k.a Replicated Engine or Mayastor) ensures resilience with built-in highly available architecture. It supports on-demand switchover of the NVMe controller to ensure IO continuity in case of host failure. The data is synchronously replicated as per the configured replication factor to ensure no single point of failure.
 Faulted replicas are automatically rebuilt in the background without IO disruption to maintain the replication factor.
 
 [Go to top](#top)
@@ -568,7 +568,7 @@ Replicated Storage, as any other solution leveraging TCP for network transport, 
 
 ### Why do Replicated Storage's IO engine pods show high levels of CPU utilization when there is little or no I/O being processed?
 
-Replicated Storage has been designed so as to be able to leverage the peformance capabilities of contemporary high-end solid-state storage devices. A significant aspect of this is the selection of a polling based I/O service queue, rather than an interrupt driven one. This minimizes the latency introduced into the data path but at the cost of additional CPU utilization by the "reactor" - the poller operating at the heart of the Replicated Storage's IO engine pod. When the IO engine pod is deployed on a cluster, it is expected that these daemonset instances will make full utilization of their CPU allocation, even when there is no I/O load on the cluster. This is simply the poller continuing to operate at full speed, waiting for I/O. For the same reason, it is recommended that when configuring the CPU resource limits for the IO engine daemonset, only full, not fractional, CPU limits are set; fractional allocations will also incur additional latency, resulting in a reduction in overall performance potential. The extent to which this performance degradation is noticeable in practice will depend on the performance of the underlying storage in use, as well as whatvever other bottlenecks/constraints may be present in the system as cofigured.
+Replicated Storage has been designed so as to be able to leverage the performance capabilities of contemporary high-end solid-state storage devices. A significant aspect of this is the selection of a polling-based I/O service queue, rather than an interrupt-driven one. This minimizes the latency introduced into the data path but at the cost of additional CPU utilization by the "reactor" - the poller operating at the heart of the Replicated Storage's IO engine pod. When the IO engine pod is deployed on a cluster, it is expected that these daemonset instances will make full utilization of their CPU allocation, even when there is no I/O load on the cluster. This is simply the poller continuing to operate at full speed, waiting for I/O. For the same reason, it is recommended that when configuring the CPU resource limits for the IO engine daemonset, only full, not fractional, CPU limits are set; fractional allocations will also incur additional latency, resulting in a reduction in overall performance potential. The extent to which this performance degradation is noticeable in practice will depend on the performance of the underlying storage in use, as well as whatever other bottlenecks/constraints may be present in the system as configured.
 
 [Go to top](#top)
 
@@ -626,7 +626,7 @@ The PV garbage collector deploys a watcher component, which subscribes to the Ku
 
 ### How to disable cow for btrfs filesystem?
 
-To disbale cow for `btrfs` filesystem, use `nodatacow` as a mountOption in the storage class which would be used to provision the volume.
+To disable cow for `btrfs` filesystem, use `nodatacow` as a mountOption in the storage class which would be used to provision the volume.
 
 [Go to top](#top)
 

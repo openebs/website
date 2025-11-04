@@ -28,7 +28,7 @@ The [OpenEBS Adoption stories](https://github.com/openebs/community/blob/develop
 
 ## What does OpenEBS do?
 
-OpenEBS manages the storage available on each of the Kubernetes nodes and uses that storage to provide [Local](#local-volumes) or[Replicated](#replicated-volumes) Persistent Volumes to Stateful workloads.
+OpenEBS manages the storage available on each of the Kubernetes nodes and uses that storage to provide [Local](#local-volumes) or [Replicated](#replicated-volumes) Persistent Volumes to Stateful workloads.
 
 ![data-engines-comparision](../assets/data-engines-comparision.svg)
 
@@ -74,7 +74,7 @@ Installing OpenEBS in your cluster is as simple as running a few `kubectl` or `h
 
 ## Community Support via Slack
 
-OpenEBS has a vibrant community that can help you get started. If you have further questions and want to learn more about OpenEBS, join the [OpenEBS community on Kubernetes Slack](https://kubernetes.slack.com). If you are already signed up, head to our discussions at[#openebs](https://kubernetes.slack.com/messages/openebs/) channel.
+OpenEBS has a vibrant community that can help you get started. If you have further questions and want to learn more about OpenEBS, join the [OpenEBS community on Kubernetes Slack](https://kubernetes.slack.com). If you are already signed up, head to our discussions at [#openebs](https://kubernetes.slack.com/messages/openebs/) channel.
 
 ## See Also
 
