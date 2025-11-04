@@ -179,7 +179,7 @@ Setup the cluster using RKE with openSUSE CaaS MicroOS using CNI Plugin Cilium. 
 
 **Troubleshooting**
 
-Check journalctl logs of each nodes and check if similar logs are observed. In the following log snippets, showing the corresponding logs of 3 nodes.
+Check journalctl logs of each node and check if similar logs are observed. In the following log snippets, showing the corresponding logs of 3 nodes.
 
 Node1:
 
@@ -234,7 +234,7 @@ There are 2 possible solutions.
 
 Approach1:
 
-Do the following on each nodes to stop the transactional update.
+Do the following on each node to stop the transactional update.
 
 ```
 systemctl disable --now rebootmgr.service
@@ -245,7 +245,7 @@ This is the preferred approach.
 
 Approach2:
 
-Set the reboot timer schedule at different time i.e. staggered at various interval of the day, so that only one nodes get rebooted at a time.
+Set the reboot timer schedule at different times i.e. staggered at various intervals of the day, so that only one node gets rebooted at a time.
 
 ### How to fetch the OpenEBS Dynamic Local Provisioner logs?
 
