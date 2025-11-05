@@ -67,7 +67,7 @@ The default Grafana login credentials are:
 - password: admin
 
 :::note
-If public IP is not available, then you can access it via port-forwarding by using the following command and then visit http://127.0.0.1:[grafana-forward-port].
+If public IP is not available, then you can access it via port-forwarding by using the following command and then visit `http://127.0.0.1:[grafana-forward-port]`.
 
 ```
 kubectl port-forward --namespace [NAMESPACE] pods/[grafana-pod-name] [grafrana-foward-port]:[grafana-cluster-port]
