@@ -47,10 +47,7 @@ status:
   state: Ready
 ```
 
-
 ## Creating a Volume Restore from an Existing Snapshot
-
-After creating a snapshot, you can create a PersistentVolumeClaim (PVC) from it to generate the volume restore. Use the following command:
 
 After a snapshot is created, you can create a new volume (clone) from it. The restored volume will contain the same data as the original volume at the time the snapshot was taken.
 
