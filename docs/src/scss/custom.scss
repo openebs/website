@@ -75,7 +75,31 @@
     width: 100%;
   }
 
-  //code block
+  // code block yaml
+  .language-yaml {
+  .token.key,
+  .token.atrule,
+  .token.attr-name,
+  .token.property {
+    color: #f78c6c !important; /* orange-amber for keys */
+  }
+  .token.string {
+    color: #c3e88d !important; /* green for strings */
+  }
+  .token.number,
+  .token.boolean {
+    color: #82aaff !important; /* light blue for numbers/booleans */
+  }
+  .token.punctuation {
+    color: #89ddff !important; /* cyan for : and - */
+  }
+  .token.comment {
+    color: #697098 !important; /* subtle gray for comments */
+    font-style: italic;
+  }
+} 
+
+  //code block shell
   .language-shell {
     font-family: $code-block-font-family;
     > div {
