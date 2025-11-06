@@ -96,6 +96,9 @@ OpenEBS is delighted to introduce the following new features with OpenEBS 4.3.2:
 - If a disk backing a DiskPool fails or is removed (Example: A cloud disk detaches), the failure is not clearly reflected in the system. As a result, the volume may remain in a degraded state for an extended period.
 - Large pools (Example: 10–20TiB) may hang during recovery after a dirty shutdown of the node hosting the io-engine.
 - Provisioning very large filesystem volumes (Example: More than 15TiB) may fail due to filesystem formatting timeouts or hangs.
+- When using Replicated PV Mayastor on Oracle Linux 9 (kernel 5.14.x), servers may unexpectedly reboot during volume detach operations due to a kernel bug (CVE-2024-53170) in the block layer.
+This issue is not caused by Mayastor but is triggered more frequently because of its NVMe-TCP connection lifecycle.
+**Workaround:** Upgrade to kernel 6.11.11, 6.12.2, or later, which includes the fix.
 
 ### Known Issues - Local Storage
 
