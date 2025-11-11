@@ -40,7 +40,7 @@ Huge pages in the OpenShift Container Platform (OCP) can be enabled during the i
   ```
 
 :::important
-- **Local PV ZFS Disabled:** The ZFS package is not supported on Red Hat Enterprise Linux CoreOS (RHCOS). As a result, Local PV ZFS is disabled by default for OpenShift installations.
+- **Local PV ZFS Disabled:** The ZFS package is not supported on Red Hat Enterprise Linux CoreOS (RHCOS). Therefore, when installing OpenEBS on OpenShift, ensure that the Local PV ZFS storage remains disabled.
 - **VolumeSnapshot CRDs Disabled in Helm:** VolumeSnapshot CustomResourceDefinitions (CRDs) are preinstalled in OpenShift. The Helm chart is configured to skip their installation to avoid redundancy.
 :::
 
