@@ -6,7 +6,9 @@ keywords:
 description: This guide explains about the Snapshot Restore feature.
 ---
 
-Volume restore from an existing snapshot will create an exact replica of a storage volume captured at a specific point in time. They serve as an essential tool for data protection, recovery, and efficient management in Kubernetes environments. This article provides a step-by-step guide on how to create a volume restore.
+## Overview
+
+Volume restore from an existing snapshot will create an exact replica of a storage volume captured at a specific point in time. They serve as an essential tool for data protection, recovery, and efficient management in Kubernetes environments. This document provides step-by-step instructions to restore a volume from a previously created snapshot using Replicated PV Mayastor.
 
 :::info
 A volume snapshot transcends into taking snapshots on each of the volume's replicas for consistency. For instance, a snapshot on a source volume with three replicas (repl=3) results in snapshot-ting all three replicas of the source volume.
@@ -51,9 +53,9 @@ SNAPSHOT-ID                           ID       
 ```
 :::
 
-## Prerequisites
+## Requirements
 
-Before proceeding, ensure the following Prerequisites are met:
+Before performing the restore operation, ensure the following requirements are met:
 
 - A volume snapshot has already been created.
 - A compatible StorageClass is available for the restore operation.

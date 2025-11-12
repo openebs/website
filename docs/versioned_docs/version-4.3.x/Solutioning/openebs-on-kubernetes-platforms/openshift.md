@@ -1,16 +1,381 @@
 ---
 id: openshift
-title: Replicated PV Mayastor Installation on OpenShift
+title: OpenEBS Installation on OpenShift
 keywords:
- - Replicated PV Mayastor Installation on OpenShift
- - Replicated PV Mayastor - Platform Support
+ - OpenEBS Installation on OpenShift
  - Platform Support
  - OpenShift
-description: This section explains about the Platform Support for Replicated PV Mayastor.
+description: This section explains about the OpenEBS Installation on OpenShift.
 ---
-# Replicated PV Mayastor Installation on OpenShift
+# OpenEBS Installation on OpenShift
 
-This document provides instructions for installing Replicated PV Mayastor on OpenShift. Using OpenEBS Replicated PV Mayastor with OpenShift offers several benefits for persistent storage management in Kubernetes environments, especially in the context of DevOps and Cloud-Native applications.
+## Overview
+
+This document provides detailed instructions for installing OpenEBS Replicated PV Mayastor and Local PV LVM on OpenShift. It guides you through the required prerequisites, installation steps, and verification procedures to ensure a successful deployment.
+
+Using OpenEBS with OpenShift delivers cloud-native, container-aware storage designed for dynamic provisioning and scalability. This integration simplifies persistent storage management for stateful applications such as databases and message queues, while seamlessly aligning with OpenShift’s ecosystem and DevOps workflows.
+
+## Requirements
+
+Before you begin, make sure that you meet the following requirements:
+
+- Review and follow steps in [Prerequisites documentation](../../quickstart-guide/prerequisites.md).
+- 2MiB-sized Huge Pages must be supported and enabled on the storage nodes i.e. nodes where IO engine pods are deployed. A minimum number of 1024 such pages (i.e. 2GiB total) must be available exclusively to the IO engine pod on each node.
+Huge pages in the OpenShift Container Platform (OCP) can be enabled during the installation or it can be enabled by creating new machine configs post-installation. Refer to the [Red Hat Documentation](https://access.redhat.com/solutions/5214791) for more details.
+
+## Install Replicated PV Mayastor and Local PV LVM on OpenShift
+
+1. Create a Namespace.
+
+  ```
+  oc create ns openebs
+  ```
+
+2. Install the OpenEBS Helm chart.
+
+  ```
+  helm install openebs --namespace openebs openebs/openebs --create-namespace \
+  --set openebs-crds.csi.volumeSnapshots.enabled=false \
+  --set engines.local.zfs.enabled=false
+  ```
+
+:::important
+- **Local PV ZFS Disabled:** The ZFS package is not supported on Red Hat Enterprise Linux CoreOS (RHCOS). Therefore, when installing OpenEBS on OpenShift, ensure that the Local PV ZFS storage remains disabled.
+- **VolumeSnapshot CRDs Disabled in Helm:** VolumeSnapshot CustomResourceDefinitions (CRDs) are preinstalled in OpenShift. The Helm chart is configured to skip their installation to avoid redundancy.
+:::
+
+3. In a separate client session, add the required service accounts to the privileged Security Context Constraints (SCC).
+
+  ```
+  oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:loki
+  oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:minio-sa
+  oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:openebs-lvm-node-sa
+  oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:openebs-alloy
+  oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:openebs-localpv-provisioner
+  oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:openebs-nats
+  oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:openebs-service-account
+  oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:default
+  ```
+
+4. Verify that all pods in the `openebs` namespace are running.
+
+  ```
+  kubectl get pods -n openebs
+  ```
+
+  **Sample Output**
+
+  ```
+  NAME                                              READY   STATUS             RESTARTS      AGE
+  openebs-agent-core-7b94f64c89-jcqv8               2/2     Running            0             13m
+  openebs-agent-ha-node-4hxpp                       1/1     Running            0             116s
+  openebs-agent-ha-node-lsqw4                       1/1     Running            0             22m
+  openebs-agent-ha-node-qmjcr                       1/1     Running            0             22m
+  openebs-alloy-8bdnb                               2/2     Running            0             22m
+  openebs-alloy-gjjb6                               2/2     Running            0             22m
+  openebs-alloy-klkvt                               2/2     Running            0             22m
+  openebs-api-rest-85df84c969-srjsg                 1/1     Running            0             25m
+  openebs-csi-controller-65d779d999-c8dzz           6/6     Running            0             22m
+  openebs-csi-node-49mgj                            2/2     Running            0             19m
+  openebs-csi-node-d6ccq                            2/2     Running            0             18m
+  openebs-csi-node-zccsl                            2/2     Running            0             19m
+  openebs-etcd-0                                    1/1     Running            0             22m
+  openebs-etcd-1                                    1/1     Running            0             22m
+  openebs-etcd-2                                    1/1     Running            0             22m
+  openebs-io-engine-dvzqb                           2/2     Running            0             22m
+  openebs-io-engine-jwvr4                           2/2     Running            0             22m
+  openebs-io-engine-m8vv6                           2/2     Running            0             10m
+  openebs-localpv-provisioner-85c4fd45f9-l5vdd      1/1     Running            0             25m
+  openebs-loki-0                                    2/2     Running            0             22m
+  openebs-loki-1                                    2/2     Running            0             22m
+  openebs-loki-2                                    2/2     Running            0             22m
+  openebs-lvm-localpv-controller-57884ddb78-x2zkj   5/5     Running            0             25m
+  openebs-lvm-localpv-node-j9wxh                    2/2     Running            0             22m
+  openebs-lvm-localpv-node-nmhkp                    2/2     Running            0             22m
+  openebs-lvm-localpv-node-w7d2j                    2/2     Running            0             22m
+  openebs-minio-0                                   1/1     Running            0             22m
+  openebs-minio-1                                   1/1     Running            0             22m
+  openebs-minio-2                                   1/1     Running            0             22m
+  openebs-nats-0                                    3/3     Running            0             12m
+  openebs-nats-1                                    3/3     Running            0             22m
+  openebs-nats-2                                    3/3     Running            0             22m
+  openebs-obs-callhome-6855f8db6f-q5lx8             2/2     Running            0   
+  openebs-operator-diskpool-85795c6f8c-cvv4f        1/1     Running            0             12m
+  ```
+
+5. Create a DiskPool Using CLI.
+  
+  - List available block devices on the node.
+
+    ```
+    kubectl openebs mayastor get block-devices <node-name> -n openebs
+    ```
+
+    **Sample Output**
+
+    ```
+    DEVNAME   DEVTYPE  SIZE    AVAILABLE  MODEL         DEVPATH
+    /dev/sdb  disk     10 GiB  yes        Virtual_disk  /devices/pci0000:02/0000:02:00.0/host0/target0:0:1/0:0:1:0/block/sdb
+    ```
+
+    :::note
+    Modify the name, node, and disks fields in the configuration file to match your environment settings before applying it.
+    :::
+
+  - Apply the following configuration to create a DiskPool.
+
+    ```yaml
+    cat <<EOF | kubectl create -f -
+    apiVersion: "openebs.io/v1beta3"
+    kind: DiskPool
+    metadata:
+      name: pool-on-node-1
+      namespace: openebs
+    spec:
+      node: <node-name>
+      disks: ["aio:///dev/disk/by-id/<id>"]
+    EOF
+    ```
+
+    **Sample Output**
+
+    ```yaml
+    cat <<EOF | kubectl create -f -
+    apiVersion: "openebs.io/v1beta3"
+    kind: DiskPool
+    metadata:
+      name: pool-on-node-1
+      namespace: openebs
+    spec:
+      node: ocp-cp-3.lab.ocp.lan
+      disks: ["aio:///dev/disk/by-id/scsi-36000c299c52a31433ee3887d1efdcc58"]
+    EOF
+    diskpool.openebs.io/pool-on-node-1 created
+    ```
+
+6. Verify DiskPool Status.
+
+  ```
+  kubectl get dsp -n openebs
+  ```
+
+  **Sample Output**
+
+  ```
+  NAME             NODE                   STATE     POOL_STATUS   ENCRYPTED   CAPACITY   USED     AVAILABLE
+  pool-on-node-1   ocp-cp-3.lab.ocp.lan   Created   Online        false       10 GiB     64 MiB   9.9 GiB
+  ```
+
+7. Create a StorageClass.
+
+  Create a file named `storageclass.yaml` with the following configuration:
+
+  ```yaml
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    name: mayastor-1
+  parameters:
+    protocol: nvmf
+    repl: "1"
+  provisioner: io.openebs.csi-mayastor
+  ```
+
+  Apply the configuration:
+
+  ```
+  kubectl apply -f storageclass.yaml
+  ```
+
+  :::note
+  Refer to the [Replicated PV Mayastor StorageClass Parameters documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-storage-class-parameters.md) for detailed information about supported parameters and configuration options.
+  :::
+
+8. Create a Persistent Volume Claim (PVC).
+
+  ```yaml
+  apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: ms-volume-claim
+  spec:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+      storage: 1Gi
+    storageClassName: mayastor-1
+  ```
+
+  Verify that the PVC status is Bound.
+
+9. Verify the created StorageClasses.
+
+  ```
+  oc get sc
+  ```
+
+  **Sample Output**
+
+  ```
+  NAME                     PROVISIONER               RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+  mayastor-1               io.openebs.csi-mayastor   Delete          Immediate              false                  113s
+  openebs-lvmpv            local.csi.openebs.io      Delete          Immediate              false                  80m
+  ```
+
+10. Verify the PVC.
+
+  ```
+  oc get pvc
+  ```
+
+  **Sample Output**
+
+  ```
+  NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+  ms-volume-claim   Bound    pvc-b2cf0473-3aeb-4d8a-844e-7ccfb5508570   1Gi        RWO            mayastor-1     42s
+  ```
+
+## Install Local PV LVM on OpenShift
+
+1. Create a Namespace.
+
+  ```
+  oc create ns openebs
+  ```
+
+2. Install the OpenEBS Helm chart with the Local PV LVM enabled and other storages disabled.
+
+  ```
+  helm install openebs --namespace openebs openebs/openebs \
+  --set engines.replicated.mayastor.enabled=false \
+  --create-namespace \
+  --set openebs-crds.csi.volumeSnapshots.enabled=false \
+  --set engines.local.zfs.enabled=false
+  ```
+
+:::important
+- **Local PV ZFS Disabled:** The ZFS package is not supported on Red Hat Enterprise Linux CoreOS (RHCOS). As a result, Local PV ZFS is disabled by default for OpenShift installations.
+- **VolumeSnapshot CRDs Disabled in Helm:** VolumeSnapshot CustomResourceDefinitions (CRDs) are preinstalled in OpenShift. The Helm chart is configured to skip their installation to avoid redundancy.
+:::  
+
+3. In a separate client session, add the required service accounts to the privileged SCC.
+
+  ```
+  oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:loki
+  oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:minio-sa
+  oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:openebs-lvm-node-sa
+  oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:openebs-alloy
+  oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:openebs-localpv-provisioner
+  ```
+
+4. Verify that all pods in the `openebs` namespace are running.
+
+  ```
+  kubectl get pods -n openebs
+  ```
+
+  **Sample Output**
+
+  ```
+  NAME                                              READY   STATUS    RESTARTS   AGE
+  openebs-alloy-gzt2s                               2/2     Running   0          4m51s
+  openebs-alloy-sf2c6                               2/2     Running   0          4m51s
+  openebs-alloy-x5r5t                               2/2     Running   0          4m51s
+  openebs-localpv-provisioner-85c4fd45f9-2jhbs      1/1     Running   0          4m51s
+  openebs-loki-0                                    2/2     Running   0          4m50s
+  openebs-loki-1                                    1/2     Running   0          51s
+  openebs-loki-2                                    2/2     Running   0          81s
+  openebs-lvm-localpv-controller-57884ddb78-qcd6c   5/5     Running   0          4m51s
+  openebs-lvm-localpv-node-4vspp                    2/2     Running   0          4m51s
+  openebs-lvm-localpv-node-5wxdj                    2/2     Running   0          4m51s
+  openebs-lvm-localpv-node-lzq7x                    2/2     Running   0          4m51s
+  openebs-minio-0                                   1/1     Running   0          4m50s
+  openebs-minio-1                                   1/1     Running   0          4m50s
+  openebs-minio-2                                   1/1     Running   0          4m50s
+  ```
+
+5. Create a StorageClass.
+
+  Create a file named `storageclass.yaml` with the following configuration:
+
+  ```yaml
+  kind: StorageClass
+  apiVersion: storage.k8s.io/v1
+  metadata:
+    name: openebs-lvmpv
+  provisioner: local.csi.openebs.io
+  parameters:
+    storage: lvm
+    volgroup: <YOUR-VOLGROUP>
+  reclaimPolicy: Delete
+  volumeBindingMode: Immediate
+  allowedTopologies:
+    - matchLabelExpressions:
+        - key: kubernetes.io/hostname
+          values:
+            - <YOUR-NODENAME>
+  ```
+
+  Apply the configuration:
+
+  ```
+  kubectl apply -f storageclass.yaml
+  ```
+
+  :::note
+  Refer to the [Local PV LVM StorageClass Parameters documentation](../../user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-storageclass-options.md) for detailed information about supported parameters and configuration options.
+  :::  
+
+8. Create a PVC.
+
+  ```yaml
+  kind: PersistentVolumeClaim
+  apiVersion: v1
+  metadata:
+    name: csi-lvmpv
+  spec:
+    storageClassName: openebs-lvmpv
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 4Gi
+  ```
+
+  Verify that the PVC status is Bound.
+
+9. Verify the created StorageClasses.
+
+  ```
+  oc get sc
+  ```
+
+  **Sample Output**
+
+  ```
+  NAME                    PROVISIONER               RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+  mayastor-1              io.openebs.csi-mayastor   Delete          Immediate              false                  11d
+  openebs-hostpath        openebs.io/local          Delete          WaitForFirstConsumer   false                  90m
+  openebs-loki-localpv    openebs.io/local          Delete          WaitForFirstConsumer   false                  90m
+  openebs-lvmpv           local.csi.openebs.io      Delete          Immediate              false                  3m16s
+  openebs-minio-localpv   openebs.io/local          Delete          WaitForFirstConsumer   false                  90m
+  ```
+
+10. Verify the PVC.
+
+  ```
+  oc get pvc
+  ```
+
+  **Sample Output**
+
+  ```
+  NAME        STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS    AGE
+  csi-lvmpv   Bound    pvc-3573e7b5-9f42-4b84-bafd-0b9b99d958db   4Gi        RWO            openebs-lvmpv   81s
+  ```
+
+## Benefits of Using OpenEBS on OpenShift
 
 **Cloud-Native and Container-Aware Storage:** OpenEBS is designed to work in a cloud-native, containerized environment that aligns well with OpenShift's architecture. It offers Container Native Storage (CNS), which runs as microservices in the Kubernetes cluster, providing dynamic storage provisioning with high flexibility.
 
@@ -21,252 +386,6 @@ This document provides instructions for installing Replicated PV Mayastor on Ope
 **Simplified Storage Operations:** With OpenEBS, storage can be managed and operated by DevOps teams without requiring specialized storage administrators. It abstracts away the complexity of traditional storage solutions, providing a Kubernetes-native experience.
 
 **Easy Integration with OpenShift Features:** OpenEBS can integrate seamlessly with OpenShift’s features like Operators, pipelines, and monitoring tools, making it easier to manage and monitor persistent storage using OpenShift-native tools.
-
-## Prerequisites
-
-Before installing Replicated PV Mayastor, make sure that you meet the following requirements:
-
-- **Hardware Requirements**
-
-    Your machine type must meet the requirements defined in the [prerequisites](../../quickstart-guide/prerequisites.md).
-
-- **Worker Nodes**
-
-    The number of worker nodes on which IO engine pods are deployed should not be less than the desired replication factor when using the synchronous replication feature (N-way mirroring).
-
-- **Additional Disks**
-
-    Your worker nodes should have additional storage disks attached. The additional storage disks should not be mounted or contain a filesystem.
-
-- **Enable Huge Pages**
-    
-    2MiB-sized Huge Pages must be supported and enabled on the storage nodes i.e. nodes where IO engine pods are deployed. A minimum number of 1024 such pages (i.e. 2GiB total) must be available exclusively to the IO engine pod on each node.
-    Huge pages in the OpenShift Container Platform (OCP) can be enabled during the installation or it can be enabled by creating new machine configs post-installation. Refer to the [Red Hat Documentation](https://access.redhat.com/solutions/5214791) for more details.
-
-- **Kernel Modules**
-
-    nvme modules are loaded by default in coreOS.
-
-- **Preparing the Cluster**
-
-    Refer to the [Replicated PV Mayastor Installation Documentation](../../quickstart-guide/prerequisites.md#preparing-the-cluster) for instructions on preparing the cluster.
-
-- **Security Context Constraint (SCC)**
-
-    Ensure that the service account used for the OpenEBS deployments is added to the privileged SCC.
-
-    ```
-    oc adm policy -n openebs add-scc-to-user privileged -z openebs-promtail
-    oc adm policy -n openebs add-scc-to-user privileged -z openebs-loki
-    oc adm policy -n openebs add-scc-to-user privileged -z openebs-localpv-provisioner
-    oc adm policy -n openebs add-scc-to-user privileged -z openebs-nats
-    oc adm policy -n openebs add-scc-to-user privileged -z openebs-lvm-controller-sa
-    oc adm policy -n openebs add-scc-to-user privileged -z openebs-lvm-node-sa
-    oc adm policy -n openebs add-scc-to-user privileged -z openebs-promtail
-    oc adm policy -n openebs add-scc-to-user privileged -z openebs-service-account
-    oc adm policy -n openebs add-scc-to-user privileged -z openebs-zfs-controller-sa
-    oc adm policy -n openebs add-scc-to-user privileged -z openebs-zfs-node-sa
-    oc adm policy -n openebs add-scc-to-user privileged -z default
-    ```
-
-:::note
-It is strongly recommended to use the `-z` (service account) flag as described above, as it helps prevent typographical errors and ensures that access is granted exclusively to the specified service account. If the service account is not in the current project, use the `-n` (namespace) option to specify the applicable project namespace.
-:::
-
-## Install Replicated PV Mayastor on OpenShift
-
-Refer to the [OpenEBS Installation Documentation](../../quickstart-guide/installation.md#installation-via-helm) to install Replicated PV Mayastor using Helm.
-
-- **Helm Install Command**
-
-```
-helm install openebs --namespace openebs openebs/openebs \
-  --create-namespace \
-  --set openebs-crds.csi.volumeSnapshots.enabled=false \
-  --set engines.local.zfs.enabled=false
-```
-
-:::info
-- Note: The --set engines.local.zfs.enabled=false flag is included because the ZFS kernel driver is not shipped by default with Red Hat-based platforms. This avoids deploying unnecessary or unsupported components.
-- OCP includes VolumeSnapshot CRDs by default. To avoid potential installation issues, it is recommended to disable these CRDs in the OpenEBS Helm chart, as these resources already exist in the OCP environment.
-:::
-
-## Pools
-
-The available worker nodes can be viewed using the `kubectl-mayastor` plugin. To use this functionality, you must install `kubectl` (or execute the binary using `./kubectl-mayastor`). The plugin is not compatible with the `oc` binary directly.
-
-```
-kubectl mayastor get block-devices NODE_ID -n openebs
-```
-
-It is highly recommended to specify the disk using a unique device link that remains unaltered across node reboots. Examples of such device links are: by-path or by-id (Sample disk-pools as below):
-
-**Command**
-
-```
-kubectl mayastor get nodes -n openebs
-```
-
-**Output**
-
-```
-ID      GRPC ENDPOINT      STATUS  VERSION
-worker  10.200.31.4:10124  Online  v2.7.1
-```
-
-**Command**
-
-```
-kubectl mayastor get block-devices worker  -n openebs
-```
-
-**Output**
-
-```
-DEVNAME   DEVTYPE  SIZE   AVAILABLE  MODEL         DEVPATH                                                               MAJOR  MINOR  DEVLINKS
-/dev/sdb  disk     30GiB  yes        Virtual_disk  /devices/pci0000:00/0000:00:10.0/host2/target2:0:1/2:0:1:0/block/sdb  8      16     "/dev/disk/by-id/scsi-SVMware_Virtual_disk_6000c2915164f6cc7af0aa6cb040cf67", "/dev/disk/by-id/wwn-0x6000c2915164f6cc7af0aa6cb040cf67", "/dev/disk/by-id/scsi-36000c2915164f6cc7af0aa6cb040cf67", "/dev/disk/by-diskseq/2", "/dev/disk/by-path/pci-0000:00:10.0-scsi-0:0:1:0"
-```
-
-The status of DiskPools can be determined by referencing their corresponding cluster Custom Resources (CRs). Pools that are available and healthy should report their state as `online`. Verify that the expected number of pools has been created and that all are in the "online" state.
-
-**Command**
-
-```
-oc get dsp -n openebs
-```
-
-**Output**
-
-```
-NAME             NODE     STATE     POOL_STATUS   CAPACITY      USED   AVAILABLE
-pool-on-worker   worker   Created   Online        32178700288   0      32178700288
-```
-
-## Configuration
-
-- Refer to the [Replicated PV Mayastor Configuration Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-storageclass.md#create-storageclasss) for instructions regarding StorageClass creation.
-
-Replicated PV Mayastor dynamically provisions Persistent Volumes (PVs) based on StorageClass definitions that you create. Parameters of the definition are used to set the characteristics and behaviour of its associated PVs. Most importantly StorageClass definition is used to control the level of data protection afforded to it (i.e. the number of synchronous data replicas that are maintained for purposes of redundancy). It is possible to create any number of StorageClass definitions, spanning all permitted parameter permutations. An example is given below:
-
-```
-cat <<EOF | oc create -f -
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: mayastor-3
-parameters:
-  protocol: nvmf
-  repl: "3"
-provisioner: io.openebs.csi-mayastor
-EOF
-storageclass.storage.k8s.io/mayastor-3 created
-```
-
-- Refer to the [Deploy an Application Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-deployment.md) for instructions regarding PVC creation and deploying an application.
-
-If all verification steps in the preceding stages were satisfied, then the Replicated PV Mayastor has been successfully deployed within the cluster. To verify basic functionality, we will now dynamically provision a Persistent Volume based on a Replicated PV Mayastor StorageClass, mount that volume within a small test pod which we'll create, and use the Flexible I/O Tester utility within that pod to check that I/O to the volume is processed correctly.
-
-Use `oc` to create a PVC based on a StorageClass created. In the example shown below, we will consider StorageClass to have been named "openebs-single-replica" which was created as part of OpenEBS Installation. 
-
-```
-cat <<EOF | kubectl create -f -
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: ms-volume-claim
-spec:
-  accessModes:
-  - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-  storageClassName: openebs-single-replica
-EOF
-persistentvolumeclaim/ms-volume-claim created
-```
-
-As a next step verify the PV/PVC and the Replicated PV Mayastor volumes.
-
-**Command**
-
-```
-oc get pvc
-```
-
-**Output**
-
-```
-NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS             VOLUMEATTRIBUTESCLASS   AGE
-ms-volume-claim   Bound    pvc-144d54db-a3cf-4194-821d-34eae9dafc1d   1Gi        RWO            openebs-single-replica   <unset>                 40s
-```
-
-**Command**
-
-```
-oc get pv
-```
-
-**Output**
-
-```
-NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                            STORAGECLASS             VOLUMEATTRIBUTESCLASS   REASON   AGE
-pvc-02333bf8-8a07-4ce0-a00e-bd6bc67af380   2Gi        RWO            Delete           Bound    openebs/data-openebs-etcd-0      mayastor-etcd-localpv    <unset>                          47h
-pvc-144d54db-a3cf-4194-821d-34eae9dafc1d   1Gi        RWO            Delete           Bound    default/ms-volume-claim          openebs-single-replica   <unset>                          42s
-pvc-233aafb1-59e9-4836-b8a1-f74ab2f5a6e4   10Gi       RWO            Delete           Bound    openebs/storage-openebs-loki-0   mayastor-loki-localpv    <unset>                          47h
-```
-
-**Command**
-
-```
-kubectl mayastor get volumes -n openebs
-```
-
-**Output**
-
-```
-ID                                    REPLICAS  TARGET-NODE  ACCESSIBILITY  STATUS  SIZE  THIN-PROVISIONED  ALLOCATED  SNAPSHOTS  SOURCE
-144d54db-a3cf-4194-821d-34eae9dafc1d  1         <none>       <none>         Online  1GiB  false             1GiB       0          <none>
-```
-
-The Replicated PV Mayastor CSI driver will cause the application pod and the corresponding Replicated PV Mayastor volume's NVMe target/controller ("Nexus") to be scheduled on the same Replicated PV Mayastor Node, to assist with the restoration of volume and application availability in the event of a storage node failure.
-
-```
-kind: Pod
-apiVersion: v1
-metadata:
-  name: fio
-spec:
-  nodeSelector:
-    openebs.io/engine: mayastor
-  volumes:
-    - name: ms-volume
-      persistentVolumeClaim:
-        claimName: ms-volume-claim
-  containers:
-    - name: fio
-      image: nixery.dev/shell/fio
-      args:
-        - sleep
-        - "1000000"
-      volumeMounts:
-        - mountPath: "/volume"
-          name: ms-volume
-```
-
-Verify the application.
-
-**Command**
-
-```
-oc get pods fio
-```
-
-**Output**
-
-```
-NAME   READY   STATUS    RESTARTS   AGE
-fio    1/1     Running   0          34s
-```
 
 ## See Also
 
