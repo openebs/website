@@ -1,5 +1,5 @@
 ---
-id: lvm-snapshot-restore
+id: lvm-volume-restore
 title: Volume Restore from Snapshot
 keywords:
  - Snapshot Restore
