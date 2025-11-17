@@ -39,11 +39,10 @@ Huge pages in the OpenShift Container Platform (OCP) can be enabled during the i
   --set engines.local.zfs.enabled=false
   ```
 
-  :::important
-  - **Local PV ZFS Disabled:** The ZFS package is not supported on Red Hat Enterprise Linux CoreOS (RHCOS). As a result, Local PV ZFS is disabled by default for OpenShift installations.
-  - **VolumeSnapshot CRDs Disabled in Helm:** VolumeSnapshot CustomResourceDefinitions (CRDs) are preinstalled in OpenShift. The Helm chart is configured to skip their installation to avoid redundancy.
-  :::
-
+:::important
+- **Local PV ZFS Disabled:** The ZFS package is not supported on Red Hat Enterprise Linux CoreOS (RHCOS). Therefore, when installing OpenEBS on OpenShift, ensure that the Local PV ZFS storage remains disabled.
+- **VolumeSnapshot CRDs Disabled in Helm:** VolumeSnapshot CustomResourceDefinitions (CRDs) are preinstalled in OpenShift. The Helm chart is configured to skip their installation to avoid redundancy.
+:::
 
 3. In a separate client session, add the required service accounts to the privileged Security Context Constraints (SCC).
 
@@ -255,10 +254,10 @@ Huge pages in the OpenShift Container Platform (OCP) can be enabled during the i
   --set engines.local.zfs.enabled=false
   ```
 
-  :::important
-  - **Local PV ZFS Disabled:** The ZFS package is not supported on Red Hat Enterprise Linux CoreOS (RHCOS). As a result, Local PV ZFS is disabled by default for OpenShift installations.
-  - **VolumeSnapshot CRDs Disabled in Helm:** VolumeSnapshot CustomResourceDefinitions (CRDs) are preinstalled in OpenShift. The Helm chart is configured to skip their installation to avoid redundancy.
-  :::  
+:::important
+- **Local PV ZFS Disabled:** The ZFS package is not supported on Red Hat Enterprise Linux CoreOS (RHCOS). As a result, Local PV ZFS is disabled by default for OpenShift installations.
+- **VolumeSnapshot CRDs Disabled in Helm:** VolumeSnapshot CustomResourceDefinitions (CRDs) are preinstalled in OpenShift. The Helm chart is configured to skip their installation to avoid redundancy.
+:::  
 
 3. In a separate client session, add the required service accounts to the privileged SCC.
 

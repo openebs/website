@@ -270,6 +270,11 @@ module.exports = {
                     },
                     {
                       type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-volume-restore",
+                      label: "Volume Restore from Snapshot"
+                    },
+                    {
+                      type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-thin-provisioning",
                       label: "Thin Provisioning"
                     }
@@ -522,7 +527,7 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot-restore",
-                      label: "Snapshot Restore"
+                      label: "Volume Restore from Snapshot"
                     },
                     {
                       type: "doc",
