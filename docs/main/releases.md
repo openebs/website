@@ -137,9 +137,7 @@ The status of the various components as of v4.4 are as follows:
 
 - If a disk backing a DiskPool fails or is removed (Example: A cloud disk detaches), the failure is not clearly reflected in the system. As a result, the volume may remain in a degraded state for an extended period.
 
-- Large pools (Example: 10–20TiB) may hang during recovery after a dirty shutdown of the node hosting the io-engine.
-
-- Provisioning very large filesystem volumes (Example: More than 15TiB) may fail due to filesystem formatting timeouts or hangs.
+- Large pools (Example: 10–20TiB) may take a while during recovery after a dirty shutdown of the node hosting the io-engine.
 
 - When using Replicated PV Mayastor on Oracle Linux 9 (kernel 5.14.x), servers may unexpectedly reboot during volume detach operations due to a kernel bug (CVE-2024-53170) in the block layer.
 This issue is not caused by Mayastor but is triggered more frequently because of its NVMe-TCP connection lifecycle.

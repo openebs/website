@@ -15,8 +15,8 @@ module.exports = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "/docs/img/favicon.ico",
-  organizationName: "openebs",
-  projectName: "website",
+  organizationName: "openebs", // Usually your GitHub org/user name.
+  projectName: "website", // Usually your repo name.
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -161,16 +161,12 @@ module.exports = {
               label: 'main',
               path: 'main'
             }
-          },
-
-          // ✅ Global TOC settings
-          tocMinHeadingLevel: 2,
-          tocMaxHeadingLevel: 2,
+          }
         },
         theme: {
           customCss: require.resolve("./src/scss/custom.scss"),
         },
-        include: ["**/*.md", "**/*.mdx"],
+        include: ["**/*.md", "**/*.mdx"], // Extensions to include.
       },
     ],
     [
