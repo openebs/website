@@ -131,8 +131,6 @@ The status of the various components as of v4.4 are as follows:
 
 ### Replicated Storage
 
-- DiskPool capacity expansion is not supported as of v2.9.0.
-
 - If a node hosting a pod reboots and the pod lacks a controller (like a Deployment), the volume unpublish operation may not trigger. This causes the control plane to assume the volume is still in use, which leads to `fsfreeze` operation failure during snapshots.
 
 **Workaround:** Recreate or rebind the pod to ensure proper volume mounting.
