@@ -20,6 +20,7 @@ The status of the various components as of v4.4 are as follows:
 | Local Storage | Local PV Hostpath | 4.4.0 | Stable |
 | Local Storage | Local PV LVM | 1.8.0 | Stable |
 | Local Storage | Local PV ZFS | 2.9.0 | Stable |
+| Local Storage | Local PV Rawfile | 0.12.0 | Experimental |
 | External Provisioners | Local PV Hostpath | 4.4.0 | Stable |
 | Other Components | CLI | 4.4.0 | — |
 
