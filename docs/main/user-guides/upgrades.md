@@ -24,7 +24,7 @@ Refer to the [Migration documentation](../user-guides/data-migration/migration-o
 
 ## Overview
 
-This upgrade process allows you to upgrade to the latest OpenEBS version 4.3 which is a unified installer for three Local Storages (a.k.a Local Engines):
+This upgrade process allows you to upgrade to the latest OpenEBS version 4.4 which is a unified installer for three Local Storages (a.k.a Local Engines):
 - Local PV HostPath
 - Local PV LVM 
 - Local PV ZFS 
@@ -32,7 +32,7 @@ This upgrade process allows you to upgrade to the latest OpenEBS version 4.3 whi
 and one Replicated Storage (a.k.a Replicated Engine):
 - Replicated PV Mayastor
 
-As a part of the upgrade to OpenEBS 4.3, the Helm chart will install all four engines regardless of the engine you used before the upgrade. 
+As a part of the upgrade to OpenEBS 4.4, the Helm chart will install all four engines regardless of the engine you used before the upgrade. 
 
 :::info
 During the upgrade, if you are only interested in Local PV Storage, you can disable Replicated PV Mayastor by using the below option:
@@ -46,9 +46,9 @@ During the upgrade, if you are only interested in Local PV Storage, you can disa
 Downgrades are not supported.
 :::
 
-## Upgrade from 3.x to 4.3
+## Upgrade from 3.x to 4.4
 
-Follow these steps to upgrade OpenEBS from version 3.x to 4.3:
+Follow these steps to upgrade OpenEBS from version 3.x to 4.4:
 
 1. Update the helm repository: The OpenEBS Helm chart repository URL has changed. The repository target URL needs to be updated.
 
@@ -83,9 +83,9 @@ helm repo update
 
 :::
 
-## Upgrade from 4.x to 4.3
+## Upgrade from 4.x to 4.4
 
-Follow these steps to upgrade OpenEBS from version 4.x to 4.3:
+Follow these steps to upgrade OpenEBS from version 4.x to 4.4:
 
 1. Download the `kubectl openebs` binary from the [OpenEBS Release repository](https://github.com/openebs/openebs/releases) on GitHub.
 

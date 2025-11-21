@@ -8,7 +8,11 @@ description: This guide explains about the Snapshot Restore feature.
 
 ## Overview
 
-Volume restore from an existing snapshot will create a storage volume captured at a specific point in time. They serve as an essential tool for data protection, recovery, and efficient management in Kubernetes environments. This document provides step-by-step instructions to restore a volume from a previously created snapshot using Local PV LVM.
+Volume Restore from an existing snapshot will create a storage volume captured at a specific point in time. They serve as an essential tool for data protection, recovery, and efficient management in Kubernetes environments. This document provides step-by-step instructions to restore a volume from a previously created snapshot using Local PV LVM.
+
+:::important
+Volume Restore is supported only for thin volumes created from snapshots using OpenEBS v4.4.0 or later.
+:::
 
 ## Requirements
 

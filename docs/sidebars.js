@@ -830,7 +830,7 @@ module.exports = {
     {
       type: "doc",
       id: "releases",
-      label: "Releases",
+      label: "Release Notes",
       customProps: {
         icon: "File"
       },

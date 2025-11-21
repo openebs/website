@@ -99,7 +99,6 @@ In this case, the volume replicas will be provisioned on any two of the three no
 - `worker-node-2` and `worker-node-3`
 as the storage class has `rack` as the value for `nodeHasTopologyKey` that matches the label key of the node.
 
-<!--
 ## "nodeSpreadTopologyKey"
 
 The parameter `nodeSpreadTopologyKey` will allow the placement of replicas on the node that has label keys that are identical to the keys specified in the storage class but have different values.
@@ -143,8 +142,6 @@ In this case, the volume replicas will be provisioned on the below given nodes i
 - `worker-node-1` and `worker-node-2` or
 - `worker-node-2` and `worker-node-3`
 as the storage class has `zone` as the value for `nodeSpreadTopologyKey` that matches the label key of the node but has a different value.
-
--->
 
 ## "poolAffinityTopologyLabel"
 
@@ -267,7 +264,7 @@ In this case, the volume replicas will be provisioned on any two of the three po
 - `pool-on-node-2` and `pool-on-node-3`
 as the storage class has `zone` as the value for `poolHasTopologyKey` that matches with the label key of the pool.
 
-## "stsAffinityGroup" 
+## "stsAffinityGroup"
 
  `stsAffinityGroup` represents a collection of volumes that belong to instances of Kubernetes StatefulSet. When a StatefulSet is deployed, each instance within the StatefulSet creates its own individual volume, which collectively forms the `stsAffinityGroup`. Each volume within the `stsAffinityGroup` corresponds to a pod of the StatefulSet.
 
@@ -286,6 +283,16 @@ The [High Availability](../replicated-pv-mayastor/advanced-operations/HA.md) fea
 The `stsAffinityGroup` ensures that in such cases, the targets are distributed optimally for the stsAffinityGroup volumes.
 
 By default, the `stsAffinityGroup` feature is disabled. To enable it, modify the storage class YAML by setting the `parameters.stsAffinityGroup` parameter to true.
+
+### Volume Affinity Group Scale-Down Restrictions
+
+When using stsAffinityGroup, replicas of volumes belonging to the same StatefulSet are distributed across different nodes to avoid a single point of failure. Due to these anti-affinity rules, scaling a volume down to 1 replica may be restricted, if doing so would cause the last remaining replica to reside on a node that already hosts another single-replica volume from the same affinity group.
+
+Scale-down to 1 replica is allowed only when the current replicas are already placed on different nodes. If the replicas end up on the same node. For example, after scaling from 3 replicas to 2, the system may block the scale-down until the placement is improved.
+
+If a scale-down is blocked, you can resolve it by temporarily scaling the volume up to add a replica (allowing the system to place it on a different node) and then scaling down again. This reshuffles the replicas to meet the affinity group’s placement rules.
+
+These restrictions ensure that a single node failure does not impact multiple StatefulSet instances, preserving fault isolation and reliability for applications using affinity-grouped volumes.
 
 ## "cloneFsIdAsVolumeId"
 

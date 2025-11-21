@@ -118,7 +118,7 @@ helm ls -n openebs
 
 ```
 NAME     NAMESPACE   REVISION  UPDATED                                   STATUS     CHART           APP VERSION
-openebs  openebs     1         2025-05-25 09:13:00.903321318 +0000 UTC   deployed   openebs-4.3.2   4.3.2
+openebs  openebs     1         2025-11-21 08:11:00.903321318 +0000 UTC   deployed   openebs-4.4.0   4.4.0
 ```
 
 ## Verifying OpenEBS Installation
