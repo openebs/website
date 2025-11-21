@@ -270,10 +270,10 @@ as the storage class has `zone` as the value for `poolHasTopologyKey` that match
 
 This feature enforces the following rules to ensure the proper placement and distribution of replicas and targets so that there is not any single point of failure affecting multiple instances of StatefulSet.
 
-1. Anti-Affinity among single-replica (1-r) volumes:
+1. Anti-Affinity among single-replica volumes:
   This is a hard rule. Single-replica volumes in the same affinity group must not be placed on the same node. This prevents a single node failure from impacting multiple StatefulSet pods.
 
-2.  Anti-Affinity among multi-replica (>1-r) volumes:
+2.  Anti-Affinity among multi-replica volumes:
   This is a soft rule. While placement is optimized to spread replicas across nodes, the scheduler may relax this rule when necessary.
 
 3. Anti-affinity among targets:
