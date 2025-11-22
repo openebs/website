@@ -504,12 +504,12 @@
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/node-cordon",
+                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/cordon-node",
                       "label": "Cordon Node"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/node-drain",
+                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/drain-node",
                       "label": "Drain Node"
                     },
                     {
