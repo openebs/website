@@ -290,7 +290,7 @@ parameters:
 provisioner: local.csi.openebs.io
 allowedTopologies:
 - matchLabelExpressions:
- - key: openebs.io/lvmvg
+  - key: openebs.io/lvmvg
    values:
      - nvme
 ```
@@ -303,7 +303,7 @@ Here, the volumes will be provisioned on the nodes that have label “openebs.io
 
 If the LVM volume group is available on certain nodes only, then make use of topology to tell the list of nodes where we have the volgroup available. As shown in the below storage class, we can use allowedTopologies to describe volume group availability on nodes.
 
-```
+```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
