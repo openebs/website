@@ -203,14 +203,14 @@ metadata:
  name: lvm-sc
 allowVolumeExpansion: true
 parameters:
-  volgroup: "storage_vg"
+  volgroup: "lvmvg"
 provisioner: local.csi.openebs.io
 allowedTopologies:
 - matchLabelExpressions:
   - key: openebs.io/nodename
     values:
-     - node-0
      - node-1
+     - node-2
 ```
 
 At the same time, you must set env variables in the Local PV LVM CSI driver daemon sets (openebs-lvm-node) so that it can pick the node label as the supported topology. It adds "openebs.io/nodename" as the default topology key. If the key does not exist in the node labels when the CSI LVM driver registers, the key will not add to the topologyKeys. Set more than one key separated by commas.
