@@ -13,7 +13,7 @@ This document demonstrates how to deploy an application using OpenEBS Local PV H
 If you want to use other OpenEBS storages, refer to the following:
 - [Local PV LVM Deployment documentation](../user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-deployment.md)
 - [Local PV ZFS Deployment documentation](../user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-deployment.md)
-- [Replicated PV Mayastor Deployment documentation](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-deployment.md)
+- [Replicated PV Mayastor Deployment documentation](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-deployment.md)
 :::
 
 # Deploy an Application

@@ -294,14 +294,6 @@ You can validate the schema changes by executing `kubectl get crd diskpools.open
 
 # Known Limitations
 
-## Volume and Pool Capacity Expansion
-
-Once provisioned, neither Replicated Storage Disk Pools nor Replicated Storage Volumes can be re-sized. A Replicated Storage Pool can have only a single block device as a member. Replicated Storage Volumes are exclusively thick-provisioned.
-
-## Snapshots and Clones
-
-Replicated Storage currently supports provisioning snapshots and clones on volumes with only one replica.
-
 ## Volumes are "Highly Durable" but without multipathing are not "Highly Available"
 
 Replicated Storage Volumes can be configured \(or subsequently re-configured\) to be composed of 2 or more "children" or "replicas"; causing synchronously mirrored copies of the volumes's data to be maintained on more than one worker node and Disk Pool. This contributes additional "durability" at the persistence layer, ensuring that viable copies of a volume's data remain even if a Disk Pool device is lost.
