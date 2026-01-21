@@ -36,7 +36,7 @@ Avoiding cloud vendor lock-in is a common goal for many Kubernetes users. Howeve
 
 CAS containerizes the storage software and uses Kubernetes Custom Resource Definitions (CRDs) to represent low-level storage resources, such as disks and storage pools. This model enables storage to be integrated into other cloud-native tools seamlessly. The storage resources can be provisioned, monitored, and managed using cloud-native tools such as Prometheus, Grafana, Fluentd, Weavescope, Jaeger, and others.
 
-Similar to hyperconverged systems, storage and performance of a volume in CAS are scalable. As each volume has it's own storage controller, the storage can scale up within the permissible limits of a storage capacity of a node. As the number of container applications increases in a given Kubernetes cluster, more nodes are added, which increases the overall availability of storage capacity and performance, thereby making the storage available to the new application containers. This process of scalability is similar to successful hyperconverged systems like Nutanix. 
+Similar to hyperconverged systems, storage and performance of a volume in CAS are scalable. As each volume has its own storage controller, the storage can scale up within the permissible limits of a storage capacity of a node. As the number of container applications increases in a given Kubernetes cluster, more nodes are added, which increases the overall availability of storage capacity and performance, thereby making the storage available to the new application containers. This process of scalability is similar to successful hyperconverged systems like Nutanix. 
 
 ### Lower blast radius
 
