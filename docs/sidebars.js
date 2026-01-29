@@ -782,7 +782,13 @@ module.exports = {
               type: "doc",
               id: "Solutioning/backup-and-restore/kubevirt-backup",
               label: "KubeVirt VM Backup and Restore"
+            },
+            {
+              type: "doc",
+              id: "Solutioning/backup-and-restore/cloudnative-backup",
+              label: "CloudNativePG Backups"
             }
+            
           ]
         },  
       ]
