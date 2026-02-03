@@ -25,7 +25,6 @@ The following versions were used for this workflow:
 | CloudNativePG | v1.25.1 |
 | OpenEBS | v4.2.0 |
 | Kubernetes | v1.29.6 |
-| kubectl-mayastor Plugin | v2.7.4+0 |
 | kubectl cnpg plugin | v1.25.1 |
 
 ## Prerequisites
@@ -36,9 +35,9 @@ The following versions were used for this workflow:
   
   Ensure that OpenEBS is installed in your cluster. Refer to the [OpenEBS Installation Documentation](../../quickstart-guide/installation.md) for step-by-step instructions.
 
-- **Install the `kubectl-mayastor` Plugin**
+- **Install the `kubectl-openebs` Plugin**
   
-  Ensure that `kubectl-mayastor` plugin is installed. Refer to the [Mayastor Kubectl Plugin Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/kubectl-plugin.md) to install the plugin.
+  Ensure that `kubectl-openebs` plugin is installed. Refer to the [Kubectl OpenEBS Plugin Documentation](../../user-guides/kubectl-openebs.md) to install the plugin.
 
 - **Create a StorageClass**
 
@@ -154,7 +153,7 @@ kubectl create -f Cluster.yaml -n cnpg-cluster
 
 **Sample Output**
 
-```
+```yaml hideCopy=true
 Cluster Summary
 ---------------
 Name:                    cnpg-cluster/testcnpg-cluster
@@ -228,7 +227,7 @@ SELECT COUNT(*) FROM my_table;
 
 **Sample Output**
 
-```
+```yaml hideCopy=true
 [demo]$ kubectl cnpg psql testcnpg-cluster -n cnpg-cluster
 psql (17.4 (Debian 17.4-1.pgdg110+2))
 Type "help" for help.
@@ -253,6 +252,10 @@ You are now connected to database "demo" as user "postgres".
 ```
 
 ## Backup Using VolumeSnapshots
+
+:::important
+Snapshot creation is subject to Replicated PV Mayastor capacity and commitment limits. Refer [Operational Considerations - Snapshot Capacity and Commitment Considerations](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot.md#operational-considerations---snapshot-capacity-and-commitment-considerations) for more information.
+:::
 
 CloudNativePG supports two snapshot-based backup modes:
 
@@ -300,7 +303,7 @@ kubectl get volumesnapshot -n cnpg-cluster
 ```
 
 **Sample Output**
-```
+```yaml hideCopy=true
 NAME                               READYTOUSE   SOURCEPVC               SOURCESNAPSHOTCONTENT   RESTORESIZE   SNAPSHOTCLASS                SNAPSHOTCONTENT                                CREATIONTIME   AGE
 testcnpg-cluster-20250328144442    true         testcnpg-cluster-2      -                      4Gi           csi-mayastor-snapshotclass   snapcontent-2e0a7dc1-94b9-475c-89eb-36e0486ca642   7m21s         7m22s
 testcnpg-cluster-20250328144442-wal true         testcnpg-cluster-2-wal  -                      4Gi           csi-mayastor-snapshotclass   snapcontent-70e3efac-b27f-48f3-97c0-e8cb4d788aef   7m21s         7m22s
@@ -348,7 +351,7 @@ kubectl get all -n cnpg-cluster
 ```
 
 **Sample Output**
-```
+```yaml hideCopy=true
 NAME                          READY       STATUS          RESTARTS      AGE
 pod/cluster-restore-1         1/1         Running         0             2m57s
 pod/cluster-restore-2         1/1         Running         0             2m23s
@@ -387,7 +390,7 @@ SELECT COUNT(*) FROM my_table;
 ```
 
 **Sample Output**
-```
+```yaml hideCopy=true
 [demo]$ kubectl cnpg psql cluster-restore -n cnpg-cluster
 psql (17.4 (Debian 17.4-1.pgdg110+2))
 Type "help" for help.

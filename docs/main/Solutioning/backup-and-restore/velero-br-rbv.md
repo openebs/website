@@ -53,9 +53,9 @@ velero install --provider gcp --plugins velero/velero-plugin-for-gcp:v1.10.0,vel
 kubectl get pods -n velero
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME                      READY   STATUS    RESTARTS   AGE
 node-agent-5pfg6          1/1     Running   0          58s
 node-agent-5q5mg          1/1     Running   0          58s
@@ -73,9 +73,9 @@ velero-6b9b99494b-kgvpk   1/1     Running   0          58s
   kubectl get backupstoragelocation -n velero
   ```
 
-  **Output**
+  **Sample Output**
 
-  ```
+  ```yaml hideCopy=true
   NAME      PHASE       LAST VALIDATED   AGE   DEFAULT
   default   Available   8s               90s   true
   ```
@@ -88,9 +88,9 @@ velero-6b9b99494b-kgvpk   1/1     Running   0          58s
   velero snapshot-location get
   ```
 
-  **Output**
+  **Sample Output**
 
-  ```
+  ```yaml hideCopy=true
   NAME      PROVIDER
   default   gcp
   ```
@@ -179,9 +179,9 @@ spec:
 kubectl get pods -n mayastor-app-block
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME         READY   STATUS    RESTARTS   AGE
 test-block   1/1     Running   0          10s
 ```
@@ -192,9 +192,9 @@ test-block   1/1     Running   0          10s
 kubectl get pvc -n mayastor-app-block
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME                    STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
 ms-volume-claim-block   Bound    pvc-c9b2160a-6b26-4176-8478-f616267204aa   1Gi        RWO            mayastor-3-thin   5m34s
 ```
@@ -214,6 +214,10 @@ root@test-block:/dev#
 
 ### Backup using Velero
 
+:::important
+Snapshot creation is subject to Replicated PV Mayastor capacity and commitment limits. Refer [Operational Considerations - Snapshot Capacity and Commitment Considerations](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot.md#operational-considerations---snapshot-capacity-and-commitment-considerations) for more information.
+:::
+
 - Use the following command to create a Velero backup:
 
 **Command**
@@ -222,9 +226,9 @@ root@test-block:/dev#
 velero backup create my-backup-raw-block --snapshot-volumes --include-namespaces=mayastor-app-block --volume-snapshot-locations=default --storage-location=default --snapshot-move-data
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 Backup request "my-backup-raw-block" submitted successfully.
 Run `velero backup describe my-backup-raw-block` or `velero backup logs my-backup-raw-block` for more details.
 ```
@@ -237,9 +241,9 @@ Run `velero backup describe my-backup-raw-block` or `velero backup logs my-backu
 velero backup get
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME                  STATUS      ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
 my-backup-raw-block   Completed   0        0          2024-07-30 10:07:33 +0000 UTC   29d       default            <none>
 ```
@@ -250,9 +254,9 @@ my-backup-raw-block   Completed   0        0          2024-07-30 10:07:33 +0000 
 kubectl get datauploads.velero.io -A
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAMESPACE   NAME                        STATUS      STARTED   BYTES DONE   TOTAL BYTES   STORAGE LOCATION   AGE     NODE
 velero      my-backup-raw-block-chjz2   Completed   2m20s     1068481536   1068481536    default            2m20s   worker-velero-1
 ```
@@ -265,9 +269,9 @@ velero      my-backup-raw-block-chjz2   Completed   2m20s     1068481536   10684
 velero backup get
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME                  STATUS      ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
 my-backup-raw-block   Completed   0        0          2024-07-30 10:07:33 +0000 UTC   29d       default            <none>
 ```
@@ -286,9 +290,9 @@ In order to ensure that Velero can access the previously saved backups, it is re
 velero restore create my-raw-block-restore --from-backup my-backup-raw-block --restore-volumes=true --namespace-mappings mayastor-app-block:mayastor-app-restore-block
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 Restore request "my-raw-block-restore" submitted successfully.
 Run `velero restore describe my-raw-block-restore` or `velero restore logs my-raw-block-restore` for more details.
 ```
@@ -318,7 +322,7 @@ my-raw-block-restore   my-backup-raw-block   Completed   2024-07-30 10:11:53 +00
 kubectl get datadownloads.velero.io -A
 ```
 
-**Output**
+**Sample Output**
 
 ```
 NAMESPACE   NAME                         STATUS      STARTED   BYTES DONE   TOTAL BYTES   STORAGE LOCATION   AGE   NODE
@@ -333,9 +337,9 @@ velero      my-raw-block-restore-h8rlw   Completed   84s       1068481536   1068
 kubectl get pods -n mayastor-app-restore-block
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME         READY   STATUS    RESTARTS   AGE
 test-block   1/1     Running   0          107s
 ```
@@ -346,9 +350,9 @@ test-block   1/1     Running   0          107s
 kubectl get pvc -n mayastor-app-restore-block
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME                    STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
 ms-volume-claim-block   Bound    pvc-8e030156-ed8b-46ba-9df4-629cda2ef697   1Gi        RWO            mayastor-3-thin   2m20s
 ```

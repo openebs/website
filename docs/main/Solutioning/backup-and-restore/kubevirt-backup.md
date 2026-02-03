@@ -22,9 +22,7 @@ To protect KubeVirt-based VMs, a robust backup strategy is essential. This docum
 | KubeVirt | v1.5.0 |
 | Kubernetes (3 nodes) | v1.29.6 |
 | OpenEBS | v4.2.0 |
-| NFS CSI Driver | v4.11.0 |
 | Containerized Data Importer (CDI) | v1.62.0 |
-| kubectl-mayastor Plugin | v2.7.4+0 |
 | virtctl | v1.5.0 |
 
 ## Prerequisites
@@ -35,9 +33,9 @@ To protect KubeVirt-based VMs, a robust backup strategy is essential. This docum
   
   Ensure that OpenEBS is installed in your cluster. Refer to the [OpenEBS Installation Documentation](../../quickstart-guide/installation.md) for step-by-step instructions.
 
-- **Install the `kubectl-mayastor` Plugin**
+- **Install the `kubectl-openebs` Plugin**
   
-  Ensure that `kubectl-mayastor` plugin is installed. Refer to the [Mayastor Kubectl Plugin Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/kubectl-plugin.md) to install the plugin.
+  Ensure that `kubectl-openebs` plugin is installed. Refer to the [Kubectl OpenEBS Plugin Documentation](../../user-guides/kubectl-openebs.md) to install the plugin.
 
 - **Create a StorageClass**
 
@@ -97,7 +95,7 @@ kubectl create -f "https://github.com/kubevirt/kubevirt/releases/download/${VERS
 ```
 
 **Sample Output**
-```
+```yaml hideCopy=true
 namespace/kubevirt created
 customresourcedefinition.apiextensions.k8s.io/kubevirts.kubevirt.io created
 priorityclass.scheduling.k8s.io/kubevirt-cluster-critical created
@@ -117,7 +115,7 @@ kubectl create -f "https://github.com/kubevirt/kubevirt/releases/download/${VERS
 ```
 
 **Sample Output**
-```
+```yaml hideCopy=true
 kubevirt.kubevirt.io/kubevirt created
 ```
 
@@ -134,7 +132,7 @@ kubectl get all -n kubevirt
 ```
 
 **Sample Output**
-```
+```yaml hideCopy=true
 ➜  kubevirt kubectl get all -n kubevirt
 Warning: kubevirt.io/v1 VirtualMachineInstancePresets is now deprecated and will be removed in v2.
 
@@ -185,7 +183,7 @@ kubectl create -f https://github.com/kubevirt/containerized-data-importer/releas
 ```
 
 **Sample Output - CDI**
-```
+```yaml hideCopy=true
 namespace/cdi created
 customresourcedefinition.apiextensions.k8s.io/cdis.cdi.kubevirt.io created
 clusterrole.rbac.authorization.k8s.io/cdi-operator-cluster created
@@ -197,7 +195,7 @@ deployment.apps/cdi-operator created
 ```
 
 **Sample Output - CR**
-```
+```yaml hideCopy=true
 kubectl create -f https://github.com/kubevirt/containerized-data-importer/releases/download/$VERSION/cdi-cr.yaml
 cdi.cdi.kubevirt.io/cdi created
 ```
@@ -229,7 +227,7 @@ kubectl get all -n cdi
 ```
 
 **Sample Output**
-```  
+```yaml hideCopy=true  
 Warning: kubevirt.io/v1 VirtualMachineInstancePresets is now deprecated and will be removed in v2.
 NAME                                         READY       STATUS          RESTARTS        AGE
 pod/cdi-apiserver-5bbd7b4df5-28gm8           1/1         Running         1 (2m55s ago)   3m
@@ -466,8 +464,7 @@ aws iam create-access-key --user-name velero
 ```
 
 **Sample Output**
-
-```
+```yaml hideCopy=true
 {
     "AccessKey": {
         "UserName": "velero",
@@ -521,7 +518,7 @@ kubectl get all -n velero
 ```
 
 **Sample Output**
-```
+```yaml hideCopy=true
 Warning: kubevirt.io/v1 VirtualMachineInstancePresets is now deprecated and will be removed in v2.
 NAME                                 READY       STATUS         RESTARTS     AGE
 pod/node-agent-2nbdm                 1/1         Running        0            7s
@@ -547,7 +544,7 @@ velero get backup-location
 ```
 
 **Sample Output**
-```
+```yaml hideCopy=true
 NAME      PROVIDER   BUCKET/PREFIX       PHASE      LAST VALIDATED                 ACCESS MODE   DEFAULT
 default   aws        kubevirtbackup2025  Available  2025-05-05 12:32:25 +0530 IST  ReadWrite     true
 ```
@@ -570,6 +567,10 @@ velero get plugins | grep kubevirt
 
 ## Backing Up a KubeVirt VM
 
+:::important
+Snapshot creation is subject to Replicated PV Mayastor capacity and commitment limits. Refer [Operational Considerations - Snapshot Capacity and Commitment Considerations](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot.md#operational-considerations---snapshot-capacity-and-commitment-considerations) for more information.
+:::
+
 1. Create a Velero backup object that includes the KubeVirt VM, CDI objects, and persistent volumes backed by OpenEBS.
 
 ```
@@ -584,7 +585,7 @@ velero get backup vm1backup1
 
 **Sample Output**
 
-```
+```yaml hideCopy=true
 NAME        STATUS     ERRORS  WARNINGS  CREATED                         EXPIRES  STORAGE LOCATION  SELECTOR
 vm1backup1  Completed  0       0         2025-05-05 13:36:09 +0530 IST    29d      default           <none>
 ```
@@ -597,7 +598,7 @@ kubectl delete vm vm1
 
 **Sample Output**
 
-```
+```yaml hideCopy=true
 virtualmachine.kubevirt.io "vm1" deleted
 ```
 
@@ -609,7 +610,7 @@ kubectl delete datavolumes.cdi.kubevirt.io fedora-1
 
 **Sample Output**
 
-```
+```yaml hideCopy=true
 datavolume.cdi.kubevirt.io "fedora-1" deleted
 ```
 
@@ -639,7 +640,7 @@ kubectl get datadownload -n velero
 
 **Sample Output**
 
-```
+```yaml hideCopy=true
 NAME                   STATUS     STARTED  BYTES DONE   TOTAL BYTES  STORAGE LOCATION  AGE  NODE
 vm1restorenew-v56ft    Completed  71m      8342339584   8584674304   default           71m  node-0-347244
 ```
@@ -665,7 +666,7 @@ virtctl console vm1 -n restoredvm
 ```
 
 **Sample Output**
-```
+```yaml hideCopy=true
 Successfully connected to vm1 console. The escape sequence is ^]
 
 vm1 login: root

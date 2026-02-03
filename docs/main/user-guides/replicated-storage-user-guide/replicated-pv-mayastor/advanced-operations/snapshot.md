@@ -254,3 +254,48 @@ parameters:
 driver: io.openebs.csi-mayastor
 deletionPolicy: Delete
 ```
+
+## Operational Considerations - Snapshot Capacity and Commitment Considerations
+
+When using OpenEBS VolumeSnapshots with *Replicated PV Mayastor*, snapshot creation is subject to capacity and commitment checks on each replica pool. Understanding this behavior is important to avoid unexpected snapshot or backup failures in production environments.
+ 
+### Snapshot Commitment Behavior
+
+VolumeSnapshots cannot be created if the snapshot commitment threshold is exceeded on any replica pool. Snapshot commitment defines the minimum free space required on a pool, expressed as a percentage of the volume size, before a snapshot operation is permitted.
+For example, if the snapshot commitment is set to **40%** and the volume size is **100 GiB**, each replica pool must have at least **40 GiB of free space** available. If any replica pool does not meet this requirement, snapshot creation fails and the backup operation does not proceed.
+
+### Pool Commitment Impact
+
+In addition to snapshot-specific checks, overall pool commitment also affects snapshot operations. Pool commitment controls how much a pool can be overcommitted when thin provisioning is enabled.
+If a pool reaches its configured pool commitment limit, snapshot creation may fail even when the snapshot commitment requirement appears to be satisfied. This behavior is intentional and prevents snapshots from being created on pools that are nearing capacity exhaustion, thereby protecting data integrity.
+ 
+**Example: Snapshot Commitment Impact on Backups**
+
+The following example illustrates how snapshot commitment can affect snapshot creation when replica pool capacity is constrained:
+
+| Volume Size | Free Space per Pool | Required Free Space (40%) | Snapshot Result |
+| :--- | :--- | :--- | :--- |
+| 7 GiB | 3 GiB | 2.8 GiB | Successful |
+| 8 GiB | 2 GiB | 3.2 GiB | Failed |
+| 9 GiB | 1 GiB | 3.6 GiB | Failed |
+
+In this scenario, snapshot creation succeeds only when all replica pools meet the snapshot commitment requirement. If any replica pool fails the check, the snapshot and therefore the backup fails.
+ 
+### Default Commitment Values and Customization
+
+Replicated PV Mayastor enforces snapshot and pool capacity checks using configurable Helm values:
+
+- **Snapshot Commitment**
+    - `--set mayastor.agents.core.capacity.thin.snapshotCommitment`
+    - Default: 40%
+    - Defines the minimum free space required on each replica pool to allow snapshot creation.
+
+- **Pool Commitment**
+
+    - `--set mayastor.agents.core.capacity.thin.poolCommitment`
+    - Default: 250%
+    - Defines the maximum allowed overcommitment for thin-provisioned DiskPools.
+
+The default values are suitable for most environments and provide a balanced trade-off between capacity utilization and operational safety. In typical deployments, these defaults do not require modification.
+
+However, environments with large volumes, frequent snapshots, or aggressive thin provisioning may require tuning these values during installation or upgrade using Helm parameters. Any adjustments should be accompanied by careful capacity planning and continuous monitoring of DiskPool utilization to ensure reliable snapshot creation and uninterrupted backup operations.
