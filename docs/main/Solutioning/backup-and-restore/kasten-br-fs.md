@@ -49,9 +49,9 @@ helm install k10 kasten/k10 --namespace=kasten-io --set global.persistence.stora
 kubectl get po -n kasten-io
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME                                    READY   STATUS    RESTARTS   AGE
 aggregatedapis-svc-6cff958895-4kq8j     1/1     Running   0          4m11s
 auth-svc-7f48c794f-jmw4k                1/1     Running   0          4m10s
@@ -116,9 +116,9 @@ In this example, we have changed the 'svc' type to **NodePort**.
 kubectl patch svc gateway -n kasten-io -p '{"spec": {"type": "NodePort"}}'
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 service/gateway patched
 ```
 
@@ -128,9 +128,9 @@ service/gateway patched
 kubectl get svc -n kasten-io
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME                    TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                               AGE
 aggregatedapis-svc      ClusterIP   10.98.172.242    <none>        443/TCP                               4m57s
 auth-svc                ClusterIP   10.100.81.56     <none>        8000/TCP                              4m57s
@@ -231,9 +231,9 @@ spec:
 kubectl get po -n test
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME                   READY   STATUS    RESTARTS   AGE
 test-cd9847c9c-wc6th   1/1     Running   0          25s
 ```
@@ -244,9 +244,9 @@ test-cd9847c9c-wc6th   1/1     Running   0          25s
 kubectl get pvc -n test
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS                  AGE
 mayastor-pvc   Bound    pvc-b5baa4cf-b126-42e6-b11f-3e20aeb3ab7b   1Gi        RWO            mayastor-thin-multi-replica   54s
 ```
@@ -292,6 +292,10 @@ Policy can be either created from this page or from the application page. Users 
 ![importing-data](../../assets/importing-data.png)
 
 #### Backup
+
+:::important
+Snapshot creation is subject to Replicated PV Mayastor capacity and commitment limits. Refer [Operational Considerations - Snapshot Capacity and Commitment Considerations](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot.md#operational-considerations---snapshot-capacity-and-commitment-considerations) for more information.
+:::
 
 Once the policies have been created, it is possible to run the backup. In this scenario, we have created policies to run “on-demand”. A snapshot can be scheduled based on the available options. Example: hourly/weekly
 
@@ -349,9 +353,9 @@ Use the following command to verify the application and the data.
 kubectl get pvc -n test
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME           STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS                  AGE
 mayastor-pvc   Bound    pvc-dee0596a-5382-4eae-9cc2-82e79403df58   1Gi        RWO            mayastor-thin-multi-replica   33s
 ```
@@ -362,9 +366,9 @@ mayastor-pvc   Bound    pvc-dee0596a-5382-4eae-9cc2-82e79403df58   1Gi        RW
 kubectl get po -n test
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME                   READY   STATUS    RESTARTS   AGE
 test-cd9847c9c-s922r   1/1     Running   0          38s
 ```
