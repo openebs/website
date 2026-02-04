@@ -53,9 +53,9 @@ velero install --provider gcp --plugins velero/velero-plugin-for-gcp:v1.10.0,vel
 kubectl get pods -n velero
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME                      READY   STATUS    RESTARTS   AGE
 node-agent-9b9gz          1/1     Running   0          175m
 node-agent-dlrzt          1/1     Running   0          175m
@@ -73,9 +73,9 @@ velero-6b9b99494b-rkppw   1/1     Running   0          20h
   kubectl get backupstoragelocation -n velero
   ```
 
-  **Output**
+  **Sample Output**
 
-  ```
+  ```yaml hideCopy=true
   NAME      PHASE       LAST VALIDATED   AGE   DEFAULT
   default   Available   34s              20h   true
   ```
@@ -88,9 +88,9 @@ velero-6b9b99494b-rkppw   1/1     Running   0          20h
   velero snapshot-location get
   ```
 
-  **Output**
+  **Sample Output**
 
-  ```
+  ```yaml hideCopy=true
   NAME      PROVIDER
   default   gcp
   ```
@@ -137,9 +137,9 @@ In this example, We have deployed a sample Nginx test application (with volume m
 kubectl get pods -n mayastor-app
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME   READY   STATUS    RESTARTS   AGE
 test   1/1     Running   0          63m
 ```
@@ -157,6 +157,10 @@ exit
 
 ### Backup using Velero
 
+:::important
+Snapshot creation is subject to Replicated PV Mayastor capacity and commitment limits. Refer [Operational Considerations - Snapshot Capacity and Commitment Considerations](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot.md#operational-considerations---snapshot-capacity-and-commitment-considerations) for more information.
+:::
+
 - Use the following command to create a Velero backup:
 
 **Command**
@@ -165,9 +169,9 @@ exit
 velero backup create my-fs-backup --snapshot-volumes --include-namespaces=mayastor-app --volume-snapshot-locations=default --storage-location=default --snapshot-move-data
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 Backup request "my-fs-backup" submitted successfully.
 Run `velero backup describe my-fs-backup` or `velero backup logs my-fs-backup` for more details.
 ```
@@ -180,9 +184,9 @@ Run `velero backup describe my-fs-backup` or `velero backup logs my-fs-backup` f
 velero backup get
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME         STATUS     ERRORS  WARNINGS  CREATED                        EXPIRES  STORAGE LOCATION   SELECTOR
 my-fs-backup Completed  0       0         2024-07-30 08:48:12 +0000 UTC  29d      default            <none>
 ```
@@ -193,9 +197,9 @@ my-fs-backup Completed  0       0         2024-07-30 08:48:12 +0000 UTC  29d    
 kubectl get datauploads.velero.io -A
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAMESPACE  NAME                STATUS     STARTED  BYTES DONE  TOTAL BYTES  STORAGE LOCATION  AGE    NODE
 velero     my-fs-backup-z9vrj  Completed  2m10s    35          35           default           2m10s  worker-velero-1
 ```
@@ -208,9 +212,9 @@ velero     my-fs-backup-z9vrj  Completed  2m10s    35          35           defa
 velero backup get
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME          STATUS      ERRORS   WARNINGS   CREATED                         EXPIRES   STORAGE LOCATION   SELECTOR
 my-fs-backup  Completed   0        0          2024-07-30 08:48:12 +0000 UTC   29d       default            <none>
 ```
@@ -229,9 +233,9 @@ In order to ensure that Velero can access the previously saved backups, it is re
 velero restore create my-fs-restore --from-backup my-fs-backup --restore-volumes=true --namespace-mappings mayastor-app:mayastor-app-restore
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 Restore request "my-fs-restore" submitted successfully.
 Run `velero restore describe my-fs-restore` or `velero restore logs my-fs-restore` for more details.
 ```
@@ -261,9 +265,9 @@ my-fs-restore  my-fs-backup  Completed  2024-07-30 08:56:25 +0000 UTC  2024-07-3
 kubectl get datadownloads.velero.io -A
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAMESPACE   NAME                   STATUS      STARTED   BYTES DONE   TOTAL BYTES   STORAGE LOCATION   AGE   NODE
 velero      my-fs-restore-2s4w5    Completed   56s       35           35            default            56s   worker-restore-1
 ```
@@ -276,9 +280,9 @@ velero      my-fs-restore-2s4w5    Completed   56s       35           35        
 kubectl get pods -n mayastor-app-restore
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME   READY   STATUS    RESTARTS   AGE
 test   1/1     Running   0          2m20s
 ```
@@ -289,9 +293,9 @@ test   1/1     Running   0          2m20s
 kubectl get pvc -n mayastor-app-restore
 ```
 
-**Output**
+**Sample Output**
 
-```
+```yaml hideCopy=true
 NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
 ms-volume-claim   Bound    pvc-d1f5eddc-289b-4b7e-a61e-eaccce0f0d71   1Gi        RWO            mayastor-3-thin   2m25s
 ```

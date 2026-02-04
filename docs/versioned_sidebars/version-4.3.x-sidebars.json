@@ -760,6 +760,11 @@
               "type": "doc",
               "id": "version-4.3.x/Solutioning/backup-and-restore/kubevirt-backup",
               "label": "KubeVirt VM Backup and Restore"
+            },
+            {
+              "type": "doc",
+              "id": "version-4.3.x/Solutioning/backup-and-restore/cloudnative-backup",
+              "label": "CloudNativePG Backups"
             }
           ]
         } 

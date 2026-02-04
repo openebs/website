@@ -22,9 +22,7 @@ To protect KubeVirt-based VMs, a robust backup strategy is essential. This docum
 | KubeVirt | v1.5.0 |
 | Kubernetes (3 nodes) | v1.29.6 |
 | OpenEBS | v4.2.0 |
-| NFS CSI Driver | v4.11.0 |
 | Containerized Data Importer (CDI) | v1.62.0 |
-| kubectl-mayastor Plugin | v2.7.4+0 |
 | virtctl | v1.5.0 |
 
 ## Prerequisites
@@ -35,16 +33,16 @@ To protect KubeVirt-based VMs, a robust backup strategy is essential. This docum
   
   Ensure that OpenEBS is installed in your cluster. Refer to the [OpenEBS Installation Documentation](../../quickstart-guide/installation.md) for step-by-step instructions.
 
-- **Install the `kubectl-mayastor` Plugin**
+- **Install the `kubectl-openebs` Plugin**
   
-  Ensure that `kubectl-mayastor` plugin is installed. Refer to the [Mayastor Kubectl Plugin Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/kubectl-plugin.md) to install the plugin.
+  Ensure that `kubectl-openebs` plugin is installed. Refer to the [Kubectl OpenEBS Plugin Documentation](../../user-guides/kubectl-openebs.md) to install the plugin.
 
 - **Create a StorageClass**
 
 1. Create a file named `StorageClass.yaml`.
   
 **StorageClass.yaml**
-```
+```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
@@ -69,7 +67,7 @@ kubectl create -f StorageClass.yaml
 
 1. Create a file named `VolumeSnapshotClass.yaml`.
 
-```
+```yaml
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshotClass
 metadata:
@@ -97,7 +95,7 @@ kubectl create -f "https://github.com/kubevirt/kubevirt/releases/download/${VERS
 ```
 
 **Sample Output**
-```
+```yaml hideCopy=true
 namespace/kubevirt created
 customresourcedefinition.apiextensions.k8s.io/kubevirts.kubevirt.io created
 priorityclass.scheduling.k8s.io/kubevirt-cluster-critical created
@@ -113,11 +111,11 @@ deployment.apps/virt-operator created
 2. Create KubeVirt Custom Resource.
 
 ```
-kubectl create -f "https://github.com/kubevirt/kubevirt/releases/download/${VERSION}/kubevirt-cr.yaml "
+kubectl create -f "https://github.com/kubevirt/kubevirt/releases/download/${VERSION}/kubevirt-cr.yaml"
 ```
 
 **Sample Output**
-```
+```yaml hideCopy=true
 kubevirt.kubevirt.io/kubevirt created
 ```
 
@@ -134,7 +132,7 @@ kubectl get all -n kubevirt
 ```
 
 **Sample Output**
-```
+```yaml hideCopy=true
 ➜  kubevirt kubectl get all -n kubevirt
 Warning: kubevirt.io/v1 VirtualMachineInstancePresets is now deprecated and will be removed in v2.
 
@@ -185,7 +183,7 @@ kubectl create -f https://github.com/kubevirt/containerized-data-importer/releas
 ```
 
 **Sample Output - CDI**
-```
+```yaml hideCopy=true
 namespace/cdi created
 customresourcedefinition.apiextensions.k8s.io/cdis.cdi.kubevirt.io created
 clusterrole.rbac.authorization.k8s.io/cdi-operator-cluster created
@@ -197,7 +195,7 @@ deployment.apps/cdi-operator created
 ```
 
 **Sample Output - CR**
-```
+```yaml hideCopy=true
 kubectl create -f https://github.com/kubevirt/containerized-data-importer/releases/download/$VERSION/cdi-cr.yaml
 cdi.cdi.kubevirt.io/cdi created
 ```
@@ -229,7 +227,7 @@ kubectl get all -n cdi
 ```
 
 **Sample Output**
-```  
+```yaml hideCopy=true  
 Warning: kubevirt.io/v1 VirtualMachineInstancePresets is now deprecated and will be removed in v2.
 NAME                                         READY       STATUS          RESTARTS        AGE
 pod/cdi-apiserver-5bbd7b4df5-28gm8           1/1         Running         1 (2m55s ago)   3m
@@ -262,7 +260,7 @@ replicaset.apps/cdi-uploadproxy-856554cb9c   1           1               1      
 1. Create a file named `dv.yaml`.
 
 **dv.yaml**
-```
+```yaml
 apiVersion: cdi.kubevirt.io/v1beta1
 kind: DataVolume
 metadata:
@@ -298,7 +296,7 @@ kubectl logs -f pod/importer-fedora
 1. Create a file named `vm1_pvc.yaml` to use the PVC prepared by DataVolume as a root disk.
 
 **vm1_pvc.yaml**
-```
+```yaml
 apiVersion: kubevirt.io/v1
 kind: VirtualMachine
 metadata:
@@ -466,8 +464,7 @@ aws iam create-access-key --user-name velero
 ```
 
 **Sample Output**
-
-```
+```yaml hideCopy=true
 {
     "AccessKey": {
         "UserName": "velero",
@@ -521,7 +518,7 @@ kubectl get all -n velero
 ```
 
 **Sample Output**
-```
+```yaml hideCopy=true
 Warning: kubevirt.io/v1 VirtualMachineInstancePresets is now deprecated and will be removed in v2.
 NAME                                 READY       STATUS         RESTARTS     AGE
 pod/node-agent-2nbdm                 1/1         Running        0            7s
@@ -547,7 +544,7 @@ velero get backup-location
 ```
 
 **Sample Output**
-```
+```yaml hideCopy=true
 NAME      PROVIDER   BUCKET/PREFIX       PHASE      LAST VALIDATED                 ACCESS MODE   DEFAULT
 default   aws        kubevirtbackup2025  Available  2025-05-05 12:32:25 +0530 IST  ReadWrite     true
 ```
@@ -568,9 +565,136 @@ velero plugin add quay.io/kubevirt/kubevirt-velero-plugin:v0.2.0
 velero get plugins | grep kubevirt
 ```
 
-## Backup of KubeVirt VM
+## Backing Up a KubeVirt VM
 
+:::important
+Snapshot creation is subject to Replicated PV Mayastor capacity and commitment limits. Refer [Operational Considerations - Snapshot Capacity and Commitment Considerations](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot.md#operational-considerations---snapshot-capacity-and-commitment-considerations) for more information.
+:::
 
+1. Create a Velero backup object that includes the KubeVirt VM, CDI objects, and persistent volumes backed by OpenEBS.
+
+```
+velero backup create vm1backup1 --snapshot-volumes --include-namespaces=default --volume-snapshot-locations=default --storage-location=default --snapshot-move-data
+```
+
+2. Check Backup Status.
+
+```
+velero get backup vm1backup1
+```
+
+**Sample Output**
+
+```yaml hideCopy=true
+NAME        STATUS     ERRORS  WARNINGS  CREATED                         EXPIRES  STORAGE LOCATION  SELECTOR
+vm1backup1  Completed  0       0         2025-05-05 13:36:09 +0530 IST    29d      default           <none>
+```
+
+3. After the backup is completed, delete the original VM (`vm1`) in the default namespace to demonstrate a successful restore.
+
+```
+kubectl delete vm vm1
+```
+
+**Sample Output**
+
+```yaml hideCopy=true
+virtualmachine.kubevirt.io "vm1" deleted
+```
+
+4. Delete the DataVolume.
+
+```
+kubectl delete datavolumes.cdi.kubevirt.io fedora-1
+```
+
+**Sample Output**
+
+```yaml hideCopy=true
+datavolume.cdi.kubevirt.io "fedora-1" deleted
+```
+
+:::note
+When backing up a running virtual machine with the guest agent installed and the KubeVirt-Velero plugin enabled, Velero automatically executes backup hooks. These hooks freeze the guest file systems before the snapshot is taken and unfreeze them afterward, ensuring application-consistent snapshots. If the guest agent is not present, Velero performs a best-effort snapshot.
+:::
+
+## Restoring a KubeVirt VM
+
+1. Create a new namespace to restore the virtual machine and associated resources.
+
+```
+kubectl create ns restoredvm
+```
+
+2. Create a Velero restore object.
+
+```
+velero restore create vm1restorenew --from-backup vm1backup1 --restore-volumes=true --namespace-mappings default:restoredvm
+```
+
+3. Check the `datadownload` status.
+
+```
+kubectl get datadownload -n velero
+```
+
+**Sample Output**
+
+```yaml hideCopy=true
+NAME                   STATUS     STARTED  BYTES DONE   TOTAL BYTES  STORAGE LOCATION  AGE  NODE
+vm1restorenew-v56ft    Completed  71m      8342339584   8584674304   default           71m  node-0-347244
+```
+
+Once the restore completes, Velero recreates:
+
+  - The KubeVirt virtual machine (vm1)
+  - The associated DataVolume (fedora)
+  - All dependent Kubernetes resources
+
+These resources are restored into the restoredvm namespace.
+
+## Verification of Restored Data
+
+After the restore operation completes, verify that both the virtual machine and its data have been successfully recovered.
+
+1. Connect to the restored virtual machine using the console.
+2. Navigate to the root user’s home directory.
+3. Verify the presence of the sample data that was created before the backup.
+
+```
+virtctl console vm1 -n restoredvm
+```
+
+**Sample Output**
+```yaml hideCopy=true
+Successfully connected to vm1 console. The escape sequence is ^]
+
+vm1 login: root
+Password:
+Last login: Mon May  5 08:03:43 on ttyS0
+
+[root@vm1 ~]# ls
+sampledata  test1  test2
+
+[root@vm1 ~]# cat sampledata
+This is some sample data
+
+[root@vm1 ~]# logout
+
+Fedora Linux 40 (Cloud Edition)
+Kernel 6.8.5-301.fc40.x86_64 on an x86_64 (ttyS0)
+
+eth0: 10.244.1.45 fe80::3ce0:f7ff:fe1e:53c6
+vm1 login:
+```
+
+This verification confirms that:
+
+  - The virtual machine configuration was restored correctly.
+  - The persistent storage contents were fully preserved.
+  - The backup and restore workflow functions end-to-end as expected.
+
+Validating restored data is a critical step, as it ensures that the Velero backup accurately captured the VM state along with its underlying persistent volumes.
 
 ## See Also
 
