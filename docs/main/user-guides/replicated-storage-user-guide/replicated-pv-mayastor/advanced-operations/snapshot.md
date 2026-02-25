@@ -257,21 +257,73 @@ deletionPolicy: Delete
 
 ## Operational Considerations - Snapshot Capacity and Commitment Considerations
 
-When using OpenEBS VolumeSnapshots with *Replicated PV Mayastor*, snapshot creation is subject to capacity and commitment checks on each replica pool. Understanding this behavior is important to avoid unexpected snapshot or backup failures in production environments.
- 
+When using VolumeSnapshots with Replicated PV Mayastor, snapshot, volume, and replica creation are governed by configurable capacity commitment thresholds. These commitment limits ensure that storage pools maintain sufficient free space to support copy-on-write operations, replica placement, and snapshot creation safely.
+
+Understanding these limits is important to prevent unexpected failures during snapshot, backup, or volume provisioning operations.
+
+### Commitment Thresholds Overview
+
+OpenEBS Replicated PV Mayastor enforces the following commitment thresholds for thin-provisioned storage pools:
+
+| Commitment Type | Description | Default |
+| :--- | :--- | :--- |
+| `poolCommitment` | Maximum allowed overcommitment of a storage pool | 250% |
+| `volumeCommitment` | Minimum required free space to create replicas for existing volumes | 40% |
+| `volumeCommitmentInitial` | Minimum required free space to create replicas for new volumes | 40% |
+| `snapshotCommitment` | Minimum required free space to create snapshots | 40% |
+
+These thresholds are evaluated independently on each replica pool.
+
 ### Snapshot Commitment Behavior
 
-VolumeSnapshots cannot be created if the snapshot commitment threshold is exceeded on any replica pool. Snapshot commitment defines the minimum free space required on a pool, expressed as a percentage of the volume size, before a snapshot operation is permitted.
-For example, if the snapshot commitment is set to **40%** and the volume size is **100 GiB**, each replica pool must have at least **40 GiB of free space** available. If any replica pool does not meet this requirement, snapshot creation fails and the backup operation does not proceed.
+Snapshot creation requires that each replica pool has sufficient free space relative to the volume size. This requirement is controlled by the snapshotCommitment threshold.
 
-### Pool Commitment Impact
+Example:
 
-In addition to snapshot-specific checks, overall pool commitment also affects snapshot operations. Pool commitment controls how much a pool can be overcommitted when thin provisioning is enabled.
-If a pool reaches its configured pool commitment limit, snapshot creation may fail even when the snapshot commitment requirement appears to be satisfied. This behavior is intentional and prevents snapshots from being created on pools that are nearing capacity exhaustion, thereby protecting data integrity.
+- SnapshotCommitment = 40%
+- Volume size = 100 GiB
+- Required free space per replica pool = 40 GiB
+
+If any replica pool has less than 40 GiB of free space, snapshot creation fails.
+This check ensures that sufficient space is available to accommodate copy-on-write operations after snapshot creation.
+
+### Pool Commitment Impact on Snapshots and Volumes
+
+The poolCommitment threshold defines how much a pool can be overcommitted when thin provisioning is enabled.
+
+Example:
+- Pool size = 10 GiB
+- PoolCommitment = 250%
+- Maximum logical allocation allowed = 25 GiB
+
+If the pool reaches this commitment limit, the following operations may fail:
+- Volume creation
+- Replica creation
+- Snapshot creation
+- Backup operations dependent on snapshots
+
+This mechanism prevents storage pools from exceeding safe operating limits.
+
+### Behavior with Thick-Provisioned Volumes
+
+When a snapshot is created for a thick-provisioned volume, the volume is internally converted to thin provisioning.
+
+As part of this process:
+- The snapshot's logical size equals the volume size
+- The pool must reserve committed capacity equal to the volume size
+- Even though physical space is not immediately consumed, committed capacity increases
+
+If this increase causes the pool to exceed its commitment thresholds, snapshot creation may fail.
+This behavior ensures safe operation and prevents unexpected storage exhaustion.
  
 **Example: Snapshot Commitment Impact on Backups**
 
-The following example illustrates how snapshot commitment can affect snapshot creation when replica pool capacity is constrained:
+The following example illustrates how snapshot commitment can affect snapshot creation when replica pool capacity is constrained.
+
+Assumptions:
+- Pool size: 10 GiB
+- SnapshotCommitment: 40%
+- Thick-provisioned volumes
 
 | Volume Size | Free Space per Pool | Required Free Space (40%) | Snapshot Result |
 | :--- | :--- | :--- | :--- |
@@ -283,19 +335,18 @@ In this scenario, snapshot creation succeeds only when all replica pools meet th
  
 ### Default Commitment Values and Customization
 
-Replicated PV Mayastor enforces snapshot and pool capacity checks using configurable Helm values:
+Replicated PV Mayastor enforces snapshot and pool capacity checks using configurable Helm values.
 
-- **Snapshot Commitment**
-    - `--set mayastor.agents.core.capacity.thin.snapshotCommitment`
-    - Default: 40%
-    - Defines the minimum free space required on each replica pool to allow snapshot creation.
+Example Helm parameters:
 
-- **Pool Commitment**
+`--set mayastor.agents.core.capacity.thin.poolCommitment=250%`
 
-    - `--set mayastor.agents.core.capacity.thin.poolCommitment`
-    - Default: 250%
-    - Defines the maximum allowed overcommitment for thin-provisioned DiskPools.
+`--set mayastor.agents.core.capacity.thin.volumeCommitment=40%`
 
-The default values are suitable for most environments and provide a balanced trade-off between capacity utilization and operational safety. In typical deployments, these defaults do not require modification.
+`--set mayastor.agents.core.capacity.thin.volumeCommitmentInitial=40%`
+
+`--set mayastor.agents.core.capacity.thin.snapshotCommitment=40%`
+
+The default values are suitable for most environments and provide a good balance between storage utilization and operational safety.
 
 However, environments with large volumes, frequent snapshots, or aggressive thin provisioning may require tuning these values during installation or upgrade using Helm parameters. Any adjustments should be accompanied by careful capacity planning and continuous monitoring of DiskPool utilization to ensure reliable snapshot creation and uninterrupted backup operations.
