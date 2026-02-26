@@ -415,3 +415,4 @@ Successful output confirms that the database was restored correctly from the Vol
 - [Kasten Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem](../backup-and-restore/kasten-br-fs.md)
 - [Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem](../backup-and-restore/velero-br-fs.md)
 - [KubeVirt VM Backup and Restore using Replicated PV Mayastor VolumeSnapshots and Velero - FileSystem](../backup-and-restore/kubevirt-backup.md)
+- [OpenEBS VolumeSnapshots for Cloning Crunchy Data PostgreSQL Clusters](cloning-crunchy-data.md)
