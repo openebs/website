@@ -787,6 +787,11 @@ module.exports = {
               type: "doc",
               id: "Solutioning/backup-and-restore/cloudnative-backup",
               label: "CloudNativePG Backups"
+            },
+            {
+              type: "doc",
+              id: "Solutioning/backup-and-restore/cloning-crunchy-data",
+              label: "Cloning Crunchy Data"
             }
             
           ]

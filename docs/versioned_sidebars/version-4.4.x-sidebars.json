@@ -785,6 +785,11 @@
               "type": "doc",
               "id": "version-4.4.x/Solutioning/backup-and-restore/cloudnative-backup",
               "label": "CloudNativePG Backups"
+            },
+            {
+              "type": "doc",
+              "id": "version-4.4.x/Solutioning/backup-and-restore/cloning-crunchy-data",
+              "label": "Cloning Crunchy Data"
             }
           ]
         } 
