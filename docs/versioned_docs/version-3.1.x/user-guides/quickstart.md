@@ -44,7 +44,7 @@ As a Kubernetes cluster administrator, you will have to work with your Platform 
 
 As a Kubernetes cluster administrator or Platform SREs you will have to decide which deployment strategy works best for you - either use an hyperconverged mode where Stateful applications and storage volumes are co-located or run Stateful applications and storage on different pools of nodes. 
 
-For installing OpenEBS, you Kubernetes cluster should meet the following:
+For installing OpenEBS, your Kubernetes cluster should meet the following:
 - Kubernetes 1.18 or newer is recommended. 
 - Based on the selected data engine, the nodes should be prepared with additional packages like:
   - Installing the ext4, xfs, nfs, lvm, zfs or iscsi, nvme packages.
