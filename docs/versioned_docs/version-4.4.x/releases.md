@@ -18,9 +18,9 @@ The status of the various components as of v4.4 are as follows:
 | :--- | :--- | :--- | :--- |
 | Replicated Storage | Replicated PV Mayastor | 2.10.0 | Stable |
 | Local Storage | Local PV Hostpath | 4.4.0 | Stable |
-| Local Storage | Local PV LVM | 1.8.0 | Stable |
-| Local Storage | Local PV ZFS | 2.9.0 | Stable |
-| Local Storage | Local PV Rawfile | 0.12.0 | Experimental |
+| Local Storage | Local PV LVM | 1.8.1 | Stable |
+| Local Storage | Local PV ZFS | 2.9.1 | Stable |
+| Local Storage | Local PV Rawfile | 0.13.1 | Experimental |
 | Out-of-tree (External Storage) Provisioners | Local PV Hostpath | 4.4.0 | Stable |
 | Other Components | CLI | 4.4.0 | — |
 
@@ -163,7 +163,7 @@ This issue is not caused by Mayastor but is triggered more frequently because of
 
 ## Related Information
 
-OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For release summaries and full version-level notes, see [OpenEBS Release 4.4](https://github.com/openebs/openebs/releases/tag/v4.4).
+OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For release summaries and full version-level notes, see [OpenEBS Release 4.4](https://github.com/openebs/openebs/releases).
 
 See version specific Releases to view the legacy OpenEBS Releases.
 
