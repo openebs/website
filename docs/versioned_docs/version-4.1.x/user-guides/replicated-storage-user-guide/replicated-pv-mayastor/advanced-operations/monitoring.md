@@ -117,34 +117,34 @@ The following sections describes the raw resource metrics counters.
 
 | Metric Name | Metric Type | Labels/Tags | Metric Unit | Description |
 | :--- | :--- | :--- | :--- | :--- |
-|diskpool_num_read_ops | Gauge | `name`=<pool_id>, `node`=<pool_node> | Integer | Number of read operations |
-|diskpool_bytes_read | Gauge | `name`=<pool_id>, `node`=<pool_node> | Integer | Total bytes read on the pool |
-|diskpool_num_write_ops | Gauge | `name`=<pool_id>, `node`=<pool_node> | Integer | Number of write operations on the pool |
-|diskpool_bytes_written | Gauge | `name`=<pool_id>, `node`=<pool_node> | Integer | Total bytes written on the pool |
-|diskpool_read_latency_us | Gauge | `name`=<pool_id>, `node`=<pool_node> | Integer | Total read latency for all IOs on Pool in usec. |
-|diskpool_write_latency_us | Gauge | `name`=<pool_id>, `node`=<pool_node> | Integer | Total write latency for all IOs on Pool in usec. |
+|diskpool_num_read_ops | Gauge | `name`=`<pool_id>`, `node`=`<pool_node>` | Integer | Number of read operations |
+|diskpool_bytes_read | Gauge | `name`=`<pool_id>`, `node`=`<pool_node>` | Integer | Total bytes read on the pool |
+|diskpool_num_write_ops | Gauge | `name`=`<pool_id>`, `node`=`<pool_node>` | Integer | Number of write operations on the pool |
+|diskpool_bytes_written | Gauge | `name`=`<pool_id>`, `node`=`<pool_node>` | Integer | Total bytes written on the pool |
+|diskpool_read_latency_us | Gauge | `name`=`<pool_id>`, `node`=`<pool_node>` | Integer | Total read latency for all IOs on Pool in usec. |
+|diskpool_write_latency_us | Gauge | `name`=`<pool_id>`, `node`=`<pool_node>` | Integer | Total write latency for all IOs on Pool in usec. |
 
 ### Replica IoStat Counters
 
 | Metric Name | Metric Type | Labels/Tags | Metric Unit | Description |
 | :--- | :--- | :--- | :--- | :--- |
-|replica_num_read_ops | Gauge | `name`=<replica_uuid>, `pool_id`=<pool_uuid> `pv_name`=<pv_name>, `node`=<replica_node> | Integer | Number of read operations on replica |
-|replica_bytes_read | Gauge | `name`=<replica_uuid>, `pv_name`=<pv_name>, `node`=<replica_node> | Integer | Total bytes read on the replica |
-|replica_num_write_ops | Gauge | `name`=<replica_uuid>, `pv_name`=<pv_name>, `node`=<replica_node> | Integer | Number of write operations on the replica |
-|replica_bytes_written | Gauge | `name`=<replica_uuid>, `pv_name`=<pv_name>, `node`=<replica_node> | Integer | Total bytes written on the Replica |
-|replica_read_latency_us | Gauge | `name`=<replica_uuid>, `pv_name`=<pv_name>, `node`=<replica_node> | Integer | Total read latency for all IOs on replica in usec. |
-|replica_write_latency_us | Gauge | `name`=<replica_uuid>, `pv_name`=<pv_name>, `node`=<replica_node> | Integer | Total write latency for all IOs on replica in usec. |
+|replica_num_read_ops | Gauge | `name`=`<replica_uuid>`, `pool_id`=`<pool_uuid>` `pv_name`=`<pv_name>`, `node`=`<replica_node>` | Integer | Number of read operations on replica |
+|replica_bytes_read | Gauge | `name`=`<replica_uuid>`, `pv_name`=`<pv_name>`, `node`=`<replica_node>` | Integer | Total bytes read on the replica |
+|replica_num_write_ops | Gauge | `name`=`<replica_uuid>`, `pv_name`=`<pv_name>`, `node`=`<replica_node>` | Integer | Number of write operations on the replica |
+|replica_bytes_written | Gauge | `name`=`<replica_uuid>`, `pv_name`=`<pv_name>`, `node`=`<replica_node>` | Integer | Total bytes written on the Replica |
+|replica_read_latency_us | Gauge | `name`=`<replica_uuid>`, `pv_name`=`<pv_name>`, `node`=`<replica_node>` | Integer | Total read latency for all IOs on replica in usec. |
+|replica_write_latency_us | Gauge | `name`=`<replica_uuid>`, `pv_name`=`<pv_name>`, `node`=`<replica_node>` | Integer | Total write latency for all IOs on replica in usec. |
 
 ### Target/Volume IoStat Counters
 
 | Metric Name | Metric Type | Labels/Tags | Metric Unit | Description |
 | :--- | :--- | :--- | :--- | :--- |
-|volume_num_read_ops | Gauge | `pv_name`=<pv_name> | Integer | Number of read operations through vol target |
-|volume_bytes_read | Gauge | `pv_name`=<pv_name> | Integer | Total bytes read through vol target |
-|volume_num_write_ops | Gauge | `pv_name`=<pv_name> | Integer | Number of write operations through vol target |
-|volume_bytes_written | Gauge | `pv_name`=<pv_name> | Integer | Total bytes written through vol target |
-|volume_read_latency_us | Gauge | `pv_name`=<pv_name> | Integer | Total read latency for all IOs through vol target in usec. |
-|volume_write_latency_us | Gauge | `pv_name`=<pv_name> | Integer | Total write latency for all IOs through vol target in usec. |
+|volume_num_read_ops | Gauge | `pv_name`=`<pv_name>` | Integer | Number of read operations through vol target |
+|volume_bytes_read | Gauge | `pv_name`=`<pv_name>` | Integer | Total bytes read through vol target |
+|volume_num_write_ops | Gauge | `pv_name`=`<pv_name>` | Integer | Number of write operations through vol target |
+|volume_bytes_written | Gauge | `pv_name`=`<pv_name>` | Integer | Total bytes written through vol target |
+|volume_read_latency_us | Gauge | `pv_name`=`<pv_name>` | Integer | Total read latency for all IOs through vol target in usec. |
+|volume_write_latency_us | Gauge | `pv_name`=`<pv_name>` | Integer | Total write latency for all IOs through vol target in usec. |
 
 :::note
 If you require IOPS, Latency, and Throughput in the dashboard, use the following consideration while creating dashboard json config.

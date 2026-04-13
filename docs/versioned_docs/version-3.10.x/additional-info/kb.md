@@ -1121,7 +1121,7 @@ Applying base snapshot to pool related to R2 involves setting a few parameters. 
   root@cstor-sparse-pool-sb1v-77658f4c85-jcgwc:/# zfs snapshot cstor-231fca0f-c6a1-11e9-be30-42010a800094/pvc-5c52d001-c6a1-11e9-be30-42010a800094@snap_data1_data2
   ```
 
-  Please note that snapshot name which is <incr_snap_name> as mentioned above need to be different for each incremental snapshot. 
+  Please note that snapshot name which is `<incr_snap_name>` as mentioned above need to be different for each incremental snapshot. 
 
 **Step5:** Copy the data in incremental snapshot to R2’s node
 

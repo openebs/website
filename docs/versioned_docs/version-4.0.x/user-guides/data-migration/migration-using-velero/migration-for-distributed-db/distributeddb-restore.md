@@ -317,7 +317,7 @@ kubectl delete sts cassandra -n cassandra --cascade=orphan
 
 #### Recreate the Cassandra StatefulSet using the Updated YAML
 
-- Use the kubectl apply command to apply the modified StatefulSet YAML configuration file, ensuring you are in the correct namespace where your Cassandra deployment resides. Replace <path_to_your_yaml> with the actual path to your YAML file.
+- Use the kubectl apply command to apply the modified StatefulSet YAML configuration file, ensuring you are in the correct namespace where your Cassandra deployment resides. Replace `<path_to_your_yaml>` with the actual path to your YAML file.
 
 ```
 kubectl apply -f <path_to_your_yaml> -n cassandra

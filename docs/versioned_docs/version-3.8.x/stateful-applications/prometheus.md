@@ -288,7 +288,7 @@ http://52.66.223.37:31669
 
 Launch Grafana using Node's External IP and with corresponding NodePort of **prometheus-grafana** service
 
-http://<any_node_external-ip>:<Grafana_SVC_NodePort>
+http://`<any_node_external-ip>`:`<Grafana_SVC_NodePort>`
 
 Example:
 

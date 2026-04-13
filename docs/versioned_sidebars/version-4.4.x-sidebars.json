@@ -1,5 +1,5 @@
 {
-  "version-4.4.x/docs": [
+  "docs": [
     {
       "collapsed": true,
       "type": "category",
@@ -10,22 +10,22 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-4.4.x/introduction-to-openebs/overview",
+          "id": "introduction-to-openebs/overview",
           "label": "Introduction to OpenEBS"
         },
         {
           "type": "doc",
-          "id": "version-4.4.x/introduction-to-openebs/features",
+          "id": "introduction-to-openebs/features",
           "label": "Features"
         },
         {
           "type": "doc",
-          "id": "version-4.4.x/introduction-to-openebs/benefits",
+          "id": "introduction-to-openebs/benefits",
           "label": "Benefits"
         },
         {
           "type": "doc",
-          "id": "version-4.4.x/introduction-to-openebs/usecases",
+          "id": "introduction-to-openebs/usecases",
           "label": "Use Cases and Examples"
         }
       ]
@@ -40,17 +40,17 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-4.4.x/concepts/basics",
+          "id": "concepts/basics",
           "label": "Basics"
         },
         {
           "type": "doc",
-          "id": "version-4.4.x/concepts/cns",
+          "id": "concepts/cns",
           "label": "Container Native Storage"
         },
         {
           "type": "doc",
-          "id": "version-4.4.x/concepts/architecture",
+          "id": "concepts/architecture",
           "label": "Architecture"
         },
         {
@@ -63,21 +63,22 @@
           "items": [
             {
               "type": "doc",
-              "id": "version-4.4.x/concepts/data-engines/dataengines",
-              "label": "Overview"
+              "id": "concepts/data-engines/dataengines",
+              "label": "Overview",
+              "key": "Concepts_Data_Engines_Overview"
             },
             {
               "type": "doc",
-              "id": "version-4.4.x/concepts/data-engines/localstorage",
+              "id": "concepts/data-engines/localstorage",
               "label": "Local Storage"
             },
             {
               "type": "doc",
-              "id": "version-4.4.x/concepts/data-engines/replicated-storage",
+              "id": "concepts/data-engines/replicated-storage",
               "label": "Replicated Storage"
             }
-          ] 
-        }  
+          ]
+        }
       ]
     },
     {
@@ -90,18 +91,20 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-4.4.x/quickstart-guide/prerequisites",
-          "label": "Prerequisites"
+          "id": "quickstart-guide/prerequisites",
+          "label": "Prerequisites",
+          "key": "Quickstart_Guide_Prerequisites"
         },
         {
           "type": "doc",
-          "id": "version-4.4.x/quickstart-guide/installation",
+          "id": "quickstart-guide/installation",
           "label": "Installation"
         },
         {
           "type": "doc",
-          "id": "version-4.4.x/quickstart-guide/deployment",
-          "label": "Deploy an Application"
+          "id": "quickstart-guide/deployment",
+          "label": "Deploy an Application",
+          "key": "Quickstart_Guide_Deploy_an_Application"
         }
       ]
     },
@@ -131,8 +134,9 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview",
-                  "label": "Overview"
+                  "id": "user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview",
+                  "label": "Overview",
+                  "key": "User_Guides_Local_Storage_Local_PV_Hostpath_Overview"
                 },
                 {
                   "collapsed": true,
@@ -144,15 +148,18 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-hostpath/configuration/hostpath-create-storageclass",
-                      "label": "Create StorageClass(s)"
+                      "id": "user-guides/local-storage-user-guide/local-pv-hostpath/configuration/hostpath-create-storageclass",
+                      "label": "Create StorageClass(s)",
+                      "key": "User_Guides_Local_Storage_Local_PV_Hostpath_Configuration_Create_StorageClass(s)"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-hostpath/configuration/hostpath-deployment",
-                      "label": "Deploy an Application"
+                      "id": "user-guides/local-storage-user-guide/local-pv-hostpath/configuration/hostpath-deployment",
+                      "label": "Deploy an Application",
+                      "key": "User_Guides_Local_Storage_Local_PV_Hostpath_Configuration_Deploy_an_Application"
                     }
-                  ]
+                  ],
+                  "key": "User_Guides_Local_Storage_Local_PV_Hostpath_Configuration"
                 },
                 {
                   "collapsed": true,
@@ -172,29 +179,31 @@
                       "items": [
                         {
                           "type": "doc",
-                          "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/xfs-quota-pre",
-                          "label": "Prerequisites"
+                          "id": "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/xfs-quota-pre",
+                          "label": "Prerequisites",
+                          "key": "User_Guides_Local_Storage_Local_PV_Hostpath_Advanced_Operations_XFS_Quota_Prerequisites"
                         },
                         {
                           "type": "doc",
-                          "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/enable-xfs-quota",
+                          "id": "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/enable-xfs-quota",
                           "label": "Enable XFS Quota"
                         },
                         {
                           "type": "doc",
-                          "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/modify-xfs-quota",
+                          "id": "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/modify-xfs-quota",
                           "label": "Modify XFS Quota"
                         },
                         {
                           "type": "doc",
-                          "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/loop-device-xfs-quota",
+                          "id": "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/loop-device-xfs-quota",
                           "label": "XFS Quota with Loop Device"
                         }
-                      ] 
+                      ]
                     }
-                  ]
+                  ],
+                  "key": "User_Guides_Local_Storage_Local_PV_Hostpath_Advanced_Operations"
                 }
-              ] 
+              ]
             },
             {
               "collapsed": true,
@@ -206,8 +215,9 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-lvm/lvm-overview",
-                  "label": "Overview"
+                  "id": "user-guides/local-storage-user-guide/local-pv-lvm/lvm-overview",
+                  "label": "Overview",
+                  "key": "User_Guides_Local_Storage_Local_PV_LVM_Overview"
                 },
                 {
                   "collapsed": true,
@@ -219,25 +229,29 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-create-storageclass",
-                      "label": "Create StorageClass(s)"
+                      "id": "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-create-storageclass",
+                      "label": "Create StorageClass(s)",
+                      "key": "User_Guides_Local_Storage_Local_PV_LVM_Configuration_Create_StorageClass(s)"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-storageclass-options",
+                      "id": "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-storageclass-options",
                       "label": "StorageClass Options"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-create-pvc",
-                      "label": "Create PVC"
+                      "id": "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-create-pvc",
+                      "label": "Create PVC",
+                      "key": "User_Guides_Local_Storage_Local_PV_LVM_Configuration_Create_PVC"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-deployment",
-                      "label": "Deploy an Application"
+                      "id": "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-deployment",
+                      "label": "Deploy an Application",
+                      "key": "User_Guides_Local_Storage_Local_PV_LVM_Configuration_Deploy_an_Application"
                     }
-                  ]
+                  ],
+                  "key": "User_Guides_Local_Storage_Local_PV_LVM_Configuration"
                 },
                 {
                   "collapsed": true,
@@ -249,37 +263,42 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-fs-group",
+                      "id": "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-fs-group",
                       "label": "FSGroup"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-raw-block-volume",
-                      "label": "Raw Block Volume"
+                      "id": "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-raw-block-volume",
+                      "label": "Raw Block Volume",
+                      "key": "User_Guides_Local_Storage_Local_PV_LVM_Advanced_Operations_Raw_Block_Volume"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-resize",
-                      "label": "Resize"
+                      "id": "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-resize",
+                      "label": "Resize",
+                      "key": "User_Guides_Local_Storage_Local_PV_LVM_Advanced_Operations_Resize"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-snapshot",
-                      "label": "Snapshot"
+                      "id": "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-snapshot",
+                      "label": "Snapshot",
+                      "key": "User_Guides_Local_Storage_Local_PV_LVM_Advanced_Operations_Snapshot"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-volume-restore",
-                      "label": "Volume Restore from Snapshot"
+                      "id": "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-volume-restore",
+                      "label": "Volume Restore from Snapshot",
+                      "key": "User_Guides_Local_Storage_Local_PV_LVM_Advanced_Operations_Volume_Restore_from_Snapshot"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-thin-provisioning",
+                      "id": "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-thin-provisioning",
                       "label": "Thin Provisioning"
                     }
-                  ]
+                  ],
+                  "key": "User_Guides_Local_Storage_Local_PV_LVM_Advanced_Operations"
                 }
-              ] 
+              ]
             },
             {
               "collapsed": true,
@@ -291,8 +310,9 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-zfs/zfs-overview",
-                  "label": "Overview"
+                  "id": "user-guides/local-storage-user-guide/local-pv-zfs/zfs-overview",
+                  "label": "Overview",
+                  "key": "User_Guides_Local_Storage_Local_PV_ZFS_Overview"
                 },
                 {
                   "collapsed": true,
@@ -304,30 +324,34 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-create-storageclass",
-                      "label": "Create StorageClass(s)"
+                      "id": "user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-create-storageclass",
+                      "label": "Create StorageClass(s)",
+                      "key": "User_Guides_Local_Storage_Local_PV_ZFS_Configuration_Create_StorageClass(s)"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-storageclass-parameters",
+                      "id": "user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-storageclass-parameters",
                       "label": "StorageClass Parameters"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-create-pvc",
-                      "label": "Create PVC"
+                      "id": "user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-create-pvc",
+                      "label": "Create PVC",
+                      "key": "User_Guides_Local_Storage_Local_PV_ZFS_Configuration_Create_PVC"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-usage",
+                      "id": "user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-usage",
                       "label": "Usage"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-deployment",
-                      "label": "Deploy an Application"
+                      "id": "user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-deployment",
+                      "label": "Deploy an Application",
+                      "key": "User_Guides_Local_Storage_Local_PV_ZFS_Configuration_Deploy_an_Application"
                     }
-                  ]
+                  ],
+                  "key": "User_Guides_Local_Storage_Local_PV_ZFS_Configuration"
                 },
                 {
                   "collapsed": true,
@@ -339,33 +363,38 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-raw-block-volume",
-                      "label": "Raw Block Volume"
+                      "id": "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-raw-block-volume",
+                      "label": "Raw Block Volume",
+                      "key": "User_Guides_Local_Storage_Local_PV_ZFS_Advanced_Operations_Raw_Block_Volume"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-resize",
-                      "label": "Resize"
+                      "id": "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-resize",
+                      "label": "Resize",
+                      "key": "User_Guides_Local_Storage_Local_PV_ZFS_Advanced_Operations_Resize"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-snapshot",
-                      "label": "Snapshot"
+                      "id": "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-snapshot",
+                      "label": "Snapshot",
+                      "key": "User_Guides_Local_Storage_Local_PV_ZFS_Advanced_Operations_Snapshot"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-clone",
+                      "id": "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-clone",
                       "label": "Clone"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-backup-restore",
-                      "label": "Backup and Restore"
+                      "id": "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-backup-restore",
+                      "label": "Backup and Restore",
+                      "key": "User_Guides_Local_Storage_Local_PV_ZFS_Advanced_Operations_Backup_and_Restore"
                     }
-                  ]
+                  ],
+                  "key": "User_Guides_Local_Storage_Local_PV_ZFS_Advanced_Operations"
                 }
-              ] 
-            },   
+              ]
+            },
             {
               "collapsed": true,
               "type": "category",
@@ -376,22 +405,24 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "version-4.4.x/user-guides/local-storage-user-guide/additional-information/k8supgrades",
+                  "id": "user-guides/local-storage-user-guide/additional-information/k8supgrades",
                   "label": "Kubernetes Upgrades - Best Practices"
                 },
                 {
                   "type": "doc",
-                  "id": "version-4.4.x/user-guides/local-storage-user-guide/additional-information/kb",
+                  "id": "user-guides/local-storage-user-guide/additional-information/kb",
                   "label": "Knowledge Base"
                 },
                 {
                   "type": "doc",
-                  "id": "version-4.4.x/user-guides/local-storage-user-guide/additional-information/backupandrestore",
-                  "label": "Backup and Restore"
+                  "id": "user-guides/local-storage-user-guide/additional-information/backupandrestore",
+                  "label": "Backup and Restore",
+                  "key": "User_Guides_Local_Storage_Additional_Information_Backup_and_Restore"
                 }
-              ]
+              ],
+              "key": "User_Guides_Local_Storage_Additional_Information"
             }
-          ] 
+          ]
         },
         {
           "collapsed": true,
@@ -411,8 +442,9 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-overview",
-                  "label": "Overview"
+                  "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-overview",
+                  "label": "Overview",
+                  "key": "User_Guides_Replicated_Storage_Replicated_PV_Mayastor_Overview"
                 },
                 {
                   "collapsed": true,
@@ -424,35 +456,38 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-diskpool",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-diskpool",
                       "label": "Create DiskPool(s)"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-storageclass",
-                      "label": "Create StorageClass(s)"
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-storageclass",
+                      "label": "Create StorageClass(s)",
+                      "key": "User_Guides_Replicated_Storage_Replicated_PV_Mayastor_Configuration_Create_StorageClass(s)"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-storage-class-parameters",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-storage-class-parameters",
                       "label": "Storage Class Parameters"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-topology-parameters",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-topology-parameters",
                       "label": "Topology Parameters"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-rdma",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-rdma",
                       "label": "Enable RDMA"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-deployment",
-                      "label": "Deploy an Application"
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-deployment",
+                      "label": "Deploy an Application",
+                      "key": "User_Guides_Replicated_Storage_Replicated_PV_Mayastor_Configuration_Deploy_an_Application"
                     }
-                  ]
+                  ],
+                  "key": "User_Guides_Replicated_Storage_Replicated_PV_Mayastor_Configuration"
                 },
                 {
                   "collapsed": true,
@@ -464,80 +499,83 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/kubectl-plugin",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/kubectl-plugin",
                       "label": "Kubectl Plugin"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/ha",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/ha",
                       "label": "High Availability"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/replica-rebuilds",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/replica-rebuilds",
                       "label": "Replica Rebuilds"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/re-resize",
-                      "label": "Resize"
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/re-resize",
+                      "label": "Resize",
+                      "key": "User_Guides_Replicated_Storage_Replicated_PV_Mayastor_Advanced_Operations_Resize"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/replica-operations",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/replica-operations",
                       "label": "Replica Operations"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/eventing",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/eventing",
                       "label": "Eventing"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/call-home-metrics",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/call-home-metrics",
                       "label": "Call-Home Metrics"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/monitoring",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/monitoring",
                       "label": "Monitoring"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/cordon-node",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/cordon-node",
                       "label": "Cordon Node"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/drain-node",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/drain-node",
                       "label": "Drain Node"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/cordon-pools",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/cordon-pools",
                       "label": "Cordon Pools"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/volume-snapshots",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/volume-snapshots",
                       "label": "Volume Snapshots"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot-restore",
-                      "label": "Volume Restore from Snapshot"
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot-restore",
+                      "label": "Volume Restore from Snapshot",
+                      "key": "User_Guides_Replicated_Storage_Replicated_PV_Mayastor_Advanced_Operations_Volume_Restore_from_Snapshot"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/encryption",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/encryption",
                       "label": "Encryption"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/diskpool-expansion",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/diskpool-expansion",
                       "label": "DiskPool Expansion"
                     }
-                  ]
+                  ],
+                  "key": "User_Guides_Replicated_Storage_Replicated_PV_Mayastor_Advanced_Operations"
                 },
                 {
                   "collapsed": true,
@@ -549,49 +587,50 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/upgrade-re",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/upgrade-re",
                       "label": "Mayastor Upgrades"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/tips",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/tips",
                       "label": "Tips and Tricks"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/performance-tips",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/performance-tips",
                       "label": "Performance Tips"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/spdk-blobstore",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/spdk-blobstore",
                       "label": "SPDK Blobstore Cluster Size"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/io-path-description",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/io-path-description",
                       "label": "I/O Path Description"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/ttps",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/ttps",
                       "label": "Tested Third Party Software"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/migrate-etcd",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/migrate-etcd",
                       "label": "Etcd Migration Procedure"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/scale-etcd",
+                      "id": "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/scale-etcd",
                       "label": "Scaling Up etcd Members"
                     }
-                  ]
+                  ],
+                  "key": "User_Guides_Replicated_Storage_Replicated_PV_Mayastor_Additional_Information"
                 }
-              ] 
+              ]
             }
-          ] 
+          ]
         },
         {
           "collapsed": true,
@@ -603,12 +642,12 @@
           "items": [
             {
               "type": "doc",
-              "id": "version-4.4.x/user-guides/data-migration/migration-overview",
+              "id": "user-guides/data-migration/migration-overview",
               "label": "Migration Overview"
             },
             {
               "type": "doc",
-              "id": "version-4.4.x/user-guides/data-migration/migration-using-pv-migrate",
+              "id": "user-guides/data-migration/migration-using-pv-migrate",
               "label": "Migration using pv-migrate"
             },
             {
@@ -621,8 +660,9 @@
               "items": [
                 {
                   "type": "doc",
-                  "id": "version-4.4.x/user-guides/data-migration/migration-using-velero/overview",
-                  "label": "Overview"
+                  "id": "user-guides/data-migration/migration-using-velero/overview",
+                  "label": "Overview",
+                  "key": "User_Guides_Data_Migration_Migration_using_Velero_Overview"
                 },
                 {
                   "collapsed": true,
@@ -634,13 +674,15 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/data-migration/migration-using-velero/migration-for-distributed-db/distributeddb-backup",
-                      "label": "Backing up from cStor"
+                      "id": "user-guides/data-migration/migration-using-velero/migration-for-distributed-db/distributeddb-backup",
+                      "label": "Backing up from cStor",
+                      "key": "User_Guides_Data_Migration_Migration_using_Velero_Migration_for_Distributed_DB_Backing_up_from_cStor"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/data-migration/migration-using-velero/migration-for-distributed-db/distributeddb-restore",
-                      "label": "Restoring to Replicated Storage"
+                      "id": "user-guides/data-migration/migration-using-velero/migration-for-distributed-db/distributeddb-restore",
+                      "label": "Restoring to Replicated Storage",
+                      "key": "User_Guides_Data_Migration_Migration_using_Velero_Migration_for_Distributed_DB_Restoring_to_Replicated_Storage"
                     }
                   ]
                 },
@@ -654,43 +696,45 @@
                   "items": [
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/data-migration/migration-using-velero/migration-for-replicated-db/replicateddb-backup",
-                      "label": "Backing up from cStor"
+                      "id": "user-guides/data-migration/migration-using-velero/migration-for-replicated-db/replicateddb-backup",
+                      "label": "Backing up from cStor",
+                      "key": "User_Guides_Data_Migration_Migration_using_Velero_Migration_for_Replicated_DB_Backing_up_from_cStor"
                     },
                     {
                       "type": "doc",
-                      "id": "version-4.4.x/user-guides/data-migration/migration-using-velero/migration-for-replicated-db/replicateddb-restore",
-                      "label": "Restoring to Replicated Storage"
+                      "id": "user-guides/data-migration/migration-using-velero/migration-for-replicated-db/replicateddb-restore",
+                      "label": "Restoring to Replicated Storage",
+                      "key": "User_Guides_Data_Migration_Migration_using_Velero_Migration_for_Replicated_DB_Restoring_to_Replicated_Storage"
                     }
                   ]
                 }
               ]
             }
-          ] 
+          ]
         },
         {
           "type": "doc",
-          "id": "version-4.4.x/user-guides/kubectl-openebs",
+          "id": "user-guides/kubectl-openebs",
           "label": "Kubectl OpenEBS Plugin"
         },
         {
           "type": "doc",
-          "id": "version-4.4.x/user-guides/supportability",
+          "id": "user-guides/supportability",
           "label": "Supportability"
         },
         {
           "type": "doc",
-          "id": "version-4.4.x/user-guides/observability",
+          "id": "user-guides/observability",
           "label": "Observability"
         },
         {
           "type": "doc",
-          "id": "version-4.4.x/user-guides/upgrade",
+          "id": "user-guides/upgrade",
           "label": "Upgrades"
         },
         {
           "type": "doc",
-          "id": "version-4.4.x/user-guides/uninstall",
+          "id": "user-guides/uninstall",
           "label": "Uninstallation"
         }
       ]
@@ -713,22 +757,22 @@
           "items": [
             {
               "type": "doc",
-              "id": "version-4.4.x/Solutioning/openebs-on-kubernetes-platforms/gke",
+              "id": "Solutioning/openebs-on-kubernetes-platforms/gke",
               "label": "Google Kubernetes Engine"
             },
             {
               "type": "doc",
-              "id": "version-4.4.x/Solutioning/openebs-on-kubernetes-platforms/microkubernetes",
+              "id": "Solutioning/openebs-on-kubernetes-platforms/microkubernetes",
               "label": "MicroK8s"
             },
             {
               "type": "doc",
-              "id": "version-4.4.x/Solutioning/openebs-on-kubernetes-platforms/openshift",
+              "id": "Solutioning/openebs-on-kubernetes-platforms/openshift",
               "label": "OpenShift"
             },
             {
               "type": "doc",
-              "id": "version-4.4.x/Solutioning/openebs-on-kubernetes-platforms/talos",
+              "id": "Solutioning/openebs-on-kubernetes-platforms/talos",
               "label": "Talos"
             }
           ]
@@ -743,12 +787,12 @@
           "items": [
             {
               "type": "doc",
-              "id": "version-4.4.x/Solutioning/read-write-many/nfspvc",
+              "id": "Solutioning/read-write-many/nfspvc",
               "label": "Provisioning NFS PVCs"
             },
             {
               "type": "doc",
-              "id": "version-4.4.x/Solutioning/read-write-many/kubevirt",
+              "id": "Solutioning/read-write-many/kubevirt",
               "label": "KubeVirt VM Live Migration"
             }
           ]
@@ -763,36 +807,36 @@
           "items": [
             {
               "type": "doc",
-              "id": "version-4.4.x/Solutioning/backup-and-restore/velerobrfs",
+              "id": "Solutioning/backup-and-restore/velerobrfs",
               "label": "Velero - FileSystem"
             },
             {
               "type": "doc",
-              "id": "version-4.4.x/Solutioning/backup-and-restore/velerobrrbv",
+              "id": "Solutioning/backup-and-restore/velerobrrbv",
               "label": "Velero - Raw Block Volumes"
             },
             {
               "type": "doc",
-              "id": "version-4.4.x/Solutioning/backup-and-restore/kastenbrfs",
+              "id": "Solutioning/backup-and-restore/kastenbrfs",
               "label": "Kasten - FileSystem"
             },
             {
               "type": "doc",
-              "id": "version-4.4.x/Solutioning/backup-and-restore/kubevirt-backup",
+              "id": "Solutioning/backup-and-restore/kubevirt-backup",
               "label": "KubeVirt VM Backup and Restore"
             },
             {
               "type": "doc",
-              "id": "version-4.4.x/Solutioning/backup-and-restore/cloudnative-backup",
+              "id": "Solutioning/backup-and-restore/cloudnative-backup",
               "label": "CloudNativePG Backups"
             },
             {
               "type": "doc",
-              "id": "version-4.4.x/Solutioning/backup-and-restore/cloning-crunchy-data",
+              "id": "Solutioning/backup-and-restore/cloning-crunchy-data",
               "label": "Cloning Crunchy Data"
             }
           ]
-        } 
+        }
       ]
     },
     {
@@ -805,12 +849,12 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-4.4.x/troubleshooting/troubleshooting",
+          "id": "troubleshooting/troubleshooting",
           "label": "Troubleshooting - Local Storage"
         },
         {
           "type": "doc",
-          "id": "version-4.4.x/troubleshooting/troubleshootingrs",
+          "id": "troubleshooting/troubleshootingrs",
           "label": "Troubleshooting - Replicated Storage"
         }
       ]
@@ -825,19 +869,19 @@
       "items": [
         {
           "type": "doc",
-          "id": "version-4.4.x/community",
+          "id": "community",
           "label": "Community"
         },
         {
           "type": "doc",
-          "id": "version-4.4.x/commercial",
+          "id": "commercial",
           "label": "Commercial Support"
         }
       ]
     },
     {
       "type": "doc",
-      "id": "version-4.4.x/releases",
+      "id": "releases",
       "label": "Release Notes",
       "customProps": {
         "icon": "File"
@@ -845,7 +889,7 @@
     },
     {
       "type": "doc",
-      "id": "version-4.4.x/faqs/faqs",
+      "id": "faqs/faqs",
       "label": "FAQs",
       "customProps": {
         "icon": "HelpCircle"
@@ -853,7 +897,7 @@
     },
     {
       "type": "doc",
-      "id": "version-4.4.x/glossary",
+      "id": "glossary",
       "label": "Glossary",
       "customProps": {
         "icon": "HelpCircle"

@@ -53,7 +53,7 @@ In this document, it is mentioned about the installation of MinIO operator using
 
 There are 2 ways to use OpenEBS Local PV.
 
-- `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/<"minio-pv-name">/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](/docs/user-guides/localpv-hostpath#create-storageclass). 
+- `openebs-hostpath` - Using this option, it will create Kubernetes Persistent Volumes that will store the data into OS host path directory at: /var/openebs/`<"minio-pv-name">`/. Select this option, if you don’t have any additional block devices attached to Kubernetes nodes. You would like to customize the directory where data will be saved, create a new OpenEBS Local PV storage class using these [instructions](/docs/user-guides/localpv-hostpath#create-storageclass). 
   
 - `openebs-device` - Using this option, it will create Kubernetes Local PVs using the block devices attached to the node. Select this option when you want to dedicate a complete block device on a node to a MinIO node. You can customize which devices will be discovered and managed by OpenEBS using the instructions [here](/docs/user-guides/ndm). 
 
