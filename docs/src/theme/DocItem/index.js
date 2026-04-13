@@ -4,12 +4,12 @@ import DocItemMetadata from '@theme/DocItem/Metadata';
 import DocItemLayout from '@theme/DocItem/Layout';
 
 export default function DocItem(props) {
-  const docHtml = props.content;
+  const DocContent = props.content;
   return (
-    <DocProvider content={docHtml}>
+    <DocProvider content={DocContent}>
       <DocItemMetadata />
       <DocItemLayout>
-        <docHtml.default />
+        <DocContent />
       </DocItemLayout>
     </DocProvider>
   );
