@@ -1,0 +1,9 @@
+.categoryLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.categoryIcon {
+  flex-shrink: 0;
+}

@@ -1,38 +1,48 @@
 import React from 'react';
 import clsx from 'clsx';
+import ErrorBoundary from '@docusaurus/ErrorBoundary';
+import {
+  PageMetadata,
+  HtmlClassNameProvider,
+  ThemeClassNames,
+  useKeyboardNavigation,
+} from '@docusaurus/theme-common';
 import SkipToContent from '@theme/SkipToContent';
 import AnnouncementBar from '@theme/AnnouncementBar';
-import LayoutProviders from '@theme/LayoutProviders';
-import LayoutHead from '@theme/LayoutHead';
-import useKeyboardNavigation from '@theme/hooks/useKeyboardNavigation';
-import { ThemeClassNames } from '@docusaurus/theme-common';
-import { Header } from "../../components/Header";
+import LayoutProvider from '@theme/Layout/Provider';
+import ErrorPageContent from '@theme/ErrorPageContent';
+import { Header } from '../../components/Header';
+import { Footer } from '../../components/Footer';
 import './styles.scss';
 
-function Layout(props) {
-  const { children, noFooter, wrapperClassName, pageClassName } = props;
+export default function Layout(props) {
+  const { children, noFooter, wrapperClassName, title, description } = props;
   useKeyboardNavigation();
   return (
-    <LayoutProviders>
-      <LayoutHead {...props} />
+    <HtmlClassNameProvider
+      className={clsx(ThemeClassNames.wrapper.main, wrapperClassName)}>
+      <LayoutProvider>
+        <PageMetadata title={title} description={description} />
 
-      <SkipToContent />
+        <SkipToContent />
 
-      <AnnouncementBar />
+        <AnnouncementBar />
 
-      <Header />
+        <Header />
 
-      <div
-        className={clsx(
-          ThemeClassNames.wrapper.main,
-          wrapperClassName,
-          pageClassName,
-        )}>
-        {children}
-      </div>
+        <div
+          className={clsx(
+            ThemeClassNames.wrapper.main,
+            wrapperClassName,
+          )}>
+          <ErrorBoundary
+            fallback={(params) => <ErrorPageContent {...params} />}>
+            {children}
+          </ErrorBoundary>
+        </div>
 
-    </LayoutProviders>
+        {!noFooter && <Footer />}
+      </LayoutProvider>
+    </HtmlClassNameProvider>
   );
 }
-
-export default Layout;

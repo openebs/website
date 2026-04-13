@@ -1,22 +1,19 @@
-/** @type {import('@docusaurus/types').DocusaurusConfig} */
+/** @type {import('@docusaurus/types').Config} */
 
 const WEBSITE_URL = `https://openebs.io`;
 const path = require('path');
-
-const prismCustomColors =  {
-  plain: { color: '#ffffff', backgroundColor: '#3B4473' }
-}
+const { themes } = require('prism-react-renderer');
 
 module.exports = {
   title: "OpenEBS Docs",
   tagline: "OpenEBS Docs: Information regarding the latest releases",
   url: `${WEBSITE_URL}`,
   baseUrl: "/docs/",
-  onBrokenLinks: "throw",
+  onBrokenLinks: "log",
   onBrokenMarkdownLinks: "warn",
   favicon: "/docs/img/favicon.ico",
-  organizationName: "openebs", // Usually your GitHub org/user name.
-  projectName: "website", // Usually your repo name.
+  organizationName: "openebs",
+  projectName: "website",
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -38,14 +35,14 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} The OpenEBS Authors | All rights reserved`,
     },
     prism: {
-      theme: Object.assign(require('prism-react-renderer/themes/github'), prismCustomColors)
+      theme: themes.github,
+      darkTheme: themes.dracula,
     },
     gtag: {
       trackingID: 'G-BNB79447GR',
       anonymizeIP: true,
     },
   },
-  onBrokenLinks: 'log',
   customFields: {
     openebsLogo: "/docs/img/openebs-logo.svg",
     footbarLinks: {
@@ -120,8 +117,8 @@ module.exports = {
         label: 'Slack',
         src: '/docs/img/slack.svg',
         link: `${WEBSITE_URL}/community`,
-        isExternal: false
-      }
+        isExternal: false,
+      },
     ],
     socialLinks: {
       facebook: 'https://www.facebook.com/openebs',
@@ -129,20 +126,20 @@ module.exports = {
       slack: `${WEBSITE_URL}/community`,
       linkedin: 'https://www.linkedin.com/company/openebs',
       youtube: 'https://www.youtube.com/channel/UC3ywadaAUQ1FI4YsHZ8wa0g',
-      twitter: 'https://twitter.com/openebs'
+      twitter: 'https://twitter.com/openebs',
     },
     externalLinks: {
       subscribeNewsletter: 'https://lists.cncf.io/g/cncf-openebs-announcements',
       openAnIssue: 'https://github.com/openebs/openebs/issues/new',
       kubernetesSlackOpenEBS: 'https://kubernetes.slack.com/messages/openebs/',
-      repoUrl: 'https://github.com/openebs/openebs'
+      repoUrl: 'https://github.com/openebs/openebs',
     },
     breakpoints: {
       xs: 0,
       sm: 767,
       md: 996,
       lg: 1100,
-      xl: 0
+      xl: 0,
     },
   },
   presets: [
@@ -153,33 +150,24 @@ module.exports = {
           path: 'main',
           sidebarPath: require.resolve("./sidebars.js"),
           routeBasePath: "/",
-          editUrl:
-            "https://github.com/openebs/website/edit/main/docs/",
+          editUrl: "https://github.com/openebs/website/edit/main/docs/",
           includeCurrentVersion: true,
-          versions:{
-            current:{
+          versions: {
+            current: {
               label: 'main',
-              path: 'main'
-            }
-          }
+              path: 'main',
+            },
+          },
         },
         theme: {
           customCss: require.resolve("./src/scss/custom.scss"),
         },
-        include: ["**/*.md", "**/*.mdx"], // Extensions to include.
-      },
-    ],
-    [
-      '@docusaurus/plugin-google-gtag',
-      {
-        trackingID: 'G-BNB79447GR',
-        anonymizeIP: true,
       },
     ],
   ],
   plugins: [
     "docusaurus-plugin-sass",
     require.resolve("docusaurus-lunr-search"),
-    path.resolve(__dirname, 'plugins/route-update-event-plugin')
-  ]
+    path.resolve(__dirname, 'plugins/route-update-event-plugin'),
+  ],
 };

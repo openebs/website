@@ -155,11 +155,7 @@
 
 //main wrapper
 @media (min-width: 997px) and (max-width: 1320px) {
-  .main-wrapper .docItemWrapper_src-theme-DocPage- {
-    max-width: 95%;
-  }
-
-  .main-wrapper .docItemWrapperEnhanced_src-theme-DocPage- {
+  .main-wrapper {
     max-width: 95%;
   }
 }
@@ -169,7 +165,8 @@
   border: none;
 }
 
-.docs-wrapper .tableOfContents_src-theme-TOC- {
+.docs-wrapper .tableOfContents,
+[class*="tableOfContents"] {
   top: 100px; // to stick the TOC while scroll
 }
 
