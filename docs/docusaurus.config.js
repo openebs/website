@@ -38,6 +38,7 @@ module.exports = {
       disableSwitch: true,
     },
     navbar: {
+      hideOnScroll: true,
       logo: {
         alt: "OpenEBS docs logo",
         src: "../static/img/logo.svg",
