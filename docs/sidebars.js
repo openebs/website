@@ -65,17 +65,20 @@ module.exports = {
             {
               type: "doc",
               id: "concepts/data-engines/dataengines",
-              label: "Overview"
+              label: "Overview",
+              key: "DataEngines_Overview",
             },
             {
               type: "doc",
               id: "concepts/data-engines/localstorage",
-              label: "Local Storage"
+              label: "Local Storage",
+              key: "localstorage",
             },
             {
               type: "doc",
               id: "concepts/data-engines/replicated-storage",
-              label: "Replicated Storage"
+              label: "Replicated Storage",
+              key: "replicated-storage",
             }
           ] 
         },  
@@ -92,7 +95,8 @@ module.exports = {
         {
           type: "doc",
           id: "quickstart-guide/prerequisites",
-          label: "Prerequisites"
+          label: "Prerequisites",
+          key: "Quickstart_Prerequisites",
         },
         {
           type: "doc",
@@ -102,7 +106,8 @@ module.exports = {
         {
           type: "doc",
           id: "quickstart-guide/deployment",
-          label: "Deploy an Application"
+          label: "Deploy an Application",
+          key: "Quickstart_DeployApp",
         }
       ]
     },
@@ -118,6 +123,7 @@ module.exports = {
           collapsed: true,
           type: "category",
           label: "Local Storage",
+          key: "Local_Storage_cat",
           customProps: {
             icon: "Play"
           },
@@ -133,12 +139,14 @@ module.exports = {
                 {
                   type: "doc",
                   id: "user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview",
-                  label: "Overview"
+                  label: "Overview",
+                  key: "HostPath_Overview",
                 },
                 {
                   collapsed: true,
                   type: "category",
                   label: "Configuration",
+                  key: "HostPath_Configuration",
                   customProps: {
                     icon: "Settings"
                   },
@@ -146,12 +154,14 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-hostpath/configuration/hostpath-create-storageclass",
-                      label: "Create StorageClass(s)"
+                      label: "Create StorageClass(s)",
+                      key: "hostpath-create-storageclass",
                     },
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-hostpath/configuration/hostpath-deployment",
-                      label: "Deploy an Application"
+                      label: "Deploy an Application",
+                      key: "HostPath_DeployApp",
                     }
                   ]
                 },
@@ -159,6 +169,7 @@ module.exports = {
                   collapsed: true,
                   type: "category",
                   label: "Advanced Operations",
+                  key: "HostPath_AdvancedOperations",
                   customProps: {
                     icon: "Layers"
                   },
@@ -174,7 +185,8 @@ module.exports = {
                         {
                           type: "doc",
                           id: "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/xfs-quota-pre",
-                          label: "Prerequisites"
+                          label: "Prerequisites",
+                          key: "XFS_Prerequisites",
                         },
                         {
                           type: "doc",
@@ -208,12 +220,14 @@ module.exports = {
                 {
                   type: "doc",
                   id: "user-guides/local-storage-user-guide/local-pv-lvm/lvm-overview",
-                  label: "Overview"
+                  label: "Overview",
+                  key: "LVM_Overview",
                 },
                 {
                   collapsed: true,
                   type: "category",
                   label: "Configuration",
+                  key: "LVM_Configuration",
                   customProps: {
                     icon: "Settings"
                   },
@@ -221,7 +235,8 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-create-storageclass",
-                      label: "Create StorageClass(s)"
+                      label: "Create StorageClass(s)",
+                      key: "lvm-create-storageclass",
                     },
                     {
                       type: "doc",
@@ -231,12 +246,14 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-create-pvc",
-                      label: "Create PVC"
+                      label: "Create PVC",
+                      key: "lvm-create-pvc",
                     },
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-deployment",
-                      label: "Deploy an Application"
+                      label: "Deploy an Application",
+                      key: "LVM_DeployApp",
                     }
                   ]
                 },
@@ -244,6 +261,7 @@ module.exports = {
                   collapsed: true,
                   type: "category",
                   label: "Advanced Operations",
+                  key: "LVM_AdvancedOperations",
                   customProps: {
                     icon: "Layers"
                   },
@@ -256,22 +274,26 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-raw-block-volume",
-                      label: "Raw Block Volume"
+                      label: "Raw Block Volume",
+                      key: "lvm-raw-block-volume",
                     },
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-resize",
-                      label: "Resize"
+                      label: "Resize",
+                      key: "lvm-resize",
                     },
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-snapshot",
-                      label: "Snapshot"
+                      label: "Snapshot",
+                      key: "lvm-snapshot",
                     },
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-volume-restore",
-                      label: "Volume Restore from Snapshot"
+                      label: "Volume Restore from Snapshot",
+                      key: "lvm-volume-restore",
                     },
                     {
                       type: "doc",
@@ -293,12 +315,14 @@ module.exports = {
                 {
                   type: "doc",
                   id: "user-guides/local-storage-user-guide/local-pv-zfs/zfs-overview",
-                  label: "Overview"
+                  label: "Overview",
+                  key: "ZFS_Overview",
                 },
                 {
                   collapsed: true,
                   type: "category",
                   label: "Configuration",
+                  key: "ZFS_Configuration",
                   customProps: {
                     icon: "Settings"
                   },
@@ -306,7 +330,8 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-create-storageclass",
-                      label: "Create StorageClass(s)"
+                      label: "Create StorageClass(s)",
+                      key: "zfs-create-storageclass",
                     },
                     {
                       type: "doc",
@@ -316,7 +341,8 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-create-pvc",
-                      label: "Create PVC"
+                      label: "Create PVC",
+                      key: "zfs-create-pvc",
                     },
                     {
                       type: "doc",
@@ -326,7 +352,8 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-deployment",
-                      label: "Deploy an Application"
+                      label: "Deploy an Application",
+                      key: "ZFS_DeployApp",
                     }
                   ]
                 },
@@ -334,6 +361,7 @@ module.exports = {
                   collapsed: true,
                   type: "category",
                   label: "Advanced Operations",
+                  key: "ZFS_AdvancedOperations",
                   customProps: {
                     icon: "Layers"
                   },
@@ -341,17 +369,20 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-raw-block-volume",
-                      label: "Raw Block Volume"
+                      label: "Raw Block Volume",
+                      key: "zfs-raw-block-volume",
                     },
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-resize",
-                      label: "Resize"
+                      label: "Resize",
+                      key: "zfs-resize",
                     },
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-snapshot",
-                      label: "Snapshot"
+                      label: "Snapshot",
+                      key: "zfs-snapshot",
                     },
                     {
                       type: "doc",
@@ -361,7 +392,8 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-backup-restore",
-                      label: "Backup and Restore"
+                      label: "Backup and Restore",
+                      key: "zfs-backup-restore",
                     }
                   ]
                 },
@@ -371,6 +403,7 @@ module.exports = {
               collapsed: true,
               type: "category",
               label: "Additional Information",
+              key: "Main_AdditionalInformation",
               customProps: {
                 icon: "List"
               },
@@ -388,7 +421,8 @@ module.exports = {
                 {
                   type: "doc",
                   id: "user-guides/local-storage-user-guide/additional-information/backupandrestore",
-                  label: "Backup and Restore"
+                  label: "Backup and Restore",
+                  key: "backupandrestore",
                 }
               ]
             }
@@ -398,6 +432,7 @@ module.exports = {
           collapsed: true,
           type: "category",
           label: "Replicated Storage",
+          key: "Replicated_Storage_cat",
           customProps: {
             icon: "Play"
           },
@@ -413,12 +448,14 @@ module.exports = {
                 {
                   type: "doc",
                   id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-overview",
-                  label: "Overview"
+                  label: "Overview",
+                  key: "ReplicatedStorage_Overview",
                 },
                 {
                   collapsed: true,
                   type: "category",
                   label: "Configuration",
+                  key: "ReplicatedStorage_Configuration",
                   customProps: {
                     icon: "Settings"
                   },
@@ -431,7 +468,8 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-storageclass",
-                      label: "Create StorageClass(s)"
+                      label: "Create StorageClass(s)",
+                      key: "rs-create-storageclass",
                     },
                     {
                       type: "doc",
@@ -451,7 +489,8 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-deployment",
-                      label: "Deploy an Application"
+                      label: "Deploy an Application",
+                      key: "RS_DeployApp",
                     }
                   ]
                 },
@@ -459,6 +498,7 @@ module.exports = {
                   collapsed: true,
                   type: "category",
                   label: "Advanced Operations",
+                  key: "ReplicatedStorage_AdvancedOperations",
                   customProps: {
                     icon: "Layers"
                   },
@@ -481,7 +521,8 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/re-resize",
-                      label: "Resize"
+                      label: "Resize",
+                      key: "re-resize",
                     },
                     {
                       type: "doc",
@@ -527,7 +568,8 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot-restore",
-                      label: "Volume Restore from Snapshot"
+                      label: "Volume Restore from Snapshot",
+                      key: "snapshot-restore",
                     },
                     {
                       type: "doc",
@@ -545,6 +587,7 @@ module.exports = {
                   collapsed: true,
                   type: "category",
                   label: "Additional Information",
+                  key: "ReplicatedStorage_AdditionalInformation",
                   customProps: {
                     icon: "List"
                   },
@@ -624,7 +667,8 @@ module.exports = {
                 {
                   type: "doc",
                   id: "user-guides/data-migration/migration-using-velero/overview",
-                  label: "Overview"
+                  label: "Overview",
+                  key: "Migration_Overview",
                 },
                 {
                   collapsed: true,
@@ -637,12 +681,14 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/data-migration/migration-using-velero/migration-for-distributed-db/distributeddb-backup",
-                      label: "Backing up from cStor"
+                      label: "Backing up from cStor",
+                      key: "distributeddb-backup",
                     },
                     {
                       type: "doc",
                       id: "user-guides/data-migration/migration-using-velero/migration-for-distributed-db/distributeddb-restore",
-                      label: "Restoring to Replicated Storage"
+                      label: "Restoring to Replicated Storage",
+                      key: "distributeddb-restore",
                     }
                   ]
                 },
@@ -657,12 +703,14 @@ module.exports = {
                     {
                       type: "doc",
                       id: "user-guides/data-migration/migration-using-velero/migration-for-replicated-db/replicateddb-backup",
-                      label: "Backing up from cStor"
+                      label: "Backing up from cStor",
+                      key: "replicateddb-backup",
                     },
                     {
                       type: "doc",
                       id: "user-guides/data-migration/migration-using-velero/migration-for-replicated-db/replicateddb-restore",
-                      label: "Restoring to Replicated Storage"
+                      label: "Restoring to Replicated Storage",
+                      key: "replicateddb-restore",
                     }
                   ]
                 },
@@ -759,6 +807,7 @@ module.exports = {
           collapsed: true,
           type: "category",
           label: "Backup and Restore",
+          key: "Backup_and_Restore_cat",
           customProps: {
             icon: "Repeat"
           },

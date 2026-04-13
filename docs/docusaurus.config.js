@@ -14,6 +14,16 @@ module.exports = {
   favicon: "/docs/img/favicon.ico",
   organizationName: "openebs",
   projectName: "website",
+  future: {
+    faster: {
+      rspackBundler: true,
+      swcJsLoader: true,
+      swcJsMinimizer: true,
+      swcHtmlMinimizer: true,
+      lightningCssMinimizer: true,
+      mdxCrossCompilerCache: true,
+    },
+  },
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -37,10 +47,6 @@ module.exports = {
     prism: {
       theme: themes.github,
       darkTheme: themes.dracula,
-    },
-    gtag: {
-      trackingID: 'G-BNB79447GR',
-      anonymizeIP: true,
     },
   },
   customFields: {
@@ -161,6 +167,10 @@ module.exports = {
         },
         theme: {
           customCss: require.resolve("./src/scss/custom.scss"),
+        },
+        gtag: {
+          trackingID: 'G-BNB79447GR',
+          anonymizeIP: true,
         },
       },
     ],

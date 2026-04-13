@@ -12,8 +12,8 @@ By default, Replicated PV Mayastor allows the creation of three etcd members. If
 ## Overview of StatefulSets
 
 StatefulSets are Kubernetes resources designed for managing stateful applications. They provide stable network identities and persistent storage for pods. StatefulSets ensure ordered deployment and scaling, support persistent volume claims, and manage the state of applications. They are commonly used for databases, messaging systems, and distributed file systems. Here is how StatefulSets function:
-* For a StatefulSet with N replicas, when pods are deployed, they are created sequentially in order from {0..N-1}.
-* When pods are deleted, they are terminated in reverse order from {N-1..0}.
+* For a StatefulSet with N replicas, when pods are deployed, they are created sequentially in order from `{0..N-1}`.
+* When pods are deleted, they are terminated in reverse order from `{N-1..0}`.
 * Before a scaling operation is applied to a pod, all of its predecessors must be running and ready.
 * Before a pod is terminated, all of its successors must be completely shut down.
 * Replicated PV Mayastor uses etcd database for persisting configuration and state information. Etcd is setup as a Kubernetes StatefulSet when Replicated PV Mayastor is installed.
@@ -83,7 +83,7 @@ mayastor-etcd-3   0/1     Pending   0          2m34s
 
 ## Step 2: Add a New Peer URL
 
-Before creating a PV, we need to add the new peer URL [mayastor-etcd-3=](http://mayastor-etcd-3.mayastor-etcd-headless.mayastor.svc.cluster.local:2380) and change the cluster's initial state from "new" to "existing" so that the new member will be added to the existing cluster when the pod comes up after creating the PV. Since the new pod is still in a pending state, the changes will not be applied to the other pods as they will be restarted in reverse order from {N-1..0}. It is expected that all of its predecessors must be running and ready.
+Before creating a PV, we need to add the new peer URL [mayastor-etcd-3=](http://mayastor-etcd-3.mayastor-etcd-headless.mayastor.svc.cluster.local:2380) and change the cluster's initial state from "new" to "existing" so that the new member will be added to the existing cluster when the pod comes up after creating the PV. Since the new pod is still in a pending state, the changes will not be applied to the other pods as they will be restarted in reverse order from `{N-1..0}`. It is expected that all of its predecessors must be running and ready.
 
 **Command**
 

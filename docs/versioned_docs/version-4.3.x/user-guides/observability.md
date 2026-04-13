@@ -59,7 +59,7 @@ kubectl get nodes -o wide
 kubectl get svc -n [NAMESPACE] | grep -i grafana
 ```
 
-3. Visit http://NodeIp:NodePort. For example, if your Node IP address is `node-ip` and the `NodePort` assigned is 12345, you would access Grafana using http://node-ip:12345.
+3. Visit `http://NodeIp:NodePort`. For example, if your Node IP address is `node-ip` and the `NodePort` assigned is 12345, you would access Grafana using `http://node-ip:12345`.
 
 The default Grafana login credentials are:
 
