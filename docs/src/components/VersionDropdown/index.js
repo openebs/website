@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate, useLocation } from '@docusaurus/router';
+import { useHistory, useLocation } from '@docusaurus/router';
 import {
   useActiveVersion,
   useVersions,
@@ -41,7 +41,7 @@ export const getSlugWithoutVersion = (slug, currentOptionPath) => {
 };
 
 export const VersionDropdown = () => {
-  const navigate = useNavigate();
+  const history = useHistory();
   const location = useLocation();
   const activeVersion = useActiveVersion();
   const options = useVersions();
@@ -56,7 +56,7 @@ export const VersionDropdown = () => {
       location.pathname,
       option.name
     );
-    navigate(selectedVersionPath);
+    history.push(selectedVersionPath);
   };
 
   return (

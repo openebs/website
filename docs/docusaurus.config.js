@@ -14,6 +14,9 @@ module.exports = {
   favicon: "/docs/img/favicon.ico",
   organizationName: "openebs",
   projectName: "website",
+  markdown: {
+    format: 'detect',
+  },
   future: {
     faster: {
       rspackBundler: true,

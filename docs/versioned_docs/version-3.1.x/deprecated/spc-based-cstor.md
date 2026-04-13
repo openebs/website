@@ -573,7 +573,7 @@ If all the CVRs are healthy and snapshot creation is successful then check for t
   time="2020-03-19T10:47:18Z" level=warning msg="Failed to close file interface : blob (code=Unknown): MultipartUpload: upload multipart failed\n\tupload id: b18cebe2-1f10-4688-93af-9ce3eee24ba8\ncaused by: TotalPartsExceeded: exceeded total allowed configured MaxUploadParts (10000). Adjust PartSize to fit in this limit" backup=velero/daily-k8stest-backup-openebs-120d-20200319084428 cmd=/plugins/velero-blockstore-cstor logSource="/home/travis/gopath/src/github.com/openebs/velero-plugin/pkg/clouduploader/conn.go:242" pluginName=velero-blockstore-cstor
   ```
 
-Above is a known issue with velero-plugin having version <= 1.8.0-velero_1.0.0.
+Above is a known issue with velero-plugin having version ≤ 1.8.0-velero_1.0.0.
 
 4. Debugging Restore
 

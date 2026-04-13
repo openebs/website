@@ -6,7 +6,7 @@ import DocVersionBanner from '@theme/DocVersionBanner';
 import DocPaginator from '@theme/DocPaginator';
 import TOC from '@theme/TOC';
 import Search from '@theme/SearchBar';
-import EditThisPage from '@theme/GitEditThisPage';
+import EditThisPage from '@theme/EditThisPage';
 import { VersionDropdown } from '@site/src/components/VersionDropdown';
 import { Feedback } from '@site/src/components/Feedback';
 import { useViewport } from '@site/src/hooks/useViewport';

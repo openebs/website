@@ -5,7 +5,6 @@ import {
   PageMetadata,
   HtmlClassNameProvider,
   ThemeClassNames,
-  useKeyboardNavigation,
 } from '@docusaurus/theme-common';
 import SkipToContent from '@theme/SkipToContent';
 import AnnouncementBar from '@theme/AnnouncementBar';
@@ -17,7 +16,6 @@ import './styles.scss';
 
 export default function Layout(props) {
   const { children, noFooter, wrapperClassName, title, description } = props;
-  useKeyboardNavigation();
   return (
     <HtmlClassNameProvider
       className={clsx(ThemeClassNames.wrapper.main, wrapperClassName)}>
