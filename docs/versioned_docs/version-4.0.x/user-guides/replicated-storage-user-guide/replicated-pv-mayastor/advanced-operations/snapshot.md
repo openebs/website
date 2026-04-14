@@ -26,7 +26,7 @@ Currently, Replicated PV Mayastor supports the following operations related to v
 
 ## Prerequisites
 
-1. Install and configure Replicated PV Mayastor by following the steps given [here](../rs-installation.md) and create disk pools.
+1. Install and configure Replicated PV Mayastor by following the steps given [here](../../../../quickstart-guide/installation.md) and create disk pools.
 2. Create a Replicated PV Mayastor StorageClass with single replica.
 
 :::note
@@ -59,7 +59,7 @@ parameters:
 provisioner: io.openebs.csi-mayastor
 ```
 
-3. Create a PVC using [these](../../../quickstart-guide/deploy-a-test-application.md#create-a-persistentvolumeclaim) steps and check if the status of the PVC is **Bound**.
+3. Create a PVC using [these](../../../../quickstart-guide/deploy-a-test-application.md#create-a-persistentvolumeclaim) steps and check if the status of the PVC is **Bound**.
 
 **Command**
 ```

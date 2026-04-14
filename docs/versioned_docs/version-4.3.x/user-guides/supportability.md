@@ -6,7 +6,7 @@ keywords:
 description: This guide explains about the supportability tool that collects OpenEBS specific information from the cluster using the kubectl plugin command-line tool.
 ---
 
-The supportability tool collects OpenEBS specific information from the cluster using the [kubectl plugin](kubectl-plugin.md) command-line tool. It uses the dump command, which interacts with the OpenEBS services to build an archive (ZIP) file that acts as a placeholder for the bundled information.
+The supportability tool collects OpenEBS specific information from the cluster using the [kubectl plugin](kubectl-openebs.md) command-line tool. It uses the dump command, which interacts with the OpenEBS services to build an archive (ZIP) file that acts as a placeholder for the bundled information.
 
 ### Using the Supportability Tool
 

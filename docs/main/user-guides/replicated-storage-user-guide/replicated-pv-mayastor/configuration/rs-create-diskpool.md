@@ -114,7 +114,7 @@ When using the examples given as guides to creating your own pools, remember to 
 :::
 
 :::note
-After upgrading to Replicated PV Mayastor 2.4 and above, existing schemas in CR definitions from earlier versions (including `v1alpha1`, `v1beta1`, etc.) will be updated to `v1beta3`. If you encounter errors during the upgrade, refer to the [Troubleshooting - Replicated Storage documentation](../../../troubleshooting/troubleshooting-replicated-storage.md) for resolution steps.
+After upgrading to Replicated PV Mayastor 2.4 and above, existing schemas in CR definitions from earlier versions (including `v1alpha1`, `v1beta1`, etc.) will be updated to `v1beta3`. If you encounter errors during the upgrade, refer to the [Troubleshooting - Replicated Storage documentation](../../../../troubleshooting/troubleshooting-replicated-storage.md) for resolution steps.
 :::
 
 ## Verify Pool Creation and Status
@@ -136,7 +136,7 @@ pool-on-node-3   node-3-14944  Created   Online        10724835328   0      1072
 
 ## See Also
 
-- [Installation](../../../quickstart-guide/installation.md)
+- [Installation](../../../../quickstart-guide/installation.md)
 - [Create StorageClass(s)](../configuration/rs-create-storageclass.md)
 - [Storage Class Parameters](../configuration/rs-storage-class-parameters.md)
 - [Topology Parameters](../configuration/rs-topology-parameters.md)

@@ -22,7 +22,7 @@ To determine exactly where your data is physically stored, you can run the follo
 
 * Run `kubectl get pvc` to fetch the volume name. The volume name looks like: *pvc-ee171da3-07d5-11e8-a5be-42010a8001be*.
 
-* For each volume, you will notice one I/O controller pod and one or more replicas (as per the storage class configuration). You can use the volume ID (ee171da3-07d5-11e8-a5be-42010a8001be) to view information about the volume and replicas using the [kubectl plugin](../user-guides/replicated-storage-user-guide/advanced-operations/kubectl-plugin.md)
+* For each volume, you will notice one I/O controller pod and one or more replicas (as per the storage class configuration). You can use the volume ID (ee171da3-07d5-11e8-a5be-42010a8001be) to view information about the volume and replicas using the [kubectl plugin](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/kubectl-plugin.md)
 
 [Go to top](#top)
 
@@ -56,7 +56,7 @@ Refer to the following links for more information on the backup and restore func
 - [Backup and Restore](../user-guides/local-storage-user-guide/additional-information/backupandrestore.md)
 - [Snapshot](../user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-snapshot.md)
 - [Backup and Restore for Local PV ZFS Volumes](../user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-backup-restore.md)
-- [Snapshot Restore for Replicated Storage](../user-guides/replicated-storage-user-guide/advanced-operations/snapshot-restore.md)
+- [Snapshot Restore for Replicated Storage](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot-restore.md)
 
 [Go to top](#top)
 
@@ -473,7 +473,7 @@ It is recommended to use unpartitioned raw block devices for best results.
 
 ### How does it help to keep my data safe?
 
-Replicated Storage engine supports synchronous mirroring to enhance the durability of data at rest within whatever physical persistence layer is in use. When volumes are provisioned which are configured for replication \(a user can control the count of active replicas which should be maintained, on a per StorageClass basis\), write I/O operations issued by an application to that volume are amplified by its controller ("nexus") and dispatched to all its active replicas. Only if every replica completes the write successfully on its own underlying block device will the I/O completion be acknowledged to the controller. Otherwise, the I/O is failed and the caller must make its own decision as to whether it should be retried. If a replica is determined to have faulted \(I/O cannot be serviced within the configured timeout period, or not without error\), the control plane will automatically take corrective action and remove it from the volume. If spare capacity is available within a Replicated Storage pool, a new replica will be created as a replacement and automatically brought into synchronisation with the existing replicas. The data path for a replicated volume is described in more detail [here](../user-guides/replicated-storage-user-guide/additional-information/i-o-path-description.md#replicated-volume-io-path).
+Replicated Storage engine supports synchronous mirroring to enhance the durability of data at rest within whatever physical persistence layer is in use. When volumes are provisioned which are configured for replication \(a user can control the count of active replicas which should be maintained, on a per StorageClass basis\), write I/O operations issued by an application to that volume are amplified by its controller ("nexus") and dispatched to all its active replicas. Only if every replica completes the write successfully on its own underlying block device will the I/O completion be acknowledged to the controller. Otherwise, the I/O is failed and the caller must make its own decision as to whether it should be retried. If a replica is determined to have faulted \(I/O cannot be serviced within the configured timeout period, or not without error\), the control plane will automatically take corrective action and remove it from the volume. If spare capacity is available within a Replicated Storage pool, a new replica will be created as a replacement and automatically brought into synchronisation with the existing replicas. The data path for a replicated volume is described in more detail [here](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/i-o-path-description.md#replicated-volume-io-path).
 
 [Go to top](#top)
 
@@ -482,7 +482,7 @@ Replicated Storage engine supports synchronous mirroring to enhance the durabili
 This documentation contains sections which are focused on initial quickstart deployment scenarios, including the correct configuration of underlying hardware and software, and of Replicated Storage features such as "Storage Nodes" \(MSNs\) and "Disk Pools" \(MSPs\). Information describing tuning for the optimization of performance is also provided.
 
 * [Quickstart Guide](../quickstart-guide/prerequisites.md)
-* [Performance Tips](../user-guides/replicated-storage-user-guide/additional-information/performance-tips.md)
+* [Performance Tips](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/performance-tips.md)
 
 [Go to top](#top)
 
@@ -574,7 +574,7 @@ Replicated Storage has been designed so as to be able to leverage the peformance
 
 ### Does the supportability tool expose sensitive data?
 
-The supportability tool generates support bundles, which are used for debugging purposes. These bundles are created in response to the user's invocation of the tool and can be transmitted only by the user. To view the list of collected information, visit the [supportability section](../user-guides/replicated-storage-user-guide/advanced-operations/supportability.md#does-the-supportability-tool-expose-sensitive-data).
+The supportability tool generates support bundles, which are used for debugging purposes. These bundles are created in response to the user's invocation of the tool and can be transmitted only by the user. To view the list of collected information, visit the [supportability section](../user-guides/supportability.md#does-the-supportability-tool-expose-sensitive-data).
 
 [Go to top](#top)
 

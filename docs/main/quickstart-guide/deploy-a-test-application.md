@@ -220,9 +220,9 @@ Once the workloads are up and running, the platform or the operations team can o
 ## See Also
 
 - [Installation](installation.md)
-- [Local PV Hostpath](../user-guides/local-storage-user-guide/localpv-hostpath.md)
-- [Local PV LVM](../user-guides/local-storage-user-guide/lvm-localpv.md)
-- [Local PV ZFS](../user-guides/local-storage-user-guide/zfs-localpv.md)
+- [Local PV Hostpath](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview.md)
+- [Local PV LVM](../user-guides/local-storage-user-guide/local-pv-lvm/lvm-overview.md)
+- [Local PV ZFS](../user-guides/local-storage-user-guide/local-pv-zfs/zfs-overview.md)
 - [Local Storage](../concepts/data-engines/local-storage.md)
 - [Replicated Storage](../concepts/data-engines/replicated-storage.md)
 - [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview.md)

@@ -27,13 +27,13 @@ OpenEBS Features, like any storage solution, can be broadly classified into the 
 ### Containerized Storage for Containers
 
 <TwoColumn left="1fr" right="200px">
-  <p>
+  <div>
     OpenEBS is an example of Container Native Storage (CNS). Volumes
     provisioned through OpenEBS are always containerized. Each volume has a
     dedicated storage controller that increases the agility and granularity of
     persistent storage operations of the stateful applications. Benefits and
     more details on CNS architecture are found <a href="/docs/concepts/cas">here</a>.
-  </p>
+  </div>
 
 ![Containerized Storage Icon](../assets/f-cas.svg)
 
@@ -42,9 +42,9 @@ OpenEBS Features, like any storage solution, can be broadly classified into the 
 ### Synchronous Replication
 
 <TwoColumn left="1fr" right="200px">
-  <p>
+  <div>
     Synchronous Replication is an optional and popular feature of OpenEBS. When used with the Replicated Storage, OpenEBS can synchronously replicate the data volumes for high availability. The replication happens across Kubernetes zones resulting in high availability for cross AZ setups. This feature is especially useful to build highly available stateful applications using local disks on cloud providers services such as GKE, EKS and AKS.
-  </p>
+  </div>
 
 ![Synchronous Replication Icon](../assets/f-replication.svg)
 
@@ -53,9 +53,9 @@ OpenEBS Features, like any storage solution, can be broadly classified into the 
 ### Snapshots and Clones
 
 <TwoColumn left="1fr" right="200px">
-  <p>
+  <div>
     Copy-on-write snapshots are another optional and popular feature of OpenEBS. When using the Replicated Storage, snapshots are created instantaneously. The incremental snapshot capability enhances data migration and portability across Kubernetes clusters and different cloud providers or data centers. Operations on snapshots and clones are performed in completely Kubernetes native method using the standard kubectl commands. Common use cases include efficient replication for backups and the use of clones for troubleshooting or development against a read-only copy of data.
-  </p>
+  </div>
 
 ![Snapshots and Clones Icon](../assets/f-snapshots.svg)
 
@@ -64,9 +64,9 @@ OpenEBS Features, like any storage solution, can be broadly classified into the 
 ### Backup and Restore
 
 <TwoColumn left="1fr" right="200px">
-  <p>
+  <div>
     The backup and restore of OpenEBS volumes works with Kubernetes backup and restore solutions such as Velero via open source OpenEBS Velero-plugins. Data backup to object storage targets such as AWS S3, GCP Object Storage or MinIO are frequently deployed using the OpenEBS incremental snapshot capability. This storage level snapshot and backup saves a significant amount of bandwidth and storage space as only incremental data is used for backup.
-  </p>
+  </div>
 
 ![Backup and Restore Icon](../assets/f-backup.svg)
 
@@ -75,9 +75,9 @@ OpenEBS Features, like any storage solution, can be broadly classified into the 
 ### Prometheus Metrics for Workload Tuning
 
 <TwoColumn left="1fr" right="200px">
-  <p>
+  <div>
     OpenEBS volumes are instrumented for granular data metrics such as volume IOPS, throughput, latency and data patterns. As OpenEBS follows the CNS pattern, stateful applications can be tuned for better performance by observing the traffic data patterns on Prometheus and modifying the storage policy parameters without worrying about neighboring workloads that are using OpenEBS thereby minimizing the incidence of "noisy neighbor" issues.
-  </p>
+  </div>
 
 ![Prometheus and Tuning Icon](../assets/f-prometheus.svg)
 

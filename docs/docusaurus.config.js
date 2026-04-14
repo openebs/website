@@ -10,12 +10,15 @@ module.exports = {
   url: `${WEBSITE_URL}`,
   baseUrl: "/docs/",
   onBrokenLinks: "log",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenAnchors: "ignore",
   favicon: "/docs/img/favicon.ico",
   organizationName: "openebs",
   projectName: "website",
   markdown: {
     format: 'detect',
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
   },
   future: {
     faster: {
@@ -181,7 +184,12 @@ module.exports = {
   ],
   plugins: [
     "docusaurus-plugin-sass",
-    require.resolve("docusaurus-lunr-search"),
     path.resolve(__dirname, 'plugins/route-update-event-plugin'),
+    [
+      require.resolve('docusaurus-lunr-search'),
+      {
+        excludeRoutes: []
+      }
+    ],
   ],
 };

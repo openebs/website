@@ -228,7 +228,7 @@ Follow the steps below to migrate OpenEBS cStor to OpenEBS Replicated (a.k.a Rep
 
 1. [Install Replicated Storage](../../quickstart-guide/installation.md) on your cluster.
 
-2. Create a replicated PVC of the same [configuration](../replicated-storage-user-guide/rs-configuration.md). See the example below:
+2. Create a replicated PVC of the same [configuration](../replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-storageclass.md). See the example below:
 
 ```
 apiVersion: v1

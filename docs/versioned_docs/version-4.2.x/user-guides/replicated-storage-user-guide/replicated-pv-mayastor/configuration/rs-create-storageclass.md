@@ -58,7 +58,7 @@ The default installation of Replicated PV Mayastor includes the creation of a St
 
 ## See Also
 
-- [Installation](../../../quickstart-guide/installation.md)
+- [Installation](../../../../quickstart-guide/installation.md)
 - [Create DiskPool(s)](../configuration/rs-create-diskpool.md)
 - [Storage Class Parameters](../configuration/rs-storage-class-parameters.md)
 - [Topology Parameters](../configuration/rs-topology-parameters.md)

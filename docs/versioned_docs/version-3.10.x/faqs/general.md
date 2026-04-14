@@ -142,7 +142,7 @@ Currently, NDM Daemon set runs in the privileged mode. NDM requires privileged m
 
 ### Is OpenShift supported? {#openebs-in-openshift}
 
-Yes. See the [detailed installation instructions for OpenShift](kb.md#openshift-install) for more information.
+Yes. See the [detailed installation instructions for OpenShift](../additional-info/kb.md#openshift-install) for more information.
 
 [Go to top](#top)
 

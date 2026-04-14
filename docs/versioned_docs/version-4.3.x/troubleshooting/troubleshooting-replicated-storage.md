@@ -306,7 +306,7 @@ Replicated Storage currently supports provisioning snapshots and clones on volum
 
 Replicated Storage Volumes can be configured \(or subsequently re-configured\) to be composed of 2 or more "children" or "replicas"; causing synchronously mirrored copies of the volumes's data to be maintained on more than one worker node and Disk Pool. This contributes additional "durability" at the persistence layer, ensuring that viable copies of a volume's data remain even if a Disk Pool device is lost.
 
-A Replicated Storage volume is currently accessible to an application only via a single target instance \(NVMe-oF\) of a single Replicated Storage pod. However, if that Replicated Storage pod ceases to run \(through the loss of the worker node on which it's scheduled, execution failure, crashloopbackoff etc.\) the [HA switch-over module](../user-guides/replicated-storage-user-guide/advanced-operations/HA.md) detects the failure and moves the target to a healthy worker node to ensure I/O continuity.
+A Replicated Storage volume is currently accessible to an application only via a single target instance \(NVMe-oF\) of a single Replicated Storage pod. However, if that Replicated Storage pod ceases to run \(through the loss of the worker node on which it's scheduled, execution failure, crashloopbackoff etc.\) the [HA switch-over module](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/HA.md) detects the failure and moves the target to a healthy worker node to ensure I/O continuity.
 
 [Go to top](#top)
 

@@ -7,12 +7,12 @@
 
 /* You can override the default Infima variables here. */
 
-@import "colors";
-@import "fonts";
-@import "variables";
-@import "tables";
-@import "typography";
-@import "buttons";
+@use "colors" as *;
+@use "fonts";
+@use "variables" as *;
+@use "tables";
+@use "typography";
+@use "buttons";
 
 :root {
   --ifm-font-family-base: #{$default-font-families};

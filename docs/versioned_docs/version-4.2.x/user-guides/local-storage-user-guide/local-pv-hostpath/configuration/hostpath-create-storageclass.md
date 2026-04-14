@@ -85,5 +85,5 @@ If you encounter issues or have a question, file a [Github issue](https://github
 
 ## See Also
 
-- [Installation](../hostpath-installation.md)
+- [Installation](../../../../quickstart-guide/installation.md)
 - [Deploy an Application](hostpath-deployment.md)

@@ -394,7 +394,7 @@ spec:
     - test2
 ```
 
-If you want to change topology keys, just a set new env(ALLOWED_TOPOLOGIES). See [FAQs](./faq.md#1-how-to-add-custom-topology-key) for more details.
+If you want to change topology keys, just a set new env(ALLOWED_TOPOLOGIES). See [FAQs](../../../faqs/faqs.md#how-to-add-custom-topology-key-in-the-local-pv-lvm-driver) for more details.
 
 ```
 $ kubectl edit ds -n kube-system openebs-lvm-node

@@ -37,7 +37,7 @@ The volumes can either be `thick` or `thin` provisioned. Adding the `thin` param
 When the volumes are thinly provisioned, the user needs to monitor the pools, and if these pools start to run out of space, then either new pools must be added or volumes deleted to prevent thinly provisioned volumes from getting degraded or faulted. This is because when a pool with more than one replica runs out of space, Replicated PV Mayastor moves the largest out-of-space replica to another pool and then executes a rebuild. It then checks if all the replicas have sufficient space; if not, it moves the next largest replica to another pool, and this process continues till all the replicas have sufficient space.
 
 :::info
-The capacity usage on a pool can be monitored using [exporter metrics](../replicated-pv-mayastor/advanced-operations/monitoring.md#pool-metrics-exporter).
+The capacity usage on a pool can be monitored using [exporter metrics](../advanced-operations/monitoring.md#pool-metrics-exporter).
 :::
 
 The `agents.core.capacity.thin` spec present in the Replicated PV Mayastor helm chart consists of the following configurable parameters that can be used to control the scheduling of thinly provisioned replicas:
@@ -54,7 +54,7 @@ The `agents.core.capacity.thin` spec present in the Replicated PV Mayastor helm 
 
 ## "allowVolumeExpansion"
 
-The parameter `allowVolumeExpansion` enables the expansion of PVs when using Persistent Volume Claims (PVCs). You must set the `allowVolumeExpansion` parameter to `true` in the StorageClass to enable the expansion of a volume. In order to expand volumes where volume expansion is enabled, edit the size of the PVC. Refer to the [Resize documentation](../replicated-pv-mayastor/advanced-operations/resize.md) for more details.
+The parameter `allowVolumeExpansion` enables the expansion of PVs when using Persistent Volume Claims (PVCs). You must set the `allowVolumeExpansion` parameter to `true` in the StorageClass to enable the expansion of a volume. In order to expand volumes where volume expansion is enabled, edit the size of the PVC. Refer to the [Resize documentation](../advanced-operations/resize.md) for more details.
 
 ## Topology Parameters
 
@@ -331,7 +331,7 @@ If the affinity group volumes have multiple replicas, they already have some lev
 
 3. Anti-affinity among targets:
 
-The [High Availability](../replicated-pv-mayastor/advanced-operations/HA.md) feature ensures that there is no single point of failure for the targets.
+The [High Availability](../advanced-operations/HA.md) feature ensures that there is no single point of failure for the targets.
 The `stsAffinityGroup` ensures that in such cases, the targets are distributed optimally for the stsAffinityGroup volumes.
 
 By default, the `stsAffinityGroup` feature is disabled. To enable it, modify the storage class YAML by setting the `parameters.stsAffinityGroup` parameter to true.
@@ -348,7 +348,7 @@ This option needs to be set to true when using a `btrfs` filesystem, if the appl
 
 ## See Also
 
-- [Installation](../../../quickstart-guide/installation.md)
+- [Installation](../../../../quickstart-guide/installation.md)
 - [Create DiskPool(s)](../configuration/rs-create-diskpool.md)
 - [Create StorageClass(s)](../configuration/rs-create-storageclass.md)
 - [Topology Parameters](../configuration/rs-topology-parameters.md)
