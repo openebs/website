@@ -8,6 +8,9 @@ keywords:
 description: The FAQ section about OpenEBS helps to address common concerns, questions, and objections that users have about OpenEBS.
 ---
 
+<span id="top"></span>
+
+
 ### What is most distinctive about the OpenEBS architecture?{#What-is-most-distinctive-about-the-OpenEBS-architecture}
 
 The OpenEBS architecture is an example of Container Native Storage (CNS). These approaches containerize the storage controller, called I/O controllers, and underlying storage targets, called “replicas”, allowing an orchestrator such as Kubernetes to automate the management of storage. Benefits include automation of management, a delegation of responsibility to developer teams, and the granularity of the storage policies which in turn can improve performance.
@@ -433,7 +436,7 @@ Faulted replicas are automatically rebuilt in the background without IO disrupti
 
 ### How does OpenEBS provide high availability for stateful workloads?
 
-Refer to the [Replicated PV Mayastor Configuration documentation](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-storage-class-parameters.md#stsaffinitygroup) for more information.
+Refer to the [Replicated PV Mayastor Configuration documentation](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-storage-class-parameters.md) for more information.
 
 [Go to top](#top)
 

@@ -9,7 +9,8 @@ const config: Config = {
   tagline: 'OpenEBS Docs: Information regarding the latest releases',
   url: WEBSITE_URL,
   baseUrl: '/docs/',
-  onBrokenLinks: 'log',
+  onBrokenLinks: 'warn',
+  onBrokenAnchors: 'warn',
   markdown: {
     hooks: {
       onBrokenMarkdownLinks: 'warn',
@@ -51,18 +52,22 @@ const config: Config = {
   presets: [
     [
       'classic',
-      {
-        docs: {
+      {        docs: {
           path: 'main',
           routeBasePath: '/',
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/openebs/website/edit/main/docs/',
           includeCurrentVersion: true,
           lastVersion: 'current',
+          // Exclude orphan legacy pages with broken links to deprecated content.
+          // These can be re-added once their links are updated for the new structure.
+          exclude: ['stateful-applications/**'],
           versions: {
             current: {
               label: 'main',
-              path: 'main',
+              // No path prefix — current version served at root /docs/[slug].
+              // This ensures /docs/ generates a valid redirect and the navbar
+              // logo link does not produce broken-link warnings.
             },
             '4.4.x': {
               label: '4.4.x',
@@ -79,6 +84,34 @@ const config: Config = {
           anonymizeIP: true,
         },
       } satisfies Preset.Options,
+    ],
+  ],
+
+  plugins: [
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        // Redirect old absolute paths (used in stateful-applications pages)
+        // to their current equivalents in the reorganised docs structure.
+        redirects: [
+          {
+            from: '/introduction/usecases',
+            to: '/introduction-to-openebs/usecases',
+          },
+          {
+            from: '/user-guides/installation',
+            to: '/quickstart-guide/installation',
+          },
+          {
+            from: '/user-guides/localpv-hostpath',
+            to: '/user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview',
+          },
+          {
+            from: '/user-guides/localpv-device',
+            to: '/user-guides/local-storage-user-guide/local-pv-lvm/lvm-overview',
+          },
+        ],
+      },
     ],
   ],
 

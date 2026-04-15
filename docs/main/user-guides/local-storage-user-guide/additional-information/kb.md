@@ -10,6 +10,9 @@ description: The knowledge base include summaries, manuals, troubleshooting guid
 
 ---
 
+<span id="top"></span>
+
+
 ### How do I reuse an existing PV - after re-creating Kubernetes StatefulSet and its PVC {#reuse-pv-after-recreating-sts}
 
 There are some cases where it had to delete the StatefulSet and re-install a new StatefulSet. In the process you may have to delete the PVCs used by the StatefulSet and retain PV policy by ensuring the Retain as the "Reclaim Policy". In this case, following are the procedures for re-using an existing PV in your StatefulSet application.

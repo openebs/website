@@ -9,15 +9,15 @@ keywords:
 description: This guide will help you to create Replicated PV Mayastor StorageClass.
 ---
 
-# Create StorageClass(s)
+# Create StorageClass(s) {#create-storageclasss}
 
-Replicated PV Mayastor dynamically provisions PersistentVolumes \(PVs\) based on StorageClass definitions created by the user. Parameters of the definition are used to set the characteristics and behaviour of its associated PVs. Refer [Storage Class parameters](#storage-class-parameters) for a detailed description of these parameters.
+Replicated PV Mayastor dynamically provisions PersistentVolumes \(PVs\) based on StorageClass definitions created by the user. Parameters of the definition are used to set the characteristics and behaviour of its associated PVs. Refer [Storage Class parameters](../configuration/rs-storage-class-parameters.md) for a detailed description of these parameters.
 Most importantly StorageClass definition is used to control the level of data protection afforded to it (i.e. the number of synchronous data replicas that are maintained for purposes of redundancy). It is possible to create any number of StorageClass definitions, spanning all permitted parameter permutations.
 
 We illustrate this quickstart guide with two examples of possible use cases; one which offers no data redundancy \(i.e. a single data replica\), and another having three data replicas.
 
 :::info
-Both the example YAMLs given below have [thin provisioning](#thin) enabled. You can modify these as required to match your own desired test cases, within the limitations of the cluster under test.
+Both the example YAMLs given below have [thin provisioning](../configuration/rs-storage-class-parameters.md#thin) enabled. You can modify these as required to match your own desired test cases, within the limitations of the cluster under test.
 :::
 
 ## One Replica

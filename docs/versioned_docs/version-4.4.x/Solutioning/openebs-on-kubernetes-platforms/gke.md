@@ -214,7 +214,7 @@ diskpool.openebs.io/pool-1 created
 
 ## Configuration
 
-- Refer to the [Replicated PV Mayastor Configuration Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-storageclass.md#create-storageclasss) for instructions regarding StorageClass creation.
+- Refer to the [Replicated PV Mayastor Configuration Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-storageclass.md) for instructions regarding StorageClass creation.
 
 - Refer to the [Deploy an Application Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-deployment.md) for instructions regarding PVC creation and deploying an application.
 

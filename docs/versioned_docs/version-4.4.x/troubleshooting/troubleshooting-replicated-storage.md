@@ -7,6 +7,9 @@ keywords:
   - OpenEBS troubleshooting
 description: This page contains a list of OpenEBS related troubleshooting which contains information like troubleshooting installation, troubleshooting uninstallation, and troubleshooting replicated storage.
 ---
+
+<span id="top"></span>
+
 # Troubleshooting - Replicated Storage (a.k.a Replicated Engine or Mayastor)
 
 ## Logs
