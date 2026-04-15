@@ -18,6 +18,10 @@ const config: Config = {
   onBrokenLinks: 'warn',
   onBrokenAnchors: 'warn',
   markdown: {
+    // 'detect': .md files → CommonMark (no JSX parsing), .mdx files → MDX.
+    // Older version docs (.md) have HTML/JSX-incompatible content;
+    // custom React components are only used in .mdx files.
+    format: 'detect',
     hooks: {
       onBrokenMarkdownLinks: 'warn',
     },
