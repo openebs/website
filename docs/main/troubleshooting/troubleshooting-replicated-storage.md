@@ -293,7 +293,7 @@ You can validate the schema changes by executing `kubectl get crd diskpools.open
 :::
 
 
-[Go to top](#top)
+
 
 # Known Limitations
 
@@ -303,7 +303,7 @@ Replicated Storage Volumes can be configured \(or subsequently re-configured\) t
 
 A Replicated Storage volume is currently accessible to an application only via a single target instance \(NVMe-oF\) of a single Replicated Storage pod. However, if that Replicated Storage pod ceases to run \(through the loss of the worker node on which it's scheduled, execution failure, crashloopbackoff etc.\) the [HA switch-over module](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/HA.md) detects the failure and moves the target to a healthy worker node to ensure I/O continuity.
 
-[Go to top](#top)
+
 
 # Known Issues
 
@@ -349,7 +349,7 @@ The volume is created, but `xfs` is failing to mount.
 **Workaround**
 
 If you are trying to use `xfs` volumes and the cluster node hosts are running a kernel version less than 5.10, you may encounter a mount failure of the filesystem. This is due to the incompatibility of newer `xfsprogs` options. In order to alleviate this issue, it is recommended to upgrade the host node kernel version to 5.10 or higher.
-[Go to top](#top)
+
 
 ### io-engine Fails to Start Due to IOVA Allocation Error
 
@@ -362,7 +362,7 @@ Configure the io-engine to use physical address (PA) mode for DMA by setting the
 ```
 --set openebs.mayastor.io_engine.envcontext=iova-mode=pa
 ```
-[Go to top](#top)
+
 
 ## See Also
 

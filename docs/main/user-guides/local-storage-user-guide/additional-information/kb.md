@@ -124,7 +124,7 @@ There are some cases where it had to delete the StatefulSet and re-install a new
   kubectl get pods -n <namespace>
   ```
 
-[Go to top](#top)
+
 
 ### How to prevent container logs from exhausting disk space? {#enable-log-rotation-on-cluster-nodes}
 
@@ -212,7 +212,7 @@ the node to show up as `Not Ready` until the daemon has restarted successfully.
 - The log-opt `compress: true:` is supported from Docker version: 18.04.0. The `max-file` and `max-size` opts are supported on earlier releases as well.
 :::
 
-[Go to top](#top)
+
 
 ### How to create a BlockDeviceClaim for a particular BlockDevice? {#create-bdc-for-a-blockdevice}
 
@@ -242,7 +242,7 @@ There are certain use cases where the user does not need some of the BlockDevice
    kubectl get bdc -n <openebs_installed_namespace>
    ```
 
-[Go to top](#top)
+
 
 ### How to provision Local PV on K3OS? {#provision-localpv-on-k3os}
 
@@ -355,4 +355,4 @@ The detailed information of each steps are provided below.
     OpenEBS local PV will not be bound until the application pod is scheduled as its **volumeBindingMode** is set to **WaitForFirstConsumer.** Once the application pod is scheduled on a certain node, OpenEBS Local PV will be bound on that node.
     :::
 
-[Go to top](#top)
+
