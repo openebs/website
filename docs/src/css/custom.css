@@ -47,6 +47,9 @@
 [data-theme='dark'] {
   --ifm-color-primary: #ff8433;
   --ifm-background-surface-color: #1e2a3a;
+  --ifm-menu-color: #b8ddfe;
+  --ifm-menu-color-active: #ffffff;
+  --ifm-footer-link-color: #b8ddfe;
 }
 
 /* Markdown content styles */
@@ -79,8 +82,11 @@
 
 /* Admonitions */
 .markdown .admonition {
-  color: #3b4473;
   border-left-width: 8px;
+}
+
+[data-theme='light'] .markdown .admonition {
+  color: #3b4473;
 }
 
 .markdown .admonition a {
