@@ -100,7 +100,7 @@ The table below compares performance metrics for RDMA and TCP under specific wor
 
 ## See Also
 
-- [Installation](../../../quickstart-guide/installation.md)
+- [Installation](../../../../quickstart-guide/installation.md)
 - [Create DiskPool(s)](../configuration/rs-create-diskpool.md)
 - [Create StorageClass(s)](../configuration/rs-create-storageclass.md)
 - [Storage Class Parameters](../configuration/rs-storage-class-parameters.md)

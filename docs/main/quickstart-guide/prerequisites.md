@@ -115,7 +115,7 @@ config:
 errors: No known data errors
 ```
 
-Configure the [custom topology keys](../../../faqs/faqs.md#how-to-add-custom-topology-key-to-local-pv-zfs-driver) (if needed). This can be used for many purposes like if we want to create the PV on nodes in a particular zone or building. We can label the nodes accordingly and use that key in the storageclass for making the scheduling decision.
+Configure the [custom topology keys](../faqs/faqs.md#how-to-add-custom-topology-key-to-local-pv-zfs-driver) (if needed). This can be used for many purposes like if we want to create the PV on nodes in a particular zone or building. We can label the nodes accordingly and use that key in the storageclass for making the scheduling decision.
 
 ## Replicated PV Mayastor Prerequisites
 

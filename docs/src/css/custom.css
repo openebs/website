@@ -1,0 +1,205 @@
+/* OpenEBS Docs - Custom CSS for Docusaurus 3.10 */
+
+/* Brand color palette */
+:root {
+  --ifm-color-primary: #f26d00;
+  --ifm-color-primary-dark: #d96200;
+  --ifm-color-primary-darker: #cc5c00;
+  --ifm-color-primary-darkest: #a84b00;
+  --ifm-color-primary-light: #ff7a1a;
+  --ifm-color-primary-lighter: #ff8433;
+  --ifm-color-primary-lightest: #ff9d5c;
+
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-code-font-size: 95%;
+  --ifm-navbar-height: 70px;
+  --doc-sidebar-width: 280px;
+
+  --color-blue-100: #edf6ff;
+  --color-blue-300: #aecee5;
+  --color-blue-400: #62a7bd;
+  --color-blue-500: #3b4473;
+  --color-blue-600: #223288;
+  --color-blue-700: #737daf;
+  --color-blue-800: #b8ddfe;
+
+  --ifm-menu-color: #3b4473;
+  --ifm-menu-color-active: #3b4473;
+  --ifm-footer-link-color: #3b4473;
+  --ifm-background-surface-color: #edf6ff;
+
+  --ifm-color-danger: rgba(251, 116, 120, 0.3);
+  --ifm-color-success: rgba(77, 191, 77, 0.3);
+  --ifm-color-info: rgba(135, 215, 242, 0.3);
+  --ifm-color-warning: rgba(255, 208, 77, 0.3);
+
+  --ifm-alert-border-radius: 0;
+  --ifm-alert-padding-vertical: 1.5rem;
+  --ifm-alert-padding-horizontal: 0.75rem;
+  --ifm-heading-margin-bottom: 2rem;
+  --ifm-pre-padding: 1rem;
+  --ifm-menu-link-padding-horizontal: 0.75rem;
+  --ifm-toc-padding-vertical: 0.3rem;
+  --ifm-toc-padding-horizontal: 0.3rem;
+  --ifm-spacing-horizontal: 0.001rem;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #ff8433;
+  --ifm-background-surface-color: #1e2a3a;
+}
+
+/* Markdown content styles */
+.markdown p > img {
+  width: 100%;
+}
+
+/* Custom bullet list style */
+.markdown ul:not(.dropdown__menu) {
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.markdown ul:not(.dropdown__menu) li {
+  list-style: none;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.markdown ul:not(.dropdown__menu) li::before {
+  content: '';
+  background: #62a7bd;
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 100%;
+}
+
+/* Admonitions */
+.markdown .admonition {
+  color: #3b4473;
+  border-left-width: 8px;
+}
+
+.markdown .admonition a {
+  color: inherit;
+}
+
+/* Inline code */
+.markdown code {
+  border-radius: 4px;
+  border: none;
+  color: inherit;
+  background-color: #edf6ff;
+}
+
+/* Shell code blocks */
+.markdown .language-shell > div {
+  background-color: #3b4473 !important;
+}
+
+.markdown .language-shell * {
+  color: #ffffff !important;
+}
+
+/* YAML token colors */
+.language-yaml .token.key,
+.language-yaml .token.atrule,
+.language-yaml .token.attr-name,
+.language-yaml .token.property {
+  color: #f78c6c !important;
+}
+
+.language-yaml .token.string {
+  color: #c3e88d !important;
+}
+
+.language-yaml .token.number,
+.language-yaml .token.boolean {
+  color: #82aaff !important;
+}
+
+.language-yaml .token.punctuation {
+  color: #89ddff !important;
+}
+
+.language-yaml .token.comment {
+  color: #697098 !important;
+  font-style: italic;
+}
+
+/* Sidebar */
+.menu__link {
+  border-radius: 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  font-size: 15px;
+}
+
+.menu__link--active {
+  font-weight: 700;
+}
+
+/* Table of contents */
+.table-of-contents {
+  border: none;
+}
+
+.table-of-contents__link {
+  font-size: 13px;
+}
+
+.table-of-contents__link--active {
+  font-weight: bold;
+}
+
+/* Pagination */
+.pagination-nav__item {
+  display: block;
+}
+
+.pagination-nav__item--next {
+  justify-content: end;
+}
+
+/* Footer */
+footer.footer {
+  background-image: url('/img/footer.svg');
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-size: cover;
+  border-top: 1px solid #aecee5;
+}
+
+.footer__title {
+  color: #223288;
+}
+
+.footer__link-item:hover {
+  color: inherit;
+}
+
+/* Search */
+.navbar__search {
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 996px) {
+  .markdown h1 {
+    padding-bottom: 0;
+  }
+
+  .markdown > pre,
+  .markdown > ul,
+  .markdown > p {
+    margin-bottom: 5px;
+  }
+
+  .markdown > h2 {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+}

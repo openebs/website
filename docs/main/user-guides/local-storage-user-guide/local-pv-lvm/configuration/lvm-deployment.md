@@ -293,7 +293,7 @@ If you encounter issues or have a question, file a [Github issue](https://github
 
 ## See Also
 
-- [Installation](../lvm-installation.md)
+- [Installation](../../../../quickstart-guide/installation.md)
 - [Create StorageClass(s)](lvm-create-storageclass.md)
-- [StorageClass Options](lvm-storageClass-options.md)
+- [StorageClass Options](lvm-storageclass-options.md)
 - [Create PersistentVolumeClaim](lvm-create-pvc.md)
