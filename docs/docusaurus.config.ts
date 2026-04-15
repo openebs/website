@@ -58,20 +58,19 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/openebs/website/edit/main/docs/',
           includeCurrentVersion: true,
-          lastVersion: 'current',
+          lastVersion: '4.4.x',
           // Exclude orphan legacy pages with broken links to deprecated content.
           // These can be re-added once their links are updated for the new structure.
           exclude: ['stateful-applications/**'],
           versions: {
             current: {
               label: 'main',
-              // No path prefix — current version served at root /docs/[slug].
-              // This ensures /docs/ generates a valid redirect and the navbar
-              // logo link does not produce broken-link warnings.
+              path: 'main',
+              banner: 'unreleased',
             },
             '4.4.x': {
               label: '4.4.x',
-              path: '4.4.x',
+              // No path — lastVersion serves at /docs/[slug] (root)
             },
           },
         },
@@ -88,6 +87,16 @@ const config: Config = {
   ],
 
   plugins: [
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        language: ['en'],
+        indexBlog: false,
+        docsRouteBasePath: '/',
+        searchResultLimits: 8,
+      },
+    ],
     [
       '@docusaurus/plugin-client-redirects',
       {
@@ -122,10 +131,11 @@ const config: Config = {
       disableSwitch: false,
     },
     navbar: {
-      title: 'OpenEBS Docs',
+      title: '',
       logo: {
         alt: 'OpenEBS Logo',
-        src: 'img/logo.svg',
+        src: 'img/openebs-logo.svg',
+        href: '/',
       },
       items: [
         {

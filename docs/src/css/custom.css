@@ -41,7 +41,7 @@
   --ifm-menu-link-padding-horizontal: 0.75rem;
   --ifm-toc-padding-vertical: 0.3rem;
   --ifm-toc-padding-horizontal: 0.3rem;
-  --ifm-spacing-horizontal: 0.001rem;
+  --ifm-spacing-horizontal: 1.5rem;
 }
 
 [data-theme='dark'] {
@@ -140,6 +140,15 @@
 
 .menu__link--active {
   font-weight: 700;
+}
+
+/* Hide sidebar scrollbar while keeping it scrollable */
+.theme-doc-sidebar-container nav.menu {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.theme-doc-sidebar-container nav.menu::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
 }
 
 /* Table of contents */
