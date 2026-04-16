@@ -1,11 +1,12 @@
 {
   "name": "project-docs",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
+    "previewBuild": "docusaurus build --out-dir docs",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -49,6 +50,6 @@
     "serialize-javascript": "^7.0.5"
   },
   "engines": {
-    "node": ">=20.0"
+    "node": ">=22.0"
   }
 }

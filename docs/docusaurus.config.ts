@@ -5,10 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const WEBSITE_URL = 'https://openebs.io';
 
 // On Netlify deploy previews the site is served at the root of a standalone
-// domain, not under /docs/. Use baseUrl='/' so Docusaurus loads correctly.
-const isDeployPreview =
-  process.env.NETLIFY === 'true' && process.env.CONTEXT === 'deploy-preview';
-const baseUrl = isDeployPreview ? '/' : '/docs/';
+const baseUrl = '/docs/';
 
 const config: Config = {
   title: 'OpenEBS Docs',
@@ -109,6 +106,7 @@ const config: Config = {
         language: ['en'],
         indexBlog: false,
         docsRouteBasePath: '/',
+        docsDir: 'main',
         searchResultLimits: 8,
       },
     ],
