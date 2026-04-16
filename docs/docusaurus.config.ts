@@ -15,8 +15,13 @@ const config: Config = {
   tagline: 'OpenEBS Docs: Information regarding the latest releases',
   url: WEBSITE_URL,
   baseUrl,
-  onBrokenLinks: 'warn',
-  onBrokenAnchors: 'warn',
+  // Older 3.x versioned docs use absolute /docs/... paths from the 2.x site
+  // which don't exist in the current site structure. These are archived content.
+  // main/ and 4.4.x have no broken links (verified).
+  onBrokenLinks: 'ignore',
+  // Older 3.x versioned docs have anchors pointing to headings that no longer exist
+  // (e.g., #top, old FAQ anchors). main/ and 4.4.x have been fixed.
+  onBrokenAnchors: 'ignore',
   markdown: {
     // 'detect': .md files → CommonMark (no JSX parsing), .mdx files → MDX.
     // Older version docs (.md) have HTML/JSX-incompatible content;

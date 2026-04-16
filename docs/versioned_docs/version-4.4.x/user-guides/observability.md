@@ -88,19 +88,19 @@ After accessing Grafana in the default directory, you can view the following pre
   </tr>
   <tr>
     <td rowSpan={7}> DiskPool Information </td>
-    <td> <a href="#pool-status"> Pool Status </a></td>
+    <td> Pool Status</td>
   </tr>
   <tr>
-    <td> <a href="#total-pool-size"> Total Pool Size </a></td>
+    <td> Total Pool Size</td>
   </tr>
   <tr>
-    <td> <a href="#used-pool-size"> Used Pool Size </a></td>
+    <td> Used Pool Size</td>
   </tr>
   <tr>
-    <td> <a href="#available-pool-size"> Available Pool Size </a></td>
+    <td> Available Pool Size</td>
   </tr>
   <tr>
-    <td> <a href="#diskpool-iops"> DiskPool IOPS (Read/Write) </a></td>
+    <td> DiskPool IOPS (Read/Write)</td>
   </tr>
   <tr>
     <td> <a href="#diskpool-throughput"> DiskPool Throughput (Read/Write) </a></td>

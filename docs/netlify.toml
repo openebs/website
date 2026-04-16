@@ -1,15 +1,15 @@
 [build]
   base = "docs/"
   publish = "build/"
-  command = "npm run build"
+  command = "npm install && npm run build"
 
 [build.environment]
-  NODE_VERSION = "22"
+  NODE_VERSION = "24"
 
 [context.deploy-preview]
   base = "docs/"
-  publish = "build/"
-  command = "npm run build"
+  publish = "/"
+  command = "npm run previewBuild"
   
   # adding redirect rule to change the path to /docs
   
