@@ -23,6 +23,10 @@ Before you begin, make sure that you meet the following requirements:
 - 2MiB-sized Huge Pages must be supported and enabled on the storage nodes i.e. nodes where IO engine pods are deployed. A minimum number of 1024 such pages (i.e. 2GiB total) must be available exclusively to the IO engine pod on each node.
 Huge pages in the OpenShift Container Platform (OCP) can be enabled during the installation or it can be enabled by creating new machine configs post-installation. Refer to the [Red Hat Documentation](https://access.redhat.com/solutions/5214791) for more details.
 
+:::note
+The namespace and Helm release name used in this document are openebs and are provided for illustration purposes only. You can modify these values based on your environment and naming conventions.
+:::
+
 ## Install Replicated PV Mayastor and Local PV LVM on OpenShift
 
 1. Create a Namespace.
@@ -36,7 +40,8 @@ Huge pages in the OpenShift Container Platform (OCP) can be enabled during the i
   ```
   helm install openebs --namespace openebs openebs/openebs --create-namespace \
   --set openebs-crds.csi.volumeSnapshots.enabled=false \
-  --set engines.local.zfs.enabled=false
+  --set engines.local.zfs.enabled=false \
+  --set mayastor.etcd.volumePermissions.enabled=false
   ```
 
 :::important
@@ -54,7 +59,6 @@ Huge pages in the OpenShift Container Platform (OCP) can be enabled during the i
   oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:openebs-localpv-provisioner
   oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:openebs-nats
   oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:openebs-service-account
-  oc adm policy add-scc-to-user privileged system:serviceaccount:openebs:default
   ```
 
 4. Verify that all pods in the `openebs` namespace are running.
