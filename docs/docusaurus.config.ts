@@ -156,14 +156,37 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/openebs/openebs',
-          label: 'GitHub',
+          to: '/docs',
+          label: 'Docs',
           position: 'right',
         },
         {
-          href: `${WEBSITE_URL}/community`,
+          to: `${WEBSITE_URL}/community`,
           label: 'Community',
           position: 'right',
+        },
+        {
+          to: `${WEBSITE_URL}/commercial-support`,
+          label: 'Commercial Support',
+          position: 'right',
+        },
+        {
+          to: `${WEBSITE_URL}/blog`,
+          label: 'Blog',
+          position: 'right',
+        },
+
+        {
+          href: 'https://github.com/openebs/openebs',
+          position: 'right',
+          className: 'navbar-github',
+          'aria-label': 'GitHub',
+        },
+        {
+          href: `${WEBSITE_URL}/community`,
+          position: 'right',
+          className: 'navbar-slack',
+          'aria-label': 'Slack',
         },
       ],
     },
