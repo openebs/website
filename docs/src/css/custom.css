@@ -179,6 +179,32 @@
   justify-content: end;
 }
 
+/* Navbar Icons */
+.navbar-github,
+.navbar-slack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-github::before {
+  content: '';
+  width: 22px;
+  height: 22px;
+  display: block;
+  background: url('/img/github.svg') no-repeat center;
+  background-size: contain;
+}
+
+.navbar-slack::before {
+  content: '';
+  width: 22px;
+  height: 22px;
+  display: block;
+  background: url('/img/slack.svg') no-repeat center;
+  background-size: contain;
+}
+
 /* Footer */
 footer.footer {
   background-image: url('/img/footer.svg');
