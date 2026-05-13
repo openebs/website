@@ -27,7 +27,7 @@ function normalizeContributor(value) {
     if (!trimmed) {
         return null;
     }
-    // DevStats returns some contributors as "Name (login)"; link using the login.
+    // DevStats returns some contributors as "Name (login)"; extract the login for linking.
     const match = trimmed.match(/\(([^)]+)\)\s*$/);
     return match?.[1] ?? trimmed;
 }
