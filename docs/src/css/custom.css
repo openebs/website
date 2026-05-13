@@ -105,7 +105,8 @@
 }
 
 /* Shell code blocks */
-.markdown .language-shell > div {
+.markdown .language-shell > div,
+.markdown .language-shell pre {
   background-color: #3b4473 !important;
 }
 
@@ -166,6 +167,12 @@
 
 /* Top-level category titles are always bold and larger */
 .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
+  font-weight: 700;
+  font-size: 19px;
+}
+
+/* Top-level doc links (Release Notes, FAQs, Glossary) styled like category titles */
+.theme-doc-sidebar-item-link-level-1 > .menu__link {
   font-weight: 700;
   font-size: 19px;
 }
