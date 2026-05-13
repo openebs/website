@@ -267,33 +267,9 @@ footer.footer {
   color: inherit;
 }
 
-/* Search and brand alignment on docs pages */
-@media (min-width: 997px) {
-  html.docs-doc-page .navbar__inner {
-    max-width: calc(var(--ifm-container-width) + var(--doc-sidebar-width));
-  }
-
-  html.docs-doc-page .navbar__items--left {
-    flex: 0 0 var(--doc-sidebar-width);
-    min-width: var(--doc-sidebar-width);
-  }
-
-  html.docs-doc-page .navbar__brand {
-    width: 100%;
-    margin-right: 0;
-  }
-
-  html.docs-doc-page .navbar__items--right {
-    position: relative;
-    flex: 1 1 auto;
-  }
-
-  html.docs-doc-page .navbar__search {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: clamp(220px, 35vw, 440px);
-  }
+/* Search */
+.navbar__search {
+  width: 100%;
 }
 
 /* Responsive */
