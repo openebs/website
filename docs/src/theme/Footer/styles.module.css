@@ -49,6 +49,16 @@
   font-weight: 700;
 }
 
+.columnHeadingLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.columnHeadingLink:hover {
+  color: inherit;
+  text-decoration: underline;
+}
+
 .newsletterButton {
   display: inline-flex;
   align-items: center;

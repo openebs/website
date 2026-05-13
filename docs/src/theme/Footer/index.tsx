@@ -19,37 +19,60 @@ const WEBSITE_URL = 'https://openebs.io';
 const NEWSLETTER_URL = 'https://lists.cncf.io/g/cncf-openebs-announcements';
 const PRIVACY_POLICY_URL = `${WEBSITE_URL}/privacy-policy`;
 const TRADEMARK_USAGE_URL = 'https://www.linuxfoundation.org/legal/trademark-usage';
+const TOP_GITHUB_CONTRIBUTORS_URL =
+  'https://openebs.devstats.cncf.io/d/22/prs-authors-table?orgId=1&var-period_name=Last%20month&var-repogroup_name=All';
+const NEW_GITHUB_CONTRIBUTORS_URL =
+  'https://openebs.devstats.cncf.io/d/52/new-contributors-table?orgId=1';
+const GITHUB_PROFILE_URL = 'https://github.com/';
+
+const topContributors = [
+  'niladrih',
+  'tiagolobocastro',
+  'Abhinandan-Purkait',
+  'dsharma-dc',
+  'abhilashshetty04',
+  'avishnu',
+];
+
+const newContributors = [
+  'Johnaius (Johnaius)',
+  'styshoo (styshoo)',
+  'Alexander Best (Alex130469)',
+  'YANG Xudong (yxd-ym)',
+  'nilroy',
+  'Phillip Schichtel (pschichtel)',
+];
 
 const socialLinks = [
   {
     label: 'Facebook',
     href: 'https://www.facebook.com/openebs',
-    icon: 'img/social_media/facebook_blue.svg',
+    icon: 'img/social_media/facebook.svg',
   },
   {
     label: 'GitHub',
     href: 'https://github.com/openebs/openebs',
-    icon: 'img/social_media/github_blue.svg',
+    icon: 'img/social_media/github.svg',
   },
   {
     label: 'Slack',
     href: `${WEBSITE_URL}/community`,
-    icon: 'img/social_media/slack_blue.svg',
+    icon: 'img/social_media/slack.svg',
   },
   {
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/company/openebs',
-    icon: 'img/social_media/linkedin_blue.svg',
+    icon: 'img/social_media/linkedin.svg',
   },
   {
     label: 'YouTube',
     href: 'https://www.youtube.com/channel/UC3ywadaAUQ1FI4YsHZ8wa0g',
-    icon: 'img/social_media/youtube_blue.svg',
+    icon: 'img/social_media/youtube.svg',
   },
   {
     label: 'Twitter',
     href: 'https://twitter.com/openebs?s=20',
-    icon: 'img/social_media/twitter_blue.svg',
+    icon: 'img/social_media/twitter.svg',
   },
 ];
 
@@ -80,19 +103,58 @@ function FooterColumn({title, items = []}: FooterLinkGroup) {
   );
 }
 
+function formatName(contributor: string): string {
+  const match = contributor.match(/\(([^)]+)\)\s*$/);
+  return match?.[1] ?? contributor;
+}
+
+function ContributorColumn({
+  title,
+  titleHref,
+  contributors,
+  useFormattedName = false,
+}: {
+  title: string;
+  titleHref: string;
+  contributors: string[];
+  useFormattedName?: boolean;
+}) {
+  return (
+    <div className={styles.column}>
+      <h2 className={styles.columnTitle}>
+        <Link className={styles.columnHeadingLink} href={titleHref}>
+          {title}
+        </Link>
+      </h2>
+      <ul className={styles.columnList}>
+        {contributors.map((contributor) => {
+          const label = useFormattedName ? formatName(contributor) : contributor;
+
+          return (
+            <li key={`${title}-${contributor}`}>
+              <Link className={styles.columnLink} href={`${GITHUB_PROFILE_URL}${label}`}>
+                {label}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  );
+}
+
 export default function Footer(): React.ReactNode {
   const {siteConfig} = useDocusaurusContext();
   const footer = (siteConfig.themeConfig.footer ?? {}) as {
     links?: FooterLinkGroup[];
   };
-  const year =
-    typeof siteConfig.customFields?.currentYear === 'number'
-      ? siteConfig.customFields.currentYear
-      : new Date().getFullYear();
+  const year = String(siteConfig.customFields?.currentYear ?? '');
   const assetBaseUrl = useBaseUrl('/');
   const footerBackgroundSrc = useBaseUrl('img/footer.svg');
   const logoSrc = useBaseUrl('img/openebs-logo.svg');
-  const contentColumns = (footer.links ?? []).filter((group) => group.title !== 'Social');
+  const configuredColumns = footer.links ?? [];
+  const getStartedColumn = configuredColumns.find((group) => group.title === 'Getting Started');
+  const contactUsColumn = configuredColumns.find((group) => group.title === 'Contact Us');
 
   return (
     <footer
@@ -141,9 +203,19 @@ export default function Footer(): React.ReactNode {
         </div>
 
         <div className={styles.linksGrid}>
-          {contentColumns.map((group) => (
-            <FooterColumn key={group.title} title={group.title} items={group.items} />
-          ))}
+          <FooterColumn title={getStartedColumn?.title} items={getStartedColumn?.items} />
+          <ContributorColumn
+            contributors={topContributors}
+            title="Top contributors"
+            titleHref={TOP_GITHUB_CONTRIBUTORS_URL}
+          />
+          <ContributorColumn
+            contributors={newContributors}
+            title="New contributors"
+            titleHref={NEW_GITHUB_CONTRIBUTORS_URL}
+            useFormattedName
+          />
+          <FooterColumn title={contactUsColumn?.title} items={contactUsColumn?.items} />
         </div>
       </div>
 
