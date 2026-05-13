@@ -100,6 +100,7 @@ const config: Config = {
   ],
 
   plugins: [
+    require.resolve('./plugins/contributors'),
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
       {

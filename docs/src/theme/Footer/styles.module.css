@@ -137,6 +137,11 @@
   text-decoration: underline;
 }
 
+.contributorsFallback {
+  margin: 1rem 0 0;
+  font-size: 0.9rem;
+}
+
 .bottomDivider {
   width: min(95%, 1200px);
   margin: 2rem auto 0;

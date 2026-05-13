@@ -1,6 +1,7 @@
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import {usePluginData} from '@docusaurus/useGlobalData';
 import React from 'react';
 import styles from './styles.module.css';
 
@@ -15,6 +16,11 @@ type FooterLinkGroup = {
   items?: FooterLinkItem[];
 };
 
+type ContributorsPluginData = {
+  topContributors: string[];
+  newContributors: string[];
+};
+
 const WEBSITE_URL = 'https://openebs.io';
 const NEWSLETTER_URL = 'https://lists.cncf.io/g/cncf-openebs-announcements';
 const PRIVACY_POLICY_URL = `${WEBSITE_URL}/privacy-policy`;
@@ -24,24 +30,6 @@ const TOP_GITHUB_CONTRIBUTORS_URL =
 const NEW_GITHUB_CONTRIBUTORS_URL =
   'https://openebs.devstats.cncf.io/d/52/new-contributors-table?orgId=1';
 const GITHUB_PROFILE_URL = 'https://github.com/';
-
-const topContributors = [
-  'niladrih',
-  'tiagolobocastro',
-  'Abhinandan-Purkait',
-  'dsharma-dc',
-  'abhilashshetty04',
-  'avishnu',
-];
-
-const newContributors = [
-  'Johnaius (Johnaius)',
-  'styshoo (styshoo)',
-  'Alexander Best (Alex130469)',
-  'YANG Xudong (yxd-ym)',
-  'nilroy',
-  'Phillip Schichtel (pschichtel)',
-];
 
 const socialLinks = [
   {
@@ -103,21 +91,14 @@ function FooterColumn({title, items = []}: FooterLinkGroup) {
   );
 }
 
-function formatName(contributor: string): string {
-  const match = contributor.match(/\(([^)]+)\)\s*$/);
-  return match?.[1] ?? contributor;
-}
-
 function ContributorColumn({
   title,
   titleHref,
   contributors,
-  useFormattedName = false,
 }: {
   title: string;
   titleHref: string;
   contributors: string[];
-  useFormattedName?: boolean;
 }) {
   return (
     <div className={styles.column}>
@@ -126,19 +107,23 @@ function ContributorColumn({
           {title}
         </Link>
       </h2>
-      <ul className={styles.columnList}>
-        {contributors.map((contributor) => {
-          const label = useFormattedName ? formatName(contributor) : contributor;
-
-          return (
-            <li key={`${title}-${contributor}`}>
-              <Link className={styles.columnLink} href={`${GITHUB_PROFILE_URL}${label}`}>
-                {label}
+      {contributors.length > 0 ? (
+        <ul className={styles.columnList}>
+          {contributors.map((login) => (
+            <li key={`${title}-${login}`}>
+              <Link className={styles.columnLink} href={`${GITHUB_PROFILE_URL}${login}`}>
+                {login}
               </Link>
             </li>
-          );
-        })}
-      </ul>
+          ))}
+        </ul>
+      ) : (
+        <p className={styles.contributorsFallback}>
+          <Link className={styles.columnLink} href={titleHref}>
+            View on devstats →
+          </Link>
+        </p>
+      )}
     </div>
   );
 }
@@ -154,10 +139,12 @@ export default function Footer(): React.ReactNode {
   const configuredColumns = footer.links ?? [];
   const getStartedColumn = configuredColumns.find((group) => group.title === 'Getting Started');
 
+  const pluginData = (usePluginData('contributors-plugin') ?? {}) as Partial<ContributorsPluginData>;
+  const topContributors = pluginData.topContributors ?? [];
+  const newContributors = pluginData.newContributors ?? [];
+
   return (
-    <footer
-      className={`footer ${styles.footer}`}
-    >
+    <footer className={`footer ${styles.footer}`}>
       <div className={styles.topDivider} />
 
       <div className={styles.content}>
@@ -210,7 +197,6 @@ export default function Footer(): React.ReactNode {
             contributors={newContributors}
             title="New contributors"
             titleHref={NEW_GITHUB_CONTRIBUTORS_URL}
-            useFormattedName
           />
         </div>
       </div>

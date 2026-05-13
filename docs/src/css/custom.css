@@ -149,14 +149,19 @@
   font-weight: 400;
 }
 
-/* Leaf (page) links — thinner and more compact */
+/* Leaf (page) links — slightly smaller than categories */
 .theme-doc-sidebar-item-link > .menu__link {
-  font-weight: 300;
-  font-size: 13.5px;
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .menu__link--active {
-  font-weight: 600;
+  font-weight: 700;
+}
+
+/* Ensure leaf active items win over the font-weight above */
+.theme-doc-sidebar-item-link > .menu__link--active {
+  font-weight: 700;
 }
 
 /* Top-level category titles are always bold and larger */
