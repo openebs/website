@@ -228,7 +228,7 @@
 
   html.docs-doc-page .navbar__brand {
     width: var(--doc-sidebar-width);
-    justify-content: center;
+    justify-content: flex-end;
     flex-shrink: 0;
   }
 }
