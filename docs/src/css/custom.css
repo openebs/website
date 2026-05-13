@@ -218,6 +218,15 @@
   justify-content: end;
 }
 
+/* Center navbar logo over the sidebar column */
+@media (min-width: 997px) {
+  .navbar__brand {
+    width: var(--doc-sidebar-width);
+    justify-content: center;
+    flex-shrink: 0;
+  }
+}
+
 /* Navbar Icons */
 .navbar-github,
 .navbar-slack {

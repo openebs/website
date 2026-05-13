@@ -137,8 +137,8 @@ const config = {
         navbar: {
             title: '',
             logo: {
-                alt: 'OpenEBS Icon',
-                src: 'img/openebs-icon-color.svg',
+                alt: 'OpenEBS Logo',
+                src: 'img/openebs-logo.svg',
                 href: '/',
             },
             items: [
