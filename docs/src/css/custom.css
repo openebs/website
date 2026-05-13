@@ -220,7 +220,13 @@
 
 /* Center navbar logo over the sidebar column */
 @media (min-width: 997px) {
-  .navbar__brand {
+  html.docs-doc-page .navbar__inner {
+    width: 100%;
+    max-width: calc(var(--ifm-container-width) + var(--doc-sidebar-width));
+    margin: 0 auto;
+  }
+
+  html.docs-doc-page .navbar__brand {
     width: var(--doc-sidebar-width);
     justify-content: center;
     flex-shrink: 0;
