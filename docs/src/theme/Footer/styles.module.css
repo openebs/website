@@ -2,7 +2,6 @@
   background-repeat: no-repeat;
   background-position: top left;
   background-size: cover;
-  border-top: 1px solid var(--color-blue-300);
   padding: 2rem 0 0;
 }
 
@@ -112,7 +111,7 @@
 .linksGrid {
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .column {
@@ -192,7 +191,7 @@
   }
 
   .linksGrid {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 

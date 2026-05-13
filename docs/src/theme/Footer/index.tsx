@@ -154,7 +154,6 @@ export default function Footer(): React.ReactNode {
   const logoSrc = useBaseUrl('img/openebs-logo.svg');
   const configuredColumns = footer.links ?? [];
   const getStartedColumn = configuredColumns.find((group) => group.title === 'Getting Started');
-  const contactUsColumn = configuredColumns.find((group) => group.title === 'Contact Us');
 
   return (
     <footer
@@ -215,7 +214,6 @@ export default function Footer(): React.ReactNode {
             titleHref={NEW_GITHUB_CONTRIBUTORS_URL}
             useFormattedName
           />
-          <FooterColumn title={contactUsColumn?.title} items={contactUsColumn?.items} />
         </div>
       </div>
 
