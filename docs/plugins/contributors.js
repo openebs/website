@@ -27,6 +27,7 @@ function normalizeContributor(value) {
     if (!trimmed) {
         return null;
     }
+    // DevStats returns some contributors as "Name (login)"; link using the login.
     const match = trimmed.match(/\(([^)]+)\)\s*$/);
     return match?.[1] ?? trimmed;
 }
@@ -57,6 +58,13 @@ function readGrafanaRows(payload) {
 }
 
 async function postGrafanaQuery(rawSql, {from = 'now-6M', to = 'now'} = {}) {
+    /**
+     * Query the public DevStats Grafana datasource directly.
+     *
+     * The SQL must match the public OpenEBS dashboards' Postgres schema, and
+     * the relative time strings (for example `now-6M`) are Grafana-compatible
+     * range values passed through to the datasource query API.
+     */
     const response = await fetch(DEVSTATS_URL, {
         method: 'POST',
         headers: {
@@ -80,7 +88,10 @@ async function postGrafanaQuery(rawSql, {from = 'now-6M', to = 'now'} = {}) {
         }),
     });
     if (!response.ok) {
-        throw new Error(`DevStats query failed with ${response.status}`);
+        const responseText = await response.text();
+        throw new Error(
+            `DevStats query to ${DEVSTATS_URL} failed with ${response.status}: ${responseText}`,
+        );
     }
     return response.json();
 }
