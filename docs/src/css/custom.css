@@ -55,6 +55,18 @@
   --ifm-footer-link-color: #b8ddfe;
 }
 
+/* Center docs layout block so sidebar sits closer to middle content */
+@media (min-width: 997px) {
+  html.docs-doc-page .main-wrapper {
+    align-items: center;
+  }
+
+  html.docs-doc-page .main-wrapper > div {
+    width: 100%;
+    max-width: calc(var(--ifm-container-width) + var(--doc-sidebar-width));
+  }
+}
+
 /* Markdown content styles */
 .markdown p > img {
   width: 100%;
@@ -102,6 +114,14 @@
   border: none;
   color: inherit;
   background-color: #edf6ff;
+}
+
+/* Keep fenced code blocks readable in dark mode */
+[data-theme='dark'] .theme-code-block,
+[data-theme='dark'] .theme-code-block pre,
+[data-theme='dark'] .theme-code-block code {
+  --prism-background-color: #282a36 !important;
+  --prism-color: #f8f8f2 !important;
 }
 
 /* YAML token colors */
