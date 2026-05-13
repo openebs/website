@@ -14,17 +14,17 @@ const topContributors = [
     'niladrih',
     'tiagolobocastro',
     'Abhinandan-Purkait',
-    'dsharma-dc',
+    'pchandra19',
     'abhilashshetty04',
-    'avishnu',
+    'jr42',
 ];
 const newContributors = [
-    'Johnaius (Johnaius)',
-    'styshoo (styshoo)',
-    'Alexander Best (Alex130469)',
-    'YANG Xudong (yxd-ym)',
-    'nilroy',
-    'Phillip Schichtel (pschichtel)',
+    'immanuwell',
+    'Krishna Gajabi (krishnaGajabi)',
+    'Pierluigi Lenoci (pierluigilenoci)',
+    'rohan2794',
+    'Konstantin Raskoshnyi (kotyara85)',
+    'IyanekiB',
 ];
 const socialLinks = [
     {

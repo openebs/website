@@ -1,5 +1,8 @@
 /* OpenEBS Docs - Custom CSS for Docusaurus 3.10 */
 
+/* Nunito font for sidebar navigation */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+
 /* Brand color palette */
 :root {
   --ifm-color-primary: #f26d00;
@@ -138,14 +141,22 @@
 
 /* Sidebar */
 .menu__link {
+  font-family: 'Nunito', var(--ifm-font-family-base);
   border-radius: 0;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  font-size: 16px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Leaf (page) links — thinner and more compact */
+.theme-doc-sidebar-item-link > .menu__link {
+  font-weight: 300;
+  font-size: 13.5px;
 }
 
 .menu__link--active {
-  font-weight: 900;
+  font-weight: 600;
 }
 
 /* Top-level category titles are always bold and larger */
