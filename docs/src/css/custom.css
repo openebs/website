@@ -196,6 +196,12 @@
   background-color: var(--ifm-navbar-background-color);
 }
 
+/* Keep docs navbar minimal when logo/search are moved into page layout */
+html.docs-doc-page .navbar .navbar__brand,
+html.docs-doc-page .navbar .navbar__search {
+  display: none;
+}
+
 /* Table of contents */
 .table-of-contents {
   border: none;
