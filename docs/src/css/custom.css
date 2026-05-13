@@ -120,8 +120,8 @@
 [data-theme='dark'] .theme-code-block,
 [data-theme='dark'] .theme-code-block pre,
 [data-theme='dark'] .theme-code-block code {
-  --prism-background-color: #282a36 !important;
-  --prism-color: #f8f8f2 !important;
+  background-color: #282a36 !important;
+  color: #f8f8f2 !important;
 }
 
 /* YAML token colors */
