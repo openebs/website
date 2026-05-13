@@ -67,4 +67,9 @@ const Carousel: React.FC<Carousal> = ({ children, settings, ...props }) => {
   );
 };
 
+Carousel.defaultProps = {
+  settings: {},
+  className: undefined,
+};
+
 export default Carousel;

@@ -84,3 +84,9 @@ export const Metadata: React.FC<MetadataProps> = ({
     </Helmet>
   );
 };
+
+Metadata.defaultProps = {
+  type: undefined,
+  tags: undefined,
+  author: undefined,
+};

@@ -177,4 +177,10 @@ const EventSlider: React.FC<EventsProps> = ({
   );
 };
 
+EventSlider.defaultProps = {
+  sortEvents: true,
+  filterEvents: true,
+  sortOrder: 'desc',
+};
+
 export default EventSlider;

@@ -29,4 +29,8 @@ const BlogImage: React.FC<BlogImg> = ({ imgPath, alt, ...props }) => {
   );
 };
 
+BlogImage.defaultProps = {
+  className: undefined,
+};
+
 export default BlogImage;
