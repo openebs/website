@@ -24,13 +24,12 @@ Containers and Kubernetes have disrupted the way platforms and technology stacks
 ### Open Source Cloud Native Storage for Kubernetes
 
 <TwoColumn left="1fr" right="200px">
-  <p>
-    OpenEBS is cloud native storage for stateful applications on Kubernetes
-    where "cloud native" means following a loosely coupled architecture. As such
-    the normal benefits to cloud native, loosely coupled architectures apply.
-    For example, developers and DevOps architects can use standard Kubernetes
-    skills and utilities to configure, use, scale, customize and manage OpenEBS itself.  
-  </p>
+
+OpenEBS is cloud native storage for stateful applications on Kubernetes
+where "cloud native" means following a loosely coupled architecture. As such
+the normal benefits to cloud native, loosely coupled architectures apply.
+For example, developers and DevOps architects can use standard Kubernetes
+skills and utilities to configure, use, scale, customize and manage OpenEBS itself.
 
 ![Cloud Native Storage Icon](../assets/b-cn.svg)
 
@@ -46,15 +45,14 @@ Some key aspects that make OpenEBS different compared to other traditional stora
 ### Avoid Cloud Lock-in
 
 <TwoColumn left="1fr" right="200px">
-  <p>
-    Even though Kubernetes provides an increasingly ubiquitous control plane,
-    concerns about data gravity resulting in lock-in and other challenges remain. 
-    With OpenEBS, the data can be written to the OpenEBS layer - if cStor, Jiva 
-    or Mayastor are used - and if so OpenEBS acts as a data abstraction layer. 
-    Using this data abstraction layer, data can be much more easily moved amongst
-    Kubernetes environments, whether they are on premise and attached to traditional
-    storage systems or in the cloud and attached to local storage or managed storage services.
-  </p>
+
+Even though Kubernetes provides an increasingly ubiquitous control plane,
+concerns about data gravity resulting in lock-in and other challenges remain.
+With OpenEBS, the data can be written to the OpenEBS layer - if cStor, Jiva
+or Mayastor are used - and if so OpenEBS acts as a data abstraction layer.
+Using this data abstraction layer, data can be much more easily moved amongst
+Kubernetes environments, whether they are on premise and attached to traditional
+storage systems or in the cloud and attached to local storage or managed storage services.
 
 ![Avoid Cloud Lock-in Icon](../assets/b-no-lockin.svg)
 
@@ -63,9 +61,8 @@ Some key aspects that make OpenEBS different compared to other traditional stora
 ### Granular Policies Per Stateful Workload
 
 <TwoColumn left="1fr" right="200px">
-    <p>
-        One reason for the rise of cloud native, loosely coupled architectures is that they enable loosely coupled teams. These small teams are enabled by cloud native architectures to move faster, free of most cross functional dependencies thereby unlocking innovation and customer responsiveness. OpenEBS also unlocks small teams by enabling them to retain their autonomy by virtue of deploying their own storage system. Practically, this means storage parameters are monitored on a workload and per volume basis and storage policies and settings are declared to achieve the desired result for a given workload. The policies are tested and tuned, keeping only the particular workload in mind, while other workloads are unaffected. Workloads - and teams - remain loosely coupled.
-    </p>
+
+One reason for the rise of cloud native, loosely coupled architectures is that they enable loosely coupled teams. These small teams are enabled by cloud native architectures to move faster, free of most cross functional dependencies thereby unlocking innovation and customer responsiveness. OpenEBS also unlocks small teams by enabling them to retain their autonomy by virtue of deploying their own storage system. Practically, this means storage parameters are monitored on a workload and per volume basis and storage policies and settings are declared to achieve the desired result for a given workload. The policies are tested and tuned, keeping only the particular workload in mind, while other workloads are unaffected. Workloads - and teams - remain loosely coupled.
 
 ![Workload Granular Policies Icon](../assets/b-granular.svg)
 
@@ -74,9 +71,8 @@ Some key aspects that make OpenEBS different compared to other traditional stora
 ### Reduced Storage TCO up to 50%
 
 <TwoColumn left="1fr" right="200px">
-    <p>
-     On most clouds, block storage is charged based on how much is purchased and not on how much is used; capacity is often over provisioned in order to achieve higher performance and in order to remove the risk of disruption when the capacity is fully utilized. Thin provisioning capabilities of OpenEBS can pool local storage or cloud storage and then grow the data volumes of stateful applications as needed. The storage can be added on the fly without disruption to the volumes exposed to the workloads or applications. Certain users have reported savings in excess of 60% due to the use of thin provisioning from OpenEBS.
-    </p>
+
+On most clouds, block storage is charged based on how much is purchased and not on how much is used; capacity is often over provisioned in order to achieve higher performance and in order to remove the risk of disruption when the capacity is fully utilized. Thin provisioning capabilities of OpenEBS can pool local storage or cloud storage and then grow the data volumes of stateful applications as needed. The storage can be added on the fly without disruption to the volumes exposed to the workloads or applications. Certain users have reported savings in excess of 60% due to the use of thin provisioning from OpenEBS.
 
 ![Reduced Storage TCO Icon](../assets/b-lowtco.svg)
 
@@ -85,17 +81,16 @@ Some key aspects that make OpenEBS different compared to other traditional stora
 ### Natively Hyperconverged on Kubernetes
 
 <TwoColumn left="1fr" right="200px">
-  <p>
-    Node Disk Manager (NDM) in OpenEBS can be used to enable disk management in
-    a Kubernetes way by using Kubernetes constructs. Using NDM and OpenEBS,
-    nodes in the Kubernetes cluster can be horizontally scaled without worrying
-    about managing persistent storage needs of stateful applications. The
-    storage needs (capacity planning, performance planning, and volume
-    management) of a cluster can be automated using the volume and pool policies
-    of OpenEBS thanks in part to the role played by NDM in identifying and
-    managing underlying storage resources, including local disks and cloud
-    volumes.
-  </p>
+
+Node Disk Manager (NDM) in OpenEBS can be used to enable disk management in
+a Kubernetes way by using Kubernetes constructs. Using NDM and OpenEBS,
+nodes in the Kubernetes cluster can be horizontally scaled without worrying
+about managing persistent storage needs of stateful applications. The
+storage needs (capacity planning, performance planning, and volume
+management) of a cluster can be automated using the volume and pool policies
+of OpenEBS thanks in part to the role played by NDM in identifying and
+managing underlying storage resources, including local disks and cloud
+volumes.
 
 ![Natively HCI on K8s Icon](../assets/b-hci.svg)
 
@@ -104,19 +99,18 @@ Some key aspects that make OpenEBS different compared to other traditional stora
 ### High Availability
 
 <TwoColumn left="1fr" right="200px">
-  <p>
-    Because OpenEBS follows the CAS architecture, upon node failure the OpenEBS
-    controller will be rescheduled by Kubernetes while the underlying data is
-    protected via the use of one or more replicas. More importantly - because
-    each workload can utilize its own OpenEBS - there is no risk of a system
-    wide outage due to the loss of storage. For example, metadata of the volume
-    is not centralized where it might be subject to a catastrophic generalized
-    outage as is the case in many shared storage systems. Rather the metadata is
-    kept local to the volume. Losing any node results in the loss of only those volume
-    replicas present on that node. As the volume data can be synchronously
-    replicated at other nodes, in the event of a node failure, the
-    data continues to be available at the same performance levels.
-  </p>
+
+Because OpenEBS follows the CAS architecture, upon node failure the OpenEBS
+controller will be rescheduled by Kubernetes while the underlying data is
+protected via the use of one or more replicas. More importantly - because
+each workload can utilize its own OpenEBS - there is no risk of a system
+wide outage due to the loss of storage. For example, metadata of the volume
+is not centralized where it might be subject to a catastrophic generalized
+outage as is the case in many shared storage systems. Rather the metadata is
+kept local to the volume. Losing any node results in the loss of only those volume
+replicas present on that node. As the volume data can be synchronously
+replicated at other nodes, in the event of a node failure, the
+data continues to be available at the same performance levels.
 
 ![High Availability Icon](../assets/b-ha.svg)
 

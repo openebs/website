@@ -89,6 +89,6 @@ To expand a pool:
 
 3. Once successful, both `capacity` and `diskCapacity` values in the CR will reflect the updated size.
 
-:::Important
+:::important
 We recommend using multiple DiskPools instead of over-expanding a single DiskPool (for example, setting `maxExpansion` of 100 GiB to grow up to 50-60 TiB). Increasing the `maxExpansion` value reserves more metadata pages in the pool, which can lengthen pool creation and import times. However, larger pools may be appropriate if the volumes are relatively large.
 :::

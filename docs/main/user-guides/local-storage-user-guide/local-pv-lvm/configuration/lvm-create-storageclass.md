@@ -44,7 +44,7 @@ The following matrix shows standard StorageClass parameters for Local PV LVM.
     <th> E2E Coverage </th>
   </tr>
   <tr>
-    <td rowSpan={2}> <a href="#allowvolumeexpansion-optional"> allowVolumeExpansion </a> </td>
+    <td rowSpan={2}> allowVolumeExpansion </td>
     <td> true </td>
     <td> Supported </td>
     <td rowSpan={2}> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvm-volume-resize#about-this-experiment"> Yes </a> <br></br><i> (Test coverage exist for ext4 & xfs) </i> </td>
@@ -54,13 +54,13 @@ The following matrix shows standard StorageClass parameters for Local PV LVM.
     <td> Supported </td>
   </tr>
   <tr>
-    <td> <a href="#mountoptions-optional"> MountOptions </a> </td>
+    <td> MountOptions </td>
     <td> Options supported by filesystem </td>
     <td> Supported </td>
     <td> Pending </td>
   </tr>
   <tr>
-    <td rowSpan={2}> <a href="#volumebindingmode-optional"> VolumeBindingMode </a> </td>
+    <td rowSpan={2}> VolumeBindingMode </td>
     <td> Immediate </td>
     <td> Supported </td>
     <td rowSpan={2}> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvmpv-custom-topology#readme"> Yes  </a> </td>
@@ -70,7 +70,7 @@ The following matrix shows standard StorageClass parameters for Local PV LVM.
     <td> Supported </td>
   </tr>
   <tr>
-    <td rowSpan={2}> <a href="#reclaim-policy-optional"> Reclaim Policy </a> </td>
+    <td rowSpan={2}> Reclaim Policy </td>
     <td>  Retain </td>
     <td> Supported </td>
     <td rowSpan={2}> <a href="https://github.com/openebs/lvm-localpv/blob/HEAD/e2e-tests/apps/percona/deployers/run_e2e_test.yml"> Yes </a> <br></br> <i> (Test coverage exist for Delete reclaim policy) </i> </td>
@@ -80,7 +80,7 @@ The following matrix shows standard StorageClass parameters for Local PV LVM.
     <td> Supported </td>
   </tr>
   <tr>
-    <td> <a href="#storageclass-with-custom-node-labels"> allowedTopologies </a> </td>
+    <td> allowedTopologies </td>
     <td> - </td>
     <td> Supported </td>
     <td> <a href="https://github.com/openebs/lvm-localpv/tree/HEAD/e2e-tests/experiments/functional/lvmpv-custom-topology#readme"> Yes </a> </td>
@@ -173,7 +173,7 @@ If you encounter issues or have a question, file a [Github issue](https://github
 
 ## See Also
 
-- [Installation](../lvm-installation.md)
-- [StorageClass Options](lvm-storageClass-options.md)
+- [Installation](../../../../quickstart-guide/installation.md)
+- [StorageClass Options](lvm-storageclass-options.md)
 - [Create PersistentVolumeClaim](lvm-create-pvc.md)
 - [Deploy an Application](lvm-deployment.md)

@@ -1,12 +1,15 @@
 [build]
   base = "docs/"
   publish = "build/"
-  command = "yarn run build"
+  command = "npm install && npm run build"
+
+[build.environment]
+  NODE_VERSION = "24"
 
 [context.deploy-preview]
   base = "docs/"
   publish = "/"
-  command = "yarn run previewBuild"
+  command = "npm run previewBuild"
   
   # adding redirect rule to change the path to /docs
   

@@ -26,57 +26,57 @@ is installed and running or to find the steps to install the iSCSI client.
     {
       Svg: "/docs/img/logos/l-ubuntu.png",
       title: "Ubuntu",
-      url: "/user-guides/prerequisites#ubuntu",
+      url: "#ubuntu",
     },
     {
       Svg: "/docs/img/logos/l-rhel.png",
       title: "RHEL",
-      url: "/user-guides/prerequisites#rhel",
+      url: "#rhel",
     },
     {
       Svg: "/docs/img/logos/l-centos.png",
       title: "CentOS",
-      url: "/user-guides/prerequisites#centos",
+      url: "#centos",
     },
     {
       Svg: "/docs/img/logos/l-eks.png",
       title: "EKS",
-      url: "/user-guides/prerequisites#eks",
+      url: "#eks",
     },
     {
       Svg: "/docs/img/logos/l-gke.png",
       title: "GKE",
-      url: "/user-guides/prerequisites#gke",
+      url: "#gke",
     },
     {
       Svg: "/docs/img/logos/l-aks.png",
       title: "AKS",
-      url: "/user-guides/prerequisites#aks",
+      url: "#aks",
     },
     {
       Svg: "/docs/img/logos/l-openshift.png",
       title: "OpenShift",
-      url: "/user-guides/prerequisites#openshift",
+      url: "#openshift",
     },
     {
       Svg: "/docs/img/logos/l-rancher.png",
       title: "Rancher",
-      url: "/user-guides/prerequisites#rancher",
+      url: "#rancher",
     },
     {
       Svg: "/docs/img/logos/l-icp.png",
       title: "ICP",
-      url: "/user-guides/prerequisites#icp",
+      url: "#icp",
     },
     {
       Svg: "/docs/img/logos/DigitalOceanLogo.png",
       title: "DigitalOcean",
-      url: "/user-guides/prerequisites#do",
+      url: "#do",
     },
     {
       Svg: "/docs/img/logos/d2iq.jpg",
       title: "Konvoy",
-      url: "/user-guides/prerequisites#konvoy",
+      url: "#konvoy",
     },
     
   ]}
@@ -90,7 +90,7 @@ is installed and running or to find the steps to install the iSCSI client.
 
 Installation of the iSCSI initiator service and tools depends on your host O/S or the kubelet container. You can follow the below steps for installation/verification of the required packages. It is a mandatory step to verify the iSCSI services and make sure that it is running on all the worker nodes. OpenEBS uses iSCSI protocol to connect to the block volumes. 
 
-### Ubuntu
+### Ubuntu {#ubuntu}
 
 **Verify iSCSI services are configured**
 
@@ -138,7 +138,7 @@ sudo systemctl enable --now iscsid
 You can verify the iSCSI installation from above section.
  
 
-### Red Hat Enterprise Linux
+### Red Hat Enterprise Linux {#rhel}
 
 **Verify iSCSI services are configured**
 
@@ -192,7 +192,7 @@ yum install iscsi-initiator-utils -y
 
 You can verify the iSCSI installation from above section.
 
-### CentOS
+### CentOS {#centos}
 
 **Verify iSCSI services are configured**
 
@@ -228,7 +228,7 @@ You can verify the iSCSI installation from the above section.
 
 ## Managed Kubernetes Services on Public Cloud
 
-Amazon Elastic Container Service for Kubernetes (EKS)
+### Amazon EKS {#eks}
 
 Amazon EKS clusters can be brought up with either an AmazonLinux AMI or an Ubuntu 18.04 AMI.
 
@@ -268,13 +268,13 @@ You can verify the iSCSI installation from the above section.
 
 For setting up iSCSI clients on Ubuntu nodes, see the instructions [here.](#ubuntu)
 
-### Google Kubernetes Engine (GKE)
+### Google Kubernetes Engine (GKE) {#gke}
 
 GKE Container-Optimized OS does not come with an iSCSI client preinstalled and does not allow installation of iSCSI client. Therefore, OpenEBS does not work on Kubernetes clusters which are running GKE Container-Optimized OS on the worker nodes.
 
 Select Ubuntu as the image version for the node pools in the custom settings. For setting up iSCSI clients on Ubuntu nodes, see the instructions [here.](#ubuntu)
 
-### Azure Kubernetes Service (AKS)
+### Azure Kubernetes Service (AKS) {#aks}
 
 On Azure Kubernetes Service you need to verify that the `open-iscsi`
 
@@ -342,7 +342,7 @@ exit
 
 You can verify the iSCSI installation from the above section.
 
-### DigitalOcean
+### DigitalOcean {#do}
 
 **Add extra_binds in Kubelet Service**
 
@@ -408,12 +408,12 @@ service kubelet restart
 
 ## Kubernetes On-Prem Solutions
 
-### Red Hat OpenShift
+### Red Hat OpenShift {#openshift}
 
 Detailed [installation instructions for OpenEBS on OpenShift](/additional-info/kb#openshift-install) are in the Knowledge
 Base. 
 
-### Rancher
+### Rancher {#rancher}
 
 You will need to enable iSCSI services on all of the hosts of your Rancher-based Kubernetes cluster.
 
@@ -478,11 +478,11 @@ In the above snippet, default hostpath for Local PV (/var/openebs/local), which 
 The CSI driver based implementation of cStor storage engine is **not compatible** with RancherOS.
 :::
 
-### Konvoy
+### Konvoy {#konvoy}
 
 Konvoy is a managed Kubernetes platform for operation and lifecycle management from D2iQ. CentOS 7.6 is used as the underlying node OS by default. Only prerequisite for setting up OpenEBS in Konvoy is to have iSCSI client on the CentOS nodes. For setting up iSCSI client on CentOS nodes, see the instructions [here](#centos). More details about setting up of OpenEBS in Konvoy can be found [here](https://docs.d2iq.com/ksphere/konvoy/partner-solutions/openebs/).
 
-### IBM Cloud Private (ICP)
+### IBM Cloud Private (ICP) {#icp}
 
 OpenEBS can be installed using ICP on the following Operating Systems. Latest tested ICP versions are 2.1.0.3 and 3.1.1.
 

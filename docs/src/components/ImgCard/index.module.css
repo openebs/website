@@ -1,0 +1,19 @@
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-auto-rows: minmax(60px, auto);
+  gap: 1rem;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--ifm-menu-color);
+  border-radius: 0.5rem;
+}
+
+.img {
+  max-width: 32px;
+  padding-right: 8px;
+}

@@ -10,9 +10,9 @@ This user guide will help you to configure Jiva and use Jiva Volumes for running
 
 - To install the latest Jiva release, execute:
 
- ```
+```
 kubectl apply -f https://openebs.github.io/charts/jiva-operator.yaml
- ```
+```
 
 - Next, verify that the Jiva operator and CSI pods are running on your cluster.
   To get the status of the pods execute:
@@ -34,7 +34,7 @@ openebs-jiva-csi-node-h2unk                    2/2     Running   0          6m20
 ### Provisioning Jiva volumes
 
 - The Jiva volume policies need to be defined before creation of a Jiva volume. Given below is a sample Jiva volume policy CR. 
- ```
+```
  apiVersion: openebs.io/v1alpha1
  kind: JivaVolumePolicy
  metadata:
@@ -59,7 +59,7 @@ openebs-jiva-csi-node-h2unk                    2/2     Running   0          6m20
      # affinity:
      # nodeSelector:
      # priorityClassName:
- ```
+```
 
 
 :::note

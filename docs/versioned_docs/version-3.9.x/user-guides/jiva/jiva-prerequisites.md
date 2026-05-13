@@ -14,7 +14,9 @@ Jiva is a light weight storage engine that is recommended to use for low capacit
 ## Prerequisites
 
 1. Kubernetes version 1.18 or higher.
-2. iSCSI initiator utils installed on all the worker nodes<details>
+2. iSCSI initiator utils installed on all the worker nodes
+
+<details>
 <summary><i>(Click here to view commands to install iSCSI on different OS)</i></summary>
 <table>
 <tr>

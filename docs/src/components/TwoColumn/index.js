@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from "./styles.module.scss"
+import styles from "./styles.module.css"
 import { useViewport } from "../../hooks/useViewport";
 // Using `Two Column component`, we can create two column grid in docs md and mdx file
 export const TwoColumn = ({ children, left, right }) => {

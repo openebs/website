@@ -30,7 +30,7 @@ Unlike volume replicas, snapshots cannot be rebuilt on an event of a node failur
 
 ## Prerequisites
 
-Install and configure Replicated PV Mayastor by following the steps given in the [OpenEBS Installation documentation](../rs-installation.md) and create disk pools.
+Install and configure Replicated PV Mayastor by following the steps given in the [OpenEBS Installation documentation](../../../../quickstart-guide/installation.md) and create disk pools.
 
 **Command**
 
@@ -77,7 +77,7 @@ ms-volume-claim     Bound    pvc-fe1a5a16-ef70-4775-9eac-2f9c67b3cd5b   1Gi     
 Copy the PVC name, for example, `ms-volume-claim`.
 :::
 
-4. Create an application by following the instructions provided in the [Deploy an Application documentation](../rs-deployment.md).
+4. Create an application by following the instructions provided in the [Deploy an Application documentation](../configuration/rs-deployment.md).
  
 ## Create a Snapshot
 

@@ -284,7 +284,7 @@ If the affinity group volumes have multiple replicas, they already have some lev
 
 3. Anti-affinity among targets:
 
-The [High Availability](../replicated-pv-mayastor/advanced-operations/HA.md) feature ensures that there is no single point of failure for the targets.
+The [High Availability](../advanced-operations/HA.md) feature ensures that there is no single point of failure for the targets.
 The `stsAffinityGroup` ensures that in such cases, the targets are distributed optimally for the stsAffinityGroup volumes.
 
 By default, the `stsAffinityGroup` feature is disabled. To enable it, modify the storage class YAML by setting the `parameters.stsAffinityGroup` parameter to true.
@@ -301,7 +301,7 @@ This option needs to be set to true when using a `btrfs` filesystem, if the appl
 
 ## See Also
 
-- [Installation](../../../quickstart-guide/installation.md)
+- [Installation](../../../../quickstart-guide/installation.md)
 - [Create DiskPool(s)](../configuration/rs-create-diskpool.md)
 - [Create StorageClass(s)](../configuration/rs-create-storageclass.md)
 - [Storage Class Parameters](../configuration/rs-storage-class-parameters.md)

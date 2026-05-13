@@ -33,11 +33,11 @@ The string value should be a number and the number should be greater than zero. 
 
 ## "thin"
 
-The volumes can either be `thick` or `thin` provisioned. Adding the `thin` parameter to the StorageClass YAML allows the volume to be thinly provisioned. To do so, add `thin: true` under the `parameters` spec, in the StorageClass YAML. [Sample YAML](#create-replicated-pv-mayastor-storageclasss)
+The volumes can either be `thick` or `thin` provisioned. Adding the `thin` parameter to the StorageClass YAML allows the volume to be thinly provisioned. To do so, add `thin: true` under the `parameters` spec, in the StorageClass YAML. [Sample YAML](./rs-create-storageclass.md)
 When the volumes are thinly provisioned, the user needs to monitor the pools, and if these pools start to run out of space, then either new pools must be added or volumes deleted to prevent thinly provisioned volumes from getting degraded or faulted. This is because when a pool with more than one replica runs out of space, Replicated PV Mayastor moves the largest out-of-space replica to another pool and then executes a rebuild. It then checks if all the replicas have sufficient space; if not, it moves the next largest replica to another pool, and this process continues till all the replicas have sufficient space.
 
 :::info
-The capacity usage on a pool can be monitored using [exporter metrics](../replicated-pv-mayastor/advanced-operations/monitoring.md#pool-metrics-exporter).
+The capacity usage on a pool can be monitored using [exporter metrics](../advanced-operations/monitoring.md#pool-metrics-exporter).
 :::
 
 The `agents.core.capacity.thin` spec present in the Replicated PV Mayastor helm chart consists of the following configurable parameters that can be used to control the scheduling of thinly provisioned replicas:
@@ -54,7 +54,7 @@ The `agents.core.capacity.thin` spec present in the Replicated PV Mayastor helm 
 
 ## "allowVolumeExpansion"
 
-The parameter `allowVolumeExpansion` enables the expansion of PVs when using Persistent Volume Claims (PVCs). You must set the `allowVolumeExpansion` parameter to `true` in the StorageClass to enable the expansion of a volume. In order to expand volumes where volume expansion is enabled, edit the size of the PVC. Refer to the [Resize documentation](../replicated-pv-mayastor/advanced-operations/resize.md) for more details.
+The parameter `allowVolumeExpansion` enables the expansion of PVs when using Persistent Volume Claims (PVCs). You must set the `allowVolumeExpansion` parameter to `true` in the StorageClass to enable the expansion of a volume. In order to expand volumes where volume expansion is enabled, edit the size of the PVC. Refer to the [Resize documentation](../advanced-operations/resize.md) for more details.
 
 ## "formatOptions"
 
@@ -80,7 +80,7 @@ Enables volume encryption when set to `true`. The volume will be provisioned onl
 
 ## See Also
 
-- [Installation](../../../quickstart-guide/installation.md)
+- [Installation](../../../../quickstart-guide/installation.md)
 - [Create DiskPool(s)](../configuration/rs-create-diskpool.md)
 - [Create StorageClass(s)](../configuration/rs-create-storageclass.md)
 - [Topology Parameters](../configuration/rs-topology-parameters.md)

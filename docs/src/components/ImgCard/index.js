@@ -1,6 +1,6 @@
 import React from "react";
 import Link from '@docusaurus/Link';
-import styles from "./index.module.scss";
+import styles from "./index.module.css";
 
 function ImgCard({ dataList }) {
   return (

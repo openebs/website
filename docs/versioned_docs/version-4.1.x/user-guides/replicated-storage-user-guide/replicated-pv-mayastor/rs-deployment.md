@@ -139,7 +139,7 @@ pvc-fe1a5a16-ef70-4775-9eac-2f9c67b3cd5b   1Gi        RWO            Delete     
 The status of the volume should be "online".
 
 :::info
-To verify the status of volume [Kubectl plugin](../replicated-pv-mayastor/advanced-operations/kubectl-plugin.md) is used.
+To verify the status of volume [Kubectl plugin](./advanced-operations/kubectl-plugin.md) is used.
 :::
 
 **Command**

@@ -94,8 +94,8 @@ The helm upgrade command with the default options (and using variable from above
 helm upgrade openebs openebs/openebs -n openebs --version 3.7.0 --set mayastor.image.tag=$IMG_TAG --set release.version=3.7.0 --reuse-values
 ```
 Refer to the documentation at to see all of the available configuration options:
-- https://github.com/openebs/mayastor-extensions/blob/<release-tag\>/chart/README.md
-- https://github.com/openebs/mayastor-extensions/blob/<release-tag\>/chart/values.yaml
+- https://github.com/openebs/mayastor-extensions/blob/`<release-tag>`/chart/README.md
+- https://github.com/openebs/mayastor-extensions/blob/`<release-tag>`/chart/values.yaml
 (e.g.: https://github.com/openebs/mayastor-extensions/blob/v2.2.0/chart/README.md, https://github.com/openebs/mayastor-extensions/blob/v2.2.0/chart/values.yaml)
 Prefix any option you'd want to set using the '--set' option, with 'mayastor', like shown in the default command above for the 'image.tag' option. This is due to the mayastor chart being a [subchart of the openebs chart](https://github.com/openebs/charts/blob/openebs-3.7.0/charts/openebs/values.yaml#L400).
 

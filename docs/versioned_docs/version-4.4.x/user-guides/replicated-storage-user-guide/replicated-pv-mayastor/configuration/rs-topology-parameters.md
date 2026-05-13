@@ -303,7 +303,7 @@ This option needs to be set to true when using a `btrfs` filesystem, if the appl
 
 ## See Also
 
-- [Installation](../../../quickstart-guide/installation.md)
+- [Installation](../../../../quickstart-guide/installation.md)
 - [Create DiskPool(s)](../configuration/rs-create-diskpool.md)
 - [Create StorageClass(s)](../configuration/rs-create-storageclass.md)
 - [Storage Class Parameters](../configuration/rs-storage-class-parameters.md)

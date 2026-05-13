@@ -37,7 +37,7 @@ The following versions were used for this workflow:
 
 - **Install the `kubectl-openebs` Plugin**
   
-  Ensure that `kubectl-openebs` plugin is installed. Refer to the [Kubectl OpenEBS Plugin Documentation](../../user-guides/kubectl-openebs.md) to install the plugin.
+  Ensure that `kubectl-openebs` plugin is installed. Refer to the [Kubectl OpenEBS Plugin Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/kubectl-plugin.md) to install the plugin.
 
 - **Create a StorageClass**
 

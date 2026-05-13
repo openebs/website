@@ -11,7 +11,7 @@ description: This section will help you to deploy a test application.
 :::info
 - Refer to the [Local PV LVM Deployment documentation](../user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-deployment.md) to deploy Local PV LVM.
 - Refer to the [Local PV ZFS Deployment documentation](../user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-deployment.md) to deploy Local PV ZFS.
-- Refer to the [Replicated PV Mayastor Deployment documentation](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/rs-deployment.md) to deploy Replicated PV Mayastor.
+- Refer to the [Replicated PV Mayastor Deployment documentation](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-deployment.md) to deploy Replicated PV Mayastor.
 :::
 
 # Deploy an Application
@@ -218,9 +218,9 @@ Once the workloads are up and running, the platform or the operations team can o
 ## See Also
 
 - [Installation](installation.md)
-- [Local PV Hostpath](../user-guides/local-storage-user-guide/localpv-hostpath.md)
-- [Local PV LVM](../user-guides/local-storage-user-guide/lvm-localpv.md)
-- [Local PV ZFS](../user-guides/local-storage-user-guide/zfs-localpv.md)
+- [Local PV Hostpath](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
+- [Local PV LVM](../user-guides/local-storage-user-guide/local-pv-lvm/lvm-installation.md)
+- [Local PV ZFS](../user-guides/local-storage-user-guide/local-pv-zfs/zfs-installation.md)
 - [Local Storage](../concepts/data-engines/local-storage.md)
 - [Replicated Storage](../concepts/data-engines/replicated-storage.md)
 - [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-installation.md)
