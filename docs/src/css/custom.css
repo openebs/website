@@ -148,14 +148,15 @@
   font-weight: 900;
 }
 
-/* Top-level category titles are always bold */
+/* Top-level category titles are always bold and larger */
 .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
   font-weight: 700;
+  font-size: 17px;
 }
 
-/* Grey sidebar background */
+/* Light blue-grey sidebar background */
 .theme-doc-sidebar-container {
-  background-color: #f0f0f0;
+  background-color: #eef2f7;
 }
 
 [data-theme='dark'] .theme-doc-sidebar-container {
