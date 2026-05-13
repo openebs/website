@@ -44,7 +44,7 @@
   --ifm-menu-link-padding-horizontal: 0.75rem;
   --ifm-toc-padding-vertical: 0.3rem;
   --ifm-toc-padding-horizontal: 0.3rem;
-  --ifm-spacing-horizontal: 1.5rem;
+  --ifm-spacing-horizontal: 1rem;
 }
 
 [data-theme='dark'] {
@@ -102,16 +102,6 @@
   border: none;
   color: inherit;
   background-color: #edf6ff;
-}
-
-/* Shell code blocks */
-.markdown .language-shell > div,
-.markdown .language-shell pre {
-  background-color: #3b4473 !important;
-}
-
-.markdown .language-shell * {
-  color: #ffffff !important;
 }
 
 /* YAML token colors */
