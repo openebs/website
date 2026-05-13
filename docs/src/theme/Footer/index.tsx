@@ -215,11 +215,15 @@ export default function Footer(): React.ReactNode {
           <span>
             © {year} The Linux Foundation. All rights reserved. The Linux Foundation has
             registered trademarks and uses trademarks. For a list of trademarks of The Linux
-            Foundation, please see our
+            Foundation,
+            <span className={styles.legalNoWrap}>
+              {' '}
+              please see our{' '}
+              <Link className={styles.legalLink} href={TRADEMARK_USAGE_URL}>
+                Trademark Usage page.
+              </Link>
+            </span>
           </span>
-          <Link className={styles.legalLink} href={TRADEMARK_USAGE_URL}>
-            Trademark Usage page.
-          </Link>
         </div>
       </div>
     </footer>

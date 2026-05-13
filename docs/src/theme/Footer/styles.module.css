@@ -171,6 +171,10 @@
   text-decoration: underline;
 }
 
+.legalNoWrap {
+  white-space: nowrap;
+}
+
 [data-theme='dark'] .topDivider,
 [data-theme='dark'] .bottomDivider {
   border-top-color: rgba(184, 221, 254, 0.25);
