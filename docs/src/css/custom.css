@@ -151,25 +151,16 @@
 /* Top-level category titles are always bold and larger */
 .theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
   font-weight: 700;
-  font-size: 17px;
+  font-size: 19px;
 }
 
 /* Light blue-grey sidebar background */
 .theme-doc-sidebar-container {
-  background-color: #eef2f7;
+  background-color: #f3f6fb;
 }
 
 [data-theme='dark'] .theme-doc-sidebar-container {
   background-color: #1e2533;
-}
-
-/* Hide sidebar scrollbar while keeping it scrollable */
-.theme-doc-sidebar-container nav.menu {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
-}
-.theme-doc-sidebar-container nav.menu::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
 }
 
 /* Table of contents */
