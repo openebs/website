@@ -65,6 +65,10 @@
     width: 100%;
     max-width: calc(var(--ifm-container-width) + var(--doc-sidebar-width));
   }
+
+  html.docs-doc-page .theme-doc-sidebar-container {
+    margin-right: 0.75rem;
+  }
 }
 
 /* Markdown content styles */
@@ -189,11 +193,7 @@
 
 /* Light blue-grey sidebar background */
 .theme-doc-sidebar-container {
-  background-color: #f3f6fb;
-}
-
-[data-theme='dark'] .theme-doc-sidebar-container {
-  background-color: #1e2533;
+  background-color: var(--ifm-navbar-background-color);
 }
 
 /* Table of contents */
