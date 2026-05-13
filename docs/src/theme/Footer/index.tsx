@@ -85,7 +85,10 @@ export default function Footer(): React.ReactNode {
   const footer = (siteConfig.themeConfig.footer ?? {}) as {
     links?: FooterLinkGroup[];
   };
-  const year = new Date().getFullYear();
+  const year =
+    typeof siteConfig.customFields?.currentYear === 'number'
+      ? siteConfig.customFields.currentYear
+      : new Date().getFullYear();
   const assetBaseUrl = useBaseUrl('/');
   const footerBackgroundSrc = useBaseUrl('img/footer.svg');
   const logoSrc = useBaseUrl('img/openebs-logo.svg');

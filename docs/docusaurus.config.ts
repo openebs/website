@@ -52,6 +52,7 @@ const config: Config = {
   },
 
   customFields: {
+    currentYear: new Date().getFullYear(),
     breakpoints: {
       xs: 0,
       sm: 767,
