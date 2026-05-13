@@ -148,6 +148,20 @@
   font-weight: 900;
 }
 
+/* Top-level category titles are always bold */
+.theme-doc-sidebar-item-category-level-1 > .menu__list-item-collapsible > .menu__link {
+  font-weight: 700;
+}
+
+/* Grey sidebar background */
+.theme-doc-sidebar-container {
+  background-color: #f0f0f0;
+}
+
+[data-theme='dark'] .theme-doc-sidebar-container {
+  background-color: #1e2533;
+}
+
 /* Hide sidebar scrollbar while keeping it scrollable */
 .theme-doc-sidebar-container nav.menu {
   scrollbar-width: none; /* Firefox */
