@@ -166,10 +166,6 @@
   text-decoration: underline;
 }
 
-[data-theme='dark'] .footer {
-  border-top-color: rgba(184, 221, 254, 0.25);
-}
-
 [data-theme='dark'] .topDivider,
 [data-theme='dark'] .bottomDivider {
   border-top-color: rgba(184, 221, 254, 0.25);

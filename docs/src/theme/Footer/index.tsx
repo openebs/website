@@ -150,7 +150,6 @@ export default function Footer(): React.ReactNode {
   };
   const year = String(siteConfig.customFields?.currentYear ?? '');
   const assetBaseUrl = useBaseUrl('/');
-  const footerBackgroundSrc = useBaseUrl('img/footer.svg');
   const logoSrc = useBaseUrl('img/openebs-logo.svg');
   const configuredColumns = footer.links ?? [];
   const getStartedColumn = configuredColumns.find((group) => group.title === 'Getting Started');
@@ -158,7 +157,6 @@ export default function Footer(): React.ReactNode {
   return (
     <footer
       className={`footer ${styles.footer}`}
-      style={{backgroundImage: `url(${footerBackgroundSrc})`}}
     >
       <div className={styles.topDivider} />
 

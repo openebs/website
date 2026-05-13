@@ -214,6 +214,12 @@ footer.footer {
   border-top: 1px solid #aecee5;
 }
 
+[data-theme='dark'] footer.footer {
+  background-image: none;
+  background-color: var(--ifm-background-color);
+  border-top-color: rgba(184, 221, 254, 0.25);
+}
+
 .footer__title {
   color: #223288;
 }

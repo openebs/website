@@ -106,11 +106,10 @@ export default function Footer() {
     const footer = (siteConfig.themeConfig.footer ?? {});
     const year = String(siteConfig.customFields?.currentYear ?? '');
     const assetBaseUrl = useBaseUrl('/');
-    const footerBackgroundSrc = useBaseUrl('img/footer.svg');
     const logoSrc = useBaseUrl('img/openebs-logo.svg');
     const configuredColumns = footer.links ?? [];
     const getStartedColumn = configuredColumns.find((group) => group.title === 'Getting Started');
-    return (<footer className={`footer ${styles.footer}`} style={{ backgroundImage: `url(${footerBackgroundSrc})` }}>
+    return (<footer className={`footer ${styles.footer}`}>
       <div className={styles.topDivider}/>
 
       <div className={styles.content}>
