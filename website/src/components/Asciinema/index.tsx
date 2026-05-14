@@ -14,7 +14,7 @@ class Asciinema extends React.Component <any> {
     speed: 0.75,
     preload: true,
     startAt: '00:00:02',
-  }
+  };
 
   componentDidMount() {
     asciinema.player.js.CreatePlayer(this.ref, this.props.src, this.props);
@@ -34,7 +34,7 @@ class Asciinema extends React.Component <any> {
 
   bindRef = (ref: HTMLDivElement) => {
     this.ref = ref;
-  }
+  };
 
   render() {
     return <div ref={this.bindRef} />;
