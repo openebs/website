@@ -1,0 +1,356 @@
+{
+  "docs": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Introduction",
+      "customProps": {
+        "icon": "Smile"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "introduction/overview",
+          "label": "Overview",
+          "key": "Introduction_Overview"
+        },
+        {
+          "type": "doc",
+          "id": "introduction/features",
+          "label": "Features"
+        },
+        {
+          "type": "doc",
+          "id": "introduction/benefits",
+          "label": "Benefits"
+        },
+        {
+          "type": "doc",
+          "id": "introduction/usecases",
+          "label": "Use cases"
+        },
+        {
+          "type": "doc",
+          "id": "introduction/releases",
+          "label": "Releases"
+        },
+        {
+          "type": "doc",
+          "id": "introduction/community",
+          "label": "Community"
+        },
+        {
+          "type": "doc",
+          "id": "introduction/commercial",
+          "label": "Support"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Concepts",
+      "customProps": {
+        "icon": "Server"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "concepts/basics",
+          "label": "Basics"
+        },
+        {
+          "type": "doc",
+          "id": "concepts/cas",
+          "label": "Container Attached Storage"
+        },
+        {
+          "type": "doc",
+          "id": "concepts/architecture",
+          "label": "Architecture"
+        },
+        {
+          "type": "doc",
+          "id": "concepts/casengines",
+          "label": "Data Engines"
+        },
+        {
+          "type": "doc",
+          "id": "concepts/ndm",
+          "label": "NDM",
+          "key": "Concepts_NDM"
+        },
+        {
+          "type": "doc",
+          "id": "concepts/cstor",
+          "label": "cStor",
+          "key": "Concepts_cStor"
+        },
+        {
+          "type": "doc",
+          "id": "concepts/jiva",
+          "label": "Jiva",
+          "key": "Concepts_Jiva"
+        },
+        {
+          "type": "doc",
+          "id": "concepts/mayastor",
+          "label": "Mayastor",
+          "key": "Concepts_Mayastor"
+        },
+        {
+          "type": "doc",
+          "id": "concepts/localpv",
+          "label": "LocalPV",
+          "key": "Concepts_LocalPV"
+        },
+        {
+          "type": "doc",
+          "id": "concepts/rwm",
+          "label": "Read-write-Many (RWX)"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "User Guides",
+      "customProps": {
+        "icon": "Users"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "user-guides/quickstart",
+          "label": "Quickstart"
+        },
+        {
+          "type": "doc",
+          "id": "user-guides/prerequisites",
+          "label": "Prerequisites"
+        },
+        {
+          "type": "doc",
+          "id": "user-guides/installation",
+          "label": "Installation"
+        },
+        {
+          "type": "doc",
+          "id": "user-guides/ndm",
+          "label": "NDM",
+          "key": "User_Guides_NDM"
+        },
+        {
+          "collapsed": true,
+          "type": "category",
+          "label": "cStor",
+          "customProps": {
+            "icon": ""
+          },
+          "items": [
+            {
+              "type": "doc",
+              "id": "user-guides/cstor/install-and-setup",
+              "label": "Install and Setup"
+            },
+            {
+              "type": "doc",
+              "id": "user-guides/cstor/launch-sample-application",
+              "label": "Launch"
+            },
+            {
+              "type": "doc",
+              "id": "user-guides/cstor/troubleshooting",
+              "label": "Troubleshooting"
+            },
+            {
+              "type": "doc",
+              "id": "user-guides/cstor/advanced",
+              "label": "Advanced"
+            },
+            {
+              "type": "doc",
+              "id": "user-guides/cstor/clean-up",
+              "label": "Clean up"
+            }
+          ]
+        },
+        {
+          "type": "doc",
+          "id": "user-guides/jiva-guide",
+          "label": "Jiva",
+          "key": "User_Guides_Jiva"
+        },
+        {
+          "type": "doc",
+          "id": "user-guides/mayastor",
+          "label": "Mayastor",
+          "key": "User_Guides_Mayastor"
+        },
+        {
+          "type": "doc",
+          "id": "user-guides/localpv-hostpath",
+          "label": "Local PV Hostpath"
+        },
+        {
+          "type": "doc",
+          "id": "user-guides/localpv-device",
+          "label": "Local PV Device"
+        },
+        {
+          "type": "doc",
+          "id": "user-guides/upgrade",
+          "label": "Upgrade"
+        },
+        {
+          "type": "doc",
+          "id": "user-guides/uninstall",
+          "label": "Uninstall",
+          "key": "User_Guides_Uninstall"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Troubleshooting",
+      "customProps": {
+        "icon": "Crosshair"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "troubleshooting/troubleshooting",
+          "label": "Overview",
+          "key": "Troubleshooting_Overview"
+        },
+        {
+          "type": "doc",
+          "id": "troubleshooting/install",
+          "label": "Install"
+        },
+        {
+          "type": "doc",
+          "id": "troubleshooting/uninstall",
+          "label": "Uninstall",
+          "key": "Troubleshooting_Uninstall"
+        },
+        {
+          "type": "doc",
+          "id": "troubleshooting/ndm",
+          "label": "NDM",
+          "key": "Troubleshooting_NDM"
+        },
+        {
+          "type": "doc",
+          "id": "troubleshooting/volume-provisioning",
+          "label": "Volume Provisioning"
+        },
+        {
+          "type": "doc",
+          "id": "troubleshooting/jiva",
+          "label": "Jiva",
+          "key": "Troubleshooting_Jiva"
+        },
+        {
+          "type": "doc",
+          "id": "troubleshooting/cstor",
+          "label": "cStor",
+          "key": "Troubleshooting_cStor"
+        },
+        {
+          "type": "doc",
+          "id": "troubleshooting/localpv",
+          "label": "LocalPV",
+          "key": "Troubleshooting_LocalPV"
+        },
+        {
+          "type": "doc",
+          "id": "troubleshooting/mayastor",
+          "label": "Mayastor",
+          "key": "Troubleshooting_Mayastor"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "FAQs",
+      "customProps": {
+        "icon": "HelpCircle"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "faqs/general",
+          "label": "General OpenEBS FAQs"
+        },
+        {
+          "type": "doc",
+          "id": "faqs/cstor-faq",
+          "label": "cStor FAQs"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Additional info",
+      "customProps": {
+        "icon": "BookOpen"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "additional-info/alphafeatures",
+          "label": "Alpha Features"
+        },
+        {
+          "type": "doc",
+          "id": "additional-info/performance-testing",
+          "label": "Performance testing"
+        },
+        {
+          "type": "doc",
+          "id": "additional-info/k8supgrades",
+          "label": "Kubernetes upgrades"
+        },
+        {
+          "type": "doc",
+          "id": "additional-info/kb",
+          "label": "Knowledge Base"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Deprecated",
+      "customProps": {
+        "icon": "File"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "deprecated/releases-1x",
+          "label": "releases-1x"
+        },
+        {
+          "type": "doc",
+          "id": "deprecated/releases-0x",
+          "label": "releases-0x"
+        },
+        {
+          "type": "doc",
+          "id": "deprecated/spc-based-cstor",
+          "label": "SPC based cStor guide"
+        },
+        {
+          "type": "doc",
+          "id": "deprecated/mayactl",
+          "label": "mayactl"
+        }
+      ]
+    }
+  ]
+}

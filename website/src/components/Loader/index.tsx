@@ -25,4 +25,8 @@ const Loader: React.FC<LoaderProps> = ({ size }) => {
   );
 };
 
+Loader.defaultProps = {
+  size: 40,
+};
+
 export default Loader;

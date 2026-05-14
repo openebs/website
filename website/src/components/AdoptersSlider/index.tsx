@@ -33,30 +33,6 @@ const AdopterSlider: React.FC = () => {
       name: t('home.usedInProductionBy.bloomberg'),
     },
     {
-      logo: '../images/logos/arista_blue.png',
-      name: t('home.usedInProductionBy.arista'),
-    },
-    {
-      logo: '../images/logos/orange_blue.png',
-      name: t('home.usedInProductionBy.orange'),
-    },
-    {
-      logo: '../images/logos/optoro_blue.png',
-      name: t('home.usedInProductionBy.optoro'),
-    },
-    {
-      logo: '../images/logos/comcast_blue.png',
-      name: t('home.usedInProductionBy.comcast'),
-    },
-    {
-      logo: '../images/logos/bloomberg_blue.png',
-      name: t('home.usedInProductionBy.bloomberg'),
-    },
-    {
-      logo: '../images/logos/arista_blue.png',
-      name: t('home.usedInProductionBy.arista'),
-    },
-    {
       logo: '../images/logos/orange_blue.png',
       name: t('home.usedInProductionBy.orange'),
     },
@@ -83,10 +59,6 @@ const AdopterSlider: React.FC = () => {
     {
       logo: '../images/logos/cloud-native.png',
       name: t('home.usedInProductionBy.cloudNative'),
-    },
-    {
-      logo: '../images/logos/codewave.png',
-      name: t('home.usedInProductionBy.codewave'),
     },
     {
       logo: '../images/logos/cort.png',

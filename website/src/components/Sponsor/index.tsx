@@ -24,11 +24,11 @@ const Sponsor: React.FC = () => {
         <Grid item xs={12} md={8} sm={12} className={classes.gridContainer}>
           <Grid container>
             <Grid item xs={12} md={6} sm={6}>
-              <Typography className={classes.paragraph}>{t('sponsors.mayadata')}</Typography>
-              <Link href={EXTERNAL_LINKS.MAYADATA_WEBSITE} rel="noreferrer" target="_blank">
+              <Typography className={classes.paragraph}>{t('sponsors.datacore')}</Typography>
+              <Link href={EXTERNAL_LINKS.DATACORE_WEBSITE} rel="noreferrer" target="_blank">
                 <img
-                  src="/images/logos/mayadata_logo.svg"
-                  alt={t('generic.mayadata')}
+                  src="/images/logos/datacore_logo.svg"
+                  alt={t('generic.datacore')}
                   className={classes.sponsorCompany}
                 />
               </Link>

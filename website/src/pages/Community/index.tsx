@@ -1,5 +1,5 @@
 import {
-  Button, Grid, Link, Paper, Typography,
+  Button, Grid, Paper, Typography,
 } from '@material-ui/core';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -9,8 +9,8 @@ import Footer from '../../components/Footer';
 import JoinCommunity from '../../components/JoinCommunity';
 import { EXTERNAL_LINKS, VIEW_PORT } from '../../constants';
 import useViewport from '../../hooks/viewportWidth';
-import EventSlider from '../../components/EventSlider';
-import events from '../../resources/events.json';
+// import EventSlider from '../../components/EventSlider';
+// import events from '../../resources/events.json';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import SeoJson from '../../resources/seo.json';
 import { useCurrentHost } from '../../hooks/useCurrentHost';
@@ -116,7 +116,7 @@ const Community: React.FC = () => {
           </section>
         </div>
         {/* Community events slider section */}
-        <section>
+        {/* <section>
           <Typography variant="h2" className={classes.sectionTitle}>
             {t('community.communityEvents.title')}
           </Typography>
@@ -129,7 +129,7 @@ const Community: React.FC = () => {
               </Typography>
             )}
           </div>
-        </section>
+        </section> */}
 
         {/* Contribution section */}
         <div className={classes.installationDiv}>
@@ -215,9 +215,9 @@ const Community: React.FC = () => {
                   </Typography>
                   <img
                     loading="lazy"
-                    src="../images/logos/mayadata_logo.svg"
-                    alt={t('generic.mayadata')}
-                    className={classes.mayaDataLogo}
+                    src="../images/logos/datacore_logo_blue.svg"
+                    alt={t('generic.datacore')}
+                    className={classes.DataCoreLogo}
                   />
                 </div>
               </Grid>

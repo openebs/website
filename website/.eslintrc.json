@@ -74,6 +74,10 @@
     ],
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": ["error"],
-    "no-param-reassign": [2, {"props": false}]
+    "no-param-reassign": [2, {"props": false}],
+    "react/function-component-definition": 0,
+    "react/no-unstable-nested-components": 0,
+    "react/jsx-no-useless-fragment": 0,
+    "no-unsafe-optional-chaining": 0
   }
 }

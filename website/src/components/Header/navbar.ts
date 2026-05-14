@@ -11,9 +11,9 @@ const navbarItems = [
     label: 'Commercial support',
     href: '/commercial-support',
   },
-  {
-    label: 'Blog',
-    href: '/blog',
-  },
+  // {
+  //   label: 'Blog',
+  //   href: '/blog',
+  // },
 ];
 export default navbarItems;

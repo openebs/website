@@ -41,7 +41,7 @@ const Faq: React.FC<FaqDataProps> = () => {
     root: {
       textTransform: 'none',
       color: theme.palette.primary.main,
-      fontWeight: theme.typography.fontWeightBold,
+      fontWeight: 700,
       fontSize: '16px',
       opacity: 1,
       marginRight: theme.spacing(1),

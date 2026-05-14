@@ -293,6 +293,8 @@ const Footer: React.FC = () => {
     </Toolbar>
   );
 
+  const year = new Date().getFullYear();
+
   return (
     <div className={classes.footer}>
       <hr className={classes.topDivider} />
@@ -303,10 +305,18 @@ const Footer: React.FC = () => {
 
       <div className={classes.copyrightsWrapper}>
         <Typography className={classes.copyrights}>
-          {t('footer.copyrights')}
+          {t('footer.copyrights', { year })}
         </Typography>
         <Link href="/privacy-policy" className={[classes.copyrights, classes.privacyPolicyLink].join(' ')}>
           {t('footer.privacyPolicy')}
+        </Link>
+      </div>
+      <div className={classes.copyrightsWrapper}>
+        <Typography className={classes.copyrights}>
+          {t('footer.cncfCopyrights', { year })}
+        </Typography>
+        <Link href="https://www.linuxfoundation.org/legal/trademark-usage" className={[classes.copyrights, classes.privacyPolicyLink].join(' ')}>
+          {t('footer.cncfTrademark')}
         </Link>
       </div>
     </div>

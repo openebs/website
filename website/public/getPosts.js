@@ -40,21 +40,19 @@ const getPosts = () => {
                     const myDate = (s) => { var a = s.split(/-|\//); return new Date(a[2], a[1] - 1, a[0]); }
                     return jsonObj.sort(dmyOrdD);
                 }
-                
-                const convertTitleToSlug = (Text)=>{
+
+                const convertTitleToSlug = (Text) => {
                     return Text
                         .toLowerCase()
-                        .replace(/[^\w ]+/g,'')
-                        .replace(/ +/g,'-')
-                        ;
+                        .replace(/ +/g, '-');
                 }
 
                 const lines = contents.split('\n');
                 const metaDataIndices = lines.reduce(getMetaDataIndices, []);
                 const metadata = parseMetaData({ lines, metaDataIndices });
                 const content = parseContent({ lines, metaDataIndices });
-                
-                if (metadata){
+
+                if (metadata) {
                     post = {
                         id: index + 1,
                         title: metadata.title || 'No title',
@@ -63,16 +61,16 @@ const getPosts = () => {
                         date: metadata.date || 'No date available',
                         tags: metadata.tags.split(',').map(e => e.trim()) || 'No tags available',
                         excerpt: metadata.excerpt || '',
-                        content: content || 'No content available', 
+                        content: content || 'No content available',
                         notHasFeatureImage: (metadata.not_has_feature_image) ? true : false
                     };
                 }
-                
+
 
                 postList.push(post);
                 if (postList.length === files.length) {
                     let sortedJSON = sortAccrodingtoDate(postList);
-                    let sortedJSONWithID = sortedJSON.map(item => ({...item, id: sortedJSON.indexOf(item) + 1, slug: convertTitleToSlug(item.title)}))
+                    let sortedJSONWithID = sortedJSON.map(item => ({...item, id: sortedJSON.indexOf(item) + 1, slug: convertTitleToSlug(item.title) }))
                     let data = JSON.stringify(sortedJSONWithID);
                     fs.writeFileSync('src/posts.json', data);
                 }

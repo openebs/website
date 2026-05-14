@@ -33,7 +33,7 @@ MongoDB is a cross-platform document-oriented database. Classified as a NoSQL da
 
 1. **Install OpenEBS**
 
-   If OpenEBS is not installed in your K8s cluster, this can done from [here](/docs/user-guides/installation). If OpenEBS is already installed, go to the next step. 
+   If OpenEBS is not installed in your K8s cluster, this can be done from [here](/docs/user-guides/installation). If OpenEBS is already installed, go to the next step. 
 
 2. **Configure cStor Pool**
 
@@ -41,7 +41,7 @@ MongoDB is a cross-platform document-oriented database. Classified as a NoSQL da
 
 4. **Create Storage Class**
 
-   You must configure a StorageClass to provision cStor volume on given cStor pool. StorageClass is the interface through which most of the OpenEBS storage policies are defined. In this solution we are using a StorageClass to consume the cStor Pool which is created using external disks attached on the Nodes. In this solution, MongoDB is installed as a Deployment. So it requires replication at the storage level. So cStor volume `replicaCount` is 3. Sample YAML named **openebs-sc-disk.yaml** to consume cStor pool with cStove volume replica count as 3 is provided in the configuration details below.
+   You must configure a StorageClass to provision cStor volume on given cStor pool. StorageClass is the interface through which most of the OpenEBS storage policies are defined. In this solution we are using a StorageClass to consume the cStor Pool which is created using external disks attached on the Nodes. In this solution, MongoDB is installed as a Deployment. So it requires replication at the storage level. So cStor volume `replicaCount` is 3. Sample YAML named **openebs-sc-disk.yaml** to consume cStor pool with cStor volume replica count as 3 is provided in the configuration details below.
 
 5. **Launch and test MongoDB**
 

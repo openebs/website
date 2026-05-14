@@ -171,7 +171,7 @@ const Workloads: React.FC = () => {
         variant="contained"
         color="secondary"
         className={[classes.solidButton, classes.middleButton].join(' ')}
-        href="/docs/user-guides/quickstart"
+        href="/docs/quickstart-guide/installation"
       >
         {t('home.installation.readTheGuide.readInstallUserGuide')}
       </Button>
