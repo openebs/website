@@ -74,7 +74,7 @@ const fetchContributors = async () => {
     topData && fs.writeFileSync("../website/src/resources/topContributors.json", topData);
     topData && fs.writeFileSync("../docs/src/data/topContributors.json", topData);
   } catch (error) {
-    console.error("Error fetching topContributors:", error);
+    console.error("Error fetching topContributors:", error.response?.status, error.message);
   }
 
   try {
@@ -83,7 +83,7 @@ const fetchContributors = async () => {
     newData && fs.writeFileSync("../website/src/resources/newContributors.json", newData);
     newData && fs.writeFileSync("../docs/src/data/newContributors.json", newData);
   } catch (error) {
-    console.error("Error fetching newContributors:", error);
+    console.error("Error fetching newContributors:", error.response?.status, error.message);
   }
 };
 
