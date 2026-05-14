@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "ajv": "^8.17.1",
     "@fontsource/montserrat": "^5.2.8",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
@@ -16,6 +15,7 @@
     "@types/react": "^18.3.28",
     "@types/react-dom": "^18.3.7",
     "@types/react-router-dom": "^5.3.3",
+    "ajv": "^8.17.1",
     "history": "^4.10.1",
     "i18next": "^23.16.8",
     "i18next-browser-languagedetector": "^8.2.1",
@@ -30,7 +30,6 @@
     "react-lazy-load-image-component": "^1.6.3",
     "react-markdown": "^8.0.7",
     "react-router-dom": "^5.3.4",
-    "react-scripts": "5.0.1",
     "react-slick": "^0.31.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.4.1",
@@ -39,18 +38,12 @@
   },
   "scripts": {
     "postinstall": "node public/getPosts.js",
-    "start": "react-scripts start",
-    "build": "node public/getPosts.js && react-scripts build",
-    "test": "react-scripts test",
+    "start": "vite",
+    "build": "node public/getPosts.js && vite build",
+    "test": "vitest",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "fixlint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix",
     "netlify-dev-serve": "netlify dev -c \"npm run start\""
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -71,13 +64,17 @@
     "@types/react-slick": "^0.23.13",
     "@typescript-eslint/eslint-plugin": "^8.59.3",
     "@typescript-eslint/parser": "^8.59.3",
+    "@vitejs/plugin-react": "^6.0.1",
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "netlify-cli": "^26.0.1"
+    "jsdom": "^29.1.1",
+    "netlify-cli": "^26.0.1",
+    "vite": "^8.0.13",
+    "vitest": "^4.1.6"
   },
   "resolutions": {
     "@typescript-eslint/parser": "^8.59.3",
