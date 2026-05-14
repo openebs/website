@@ -82,5 +82,12 @@
   "resolutions": {
     "@typescript-eslint/parser": "^8.59.3",
     "@typescript-eslint/eslint-plugin": "^8.59.3"
+  },
+  "overrides": {
+    "uuid": "^13.0.2",
+    "nth-check": "^2.1.1",
+    "postcss": "^8.5.10",
+    "serialize-javascript": "^7.0.5",
+    "underscore": "^1.13.8"
   }
 }
