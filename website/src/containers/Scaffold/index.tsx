@@ -3,7 +3,7 @@ import { useLocation, withRouter } from 'react-router-dom';
 import useStyles from './styles';
 import Header from '../../components/Header';
 
-const Scaffold: React.FC = ({ children }) => {
+const Scaffold: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const classes = useStyles();
 
   const _ScrollToTop = (props: any) => {

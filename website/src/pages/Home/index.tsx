@@ -177,7 +177,7 @@ const Home: React.FC = () => {
                 </Grid>
                 <Grid item sm={4} xs={1}>
                   <Paper className={[classes.paper, classes.secondGrid].join(' ')}>
-                    <img loading="lazy" placeholder="../images/png/homepage_main.png?q=20" src="../images/png/homepage_main.png?q=20" alt={t('home.landingScreenImageAlt')} className={classes.landingImage} />
+                    <img loading="lazy" src="../images/png/homepage_main.png?q=20" alt={t('home.landingScreenImageAlt')} className={classes.landingImage} />
                   </Paper>
                 </Grid>
                 <Grid item xs={12}>
