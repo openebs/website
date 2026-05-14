@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ajv": "^8.17.1",
     "@fontsource/montserrat": "^5.2.8",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",

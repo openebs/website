@@ -5,7 +5,7 @@
   "author": "OpenEBS Authors",
   "license": "MIT",
   "dependencies": {
-    "request": "^2.88.2"
+    "axios": "^1.16.1"
   },
   "scripts": {
     "get-contributors-info": "node contributors"

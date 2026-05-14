@@ -1,4 +1,4 @@
-const request = require("request");
+const axios = require("axios");
 const fs = require("fs");
 
 const getdatesForContribution = (dateRange) => {
@@ -64,44 +64,27 @@ const reqBodyToFetchContributors = (type) => ({
   to: `${getdatesForContribution().todayTimestamp}`,
 });
 
-const settings = (type) => ({
-  url: "https://openebs.devstats.cncf.io/api/ds/query",
-  method: "POST",
-  json: true,
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: reqBodyToFetchContributors(type),
-});
+const API_URL = "https://openebs.devstats.cncf.io/api/ds/query";
+const API_HEADERS = { "Content-Type": "application/json" };
 
 const fetchContributors = async () => {
-  await request.post(
-    settings("topContributors"),
-    function (error, response, body) {
-      if (error) {
-        console.error(error);
-        return;
-      }
-      const data = JSON.stringify(body?.results?.A?.frames[0]?.data?.values[1]);
-      data && fs.writeFileSync("../website/src/resources/topContributors.json", data);
-      data && fs.writeFileSync("../docs/src/data/topContributors.json", data);
-    }
-  );
+  try {
+    const topRes = await axios.post(API_URL, reqBodyToFetchContributors("topContributors"), { headers: API_HEADERS });
+    const topData = JSON.stringify(topRes.data?.results?.A?.frames[0]?.data?.values[1]);
+    topData && fs.writeFileSync("../website/src/resources/topContributors.json", topData);
+    topData && fs.writeFileSync("../docs/src/data/topContributors.json", topData);
+  } catch (error) {
+    console.error("Error fetching topContributors:", error.response?.status, error.message);
+  }
 
-  await request.post(
-    settings("newContributors"),
-    function (error, response, body) {
-      if (error) {
-        console.error(error);
-        return;
-      }
-      const data = JSON.stringify(
-        body?.results?.A?.frames[0]?.data?.values[0]?.reverse()
-      );
-      data && fs.writeFileSync("../website/src/resources/newContributors.json", data);
-      data && fs.writeFileSync("../docs/src/data/newContributors.json", data);
-    }
-  );
+  try {
+    const newRes = await axios.post(API_URL, reqBodyToFetchContributors("newContributors"), { headers: API_HEADERS });
+    const newData = JSON.stringify(newRes.data?.results?.A?.frames[0]?.data?.values[0]?.reverse());
+    newData && fs.writeFileSync("../website/src/resources/newContributors.json", newData);
+    newData && fs.writeFileSync("../docs/src/data/newContributors.json", newData);
+  } catch (error) {
+    console.error("Error fetching newContributors:", error.response?.status, error.message);
+  }
 };
 
 fetchContributors();
