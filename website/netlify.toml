@@ -3,6 +3,9 @@
   publish = "build/"
   command = "npm run build"
 
+[build.environment]
+  NODE_VERSION = "20"
+
 #https://answers.netlify.com/t/forwarding-subdomain-to-a-path/2988
   
 [[redirects]]
