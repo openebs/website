@@ -565,6 +565,11 @@ const sidebars: SidebarsConfig =
                     },
                     {
                       type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/offline-pool-deletion",
+                      label: "Offline Pool Deletion"
+                    },
+                    {
+                      type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/volume-snapshots",
                       label: "Volume Snapshots"
                     },
