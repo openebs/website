@@ -123,7 +123,7 @@ If the node contains critical resources, additional confirmation flags may be re
 | Accept the data loss involved with removing all replicas that are the last healthy replicas of their respective volumes on the node | `--accept-volume-loss` |
 | Accept the data loss involved with removing all snapshot replicas that are the last remaining snapshot replicas of their respective volumes on the node. This flag can be used only together with `--accept-volume-loss`. | `--accept-snapshot-loss` |
 | Accept both volume and snapshot data loss using a single confirmation flag | `--accept-data-loss` |
-| Remove DiskPool CRs associated with the purged node | `--cleanup-dsp` |
+| Remove DiskPool CRs associated with the Pools on the Purged Node | `--cleanup-dsp` |
 | Display the expected volume and snapshot impact before performing purge | `--show-impact` |
 
 ## Data Loss Confirmation
