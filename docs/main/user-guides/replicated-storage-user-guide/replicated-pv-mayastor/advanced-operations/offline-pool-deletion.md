@@ -113,8 +113,8 @@ kubectl openebs mayastor delete pool pool-node-1-469894 -n openebs --purge --yes
 **Sample Output**
 
 ```
- POOL                   VOLUME-LOSS     SNAPSHOT-LOSS 
- pool-node-1-469894     1 volume(s)     <none>
+POOL                   VOLUME-LOSS     SNAPSHOT-LOSS 
+pool-node-1-469894     1 volume(s)     <none>
 ```
 The output reports the affected resources and confirms that the purge operation completed successfully.
 
@@ -148,7 +148,8 @@ kubectl openebs mayastor delete pool pool-node-1-469894 -n openebs --purge --yes
 **Sample Output**
 
 ```
-Volumes would lose their last healthy replica. Use --accept-volume-loss to proceed, or --accept-data-loss to also accept snapshot loss in a single flag.
+NODE               VOLUME-LOSS     SNAPSHOT-LOSS 
+node-0-469923      1 volume(s)     <none>
 ```
 
 **Example: Accept Data Loss**
@@ -170,9 +171,8 @@ pool-node-1-469894  1 volume(s)  <none>
 
 ## Impact on Workloads
 
-Single-replica volumes: Data is permanently lost if the replica resides on the purged pool.
-
-Multi-replica volumes: Volumes may continue to operate and recover using remaining replicas if high availability (HA) is configured and sufficient replicas remain.
+- **Single-replica volumes:** Data is permanently lost if the replica resides on the purged pool.
+- **Multi-replica volumes:** Volumes may continue to operate and recover using remaining replicas if high availability (HA) is configured and sufficient replicas remain.
 
 **Example: Workloads Using the Affected Pool**
 
