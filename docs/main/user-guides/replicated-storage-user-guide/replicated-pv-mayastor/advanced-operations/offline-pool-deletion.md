@@ -100,24 +100,23 @@ pool-node-1-469894  Unknown  Ready   1         86598b37-4a37-4a85-a014-4f5e5022b
 
 Use the following command to purge an irrecoverable pool from the Replicated PV Mayastor control plane.
 
+:::note
+Use `--cleanup-dsp` to remove DiskPool custom resources (CRs) for pools associated with the purged node.
+:::
+
 **Command**
 
 ```
-kubectl openebs mayastor delete pool <pool-id> --purge --yes
-```
-
-**Sample Command**
-
-```
-kubectl openebs mayastor delete pool pool-node-1-469894 -n openebs --purge --yes --accept-data-loss
+kubectl openebs mayastor delete pool pool-node-1-469894 -n openebs --purge --yes --accept-data-loss --cleanup-dsp
 ```
 
 **Sample Output**
 
 ```
- POOL                VOLUME-LOSS  SNAPSHOT-LOSS 
- pool-node-1-469894  1 volume(s)  <none>
+ POOL                   VOLUME-LOSS     SNAPSHOT-LOSS 
+ pool-node-1-469894     1 volume(s)     <none>
 ```
+The output reports the affected resources and confirms that the purge operation completed successfully.
 
 ## Data Loss Confirmation
 
@@ -125,18 +124,25 @@ If the pool contains critical data, additional confirmation is required:
 
 | Condition | Required Flag |
 | :--- | :--- |
-| Pool contains replicas | `--yes` |
-| Last replica of a volume | `--accept-volume-loss` |
-| Last snapshot replica | `--accept-snapshot-loss` |
+| General confirmation for purge operation | `--yes` |
+| Accept the data loss involved with removing all replicas that are the last healthy replicas of their respective volumes on the pool | `--accept-volume-loss` |
+| Accept the data loss involved with removing all snapshot replicas that are the last remaining snapshot replicas of their respective volumes on the pool. This flag can be used only together with `--accept-volume-loss`. | `--accept-snapshot-loss` |
+| Accept both volume and snapshot data loss using a single confirmation flag | `--accept-data-loss` |
+| Remove DiskPool CRs associated with the purged pool | `--cleanup-dsp` |
+| Display the expected volume and snapshot impact before performing purge | `--show-impact` |
 
 **Example: Volume Loss Confirmation**
 
-If the purge operation impacts the last healthy replica of a volume, the command requires additional confirmation.
+If the purge operation impacts the last healthy replica of a volume, the command returns the following message:
+
+`Volumes would lose their last healthy replica. Use --accept-volume-loss to proceed, or --accept-data-loss to also accept snapshot loss in a single flag.`
+
+To continue with the purge operation, additional confirmation is required:
 
 **Command**
 
 ```
-kubectl openebs mayastor delete pool pool-node-1-469894 -n openebs --purge --yes
+kubectl openebs mayastor delete pool pool-node-1-469894 -n openebs --purge --yes --accept-data-loss
 ```
 
 **Sample Output**
@@ -163,6 +169,7 @@ pool-node-1-469894  1 volume(s)  <none>
 ```
 
 ## Impact on Workloads
+
 Single-replica volumes: Data is permanently lost if the replica resides on the purged pool.
 
 Multi-replica volumes: Volumes may continue to operate and recover using remaining replicas if high availability (HA) is configured and sufficient replicas remain.
@@ -210,6 +217,7 @@ VOLUME-ID                             REPLICA-ID                            NODE
 ```
 
 ## Verify Purge Completion
+
 After performing purge, verify that the pool has been removed and that affected workloads reflect the updated state.
 
 ```
