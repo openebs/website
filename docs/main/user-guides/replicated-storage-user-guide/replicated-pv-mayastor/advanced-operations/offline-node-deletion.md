@@ -111,18 +111,10 @@ Use `--cleanup-dsp` to remove DiskPool custom resources (CRs) for pools associat
 **Command**
 
 ```
-kubectl openebs mayastor delete node node-0-469923 -n openebs --purge --yes --accept-data-loss --cleanup-dsp
+kubectl openebs mayastor delete node node-0-469923 -n openebs --purge --yes --cleanup-dsp
 ```
 
-**Sample Output**
-
-```
-NODE            VOLUME-LOSS     SNAPSHOT-LOSS 
-node-0-469923   1 volume(s)     <none>
-```
-The output reports the affected resources and confirms that the purge operation completed successfully.
-
-## Data Loss Confirmation
+## Purge Options
 
 If the node contains critical resources, additional confirmation flags may be required.
 
@@ -134,6 +126,8 @@ If the node contains critical resources, additional confirmation flags may be re
 | Accept both volume and snapshot data loss using a single confirmation flag | `--accept-data-loss` |
 | Remove DiskPool CRs associated with the purged node | `--cleanup-dsp` |
 | Display the expected volume and snapshot impact before performing purge | `--show-impact` |
+
+## Data Loss Confirmation
 
 **Example: Volume Loss Confirmation**
 
