@@ -100,15 +100,15 @@ pool-node-1-469894  Unknown  Ready   1         86598b37-4a37-4a85-a014-4f5e5022b
 
 Use the following command to purge an irrecoverable pool from the Replicated PV Mayastor control plane.
 
-:::note
-Use `--cleanup-dsp` to remove DiskPool custom resources (CRs) for the purged pool.
-:::
-
 **Command**
 
 ```
 kubectl openebs mayastor delete pool pool-node-1-469894 -n openebs --purge --yes --cleanup-dsp
 ```
+
+:::note
+Use `--cleanup-dsp` to remove DiskPool custom resources (CRs) for the purged pool.
+:::
 
 ## Purge Options
 

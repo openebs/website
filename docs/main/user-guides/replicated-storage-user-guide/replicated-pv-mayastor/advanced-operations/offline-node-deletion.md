@@ -96,23 +96,22 @@ kubectl openebs mayastor delete node node-0-469923 -n openebs --purge --show-imp
 **Sample Output**
 
 ```
- NODE               STATUS      REPLICAS    VOLUMES     READY
- node-0-469923      Unknown     1           1           true
+NODE               STATUS      REPLICAS    VOLUMES     READY
+node-0-469923      Unknown     1           1           true
 ```
 
 ## Purge a Node
 
 Use the following command to purge an irrecoverable node from the Replicated PV Mayastor control plane.
 
-:::note
-Use `--cleanup-dsp` to remove DiskPool custom resources (CRs) for pools associated with the purged node.
-:::
-
 **Command**
 
 ```
 kubectl openebs mayastor delete node node-0-469923 -n openebs --purge --yes --cleanup-dsp
 ```
+:::note
+Use `--cleanup-dsp` to remove DiskPool custom resources (CRs) for pools associated with the purged node.
+:::
 
 ## Purge Options
 
