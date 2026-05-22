@@ -12,7 +12,7 @@ description: This document explains about the Offline Pool Deletion feature.
 
 ## Overview
 
-Offline pool deletion, referred to as purge, allows you to remove a storage pool (pool) from the Replicated PV Mayastor control plane when it is no longer reachable and cannot be recovered. Purge removes the pool’s representation from the control plane without deleting any data that may still exist on the underlying storage device.
+Offline pool deletion, referred to as purge, allows you to remove a storage pool (pool) from the Replicated PV Mayastor control plane when it is no longer reachable and cannot be recovered. Purge removes the pool’s representation from the control plane without attempting to erase any data that may still exist on the underlying storage device.
 
 This operation is intended for failure scenarios where the pool is considered irrecoverably lost and cannot be deleted through normal means that require access to the underlying storage.
 
@@ -25,7 +25,7 @@ Typical scenarios include:
 Purge is not part of the normal pool lifecycle and should be used only when you are certain that the pool cannot be recovered.
 
 :::warning
-Offline pool deletion is irreversible and may result in permanent volume data or snapshot data loss.
+Offline pool deletion is irreversible and may result in permanent loss of access to volume or snapshot data if the purged pool contains the last healthy replicas.
 :::
 
 ## When to Use Purge
@@ -220,8 +220,3 @@ kubectl openebs mayastor get pools
 
 - The pool should no longer appear 
 - Affected volumes may show updated states 
-
-## Troubleshooting
-- Ensure the pool is cordoned correctly
-- Ensure snapshot scheduling is blocked
-- Verify the pool is not in an active state
