@@ -100,7 +100,7 @@ kubectl openebs mayastor delete node node-0-469923 -n openebs --purge --show-imp
  node-0-469923      Unknown     1           1           true
 ```
 
-## Purge a Pool
+## Purge a Node
 
 Use the following command to purge an irrecoverable node from the Replicated PV Mayastor control plane.
 
