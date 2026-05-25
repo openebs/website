@@ -300,6 +300,12 @@ const sidebars: SidebarsConfig =
                     },
                     {
                       type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/volume-attributes-class",
+                      label: "Volume Attributes Class",
+                      key: "volume-attributes-class",
+                    },
+                    {
+                      type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-thin-provisioning",
                       label: "Thin Provisioning"
                     }
