@@ -243,8 +243,21 @@ const sidebars: SidebarsConfig =
                     },
                     {
                       type: "doc",
-                      id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-storageclass-options",
-                      label: "StorageClass Options"
+                      id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-storageclass-parameters",
+                      label: "StorageClass Parameters",
+                      key: "lvm-storageclass-parameters",
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-create-vac",
+                      label: "Create VAC",
+                      key: "lvm-create-vac",
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-vac-parameters",
+                      label: "LVM VAC Parameters",
+                      key: "lvm-vac-parameters",
                     },
                     {
                       type: "doc",
@@ -297,12 +310,6 @@ const sidebars: SidebarsConfig =
                       id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/lvm-volume-restore",
                       label: "Volume Restore from Snapshot",
                       key: "lvm-volume-restore",
-                    },
-                    {
-                      type: "doc",
-                      id: "user-guides/local-storage-user-guide/local-pv-lvm/advanced-operations/volume-attributes-class",
-                      label: "Volume Attributes Class",
-                      key: "volume-attributes-class",
                     },
                     {
                       type: "doc",
