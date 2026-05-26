@@ -31,9 +31,9 @@ The following VAC parameters are supported for Local PV LVM volumes.
 | `qosBandwithReadPerSec` | Maximum read bandwidth per second |
 | `qosBandwithWritePerSec` | Maximum write bandwidth per second |
 
-## Example VAC Configuration
+**Example VAC Configuration**
 
-The following example configures IOPS and bandwidth limits using a VAC.
+The following example configures total IOPS and bandwidth limits using a VAC.
 
 ```yaml
 apiVersion: storage.k8s.io/v1
@@ -44,6 +44,23 @@ driverName: local.csi.openebs.io
 parameters:
   qosIopsLimit: "50000"
   qosBandwithPerSec: "5000000"
+```
+
+**Example Directional QoS Configuration**
+
+The following example configures separate read and write QoS limits.
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: VolumeAttributesClass
+metadata:
+  name: lvm-qos-directional
+driverName: local.csi.openebs.io
+parameters:
+  qosIopsReadLimit: "100"
+  qosIopsWriteLimit: "200"
+  qosBandwithReadPerSec: "7000Mi"
+  qosBandwithWritePerSec: "8000Mi"
 ```
 
 ## Update VAC QoS Parameters
@@ -87,6 +104,54 @@ kubectl apply -f pvc.yaml
 ```
 
 After the PVC is updated, OpenEBS Local PV LVM automatically reconciles and applies the new QoS settings associated with the updated `VolumeAttributesClass`.
+
+## Invalid VAC Parameter Examples
+
+The following examples demonstrate invalid or unsupported VAC parameter configurations.
+
+### Conflicting QoS Parameters
+
+The following example uses conflicting QoS parameter values.
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: VolumeAttributesClass
+metadata:
+  name: lvm-qos-conflict
+driverName: local.csi.openebs.io
+parameters:
+  qosIopsLimit: "max"
+  qosIopsReadLimit: "1000"
+```
+
+### Unsupported Parameter Key
+
+The following example uses an unsupported parameter key.
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: VolumeAttributesClass
+metadata:
+  name: lvm-qos-wrong-key
+driverName: local.csi.openebs.io
+parameters:
+  wrong: "1"
+```
+
+### Invalid QoS Limit Value
+
+The following example uses an invalid QoS value.
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: VolumeAttributesClass
+metadata:
+  name: lvm-qos-zero
+driverName: local.csi.openebs.io
+parameters:
+  qosIopsLimit: "0"
+  qosBandwithPerSec: "7000000"
+```
 
 ## Verify VAC QoS Configuration
 
