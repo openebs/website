@@ -105,11 +105,9 @@ kubectl apply -f pvc.yaml
 
 After the PVC is updated, OpenEBS Local PV LVM automatically reconciles and applies the new QoS settings associated with the updated `VolumeAttributesClass`.
 
-## Invalid VAC Parameter Examples
+### Invalid VAC Parameter Example
 
-The following examples demonstrate invalid or unsupported VAC parameter configurations.
-
-### Conflicting QoS Parameters
+**Conflicting QoS Parameters**
 
 The following example uses conflicting QoS parameter values.
 
