@@ -12,9 +12,7 @@ description: This document explains about the Disk I/O Failure Handling feature.
 
 ## Overview
 
-Replicated PV Mayastor continuously monitors DiskPools and their underlying storage devices to detect Disk I/O errors, device removal and I/O stalls. It improves storage fault visibility by detecting device hot-removal, stalled I/O conditions and I/O errors. DiskPools automatically report updated pool states, alerts and diagnostic information to help identify unhealthy storage devices and understand workload impact during disk-related failures.
-
-This functionality helps prevent unhealthy pools from being used for new storage operations and improves visibility into pool health and disk-related failures.
+Replicated PV Mayastor continuously monitors DiskPools and their underlying storage devices to detect Disk I/O errors, device removal and I/O stalls. It improves storage fault visibility by detecting device hot-removal, stalled I/O conditions and I/O errors. DiskPools automatically report updated pool states, alerts and diagnostic information to help identify unhealthy storage devices, understand workload impact during disk-related failures, and prevent unhealthy pools from being selected for future storage operations.
 
 Typical scenarios include:
 
@@ -66,7 +64,7 @@ Replicated PV Mayastor tracks runtime disk I/O errors and exposes alert informat
 
 If the number of I/O errors reported by a DiskPool exceeds the configured threshold, the DiskPool is marked as `Suspected`. Pools in the `Suspected` state are less likely to be selected for future volume placement operations.
 
-The `ioErrorThreshold` parameter defines the number of allowed I/O errors before a DiskPool transitions to the `Suspected` state. By default, `ioErrorThreshold` is set to `64`. This parameter can be configured using Helm and applies globally to all DiskPools created in the cluster.
+The `ioErrorThreshold` parameter defines the number of allowed I/O errors before a DiskPool transitions to the `Suspected` state. By default, `ioErrorThreshold` is set to `64`. This parameter can be configured using Helm and applies globally to all DiskPools created in the cluster. The current DiskPool I/O error count is exposed through the `status.error_info.io_error_count field` in the DiskPool custom resource.
 
 ## I/O Stall Detection and Intermittent Backend Failure Handling
 
@@ -79,7 +77,7 @@ When the I/O request is submitted to the pool backend and remains incomplete bey
 - The DiskPool alert status transitions to Critical
 - The pool is avoided for future replica placement operations
 
-I/O stalls can occur because of Storage device failures or unresponsive disks, Backend storage path instability, and Network disruptions affecting storage access.
+I/O stalls can occur because of Storage device failures or unresponsive disks, Backend storage path instability, and Network disruptions affecting storage access. The current stall status of a DiskPool is exposed through the `status.error_info.io_stalled` field in the DiskPool custom resource. The `status.error_info.io_stall_transition_count` field reports the number of stall-to-resume and resume-to-stall transitions detected within the configured `stallTransitionWindow`.
 
 ### Intermittent Stall Detection
 
