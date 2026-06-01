@@ -31,6 +31,40 @@ The following VAC parameters are supported for Local PV LVM volumes.
 | `qosBandwithReadPerSec` | Maximum read bandwidth per second |
 | `qosBandwithWritePerSec` | Maximum write bandwidth per second |
 
+## Parameter Value Requirements
+
+The following value formats are supported for VAC QoS parameters.
+
+### IOPS Parameters
+
+The following parameters control IOPS limits:
+
+- `qosIopsLimit`
+- `qosIopsReadLimit`
+- `qosIopsWriteLimit`
+
+These parameters accept:
+
+- Any non-zero positive integer value
+- The value `max`
+
+:::note
+Setting a parameter to `max` disables IOPS limiting for that parameter on the volume.
+:::
+
+### Bandwidth Parameters
+
+The following parameters control bandwidth limits:
+
+- `qosBandwithPerSec`
+- `qosBandwithReadPerSec`
+- `qosBandwithWritePerSec`
+
+These parameters accept:
+
+- Any non-zero positive integer value representing bytes per second
+- Values with supported size suffixes
+
 **Example VAC Configuration**
 
 The following example configures total IOPS and bandwidth limits using a VAC.
