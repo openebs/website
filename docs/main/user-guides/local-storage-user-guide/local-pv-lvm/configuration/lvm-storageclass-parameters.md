@@ -1,16 +1,17 @@
 ---
-id: lvm-storageclass-options
-title: StorageClass Options
+id: lvm-storageclass-parameters
+title: StorageClass Parameters
 keywords:
  - OpenEBS Local PV LVM
  - Local PV LVM
  - Configuration
  - Create StorageClass
  - StorageClass Options
+ - StorageClass Parameters
 description: This guide will help you to create Local PV LVM StorageClass. 
 ---
 
-# StorageClass Options
+# StorageClass Parameters
 
 This document provides step-by-step instructions to the configurable options available for StorageClass when working with Local PV LVM.
 Each StorageClass option helps you configure features such as volume expansion, mount options, file systems, volume sharing, topology-aware provisioning, and more.
