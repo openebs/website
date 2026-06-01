@@ -124,35 +124,6 @@ parameters:
   qosIopsReadLimit: "1000"
 ```
 
-### Unsupported Parameter Key
-
-The following example uses an unsupported parameter key.
-
-```yaml
-apiVersion: storage.k8s.io/v1
-kind: VolumeAttributesClass
-metadata:
-  name: lvm-qos-wrong-key
-driverName: local.csi.openebs.io
-parameters:
-  wrong: "1"
-```
-
-### Invalid QoS Limit Value
-
-The following example uses an invalid QoS value.
-
-```yaml
-apiVersion: storage.k8s.io/v1
-kind: VolumeAttributesClass
-metadata:
-  name: lvm-qos-zero
-driverName: local.csi.openebs.io
-parameters:
-  qosIopsLimit: "0"
-  qosBandwithPerSec: "7000000"
-```
-
 ## Verify VAC QoS Configuration
 
 Use the following command to verify the PVC configuration.
