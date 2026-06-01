@@ -22,48 +22,18 @@ These parameters control IOPS and bandwidth limits for filesystem and block-mode
 
 The following VAC parameters are supported for Local PV LVM volumes.
 
-| Parameter | Description |
-| :--- | :--- |
-| `qosIopsLimit` | Maximum total IOPS limit |
-| `qosIopsReadLimit` | Maximum read IOPS limit |
-| `qosIopsWriteLimit` | Maximum write IOPS limit |
-| `qosBandwithPerSec` | Maximum total bandwidth per second |
-| `qosBandwithReadPerSec` | Maximum read bandwidth per second |
-| `qosBandwithWritePerSec` | Maximum write bandwidth per second |
-
-## Parameter Value Requirements
-
-The following value formats are supported for VAC QoS parameters.
-
-### IOPS Parameters
-
-The following parameters control IOPS limits:
-
-- `qosIopsLimit`
-- `qosIopsReadLimit`
-- `qosIopsWriteLimit`
-
-These parameters accept:
-
-- Any non-zero positive integer value
-- The value `max`
+| Parameter | Description | Accepted Values |
+| :--- | :--- | :--- |
+| `qosIopsLimit` | Maximum total IOPS limit | Non-zero positive integer or `max` |
+| `qosIopsReadLimit` | Maximum read IOPS limit | Non-zero positive integer or `max` |
+| `qosIopsWriteLimit` | Maximum write IOPS limit | Non-zero positive integer or `max` |
+| `qosBandwithPerSec` | Maximum total bandwidth per second | Non-zero positive integer (bytes/sec) or supported size suffixes such as `7000Mi` |
+| `qosBandwithReadPerSec` | Maximum read bandwidth per second | Non-zero positive integer (bytes/sec) or supported size suffixes such as `7000Mi` |
+| `qosBandwithWritePerSec` | Maximum write bandwidth per second | Non-zero positive integer (bytes/sec) or supported size suffixes such as `7000Mi` |
 
 :::note
 Setting a parameter to `max` disables IOPS limiting for that parameter on the volume.
 :::
-
-### Bandwidth Parameters
-
-The following parameters control bandwidth limits:
-
-- `qosBandwithPerSec`
-- `qosBandwithReadPerSec`
-- `qosBandwithWritePerSec`
-
-These parameters accept:
-
-- Any non-zero positive integer value representing bytes per second
-- Values with supported size suffixes
 
 **Example VAC Configuration**
 
@@ -177,6 +147,6 @@ If you encounter issues or have a question, file a [Github issue](https://github
 ## See Also
 
 - [Installation](../../../../quickstart-guide/installation.md)
-- [StorageClass Options](lvm-storageclass-options.md)
+- [StorageClass Parameters](lvm-storageclass-parameters.md)
 - [Create PersistentVolumeClaim](lvm-create-pvc.md)
 - [Deploy an Application](lvm-deployment.md)

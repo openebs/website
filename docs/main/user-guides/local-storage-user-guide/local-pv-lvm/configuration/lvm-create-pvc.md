@@ -77,5 +77,5 @@ If you encounter issues or have a question, file a [Github issue](https://github
 
 - [Installation](../../../../quickstart-guide/installation.md)
 - [Create StorageClass(s)](lvm-create-storageclass.md)
-- [StorageClass Options](lvm-storageclass-options.md)
+- [StorageClass Parameters](lvm-storageclass-parameters.md)
 - [Deploy an Application](lvm-deployment.md)
