@@ -1,7 +1,8 @@
 ---
 id: disk-io-failure-handling
-title: Disk I/O Failure Handling
+title: DiskPool I/O Failure Handling
 keywords:
+ - DiskPool I/O Failure Handling
  - Disk I/O Failure Handling
  - Disk Failure
  - Disk I/O Errors
@@ -32,8 +33,8 @@ Replicated PV Mayastor reports DiskPool health using pool states, alerts, and di
 | State | Description |
 | :--- | :--- |
 | Online | Pool is operating normally |
-| Suspected | Pool has warning-level disk or I/O issues |
-| Faulted | Pool is inaccessible due to disk or I/O failures |
+| Suspected | Pool has disk or I/O alerts of level warning or higher |
+| Faulted | Pool is in an unrecoverable state and cannot be used |
 | Offline | Pool is unavailable because the node is offline or the disk is detached |
 | Unknown | Pool state cannot be determined |
 
@@ -52,13 +53,13 @@ When a backing disk is detached becomes unavailable, Replicated PV Mayastor unlo
 
 As part of this process:
 
-- The DiskPool transitions to an Offline state
-- The PoolReady condition becomes False
+- The DiskPool transitions to an `Offline` state
+- The DiskPool Custom Resource (CR) `PoolReady` condition becomes False
 - Diagnostic information reports the detected failure reason
 
 The control plane probes the io-engine to detect whether the backing device has been reattached to the node. If the device becomes available again, Replicated PV Mayastor import the pool and restore normal operations.
 
-## Disk I/O Error Handling
+## DiskPool I/O Error Handling
 
 Replicated PV Mayastor tracks runtime disk I/O errors and exposes alert information for affected DiskPools.
 
@@ -70,11 +71,11 @@ The `ioErrorThreshold` parameter defines the number of allowed I/O errors before
 
 Replicated PV Mayastor monitors DiskPools for stalled I/O operations.
 
-When the I/O request is submitted to the pool backend and remains incomplete beyond the user-configured timeout interval (`stallDeadline`):
+When the I/O request is submitted to the pool backend and remains incomplete beyond the user-configured stall detection timeout (`stallDeadline`):
 
 - The DiskPool is marked as stalled
-- The DiskPool state transitions to Suspected
-- The DiskPool alert status transitions to Critical
+- The DiskPool state transitions to `Suspected`
+- The DiskPool alert status transitions to `Critical`
 - The pool is avoided for future replica placement operations
 
 I/O stalls can occur because of Storage device failures or unresponsive disks, Backend storage path instability, and Network disruptions affecting storage access. The current stall status of a DiskPool is exposed through the `status.error_info.io_stalled` field in the DiskPool custom resource. The `status.error_info.io_stall_transition_count` field reports the number of stall-to-resume and resume-to-stall transitions detected within the configured `stallTransitionWindow`.
@@ -85,19 +86,19 @@ Replicated PV Mayastor monitors repeated I/O stall and recovery transitions to d
 
 To help identify these scenarios, Replicated PV Mayastor tracks the frequency of stall transitions within a configurable time window. You (Administrators) can define the maximum number of allowable stall transitions by configuring the `stallTransitionThreshold` and `stallTransitionWindow` parameters.
 
-For example, if `stallTransitionWindow` is configured as 30 minutes and `stallTransitionThreshold` is set to 10, a DiskPool is marked as Suspected and a Warning alert is raised when 10 stall transitions occur within any 30-minute period. DiskPools in the Suspected state become less preferred for future replica placement operations.
+For example, if `stallTransitionWindow` is configured as 30 minutes and `stallTransitionThreshold` is set to 10, a DiskPool is marked as `Suspected` and a Warning alert is raised when 10 stall transitions occur within any 30-minute period. DiskPools in the `Suspected` state become less preferred for future replica placement operations.
 
-If one or more stall transitions occur within the configured time window but do not exceed the configured threshold, the DiskPool alert status transitions to Attention, indicating a potential storage path or backend stability issue that should be monitored.
+If one or more stall transitions occur within the configured time window but do not exceed the configured threshold, the DiskPool alert status transitions to `Attention`, indicating a potential storage path or backend stability issue that should be monitored.
 
 When intermittent stalls are detected:
 
-- The DiskPool alert status transitions to Attention
-- Repeated stall transitions within the configured time window may raise the alert level to Warning
+- The DiskPool alert status transitions to `Attention`
+- Repeated stall transitions within the configured time window may raise the alert level to `Warning`
 - Pools experiencing frequent intermittent stalls become less preferred for replica scheduling
 
 This behavior helps identify unstable storage devices or paths that repeatedly recover and fail over time.
 
-## Configure Disk I/O Alert Thresholds
+## Configure DiskPool I/O Alert Thresholds
 
 Replicated PV Mayastor allows you to configure DiskPool I/O monitoring thresholds using Helm values.
 
