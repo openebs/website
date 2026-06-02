@@ -1,15 +1,15 @@
 ---
-id: disk-io-failure-handling
+id: diskpool-io-failure-handling
 title: DiskPool I/O Failure Handling
 keywords:
  - DiskPool I/O Failure Handling
  - Disk I/O Failure Handling
  - Disk Failure
  - Disk I/O Errors
-description: This document explains about the Disk I/O Failure Handling feature.
+description: This document explains about the DiskPool I/O Failure Handling feature.
 ---
 
-# Disk I/O Failure Handling
+# DiskPool I/O Failure Handling
 
 ## Overview
 

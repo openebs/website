@@ -609,8 +609,8 @@ const sidebars: SidebarsConfig =
                     },
                     {
                       type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/disk-io-failure-handling",
-                      label: "Disk I/O Failure Handling"
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/diskpool-io-failure-handling",
+                      label: "DiskPool I/O Failure Handling"
                     }
                   ]
                 },
