@@ -239,8 +239,21 @@ const sidebars = {
                                         },
                                         {
                                             type: "doc",
-                                            id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-storageclass-options",
-                                            label: "StorageClass Options"
+                                            id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-storageclass-parameters",
+                                            label: "StorageClass Parameters",
+                                            key: "lvm-storageclass-parameters",
+                                        },
+                                        {
+                                            type: "doc",
+                                            id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-create-vac",
+                                            label: "Create VAC",
+                                            key: "lvm-create-vac",
+                                        },
+                                        {
+                                            type: "doc",
+                                            id: "user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-vac-parameters",
+                                            label: "LVM VAC Parameters",
+                                            key: "lvm-vac-parameters",
                                         },
                                         {
                                             type: "doc",
@@ -560,6 +573,16 @@ const sidebars = {
                                         },
                                         {
                                             type: "doc",
+                                            id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/offline-pool-deletion",
+                                            label: "Offline Pool Deletion"
+                                        },
+                                        {
+                                            type: "doc",
+                                            id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/offline-node-deletion",
+                                            label: "Offline Node Deletion"
+                                        },
+                                        {
+                                            type: "doc",
                                             id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/volume-snapshots",
                                             label: "Volume Snapshots"
                                         },
@@ -804,7 +827,7 @@ const sidebars = {
                                     label: "KubeVirt VM Live Migration (NFS)"
                                 }
                             ]
-                        }
+                        },
                     ]
                 },
                 {
