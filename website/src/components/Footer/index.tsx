@@ -91,7 +91,7 @@ const readGrafanaRows = (payload: any): Record<string, unknown>[] => {
   return rows;
 };
 
-const postDevStatsQuery = async (rawSql: string, from = 'now-6M', to = 'now') => {
+const postDevStatsQuery = async (queryName: string, rawSql: string, from = 'now-6M', to = 'now') => {
   const response = await fetch(DEVSTATS_URL, {
     method: 'POST',
     headers: {
@@ -114,7 +114,7 @@ const postDevStatsQuery = async (rawSql: string, from = 'now-6M', to = 'now') =>
   });
 
   if (!response.ok) {
-    throw new Error(`DevStats query failed with ${response.status} ${response.statusText}`);
+    throw new Error(`DevStats ${queryName} query failed with ${response.status} ${response.statusText}`);
   }
 
   return response.json();
@@ -182,13 +182,13 @@ const fetchGitHubFallback = async (): Promise<ContributorsData> => {
 const fetchContributorsData = async (): Promise<ContributorsData> => {
   try {
     const [topPayload, newPayload] = await Promise.all([
-      postDevStatsQuery(`select name, value
+      postDevStatsQuery('top contributors', `select name, value
        from shpr_auth
        where series = 'hpr_authall'
          and period = 'm'
        order by value desc, name asc
        limit ${TOP_COUNT}`, 'now-30d', 'now'),
-      postDevStatsQuery(`select str, dt
+      postDevStatsQuery('new contributors', `select str, dt
        from snew_contributors_data
        where series = 'ncdall'
          and period = 'd'
@@ -233,7 +233,7 @@ const Footer: React.FC = () => {
       })
       .catch((error) => {
         // eslint-disable-next-line no-console
-        console.warn('Unable to refresh contributors in footer', error);
+        console.warn('Unable to refresh contributors in footer; using bundled fallback data', error);
       });
 
     return () => {
