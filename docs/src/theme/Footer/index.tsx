@@ -190,7 +190,7 @@ export default function Footer(): React.ReactNode {
           <FooterColumn title={getStartedColumn?.title} items={getStartedColumn?.items} />
           <ContributorColumn
             contributors={topContributors}
-            title="Top contributors"
+            title="Top contributors (last month)"
             titleHref={TOP_GITHUB_CONTRIBUTORS_URL}
           />
           <ContributorColumn
