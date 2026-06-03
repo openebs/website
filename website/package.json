@@ -39,7 +39,7 @@
   "scripts": {
     "postinstall": "node public/getPosts.js",
     "start": "vite",
-    "build": "node public/getPosts.js && vite build",
+    "build": "node public/getPosts.js && node public/getContributors.js && vite build",
     "test": "vitest",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "fixlint": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --fix",

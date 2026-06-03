@@ -18,6 +18,9 @@ import useViewport from '../../hooks/viewportWidth';
 import topContributors from '../../resources/topContributors.json';
 import newContributors from '../../resources/newContributors.json';
 
+const TOP_COUNT = 6;
+const NEW_COUNT = 6;
+
 const Footer: React.FC = () => {
   const classes = useStyles();
   const { t } = useTranslation();
@@ -90,13 +93,6 @@ const Footer: React.FC = () => {
     </div>
   );
 
-  const formatName = (str:string) => {
-    if (str.indexOf('(') > -1) {
-      return str.substring(str.lastIndexOf('(') + 1, str.lastIndexOf(')')).trim();
-    }
-    return str;
-  };
-
   // This block of code is used to display get started links
   const displayGetStarted = () => (
     <div>
@@ -152,7 +148,7 @@ const Footer: React.FC = () => {
           </Link>
         </Typography>
         <Typography className={classes.columnListWrapper}>
-          {topContributors?.slice(0, 6).map((contributor: string) => (
+          {topContributors.slice(0, TOP_COUNT).map((contributor: string) => (
             <Link
               href={`${API.GITHUB_URL}${contributor}`}
               target="_blank"
@@ -181,14 +177,14 @@ const Footer: React.FC = () => {
           </Link>
         </Typography>
         <Typography className={classes.columnListWrapper}>
-          {newContributors?.slice(0, 6).map((contributor: string) => (
+          {newContributors.slice(0, NEW_COUNT).map((contributor: string) => (
             <Link
-              href={`${API.GITHUB_URL}${formatName(contributor)}`}
+              href={`${API.GITHUB_URL}${contributor}`}
               target="_blank"
               className={classes.columnListItem}
               key={contributor}
             >
-              {formatName(contributor)}
+              {contributor}
             </Link>
           ))}
         </Typography>
