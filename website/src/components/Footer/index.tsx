@@ -6,7 +6,7 @@ import {
   Link,
   Button,
 } from '@material-ui/core';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './style';
@@ -15,14 +15,223 @@ import {
   EXTERNAL_LINKS, EXTERNAL_LINK_LABELS, VIEW_PORT, API,
 } from '../../constants';
 import useViewport from '../../hooks/viewportWidth';
-import topContributors from '../../resources/topContributors.json';
-import newContributors from '../../resources/newContributors.json';
+import topContributorsFallback from '../../resources/topContributors.json';
+import newContributorsFallback from '../../resources/newContributors.json';
+
+
+const DEVSTATS_URL = 'https://openebs.devstats.cncf.io/api/ds/query';
+const DEVSTATS_DATASOURCE_UID = 'P172949F98CB31475';
+const GITHUB_API = 'https://api.github.com';
+const ORG = 'openebs';
+const TOP_COUNT = 6;
+const NEW_COUNT = 6;
+const BOT_SUFFIX = '[bot]';
+const BOTS = new Set(['openebs-ci', 'web-flow', 'Copilot']);
+
+type ContributorsData = {
+  topContributors: string[];
+  newContributors: string[];
+};
+
+const isBot = (login: string) => BOTS.has(login) || login.endsWith(BOT_SUFFIX);
+
+const daysAgo = (days: number) => {
+  const date = new Date();
+  date.setDate(date.getDate() - days);
+  return date.toISOString().split('T')[0];
+};
+
+const normalizeContributor = (value: unknown): string | null => {
+  if (typeof value !== 'string') {
+    return null;
+  }
+
+  const trimmed = value.trim();
+  if (!trimmed) {
+    return null;
+  }
+
+  const match = trimmed.match(/\(([^)]+)\)\s*$/);
+  return match?.[1] ?? trimmed;
+};
+
+const readGrafanaFrameRows = (frame: any): Record<string, unknown>[] => {
+  const fieldNames = frame?.schema?.fields?.map((field: any) => field.name) ?? [];
+  const columns = frame?.data?.values ?? [];
+
+  if (fieldNames.length === 0 || columns.length === 0) {
+    return [];
+  }
+
+  const rowCount = Array.isArray(columns[0]) ? columns[0].length : 0;
+
+  return Array.from({ length: rowCount }, (_, rowIndex) => Object.fromEntries(
+    fieldNames.map((fieldName: string, columnIndex: number) => [
+      fieldName,
+      columns[columnIndex]?.[rowIndex],
+    ]),
+  ));
+};
+
+const readGrafanaRows = (payload: any): Record<string, unknown>[] => {
+  const results = Object.values(payload?.results ?? {});
+  const rows: Record<string, unknown>[] = [];
+
+  results.forEach((result: any) => {
+    (result?.frames ?? []).forEach((frame: any) => {
+      rows.push(...readGrafanaFrameRows(frame));
+    });
+  });
+
+  return rows;
+};
+
+const postGrafanaQuery = async (rawSql: string, from = 'now-6M', to = 'now') => {
+  const response = await fetch(DEVSTATS_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from,
+      to,
+      queries: [{
+        refId: 'A',
+        datasource: {
+          type: 'postgres',
+          uid: DEVSTATS_DATASOURCE_UID,
+        },
+        format: 'table',
+        rawQuery: true,
+        rawSql,
+      }],
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`DevStats query failed with ${response.status} ${response.statusText}`);
+  }
+
+  return response.json();
+};
+
+const fetchGitHubFallback = async (): Promise<ContributorsData> => {
+  const topUrl = `${GITHUB_API}/search/issues?q=org:${ORG}+type:pr+is:merged+merged:>${daysAgo(30)}&sort=created&order=desc&per_page=100`;
+  const topResponse = await fetch(topUrl, {
+    headers: {
+      Accept: 'application/vnd.github.v3+json',
+    },
+  });
+
+  if (!topResponse.ok) {
+    throw new Error(`GitHub API error ${topResponse.status} for top contributors`);
+  }
+
+  const topData = await topResponse.json();
+  const counts: Record<string, number> = {};
+
+  (topData.items ?? []).forEach((item: any) => {
+    const login = item?.user?.login;
+    if (typeof login === 'string' && !isBot(login)) {
+      counts[login] = (counts[login] ?? 0) + 1;
+    }
+  });
+
+  const topContributors = Object.entries(counts)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, TOP_COUNT)
+    .map(([login]) => login);
+
+  const newUrl = `${GITHUB_API}/search/issues?q=org:${ORG}+type:pr+is:merged+merged:>${daysAgo(180)}&sort=created&order=desc&per_page=100`;
+  const newResponse = await fetch(newUrl, {
+    headers: {
+      Accept: 'application/vnd.github.v3+json',
+    },
+  });
+
+  if (!newResponse.ok) {
+    throw new Error(`GitHub API error ${newResponse.status} for new contributors`);
+  }
+
+  const newData = await newResponse.json();
+  const newContributors: string[] = [];
+  const seen = new Set<string>();
+
+  (newData.items ?? []).forEach((item: any) => {
+    const login = item?.user?.login;
+    if (
+      typeof login === 'string'
+      && !isBot(login)
+      && !seen.has(login)
+      && item.author_association === 'FIRST_TIME_CONTRIBUTOR'
+      && newContributors.length < NEW_COUNT
+    ) {
+      seen.add(login);
+      newContributors.push(login);
+    }
+  });
+
+  return { topContributors, newContributors };
+};
+
+const fetchContributorsData = async (): Promise<ContributorsData> => {
+  try {
+    const [topPayload, newPayload] = await Promise.all([
+      postGrafanaQuery(`select name, value
+       from shpr_auth
+       where series = 'hpr_authall'
+         and period = 'm'
+       order by value desc, name asc
+       limit ${TOP_COUNT}`, 'now-30d', 'now'),
+      postGrafanaQuery(`select str, dt
+       from snew_contributors_data
+       where series = 'ncdall'
+         and period = 'd'
+       order by dt desc, str asc
+       limit ${NEW_COUNT}`, 'now-6M', 'now'),
+    ]);
+
+    return {
+      topContributors: readGrafanaRows(topPayload)
+        .map((row) => normalizeContributor(row.name))
+        .filter(Boolean) as string[],
+      newContributors: readGrafanaRows(newPayload)
+        .map((row) => normalizeContributor(row.str))
+        .filter(Boolean) as string[],
+    };
+  } catch (error) {
+    return fetchGitHubFallback();
+  }
+};
 
 const Footer: React.FC = () => {
   const classes = useStyles();
   const { t } = useTranslation();
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
+  const [contributors, setContributors] = useState<ContributorsData>({
+    topContributors: topContributorsFallback,
+    newContributors: newContributorsFallback,
+  });
+
+  useEffect(() => {
+    let isMounted = true;
+
+    fetchContributorsData()
+      .then((data) => {
+        if (isMounted) {
+          setContributors({
+            topContributors: data.topContributors.slice(0, TOP_COUNT),
+            newContributors: data.newContributors.slice(0, NEW_COUNT),
+          });
+        }
+      })
+      .catch(() => null);
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
   // const [emailValue, setEmailValue] = useState<string>('');
   // const [disableContinueButton, setDisableContinueButton] = useState<boolean>(true);
 
@@ -141,7 +350,7 @@ const Footer: React.FC = () => {
 
   const DisplayTopContributors: React.FC = () => (
     <div>
-      {topContributors.length > 0 && (
+      {contributors.topContributors.length > 0 && (
       <>
         <Typography variant="h6" className={classes.columnTitle}>
           <Link
@@ -152,7 +361,7 @@ const Footer: React.FC = () => {
           </Link>
         </Typography>
         <Typography className={classes.columnListWrapper}>
-          {topContributors?.slice(0, 6).map((contributor: string) => (
+          {contributors.topContributors?.slice(0, 6).map((contributor: string) => (
             <Link
               href={`${API.GITHUB_URL}${contributor}`}
               target="_blank"
@@ -170,7 +379,7 @@ const Footer: React.FC = () => {
 
   const DisplayNewContributors: React.FC = () => (
     <div>
-      {newContributors.length > 0 && (
+      {contributors.newContributors.length > 0 && (
       <>
         <Typography variant="h6" className={classes.columnTitle}>
           <Link
@@ -181,7 +390,7 @@ const Footer: React.FC = () => {
           </Link>
         </Typography>
         <Typography className={classes.columnListWrapper}>
-          {newContributors?.slice(0, 6).map((contributor: string) => (
+          {contributors.newContributors?.slice(0, 6).map((contributor: string) => (
             <Link
               href={`${API.GITHUB_URL}${formatName(contributor)}`}
               target="_blank"
