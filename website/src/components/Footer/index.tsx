@@ -204,8 +204,14 @@ const fetchContributorsData = async (): Promise<ContributorsData> => {
         .map((row) => normalizeContributor(row.str))
         .filter(Boolean) as string[],
     };
-  } catch (error) {
-    return fetchGitHubFallback();
+  } catch (devStatsError) {
+    try {
+      return await fetchGitHubFallback();
+    } catch (githubError) {
+      const devStatsMessage = devStatsError instanceof Error ? devStatsError.message : String(devStatsError);
+      const githubMessage = githubError instanceof Error ? githubError.message : String(githubError);
+      throw new Error(`Unable to fetch contributors from DevStats (${devStatsMessage}) and GitHub fallback (${githubMessage})`);
+    }
   }
 };
 
