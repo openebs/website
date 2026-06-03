@@ -113,12 +113,18 @@ The following parameters control disk error and stall detection behavior:
 
 ## View DiskPool Status
 
-Use the following command to view DiskPool state, alerts, and conditions.
+Use one of the following commands to view DiskPool state, alerts, and conditions.
 
-**Command**
+**Command - View DiskPools Using Kubernetes Resources**
 
 ```
 kubectl get diskpools -A
+```
+
+**Command - View Pools Using the OpenEBS Plugin**
+
+```
+kubectl openebs mayastor get pools
 ```
 
 ## View DiskPool Details
@@ -128,11 +134,31 @@ Use the following command to inspect DiskPool conditions, alerts, and diagnostic
 **Command**
 
 ```
-kubectl describe diskpool <diskpool-name>
+kubectl get dsp pool-2-on-node-0-474026 -n mayastor -o yaml
 ```
 
-**Expected Results**
+**Sample Output**
 
-- Pool state reflects the current health condition
-- PoolReady condition displays the detected failure reason 
-- Diagnostic information includes disk or import-related errors 
+```
+status:
+  alertError: Critical (IoErrorExc,IoStalled)
+
+  conditions:
+  - status: "True"
+    type: PoolReady
+
+  errorInfo:
+    alerts:
+      critical:
+      - IoStalled
+      warning:
+      - IoErrorExc
+      status: Critical
+
+    ioErrorCount: 50399
+    ioStallTransitionCount: 1
+    ioStalled: true
+
+  pool_status: Suspected
+  status: Suspected
+```
