@@ -1,5 +1,5 @@
 ---
-id: kubevirt
+id: kubevirt-nfs
 title: KubeVirt VM Live Migration with Replicated PV Mayastor and NFS
 keywords: 
   - KubeVirt
