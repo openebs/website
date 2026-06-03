@@ -1,4 +1,3 @@
-const axios = require("axios");
 const fs = require("fs");
 
 const getdatesForContribution = (dateRange) => {
@@ -67,23 +66,37 @@ const reqBodyToFetchContributors = (type) => ({
 const API_URL = "https://openebs.devstats.cncf.io/api/ds/query";
 const API_HEADERS = { "Content-Type": "application/json" };
 
+const postContributorsQuery = async (body) => {
+  const response = await fetch(API_URL, {
+    method: "POST",
+    headers: API_HEADERS,
+    body: JSON.stringify(body),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Request failed with status ${response.status}`);
+  }
+
+  return response.json();
+};
+
 const fetchContributors = async () => {
   try {
-    const topRes = await axios.post(API_URL, reqBodyToFetchContributors("topContributors"), { headers: API_HEADERS });
-    const topData = JSON.stringify(topRes.data?.results?.A?.frames[0]?.data?.values[1]);
+    const topRes = await postContributorsQuery(reqBodyToFetchContributors("topContributors"));
+    const topData = JSON.stringify(topRes?.results?.A?.frames[0]?.data?.values[1]);
     topData && fs.writeFileSync("../website/src/resources/topContributors.json", topData);
     topData && fs.writeFileSync("../docs/src/data/topContributors.json", topData);
   } catch (error) {
-    console.error("Error fetching topContributors:", error.response?.status, error.message);
+    console.error("Error fetching topContributors:", error.message);
   }
 
   try {
-    const newRes = await axios.post(API_URL, reqBodyToFetchContributors("newContributors"), { headers: API_HEADERS });
-    const newData = JSON.stringify(newRes.data?.results?.A?.frames[0]?.data?.values[0]?.reverse());
+    const newRes = await postContributorsQuery(reqBodyToFetchContributors("newContributors"));
+    const newData = JSON.stringify(newRes?.results?.A?.frames[0]?.data?.values[0]?.reverse());
     newData && fs.writeFileSync("../website/src/resources/newContributors.json", newData);
     newData && fs.writeFileSync("../docs/src/data/newContributors.json", newData);
   } catch (error) {
-    console.error("Error fetching newContributors:", error.response?.status, error.message);
+    console.error("Error fetching newContributors:", error.message);
   }
 };
 

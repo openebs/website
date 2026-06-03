@@ -4,9 +4,7 @@
   "main": "index.js",
   "author": "OpenEBS Authors",
   "license": "MIT",
-  "dependencies": {
-    "axios": "^1.16.1"
-  },
+  "dependencies": {},
   "scripts": {
     "get-contributors-info": "node contributors"
   }
