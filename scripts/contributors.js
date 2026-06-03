@@ -74,7 +74,7 @@ const postContributorsQuery = async (body) => {
   });
 
   if (!response.ok) {
-    const error = new Error(`Request to ${API_URL} failed with status ${response.status}`);
+    const error = new Error(`Request to ${API_URL} failed with status ${response.status} ${response.statusText}`);
     error.status = response.status;
     throw error;
   }
