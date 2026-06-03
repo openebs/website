@@ -111,6 +111,20 @@ The following parameters control disk error and stall detection behavior:
 | `stallTransitionThreshold` | 3 | Number of intermittent stall transitions allowed before warning alerts are raised | `mayastor.io_engine.pool.ioAlerts.stallTransitionThreshold` |
 | `stallTransitionWindow` | 3h | Time window used to track intermittent stall activity | `mayastor.io_engine.pool.ioAlerts.stallTransitionWindow` |
 
+## Clear DiskPool I/O Errors
+
+Replicated PV Mayastor allows you to clear recorded disk I/O errors for a DiskPool after the underlying issue has been investigated and resolved. Clearing errors resets the `ioErrorCount` for the pool and removes any associated pool alerts that were generated as a result of the recorded I/O errors.
+
+**Command**
+
+```
+kubectl openebs mayastor clear-errors pool <pool-id> -n <namespace>
+```
+
+:::important
+Clearing errors resets the recorded I/O error count and associated alerts for the specified pool. This operation does not resolve underlying disk, device, or infrastructure issues. Ensure that the root cause has been addressed before clearing errors.
+:::
+
 ## View DiskPool Status
 
 Use one of the following commands to view DiskPool state, alerts, and conditions.
