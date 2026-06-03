@@ -74,7 +74,9 @@ const postContributorsQuery = async (body) => {
   });
 
   if (!response.ok) {
-    throw new Error(`Request failed with status ${response.status}`);
+    const error = new Error(`Request to ${API_URL} failed with status ${response.status}`);
+    error.status = response.status;
+    throw error;
   }
 
   return response.json();
@@ -87,7 +89,7 @@ const fetchContributors = async () => {
     topData && fs.writeFileSync("../website/src/resources/topContributors.json", topData);
     topData && fs.writeFileSync("../docs/src/data/topContributors.json", topData);
   } catch (error) {
-    console.error("Error fetching topContributors:", error.message);
+    console.error("Error fetching topContributors:", error.status, error.message);
   }
 
   try {
@@ -96,7 +98,7 @@ const fetchContributors = async () => {
     newData && fs.writeFileSync("../website/src/resources/newContributors.json", newData);
     newData && fs.writeFileSync("../docs/src/data/newContributors.json", newData);
   } catch (error) {
-    console.error("Error fetching newContributors:", error.message);
+    console.error("Error fetching newContributors:", error.status, error.message);
   }
 };
 
