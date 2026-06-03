@@ -18,7 +18,6 @@ import useViewport from '../../hooks/viewportWidth';
 import topContributorsFallback from '../../resources/topContributors.json';
 import newContributorsFallback from '../../resources/newContributors.json';
 
-
 const DEVSTATS_URL = 'https://openebs.devstats.cncf.io/api/ds/query';
 const DEVSTATS_DATASOURCE_UID = 'P172949F98CB31475';
 const GITHUB_API = 'https://api.github.com';
