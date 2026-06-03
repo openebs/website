@@ -40,6 +40,12 @@ const daysAgo = (days: number) => {
   return date.toISOString().split('T')[0];
 };
 
+const monthsAgo = (months: number) => {
+  const date = new Date();
+  date.setMonth(date.getMonth() - months);
+  return date.toISOString().split('T')[0];
+};
+
 const normalizeContributor = (value: unknown): string | null => {
   if (typeof value !== 'string') {
     return null;
@@ -85,7 +91,7 @@ const readGrafanaRows = (payload: any): Record<string, unknown>[] => {
   return rows;
 };
 
-const postGrafanaQuery = async (rawSql: string, from = 'now-6M', to = 'now') => {
+const postDevStatsQuery = async (rawSql: string, from = 'now-6M', to = 'now') => {
   const response = await fetch(DEVSTATS_URL, {
     method: 'POST',
     headers: {
@@ -141,7 +147,7 @@ const fetchGitHubFallback = async (): Promise<ContributorsData> => {
     .slice(0, TOP_COUNT)
     .map(([login]) => login);
 
-  const newUrl = `${GITHUB_API}/search/issues?q=org:${ORG}+type:pr+is:merged+merged:>${daysAgo(180)}&sort=created&order=desc&per_page=100`;
+  const newUrl = `${GITHUB_API}/search/issues?q=org:${ORG}+type:pr+is:merged+merged:>${monthsAgo(6)}&sort=created&order=desc&per_page=100`;
   const newResponse = await fetch(newUrl, {
     headers: {
       Accept: 'application/vnd.github.v3+json',
@@ -176,13 +182,13 @@ const fetchGitHubFallback = async (): Promise<ContributorsData> => {
 const fetchContributorsData = async (): Promise<ContributorsData> => {
   try {
     const [topPayload, newPayload] = await Promise.all([
-      postGrafanaQuery(`select name, value
+      postDevStatsQuery(`select name, value
        from shpr_auth
        where series = 'hpr_authall'
          and period = 'm'
        order by value desc, name asc
        limit ${TOP_COUNT}`, 'now-30d', 'now'),
-      postGrafanaQuery(`select str, dt
+      postDevStatsQuery(`select str, dt
        from snew_contributors_data
        where series = 'ncdall'
          and period = 'd'
@@ -225,7 +231,10 @@ const Footer: React.FC = () => {
           });
         }
       })
-      .catch(() => null);
+      .catch((error) => {
+        // eslint-disable-next-line no-console
+        console.warn('Unable to refresh contributors in footer', error);
+      });
 
     return () => {
       isMounted = false;
@@ -360,7 +369,7 @@ const Footer: React.FC = () => {
           </Link>
         </Typography>
         <Typography className={classes.columnListWrapper}>
-          {contributors.topContributors?.slice(0, 6).map((contributor: string) => (
+          {contributors.topContributors?.slice(0, TOP_COUNT).map((contributor: string) => (
             <Link
               href={`${API.GITHUB_URL}${contributor}`}
               target="_blank"
@@ -389,7 +398,7 @@ const Footer: React.FC = () => {
           </Link>
         </Typography>
         <Typography className={classes.columnListWrapper}>
-          {contributors.newContributors?.slice(0, 6).map((contributor: string) => (
+          {contributors.newContributors?.slice(0, NEW_COUNT).map((contributor: string) => (
             <Link
               href={`${API.GITHUB_URL}${formatName(contributor)}`}
               target="_blank"
