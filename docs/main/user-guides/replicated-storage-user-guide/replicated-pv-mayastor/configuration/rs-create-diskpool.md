@@ -49,11 +49,19 @@ A RAM drive is not suitable for use in production as it uses volatile memory for
 
 To get started, it is necessary to create and host at least one pool on one of the nodes in the cluster. The number of pools available limits the extent to which the synchronous N-way mirroring (replication) of PVs can be configured; the number of pools configured should be equal to or greater than the desired maximum replication factor of the PVs to be created. Also, while placing data replicas ensure that appropriate redundancy is provided. Replicated PV Mayastor's control plane will avoid placing more than one replica of a volume on the same node. For example, the minimum viable configuration for a Replicated PV Mayastor deployment which is intended to implement 3-way mirrored PVs must have three nodes, each having one DiskPool, with each of those pools having one unique block device allocated to it.
 
-Create the required type and number of pools by using one or more of the following examples as templates. 
+Create the required type and number of pools by using one or more of the following examples as templates.
+
+:::important
+
+When creating a DiskPool, consider configuring the `maxExpansion` parameter. This parameter defines the maximum size to which a DiskPool can be expanded in the future and cannot be modified after the DiskPool is created.
+
+If `maxExpansion` is not specified, the default value is 1x, which means the pool cannot grow beyond its initial size.
+
+Refer [DiskPool Expansion](../advanced-operations/diskpool-expansion.md) for information about supported values, sizing considerations, and expansion procedures.
+:::
 
 **Example DiskPool Definition**
-```text
-cat <<EOF | kubectl create -f -
+```yaml
 apiVersion: "openebs.io/v1beta3"
 kind: DiskPool
 metadata:
@@ -62,55 +70,60 @@ metadata:
 spec:
   node: workernode-1-hostname
   disks: ["aio:///dev/disk/by-id/<id>"]
-EOF
+  maxExpansion: "5x"
 ```
+
+`maxExpansion` - Optional. Defines the maximum size to which the DiskPool can grow. Supports factor-based values (for example, `5x`) or absolute sizes (for example, `6TiB`). This value cannot be changed after pool creation.
 
 Inorder to place the volume replicas based on the pool labels i.e. to satisfy `poolHasTopologyKey` and `poolAffinityTopologyLabel` parameters of the storage class, the pools must be labelled with the topology field.
 This can be achieved in two ways:
 
 1. Create a new pool with the labels.
 
-**Example DiskPool Definition with Labels**
-```
-cat <<EOF | kubectl create -f -
-apiVersion: "openebs.io/v1beta3"
-kind: DiskPool
-metadata:
-  name: pool-on-node-1
-  namespace: openebs
-spec:
-  node: workernode-1-hostname
-  disks: ["aio:///dev/disk/by-id/<id>"]
-  topology:
-    labelled:
-      topology-key: topology-value
-EOF
-```
+    **Example DiskPool Definition with Labels**
+
+      ```
+      cat <<EOF | kubectl create -f -
+      apiVersion: "openebs.io/v1beta3"
+      kind: DiskPool
+      metadata:
+        name: pool-on-node-1
+        namespace: openebs
+      spec:
+        node: workernode-1-hostname
+        disks: ["aio:///dev/disk/by-id/<id>"]
+        topology:
+          labelled:
+            topology-key: topology-value
+      EOF
+      ```
 
 2. The existing pools can be labelled using the plugin. This will not affect any of the pre-existing volumes.
 
-```
-kubectl mayastor label pool pool-on-node-1 topology-key=topology-value -n openebs
-```
+    ```
+    kubectl mayastor label pool pool-on-node-1 topology-key=topology-value -n openebs
+    ```
 
-**YAML**
-```text
-apiVersion: "openebs.io/v1beta3"
-kind: DiskPool
-metadata:
-  name: INSERT_POOL_NAME_HERE
-  namespace: openebs
-spec:
-  node: INSERT_WORKERNODE_HOSTNAME_HERE
-  disks: ["INSERT_DEVICE_URI_HERE"]
-```
-
-:::info
-When using the examples given as guides to creating your own pools, remember to replace the values for the fields "metadata.name", "spec.node" and "spec.disks" as appropriate to your cluster's intended configuration. Note that whilst the "disks" parameter accepts an array of values, the current version of Replicated PV Mayastor supports only one disk device per pool.
-:::
+    **YAML**
+    ```yaml
+    apiVersion: "openebs.io/v1beta3"
+    kind: DiskPool
+    metadata:
+      name: INSERT_POOL_NAME_HERE
+      namespace: openebs
+    spec:
+      node: INSERT_WORKERNODE_HOSTNAME_HERE
+      disks: ["INSERT_DEVICE_URI_HERE"]
+      maxExpansion: ["INSERT_MAX_EXPANSION_VALUE"]
+    ```
 
 :::note
-After upgrading to Replicated PV Mayastor 2.4 and above, existing schemas in CR definitions from earlier versions (including `v1alpha1`, `v1beta1`, etc.) will be updated to `v1beta3`. If you encounter errors during the upgrade, refer to the [Troubleshooting - Replicated Storage documentation](../../../../troubleshooting/troubleshooting-replicated-storage.md) for resolution steps.
+
+- When using the examples given as guides to creating your own pools, remember to replace the values for the fields "metadata.name", "spec.node" and "spec.disks" as appropriate to your cluster's intended configuration. Note that whilst the "disks" parameter accepts an array of values, the current version of Replicated PV Mayastor supports only one disk device per pool.
+
+- Consider configuring `spec.maxExpansion` during pool creation. This field determines the maximum future expansion limit of the DiskPool and cannot be modified after the pool has been created.
+
+- After upgrading to Replicated PV Mayastor 2.4 and above, existing schemas in CR definitions from earlier versions (including `v1alpha1`, `v1beta1`, etc.) will be updated to `v1beta3`. If you encounter errors during the upgrade, refer to the [Troubleshooting - Replicated Storage documentation](../../../../troubleshooting/troubleshooting-replicated-storage.md) for resolution steps.
 :::
 
 ## Verify Pool Creation and Status
@@ -124,7 +137,7 @@ kubectl get dsp -n openebs
 
 **Example Output**
 ```text
-NAME             NODE          STATE    POOL_STATUS   CAPACITY      USED   AVAILABLE
+NAME             NODE          STATE     POOL_STATUS   CAPACITY      USED   AVAILABLE
 pool-on-node-1   node-1-14944  Created   Online        10724835328   0      10724835328
 pool-on-node-2   node-2-14944  Created   Online        10724835328   0      10724835328
 pool-on-node-3   node-3-14944  Created   Online        10724835328   0      10724835328
