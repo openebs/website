@@ -121,7 +121,7 @@ POOL                STATUS   CORDON  REPLICAS  VOLUMES                          
 pool-node-1-469894  Unknown  Ready   1         86598b37-4a37-4a85-a014-4f5e5022bb4e  true
 ```
 
-### Purge a Pool
+### Purge a Pool (Offline)
 
 Use the following command to purge an irrecoverable pool from the Replicated PV Mayastor control plane.
 
