@@ -7,7 +7,7 @@ keywords:
 description: This guide explains about the Node Drain feature.
 ---
 
-# Drain a Node
+# Drain Nodes
 
 ## Overview
 

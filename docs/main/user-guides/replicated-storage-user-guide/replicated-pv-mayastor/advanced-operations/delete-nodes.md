@@ -1,14 +1,16 @@
 ---
-id: offline-node-deletion
-title: Offline Node Deletion
+id: delete-nodes
+title: Delete Nodes (Offline)
 keywords:
  - Offline Node Deletion
  - Node Deletion
  - Purge
+ - Delete Nodes
+ - Delete a Node
 description: This document explains about the Offline Node Deletion feature.
 ---
 
-# Offline Node Deletion
+# Delete Nodes (Offline)
 
 ## Overview
 
@@ -28,6 +30,31 @@ Purge is not part of the normal node lifecycle and should be used only when you 
 Offline node deletion is irreversible and may result in permanent loss of access to volume or snapshot data.
 :::
 
+## Requirements
+
+Before performing purge, ensure that:
+
+- The node is offline
+- The node is cordoned to prevent new workloads from being scheduled. Refer to the [Cordon Node documentation](../advanced-operations/cordon-node.md) for details on how to cordon a node.
+- The `openebs.io/engine` label has been removed from the Kubernetes node.
+
+**Example: Cordon the Node**
+
+Before purge, cordon the node and remove the `openebs.io/engine` label.
+
+**Command**
+
+```
+kubectl openebs mayastor cordon node node-0-469923 openebs-offline=true -n openebs
+kubectl label node node-0-469923 openebs.io/engine-
+```
+
+**Sample Output**
+
+```
+Node node-0-469923 cordoned successfully
+node/node-0-469923 unlabeled
+```
 ## When to Use Purge
 
 Use purge only when:
@@ -55,32 +82,6 @@ ID             GRPC ENDPOINT       STATUS   VERSION                           PO
 node-0-469923  5.223.46.235:10124  Offline  v2.9.0-alpha.0-250-g36f25c282ef1  1      2        0 
 node-1-469923  5.223.44.23:10124   Online   v2.9.0-alpha.0-250-g36f25c282ef1  1      1        0 
 node-2-469923  5.223.46.36:10124   Online   v2.9.0-alpha.0-250-g36f25c282ef1  1      1        0
-```
-
-## Requirements
-
-Before performing purge, ensure that:
-
-- The node is offline
-- The node is cordoned to prevent new workloads from being scheduled. Refer to the [Cordon Node documentation](../advanced-operations/cordon-node.md) for details on how to cordon a node.
-- The `openebs.io/engine` label has been removed from the Kubernetes node.
-
-**Example: Cordon the Node**
-
-Before purge, cordon the node and remove the `openebs.io/engine` label.
-
-**Command**
-
-```
-kubectl openebs mayastor cordon node node-0-469923 openebs-offline=true -n openebs
-kubectl label node node-0-469923 openebs.io/engine-
-```
-
-**Sample Output**
-
-```
-Node node-0-469923 cordoned successfully
-node/node-0-469923 unlabeled
 ```
 
 ## Review Purge Impact
