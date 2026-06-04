@@ -28,7 +28,7 @@ footer:
   emailLabel: Email address
   getStarted: Getting started
   contactUs: Contact us
-  topContributors: Top contributors
+  topContributors: Top contributors (last month)
   newContributors: New contributors
   contribute: Contribute
   copyrights: Copyright © 2018-{{year}} The OpenEBS Authors | All rights reserved

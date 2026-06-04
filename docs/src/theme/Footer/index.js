@@ -119,7 +119,7 @@ export default function Footer() {
 
         <div className={styles.linksGrid}>
           <FooterColumn title={getStartedColumn?.title} items={getStartedColumn?.items}/>
-          <ContributorColumn contributors={topContributors} title="Top contributors" titleHref={TOP_GITHUB_CONTRIBUTORS_URL}/>
+          <ContributorColumn contributors={topContributors} title="Top contributors (last month)" titleHref={TOP_GITHUB_CONTRIBUTORS_URL}/>
           <ContributorColumn contributors={newContributors} title="New contributors" titleHref={NEW_GITHUB_CONTRIBUTORS_URL}/>
         </div>
       </div>
