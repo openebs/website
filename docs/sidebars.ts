@@ -564,12 +564,17 @@ const sidebars: SidebarsConfig =
                     {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/cordon-node",
-                      label: "Cordon Node"
+                      label: "Cordon Nodes"
                     },
                     {
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/drain-node",
-                      label: "Drain Node"
+                      label: "Drain Nodes"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/delete-nodes",
+                      label: "Delete Nodes"
                     },
                     {
                       type: "doc",
@@ -578,13 +583,8 @@ const sidebars: SidebarsConfig =
                     },
                     {
                       type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/offline-pool-deletion",
-                      label: "Offline Pool Deletion"
-                    },
-                    {
-                      type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/offline-node-deletion",
-                      label: "Offline Node Deletion"
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/delete-pools",
+                      label: "Delete Pools"
                     },
                     {
                       type: "doc",

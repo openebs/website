@@ -1,22 +1,25 @@
 ---
-id: offline-pool-deletion
-title: Offline Pool Deletion
+id: delete-pools
+title: Delete Pools
 keywords:
  - Offline Pool Deletion
  - Pool Deletion
  - Purge
-description: This document explains about the Offline Pool Deletion feature.
+ - Delete Pools
+description: This document explains about the Pool Deletion feature.
 ---
 
-# Offline Pool Deletion
+# Delete Pools
 
 ## Overview
 
-Offline pool deletion, referred to as purge, allows you to remove a storage pool (pool) from the Replicated PV Mayastor control plane when it is no longer reachable and cannot be recovered. Purge removes the pool’s representation from the control plane without attempting to erase any data that may still exist on the underlying storage device.
+Replicated PV Mayastor supports multiple methods for deleting storage pools, depending on the state of the pool and the preferred management workflow.
 
-This operation is intended for failure scenarios where the pool is considered irrecoverably lost and cannot be deleted through normal means that require access to the underlying storage.
+Pools that are online and empty can be deleted through the Replicated PV Mayastor plugin or by deleting the corresponding DiskPool custom resource (CR). Pools that are no longer reachable or cannot be recovered can be removed through a purge operation.
 
-Typical scenarios include:
+Pool purge, also referred to as offline pool deletion, removes a pool's representation from the Replicated PV Mayastor control plane without deleting any data that may still exist on the underlying storage device. Purge is intended only for failure scenarios where a pool is considered irrecoverably lost and cannot be deleted through normal means that require access to the underlying storage.
+
+Typical scenarios for Pool purge include:
 
 - The host running the pool is permanently unavailable and has been replaced
 - The underlying storage device is no longer accessible
@@ -28,7 +31,51 @@ Purge is not part of the normal pool lifecycle and should be used only when you 
 Offline pool deletion is irreversible and may result in permanent loss of access to volume or snapshot data if the purged pool contains the last healthy replicas.
 :::
 
-## When to Use Purge
+## Delete Pools (Online)
+
+An online pool can be deleted when it is accessible and no longer required.
+
+Before deleting an online pool, ensure that the pool is empty and does not contain any volume replicas or snapshots. Pool deletion is blocked while dependent resources exist on the pool.
+
+Use the following command to delete an empty online pool.
+
+**Command**
+
+```
+kubectl openebs mayastor delete pool <pool-name> -n <namespace> --yes
+```
+
+:::important
+Online pool deletion is supported only for empty pools. Remove or relocate all replicas and snapshots before attempting to delete the pool.
+:::
+
+## Delete Pools (Offline)
+
+An offline pool can be purged when it is no longer accessible and recovery is no longer possible.
+
+### Requirements
+
+Before performing purge, ensure that the pool is cordoned to prevent any new replicas or snapshots from being scheduled on it.
+
+Refer to the [Pool Cordon documentation](../advanced-operations/cordon-pools.md) for details on how to cordon a pool.
+
+**Example: Cordon the Pool**
+
+Before purge, cordon the pool to prevent new replicas or snapshots from being scheduled.
+
+**Command**
+
+```
+kubectl openebs mayastor cordon pool pool-node-1-469894 -n openebs --replicas --snapshots
+```
+
+**Sample Output**
+
+```
+Pool pool-node-1-469894 cordoned successfully. Current constraints: replicas,snapshots
+```
+
+### When to Use Purge
 
 Use purge only when:
 
@@ -57,29 +104,7 @@ pool-node-1-469894  /dev/disk/by-id/scsi-0HC_Volume_105758065        true     no
 pool-node-2-469894  aio:///dev/disk/by-id/scsi-SHC_Volume_105758063  true     node-2-469894  Online                   Healthy  10 GiB    4 GiB      6 GiB      4 GiB      false      10 GiB         127.8 GiB            1        0
 ```
 
-## Requirements
-
-Before performing purge, ensure that the pool is cordoned to prevent any new replicas or snapshots from being scheduled on it.
-
-Refer to the [Pool Cordon documentation](../advanced-operations/cordon-pools.md) for details on how to cordon a pool.
-
-**Example: Cordon the Pool**
-
-Before purge, cordon the pool to prevent new replicas or snapshots from being scheduled.
-
-**Command**
-
-```
-kubectl openebs mayastor cordon pool pool-node-1-469894 -n openebs --replicas --snapshots
-```
-
-**Sample Output**
-
-```
-Pool pool-node-1-469894 cordoned successfully. Current constraints: replicas,snapshots
-```
-
-## Review Purge Impact
+### Review Purge Impact
 
 Before performing purge, review the affected replicas and volumes.
 
@@ -96,7 +121,7 @@ POOL                STATUS   CORDON  REPLICAS  VOLUMES                          
 pool-node-1-469894  Unknown  Ready   1         86598b37-4a37-4a85-a014-4f5e5022bb4e  true
 ```
 
-## Purge a Pool
+### Purge a Pool (Offline)
 
 Use the following command to purge an irrecoverable pool from the Replicated PV Mayastor control plane.
 
@@ -107,10 +132,10 @@ kubectl openebs mayastor delete pool pool-node-1-469894 -n openebs --purge --yes
 ```
 
 :::note
-Use `--cleanup-dsp` to remove DiskPool custom resources (CRs) for the purged pool.
+Use `--cleanup-dsp` to remove DiskPool CRs for the purged pool.
 :::
 
-## Purge Options
+### Purge Options
 
 If the pool contains critical data, additional confirmation is required:
 
@@ -123,7 +148,7 @@ If the pool contains critical data, additional confirmation is required:
 | Remove DiskPool CRs associated with the purged pool | `--cleanup-dsp` |
 | Display the expected volume and snapshot impact before performing purge | `--show-impact` |
 
-## Data Loss Confirmation
+### Data Loss Confirmation
 
 **Example: Volume Loss Confirmation**
 
@@ -163,7 +188,7 @@ POOL                VOLUME-LOSS  SNAPSHOT-LOSS
 pool-node-1-469894  1 volume(s)  <none>
 ```
 
-## Impact on Workloads
+### Impact on Workloads
 
 - **Single-replica volumes:** Data is permanently lost if the replica resides on the purged pool.
 - **Multi-replica volumes:** Volumes may continue to operate and recover using remaining replicas if high availability (HA) is configured and sufficient replicas remain.
@@ -210,7 +235,7 @@ VOLUME-ID                             REPLICA-ID                            NODE
 └─                                    b4e1c87e-5868-4c32-8924-11ef0e44c59e  node-1-469894  pool-node-1-469894  Unknown  false      <none>    <none>     <none>     Faulted       <none>  <none>   false
 ```
 
-## Verify Purge Completion
+### Verify Purge Completion
 
 After performing purge, verify that the pool has been removed and that affected workloads reflect the updated state.
 
@@ -222,3 +247,72 @@ kubectl openebs mayastor get pools
 
 - The pool should no longer appear 
 - Affected volumes may show updated states 
+
+## Delete Pools Using a DiskPool CR
+
+You can also delete pools by operating directly on the associated DiskPool CR.
+
+### Delete Online Pools
+
+To delete an online pool using its DiskPool resource, delete the corresponding DiskPool CR. The pool must be empty and must not contain any volume replicas or snapshots.
+
+**Command**
+
+```
+kubectl delete dsp <pool-name> -n <namespace>
+```
+
+:::important
+Deletion of an online DiskPool resource is supported only when the pool does not contain replicas or snapshots.
+:::
+
+### Purge Offline Pools
+
+For an offline pool, add a deletion annotation to the DiskPool resource.
+
+The annotation:
+
+- Indicates that a purge operation should be performed.
+- Confirms acceptance of replica and snapshot loss associated with the pool.
+
+**Command**
+
+```
+kubectl -n <namespace> annotate dsp <pool-name> \
+  openebs.io/delete-opts='purge=true,accept=true' \
+  --overwrite
+```
+
+**Annotation Options**
+
+| Option | Description |
+| :--- | :--- |
+| `purge=true` | Performs a purge operation on the pool |
+| `accept=true` | Confirms deletion of replicas and snapshots associated with the pool |
+| `accept-volume-loss=true` | Accepts permanent loss of affected volume replicas |
+| `accept-snapshot-loss=true` | Accepts permanent loss of affected snapshot replicas |
+| `accept-data-loss=true` | Accepts both volume and snapshot data loss |
+
+If deleting the pool would result in permanent loss of volume replicas or snapshots, additional confirmation options are required.
+
+**Example: Accept Volume and Snapshot Data Loss**
+
+```
+kubectl -n <namespace> annotate dsp <pool-name> \
+  openebs.io/delete-opts='purge=true,accept=true,accept-data-loss=true' \
+  --overwrite
+```
+
+**Example: Shorthand Syntax**
+
+The previous command can be expressed using the following shorthand option:
+
+```
+kubectl -n <namespace> annotate dsp <pool-name> \
+  openebs.io/delete-opts=purge-accept-all \
+  --overwrite
+```
+
+:::warning
+Purging a pool through a DiskPool resource is irreversible and may result in permanent volume or snapshot data loss if the pool contains the last healthy replicas.
+:::

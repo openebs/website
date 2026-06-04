@@ -1,13 +1,13 @@
 ---
 id: cordon-node
-title: Cordon a Node
+title: Cordon Nodes
 keywords:
  - Node Cordon
  - Cordon Node
 description: This guide explains about the Node Cordon feature.
 ---
 
-# Cordon a Node
+# Cordon Nodes
 
 ## Overview
 
