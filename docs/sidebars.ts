@@ -823,16 +823,27 @@ const sidebars: SidebarsConfig =
           },
           items: [
             {
-              type: "doc",
-              id: "Solutioning/read-write-many/nfspvc",
-              label: "Provisioning NFS PVCs"
+              type: "category",
+              label: "NFS Solutions",
+              items: [
+                {
+                  type: "doc",
+                  id: "Solutioning/read-write-many/nfspvc",
+                  label: "Provisioning NFS PVCs"
+                },
+                {
+                  type: "doc",
+                  id: "Solutioning/read-write-many/kubevirt-nfs",
+                  label: "KubeVirt VM Live Migration (NFS)"
+                }
+              ]
             },
-            {
-              type: "doc",
-              id: "Solutioning/read-write-many/kubevirt",
-              label: "KubeVirt VM Live Migration"
-            }
           ]
+        },
+        {
+          type: "doc",
+          id: "Solutioning/kubevirt",
+          label: "KubeVirt VM Live Migration (Block)"
         },
         {
           collapsed: true,
