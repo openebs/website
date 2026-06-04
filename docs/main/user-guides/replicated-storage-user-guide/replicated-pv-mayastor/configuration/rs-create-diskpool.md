@@ -82,8 +82,7 @@ This can be achieved in two ways:
 
     **Example DiskPool Definition with Labels**
 
-      ```
-      cat <<EOF | kubectl create -f -
+      ```yaml
       apiVersion: "openebs.io/v1beta3"
       kind: DiskPool
       metadata:
@@ -92,10 +91,10 @@ This can be achieved in two ways:
       spec:
         node: workernode-1-hostname
         disks: ["aio:///dev/disk/by-id/<id>"]
+        maxExpansion: "5x"
         topology:
           labelled:
             topology-key: topology-value
-      EOF
       ```
 
 2. The existing pools can be labelled using the plugin. This will not affect any of the pre-existing volumes.
