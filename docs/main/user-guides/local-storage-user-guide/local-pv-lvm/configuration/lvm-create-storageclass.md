@@ -174,6 +174,6 @@ If you encounter issues or have a question, file a [Github issue](https://github
 ## See Also
 
 - [Installation](../../../../quickstart-guide/installation.md)
-- [StorageClass Options](lvm-storageclass-options.md)
+- [StorageClass Parameters](lvm-storageclass-parameters.md)
 - [Create PersistentVolumeClaim](lvm-create-pvc.md)
 - [Deploy an Application](lvm-deployment.md)

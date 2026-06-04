@@ -22,14 +22,19 @@ These parameters control IOPS and bandwidth limits for filesystem and block-mode
 
 The following VAC parameters are supported for Local PV LVM volumes.
 
-| Parameter | Description |
-| :--- | :--- |
-| `qosIopsLimit` | Maximum total IOPS limit |
-| `qosIopsReadLimit` | Maximum read IOPS limit |
-| `qosIopsWriteLimit` | Maximum write IOPS limit |
-| `qosBandwithPerSec` | Maximum total bandwidth per second |
-| `qosBandwithReadPerSec` | Maximum read bandwidth per second |
-| `qosBandwithWritePerSec` | Maximum write bandwidth per second |
+| Parameter | Description | Accepted Values |
+| :--- | :--- | :--- |
+| `qosIopsLimit` | Maximum Read/Write IOPS limit | Non-zero positive integer or `max` |
+| `qosIopsReadLimit` | Maximum read IOPS limit | Non-zero positive integer or `max` |
+| `qosIopsWriteLimit` | Maximum write IOPS limit | Non-zero positive integer or `max` |
+| `qosBandwithPerSec` | Maximum Read/Write bandwidth per second | Non-zero positive integer (bytes/sec) or supported size suffixes such as `7000Mi` |
+| `qosBandwithReadPerSec` | Maximum read bandwidth per second | Non-zero positive integer (bytes/sec) or supported size suffixes such as `7000Mi` |
+| `qosBandwithWritePerSec` | Maximum write bandwidth per second | Non-zero positive integer (bytes/sec) or supported size suffixes such as `7000Mi` |
+
+:::note
+Setting an IOPS parameter to `max` disables IOPS limiting for that parameter on the volume.
+A value of `0` is not supported for IOPS or bandwidth parameters.
+:::
 
 **Example VAC Configuration**
 
@@ -143,6 +148,6 @@ If you encounter issues or have a question, file a [Github issue](https://github
 ## See Also
 
 - [Installation](../../../../quickstart-guide/installation.md)
-- [StorageClass Options](lvm-storageclass-options.md)
+- [StorageClass Parameters](lvm-storageclass-parameters.md)
 - [Create PersistentVolumeClaim](lvm-create-pvc.md)
 - [Deploy an Application](lvm-deployment.md)

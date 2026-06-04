@@ -606,6 +606,11 @@ const sidebars: SidebarsConfig =
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/diskpool-expansion",
                       label: "DiskPool Expansion"
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/diskpool-io-failure-handling",
+                      label: "DiskPool I/O Failure Handling"
                     }
                   ]
                 },
