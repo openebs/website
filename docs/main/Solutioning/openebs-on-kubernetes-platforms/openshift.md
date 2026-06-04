@@ -328,7 +328,7 @@ The namespace and Helm release name used in this document are openebs and are pr
   ```
 
   :::note
-  Refer to the [Local PV LVM StorageClass Parameters documentation](../../user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-storageclass-options.md) for detailed information about supported parameters and configuration options.
+  Refer to the [Local PV LVM StorageClass Parameters documentation](../../user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-storageclass-parameters.md) for detailed information about supported parameters and configuration options.
   :::  
 
 8. Create a PVC.
