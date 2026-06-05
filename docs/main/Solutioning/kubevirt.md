@@ -15,9 +15,11 @@ description: Learn how to test the experimental native RWX block volume support 
 
 Replicated PV Mayastor provides experimental support for native ReadWriteMany (RWX) block volumes to enable KubeVirt Virtual Machine (VM) live migration without requiring an intermediary NFS layer.
 
-This capability allows multiple KubeVirt nodes to maintain concurrent access to the same block volume during migration, enabling VM workloads to move between nodes while preserving storage access.
+This capability is intended exclusively for KubeVirt live migration workloads, where KubeVirt performs the required migration orchestration.
 
-This document describes how to deploy, validate, and evaluate the experimental native ReadWriteMany (RWX) block volume support for KubeVirt live migration. It also provides guidance for testing the feature and submitting feedback to the OpenEBS team.
+During a migration operation, both the source and destination nodes may maintain connectivity to the volume. However, only one VM instance accesses the block volume at a given time.
+
+This document helps you test the workflow and provide feedback to the OpenEBS team.
 
 Refer [OEP: RWX Block Volume Support in Replicated PV Mayastor for KubeVirt](https://github.com/openebs/openebs/blob/develop/designs/replicated-pv/mayastor/rwx-kubevirt.md) for design/implementation details.
 

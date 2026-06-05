@@ -15,7 +15,7 @@ When a node allocates storage capacity for a replica of a Persistent Volume (PV)
 
 A pool is defined declaratively, through the creation of a corresponding `DiskPool` Custom Resource (CR) on the cluster. The DiskPool must be created in the same namespace where the Replicated PV Mayastor has been deployed. User configurable parameters of this resource type include a unique name for the pool, the node name on which it will be hosted and a reference to a disk device that is accessible from that node. The pool definition requires the reference to its member block device to adhere to a discrete range of schemas, each associated with a specific access mechanism/transport/ or device type.
 
-**Permissible Schemes for `spec.disks` under DiskPool Custom Resource**
+**Permissible Schemes for `spec.disks` under DiskPool CR**
 
 :::info
 It is highly recommended to specify the disk using a unique device link that remains unaltered across node reboots. Examples of such device links are: by-path or by-id.
@@ -34,7 +34,7 @@ Usage of the device name (for example, /dev/sdx) is not advised, as it may chang
 | Type | Format | Example |
 | :--- | :--- | :--- |
 | Disk(non PCI) with disk-by-guid reference <i><b>(Best Practice)</b></i> | Device File | aio:///dev/disk/by-id/<id> OR uring:///dev/disk/by-id/</id> |
-| Asynchronous Disk\(AIO\) | Device File | /dev/sdx |
+| Asynchronous Disk \(AIO\) | Device File | /dev/sdx |
 | Asynchronous Disk I/O \(AIO\) | Device File | aio:///dev/sdx |
 | io\_uring | Device File | uring:///dev/sdx |
 
@@ -135,11 +135,12 @@ kubectl get dsp -n openebs
 ```
 
 **Example Output**
-```text
-NAME             NODE          STATE     POOL_STATUS   CAPACITY      USED   AVAILABLE
-pool-on-node-1   node-1-14944  Created   Online        10724835328   0      10724835328
-pool-on-node-2   node-2-14944  Created   Online        10724835328   0      10724835328
-pool-on-node-3   node-3-14944  Created   Online        10724835328   0      10724835328
+```
+NAME                      NODE            STATE     STATUS   ERROR   ALERTS    ENCRYPTED   CAPACITY   USED   AVAILABLE   DISK-CAPACITY   MAX-EXPANDABLE-SIZE
+pool-1-on-node-0-474840   node-0-474840   Created   Online           Healthy   false       10 GiB     0 B    10 GiB      10 GiB          127.8 GiB
+pool-1-on-node-1-474840   node-1-474840   Created   Online           Healthy   false       10 GiB     0 B    10 GiB      10 GiB          127.8 GiB
+pool-1-on-node-2-474840   node-2-474840   Created   Online           Healthy   false       10 GiB     0 B    10 GiB      10 GiB          127.8 GiB
+ 
 ```
 
 ## See Also
