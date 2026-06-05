@@ -9,124 +9,122 @@ keywords:
 description: This page contains list of supported OpenEBS releases.
 ---
 
-**Release Date: 21 November 2025**
+**Release Date: 05 June 2026**
 
 OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners.
-The status of the various components as of v4.4 are as follows:
+The status of the various components as of v4.5 are as follows:
 
 | Component Type | Component | Version | Status |
 | :--- | :--- | :--- | :--- |
-| Replicated Storage | Replicated PV Mayastor | 2.10.0 | Stable |
-| Local Storage | Local PV Hostpath | 4.4.0 | Stable |
-| Local Storage | Local PV LVM | 1.8.1 | Stable |
-| Local Storage | Local PV ZFS | 2.9.1 | Stable |
-| Local Storage | Local PV Rawfile | 0.13.1 | Experimental |
-| Out-of-tree (External Storage) Provisioners | Local PV Hostpath | 4.4.0 | Stable |
-| Other Components | CLI | 4.4.0 | — |
+| Replicated Storage | Replicated PV Mayastor | 2.11.0 | Stable |
+| Local Storage | Local PV Hostpath | 4.5.0 | Stable |
+| Local Storage | Local PV LVM | 1.9.0 | Stable |
+| Local Storage | Local PV ZFS | 2.10.0 | Stable |
+| Local Storage | Local PV Rawfile | 0.14.0 | Experimental |
+| Out-of-tree (External Storage) Provisioners | Local PV Hostpath | 4.5.0 | Stable |
+| Other Components | CLI | 4.5.0 | — |
 
 ## What’s New
 
-### General
-
-- **Support for Installing Both Replicated PV Mayastor and Local PV LVM on OpenShift**
-
-  You can now install both Replicated PV Mayastor and Local PV LVM on OpenShift using a unified Helm-based deployment process. In earlier releases, only Replicated PV Mayastor installation was supported on OpenShift.
-
 ### Replicated Storage
 
-- **DiskPool Expansion**
+- **Offline Node Deletion (Node Purge)**
 
-  You can now expand existing Replicated PV Mayastor DiskPools using the maxExpansion parameter. This feature allows controlled, on-demand capacity increases while preventing ENOSPC errors and ensuring uninterrupted application availability.
+  Replicated PV Mayastor now supports offline node deletion (purge), allowing administrators to permanently remove an unreachable and unrecoverable node from the control plane without requiring access to the underlying host. Before performing the operation, you can review the expected impact on volumes and snapshots. This capability helps simplify recovery and cleanup workflows following permanent node or infrastructure failures.
 
-- **Safely Pause Pool Activity**
+- **Offline and Online Pool Deletion**
 
-  You can now temporarily cordon Replicated PV Mayastor pools to block new replicas, snapshots, restores, or imports. This feature helps you perform maintenance or decommission storage safely while keeping existing data fully available and unaffected.
+  Replicated PV Mayastor now supports deleting both offline and online Pools. Administrators can remove empty online pools through the Mayastor plugin or DiskPool custom resources and safely purge unrecoverable offline pools from the control plane after reviewing the impact on affected volumes and snapshots.
 
-- **Optimize Storage Performance**
+- **Disk I/O Failure and Hot-Removal Handling**
 
-  You can now configure the SPDK blobstore cluster size when creating Replicated PV Mayastor DiskPools. This option lets you fine-tune on-disk layout and performance for your workloads—using smaller clusters for efficiency or larger clusters for faster pool creation, imports, and sequential I/O operations.
+  Replicated PV Mayastor now improves storage fault visibility by detecting disk I/O failures, hot-removal events, stalled I/O conditions, and runtime disk I/O errors. DiskPools automatically report updated pool states, alerts, and diagnostic information, helping you identify unhealthy storage devices and understand workload impact during disk-related failures.
 
-- **Kubeconfig Context Switching for `kubectl-mayastor`**
+- **Experimental RWX Block Volume Support for KubeVirt Live Migration**
 
-  The `kubectl-mayastor` plugin now supports kubeconfig context switching, making it easier for administrators to manage multi-cluster environments.
+  Replicated PV Mayastor now provides experimental support for native ReadWriteMany (RWX) block volumes to enable KubeVirt Virtual Machine (VM) live migration without requiring an intermediary NFS layer. This capability allows KubeVirt workloads to migrate between nodes while maintaining access to shared block storage. This feature is intended for evaluation and testing in non-production environments.
 
-- **Support for 1GiB HugePages**
+- **RDMA QoS and DSCP Marking Support**
 
-  1 GiB HugePages are now supported, enabling improved performance for memory-intensive workloads and providing greater flexibility when tuning systems for high-performance environments.
+  Replicated PV Mayastor now supports configuring transport-level Quality of Service (QoS) settings for RDMA connections through DSCP marking. This enables integration with network QoS policies and allows administrators to prioritize storage traffic in RDMA-enabled environments.
 
 ### Local Storage
 
-- **Local PV LVM Snapshot Restore**
+- **Node Deployment Mode for Local PV Hostpath**
 
-  Snapshot Restore is now supported for Local PV LVM. This brings Local PV LVM to parity with Replicated PV Mayastor and Local PV ZFS, which already supported snapshot-based volume restoration.
+  Local PV Hostpath now supports a node deployment mode for provisioning operations. This deployment model is designed for high-performance environments and helps reduce provisioning overhead by running provisioning workloads closer to the target node.
+
+- **Quality of Service (QoS) Support for Local PV LVM**
+
+  Local PV LVM now supports Quality of Service (QoS) controls through Kubernetes VolumeAttributesClass (VAC) resources. Administrators can define and dynamically update storage performance policies, including IOPS and bandwidth limits, without recreating PersistentVolumeClaims (PVCs). This capability enables predictable storage performance, simplifies resource governance, and provides greater flexibility for managing stateful workloads.
 
 ## Enhancements
 
 ### Replicated Storage
 
-- **Improved Replica Health Management**
+- **Expanded Storage Observability**
 
-  Replica health updates are now performed as an atomic etcd transaction, significantly improving consistency and reliability during replica state changes.
+  New metrics are available for DiskPool capacity, maximum expandable capacity, pool health alerts, replica counts, snapshot counts, and node status. These additions provide deeper visibility into storage utilization, cluster health, and operational status.
 
-- **Enhanced Nexus Subsystem Stability**
+- **Graceful Node Shutdown Handling**
 
-  The system now ensures that a single unhealthy nexus cannot impact or block the entire nexus subsystem, improving overall storage resiliency and workload stability.
+  Replicated PV Mayastor now handles node shutdown events more gracefully, helping reduce unnecessary failover activity and improving workload stability during planned maintenance operations.
 
-- **Pre-Validation of Kubernetes Secrets for DiskPools**
+- **SPDK Interrupt Mode Support**
 
-  The diskpool operator now validates Kubernetes secrets before creating a pool, providing earlier error detection and faster troubleshooting.
-
-- **Improved Device Event Handling via udev Kernel Monitor**
-
-  Device detection has been improved by using the udev kernel monitor, providing faster and more reliable NVMe device event handling.
+  Replicated PV Mayastor now supports SPDK interrupt mode and associated configuration options, providing an alternative I/O processing model that can help reduce CPU utilization in suitable environments.
 
 ### Local Storage
 
-- **ThinPool Space Reclamation Improvements**
+- **Configurable Worker Threads and Helper Pod Timeout**
 
-  Local PV LVM now automatically cleans up the thinpool Logical Volume (LV) when the last thin volume associated with the thinpool is deleted. This optimization helps reclaim storage space efficiently.
+  Local PV Hostpath now allows administrators to configure worker thread counts and helper pod timeout values. This provides greater control over provisioning behavior and enables tuning for different workload and cluster environments.
 
-- **Configurable Resource Requests and Limits for Local PV ZFS Components**
+- **Configurable DNS Policy for ZFS Node Components**
 
-  You can now configure CPU and memory requests and limits for all `zfs-node` and `zfs-controller` containers through the `values.yaml` file. This enhancement provides greater control over resource allocation and improves deployment flexibility across diverse cluster environments.
+  Local PV ZFS now allows administrators to configure the Kubernetes `dnsPolicy` for ZFS node components through the Helm chart, providing greater flexibility when deploying in customized networking environments.
+
+- **Global Helm Values Support**
+
+  Support for global Helm values has been added, simplifying configuration management and enabling more consistent deployment settings across OpenEBS components.
 
 ## Fixes
 
 ### Replicated Storage
 
-- **Resolved Lost udev Events Affecting NVMe Devices**
+- **RWX Block Volume Migration Stability**
 
-  Fixed a race condition where missing udev events caused NVMe devices to fail to connect. Device discovery is now more reliable.
+  Resolved issues that could cause repeated unpublish and republish operations during RWX block volume migrations, improving migration reliability and reducing disruption during failover events.
 
-- **Improved Pool Creation on Slow or Large Storage Devices**
+- **DiskPool Cleanup After Device Removal**
 
-  Fixed an issue where pool creation could fail or time out on very slow or very large storage devices.
+  Resolved issues affecting DiskPool cleanup and recovery when underlying storage devices were unexpectedly removed or became unavailable.
 
-- **Correct gRPC Port Usage in Metrics Exporter**
+- **Storage Scheduling Reliability**
 
-  Resolved an issue where the metrics exporter could use an incorrect gRPC port, ensuring accurate metrics collection.
+  Resolved an issue where replicas could be scheduled on pools in a critical state. Scheduling now correctly avoids unhealthy pools.
 
-- **Fix for mkfs Hanging on Large Pools/Volumes**
+- **Node Unpublish Reliability**
 
-  Resolved an issue where filesystem creation could hang on very large pools or volumes, improving provisioning reliability.
+  Resolved an issue where node unpublish operations could fail when the target path existed as an empty file.
 
-- **Agent-Core Panic During Replica Scheduling**
+- **Cross-Filesystem Restore Validation**
 
-  Fixed a panic in agent-core when scheduling replicas, improving system stability during heavy provisioning operations.
+  Resolved an issue where restore operations could proceed between incompatible filesystem types. Restore requests are now validated to prevent unsupported cross-filesystem restores.
 
 ### Local Storage
 
-- **PVC Provisioning Failure with Empty Selector**
+- **Capacity Reporting for Thin-Provisioned Volumes**
 
-  Resolved an issue where PersistentVolumeClaim (PVC) provisioning for Local PV Hostpath volumes could fail when the `.spec.selector` field was left empty. PVCs without a selector now provision successfully as expected.
+  Resolved an issue where available capacity calculations for thin-provisioned storage could be inaccurate. Capacity reporting now correctly considers thin pool free space when determining available storage.
 
-- **Corrected Scheduling Behavior for Local PV LVM**
+- **Improved ZFS Error Reporting**
 
-  Scheduling logic for Local PV LVM has been corrected to ensure reliable provisioning. Thinpool statistics are now properly recorded, thinpool free space is considered during scheduling, and CreateVolume requests for thick PVCs now fail early when insufficient capacity is available.
+  Resolved issues with error reporting by providing more detailed ZFS error messages directly from the underlying system. This simplifies troubleshooting and improves visibility into storage-related failures.
 
-- **Correct Encryption Handling for Local PV ZFS Clone Operations**
+- **Graceful Filesystem Shutdown Handling**
 
-  Resolved an issue where Local PV ZFS clone creation attempted to set a read-only encryption property. Clone volumes now correctly inherit encryption from their parent snapshots without passing unsupported parameters.
+  Resolved issues affecting volume publish and unpublish operations when a filesystem entered a shutdown state. These improvements help ensure more reliable volume lifecycle operations during filesystem failure scenarios.
 
 ## Known Issues
 
@@ -136,9 +134,7 @@ The status of the various components as of v4.4 are as follows:
 
 **Workaround:** Recreate or rebind the pod to ensure proper volume mounting.
 
-- If a disk backing a DiskPool fails or is removed (Example: A cloud disk detaches), the failure is not clearly reflected in the system. As a result, the volume may remain in a degraded state for an extended period.
-
-- Large pools (Example: 10–20TiB) may take a while during recovery after a dirty shutdown of the node hosting the io-engine.
+- Large pools (for example, 10–20 TiB) may experience extended recovery times after a dirty shutdown of the node hosting the io-engine.
 
 - When using Replicated PV Mayastor on Oracle Linux 9 (kernel 5.14.x), servers may unexpectedly reboot during volume detach operations due to a kernel bug (CVE-2024-53170) in the block layer.
 This issue is not caused by Mayastor but is triggered more frequently because of its NVMe-TCP connection lifecycle.
@@ -163,7 +159,7 @@ This issue is not caused by Mayastor but is triggered more frequently because of
 
 ## Related Information
 
-OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For release summaries and full version-level notes, see [OpenEBS Release 4.4](https://github.com/openebs/openebs/releases).
+OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For release summaries and full version-level notes, see [OpenEBS Release 4.5](https://github.com/openebs/openebs/releases).
 
 See version specific Releases to view the legacy OpenEBS Releases.
 
