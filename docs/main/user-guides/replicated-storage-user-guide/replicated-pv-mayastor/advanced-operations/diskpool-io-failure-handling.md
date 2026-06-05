@@ -144,8 +144,8 @@ kubectl openebs mayastor get pool <pool-name> -n <namespace>
 **Sample Output**
 
 ```
-NAME               NODE          STATE     STATUS   ERROR   ALERTS                ENCRYPTED   CAPACITY   USED   AVAILABLE   DISK-CAPACITY   MAX-EXPANDABLE-SIZE
-pool-kind-worker   kind-worker   Created   Online           Attention (IoError)   false       508 MiB    0 B    508 MiB     512 MiB         127.8 GiB
+ID                DISKS                         MANAGED  NODE         STATUS  ALERTS               CAPACITY  ALLOCATED  AVAILABLE  COMMITTED  ENCRYPTED  DISK-CAPACITY  MAX-EXPANDABLE-SIZE  VOLUMES  SNAPSHOTS 
+pool-kind-worker  aio:///dev/kind-worker/lvol0  true     kind-worker  Online  Attention (IoError)  508 MiB   0 B        508 MiB    0 B        false      512 MiB        127.8 GiB            0        0 
 ```
 
 ## View DiskPool Details
@@ -161,6 +161,6 @@ kubectl get dsp <pool-name> -n <namespace>
 **Sample Output**
 
 ```
-ID                DISKS                         MANAGED  NODE         STATUS  ALERTS               CAPACITY  ALLOCATED  AVAILABLE  COMMITTED  ENCRYPTED  DISK-CAPACITY  MAX-EXPANDABLE-SIZE  VOLUMES  SNAPSHOTS 
-pool-kind-worker  aio:///dev/kind-worker/lvol0  true     kind-worker  Online  Attention (IoError)  508 MiB   0 B        508 MiB    0 B        false      512 MiB        127.8 GiB            0        0 
+NAME               NODE          STATE     STATUS   ERROR   ALERTS                ENCRYPTED   CAPACITY   USED   AVAILABLE   DISK-CAPACITY   MAX-EXPANDABLE-SIZE
+pool-kind-worker   kind-worker   Created   Online           Attention (IoError)   false       508 MiB    0 B    508 MiB     512 MiB         127.8 GiB
 ```
