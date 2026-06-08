@@ -34,7 +34,7 @@ The status of the various components as of v4.5 are as follows:
 
 - **Offline and Online Pool Deletion**
 
-  Replicated PV Mayastor now supports deleting both offline and online Pools. Administrators can remove empty online pools through the Mayastor plugin or DiskPool custom resources and safely purge unrecoverable offline pools from the control plane after reviewing the impact on affected volumes and snapshots.
+  Replicated PV Mayastor now supports deleting both offline and online Pools. Online pools can be deleted when they no longer contain replicas, while unrecoverable offline pools can be safely purged from the control plane after reviewing the impact on affected volumes and snapshots.
 
 - **Disk I/O Failure and Hot-Removal Handling**
 
@@ -66,9 +66,9 @@ The status of the various components as of v4.5 are as follows:
 
   New metrics are available for DiskPool capacity, maximum expandable capacity, pool health alerts, replica counts, snapshot counts, and node status. These additions provide deeper visibility into storage utilization, cluster health, and operational status.
 
-- **Graceful Node Shutdown Handling**
+- **Node Shutdown State Awareness**
 
-  Replicated PV Mayastor now handles node shutdown events more gracefully, helping reduce unnecessary failover activity and improving workload stability during planned maintenance operations.
+  Replicated PV Mayastor now exposes graceful node shutdown status through its APIs, enabling more accurate node state visibility and troubleshooting.
 
 - **SPDK Interrupt Mode Support**
 
