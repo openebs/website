@@ -80,7 +80,7 @@ The status of the various components as of v4.5 are as follows:
 
   Local PV Hostpath now allows administrators to configure worker thread counts and helper pod timeout values. This provides greater control over provisioning behavior and enables tuning for different workload and cluster environments.
 
-- **Configurable DNS Policy for ZFS Node Components**
+- **Configurable DNS Policy for Local PV ZFS Node Components**
 
   Local PV ZFS now allows administrators to configure the Kubernetes `dnsPolicy` for ZFS node components through the Helm chart, providing greater flexibility when deploying in customized networking environments.
 
@@ -114,7 +114,7 @@ The status of the various components as of v4.5 are as follows:
 
 ### Local Storage
 
-- **Capacity Reporting for Thin-Provisioned Volumes**
+- **Capacity Reporting for Thin-Provisioned Volumes for Local PV LVM**
 
   Resolved an issue where available capacity calculations for thin-provisioned storage could be inaccurate. Capacity reporting now correctly considers thin pool free space when determining available storage.
 
@@ -122,7 +122,7 @@ The status of the various components as of v4.5 are as follows:
 
   Resolved issues with error reporting by providing more detailed ZFS error messages directly from the underlying system. This simplifies troubleshooting and improves visibility into storage-related failures.
 
-- **Graceful Filesystem Shutdown Handling**
+- **Graceful Filesystem Shutdown Handling for Local PV ZFS**
 
   Resolved issues affecting volume publish and unpublish operations when a filesystem entered a shutdown state. These improvements help ensure more reliable volume lifecycle operations during filesystem failure scenarios.
 
