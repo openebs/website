@@ -13,19 +13,17 @@ OpenEBS Local PV Hostpath is a lightweight and easy-to-use storage engine that p
 
 It can create Kubernetes Local Persistent Volumes using a unique Hostpath (directory) on the node to persist data, hereafter referred to as *OpenEBS Local PV Hostpath* volumes. 
 
-## Advantages
-
-- OpenEBS Local PV Hostpath allows your applications to access hostpath via StorageClass, PVC, and PV. This provides you with the flexibility to change the PV providers without having to redesign your Application YAML. 
-
-- Data protection using the Velero Backup and Restore.
-
-- Protect against hostpath security vulnerabilities by masking the hostpath completely from the application YAML and pod.
-
-OpenEBS Local PV uses volume topology aware pod scheduling enhancements introduced by [Kubernetes Local Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#local).
-
 ## Installation 
 
 Refer to the [OpenEBS Installation documentation](../../../quickstart-guide/installation.md) to install Local PV Hostpath.
+
+## Advantages
+
+- OpenEBS Local PV Hostpath allows your applications to access hostpath via StorageClass, PVC, and PV. This provides you with the flexibility to change the PV providers without having to redesign your Application YAML. 
+- Data protection using the Velero Backup and Restore.
+- Protect against hostpath security vulnerabilities by masking the hostpath completely from the application YAML and pod.
+
+OpenEBS Local PV uses volume topology aware pod scheduling enhancements introduced by [Kubernetes Local Volumes](https://kubernetes.io/docs/concepts/storage/volumes/#local).
 
 ## Support
 

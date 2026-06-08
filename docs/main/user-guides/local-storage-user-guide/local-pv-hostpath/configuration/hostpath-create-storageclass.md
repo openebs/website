@@ -59,9 +59,9 @@ The default Storage Class is called `openebs-hostpath` and its `BasePath` is con
     volumeBindingMode: WaitForFirstConsumer
 
     ```
-  :::note 
-  Using NodeAffinityLabels does not influence the scheduling of the application Pod. Use Kubernetes [Allowed Topologies](https://github.com/openebs/dynamic-localpv-provisioner/blob/develop/docs/tutorials/hostpath/allowedtopologies.md) to configure scheduling options.
-  :::
+    :::note 
+    Using NodeAffinityLabels does not influence the scheduling of the application Pod. Use Kubernetes [Allowed Topologies](https://github.com/openebs/dynamic-localpv-provisioner/blob/develop/docs/tutorials/hostpath/allowedtopologies.md) to configure scheduling options.
+    :::
 
 2. Edit `local-hostpath-sc.yaml` and update with your desired values for `metadata.name` and `cas.openebs.io/config.BasePath`.
 

@@ -9,7 +9,7 @@ keywords:
 description: This section is to describe about the graceful deletion/uninstallation of your OpenEBS cluster.
 ---
 
-This section describes about the graceful deletion/uninstallation of your OpenEBS cluster.
+This document describes about the graceful deletion/uninstallation of your OpenEBS cluster.
 
 ## Prerequisites
 

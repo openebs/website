@@ -11,19 +11,16 @@ description: This section explains the overview of Local PV LVM.
 
 OpenEBS Local PV LVM enables dynamic provisioning of persistent volumes backed by Logical Volume Manager (LVM) on the host system. It is suitable for environments that require volume management features like resizing, better disk abstraction, and performance isolation. LVM volumes are created from pre-configured volume groups on individual nodes, making this engine ideal for production-grade local storage use cases.
 
-## Advantages
-
-- Support for volume resizing – Increase capacity without recreating the volume.
-
-- Better performance isolation – LVM provides storage boundaries per application.
-
-- Dynamic provisioning from Volume Groups – Automates local volume creation.
-
-- Suitable for production workloads – Leverages tried-and-tested LVM technology.
-
 ## Installation
 
 Refer to the [OpenEBS Installation documentation](../../../quickstart-guide/installation.md) to install Local PV LVM.
+
+## Advantages
+
+- Support for volume resizing – Increase capacity without recreating the volume.
+- Better performance isolation – LVM provides storage boundaries per application.
+- Dynamic provisioning from Volume Groups – Automates local volume creation.
+- Suitable for production workloads – Leverages tried-and-tested LVM technology.
 
 ## Support
 

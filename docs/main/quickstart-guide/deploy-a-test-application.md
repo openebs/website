@@ -8,23 +8,23 @@ keywords:
 description: This section will help you to deploy a test application.
 ---
 
-:::important
-This document demonstrates how to deploy an application using OpenEBS Local PV Hostpath.
-If you want to use other OpenEBS storages, refer to the following:
-- [Local PV LVM Deployment documentation](../user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-deployment.md)
-- [Local PV ZFS Deployment documentation](../user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-deployment.md)
-- [Replicated PV Mayastor Deployment documentation](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-deployment.md)
-:::
-
 # Deploy an Application
 
-This section will help you to deploy an application.
+This document describes how to deploy an application. It walks through creating a PersistentVolumeClaim (PVC), deploying a Pod that consumes the provisioned volume, and verifying that storage is dynamically provisioned and attached to the application.
 
-## Create a PersistentVolumeClaim
+:::important
+This document demonstrates how to deploy an application using OpenEBS Local PV Hostpath.
+If you want to use other OpenEBS storages, refer to the following documentation:
+- [Local PV LVM Deployment](../user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-deployment.md)
+- [Local PV ZFS Deployment](../user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-deployment.md)
+- [Replicated PV Mayastor Deployment](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-deployment.md)
+:::
 
-The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolumeClaims to request Hostpath Local PV from the *OpenEBS Dynamic Local PV provisioner*.
+## Create a PVC
 
-1. Here is the configuration file for the PersistentVolumeClaim. Save the following PersistentVolumeClaim definition as `local-hostpath-pvc.yaml`
+The next step is to create a PVC. Pods will use PVCs to request Hostpath Local PV from the *OpenEBS Dynamic Local PV provisioner*.
+
+1. Here is the configuration file for the PVC. Save the following PVC definition as `local-hostpath-pvc.yaml`
 
    ```
    kind: PersistentVolumeClaim
@@ -40,19 +40,19 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
          storage: 5G
    ```
 
-2. Create the PersistentVolumeClaim
+2. Create the PVC.
 
    ```
    kubectl apply -f local-hostpath-pvc.yaml
    ```
 
-3. Look at the PersistentVolumeClaim:
+3. Verify the PVC.
    
    ```
    kubectl get pvc local-hostpath-pvc
    ```
 
-   The output shows that the `STATUS` is `Pending`. This means PVC has not yet been used by an application pod. The next step is to create a Pod that uses your PersistentVolumeClaim as a volume.
+   The output shows that the `STATUS` is `Pending`. This means PVC has not yet been used by an application pod. The next step is to create a Pod that uses your PVC as a volume.
 
    ```shell hideCopy
    NAME                 STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS       AGE
@@ -89,7 +89,7 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
    As the Local PV storage classes use `waitForFirstConsumer`, do not use `nodeName` in the Pod spec to specify node affinity. If `nodeName` is used in the Pod spec, then PVC will remain in `pending` state. Refer to the issue [#2915](https://github.com/openebs/openebs/issues/2915) for more details.
    :::
 
-2. Create the Pod:
+2. Create the Pod.
 
    ```
    kubectl apply -f local-hostpath-pod.yaml
@@ -128,7 +128,7 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
    ...
    ```
 
-6. Look at the PersistentVolumeClaim again to see the details about the dynamically provisioned Local PersistentVolume
+6. Look at the PVC again to see the details about the dynamically provisioned Local PersistentVolume (PV).
    ```
    kubectl get pvc local-hostpath-pvc
    ```
@@ -140,7 +140,7 @@ The next step is to create a PersistentVolumeClaim. Pods will use PersistentVolu
    local-hostpath-pvc   Bound    pvc-864a5ac8-dd3f-416b-9f4b-ffd7d285b425   5G         RWO            openebs-hostpath   28m
    ```
 
-7. Look at the PersistentVolume details to see where the data is stored. Replace the PVC name with the one that was displayed in the previous step. 
+7. Look at the PV details to see where the data is stored. Replace the PVC name with the one that was displayed in the previous step. 
    ```
    kubectl get pv pvc-864a5ac8-dd3f-416b-9f4b-ffd7d285b425 -o yaml
    ```
@@ -213,9 +213,9 @@ As an application developer, all you have to do is substitute the `StorageClass`
 ## Managing the Life Cycle of OpenEBS Components
 
 Once the workloads are up and running, the platform or the operations team can observe the system using the cloud native tools like Prometheus, Grafana, and so forth. The operational tasks are a shared responsibility across the teams: 
-* Application teams can watch out for the capacity and performance and tune the PVCs accordingly. 
-* Platform or Cluster teams can check for the utilization and performance of the storage per node and decide on expansion and spreading out of the Data Engines. 
-* Infrastructure team will be responsible for planning the expansion or optimizations based on the utilization of the resources.
+- Application teams can watch out for the capacity and performance and tune the PVCs accordingly. 
+- Platform or Cluster teams can check for the utilization and performance of the storage per node and decide on expansion and spreading out of the Data Engines. 
+- Infrastructure team will be responsible for planning the expansion or optimizations based on the utilization of the resources.
 
 ## See Also
 

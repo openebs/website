@@ -9,7 +9,7 @@ keywords:
 description: This guide will help you to customize and install OpenEBS
 ---
 
-This guide will help you to set up, customize, and install OpenEBS and use OpenEBS Volumes to run your Kubernetes Stateful Workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with [Kubernetes Storage Concepts](../concepts/basics.md).
+This document describes how to configure, customize, and install OpenEBS and provision OpenEBS volumes for Kubernetes stateful workloads. If you are new to running Stateful workloads in Kubernetes, you will need to familiarize yourself with [Kubernetes Storage Concepts](../concepts/basics.md).
 
 :::note
 Before you begin the installation, make sure all [prerequisites](prerequisites.md) are met.
@@ -25,100 +25,88 @@ The OpenEBS workflow fits nicely into the reconciliation pattern introduced by K
 
 ## Installation via Helm
 
-:::warning
-The Helm chart registry at https://openebs.github.io/charts has now been deprecated as those charts are used to install legacy OpenEBS (v3.10 and below) releases. This registry will be migrated to a different registry location https://openebs-archive.github.io/charts by Oct 30, 2024.
-
-The Helm charts for the latest OpenEBS (v4.0 and above) are hosted in a new registry location https://openebs.github.io/openebs. To ensure seamless access to OpenEBS Helm charts, update your configurations to use the new registry URL.
-:::
-
 Verify helm is installed and helm repo is updated. You need helm 3.2 or more. 
 
 1. Setup helm repository.
 
-```
-helm repo add openebs https://openebs.github.io/openebs
-helm repo update
-```
+    ```
+    helm repo add openebs https://openebs.github.io/openebs
+    helm repo update
+    ```
 
-:::note
-`helm repo add openebs https://openebs.github.io/charts` has changed to `helm repo add openebs https://openebs.github.io/openebs`.
-:::
+    OpenEBS provides several options to customize during installation such as:
+    - Specifying the directory where hostpath volume data is stored or
+    - Specifying the nodes on which OpenEBS components should be deployed and so forth. 
 
-OpenEBS provides several options to customize during installation such as:
-- Specifying the directory where hostpath volume data is stored or
-- Specifying the nodes on which OpenEBS components should be deployed and so forth. 
-
-:::info
-The complete list of Helm chart images is available in the Helm chart annotations. You can view them using the command:
-```
-helm show chart openebs/openebs | yq '.annotations."helm.sh/images"'
-```
-Refer to the [OpenEBS helm chart](https://github.com/openebs/openebs/blob/main/charts/README.md#values) for configurable options.
-:::
+    :::info
+    The complete list of Helm chart images is available in the Helm chart annotations. You can view them using the command:
+    ```
+    helm show chart openebs/openebs | yq '.annotations."helm.sh/images"'
+    ```
+    Refer to the [OpenEBS helm chart](https://github.com/openebs/openebs/blob/main/charts/README.md#values) for configurable options.
+    :::
 
 2. Install the OpenEBS helm chart with default values. 
 
-```
-helm install openebs --namespace openebs openebs/openebs --create-namespace
-```
+    ```
+    helm install openebs --namespace openebs openebs/openebs --create-namespace
+    ```
 
-The above command will install OpenEBS Local PV Hostpath, OpenEBS Local PV LVM, OpenEBS Local PV ZFS, and OpenEBS Replicated Storage components in `openebs` namespace and chart name as `openebs`.
+    The above command will install OpenEBS Local PV Hostpath, OpenEBS Local PV LVM, OpenEBS Local PV ZFS, and OpenEBS Replicated Storage components in `openebs` namespace and chart name as `openebs`.
 
-:::important
-- The default OpenEBS helm chart will install both Local Storage and Replicated Storage. If you do not want to install OpenEBS Replicated Storage, use the following command:
+    :::important
+    - The default OpenEBS helm chart will install both Local Storage and Replicated Storage. If you do not want to install OpenEBS Replicated Storage, use the following command:
 
-  ```
-  helm install openebs --namespace openebs openebs/openebs --set engines.replicated.mayastor.enabled=false --create-namespace
-  ```
+      ```
+      helm install openebs --namespace openebs openebs/openebs --set engines.replicated.mayastor.enabled=false --create-namespace
+      ```
 
-- If the CustomResourceDefinitions for CSI VolumeSnapshots are already present in your cluster, you may skip their creation by using the following option:
+    - If the CustomResourceDefinitions for CSI VolumeSnapshots are already present in your cluster, you may skip their creation by using the following option:
 
-  ```
-  --set openebs-crds.csi.volumeSnapshots.enabled=false
-  ```
-:::
+      ```
+      --set openebs-crds.csi.volumeSnapshots.enabled=false
+      ```
+    :::
 
-If you are utilizing a custom Kubelet location or a Kubernetes distribution that uses a custom Kubelet location, it is necessary to modify the Kubelet directory in the Helm values at installation time. This can be accomplished by using the `--set` flag option in the Helm install command, as follows:
+    If you are utilizing a custom Kubelet location or a Kubernetes distribution that uses a custom Kubelet location, it is necessary to modify the Kubelet directory in the Helm values at installation time. This can be accomplished by using the `--set` flag option in the Helm install command, as follows:
 
-- For Local PV LVM
+    - For Local PV LVM
 
-```
---set lvm-localpv.lvmNode.kubeletDir=<your-directory-path>
-```
+    ```
+    --set lvm-localpv.lvmNode.kubeletDir=<your-directory-path>
+    ```
 
-- For Local PV ZFS
+    - For Local PV ZFS
 
-```
---set zfs-localpv.zfsNode.kubeletDir=<your-directory-path>
-```
+    ```
+    --set zfs-localpv.zfsNode.kubeletDir=<your-directory-path>
+    ```
 
-- For Replicated PV Mayastor
+    - For Replicated PV Mayastor
 
-```
---set mayastor.csi.node.kubeletDir=<your-directory-path>
-```
+    ```
+    --set mayastor.csi.node.kubeletDir=<your-directory-path>
+    ```
 
-Specifically:
+    Specifically:
 
-- For **MicroK8s**, the Kubelet directory must be updated to `/var/snap/microk8s/common/var/lib/kubelet/` by replacing the default `/var/lib/kubelet/` with `/var/snap/microk8s/common/var/lib/kubelet/`.
-  
-- For **k0s**, the default Kubelet directory (`/var/lib/kubelet`) must be changed to `/var/lib/k0s/kubelet/`.
-
-- For **RancherOS**, the default Kubelet directory (`/var/lib/kubelet`) must be changed to `/opt/rke/var/lib/kubelet/`.
+    - For **MicroK8s**, the Kubelet directory must be updated to `/var/snap/microk8s/common/var/lib/kubelet/` by replacing the default `/var/lib/kubelet/` with `/var/snap/microk8s/common/var/lib/kubelet/`.
+    - For **k0s**, the default Kubelet directory (`/var/lib/kubelet`) must be changed to `/var/lib/k0s/kubelet/`.
+    - For **RancherOS**, the default Kubelet directory (`/var/lib/kubelet`) must be changed to `/opt/rke/var/lib/kubelet/`.
 
 3. To view the chart and get the output, use the following command:
 
-**Command**
+    **Command**
 
-```
-helm ls -n openebs
-```
+    ```
+    helm ls -n openebs
+    ```
 
 **Sample Output**
 
 ```
-NAME     NAMESPACE   REVISION  UPDATED                                   STATUS     CHART           APP VERSION
-openebs  openebs     1         2025-11-21 08:11:00.903321318 +0000 UTC   deployed   openebs-4.4.0   4.4.0
+NAME     NAMESPACE   REVISION   UPDATED                                   STATUS     CHART           APP VERSION
+openebs  openebs     1          2026-06-06 06:18:45.787893124 +0000 UTC   deployed   openebs-4.5.0   4.5.0
 ```
 
 ## Verifying OpenEBS Installation
@@ -127,10 +115,10 @@ openebs  openebs     1         2025-11-21 08:11:00.903321318 +0000 UTC   deploye
 
 #### Default Installation
 
-List the pods in `<openebs>` namespace 
+List the pods in `openebs` namespace 
 
 ```
-  kubectl get pods -n openebs
+kubectl get pods -n openebs
 ```
 
 In the successful installation of OpenEBS, you should see an example output like below:
@@ -177,7 +165,7 @@ openebs-zfs-localpv-node-wm9ks                    2/2     Running   0          1
 List the pods in `<openebs>` namespace 
 
 ```
-  kubectl get pods -n openebs
+kubectl get pods -n openebs
 ```
 
 In the successful installation of OpenEBS, you should see an example output like below:
@@ -215,7 +203,7 @@ openebs-single-replica     io.openebs.csi-mayastor   Delete          Immediate  
 
 ## Post-Installation Considerations
 
-For testing your OpenEBS installation, you can use the `openebs-hostpath` mentioned in the [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview.md) for provisioning Local PV on hostpath.
+To validate your OpenEBS installation, use the `openebs-hostpath` StorageClass to provision a test Local PV volume as described in the [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview.md).
 
 You can follow through the below user guides for each of the engines to use storage devices available on the nodes instead of the `/var/openebs` directory to save the data.  
 - [Local Storage User Guide](../user-guides/local-storage-user-guide/local-pv-hostpath/hostpath-overview.md)

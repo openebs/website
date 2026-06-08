@@ -9,7 +9,7 @@ keywords:
 description: This page contains list of supported OpenEBS releases.
 ---
 
-**Release Date: 05 June 2026**
+**Release Date: 06 June 2026**
 
 OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners.
 The status of the various components as of v4.5 are as follows:

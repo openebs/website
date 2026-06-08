@@ -8,7 +8,7 @@ keywords:
 description: This section explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by the LVM Storage. 
 ---
 
-This section explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by LVM Storage. 
+This document explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by LVM Storage. 
 
  Create the deployment yaml using the PVC backed by LVM storage.
 

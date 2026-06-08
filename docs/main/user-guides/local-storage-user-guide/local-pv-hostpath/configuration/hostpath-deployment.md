@@ -8,7 +8,7 @@ keywords:
 description: This section explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by Hostpath. 
 ---
 
-This section explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by Hostpath.
+This document explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by Hostpath.
 
 Refer to the [Deploy an Application documentation](../../../../quickstart-guide/deploy-a-test-application.md) for deployment instructions.
 

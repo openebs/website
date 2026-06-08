@@ -8,7 +8,7 @@ keywords:
 description: This section explains the instructions to deploy an application the OpenEBS Local Persistent Volumes (PV) backed by the ZFS Storage.
 ---
 
-This section explains the instructions to deploy an application the OpenEBS Local Persistent Volumes (PV) backed by the ZFS Storage.
+This document explains the instructions to deploy an application the OpenEBS Local Persistent Volumes (PV) backed by the ZFS Storage.
 
 Create the deployment yaml using the pvc backed by Local PV ZFS storage.
 
