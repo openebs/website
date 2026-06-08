@@ -60,6 +60,12 @@ The status of the various components as of v4.5 are as follows:
 
 ## Enhancements
 
+### General
+
+**Global Helm Values Support**
+
+  Support for global Helm values has been added, simplifying configuration management and enabling more consistent deployment settings across OpenEBS components.
+
 ### Replicated Storage
 
 - **Expanded Storage Observability**
@@ -83,10 +89,6 @@ The status of the various components as of v4.5 are as follows:
 - **Configurable DNS Policy for Local PV ZFS Node Components**
 
   Local PV ZFS now allows administrators to configure the Kubernetes `dnsPolicy` for ZFS node components through the Helm chart, providing greater flexibility when deploying in customized networking environments.
-
-- **Global Helm Values Support**
-
-  Support for global Helm values has been added, simplifying configuration management and enabling more consistent deployment settings across OpenEBS components.
 
 ## Fixes
 
