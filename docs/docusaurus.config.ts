@@ -14,10 +14,10 @@ const config: Config = {
   baseUrl,
   // Older 3.x versioned docs use absolute /docs/... paths from the 2.x site
   // which don't exist in the current site structure. These are archived content.
-  // main/ and 4.4.x have no broken links (verified).
+  // main/ and 4.5.x have no broken links (verified).
   onBrokenLinks: 'ignore',
   // Older 3.x versioned docs have anchors pointing to headings that no longer exist
-  // (e.g., #top, old FAQ anchors). main/ and 4.4.x have been fixed.
+  // (e.g., #top, old FAQ anchors). main/ and 4.5.x have been fixed.
   onBrokenAnchors: 'ignore',
   markdown: {
     // 'detect': .md files → CommonMark (no JSX parsing), .mdx files → MDX.
@@ -71,7 +71,7 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/openebs/website/edit/main/docs/',
           includeCurrentVersion: true,
-          lastVersion: '4.4.x',
+          lastVersion: '4.5.x',
           // Exclude orphan legacy pages with broken links to deprecated content.
           // These can be re-added once their links are updated for the new structure.
           exclude: ['stateful-applications/**'],
@@ -81,8 +81,8 @@ const config: Config = {
               path: 'main',
               banner: 'unreleased',
             },
-            '4.4.x': {
-              label: '4.4.x',
+            '4.5.x': {
+              label: '4.5.x',
               // No path — lastVersion serves at /docs/[slug] (root)
             },
           },
