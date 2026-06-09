@@ -33,7 +33,7 @@ $ kubectl apply -f sc.yaml
 storageclass.storage.k8s.io/openebs-zfspv created
 ```
 
-Create the PVC using the above storage class
+Create the PVC using the above storage class.
 
 ```
 $ cat pvc.yaml
@@ -106,7 +106,7 @@ fio-5b7884bc7b-4mssk   1/1     Running   0          40s
 
 ```
 
-Check the current PVC status
+Check the current PVC status.
 
 ```
 $ kubectl get pvc
@@ -114,7 +114,7 @@ NAME        STATUS   VOLUME                                     CAPACITY   ACCES
 csi-zfspv   Bound    pvc-966b0749-5dea-442f-a584-013cf5d25201   4Gi        RWO            openebs-zfspv   85s
 
 ```
-Exec into the application pod and check the size
+Exec into the application pod and check the size.
 
 ```
 # df -h /datadir/

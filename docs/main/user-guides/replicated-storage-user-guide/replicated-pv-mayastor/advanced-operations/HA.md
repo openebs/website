@@ -7,7 +7,7 @@ keywords:
 description: This guide will help you to enhance High Availability (HA) of the volume target with the nexus switch-over feature.
 ---
 
-Replicated PV Mayastor 2.0 enhances High Availability (HA) of the volume target with the nexus switch-over feature. In the event of the target failure, the switch-over feature quickly detects the failure and spawns a new nexus to ensure I/O continuity.
+Replicated PV Mayastor enhances High Availability (HA) of the volume target with the nexus switch-over feature. In the event of the target failure, the switch-over feature quickly detects the failure and spawns a new nexus to ensure I/O continuity.
 The HA feature consists of two components:
 - HA node agent (which runs in each csi- node) and
 - Cluster agent (which runs alongside the agent-core).

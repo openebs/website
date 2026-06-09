@@ -15,82 +15,78 @@ The Replicated PV Mayastor CSI plugin provides the ability to expand volume in t
 ## Prerequisites
 
 - Only dynamically provisioned PVCs can be resized.
-
 - Only volume size expansion is allowed, shrinking a volume is not allowed.
-
 - The `StorageClass` that provisions the PVC must support resize. The `allowVolumeExpansion` flag is set to _true_ by default in the Replicated PV Mayastor `StorageClass` since version 2.6.0.
-
 - The disk pools hosting volume replicas have sufficient capacity for volume expansion.
-
 - All the replicas of the volume are _Online_.
 
 **Example**
 
 1. Ensure that the storage class is allowing volume expansion.
 
-```
-cat <<EOF | kubectl create -f -
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: mayastor-1
-parameters:
-  protocol: nvmf
-  repl: "1"
-provisioner: io.openebs.csi-mayastor
-allowVolumeExpansion: true
-EOF
-```
+    ```
+    cat <<EOF | kubectl create -f -
+    apiVersion: storage.k8s.io/v1
+    kind: StorageClass
+    metadata:
+      name: mayastor-1
+    parameters:
+      protocol: nvmf
+      repl: "1"
+    provisioner: io.openebs.csi-mayastor
+    allowVolumeExpansion: true
+    EOF
+    ```
 
 2. Create a PVC.
 
-```
-cat <<EOF | kubectl create -f -
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: ms-volume-claim
-spec:
-  accessModes:
+    ```
+    cat <<EOF | kubectl create -f -
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: ms-volume-claim
+    spec:
+      accessModes:
 
--  ReadWriteOnce
-resources:
-requests:
-  storage: 1Gi
-storageClassName: mayastor-1
-EOF
-```
+    -  ReadWriteOnce
+    resources:
+    requests:
+      storage: 1Gi
+    storageClassName: mayastor-1
+    EOF
+    ```
 
 3. Start an application pod that uses this PVC.
 
 4. Edit the PVC to expand.
 
-```
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: ms-volume-claim
-spec:
-  accessModes:
+    ```
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+      name: ms-volume-claim
+    spec:
+      accessModes:
 
-- ReadWriteOnce
-resources:
-requests:
-  storage: 2Gi
-storageClassName: mayastor-1
-EOF
-```
+    - ReadWriteOnce
+    resources:
+    requests:
+      storage: 2Gi
+    storageClassName: mayastor-1
+    EOF
+    ```
 
 5. The PV should get resized and reflect the new capacity.
 
-```
-# kubectl get pvc ms-volume-claim
-NAME               STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-ms-volume-claim   Bound     pvc-e6aa58e7-84e9-457a-ba21-9819558cf360   2Gi       RWO            mayastor-1     54s
-# kubectl get pv
-NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM                      STORAGECLASS   REASON    AGE
-pvc-e6aa58e7-84e9-457a-ba21-9819558cf360   2Gi       RWO            Delete  
-```
+    ```
+    # kubectl get pvc ms-volume-claim
+    NAME               STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE
+    ms-volume-claim   Bound     pvc-e6aa58e7-84e9-457a-ba21-9819558cf360   2Gi       RWO            mayastor-1     54s
+    # kubectl get pv
+    NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM                      STORAGECLASS   REASON    AGE
+    pvc-e6aa58e7-84e9-457a-ba21-9819558cf360   2Gi       RWO            Delete  
+    ```
 
 ## Current Limitations and Known Behavior
 

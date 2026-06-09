@@ -74,90 +74,91 @@ A SnapshotClass needs to be created. A sample SnapshotClass can be found [here](
 
 1. Apply the SnapshotClass YAML.
 
-```bash
-$ kubectl apply -f snapshotclass.yaml
-volumesnapshotclass.snapshot.storage.k8s.io/lvmpv-snapclass created
-```
+    ```bash
+    $ kubectl apply -f snapshotclass.yaml
+    volumesnapshotclass.snapshot.storage.k8s.io/lvmpv-snapclass created
+    ```
 
 2. Find a PVC for which snapshot has to be created.
 
-```bash
-$ kubectl get pvc
-NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS    AGE
-csi-lvmpvc   Bound    pvc-c7f42430-f2bb-4459-9182-f76b8896c532   4Gi        RWO            openebs-lvmsc   53s
-```
+    ```bash
+    $ kubectl get pvc
+    NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS    AGE
+    csi-lvmpvc   Bound    pvc-c7f42430-f2bb-4459-9182-f76b8896c532   4Gi        RWO            openebs-lvmsc   53s
+    ```
 
 3. Create the snapshot using the created SnapshotClass for the selected PVC.
 
-```yaml
-apiVersion: snapshot.storage.k8s.io/v1
-kind: VolumeSnapshot
-metadata:
-  name: lvm-localpv-snap
-spec:
-  volumeSnapshotClassName: lvmpv-snapclass
-  source:
-    persistentVolumeClaimName: csi-lvmpvc
-```
+    ```yaml
+    apiVersion: snapshot.storage.k8s.io/v1
+    kind: VolumeSnapshot
+    metadata:
+      name: lvm-localpv-snap
+    spec:
+      volumeSnapshotClassName: lvmpv-snapclass
+      source:
+        persistentVolumeClaimName: csi-lvmpvc
+    ```
 
 4. Apply the Snapshot YAML.
 
-```bash
-$ kubectl apply -f lvmsnapshot.yaml
-volumesnapshot.snapshot.storage.k8s.io/lvm-localpv-snap created
-```
+    ```bash
+    $ kubectl apply -f lvmsnapshot.yaml
+    volumesnapshot.snapshot.storage.k8s.io/lvm-localpv-snap created
+    ```
 
-:::note
-You have to create the snapshot in the same namespace where the PVC is created. Check the created snapshot resource and make sure readyToUsefield is true, before using this snapshot for any purpose. 
-```bash
-$ kubectl get volumesnapshot
-NAME               READYTOUSE   SOURCEPVC    SOURCESNAPSHOTCONTENT   RESTORESIZE   SNAPSHOTCLASS     SNAPSHOTCONTENT                                    CREATIONTIME   AGE
-lvm-localpv-snap   true         csi-lvmpvc                           0             lvmpv-snapclass   snapcontent-f771db56-1cef-43d1-ac88-d0e789d4b718   15s            15s
-```
-:::
+    :::note
+    You have to create the snapshot in the same namespace where the PVC is created. Check the created snapshot resource and make sure readyToUsefield is true, before using this snapshot for any purpose. 
+
+    ```bash
+    $ kubectl get volumesnapshot
+    NAME               READYTOUSE   SOURCEPVC    SOURCESNAPSHOTCONTENT   RESTORESIZE   SNAPSHOTCLASS     SNAPSHOTCONTENT                                    CREATIONTIME   AGE
+    lvm-localpv-snap   true         csi-lvmpvc                           0             lvmpv-snapclass   snapcontent-f771db56-1cef-43d1-ac88-d0e789d4b718   15s            15s
+    ```
+    :::
 
 5. Check the OpenEBS resource for the created snapshot and make sure the status is `Ready`.
 
-```bash
-$ kubectl get lvmsnapshot -n openebs
-NAME                                            AGE
-snapshot-f771db56-1cef-43d1-ac88-d0e789d4b718   3m12s
-```
+    ```bash
+    $ kubectl get lvmsnapshot -n openebs
+    NAME                                            AGE
+    snapshot-f771db56-1cef-43d1-ac88-d0e789d4b718   3m12s
+    ```
 
-```bash
-$ kubectl get lvmsnapshot -n openebs -o yaml
-apiVersion: local.openebs.io/v1alpha1
-kind: LVMSnapshot
-metadata:
-  creationTimestamp: "2021-03-15T08:36:21Z"
-  finalizers:
-  - lvm.openebs.io/finalizer
-  generation: 2
-  labels:
-    kubernetes.io/nodename: worker-ak1
-    openebs.io/persistent-volume: pvc-7d27935e-c72a-4f6b-8314-96ee600e01e8
-  name: snapshot-f771db56-1cef-43d1-ac88-d0e789d4b718
-  namespace: openebs
-  resourceVersion: "95576717"
-  selfLink: /apis/local.openebs.io/v1alpha1/namespaces/openebs/lvmsnapshots/snapshot-f771db56-1cef-43d1-ac88-d0e789d4b718
-  uid: 96f3f2e4-93aa-4d25-9611-169099ce40a8
-spec:
-  capacity: "4294967296"
-  ownerNodeID: worker-ak1
-  shared: "no"
-  volGroup: lvmvg
-status:
-  state: Ready
-```
+    ```bash
+    $ kubectl get lvmsnapshot -n openebs -o yaml
+    apiVersion: local.openebs.io/v1alpha1
+    kind: LVMSnapshot
+    metadata:
+      creationTimestamp: "2021-03-15T08:36:21Z"
+      finalizers:
+      - lvm.openebs.io/finalizer
+      generation: 2
+      labels:
+        kubernetes.io/nodename: worker-ak1
+        openebs.io/persistent-volume: pvc-7d27935e-c72a-4f6b-8314-96ee600e01e8
+      name: snapshot-f771db56-1cef-43d1-ac88-d0e789d4b718
+      namespace: openebs
+      resourceVersion: "95576717"
+      selfLink: /apis/local.openebs.io/v1alpha1/namespaces/openebs/lvmsnapshots/snapshot-f771db56-1cef-43d1-ac88-d0e789d4b718
+      uid: 96f3f2e4-93aa-4d25-9611-169099ce40a8
+    spec:
+      capacity: "4294967296"
+      ownerNodeID: worker-ak1
+      shared: "no"
+      volGroup: lvmvg
+    status:
+      state: Ready
+    ```
 
 6. To confirm that snapshot has been created, ssh into the node and check for LVM volumes.
 
-```bash
-$ lvs
-  LV                                       VG    Attr       LSize Pool Origin                                   Data%  Meta%  Move Log Cpy%Sync Convert
-  f771db56-1cef-43d1-ac88-d0e789d4b718     lvmvg sri-a-s--- 4.00g      pvc-7d27935e-c72a-4f6b-8314-96ee600e01e8 0.00                                   
-  pvc-7d27935e-c72a-4f6b-8314-96ee600e01e8 lvmvg owi-aos--- 4.00g                                                                                      
-```
+    ```bash
+    $ lvs
+      LV                                       VG    Attr       LSize Pool Origin                                   Data%  Meta%  Move Log Cpy%Sync Convert
+      f771db56-1cef-43d1-ac88-d0e789d4b718     lvmvg sri-a-s--- 4.00g      pvc-7d27935e-c72a-4f6b-8314-96ee600e01e8 0.00                                   
+      pvc-7d27935e-c72a-4f6b-8314-96ee600e01e8 lvmvg owi-aos--- 4.00g                                                                                      
+    ```
 
 ## Limitations
 

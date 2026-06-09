@@ -426,16 +426,6 @@ const sidebars: SidebarsConfig =
               items: [
                 {
                   type: "doc",
-                  id: "user-guides/local-storage-user-guide/additional-information/k8supgrades",
-                  label: "Kubernetes Upgrades - Best Practices"
-                },
-                {
-                  type: "doc",
-                  id: "user-guides/local-storage-user-guide/additional-information/kb",
-                  label: "Knowledge Base"
-                },
-                {
-                  type: "doc",
                   id: "user-guides/local-storage-user-guide/additional-information/backupandrestore",
                   label: "Backup and Restore",
                   key: "backupandrestore",
@@ -662,6 +652,11 @@ const sidebars: SidebarsConfig =
                       type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/scale-etcd",
                       label: "Scaling Up etcd Members"
+                    },
+                    {
+                    type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/k8supgrades",
+                      label: "Kubernetes Upgrades - Best Practices"
                     }
                   ]
                 }
