@@ -429,6 +429,11 @@ const sidebars: SidebarsConfig =
                   id: "user-guides/local-storage-user-guide/additional-information/backupandrestore",
                   label: "Backup and Restore",
                   key: "backupandrestore",
+                },
+                {
+                  "type": "doc",
+                  "id": "user-guides/local-storage-user-guide/additional-information/kb",
+                  "label": "Knowledge Base"
                 }
               ]
             }
