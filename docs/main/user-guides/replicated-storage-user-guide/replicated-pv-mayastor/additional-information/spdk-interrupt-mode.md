@@ -11,15 +11,18 @@ description: This section explains about SPDK Interrupt Mode.
 
 ## Overview
 
-Replicated PV Mayastor supports SPDK Interrupt Mode, an optional reactor operating mode that reduces CPU utilization during periods of low or idle I/O activity.
+Replicated PV Mayastor supports Interrupt Mode, an optional reactor operating mode that reduces CPU utilization during periods of low or idle I/O activity.
 
-By default, SPDK reactors continuously poll for I/O events, which can consume significant CPU resources even when no I/O operations are in progress. When Interrupt Mode is enabled, reactors transition from continuous polling to an event-driven model, allowing them to sleep while waiting for work and wake only when events occur.
+By default, io-engine reactors continuously poll for I/O events, which can consume significant CPU resources even when no I/O operations are in progress. When Interrupt Mode is enabled, reactors transition from continuous polling to an event-driven model, allowing them to sleep while waiting for work and wake only when events occur.
 
 This feature helps reduce overall CPU consumption in environments where maximizing storage performance is less critical than improving resource efficiency.
 
-## How SPDK Interrupt Mode Works
+:::warning
+- Interrupt Mode is an experimental feature in this release. The functionality and behavior may change in future releases. Evaluate the feature thoroughly in non-production environments before enabling it in production deployments.
+- Interrupt Mode has not been validated for use with RDMA configurations in this release. If your deployment uses RDMA, continue using the default polling mode unless interrupt mode support for RDMA is explicitly documented in a future release.
+:::
 
-In the default polling mode, SPDK reactors continuously check for I/O completions and incoming requests. While this approach delivers the lowest possible latency, it can consume a full CPU core even when the storage system is idle.
+## How SPDK Interrupt Mode Works
 
 When Interrupt Mode is enabled:
 
@@ -80,17 +83,6 @@ io_engine:
 | :--- | :--- | :--- |
 | `interruptMode.enabled` | Enables SPDK Interrupt Mode for io-engine reactors. | `false` |
 | `interruptMode.nvmeIoQueuePollPeriod` | Specifies the NVMe I/O queue polling interval used when Interrupt Mode is enabled. Higher values reduce CPU usage but may increase latency. | `100us` |
-
-## Example Configuration
-
-The following example enables Interrupt Mode and configures a 100-microsecond NVMe polling interval:
-
-```
-io_engine:
-  interruptMode:
-    enabled: true
-    nvmeIoQueuePollPeriod: "100us"
-```
 
 ## Benefits
 
