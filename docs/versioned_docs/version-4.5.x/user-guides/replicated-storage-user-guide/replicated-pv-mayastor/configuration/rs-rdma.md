@@ -21,30 +21,30 @@ Before enabling and using RDMA in Replicated PV Mayastor, ensure the following p
 
 1. **Interface Validation**
 
-  Ensure that the interface name specified in `io_engine.target.nvmf.iface` exists on all io-engine nodes. Misconfiguration of this parameter can lead to unexpected behavior.
-  If the interface name is not RDMA-capable on a node, Replicated PV Mayastor volume targets on such nodes will support only TCP connections.
+    Ensure that the interface name specified in `io_engine.target.nvmf.iface` exists on all io-engine nodes. Misconfiguration of this parameter can lead to unexpected behavior.
+    If the interface name is not RDMA-capable on a node, Replicated PV Mayastor volume targets on such nodes will support only TCP connections.
 
 2. **Application Node Requirements**
 
-  Application nodes must also be RDMA-capable to connect to RDMA-enabled volume targets. This capability is independent of the Helm-provided interface name for `io_engine.target.nvmf.iface`. RDMA connections will work as long as the application node has an RDMA-capable device.
+    Application nodes must also be RDMA-capable to connect to RDMA-enabled volume targets. This capability is independent of the Helm-provided interface name for `io_engine.target.nvmf.iface`. RDMA connections will work as long as the application node has an RDMA-capable device.
 
 3. **TCP Fallback Behavior**
 
-  If an application is hosted on a non-RDMA-capable node, connections to RDMA-enabled volume targets will default to TCP. The TCP fallback behaviour can be disabled by setting the Helm chart value `csi.node.nvme.tcpFallback` to `false`. In this configuration, the initiator (application) node will continuously attempt RDMA connections, resulting in connection failures. To mitigate this, you can either keep the fallback option enabled or relocate the application pod to an RDMA-capable node, provided the pod's resource type allows for such movement.
+    If an application is hosted on a non-RDMA-capable node, connections to RDMA-enabled volume targets will default to TCP. The TCP fallback behaviour can be disabled by setting the Helm chart value `csi.node.nvme.tcpFallback` to `false`. In this configuration, the initiator (application) node will continuously attempt RDMA connections, resulting in connection failures. To mitigate this, you can either keep the fallback option enabled or relocate the application pod to an RDMA-capable node, provided the pod's resource type allows for such movement.
 
 4. **Soft-RoCEv2 Support**
 
-  Replicated PV Mayastor also supports software RDMA (Soft-RoCEv2) for nodes that do not have RDMA-capable hardware network interface cards. RDMA devices can be manually created using `ibverbs` utilities. For example, to create an RDMA device named `rxe0` on an Ethernet interface `eth0`, run:
+    Replicated PV Mayastor also supports software RDMA (Soft-RoCEv2) for nodes that do not have RDMA-capable hardware network interface cards. RDMA devices can be manually created using `ibverbs` utilities. For example, to create an RDMA device named `rxe0` on an Ethernet interface `eth0`, run:
 
-  ```
-  rdma link add rxe0 type rxe netdev eth0
-  ```
+    ```
+    rdma link add rxe0 type rxe netdev eth0
+    ```
 
-  Once created, `rxe0` can be utilized as outlined in the Enablement section.
+    Once created, `rxe0` can be utilized as outlined in the Enablement section.
   
-  :::note
-  The IP address assignments to RDMA GIDs on these devices depends on the cluster's networking and CNI configurations. Variations in Soft-RoCEv2 device gid IP assignments are not fully known and have not been extensively tested.
-  :::
+    :::note
+    The IP address assignments to RDMA GIDs on these devices depends on the cluster's networking and CNI configurations. Variations in Soft-RoCEv2 device gid IP assignments are not fully known and have not been extensively tested.
+    :::
 
 ## Enable RDMA
 
@@ -65,36 +65,15 @@ Once enabled, all Replicated PV Mayastor volumes will connect over RDMA.
 ### Setup Details
 
 - Single-replica volume
-
 - Application, volume target, and replica located on the same node
-
 - Application connects to the volume target using NVMe-oF
 
 The table below compares performance metrics for RDMA and TCP under specific workloads:
 
-<table>
- <tr> 
- <th>Workload</th>
- <th>TCP Throughput</th>
- <th>RDMA Throughput</th>
- <th>TCP Latency</th>
- <th>RDMA Latency</th>
- </tr>
-  <tr>
-      <td>Sequential Read 4k</td>
-      <td>563 MB/s</td>
-      <td>1256 MB/s</td>
-      <td>931.1 us</td>
-      <td>416.9 us</td>
-   </tr>
-  <tr>
-      <td>Random Write 4k</td>
-      <td>323 MB/s</td>
-      <td>474 MB/s</td>
-      <td>1624.4 us</td>
-      <td>1105.4 us</td>
-   </tr>
-</table>
+| Workload            | TCP Throughput | RDMA Throughput | TCP Latency | RDMA Latency |
+|---------------------|----------------|-----------------|-------------|--------------|
+| Sequential Read 4k | 563 MB/s       | 1256 MB/s       | 931.1 us    | 416.9 us     |
+| Random Write 4k    | 323 MB/s       | 474 MB/s        | 1624.4 us   | 1105.4 us    |
 
 ![tcp-vs-rdma](../../../../assets/tcp-vs-rdma.png)
 
