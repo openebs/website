@@ -25,39 +25,30 @@ Node Resources or Capabilities refer to the CPU, RAM, Network, and Storage avail
 
 Based on the CPU, RAM, and Network bandwidth available to the nodes, the nodes can be classified as:
 
-* Small instances that typically have up to 4 cores, 16GB RAM and Gigabit Ethernet
-* Medium instances that typically have up to 16 cores, 32GB RAM and up to 10G Networks
-* Large instances that typically have more than 16 - even 96 cores, up to 256G or more RAM and 10 to 25G Networks
+- Small instances that typically have up to 4 cores, 16GB RAM and Gigabit Ethernet
+- Medium instances that typically have up to 16 cores, 32GB RAM and up to 10G Networks
+- Large instances that typically have more than 16 - even 96 cores, up to 256G or more RAM and 10 to 25G Networks
 
 The Storage of the above instance can be made available in the following ways: 
 
-* Ephemeral Storage - where storage is lost when a node is taken out of the cluster as part of auto-scaling or upgrades
-* Cloud Volumes or Network Attached Storage - that can be re-attached to new nodes if the older node is removed from the cluster
-* Direct Attached Storage
-* Categorize based on the performance of the storage like slow (HDD via SAS), medium (SSD via SAS), fast (SSD or Persistent Flash via NVMe) 
+- Ephemeral Storage - where storage is lost when a node is taken out of the cluster as part of auto-scaling or upgrades
+- Cloud Volumes or Network Attached Storage - that can be re-attached to new nodes if the older node is removed from the cluster
+- Direct Attached Storage
+- Categorize based on the performance of the storage like slow (HDD via SAS), medium (SSD via SAS), fast (SSD or Persistent Flash via NVMe) 
 
 Another key aspect that must be considered is the nature of the Kubernetes cluster size:
 - Is it for an edge or home cluster with a single node?
 - Hyperconverged nodes - where Stateful workload and its storage can be co-located
 - Disaggregated - where Stateful workload and its storage will be served from different nodes
 
-The following table summarizes the recommendation for small to medium instances, with HDDs, and SSDs limited to 2000 IOPS: 
+The following table summarizes the recommended OpenEBS data engines for small to medium deployments based on cluster size, node characteristics, and storage deployment model. These recommendations apply to environments using HDDs, SSDs, and high-performance NVMe storage.
 
-| Node Capabilities           |                  |                         |                   |
+| Criteria                    | Single Node      | Multi-Node Hyperconverged | Multi-Node Disaggregated |
 | ----------------------------| :--------------: | :---------------------: | :---------------: |
 | Ephemeral Node or Storage   | Non-Ephemeral    |   Non-Ephemeral         | Ephemeral         |
 | Size of Cluster             | Single Node      |   Multiple Nodes        | Multiple Nodes    |
 | Storage Deployment Type     | Hyperconverged   |   Hyperconverged        | Disaggregated     |
-| Recommended Data Engines    | Local Storage     |   Local Storage and Replicated Storage | Replicated Storage |
-
-The following table summarizes the recommendation for small to medium instances with fast SSDs capable of higher IOPS and Throughput, typically connected using NVMe: 
-
-| Node Capabilities           |                  |                         |                   |
-| ----------------------------| :--------------: | :---------------------: | :---------------: |
-| Ephemeral Node or Storage   | Non-Ephemeral    |   Non-Ephemeral         | Ephemeral         |
-| Size of Cluster             | Single Node      |   Multiple Nodes        | Multiple Nodes    |
-| Storage Deployment Type     | Hyperconverged   |   Hyperconverged        | Disaggregated     |
-| Recommended Data Engines    | Local Storage     |   Local Storage and Replicated Storage    | Replicated Storage |
+| Recommended Data Engines    | Local Storage    |   Local Storage and Replicated Storage | Replicated Storage |
 
 
 ## Stateful Workload Capabilities
@@ -87,7 +78,7 @@ Each stateful application comes with certain capabilities and depends on the [Da
 | Workload Type               | Distributed      |  Stand-alone            | Distributed and/or Stand-alone |
 | ----------------------------| :--------------: | :---------------------: | :---------------------------:  |
 | Required Capabilities       | Performance      |   Availability          | Performance and Availability   |
-| Recommended Data Engines    | Local Storage     |   Replicated Storage     | Replicated Storage              |
+| Recommended Data Storage    | Local Storage    |   Replicated Storage    | Replicated Storage             |
 
 
 ## Data Engine Capabilities
@@ -110,19 +101,23 @@ Local Storage is only available from the node on which the persistent volume is 
 
 The below table identifies a few differences among the different OpenEBS Local Storage. 
 
-| Feature                                      | Hostpath  | ZFS      | LVM      | 
-| -------------------------------------------- | :---:     | :------: | :------: |
-| Near Disk Performance                        |  Yes      | No       | Yes      |
-| Full Backup and Restore using Velero         |  Yes      | Yes      | Yes      |
-| Thin Provisioning                            |  Yes      | Yes      | Yes      |
-| On-demand Capacity Expansion                 |  Yes      | Yes      | Yes      |
-| Disk Pool or Aggregate Support               |  Yes      | Yes      | Yes      |
-| Disk Resiliency (RAID Support)               |  Yes      | Yes      | Yes      |
-| Snapshots                                    |  No       | Yes      | Yes      |
-| Incremental Backups                          |  No       | Yes      | Yes      |
-| Clones                                       |  No       | Yes      | No       |
+| Feature                                      | Local PV Hostpath  | Local PV LVM | Local PV ZFS | 
+| -------------------------------------------- | :---:              | :------:     | :------:     |
+| Near Disk Performance                        |  Yes               | Yes          | No           |
+| Full Backup and Restore using Velero         |  Yes               | Yes          | Yes          |
+| Thin Provisioning                            |  Yes               | Yes          | Yes          |
+| On-demand Capacity Expansion                 |  Yes               | Yes          | Yes          |
+| Disk Pool or Aggregate Support               |  Yes               | Yes          | Yes          |
+| Disk Resiliency (RAID Support)               |  Yes               | Yes          | Yes          |
+| Snapshots                                    |  No                | Yes          | Yes          |
+| Incremental Backups                          |  No                | Yes          | Yes          |
+| Clones                                       |  No                | No           | Yes          |
 
+#### Use-cases for OpenEBS Local Storage
 
+- When applications are managing replication and availability themselves, there is no need for replication at the storage layer. In most such situations, the applications are deployed as `statefulset`.
+- Local Storage is recommended when dedicated local disks are not available for a given application or dedicated storage is not needed for a given application.
+- When near disk performance is needed along with features like snapshots, volume expansion, and pooling of storage from multiple storage devices. 
 
 ### Replicated Storage
 
@@ -140,13 +135,7 @@ An important aspect of the OpenEBS Data Layer is that each volume replica is a f
 - When Volume Snapshots are taken, the snapshot is taken on all its healthy volume replicas.
 :::
 
-### Use-cases for OpenEBS Local Storage
-
-- When applications are managing replication and availability themselves, there is no need for replication at the storage layer. In most such situations, the applications are deployed as `statefulset`.
-- Local Storage is recommended when dedicated local disks are not available for a given application or dedicated storage is not needed for a given application.
-- When near disk performance is needed along with features like snapshots, volume expansion, and pooling of storage from multiple storage devices. 
-
-### Use-cases for OpenEBS Replicated Storage
+#### Use-cases for OpenEBS Replicated Storage
 
 - When you need high performance storage using NVMe SSDs the cluster is capable of NVMe-oF. 
 - When you need replication or availability features to protect against node failures.  

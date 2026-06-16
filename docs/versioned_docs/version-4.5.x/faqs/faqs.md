@@ -15,43 +15,30 @@ description: The FAQ section about OpenEBS helps to address common concerns, que
 
 The OpenEBS architecture is an example of Container Native Storage (CNS). These approaches containerize the storage controller, called I/O controllers, and underlying storage targets, called “replicas”, allowing an orchestrator such as Kubernetes to automate the management of storage. Benefits include automation of management, a delegation of responsibility to developer teams, and the granularity of the storage policies which in turn can improve performance.
 
+### Where is my Replicated PV Mayastor data stored and how can I see that? {#where-is-my-data}
 
-
-### Where is my data stored and how can I see that? {#where-is-my-data}
-
-OpenEBS stores data in a configurable number of replicas. These are placed to maximize resiliency. For example, they are placed in different racks or availability zones.
+Replicated PV Mayastor stores data in a configurable number of replicas. These are placed to maximize resiliency. For example, they are placed in different racks or availability zones.
 
 To determine exactly where your data is physically stored, you can run the following kubectl commands.
 
-* Run `kubectl get pvc` to fetch the volume name. The volume name looks like: *pvc-ee171da3-07d5-11e8-a5be-42010a8001be*.
-
-* For each volume, you will notice one I/O controller pod and one or more replicas (as per the storage class configuration). You can use the volume ID (ee171da3-07d5-11e8-a5be-42010a8001be) to view information about the volume and replicas using the [kubectl plugin](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/kubectl-plugin.md)
-
-
+- Run `kubectl get pvc` to fetch the volume name. The volume name looks like: *pvc-ee171da3-07d5-11e8-a5be-42010a8001be*.
+- For each volume, you will notice one I/O controller pod and one or more replicas (as per the storage class configuration). You can use the volume ID (ee171da3-07d5-11e8-a5be-42010a8001be) to view information about the volume and replicas using the [kubectl plugin](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/kubectl-plugin.md)
 
 ### What changes are needed for Kubernetes or other subsystems to leverage OpenEBS? {#changes-on-k8s-for-openebs}
 
 One of the major differences of OpenEBS versus other similar approaches is that no changes are required to run OpenEBS on Kubernetes. However, OpenEBS itself is a workload and the easy management of it is crucial especially as the CNS approach entails putting containers that are I/O controller and replica controllers.
 
-
-
 ### How do you get started and what is the typical trial deployment? {#get-started}
 
 To get started, you can follow the steps in the [quickstart guide](../quickstart-guide/prerequisites.md).
  
-
-
 ### What is the default OpenEBS Reclaim policy? {#default-reclaim-policy}
 
 The default retention is the same used by K8s. For dynamically provisioned PersistentVolumes, the default reclaim policy is “Delete”. This means that a dynamically provisioned volume is automatically deleted when a user deletes the corresponding PersistentVolumeClaim.
 
-
-
 ### Can I use replica count as 2 in StorageClass if it is a single node cluster? {#replica-count-2-in-a-single-node-cluster}
 
 While creating a StorageClass, if user mention replica count as 2 in a single node cluster, OpenEBS will not create the volume. It is required to match the number of replica count and number of nodes available in the cluster for provisioning OpenEBS replicated volumes.
-
-
 
 ### How backup and restore is working with OpenEBS volumes? {#backup-restore-openebs-volumes}
 
@@ -61,16 +48,13 @@ Refer to the following links for more information on the backup and restore func
 - [Backup and Restore for Local PV ZFS Volumes](../user-guides/local-storage-user-guide/local-pv-zfs/advanced-operations/zfs-backup-restore.md)
 - [Snapshot Restore for Replicated Storage](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/snapshot-restore.md)
 
-
-
 ### How to add custom topology key in the Local PV LVM driver?
 
 To add custom topology key:
-* Label the nodes with the required key and value.
-* Set env variables in the LVM driver daemonset yaml(openebs-lvm-node), if already deployed, you can edit the daemonSet directly.
-* "openebs.io/nodename" has been added as default topology key. 
-* Create storageclass with above specific labels keys.
-
+- Label the nodes with the required key and value.
+- Set env variables in the LVM driver daemonset yaml(openebs-lvm-node), if already deployed, you can edit the daemonSet directly.
+- "openebs.io/nodename" has been added as default topology key. 
+- Create storageclass with above specific labels keys.
 
 ```sh
 $ kubectl label node k8s-node-1 openebs.io/rack=rack1
@@ -79,7 +63,6 @@ node/k8s-node-1 labeled
 $ kubectl get nodes k8s-node-1 --show-labels
 NAME           STATUS   ROLES    AGE   VERSION   LABELS
 k8s-node-1   Ready    worker   16d   v1.17.4   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=k8s-node-1,kubernetes.io/os=linux,node-role.kubernetes.io/worker=true,openebs.io/rack=rack1
-
 
 $ kubectl get ds -n kube-system openebs-lvm-node -o yaml
 ...
@@ -101,7 +84,6 @@ env:
 It is recommended to label all the nodes with the same key; they can have different values for the given keys, but all keys should be present on all the worker nodes.
 
 Once we have labeled the node, we can install the LVM driver. The driver will pick the keys from env "ALLOWED_TOPOLOGIES" and add that as the supported topology key. If the driver is already installed and you want to add a new topology information, you can edit the Local PV LVM CSI driver daemon sets (openebs-lvm-node).
-
 
 ```sh
 $ kubectl get pods -n kube-system -l role=openebs-lvm
@@ -163,19 +145,13 @@ The LVM Local PV CSI driver will schedule the PV to the nodes where label "opene
 If storageclass is using Immediate binding mode and storageclass allowedTopologies is not mentioned then all the nodes should be labeled using "ALLOWED_TOPOLOGIES" keys, that means, "ALLOWED_TOPOLOGIES" keys should be present on all nodes, nodes can have different values for those keys. If some nodes don't have those keys, then LVMPV's default scheduler can not effectively do the volume capacity based scheduling. Here, in this case the CSI provisioner will pick keys from any random node and then prepare the preferred topology list using the nodes which has those keys defined and LVMPV scheduler will schedule the PV among those nodes only.
 :::
 
-
-
 ### What is Local PV ZFS?
 
 Local PV ZFS is a CSI driver for dynamically provisioning a volume in ZFS storage. It also takes care of tearing down the volume from the ZFS storage once volume is deprovisioned.
 
-
-
 ### How to upgrade the driver to newer version?
 
 Follow the instructions [here](https://github.com/openebs/zfs-localpv/tree/develop/upgrade).
-
-
 
 ### ZFS Pools are there on certain nodes only, how can I create the storage class?
 
@@ -206,8 +182,6 @@ The above storage class tells that ZFS pool "zfspv-pool" is available on nodes z
 The provisioner name for ZFS driver is "zfs.csi.openebs.io", we have to use this while creating the storage class so that the volume provisioning/deprovisioning request can come to ZFS driver.
 :::
 
-
-
 ### How to install the provisioner in High Availability?
 
 To have High Availability (HA) for the provisioner (controller), we can update the replica count to 2 (or more as per need) and deploy the yaml. Once yaml is deployed, you can see 2 (or more) controller pod running. At a time only one will be active and once the controller pod is down, the other will take over. They will use lease mechanism to decide which is active/master. 
@@ -234,16 +208,13 @@ spec:
 ---
 ```
 
-
-
 ### How to add custom topology key to Local PV ZFS driver?
 
 To add custom topology key:
-* Label the nodes with the required key and value.
-* Set env variables in the ZFS driver daemonset yaml (openebs-zfs-node), if already deployed, you can edit the daemonSet directly. By default the env is set to `All` which will take the node label keys as allowed topologies.
-* "openebs.io/nodename" and "openebs.io/nodeid" are added as default topology key. 
-* Create storageclass with above specific labels keys.
-
+- Label the nodes with the required key and value.
+- Set env variables in the ZFS driver daemonset yaml (openebs-zfs-node), if already deployed, you can edit the daemonSet directly. By default the env is set to `All` which will take the node label keys as allowed topologies.
+- "openebs.io/nodename" and "openebs.io/nodeid" are added as default topology key. 
+- Create storageclass with above specific labels keys.
 
 ```sh
 $ kubectl label node pawan-node-1 openebs.io/rack=rack1
@@ -335,8 +306,6 @@ The ZFSPV CSI driver will schedule the PV to the nodes where label "openebs.io/r
 If storageclass is using immediate binding mode and storageclass `allowedTopologies` is not mentioned then all the nodes should be labeled using "ALLOWED_TOPOLOGIES" keys. That means, "ALLOWED_TOPOLOGIES" keys should be present on all nodes, nodes can have different values for those keys. If some nodes don't have those keys, then ZFS PV's default scheduler can not effectively do the volume capacity based scheduling. Here, in this case the CSI provisioner will pick keys from any random node and then prepare the preferred topology list using the nodes which has those keys defined and ZFSPV scheduler will schedule the PV among those nodes only.
 :::
 
-
-
 ### Why is the ZFS volume size different than the requested size in PVC?
 
 :::note
@@ -391,8 +360,6 @@ Then driver will find the nearest size in Mi, the size allocated will be ((1G + 
 
 PVC size as zero in not a valid capacity. The minimum allocatable size for the Local PV ZFS driver is 1Mi, which means that if we are requesting 1 byte of storage space then 1Mi will be allocated for the volume.
 
-
-
 ### How to migrate PVs to the new node in case old node is not accessible?
 
 The Local PV ZFS driver will set affinity on the PV to make the volume stick to the node so that the pod gets scheduled to that node only where the volume is present. Now, the problem here is when that node is not accessible due to some reason and we move the disks to a new node and import the pool there, the pods will not be scheduled to this node as the K8s scheduler will be looking for that node only to schedule the pod.
@@ -425,34 +392,24 @@ $ kubectl label node node-4 openebs.io/nodeid=custom-value-3
 
 Once the above steps are done, the pod should be able to run on this new node with all the data it has on the old node. Here, there is one limitation that we can only move the PVs to the new node, we cannot move the PVs to the node which was already used in the cluster as there is only one allowed value for the custom key for setting the node label.
 
-
-
 ### How is data protected in Replicated Storage? What happens when a host, client workload, or a data center fails?
 
 The OpenEBS Replicated Storage (a.k.a Replicated Engine or Mayastor) ensures resilience with built-in highly available architecture. It supports on-demand switchover of the NVMe controller to ensure IO continuity in case of host failure. The data is synchronously replicated as per the configured replication factor to ensure no single point of failure.
 Faulted replicas are automatically rebuilt in the background without IO disruption to maintain the replication factor.
 
-
-
 ### How does OpenEBS provide high availability for stateful workloads?
 
 Refer to the [Replicated PV Mayastor Configuration documentation](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-storage-class-parameters.md) for more information.
 
-
-
 ### What changes must be made to the nodes on which OpenEBS runs?
 
 OpenEBS has been engineered so that it does not require any changes to the nodes on which it runs. Similarly, Kubernetes itself does not require to be altered and no additional external orchestrator is required. However, the workloads that need storage must be running on hosts that have nvme-tcp kernel module.
-
-
 
 ### What are the minimum requirements and supported container orchestrators?
 
 OpenEBS is currently tightly integrated into Kubernetes.
 
 The [system requirements](../quickstart-guide/prerequisites.md) depend on the number of volumes being provisioned and can horizontally scale with the number of nodes in the Kubernetes cluster.
-
-
 
 ### Why would you use OpenEBS on EBS?
 
@@ -466,28 +423,20 @@ Expansion and inclusion of NVMe: OpenEBS allows users to add additional capacity
 
 Other enterprise capabilities: OpenEBS adds other capabilities such as extremely efficient snapshots and clones as well as forthcoming capabilities such as encryption. Snapshots and clones facilitate much more efficient CI/CD workflows as zero space copies of databases and other stateful workloads can be used in these and other workflows, improving these without incurring additional storage space or administrative effort. The snapshot capabilities can also be used for replication.
 
-
-
 ### What must be the disk mount status on Node for provisioning OpenEBS volume?
 
 It is recommended to use unpartitioned raw block devices for best results.
-
-
 
 ### How does it help to keep my data safe?
 
 Replicated Storage engine supports synchronous mirroring to enhance the durability of data at rest within whatever physical persistence layer is in use. When volumes are provisioned which are configured for replication \(a user can control the count of active replicas which should be maintained, on a per StorageClass basis\), write I/O operations issued by an application to that volume are amplified by its controller ("nexus") and dispatched to all its active replicas. Only if every replica completes the write successfully on its own underlying block device will the I/O completion be acknowledged to the controller. Otherwise, the I/O is failed and the caller must make its own decision as to whether it should be retried. If a replica is determined to have faulted \(I/O cannot be serviced within the configured timeout period, or not without error\), the control plane will automatically take corrective action and remove it from the volume. If spare capacity is available within a Replicated Storage pool, a new replica will be created as a replacement and automatically brought into synchronisation with the existing replicas. The data path for a replicated volume is described in more detail [here](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/i-o-path-description.md#replicated-volume-io-path).
 
-
-
 ### How is it configured?
 
 This documentation contains sections which are focused on initial quickstart deployment scenarios, including the correct configuration of underlying hardware and software, and of Replicated Storage features such as "Storage Nodes" \(MSNs\) and "Disk Pools" \(MSPs\). Information describing tuning for the optimization of performance is also provided.
 
-* [Quickstart Guide](../quickstart-guide/prerequisites.md)
-* [Performance Tips](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/performance-tips.md)
-
-
+- [Quickstart Guide](../quickstart-guide/prerequisites.md)
+- [Performance Tips](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/performance-tips.md)
 
 ### What is the basis for its performance claims? Has it been benchmarked?
 
@@ -497,61 +446,39 @@ MayaData performance benchmarking was done in collaboration with Intel, using la
 
 Further information regarding the testing performed may be found [here](https://openebs.io/blog/mayastor-nvme-of-tcp-performance).
 
-
-
 ### What is the on-disk format used by Disk Pools? Is it also open source?
 
 Replicated Storage makes use of parts of the open source [Storage Performance Development Kit \(SPDK\)](https://spdk.io/) project, contributed by Intel. Replicated Storage's Storage Pools use the SPDK's Blobstore structure as their on-disk persistence layer. Blobstore structures and layout are [documented](https://github.com/spdk/spdk/blob/master/doc/blob.md).
 
 Since the replicas \(data copies\) of replicated volumes are held entirely within Blobstores, it is not possible to directly access the data held on pool's block devices from outside of Replicated Storage. Equally, Replicated Storage cannot directly 'import' and use existing volumes which are not of Replicated Storage's origin. The project's maintainers are considering alternative options for the persistence layer which may support such data migration goals.
 
-
-
-### Can the size / capacity of a Disk Pool be changed?
-
-The size of a Replicated Storage pool is fixed at the time of creation and is immutable. A single pool may have only one block device as a member. These constraints may be removed in later versions.
-
 ### How can I ensure that replicas are not scheduled onto the same node? How about onto nodes in the same rack/availability zone?
 
 The replica placement logic of Replicated Storage's control plane does not permit replicas of the same volume to be placed onto the same node, even if it were to be within different Disk Pools. For example, if a volume with replication factor 3 is to be provisioned, then there must be three healthy Disk Pools available, each with sufficient free capacity and each located on its own replicated node. Further enhancements to topology awareness are under consideration by the maintainers.
-
-
 
 ### How can I see the node on which the active nexus for a particular volume resides?
 
 The kubectl plugin is used to obtain this information.
 
-
-
 ### Is there a way to automatically rebalance data across available nodes? Can data be manually re-distributed?
 
 No. This may be a feature of future releases.
-
-
 
 ### Can Replicated Storage do async replication to a node in the same cluster? How about a different cluster?
 
 Replicated Storage does not peform asynchronous replication.
 
-
-
 ### Does Replicated Storage support RAID?
 
 Replicated Storage pools do not implement any form of RAID, erasure coding or striping. If higher levels of data redundancy are required, replicated volumes can be provisioned with a replication factor of greater than one, which will result in synchronously mirrored copies of their data being stored in multiple Disk Pools across multiple Storage Nodes. If the block device on which a Disk Pool is created is actually a logical unit backed by its own RAID implementation \(e.g. a Fibre Channel attached LUN from an external SAN\) it can still be used within a replicated disk pool whilst providing protection against physical disk device failures.
-
-
 
 ### Does Replicated Storage perform compression and/or deduplication?
 
 No.
 
-
-
 ### Does Replicated Storage support snapshots? Clones?
 
-Yes, snapshots and clones support is presently limited to volumes with only one replica. Snapshot and clone support for multi-replica volumes is planned in the upcoming release.
-
-
+Yes. Replicated Storage supports creating snapshots and clones for both single-replica and multi-replica volumes.
 
 ### Which CPU architectures are supported? What are the minimum hardware requirements?
 
@@ -561,25 +488,17 @@ Minimum hardware requirements are discussed in the [quickstart section](../quick
 
 Replicated Storage does not run on Raspberry Pi as the current version of SPDK requires ARMv8 Crypto extensions which are not currently available for Pi.
 
-
-
 ### Does Replicated Storage suffer from TCP congestion when using NVME-TCP?
 
 Replicated Storage, as any other solution leveraging TCP for network transport, may suffer from network congestion as TCP will try to slow down transfer speeds. It is important to keep an eye on networking and fine-tune TCP/IP stack as appropriate. This tuning can include \(but is not limited to\) send and receive buffers, MSS, congestion control algorithms \(e.g. you may try DCTCP\) etc.
-
-
 
 ### Why do Replicated Storage's IO engine pods show high levels of CPU utilization when there is little or no I/O being processed?
 
 Replicated Storage has been designed so as to be able to leverage the performance capabilities of contemporary high-end solid-state storage devices. A significant aspect of this is the selection of a polling-based I/O service queue, rather than an interrupt-driven one. This minimizes the latency introduced into the data path but at the cost of additional CPU utilization by the "reactor" - the poller operating at the heart of the Replicated Storage's IO engine pod. When the IO engine pod is deployed on a cluster, it is expected that these daemonset instances will make full utilization of their CPU allocation, even when there is no I/O load on the cluster. This is simply the poller continuing to operate at full speed, waiting for I/O. For the same reason, it is recommended that when configuring the CPU resource limits for the IO engine daemonset, only full, not fractional, CPU limits are set; fractional allocations will also incur additional latency, resulting in a reduction in overall performance potential. The extent to which this performance degradation is noticeable in practice will depend on the performance of the underlying storage in use, as well as whatever other bottlenecks/constraints may be present in the system as configured.
 
-
-
 ### Does the supportability tool expose sensitive data?
 
 The supportability tool generates support bundles, which are used for debugging purposes. These bundles are created in response to the user's invocation of the tool and can be transmitted only by the user. To view the list of collected information, visit the [supportability section](../user-guides/supportability.md#does-the-supportability-tool-expose-sensitive-data).
-
-
 
 ### What happens when a PV with reclaim policy set to retain is deleted?
 
@@ -619,19 +538,13 @@ Once an orphaned volume is identified, it can be deleted by its UUID using:
 kubectl openebs -n openebs mayastor volume delete <volume-uuid>
 ```
 
-
-
 ### How does the PV garbage collector work?
 
 The PV garbage collector deploys a watcher component, which subscribes to the Kubernetes Persistent Volume deletion events. When a PV is deleted, an event is generated by the Kubernetes API server and is received by this component. Upon a successful validation of this event, the garbage collector deletes the corresponding replicated volume resources.
 
-
-
 ### How to disable cow for btrfs filesystem?
 
 To disable cow for `btrfs` filesystem, use `nodatacow` as a mountOption in the storage class which would be used to provision the volume.
-
-
 
 ### How to access NVMe Disk directly from userspace via PCIe when creating a DiskPool?
 
@@ -683,8 +596,6 @@ NVMe                      0000:23:00.0    144d   a808   unknown nvme            
 
 Now that `0000:01:00.0` is bound to `vfio-pcie`, you can create your pools with `pcie:///0000:01:00.0`.
 
-
-
 ### How do I install Replicated PV Mayastor on a Kubernetes cluster with a custom domain?
 
 If the domain name of your Kubernetes cluster is not 'cluster.local', you have to specify the custom domain during installation as follows:
@@ -693,27 +604,19 @@ If the domain name of your Kubernetes cluster is not 'cluster.local', you have t
 helm install openebs openebs/openebs -n openebs --create-namespace --set mayastor.etcd.clusterDomain="<your-custom-cluster-domain>"
 ```
 
-
-
 ### What happens when a single replica node fails?
 
 It is recommended that Replicated PV Mayastor volumes be provisioned with a minimum of 2 replicas for higher storage availability. If a volume is provisioned with a single replica and the node where that replica is present, becomes unavailable, then the entire volume will become unavailable for access and I/O operations will fail as there will be no more healthy replicas.
 
-
-
 ### Should I install the mayastor/mayastor Helm chart alongside the openebs/openebs Helm release?
 
 The `mayastor/mayastor` Helm chart, along with other stable OpenEBS storage plugins, is included as a dependency within the `openebs/openebs` Helm chart. The `openebs/openebs` chart can be configured to deploy the Replicated PV Mayastor storage engine. It is not recommended to deploy the Helm chart dependencies independently alongside the umbrella chart (openebs/openebs). This may lead to configuration conflicts and operational issues.
-
-
 
 ### What can cause a snapshot operation to fail sometimes after a node reboot?
 
 If a pod-based workload is scheduled on a node that reboots and the pod does not have a controller (such as a Deployment or StatefulSet), the volume unpublish operation is not triggered. This causes the control plane to incorrectly assume that the volume is still published, even though it is not mounted. As a result, the FIFREEZE operation fails during the snapshot process, preventing the snapshot from being taken.
 
 To resolve this issue, reinstate or recreate the pod to ensure that the volume is properly mounted and recognized by the control plane.
-
-
 
 ## See Also
 

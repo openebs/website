@@ -13,8 +13,7 @@ description: This guide will help you to create Local PV LVM StorageClass.
 
 # StorageClass Parameters
 
-This document provides step-by-step instructions to the configurable options available for StorageClass when working with Local PV LVM.
-Each StorageClass option helps you configure features such as volume expansion, mount options, file systems, volume sharing, topology-aware provisioning, and more.
+This document describes the supported StorageClass parameters for Local PV LVM and explains how to configure them. These parameters allow you to control volume expansion, mount options, filesystem selection, volume sharing, provisioning behavior, topology-aware scheduling, and other storage features.
 
 ## AllowVolumeExpansion (Optional)
 
@@ -51,11 +50,7 @@ mountOptions:    ## Various mount options of volume can be specified here
 ```
 :::
 
-## Parameters
-
-Local PV LVM storageclass supports various parameters for different use cases. The following are the supported parameters:
-
-### FsType (Optional)
+## FsType (Optional)
 
   Admin can specify filesystem in storageclass. Local PV LVM CSI-Driver will format block device with specified filesystem and mount in the application pod. If fsType is not specified defaults to `ext4` filesystem. Refer [FsType](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/storageclass-parameters/fs_type.md) for more information about filesystem type workflow.
 
@@ -72,7 +67,7 @@ Local PV LVM storageclass supports various parameters for different use cases. T
     fsType: xfs               ## Supported filesystems are ext2, ext3, ext4, xfs & btrfs
   ```
 
-### Shared (Optional)
+## Shared (Optional)
 
   Local PV LVM volume mount points can be shared among the multiple pods on the same node. Applications that can share the volume can set the value of `shared` parameter to yes. Refer [Shared Volume](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/storageclass-parameters/shared.md) for more information about workflow of shared volume.
 
@@ -88,7 +83,7 @@ Local PV LVM storageclass supports various parameters for different use cases. T
     shared: "yes"             ## Parameter that states volume can be shared among multiple pods
   ```
 
-### vgpattern (Mandatory if `volgroup` is not provided; otherwise optional)
+## vgpattern (Mandatory if `volgroup` is not provided; otherwise optional)
 
   vgpattern specifies the regular expression for the volume groups on node from which the volumes can be created. The *vgpattern* is the must argument if `volgroup` parameter is not provided in the storageclass. Here, in this case, the driver will pick the volume groups matching the vgpattern with enough free capacity to accommodate the volume and will use the one which has the largest capacity available for provisioning the volume. Refer [VG Pattern](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/storageclass-parameters/vg_pattern.md) for more information about vgpattern workflow. 
 
@@ -109,7 +104,7 @@ Local PV LVM storageclass supports various parameters for different use cases. T
 Either `volgroup` or `vgpattern` should be present in the storageclass parameters to make the provisioning successful.
 :::
 
-### Volgroup (Mandatory if `vgpattern` is not provided; otherwise optional)
+## Volgroup (Mandatory if `vgpattern` is not provided; otherwise optional)
 
   volgroup specifies the name of the volume group on the nodes from which the volumes will be created. The *volgroup* is the must argument if the `vgpattern` is not provided in the storageclass.
 
@@ -128,7 +123,7 @@ It is recommended to use vgpattern since volumegroup will be deprecated in futur
     volgroup: "lvmvg"       ## volgroup specifies name of lvm volume group
   ```
 
-### ThinProvision (Optional)
+## ThinProvision (Optional)
 
   For creating a thin-provisioned volume, use the thinProvision parameter in the storage class. Its allowed values are: "yes" and "no". If we do not set the thinProvision parameter by default its value will be `no` and it will work as thick provisioned volumes. Refer [Thin Provisioning](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/storageclass-parameters/thin_provision.md) for more details about thinProvisioned workflow.
 
@@ -155,7 +150,7 @@ It is recommended to use vgpattern since volumegroup will be deprecated in futur
   $ modprobe dm_thin_pool
   ```
 
-### VolumeBindingMode (Optional)
+## VolumeBindingMode (Optional)
 
 Local PV LVM supports two types of volume binding modes that are `Immediate` and `late binding`.
 - Immediate: Indicates that volume binding and dynamic provisioning occur once the PersistentVolumeClaim is created.
@@ -174,7 +169,7 @@ volumeBindingMode: WaitForFirstConsumer     ## It can also replaced by Immediate
 
  Refer [StorageClass VolumeBindingMode](https://github.com/openebs/lvm-localpv/blob/develop/design/lvm/storageclass-parameters/volume_binding_mode.md) for more details about VolumeBindingMode.
 
-### Reclaim Policy (Optional)
+## Reclaim Policy (Optional)
 
 Local PV LVM supports both types of reclaim policy which are `Delete` and `Retain`. If not specified defaults to `Delete`.
 - Delete: Indicates that backend volume resources (PV, LVMVolume) will be deleted as soon as after deleting PVC.

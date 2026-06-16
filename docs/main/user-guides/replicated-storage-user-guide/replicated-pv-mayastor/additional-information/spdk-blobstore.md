@@ -25,32 +25,32 @@ Before modifying the default setting, carefully evaluate application I/O pattern
 
 1. Per-Pool Configuration (DiskPool CR)
 
-Set the `cluster_size` field directly in your DiskPool custom resource manifest. This provides granular control for specific storage devices.
+    Set the `cluster_size` field directly in your DiskPool custom resource manifest. This provides granular control for specific storage devices.
 
-```
-apiVersion: "openebs.io/v1beta3"
-kind: DiskPool
-metadata:
-  name: <pool_name>
-  namespace: <namespace>
-spec:
-  node: <none_name>
-  disks: ["/disk/path"]
-  cluster_size: 32MiB
-```
+    ```
+    apiVersion: "openebs.io/v1beta3"
+    kind: DiskPool
+    metadata:
+      name: <pool_name>
+      namespace: <namespace>
+    spec:
+      node: <none_name>
+      disks: ["/disk/path"]
+      cluster_size: 32MiB
+    ```
 
 2. Global Configuration (Helm Chart)
 
-Set a global cluster size for all new pools that do not specify it in their custom resource. Provide the size in bytes.
+    Set a global cluster size for all new pools that do not specify it in their custom resource. Provide the size in bytes.
 
-```
---set openebs.engines.replicated.mayastor.agents.core.poolClusterSize=33554432
-(The value above sets the global cluster size to 32 MiB.)
-```
+    ```
+    --set openebs.engines.replicated.mayastor.agents.core.poolClusterSize=33554432
+    (The value above sets the global cluster size to 32 MiB.)
+    ```
 
 3. Volume Provisioning
 
-A new storageclass parameter named `poolClusterSize` is provided. With this option, only the pools that match requested blobstore cluster size will be used for that volume’s replicas. If enough such pools are not found, to satisfy the volume’s replication factor, the provisioning will fail or in case of an existing volume the rebuilds might not be able to start.
+    A new storageclass parameter named `poolClusterSize` is provided. With this option, only the pools that match requested blobstore cluster size will be used for that volume’s replicas. If enough such pools are not found, to satisfy the volume’s replication factor, the provisioning will fail or in case of an existing volume the rebuilds might not be able to start.
 
 ## Recommendations
 
