@@ -15,9 +15,9 @@ description: The FAQ section about OpenEBS helps to address common concerns, que
 
 The OpenEBS architecture is an example of Container Native Storage (CNS). These approaches containerize the storage controller, called I/O controllers, and underlying storage targets, called “replicas”, allowing an orchestrator such as Kubernetes to automate the management of storage. Benefits include automation of management, a delegation of responsibility to developer teams, and the granularity of the storage policies which in turn can improve performance.
 
-### Where is my data stored and how can I see that? {#where-is-my-data}
+### Where is my Replicated PV Mayastor data stored and how can I see that? {#where-is-my-data}
 
-OpenEBS stores data in a configurable number of replicas. These are placed to maximize resiliency. For example, they are placed in different racks or availability zones.
+Replicated PV Mayastor stores data in a configurable number of replicas. These are placed to maximize resiliency. For example, they are placed in different racks or availability zones.
 
 To determine exactly where your data is physically stored, you can run the following kubectl commands.
 
