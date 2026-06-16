@@ -640,8 +640,8 @@ const sidebars: SidebarsConfig =
                     },
                     {
                       type: "doc",
-                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/spdk-interrupt-mode",
-                      label: "SPDK Interrupt Mode"
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/interrupt-mode",
+                      label: "Interrupt Mode"
                     },
                     {
                       type: "doc",

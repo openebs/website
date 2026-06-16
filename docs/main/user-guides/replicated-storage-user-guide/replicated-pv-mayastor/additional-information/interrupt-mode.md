@@ -1,13 +1,12 @@
 ---
-id: spdk-interrupt-mode
-title: SPDK Interrupt Mode
+id: interrupt-mode
+title: Interrupt Mode
 keywords:
- - SPDK Interrupt Mode
  - SPDK
  - Interrupt Mode
-description: This section explains about SPDK Interrupt Mode.
+description: This section explains about Interrupt Mode.
 ---
-# SPDK Interrupt Mode
+# Interrupt Mode
 
 ## Overview
 
@@ -22,7 +21,7 @@ This feature helps reduce overall CPU consumption in environments where maximizi
 - Interrupt Mode has not been validated for use with RDMA configurations in this release. If your deployment uses RDMA, continue using the default polling mode unless interrupt mode support for RDMA is explicitly documented in a future release.
 :::
 
-## How SPDK Interrupt Mode Works
+## How Interrupt Mode Works
 
 When Interrupt Mode is enabled:
 
@@ -52,13 +51,13 @@ Consider the following guidelines:
 - For development, edge, test, or lightly utilized environments, Interrupt Mode can significantly reduce CPU consumption.
 :::
 
-## Configure SPDK Interrupt Mode
+## Configure Interrupt Mode
 
 Configure Interrupt Mode in the Replicated PV Mayastor Helm values file.
 
 ### Enable Interrupt Mode
 
-Set the following parameter to enable SPDK Interrupt Mode:
+Set the following parameter to enable Interrupt Mode:
 
 ```
 io_engine:
@@ -81,12 +80,12 @@ io_engine:
 
 | Parameter | Description | Default |
 | :--- | :--- | :--- |
-| `interruptMode.enabled` | Enables SPDK Interrupt Mode for io-engine reactors. | `false` |
+| `interruptMode.enabled` | Enables Interrupt Mode for io-engine reactors. | `false` |
 | `interruptMode.nvmeIoQueuePollPeriod` | Specifies the NVMe I/O queue polling interval used when Interrupt Mode is enabled. Higher values reduce CPU usage but may increase latency. | `100us` |
 
 ## Benefits
 
-SPDK Interrupt Mode provides the following benefits:
+Interrupt Mode provides the following benefits:
 
 - Reduces idle CPU consumption for io-engine instances.
 - Improves resource efficiency in lightly loaded clusters.
