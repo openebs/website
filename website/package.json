@@ -73,7 +73,7 @@
     "eslint-plugin-react-hooks": "^4.6.2",
     "jsdom": "^29.1.1",
     "netlify-cli": "^26.1.0",
-    "vite": "^8.0.13",
+    "vite": "^8.0.16",
     "vitest": "^4.1.6"
   },
   "resolutions": {
