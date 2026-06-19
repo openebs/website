@@ -75,6 +75,32 @@
   color: #89ddff;
 }
 
+@media (min-width: 997px) {
+  html.docs-doc-page .main-wrapper {
+    align-items: center;
+  }
+  html.docs-doc-page .main-wrapper > div {
+    width: 100%;
+    max-width: calc(var(--ifm-container-width) + var(--doc-sidebar-width));
+  }
+  html.docs-doc-page .theme-doc-sidebar-container {
+    margin-right: 0.75rem;
+  }
+}
+
+@media (min-width: 997px) {
+  html.docs-doc-page .navbar__inner {
+    width: 100%;
+    max-width: calc(var(--ifm-container-width) + var(--doc-sidebar-width));
+    margin: 0 auto;
+  }
+  html.docs-doc-page .navbar__brand {
+    width: var(--doc-sidebar-width);
+    justify-content: flex-end;
+    flex-shrink: 0;
+  }
+}
+
 /* Markdown content styles */
 .markdown p > img {
   width: 100%;
