@@ -75,24 +75,6 @@
   color: #89ddff;
 }
 
-/*********************************************************
-Center docs layout block so sidebar sits closer to middle content
-@media (min-width: 997px) {
-  html.docs-doc-page .main-wrapper {
-    align-items: center;
-  }
-
-  html.docs-doc-page .main-wrapper > div {
-    width: 100%;
-    max-width: calc(var(--ifm-container-width) + var(--doc-sidebar-width));
-  }
-
-  html.docs-doc-page .theme-doc-sidebar-container {
-    margin-right: 0.75rem;
-  }
-}
-*********************************************************/  
-
 /* Markdown content styles */
 .markdown p > img {
   width: 100%;
@@ -290,23 +272,6 @@ Center docs layout block so sidebar sits closer to middle content
 .pagination-nav__item--next {
   justify-content: end;
 }
-
-/********************************************************
-Center navbar logo over the sidebar column
-@media (min-width: 997px) {
-  html.docs-doc-page .navbar__inner {
-    width: 100%;
-    max-width: calc(var(--ifm-container-width) + var(--doc-sidebar-width));
-    margin: 0 auto;
-  }
-
-  html.docs-doc-page .navbar__brand {
-    width: var(--doc-sidebar-width);
-    justify-content: flex-end;
-    flex-shrink: 0;
-  }
-}
-/********************************************************
 
 /* Navbar Icons */
 .navbar-github,
