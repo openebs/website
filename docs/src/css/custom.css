@@ -55,7 +55,28 @@
   --ifm-footer-link-color: #b8ddfe;
 }
 
-/* Center docs layout block so sidebar sits closer to middle content */
+/* Heading colors */
+
+/* Light mode */
+.markdown h1 {
+  color: #000000;
+}
+
+.markdown h2 {
+  color: #62a7bd;
+}
+
+/* Dark mode */
+[data-theme='dark'] .markdown h1 {
+  color: #ffffff;
+}
+
+[data-theme='dark'] .markdown h2 {
+  color: #89ddff;
+}
+
+/*********************************************************
+Center docs layout block so sidebar sits closer to middle content
 @media (min-width: 997px) {
   html.docs-doc-page .main-wrapper {
     align-items: center;
@@ -70,10 +91,30 @@
     margin-right: 0.75rem;
   }
 }
+*********************************************************/  
 
 /* Markdown content styles */
 .markdown p > img {
   width: 100%;
+}
+
+/* Hyperlink colors */
+.markdown a {
+  color: #f26d00;
+}
+
+.markdown a:hover {
+  color: #62a7bd;
+  text-decoration: none;
+}
+
+/* Hyperlink colors in dark mode */
+[data-theme='dark'] .markdown a {
+  color: #ff8433;
+}
+
+[data-theme='dark'] .markdown a:hover {
+  color: #89ddff;
 }
 
 /* Custom bullet list style */
@@ -90,13 +131,17 @@
 
 .markdown ul:not(.dropdown__menu) li::before {
   content: '';
-  background: #62a7bd;
+  background: #000000;
   position: absolute;
   left: 0;
   top: 0.6rem;
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 100%;
+}
+
+[data-theme='dark'] .markdown ul:not(.dropdown__menu) li::before {
+  background: #ffffff;
 }
 
 /* Admonitions */
@@ -108,6 +153,27 @@
   color: #3b4473;
 }
 
+/* NOTE admonition styling (light mode only) */
+[data-theme='light'] .theme-admonition-note {
+  background-color: #fff4f2;
+  border-left: 8px solid #f78c6c;
+  box-shadow: 0 1px 3px rgba(59, 68, 115, 0.1);
+}
+
+/* IMPORTANT admonition styling (light mode only) */
+[data-theme='light'] .theme-admonition-important {
+  background-color: #f5f8fc;
+  border-left: 8px solid #737daf;
+  box-shadow: 0 1px 3px rgba(59, 68, 115, 0.1);
+}
+
+/* WARNING admonition styling (light mode only) */
+[data-theme='light'] .theme-admonition-warning {
+  background-color: #fff0f0;
+  border-left: 8px solid #ff0000;
+  box-shadow: 0 1px 3px rgba(59, 68, 115, 0.1);
+}
+
 .markdown .admonition a {
   color: inherit;
 }
@@ -115,9 +181,16 @@
 /* Inline code */
 .markdown code {
   border-radius: 4px;
-  border: none;
+  border: 1px solid transparent;
   color: inherit;
   background-color: #edf6ff;
+}
+
+/* Inline code styling for dark mode */
+[data-theme='dark'] .markdown code {
+  color: #f8f8f2;
+  background-color: #3b4473;
+  border: 1px solid #737daf;
 }
 
 /* Keep fenced code blocks readable in dark mode */
@@ -218,7 +291,8 @@
   justify-content: end;
 }
 
-/* Center navbar logo over the sidebar column */
+/********************************************************
+Center navbar logo over the sidebar column
 @media (min-width: 997px) {
   html.docs-doc-page .navbar__inner {
     width: 100%;
@@ -232,6 +306,7 @@
     flex-shrink: 0;
   }
 }
+/********************************************************
 
 /* Navbar Icons */
 .navbar-github,
