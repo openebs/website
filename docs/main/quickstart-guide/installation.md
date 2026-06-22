@@ -106,7 +106,7 @@ Verify helm is installed and helm repo is updated. You need helm 3.2 or more.
 
     ```
     NAME     NAMESPACE   REVISION   UPDATED                                   STATUS     CHART           APP VERSION
-    openebs  openebs     1          2026-06-06 06:18:45.787893124 +0000 UTC   deployed   openebs-4.5.0   4.5.0
+    openebs  openebs     1          2026-06-06 06:18:45.787893124 +0000 UTC   deployed   openebs-4.5.1   4.5.1
     ```
 
 ## Verifying OpenEBS Installation

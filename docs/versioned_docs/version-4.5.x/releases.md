@@ -16,13 +16,13 @@ The status of the various components as of v4.5 are as follows:
 
 | Component Type | Component | Version | Status |
 | :--- | :--- | :--- | :--- |
-| Replicated Storage | Replicated PV Mayastor | 2.11.0 | Stable |
-| Local Storage | Local PV Hostpath | 4.5.0 | Stable |
-| Local Storage | Local PV LVM | 1.9.0 | Stable |
-| Local Storage | Local PV ZFS | 2.10.0 | Stable |
-| Local Storage | Local PV Rawfile | 0.14.0 | Experimental |
-| Out-of-tree (External Storage) Provisioners | Local PV Hostpath | 4.5.0 | Stable |
-| Other Components | CLI | 4.5.0 | — |
+| Replicated Storage | Replicated PV Mayastor | 2.11.1 | Stable |
+| Local Storage | Local PV Hostpath | 4.5.1 | Stable |
+| Local Storage | Local PV LVM | 1.9.1 | Stable |
+| Local Storage | Local PV ZFS | 2.10.1 | Stable |
+| Local Storage | Local PV Rawfile | 0.14.1 | Experimental |
+| Out-of-tree (External Storage) Provisioners | Local PV Hostpath | 4.5.1 | Stable |
+| Other Components | CLI | 4.5.1 | — |
 
 ## What’s New
 
