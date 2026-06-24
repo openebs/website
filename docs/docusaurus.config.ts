@@ -172,11 +172,11 @@ const config: Config = {
           label: 'Commercial Support',
           position: 'right',
         },
-        {
-          to: `${WEBSITE_URL}/blog`,
-          label: 'Blog',
-          position: 'right',
-        },
+       // {
+       //   to: `${WEBSITE_URL}/blog`,
+       //   label: 'Blog',
+       //   position: 'right',
+       // },
 
         {
           href: 'https://github.com/openebs/openebs',
