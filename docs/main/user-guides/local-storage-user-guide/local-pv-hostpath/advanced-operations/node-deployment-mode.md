@@ -43,17 +43,6 @@ helm upgrade openebs openebs/openebs \
 If you are enabling Node-Deployment Mode as part of a Helm upgrade, use `--reset-then-reuse-values` to reset the release to the new chart defaults, re-apply your existing user values, and then apply any additional `--set` overrides.
 :::
 
-### Via Provisioner Flag
-
-Add the `--node-deployment=true` flag to the provisioner container args in your DaemonSet manifest:
-
-```yaml
-containers:
-  - name: openebs-provisioner-hostpath
-    args:
-      - "--node-deployment=true"
-```
-
 ### Verify the Installation
 
 Once enabled, verify that the DaemonSet pods are running - one per node:
