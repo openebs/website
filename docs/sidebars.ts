@@ -206,7 +206,13 @@ const sidebars: SidebarsConfig =
                           id: "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/loop-device-xfs-quota",
                           label: "XFS Quota with Loop Device"
                         }
-                      ] 
+                      ]
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/node-deployment-mode",
+                      label: "Node-Deployment Mode",
+                      key: "hostpath-node-deployment-mode",
                     }
                   ]
                 }
