@@ -1,132 +1,119 @@
 ---
 id: airgapped-installation
-title: OpenEBS Installation in an Air-Gapped Environment
+title: OpenEBS Air-Gapped Installation
 keywords:
   - OpenEBS air-gapped installation
   - offline installation
   - private registry
   - Local PV
   - Replicated PV Mayastor
-description: This section explains how to install OpenEBS in an air-gapped (offline) environment using a private container registry, covering all engines including Local PV Hostpath, LVM, ZFS, Rawfile, and Replicated PV Mayastor.
+description: This section explains how to install OpenEBS in an air-gapped (offline) environment using a private container registry, covering all storage components, including Local PV Hostpath, LVM, ZFS, Rawfile, and Replicated PV Mayastor.
 ---
 
-# Air-Gapped Installation of OpenEBS
+# OpenEBS Air-Gapped Installation
 
-This guide describes how to install **OpenEBS** into a Kubernetes cluster
-that has **no direct access to the public internet** (an "air-gapped" or
-"offline" environment).
+## Overview
 
-Because the cluster cannot pull images from Docker Hub, GHCR, Quay, or
-`registry.k8s.io`, the workflow is:
+This document describes how to install OpenEBS into a Kubernetes cluster that has no direct access to the public internet (an "air-gapped" or "offline" environment).
 
-1. On an **internet-connected host**, gather the Helm chart, the `kubectl-openebs`
-   plugin, and the full list of container images.
-2. Pull every image, then **retag and push** them into a **private registry**
-   that the air-gapped cluster *can* reach.
-3. On the **air-gapped cluster**, install the Helm chart with image overrides
-   that point every component at the private registry.
+An air-gapped cluster has no direct access to Docker Hub, GHCR, Quay, or `registry.k8s.io`. The installation therefore follows this workflow:
 
-> **Version note.** This guide is pinned to **OpenEBS v4.5.1** as an example. Keep the chart
-> version, the `images.txt` you download, and the `--version` flag you pass to
-> Helm on the **same tag**. Mixing versions (for example a 4.5.0 chart with a
-> 4.5.1 image list) leads to missing-image and digest-mismatch errors that are
-> tedious to debug. If you install a different release, regenerate the image
-> list from the matching tag.
+1. On an internet-connected host, gather the Helm chart, the `kubectl-openebs` plugin, and the full list of container images.
+2. Pull every image, then retag and push them into a private registry that the air-gapped cluster can reach.
+3. On the air-gapped cluster, install the Helm chart with image overrides that point every component at the private registry.
 
----
+:::important
+This document's commands and YAML samples use **OpenEBS v4.5.1**. Keep the chart version, the `images.txt` file you download, and the `--version` flag you pass to Helm on the same tag. Mixing versions (for example, a 4.5.0 chart with a 4.5.1 image list) leads to missing-image and digest-mismatch errors that are tedious to debug. If you are installing a different release, replace `4.5.1` throughout and regenerate the image list from the matching tag.
+:::
 
-## What OpenEBS installs
+## Storage Components
 
-The OpenEBS umbrella chart bundles several storage engines plus their
-dependencies:
+The OpenEBS umbrella chart bundles several storage components along with their dependencies.
 
 | Component | Type | Notes |
-|---|---|---|
-| Local PV Hostpath | Engine (default) | Provisioner only; xfsprogs package for quotas. |
-| Local PV LVM | Engine (default) | Node must have LVM2 and a volume group. |
-| Local PV ZFS | Engine (default) | Node must have ZFS and a zpool. |
-| Local PV Rawfile | Engine | Provisioner only (experimental; not installed by default). |
-| Replicated PV Mayastor | Engine (default) | Dependency set: NATS, etcd, MinIO, and the io-engine, which needs HugePages and the `nvme_tcp` kernel module on every storage node. |
+| :--- | :--- | :--- |
+| Local PV Hostpath | Storage (default) | Provisioner only; requires the `xfsprogs` package for quotas. |
+| Local PV LVM | Storage (default) | Node must have LVM2 and a volume group. |
+| Local PV ZFS | Storage (default) | Node must have ZFS and a zpool. |
+| Local PV Rawfile | Storage | Provisioner only (experimental - not installed by default). |
+| Replicated PV Mayastor | Storage (default) | Dependency set: NATS, etcd, MinIO, and the io-engine, which requires HugePages and the `nvme_tcp` kernel module on every storage node. |
 
-The dependencies (Grafana Loki/Alloy, NATS, MinIO, prometheus-operator's
-config-reloader, the kiwigrid sidecar, and some of the upstream Kubernetes CSI
-sidecars) are pulled in mainly by **Replicated PV Mayastor** and the
-observability stack. If you only need the Local PV engines, you can install a
-much smaller image set — see [Trimming the image list](#optional-trimming-the-image-list).
+:::note
+The dependencies (Grafana Loki/Alloy, NATS, MinIO, the prometheus-operator config-reloader, the kiwigrid sidecar, and some upstream Kubernetes CSI sidecars) are pulled in mainly by Replicated PV Mayastor and the observability stack. If you only need the Local PV storage, you can install a much smaller image set. Refer to [Trimming the Image List](#trimming-the-image-list-optional).
+:::
 
----
+## Requirements
 
-## Prerequisites
+### On the Internet-Connected Host
 
-### On the internet-connected host
-
-- `docker` **or** `podman` (set `CONTAINER_CLI=podman` to use Podman).
+- `docker` or `podman` (set `CONTAINER_CLI=podman` to use Podman).
 - `helm` v3 and `kubectl` (matching your cluster's minor version).
 - `wget` or `curl`.
-- Network access to your **private registry**, and credentials to push to it.
-- Enough disk to hold all images (if you export a tarball).
+- Network access to your private registry, and credentials to push to it.
+- Enough disk space to hold all images (if you export a tarball).
 
-### On the air-gapped cluster
+### On the Air-Gapped Cluster
 
-- A reachable **private container registry** (Harbor, Nexus, Zot, the CNCF
-  `distribution` registry, a cloud registry mirror, etc.), and every node must
-  be able to pull from it. If the registry uses a private CA, install that CA
-  on every node's container runtime **before** you begin.
-- Kubernetes nodes prepared for the engines you intend to use:
+- A reachable private container registry (Harbor, Nexus, Zot, the CNCF `distribution` registry, a cloud registry mirror, and so on), and every node must be able to pull from it. If the registry uses a private CA, install that CA on every node's container runtime before you begin.
+- Kubernetes nodes prepared for the storage components you intend to use, as follows.
 
-  **[All engines](https://openebs.io/docs/main/quickstart-guide/prerequisites):** a supported Kubernetes version and a working CNI.
+#### All Storage Components
 
-  **Local PV LVM:** `lvm2` installed; a volume group present on each node that
-  will host volumes.
+A supported Kubernetes version and a working CNI. Refer to [Prerequisites](../quickstart-guide/prerequisites.md).
 
-  **Local PV ZFS:** ZFS installed; a zpool present on each node.
+#### Local PV LVM
 
-  **Replicated PV Mayastor**, on every node that will run the io-engine:
-  - The `nvme_tcp` kernel module loaded (`modprobe nvme_tcp`, and persist it via
-    `/etc/modules-load.d/`).
-  - HugePages configured (2 MiB pages; a common starting point is 2 GiB total —
-    verify against your workload and the current Mayastor docs).
-  - The node labeled so Mayastor schedules the io-engine there
-    (for example `openebs.io/engine=mayastor`).
+`lvm2` installed, and a volume group present on each node that will host volumes.
 
-> If you are installing **only** the Local PV engines, you can skip the
-> Mayastor-specific node preparation entirely.
+#### Local PV ZFS
 
----
+ZFS installed, and a zpool present on each node.
 
-## Step 1 — Download the artifacts (Internet-connected host)
+#### Replicated PV Mayastor
+
+On every node that will run the io-engine:
+- The `nvme_tcp` kernel module loaded (`modprobe nvme_tcp`, persisted via `/etc/modules-load.d/`).
+- HugePages configured (2 MiB pages; a common starting point is 2 GiB total, but verify against your workload and the current Mayastor documentation).
+- The node labeled so Mayastor schedules the io-engine there (for example, `openebs.io/engine=mayastor`).
+
+:::note
+If you are installing only the Local PV storage components, you can skip the Mayastor-specific node preparation entirely.
+:::
+
+## Download the Artifacts (Internet-Connected Host)
 
 Create a working directory and download everything for the pinned version.
 
 ```bash
-# Keep the chart version, the `images.txt` you download, and the `--version` flag you pass to Helm on the **same tag**.
+# Keep the chart version, the images.txt file, and the --version flag passed to Helm on the same tag.
 export OPENEBS_VERSION=4.5.1
 mkdir -p openebs-airgap && cd openebs-airgap
 ```
 
-### 1a. Image list
+### Image List
 
 ```bash
 wget https://raw.githubusercontent.com/openebs/openebs/refs/tags/v${OPENEBS_VERSION}/charts/images.txt
 ```
 
-> Trim the downloaded image list if you don't want a specific engine to be installed so that unnecessary images are not downloaded.
+:::tip
+Trim the downloaded image list if you do not want a specific storage component to be installed, so that unnecessary images are not downloaded.
+:::
 
-### 1b. Helm binary (for transferring to the air-gapped side if needed)
+### Helm Binary (for Transferring to the Air-Gapped Side, if Needed)
 
-If the air-gapped host does not already have Helm, download the binary now so
-you can copy it across.
+If the air-gapped host does not already have Helm, download the binary now so it can be copied across.
 
 ```bash
-# Pick the version/arch you need; example for Helm on linux/amd64:
+# Pick the version/architecture you need; example for Helm on linux/amd64:
 wget https://get.helm.sh/helm-v3.16.2-linux-amd64.tar.gz
 tar -zxvf helm-v3.16.2-linux-amd64.tar.gz
 # The binary is at linux-amd64/helm
 ```
 
-### 1c. Helm chart package
+### Helm Chart Package
 
-Add the repo, then pull the chart as a `.tgz` so it can be moved offline.
+Add the repository, then pull the chart as a `.tgz` file so it can be moved offline.
 
 ```bash
 helm repo add openebs https://openebs.github.io/openebs
@@ -135,29 +122,17 @@ helm pull openebs/openebs --version ${OPENEBS_VERSION}
 # Produces openebs-${OPENEBS_VERSION}.tgz
 ```
 
-Keep this `.tgz`; you will install from the local file on the air-gapped side.
+Retain this `.tgz` file; [Install the Helm Chart](#3-install-the-helm-chart-air-gapped-cluster) uses it as a local source.
 
-### 1d. `kubectl-openebs` plugin (optional but recommended)
+### `kubectl-openebs` Plugin (Optional but Recommended)
 
-The [plugin](https://openebs.io/docs/main/user-guides/kubectl-openebs) is useful for managing and troubleshooting OpenEBS. Download the
-release binary that matches your platform and version from the OpenEBS releases page and
-copy it across with the other artifacts. Install it into the `PATH` on the
-host from which you will run `kubectl` against the air-gapped cluster (so that
-`kubectl openebs ...` works).
+The [plugin](https://openebs.io/docs/main/user-guides/kubectl-openebs) is useful for managing and troubleshooting OpenEBS. Download the release binary that matches your platform and version from the OpenEBS releases page, and copy it across with the other artifacts. Install it into the `PATH` on the host from which you will run `kubectl` against the air-gapped cluster, so that `kubectl openebs ...` works.
 
----
+## Pull Images and Push to Your Private Registry
 
-## Step 2 — Pull images and push to your private registry
+Two scripts handle this step. They deliberately preserve each image's original org/path and only rewrite the source-registry host. This matters for OpenEBS because its image list spans multiple registries (`docker.io`, `quay.io`, and `registry.k8s.io`), as well as the same image at multiple tags (for example, `csi-snapshotter` at `v7.0.0`, `v8.2.0`, and `v8.2.1`). Preserving the path keeps these distinct, and means the Helm overrides only need to change the registry host, not every repository path.
 
-Two scripts handle this. They deliberately **preserve each image's original
-org/path** and only rewrite the source-registry host. That matters for
-OpenEBS because its image list spans different registries — `docker.io`,
-`quay.io`, and `registry.k8s.io` — as well as the same image at
-multiple tags (for example `csi-snapshotter` at `v7.0.0`, `v8.2.0`, and
-`v8.2.1`). Preserving the path keeps all of these distinct and means your Helm
-overrides only need to change the **registry host**, not every repository path.
-
-The transform is simply:
+The transformation applied is:
 
 ```text
 docker.io/openebs/lvm-driver:1.9.1
@@ -167,12 +142,9 @@ registry.k8s.io/sig-storage/csi-attacher:v4.8.1
   -> <your-registry>/sig-storage/csi-attacher:v4.8.1
 ```
 
-### 2a. Save (pull) images
+### Save (Pull) Images
 
-Run [`openebs-save-images.sh`](#appendix-a-save-images-script) on the
-connected host. If the connected host can reach the private registry directly,
-you can skip the tarball and go straight to the push step. If not, export a
-tarball to carry across the air gap.
+Run [`openebs-save-images.sh`](#save-images-script) on the connected host. If the connected host can reach the private registry directly, the tarball step can be skipped and you can go straight to the push step. Otherwise, export a tarball to carry across the air gap.
 
 ```bash
 # Pull only (connected host can push to the registry directly):
@@ -182,39 +154,35 @@ tarball to carry across the air gap.
 ./openebs-save-images.sh --image-list images.txt --images openebs-images.tar.gz
 ```
 
-### 2b. Transfer (only if you exported a tarball)
+### Transfer (Only if a Tarball Was Exported)
 
-Copy `openebs-images.tar.gz`, the chart `.tgz`, `images.txt`, the Helm binary,
-the plugin, and the pull and push script to a host that can reach the private registry.
+Copy `openebs-images.tar.gz`, the chart `.tgz`, `images.txt`, the Helm binary, the plugin, and the pull and push scripts to a host that can reach the private registry.
 
-### 2c. Push images
+### Push Images
 
-Log in to your private registry, then run
-[`openebs-push-images.sh`](#appendix-b-push-images-script):
+Log in to your private registry, then run [`openebs-push-images.sh`](#push-images-script):
 
 ```bash
 docker login <registry-url>
 
-# If you transferred a tarball, load and push it:
+# If a tarball was transferred, load and push it:
 ./openebs-push-images.sh \
   --registry <registry-url> \
   --image-list images.txt \
   --images openebs-images.tar.gz
 
-# If the images are already present locally (no tarball), just push:
+# If the images are already present locally (no tarball), push directly:
 ./openebs-push-images.sh \
   --registry <registry-url> \
   --image-list images.txt
 ```
 
-After this completes, every image in `images.txt` exists in your private
-registry under its original org/path.
+After this step completes, every image in `images.txt` exists in your private registry under its original org/path.
 
-### (Optional) Trimming the image list
+### Trimming the Image List (Optional)
 
-If you do **not** need Replicated PV Mayastor or the observability stack, you
-can remove the images you will not use before running the scripts. A minimal
-**Local PV only** (for example):
+If Replicated PV Mayastor and the observability stack are not needed, remove the images that will not be used before running the scripts. A minimal Local PV-only list, for example:
+
 ```
 docker.io/openebs/provisioner-localpv:4.5.1
 docker.io/openebs/lvm-driver:1.9.1
@@ -225,18 +193,15 @@ docker.io/openebs/alpine-bash:4.5.0
 # plus the CSI sidecars used by the LVM/ZFS/Rawfile drivers you enable
 ```
 
-The `ghcr.io/openebs/mayastor/dev/*` images are only needed if you explicitly
-point Mayastor at the `dev` image set; most installs do not need them.
-When in doubt, keep the full list — the extra images are harmless.
+:::note
+The `ghcr.io/openebs/mayastor/dev/*` images are only needed if Mayastor is explicitly pointed at the `dev` image set; most installations do not need them. When in doubt, keep the full list, since the extra images are harmless.
+:::
 
----
+## Install the Helm Chart (Air-Gapped Cluster)
 
-## Step 3 — Install the Helm chart (air-gapped cluster)
+Install from the local chart package transferred in the previous step, overriding the image locations so every component pulls from your private registry.
 
-Install from the **local chart package** you transferred, overriding the image
-locations so every component pulls from your private registry.
-
-### 3a. Create a pull secret (if your registry requires auth)
+### Create a Pull Secret (if Your Registry Requires Authentication)
 
 ```bash
 kubectl create namespace openebs
@@ -248,24 +213,23 @@ kubectl create secret docker-registry openebs-regcred \
   --docker-password='<password>'
 ```
 
-### 3b. Build a `values.yaml` with your registry
+### Build a `values.yaml` File with Your Registry
 
-Create `airgap-values.yaml`. The block below shows the **shape** of the
-override; replace the placeholder keys with the ones you confirmed above.
+Create `airgap-values.yaml`. The block below shows the shape of the override; replace the placeholder keys with the ones confirmed above.
 
 ```yaml
 global:
-  imageRegistry: "<registry-url>" #Used by ZFS, LVM, Rawfile, Mayastor Components and etcd
-  imagePullSecrets: 
-    - openebs-regcred #Used by ZFS, LVM, Rawfile, Mayastor Components and etcd
+  imageRegistry: "<registry-url>" # Used by ZFS, LVM, Rawfile, Mayastor components and etcd
+  imagePullSecrets:
+    - openebs-regcred # Used by ZFS, LVM, Rawfile, Mayastor components and etcd
   image:
     registry: "<registry-url>" # Used by Loki and Alloy
     pullSecrets:
-      - name: openebs-regcred # Used by Alloy 
+      - name: openebs-regcred # Used by Alloy
 
 mayastor:
   nats:
-    imagePullSecrets: 
+    imagePullSecrets:
       - name: openebs-regcred
     nats:
       image:
@@ -292,7 +256,7 @@ loki:
       repository: "<registry-url>/kiwigrid/k8s-sidecar"
 ```
 
-### 3c. Install
+### Install
 
 ```bash
 helm install openebs ./openebs-4.5.1.tgz \
@@ -301,43 +265,37 @@ helm install openebs ./openebs-4.5.1.tgz \
   --values airgap-values.yaml
 ```
 
----
-
-## Step 4 — Verify the installation
+## Verify the Installation
 
 ```bash
 # All pods should reach Running/Completed with no ImagePullBackOff:
 kubectl get pods -n openebs -o wide
 
-# Confirm images actually resolve to your private registry:
+# Confirm images resolve to your private registry:
 kubectl get pods -n openebs \
   -o jsonpath='{range .items[*]}{range .spec.containers[*]}{.image}{"\n"}{end}{end}' \
   | sort -u
 
-# Confirm if imagePullSecrets is set on all the pods.
+# Confirm imagePullSecrets is set on all pods:
 kubectl get pods -n openebs -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.spec.imagePullSecrets}{"\n"}{end}'
 
-# StorageClasses created by the enabled engines:
+# StorageClasses created by the enabled storage components:
 kubectl get sc
 ```
 
-If any pod is stuck in `ImagePullBackOff`, describe it and read the exact image
-reference Kubernetes is trying to pull:
+If any pod is stuck in `ImagePullBackOff`, describe it to read the exact image reference Kubernetes is trying to pull:
 
 ```bash
 kubectl describe pod -n openebs <pod-name> | grep -iA2 image
 ```
 
-A wrong host, a missing org/path segment, or a missing pull secret is almost
-always the cause — cross-check the failing reference against what the push
-script wrote into your registry.
+A wrong host, a missing org/path segment, or a missing pull secret is almost always the cause. Cross-check the failing reference against what the push script wrote into your registry.
 
----
+## Save Images Script
 
-## Appendix A: Save Images Script
-
-> Save this file, `chmod +x openebs-save-images.sh`, and run it on the
-> internet-connected host.
+:::note
+Save this file, run `chmod +x openebs-save-images.sh`, and run it on the internet-connected host.
+:::
 
 ```bash
 #!/usr/bin/env bash
@@ -421,10 +379,11 @@ if [[ $images ]]; then
 fi
 ```
 
-## Appendix B: Push Images Script
+## Push Images Script
 
-> Save this file, `chmod +x openebs-push-images.sh`, and run it on the host
-> that can reach your private registry.
+:::note
+Save this file, run `chmod +x openebs-push-images.sh`, and run it on the host that can reach your private registry.
+:::
 
 ```bash
 #!/usr/bin/env bash
@@ -563,12 +522,9 @@ for src in "${refs[@]}"; do
 done
 ```
 
-## Support
-
-If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
-
 ## See Also
 
 - [Prerequisites](../quickstart-guide/prerequisites.md)
+- [OpenEBS Installation](../quickstart-guide/installation.md)
 - [Configuration](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-create-diskpool.md)
 - [Deploy an Application](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-deployment.md)

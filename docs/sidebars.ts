@@ -852,11 +852,6 @@ const sidebars: SidebarsConfig =
           ]
         },
         {
-          type: "doc",
-          id: "Solutioning/kubevirt",
-          label: "KubeVirt VM Live Migration (Block)"
-        },
-        {
           collapsed: true,
           type: "category",
           label: "Backup and Restore",
@@ -897,7 +892,17 @@ const sidebars: SidebarsConfig =
             }
             
           ]
-        },  
+        },
+        {
+          type: "doc",
+          id: "Solutioning/kubevirt",
+          label: "KubeVirt VM Live Migration (Block)"
+        },
+        {
+          type: "doc",
+          id: "Solutioning/airgapped-installation",
+          label: "Air-Gapped Installation"
+        },
       ]
     },
     {
