@@ -424,6 +424,39 @@ const sidebars: SidebarsConfig =
             {
               collapsed: true,
               type: "category",
+              label: "Local PV Rawfile",
+              customProps: {
+                icon: "Book"
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "user-guides/local-storage-user-guide/local-pv-rawfile/rawfile-overview",
+                  label: "Overview",
+                  key: "Rawfile_Overview",
+                },
+                {
+                  collapsed: true,
+                  type: "category",
+                  label: "Configuration",
+                  key: "Rawfile_Configuration",
+                  customProps: {
+                    icon: "Settings"
+                  },
+                  items: [
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-rawfile/configuration/rawfile-create-storageclass",
+                      label: "Create StorageClass(s)",
+                      key: "rawfile-create-storageclass",
+                    },
+                  ]
+                },
+              ]
+            },
+            {
+              collapsed: true,
+              type: "category",
               label: "Additional Information",
               key: "Main_AdditionalInformation",
               customProps: {

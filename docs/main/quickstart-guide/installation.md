@@ -52,13 +52,19 @@ Verify helm is installed and helm repo is updated. You need helm 3.2 or more.
     helm install openebs --namespace openebs openebs/openebs --create-namespace
     ```
 
-    The above command will install OpenEBS Local PV Hostpath, OpenEBS Local PV LVM, OpenEBS Local PV ZFS, and OpenEBS Replicated Storage components in `openebs` namespace and chart name as `openebs`.
+    The above command will install OpenEBS Local PV Hostpath, OpenEBS Local PV LVM, OpenEBS Local PV ZFS, and OpenEBS Replicated Storage components in `openebs` namespace and chart name as `openebs`. OpenEBS Local PV Rawfile is not installed by default.
 
     :::important
     - The default OpenEBS helm chart will install both Local Storage and Replicated Storage. If you do not want to install OpenEBS Replicated Storage, use the following command:
 
       ```
       helm install openebs --namespace openebs openebs/openebs --set engines.replicated.mayastor.enabled=false --create-namespace
+      ```
+
+    - OpenEBS Local PV Rawfile is disabled by default. To enable it during installation, use the following command:
+
+      ```
+      helm install openebs --namespace openebs openebs/openebs --set engines.local.rawfile.enabled=true --create-namespace
       ```
 
     - If the CustomResourceDefinitions for CSI VolumeSnapshots are already present in your cluster, you may skip their creation by using the following option:
