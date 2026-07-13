@@ -44,6 +44,8 @@ The dependencies (Grafana Loki/Alloy, NATS, MinIO, the prometheus-operator confi
 
 ## Requirements
 
+A supported Kubernetes version and a working CNI. Refer to [Prerequisites](../quickstart-guide/prerequisites.md).
+
 ### On the Internet-Connected Host
 
 - `docker` or `podman` (set `CONTAINER_CLI=podman` to use Podman).
@@ -56,29 +58,6 @@ The dependencies (Grafana Loki/Alloy, NATS, MinIO, the prometheus-operator confi
 
 - A reachable private container registry (Harbor, Nexus, Zot, the CNCF `distribution` registry, a cloud registry mirror, and so on), and every node must be able to pull from it. If the registry uses a private CA, install that CA on every node's container runtime before you begin.
 - Kubernetes nodes prepared for the storage components you intend to use, as follows.
-
-#### All Storage Components
-
-A supported Kubernetes version and a working CNI. Refer to [Prerequisites](../quickstart-guide/prerequisites.md).
-
-#### Local PV LVM
-
-`lvm2` installed, and a volume group present on each node that will host volumes.
-
-#### Local PV ZFS
-
-ZFS installed, and a zpool present on each node.
-
-#### Replicated PV Mayastor
-
-On every node that will run the io-engine:
-- The `nvme_tcp` kernel module loaded (`modprobe nvme_tcp`, persisted via `/etc/modules-load.d/`).
-- HugePages configured (2 MiB pages; a common starting point is 2 GiB total, but verify against your workload and the current Mayastor documentation).
-- The node labeled so Mayastor schedules the io-engine there (for example, `openebs.io/engine=mayastor`).
-
-:::note
-If you are installing only the Local PV storage components, you can skip the Mayastor-specific node preparation entirely.
-:::
 
 ## Download the Artifacts (Internet-Connected Host)
 
@@ -97,7 +76,7 @@ wget https://raw.githubusercontent.com/openebs/openebs/refs/tags/v${OPENEBS_VERS
 ```
 
 :::tip
-Trim the downloaded image list if you do not want a specific storage component to be installed, so that unnecessary images are not downloaded.
+If you do not need every storage component, you can download a smaller `images.txt`. Refer to [Trimming the Image List](#trimming-the-image-list-optional) for a minimal example.
 :::
 
 ### Helm Binary (for Transferring to the Air-Gapped Side, if Needed)
@@ -181,7 +160,7 @@ After this step completes, every image in `images.txt` exists in your private re
 
 ### Trimming the Image List (Optional)
 
-If Replicated PV Mayastor and the observability stack are not needed, remove the images that will not be used before running the scripts. A minimal Local PV-only list, for example:
+For a Local PV-only install, remove the Replicated PV Mayastor and observability images from `images.txt` before running the scripts. For example:
 
 ```
 docker.io/openebs/provisioner-localpv:4.5.1
