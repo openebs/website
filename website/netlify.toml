@@ -1,3 +1,6 @@
+# Trivial comment bump to force a fresh Netlify build for PR #605 — the DCO-fix
+# rebase left the tree content identical to an already-built commit, so Netlify's
+# change detection was skipping the rebuild. Safe to remove after the preview builds.
 [build]
   base = "website/"
   publish = "build/"
