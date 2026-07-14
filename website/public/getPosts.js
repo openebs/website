@@ -9,6 +9,13 @@ const getPosts = () => {
         if (err) {
             console.error('Failed to load files from the directory' + err);
         }
+        // Guard: if there are no blog source files, forEach below never runs its
+        // callback, so postList.length === files.length (0 === 0) is never checked
+        // and src/posts.json is silently left stale. Write an empty array explicitly.
+        if (!files || files.length === 0) {
+            fs.writeFileSync('src/posts.json', '[]');
+            return;
+        }
         files.forEach((file, index) => {
             let obj = {};
             let post;
@@ -69,15 +76,4 @@ const getPosts = () => {
 
                 postList.push(post);
                 if (postList.length === files.length) {
-                    let sortedJSON = sortAccrodingtoDate(postList);
-                    let sortedJSONWithID = sortedJSON.map(item => ({...item, id: sortedJSON.indexOf(item) + 1, slug: convertTitleToSlug(item.title) }))
-                    let data = JSON.stringify(sortedJSONWithID);
-                    fs.writeFileSync('src/posts.json', data);
-                }
-
-            })
-        })
-    })
-}
-
-getPosts();
+                    let sortedJSON =
