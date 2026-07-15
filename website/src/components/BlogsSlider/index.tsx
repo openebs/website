@@ -73,7 +73,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
     <>
       <div className={classes.sliderWrapper}>
         <Carousel settings={sliderSettings}>
-          {recommendedBlogs.map((elm: any) => (
+          {recommendedBlogs.filter(Boolean).map((elm: any) => (
             <div key={elm.id}>
               <Card className={classes.cardRoot}>
                 <CardMedia

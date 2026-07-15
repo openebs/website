@@ -110,7 +110,10 @@ const BlogPage: React.FC = () => {
             count: number,
           ) => {
             const _arr = [...arr];
-            return [...Array(count)].map(
+            // Never request more items than exist in the pool — splicing an
+            // already-emptied array returns undefined, which crashes BlogsSlider.
+            const safeCount = Math.min(count, _arr.length);
+            return [...Array(safeCount)].map(
               () => _arr.splice(Math.floor(Math.random() * _arr.length), 1)[0],
             );
           };
@@ -126,10 +129,10 @@ const BlogPage: React.FC = () => {
           recommendedBlogs = recommendedBlogs.filter(
             (item, index) => recommendedBlogs.indexOf(item) === index,
           );
-          setRecommendedBlogs(recommendedBlogs);
+          setRecommendedBlogs(recommendedBlogs.filter(Boolean));
         }
       }
-      setRecommendedBlogs(recommendedBlogs);
+      setRecommendedBlogs(recommendedBlogs.filter(Boolean));
     };
     getBlogsData();
     filterRecommendedBlogs();
