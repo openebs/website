@@ -207,5 +207,4 @@ JWT-based authentication for the Mayastor REST API is planned. When available, i
 
 - [Installation](../../../../quickstart-guide/installation.md)
 - [Encryption (Data at Rest)](../advanced-operations/encryption.md)
-- [Enable RDMA](rs-rdma.md)
 - [Storage Class Parameters](rs-storage-class-parameters.md)
