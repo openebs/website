@@ -94,13 +94,21 @@ parameters:
 
 ## StorageClass with Snapshots Enabled (Copy-on-Write)
 
-To enable block-level snapshots using copy-on-write (reflink), set `copyOnWrite` to `"true"`. The underlying filesystem must support reflinks (btrfs supports this natively; ext4 requires a reflink-capable filesystem).
+To enable block-level snapshots using copy-on-write (reflink), set `copyOnWrite` to `"true"`. The underlying storage pool's filesystem must support reflinks. CoW support varies by filesystem:
+
+| Filesystem | CoW Support | Setup Required |
+|---|---|---|
+| btrfs | Native | None - works out of the box |
+| XFS | With reflink | Format the pool device with `mkfs.xfs -m reflink=1` |
+| ext4 | Not supported | Full data copy is used instead |
+
+**For btrfs** - no extra setup needed, just set `fstype: btrfs`:
 
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: rawfile-cow-snapshots
+  name: rawfile-cow-btrfs
 provisioner: rawfile.csi.openebs.io
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
@@ -108,6 +116,31 @@ parameters:
   csi.storage.k8s.io/fstype: "btrfs"
   copyOnWrite: "true"
 ```
+
+**For XFS**, format the pool device with reflink enabled on each node, then configure the pool path in Helm values:
+
+```bash
+mkfs.xfs -m reflink=1 /dev/sdb
+mount /dev/sdb /mnt/nvme/rawfile/
+```
+
+Create a StorageClass targeting that pool:
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: rawfile-cow-xfs
+provisioner: rawfile.csi.openebs.io
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+parameters:
+  csi.storage.k8s.io/fstype: "xfs"
+  copyOnWrite: "true"
+  storagePool: "nvme"
+```
+
+See [Storage Pools](../advanced-operations/rawfile-storage-pools.md) for how to configure the pool in Helm values.
 
 ## StorageClass with FreezeFS for In-Use Snapshots
 
@@ -128,7 +161,9 @@ parameters:
 
 ## StorageClass Targeting a Specific Storage Pool
 
-If multiple storage pools are configured on the nodes, use the `storagePool` parameter to pin volumes to a named pool:
+Storage pools must be configured in the Helm chart before they can be referenced in a StorageClass. See [Storage Pools](../advanced-operations/rawfile-storage-pools.md) for how to define named pools with independent paths and capacity reservations.
+
+Once pools are configured, use the `storagePool` parameter to pin volumes to a named pool:
 
 ```yaml
 apiVersion: storage.k8s.io/v1
