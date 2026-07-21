@@ -84,5 +84,4 @@ The table below compares performance metrics for RDMA and TCP under specific wor
 - [Create StorageClass(s)](../configuration/rs-create-storageclass.md)
 - [Storage Class Parameters](../configuration/rs-storage-class-parameters.md)
 - [Topology Parameters](../configuration/rs-topology-parameters.md)
-- [Security (TLS / mTLS)](rs-security.md)
 - [Deploy an Application](../configuration/rs-deployment.md)
