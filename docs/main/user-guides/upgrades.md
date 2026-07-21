@@ -20,6 +20,17 @@ This upgrade process allows you to upgrade to the latest OpenEBS version 4.5 whi
 and one Replicated Storage (a.k.a Replicated Engine):
 - Replicated PV Mayastor
 
+:::note
+**Local PV Rawfile** is managed as a separate Helm release (`rawfile-localpv`) and is **not** covered by the `kubectl openebs upgrade` command. To upgrade Local PV Rawfile, run:
+
+```
+helm repo update rawfile-localpv
+helm upgrade rawfile-localpv rawfile-localpv/rawfile-localpv -n openebs
+```
+
+Before upgrading, review the [Changelog](https://github.com/openebs/rawfile-localpv/blob/develop/CHANGELOG.md) for breaking changes - some versions require additional migration steps.
+:::
+
 As a part of the upgrade to OpenEBS 4.5, the Helm chart will install all four engines regardless of the engine you used before the upgrade. 
 
 :::info

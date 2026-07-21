@@ -11,6 +11,7 @@ If you are installing OpenEBS, make sure that your Kubernetes nodes meet the req
 - [Local PV Hostpath Prerequisites](#local-pv-hostpath-prerequisites)
 - [Local PV LVM Prerequisites](#local-pv-lvm-prerequisites)
 - [Local PV ZFS Prerequisites](#local-pv-zfs-prerequisites)
+- [Local PV Rawfile Prerequisites](#local-pv-rawfile-prerequisites)
 - [Replicated PV Mayastor Prerequisites](#replicated-pv-mayastor-prerequisites).
 
 At a high-level, OpenEBS requires:
@@ -116,6 +117,32 @@ errors: No known data errors
 ```
 
 Configure the [custom topology keys](../faqs/faqs.md#how-to-add-custom-topology-key-to-local-pv-zfs-driver) (if needed). This can be used for many purposes like if we want to create the PV on nodes in a particular zone or building. We can label the nodes accordingly and use that key in the storageclass for making the scheduling decision.
+
+## Local PV Rawfile Prerequisites
+
+:::note
+Local PV Rawfile is disabled by default in the OpenEBS Helm chart. These prerequisites apply only if you intend to enable and use it.
+:::
+
+Before enabling the Rawfile driver, make sure each Kubernetes node meets the following requirements:
+
+1. Linux nodes with loop device support - verify that `losetup` is available on each node.
+2. Filesystem tools must be installed on each node for the filesystem type you intend to use:
+   - **ext4** (default): `e2fsprogs` (`mkfs.ext4`)
+   - **xfs**: `xfsprogs` (`mkfs.xfs`)
+   - **btrfs**: `btrfs-progs` (`mkfs.btrfs`)
+
+   To install on Ubuntu/Debian:
+   ```
+   apt-get install e2fsprogs xfsprogs btrfs-progs
+   ```
+
+   To install on RHEL/CentOS:
+   ```
+   yum install e2fsprogs xfsprogs btrfs-progs
+   ```
+
+3. The storage pool directory (default: `/var/csi/rawfile`) must exist or be creatable on each node, with sufficient disk space for the volumes you plan to provision.
 
 ## Replicated PV Mayastor Prerequisites
 

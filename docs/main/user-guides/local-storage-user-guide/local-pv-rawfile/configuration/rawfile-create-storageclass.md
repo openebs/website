@@ -16,6 +16,10 @@ This document provides step-by-step instructions on creating a StorageClass for 
 
 The provisioner name for Local PV Rawfile is `rawfile.csi.openebs.io`. This must be set in every StorageClass so that provisioning requests are handled by the Rawfile driver.
 
+:::important
+Always set `volumeBindingMode: WaitForFirstConsumer`. The driver provisions volumes on the node chosen by the Kubernetes scheduler and requires that topology information. Using `Immediate` will cause provisioning to fail with "No preferred topology set".
+:::
+
 ## Default StorageClass (ext4)
 
 The following is a basic StorageClass that provisions volumes formatted with ext4, which is the default filesystem:
@@ -29,7 +33,7 @@ provisioner: rawfile.csi.openebs.io
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
 parameters:
-  fsType: "ext4"
+  csi.storage.k8s.io/fstype: "ext4"
 ```
 
 ## StorageClass with XFS
@@ -43,7 +47,7 @@ provisioner: rawfile.csi.openebs.io
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
 parameters:
-  fsType: "xfs"
+  csi.storage.k8s.io/fstype: "xfs"
 ```
 
 ## StorageClass with Btrfs
@@ -57,12 +61,12 @@ provisioner: rawfile.csi.openebs.io
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
 parameters:
-  fsType: "btrfs"
+  csi.storage.k8s.io/fstype: "btrfs"
 ```
 
 ## StorageClass with Thin Provisioning
 
-Thin provisioning creates sparse backing files, meaning disk space is allocated on demand rather than upfront. When using thin provisioning, you must set `formatOptions` to disable block discard, otherwise the filesystem may reclaim space in a way that conflicts with the sparse file.
+By default, volumes are **thick-provisioned** - the full backing file is pre-allocated at creation time. Thin provisioning creates a sparse backing file instead, meaning disk space is allocated on demand as data is written. This enables overprovisioning, so you must monitor actual pool usage (`rawfile_pool_remaining_capacity_bytes`) to avoid the backing filesystem running out of space.
 
 ```yaml
 apiVersion: storage.k8s.io/v1
@@ -73,7 +77,7 @@ provisioner: rawfile.csi.openebs.io
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
 parameters:
-  fsType: "ext4"
+  csi.storage.k8s.io/fstype: "ext4"
   thinProvision: "true"
   formatOptions: "-E nodiscard"
 ```
@@ -83,7 +87,7 @@ For ext4 volumes, 5% of the capacity is reserved for the root user by default. T
 
 ```yaml
 parameters:
-  fsType: "ext4"
+  csi.storage.k8s.io/fstype: "ext4"
   formatOptions: "-m 0"
 ```
 :::
@@ -101,7 +105,7 @@ provisioner: rawfile.csi.openebs.io
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
 parameters:
-  fsType: "btrfs"
+  csi.storage.k8s.io/fstype: "btrfs"
   copyOnWrite: "true"
 ```
 
@@ -118,7 +122,7 @@ provisioner: rawfile.csi.openebs.io
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
 parameters:
-  fsType: "ext4"
+  csi.storage.k8s.io/fstype: "ext4"
   freezeFs: "true"
 ```
 
@@ -135,31 +139,50 @@ provisioner: rawfile.csi.openebs.io
 volumeBindingMode: WaitForFirstConsumer
 allowVolumeExpansion: true
 parameters:
-  fsType: "ext4"
+  csi.storage.k8s.io/fstype: "ext4"
   storagePool: "fast-pool"
 ```
+
+:::note
+To use the node's default pool, omit the `storagePool` key entirely. Setting it to an empty string (`""`) is rejected as an invalid pool name.
+:::
+
+## VolumeSnapshotClass
+
+To use snapshots with Local PV Rawfile, a `VolumeSnapshotClass` is required. The Helm chart creates one named `rawfile-localpv` by default. To create one manually:
+
+```yaml
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotClass
+metadata:
+  name: rawfile-localpv
+driver: rawfile.csi.openebs.io
+deletionPolicy: Delete
+```
+
+There are no driver-specific parameters on the `VolumeSnapshotClass`. Snapshot behavior (`freezeFs`, `copyOnWrite`) is controlled by the volume's StorageClass.
 
 ## StorageClass Parameters Conformance Matrix
 
 ### Standard StorageClass Parameters
 
-| Parameter | Values |
-|---|---|
-| `allowVolumeExpansion` | `true` / `false` |
-| `volumeBindingMode` | `Immediate` / `WaitForFirstConsumer` |
-| `reclaimPolicy` | `Retain` / `Delete` |
+| Parameter | Values | Notes |
+|---|---|---|
+| `allowVolumeExpansion` | `true` / `false` | Set to `true` to enable online volume resize |
+| `volumeBindingMode` | `WaitForFirstConsumer` | **Required.** `Immediate` causes provisioning to fail |
+| `reclaimPolicy` | `Retain` / `Delete` | `Delete` removes the backing file when the PV is released |
 
 ### Rawfile-Specific StorageClass Parameters
 
 | Parameter | Values | Description |
 |---|---|---|
-| `fsType` | `ext4` (default), `xfs`, `btrfs` | Filesystem used to format the volume |
-| `thinProvision` | `"true"` / `""` | Creates a sparse backing file instead of pre-allocating disk space |
-| `copyOnWrite` | `"true"` / `""` / `"false"` | Enables CoW reflink snapshots; leave empty to autodetect |
-| `freezeFs` | `"true"` / `""` | Freezes the filesystem during snapshot for in-use volume consistency |
-| `formatOptions` | Filesystem format flags (e.g. `-m 0`, `-E nodiscard`) | Passed to `mkfs` at volume creation time |
+| `csi.storage.k8s.io/fstype` | `ext4` (default), `xfs`, `btrfs` | Filesystem used to format the volume; ignored for `volumeMode: Block` |
+| `thinProvision` | `"true"` / `"false"` (default) | `"true"` creates a sparse backing file; enables overprovisioning - monitor pool usage |
+| `copyOnWrite` | `"true"` / `"false"` / unset | CoW reflink attribute on the backing file; leave unset to autodetect per pool |
+| `freezeFs` | `"true"` / `"false"` (default) | Briefly freezes the filesystem during snapshots of in-use volumes for consistency |
+| `formatOptions` | Extra `mkfs` flags (e.g. `"-m 0"`, `"-i maxpct=10"`) | Applied once at volume creation time only |
 | `mountOptions` | Mount flags (e.g. `noatime`) | Passed to `mount` when attaching the volume to a pod |
-| `storagePool` | Pool name string | Targets a specific named storage pool on the node |
+| `storagePool` | Pool name string | Targets a named storage pool; omit the key entirely for the node's default pool |
 
 ## Support
 

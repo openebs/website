@@ -30,6 +30,26 @@ Run the following command to uninstall OpenEBS:
 helm uninstall openebs -n <OPENEBS_NAMESPACE>
 ```
 
+## Uninstalling Local PV Rawfile
+
+Local PV Rawfile is a separate Helm release and must be uninstalled independently. Before uninstalling, you must delete all resources created through the driver in the following order to avoid leaked loop device mounts on nodes:
+
+1. Delete all VolumeSnapshots
+2. Delete all PersistentVolumeClaims
+3. Delete all PersistentVolumes
+
+Then uninstall the Helm release:
+
+```
+helm uninstall rawfile-localpv -n openebs
+```
+
+After uninstalling, you may want to remove the rawfile data directory from each node manually (default: `/var/csi/rawfile`).
+
+:::warning
+If you uninstall the driver without first deleting the above resources, loop devices and mounts may be left behind on the nodes and require manual cleanup.
+:::
+
 :::note
 Uninstalling the Helm chart does not remove/uninstall the CustomResourceDefinitions (CRDs).
 
