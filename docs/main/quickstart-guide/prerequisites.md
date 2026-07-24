@@ -124,25 +124,11 @@ Configure the [custom topology keys](../faqs/faqs.md#how-to-add-custom-topology-
 Local PV Rawfile is disabled by default in the OpenEBS Helm chart. These prerequisites apply only if you intend to enable and use it.
 :::
 
-Before enabling the Rawfile driver, make sure each Kubernetes node meets the following requirements:
+The Rawfile driver container image bundles all required tools (`losetup`, `mkfs.ext4`, `mkfs.xfs`, `mkfs.btrfs`) — no host-level installation of these tools is needed.
 
-1. Linux nodes with loop device support - verify that `losetup` is available on each node.
-2. Filesystem tools must be installed on each node for the filesystem type you intend to use:
-   - **ext4** (default): `e2fsprogs` (`mkfs.ext4`)
-   - **xfs**: `xfsprogs` (`mkfs.xfs`)
-   - **btrfs**: `btrfs-progs` (`mkfs.btrfs`)
+The only host-side requirement is:
 
-   To install on Ubuntu/Debian:
-   ```
-   apt-get install e2fsprogs xfsprogs btrfs-progs
-   ```
-
-   To install on RHEL/CentOS:
-   ```
-   yum install e2fsprogs xfsprogs btrfs-progs
-   ```
-
-3. The storage pool directory (default: `/var/csi/rawfile`) must exist or be creatable on each node, with sufficient disk space for the volumes you plan to provision.
+- The storage pool directory (default: `/var/csi/rawfile`) must exist or be creatable on each node, with sufficient disk space for the volumes you plan to provision.
 
 ## Replicated PV Mayastor Prerequisites
 

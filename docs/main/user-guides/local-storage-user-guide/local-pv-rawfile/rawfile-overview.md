@@ -30,7 +30,7 @@ Refer to the [OpenEBS Installation documentation](../../../quickstart-guide/inst
 - Real-time volume usage metrics – Per-volume disk usage readable in O(1) via `df`, with Prometheus metrics exposed per pool and node.
 - Per-volume filesystem customization – Each volume can use a different filesystem (ext4, btrfs, xfs) with independent format and mount options.
 - Dynamic provisioning – Volumes are created on demand without manual pre-allocation.
-- Volume snapshots and cloning – Block-level copy-on-write snapshots and same-node volume cloning.
+- Volume snapshots and cloning – Block-level copy-on-write snapshots and same-node volume cloning (CoW efficiency depends on the underlying pool filesystem — see [Storage Pools](advanced-operations/rawfile-storage-pools.md)).
 - Online volume expansion – Expand volumes without downtime on supported filesystems (ext4, btrfs, xfs).
 - Multiple storage pools per node – Independent pool configuration with reserved capacity management.
 
