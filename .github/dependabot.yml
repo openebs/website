@@ -1,0 +1,25 @@
+version: 2
+
+multi-ecosystem-groups:
+  all-content:
+    schedule:
+      interval: weekly
+
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    patterns:
+      - "*"
+    multi-ecosystem-group: all-content
+
+  - package-ecosystem: npm
+    directory: /docs
+    patterns:
+      - "*"
+    multi-ecosystem-group: all-content
+
+  - package-ecosystem: npm
+    directory: /website
+    patterns:
+      - "*"
+    multi-ecosystem-group: all-content
