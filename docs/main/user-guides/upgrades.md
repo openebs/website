@@ -15,7 +15,8 @@ This document describes the procedure for upgrading an existing OpenEBS deployme
 This upgrade process allows you to upgrade to the latest OpenEBS version 4.5 which is a unified installer for three Local Storages (a.k.a Local Engines):
 - Local PV HostPath
 - Local PV LVM 
-- Local PV ZFS 
+- Local PV ZFS
+- Local PV Rawfile
 
 and one Replicated Storage (a.k.a Replicated Engine):
 - Replicated PV Mayastor
@@ -41,6 +42,7 @@ Downgrades are not supported.
     - Local PV Hostpath
     - Local PV LVM
     - Local PV ZFS
+    - Local PV Rawfile
     - Replicated PV Mayastor
 
 Refer to the [Migration documentation](../user-guides/data-migration/migration-overview.md) for other storages.
