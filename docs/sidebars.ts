@@ -505,6 +505,11 @@ const sidebars: SidebarsConfig =
                     },
                     {
                       type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-security",
+                      label: "Security"
+                    },
+                    {
+                      type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-deployment",
                       label: "Deploy an Application",
                       key: "RS_DeployApp",
