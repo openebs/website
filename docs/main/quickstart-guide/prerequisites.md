@@ -130,6 +130,10 @@ The only host-side requirement is:
 
 - The storage pool directory (default: `/var/csi/rawfile`) must exist or be creatable on each node, with sufficient disk space for the volumes you plan to provision.
 
+:::note
+**Copy-on-Write (CoW) snapshots and clones:** If you want space-efficient, near-instant snapshots and clones, the underlying filesystem of the storage pool directory must support reflinks. btrfs supports this natively. XFS supports it when formatted with `mkfs.xfs -m reflink=1`. ext4 does not currently support reflinks. Without CoW, snapshots and clones perform a full data copy instead.
+:::
+
 ## Replicated PV Mayastor Prerequisites
 
 ### General

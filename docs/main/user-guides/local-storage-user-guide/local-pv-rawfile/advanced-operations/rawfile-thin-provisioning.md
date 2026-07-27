@@ -77,7 +77,7 @@ rawfile_volume_physical_bytes
 
 ## Thin Provisioning with CoW Pools
 
-Thin provisioning combines well with Copy-on-Write pools (btrfs, XFS reflink):
+Thin provisioning combines well with Copy-on-Write pools (filesystems with reflink enabled):
 
 - New volumes start near-empty (sparse file).
 - Snapshots and clones only consume the blocks that differ from their source.
@@ -93,7 +93,7 @@ Use thick provisioning (the default) when:
 
 ## Support
 
-If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/rawfile-localpv/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
 
 ## See Also
 

@@ -63,11 +63,11 @@ Two approaches are available for snapshotting active volumes:
 
 ### CoW-Capable Pools (Recommended)
 
-Storage pools backed by btrfs or XFS with reflink produce space-efficient, nearly instant snapshots. No freeze is required.
+Storage pools backed by filesystems which support reflink (i.e. btrfs or XFS) produce space-efficient, nearly instant snapshots. No freeze is required.
 
 ### freezeFs
 
-For pools without CoW support (e.g. ext4), add `freezeFs: "true"` to the StorageClass. The filesystem is briefly frozen during the snapshot to ensure crash consistency:
+For pools without CoW support, add `freezeFs: "true"` to the StorageClass. The filesystem is frozen and the entire volume is copied to a new file before it is unfrozen:
 
 ```yaml
 parameters:
@@ -145,8 +145,8 @@ Delete all VolumeSnapshots before deleting the PVC or uninstalling the driver to
 
 ## Capacity Considerations
 
-- CoW-capable pools (btrfs, XFS reflink): snapshots consume only the changed blocks after the snapshot point.
-- Non-CoW pools (ext4): each snapshot is a full copy of the volume and consumes the same amount of space as the original.
+- CoW-capable pools (filesystems with reflink enabled): snapshots consume only the changed blocks after the snapshot point.
+- Non-CoW pools: each snapshot is a full copy of the volume and consumes the same amount of space as the original.
 
 ## Troubleshooting
 
@@ -159,7 +159,7 @@ Delete all VolumeSnapshots before deleting the PVC or uninstalling the driver to
 
 ## Support
 
-If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/openebs/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
+If you encounter issues or have a question, file a [Github issue](https://github.com/openebs/rawfile-localpv/issues/new), or talk to us on the [#openebs channel on the Kubernetes Slack server](https://kubernetes.slack.com/messages/openebs/).
 
 ## See Also
 
