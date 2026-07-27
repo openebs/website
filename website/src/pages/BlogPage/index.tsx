@@ -9,7 +9,7 @@ import {
   Breadcrumbs,
 } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import useStyles from './style';
 import { useBlogName } from '../../hooks/extractBlogPath';
 import Footer from '../../components/Footer';

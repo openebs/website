@@ -17,7 +17,7 @@ import {
 import createStyles from '@mui/styles/createStyles';
 import withStyles from '@mui/styles/withStyles';
 import ReactMarkdown from 'react-markdown';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import useStyles from './styles';
 import { BLOG_TAGS, VIEW_PORT } from '../../constants';
 import Carousel from '../Carousel';

@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 
 // custom hook for getting blog name from the URL
 const useBlogName = () => {

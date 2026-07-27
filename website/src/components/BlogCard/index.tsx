@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import {
   Button, Card, CardActions, CardContent, CardMedia,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import ReactMarkdown from 'react-markdown';
 import useStyles from './style';
 import BlogImage from '../BlogImage';

@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import ReactMarkdown from 'react-markdown';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import Carousel from '../Carousel';
 import useStyles from './style';
 import { VIEW_PORT } from '../../constants';
