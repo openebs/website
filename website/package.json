@@ -35,7 +35,7 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^6.4.4",
     "typescript": "npm:@typescript/typescript6@^6.0.2",
-    "web-vitals": "^6.0.0"
+    "web-vitals": "^6.0.1"
   },
   "scripts": {
     "postinstall": "node public/getPosts.js",
