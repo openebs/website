@@ -8,7 +8,7 @@ import {
   MenuList,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import GitHubButton from 'react-github-btn';
 import { useTranslation } from 'react-i18next';
 import navbarItems from './navbar';

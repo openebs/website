@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Avatar, Button } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import useStyles from './styles';
 import readingTime from '../../utils/readingTime';
 import getAvatar from '../../utils/getAvatar';

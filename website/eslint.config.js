@@ -61,6 +61,9 @@ module.exports = tseslint.config(
       'linebreak-style': 0,
       'new-cap': 0,
       'import/prefer-default-export': 0,
+      // eslint-plugin-import's node resolver can't read exports-only packages
+      // like react-router v8, see https://github.com/remix-run/react-router/issues/12371
+      'import/no-unresolved': ['error', { ignore: ['^react-router'] }],
       'no-underscore-dangle': 0,
       'react/destructuring-assignment': 0,
       'react/static-property-placement': [

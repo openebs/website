@@ -7,7 +7,7 @@ import {
   Grid,
   Link,
  Pagination } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import useStyles from './styles';
 import Footer from '../../../components/Footer';
 import { VIEW_PORT, METADATA_TYPES } from '../../../constants';
