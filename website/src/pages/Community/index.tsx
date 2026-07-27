@@ -1,6 +1,6 @@
 import {
   Button, Grid, Paper, Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -55,13 +55,16 @@ const Community: React.FC = () => {
             {/* Commercial support intro section  */}
             {!(width < mobileBreakpoint) ? (
             /* Commercial support Desktop view  */
-              <Grid
+              (<Grid
                 container
                 direction="row"
-                justify="center"
-                alignItems="center"
+                sx={{ justifyContent: 'center', alignItems: 'center' }}
               >
-                <Grid item xs={12} sm={6}>
+                <Grid
+                  size={{
+                    xs: 12,
+                    sm: 6
+                  }}>
                   <Typography variant="h1" className={classes.pageHeader}>
                     {t('community.title')}
                   </Typography>
@@ -69,7 +72,12 @@ const Community: React.FC = () => {
                     {t('community.description')}
                   </Typography>
                 </Grid>
-                <Grid item xs={12} sm={6} className={classes.supportImage}>
+                <Grid
+                  className={classes.supportImage}
+                  size={{
+                    xs: 12,
+                    sm: 6
+                  }}>
                   <span className={classes.introImage}>
                     <LazyLoadImage
                       effect="blur"
@@ -78,21 +86,20 @@ const Community: React.FC = () => {
                     />
                   </span>
                 </Grid>
-              </Grid>
+              </Grid>)
             ) : (
             /* Commercial support mobile view  */
-              <Grid
+              (<Grid
                 container
                 direction="row"
-                justify="center"
-                alignItems="center"
+                sx={{ justifyContent: 'center', alignItems: 'center' }}
               >
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <Typography variant="h1" className={classes.pageHeader}>
                     {t('community.title')}
                   </Typography>
                 </Grid>
-                <Grid item xs={12} className={classes.supportImage}>
+                <Grid className={classes.supportImage} size={12}>
                   <span className={classes.introImage}>
                     <LazyLoadImage
                       effect="blur"
@@ -101,12 +108,12 @@ const Community: React.FC = () => {
                     />
                   </span>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <Typography className={classes.supportDescription}>
                     {t('community.description')}
                   </Typography>
                 </Grid>
-              </Grid>
+              </Grid>)
             )}
           </div>
 
@@ -138,8 +145,13 @@ const Community: React.FC = () => {
               <Typography variant="h2" className={classes.sectionTitle}>
                 {t('contributing.title')}
               </Typography>
-              <Grid container justify="space-between">
-                <Grid item lg={5} md={6} sm={12}>
+              <Grid container sx={{ justifyContent: 'space-between' }}>
+                <Grid
+                  size={{
+                    lg: 5,
+                    md: 6,
+                    sm: 12
+                  }}>
                   <Paper className={classes.paper}>
                     <div className={classes.iconHolder}>
                       <img
@@ -167,7 +179,12 @@ const Community: React.FC = () => {
                     </Button>
                   </Paper>
                 </Grid>
-                <Grid item lg={5} md={6} sm={12}>
+                <Grid
+                  size={{
+                    lg: 5,
+                    md: 6,
+                    sm: 12
+                  }}>
                   <Paper className={classes.paper}>
                     <div className={classes.iconHolder}>
                       <img
@@ -203,10 +220,14 @@ const Community: React.FC = () => {
           <div className={classes.sectionDiv}>
             <Grid
               container
-              justify="space-evenly"
+              sx={{ justifyContent: 'space-evenly' }}
               className={classes.sponsorAndDependentProjectsWrapper}
             >
-              <Grid item xs={12} md={5}>
+              <Grid
+                size={{
+                  xs: 12,
+                  md: 5
+                }}>
                 <div className={classes.sponsorAndDependentProjectsDiv}>
                   <Typography
                     className={classes.sponsorAndDependentProjectsDescription}
@@ -221,7 +242,11 @@ const Community: React.FC = () => {
                   />
                 </div>
               </Grid>
-              <Grid item xs={12} md={7}>
+              <Grid
+                size={{
+                  xs: 12,
+                  md: 7
+                }}>
                 <div className={classes.sponsorAndDependentProjectsDiv}>
                   <Typography
                     className={classes.sponsorAndDependentProjectsDescription}
@@ -231,6 +256,7 @@ const Community: React.FC = () => {
                   <div>
                     {dependentProjects.map(({ label, image_src, alt }) => (
                       <img
+                        key={label}
                         loading="lazy"
                         src={image_src}
                         alt={alt}

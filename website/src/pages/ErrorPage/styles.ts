@@ -1,4 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -17,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   errorImage: {
     width: '60%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
     },
   },
@@ -26,7 +28,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontWeight: 700,
     margin: theme.spacing(5, 0),
     color: theme.palette.text.primary,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '1rem',
       margin: theme.spacing(8, 4),
     },

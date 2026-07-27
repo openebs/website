@@ -1,4 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -21,7 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'center',
     '& .MuiButtonBase-root': {
       color: theme.palette.text.secondary,
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         fontSize: '14px',
       },
     },
@@ -32,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       borderRadius: '12px 12px 12px 0px',
       padding: theme.spacing(3, 1),
       margin: theme.spacing(2.5, 2),
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         padding: theme.spacing(2, 0.5),
       },
     },
@@ -46,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
     margin: theme.spacing(8, 0, 3),
     color: theme.palette.text.primary,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1.25rem',
       maxWidth: '250px',
       margin: 'auto',
@@ -65,18 +67,18 @@ const useStyles = makeStyles((theme: Theme) => ({
     },
     '& .slick-slide': {
       height: 'inherit',
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         opacity: '.3',
       },
     },
     '& .slick-slide > div': {
       height: '100%',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         marginRight: theme.spacing(1.2),
       },
     },
     '& .slick-slide.slick-center': {
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         opacity: 1,
       },
     },
@@ -130,7 +132,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '22px',
     fontWeight: 700,
     cursor: 'pointer',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '16px',
     },
   },
@@ -168,7 +170,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   actionWrapper: {
     justifyContent: 'space-between',
     padding: theme.spacing(0),
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'block',
     },
   },
@@ -177,7 +179,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     overflow: 'auto',
     paddingBottom: theme.spacing(0.25),
     width: '70%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
     },
   },
@@ -188,7 +190,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     cursor: 'pointer',
   },
   sliderWrapper: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: theme.spacing(0, 1),
       '& .slick-list': {
         padding: `${theme.spacing(0, 3, 0, 0)} !important`,

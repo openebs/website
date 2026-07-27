@@ -1,20 +1,20 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   footer: {
     backgroundColor: 'transparent',
     boxShadow: 'none',
     padding: theme.spacing(2, 10, 0),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: theme.spacing(2, 5, 0),
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: theme.spacing(2, 3, 0),
     },
   },
   toolbar: {
     display: 'flex',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: theme.spacing(0),
     },
   },
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     width: '85%',
     marginBottom: theme.spacing(4),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       width: '95%',
     },
   },
@@ -31,21 +31,21 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     boxShadow: 'none',
     backgroundColor: 'transparent',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: theme.spacing(0),
     },
   },
   firstGrid: {
     paddingRight: theme.spacing(20),
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('xl')]: {
       paddingRight: theme.spacing(20),
       paddingLeft: theme.spacing(2),
     },
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       paddingRight: theme.spacing(5),
       paddingLeft: theme.spacing(0),
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       paddingRight: theme.spacing(0),
       display: 'flex',
       justifyContent: 'space-between',
@@ -54,11 +54,11 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     marginBottom: theme.spacing(4),
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100px',
       marginBottom: theme.spacing(3),
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       width: '100px',
       marginBottom: theme.spacing(0),
     },
@@ -134,7 +134,7 @@ const useStyles = makeStyles((theme) => ({
   columnListItem: {
     color: theme.palette.text.secondary,
     marginBottom: theme.spacing(1),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       marginBottom: theme.spacing(1.5),
     },
   },
@@ -144,17 +144,17 @@ const useStyles = makeStyles((theme) => ({
     margin: 'auto',
     width: '95%',
     marginTop: theme.spacing(5),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       width: '100%',
     },
   },
   copyrightsWrapper: {
     display: 'flex',
     padding: theme.spacing(2, 4),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: theme.spacing(2, 0),
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
       padding: theme.spacing(2, 0),
       marginTop: theme.spacing(6),
@@ -162,7 +162,7 @@ const useStyles = makeStyles((theme) => ({
   },
   copyrights: {
     fontSize: '1rem',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       fontSize: '.9rem',
     },
   },
@@ -170,7 +170,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(4),
     color: theme.palette.warning.main,
     textDecoration: 'underline',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       margin: theme.spacing(2, 0, 4),
     },
   },

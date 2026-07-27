@@ -1,11 +1,10 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+ 
 import React, { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import {
-  Typography, Link, Tabs, Tab, Box, Button, Tooltip, IconButton, withStyles,
-} from '@material-ui/core';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import { Typography, Link, Tabs, Tab, Box, Button, Tooltip, IconButton } from '@mui/material';
+import withStyles from '@mui/styles/withStyles';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import useStyles from './styles';
 import Footer from '../../components/Footer';
@@ -168,28 +167,42 @@ const Home: React.FC = () => {
           {isMobileView
             ? (
               <Grid container spacing={0}>
-                <Grid item sm={8} xs={11} className={classes.firstGrid}>
+                <Grid
+                  className={classes.firstGrid}
+                  size={{
+                    sm: 8,
+                    xs: 11
+                  }}>
                   <Paper className={[classes.paper, classes.firstPaper].join(' ')}>
                     <Typography variant="h1" className={classes.firstSectionTitle}>
                       {t('home.landingScreenTitle')}
                     </Typography>
                   </Paper>
                 </Grid>
-                <Grid item sm={4} xs={1}>
+                <Grid
+                  size={{
+                    sm: 4,
+                    xs: 1
+                  }}>
                   <Paper className={[classes.paper, classes.secondGrid].join(' ')}>
                     <img loading="lazy" src="../images/png/homepage_main.png?q=20" alt={t('home.landingScreenImageAlt')} className={classes.landingImage} />
                   </Paper>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <Paper className={[classes.paper, classes.tabsWrapper].join(' ')}>
-                    <Tabs value={tabValue} onChange={handleTabChange} TabIndicatorProps={{ style: { display: 'none' } }}>
+                    <Tabs value={tabValue} onChange={handleTabChange} slotProps={{ indicator: { style: { display: 'none' } } }}>
                       <Tab label={t('home.openebs.label')} {...a11yProps(0)} className={classes.tabButton} />
                       <Tab label={t('home.concepts.label')} {...a11yProps(1)} className={classes.tabButton} />
                       <Tab label={t('home.community.label')} {...a11yProps(2)} className={classes.tabButton} />
                     </Tabs>
                     <TabPanel value={tabValue} index={0}>
                       <Typography className={classes.tabBodyText}>
-                        {t('home.openebs.description')}
+                        <Trans i18nKey="home.openebs.description">
+                          OpenEBS helps Developers and Platform SREs easily deploy Kubernetes Stateful Workloads that require fast and highly reliable
+                          <Link href="/docs/concepts/cns" className={classes.link}>Container Native Storage</Link>
+                          {' '}
+                          OpenEBS turns any storage available on the Kubernetes worker nodes into local or distributed Kubernetes Persistent Volumes.
+                        </Trans>
                       </Typography>
                       <Button variant="contained" color="secondary" className={classes.solidButton} href="/docs/quickstart-guide/installation">
                         {t('home.openebs.runOpenEBS')}
@@ -244,13 +257,19 @@ const Home: React.FC = () => {
 
             : (
               <Grid container spacing={0}>
-                <Grid item lg={6} md={7} sm={8} className={classes.firstGrid}>
+                <Grid
+                  className={classes.firstGrid}
+                  size={{
+                    lg: 6,
+                    md: 7,
+                    sm: 8
+                  }}>
                   <Paper className={[classes.paper, classes.firstPaper].join(' ')}>
                     <Typography variant="h1" className={classes.firstSectionTitle}>
                       {t('home.landingScreenTitle')}
                     </Typography>
 
-                    <Tabs value={tabValue} onChange={handleTabChange} TabIndicatorProps={{ style: { display: 'none' } }}>
+                    <Tabs value={tabValue} onChange={handleTabChange} slotProps={{ indicator: { style: { display: 'none' } } }}>
                       <Tab label={t('home.openebs.label')} {...a11yProps(0)} className={classes.tabButton} />
                       <Tab label={t('home.concepts.label')} {...a11yProps(1)} className={classes.tabButton} />
                       <Tab label={t('home.community.label')} {...a11yProps(2)} className={classes.tabButton} />
@@ -310,7 +329,12 @@ const Home: React.FC = () => {
                     </TabPanel>
                   </Paper>
                 </Grid>
-                <Grid item lg={6} md={5} sm={4}>
+                <Grid
+                  size={{
+                    lg: 6,
+                    md: 5,
+                    sm: 4
+                  }}>
                   <Paper className={classes.paper}>
                     <span className={classes.landingImage}>
                       <LazyLoadImage effect="blur" src="../images/png/homepage_main.png" alt={t('home.landingScreenImageAlt')} />
@@ -320,15 +344,12 @@ const Home: React.FC = () => {
               </Grid>
             )}
         </section>
-
         <section>
           <AdopterSlider />
         </section>
-
         <section>
           <Sponsor />
         </section>
-
         {/* Section: Why OpenEBS */}
         <section className={classes.section}>
           <Typography variant="h2" className={classes.sectionTitle}>
@@ -336,7 +357,12 @@ const Home: React.FC = () => {
           </Typography>
           <Grid container spacing={3} className={classes.sectionDiv}>
             {whyOpenEBS?.map((item) => (
-              <Grid item md={4} sm={6} key={item.title}>
+              <Grid
+                key={item.title}
+                size={{
+                  md: 4,
+                  sm: 6
+                }}>
                 <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                   <div className={classes.iconHolder}>
                     <img loading="lazy" src={item.imgSrc} alt={item.title} className={classes.whyOpenebsIcon} />
@@ -350,17 +376,14 @@ const Home: React.FC = () => {
             ))}
           </Grid>
         </section>
-
         {/* Section: Workloads */}
         <section>
           <Workloads />
         </section>
-
         {/* Section: Join our community */}
         <section>
           <JoinCommunity />
         </section>
-
         {/* Section: Community events */}
         {/* <section>
           {!isMobileView
@@ -391,7 +414,6 @@ const Home: React.FC = () => {
             )}
           </Grid>
         </section> */}
-
         {/* Section: Key features */}
         <section className={classes.section}>
           <Typography variant="h2" className={classes.sectionTitle}>
@@ -399,7 +421,12 @@ const Home: React.FC = () => {
           </Typography>
           <Grid container spacing={3} className={classes.sectionDiv}>
             {keyFeatures?.map((item) => (
-              <Grid item md={4} sm={6} key={item.title}>
+              <Grid
+                key={item.title}
+                size={{
+                  md: 4,
+                  sm: 6
+                }}>
                 <Paper className={[classes.paper, classes.iconTextContainer].join(' ')}>
                   <div className={classes.iconHolder}>
                     <img loading="lazy" src={item.imgSrc} alt={item.title} className={classes.keyFeaturesIcon} />
@@ -413,7 +440,6 @@ const Home: React.FC = () => {
             ))}
           </Grid>
         </section>
-
         {/* Section: Our adopters say about us */}
         <section>
           {/* {isMobileView &&
@@ -428,7 +454,7 @@ const Home: React.FC = () => {
           </Typography>
 
           <Grid container spacing={3}>
-            <Grid item xs={12}>
+            <Grid size={12}>
               <Paper className={[classes.paper, classes.testimonialPaper].join(' ')}>
                 {adopterTestimonials && (
                 <TestimonialSlider testimonials={adopterTestimonials} />
@@ -466,17 +492,14 @@ const Home: React.FC = () => {
                     } */}
           </Grid>
         </section>
-
         {/* Section: Newsletter */}
         <section>
           <Newsletter newsletterTitle={t('home.newsLetterTitle')} />
         </section>
-
         {/* Section: Blogs  */}
         {/* <section>
           <MiniBlog />
         </section> */}
-
         <div className={classes.footerBackground}>
           {/* Section: You are ready to start */}
           <section>
@@ -484,17 +507,31 @@ const Home: React.FC = () => {
               <Typography variant="h2" className={classes.sectionTitle}>
                 {t('home.youAreReadyToStart.title')}
               </Typography>
-              <Grid container spacing={3} alignItems="center">
-                <Grid item md={4} sm={12}>
+              <Grid container spacing={3} sx={{ alignItems: 'center' }}>
+                <Grid
+                  size={{
+                    md: 4,
+                    sm: 12
+                  }}>
                   <Paper className={[classes.paper, classes.flyingMuleWrapper].join(' ')}>
                     <span className={`${classes.flyingMule} ${classes.imageFluid}`}>
                       <LazyLoadImage effect="blur" src="../images/png/flying_mule.png" alt={t('home.youAreReadyToStart.flyingMuleAlt')} />
                     </span>
                   </Paper>
                 </Grid>
-                <Grid item md={8} sm={12} className={classes.maxWidth}>
-                  <Grid container spacing={3} alignItems="flex-start" justify="space-between">
-                    <Grid item lg={7} sm={6} xs={12}>
+                <Grid
+                  className={classes.maxWidth}
+                  size={{
+                    md: 8,
+                    sm: 12
+                  }}>
+                  <Grid container spacing={3} sx={{ alignItems: 'flex-start', justifyContent: 'space-between' }}>
+                    <Grid
+                      size={{
+                        lg: 7,
+                        sm: 6,
+                        xs: 12
+                      }}>
                       <Paper className={[classes.paper, classes.centerContent].join(' ')}>
                         <div className={[classes.codeWrapper, classes.codeTextHalfWidth].join(' ')}>
                           <div className={classes.codeBlock}>
@@ -514,7 +551,12 @@ const Home: React.FC = () => {
                         </div>
                       </Paper>
                     </Grid>
-                    <Grid item lg={4} sm={6} xs={12}>
+                    <Grid
+                      size={{
+                        lg: 4,
+                        sm: 6,
+                        xs: 12
+                      }}>
                       <Paper className={[classes.paper, classes.centerContent].join(' ')}>
                         <div>
                           <div className={classes.readGuideDiv}>
@@ -522,7 +564,7 @@ const Home: React.FC = () => {
                               <Typography className={classes.readGuideTitle}>
                                 {t('home.youAreReadyToStart.readTheGuide.title')}
                               </Typography>
-                              <IconButton className={classes.iconButton}>
+                              <IconButton className={classes.iconButton} size="large">
                                 <img loading="lazy" src="../images/svg/arrow_orange.svg" alt={t('header.submitAlt')} />
                               </IconButton>
                             </Link>

@@ -1,10 +1,10 @@
 [build]
   base = "website/"
   publish = "build/"
-  command = "npm run build"
+  command = "npm install && npm run build"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "24"
 
 #https://answers.netlify.com/t/forwarding-subdomain-to-a-path/2988
   

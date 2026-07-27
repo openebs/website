@@ -1,7 +1,7 @@
-import { Button, Grid, Typography } from '@material-ui/core';
+import { Button, Grid, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useStyles from './styles';
 import Footer from '../../components/Footer';
 
@@ -12,12 +12,12 @@ interface NotFound {
 const ErrorPage: React.FC<NotFound> = ({ blogStatus }) => {
   const { t } = useTranslation();
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
   return (
     <div className={classes.root}>
       <div className={classes.wrapper}>
-        <Grid container direction="row" justify="center" alignItems="center">
-          <Grid item xs={12}>
+        <Grid container direction="row" sx={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Grid size={12}>
             <img
               loading="lazy"
               className={classes.errorImage}
@@ -35,7 +35,7 @@ const ErrorPage: React.FC<NotFound> = ({ blogStatus }) => {
                 size="large"
                 className={classes.solidButton}
                 onClick={() => {
-                  history.push('/blog');
+                  navigate('/blog');
                 }}
               >
                 {t('errorPage.blogBtnLabel')}
@@ -47,7 +47,7 @@ const ErrorPage: React.FC<NotFound> = ({ blogStatus }) => {
                 size="large"
                 className={classes.solidButton}
                 onClick={() => {
-                  history.push('/');
+                  navigate('/');
                 }}
               >
                 {t('errorPage.homeBtnLabel')}

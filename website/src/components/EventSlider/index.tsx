@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Typography, Link, Box } from '@material-ui/core';
+import { Typography, Link, Box } from '@mui/material';
 import Carousel from '../Carousel';
 import useStyles from './style';
 import eventsList from '../../resources/events.json';
@@ -144,7 +144,7 @@ const EventSlider: React.FC<EventsProps> = ({
                     href={event.buttonLink}
                     target="_blank"
                   >
-                    <Box display="flex" alignItems="center">
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
                       {event.buttonText
                         ? event.buttonText
                         : t('community.communityEvents.clickHere')}
@@ -166,8 +166,7 @@ const EventSlider: React.FC<EventsProps> = ({
   ) : (
     <Box
       display="flex"
-      alignItems="center"
-      justifyContent="center"
+      sx={{ alignItems: 'center', justifyContent: 'center' }}
       height="100%"
     >
       <Typography variant="h4" className={classes.noEventText}>

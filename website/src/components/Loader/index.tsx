@@ -1,5 +1,6 @@
 import React from 'react';
-import { CircularProgress, makeStyles, Theme } from '@material-ui/core';
+import { CircularProgress, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import Center from '../../containers/Center';
 
 interface LoaderProps {

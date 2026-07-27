@@ -1,19 +1,19 @@
 import React from 'react';
 import {
   Container,
-  createStyles,
   Paper,
   Theme,
   useMediaQuery,
-  withStyles,
   Tabs,
   Tab,
   Accordion,
   AccordionSummary,
   AccordionDetails,
   Typography,
-} from '@material-ui/core';
-import { Add, Remove } from '@material-ui/icons';
+} from '@mui/material';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
+import { Add, Remove } from '@mui/icons-material';
 import ReactMarkdown from 'react-markdown';
 import { useTranslation } from 'react-i18next';
 import useStyles from './styles';
@@ -90,9 +90,9 @@ const Faq: React.FC<FaqDataProps> = () => {
               onChange={handleChange}
               textColor="secondary"
               variant="standard"
-              TabIndicatorProps={{
-                style: {
-                  display: 'none',
+              slotProps={{
+                indicator: {
+                  style: { display: 'none' },
                 },
               }}
               orientation={mediumViewport ? 'horizontal' : 'vertical'}

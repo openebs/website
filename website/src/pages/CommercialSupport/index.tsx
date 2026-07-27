@@ -6,7 +6,7 @@ import {
   Grid,
   Link,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -38,13 +38,16 @@ const Support: React.FC = () => {
             {/* Commercial support intro section  */}
             {!(width < mobileBreakpoint) ? (
             /* Commercial support Desktop view  */
-              <Grid
+              (<Grid
                 container
                 direction="row"
-                justify="center"
-                alignItems="center"
+                sx={{ justifyContent: 'center', alignItems: 'center' }}
               >
-                <Grid item xs={12} sm={6}>
+                <Grid
+                  size={{
+                    xs: 12,
+                    sm: 6
+                  }}>
                   <Typography variant="h1" className={classes.pageHeader}>
                     {t('commercialSupport.title')}
                   </Typography>
@@ -52,7 +55,12 @@ const Support: React.FC = () => {
                     {t('commercialSupport.description')}
                   </Typography>
                 </Grid>
-                <Grid item xs={12} sm={6} className={classes.supportImage}>
+                <Grid
+                  className={classes.supportImage}
+                  size={{
+                    xs: 12,
+                    sm: 6
+                  }}>
                   <span>
                     <LazyLoadImage
                       effect="blur"
@@ -62,21 +70,20 @@ const Support: React.FC = () => {
                     />
                   </span>
                 </Grid>
-              </Grid>
+              </Grid>)
             ) : (
             /* Commercial support mobile view  */
-              <Grid
+              (<Grid
                 container
                 direction="row"
-                justify="center"
-                alignItems="center"
+                sx={{ justifyContent: 'center', alignItems: 'center' }}
               >
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <Typography variant="h1" className={classes.pageHeader}>
                     {t('commercialSupport.title')}
                   </Typography>
                 </Grid>
-                <Grid item xs={12} className={classes.supportImage}>
+                <Grid className={classes.supportImage} size={12}>
                   <span>
                     <LazyLoadImage
                       effect="blur"
@@ -86,12 +93,12 @@ const Support: React.FC = () => {
                     />
                   </span>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid size={12}>
                   <Typography className={classes.supportDescription}>
                     {t('commercialSupport.description')}
                   </Typography>
                 </Grid>
-              </Grid>
+              </Grid>)
             )}
           </div>
         </div>
@@ -102,15 +109,15 @@ const Support: React.FC = () => {
             ? SupportData.map((elm: any) => (
               <Grid
                 container
-                item
-                xs={12}
-                md={4}
-                sm={6}
-                key={elm.name}
+                key={elm.id}
                 direction="row"
-                alignItems="center"
+                sx={{ alignItems: 'center' }}
                 className={classes.cardSection}
-              >
+                size={{
+                  xs: 12,
+                  md: 4,
+                  sm: 6
+                }}>
                 <Card className={classes.cardProps} key={elm.id}>
                   <CardContent>
                     <div className={classes.cardImageWrapper}>

@@ -6,9 +6,9 @@ import {
   CardContent,
   CardMedia,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 import ReactMarkdown from 'react-markdown';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Carousel from '../Carousel';
 import useStyles from './style';
 import { VIEW_PORT } from '../../constants';
@@ -25,9 +25,9 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
   const { t } = useTranslation();
   const classes = useStyles();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
-  const history = useHistory();
+  const navigate = useNavigate();
   const handleRedirectPath = (slug: string) => {
-    history.push(`/blog/${slug}`);
+    navigate(`/blog/${slug}`);
   };
 
   const sliderSettings = {
@@ -52,7 +52,7 @@ const BlogsSlider: React.FC<BlogsSliderProps> = ({ recommendedBlogs }) => {
   };
 
   const handleTagSelect = (tag: string) => {
-    history.push(`/blog/tag/${toLowerCaseHyphenSeparatedString(tag)}`);
+    navigate(`/blog/tag/${toLowerCaseHyphenSeparatedString(tag)}`);
   };
 
   const getTags = (tags: Array<string>) => {

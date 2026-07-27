@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   alertBanner: {
@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: 'none',
       },
     },
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       fontSize: '12px',
     },
   },

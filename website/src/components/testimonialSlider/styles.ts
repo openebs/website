@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   testimonialCarousel: {
@@ -8,25 +8,25 @@ const useStyles = makeStyles((theme) => ({
     '& .slick-prev': {
       left: '120px',
       zIndex: 1,
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         left: '90px',
       },
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         left: '-20px',
       },
     },
     '& .slick-list': {
-      paddingLeft: `${theme.spacing(16)}px !important`,
+      paddingLeft: `${theme.spacing(16)} !important`,
+    },
+    [theme.breakpoints.down('md')]: {
+      '& .slick-list': {
+        paddingLeft: `${theme.spacing(13)} !important`,
+      },
     },
     [theme.breakpoints.down('sm')]: {
       '& .slick-list': {
-        paddingLeft: `${theme.spacing(13)}px !important`,
-      },
-    },
-    [theme.breakpoints.down('xs')]: {
-      '& .slick-list': {
         paddingLeft: '0 !important',
-        paddingRight: `${theme.spacing(6.25)}px important`,
+        paddingRight: `${theme.spacing(6.25)} important`,
       },
     },
     '& .slick-arrow': {
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '20px 60px 20px 0px',
     background: theme.palette.background.paper,
     margin: theme.spacing(3),
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: theme.spacing(4, 2),
       margin: theme.spacing(2, 1.5),
     },
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     wordBreak: 'break-word',
     whiteSpace: 'pre-wrap',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '14px',
     },
   },

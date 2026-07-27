@@ -1,10 +1,15 @@
 import React, { Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import TagManager from 'react-gtm-module';
+import { StyledEngineProvider, ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider as JssThemeProvider } from '@mui/styles';
+import { HelmetProvider } from '@dr.pogodin/react-helmet';
+import CssBaseline from '@mui/material/CssBaseline';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './i18n';
 import Loader from './components/Loader';
+import theme from './theme/theme';
 
 const tagManagerArgs = {
   gtmId: 'GTM-WKVV7F3N',
@@ -18,9 +23,18 @@ window.onload = () => {
 const root = createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <Suspense fallback={<Loader />}>
-      <App />
-    </Suspense>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <JssThemeProvider theme={theme}>
+          <HelmetProvider>
+            <CssBaseline />
+            <Suspense fallback={<Loader />}>
+              <App />
+            </Suspense>
+          </HelmetProvider>
+        </JssThemeProvider>
+      </ThemeProvider>
+    </StyledEngineProvider>
   </React.StrictMode>,
 );
 

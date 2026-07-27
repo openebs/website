@@ -1,4 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -9,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     backgroundPosition: 'center top',
     backgroundSize: 'cover',
     padding: theme.spacing(16, 5, 0),
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(5, 1),
       marginTop: theme.spacing(10),
       backgroundImage: 'url(/images/png/faq_background_mobile.png)',
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: '12px 12px 12px 0px',
   },
   tabs: {
-    margin: `${theme.spacing(1)}px auto`,
+    margin: `${theme.spacing(1)} auto`,
     background: 'transparent',
     flexGrow: 1,
     fontWeight: 700,
@@ -68,7 +70,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: '2.625rem',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '1.5rem',
     },
   },
@@ -82,11 +84,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(3, 0),
     width: '75%',
     margin: 'auto',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: theme.spacing(3, 0),
       width: '80%',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(3, 0),
       width: '85%',
     },
@@ -95,26 +97,26 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '2rem',
     fontWeight: 700,
     textAlign: 'center',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1.5rem',
     },
   },
   blogsWrapper: {
     justifyContent: 'space-between',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       justifyContent: 'center',
     },
   },
   cardSize: {
     maxWidth: '480px !important',
     padding: theme.spacing(2),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       maxWidth: '380px !important',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       maxWidth: '480px',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       maxWidth: '90% !important',
     },
   },
@@ -122,7 +124,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '1.375rem',
     fontWeight: 700,
     cursor: 'pointer',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1rem',
     },
   },
@@ -153,7 +155,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: 'url(/images/png/blog_index_background.png)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       background: 'url(/images/png/blog_index_background_mobile.png)',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Grid, Link, Typography } from '@material-ui/core';
+import { Grid, Link, Typography } from '@mui/material';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import useStyles from './styles';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -12,8 +12,12 @@ const Sponsor: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <Grid container justify="space-evenly" alignItems="center">
-        <Grid item xs={12} md={4}>
+      <Grid container sx={{ justifyContent: 'space-evenly', alignItems: 'center' }}>
+        <Grid
+          size={{
+            xs: 12,
+            md: 4
+          }}>
           <LazyLoadImage
             effect="blur"
             src="/images/png/sponsor_mule.png"
@@ -21,9 +25,20 @@ const Sponsor: React.FC = () => {
             className={classes.sponsorCompany}
           />
         </Grid>
-        <Grid item xs={12} md={8} sm={12} className={classes.gridContainer}>
+        <Grid
+          className={classes.gridContainer}
+          size={{
+            xs: 12,
+            md: 8,
+            sm: 12
+          }}>
           <Grid container>
-            <Grid item xs={12} md={6} sm={6}>
+            <Grid
+              size={{
+                xs: 12,
+                md: 6,
+                sm: 6
+              }}>
               <Typography className={classes.paragraph}>{t('sponsors.datacore')}</Typography>
               <Link href={EXTERNAL_LINKS.DATACORE_WEBSITE} rel="noreferrer" target="_blank">
                 <img
@@ -33,7 +48,12 @@ const Sponsor: React.FC = () => {
                 />
               </Link>
             </Grid>
-            <Grid item xs={12} md={6} sm={6}>
+            <Grid
+              size={{
+                xs: 12,
+                md: 6,
+                sm: 6
+              }}>
               <Typography className={classes.paragraph}>{t('sponsors.cncf')}</Typography>
               <Link href={EXTERNAL_LINKS.CNCF_WEBSITE} rel="noreferrer" target="_blank">
                 <img

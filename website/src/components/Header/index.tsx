@@ -5,7 +5,8 @@ import {
   IconButton,
   Drawer,
   MenuItem,
-} from '@material-ui/core';
+  MenuList,
+} from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import GitHubButton from 'react-github-btn';
@@ -100,7 +101,7 @@ const Header: React.FC = () => {
               'aria-haspopup': 'true',
               onClick: handleDrawerOpen,
             }}
-          >
+            size="large">
             <img
               loading="lazy"
               src="/images/svg/hamburger.svg"
@@ -121,7 +122,7 @@ const Header: React.FC = () => {
               <IconButton
                 aria-label="close drawer"
                 onClick={() => handleDrawerClose()}
-              >
+                size="large">
                 <img
                   loading="lazy"
                   src="/images/svg/x-circle.svg"
@@ -130,7 +131,8 @@ const Header: React.FC = () => {
               </IconButton>
             </div>
             <div className={classes.mobileNavWrapper}>
-              {navbarItems.map(({ label, href }) => (
+              <MenuList>
+                {navbarItems.map(({ label, href }) => (
                 <Link
                   href={href}
                   key={label}
@@ -149,7 +151,8 @@ const Header: React.FC = () => {
                     <hr className={classes.mobileDivider} />
                   )}
                 </Link>
-              ))}
+                ))}
+              </MenuList>
               <div className={classes.socialIconsMobile}>
                 {displaySocialLinks()}
               </div>

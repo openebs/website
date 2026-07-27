@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Avatar, Button } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { Avatar, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import useStyles from './styles';
 import readingTime from '../../utils/readingTime';
 import getAvatar from '../../utils/getAvatar';
@@ -18,9 +18,9 @@ const DisplayAuthorandReadTime: React.FC<displayAuthorandReadTimeProps> = ({
 }) => {
   const classes = useStyles();
   const { t } = useTranslation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const handleRedirectPath = (authorName: string) => {
-    history.push(`/blog/author/${authorName.toLowerCase().replace(/[^\w ]+/g, '')
+    navigate(`/blog/author/${authorName.toLowerCase().replace(/[^\w ]+/g, '')
       .replace(/ +/g, '-')}`);
   };
   const displayTagandTimeRequiredToRead = () => (

@@ -1,14 +1,14 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
+ 
 import {
   Toolbar,
   Paper,
   Typography,
   Link,
   Button,
-} from '@material-ui/core';
+} from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import useStyles from './style';
 import { socialLinks, getStarted } from './footerLinks';
 import {
@@ -196,7 +196,7 @@ const Footer: React.FC = () => {
   const displayMobileFooter = () => (
     <Toolbar className={classes.toolbar}>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Paper className={[classes.paper, classes.firstGrid].join(' ')}>
             <div>
               <Link href="/">
@@ -212,13 +212,13 @@ const Footer: React.FC = () => {
           </Paper>
         </Grid>
         {/* make it 6 once contact us and top contributors is uncommented */}
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Paper className={classes.paper}>
             {displayGetStarted()}
           </Paper>
         </Grid>
         {/* To be uncommented later */}
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Paper className={classes.paper}>
             {/* {displayContactUs()} */}
             <div className={classes.contributorsMobile}>
@@ -227,14 +227,14 @@ const Footer: React.FC = () => {
           </Paper>
         </Grid>
         {/* New contributors code block mobile */}
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Paper className={classes.paper}>
             <div className={classes.contributorsMobile}>
               <DisplayNewContributors />
             </div>
           </Paper>
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <Paper className={classes.paper}>
             {displayNewsLetter()}
             {displaySocialLinks()}
@@ -246,8 +246,11 @@ const Footer: React.FC = () => {
 
   const displayDesktopFooter = () => (
     <Toolbar className={classes.toolbar}>
-      <Grid container spacing={0} justify="center">
-        <Grid item sm={6}>
+      <Grid container spacing={0} sx={{ justifyContent: 'center', width: '100%' }}>
+        <Grid
+          size={{
+            sm: 6
+          }}>
           <Paper className={[classes.paper, classes.firstGrid].join(' ')}>
             <div>
               <Link href="/">
@@ -263,7 +266,10 @@ const Footer: React.FC = () => {
           </Paper>
         </Grid>
         {/* Make it just sm when other footer part is uncommneted */}
-        <Grid item sm>
+        <Grid
+          size={{
+            sm: "grow"
+          }}>
           <Paper className={classes.paper}>
             {displayGetStarted()}
           </Paper>
@@ -274,13 +280,19 @@ const Footer: React.FC = () => {
                           {displayContactUs()}
                       </Paper>
                   </Grid> */}
-        <Grid item sm>
+        <Grid
+          size={{
+            sm: "grow"
+          }}>
           <Paper className={classes.paper}>
             <DisplayTopContributors />
           </Paper>
         </Grid>
         {/* New contributors code block mobile */}
-        <Grid item sm>
+        <Grid
+          size={{
+            sm: "grow"
+          }}>
           <Paper className={classes.paper}>
             <DisplayNewContributors />
           </Paper>

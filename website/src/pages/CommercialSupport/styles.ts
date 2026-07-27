@@ -1,4 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -7,7 +9,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   introSection: {
     padding: theme.spacing(7, 0, 4),
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(10, 0, 0),
     },
   },
@@ -17,14 +19,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.text.primary,
     textAlign: 'start',
     marginBottom: theme.spacing(5),
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1.5rem',
       textAlign: 'center',
     },
   },
   introImage: {
     width: 'auto',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       paddingTop: theme.spacing(0),
       width: '100%',
     },
@@ -32,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   supportDescription: {
     color: theme.palette.text.secondary,
     fontSize: '16px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '14px',
       marginTop: theme.spacing(4),
     },
@@ -46,11 +48,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(3, 0),
     width: '75%',
     margin: 'auto',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: theme.spacing(3, 0),
       width: '80%',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(3, 0),
       width: '90%',
     },
@@ -58,19 +60,19 @@ const useStyles = makeStyles((theme: Theme) => ({
   // Supported companies card styles
   cardWrapper: {
     padding: theme.spacing(6, 14),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: theme.spacing(4, 6),
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(0, 3),
     },
   },
   cardSection: {
     padding: theme.spacing(0, 2),
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginBottom: theme.spacing(3),
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(1, 0),
     },
   },
@@ -89,7 +91,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       boxShadow: '0px 4px 34px 21px rgba(70, 68, 151, 0.04)',
       borderRadius: '20px 20px 60px 0px',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       boxShadow: ' 0px 4px 34px 21px rgba(70, 68, 151, 0.04)',
       borderRadius: '20px 20px 40px 0px',
       padding: theme.spacing(2, 1),
@@ -104,14 +106,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(1, 0),
     fontSize: '1rem',
     color: theme.palette.text.secondary,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '14px',
     },
   },
   cardImageWrapper: {
     height: '3.75rem',
     width: 'auto',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       height: '2rem',
       marginBottom: theme.spacing(2),
     },

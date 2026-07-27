@@ -1,4 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   blogHeader: {
@@ -7,13 +9,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: '100%',
     backgroundRepeat: 'no-repeat',
     padding: theme.spacing(15, 38, 10),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: theme.spacing(10, 20),
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: theme.spacing(10),
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(4),
       marginTop: theme.spacing(10),
       backgroundImage: 'url(/images/png/blog_header_background_mobile.png)',
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '2.625rem',
     fontWeight: 700,
     textAlign: 'center',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1.5rem',
     },
   },
@@ -43,14 +45,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: theme.spacing(5),
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'block',
       marginTop: theme.spacing(3),
     },
   },
   author: {
     display: 'flex',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'block',
       textAlign: 'center',
     },
@@ -63,7 +65,7 @@ const useStyles = makeStyles((theme: Theme) => ({
       width: '100%',
       height: '100%',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       margin: 'auto',
     },
   },
@@ -75,7 +77,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   authorName: {
     fontSize: '16px',
     fontWeight: 700,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '14px',
     },
   },
@@ -94,7 +96,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     '& p': {
       marginRight: theme.spacing(1),
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       justifyContent: 'center',
       fontSize: '14px',
     },
@@ -104,7 +106,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
     color: theme.palette.text.secondary,
     fontWeight: 400,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
       justifyContent: 'center',
       marginTop: theme.spacing(3),
@@ -112,7 +114,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   share: {
     fontSize: '16px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '14px',
       marginBottom: theme.spacing(1),
     },
@@ -233,14 +235,14 @@ const useStyles = makeStyles((theme: Theme) => ({
       },
       '& p': { display: 'inline' },
     },
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       width: '65%',
       padding: theme.spacing(8, 0),
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '75%',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       width: '85%',
       padding: theme.spacing(4, 0),
       '& p': {
@@ -265,7 +267,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginBottom: theme.spacing(2),
     width: '100%',
     borderRadius: '20px 0px 20px 86px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       borderRadius: '20px 0px 20px 40px',
     },
   },
@@ -274,7 +276,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     margin: 'auto',
     width: '75%',
     marginBottom: theme.spacing(4),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       width: '95%',
     },
   },
@@ -283,13 +285,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     justifyContent: 'space-between',
     width: '100%',
     margin: theme.spacing(0, 22, 5),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       margin: theme.spacing(0, 20, 5),
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       margin: theme.spacing(0, 8, 5),
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       margin: theme.spacing(0, 4, 5),
       display: 'block',
     },
@@ -333,13 +335,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   blogSlider: {
     display: 'block',
     margin: theme.spacing(0, 22),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       margin: theme.spacing(0, 20),
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       margin: theme.spacing(0, 8),
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       margin: theme.spacing(0, 4),
     },
   },
@@ -358,7 +360,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: 'url(/images/png/blog_footer_background.png)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       background: 'url(/images/png/blog_footer_background_mobile.png)',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',

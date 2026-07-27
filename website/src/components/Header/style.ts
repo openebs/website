@@ -1,20 +1,20 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
     display: 'flex',
     padding: theme.spacing(2, 10),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: theme.spacing(2, 5),
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       padding: theme.spacing(2, 3),
     },
   },
   header: {
     backgroundColor: 'transparent',
     boxShadow: 'none',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       backgroundColor: theme.palette.background.paper,
     },
   },
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   logo: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '130px',
     },
   },
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'transparent',
       textDecoration: 'none',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '0.75rem',
       margin: theme.spacing(0, 0),
       minWidth: 'unset',
@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   closeIcon: {
-    margin: `${theme.spacing(2)}px ${theme.spacing(2)}px ${theme.spacing(2)}px auto`,
+    margin: `${theme.spacing(2)} ${theme.spacing(2)} ${theme.spacing(2)} auto`,
   },
   mobileNavWrapper: {
     margin: 'auto',

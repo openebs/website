@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from '@dr.pogodin/react-helmet';
 import { useCurrentHost } from '../../hooks/useCurrentHost';
 import { articleSchema } from './articleSchema';
 import { websiteSchema } from './websiteSchema';

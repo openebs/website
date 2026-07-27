@@ -1,4 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   newsletter: {
@@ -12,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   title: {
     fontSize: '32px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1.25rem',
       marginTop: theme.spacing(0),
     },
@@ -20,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   textField: {
     textAlign: 'center',
     padding: theme.spacing(3.5, 2),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: theme.spacing(3.5, 2),
     },
   },

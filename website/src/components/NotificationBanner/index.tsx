@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from '@material-ui/core';
+import { Link } from '@mui/material';
 import notification from '../../resources/notification.json';
 import { dateValidator } from '../../utils/dateValidator';
 import useStyles from './styles';
@@ -25,7 +25,7 @@ const NotificationBanner: React.FC = () => {
   return (
     <>
       {bannerNotification?.length
-        && dateValidator(bannerNotification[0]?.hideAfter!) && (
+        && dateValidator(bannerNotification[0]?.hideAfter ?? '') && (
           <div className={classes.alertBanner}>
             {bannerNotification[0]?.message}
             {bannerNotification[0]?.url && (
