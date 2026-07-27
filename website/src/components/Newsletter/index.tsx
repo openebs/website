@@ -3,7 +3,7 @@ import {
   Grid,
   // IconButton,
   // TextField
-} from '@material-ui/core';
+} from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { EXTERNAL_LINKS } from '../../constants';
@@ -31,7 +31,10 @@ const Newsletter: React.FC<NewsletterTitleProps> = ({ newsletterTitle }) => {
       <Grid container>
         <div className={classes.newsletter}>
           <div className={classes.newsWrapper}>
-            <Grid item lg={12}>
+            <Grid
+              size={{
+                lg: 12
+              }}>
               <h1 className={classes.title}>{newsletterTitle}</h1>
 
               <Button

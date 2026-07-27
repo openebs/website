@@ -2,7 +2,7 @@ import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
-import yaml from 'js-yaml';
+import { load as yamlLoad } from 'js-yaml';
 
 i18n
   // load translation using http -> see /public/locales
@@ -25,7 +25,7 @@ i18n
     backend: {
       loadPath: '/locale/{{lng}}/{{ns}}.yaml',
       parse(data) {
-        return yaml.load(data);
+        return yamlLoad(data);
       },
     },
     interpolation: {

@@ -1,4 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -10,7 +12,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: 'url(/images/png/community_background.png)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       background: 'transparent',
     },
   },
@@ -23,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'start',
     marginBottom: theme.spacing(5),
     color: theme.palette.text.primary,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1.5rem',
       textAlign: 'center',
       marginBottom: theme.spacing(2),
@@ -32,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   introImage: {
     width: 'auto',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       paddingTop: theme.spacing(0),
       width: '100%',
     },
@@ -41,7 +43,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.text.secondary,
     fontSize: '1rem',
     lineHeight: '22px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '0.875rem',
       textAlign: '20px',
     },
@@ -55,7 +57,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   paper: {
     boxShadow: 'none',
     backgroundColor: 'transparent',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       margin: theme.spacing(4, 0),
     },
 
@@ -64,11 +66,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     padding: theme.spacing(3, 0),
     width: '75%',
     margin: 'auto',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: theme.spacing(3, 0),
       width: '80%',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(3, 0),
       width: '90%',
     },
@@ -79,13 +81,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
     marginBottom: theme.spacing(3),
     color: theme.palette.text.primary,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1.25rem',
     },
   },
   contributionSubTitle: {
     fontSize: '1.125rem',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1rem',
     },
   },
@@ -104,7 +106,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     color: theme.palette.text.secondary,
     fontSize: '1rem',
     paddingBottom: theme.spacing(4),
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '0.875rem',
     },
   },
@@ -112,7 +114,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: 'url(/images/png/community_desktop.png)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       background: 'url(/images/png/community_mobile.png)',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
@@ -135,19 +137,19 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   sponsorAndDependentProjectsWrapper: {
     marginTop: theme.spacing(12),
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       marginTop: theme.spacing(0),
     },
   },
   company: {
     padding: theme.spacing(0, 2),
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(1),
       width: '25%',
     },
   },
   rancher: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(1),
       width: '40%',
     },
@@ -157,10 +159,10 @@ const useStyles = makeStyles((theme: Theme) => ({
     lineHeight: '22px',
     width: '292px',
     margin: '0 auto 32px',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       marginBottom: theme.spacing(2),
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       width: '95%',
       margin: '0 auto 0',
       fontSize: '14px',
@@ -171,15 +173,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     textAlign: 'center',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       marginBottom: theme.spacing(6),
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       marginBottom: theme.spacing(2),
     },
   },
   DataCoreLogo: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       width: '60%',
       margin: theme.spacing(1.5, 0),
     },
@@ -209,7 +211,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: 'center',
     fontSize: '30px',
     margin: theme.spacing(4, 0),
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '19px',
     },
   },

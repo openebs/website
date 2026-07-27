@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import {
   Container,
   Grid,
-} from '@material-ui/core';
-import Pagination from '@material-ui/lab/Pagination';
-import { useHistory } from 'react-router-dom';
+} from '@mui/material';
+import Pagination from '@mui/material/Pagination';
+import { useNavigate } from 'react-router-dom';
 import useStyles from './styles';
 import Footer from '../../../components/Footer';
 import { METADATA_TYPES } from '../../../constants';
@@ -50,11 +50,11 @@ const Tag: React.FC = () => {
   const selectedTag = useTag();
   const itemsPerPage = 6;
   const [page, setPage] = React.useState<number>(1);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleTagSelect = (tag: string) => {
     if (selectedTag !== toLowerCaseHyphenSeparatedString(tag)) {
-      history.push(`/blog/tag/${toLowerCaseHyphenSeparatedString(tag)}`);
+      navigate(`/blog/tag/${toLowerCaseHyphenSeparatedString(tag)}`);
     }
   };
 
@@ -113,12 +113,12 @@ const Tag: React.FC = () => {
                 .slice((page - 1) * itemsPerPage, page * itemsPerPage)
                 .map((elm: any) => (
                   <Grid
-                    item
-                    xs={12}
-                    md={6}
                     key={elm.id}
                     className={classes.cardSize}
-                  >
+                    size={{
+                      xs: 12,
+                      md: 6
+                    }}>
                     {/* Passing parameters blog(passing complete blog object), and handleTagSelect(this fuction handles the action when tag button is clicked)  */}
                     <BlogCard blog={elm} handleTagSelect={(tag:string) => handleTagSelect(tag)} />
                   </Grid>
@@ -136,7 +136,6 @@ const Tag: React.FC = () => {
           <Footer />
         </footer>
       </div>
-
     </>
   );
 };

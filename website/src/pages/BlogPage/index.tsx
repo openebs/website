@@ -7,9 +7,9 @@ import {
   Link,
   Button,
   Breadcrumbs,
-} from '@material-ui/core';
+} from '@mui/material';
 import ReactMarkdown from 'react-markdown';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useStyles from './style';
 import { useBlogName } from '../../hooks/extractBlogPath';
 import Footer from '../../components/Footer';
@@ -29,7 +29,7 @@ const BlogPage: React.FC = () => {
   const { currentOrigin, currentLocation, currentPathname } = useCurrentHost();
   const classes = useStyles();
   const { t } = useTranslation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const [previousBlog, setPreviousBlog] = useState<any>({});
   const [nextBlog, setNextBlog] = useState<any>({});
   const [currentBlogDetails, setCurrentBlogDetails] = useState<any>({});
@@ -40,7 +40,7 @@ const BlogPage: React.FC = () => {
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
 
   const handleRedirectPath = (slug: string) => {
-    history.push(`/blog/${slug}`);
+    navigate(`/blog/${slug}`);
   };
 
   useEffect(() => {
@@ -175,7 +175,7 @@ const BlogPage: React.FC = () => {
   };
 
   const handleTagSelect = (tag: string) => {
-    history.push(`/blog/tag/${toLowerCaseHyphenSeparatedString(tag)}`);
+    navigate(`/blog/tag/${toLowerCaseHyphenSeparatedString(tag)}`);
   };
 
   const getTags = (tags: string[]) => tags.map((tag: string) => (
@@ -226,9 +226,9 @@ const BlogPage: React.FC = () => {
           tags={currentBlogDetails.tags}
         />
       )}
-      <Grid container direction="row" justify="center" alignItems="center">
+      <Grid container direction="row" sx={{ justifyContent: 'center', alignItems: 'center' }}>
         {currentBlogDetails?.content ? (
-          <Grid item xs={12}>
+          <Grid size={12}>
             <div className={classes.blogHeader}>
               {width > mobileBreakpoint && (
                 <Breadcrumbs
@@ -430,12 +430,10 @@ const BlogPage: React.FC = () => {
           <BlogsSlider recommendedBlogs={recommendedBlogs} />
         </section>
       </div>
-
       {/* Section: Newsletter */}
       <section>
         <Newsletter newsletterTitle={t('home.newsLetterTitle')} />
       </section>
-
       {/* Display footer */}
       <footer className={classes.footer}>
         <Footer />

@@ -7,17 +7,17 @@ import {
   CardContent,
   CardMedia,
   Container,
-  createStyles,
   Grid,
   Paper,
   Tab,
   Tabs,
   Theme,
   Typography,
-  withStyles,
-} from '@material-ui/core';
+} from '@mui/material';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
 import ReactMarkdown from 'react-markdown';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useStyles from './styles';
 import { BLOG_TAGS, VIEW_PORT } from '../../constants';
 import Carousel from '../Carousel';
@@ -50,13 +50,13 @@ const MiniBlog: React.FC = () => {
   const [value, setValue] = React.useState('all');
   const [tagsDistribution, setTagsDistribution] = useState({});
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
-  const history = useHistory();
+  const navigate = useNavigate();
   const handleTagSelect = (tags: string) => {
     setValue(tags);
   };
 
   const handleRedirectPath = (slug: string) => {
-    history.push(`/blog/${slug}`);
+    navigate(`/blog/${slug}`);
   };
 
   const getTags = (tags: Array<string>) => tags.map((tag: string) => (
@@ -186,9 +186,9 @@ const MiniBlog: React.FC = () => {
               classes={{ root: classes.tabRoot, scroller: classes.scroller }}
               onChange={handleChange}
               variant="scrollable"
-              TabIndicatorProps={{
-                style: {
-                  display: 'none',
+              slotProps={{
+                indicator: {
+                  style: { display: 'none' },
                 },
               }}
               orientation={mobileBreakpoint ? 'horizontal' : 'vertical'}
@@ -202,13 +202,13 @@ const MiniBlog: React.FC = () => {
           </Paper>
         </Container>
       </span>
-      <Grid container justify="center">
+      <Grid container sx={{ justifyContent: 'center' }}>
         <Grid
-          item
-          sm={filteredData.length === 1 ? 5 : 10}
-          xs={12}
           className={classes.sliderWrapper}
-        >
+          size={{
+            sm: filteredData.length === 1 ? 5 : 10,
+            xs: 12
+          }}>
           <Carousel settings={sliderSettings}>
             {filteredData.slice(0, 10).map((elm: any) => (
               <div className={classes.cardWrapper} key={elm.id}>

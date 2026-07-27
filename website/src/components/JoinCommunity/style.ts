@@ -1,12 +1,12 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: theme.spacing(8, 30),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       padding: theme.spacing(8),
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(3),
     },
   },
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     marginBottom: theme.spacing(5.5),
     color: theme.palette.text.primary,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1.25rem',
       padding: theme.spacing(0, 5),
     },
@@ -46,10 +46,10 @@ const useStyles = makeStyles((theme) => ({
   },
   gitHubLogo: {
     width: '35%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '28%',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       width: '45%',
     },
   },

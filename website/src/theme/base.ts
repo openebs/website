@@ -1,6 +1,6 @@
-import { createMuiTheme, ThemeOptions } from '@material-ui/core';
+import { ThemeOptions, createTheme as createMuiTheme } from '@mui/material';
 
-declare module '@material-ui/core/styles/createPalette' {
+declare module '@mui/material/styles/createPalette' {
   export interface Palette {
     // Base Theme Palette
     primary: {

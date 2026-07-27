@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Typography,
-  Box,
-  Button,
-  Paper,
-  withStyles,
-  Tooltip,
-  IconButton,
-} from '@material-ui/core';
+import { Typography, Box, Button, Paper, Tooltip, IconButton } from '@mui/material';
+import withStyles from '@mui/styles/withStyles';
 import { useTranslation } from 'react-i18next';
 import useStyles from './styles';
 import { VIEW_PORT } from '../../constants';
@@ -146,7 +139,7 @@ const Workloads: React.FC = () => {
         {t('home.installation.title')}
       </Typography>
       <Box className={classes.codeWrapper} mt={2}>
-        <Box className={classes.codeBlock} paddingX={2}>
+        <Box className={classes.codeBlock} sx={{ paddingX: 2 }}>
           <Typography variant="h5" className={classes.codeText}>
             {copyCommand.text}
           </Typography>
@@ -154,7 +147,7 @@ const Workloads: React.FC = () => {
             <IconButton
               onClick={copyToClipboard}
               className={`${classes.copyIcon} ${classes.imageFluid}`}
-            >
+              size="large">
               <img
                 loading="lazy"
                 src="../images/svg/copy.svg"

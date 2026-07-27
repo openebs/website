@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   imageFluid: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0px 11px 33px rgba(193, 192, 243, 0.06)',
     borderRadius: '20px 40px 20px 0px',
     transition: 'all 0.3s ease-out',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: theme.spacing(2),
     },
   },
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     '& .slick-track': {
       margin: 'auto',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       '& div.slick-active': {
         '& + .slick-active:not(:last-child)': {
           '&  > div': {
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
         },
       },
     },
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       margin: '0 40px',
       '& .slick-next': {
         right: '-25px',
@@ -62,13 +62,13 @@ const useStyles = makeStyles((theme) => ({
         opacity: '.5',
       },
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       margin: theme.spacing(0, 0, 2, 1.2),
     },
     '&  div.slick-slide': {
       '&  > div': {
         padding: theme.spacing(2.5),
-        [theme.breakpoints.down('xs')]: {
+        [theme.breakpoints.down('sm')]: {
           padding: theme.spacing(1.25),
         },
       },
@@ -82,13 +82,13 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     '& .slick-list': {
-      [theme.breakpoints.down('xs')]: {
+      [theme.breakpoints.down('sm')]: {
         padding: `${theme.spacing(0)} !important`,
       },
     },
     '& .slick-center': {
       '& $actionLink': {
-        [theme.breakpoints.down('xs')]: {
+        [theme.breakpoints.down('sm')]: {
           display: 'inherit',
         },
       },
@@ -98,14 +98,14 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '22px',
     fontWeight: 700,
     color: theme.palette.primary.main,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '16px',
     },
   },
   subText: {
     fontSize: '16px',
     color: theme.palette.primary.dark,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '14px',
     },
   },
@@ -121,7 +121,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '30px',
     textAlign: 'center',
     minHeight: '150px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       fontSize: '19px',
     },
   },

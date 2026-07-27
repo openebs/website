@@ -2,8 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   Button, Card, CardActions, CardContent, CardMedia,
-} from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+} from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import useStyles from './style';
 import BlogImage from '../BlogImage';
@@ -29,10 +29,10 @@ interface BlogCardProps {
 const BlogCard: React.FC<BlogCardProps> = ({ blog, handleTagSelect }) => {
   const { t } = useTranslation();
   const classes = useStyles();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleRedirectPath = (slug: string) => {
-    history.push(`/blog/${slug}`);
+    navigate(`/blog/${slug}`);
   };
 
   const getTags = (tags: string[]) => tags.map((tag: string) => (

@@ -1,22 +1,22 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: theme.spacing(14),
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginTop: theme.spacing(10),
     },
   },
   pageSpacing: {
     width: '58%',
     margin: 'auto',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       width: '65%',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '75%',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       width: '90%',
     },
   },
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     textAlign: 'center',
     marginBottom: theme.spacing(5),
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1.5rem',
     },
   },
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '2rem',
     fontWeight: 700,
     marginTop: theme.spacing(7),
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1.25rem',
     },
   },
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.125rem',
     fontWeight: 700,
     marginTop: theme.spacing(3),
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '0.875rem',
     },
   },
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     color: theme.palette.text.secondary,
     marginTop: theme.spacing(2),
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '0.875rem',
     },
   },
@@ -68,10 +68,10 @@ const useStyles = makeStyles((theme) => ({
     background: 'url(/images/png/privacy_policy_background.png)',
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       backgroundSize: 'cover',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       background: 'url(/images/png/privacy_policy_mobile_background.png)',
       backgroundRepeat: 'no-repeat',
       backgroundPositionY: 'bottom',

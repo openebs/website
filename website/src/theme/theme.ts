@@ -65,37 +65,46 @@ const theme = createTheme({
       main: '#D7E7F7',
     },
   },
-  overrides: {
+  components: {
+    MuiLink: {
+      defaultProps: {
+        underline: 'hover',
+      },
+    },
     MuiBackdrop: {
-      root: {
-        backgroundColor: 'rgba(255, 255, 255, 0.73)',
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(255, 255, 255, 0.73)',
+        },
       },
     },
     MuiButton: {
-      root: {
-        textTransform: 'none',
-        borderRadius: '154px',
-        fontWeight: 700,
-        padding: '15px',
-      },
-      contained: {
-        boxShadow: '0px 11px 33px rgba(255, 220, 179, 0.62)',
-        width: '212px',
-      },
-      containedSecondary: {
-        '&:hover': {
-          backgroundColor: '#F26D00',
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          borderRadius: '154px',
+          fontWeight: 700,
+          padding: '15px',
         },
-      },
-      outlined: {
-        padding: '13px',
-        width: '212px',
-      },
-      outlinedSecondary: {
-        border: '2px solid #F26D00',
-        '&:hover': {
-          borderWidth: '2px',
-          backgroundColor: 'transparent',
+        contained: {
+          boxShadow: '0px 11px 33px rgba(255, 220, 179, 0.62)',
+          width: '212px',
+        },
+        containedSecondary: {
+          '&:hover': {
+            backgroundColor: '#F26D00',
+          },
+        },
+        outlined: {
+          padding: '13px',
+          width: '212px',
+        },
+        outlinedSecondary: {
+          border: '2px solid #F26D00',
+          '&:hover': {
+            borderWidth: '2px',
+            backgroundColor: 'transparent',
+          },
         },
       },
     },

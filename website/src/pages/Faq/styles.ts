@@ -1,4 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
@@ -25,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     alignItems: 'center',
   },
   tabs: {
-    margin: `${theme.spacing(1)}px auto`,
+    margin: `${theme.spacing(1)} auto`,
     background: 'transparent',
     flexGrow: 1,
     fontWeight: 700,
@@ -46,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     boxShadow: '2px 0px 33px 5px rgba(70, 68, 151, 0.04)',
     borderRadius: '12px 12px 12px 0px',
     width: 'fit-content',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       width: '100%',
     },
   },
@@ -63,13 +65,13 @@ const useStyles = makeStyles((theme: Theme) => ({
     marginTop: theme.spacing(15),
     width: '58%',
     margin: 'auto',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       width: '65%',
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '75%',
     },
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       width: '90%',
     },
   },
@@ -99,7 +101,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     background: 'url(/images/png/blog_index_background.png)',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       background: 'url(/images/png/blog_index_background_mobile.png)',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',

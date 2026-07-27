@@ -1,18 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  Button,
-  Container,
-  createStyles,
-  Grid,
-  Paper,
-  Tab,
-  Tabs,
-  Theme,
-  useMediaQuery,
-  withStyles,
-} from '@material-ui/core';
-import Pagination from '@material-ui/lab/Pagination';
+import { Button, Container, Grid, Paper, Tab, Tabs, Theme, useMediaQuery } from '@mui/material';
+import createStyles from '@mui/styles/createStyles';
+import withStyles from '@mui/styles/withStyles';
+import Pagination from '@mui/material/Pagination';
 import useStyles from './styles';
 import Footer from '../../components/Footer';
 import { BLOG_TAGS, VIEW_PORT, METADATA_TYPES } from '../../constants';
@@ -164,7 +155,7 @@ const Blog: React.FC = () => {
           key={item}
         />
       ) : (
-        <Grid item xs={6} key={item}>
+        <Grid key={item} size={6}>
           <Button
             className={[
               classes.tabButton,
@@ -209,9 +200,9 @@ const Blog: React.FC = () => {
                     root: classes.tabRoot,
                     scroller: classes.scroller,
                   }}
-                  TabIndicatorProps={{
-                    style: {
-                      display: 'none',
+                  slotProps={{
+                    indicator: {
+                      style: { display: 'none' },
                     },
                   }}
                   orientation="horizontal"
@@ -224,7 +215,7 @@ const Blog: React.FC = () => {
                 </Tabs>
               ) : (
                 <Grid container className={classes.mobileTabsWrapper}>
-                  <Grid item xs={6}>
+                  <Grid size={6}>
                     <Button
                       className={[
                         classes.tabButton,
@@ -258,12 +249,12 @@ const Blog: React.FC = () => {
                 .slice((page - 1) * itemsPerPage, page * itemsPerPage)
                 .map((elm: any) => (
                   <Grid
-                    item
-                    xs={12}
-                    md={6}
                     key={elm.id}
                     className={classes.cardSize}
-                  >
+                    size={{
+                      xs: 12,
+                      md: 6
+                    }}>
                     {/* Passing parameters blog(passing complete blog object), and handleTagSelect(this fuction handles the action when tag button is clicked)  */}
                     <BlogCard blog={elm} handleTagSelect={handleTagSelect} />
                   </Grid>

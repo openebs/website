@@ -1,8 +1,8 @@
-import { Button, Typography } from '@material-ui/core';
+import { Button, Typography } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 import useStyles from './style';
 import { EXTERNAL_LINKS } from '../../constants';
 
@@ -16,14 +16,22 @@ const JoinCommunity: React.FC = () => {
         {t('joinCommunity.title')}
       </Typography>
       <Grid container spacing={5}>
-        <Grid item md={6} xs={12}>
+        <Grid
+          size={{
+            md: 6,
+            xs: 12
+          }}>
           <Paper className={[classes.paper, classes.leftPaper].join(' ')}>
             <div className={classes.communityCard}>
               <iframe src="https://slack.k8s.io/" title={t('joinCommunity.slackIframeTitle')} height="480" frameBorder="0" scrolling="no" />
             </div>
           </Paper>
         </Grid>
-        <Grid item md={6} xs={12}>
+        <Grid
+          size={{
+            md: 6,
+            xs: 12
+          }}>
           <Paper className={[classes.paper, classes.rightPaper].join(' ')}>
             <div className={classes.communityCard}>
               <img loading="lazy" src="../images/logos/github_full.svg" alt={t('joinCommunity.gitHubAlt')} className={classes.gitHubLogo} />
@@ -42,7 +50,6 @@ const JoinCommunity: React.FC = () => {
           </Paper>
         </Grid>
       </Grid>
-
     </div>
   );
 };

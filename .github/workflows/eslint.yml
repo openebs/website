@@ -12,7 +12,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: "20"
+          node-version: "24"
       - name: Check for lint errors
         working-directory: ./website
         run: |

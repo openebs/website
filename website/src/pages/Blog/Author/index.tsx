@@ -6,9 +6,8 @@ import {
   Container,
   Grid,
   Link,
-} from '@material-ui/core';
-import { Pagination } from '@material-ui/lab';
-import { useHistory } from 'react-router-dom';
+ Pagination } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import useStyles from './styles';
 import Footer from '../../../components/Footer';
 import { VIEW_PORT, METADATA_TYPES } from '../../../constants';
@@ -65,7 +64,7 @@ const Blog: React.FC = () => {
   const [page, setPage] = React.useState<number>(1);
   const { width } = useViewport();
   const mobileBreakpoint = VIEW_PORT.MOBILE_BREAKPOINT;
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -147,13 +146,13 @@ const Blog: React.FC = () => {
                       .slice((page - 1) * itemsPerPage, page * itemsPerPage)
                       .map((elm: any) => (
                         <Grid
-                          item
-                          xs={12}
-                          md={6}
                           key={elm.id}
                           className={classes.cardSize}
-                        >
-                          <BlogCard blog={elm} handleTagSelect={(tag: string) => history.push(`/blog/tag/${toLowerCaseHyphenSeparatedString(tag)}`)} />
+                          size={{
+                            xs: 12,
+                            md: 6
+                          }}>
+                          <BlogCard blog={elm} handleTagSelect={(tag: string) => navigate(`/blog/tag/${toLowerCaseHyphenSeparatedString(tag)}`)} />
                         </Grid>
                       ))
                     : ' '}
@@ -173,7 +172,6 @@ const Blog: React.FC = () => {
           <Footer />
         </footer>
       </div>
-
     </>
   );
 };

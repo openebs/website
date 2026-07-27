@@ -1,4 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   tagButton: {
@@ -38,7 +40,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '1.375rem',
     fontWeight: 700,
     cursor: 'pointer',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '1rem',
     },
   },
@@ -46,14 +48,14 @@ const useStyles = makeStyles((theme: Theme) => ({
     fontSize: '1rem',
     fontWeight: 400,
     color: theme.palette.text.secondary,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '0.875rem',
     },
   },
   actionWrapper: {
     justifyContent: 'space-between',
     marginTop: 'auto',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'block',
     },
   },
@@ -62,7 +64,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     overflow: 'auto',
     paddingBottom: theme.spacing(0.25),
     width: '70%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%',
     },
   },
@@ -70,7 +72,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textTransform: 'none',
     color: theme.palette.warning.main,
     fontWeight: 700,
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'none',
     },
   },

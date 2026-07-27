@@ -1,20 +1,18 @@
 import React, { useEffect } from 'react';
-import { useLocation, withRouter } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import useStyles from './styles';
 import Header from '../../components/Header';
 
+const ScrollToTop: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return children;
+};
+
 const Scaffold: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const classes = useStyles();
-
-  const _ScrollToTop = (props: any) => {
-    const { pathname } = useLocation();
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, [pathname]);
-    return props.children;
-  };
-
-  const ScrollToTop = withRouter(_ScrollToTop);
 
   return (
     <div className={classes.root}>

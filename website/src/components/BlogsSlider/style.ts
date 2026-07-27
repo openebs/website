@@ -1,4 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles((theme: Theme) => ({
   cardRoot: {
@@ -53,7 +55,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   sliderWrapper: {
     '& .slick-slide': {
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('lg')]: {
         padding: theme.spacing(2),
       },
     },
