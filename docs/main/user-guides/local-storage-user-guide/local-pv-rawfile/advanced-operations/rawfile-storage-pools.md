@@ -39,7 +39,7 @@ helm upgrade rawfile-localpv rawfile-localpv/rawfile-localpv -n openebs -f value
 
 Pool names must be DNS-compatible:
 - Length: 3–63 characters
-- Characters: lowercase letters, digits, and hyphens only
+- Characters: letters (uppercase or lowercase), digits, and hyphens only
 - Cannot start or end with a hyphen
 
 ## Reserved Capacity Modes

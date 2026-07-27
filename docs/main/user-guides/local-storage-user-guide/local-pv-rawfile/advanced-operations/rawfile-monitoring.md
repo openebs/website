@@ -85,16 +85,16 @@ scrape_configs:
 | `rawfile_pool_volumes_physical_bytes` | `node`, `pool` | Physical disk bytes consumed by all volumes in the pool |
 | `rawfile_pool_volumes_logical_bytes` | `node`, `pool` | Logical (provisioned) bytes of all volumes in the pool |
 | `rawfile_pool_volume_count` | `node`, `pool` | Number of volumes in the pool |
-| `rawfile_pool_info` | `node`, `pool`, `path`, `fs_type` | Pool metadata (labels only, value always 1) |
+| `rawfile_pool_info` | `node`, `pool`, `mode`, `default_pool` | Pool metadata (labels only, value always 1) |
 
 ### Volume-Level Metrics
 
 | Metric | Labels | Description |
 |---|---|---|
-| `rawfile_volume_used_bytes` | `node`, `pool`, `volume` | Bytes currently used inside the volume |
-| `rawfile_volume_total_bytes` | `node`, `pool`, `volume` | Total provisioned size of the volume |
-| `rawfile_volume_physical_bytes` | `node`, `pool`, `volume` | Physical disk bytes consumed by the volume (may differ from logical for thin or CoW volumes) |
-| `rawfile_volume_info` | `node`, `pool`, `volume`, `pvc`, `namespace` | Volume metadata (labels only, value always 1) |
+| `rawfile_volume_used_bytes` | `node`, `volume` | Bytes currently used inside the volume |
+| `rawfile_volume_total_bytes` | `node`, `volume` | Total provisioned size of the volume |
+| `rawfile_volume_physical_bytes` | `node`, `volume` | Physical disk bytes consumed by the volume (may differ from logical for thin or CoW volumes) |
+| `rawfile_volume_info` | `node`, `volume`, `pool`, `sparse`, `thin_provision` | Volume metadata (labels only, value always 1) |
 
 ## Example PromQL Queries
 
@@ -121,9 +121,6 @@ rawfile_pool_volumes_logical_bytes / rawfile_pool_capacity_bytes
 ```promql
 1 - (rawfile_pool_volumes_physical_bytes / rawfile_pool_volumes_logical_bytes)
 ```
-:::note
-Metrics were renamed in **v0.14.1**. If you are upgrading from an earlier version, update any dashboards or alert rules that reference the old metric names.
-:::
 
 ## Support
 
