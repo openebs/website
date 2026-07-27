@@ -415,8 +415,112 @@
                     }
                   ]
                 }
-              ] 
-            },   
+              ]
+            },
+            {
+              "collapsed": true,
+              "type": "category",
+              "label": "Local PV Rawfile",
+              "customProps": {
+                "icon": "Book"
+              },
+              "items": [
+                {
+                  "type": "doc",
+                  "id": "user-guides/local-storage-user-guide/local-pv-rawfile/rawfile-overview",
+                  "label": "Overview",
+                  "key": "Rawfile_Overview"
+                },
+                {
+                  "collapsed": true,
+                  "type": "category",
+                  "label": "Configuration",
+                  "key": "Rawfile_Configuration",
+                  "customProps": {
+                    "icon": "Settings"
+                  },
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "user-guides/local-storage-user-guide/local-pv-rawfile/configuration/rawfile-create-storageclass",
+                      "label": "Create StorageClass(s)",
+                      "key": "rawfile-create-storageclass"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "user-guides/local-storage-user-guide/local-pv-rawfile/configuration/rawfile-storageclass-parameters",
+                      "label": "StorageClass Parameters",
+                      "key": "rawfile-storageclass-parameters"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "user-guides/local-storage-user-guide/local-pv-rawfile/configuration/rawfile-create-pvc",
+                      "label": "Create PVC",
+                      "key": "rawfile-create-pvc"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "user-guides/local-storage-user-guide/local-pv-rawfile/configuration/rawfile-deployment",
+                      "label": "Deploy an Application",
+                      "key": "rawfile-deployment"
+                    }
+                  ]
+                },
+                {
+                  "collapsed": true,
+                  "type": "category",
+                  "label": "Advanced Operations",
+                  "key": "Rawfile_AdvancedOperations",
+                  "customProps": {
+                    "icon": "Beaker"
+                  },
+                  "items": [
+                    {
+                      "type": "doc",
+                      "id": "user-guides/local-storage-user-guide/local-pv-rawfile/advanced-operations/rawfile-storage-pools",
+                      "label": "Storage Pools",
+                      "key": "rawfile-storage-pools"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "user-guides/local-storage-user-guide/local-pv-rawfile/advanced-operations/rawfile-snapshot",
+                      "label": "Snapshots",
+                      "key": "rawfile-snapshot"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "user-guides/local-storage-user-guide/local-pv-rawfile/advanced-operations/rawfile-volume-restore",
+                      "label": "Volume Restore (Cloning)",
+                      "key": "rawfile-volume-restore"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "user-guides/local-storage-user-guide/local-pv-rawfile/advanced-operations/rawfile-resize",
+                      "label": "Volume Resize",
+                      "key": "rawfile-resize"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "user-guides/local-storage-user-guide/local-pv-rawfile/advanced-operations/rawfile-monitoring",
+                      "label": "Monitoring",
+                      "key": "rawfile-monitoring"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "user-guides/local-storage-user-guide/local-pv-rawfile/advanced-operations/rawfile-raw-block-volume",
+                      "label": "Raw Block Volumes",
+                      "key": "rawfile-raw-block-volume"
+                    },
+                    {
+                      "type": "doc",
+                      "id": "user-guides/local-storage-user-guide/local-pv-rawfile/advanced-operations/rawfile-thin-provisioning",
+                      "label": "Thin Provisioning",
+                      "key": "rawfile-thin-provisioning"
+                    }
+                  ]
+                }
+              ]
+            },
             {
               "collapsed": true,
               "type": "category",
