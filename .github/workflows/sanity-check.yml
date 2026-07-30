@@ -4,6 +4,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   commits_check_job:
     runs-on: ubuntu-latest
