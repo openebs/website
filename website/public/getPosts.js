@@ -69,14 +69,21 @@ const getPosts = () => {
                         tags: metadata.tags.split(',').map(e => e.trim()) || 'No tags available',
                         excerpt: metadata.excerpt || '',
                         content: content || 'No content available',
-                        notHasFeatureImage: (metadata.not_has_feature_image) ? true : false
+                        notHasFeatureImage: (metadata.not_has_feature_image) ? true : false,
+                        // Posts restored/kept for future updates but not yet ready for
+                        // public view are marked `hidden: true` in their frontmatter.
+                        // Filtered out below so they never reach posts.json / the public site.
+                        hidden: (metadata.hidden === 'true')
                     };
                 }
 
 
                 postList.push(post);
                 if (postList.length === files.length) {
-                    let sortedJSON = sortAccrodingtoDate(postList);
+                    // Drop hidden posts before sorting/publishing. The file (and its
+                    // images) stay in the repo for editing, but never ship to users.
+                    let visiblePosts = postList.filter((p) => p && !p.hidden);
+                    let sortedJSON = sortAccrodingtoDate(visiblePosts);
                     let sortedJSONWithID = sortedJSON.map(item => ({...item, id: sortedJSON.indexOf(item) + 1, slug: convertTitleToSlug(item.title) }))
                     let data = JSON.stringify(sortedJSONWithID);
                     fs.writeFileSync('src/posts.json', data);
