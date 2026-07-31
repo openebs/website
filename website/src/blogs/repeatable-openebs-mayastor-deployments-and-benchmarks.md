@@ -5,7 +5,6 @@ author_info: OpenEBS is the most widely deployed and easy to use open source sto
 tags: Mayastor,OpenEBS
 date: 22-03-2021
 excerpt: Learn about Repeatable OpenEBS Mayastor deployments and benchmarks
-hidden: true
 --- 
 
 ## Introduction

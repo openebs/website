@@ -5,7 +5,6 @@ author_info: Prasoon works as a Product Marketing Manager in DataCore Software. 
 date: 18-01-2022
 tags: Mayastor, Kubernetes, Solutions
 excerpt: In this blog, we will go through Mayastor architecture, evolution of project over the years, benefits for the community and different use cases
-hidden: true
 ---
 
 Mayastor was started in late 2019 as a sub-project of OpenEBS and has been under development by the [MayaData](https://mayadata.io/) team as an advancement of earlier storage engines. Over the years, Mayastor remained in beta and the culmination of efforts of the engineering team of MayaData, the Cloud Native Computing Foundation and the vibrant open-source community led us to build the foundation of various features and stability. In that spirit, today we are proud to release the first community version of Mayastor .  

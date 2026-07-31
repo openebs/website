@@ -5,7 +5,6 @@ author_info: Developer who is always eager to learn, loves math, algorithms, & p
 date: 04-08-2020
 tags: OpenEBS, Velero
 excerpt: In this blog, we will go through the backup/restore solution provided to its users by OpenEBS with the help of Velero.
-hidden: true
 ---
 
 ### **Backup/Restore of stateful applications in OpenEBS**

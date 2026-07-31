@@ -5,7 +5,6 @@ author_info: It's been an amazing experience in Software Engineering because of 
 date: 13-12-2019
 tags: CNCF, Kubernetes, Persistent Volume, ZFS, OpenEBS
 excerpt: OpenEBS’ ZFS driver binds a ZFS file system into the Kubernetes environment and allows users to provision and de-provision volumes dynamically. This blog will demonstrate how to deploy a Percona application on the ZFS storage system with OpenEBS.
-hidden: true
 ---
 
 OpenEBS’ ZFS driver binds a ZFS file system into the Kubernetes environment and allows users to provision and de-provision volumes dynamically. This blog will demonstrate how to deploy a Percona application on the ZFS storage system with OpenEBS.

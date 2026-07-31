@@ -5,7 +5,6 @@ author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaDa
 date: 29-03-2019
 tags: Kubernetes, Open Source, OpenEBS, Stateful Applications, Storage
 excerpt: In this blog I discuss why we are adding the support of Local Persistent Volumes to the open source OpenEBS -  I view this as a significant step forward in our mission of delivery true data agility to the broader cloud native community and I welcome your feedback.
-hidden: true
 ---
 
 *Updated May 16th 2019: The alpha version of the OpenEBS Local PV provisioner has been included in OpenEBS Release 0.9. This blog is updated with the setup instructions and examples from v0.9.*

@@ -5,7 +5,6 @@ author_info: Contributor and Maintainer OpenEBS projects. Chief Architect MayaDa
 tags: LocalPV, OpenEBS, Flipkart, TikTok, Kubernetes, Mayastor, MayaData
 date: 12-03-2021
 excerpt: How are TikTok, Flipkart, KubeSphere, and others using OpenEBS for Local Volumes
-hidden: true
 ---
 
 **How to select the right local volume for your workloads?**

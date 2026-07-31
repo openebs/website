@@ -6,7 +6,6 @@ date: 17-06-2021
 tags: Kubernetes, OpenEBS, LocalPV, LVM
 excerpt: In large production environments, various physical disks are typically pooled to handle user and application storage needs. Logical Volume Management (LVM) is a storage virtualization technology that is a part of Linux which is widely used as a way to help administrators and developers abstract the physical configuration of storage devices for flexible and simpler provisioning. 
 not_has_feature_image: false
-hidden: true
 ---
 
 ## Introduction to Logical Volume Management

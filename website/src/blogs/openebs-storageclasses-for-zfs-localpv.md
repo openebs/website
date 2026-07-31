@@ -5,7 +5,6 @@ author_info: It's been an amazing experience in Software Engineering because of 
 date: 09-09-2020
 tags: OpenEBS, LocalPV, ZFS
 excerpt: In this blog, I will discuss various storage classes we can use to dynamically provision the volumes backed by ZFS-LocalPV Storage Pool.
-hidden: true
 ---
 
 In this blog, I will discuss various storage classes we can use to dynamically provision the volumes backed by ZFS Storage Pool.

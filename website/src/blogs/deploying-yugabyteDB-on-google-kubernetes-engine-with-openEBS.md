@@ -5,7 +5,6 @@ author_info: OpenEBS is the most widely deployed and easy to use open source sto
 tags: OpenEBS, Open Source, Yugabyte, Cloud Native Gke
 date: 05-04-2021
 excerpt: In this blog post, we’ll walk you through the necessary steps to get a 3 node YugabyteDB cluster running on top of GKE, backed by OpenEBS.
-hidden: true
 ---
 
 [OpenEBS](https://www.openebs.io/) is a CNCF project backed by [MayaData](https://mayadata.io/) that provides cloud-native, open source container attached storage (CAS). OpenEBS delivers persistent block storage and other capabilities such as integrated back-up, management of local and cloud disks, and more. For enterprise cloud-native applications, OpenEBS provides storage functionality that is idiomatic with cloud-native development environments, with granular storage policies and isolation that enable cloud developers and architects to optimize storage for specific workloads.
