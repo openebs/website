@@ -1,0 +1,40 @@
+---
+title: OpenEBS v4.5 Release Highlights
+author: Bala Harish A
+author_info: Bala is a Senior Technical Writer at DataCore Software, working on the OpenEBS documentation. He focuses on making storage engine internals, upgrade paths, and day-2 operations easy to follow for Kubernetes platform teams.
+date: 14-07-2026
+tags: OpenEBS, Kubernetes, Releases, Storage
+excerpt: A look at what is new in OpenEBS v4.5, including offline node and pool deletion for Replicated PV Mayastor, disk failure detection, RDMA QoS, and Quality of Service support for Local PV LVM.
+not_has_feature_image: true
+---
+
+OpenEBS v4.5 is out, and it brings a set of changes aimed squarely at day-2 operations: recovering from broken infrastructure more gracefully, seeing storage problems before they become application problems, and giving administrators finer control over performance. Here is what changed across Replicated Storage and Local Storage, and why it matters if you are running OpenEBS in production.
+
+## Replicated Storage (Replicated PV Mayastor)
+
+**Offline node deletion (node purge):** Until now, permanently removing a node that had failed and was never coming back required access to the underlying host to clean things up properly. Replicated PV Mayastor now supports purging an unreachable, unrecoverable node directly from the control plane, and lets you review the expected impact on volumes and snapshots before you commit to the operation. This closes a real gap in disaster recovery workflows.
+
+**Offline and online pool deletion:** Pools can now be deleted whether they are online (as long as they hold no replicas) or offline and unrecoverable. As with node purge, you get visibility into the impact on affected volumes and snapshots before deleting, which matters when a pool going away could otherwise be a nasty surprise.
+
+**Disk I/O failure and hot-removal handling:** Replicated PV Mayastor now actively detects disk I/O failures, hot-removal events, stalled I/O, and runtime disk errors, and surfaces them through DiskPool state, alerts, and diagnostics. If you have ever had to guess which physical disk was silently failing under a workload, this is the feature that removes the guesswork.
+
+**Experimental RWX block volume support for KubeVirt live migration:** VMs running on KubeVirt can now live-migrate using native ReadWriteMany block volumes, without an NFS layer in between. It is explicitly experimental and meant for evaluation in non-production environments for now, but it is a meaningful step for anyone running VMs alongside containers on the same storage layer.
+
+**RDMA QoS and DSCP marking.** For RDMA-enabled environments, you can now configure transport-level QoS through DSCP marking, so storage traffic can be prioritized against your existing network QoS policies rather than competing with everything else on the wire.
+
+## Local Storage
+
+**Node-deployment mode for Local PV Hostpath:** Provisioning can now run closer to the target node, cutting overhead in high-performance environments where every millisecond of provisioning latency counts.
+
+**Quality of Service for Local PV LVM:** This is arguably the headline local-storage feature: Local PV LVM now supports QoS through Kubernetes VolumeAttributesClass (VAC), so you can define and change IOPS and bandwidth limits on the fly, without recreating the PVC. That is a meaningful improvement for anyone who has had to over-provision storage classes just to avoid disruptive PVC recreation when performance requirements shifted.
+
+## Also Worth Knowing
+
+A few other changes worth a mention: global Helm values are now supported for more consistent configuration across components, storage observability got several new metrics (DiskPool capacity, pool health alerts, replica and snapshot counts, node status), and there is a batch of reliability fixes, including corrected capacity reporting for thin-provisioned Local PV LVM volumes and improved ZFS error messages for faster troubleshooting.
+
+## See Also
+
+- [OpenEBS Architecture](/docs/concepts/architecture)
+- [OpenEBS Replicated Storage](/docs/concepts/data-engines/replicated-storage)
+- [OpenEBS Local Storage](/docs/concepts/data-engines/local-storage)
+- [Full release notes](/docs/releases)
