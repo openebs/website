@@ -18,8 +18,10 @@ updates:
     directory: /docs
     schedule:
       interval: weekly
-    patterns:
-      - "*"
+    groups:
+      all:
+        patterns:
+          - "*"
     multi-ecosystem-group: all-content
 
   - package-ecosystem: npm
