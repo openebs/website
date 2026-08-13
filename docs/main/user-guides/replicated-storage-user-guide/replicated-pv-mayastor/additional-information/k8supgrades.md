@@ -30,4 +30,4 @@ It is recommended that before a Kubernetes node is rebooted:
 
 ## See Also
 
-- [Connect with Community](../../../community.md)
+- [Connect with Community](../../../../community.md)

@@ -73,3 +73,7 @@ When eventing is enabled, NATS pods are created to gather various events from th
 ```
 --set eventing.enabled=false
 ```
+
+:::note
+Disabling eventing also removes the [Eventing Aggregator](eventing-aggregator.md), which means cluster events can no longer be queried with `kubectl mayastor get events` and are no longer included in the support bundle. If you want to retain event querying while stopping only the aggregation of events, disable the aggregator alone with `--set eventing.aggregator.enabled=false`.
+:::

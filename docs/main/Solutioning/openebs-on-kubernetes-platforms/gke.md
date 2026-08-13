@@ -114,6 +114,7 @@ openebs-csi-node-v7jfh                            2/2     Running   0          1
 openebs-etcd-0                                    1/1     Running   0          11m
 openebs-etcd-1                                    1/1     Running   0          11m
 openebs-etcd-2                                    1/1     Running   0          11m
+openebs-eventing-aggregator-7c9f4b6d8c-x2mkq      1/1     Running   0          11m
 openebs-io-engine-7t6tf                           2/2     Running   0          11m
 openebs-io-engine-9df6r                           2/2     Running   0          11m
 openebs-io-engine-rqph4                           2/2     Running   0          11m

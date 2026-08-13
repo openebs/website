@@ -57,7 +57,7 @@ Before proceeding, ensure that:
 - At least three worker nodes are available for migration testing.
 - A healthy Replicated PV Mayastor storage cluster is configured.
 
-Refer to the [OpenEBS Installation Documentation](../../quickstart-guide/installation.md) for installation instructions.
+Refer to the [OpenEBS Installation Documentation](../quickstart-guide/installation.md) for installation instructions.
 
 ## Install KubeVirt
 
@@ -447,4 +447,4 @@ To assist with troubleshooting and analysis, include the following information w
 
 - [KubeVirt VM Live Migration with Replicated PV Mayastor and NFS](./read-write-many/kubevirt-nfs.md)
 - [Provisioning NFS PVCs](./read-write-many/nfspvc.md)
-- [KubeVirt VM Backup and Restore](../backup-and-restore/kubevirt-backup.md)
+- [KubeVirt VM Backup and Restore](backup-and-restore/kubevirt-backup.md)
