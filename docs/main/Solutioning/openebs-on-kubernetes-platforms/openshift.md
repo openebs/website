@@ -86,6 +86,7 @@ The namespace and Helm release name used in this document are openebs and are pr
   openebs-etcd-0                                    1/1     Running            0             22m
   openebs-etcd-1                                    1/1     Running            0             22m
   openebs-etcd-2                                    1/1     Running            0             22m
+  openebs-eventing-aggregator-7c9f4b6d8c-x2mkq      1/1     Running            0             22m
   openebs-io-engine-dvzqb                           2/2     Running            0             22m
   openebs-io-engine-jwvr4                           2/2     Running            0             22m
   openebs-io-engine-m8vv6                           2/2     Running            0             10m
