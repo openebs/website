@@ -360,12 +360,12 @@ When the io-engine fails to start with the error message `couldn't allocate memo
 Configure the io-engine to use physical address (PA) mode for DMA by setting the following Helm parameter during Replicated PV Mayastor installation:
 
 ```
---set openebs.mayastor.io_engine.envcontext=iova-mode=pa
+--set mayastor.io_engine.envcontext=iova-mode=pa
 ```
 
 ## Eventing Issues
 
-The issues in this section relate to the [Eventing Aggregator](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/eventing-aggregator.md) and the `kubectl mayastor get events` command.
+The issues in this section relate to the [Eventing Aggregator](../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/eventing-aggregator.md) and the `kubectl openebs mayastor get events` command.
 
 ### The eventing-aggregator pod remains in the Init state
 
@@ -379,30 +379,30 @@ Verify that the NATS pods are running in the namespace where OpenEBS is installe
 kubectl get pods -n openebs
 ```
 
-### No events are returned by `kubectl mayastor get events`
+### No events are returned by `kubectl openebs mayastor get events -n <product-namespace>`
 
 Events are only collected when both eventing and the aggregator are enabled. An empty result may also indicate that the requested time window contains no events, or that the applied filters are too specific.
 
 **Workaround**
 
-Confirm that `eventing.enabled` and `eventing.aggregator.enabled` are both set to `true`, and that the aggregator pod is running. Then widen the time window and remove all filters to establish whether any events exist:
+Confirm that `mayastor.eventing.enabled` and `mayastor.eventing.aggregator.enabled` are both set to `true`, and that the aggregator pod is running. Then widen the time window and remove all filters to establish whether any events exist:
 
 ```
-kubectl mayastor get events --since 7d
+kubectl openebs mayastor get events -n <product-namespace> --since 7d
 ```
 
 When filters exclude every record, the plugin reports the number of events retrieved before filtering, which distinguishes an empty dataset from an over-specific filter.
 
 ### Events older than the requested time window are missing
 
-When Loki is not deployed, only the events held on the aggregator's ephemeral volume are available. That volume is an `emptyDir`, so it is cleared whenever the aggregator pod restarts, and it retains a bounded number of events governed by `eventing.aggregator.dirSizeLimit`.
+When Loki is not deployed, only the events held on the aggregator's ephemeral volume are available. That volume is an `emptyDir`, so it is cleared whenever the aggregator pod restarts, and it retains a bounded number of events governed by `mayastor.eventing.aggregator.dirSizeLimit`.
 
 **Workaround**
 
 Deploy Loki for event history that survives pod restarts. Alternatively, increase the size of the on-disk buffer to retain a longer window:
 
 ```
---set eventing.aggregator.dirSizeLimit=500Mi
+--set mayastor.eventing.aggregator.dirSizeLimit=500Mi
 ```
 
 ### The command fails when an explicit `--loki-endpoint` is supplied

@@ -8,6 +8,7 @@ keywords:
  - NATS
  - Loki
  - get events
+ - list events
 description: This document explains how to collect and query Replicated PV Mayastor cluster events using the Eventing Aggregator.
 ---
 
@@ -17,15 +18,15 @@ description: This document explains how to collect and query Replicated PV Mayas
 
 Replicated PV Mayastor generates an event whenever something significant happens in the cluster, such as a volume being created or a rebuild starting. For the full list of events, refer to the [Eventing](eventing.md) documentation.
 
-The Eventing Aggregator collects these events and makes them available to query using the `kubectl mayastor get events` command. It runs as a single Deployment in the OpenEBS namespace and is enabled by default.
+The Eventing Aggregator collects these events and makes them available to query using the `kubectl openebs mayastor get events` command. It runs as a single Deployment in the OpenEBS namespace and is enabled by default.
 
 Events are written to the aggregator's pod logs, which Loki collects when it is deployed. If Loki is not deployed, events are written to a volume on the aggregator pod instead, and the plugin reads them from there. Querying works the same way in both cases.
 
-Events are also included in the support bundle produced by `kubectl mayastor dump system`.
+Events are also included in the support bundle produced by `kubectl openebs dump system`.
 
 ## Requirements
 
-- Replicated PV Mayastor is installed with `eventing.enabled=true`. This is the default.
+- Replicated PV Mayastor is installed with `mayastor.eventing.enabled=true`. This is the default.
 - NATS is deployed with JetStream enabled. This is the default.
 - Loki is optional. Without it, only recent events are available.
 
@@ -39,7 +40,7 @@ How long events remain available depends on where they are stored.
 | :--- | :--- | :--- |
 | Loki | `retention_period` in the Loki `limits_config`. | Loki also limits queries to 30 days by default. |
 | Pod logs | The kubelet log rotation policy on the node. | — |
-| Aggregator volume | `eventing.aggregator.dirSizeLimit`. | Cleared when the aggregator pod restarts. |
+| Aggregator volume | `mayastor.eventing.aggregator.dirSizeLimit`. | Cleared when the aggregator pod restarts. |
 
 :::note
 For event history that survives pod restarts, deploy Loki.
@@ -47,23 +48,24 @@ For event history that survives pod restarts, deploy Loki.
 
 ## Configuration
 
-The aggregator is configured through the Helm chart.
+The aggregator is configured through the dependent Mayastor Helm chart.
 
 ```yaml
-eventing:
-  enabled: true
-  aggregator:
+mayastor:
+  eventing:
     enabled: true
-    logLevel: "info"
-    dirSizeLimit: "100Mi"
+    aggregator:
+      enabled: true
+      logLevel: "info"
+      dirSizeLimit: "100Mi"
 ```
 
 | Value | Description | Default |
 | :--- | :--- | :--- |
-| `eventing.enabled` | Enables event generation. When set to `false`, no events are produced. | `true` |
-| `eventing.aggregator.enabled` | Deploys the Eventing Aggregator. | `true` |
-| `eventing.aggregator.logLevel` | Log verbosity of the aggregator container. | `info` |
-| `eventing.aggregator.dirSizeLimit` | Size limit for events stored on the aggregator volume. | `100Mi` |
+| `mayastor.eventing.enabled` | Enables event generation. When set to `false`, no events are produced. | `true` |
+| `mayastor.eventing.aggregator.enabled` | Deploys the Eventing Aggregator. | `true` |
+| `mayastor.eventing.aggregator.logLevel` | Log verbosity of the aggregator container. | `info` |
+| `mayastor.eventing.aggregator.dirSizeLimit` | Size limit for events stored on the aggregator volume. | `100Mi` |
 
 The aggregator also accepts the standard `resources`, `tolerations`, `nodeSelector`, and `priorityClassName` values.
 
@@ -72,7 +74,7 @@ The aggregator also accepts the standard `resources`, `tolerations`, `nodeSelect
 To stop collecting events while leaving eventing enabled, add the following flag to the `helm install` or `helm upgrade` command.
 
 ```
---set eventing.aggregator.enabled=false
+--set mayastor.eventing.aggregator.enabled=false
 ```
 
 ### Retain More Events on Disk
@@ -80,7 +82,7 @@ To stop collecting events while leaving eventing enabled, add the following flag
 If Loki is not deployed and you want a longer window of event history, increase the size limit.
 
 ```
---set eventing.aggregator.dirSizeLimit=500Mi
+--set mayastor.eventing.aggregator.dirSizeLimit=500Mi
 ```
 
 ## Verify the Deployment
@@ -103,7 +105,7 @@ openebs-eventing-aggregator-7c9f4b6d8c-x2mkq   1/1     Running   0          11m
 **Command**
 
 ```
-kubectl mayastor get events
+kubectl openebs mayastor get events -n <product-namespace>
 ```
 
 **Sample Output**
@@ -154,19 +156,19 @@ Filters are combined using AND logic. The `--category`, `--action`, `--component
 To retrieve all events for a specific volume:
 
 ```
-kubectl mayastor get events --volume 18e30e83-b106-4e0d-9fb6-2b04e761e18a
+kubectl openebs mayastor get events -n <product-namespace> --volume 18e30e83-b106-4e0d-9fb6-2b04e761e18a
 ```
 
 To retrieve nexus events from the last six hours:
 
 ```
-kubectl mayastor get events --category nexus --since 6h
+kubectl openebs mayastor get events -n <product-namespace> --category nexus --since 6h
 ```
 
 To retrieve pool events from a specific node in JSON format:
 
 ```
-kubectl mayastor get events --category pool --node worker-1 -o json
+kubectl openebs mayastor get events -n <product-namespace> --category pool --node worker-1 -o json
 ```
 
 ## Collect Events in a Support Bundle
@@ -174,7 +176,7 @@ kubectl mayastor get events --category pool --node worker-1 -o json
 **Command**
 
 ```
-kubectl mayastor dump system -n openebs -d <output_directory_path>
+kubectl openebs dump system -n <product-namespace> -d <output_directory_path>
 ```
 
 The archive includes `mayastor/events.ndjson`, containing the collected events, and `mayastor/events-source.txt`, which records where they were collected from. For more information about the supportability tool, refer to the [Supportability](../../../supportability.md) documentation.
@@ -184,7 +186,7 @@ The archive includes `mayastor/events.ndjson`, containing the collected events, 
 The extracted events file can be queried with the same filters used against a live cluster, without a cluster connection.
 
 ```
-kubectl mayastor get events --from-file ./events.ndjson --component io-engine
+kubectl openebs mayastor get events --from-file ./events.ndjson --component io-engine
 ```
 
 ## Troubleshooting
