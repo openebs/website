@@ -66,6 +66,19 @@ Supportability - collects state & log information of services and dumps it to a 
 The information collected by the supportability tool is solely used for debugging purposes. The content of these files is human-readable and can be reviewed, deleted, or redacted as necessary to adhere to the organization's data protection/privacy commitments and security policies before transmitting the bundles.
 :::
 
+### Collected Event Data
+
+When the [Eventing Aggregator](replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/eventing-aggregator.md) is deployed, the dump command also collects Replicated PV Mayastor cluster events into the archive.
+
+| File | Description |
+| :--- | :--- |
+| `mayastor/events.ndjson` | The collected events, one JSON object per line. |
+| `mayastor/events-source.txt` | Records the source from which the events were collected, either `loki` or the name of the aggregator pod. |
+
+Events are collected from Loki when it is available, and from the aggregator's ephemeral volume when it is not. The `--since` value passed to the dump command determines the time window of events collected.
+
+Because `events.ndjson` is a plain newline-delimited JSON file, it can be analysed offline without a cluster connection by passing it to the `--from-file` option of the `get events` command. Refer to the [Eventing Aggregator](replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/eventing-aggregator.md#analyse-events-offline) documentation for details.
+
 <!--
 Refer the section [Does the supportability tool expose sensitive data?](#does-the-supportability-tool-expose-sensitive-data) for more details.
 

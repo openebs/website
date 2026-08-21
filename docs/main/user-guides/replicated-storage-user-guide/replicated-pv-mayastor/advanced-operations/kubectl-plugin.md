@@ -180,6 +180,24 @@ kubectl mayastor get volume-replica-topology <volume_id>
 The plugin requires access to the `Mayastor REST server` for execution. It gets the master node IP from the kube-config file. In case of any failure, the REST endpoint can be specified using the ‘–rest’ flag.
 :::
 
+### Get Cluster Events
+
+**Command**
+
+```
+kubectl openebs mayastor get events
+```
+
+**Expected Output**
+
+```
+TIMESTAMP             CATEGORY  ACTION         TARGET                                NODE      COMPONENT
+2026-08-12T09:14:02Z  volume    create         18e30e83-b106-4e0d-9fb6-2b04e761e18a  worker-1  CoreAgent
+2026-08-12T09:18:47Z  nexus     rebuild_begin  18e30e83-b106-4e0d-9fb6-2b04e761e18a  worker-1  IoEngine
+```
+
+This command returns events collected by the Eventing Aggregator. It supports filtering by category, action, component, node, pool, volume, and replica, among others. Refer to the [Eventing Aggregator](eventing-aggregator.md) documentation for the complete set of options.
+
 ### List Available Volume Snapshots
 
 **Command**

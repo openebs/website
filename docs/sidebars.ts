@@ -660,6 +660,11 @@ const sidebars: SidebarsConfig =
                     },
                     {
                       type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/eventing-aggregator",
+                      label: "Eventing Aggregator"
+                    },
+                    {
+                      type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/call-home-metrics",
                       label: "Call-Home Metrics"
                     },

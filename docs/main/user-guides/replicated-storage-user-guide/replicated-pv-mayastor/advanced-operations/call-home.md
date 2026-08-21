@@ -63,7 +63,7 @@ To disable collection of **usage data** or generation of **events**, the followi
 To disable the collection of data metrics from the cluster, add the following flag to the Helm install command. 
 
 ```
---set obs.callhome.enabled=false
+--set mayastor.obs.callhome.enabled=false
 ```
 
 ### Disable Generation of Events Data
@@ -71,5 +71,9 @@ To disable the collection of data metrics from the cluster, add the following fl
 When eventing is enabled, NATS pods are created to gather various events from the cluster, including statistical metrics such as *pools created*. To deactivate eventing within the cluster, include the following flag in the Helm installation command.
 
 ```
---set eventing.enabled=false
+--set mayastor.eventing.enabled=false
 ```
+
+:::note
+Disabling eventing also removes the [Eventing Aggregator](eventing-aggregator.md), which means cluster events can no longer be queried with `kubectl openebs mayastor get events` and are no longer included in the support bundle. If you want to retain event querying while stopping only the aggregation of events, disable the aggregator alone with `--set mayastor.eventing.aggregator.enabled=false`.
+:::

@@ -141,6 +141,7 @@ openebs-csi-node-zkcrg                            2/2     Running   0          2
 openebs-etcd-0                                    1/1     Running   0          2m49s
 openebs-etcd-1                                    1/1     Running   0          2m49s
 openebs-etcd-2                                    1/1     Running   0          2m49s
+openebs-eventing-aggregator-6c8f7d9b54-q7v2n      1/1     Running   0          2m49s
 openebs-localpv-provisioner-55bf478db6-w94bm      1/1     Running   0          2m50s
 openebs-loki-0                                    1/1     Running   0          2m49s
 openebs-lvm-localpv-controller-668c75f94f-2crlv   5/5     Running   0          2m49s
