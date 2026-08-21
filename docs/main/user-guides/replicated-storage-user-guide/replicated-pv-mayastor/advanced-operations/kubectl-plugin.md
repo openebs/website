@@ -185,7 +185,7 @@ The plugin requires access to the `Mayastor REST server` for execution. It gets 
 **Command**
 
 ```
-kubectl mayastor get events
+kubectl openebs mayastor get events
 ```
 
 **Expected Output**
