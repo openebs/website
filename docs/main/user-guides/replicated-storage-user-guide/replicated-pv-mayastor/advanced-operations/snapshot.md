@@ -78,7 +78,11 @@ Copy the PVC name, for example, `ms-volume-claim`.
 :::
 
 Create an application by following the instructions provided in the [Deploy an Application documentation](../configuration/rs-deployment.md).
- 
+
+## Using an Existing Snapshot Controller
+
+Replicated PV Mayastor runs a `csi-snapshot-controller` container by default. A cluster should run only one snapshot controller, so if one is already managed at the cluster level, disable the bundled one by setting `mayastor.csi.controller.snapshotController.enabled` to `false` in the Helm chart values.
+
 ## Create a Snapshot
 
 You can create a snapshot (with or without an application) using the PVC.

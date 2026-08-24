@@ -10,6 +10,18 @@ description: This section talks about the advanced operations that can be perfor
 
 We can create a snapshot of a volume that can be used further for creating a clone and for taking a backup. To create a snapshot, we have to first create a SnapshotClass just like a storage class where you can provide deletionPolicy as Retain or Delete.
 
+## Using an Existing Snapshot Controller
+
+Local PV ZFS runs a `snapshot-controller` container by default. A cluster should run only one snapshot controller, so if one is already managed at the cluster level, disable the bundled one:
+
+```bash
+helm upgrade openebs openebs/openebs \
+  --namespace openebs \
+  --set zfs-localpv.zfsController.snapshotController.enabled=false
+```
+
+## Create a VolumeSnapshotClass
+
 ```yaml
 $ cat snapshotclass.yaml
 kind: VolumeSnapshotClass
@@ -28,6 +40,8 @@ Apply the snapshotclass YAML:
 $ kubectl apply -f snapshotclass.yaml
 volumesnapshotclass.snapshot.storage.k8s.io/zfspv-snapclass created
 ```
+
+## Create a Snapshot
 
 Find a PVC for which snapshot has to be created.
 
@@ -61,6 +75,8 @@ volumesnapshot.snapshot.storage.k8s.io/zfspv-snap created
 :::note
 Create the snapshot in the same namespace where the PVC is created. Check the created snapshot resource, make sure readyToUsefield is true, before using this snapshot for any purpose.
 :::
+
+## Verify the Snapshot
 
 ```
 $ kubectl get volumesnapshot.snapshot
@@ -98,6 +114,8 @@ status:
   restoreSize: "0"
 ```
 
+### Check the ZFSSnapshot Resource
+
 Check the OpenEBS resource for the created snapshot. The status should be "Ready".
 
 ```
@@ -131,6 +149,8 @@ spec:
 status:
   state: Ready
 ```
+
+### Verify the Snapshot on the Node
 
 We can go to the node and confirm that snapshot has been created:
 

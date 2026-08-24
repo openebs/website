@@ -78,6 +78,18 @@ formatOptions: "-m bigtime=1 -m inobtcount=1"
 
 Enables volume encryption when set to `true`. The volume will be provisioned only if the number of available encrypted pools meets or exceeds the `repl` defined in the StorageClass.
 
+## "snapshotRestorePolicy"
+
+Controls how a volume restore from a snapshot behaves when not every replica pool can host a clone of the source snapshot. The supported values are `strict` and `bestEffort`, and the default when not specified is `strict`.
+
+With `strict`, every requested replica must be cloned from the snapshot. If any of the snapshot's replica pools cannot host a clone, for example because a source pool has run out of space, the restore fails.
+
+With `bestEffort`, the restore proceeds as long as at least one clone succeeds. The volume comes up under-replicated, and the remaining replicas are created through a normal rebuild. Refer to the [Snapshot Restore documentation](../advanced-operations/snapshot-restore.md) for more details.
+
+:::note
+A volume restored using `bestEffort` does not tolerate the number of node failures implied by its `repl` value until the outstanding rebuilds are complete.
+:::
+
 ## See Also
 
 - [Installation](../../../../quickstart-guide/installation.md)

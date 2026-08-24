@@ -101,6 +101,10 @@ NODE               STATUS      REPLICAS    VOLUMES     READY
 node-0-469923      Unknown     1           1           true
 ```
 
+:::note
+When a purge operation would result in data loss, the affected volumes and snapshots are also listed in the reported error. Running `--show-impact` beforehand is therefore no longer required to identify them, though it remains useful as an explicit pre-check.
+:::
+
 ## Purge a Node
 
 Use the following command to purge an irrecoverable node from the Replicated PV Mayastor control plane.
