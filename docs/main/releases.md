@@ -52,7 +52,7 @@ The status of the various components as of v4.6 are as follows:
 
 - **DiskPool Error Clearing**
 
-  Building on the pool error and alert visibility introduced in the previous release, you can now clear recorded DiskPool errors using the Mayastor kubectl plugin, with the option to reset selected error categories rather than all of them. This allows a pool to be returned to normal reporting after the underlying condition has been resolved.
+  Building on the pool error and alert visibility introduced in the previous release, you can now clear recorded DiskPool errors using the Mayastor kubectl plugin. This allows a pool to be returned to normal reporting after the underlying condition has been resolved.
 
 ### Local Storage
 
@@ -92,7 +92,7 @@ The status of the various components as of v4.6 are as follows:
 
 - **Pool Identification on Replica Metrics**
 
-  Replica metrics now carry `poolname` and `pooluuid` labels, making it possible to attribute replica-level metrics to a specific DiskPool without additional correlation.
+  Replica metrics now carry `pool_name` and `pool_uuid` labels, making it possible to attribute replica-level metrics to a specific DiskPool without additional correlation.
 
 ### Local Storage
 

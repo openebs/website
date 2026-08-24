@@ -124,7 +124,18 @@ The provisioner name for ZFS driver is "zfs.csi.openebs.io", we have to use this
 
 ## Scheduler
 
-The ZFS driver has its own scheduler which will try to distribute the PV across the nodes so that one node should not be loaded with all the volumes. Currently the driver supports two scheduling algorithms: VolumeWeighted and CapacityWeighted, in which it will try to find a ZFS pool which has less number of volumes provisioned in it or less capacity of volume provisioned out of a pool respectively, from all the nodes where the ZFS pools are available. Refer [StorageClass With K8s Scheduler](https://github.com/openebs/zfs-localpv/blob/HEAD/docs/storageclasses.md#storageclass-with-k8s-scheduler) to learn how to select a scheduler via storage class.
+The ZFS driver has its own scheduler which will try to distribute the PV across the nodes so that one node should not be loaded with all the volumes. Currently the driver supports two scheduling algorithms: VolumeWeighted and CapacityWeighted, in which it will try to find a ZFS pool which has less number of volumes provisioned in it or less capacity of volume provisioned out of a pool respectively, from all the nodes where the ZFS pools are available.
+
+To select a scheduler, add the `scheduler` parameter in the storage class and give its value accordingly:
+
+```
+parameters:
+  scheduler: "VolumeWeighted"
+  fstype: "zfs"
+  poolname: "zfspv-pool"
+```
+
+If the `scheduler` parameter is not provided in the storage class, `CapacityWeighted` is used. Refer to [StorageClass Parameters](zfs-storageclass-parameters.md#scheduler-optional-parameter) and [StorageClass with k8s Scheduler](zfs-usage.md#storageclass-with-k8s-scheduler) for more details.
 
 Once it can find the node, it will create a PV for that node and also create a ZFSVolume custom resource for the volume with the NODE information. The watcher for this ZFSVolume CR will get all the information for this object and creates a ZFS dataset (zvol) with the given ZFS property on the mentioned node.
 

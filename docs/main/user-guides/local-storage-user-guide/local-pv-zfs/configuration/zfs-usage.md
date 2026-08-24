@@ -112,6 +112,8 @@ parameters:
 
 CapacityWeighted is the default scheduler in zfs-localpv driver, so even if we don't use scheduler parameter in storage-class, driver will pick the node where total provisioned volumes have occupied less capacity from the given pool. On the other hand for using VolumeWeighted scheduler, we have to specify it under scheduler parameter in storage-class. Then driver will pick the node to create volume where ZFS Pool is less loaded with the volumes. Here, it just checks the volume count and creates the volume where less volume is configured in a given ZFS Pool. It does not account for other factors like available CPU or memory while making scheduling decisions.
 
+Refer to [StorageClass Parameters](zfs-storageclass-parameters.md#scheduler-optional-parameter) for the supported values of the `scheduler` parameter.
+
 In case where you want to use node selector/affinity rules on the application pod or have CPU/Memory constraints, the Kubernetes scheduler should be used. To make use of Kubernetes scheduler, we can set the volumeBindingMode as WaitForFirstConsumer in the storage class:
 
 ```yaml
