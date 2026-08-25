@@ -43,7 +43,6 @@ These parameters are set under `parameters` in the StorageClass.
 | `thinProvision` | Optional | `yes`, `no` | Both |
 | `quotatype` | Optional | `quota`, `refquota` | Dataset |
 | `shared` | Optional | `yes`, `no` | Both |
-| `scheduler` | Optional | `CapacityWeighted`, `VolumeWeighted` | Both |
 
 In the **Applies To** column:
 
@@ -118,15 +117,6 @@ This parameter is applicable if fstype provided is "zfs" otherwise it will be ig
 ## Shared (Optional Parameter)
 
 Shared specifies whether the volume can be shared among multiple pods. If it is not set to "yes", then the ZFS-LocalPV Driver will not allow the volumes to be mounted by more than one pods. The default value is "no" if shared is not provided in the storageclass.
-
-## Scheduler (Optional Parameter)
-
-Scheduler selects the algorithm that the Local PV ZFS driver uses to pick the node on which a volume is provisioned:
-
-- `CapacityWeighted` picks the node whose matching ZFS pool has the least capacity already provisioned from it.
-- `VolumeWeighted` picks the node whose matching ZFS pool has the fewest volumes provisioned on it.
-
-If scheduler is not provided in the storageclass, `CapacityWeighted` is used. Refer to [StorageClass with k8s Scheduler](zfs-usage.md#storageclass-with-k8s-scheduler) for more details.
 
 ## AllowVolumeExpansion (Optional)
 
