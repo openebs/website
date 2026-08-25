@@ -15,6 +15,10 @@ As it becomes more common to run database software and storage infrastructure so
 
 To provision the raw block volume, we should create a storageclass without any fstype as Raw block volume does not have any fstype.
 
+:::note
+Since a raw block volume is attached to the pod as a block device instead of being mounted with a filesystem, the [mountOptions](../configuration/lvm-storageclass-parameters.md#mountoptions-optional) and [formatOptions](../configuration/lvm-storageclass-parameters.md#formatoptions-optional) specified in the storage class are not applied to it.
+:::
+
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass

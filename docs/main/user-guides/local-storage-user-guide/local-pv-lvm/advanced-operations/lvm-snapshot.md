@@ -47,6 +47,15 @@ Using the SnapshotClass `snapSize` parameter we can configure the snapshot size 
 
 In this case, whether the volume is thin provisioned or thick provisioned, the driver will create a thick snapshot with size as `snapSize` mentioned in the `SnapshotClass`.
 
+The accepted values are:
+
+- **Percentage**, written with a trailing `%`, for example `50%`. The value must be between 1 and 100, and it is applied as a percentage of the capacity of the origin volume. A value outside this range is rejected and the snapshot is not created.
+- **Absolute size**, written as a quantity such as `10G` or `500Mi`. The value must be greater than 0.
+
+:::note
+If an absolute `snapSize` is larger than the origin volume, the driver reduces it to the size of the origin volume. The snapshot is created successfully, so the resulting snapshot can be smaller than the value set in the SnapshotClass.
+:::
+
 - SnapshotClass with `snapSize` parameter as a percentage(%) value:
 
 ```yaml
