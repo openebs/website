@@ -35,3 +35,5 @@ If you encounter issues or have a question, file a [Github issue](https://github
 
 - [Installation](../../../../quickstart-guide/installation.md)
 - [Create StorageClass(s)](hostpath-create-storageclass.md)
+- [StorageClass Parameters](hostpath-storageclass-parameters.md)
+- [Create PersistentVolumeClaim](hostpath-create-pvc.md)

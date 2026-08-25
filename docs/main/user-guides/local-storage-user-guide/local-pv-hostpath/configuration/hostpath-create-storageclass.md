@@ -63,6 +63,38 @@ The default Storage Class is called `openebs-hostpath` and its `BasePath` is con
     Using NodeAffinityLabels does not influence the scheduling of the application Pod. Use Kubernetes [Allowed Topologies](#restrict-volume-placement-using-allowed-topologies) to configure scheduling options.
     :::
 
+    ## (Optional) File Permissions
+
+    By default, Local PV Hostpath creates the volume directory with `0777` permissions. For some workloads these permissions are wider than necessary. Use the `FilePermissions` config to set the permissions that the volume directory is created with:
+
+    ```
+    apiVersion: storage.k8s.io/v1
+    kind: StorageClass
+    metadata:
+      name: local-hostpath
+      annotations:
+        openebs.io/cas-type: local
+        cas.openebs.io/config: |
+          - name: StorageType
+            value: "hostpath"
+          - name: BasePath
+            value: "/var/local-hostpath"
+          - name: FilePermissions
+            data:
+              mode: "0770"
+    provisioner: openebs.io/local
+    reclaimPolicy: Delete
+    volumeBindingMode: WaitForFirstConsumer
+    ```
+
+    With the above StorageClass, the directory of every volume provisioned by it is created with `0770` permissions.
+
+    :::note
+    The permissions are applied when the volume directory is created, so changing `FilePermissions` later does not affect volumes that already exist.
+
+    `FilePermissions` cannot be set through the Helm chart values for the default `openebs-hostpath` StorageClass. To use it, create a custom StorageClass as shown above, or set it for an individual volume through a [PVC annotation](hostpath-create-pvc.md#configure-a-volume-using-pvc-annotations).
+    :::
+
 2. Edit `local-hostpath-sc.yaml` and update with your desired values for `metadata.name` and `cas.openebs.io/config.BasePath`.
 
    :::note 
@@ -135,4 +167,6 @@ If you encounter issues or have a question, file a [Github issue](https://github
 ## See Also
 
 - [Installation](../../../../quickstart-guide/installation.md)
+- [StorageClass Parameters](hostpath-storageclass-parameters.md)
+- [Create PersistentVolumeClaim](hostpath-create-pvc.md)
 - [Deploy an Application](hostpath-deployment.md)

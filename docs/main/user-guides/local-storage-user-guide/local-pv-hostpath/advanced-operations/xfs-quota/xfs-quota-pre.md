@@ -197,4 +197,4 @@ UUID=9cff3d69-3769-4ad9-8460-9c54050583f9 /mnt/data               xfs     defaul
 
 - [Enable XFS Quota on LocalPV Hostpath](enable-xfs-quota.md)
 - [Modify XFS Quota on LocalPV Hostpath](modify-xfs-quota.md)
-- [XFS Quota with Loop Device](xfs-quota-pre.md)
+- [XFS Quota with Loop Device](loop-device-xfs-quota.md)

@@ -158,6 +158,10 @@ The status of the various components as of v4.6 are as follows:
 
 ### Local Storage
 
+- **PVC-Level BasePath Override Disabled for Local PV Hostpath**
+
+  As a security hardening, a `BasePath` supplied through the `cas.openebs.io/config` annotation on a PersistentVolumeClaim is now ignored. This prevents a user who can create PersistentVolumeClaims from choosing the directory on the node where the volume is created. Set `BasePath` on the StorageClass instead. Deployments that depend on the earlier behaviour can restore it with the `localpv-provisioner.localpv.allowInsecurePvcBasePathOverride` Helm value, which is disabled by default.
+
 - **Deprecated Local PV Rawfile Helm Values Removed**
 
   The top-level `dataDirPath` and `reservedCapacity` Helm chart values have been removed. Use the equivalent storage pool specific values instead.
