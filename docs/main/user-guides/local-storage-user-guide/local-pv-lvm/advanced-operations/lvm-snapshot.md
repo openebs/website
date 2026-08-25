@@ -14,6 +14,12 @@ The LVM driver supports creating snapshots of the LVM volumes. This requires the
 - Snapshots created by the LVM driver are ReadOnly by default as opposed to the ReadWrite snapshots created by default by `lvcreate` command.
 - The size of snapshot will be set to the size of the origin volume.
 
+:::warning
+Volume Restore is supported only for thin volumes created from snapshots, using OpenEBS v4.4.0 or later. Restore from a snapshot of a thick-provisioned volume is not supported.
+
+Refer to [Volume Restore](lvm-volume-restore.md) for the complete list of requirements.
+:::
+
 ## Using an Existing Snapshot Controller
 
 Local PV LVM runs a `snapshot-controller` container by default. A cluster should run only one snapshot controller, so if one is already managed at the cluster level, disable the bundled one:

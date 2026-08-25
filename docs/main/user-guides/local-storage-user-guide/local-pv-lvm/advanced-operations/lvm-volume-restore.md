@@ -22,6 +22,7 @@ Before performing the restore operation, ensure the following requirements are m
 - A compatible StorageClass is available for the restore operation.
 - A snapshot has been created for the source volume. Follow the steps outlined in the [Volume Snapshots Documentation](lvm-snapshot.md) to create a volume snapshot.
 - Only thin snapshot restores are supported. To verify whether a snapshot is thin or thick, describe the LVM snapshot Custom Resource (CR) and check the `spec.thinProvision` field.
+- The StorageClass used for the restore must also set `thinProvision: "yes"`. A restore into a thick provisioned StorageClass is rejected, even when the snapshot itself is thin.
 - The restore volume request capacity must match the snapshot logical volume (LV) size. To verify snapshot LV size, describe LVM snapshot CR and check the snapshot LV size in `status.lvSize` field.
 - The Local PV LVM volume group name must match the snapshot’s volume group (`spec.volGroup`).
 
