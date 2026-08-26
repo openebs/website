@@ -108,3 +108,9 @@ spec:
 ```   
       
 By running this command, you create a new PVC named `restore-pvc` based on the specified snapshot. The restored volume will have the same data and configuration as the original volume had at the time of the snapshot.
+
+## Restore Policy
+
+By default, a restore requires every replica of the new volume to be cloned from the source snapshot. If any of the snapshot's replica pools cannot host a clone, for example because a source pool has run out of space, the restore fails even though the data is available in another reachable pool.
+
+To allow the restore to proceed in this situation, set the `snapshotRestorePolicy` parameter to `bestEffort` in the StorageClass used for the restore. The restore then succeeds as long as at least one clone succeeds, and the remaining replicas are created through a normal rebuild. Refer to the [Storage Class Parameters](../configuration/rs-storage-class-parameters.md) documentation for more details.

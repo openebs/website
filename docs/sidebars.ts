@@ -162,6 +162,18 @@ const sidebars: SidebarsConfig =
                     },
                     {
                       type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-hostpath/configuration/hostpath-storageclass-parameters",
+                      label: "StorageClass Parameters",
+                      key: "hostpath-storageclass-parameters",
+                    },
+                    {
+                      type: "doc",
+                      id: "user-guides/local-storage-user-guide/local-pv-hostpath/configuration/hostpath-create-pvc",
+                      label: "Create PVC",
+                      key: "hostpath-create-pvc",
+                    },
+                    {
+                      type: "doc",
                       id: "user-guides/local-storage-user-guide/local-pv-hostpath/configuration/hostpath-deployment",
                       label: "Deploy an Application",
                       key: "HostPath_DeployApp",
@@ -205,6 +217,37 @@ const sidebars: SidebarsConfig =
                           type: "doc",
                           id: "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/xfs-quota/loop-device-xfs-quota",
                           label: "XFS Quota with Loop Device"
+                        }
+                      ]
+                    },
+                    {
+                      collapsed: true,
+                      type: "category",
+                      label: "EXT4 Quota",
+                      customProps: {
+                        icon: "Book"
+                      },
+                      items: [
+                        {
+                          type: "doc",
+                          id: "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/ext4-quota/ext4-quota-pre",
+                          label: "Prerequisites",
+                          key: "EXT4_Prerequisites",
+                        },
+                        {
+                          type: "doc",
+                          id: "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/ext4-quota/enable-ext4-quota",
+                          label: "Enable EXT4 Quota"
+                        },
+                        {
+                          type: "doc",
+                          id: "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/ext4-quota/modify-ext4-quota",
+                          label: "Modify EXT4 Quota"
+                        },
+                        {
+                          type: "doc",
+                          id: "user-guides/local-storage-user-guide/local-pv-hostpath/advanced-operations/ext4-quota/loop-device-ext4-quota",
+                          label: "EXT4 Quota with Loop Device"
                         }
                       ]
                     },

@@ -9,124 +9,199 @@ keywords:
 description: This page contains list of supported OpenEBS releases.
 ---
 
-**Release Date: 06 June 2026**
+**Release Date: TBD**
 
 OpenEBS is a collection of data engines and operators to create different types of replicated and local persistent volumes for Kubernetes Stateful workloads. Kubernetes volumes can be provisioned via CSI Drivers or using Out-of-tree Provisioners.
-The status of the various components as of v4.5 are as follows:
+The status of the various components as of v4.6 are as follows:
 
 | Component Type | Component | Version | Status |
 | :--- | :--- | :--- | :--- |
-| Replicated Storage | Replicated PV Mayastor | 2.11.1 | Stable |
-| Local Storage | Local PV Hostpath | 4.5.1 | Stable |
-| Local Storage | Local PV LVM | 1.9.1 | Stable |
-| Local Storage | Local PV ZFS | 2.10.1 | Stable |
-| Local Storage | Local PV Rawfile | 0.14.1 | Experimental |
-| Out-of-tree (External Storage) Provisioners | Local PV Hostpath | 4.5.1 | Stable |
-| Other Components | CLI | 4.5.1 | — |
+| Replicated Storage | Replicated PV Mayastor | 2.12.0 | Stable |
+| Local Storage (non-CSI) | Local PV Hostpath | 4.6.0 | Stable |
+| Local Storage | Local PV LVM | 1.10.0 | Stable |
+| Local Storage | Local PV ZFS | 2.11.0 | Stable |
+| Local Storage | Local PV Rawfile | 0.15.0 | Experimental |
+| Other Components | CLI | 4.6.0 | — |
 
 ## What’s New
 
+### General
+
+- **Optional CSI Snapshot Controller**
+
+  Replicated PV Mayastor, Local PV LVM, Local PV ZFS, and Local PV Rawfile now allow you to disable the bundled CSI snapshot controller through the Helm chart. This avoids conflicts in clusters where a snapshot controller is already managed at the cluster level.
+
 ### Replicated Storage
 
-- **Offline Node Deletion (Node Purge)**
+- **Eventing Aggregator**
 
-  Replicated PV Mayastor now supports offline node deletion (purge), allowing administrators to permanently remove an unreachable and unrecoverable node from the control plane without requiring access to the underlying host. Before performing the operation, you can review the expected impact on volumes and snapshots. This capability helps simplify recovery and cleanup workflows following permanent node or infrastructure failures.
+  Replicated PV Mayastor now includes the Eventing Aggregator, a new component that collects cluster events and makes them available for querying through the `get events` command in the Mayastor kubectl plugin. Events can be retrieved from Loki, directly from NATS JetStream, or from a previously collected support bundle for offline analysis, and can be filtered by category, action, node, target, component, pool, volume, replica, and state. Cluster events are also included in the support bundle produced by `kubectl openebs dump system`. The Eventing Aggregator is enabled by default and works with or without Loki deployed.
 
-- **Offline and Online Pool Deletion**
+- **Best-Effort Snapshot Restore Policy**
 
-  Replicated PV Mayastor now supports deleting both offline and online Pools. Online pools can be deleted when they no longer contain replicas, while unrecoverable offline pools can be safely purged from the control plane after reviewing the impact on affected volumes and snapshots.
+  A new `snapshotRestorePolicy` StorageClass parameter controls how a snapshot restore behaves when not every replica pool can host a clone. With the default `strict` policy, every requested replica must be cloned from the snapshot. With `bestEffort`, the restore proceeds as long as at least one clone succeeds; the volume comes up under-replicated and the remaining replicas are filled in through a normal rebuild. This allows a restore to succeed when a source pool is full or otherwise unable to host a clone.
 
-- **Disk I/O Failure and Hot-Removal Handling**
+- **DiskPool Handle Rescanning**
 
-  Replicated PV Mayastor now improves storage fault visibility by detecting disk I/O failures, hot-removal events, stalled I/O conditions, and runtime disk I/O errors. DiskPools automatically report updated pool states, alerts, and diagnostic information, helping you identify unhealthy storage devices and understand workload impact during disk-related failures.
+  Replicated PV Mayastor now periodically rescans DiskPool backing device file handles to detect hot-removal on devices that require I/O to surface a removal event, such as those using the AIO and io_uring backends. Previously, removal of an idle device could go undetected. The rescan also refreshes the reported disk size, and both the behaviour and its interval are configurable through the Helm chart.
 
-- **Experimental RWX Block Volume Support for KubeVirt Live Migration**
+- **DiskPool Error Clearing**
 
-  Replicated PV Mayastor now provides experimental support for native ReadWriteMany (RWX) block volumes to enable KubeVirt Virtual Machine (VM) live migration without requiring an intermediary NFS layer. This capability allows KubeVirt workloads to migrate between nodes while maintaining access to shared block storage. This feature is intended for evaluation and testing in non-production environments.
+  Building on the pool error and alert visibility introduced in the previous release, you can now clear recorded DiskPool errors using the Mayastor kubectl plugin. This allows a pool to be returned to normal reporting after the underlying condition has been resolved.
 
-- **RDMA QoS and DSCP Marking Support**
+- **Volume and Nexus Label V2**
 
-  Replicated PV Mayastor now supports configuring transport-level Quality of Service (QoS) settings for RDMA connections through DSCP marking. This enables integration with network QoS policies and allows administrators to prioritize storage traffic in RDMA-enabled environments.
+  A new versioned on-disk label layout, V2, is introduced alongside the existing V1 layout. V2 reduces the metadata partition reserved at the front of every replica from 4 MiB to 3 MiB and aligns volume capacity to 1 MiB boundaries. It also resolves block-mode backup compatibility with Kasten K10.
+
+  For a V2 volume, the requested size is rounded up to the next 1 MiB boundary. A size that is already a multiple of 1 MiB is unchanged, so a request for `10Gi` stays `10Gi`, while a decimal quantity such as `10G` is not MiB-aligned and is rounded up. Each replica additionally reserves 8 MiB for the metadata partition, and the replica total is then aligned up to the cluster size of the pool, which is 4 MiB by default. For example, a 10 MiB volume on a pool with the default cluster size is exposed as a 10 MiB device while each replica consumes 20 MiB of pool space.
+
+  A volume created with a size that is not 1 MiB aligned reports a slightly larger size than requested, which is expected behaviour. Because V2 also adds the 8 MiB metadata reservation for every replica, a V2 volume consumes more pool space than the raw requested size, so size your pools accordingly.
+
+  The cluster-wide label version is negotiated automatically as the lowest version supported across all registered io-engines, and only ever moves up, so the control plane never creates a label that a node cannot understand. In a cluster where some nodes do not yet support V2, the negotiated version stays at V1 until every node supports it. Existing volumes remain on V1 and require no migration, and resize and snapshot operations preserve the label version of the volume.
 
 ### Local Storage
 
-- **Node Deployment Mode for Local PV Hostpath**
+- **API Server for Local PV Rawfile**
 
-  Local PV Hostpath now supports a node deployment mode for provisioning operations. This deployment model is designed for high-performance environments and helps reduce provisioning overhead by running provisioning workloads closer to the target node.
+  Local PV Rawfile now includes an API server with an OpenAPI specification and a Swagger UI, providing a documented interface for inspecting and interacting with the provisioner.
 
-- **Quality of Service (QoS) Support for Local PV LVM**
+- **Dataset Tuning Parameters for Local PV ZFS**
 
-  Local PV LVM now supports Quality of Service (QoS) controls through Kubernetes VolumeAttributesClass (VAC) resources. Administrators can define and dynamically update storage performance policies, including IOPS and bandwidth limits, without recreating PersistentVolumeClaims (PVCs). This capability enables predictable storage performance, simplifies resource governance, and provides greater flexibility for managing stateful workloads.
+  Local PV ZFS StorageClasses now support the `atime` and `logbias` parameters, giving you direct control over access-time updates and write-workload optimisation on the underlying ZFS datasets and volumes.
+
+- **Topology-Constrained StorageClasses for Local PV Hostpath**
+
+  The Local PV Hostpath Helm chart now allows you to set `allowedTopologies` on the provisioned StorageClass, so volume placement can be restricted to a defined set of nodes or zones directly from chart values.
 
 ## Enhancements
 
 ### General
 
-**Global Helm Values Support**
+- **Analytics Configuration Overrides**
 
-  Support for global Helm values has been added, simplifying configuration management and enabling more consistent deployment settings across OpenEBS components.
+  The OpenEBS Helm charts now accept global overrides for the analytics identifier and key values, making analytics configuration consistent across the Replicated PV Mayastor, Local PV Hostpath, Local PV LVM, Local PV ZFS, and Local PV Rawfile charts.
 
 ### Replicated Storage
 
-- **Expanded Storage Observability**
+- **TLS Hardening and Certificate Auto-Reload**
 
-  New metrics are available for DiskPool capacity, maximum expandable capacity, pool health alerts, replica counts, snapshot counts, and node status. These additions provide deeper visibility into storage utilization, cluster health, and operational status.
+  Replicated PV Mayastor now supports TLS for its service endpoints, starting with the REST API, along with the CSI controller, CSI node, DiskPool operator, metrics exporter, and kubectl plugin clients. Certificates can be managed in three ways: a transient self-signed certificate generated by the server at startup, self-signed certificates generated by the Helm chart, or certificates provisioned and rotated by cert-manager. Certificates are hot-reloaded on rotation without a restart, TLS discovery is enabled by default, plain HTTP on the REST service is restricted to health probes only, and the Helm chart exposes the TLS configuration for the public API.
 
-- **Node Shutdown State Awareness**
+- **RDMA Capability Detection**
 
-  Replicated PV Mayastor now exposes graceful node shutdown status through its APIs, enabling more accurate node state visibility and troubleshooting.
+  The CSI node now checks for the `nvme_rdma` kernel module before reporting RDMA capability, and node transport capabilities are propagated through registration. Previously a node could be treated as RDMA-capable without the required kernel support.
 
-- **SPDK Interrupt Mode Support**
+- **Asynchronous Bdev Destruction**
 
-  Replicated PV Mayastor now supports SPDK interrupt mode and associated configuration options, providing an alternative I/O processing model that can help reduce CPU utilization in suitable environments.
+  Block device destruction in the io-engine is now asynchronous, improving the responsiveness of pool and replica teardown.
+
+- **Additional Helm Chart Options**
+
+  Additional environment variables are exposed for component customisation, the api-rest health probes use an `initialDelaySeconds` of 1 for faster readiness, and the maximum Loki ingestion limits have been increased.
+
+- **Clearer Impact Reporting for Purge Operations**
+
+  Node and DiskPool purge operations that involve data loss now list the affected volumes and snapshots directly in the reported error, instead of requiring a separate `--show-impact` run. Snapshot impact is now included alongside volume impact.
+
+- **Pool Identification on Replica Metrics**
+
+  Replica metrics now carry `pool_name` and `pool_uuid` labels, making it possible to attribute replica-level metrics to a specific DiskPool without additional correlation.
 
 ### Local Storage
 
-- **Configurable Worker Threads and Helper Pod Timeout**
+- **HTTP Health Probe for Local PV Hostpath**
 
-  Local PV Hostpath now allows administrators to configure worker thread counts and helper pod timeout values. This provides greater control over provisioning behavior and enables tuning for different workload and cluster environments.
+  The Local PV Hostpath provisioner now serves a dedicated HTTP health endpoint, replacing the previous process-based liveness check. This provides a more accurate signal of provisioner health to Kubernetes.
 
-- **Configurable DNS Policy for Local PV ZFS Node Components**
+- **Configurable Kubernetes API Client Rate Limits for Local PV Hostpath**
 
-  Local PV ZFS now allows administrators to configure the Kubernetes `dnsPolicy` for ZFS node components through the Helm chart, providing greater flexibility when deploying in customized networking environments.
+  The Kubernetes API client QPS and burst values used by the Local PV Hostpath provisioner are now configurable, allowing provisioning throughput to be tuned in large clusters.
+
+- **Configurable Helper Pod Image Pull Policy for Local PV Hostpath**
+
+  The image pull policy for the Local PV Hostpath helper pod can now be set through the Helm chart, providing more control in air-gapped and locally mirrored registry environments.
+
+- **Updated CSI Snapshot Components for Local PV LVM**
+
+  The bundled `csi-snapshotter` and `snapshot-controller` components have been updated to v8.2.0.
 
 ## Fixes
 
 ### Replicated Storage
 
-- **RWX Block Volume Migration Stability**
+- **Volume Expansion with Undersized Replicas**
 
-  Resolved issues that could cause repeated unpublish and republish operations during RWX block volume migrations, improving migration reliability and reducing disruption during failover events.
+  Resolved an issue where a volume expansion could fail to complete when one or more replicas had not yet been resized. Undersized replicas are now resized before the nexus resize is retried.
 
-- **DiskPool Cleanup After Device Removal**
+- **Pool Availability During Device Removal and Replica Deletion**
 
-  Resolved issues affecting DiskPool cleanup and recovery when underlying storage devices were unexpectedly removed or became unavailable.
+  Resolved several issues affecting DiskPool availability during device and replica lifecycle events, including a race between pool deregistration and reload, and a race when listing pools while replicas were being destroyed.
 
-- **Storage Scheduling Reliability**
+- **Frozen I/O During Nexus Shutdown**
 
-  Resolved an issue where replicas could be scheduled on pools in a critical state. Scheduling now correctly avoids unhealthy pools.
+  Resolved an issue where I/O could remain frozen when a shutdown nexus was unshared. Outstanding I/O is now aborted correctly, child device closure is awaited, and devices are no longer detached on transient I/O submission errors.
 
-- **Node Unpublish Reliability**
+- **Nexus Size Miscalculation**
 
-  Resolved an issue where node unpublish operations could fail when the target path existed as an empty file.
+  Resolved an issue where the nexus block device size could be off by one block. Volume sizing now accounts for label metadata, so the usable capacity always meets the requested size.
 
-- **Cross-Filesystem Restore Validation**
+- **Pool Capacity Accounting for Snapshot Clones**
 
-  Resolved an issue where restore operations could proceed between incompatible filesystem types. Restore requests are now validated to prevent unsupported cross-filesystem restores.
+  Resolved an issue where pool capacity tallying did not account for the creation of snapshot clones, which could lead to over-commitment of pool space.
+
+- **Readiness Probe Startup Race**
+
+  Resolved an issue where a readiness failure could be cached before the first successful probe, causing api-rest to be incorrectly reported as not ready.
+
+- **Node Rebuild Count Accuracy**
+
+  Resolved an issue where the node rebuild count was not refreshed on single nexus updates, improving the accuracy of rebuild throttling.
+
+- **SPDK Fixes**
+
+  Updated SPDK with fixes for a null pointer dereference and IPv6 transport handling, and resolved an interrupt-mode reactor teardown issue.
 
 ### Local Storage
 
-- **Capacity Reporting for Thin-Provisioned Volumes for Local PV LVM**
+- **Idempotent Volume Expansion for Local PV LVM**
 
-  Resolved an issue where available capacity calculations for thin-provisioned storage could be inaccurate. Capacity reporting now correctly considers thin pool free space when determining available storage.
+  Resolved an issue where repeating a volume expansion could behave inconsistently. Node expansion now remains required during resize, so repeated expand operations are idempotent.
 
-- **Improved ZFS Error Reporting**
+- **XFS Project Quota Cleanup for Local PV Hostpath**
 
-  Resolved issues with error reporting by providing more detailed ZFS error messages directly from the underlying system. This simplifies troubleshooting and improves visibility into storage-related failures.
+  Resolved an issue where volume cleanup on XFS could attempt to reset the quota project on named pipes, causing cleanup to fail.
 
-- **Graceful Filesystem Shutdown Handling for Local PV ZFS**
+- **File Permissions in Node Deployment Mode for Local PV Hostpath**
 
-  Resolved issues affecting volume publish and unpublish operations when a filesystem entered a shutdown state. These improvements help ensure more reliable volume lifecycle operations during filesystem failure scenarios.
+  Resolved an issue where the configured file permissions mode was not applied to provisioned volumes when the provisioner ran in node deployment mode. Additional volume manager fixes for node deployment mode are also included.
+
+- **Volume Expansion for Local PV Rawfile**
+
+  Resolved an issue where volume expansion could fail because of unreliable mount output parsing. Mount information is now resolved using `findmnt`.
+
+- **ServiceMonitor Manifest Rendering for Local PV LVM**
+
+  Resolved an issue where the namespace field in the generated ServiceMonitor manifest was incorrectly indented.
+
+- **Image URL Rendering for Local PV ZFS**
+
+  Resolved an issue where image URLs in rendered manifests were not quoted, which could break rendering for registries whose URLs contain characters that YAML treats specially.
+
+## Breaking Changes
+
+### Local Storage
+
+- **PVC-Level BasePath Override Disabled for Local PV Hostpath**
+
+  As a security hardening, a `BasePath` supplied through the `cas.openebs.io/config` annotation on a PersistentVolumeClaim is now ignored. This prevents a user who can create PersistentVolumeClaims from choosing the directory on the node where the volume is created. Set `BasePath` on the StorageClass instead. Deployments that depend on the earlier behaviour can restore it with the `localpv-provisioner.localpv.allowInsecurePvcBasePathOverride` Helm value, which is disabled by default.
+
+- **Deprecated Local PV Rawfile Helm Values Removed**
+
+  The top-level `dataDirPath` and `reservedCapacity` Helm chart values have been removed. Use the equivalent storage pool specific values instead.
+
+- **Filesystem-Level Snapshots Removed from Local PV Rawfile**
+
+  Filesystem-level (Btrfs) snapshot support has been removed. Existing snapshots are not deleted, but they are no longer accessible after the upgrade. Remove any filesystem-level snapshots before upgrading.
 
 ## Known Issues
 
@@ -161,7 +236,7 @@ This issue is not caused by Mayastor but is triggered more frequently because of
 
 ## Related Information
 
-OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For release summaries and full version-level notes, see [OpenEBS Release 4.5](https://github.com/openebs/openebs/releases).
+OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For release summaries and full version-level notes, see [OpenEBS Release 4.6](https://github.com/openebs/openebs/releases).
 
 See version specific Releases to view the legacy OpenEBS Releases.
 

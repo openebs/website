@@ -10,6 +10,8 @@ description: This section talks about the advanced operations that can be perfor
 
 We can resize the volume by updating the PVC yaml to the desired size and apply it. The ZFS Driver will take care of updating the quota in case of dataset. If we are using a Zvol and have mounted it as ext2/3/4 or xfs file system, the driver will take care of expanding the volume via reize2fs/xfs_growfs binaries.
 
+For a dataset, the property that the driver updates depends on the [quotatype](../configuration/zfs-storageclass-parameters.md#quotatype-optional-parameter) parameter of the storage class. With the default `quota`, the driver updates the `quota` property, and with `refquota`, it updates the `refquota` property. For a thick provisioned dataset, the corresponding `reservation` or `refreservation` property is updated as well.
+
 For resize, storageclass that provisions the pvc must support resize. We should have allowVolumeExpansion as true in storageclass.
 
 :::note

@@ -14,6 +14,21 @@ The LVM driver supports creating snapshots of the LVM volumes. This requires the
 - Snapshots created by the LVM driver are ReadOnly by default as opposed to the ReadWrite snapshots created by default by `lvcreate` command.
 - The size of snapshot will be set to the size of the origin volume.
 
+:::warning
+Volume Restore is supported only for thin volumes created from snapshots, using OpenEBS v4.4.0 or later. Restore from a snapshot of a thick-provisioned volume is not supported.
+
+Refer to [Volume Restore](lvm-volume-restore.md) for the complete list of requirements.
+:::
+
+## Using an Existing Snapshot Controller
+
+Local PV LVM runs a `snapshot-controller` container by default. A cluster should run only one snapshot controller, so if one is already managed at the cluster level, disable the bundled one:
+
+```bash
+helm upgrade openebs openebs/openebs \
+  --namespace openebs \
+  --set lvm-localpv.lvmController.snapshotController.enabled=false
+```
 
 ## Default SnapshotClass without SnapSize Parameter
 
@@ -37,6 +52,15 @@ deletionPolicy: Delete
 Using the SnapshotClass `snapSize` parameter we can configure the snapshot size for persistent volumes where `snapSize` can be configured as a percentage or an absolute value.
 
 In this case, whether the volume is thin provisioned or thick provisioned, the driver will create a thick snapshot with size as `snapSize` mentioned in the `SnapshotClass`.
+
+The accepted values are:
+
+- **Percentage**, written with a trailing `%`, for example `50%`. The value must be between 1 and 100, and it is applied as a percentage of the capacity of the origin volume. A value outside this range is rejected and the snapshot is not created.
+- **Absolute size**, written as a quantity such as `10G` or `500Mi`. The value must be greater than 0.
+
+:::note
+If an absolute `snapSize` is larger than the origin volume, the driver reduces it to the size of the origin volume. The snapshot is created successfully, so the resulting snapshot can be smaller than the value set in the SnapshotClass.
+:::
 
 - SnapshotClass with `snapSize` parameter as a percentage(%) value:
 

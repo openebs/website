@@ -13,7 +13,7 @@ description: This guide will help you to create Local PV LVM StorageClass.
 
 # StorageClass Parameters
 
-This document describes the supported StorageClass parameters for Local PV LVM and explains how to configure them. These parameters allow you to control volume expansion, mount options, filesystem selection, volume sharing, provisioning behavior, topology-aware scheduling, and other storage features.
+This document describes the supported StorageClass parameters for Local PV LVM and explains how to configure them. These parameters allow you to control volume expansion, mount options, filesystem selection and formatting, volume sharing, provisioning behavior, node scheduling, topology-aware placement, and other storage features.
 
 ## AllowVolumeExpansion (Optional)
 
@@ -36,6 +36,8 @@ Volumes that are provisioned via Local PV LVM will use the mount options specifi
 
 :::note
 Mount options are not validated. If mount options are invalid, then volume mount fails.
+:::
+
 ```yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
@@ -48,7 +50,8 @@ parameters:
 mountOptions:    ## Various mount options of volume can be specified here
   - debug
 ```
-:::
+
+Mount options are not applied to [raw block volumes](../advanced-operations/lvm-raw-block-volume.md), because a raw block volume is attached to the pod as a block device instead of being mounted with a filesystem.
 
 ## FsType (Optional)
 
@@ -66,6 +69,32 @@ mountOptions:    ## Various mount options of volume can be specified here
     vgpattern: "lvmvg.*"
     fsType: xfs               ## Supported filesystems are ext2, ext3, ext4, xfs & btrfs
   ```
+
+## FormatOptions (Optional)
+
+  Use the `formatOptions` parameter to pass extra options to the `mkfs` command that formats the volume with the filesystem specified by `fsType`. Provide the options as a single space-separated string.
+
+  ```yaml
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    name: openebs-lvm
+  provisioner: local.csi.openebs.io
+  parameters:
+    storage: "lvm"
+    volgroup: "lvmvg"
+    formatOptions: "-b 4096 -N 5000000"      ## Extra mkfs options for filesystem volumes
+  ```
+
+  The options are applied only while the volume is being formatted, which happens the first time the volume is mounted. Changing `formatOptions` in the storage class has no effect on volumes that have already been formatted.
+
+  Refer to the documentation of the filesystem you are using to know which format options it supports.
+
+:::note
+Format options are not validated by the driver. If the options are not valid for the chosen filesystem, then formatting fails and the volume does not mount.
+
+Format options are also not applied to [raw block volumes](../advanced-operations/lvm-raw-block-volume.md), because a raw block volume is not formatted with a filesystem.
+:::
 
 ## Shared (Optional)
 
@@ -149,6 +178,30 @@ It is recommended to use vgpattern since volumegroup will be deprecated in futur
   ```sh
   $ modprobe dm_thin_pool
   ```
+
+## Scheduler (Optional)
+
+  The `scheduler` parameter selects the algorithm that the Local PV LVM driver uses to pick the node on which a volume is provisioned. Only the volume groups matching the `volgroup` or `vgpattern` parameter are considered.
+
+  - `SpaceWeighted` picks the node that has a volume group with the highest free space.
+  - `CapacityWeighted` picks the node containing a volume group that has the least allocated storage in terms of capacity.
+  - `VolumeWeighted` picks the node containing a volume group that has the least number of volumes provisioned on it.
+
+  If the scheduler parameter is not provided in the storage class, `SpaceWeighted` is used.
+
+  ```yaml
+  apiVersion: storage.k8s.io/v1
+  kind: StorageClass
+  metadata:
+    name: openebs-lvm
+  provisioner: local.csi.openebs.io
+  parameters:
+    storage: "lvm"
+    volgroup: "lvmvg"
+    scheduler: "CapacityWeighted"      ## or "SpaceWeighted" or "VolumeWeighted"
+  ```
+
+  The scheduling algorithm accounts only for the volume groups and does not consider other factors such as available CPU or memory. If the application pod has node selector or affinity rules, or CPU and memory constraints, use the Kubernetes scheduler instead by setting `volumeBindingMode` to `WaitForFirstConsumer`.
 
 ## VolumeBindingMode (Optional)
 

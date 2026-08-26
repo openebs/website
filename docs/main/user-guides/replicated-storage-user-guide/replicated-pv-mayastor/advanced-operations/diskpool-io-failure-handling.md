@@ -59,6 +59,17 @@ As part of this process:
 
 The control plane probes the io-engine to detect whether the backing device has been reattached to the node. If the device becomes available again, Replicated PV Mayastor import the pool and restore normal operations.
 
+### Hot-Removal Detection on Idle Devices
+
+Devices accessed over PCIe report hot-removal events directly, so the affected pool is unloaded as soon as the device is detached. Devices accessed through `aio` or `io_uring` surface a removal only once I/O is submitted to them, which means the removal of an idle device can go undetected.
+
+To handle this, Replicated PV Mayastor periodically rescans the file handles of the DiskPool backing devices and triggers a hot-removal event when a handle is no longer valid. The rescan also refreshes the reported disk size.
+
+| Parameter | Default Value | Description | Helm Path |
+| :--- | :--- | :--- | :--- |
+| `enabled` | `true` | Enables periodic rescanning of DiskPool backing device file handles | `mayastor.io_engine.pool.diskHandleRescan.enabled` |
+| `period` | `5m` | Interval between successive rescans | `mayastor.io_engine.pool.diskHandleRescan.period` |
+
 ## DiskPool I/O Error Handling
 
 Replicated PV Mayastor tracks runtime disk I/O errors and exposes alert information for affected DiskPools.

@@ -1,0 +1,10 @@
+{
+  "theme.docs.versions.unmaintainedVersionLabel": {
+    "message": "You are viewing an older version of the OpenEBS documentation.",
+    "description": "The label used to tell the user that he's browsing an unmaintained doc version"
+  },
+  "theme.docs.versions.latestVersionSuggestionLabel": {
+    "message": "For the most up-to-date content, see the {latestVersionLink}.",
+    "description": "The label used to tell the user to check the latest version"
+  }
+}

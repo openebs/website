@@ -38,9 +38,9 @@ The following matrix shows standard StorageClass parameters for Local PV LVM.
 | Parameter                                    | Values                                    |
 | -------------------------------------------- | :---:                                     |
 | `allowVolumeExpansion`                       |  `true` / `false`                         |
-| `MountOptions`                               |  Filesystem-supported mount options       |
-| `VolumeBindingMode`                          |  `Immediate` / `WaitForFirstConsumer`     |
-| `Reclaim Policy`                             |  `Retain`/ `Delete`                       |
+| `mountOptions`                               |  Filesystem-supported mount options       |
+| `volumeBindingMode`                          |  `Immediate` / `WaitForFirstConsumer`     |
+| `reclaimPolicy`                              |  `Retain` / `Delete`                      |
 | `allowedTopologies`                          |  -                                        |
 | `fsType`                                     | `ext2`, `ext3`, `ext4`, `xfs` and `btrfs` |
 
@@ -48,10 +48,11 @@ The following matrix shows standard StorageClass parameters for Local PV LVM.
 
 | Parameter | Values |
 |-----------|--------|
-| `shared` | `yes` |
+| `shared` | `yes` / `no` |
 | `vgpattern` | Regular expression of the volume group name |
 | `volgroup` | Volume group name |
-| `thinProvision` | `yes` |
+| `thinProvision` | `yes` / `no` |
+| `formatOptions` | Extra `mkfs` options as a space-separated string |
 | `scheduler` | `SpaceWeighted`, `CapacityWeighted`, `VolumeWeighted` |
 
 ### StorageClass with Scheduler Parameters

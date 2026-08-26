@@ -163,4 +163,4 @@ Resizing of quota is not supported.
 
 - [XFS Quota Prerequisites](xfs-quota-pre.md)
 - [Modify XFS Quota on LocalPV Hostpath](modify-xfs-quota.md)
-- [XFS Quota with Loop Device](xfs-quota-pre.md)
+- [XFS Quota with Loop Device](loop-device-xfs-quota.md)

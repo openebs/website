@@ -17,6 +17,27 @@ Local PV Rawfile supports block-level volume snapshots using the standard Kubern
 - Snapshots must be enabled in the chart (default): `capabilities.snapshots.enabled=true`
 - Kubernetes VolumeSnapshot CRDs must be installed in the cluster
 - A `VolumeSnapshotClass` must exist for the rawfile driver
+- A snapshot controller must be running in the cluster. Local PV Rawfile deploys one by default. Refer to [Using an Existing Snapshot Controller](#using-an-existing-snapshot-controller) if the cluster already manages its own.
+
+## Using an Existing Snapshot Controller
+
+Local PV Rawfile runs a `snapshot-controller` container by default. A cluster should run only one snapshot controller, so if one is already managed at the cluster level, disable the bundled one:
+
+```yaml
+node:
+  snapshotController:
+    enabled: false
+```
+
+Apply the updated values:
+
+```bash
+helm upgrade rawfile-localpv rawfile-localpv/rawfile-localpv -n openebs -f values.yaml
+```
+
+:::warning
+The snapshot controller that remains in the cluster must be started with `--enable-distributed-snapshotting=true`. Without this flag, Local PV Rawfile snapshots are never provisioned, and no error is reported at install time.
+:::
 
 ## Create a VolumeSnapshotClass
 
