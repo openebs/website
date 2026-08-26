@@ -117,7 +117,7 @@ This issue is not caused by Mayastor but is triggered more frequently because of
 
 ## Related Information
 
-OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For summary of what changes across all components in each release and to view the full Release Notes, see [OpenEBS Release 4.3.2](https://github.com/openebs/openebs/releases/tag/v4.3.2).
+OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For summary of what changes across all components in each release and to view the full Release Notes, see [OpenEBS Release 4.3](https://github.com/openebs/openebs/releases#release-v4.3.3).
 
 See version specific Releases to view the legacy OpenEBS Releases.
 
