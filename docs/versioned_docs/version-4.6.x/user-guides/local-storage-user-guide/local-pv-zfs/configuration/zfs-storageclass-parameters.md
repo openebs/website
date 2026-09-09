@@ -34,6 +34,7 @@ These parameters are set under `parameters` in the StorageClass.
 |-----------|-------------|----------------|------------|
 | `poolname` | Required | Existing ZFS pool or child dataset (for example, `zfspv-pool`, `zfspv-pool/child`) | Both |
 | `fstype` | Optional | `zfs`, `ext2`, `ext3`, `ext4`, `xfs`, `btrfs` | Both |
+| `formatOptions` | Optional | Extra `mkfs` options as a space-separated string | ZVOL |
 | `recordsize` | Optional | Any power of 2 from 512 bytes to 128 KiB | Dataset |
 | `volblocksize` | Optional | Any power of 2 from 512 bytes to 128 KiB | ZVOL |
 | `compression` | Optional | `on`, `off`, `lzjb`, `lz4`, `zle`, `gzip`, `gzip-1` through `gzip-9`, `zstd`, `zstd-fast`, `zstd-1` through `zstd-19` | Both |
@@ -69,6 +70,103 @@ FsType specifies filesystem type for the zfs volume/dataset. If FsType is provid
 not required as underlying filesystem is ZFS anyway. If FsType is ext2, ext3, ext4, btrfs, or xfs, then the driver will create a ZVOL and format the volume
 accordingly. FsType can not be modified once volume has been provisioned. If fstype is not provided, k8s takes ext4 as the default fstype.
 
+
+## FormatOptions (Optional Parameter)
+
+Use the `formatOptions` parameter to pass extra options to the `mkfs` command that formats the ZVOL with the filesystem specified by `fstype`. Provide the options as a single space-separated string.
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: openebs-zfspv
+allowVolumeExpansion: true
+parameters:
+  poolname: "zfspv-pool"
+  fstype: "xfs"
+  formatOptions: "-i nrext64=0"      ## Extra mkfs options for ZVOL backed volumes
+provisioner: zfs.csi.openebs.io
+```
+
+The options are applied only while the volume is being formatted, which happens the first time the volume is mounted. Changing `formatOptions` in the storage class has no effect on volumes that have already been formatted.
+
+Refer to the documentation of the filesystem you are using to know which format options it supports.
+
+To apply the same options to every volume of a filesystem across the cluster instead of per StorageClass, see [Node-Level Default Format Options](#node-level-default-format-options).
+
+:::note
+Format options apply only to ZVOL backed volumes. A StorageClass with `fstype: "zfs"` gets a ZFS dataset, which is not formatted with `mkfs`, so `formatOptions` has no effect on it.
+
+Format options are not validated by the driver. If the options are not valid for the chosen filesystem, then formatting fails and the volume does not mount.
+
+Format options are also not applied to [raw block volumes](../advanced-operations/zfs-raw-block-volume.md), because a raw block volume is not formatted with a filesystem.
+:::
+
+## Node-Level Default Format Options
+
+`formatOptions` sets the extra `mkfs` options of a single StorageClass. To apply options to every volume of a filesystem across the cluster instead, the node component takes `defaultFormatOptions`. This is a Helm value set when you install or upgrade the driver, not a StorageClass parameter. Use it when an option is a property of your nodes rather than of one workload, such as a `mkfs.xfs` option that the kernel of your nodes requires.
+
+Give `zfsNode.defaultFormatOptions` one entry per filesystem. The key is a filesystem the driver formats (`ext2`, `ext3`, `ext4`, `xfs` or `btrfs`) and the value is that filesystem's `mkfs` options as a single space-separated string.
+
+```yaml
+zfsNode:
+  defaultFormatOptions:
+    ext4: "-m 0 -O ^orphan_file"
+    xfs: "-i nrext64=0"
+```
+
+Install or upgrade with the values file:
+
+```
+helm upgrade --install zfs-localpv openebs/zfs-localpv -n openebs --create-namespace -f values.yaml
+```
+
+A single filesystem can also be set on the command line. Use `--set-string`, because the value contains spaces and an `=` sign:
+
+```
+helm upgrade --install zfs-localpv openebs/zfs-localpv -n openebs --create-namespace \
+  --set-string 'zfsNode.defaultFormatOptions.xfs=-i nrext64=0'
+```
+
+The chart turns each entry into one `--default-format-options=<fstype>=<options>` argument of the node plugin and rolls the node DaemonSet. Filesystems whose value is empty are skipped. The chart ships no defaults.
+
+### How DefaultFormatOptions and FormatOptions Interact
+
+For each volume the driver resolves one set of options for the filesystem it is about to create:
+
+1. If the StorageClass of the volume sets `formatOptions`, those options are used.
+2. Otherwise the `defaultFormatOptions` entry of that filesystem is used.
+3. If neither is set, the volume is formatted with the defaults of `mkfs`.
+
+The two are **not merged**. A StorageClass that sets `formatOptions` replaces the default of its filesystem completely, so a StorageClass that needs both its own option and a node wide one has to repeat the node wide one:
+
+```yaml
+parameters:
+  poolname: "zfspv-pool"
+  fstype: "xfs"
+  formatOptions: "-i nrext64=0 -b size=4096"   ## repeats the node wide -i nrext64=0
+```
+
+The options are applied only while a volume is being formatted, which happens the first time it is mounted. Changing `defaultFormatOptions` therefore affects volumes provisioned after the change, and never reformats a volume that already carries a filesystem.
+
+### Verifying the Configuration
+
+Confirm that the node plugin received the arguments:
+
+```
+$ kubectl get pod -n openebs -l app=openebs-zfs-node \
+    -o jsonpath='{.items[0].spec.containers[?(@.name=="openebs-zfs-plugin")].args}'
+```
+
+After a volume of that filesystem is mounted for the first time, the node plugin log shows the options it passed to `mkfs`:
+
+```
+$ kubectl logs -n openebs -l app=openebs-zfs-node -c openebs-zfs-plugin | grep "attempting to format"
+```
+
+:::note
+If an `xfs` volume fails to mount after provisioning because the `mkfs.xfs` in the driver image is newer than the kernel of your nodes, see [Unable to mount xfs File System](../../../../troubleshooting/troubleshooting-local-storage.md#unable-to-mount-xfs-file-system).
+:::
 
 ## Recordsize (Optional Parameter)
 

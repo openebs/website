@@ -16,12 +16,12 @@ The status of the various components as of v4.6 are as follows:
 
 | Component Type | Component | Version | Status |
 | :--- | :--- | :--- | :--- |
-| Replicated Storage | Replicated PV Mayastor | 2.12.0 | Stable |
+| Replicated Storage | Replicated PV Mayastor | 2.12.1 | Stable |
 | Local Storage (non-CSI) | Local PV Hostpath | 4.6.0 | Stable |
-| Local Storage | Local PV LVM | 1.10.0 | Stable |
-| Local Storage | Local PV ZFS | 2.11.0 | Stable |
-| Local Storage | Local PV Rawfile | 0.15.0 | Experimental |
-| Other Components | CLI | 4.6.0 | — |
+| Local Storage | Local PV LVM | 1.10.1 | Stable |
+| Local Storage | Local PV ZFS | 2.11.1 | Stable |
+| Local Storage | Local PV Rawfile | 0.15.1 | Experimental |
+| Other Components | CLI | 4.6.1 | — |
 
 ## What’s New
 
@@ -69,6 +69,10 @@ The status of the various components as of v4.6 are as follows:
 
   Local PV ZFS StorageClasses now support the `atime` and `logbias` parameters, giving you direct control over access-time updates and write-workload optimisation on the underlying ZFS datasets and volumes.
 
+- **Format Options for Local PV LVM and Local PV ZFS**
+
+  The node component of both drivers now accepts `defaultFormatOptions`, giving the extra `mkfs` options a node uses for a filesystem when the StorageClass of a volume does not set `formatOptions`. This allows a cluster to format volumes safely without setting the options on every StorageClass. Local PV ZFS additionally gains the `formatOptions` StorageClass parameter, which Local PV LVM already supported. A StorageClass value replaces the default of its filesystem, the two are not merged, and no defaults ship with the charts.
+
 - **Topology-Constrained StorageClasses for Local PV Hostpath**
 
   The Local PV Hostpath Helm chart now allows you to set `allowedTopologies` on the provisioned StorageClass, so volume placement can be restricted to a defined set of nodes or zones directly from chart values.
@@ -107,6 +111,10 @@ The status of the various components as of v4.6 are as follows:
 
   Replica metrics now carry `pool_name` and `pool_uuid` labels, making it possible to attribute replica-level metrics to a specific DiskPool without additional correlation.
 
+- **Plugin Output Improvements**
+
+  The `kubectl mayastor` plugin now includes an `ID` column in its event output, and spurious error strings are no longer printed.
+
 ### Local Storage
 
 - **HTTP Health Probe for Local PV Hostpath**
@@ -124,6 +132,10 @@ The status of the various components as of v4.6 are as follows:
 - **Updated CSI Snapshot Components for Local PV LVM**
 
   The bundled `csi-snapshotter` and `snapshot-controller` components have been updated to v8.2.0.
+
+- **Updatable StorageClass and VolumeSnapshotClass for Local PV Rawfile**
+
+  The StorageClass and VolumeSnapshotClass created by the chart can now be modified with a `helm upgrade`.
 
 ## Fixes
 
@@ -161,6 +173,14 @@ The status of the various components as of v4.6 are as follows:
 
   Updated SPDK with fixes for a null pointer dereference and IPv6 transport handling, and resolved an interrupt-mode reactor teardown issue.
 
+- **Labels Containing Slashes on Delete, Cordon and Drain**
+
+  Resolved an issue where labels in the Kubernetes `domain/key` form were rejected by the delete, cordon, and drain REST routes.
+
+- **Support Bundle Collection Timeout**
+
+  Resolved an issue where Loki auto-discovery could time out while a support bundle was being collected. The default `--timeout` has also been raised from 10s to 30s.
+
 ### Local Storage
 
 - **Idempotent Volume Expansion for Local PV LVM**
@@ -186,6 +206,14 @@ The status of the various components as of v4.6 are as follows:
 - **Image URL Rendering for Local PV ZFS**
 
   Resolved an issue where image URLs in rendered manifests were not quoted, which could break rendering for registries whose URLs contain characters that YAML treats specially.
+
+- **Copy-on-Write Auto-Detection for Local PV Rawfile**
+
+  Resolved an issue where setting `copyOnWrite` to an empty string in the StorageClass was treated as `false` instead of auto-detecting the capability of the storage pool.
+
+- **Disabling the Local PV Rawfile Controller Deployment**
+
+  Resolved an issue where an incorrect Helm variable prevented the controller deployment from being disabled.
 
 ## Breaking Changes
 

@@ -259,11 +259,69 @@ kubectl logs -n openebs -l openebs.io/component-name=openebs-localpv-provisioner
 
 ### Unable to mount `xfs` File System
 
-The volume is created, but `xfs` is failing to mount.
+The volume is created, but `xfs` fails to mount and the application pod stays in `ContainerCreating` with an event like this:
 
-**Workaround**
+```shell hideCopy
+MountVolume.SetUp failed for volume "pvc-0ac51f5a-ad2e-4540-afde-955ece4d46f4" :
+rpc error: code = Internal desc = failed to format and mount the volume error:
+mount failed: exit status 32
+Output: mount: ... wrong fs type, bad option, bad superblock on
+/dev/mapper/lvmvg-pvc--0ac51f5a--ad2e--4540--afde--955ece4d46f4 ...
+```
 
-If you are trying to use `xfs` volumes and the cluster node hosts are running a kernel version less than 5.10, you may encounter a mount failure of the filesystem. This is due to the incompatibility of newer `xfsprogs` options. In order to alleviate this issue, it is recommended to upgrade the host node kernel version to 5.10 or higher.
+**Troubleshooting**
+
+`mkfs.xfs` enables new on-disk features as it gets newer, and each feature needs a minimum kernel version to mount. When the `mkfs.xfs` inside the driver image is newer than the kernel of your nodes, the volume is formatted successfully and then cannot be mounted. The kernel log of the node names the feature:
+
+```shell hideCopy
+$ dmesg | tail -3
+XFS (dm-10): Superblock has unknown incompatible features (0x20) enabled.
+XFS (dm-10): Filesystem cannot be safely mounted by this kernel.
+XFS (dm-10): SB validate failed with error -22.
+```
+
+| Feature   | Enabled by default from | Minimum kernel |
+| :-------- | :---------------------- | :------------- |
+| `bigtime`, `inobtcount` | `mkfs.xfs` 5.15 | 5.10 |
+| `nrext64` (`0x20`) | `mkfs.xfs` 6.5 | 5.19 |
+
+**Resolution**
+
+Upgrading the nodes to a kernel that supports the feature is the preferred fix. If that is not possible, tell the driver to format `xfs` volumes without the feature.
+
+To apply it to every `xfs` volume in the cluster, set the default format options of the node component at install or upgrade time. For Local PV LVM:
+
+```
+helm upgrade --install lvm-localpv openebs/lvm-localpv -n openebs --create-namespace \
+  --set-string 'lvmNode.defaultFormatOptions.xfs=-i nrext64=0'
+```
+
+For Local PV ZFS:
+
+```
+helm upgrade --install zfs-localpv openebs/zfs-localpv -n openebs --create-namespace \
+  --set-string 'zfsNode.defaultFormatOptions.xfs=-i nrext64=0'
+```
+
+On a node whose kernel is older than 5.10, disable the earlier features as well:
+
+```
+--set-string 'lvmNode.defaultFormatOptions.xfs=-m bigtime=0,inobtcount=0 -i nrext64=0'
+```
+
+To apply it to a single StorageClass instead, use the `formatOptions` parameter:
+
+```yaml
+parameters:
+  fsType: "xfs"
+  formatOptions: "-i nrext64=0"
+```
+
+:::note
+Format options are applied only while a volume is being formatted, which happens the first time it is mounted. A volume that has already been formatted with an unsupported feature cannot be mounted on that node and has to be recreated.
+:::
+
+**See** [Node-Level Default Format Options for Local PV LVM](../user-guides/local-storage-user-guide/local-pv-lvm/configuration/lvm-storageclass-parameters.md#node-level-default-format-options) and [Node-Level Default Format Options for Local PV ZFS](../user-guides/local-storage-user-guide/local-pv-zfs/configuration/zfs-storageclass-parameters.md#node-level-default-format-options).
 
 ## See Also
 

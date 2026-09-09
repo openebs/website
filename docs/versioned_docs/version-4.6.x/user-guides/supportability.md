@@ -39,7 +39,7 @@ Commands:
 
 Options:
   -t, --timeout <TIMEOUT>
-          Specifies the timeout value to interact with other modules of system [default: 10s]
+          Specifies the timeout value to interact with other modules of system [default: 30s]
   -s, --since <SINCE>
           Period states to collect all logs from last specified duration [default: 24h]
   -l, --loki-endpoint <LOKI_ENDPOINT>
