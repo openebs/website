@@ -113,7 +113,7 @@ The status of the various components as of v4.6 are as follows:
 
 - **Plugin Output Improvements**
 
-  The `kubectl mayastor` plugin now includes an `ID` column in its event output, and spurious error strings are no longer printed.
+  The `kubectl-openebs mayastor get events` command now includes an `ID` column in its table output. Status messages are no longer written into the output of the command, so its JSON and YAML output can now be parsed and collected.
 
 ### Local Storage
 
