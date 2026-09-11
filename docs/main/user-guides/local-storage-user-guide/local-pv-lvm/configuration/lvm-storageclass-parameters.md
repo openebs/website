@@ -90,10 +90,79 @@ Mount options are not applied to [raw block volumes](../advanced-operations/lvm-
 
   Refer to the documentation of the filesystem you are using to know which format options it supports.
 
+  To apply the same options to every volume of a filesystem across the cluster instead of per StorageClass, see [Node-Level Default Format Options](#node-level-default-format-options).
+
 :::note
 Format options are not validated by the driver. If the options are not valid for the chosen filesystem, then formatting fails and the volume does not mount.
 
 Format options are also not applied to [raw block volumes](../advanced-operations/lvm-raw-block-volume.md), because a raw block volume is not formatted with a filesystem.
+:::
+
+## Node-Level Default Format Options
+
+`formatOptions` sets the extra `mkfs` options of a single StorageClass. To apply options to every volume of a filesystem across the cluster instead, the node component takes `defaultFormatOptions`. This is a Helm value set when you install or upgrade the driver, not a StorageClass parameter. Use it when an option is a property of your nodes rather than of one workload, such as a `mkfs.xfs` option that the kernel of your nodes requires.
+
+Give `lvmNode.defaultFormatOptions` one entry per filesystem. The key is a filesystem the driver formats (`ext2`, `ext3`, `ext4`, `xfs` or `btrfs`) and the value is that filesystem's `mkfs` options as a single space-separated string.
+
+```yaml
+lvmNode:
+  defaultFormatOptions:
+    ext4: "-m 0 -O ^orphan_file"
+    xfs: "-i nrext64=0"
+```
+
+Install or upgrade with the values file:
+
+```
+helm upgrade --install lvm-localpv openebs/lvm-localpv -n openebs --create-namespace -f values.yaml
+```
+
+A single filesystem can also be set on the command line. Use `--set-string`, because the value contains spaces and an `=` sign:
+
+```
+helm upgrade --install lvm-localpv openebs/lvm-localpv -n openebs --create-namespace \
+  --set-string 'lvmNode.defaultFormatOptions.xfs=-i nrext64=0'
+```
+
+The chart turns each entry into one `--default-format-options=<fstype>=<options>` argument of the node plugin and rolls the node DaemonSet. Filesystems whose value is empty are skipped. The chart ships no defaults, and a mistyped or unknown filesystem entry fails the node agent at startup instead of formatting volumes the node cannot mount.
+
+### How DefaultFormatOptions and FormatOptions Interact
+
+For each volume the driver resolves one set of options for the filesystem it is about to create:
+
+1. If the StorageClass of the volume sets `formatOptions`, those options are used.
+2. Otherwise the `defaultFormatOptions` entry of that filesystem is used.
+3. If neither is set, the volume is formatted with the defaults of `mkfs`.
+
+The two are **not merged**. A StorageClass that sets `formatOptions` replaces the default of its filesystem completely, so a StorageClass that needs both its own option and a node wide one has to repeat the node wide one:
+
+```yaml
+parameters:
+  storage: "lvm"
+  volgroup: "lvmvg"
+  fsType: "xfs"
+  formatOptions: "-i nrext64=0 -b size=4096"   ## repeats the node wide -i nrext64=0
+```
+
+The options are applied only while a volume is being formatted, which happens the first time it is mounted. Changing `defaultFormatOptions` therefore affects volumes provisioned after the change, and never reformats a volume that already carries a filesystem.
+
+### Verifying the Configuration
+
+Confirm that the node plugin received the arguments:
+
+```
+$ kubectl get pod -n openebs -l app=openebs-lvm-node \
+    -o jsonpath='{.items[0].spec.containers[?(@.name=="openebs-lvm-plugin")].args}'
+```
+
+After a volume of that filesystem is mounted for the first time, the node plugin log shows the options it passed to `mkfs`:
+
+```
+$ kubectl logs -n openebs -l app=openebs-lvm-node -c openebs-lvm-plugin | grep "attempting to format"
+```
+
+:::note
+If an `xfs` volume fails to mount after provisioning because the `mkfs.xfs` in the driver image is newer than the kernel of your nodes, see [Unable to mount xfs File System](../../../../troubleshooting/troubleshooting-local-storage.md#unable-to-mount-xfs-file-system).
 :::
 
 ## Shared (Optional)

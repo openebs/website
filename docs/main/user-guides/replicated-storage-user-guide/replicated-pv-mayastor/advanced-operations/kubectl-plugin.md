@@ -191,9 +191,9 @@ kubectl openebs mayastor get events
 **Expected Output**
 
 ```
-TIMESTAMP             CATEGORY  ACTION         TARGET                                NODE      COMPONENT
-2026-08-12T09:14:02Z  volume    create         18e30e83-b106-4e0d-9fb6-2b04e761e18a  worker-1  CoreAgent
-2026-08-12T09:18:47Z  nexus     rebuild_begin  18e30e83-b106-4e0d-9fb6-2b04e761e18a  worker-1  IoEngine
+ID                                    TIMESTAMP             CATEGORY  ACTION         TARGET                                NODE      COMPONENT
+7c1e4f80-2a55-4c1e-9c7a-51d0e6a3b911  2026-08-12T09:14:02Z  volume    create         18e30e83-b106-4e0d-9fb6-2b04e761e18a  worker-1  CoreAgent
+a4f60c25-91bb-4d37-8e5f-2d7c8b1a9e03  2026-08-12T09:18:47Z  nexus     rebuild_begin  18e30e83-b106-4e0d-9fb6-2b04e761e18a  worker-1  IoEngine
 ```
 
 This command returns events collected by the Eventing Aggregator. It supports filtering by category, action, component, node, pool, volume, and replica, among others. Refer to the [Eventing Aggregator](eventing-aggregator.md) documentation for the complete set of options.

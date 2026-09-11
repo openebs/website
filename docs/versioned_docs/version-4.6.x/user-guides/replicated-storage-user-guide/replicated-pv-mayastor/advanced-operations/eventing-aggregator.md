@@ -111,10 +111,10 @@ kubectl openebs mayastor get events -n <product-namespace>
 **Sample Output**
 
 ```
-TIMESTAMP             CATEGORY  ACTION         TARGET                                NODE      COMPONENT
-2026-08-12T09:14:02Z  volume    create         18e30e83-b106-4e0d-9fb6-2b04e761e18a  worker-1  CoreAgent
-2026-08-12T09:14:03Z  replica   create         c0f9a1d2-77b3-4a51-9e0c-1b2a3c4d5e6f  worker-2  IoEngine
-2026-08-12T09:18:47Z  nexus     rebuild_begin  18e30e83-b106-4e0d-9fb6-2b04e761e18a  worker-1  IoEngine
+ID                                    TIMESTAMP             CATEGORY  ACTION         TARGET                                NODE      COMPONENT
+7c1e4f80-2a55-4c1e-9c7a-51d0e6a3b911  2026-08-12T09:14:02Z  volume    create         18e30e83-b106-4e0d-9fb6-2b04e761e18a  worker-1  CoreAgent
+9b2d7e13-6f04-4a8b-bd21-0c93f5a7e442  2026-08-12T09:14:03Z  replica   create         c0f9a1d2-77b3-4a51-9e0c-1b2a3c4d5e6f  worker-2  IoEngine
+a4f60c25-91bb-4d37-8e5f-2d7c8b1a9e03  2026-08-12T09:18:47Z  nexus     rebuild_begin  18e30e83-b106-4e0d-9fb6-2b04e761e18a  worker-1  IoEngine
 ```
 
 By default, the command returns events from the last 24 hours, up to a maximum of 1000 records.
