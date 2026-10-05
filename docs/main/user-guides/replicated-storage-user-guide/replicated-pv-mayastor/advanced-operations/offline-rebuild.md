@@ -79,10 +79,11 @@ sit through it:
 kubectl mayastor rebuild volume {your_volume_UUID}
 ```
 
-This skips the wait and nothing else. The rebuild still has to be viable and still
-has to fit within the concurrency limits below, so the request shortens the wait
-rather than forcing through a rebuild that could not otherwise run. If those
-conditions are not met yet, the volume is picked up as soon as they are.
+This skips the wait and puts the volume first in line for a rebuild slot, ahead of any
+other offline rebuilds. It does not raise the concurrency limits below: the rebuild
+still has to be viable and still has to fit within those limits, so the request
+shortens the wait rather than forcing through a rebuild that could not otherwise run.
+If no slot is free yet, the volume takes the next one.
 
 :::note
 The request is refused outright, rather than held, in three cases: the volume is
@@ -162,7 +163,7 @@ The reconciler skips volumes rather than failing loudly, so an offline rebuild t
 - **The grace period has fully elapsed** since the volume was first seen as degraded,
   or the rebuild was requested explicitly.
 - **A healthy replica remains to copy from,** and a pool exists with room for the replacement. If either is missing the rebuild could not finish, so it is not started.
-- **The concurrency limits are not already taken** by other rebuilds, offline or otherwise.
+- **The concurrency limits are not already taken** by other rebuilds, offline or otherwise. A requested rebuild is served before other offline rebuilds, but it still waits for a slot.
 
 :::note
 Only some of these are logged. The core agent logs at debug level when it defers for the grace period, when either concurrency limit is reached, and when the rebuild is not viable. The earlier conditions, the feature being disabled, the volume never having been published, self-healing being off, or the volume not being degraded, are skipped silently, so check those from the volume itself rather than looking for a log line.
