@@ -10,6 +10,14 @@ description: This section explains the instructions to deploy an application the
 
 This document explains the instructions to deploy an application the OpenEBS Local Persistent Volumes (PV) backed by the ZFS Storage.
 
+## Before You Begin
+
+- Install OpenEBS by following the [Installation](../../../../quickstart-guide/installation.md) guide.
+- Create a Local PV ZFS StorageClass by following [Create StorageClass(s)](zfs-create-storageclass.md).
+- Create the `csi-zfspv` PVC by following [Create PersistentVolumeClaim](zfs-create-pvc.md).
+
+## Deploy the Application
+
 Create the deployment yaml using the pvc backed by Local PV ZFS storage.
 
 ```

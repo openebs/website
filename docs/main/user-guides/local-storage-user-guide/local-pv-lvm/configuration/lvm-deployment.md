@@ -10,6 +10,14 @@ description: This section explains the instructions to deploy an application for
 
 This document explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by LVM Storage. 
 
+## Before You Begin
+
+- Install OpenEBS by following the [Installation](../../../../quickstart-guide/installation.md) guide.
+- Create a Local PV LVM StorageClass by following [Create StorageClass(s)](lvm-create-storageclass.md).
+- Create the `csi-lvmpv` PVC by following [Create PersistentVolumeClaim](lvm-create-pvc.md).
+
+## Deploy the Application
+
 Create the deployment yaml using the PVC backed by LVM storage.
 
  ```
