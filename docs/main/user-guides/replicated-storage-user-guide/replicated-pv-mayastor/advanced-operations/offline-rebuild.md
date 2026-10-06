@@ -14,7 +14,7 @@ This matters because many volumes spend most of their life unpublished: golden i
 
 The offline volume rebuild feature closes that gap. When an unpublished volume has been degraded for longer than a grace period, the control plane creates a temporary target that is not shared with any host, lets the existing rebuild engine restore the replica through it, and then tears the target down. No application sees the volume during this; the target exists only to give the rebuild something to run against.
 
-## When a rebuild is triggered
+## When a Rebuild Is Triggered
 
 A volume is picked up when all of the following hold:
 
@@ -28,11 +28,11 @@ The last point avoids creating a target that could only sit there failing. If no
 
 The grace period is skipped in one case. If the volume's replica count was increased while it was unpublished, the added replica is known to be out of sync rather than possibly-stale, so waiting achieves nothing and the rebuild starts immediately.
 
-## What happens if the volume is published mid-rebuild
+## What Happens if the Volume Is Published Mid-Rebuild
 
 If an application mounts the volume while an offline rebuild is running, the existing temporary target is promoted to a normal published target rather than being destroyed and recreated. The rebuild continues through the promotion, and the target then behaves like any other published target, including being torn down by the usual unpublish path rather than by this feature.
 
-## Enabling the feature
+## Enabling the Feature
 
 Offline rebuild is disabled by default. Enable it at install or upgrade time:
 
@@ -50,7 +50,7 @@ agents:
         enabled: true
 ```
 
-## Configuring the grace period
+## Configuring the Grace Period
 
 The grace period exists so that a node rebooting, or briefly dropping off the network, does not cause a rebuild that would have been unnecessary a minute later. It defaults to 10 minutes.
 
@@ -68,7 +68,7 @@ Leaving this blank keeps the 10 minute default. Shorten it if your nodes rarely 
 The grace period is measured from when the control plane observes the volume as degraded, not from when the underlying failure occurred.
 :::
 
-## Starting a rebuild without waiting
+## Starting a Rebuild Without Waiting
 
 The grace period is there for a node that might come back. When you already know it
 will not, a decommissioned machine or a confirmed disk failure, there is no reason to
@@ -77,6 +77,11 @@ sit through it:
 **Command**
 ```
 kubectl mayastor rebuild volume {your_volume_UUID}
+```
+
+**Sample Output**
+```
+Offline rebuild requested for volume 18e30e83-b106-4e0d-9fb6-2b04e761e18a. The grace period wait is skipped and the volume is now first in line for a rebuild slot. This does not raise the rebuild limits, so the rebuild starts on the next reconcile if it is viable and a slot is free.
 ```
 
 This skips the wait and puts the volume first in line for a rebuild slot, ahead of any
@@ -93,7 +98,7 @@ nothing to rebuild, and with the feature disabled there would be no reconciler t
 on the request.
 :::
 
-## Limiting how many run at once
+## Limiting How Many Run at Once
 
 Offline rebuilds draw from the same budget as ordinary rebuilds, set by `agents.core.rebuild.maxConcurrent`. Without a separate limit, a batch of offline rebuilds, for example after a pool is decommissioned, can occupy every slot and leave nothing for volumes that are published and serving I/O.
 
@@ -116,7 +121,7 @@ Setting the offline limit at or above the system-wide `maxConcurrent` reserves n
 
 Leaving the offline limit blank means only the system-wide limit applies.
 
-## Observing a rebuild
+## Observing a Rebuild
 
 While an offline rebuild is running, the volume reports a target even though no application is using it. That is the temporary one, and for as long as it exists the rebuild can be inspected the same way as any other:
 
@@ -125,15 +130,30 @@ While an offline rebuild is running, the volume reports a target even though no 
 kubectl mayastor get rebuild-history {your_volume_UUID}
 ```
 
+**Sample Output**
+```
+DST                                   SRC                                   STATE      TOTAL   RECOVERED  TRANSFERRED  IS-PARTIAL  START-TIME            END-TIME
+b5de71a6-055d-433a-a1c5-2b39ade05d86  0dafa450-7a19-4e21-a919-89c6f9bd2a97  Completed  10 MiB  10 MiB     10 MiB       false       2026-09-26T11:02:14Z  2026-09-26T11:02:19Z
+```
+
+The replacement replica starts empty, so `IS-PARTIAL` is `false`, unlike the partial rebuilds a published volume can often use.
+
 :::note
 Rebuild history belongs to the target, so it is discarded when the temporary target is torn down. Once the volume is back to `Online` this command reports that the volume has no target, and the completed offline rebuild will not appear in any later history. Check it while the rebuild is in progress if you want the per-segment detail.
 :::
 
-To see that a rebuild happened after the fact, use the events instead. The data plane emits `RebuildBegun` and `RebuildEnd` for every rebuild, and these outlive the temporary target:
+To see that a rebuild happened after the fact, use the events instead. The data plane emits `RebuildBegin` and `RebuildEnd` for every rebuild, and these outlive the temporary target:
 
 **Command**
 ```
 kubectl openebs mayastor get events -n <product-namespace> --volume {your_volume_UUID}
+```
+
+**Sample Output**
+```
+ID                                    TIMESTAMP             CATEGORY  ACTION        TARGET                                NODE         COMPONENT
+a4f60c25-91bb-4d37-8e5f-2d7c8b1a9e03  2026-09-26T11:02:14Z  Nexus     RebuildBegin  18e30e83-b106-4e0d-9fb6-2b04e761e18a  io-engine-1  IoEngine
+c7b1e0a9-3d62-41f5-8a74-6e9f2c0b5d81  2026-09-26T11:02:19Z  Nexus     RebuildEnd    18e30e83-b106-4e0d-9fb6-2b04e761e18a  io-engine-1  IoEngine
 ```
 
 This requires the [Eventing Aggregator](eventing-aggregator.md), which is enabled by default.
@@ -145,14 +165,29 @@ Afterwards, confirm the outcome from the volume itself:
 kubectl mayastor get volume {your_volume_UUID}
 ```
 
-A volume that has finished an offline rebuild is `Online` with no target. To confirm where the replicas ended up:
+**Sample Output**
+```
+ID                                    REPLICAS  TARGET-NODE  ACCESSIBILITY  STATUS  SIZE    THIN-PROVISIONED  ALLOCATED  SNAPSHOTS  SOURCE  CLEAN-SHUTDOWN  ENCRYPTED
+18e30e83-b106-4e0d-9fb6-2b04e761e18a  2         <none>       <none>         Online  10 MiB  false             10 MiB     0          <none>  true            false
+```
+
+A volume that has finished an offline rebuild is `Online` with no target, so `TARGET-NODE` and `ACCESSIBILITY` are both `<none>`. To confirm where the replicas ended up:
 
 **Command**
 ```
 kubectl mayastor get volume-replica-topology {your_volume_UUID}
 ```
 
-## If a rebuild does not start
+**Sample Output**
+```
+REPLICA-ID                            NODE         POOL    STATUS  ENCRYPTED  CAPACITY  ALLOCATED  SNAPSHOTS  CHILD-STATUS  REASON  REBUILD  HEALTHY
+0dafa450-7a19-4e21-a919-89c6f9bd2a97  io-engine-1  pool-1  Online  false      10 MiB    10 MiB     0 B        <none>        <none>  <none>   true
+b5de71a6-055d-433a-a1c5-2b39ade05d86  io-engine-3  pool-3  Online  false      10 MiB    10 MiB     0 B        <none>        <none>  <none>   true
+```
+
+`CHILD-STATUS`, `REASON` and `REBUILD` are `<none>` because there is no longer a target for the replicas to be children of. While the rebuild is running they are populated, and `REBUILD` shows a percentage.
+
+## If a Rebuild Does Not Start
 
 The reconciler skips volumes rather than failing loudly, so an offline rebuild that never begins usually means one of its conditions is unmet. Working from the cheapest check upwards:
 
@@ -169,7 +204,7 @@ The reconciler skips volumes rather than failing loudly, so an offline rebuild t
 Only some of these are logged. The core agent logs at debug level when it defers for the grace period, when either concurrency limit is reached, and when the rebuild is not viable. The earlier conditions, the feature being disabled, the volume never having been published, self-healing being off, or the volume not being degraded, are skipped silently, so check those from the volume itself rather than looking for a log line.
 :::
 
-## See also
+## See Also
 
 - [Drain a Node](drain-node.md) and [Cordon Pools](cordon-pools.md), for taking nodes and pools out of service. Offline rebuild is what restores redundancy for unpublished volumes whose replicas lived there.
 - [Replica Rebuilds](replica-rebuild.md), for how rebuilds work on published volumes, including the partial rebuild path.
