@@ -81,14 +81,22 @@ kubectl mayastor rebuild volume {your_volume_UUID}
 
 **Sample Output**
 ```
-Offline rebuild requested for volume 18e30e83-b106-4e0d-9fb6-2b04e761e18a. The grace period wait is skipped and the volume is now first in line for a rebuild slot. This does not raise the rebuild limits, so the rebuild starts on the next reconcile if it is viable and a slot is free.
+Offline rebuild requested for volume 18e30e83-b106-4e0d-9fb6-2b04e761e18a. The grace period wait is skipped and the volume is considered before other offline rebuilds. This does not raise the rebuild limits, so the rebuild starts once it is viable and a slot is free.
 ```
 
-This skips the wait and puts the volume first in line for a rebuild slot, ahead of any
-other offline rebuilds. It does not raise the concurrency limits below: the rebuild
-still has to be viable and still has to fit within those limits, so the request
-shortens the wait rather than forcing through a rebuild that could not otherwise run.
-If no slot is free yet, the volume takes the next one.
+This skips the wait and has the volume considered before other offline rebuilds, rather
+than in whatever order the volumes happen to sit in. It does not raise the concurrency
+limits below: the rebuild still has to be viable and still has to fit within those
+limits, so the request shortens the wait rather than forcing through a rebuild that
+could not otherwise run.
+
+:::note
+Being considered first is not a reserved slot. If every rebuild slot is already taken,
+the request does not evict a running rebuild, and a slot that frees up can still be
+taken by another volume. What the request does guarantee is that the volume stops
+waiting out the grace period, and that it is no longer stuck behind the same volumes on
+every cycle.
+:::
 
 :::note
 The request is refused outright, rather than held, in three cases: the volume is
@@ -198,7 +206,7 @@ The reconciler skips volumes rather than failing loudly, so an offline rebuild t
 - **The grace period has fully elapsed** since the volume was first seen as degraded,
   or the rebuild was requested explicitly.
 - **A healthy replica remains to copy from,** and a pool exists with room for the replacement. If either is missing the rebuild could not finish, so it is not started.
-- **The concurrency limits are not already taken** by other rebuilds, offline or otherwise. A requested rebuild is served before other offline rebuilds, but it still waits for a slot.
+- **The concurrency limits are not already taken** by other rebuilds, offline or otherwise. A requested rebuild is considered before other offline rebuilds, but it still waits for a slot and does not reserve one.
 
 :::note
 Only some of these are logged. The core agent logs at debug level when it defers for the grace period, when either concurrency limit is reached, and when the rebuild is not viable. The earlier conditions, the feature being disabled, the volume never having been published, self-healing being off, or the volume not being degraded, are skipped silently, so check those from the volume itself rather than looking for a log line.
