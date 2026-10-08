@@ -60,7 +60,7 @@ parameters:
 provisioner: io.openebs.csi-mayastor
 ```
 
-Create a PVC by following the steps given in the [Deploy a test Application documentation](../../../../quickstart-guide/deploy-a-test-application.md#create-a-persistentvolumeclaim) and check if the status of the PVC is **Bound**.
+Create a PVC by following the steps given in the [Deploy an Application documentation](../configuration/rs-deployment.md#define-the-pvc) and check if the status of the PVC is **Bound**.
 
 **Command**
 ```

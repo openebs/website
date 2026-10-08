@@ -32,4 +32,4 @@ If you encounter issues or have a question, file a [Github issue](https://github
 ## See Also
 
 - [Installation](../../../quickstart-guide/installation.md)
-- [Deploy an Application](../../../quickstart-guide/deploy-a-test-application.md)
+- [Deploy an Application](configuration/hostpath-deployment.md)

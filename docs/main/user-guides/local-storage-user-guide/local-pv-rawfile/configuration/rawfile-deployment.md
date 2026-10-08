@@ -11,6 +11,14 @@ description: This section explains the instructions to deploy an application for
 
 This document explains the instructions to deploy an application for the OpenEBS Local Persistent Volumes (PV) backed by Local PV Rawfile storage.
 
+## Before You Begin
+
+- Install OpenEBS by following the [Installation](../../../../quickstart-guide/installation.md) guide.
+- Create a Local PV Rawfile StorageClass by following [Create StorageClass(s)](rawfile-create-storageclass.md).
+- Create the `rawfile-pvc` PVC by following [Create PVC](rawfile-create-pvc.md).
+
+## Deploy the Application
+
 Create the deployment using the PVC backed by Local PV Rawfile storage.
 
 ```yaml

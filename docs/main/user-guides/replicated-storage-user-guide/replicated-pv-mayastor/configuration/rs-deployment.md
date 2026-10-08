@@ -11,6 +11,12 @@ description: This guide will help you to deploy OpenEBS Replicated PV Mayastor.
 
 If all verification steps in the preceding stages were satisfied, then Replicated PV Mayastor has been successfully deployed within the cluster. In order to verify basic functionality, we will now dynamically provision a Persistent Volume based on a Replicated PV Mayastor StorageClass, mount that volume within a small test pod which we'll create, and use the [**Flexible I/O Tester**](https://github.com/axboe/fio) utility within that pod to check that I/O to the volume is processed correctly.
 
+## Before You Begin
+
+- Install OpenEBS by following the [Installation](../../../../quickstart-guide/installation.md) guide.
+- Create a DiskPool by following [Create a DiskPool](rs-create-diskpool.md).
+- Create a Replicated PV Mayastor StorageClass by following [Create StorageClass(s)](rs-create-storageclass.md).
+
 ## Define the PVC
 
 Use `kubectl` to create a PVC based on a StorageClass that you created in the [previous stage](rs-create-storageclass.md). In the example shown below, we will consider that StorageClass to have been named "mayastor-1". Replace the value of the field "storageClassName" with the name of your own Replicated PV Mayastor-based StorageClass.
