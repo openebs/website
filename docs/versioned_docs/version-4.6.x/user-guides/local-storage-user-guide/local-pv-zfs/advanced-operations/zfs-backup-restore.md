@@ -321,6 +321,8 @@ While doing the restore the Local PV ZFS plugin will set the affinity on the PV 
 
 - For the incremental backup, the higher the value of `incrBackupCount` the more time it will take to restore the volumes. So, we should not have very high number of incremental backup.
 
+- A backup or restore that fails is reported as `Failed`. In OpenEBS v4.6.0 and v4.6.1, a transfer that failed partway could instead remain in `Init`, blocking later backups, or be reported as `Done`. If you are upgrading from one of those releases, the first backups afterwards may surface transfers that were already broken.
+
 ## Uninstall Velero
 
 We can delete the velero installation by using this command

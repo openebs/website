@@ -16,12 +16,12 @@ The status of the various components as of v4.6 are as follows:
 
 | Component Type | Component | Version | Status |
 | :--- | :--- | :--- | :--- |
-| Replicated Storage | Replicated PV Mayastor | 2.12.1 | Stable |
+| Replicated Storage | Replicated PV Mayastor | 2.12.2 | Stable |
 | Local Storage (non-CSI) | Local PV Hostpath | 4.6.0 | Stable |
 | Local Storage | Local PV LVM | 1.10.1 | Stable |
-| Local Storage | Local PV ZFS | 2.11.1 | Stable |
-| Local Storage | Local PV Rawfile | 0.15.1 | Experimental |
-| Other Components | CLI | 4.6.1 | — |
+| Local Storage | Local PV ZFS | 2.11.2 | Stable |
+| Local Storage | Local PV Rawfile | 0.15.3 | Experimental |
+| Other Components | CLI | 4.6.2 | — |
 
 ## What’s New
 
@@ -137,7 +137,27 @@ The status of the various components as of v4.6 are as follows:
 
   The StorageClass and VolumeSnapshotClass created by the chart can now be modified with a `helm upgrade`.
 
+- **Optional TLS Verification Skip for Local PV Rawfile**
+
+  A new `rawfile-localpv.tls.insecureSkipVerify` Helm value, disabled by default, skips x509 verification when the driver's Kubernetes client talks to the API server. This is intended for environments with malformed API server certificates. Enable it only if you understand the security implications.
+
+- **Pod Labels for Local PV Rawfile**
+
+  The `rawfile-localpv.node.podLabels` and `rawfile-localpv.controller.podLabels` Helm values allow you to set labels on the node and controller Pods that are not used as selector labels.
+
 ## Fixes
+
+### General
+
+- **Loki MinIO Image Pulls**
+
+  Resolved an issue where the MinIO pods that serve as Loki's object store could fail to start with `ImagePullBackOff`. Releases v4.3.0 through v4.6.1 pull the `minio` and `mc` images from `quay.io/minio`, which can no longer be pulled anonymously. The chart now uses the `docker.io/openebs/minio` and `docker.io/openebs/mc` mirrors, with the same image tags.
+
+  :::note
+  `kubectl openebs upgrade` runs Helm with `--reset-then-reuse-values`, so upgraded releases switch to the mirror automatically. Repositories you set explicitly, such as a private registry mirror, are kept. `helm upgrade --reuse-values` keeps the old `quay.io/minio` repositories; use `--reset-then-reuse-values` (Helm 3.14 or later) instead, or set the repositories explicitly.
+
+  If you installed Replicated PV Mayastor using the standalone `mayastor/mayastor` chart, `kubectl mayastor upgrade` moves the MinIO repositories to the mirror only if they are still set to the old `quay.io/minio` defaults, and leaves custom repositories unchanged.
+  :::
 
 ### Replicated Storage
 
@@ -215,6 +235,22 @@ The status of the various components as of v4.6 are as follows:
 
   Resolved an issue where an incorrect Helm variable prevented the controller deployment from being disabled.
 
+- **Backup and Restore Reliability for Local PV ZFS**
+
+  Resolved an issue where a failure on one side of the backup or restore pipeline was not reported to the other. A receiver that exited early could leave `zfs send` blocked indefinitely, keeping the `ZFSBackup` in `Init` and blocking later Velero backups, and a failed `zfs send` could be reported as a successful backup. Failures are now reported on both sides, and failed transfers are marked `Failed` instead of remaining in `Init` or being reported as `Done`.
+
+  :::note
+  Transfers that were previously reported as `Done` are now reported as `Failed`, so the first backups after upgrading may surface transfers that were already broken.
+  :::
+
+- **Volume Operations on Older Local PV Rawfile Volumes**
+
+  Resolved an issue where operations such as volume expansion could fail on volumes created before storage pools were introduced in Local PV Rawfile v0.13.0, for example with OpenEBS v4.4.0. The metadata of these volumes still pointed to the backing file under the old `/data` path. The node plugin now migrates this metadata to the storage pool layout when it starts. If a volume's backing file is not found in its storage pool, its path is left unchanged and a warning is logged for manual inspection.
+
+- **StorageClass Parameter Handling for Local PV Rawfile**
+
+  Resolved an issue where StorageClass parameters set to an empty or null-like value (`""`, `none`, `null`, or `nil`) were not treated as unset. Such parameters are now treated as unset, so the parameter's default applies.
+
 ## Breaking Changes
 
 ### Local Storage
@@ -264,7 +300,7 @@ This issue is not caused by Mayastor but is triggered more frequently because of
 
 ## Related Information
 
-OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For release summaries and full version-level notes, see [OpenEBS Release 4.6](https://github.com/openebs/openebs/releases#release-v4.6.1).
+OpenEBS Release notes are maintained in the GitHub repositories alongside the code and releases. For release summaries and full version-level notes, see [OpenEBS Release 4.6](https://github.com/openebs/openebs/releases#release-v4.6.2).
 
 See version specific Releases to view the legacy OpenEBS Releases.
 

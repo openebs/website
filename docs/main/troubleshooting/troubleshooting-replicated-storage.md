@@ -323,6 +323,29 @@ In addition to ensuring that the general prerequisites for installation are met,
 
 If this is not done, CSI socket paths won't match expected values and the Replicated Storage CSI driver registration process will fail, resulting in the inability to provision Replicated Storage volumes on the cluster.
 
+### MinIO pods for Loki fail to start with `ImagePullBackOff`
+
+The MinIO pods that serve as Loki's object store cannot pull their images. OpenEBS v4.3.0 through v4.6.1 pull the `minio` and `mc` images from `quay.io/minio`, which can no longer be pulled anonymously.
+
+**Workaround**
+
+Upgrade to OpenEBS v4.6.2 or later, which uses the `docker.io/openebs/minio` and `docker.io/openebs/mc` mirrors with the same image tags.
+
+If you cannot upgrade yet, point your existing release at the mirror. Find the chart version your release is on:
+
+```
+helm list -n openebs
+```
+
+Then pass that version to `helm upgrade`, so that only the image repositories change and the release stays on its current chart version:
+
+```
+helm upgrade openebs openebs/openebs --namespace openebs --reuse-values \
+  --version <your-current-release-version> \
+  --set loki.minio.image.repository=docker.io/openebs/minio \
+  --set loki.minio.mcImage.repository=docker.io/openebs/mc
+```
+
 ## Other Issues
 
 ### Replicated Storage pod may restart if a pool disk is inaccessible

@@ -227,9 +227,9 @@ loki:
     imagePullSecrets:
       - name: openebs-regcred
     image:
-      repository: "<registry-url>/minio/minio"
+      repository: "<registry-url>/openebs/minio"
     mcImage:
-      repository: "<registry-url>/minio/mc"
+      repository: "<registry-url>/openebs/mc"
   sidecar:
     image:
       repository: "<registry-url>/kiwigrid/k8s-sidecar"
