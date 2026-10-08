@@ -331,10 +331,17 @@ The MinIO pods that serve as Loki's object store cannot pull their images. OpenE
 
 Upgrade to OpenEBS v4.6.2 or later, which uses the `docker.io/openebs/minio` and `docker.io/openebs/mc` mirrors with the same image tags.
 
-If you cannot upgrade yet, point your existing release at the mirror:
+If you cannot upgrade yet, point your existing release at the mirror. Find the chart version your release is on:
+
+```
+helm list -n openebs
+```
+
+Then pass that version to `helm upgrade`, so that only the image repositories change and the release stays on its current chart version:
 
 ```
 helm upgrade openebs openebs/openebs --namespace openebs --reuse-values \
+  --version <your-current-release-version> \
   --set loki.minio.image.repository=docker.io/openebs/minio \
   --set loki.minio.mcImage.repository=docker.io/openebs/mc
 ```
