@@ -391,6 +391,6 @@ The PVC/Deployment has been restored as expected.
 
 - [Velero Backup and Restore using Replicated PV Mayastor Snapshots - Raw Block Volumes](velero-br-rbv.md)
 - [Replicated PV Mayastor Installation on MicroK8s](../openebs-on-kubernetes-platforms/microkubernetes.md)
-- [Replicated PV Mayastor Installation on Talos](../openebs-on-kubernetes-platforms/talos.md)
+- [OpenEBS Installation on Talos](../openebs-on-kubernetes-platforms/talos.md)
 - [Replicated PV Mayastor Installation on Google Kubernetes Engine](../openebs-on-kubernetes-platforms/gke.md)
 - [Provisioning NFS PVCs](../read-write-many/nfspvc.md)
