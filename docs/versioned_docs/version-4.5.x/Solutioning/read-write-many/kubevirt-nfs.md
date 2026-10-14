@@ -606,6 +606,6 @@ Ensure the VM is running on a new node and that all previously created data rema
 ## See Also
 
 - [Replicated PV Mayastor Installation on OpenShift](../openebs-on-kubernetes-platforms/openshift.md)
-- [Replicated PV Mayastor Installation on Talos](../openebs-on-kubernetes-platforms/talos.md)
+- [OpenEBS Installation on Talos](../openebs-on-kubernetes-platforms/talos.md)
 - [Kasten Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem](../backup-and-restore/kasten-br-fs.md)
 - [Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem](../backup-and-restore/velero-br-fs.md)

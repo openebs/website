@@ -418,7 +418,7 @@ The record count should match the source cluster, confirming successful cloning 
 ## See Also
 
 - [Replicated PV Mayastor Installation on OpenShift](../openebs-on-kubernetes-platforms/openshift.md)
-- [Replicated PV Mayastor Installation on Talos](../openebs-on-kubernetes-platforms/talos.md)
+- [OpenEBS Installation on Talos](../openebs-on-kubernetes-platforms/talos.md)
 - [Kasten Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem](../backup-and-restore/kasten-br-fs.md)
 - [Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem](../backup-and-restore/velero-br-fs.md)
 - [KubeVirt VM Backup and Restore using Replicated PV Mayastor VolumeSnapshots and Velero - FileSystem](../backup-and-restore/kubevirt-backup.md)
