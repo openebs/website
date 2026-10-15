@@ -379,6 +379,6 @@ The `raw block data` has been restored to the target cluster.
 
 - [Velero Backup and Restore using Replicated PV Mayastor Snapshots - FileSystem](velero-br-fs.md)
 - [Replicated PV Mayastor Installation on MicroK8s](../openebs-on-kubernetes-platforms/microkubernetes.md)
-- [Replicated PV Mayastor Installation on Talos](../openebs-on-kubernetes-platforms/talos.md)
+- [OpenEBS Installation on Talos](../openebs-on-kubernetes-platforms/talos.md)
 - [Replicated PV Mayastor Installation on Google Kubernetes Engine](../openebs-on-kubernetes-platforms/gke.md)
 - [Provisioning NFS PVCs](../read-write-many/nfspvc.md)
