@@ -16,7 +16,7 @@ All the below configurations can be applied either during initial cluster creati
 :::
 
 :::important
-Talos 1.14 deprecated two settings this guide previously relied on:
+Talos 1.14 deprecated two settings this document previously relied on:
 `.machine.kubelet.extraMounts` and `.machine.kernel.modules`. Both continue to work on clusters
 upgraded from earlier versions, but neither is available in a newly generated 1.14 configuration.
 See [Kernel Modules](#kernel-modules) and [Data Mount Paths](#data-mount-paths).
@@ -57,15 +57,33 @@ details on Pod Security in Talos.
 LocalPV ZFS and btrfs-backed volumes need kernel modules that are not in the base Talos image.
 Getting them onto a node is two separate steps.
 
-Replicated PV Mayastor needs neither step - `nvme_tcp` is built into the base image.
+Local PV Hostpath needs neither step. Replicated PV Mayastor over NVMe/TCP needs neither step
+either - `nvme_tcp` is built into the base image.
+
+:::note
+RDMA is not covered by this document. In Talos, `nvme_rdma` is a loadable kernel module and is not
+built into the base image, there is no system extension for it, and RDMA on Talos has not been
+tested with OpenEBS. Refer to
+[Replicated PV Mayastor RDMA](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/configuration/rs-rdma.md)
+for the general RDMA requirements.
+:::
 
 ### Step 1: Install the system extension
 
 Extensions are part of the Talos image. Because Talos is immutable, an extension cannot be installed
 into a running node - the image itself must change.
 
-Build an image with the required extensions using the [Talos Image Factory](https://factory.talos.dev/),
-with a schematic such as:
+Only some engines need an extension. Include an extension only when you use the engine or
+filesystem it supports:
+
+| Extension | Needed for |
+|---|---|
+| None | Local PV Hostpath, and Replicated PV Mayastor over NVMe/TCP |
+| `siderolabs/zfs` | Local PV ZFS |
+| `siderolabs/btrfs` | Volumes formatted with the `btrfs` filesystem type |
+
+Build an image with the extensions you need using the [Talos Image Factory](https://factory.talos.dev/),
+with a schematic such as the following, which includes every extension in the table:
 
 ```yaml
 customization:
@@ -89,11 +107,14 @@ Verify the extensions are present on each node:
 talosctl --talosconfig talosconfig -n <node ip> get extensions
 ```
 
-Only include the extensions for the engines you intend to use.
+The `siderolabs/nvme-cli` and `siderolabs/util-linux-tools` extensions in the example are not
+kernel module extensions, so the steps below do not apply to them. Remove any extension you do
+not need from the schematic.
 
 ### Step 2: Load the module
 
 The extension ships the kernel module, but it is not loaded until the machine config says so.
+Load only the modules for the extensions you installed.
 
 **Talos 1.14 and later** - one `KernelModuleConfig` document per module:
 
@@ -259,6 +280,9 @@ hostpath-backed component stores its data in its own subdirectory of `/var/mnt/o
 --set loki.localpvScConfig.minio.basePath=/var/mnt/openebs/minio/
 ```
 
+Each base path is set separately. The chart has no single setting that applies a common prefix to
+all of them.
+
 :::important
 Only paths under a declared user volume work. A directory created by hand under `/var/mnt` is not a
 separate mount, so it inherits the read-only bind of `/var/mnt` itself and the kubelet cannot write
@@ -271,7 +295,18 @@ runtime, not the kubelet, and continue to work at any path. Replicated PV Mayast
 are also unaffected, because CSI mounts them under `/var/lib/kubelet`.
 :::
 
-After installing, confirm the volumes landed in the expected place:
+The base path of a Local PV Hostpath volume comes from its StorageClass. When the chart creates
+the class, it writes the base path into the `cas.openebs.io/config` annotation as the `BasePath`
+entry. By default, the classes are:
+
+| StorageClass | Used by |
+|---|---|
+| `openebs-hostpath` | Local PV Hostpath |
+| `mayastor-etcd-localpv` | Replicated PV Mayastor etcd |
+| `openebs-loki-localpv` | Loki |
+| `openebs-minio-localpv` | MinIO |
+
+After installing, confirm that each class uses the expected path and that the volumes land there:
 
 ```bash
 kubectl get sc <storage class> -o jsonpath='{.metadata.annotations.cas\.openebs\.io/config}'
