@@ -70,6 +70,7 @@ for the general RDMA requirements.
 
 ### Step 1: Install the system extension
 
+A system extension is a package that adds kernel modules or tools to the Talos operating system.
 Extensions are part of the Talos image. Because Talos is immutable, an extension cannot be installed
 into a running node - the image itself must change.
 
@@ -165,6 +166,14 @@ talosctl --talosconfig talosconfig -n <worker node ip> list /sys/module/ | grep 
 minimum number of 1024 such pages (i.e. 2GiB total) must be available exclusively to the Replicated
 PV Mayastor pod on each node.
 
+Set the number of Huge Pages in the machine configuration:
+
+```yaml
+machine:
+  sysctls:
+    vm.nr_hugepages: "1024"
+```
+
 Verify after applying the configuration:
 
 ```bash
@@ -185,9 +194,6 @@ talosctl --talosconfig talosconfig -n <worker node ip> read /sys/module/nvme_cor
 
 The expected output of the second command is `Y`.
 
-Because the module is built in, the CSI node plugin's `nvme_tcp` init check is redundant on Talos and
-may optionally be skipped - see [Install OpenEBS on Talos](#install-openebs-on-talos).
-
 ### Labels
 
 All Replicated PV Mayastor storage nodes must be labelled with the OpenEBS engine type "mayastor".
@@ -196,8 +202,6 @@ PV Mayastor data plane components.
 
 ```yaml
 machine:
-  sysctls:
-    vm.nr_hugepages: "1024"
   nodeLabels:
     openebs.io/engine: "mayastor"
 ```
@@ -284,6 +288,12 @@ Each base path is set separately. The chart has no single setting that applies a
 all of them.
 
 :::important
+Use these base paths for new installations only. Do not change the base paths of an existing
+release. A volume records its path when it is created and cannot be repointed, so volumes that
+already exist are not moved to the new path.
+:::
+
+:::important
 Only paths under a declared user volume work. A directory created by hand under `/var/mnt` is not a
 separate mount, so it inherits the read-only bind of `/var/mnt` itself and the kubelet cannot write
 to it. Each writable location must have its own `UserVolumeConfig`.
@@ -321,6 +331,10 @@ the chart recreate it.
 
 ### Applying the configuration
 
+Combine the settings above in a machine configuration patch file such as `wp.yaml`, and apply it
+with one of the following methods. The `uv.yaml` and `modules.yaml` documents are applied in the
+same way.
+
 1. By using `talosctl gen config`:
 
     ```bash
@@ -354,7 +368,7 @@ talosctl -n <node ip> service kubelet restart
 Refer to the [OpenEBS Installation Documentation](../../quickstart-guide/installation.md#installation-via-helm)
 for the general Helm installation procedure.
 
-On Talos 1.14 or later, an install typically looks like:
+On Talos 1.14 or later, a new installation typically looks like:
 
 ```bash
 helm install openebs openebs/openebs -n openebs \
@@ -364,16 +378,9 @@ helm install openebs openebs/openebs -n openebs \
   --set loki.localpvScConfig.minio.basePath=/var/mnt/openebs/minio/
 ```
 
-The base paths are required on 1.14+ so that hostpath volumes land inside the user volume. On Talos
+The base paths are required for new installations on 1.14+ so that hostpath volumes land inside the user volume. On Talos
 1.13 or earlier, or on an upgraded cluster still using `extraMounts`, omit them and keep the chart
 defaults.
-
-Optionally, add the following to skip the Replicated PV Mayastor CSI node init container that checks
-for `nvme_tcp`. The check is harmless but redundant on Talos, where the module is built in:
-
-```bash
-  --set mayastor.csi.node.initContainers.enabled=false
-```
 
 :::note
 Helm does not carry forward values from a previous release when new values are supplied on the
