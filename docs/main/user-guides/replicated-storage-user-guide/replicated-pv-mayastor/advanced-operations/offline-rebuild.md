@@ -81,21 +81,46 @@ kubectl mayastor rebuild volume {your_volume_UUID}
 
 **Sample Output**
 ```
-Offline rebuild requested for volume 18e30e83-b106-4e0d-9fb6-2b04e761e18a. The grace period wait is skipped and the volume is considered before other offline rebuilds. This does not raise the rebuild limits, so the rebuild starts once it is viable and a slot is free.
+Rebuild requested for volume 18e30e83-b106-4e0d-9fb6-2b04e761e18a. The grace period wait is skipped and the volume is taken ahead of other offline rebuilds, oldest request first. This does not raise the rebuild limits, so it starts once it is viable and a slot is free. Use --now to start it as part of the command instead.
 ```
 
-This skips the wait and has the volume considered before other offline rebuilds, rather
-than in whatever order the volumes happen to sit in. It does not raise the concurrency
-limits below: the rebuild still has to be viable and still has to fit within those
-limits, so the request shortens the wait rather than forcing through a rebuild that
-could not otherwise run.
+This queues the volume: it skips the wait and goes ahead of other offline rebuilds,
+ordered by when each was asked for, so you do not have to pick a priority number. It
+does not raise the concurrency limits below, so the rebuild still has to be viable and
+still has to fit within those limits.
 
-:::note
-Being considered first is not a reserved slot. If every rebuild slot is already taken,
-the request does not evict a running rebuild, and a slot that frees up can still be
-taken by another volume. What the request does guarantee is that the volume stops
-waiting out the grace period, and that it is no longer stuck behind the same volumes on
-every cycle.
+### Starting It Straight Away
+
+To have the rebuild started as part of the command rather than queued, add `--now`:
+
+**Command**
+```
+kubectl mayastor rebuild volume {your_volume_UUID} --now
+```
+
+**Sample Output**
+```
+Rebuild started for volume 18e30e83-b106-4e0d-9fb6-2b04e761e18a.
+```
+
+The difference is what a success means. Without `--now` it means the request was
+recorded and the rebuild will follow; with `--now` it means the rebuild has started,
+and the command fails instead if it could not be. It fails when no rebuild slot is
+free, and when the rebuild is not viable because there is no healthy replica to copy
+from or nowhere to put the replacement.
+
+If the limits are the only thing in the way and you want the rebuild regardless, add
+`--force`, which is accepted only together with `--now`:
+
+**Command**
+```
+kubectl mayastor rebuild volume {your_volume_UUID} --now --force
+```
+
+:::warning
+`--force` starts the rebuild past the limits you configured, which exist to stop
+rebuild traffic competing with volumes that are serving I/O. Use it when you have
+decided this one volume matters more, not as a matter of course.
 :::
 
 :::note
@@ -104,6 +129,10 @@ published, the volume is not degraded, or offline rebuild is disabled. A publish
 volume is already rebuilt without a grace period, a volume that is not degraded has
 nothing to rebuild, and with the feature disabled there would be no reconciler to act
 on the request.
+
+With `--now` there are two more, because the rebuild has to start there and then: the
+rebuild limits are already reached, which `--force` overrides, and the rebuild is not
+viable. Without `--now` neither is a refusal, since the queued request simply waits.
 :::
 
 ## Limiting How Many Run at Once
