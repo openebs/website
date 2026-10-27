@@ -285,8 +285,9 @@ all of them.
 
 :::important
 Use these base paths for new installations only. Do not change the base paths of an existing
-release. A volume records its path when it is created and cannot be repointed, so volumes that
-already exist are not moved to the new path.
+release, and do not change the base paths during an upgrade. A volume records its path when it is
+created and cannot be repointed, so volumes that already exist are not moved to the new path.
+Existing volumes can become inaccessible, and their data can be lost.
 :::
 
 :::important
@@ -461,6 +462,14 @@ document.
 Migration becomes necessary when the machine configuration is regenerated, because a 1.14-generated
 configuration contains a `KubeletConfig` document and can no longer express
 `.machine.kubelet.extraMounts`.
+
+:::warning
+Do not simply change the base paths or the data mount configuration of an existing installation
+when you upgrade or regenerate the machine configuration. Existing LocalPV Hostpath volumes stay
+on their original paths, and if that path is no longer mounted on the node, the volumes become
+inaccessible and their data can be lost. Migrate existing volumes to the new path before you
+remove the old configuration.
+:::
 
 This affects **LocalPV Hostpath volumes only** - the hostpath engine, and Replicated PV Mayastor's
 etcd, Loki and MinIO. Those volumes must be recreated on the new path, one at a time, because a PV
