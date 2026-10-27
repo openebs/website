@@ -91,8 +91,6 @@ customization:
   systemExtensions:
     officialExtensions:
       - siderolabs/btrfs
-      - siderolabs/nvme-cli
-      - siderolabs/util-linux-tools
       - siderolabs/zfs
 ```
 
@@ -108,9 +106,7 @@ Verify the extensions are present on each node:
 talosctl --talosconfig talosconfig -n <node ip> get extensions
 ```
 
-The `siderolabs/nvme-cli` and `siderolabs/util-linux-tools` extensions in the example are not
-kernel module extensions, so the steps below do not apply to them. Remove any extension you do
-not need from the schematic.
+Remove any extension you do not need from the schematic.
 
 ### Step 2: Load the module
 
