@@ -76,7 +76,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.12.0",
     "jsdom": "^30.0.1",
-    "netlify-cli": "^27.7.0",
+    "netlify-cli": "^27.15.0",
     "typescript-eslint": "^8.70.0",
     "vite": "^8.3.0",
     "vitest": "^5.0.1"
