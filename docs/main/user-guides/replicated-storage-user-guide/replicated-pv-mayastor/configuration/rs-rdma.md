@@ -21,8 +21,10 @@ Before enabling and using RDMA in Replicated PV Mayastor, ensure the following p
 
 1. **Interface Validation**
 
-    Ensure that the interface name specified in `io_engine.target.nvmf.iface` exists on all io-engine nodes. Misconfiguration of this parameter can lead to unexpected behavior.
+    Ensure that the interface specified in `io_engine.target.nvmf.iface` exists on all io-engine nodes. Misconfiguration of this parameter can lead to unexpected behavior.
     If the interface name is not RDMA-capable on a node, Replicated PV Mayastor volume targets on such nodes will support only TCP connections.
+
+    `io_engine.target.nvmf.iface` takes either `name:<interface>` or `subnet:<cidr>`. For example, `name:eth0` or `subnet:10.0.0.0/24`. A value carrying no prefix is matched as an interface name, so an unprefixed CIDR matches nothing and the io-engine fails to start. The same value is used by every io-engine pod, so it must resolve on every node. For RDMA, set this to the name of a netdev that an RDMA device is bound to, as listed by the `rdma link` command.
 
 2. **Application Node Requirements**
 
