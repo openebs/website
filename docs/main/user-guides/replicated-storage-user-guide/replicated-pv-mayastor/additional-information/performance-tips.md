@@ -114,3 +114,89 @@ In the above command, `io_engine.coreList={2,3}` specifies that IO engine's reac
 :::info
 The cores are numbered from 0.
 :::
+
+## Network Isolation
+
+By default, the NVMe-oF target binds to the IO engine pod's own IP address, which places volume
+traffic on the same cluster pod network as application and control plane traffic. On a busy
+node, replication and client I/O then compete with everything else for the same link.
+
+Pointing the target at a dedicated interface - a separate NIC, a VLAN, or a storage-only subnet
+- keeps that traffic on its own path.
+
+The `io_engine.target.nvmf.iface` Helm value selects the interface. The IP address resolved from
+it becomes the target address advertised to initiators, and all of the target's listeners share
+that address, differing only in transport and port. Both application-to-volume traffic and
+replication between nodes therefore follow the interface you choose.
+
+### Select the Interface
+
+The value takes the form `<kind>:<value>`:
+
+| Kind | Example | Matches |
+| --- | --- | --- |
+| `name` | `name:eth1` | the interface with that name |
+| `subnet` | `subnet:10.10.0.0/24` | an interface holding an address inside that CIDR |
+
+A value with no prefix is matched as an interface name. An unprefixed CIDR therefore matches
+nothing, and the IO engine fails to start with `Network interface matching '<value>' not found`.
+
+### One Value Applies to Every Node
+
+This is a single Helm value, rendered into the IO engine DaemonSet, so every IO engine pod
+receives the same value. Choose the kind accordingly:
+
+* Use `name:` only when the interface carries the same name on every IO engine node.
+* Use `subnet:` when interface names differ between nodes. Each node independently selects its
+  own interface holding an address in that subnet, which makes it the safer choice for mixed
+  hardware.
+
+:::info
+The interface must exist, be up, and hold an address on **every** IO engine node. A node where
+it cannot be resolved will fail to start its IO engine.
+:::
+
+### Apply the Setting
+
+At install time:
+
+```
+helm install ... --set io_engine.target.nvmf.iface=subnet:10.10.0.0/24
+```
+
+On an existing deployment, using the kubectl plugin:
+
+```
+kubectl mayastor upgrade -n <namespace> --set-args 'io_engine.target.nvmf.iface=subnet:10.10.0.0/24'
+```
+
+### Verify
+
+The IO engine logs the interface it was given and the address it resolved from it at startup:
+
+**Command**
+
+```
+kubectl logs -n <namespace> <io-engine-pod> | grep "NVMF target network interface"
+```
+
+**Example Output**
+
+```
+Detecting IP address (prefer ipv4: true) for NVMF target network interface specified as 'subnet:10.10.0.0/24' ...
+```
+
+Check this on each IO engine node, and confirm that the nodes can reach one another over the
+chosen subnet. If you are using jumbo frames, make sure the MTU is consistent across every node
+and switch on the path.
+
+### What This Does Not Move
+
+Only the NVMe-oF data path follows this setting. The gRPC traffic between the control plane
+agents and the IO engines, the etcd traffic, and the REST API continue to use the pod network.
+
+### Using This with RDMA
+
+When RDMA is enabled, set the value to a netdev that an RDMA device is bound to, as listed by
+the `rdma link` command. See [RDMA](../configuration/rs-rdma.md) for the full set of
+prerequisites.
