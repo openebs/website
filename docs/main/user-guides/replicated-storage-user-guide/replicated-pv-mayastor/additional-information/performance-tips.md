@@ -164,11 +164,25 @@ At install time:
 helm install ... --set io_engine.target.nvmf.iface=subnet:10.10.0.0/24
 ```
 
-On an existing deployment, using the kubectl plugin:
+On an existing deployment, use the kubectl plugin:
 
 ```
 kubectl mayastor upgrade -n <namespace> --set-args 'io_engine.target.nvmf.iface=subnet:10.10.0.0/24'
 ```
+
+:::warning
+The IO engine DaemonSet uses `updateStrategy: OnDelete`. A plain `helm upgrade` updates the
+DaemonSet but leaves the running IO engine pods on their old setting, so the change appears to
+do nothing until each pod is restarted.
+
+The kubectl plugin handles that restart for you, one node at a time, moving volume targets off
+a node before restarting its IO engine. Deleting the pods yourself bypasses that sequencing and
+will disrupt any volume whose target is hosted on the node you restart.
+:::
+
+Because this changes the address that volume targets are published on, the targets hosted on a
+node are affected when its IO engine restarts. Treat the change as you would an upgrade rather
+than a live tunable.
 
 ### Verify
 
