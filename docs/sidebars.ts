@@ -687,6 +687,11 @@ const sidebars: SidebarsConfig =
                     },
                     {
                       type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/offline-rebuild",
+                      label: "Offline Volume Rebuild"
+                    },
+                    {
+                      type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/re-resize",
                       label: "Resize",
                       key: "re-resize",
