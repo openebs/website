@@ -152,7 +152,7 @@ All worker nodes must satisfy the following requirements:
   * Two CPU cores
   * 1GiB RAM
   * **HugePage support**
-    * A minimum of **2GiB of** **2MiB-sized** pages
+    * A minimum of **2GiB** of huge pages, using either **2MiB-sized** or **1GiB-sized** pages
 
 * Enabling `nvme_core.multipath` is required for High Availability (HA) functionality in Replicated PV Mayastor. Ensure the kernel parameter `nvme_core.multipath=Y` is set during the installation. (This prerequisite is optional.)
 
@@ -377,7 +377,18 @@ roleRef:
 
 #### Verify/Enable Huge Page Support
 
-2MiB-sized Huge Pages must be supported and enabled on the storage nodes i.e. nodes where IO engine pods are deployed. A minimum number of 1024 such pages \(i.e. 2GiB total\) must be available exclusively to the IO engine pod on each node, which should be verified thus:
+Huge pages must be supported and enabled on the storage nodes, that is, the nodes where IO engine
+pods are deployed. **A minimum of 2GiB of huge pages must be available exclusively to the IO engine
+pod on each node.** Either 2MiB-sized or 1GiB-sized pages can be used, or a combination of the two.
+The IO engine treats one 1GiB page as the equivalent of 512 2MiB pages when it checks at startup
+that enough memory is available.
+
+2MiB pages are the default and are suitable for most clusters. See
+[Using 1GiB Pages](#using-1gib-pages) below for when the larger size is worth considering.
+
+##### Using 2MiB Pages
+
+A minimum of 1024 2MiB pages (2GiB total) is required, which should be verified thus:
 
 ```text
 grep HugePages /proc/meminfo
@@ -402,6 +413,45 @@ This change should also be made persistent across reboots by adding the required
 ```text
 echo vm.nr_hugepages = 1024 | sudo tee -a /etc/sysctl.conf
 ```
+
+##### Using 1GiB Pages
+
+1GiB pages are an alternative to 2MiB pages, not an addition to them. A minimum of two such pages
+(2GiB total) is required.
+
+Consider them when another workload on the same nodes manages the 2MiB page pool. The
+`vm.nr_hugepages` sysctl used above controls only the pool for the system's default huge page size,
+which is 2MiB on x86_64. If something else on the node sets that value, pages reserved for the IO
+engine can be taken away from it. The 1GiB pool is configured separately and is unaffected.
+
+Unlike 2MiB pages, **1GiB pages must normally be reserved at boot time**. Allocating them at
+runtime is unreliable once memory is fragmented, because the kernel has to find a contiguous 1GiB
+region. Add the following kernel boot parameters and reboot the node:
+
+```text
+default_hugepagesz=1G hugepagesz=1G hugepages=2
+```
+
+Then verify the pool:
+
+```text
+cat /sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages
+cat /sys/kernel/mm/hugepages/hugepages-1048576kB/free_hugepages
+```
+
+Kubernetes exposes each page size as its own schedulable resource, so the IO engine has to be told
+to request `hugepages-1Gi` instead of `hugepages-2Mi`. Set the following Helm values at install
+time:
+
+```text
+--set io_engine.resources.requests.hugepages1Gi=2Gi \
+--set io_engine.resources.limits.hugepages1Gi=2Gi \
+--set io_engine.resources.requests.hugepages2Mi=null \
+--set io_engine.resources.limits.hugepages2Mi=null
+```
+
+Clearing the 2MiB values is required. If both sizes are requested, the node must be able to supply
+both, and the IO engine pod stays `Pending` on `Insufficient hugepages-2Mi` if it cannot.
 
 :::warning
 If you modify the huge page configuration of a node, you _MUST_ either restart kubelet or reboot the node.  Replicated PV Mayastor will not deploy correctly if the available huge page count as reported by the node's kubelet instance does not satisfy the minimum requirements.
