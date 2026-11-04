@@ -22,7 +22,7 @@ Replicated PV Mayastor supports seamless upgrades starting with target version 2
 
 - Only upgrades are supported.Downgrading to earlier versions is not supported.
 - The upgrade operation utilises the [Kubectl mayastor Plugin](../advanced-operations/kubectl-plugin.md). Ensure you have the appropriate Kubectl Plugin installed, Use the kubectl plugin version that matches your target Mayastor version.
-- If Replicated PV Mayastor was installed using the `mayastor/mayastor` Helm chart, use the `kubectl mayastor` plugin for upgrades.
+- If Replicated PV Mayastor was installed using the `mayastor/mayastor` Helm chart, use the `kubectl-openebs` plugin for upgrades.
 - If Replicated PV Mayastor was installed using the `openebs/openebs` Helm chart, refer to the [OpenEBS upgrade documentation](https://openebs.io/docs/user-guides/upgrade).
 - Volumes with single replica will be unavailable temporarily during upgrade.
 - The upgrade process is generally non-disruptive for volumes with a replication factor greater than one however verify that all replicas are healthy prior to upgrade
@@ -34,7 +34,7 @@ To upgrade Replicated PV Mayastor deployment on the Kubernetes cluster, execute:
 **Command**
 
 ```bash
-kubectl mayastor upgrade -n <mayastor-namespace>
+kubectl openebs mayastor upgrade -n <mayastor-namespace>
 ```
 
 To view all the available options and sub-commands that can be used with the upgrade command, execute:
@@ -42,7 +42,7 @@ To view all the available options and sub-commands that can be used with the upg
 **Command**
 
 ```bash
-kubectl mayastor upgrade -h
+kubectl openebs mayastor upgrade -h
 ```
 
 **Expected Output**
@@ -50,7 +50,7 @@ kubectl mayastor upgrade -h
 ```text
 `Upgrade` the deployment
 
-Usage: kubectl-mayastor upgrade [OPTIONS]
+Usage: kubectl-openebs mayastor upgrade [OPTIONS]
 
 Options:
       --registry <REGISTRY>
@@ -90,7 +90,7 @@ To view the status of upgrade, execute:
 **Command**
 
 ```bash
-kubectl mayastor get upgrade-status -n <mayastor-namespace>
+kubectl openebs mayastor get upgrade-status -n <mayastor-namespace>
 ```
 
 **Expected Output**

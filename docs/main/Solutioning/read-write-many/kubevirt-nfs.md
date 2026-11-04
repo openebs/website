@@ -34,9 +34,9 @@ OpenEBS Replicated PV Mayastor is a high-performance, container-native block sto
   
   Ensure that OpenEBS is installed in your cluster. Refer to the [OpenEBS Installation Documentation](../../quickstart-guide/installation.md) for step-by-step instructions.
 
-- **Install the `kubectl-mayastor` Plugin**
+- **Install the `kubectl-openebs` Plugin**
   
-  Ensure that `kubectl-mayastor` plugin is installed. Refer to the [Mayastor Kubectl Plugin Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/kubectl-plugin.md) to install the plugin.
+  Ensure that `kubectl-openebs` plugin is installed. Refer to the [Mayastor Kubectl Plugin Documentation](../../user-guides/replicated-storage-user-guide/replicated-pv-mayastor/advanced-operations/kubectl-plugin.md) to install the plugin.
 
 - **Create StorageClass for NFS Pod (3 Replicas)**
 

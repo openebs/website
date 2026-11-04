@@ -140,10 +140,10 @@ openebs-zfs-localpv-node-wm9ks                    2/2     Running   0          1
 
 ## Pools
 
-The available GKE local SSD disks on worker nodes can be viewed by using the `kubectl-mayastor` plugin.
+The available GKE local SSD disks on worker nodes can be viewed by using the `kubectl-openebs` plugin.
 
 ```
-$ kubectl mayastor get block-devices gke-gke-ssd-default-pool-2a0f964a-hv99
+$ kubectl openebs mayastor get block-devices gke-gke-ssd-default-pool-2a0f964a-hv99
  DEVNAME       DEVTYPE  SIZE    AVAILABLE  MODEL       DEVPATH                                              MAJOR  MINOR  DEVLINKS 
  /dev/nvme1n1  disk     375GiB  yes        nvme_card0  /devices/pci0000:00/0000:00:04.0/nvme/nvme1/nvme1n1  259    0      "/dev/disk/by-id/google-local-nvme-ssd-0", "/dev/disk/by-id/nvme-nvme.1ae0-6e766d655f6361726430-6e766d655f6361726430-00000001", "/dev/disk/by-id/nvme-nvme_card0_nvme_card0", "/dev/disk/by-id/nvme-nvme_card0_nvme_card0_1", "/dev/disk/by-path/pci-0000:00:04.0-nvme-1" 
 ```
@@ -240,7 +240,7 @@ pool-3   gke-gke-local-ssd-default-pool-dd2b0b02-8twd   Created   Unknown       
 ```
 
 ```
-$ kubectl mayastor get volumes 
+$ kubectl openebs mayastor get volumes 
  ID                                    REPLICAS  TARGET-NODE                                   ACCESSIBILITY  STATUS    SIZE  THIN-PROVISIONED  ALLOCATED  SNAPSHOTS  SOURCE 
  fa486a03-d806-4b5c-a534-5666900853a2  3         gke-gke-local-ssd-default-pool-dd2b0b02-08cs  nvmf           Degraded  5GiB  false             5GiB       0          <none>
 ```
@@ -261,10 +261,10 @@ pool-4   gke-gke-local-ssd-default-pool-dd2b0b02-8twd   Created   Online        
 Once the pool is created, the degraded volume is back online after the rebuild.
 
 ```
-$ kubectl mayastor get volumes 
+$ kubectl openebs mayastor get volumes 
  ID                                    REPLICAS  TARGET-NODE                                   ACCESSIBILITY  STATUS  SIZE  THIN-PROVISIONED  ALLOCATED  SNAPSHOTS  SOURCE 
  fa486a03-d806-4b5c-a534-5666900853a2  3         gke-gke-local-ssd-default-pool-dd2b0b02-08cs  nvmf           Online  5GiB  false             5GiB       0          <none> 
-$ kubectl mayastor get volume-replica-topologies
+$ kubectl openebs mayastor get volume-replica-topologies
  VOLUME-ID                             ID                                    NODE                                          POOL    STATUS  CAPACITY  ALLOCATED  SNAPSHOTS  CHILD-STATUS  REASON  REBUILD 
  fa486a03-d806-4b5c-a534-5666900853a2  772af79e-f277-4ce3-a336-3a2b12a07a02  gke-gke-local-ssd-default-pool-dd2b0b02-n6wq  pool-3  Online  5GiB      5GiB       0 B        Online        <none>  <none> 
  ├─                                    cb6293b8-2121-44b7-b329-606bc9972342  gke-gke-local-ssd-default-pool-dd2b0b02-8twd  pool-5  Online  5GiB      5GiB       0 B        Online        <none>  <none> 
@@ -274,13 +274,13 @@ $ kubectl mayastor get volume-replica-topologies
 **Replicated PV Mayastor Rebuild History** 
 
 ```
-$ kubectl mayastor get volumes 
+$ kubectl openebs mayastor get volumes 
  ID                                    REPLICAS  TARGET-NODE                                   ACCESSIBILITY  STATUS  SIZE  THIN-PROVISIONED  ALLOCATED  SNAPSHOTS  SOURCE 
  fa486a03-d806-4b5c-a534-5666900853a2  3         gke-gke-local-ssd-default-pool-dd2b0b02-08cs  nvmf           Online  5GiB  false             5GiB       0          <none> 
-$ kubectl mayastor get rebuild-history fa486a03-d806-4b5c-a534-5666900853a2 
+$ kubectl openebs mayastor get rebuild-history fa486a03-d806-4b5c-a534-5666900853a2 
  DST                                   SRC                                   STATE      TOTAL  RECOVERED  TRANSFERRED  IS-PARTIAL  START-TIME            END-TIME 
  cb6293b8-2121-44b7-b329-606bc9972342  6c21e941-8b41-4b52-8c0d-90ea317f0008  Completed  5GiB   5GiB       5GiB         false       2024-06-24T07:19:04Z  2024-06-24T07:19:17Z 
-$ kubectl mayastor get rebuild-history fa486a03-d806-4b5c-a534-5666900853a2 -o yaml 
+$ kubectl openebs mayastor get rebuild-history fa486a03-d806-4b5c-a534-5666900853a2 -o yaml 
 targetUuid: 7a8e24bf-4033-4d69-9228-09b6dcc93b25
 records:
 - childUri: nvmf://10.128.15.222:8420/nqn.2019-05.io.openebs:cb6293b8-2121-44b7-b329-606bc9972342?uuid=cb6293b8-2121-44b7-b329-606bc9972342

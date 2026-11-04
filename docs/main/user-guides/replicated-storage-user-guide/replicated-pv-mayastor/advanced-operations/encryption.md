@@ -93,12 +93,12 @@ Currently, there is no automatic support for migrating existing unencrypted volu
 
 1. Identify all the volumes to be converted to encrypted, and change their spec to encrypted via plugin.
     ```
-    kubectl mayastor set volume <volume_uuid> encryption true
+    kubectl openebs mayastor set volume <volume_uuid> encryption true
     ```
 2. Identify Target Pool: Select a non-encrypted pool (Example: P1) to migrate.
 3. Identify all volumes with replicas on P1.
 4. (Optional) Scale Up Volumes: Increase replica count (Example: from 2 to 3) to maintain availability.
-5. Mayastor Cordon Node: Cordon the mayastor node hosting P1 to stop new replicas from being scheduled using the plugin command `kubectl mayastor cordon node N1 <cordon_label>`.
+5. Mayastor Cordon Node: Cordon the mayastor node hosting P1 to stop new replicas from being scheduled using the plugin command `kubectl openebs mayastor cordon node N1 <cordon_label>`.
 6. Scale Down Volumes: Reduce replica count to remove replicas from P1. In effect, this is like draining the pool.
 7. Recreating as Encrypted Pool:
     - Delete the non-encrypted pool.
@@ -119,7 +119,7 @@ Currently, there is no automatic support for migrating existing unencrypted volu
 - Key rotation is not supported at this time.
 - Persistent device paths are required for pool creation. Retrieve them using:
 ```
-kubectl mayastor get block-devices <node-id>
+kubectl openebs mayastor get block-devices <node-id>
 ```
 :::note
 Pool and volume migration is manual and requires careful planning.

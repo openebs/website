@@ -427,7 +427,7 @@ ycsb-775fc86c4b-kj5vv           1/1     Running   0          31m
 **Command**
 
 ```
-kubectl mayastor get volumes
+kubectl openebs mayastor get volumes
 ```
 
 **Output**
