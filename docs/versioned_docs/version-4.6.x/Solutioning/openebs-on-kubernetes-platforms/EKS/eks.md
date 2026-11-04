@@ -75,10 +75,10 @@ helm install openebs --namespace openebs openebs/openebs --create-namespace
 
 ## Pools
 
-The available local SSD disks on worker nodes can be viewed by using the `kubectl-mayastor` plugin.
+The available local SSD disks on worker nodes can be viewed by using the `kubectl-openebs` plugin.
 
 ```
-kubectl mayastor get block-devices NODE_ID -n openebs 
+kubectl openebs mayastor get block-devices NODE_ID -n openebs 
 ```
 
 It is highly recommended to specify the disk using a unique device link that remains unaltered across node reboots. Examples of such device links are: by-path or by-id.
@@ -191,7 +191,7 @@ pvc-fdd82823-7f3b-4f19-8346-0d037ebb61d8   10Gi       RWO            Delete     
 **Command**
 
 ```
-kubectl mayastor get volumes -n openebs
+kubectl openebs mayastor get volumes -n openebs
 ```
 
 **Output**

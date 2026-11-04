@@ -22,7 +22,7 @@ To start the drain operation, execute:
 **Command**
 
 ```
-kubectl-mayastor drain node <node_name> <label>
+kubectl openebs mayastor drain node <node_name> <label>
 ```
 
 To get the list of nodes on which the drain operation has been performed, execute:
@@ -30,7 +30,7 @@ To get the list of nodes on which the drain operation has been performed, execut
 **Command**
 
 ```
-kubectl-mayastor get drain nodes
+kubectl openebs mayastor get drain nodes
 ```
 
 ## Halt Drain
@@ -40,5 +40,5 @@ To halt the drain operation or to make the node schedulable again, execute:
 **Command**
 
 ```
-kubectl-mayastor uncordon node <node_name> <label>
+kubectl openebs mayastor uncordon node <node_name> <label>
 ```

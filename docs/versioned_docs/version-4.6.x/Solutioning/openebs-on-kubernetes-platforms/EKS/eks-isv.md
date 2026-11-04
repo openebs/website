@@ -180,12 +180,12 @@ storage-openebs-loki-0   Bound    pvc-85fdeb88-c3bf-4a38-b222-f26228fad5ce   10G
 
 ## Pools
 
-The available local SSD disks on worker nodes can be viewed by using the `kubectl-mayastor` plugin.
+The available local SSD disks on worker nodes can be viewed by using the `kubectl-openebs` plugin.
 
 **Command**
 
 ```
-kubectl mayastor get block-devices ip-10-0-1-213.ec2.internal -n openebs
+kubectl openebs mayastor get block-devices ip-10-0-1-213.ec2.internal -n openebs
 ```
 
 **Output**
@@ -396,7 +396,7 @@ Once the pool got created, the degraded volume is back online after the rebuild.
 **Command**
 
 ```
-kubectl mayastor get volumes -n openebs
+kubectl openebs mayastor get volumes -n openebs
 ```
 
 **Output**
@@ -409,7 +409,7 @@ ID                                    REPLICAS  TARGET-NODE                 ACCE
 **Command**
 
 ```
-kubectl mayastor get volumes -n openebs
+kubectl openebs mayastor get volumes -n openebs
 ```
 
 **Output**
@@ -422,7 +422,7 @@ ID                                    REPLICAS  TARGET-NODE                 ACCE
 **Command**
 
 ```
-kubectl mayastor get volume-replica-topologies -n openebs
+kubectl openebs mayastor get volume-replica-topologies -n openebs
 ```
 
 **Output**
@@ -439,7 +439,7 @@ VOLUME-ID                             ID                                    NODE
 **Command**
 
 ```
-kubectl mayastor get rebuild-history 77b149ad-e94f-406c-a155-d515b30d795c -n openebs
+kubectl openebs mayastor get rebuild-history 77b149ad-e94f-406c-a155-d515b30d795c -n openebs
 ```
 
 **Output**

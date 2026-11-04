@@ -43,14 +43,14 @@ Apply the labels to the nodes using the below command:
 
 **Command**
 ```text
-kubectl mayastor label node worker-node-1 zone=us-west-1
-kubectl mayastor label node worker-node-2 zone=eu-east-1
-kubectl mayastor label node worker-node-3 zone=us-west-1
+kubectl openebs mayastor label node worker-node-1 zone=us-west-1
+kubectl openebs mayastor label node worker-node-2 zone=eu-east-1
+kubectl openebs mayastor label node worker-node-3 zone=us-west-1
  ```
 
 **Command (Get nodes)**
  ```text
-kubectl mayastor get nodes -n openebs --show-labels
+kubectl openebs mayastor get nodes -n openebs --show-labels
 ID             GRPC ENDPOINT        STATUS  LABELS
 worker-node-1  65.108.91.181:10124  Online  zone=eu-west-1
 worker-node-3  65.21.4.103:10124    Online  zone=eu-east-1
@@ -82,11 +82,11 @@ Apply the labels on the node using the below command:
 
 **Command**
 ```text
- # kubectl mayastor label node worker-node-1 rack=1
- # kubectl mayastor label node worker-node-2 rack=2
- # kubectl mayastor label node worker-node-3 rack=2
+ # kubectl openebs mayastor label node worker-node-1 rack=1
+ # kubectl openebs mayastor label node worker-node-2 rack=2
+ # kubectl openebs mayastor label node worker-node-3 rack=2
  
- # kubectl mayastor get nodes -n openebs --show-labels
+ # kubectl openebs mayastor get nodes -n openebs --show-labels
  ID             GRPC ENDPOINT        STATUS  LABELS
  worker-node-1  65.108.91.181:10124  Online  rack=1
  worker-node-3  65.21.4.103:10124    Online  rack=2
@@ -124,14 +124,14 @@ Apply the labels to the nodes using the below command:
 
 **Command**
 ```text
-kubectl mayastor label node worker-node-1 zone=us-west-1
-kubectl mayastor label node worker-node-2 zone=eu-east-1
-kubectl mayastor label node worker-node-3 zone=us-west-1
+kubectl openebs mayastor label node worker-node-1 zone=us-west-1
+kubectl openebs mayastor label node worker-node-2 zone=eu-east-1
+kubectl openebs mayastor label node worker-node-3 zone=us-west-1
  ```
 
 **Command (Get nodes)**
  ```text
-kubectl mayastor get nodes -n openebs --show-labels
+kubectl openebs mayastor get nodes -n openebs --show-labels
 ID             GRPC ENDPOINT        STATUS  LABELS
 worker-node-1  65.108.91.181:10124  Online  zone=eu-west-1
 worker-node-3  65.21.4.103:10124    Online  zone=eu-east-1
@@ -209,13 +209,13 @@ EOF
 
  **Command (Get filtered pools based on labels)**
  ```text
-kubectl mayastor get pools -n openebs --selector zone=eu-west-1
+kubectl openebs mayastor get pools -n openebs --selector zone=eu-west-1
 ID             GRPC ENDPOINT        STATUS  LABELS
 ID              DISKS                                                     MANAGED  NODE           STATUS  CAPACITY  ALLOCATED  AVAILABLE  COMMITTED
 pool-on-node-0  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-0  Online  10GiB     0 B        10GiB      0 B
 pool-on-node-2  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-2  Online  10GiB     0 B        10GiB      0 B
 
-kubectl mayastor get pools -n openebs --selector zone=eu-east-1
+kubectl openebs mayastor get pools -n openebs --selector zone=eu-east-1
 ID             GRPC ENDPOINT        STATUS  LABELS
 ID              DISKS                                                     MANAGED  NODE           STATUS  CAPACITY  ALLOCATED  AVAILABLE  COMMITTED
 pool-on-node-1  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-1  Online  10GiB     0 B        10GiB      0 B
@@ -246,13 +246,13 @@ EOF
 
 **Command (Get filtered pools based on labels)**
  ```text
-kubectl mayastor get pools -n openebs --selector zone=eu-west-1
+kubectl openebs mayastor get pools -n openebs --selector zone=eu-west-1
 ID             GRPC ENDPOINT        STATUS  LABELS
 ID              DISKS                                                     MANAGED  NODE           STATUS  CAPACITY  ALLOCATED  AVAILABLE  COMMITTED
 pool-on-node-0  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-0  Online  10GiB     0 B        10GiB      0 B
 pool-on-node-2  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-2  Online  10GiB     0 B        10GiB      0 B
 
-kubectl mayastor get pools -n openebs --selector zone=eu-east-1
+kubectl openebs mayastor get pools -n openebs --selector zone=eu-east-1
 ID             GRPC ENDPOINT        STATUS  LABELS
 ID              DISKS                                                     MANAGED  NODE           STATUS  CAPACITY  ALLOCATED  AVAILABLE  COMMITTED
 pool-on-node-1  aio:///dev/sdb?uuid=b7779970-793c-4dfa-b8d7-03d5b50a45b8  true     worker-node-1  Online  10GiB     0 B        10GiB      0 B

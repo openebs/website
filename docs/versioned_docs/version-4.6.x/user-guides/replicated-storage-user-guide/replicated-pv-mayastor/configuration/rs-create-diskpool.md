@@ -21,7 +21,7 @@ A pool is defined declaratively, through the creation of a corresponding `DiskPo
 It is highly recommended to specify the disk using a unique device link that remains unaltered across node reboots. Examples of such device links are: by-path or by-id.
 
 Easy way to retrieve device link for a given node:
-`kubectl mayastor get block-devices worker`
+`kubectl openebs mayastor get block-devices worker`
 
 ```
 DEVNAME       DEVTYPE  SIZE      AVAILABLE  MODEL                             DEVPATH                                                           MAJOR  MINOR  DEVLINKS 
@@ -100,7 +100,7 @@ This can be achieved in two ways:
 2. The existing pools can be labelled using the plugin. This will not affect any of the pre-existing volumes.
 
     ```
-    kubectl mayastor label pool pool-on-node-1 topology-key=topology-value -n openebs
+    kubectl openebs mayastor label pool pool-on-node-1 topology-key=topology-value -n openebs
     ```
 
     **YAML**

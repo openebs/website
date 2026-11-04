@@ -193,7 +193,7 @@ pool-2   worker-2   Online   Online        374710730752   3221225472   371489505
 **Command**
 
 ```
-kubectl mayastor get volumes
+kubectl openebs mayastor get volumes
 ```
 
 **Sample Output**
@@ -380,7 +380,7 @@ nats-2                                       2/2     Running   0          45m
 **Command to check the Status of Replicated PV Mayastor Volumes**
 
 ```
-kubectl mayastor get volumes
+kubectl openebs mayastor get volumes
 ```
 
 **Sample Output**

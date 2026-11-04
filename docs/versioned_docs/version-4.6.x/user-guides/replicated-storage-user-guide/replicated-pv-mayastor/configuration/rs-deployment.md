@@ -145,7 +145,7 @@ To verify the status of volume [Kubectl plugin](../advanced-operations/kubectl-p
 **Command**
 
 ```
-kubectl mayastor get volumes
+kubectl openebs mayastor get volumes
 ```
 
 **Example Output**

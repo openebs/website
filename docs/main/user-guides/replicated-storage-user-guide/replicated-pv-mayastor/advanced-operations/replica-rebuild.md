@@ -23,7 +23,7 @@ To get the output in table format:
 
 **Command**
 ```
-kubectl mayastor get rebuild-history {your_volume_UUID} 
+kubectl openebs mayastor get rebuild-history {your_volume_UUID} 
 ```
 
 **Output**
@@ -37,7 +37,7 @@ To get the output in JSON format:
 
 **Command**
 ```
-kubectl mayastor get rebuild-history {your_volume_UUID} -ojson
+kubectl openebs mayastor get rebuild-history {your_volume_UUID} -ojson
 ```
 
 **Output**
@@ -75,7 +75,7 @@ kubectl mayastor get rebuild-history {your_volume_UUID} -ojson
 }
 ```
 
-> For example: kubectl mayastor get rebuild-history e898106d-e735-4edf-aba2-932d42c3c58d -ojson
+> For example: kubectl openebs mayastor get rebuild-history e898106d-e735-4edf-aba2-932d42c3c58d -ojson
 
 :::note
 The volume's rebuild history records are stored and maintained as long as the volume target remains intact without any disruptions caused by node failures or recreation.
