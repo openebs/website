@@ -117,12 +117,13 @@ The cores are numbered from 0.
 
 ## Network Isolation
 
-By default, the NVMe-oF target binds to the IO engine pod's own IP address, which places volume
-traffic on the same cluster pod network as application and control plane traffic. On a busy
-node, replication and client I/O then compete with everything else for the same link.
+By default, the NVMe-oF target binds to the node's own IP address. The IO engine runs with host
+networking, so volume traffic leaves over whichever interface carries that node address, together
+with everything else on that link. On a busy node, replication and client I/O then compete with
+the rest of that traffic.
 
-Pointing the target at a dedicated interface - a separate NIC, a VLAN, or a storage-only subnet
-- keeps that traffic on its own path.
+Pointing the target at a dedicated interface — a separate NIC, a VLAN, or a storage-only subnet —
+keeps that traffic on its own path.
 
 The `io_engine.target.nvmf.iface` Helm value selects the interface. The IP address resolved from
 it becomes the target address advertised to initiators, and all of the target's listeners share
@@ -140,6 +141,11 @@ The value takes the form `<kind>:<value>`:
 
 A value with no prefix is matched as an interface name. An unprefixed CIDR therefore matches
 nothing, and the IO engine fails to start with `Network interface matching '<value>' not found`.
+
+`subnet:` accepts IPv6 CIDRs as well, for example `subnet:fd00:10::/64`. Note that the value
+selects the interface, not the address family: the family that ends up published is taken from
+the IO engine's own gRPC address — IPv4 unless that address is a specific IPv6 one — and falls
+back to whichever family the matched interface actually has.
 
 ### One Value Applies to Every Node
 
@@ -180,9 +186,11 @@ a node before restarting its IO engine. Deleting the pods yourself bypasses that
 will disrupt any volume whose target is hosted on the node you restart.
 :::
 
-Because this changes the address that volume targets are published on, the targets hosted on a
-node are affected when its IO engine restarts. Treat the change as you would an upgrade rather
-than a live tunable.
+Restarting an IO engine republishes its targets at the new address, so initiators connected to
+those targets lose their path. With `agents.ha.enabled` — the default — the HA node agent
+re-establishes it; with HA disabled the application sees I/O errors instead. Replicas on the
+restarted node are rebuilt in full rather than resynced. Treat the change as you would an
+upgrade rather than a live tunable.
 
 ### Verify
 
@@ -200,14 +208,20 @@ kubectl logs -n <namespace> <io-engine-pod> | grep "NVMF target network interfac
 Detecting IP address (prefer ipv4: true) for NVMF target network interface specified as 'subnet:10.10.0.0/24' ...
 ```
 
+The grep matches a second line beginning `NVMF target network interface '<value>' matches to`,
+which names the interface that was selected and the addresses it holds. That line is the one
+that confirms the value resolved; if it is absent, the IO engine did not get as far as binding.
+
 Check this on each IO engine node, and confirm that the nodes can reach one another over the
 chosen subnet. If you are using jumbo frames, make sure the MTU is consistent across every node
 and switch on the path.
 
 ### What This Does Not Move
 
-Only the NVMe-oF data path follows this setting. The gRPC traffic between the control plane
-agents and the IO engines, the etcd traffic, and the REST API continue to use the pod network.
+Only the NVMe-oF data path follows this setting. The IO engine's own gRPC endpoint stays on the
+node address, as do the HA node agent and the CSI node and controller plugins, which also run
+with host networking. The control plane agents, the REST API and etcd run as ordinary pods and
+continue to use the pod network.
 
 ### Using This with RDMA
 
