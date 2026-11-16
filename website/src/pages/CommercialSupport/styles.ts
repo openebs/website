@@ -113,10 +113,36 @@ const useStyles = makeStyles((theme: Theme) => ({
   cardImageWrapper: {
     height: '3.75rem',
     width: 'auto',
+    '& img': {
+      height: '2.5rem',
+      width: 'auto',
+    },
     [theme.breakpoints.down('sm')]: {
       height: '2rem',
       marginBottom: theme.spacing(2),
     },
+  },
+  listingSection: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    padding: theme.spacing(0, 4),
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(3, 0),
+    },
+  },
+  listingTitle: {
+    fontSize: '1.25rem',
+    fontWeight: 700,
+    color: theme.palette.text.primary,
+    marginBottom: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1rem',
+    },
+  },
+  listingLink: {
+    color: theme.palette.warning.main,
+    fontWeight: 700,
   },
   cardActionButton: {
     textTransform: 'none',

@@ -111,7 +111,7 @@ joinCommunity:
   slackIframeTitle: Join Kubernetes on Slack
 
 sponsors:
-  datacore: Sponsored and maintained by
+  datacore: Sponsored and co-maintained by
   cncf: OpenEBS is a proud member of
 
 ### Pages ###
@@ -149,6 +149,8 @@ commercialSupport:
   mule: Support mule
   visitWebsite: Visit site
   newsletter: Subscribe to OpenEBS newsletter
+  listingTitle: Want to be listed as an OpenEBS commercial support provider?
+  listingDescription: <0>Open an issue</0> with your company details, support offering, and how you contribute to the OpenEBS community. The maintainers will review your request.
 home:
   landingScreenTitle: Kubernetes Storage Simplified
   openebs:

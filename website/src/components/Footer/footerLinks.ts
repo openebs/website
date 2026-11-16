@@ -40,11 +40,6 @@ export const contactUs = [
 
 export const socialLinks = [
   {
-    label: 'Facebook',
-    href: EXTERNAL_LINKS.OPENEBS_FACEBOOK,
-    imgURL: '/images/logos/facebook_blue.svg',
-  },
-  {
     label: 'GitHub',
     href: EXTERNAL_LINKS.OPENEBS_GITHUB_REPO,
     imgURL: '/images/logos/github_blue.svg',
