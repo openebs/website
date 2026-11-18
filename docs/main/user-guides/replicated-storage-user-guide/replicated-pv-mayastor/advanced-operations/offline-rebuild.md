@@ -100,7 +100,7 @@ kubectl mayastor rebuild volume {your_volume_UUID} --now
 
 **Sample Output**
 ```
-Rebuild started for volume 18e30e83-b106-4e0d-9fb6-2b04e761e18a.
+Rebuild started for volume 18e30e83-b106-4e0d-9fb6-2b04e761e18a 🚀
 ```
 
 The difference is what a success means. Without `--now` it means the request was
