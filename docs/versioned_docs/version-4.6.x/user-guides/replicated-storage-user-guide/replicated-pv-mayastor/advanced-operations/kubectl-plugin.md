@@ -24,7 +24,7 @@ To verify the installation, execute:
 **Command**
 
 ```
-kubectl openebs mayastor -V
+kubectl mayastor -V
 ```
 
 **Expected Output**
@@ -39,7 +39,7 @@ Sample command to use kubectl plugin:
 
 ```
 USAGE:
-    kubectl-openebs mayastor [OPTIONS] <SUBCOMMAND>
+    kubectl-mayastor [OPTIONS] <SUBCOMMAND>
 
 OPTIONS:
     -h, --help
@@ -75,7 +75,7 @@ You can use the plugin with the following options:
 **Command**
 
 ```
-kubectl openebs mayastor get volumes
+kubectl mayastor get volumes
 ```
 
 **Expected Output**
@@ -92,7 +92,7 @@ ID                                    REPLICAS  TARGET-NODE  ACCESSIBILITY STATU
 **Command**
 
 ```
-kubectl openebs mayastor get pools
+kubectl mayastor get pools
 ```
 
 **Expected Output**
@@ -111,7 +111,7 @@ mayastor-pool-3  5360320512      3258974208     aio:///dev/vdb?uuid=f324edb7-1ac
 **Command**
 
 ```
-kubectl openebs mayastor get nodes
+kubectl mayastor get nodes
 ```
 
 **Expected Output**
@@ -127,7 +127,7 @@ mayastor-3  10.1.0.8:10124  Online
 :::note
 All the above resource information can be retrieved for a particular resource using its ID. The command to do so is as follows:
 ```
-kubectl openebs mayastor get &lt;resource_name&gt; &lt;resource_id&gt;
+kubectl mayastor get &lt;resource_name&gt; &lt;resource_id&gt;
 ```
 :::
 
@@ -136,7 +136,7 @@ kubectl openebs mayastor get &lt;resource_name&gt; &lt;resource_id&gt;
 **Command**
 
 ```
-kubectl openebs mayastor scale volume <volume_id> <size>
+kubectl mayastor scale volume <volume_id> <size>
 ```
 
 **Expected Output**
@@ -152,7 +152,7 @@ Volume 0c08667c-8b59-4d11-9192-b54e27e0ce0f Scaled Successfully 🚀
 **Command**
 
 ```
-kubectl openebs mayastor -ojson get <resource_type>
+kubectl mayastor -ojson get <resource_type>
 ```
 
 **Expected Output**
@@ -166,7 +166,7 @@ kubectl openebs mayastor -ojson get <resource_type>
 **Command**
 
 ```
-kubectl openebs mayastor get volume-replica-topology <volume_id>
+kubectl mayastor get volume-replica-topology <volume_id>
 ```
 
 **Expected Output**
@@ -203,7 +203,7 @@ This command returns events collected by the Eventing Aggregator. It supports fi
 **Command**
 
 ```
-kubectl openebs mayastor get volume-snapshots
+kubectl mayastor get volume-snapshots
 ```
 
 **Expected Output**
