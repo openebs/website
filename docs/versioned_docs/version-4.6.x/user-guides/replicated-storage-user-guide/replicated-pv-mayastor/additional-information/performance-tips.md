@@ -93,23 +93,23 @@ cat /sys/devices/system/cpu/isolated
 2-3
 ```
 
-### Update Replicated PV Mayastor Helm Chart for CPU Core Specification
+### Update OpenEBS Helm Chart for CPU Core Specification
 
 :::info
-Update the [Helm value](https://github.com/openebs/mayastor-extensions/blob/6df062eb5a0864b82dcc709ab4d84a135252fe45/chart/values.yaml#L407) in the Replicated PV Mayastor Helm chart to specify the CPU core.
+Update the [Helm value](https://github.com/openebs/mayastor-extensions/blob/6df062eb5a0864b82dcc709ab4d84a135252fe45/chart/values.yaml#L407) `io_engine.coreList` of Replicated PV Mayastor, set under the `mayastor` key in the OpenEBS Helm chart, to specify the CPU core.
 :::
 
 To allot specific CPU cores for IO engine's reactors, follow these steps:
 
-1. Ensure that you have the Replicated PV Mayastor kubectl plugin installed, matching the version of your Replicated PV Mayastor Helm chart deployment ([releases](https://github.com/openebs/mayastor/releases)). You can find installation instructions in the [kubectl plugin documentation](../advanced-operations/kubectl-plugin.md).
+1. Ensure that you have the `kubectl-openebs` plugin installed, matching the version of your OpenEBS Helm chart deployment ([releases](https://github.com/openebs/openebs/releases)). You can find installation instructions in the [kubectl openebs plugin documentation](../../../kubectl-openebs.md).
 
-2. Execute the following command to update Replicated PV Mayastor's configuration. Replace `<namespace>` with the appropriate Kubernetes namespace where Replicated PV Mayastor is deployed.
+2. Execute the following command to update Replicated PV Mayastor's configuration. Replace `<namespace>` with the appropriate Kubernetes namespace where OpenEBS is deployed.
 
 ```
-kubectl openebs mayastor upgrade -n <namespace> --set-args 'io_engine.coreList={2,3}'
+kubectl openebs upgrade -n <namespace> --set mayastor.io_engine.coreList={2,3}
 ```
 
-In the above command, `io_engine.coreList={2,3}` specifies that IO engine's reactors should operate on the third and fourth CPU cores.
+In the above command, `mayastor.io_engine.coreList={2,3}` specifies that IO engine's reactors should operate on the third and fourth CPU cores.
 
 :::info
 The cores are numbered from 0.
