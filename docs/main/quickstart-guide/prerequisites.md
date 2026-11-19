@@ -429,8 +429,13 @@ runtime is unreliable once memory is fragmented, because the kernel has to find 
 region. Add the following kernel boot parameters and reboot the node:
 
 ```text
-default_hugepagesz=1G hugepagesz=1G hugepages=2
+hugepagesz=1G hugepages=2
 ```
+
+Do not add `default_hugepagesz=1G`. That would make `vm.nr_hugepages` operate on the 1GiB pool
+instead of the 2MiB one, handing control of it to whatever else on the node manages that sysctl —
+the situation this section exists to avoid. It would also change the default huge page size for
+every other consumer on the node.
 
 Then verify the pool:
 
@@ -488,6 +493,11 @@ instead:
 ```text
 hugepagesz=2M hugepages=0:1024
 ```
+
+The `node:count` form requires **Linux 5.16 or later**, where it was introduced. Some
+distributions backport it to earlier kernels, so check your own if you are on 5.15 or older —
+where it is absent, the parameter is ignored and the pages are distributed across all nodes as
+usual.
 
 Several nodes can be given at once, as `hugepages=0:1024,1:1024`. Each `hugepages` applies to the
 page size named by the `hugepagesz` before it, so the two sizes can be reserved independently.
