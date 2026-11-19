@@ -25,7 +25,7 @@ To ensure optimal HA in Replicated PV Mayastor clusters:
 - The kernel parameter `nvme_core.multipath=Y` is mandatory to enable HA functionality. Without this configuration, volume target failover is not possible.
 
 :::note
-HA is currently not supported on RHEL 10 and its derivatives, as these distributions have removed the `nvme_core.multipath` kernel parameter, which means the current version of OpenEBS is unable to determine if multipath is enabled.
+HA is not supported on RHEL 10 and its derivatives, as these distributions have removed the `nvme_core.multipath` kernel parameter, which means this version of OpenEBS is unable to determine if multipath is enabled. Upgrade to OpenEBS 4.4 or later for HA support on these distributions.
 :::
 
 ### How do I disable this feature? 
