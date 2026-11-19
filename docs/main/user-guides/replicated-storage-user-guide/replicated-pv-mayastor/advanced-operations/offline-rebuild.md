@@ -117,6 +117,11 @@ If the limits are the only thing in the way and you want the rebuild regardless,
 kubectl mayastor rebuild volume {your_volume_UUID} --now --force
 ```
 
+**Sample Output**
+```
+Rebuild started for volume 18e30e83-b106-4e0d-9fb6-2b04e761e18a 🚀
+```
+
 :::warning
 `--force` starts the rebuild past the limits you configured, which exist to stop
 rebuild traffic competing with volumes that are serving I/O. Use it when you have
