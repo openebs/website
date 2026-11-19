@@ -456,6 +456,40 @@ equal.
 Clearing the 2MiB values is required. If both sizes are requested, the node must be able to supply
 both, and the IO engine pod stays `Pending` on `Insufficient hugepages-2Mi` if it cannot.
 
+##### NUMA Considerations
+
+On a multi-socket node, huge pages are reserved per NUMA node, and the IO engine allocates them
+from the NUMA node its cores run on. Reserving enough pages in total is not sufficient if they
+end up on a socket the IO engine does not use.
+
+Neither `vm.nr_hugepages` nor the `hugepages=` boot parameter places the pool on a particular
+socket. Both spread it across the NUMA nodes, and how evenly they manage that depends on how much
+contiguous free memory each node has at the time. Check the resulting distribution per node:
+
+```text
+cat /sys/devices/system/node/node*/hugepages/hugepages-2048kB/nr_hugepages
+cat /sys/devices/system/node/node*/hugepages/hugepages-2048kB/free_hugepages
+```
+
+Use `hugepages-1048576kB` in place of `hugepages-2048kB` for 1GiB pages.
+
+To reserve 2MiB pages on one specific NUMA node, write to that node's file rather than to
+`vm.nr_hugepages`:
+
+```text
+echo 1024 | sudo tee /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
+```
+
+If the IO engine is pinned to particular cores with `io_engine.coreList`, reserve the pages on the
+NUMA node that owns those cores. `lscpu` reports which cores belong to which node.
+
+:::note
+A bad distribution is not reported anywhere. The IO engine's startup check reads the system-wide
+totals under `/sys/kernel/mm/hugepages`, and kubelet advertises `hugepages-2Mi` as a single
+node-level resource, so the pod is scheduled and the check passes even when every page sits on a
+socket the IO engine cannot allocate from.
+:::
+
 :::warning
 If you modify the huge page configuration of a node, you _MUST_ either restart kubelet or reboot the node.  Replicated PV Mayastor will not deploy correctly if the available huge page count as reported by the node's kubelet instance does not satisfy the minimum requirements.
 :::
