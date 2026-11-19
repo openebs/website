@@ -480,6 +480,23 @@ To reserve 2MiB pages on one specific NUMA node, write to that node's file rathe
 echo 1024 | sudo tee /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
 ```
 
+That write does not survive a reboot, and it cannot be made persistent through
+`/etc/sysctl.conf`: `vm.nr_hugepages` applies to the whole system and has no per-node form. To
+reserve pages on a specific node across reboots, use the node form of the kernel boot parameter
+instead:
+
+```text
+hugepagesz=2M hugepages=0:1024
+```
+
+Several nodes can be given at once, as `hugepages=0:1024,1:1024`. Each `hugepages` applies to the
+page size named by the `hugepagesz` before it, so the two sizes can be reserved independently.
+Verify the result after rebooting:
+
+```text
+cat /sys/devices/system/node/node*/meminfo | grep Huge
+```
+
 If the IO engine is pinned to particular cores with `io_engine.coreList`, reserve the pages on the
 NUMA node that owns those cores. `lscpu` reports which cores belong to which node.
 
