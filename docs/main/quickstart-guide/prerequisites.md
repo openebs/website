@@ -445,10 +445,13 @@ time:
 
 ```text
 --set io_engine.resources.requests.hugepages1Gi=2Gi \
---set io_engine.resources.limits.hugepages1Gi=2Gi \
 --set io_engine.resources.requests.hugepages2Mi=null \
 --set io_engine.resources.limits.hugepages2Mi=null
 ```
+
+The 1GiB size is set through `requests` alone: the IO engine renders both its 1GiB request and
+its 1GiB limit from that one value, as Kubernetes requires huge page requests and limits to be
+equal.
 
 Clearing the 2MiB values is required. If both sizes are requested, the node must be able to supply
 both, and the IO engine pod stays `Pending` on `Insufficient hugepages-2Mi` if it cannot.
