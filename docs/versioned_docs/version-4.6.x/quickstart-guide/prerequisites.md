@@ -432,11 +432,6 @@ region. Add the following kernel boot parameters and reboot the node:
 hugepagesz=1G hugepages=2
 ```
 
-Do not add `default_hugepagesz=1G`. That would make `vm.nr_hugepages` operate on the 1GiB pool
-instead of the 2MiB one, handing control of it to whatever else on the node manages that sysctl —
-the situation this section exists to avoid. It would also change the default huge page size for
-every other consumer on the node.
-
 Then verify the pool:
 
 ```text
@@ -450,16 +445,34 @@ time:
 
 ```text
 --set io_engine.resources.requests.hugepages1Gi=2Gi \
---set io_engine.resources.requests.hugepages2Mi=null \
---set io_engine.resources.limits.hugepages2Mi=null
+--set io_engine.resources.requests.hugepages2Mi=0 \
+--set io_engine.resources.limits.hugepages2Mi=0
 ```
 
 The 1GiB size is set through `requests` alone: the IO engine renders both its 1GiB request and
 its 1GiB limit from that one value, as Kubernetes requires huge page requests and limits to be
 equal.
 
-Clearing the 2MiB values is required. If both sizes are requested, the node must be able to supply
+Zeroing the 2MiB values is required. If both sizes are requested, the node must be able to supply
 both, and the IO engine pod stays `Pending` on `Insufficient hugepages-2Mi` if it cannot.
+
+:::warning
+Set the 2MiB values to `0`, not to `null` or an empty value.
+
+`0` keeps the `hugepages-2Mi` entry in the pod's resources with a value of zero, which is what the
+kubelet uses to determine the page size of the `HugePages-2Mi` volume the IO engine mounts. `null`
+removes the entry altogether, and the kubelet then refuses to mount that volume:
+
+```text
+MountVolume.SetUp failed for volume "hugepages-2mi" : medium HugePages-2Mi:
+hugePages storage requested, but there is no resource request for huge pages
+```
+
+The pod is admitted and scheduled, then stays in `PodInitializing` with no restarts and no
+container logs, so the cause is visible only in `kubectl describe pod` or in the namespace events.
+An empty value (`--set ...hugepages2Mi=`) or `nil` is rejected outright by the API server, because
+neither is a valid quantity.
+:::
 
 ##### NUMA Considerations
 
