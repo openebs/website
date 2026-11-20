@@ -138,6 +138,7 @@ All worker nodes must satisfy the following requirements:
     * A minimum of **2GiB of** **2MiB-sized** pages
 
 * Enabling `nvme_core.multipath` is required for High Availability (HA) functionality in Replicated PV Mayastor. Ensure the kernel parameter `nvme_core.multipath=Y` is set during the installation. (This prerequisite is optional.)
+    * RHEL 10 and its derivatives removed this parameter, so this version of OpenEBS cannot determine whether multipath is enabled and HA is unavailable there. Upgrade to OpenEBS 4.4 or later for HA support on these distributions.
 
 :::note
 If the application is scheduled to nodes with the `io-engine label` (`openebs.io/engine=mayastor`), the volume target is preferably placed on the same node where the application is scheduled.
