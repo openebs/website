@@ -152,7 +152,7 @@ All worker nodes must satisfy the following requirements:
   * Two CPU cores
   * 1GiB RAM
   * **HugePage support**
-    * A minimum of **2GiB of** **2MiB-sized** pages
+    * A minimum of **2GiB** of huge pages, using either **2MiB-sized** or **1GiB-sized** pages
 
 * Enabling `nvme_core.multipath` is required for High Availability (HA) functionality in Replicated PV Mayastor. Ensure the kernel parameter `nvme_core.multipath=Y` is set during the installation. (This prerequisite is optional.)
     * On RHEL 10 and its derivatives this parameter no longer exists and native NVMe multipath is always enabled, so there is nothing to set. HA is supported on these distributions from OpenEBS 4.4 onwards.
@@ -378,7 +378,18 @@ roleRef:
 
 #### Verify/Enable Huge Page Support
 
-2MiB-sized Huge Pages must be supported and enabled on the storage nodes i.e. nodes where IO engine pods are deployed. A minimum number of 1024 such pages \(i.e. 2GiB total\) must be available exclusively to the IO engine pod on each node, which should be verified thus:
+Huge pages must be supported and enabled on the storage nodes, that is, the nodes where IO engine
+pods are deployed. **A minimum of 2GiB of huge pages must be available exclusively to the IO engine
+pod on each node.** Either 2MiB-sized or 1GiB-sized pages can be used, or a combination of the two.
+The IO engine treats one 1GiB page as the equivalent of 512 2MiB pages when it checks at startup
+that enough memory is available.
+
+2MiB pages are the default and are suitable for most clusters. See
+[Using 1GiB Pages](#using-1gib-pages) below for when the larger size is worth considering.
+
+##### Using 2MiB Pages
+
+A minimum of 1024 2MiB pages (2GiB total) is required, which should be verified thus:
 
 ```text
 grep HugePages /proc/meminfo
@@ -403,6 +414,138 @@ This change should also be made persistent across reboots by adding the required
 ```text
 echo vm.nr_hugepages = 1024 | sudo tee -a /etc/sysctl.conf
 ```
+
+##### Using 1GiB Pages
+
+1GiB pages are an alternative to 2MiB pages, not an addition to them. A minimum of two such pages
+(2GiB total) is required.
+
+Consider them when another workload on the same nodes manages the 2MiB page pool. The
+`vm.nr_hugepages` sysctl used above controls only the pool for the system's default huge page size,
+which is 2MiB on x86_64. If something else on the node sets that value, pages reserved for the IO
+engine can be taken away from it. The 1GiB pool is configured separately and is unaffected.
+
+Unlike 2MiB pages, **1GiB pages must normally be reserved at boot time**. Allocating them at
+runtime is unreliable once memory is fragmented, because the kernel has to find a contiguous 1GiB
+region. Add the following kernel boot parameters and reboot the node:
+
+```text
+hugepagesz=1G hugepages=2
+```
+
+Then verify the pool:
+
+```text
+cat /sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages
+cat /sys/kernel/mm/hugepages/hugepages-1048576kB/free_hugepages
+```
+
+Kubernetes exposes each page size as its own schedulable resource, so the IO engine has to be told
+to request `hugepages-1Gi` instead of `hugepages-2Mi`. Set the following Helm values at install
+time:
+
+```text
+--set io_engine.resources.requests.hugepages1Gi=2Gi \
+--set io_engine.resources.requests.hugepages2Mi=0 \
+--set io_engine.resources.limits.hugepages2Mi=0
+```
+
+The 1GiB size is set through `requests` alone: the IO engine renders both its 1GiB request and
+its 1GiB limit from that one value, as Kubernetes requires huge page requests and limits to be
+equal.
+
+Zeroing the 2MiB values is required. If both sizes are requested, the node must be able to supply
+both, and the IO engine pod stays `Pending` on `Insufficient hugepages-2Mi` if it cannot.
+
+:::warning
+Set the 2MiB values to `0`, not to `null` or an empty value.
+
+`0` keeps the `hugepages-2Mi` entry in the pod's resources with a value of zero, which is what the
+kubelet uses to determine the page size of the `HugePages-2Mi` volume the IO engine mounts. `null`
+removes the entry altogether, and the kubelet then refuses to mount that volume:
+
+```text
+MountVolume.SetUp failed for volume "hugepages-2mi" : medium HugePages-2Mi:
+hugePages storage requested, but there is no resource request for huge pages
+```
+
+The pod is admitted and scheduled, then stays in `PodInitializing` with no restarts and no
+container logs, so the cause is visible only in `kubectl describe pod` or in the namespace events.
+An empty value (`--set ...hugepages2Mi=`) or `nil` is rejected outright by the API server, because
+neither is a valid quantity.
+:::
+
+##### NUMA Considerations
+
+On a multi-socket node, huge pages are reserved per NUMA node, and the IO engine allocates them
+from the NUMA node its cores run on. Reserving enough pages in total is not sufficient if they
+end up on a socket the IO engine does not use.
+
+:::note
+This applies to bare metal. Virtual machines are normally presented with a single, flat NUMA
+node, in which case there is nothing to place and the rest of this section does not apply. Check
+with `lscpu | grep -i 'NUMA node(s)'` or by listing `/sys/devices/system/node/`.
+:::
+
+Neither `vm.nr_hugepages` nor the `hugepages=` boot parameter places the pool on a particular
+socket. Both spread it across the NUMA nodes, and how evenly they manage that depends on how much
+contiguous free memory each node has at the time. Check the resulting distribution per node:
+
+```text
+cat /sys/devices/system/node/node*/hugepages/hugepages-2048kB/nr_hugepages
+cat /sys/devices/system/node/node*/hugepages/hugepages-2048kB/free_hugepages
+```
+
+Use `hugepages-1048576kB` in place of `hugepages-2048kB` for 1GiB pages.
+
+To reserve 2MiB pages on one specific NUMA node, write to that node's file rather than to
+`vm.nr_hugepages`:
+
+```text
+echo 1024 | sudo tee /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
+```
+
+That write does not survive a reboot, and it cannot be made persistent through
+`/etc/sysctl.conf`: `vm.nr_hugepages` applies to the whole system and has no per-node form. To
+reserve pages on a specific node across reboots, use the node form of the kernel boot parameter
+instead:
+
+```text
+hugepagesz=2M hugepages=0:1024
+```
+
+The `node:count` form requires **Linux 5.16 or later**, where it was introduced. Some
+distributions backport it to earlier kernels, so check your own if you are on 5.15 or older —
+where it is absent, the parameter is ignored and the pages are distributed across all nodes as
+usual.
+
+Several nodes can be given at once, as `hugepages=0:1024,1:1024`. Each `hugepages` applies to the
+page size named by the `hugepagesz` before it, so the two sizes can be reserved independently.
+Verify the result after rebooting:
+
+```text
+cat /sys/devices/system/node/node*/meminfo | grep Huge
+```
+
+If the IO engine is pinned to particular cores with `io_engine.coreList`, reserve the pages on the
+NUMA node that owns those cores. `lscpu` reports which cores belong to which node.
+
+The network interface carrying NVMe-oF traffic ideally sits on that same node. Check which node a
+given interface is attached to:
+
+```text
+cat /sys/class/net/<interface>/device/numa_node
+```
+
+A value of `-1` means the kernel has no NUMA affinity for that device, which is the usual answer
+on a virtual machine or a single-socket host.
+
+:::note
+A bad distribution is not reported anywhere. The IO engine's startup check reads the system-wide
+totals under `/sys/kernel/mm/hugepages`, and kubelet advertises `hugepages-2Mi` as a single
+node-level resource, so the pod is scheduled and the check passes even when every page sits on a
+socket the IO engine cannot allocate from.
+:::
 
 :::warning
 If you modify the huge page configuration of a node, you _MUST_ either restart kubelet or reboot the node.  Replicated PV Mayastor will not deploy correctly if the available huge page count as reported by the node's kubelet instance does not satisfy the minimum requirements.
