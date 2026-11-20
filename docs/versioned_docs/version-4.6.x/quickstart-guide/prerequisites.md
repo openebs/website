@@ -480,6 +480,12 @@ On a multi-socket node, huge pages are reserved per NUMA node, and the IO engine
 from the NUMA node its cores run on. Reserving enough pages in total is not sufficient if they
 end up on a socket the IO engine does not use.
 
+:::note
+This applies to bare metal. Virtual machines are normally presented with a single, flat NUMA
+node, in which case there is nothing to place and the rest of this section does not apply. Check
+with `lscpu | grep -i 'NUMA node(s)'` or by listing `/sys/devices/system/node/`.
+:::
+
 Neither `vm.nr_hugepages` nor the `hugepages=` boot parameter places the pool on a particular
 socket. Both spread it across the NUMA nodes, and how evenly they manage that depends on how much
 contiguous free memory each node has at the time. Check the resulting distribution per node:
@@ -522,6 +528,16 @@ cat /sys/devices/system/node/node*/meminfo | grep Huge
 
 If the IO engine is pinned to particular cores with `io_engine.coreList`, reserve the pages on the
 NUMA node that owns those cores. `lscpu` reports which cores belong to which node.
+
+The network interface carrying NVMe-oF traffic ideally sits on that same node. Check which node a
+given interface is attached to:
+
+```text
+cat /sys/class/net/<interface>/device/numa_node
+```
+
+A value of `-1` means the kernel has no NUMA affinity for that device, which is the usual answer
+on a virtual machine or a single-socket host.
 
 :::note
 A bad distribution is not reported anywhere. The IO engine's startup check reads the system-wide
