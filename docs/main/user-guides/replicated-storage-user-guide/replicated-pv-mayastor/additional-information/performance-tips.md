@@ -125,9 +125,9 @@ the rest of that traffic.
 Pointing the target at a dedicated interface — a separate NIC, a VLAN, or a storage-only subnet —
 keeps that traffic on its own path.
 
-The `io_engine.target.nvmf.iface` Helm value selects the interface. The IP address resolved from
-it becomes the target address advertised to initiators, and all of the target's listeners share
-that address, differing only in transport and port. Both application-to-volume traffic and
+The `mayastor.io_engine.target.nvmf.iface` Helm value selects the interface. The IP address
+resolved from it becomes the target address advertised to initiators, and all of the target's
+listeners share that address, differing only in transport and port. Both application-to-volume traffic and
 replication between nodes therefore follow the interface you choose.
 
 ### Select the Interface
@@ -166,24 +166,31 @@ it cannot be resolved will fail to start its IO engine.
 
 At install time:
 
-```
-helm install ... --set io_engine.target.nvmf.iface=subnet:10.10.0.0/24
+```text
+helm install openebs openebs/openebs -n openebs --create-namespace \
+  --set mayastor.io_engine.target.nvmf.iface=subnet:10.10.0.0/24
 ```
 
-On an existing deployment, use the kubectl plugin:
+On an existing deployment, use the plugin, which applies the value and restarts the IO engines
+in one step:
 
-```
-kubectl mayastor upgrade -n <namespace> --set-args 'io_engine.target.nvmf.iface=subnet:10.10.0.0/24'
+```text
+kubectl openebs upgrade -n openebs \
+  --set mayastor.io_engine.target.nvmf.iface=subnet:10.10.0.0/24
 ```
 
 :::warning
-The IO engine DaemonSet uses `updateStrategy: OnDelete`. A plain `helm upgrade` updates the
-DaemonSet but leaves the running IO engine pods on their old setting, so the change appears to
-do nothing until each pod is restarted.
+The IO engine DaemonSet uses `updateStrategy: OnDelete`. Changing the value with `helm upgrade`
+alone updates the DaemonSet but leaves the running IO engine pods on their old setting, so the
+change appears to do nothing until each pod is restarted.
 
-The kubectl plugin handles that restart for you, one node at a time, moving volume targets off
-a node before restarting its IO engine. Deleting the pods yourself bypasses that sequencing and
+`kubectl openebs upgrade` performs that restart, one node at a time, moving volume targets off a
+node before restarting its IO engine. Deleting the pods yourself bypasses that sequencing and
 will disrupt any volume whose target is hosted on the node you restart.
+
+The target version comes from the chart the upgrade job carries, so a plugin newer than the
+installed release upgrades that release as well as applying the value. Use a plugin matching the
+installed release to change the value on its own. See [Upgrades](upgrade-re.md).
 :::
 
 Restarting an IO engine republishes its targets at the new address, so initiators connected to
@@ -194,27 +201,34 @@ upgrade rather than a live tunable.
 
 ### Verify
 
-The IO engine logs the interface it was given and the address it resolved from it at startup:
+The plugin reports the address each IO engine resolved, in the `NVMF-TARGET` column:
 
 **Command**
 
-```
-kubectl logs -n <namespace> <io-engine-pod> | grep "NVMF target network interface"
+```text
+kubectl openebs mayastor get nodes -n openebs
 ```
 
 **Example Output**
 
-```
-Detecting IP address (prefer ipv4: true) for NVMF target network interface specified as 'subnet:10.10.0.0/24' ...
+```text
+ID        GRPC-ENDPOINT          NVMF-TARGET       STATUS  VERSION  POOLS  VOLUMES  SNAPSHOTS
+worker-1  http://10.0.0.5:10124  nvmf://10.10.0.5  Online  v2.13.0  1      1        0
+worker-2  http://10.0.0.6:10124  nvmf://10.10.0.6  Online  v2.13.0  1      1        0
+worker-3  http://10.0.0.7:10124  nvmf://10.10.0.7  Online  v2.13.0  1      1        0
 ```
 
-The grep matches a second line beginning `NVMF target network interface '<value>' matches to`,
-which names the interface that was selected and the addresses it holds. That line is the one
-that confirms the value resolved; if it is absent, the IO engine did not get as far as binding.
+Every address under `NVMF-TARGET` should fall inside the subnet you chose. `GRPC-ENDPOINT` is
+the comparison to make: it stays on the node address whatever this setting is, so a node whose
+two columns still share an address did not pick the setting up. The scheme reads
+`nvmf+rdma+tcp://` where the target also bound RDMA, and the column shows `<unknown>` against an
+IO engine too old to report its target.
 
-Check this on each IO engine node, and confirm that the nodes can reach one another over the
-chosen subnet. If you are using jumbo frames, make sure the MTU is consistent across every node
-and switch on the path.
+The column is filled from node registration, so it is available as soon as the IO engines are
+`Online`. There is no need to provision a pool or a volume first.
+
+Confirm as well that the nodes can reach one another over the chosen subnet, and if you are
+using jumbo frames, that the MTU is consistent across every node and switch on the path.
 
 ### What This Does Not Move
 
