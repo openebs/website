@@ -19,7 +19,7 @@ Similarly, the replica count of the new volume must be less than or equal to the
 **Command**
 
 ```
-kubectl mayastor get volume-replica-topology ec4e66fd-3b33-4439-b504-d49aba53da26         
+kubectl openebs mayastor get volume-replica-topology ec4e66fd-3b33-4439-b504-d49aba53da26         
 ```
 
 **Output**
@@ -36,7 +36,7 @@ ID                                    NODE �
 **Command**
 
 ```
-kubectl mayastor get volume-snapshot-topology --volume ec4e66fd-3b33-4439-b504-d49aba53da26
+kubectl openebs mayastor get volume-snapshot-topology --volume ec4e66fd-3b33-4439-b504-d49aba53da26
 ```
 
 **Output**

@@ -36,7 +36,7 @@ N.B.: By application of the 2nd rule, replicas of the same volume cannot exist w
 
 A cluster has two Replicated PV Mayastor nodes deployed, "Node-1" and "Node-2". Each Replicated PV Mayastor node hosts two Replicated PV Mayastor Storage pools and currently, no Replicated PV Mayastor volumes have been defined. Node-1 hosts pools "Pool-1-A" and "Pool-1-B", whilst Node-2 hosts "Pool-2-A and "Pool-2-B". When a user creates a PVC from a StorageClass which defines a replica count of 2, the Replicated PV Mayastor control plane will seek to place one replica on each node (it 'follows' Rule 2). Since in this example it can find a suitable candidate pool with sufficient free capacity on each node, the volume is provisioned and becomes "healthy" (Rule 1). Pool-1-A is selected on Node-1, and Pool-2-A selected on Node-2 (all pools being of equal capacity and replica count, in this initial 'clean' state).
 
-Sometime later, the physical disk of Pool-2-A encounters a hardware failure and goes offline. The volume is in use at the time, so its nexus \(NVMe controller\) starts to receive I/O errors for the replica hosted in that Pool. The associated replica's child from Pool-2-A enters the `Faulted` state and the volume state becomes `Degraded` (as seen through the kubectl-mayastor plugin).
+Sometime later, the physical disk of Pool-2-A encounters a hardware failure and goes offline. The volume is in use at the time, so its nexus \(NVMe controller\) starts to receive I/O errors for the replica hosted in that Pool. The associated replica's child from Pool-2-A enters the `Faulted` state and the volume state becomes `Degraded` (as seen through the kubectl-openebs plugin).
 
 
 **Expected Behaviour**
