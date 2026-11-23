@@ -222,7 +222,7 @@ Options:
 **Command**
 
 ```
-kubectl-openebs mayastor get pools
+kubectl openebs mayastor get pools
 ```
 
 **Sample Output**

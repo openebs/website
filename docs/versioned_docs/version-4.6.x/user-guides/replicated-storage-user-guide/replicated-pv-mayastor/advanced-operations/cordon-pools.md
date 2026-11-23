@@ -21,22 +21,22 @@ You can configure the maximum pool size using the `maxExpansion` field in the Di
 
 - Replicated PV Mayastor deployment with a version that supports pool cordoning
 
-- `kubectl-mayastor` or `kubectl-openebs` plugin installed and configured with appropriate administrative access
+- `kubectl-openebs` plugin installed and configured with appropriate administrative access
 
 ## Cordon a Pool
 
 When you cordon a pool, specify the resource types you want to block by including their flags. A flag’s presence sets that resource type to true (cordoned). If you omit a flag, that resource type remains uncordoned (false).
 
-Cordon a pool to block new replicas and imports using `kubectl-openebs`. For Example: `kubectl-openebs mayastor`
+Cordon a pool to block new replicas and imports using `kubectl-openebs`. For Example: `kubectl openebs mayastor`
 
 **Cordon a Pool to Block New Replicas and Imports**
 
 ```
-kubectl-openebs mayastor cordon pool <pool-name> --replicas
+kubectl openebs mayastor cordon pool <pool-name> --replicas
 ```
 
 ```
-kubectl-openebs mayastor cordon pool <pool-name> --replicas --imports
+kubectl openebs mayastor cordon pool <pool-name> --replicas --imports
 ```
 
 **Flags**
@@ -53,7 +53,7 @@ When you uncordon a pool, you remove the scheduling restrictions and allow new r
 **Uncordon a Pool and Re-enable All Resource Scheduling**
 
 ```
-kubectl-openebs mayastor uncordon pool <pool-name> --replicas --imports
+kubectl openebs mayastor uncordon pool <pool-name> --replicas --imports
 ```
 
 **Flags**
