@@ -114,3 +114,131 @@ In the above command, `io_engine.coreList={2,3}` specifies that IO engine's reac
 :::info
 The cores are numbered from 0.
 :::
+
+## Network Isolation
+
+By default, the NVMe-oF target binds to the node's own IP address. The IO engine runs with host
+networking, so volume traffic leaves over whichever interface carries that node address, together
+with everything else on that link. On a busy node, replication and client I/O then compete with
+the rest of that traffic.
+
+Pointing the target at a dedicated interface — a separate NIC, a VLAN, or a storage-only subnet —
+keeps that traffic on its own path.
+
+The `mayastor.io_engine.target.nvmf.iface` Helm value selects the interface. The IP address
+resolved from it becomes the target address advertised to initiators, and all of the target's
+listeners share that address, differing only in transport and port. Both application-to-volume traffic and
+replication between nodes therefore follow the interface you choose.
+
+### Select the Interface
+
+The value takes the form `<kind>:<value>`:
+
+| Kind | Example | Matches |
+| --- | --- | --- |
+| `name` | `name:eth1` | the interface with that name |
+| `subnet` | `subnet:10.10.0.0/24` | an interface holding an address inside that CIDR |
+
+A value with no prefix is matched as an interface name. An unprefixed CIDR therefore matches
+nothing, and the IO engine fails to start with `Network interface matching '<value>' not found`.
+
+`subnet:` accepts IPv6 CIDRs as well, for example `subnet:fd00:10::/64`. Note that the value
+selects the interface, not the address family: the family that ends up published is taken from
+the IO engine's own gRPC address — IPv4 unless that address is a specific IPv6 one — and falls
+back to whichever family the matched interface actually has.
+
+### One Value Applies to Every Node
+
+This is a single Helm value, rendered into the IO engine DaemonSet, so every IO engine pod
+receives the same value. Choose the kind accordingly:
+
+* Use `name:` only when the interface carries the same name on every IO engine node.
+* Use `subnet:` when interface names differ between nodes. Each node independently selects its
+  own interface holding an address in that subnet, which makes it the safer choice for mixed
+  hardware.
+
+:::info
+The interface must exist, be up, and hold an address on **every** IO engine node. A node where
+it cannot be resolved will fail to start its IO engine.
+:::
+
+### Apply the Setting
+
+At install time:
+
+```text
+helm install openebs openebs/openebs -n openebs --create-namespace \
+  --set mayastor.io_engine.target.nvmf.iface=subnet:10.10.0.0/24
+```
+
+On an existing deployment, use the plugin, which applies the value and restarts the IO engines
+in one step:
+
+```text
+kubectl openebs upgrade -n openebs \
+  --set mayastor.io_engine.target.nvmf.iface=subnet:10.10.0.0/24
+```
+
+:::warning
+The IO engine DaemonSet uses `updateStrategy: OnDelete`. Changing the value with `helm upgrade`
+alone updates the DaemonSet but leaves the running IO engine pods on their old setting, so the
+change appears to do nothing until each pod is restarted.
+
+`kubectl openebs upgrade` performs that restart, one node at a time, moving volume targets off a
+node before restarting its IO engine. Deleting the pods yourself bypasses that sequencing and
+will disrupt any volume whose target is hosted on the node you restart.
+
+The target version comes from the chart the upgrade job carries, so a plugin newer than the
+installed release upgrades that release as well as applying the value. Use a plugin matching the
+installed release to change the value on its own. See [Upgrades](upgrade-re.md).
+:::
+
+Restarting an IO engine republishes its targets at the new address, so initiators connected to
+those targets lose their path. With `agents.ha.enabled` — the default — the HA node agent
+re-establishes it; with HA disabled the application sees I/O errors instead. Replicas on the
+restarted node are rebuilt in full rather than resynced. Treat the change as you would an
+upgrade rather than a live tunable.
+
+### Verify
+
+The plugin reports the address each IO engine resolved, in the `NVMF-TARGET` column:
+
+**Command**
+
+```text
+kubectl openebs mayastor get nodes -n openebs
+```
+
+**Example Output**
+
+```text
+ID        GRPC-ENDPOINT          NVMF-TARGET       STATUS  VERSION  POOLS  VOLUMES  SNAPSHOTS
+worker-1  http://10.0.0.5:10124  nvmf://10.10.0.5  Online  v2.13.0  1      1        0
+worker-2  http://10.0.0.6:10124  nvmf://10.10.0.6  Online  v2.13.0  1      1        0
+worker-3  http://10.0.0.7:10124  nvmf://10.10.0.7  Online  v2.13.0  1      1        0
+```
+
+Every address under `NVMF-TARGET` should fall inside the subnet you chose. `GRPC-ENDPOINT` is
+the comparison to make: it stays on the node address whatever this setting is, so a node whose
+two columns still share an address did not pick the setting up. The scheme reads
+`nvmf+rdma+tcp://` where the target also bound RDMA, and the column shows `<unknown>` against an
+IO engine too old to report its target.
+
+The column is filled from node registration, so it is available as soon as the IO engines are
+`Online`. There is no need to provision a pool or a volume first.
+
+Confirm as well that the nodes can reach one another over the chosen subnet, and if you are
+using jumbo frames, that the MTU is consistent across every node and switch on the path.
+
+### What This Does Not Move
+
+Only the NVMe-oF data path follows this setting. The IO engine's own gRPC endpoint stays on the
+node address, as do the HA node agent and the CSI node and controller plugins, which also run
+with host networking. The control plane agents, the REST API and etcd run as ordinary pods and
+continue to use the pod network.
+
+### Using This with RDMA
+
+When RDMA is enabled, set the value to a netdev that an RDMA device is bound to, as listed by
+the `rdma link` command. See [RDMA](../configuration/rs-rdma.md) for the full set of
+prerequisites.
