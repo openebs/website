@@ -796,6 +796,11 @@ const sidebars: SidebarsConfig =
                     },
                     {
                       type: "doc",
+                      id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/cpu-manager",
+                      label: "CPU Manager and Core Pinning"
+                    },
+                    {
+                      type: "doc",
                       id: "user-guides/replicated-storage-user-guide/replicated-pv-mayastor/additional-information/spdk-blobstore",
                       label: "SPDK Blobstore Cluster Size"
                     },
