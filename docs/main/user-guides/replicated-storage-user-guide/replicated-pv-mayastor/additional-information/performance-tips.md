@@ -19,6 +19,13 @@ Ideally, the only thing that interrupts IO engine's reactor would be only kernel
 
 However, it prevents system services including kubelet from interfering with IO engine.
 
+:::info
+If the node runs the Kubernetes CPU Manager with the `static` policy, read
+[CPU Manager and Core Pinning](cpu-manager.md) before choosing cores. kubelet assigns CPUs
+independently of the core list configured here, and the cores chosen here must be reserved at the
+node level or the reactors can be left unpinned.
+:::
+
 ### Set Linux kernel Boot Parameter
 
 :::info
@@ -242,3 +249,77 @@ continue to use the pod network.
 When RDMA is enabled, set the value to a netdev that an RDMA device is bound to, as listed by
 the `rdma link` command. See [RDMA](../configuration/rs-rdma.md) for the full set of
 prerequisites.
+
+## NUMA Alignment
+
+On a multi-socket node, the cores the IO engine runs on, the NVMe devices backing its pools and the
+interface carrying storage traffic should all belong to one NUMA node. Every crossing adds an
+interconnect hop to the I/O path, and it is easy to do by accident: core numbering, PCIe slot
+layout and interface naming are independent of one another, so nothing in the settings above lines
+them up for you.
+
+### Find the NUMA Node of Each Component
+
+The cores that belong to a node:
+
+**Command**
+
+```
+cat /sys/devices/system/node/node0/cpulist
+```
+
+**Example Output**
+
+```
+0-15,32-47
+```
+
+The node an NVMe device is attached to:
+
+**Command**
+
+```
+cat /sys/block/nvme0n1/device/numa_node
+```
+
+The node a network interface is attached to. Resolving it through the PCI address rather than
+`/sys/class/net/<iface>/device/numa_node` is the reliable form: for virtio interfaces, and for some
+SR-IOV setups, that shorter path leads to the virtual device, which carries no `numa_node` at all.
+
+**Command**
+
+```
+cat /sys/bus/pci/devices/$(ethtool -i eth0 | awk '/bus-info/ {print $2}')/numa_node
+```
+
+:::info
+A value of `-1` means the platform reported no locality for the device. This is normal on virtual
+machines and on single-socket hosts. Read it as "no constraint", not as a node number.
+:::
+
+### Applying It
+
+Once you know which node holds the devices, choose `mayastor.io_engine.coreList` from that node's
+`cpulist`, and set `mayastor.io_engine.target.nvmf.iface` to an interface on the same node, as
+described under [Network Isolation](#network-isolation).
+
+Huge pages are the part Kubernetes will not align for you. The kubelet advertises `hugepages-2Mi`
+as a single node-level resource with no NUMA dimension, so the IO engine can be granted pages that
+were allocated on the other node. Check how they are distributed:
+
+**Command**
+
+```
+grep . /sys/devices/system/node/node*/hugepages/hugepages-2048kB/nr_hugepages
+```
+
+**Example Output**
+
+```
+/sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages:1024
+/sys/devices/system/node/node1/hugepages/hugepages-2048kB/nr_hugepages:0
+```
+
+Aligning them means either pre-allocating on the intended node at boot, or enabling the kubelet's
+Topology Manager with the `single-numa-node` policy so that CPU, device and memory admission are
+resolved together.
