@@ -19,6 +19,13 @@ Ideally, the only thing that interrupts IO engine's reactor would be only kernel
 
 However, it prevents system services including kubelet from interfering with IO engine.
 
+:::info
+If the node runs the Kubernetes CPU Manager with the `static` policy, read
+[CPU Manager and Core Pinning](cpu-manager.md) before choosing cores. kubelet assigns CPUs
+independently of the core list configured here, and the cores chosen here must be reserved at the
+node level or the reactors can be left unpinned.
+:::
+
 ### Set Linux kernel Boot Parameter
 
 :::info
