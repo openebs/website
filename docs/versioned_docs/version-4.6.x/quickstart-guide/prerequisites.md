@@ -539,6 +539,29 @@ cat /sys/class/net/<interface>/device/numa_node
 A value of `-1` means the kernel has no NUMA affinity for that device, which is the usual answer
 on a virtual machine or a single-socket host.
 
+The disks backing a DiskPool matter in the same way, and are checked the same way:
+
+```text
+cat /sys/block/nvme0n1/device/numa_node
+```
+
+When the pool disks and the storage interface sit on different NUMA nodes, no core placement
+keeps both local. The I/O buffers live in huge pages on the node that owns the cores, so whichever
+device is on the other node crosses the interconnect on every transfer. Choose by where the
+traffic actually goes:
+
+- **Replicated volumes, or volumes consumed from other nodes** — follow the network interface.
+  A write crosses the network at least twice, once from the application node to this one and
+  again from here to each additional replica, against a single local transfer to the disk.
+- **Single-replica volumes consumed by pods on the same node** — follow the disks. There is
+  little or no NVMe-oF traffic in that case, so the disk is the only path that counts.
+
+Spreading `io_engine.coreList` across both NUMA nodes does not resolve the split. Each reactor is
+then local to one device and remote from the other, and huge pages have to be reserved on both
+nodes. Where the workload is genuinely mixed, the split is better fixed in the hardware layout —
+pool disks on the socket that owns the storage interface, or an interface on the socket that owns
+the disks.
+
 :::note
 A bad distribution is not reported anywhere. The IO engine's startup check reads the system-wide
 totals under `/sys/kernel/mm/hugepages`, and kubelet advertises `hugepages-2Mi` as a single
