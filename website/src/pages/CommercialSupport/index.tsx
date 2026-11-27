@@ -8,13 +8,13 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import useStyles from './styles';
 import SupportData from './supportData';
 import Footer from '../../components/Footer';
 import Newsletter from '../../components/Newsletter';
-import { VIEW_PORT } from '../../constants';
+import { EXTERNAL_LINKS, VIEW_PORT } from '../../constants';
 import useViewport from '../../hooks/viewportWidth';
 import Sponsor from '../../components/Sponsor';
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -164,6 +164,31 @@ const Support: React.FC = () => {
               </Grid>
             ))
             : ''}
+          {/* Invitation for other companies to be listed */}
+          <Grid
+            className={classes.listingSection}
+            size={{
+              xs: 12,
+              md: 4,
+              sm: 6
+            }}>
+            <Typography className={classes.listingTitle}>
+              {t('commercialSupport.listingTitle')}
+            </Typography>
+            <Typography className={classes.cardText}>
+              <Trans i18nKey="commercialSupport.listingDescription">
+                <Link
+                  href={EXTERNAL_LINKS.OPENEBS_WEBSITE_NEW_ISSUE}
+                  className={classes.listingLink}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Open an issue
+                </Link>
+                {' with your company details, support offering, and how you contribute to the OpenEBS community. The maintainers will review your request.'}
+              </Trans>
+            </Typography>
+          </Grid>
         </Grid>
         {/* Newsletter section  */}
         <Newsletter newsletterTitle={t('commercialSupport.newsletter')} />
